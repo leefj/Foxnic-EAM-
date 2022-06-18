@@ -293,7 +293,7 @@ public class AssetStorageServiceImpl extends SuperService<AssetStorage> implemen
 		AssetStorage assetStorage = new AssetStorage();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		assetStorage.setId(id);
-		assetStorage.setDeleted(dao.getDBTreaty().getTrueValue());
+		assetStorage.setDeleted(1);
 		assetStorage.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		assetStorage.setDeleteTime(new Date());
 		try {

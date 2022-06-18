@@ -375,7 +375,8 @@ if [[ -f $app_soft ]];then
 	 rm -rf $app_soft
 fi
 echo "start to download app"
-wget http://resource.rainbooow.com/$app_soft_name
+#wget http://resource.rainbooow.com/$app_soft_name
+wget http://resourceupyun.rainbooow.com/$app_soft_name
 ################### verify soft ###################
 verifySoft $app_soft
 app_soft_VR=$?

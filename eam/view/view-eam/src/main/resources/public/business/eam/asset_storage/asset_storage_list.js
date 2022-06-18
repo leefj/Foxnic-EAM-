@@ -1,7 +1,7 @@
 /**
  * 资产入库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-20 06:40:04
+ * @since 2022-06-18 08:17:26
  */
 
 
@@ -44,7 +44,9 @@ function ListPage() {
 			fox.adjustSearchElement();
 		});
 		fox.adjustSearchElement();
-		$("#table-area").css("margin-top",$(".search-bar").height()+"px");
+		//
+		 var marginTop=$(".search-bar").height()+$(".search-bar").css("padding-top")+$(".search-bar").css("padding-bottom")
+		 $("#table-area").css("margin-top",marginTop+"px");
 		//
 		function renderTableInternal() {
 
@@ -425,16 +427,16 @@ function ListPage() {
 				});
 			}
 			else if (layEvent === 'for-approval') { // 送审
-				window.pageExt.list.forApproval(data);
+				window.pageExt.list.forApproval(data,this);
 			}
 			else if (layEvent === 'confirm-data') { // 确认
-				window.pageExt.list.confirmData(data);
+				window.pageExt.list.confirmData(data,this);
 			}
 			else if (layEvent === 'revoke-data') { // 撤销
-				window.pageExt.list.revokeData(data);
+				window.pageExt.list.revokeData(data,this);
 			}
 			else if (layEvent === 'download-bill') { // 单据
-				window.pageExt.list.downloadBill(data);
+				window.pageExt.list.downloadBill(data,this);
 			}
 			
 		});
@@ -468,7 +470,8 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["98%",height+"px"],
+			// area: ["100%",height+"px"],
+			area: ["100%","100%"],
 			type: 2,
 			id:"eam-asset-storage-form-data-win",
 			content: '/business/eam/asset_storage/asset_storage_form.html' + (queryString?("?"+queryString):""),
@@ -486,7 +489,8 @@ function ListPage() {
 	window.module={
 		refreshTableData: refreshTableData,
 		refreshRowData: refreshRowData,
-		getCheckedList: getCheckedList
+		getCheckedList: getCheckedList,
+		showEditForm: showEditForm
 	};
 
 	window.pageExt.list.ending && window.pageExt.list.ending();

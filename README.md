@@ -2,6 +2,9 @@
 - 实现企业对资产的基本管理,包含对资产的登记、维修、调拨、转移等基本功能的支持，并提供对资产的耗材、库存进行管理，有完善的组织架构，非常适合中小企业的需求
 - EAM系统整体覆盖了基本的资产管理、合同管理、运维服务、运维服务、数据中心设备管理等多个模块。
 
+### 官方往网站
+- http://web.foxnicweb.com/
+
 ### 系统DEMO
 - [Demo] 每天定时由阿里云效自动编译发布部署
 - [Demo] http://eam-demo.rainbooow.com:26788/index.html
@@ -172,6 +175,7 @@ ps -ef|grep mysql |grep -v grep |awk '{print $2}'|xargs kill -9
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/1213/213230_1ba469f5_448530.png "屏幕截图.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/1213/213258_8d970535_448530.png "屏幕截图.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/1213/213315_83659719_448530.png "屏幕截图.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2022/0617/062632_fb854882_448530.png "WechatIMG1.png")
 <img width="200"  src="https://images.gitee.com/uploads/images/2022/0316/122751_e20f543f_448530.jpeg" />
 <img width="200"  src="https://images.gitee.com/uploads/images/2022/0316/122759_2c4b10f6_448530.jpeg" />
 <img width="200"  src="https://images.gitee.com/uploads/images/2022/0316/122807_a1c6116b_448530.jpeg" />
