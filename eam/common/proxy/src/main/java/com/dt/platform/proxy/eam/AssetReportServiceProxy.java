@@ -70,6 +70,12 @@ public interface AssetReportServiceProxy {
 	 */
 	public static final String DASHBOARD_MRO = API_PREFIX + "dashboard-mro";
 
+	/**
+	 * 资产dashboard
+	 */
+	public static final String QUERY_ASSET_DATA_BY_LABEL = API_PREFIX + "query-asset-data-by-label";
+
+
 
 	/**
 	 * 控制器类名

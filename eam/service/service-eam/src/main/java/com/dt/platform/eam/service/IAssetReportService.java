@@ -10,6 +10,7 @@ import com.github.foxnic.dao.entity.ISuperService;
 public interface IAssetReportService extends ISuperService<Asset> {
 
 
+
       JSONArray queryOrganizationData(Asset sample);
 
       JSONArray queryOwnCompanyData(Asset sample);
@@ -18,6 +19,7 @@ public interface IAssetReportService extends ISuperService<Asset> {
 
       JSONArray queryCategoryStatusData(Asset sample);
 
+      Result<JSONObject> queryAssetDataByLabel(String label);
       Result<JSONObject> dashboard();
       Result<JSONObject> dashboardMro();
 

@@ -87,4 +87,11 @@ public class AssetReportController extends SuperController {
 
 
 
+    @ApiOperation(value = "资产数据")
+    @ApiOperationSupport(order=5)
+    @SentinelResource(value = AssetReportServiceProxy.QUERY_ASSET_DATA_BY_LABEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+    @PostMapping(AssetReportServiceProxy.QUERY_ASSET_DATA_BY_LABEL)
+    public  Result<JSONObject> dashBoardMro(String label) {
+        return assetReportService.queryAssetDataByLabel(label);
+    }
 }

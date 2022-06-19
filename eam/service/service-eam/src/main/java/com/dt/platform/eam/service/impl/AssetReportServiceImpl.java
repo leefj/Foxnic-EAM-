@@ -43,6 +43,9 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
     @Resource(name= DBConfigs.PRIMARY_DAO)
     private DAO dao=null;
 
+
+    private static String LABEL_ASSET_TOTAL_DATA="assetTotalData";
+    private String LABEL_ASSET_STATUS_COUNT_DATA="assetStatusCountData";
     /**
      * 获得 DAO 对象
      * */
@@ -53,6 +56,40 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
     public Object generateId(Field field) {
         return IDGenerator.getSnowflakeIdString();
     }
+
+    public Result<JSONObject> queryAssetDataByLabel(String labels){
+        Result<JSONObject> result=new Result<>();
+        JSONObject resObj=new JSONObject();
+        if(!StringUtil.isBlank(labels)){
+            String[] labelArr=labels.split(",");
+            for(String label:labelArr){
+                if(LABEL_ASSET_TOTAL_DATA.equals(label)){
+                    resObj.put(LABEL_ASSET_TOTAL_DATA,queryAssetTotalCount());
+                }else if(LABEL_ASSET_STATUS_COUNT_DATA.equals(label)){
+                    resObj.put(LABEL_ASSET_STATUS_COUNT_DATA,queryAssetStatusData());
+                }
+            }
+        }
+        result.data(resObj);
+        System.out.println(resObj);
+        return result;
+    }
+
+    private JSONObject queryAssetTotalCount(){
+        //获取资产分类数据
+        String sql="select count(1) asset_total_count from eam_asset where owner_code='asset' and deleted=0  and status='complete'";
+        JSONObject res=new JSONObject();
+        res.put("assetTotalCount", dao.queryRecord(sql).getInteger("asset_total_count"));
+        return res;
+    }
+
+    private JSONArray queryAssetStatusData(){
+        //获取资产分类数据
+        String sql="select asset_status,count(1) cnt, IFNULL(sum(original_unit_price),0) asset_original_unit_price from eam_asset where owner_code='asset' and deleted=0  and status='complete' group by asset_status order by 2 desc";
+        RcdSet rs=dao.query(sql);
+        return rs.toJSONArrayWithJSONObject();
+    }
+
 
     @Override
     public Result<JSONObject>  dashboard() {
