@@ -22,7 +22,7 @@ public class PlatformMeta {
 	/**
 	 * 实体包
 	 * */
-	public static final String DOMAIN_PACKAGE=BASE_PACKAGE+".doman";
+	public static final String DOMAIN_PACKAGE=BASE_PACKAGE+".domain";
 
 
 	/**
@@ -89,7 +89,7 @@ public class PlatformMeta {
 	public static final String WORKORDER_PACKAGE=BASE_PACKAGE+".workorder";
 
 	/**
-	 * 工单
+	 * 移动端
 	 * */
 	public static final String MOBILE_PACKAGE=BASE_PACKAGE+".mobile";
 
