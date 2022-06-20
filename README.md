@@ -10,6 +10,11 @@
 - [Demo] http://eam-demo.rainbooow.com:26788/index.html
 - [Demo] 账户:admin 密码:123456；其它账户密码 为 fx9090
 
+### 版本兼容性
+| 应用版本     |   移动端版本     |
+ | ---------- | -----------  |
+| 1.0.12      | 1.0.10       |
+
 #### 最新EAM编译后的包下载(为开发同步版本，并非发布版本)
 - 1、存储过程:[下载SQL](http://foxnicweb.com/docs/chapters/base/1.1/NextVal.zip)
 - 2、SQL文件:(每日更新):http://eam-demo.rainbooow.com/upload/sql.tar.gz
@@ -126,9 +131,9 @@ ps -ef|grep mysql |grep -v grep |awk '{print $2}'|xargs kill -9
 - 注意点:建议第一次docker部署完后，在重启一次，可能第一次启动数据库初始化还没完成，会导致报错
 - 应用和移动端兼容列表
 
- | 应用镜像     |   移动端     |
- | ---------- | -----------  |
- | 1.0.9      | 1.0.1       |
+ | 应用镜像     |   
+ | ---------- | 
+ | 1.0.9      | 
 
 - 部署步骤
 ```
