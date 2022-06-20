@@ -7,28 +7,38 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-06-20 12:38:06
+ * @since 2022-06-20 13:52:18
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
 */
 
-public class WorkorderTables {
+public class MobileTables {
 	
 	/**
 	 * 移动端模块分组
 	*/
-	public static class APP_MODUE_GROUP extends DBTable {
+	public static class APP_MODULE_GROUP extends DBTable {
 		
 		/**
 		 * 表名
 		*/
-		public static final String $NAME = "app_modue_group";
+		public static final String $NAME = "app_module_group";
 		
 		/**
 		 * 主键
 		*/
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 类型
+		*/
+		public static final DBField TYPE = new DBField(DBDataType.STRING , "type","type","类型","类型",false,false,false);
+		
+		/**
+		 * 标签
+		*/
+		public static final DBField LABEL = new DBField(DBDataType.STRING , "label","label","标签","标签",false,false,true);
 		
 		/**
 		 * 状态
@@ -89,21 +99,21 @@ public class WorkorderTables {
 		*/
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
-		public APP_MODUE_GROUP() {
-			this.init($NAME,"移动端模块分组" , ID , STATUS , NAME , SORT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		public APP_MODULE_GROUP() {
+			this.init($NAME,"移动端模块分组" , ID , TYPE , LABEL , STATUS , NAME , SORT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
-		public static final APP_MODUE_GROUP $TABLE=new APP_MODUE_GROUP();
+		public static final APP_MODULE_GROUP $TABLE=new APP_MODULE_GROUP();
 	}
 	
 	/**
 	 * 移动端模块
 	*/
-	public static class APP_MODUE_INFO extends DBTable {
+	public static class APP_MODULE_INFO extends DBTable {
 		
 		/**
 		 * 表名
 		*/
-		public static final String $NAME = "app_modue_info";
+		public static final String $NAME = "app_module_info";
 		
 		/**
 		 * 主键
@@ -189,9 +199,9 @@ public class WorkorderTables {
 		*/
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
-		public APP_MODUE_INFO() {
+		public APP_MODULE_INFO() {
 			this.init($NAME,"移动端模块" , ID , LABEL , STATUS , GROUP_ID , NAME , PATH , NOTES , SORT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
-		public static final APP_MODUE_INFO $TABLE=new APP_MODUE_INFO();
+		public static final APP_MODULE_INFO $TABLE=new APP_MODULE_INFO();
 	}
 }

@@ -1,4 +1,4 @@
-package com.dt.platform.generator.module.eam;
+package com.dt.platform.generator.module.mobile;
 
 import com.dt.platform.generator.config.PlatformConfigs;
 import com.dt.platform.generator.menu.MenuGenerator;
@@ -10,65 +10,17 @@ import com.github.foxnic.sql.meta.DBTable;
 
 public class BaseCodeGenerator {
 
+    public static final String BASIC_MOBILE="591253097230106624";
 
-
-    public static final String BASIC_INSP="568078307707326464";
-
-
-    public static final String BASIC_ASSET_STOCK_ID="513733380219600896";
-
-    public static final String BASIC_BUY_ID="566986193363795968";
-
-    public static final String BASIC_STOCK_GOODS_ID="568725500025896960";
-
-    public static final String BASIC_CY_MENU_ID="475955437510852608";
-
-
-    public static final String EQ_ID="568076619713875968";
-
-
-
-
-    public static final String BASIC_DATA_MENU_ID="471620638545543168";
-    public static final String BASIC_SETTING_MENU_ID="471986431431016449";
-
-    public static final String BASIC_ASSET_MGR_MENU_ID="471985490283724800";
-
-    public static final String BASIC_ASSET_CHANGE_MENU_ID="479208678382108672";
-
-    public static final String BASIC_ASSET_NZ_MENU_ID="489424103724285952";
-
-    public static final String BASIC_ASSET_REAPIR_MENU_ID="479208678382108672";
-
-
-    public static final String BASIC_ASSET_INVENTORY_MENU_ID="471985681850171393";
-
-
-    public static final String BASIC_ASSET_SOFT_MENU_ID="479388413435314177";
-
-
-
-    public static final String BASIC_MOBILE="471985681850171393";
-
-
-    //
-    private String appId="service-eam";
-
-    private String appConfigPrefix= "service-eam";
-
-    private String tablePrefix="eam_";
-
+    private String appId="service-mobile";
+    private String appConfigPrefix= "service-mobile";
+    private String tablePrefix="app_";
     private PlatformConfigs configs;
-
     private DBTable table;
-
     private String parentMenuId;
-
     protected ModuleContext cfg;
 
-
-
-    public BaseCodeGenerator(DBTable table,String parentMenuId) {
+    public BaseCodeGenerator(DBTable table, String parentMenuId) {
         this.table=table;
         this.parentMenuId=parentMenuId;
         configs=new PlatformConfigs(appConfigPrefix);
@@ -77,7 +29,7 @@ public class BaseCodeGenerator {
 
     private Class proxyType;
     private Class pageType;
-    public BaseCodeGenerator(Class proxyType,Class pageType,DBTable table, String parentMenuId) {
+    public BaseCodeGenerator(Class proxyType, Class pageType, DBTable table, String parentMenuId) {
         this.pageType=pageType;
         this.proxyType=proxyType;
         this.table=table;
@@ -85,7 +37,7 @@ public class BaseCodeGenerator {
         configs=new PlatformConfigs(appConfigPrefix);
         cfg=createModuleConfig();
     }
-    public BaseCodeGenerator(Class proxyType,Class pageType,DBTable table, String parentMenuId,String tabPrefix) {
+    public BaseCodeGenerator(Class proxyType, Class pageType, DBTable table, String parentMenuId, String tabPrefix) {
         this.pageType=pageType;
         this.proxyType=proxyType;
 

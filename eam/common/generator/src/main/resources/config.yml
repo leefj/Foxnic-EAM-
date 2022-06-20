@@ -149,3 +149,14 @@ applications:
     viewProjectPath: /view/view-workorder
     viewPrefixPath: public/business/workorder
     wrapperProjectPath: /wrapper/wrapper-all
+  #MOBILE
+  service-mobile:
+    nacosGroup: service
+    nacosDataId: service-mobile.yml
+    serviceProjectPath: /service/service-mobile
+    packageName: com.dt.platform.mobile
+    primaryDatasourceConfigKey: spring.datasource.druid.primary
+    microServiceNameConst: MOBILE
+    viewProjectPath: /view/view-mobile
+    viewPrefixPath: public/business/mobile
+    wrapperProjectPath: /wrapper/wrapper-all

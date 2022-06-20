@@ -51,7 +51,7 @@
 		<module>./service/service-vehicle</module>
 		<module>./service/service-cms</module>
 		<module>./service/service-workorder</module>
-
+		<module>./service/service-mobile</module>
 
 		<!-- 界面视图 -->
 		<module>./view/view-console</module>
@@ -66,6 +66,7 @@
 		<module>./view/view-vehicle</module>
 		<module>./view/view-cms</module>
 		<module>./view/view-workorder</module>
+		<module>./view/view-mobile</module>
 
 		<!-- 聚合 -->
 		<module>./wrapper/wrapper-all</module>

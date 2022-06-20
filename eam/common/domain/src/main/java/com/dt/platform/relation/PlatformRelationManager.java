@@ -27,7 +27,8 @@ public class PlatformRelationManager extends RelationManager {
 				new CommonRelationManager(),
 				new DatacenterRelationManager(),
 				new ContractRelationManager(),
-				new MonitorRelationManager()
+				new MonitorRelationManager(),
+				new MobileRelationManager()
 
 		);
 		//启动动态刷入

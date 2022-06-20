@@ -21,40 +21,45 @@ public class ServiceNames {
 	public static final String DATACENTER="service-datacenter";
 
 	/**
-	 * 数据中心相关的服务 <br>
+	 * 运维服务 <br>
 	 * 对应 bootstrap.yml 中 spring.application.name 属性
 	 * */
 	public static final String OPS="service-ops";
 
 	/**
-	 * 数据中心相关的服务 <br>
+	 * 功能服务 <br>
 	 * 对应 bootstrap.yml 中 spring.application.name 属性
 	 * */
 	public static final String COMMON="service-common";
 
 
 	/**
-	 * 数据中心相关的服务 <br>
+	 * 知识库服务 <br>
 	 * 对应 bootstrap.yml 中 spring.application.name 属性
 	 * */
 	public static final String KNOWLEDGEBASE="service-knowledgebase";
 
 	/**
-	 * 数据中心相关的服务 <br>
+	 * 合同服务 <br>
 	 * 对应 bootstrap.yml 中 spring.application.name 属性
 	 * */
 	public static final String CONTRACT="service-contract";
 
 	/**
-	 * 数据中心相关的服务 <br>
+	 * 车辆服务 <br>
 	 * 对应 bootstrap.yml 中 spring.application.name 属性
 	 * */
 	public static final String VEHICLE="service-vehicle";
 
-	/**1
-	 * 数据中心相关的服务 <br>
+	/**
+	 * CMS服务 <br>
 	 * 对应 bootstrap.yml 中 spring.application.name 属性
 	 * */
 	public static final String CMS="service-cms";
 
+	/**
+	 * 数据中心相关的服务 <br>
+	 * 对应 bootstrap.yml 中 spring.application.name 属性
+	 * */
+	public static final String MOBILE="service-mobile";
 }
