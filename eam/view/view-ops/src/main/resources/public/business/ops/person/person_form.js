@@ -1,13 +1,13 @@
 /**
- * 主机位置 列表页 JS 脚本
+ * 人员清单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-21 10:03:50
+ * @since 2022-06-21 11:02:19
  */
 
 function FormPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup;
-	const moduleURL="/service-ops/ops-host-position";
+	const moduleURL="/service-ops/ops-person";
 	// 表单执行操作类型：view，create，edit
 	var action=null;
 	var disableCreateNew=false;
@@ -23,7 +23,7 @@ function FormPage() {
      	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload;
 		laydate = layui.laydate,table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect;
 
-		action=admin.getTempData('ops-host-position-form-data-form-action');
+		action=admin.getTempData('ops-person-form-data-form-action');
 		//如果没有修改和保存权限
 		if( !admin.checkAuth(AUTH_PREFIX+":update") && !admin.checkAuth(AUTH_PREFIX+":save")) {
 			disableModify=true;
@@ -37,7 +37,7 @@ function FormPage() {
 		}
 
 		if(window.pageExt.form.beforeInit) {
-			window.pageExt.form.beforeInit(action,admin.getTempData('ops-host-position-form-data'));
+			window.pageExt.form.beforeInit(action,admin.getTempData('ops-person-form-data'));
 		}
 
 		//渲染表单组件
@@ -72,9 +72,9 @@ function FormPage() {
 			var body=$("body");
 			var bodyHeight=body.height();
 			var footerHeight=$(".model-form-footer").height();
-			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'ops-host-position-form-data-win');
+			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'ops-person-form-data-win');
 			if(area==null) return;
-			admin.putTempData('ops-host-position-form-area', area);
+			admin.putTempData('ops-person-form-area', area);
 			window.adjustPopup=adjustPopup;
 			if(area.tooHeigh) {
 				var windowHeight=area.iframeHeight;
@@ -94,6 +94,35 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
+		//渲染 personType 下拉字段
+		fox.renderSelectBox({
+			el: "personType",
+			radio: true,
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("personType",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "label", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
 	}
 
 	/**
@@ -125,7 +154,7 @@ function FormPage() {
       */
 	function fillFormData(formData) {
 		if(!formData) {
-			formData = admin.getTempData('ops-host-position-form-data');
+			formData = admin.getTempData('ops-person-form-data');
 		}
 
 		window.pageExt.form.beforeDataFill && window.pageExt.form.beforeDataFill(formData);
@@ -146,6 +175,8 @@ function FormPage() {
 
 
 
+			//设置  人员类型 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#personType",formData.personTypeDict);
 
 			//处理fillBy
 
@@ -197,6 +228,8 @@ function FormPage() {
 
 
 
+		//获取 人员类型 下拉框的值
+		data["personType"]=fox.getSelectedValue("personType",false);
 
 		return data;
 	}
@@ -227,7 +260,7 @@ function FormPage() {
 				}
 
 				if(doNext) {
-					admin.finishPopupCenterById('ops-host-position-form-data-win');
+					admin.finishPopupCenterById('ops-person-form-data-win');
 				}
 
 				// 调整状态为编辑
@@ -262,7 +295,7 @@ function FormPage() {
 
 
 	    //关闭窗口
-	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('ops-host-position-form-data-win',this); });
+	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('ops-person-form-data-win',this); });
 
     }
 

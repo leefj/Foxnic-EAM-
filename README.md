@@ -2,13 +2,19 @@
 - 实现企业对资产的基本管理,包含对资产的登记、维修、调拨、转移等基本功能的支持，并提供对资产的耗材、库存进行管理，有完善的组织架构，非常适合中小企业的需求
 - EAM系统整体覆盖了基本的资产管理、合同管理、运维服务、运维服务、数据中心设备管理等多个模块。
 
-### 官方往网站
+### 官方网站
 - http://web.foxnicweb.com/
 
 ### 系统DEMO
 - [Demo] 每天定时由阿里云效自动编译发布部署
 - [Demo] http://eam-demo.rainbooow.com:26788/index.html
 - [Demo] 账户:admin 密码:123456；其它账户密码 为 fx9090
+
+### 下载地址
+- 链接: https://pan.baidu.com/s/1d6Yvszugq2fdGNEsW8ijmQ 提取码: lm6i
+  
+  <img width="200"  src="https://images.gitee.com/uploads/images/2022/0621/084431_f977a14d_448530.png" />
+
 
 ### 版本兼容性
 | 应用版本     |   移动端版本     |

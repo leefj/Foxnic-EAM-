@@ -6,23 +6,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import com.dt.platform.proxy.ops.HostPositionServiceProxy;
+import com.dt.platform.proxy.ops.PersonServiceProxy;
 import javax.servlet.http.HttpServletRequest;
 /**
  * <p>
- * 主机位置 模版页面控制器
+ * 人员清单 模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-21 10:03:49
+ * @since 2022-06-21 11:02:18
 */
 
-@Controller("OpsHostPositionPageController")
-@RequestMapping(HostPositionPageController.prefix)
-public class HostPositionPageController extends ViewController {
+@Controller("OpsPersonPageController")
+@RequestMapping(PersonPageController.prefix)
+public class PersonPageController extends ViewController {
 	
-	public static final String prefix="business/ops/host_position";
+	public static final String prefix="business/ops/person";
 
-	private HostPositionServiceProxy proxy;
+	private PersonServiceProxy proxy;
 	
 	/**
 	 * 获得代理对象<br> 
@@ -30,26 +30,26 @@ public class HostPositionPageController extends ViewController {
 	 * 2、前后端分离时，通过配置，以Rest方式调用后端；<br> 
 	 * 3、微服务时，通过feign调用; <br> 
 	 * */
-	public HostPositionServiceProxy proxy() {
+	public PersonServiceProxy proxy() {
 		if(proxy==null) {
-			proxy=HostPositionServiceProxy.api();
+			proxy=PersonServiceProxy.api();
 		}
 		return proxy;
 	}
 	
 	/**
-	 * 主机位置 功能主页面
+	 * 人员清单 功能主页面
 	 */
-	@RequestMapping("/host_position_list.html")
+	@RequestMapping("/person_list.html")
 	public String list(Model model,HttpServletRequest request) {
-		return prefix+"/host_position_list";
+		return prefix+"/person_list";
 	}
 
 	/**
-	 * 主机位置 表单页面
+	 * 人员清单 表单页面
 	 */
-	@RequestMapping("/host_position_form.html")
+	@RequestMapping("/person_form.html")
 	public String form(Model model,HttpServletRequest request , String id) {
-		return prefix+"/host_position_form";
+		return prefix+"/person_form";
 	}
 }

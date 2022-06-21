@@ -3,11 +3,12 @@ package com.dt.platform.domain.ops;
 import com.github.foxnic.dao.entity.Entity;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
-import com.dt.platform.constants.db.OpsTables.OPS_HOST_POSITION;
+import com.dt.platform.constants.db.OpsTables.OPS_PERSON;
 import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import org.github.foxnic.web.domain.system.DictItem;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
@@ -15,19 +16,19 @@ import com.github.foxnic.dao.entity.EntityContext;
 
 
 /**
- * 主机位置
+ * 人员清单
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-21 10:03:49
- * @sign 077E67C3303FBB4BCBED0CE70952A116
+ * @since 2022-06-21 11:02:18
+ * @sign 4AE5261614EABF786926A71BB67B7E57
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
-@Table(name = "ops_host_position")
-public class HostPosition extends Entity {
+@Table(name = "ops_person")
+public class Person extends Entity {
 
 	private static final long serialVersionUID = 1L;
 
-	public static final DBTable TABLE =OPS_HOST_POSITION.$TABLE;
+	public static final DBTable TABLE =OPS_PERSON.$TABLE;
 	
 	/**
 	 * 主键：主键
@@ -37,10 +38,34 @@ public class HostPosition extends Entity {
 	private String id;
 	
 	/**
-	 * 名称：名称
+	 * 组织名称：组织名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称")
+	@ApiModelProperty(required = false,value="组织名称" , notes = "组织名称")
+	private String companyName;
+	
+	/**
+	 * 姓名：姓名
+	*/
+	@ApiModelProperty(required = false,value="姓名" , notes = "姓名")
 	private String name;
+	
+	/**
+	 * 人员类型：人员类型
+	*/
+	@ApiModelProperty(required = false,value="人员类型" , notes = "人员类型")
+	private String personType;
+	
+	/**
+	 * 联系方式：联系方式
+	*/
+	@ApiModelProperty(required = false,value="联系方式" , notes = "联系方式")
+	private String contactInformation;
+	
+	/**
+	 * 标签：标签
+	*/
+	@ApiModelProperty(required = false,value="标签" , notes = "标签")
+	private String label;
 	
 	/**
 	 * 备注：备注
@@ -75,7 +100,7 @@ public class HostPosition extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = false,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
 	@Transient
 	private Boolean deletedBool;
@@ -105,6 +130,12 @@ public class HostPosition extends Entity {
 	private String tenantId;
 	
 	/**
+	 * 人员类型：人员类型
+	*/
+	@ApiModelProperty(required = false,value="人员类型" , notes = "人员类型")
+	private DictItem personTypeDict;
+	
+	/**
 	 * 获得 主键<br>
 	 * 主键
 	 * @return 主键
@@ -118,27 +149,103 @@ public class HostPosition extends Entity {
 	 * @param id 主键
 	 * @return 当前对象
 	*/
-	public HostPosition setId(String id) {
+	public Person setId(String id) {
 		this.id=id;
 		return this;
 	}
 	
 	/**
-	 * 获得 名称<br>
-	 * 名称
-	 * @return 名称
+	 * 获得 组织名称<br>
+	 * 组织名称
+	 * @return 组织名称
+	*/
+	public String getCompanyName() {
+		return companyName;
+	}
+	
+	/**
+	 * 设置 组织名称
+	 * @param companyName 组织名称
+	 * @return 当前对象
+	*/
+	public Person setCompanyName(String companyName) {
+		this.companyName=companyName;
+		return this;
+	}
+	
+	/**
+	 * 获得 姓名<br>
+	 * 姓名
+	 * @return 姓名
 	*/
 	public String getName() {
 		return name;
 	}
 	
 	/**
-	 * 设置 名称
-	 * @param name 名称
+	 * 设置 姓名
+	 * @param name 姓名
 	 * @return 当前对象
 	*/
-	public HostPosition setName(String name) {
+	public Person setName(String name) {
 		this.name=name;
+		return this;
+	}
+	
+	/**
+	 * 获得 人员类型<br>
+	 * 人员类型
+	 * @return 人员类型
+	*/
+	public String getPersonType() {
+		return personType;
+	}
+	
+	/**
+	 * 设置 人员类型
+	 * @param personType 人员类型
+	 * @return 当前对象
+	*/
+	public Person setPersonType(String personType) {
+		this.personType=personType;
+		return this;
+	}
+	
+	/**
+	 * 获得 联系方式<br>
+	 * 联系方式
+	 * @return 联系方式
+	*/
+	public String getContactInformation() {
+		return contactInformation;
+	}
+	
+	/**
+	 * 设置 联系方式
+	 * @param contactInformation 联系方式
+	 * @return 当前对象
+	*/
+	public Person setContactInformation(String contactInformation) {
+		this.contactInformation=contactInformation;
+		return this;
+	}
+	
+	/**
+	 * 获得 标签<br>
+	 * 标签
+	 * @return 标签
+	*/
+	public String getLabel() {
+		return label;
+	}
+	
+	/**
+	 * 设置 标签
+	 * @param label 标签
+	 * @return 当前对象
+	*/
+	public Person setLabel(String label) {
+		this.label=label;
 		return this;
 	}
 	
@@ -156,7 +263,7 @@ public class HostPosition extends Entity {
 	 * @param notes 备注
 	 * @return 当前对象
 	*/
-	public HostPosition setNotes(String notes) {
+	public Person setNotes(String notes) {
 		this.notes=notes;
 		return this;
 	}
@@ -175,7 +282,7 @@ public class HostPosition extends Entity {
 	 * @param createBy 创建人ID
 	 * @return 当前对象
 	*/
-	public HostPosition setCreateBy(String createBy) {
+	public Person setCreateBy(String createBy) {
 		this.createBy=createBy;
 		return this;
 	}
@@ -194,7 +301,7 @@ public class HostPosition extends Entity {
 	 * @param createTime 创建时间
 	 * @return 当前对象
 	*/
-	public HostPosition setCreateTime(Date createTime) {
+	public Person setCreateTime(Date createTime) {
 		this.createTime=createTime;
 		return this;
 	}
@@ -213,7 +320,7 @@ public class HostPosition extends Entity {
 	 * @param updateBy 修改人ID
 	 * @return 当前对象
 	*/
-	public HostPosition setUpdateBy(String updateBy) {
+	public Person setUpdateBy(String updateBy) {
 		this.updateBy=updateBy;
 		return this;
 	}
@@ -232,7 +339,7 @@ public class HostPosition extends Entity {
 	 * @param updateTime 修改时间
 	 * @return 当前对象
 	*/
-	public HostPosition setUpdateTime(Date updateTime) {
+	public Person setUpdateTime(Date updateTime) {
 		this.updateTime=updateTime;
 		return this;
 	}
@@ -264,7 +371,7 @@ public class HostPosition extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
-	public HostPosition setDeleted(Integer deleted) {
+	public Person setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
 		return this;
@@ -276,7 +383,7 @@ public class HostPosition extends Entity {
 	 * @return 当前对象
 	*/
 	@Transient
-	public HostPosition setDeleted(Boolean deletedBool) {
+	public Person setDeleted(Boolean deletedBool) {
 		if(deletedBool==null) {
 			this.deleted=null;
 		} else {
@@ -300,7 +407,7 @@ public class HostPosition extends Entity {
 	 * @param deleteBy 删除人ID
 	 * @return 当前对象
 	*/
-	public HostPosition setDeleteBy(String deleteBy) {
+	public Person setDeleteBy(String deleteBy) {
 		this.deleteBy=deleteBy;
 		return this;
 	}
@@ -319,7 +426,7 @@ public class HostPosition extends Entity {
 	 * @param deleteTime 删除时间
 	 * @return 当前对象
 	*/
-	public HostPosition setDeleteTime(Date deleteTime) {
+	public Person setDeleteTime(Date deleteTime) {
 		this.deleteTime=deleteTime;
 		return this;
 	}
@@ -338,7 +445,7 @@ public class HostPosition extends Entity {
 	 * @param version version
 	 * @return 当前对象
 	*/
-	public HostPosition setVersion(Integer version) {
+	public Person setVersion(Integer version) {
 		this.version=version;
 		return this;
 	}
@@ -357,15 +464,34 @@ public class HostPosition extends Entity {
 	 * @param tenantId 租户
 	 * @return 当前对象
 	*/
-	public HostPosition setTenantId(String tenantId) {
+	public Person setTenantId(String tenantId) {
 		this.tenantId=tenantId;
+		return this;
+	}
+	
+	/**
+	 * 获得 人员类型<br>
+	 * 人员类型
+	 * @return 人员类型
+	*/
+	public DictItem getPersonTypeDict() {
+		return personTypeDict;
+	}
+	
+	/**
+	 * 设置 人员类型
+	 * @param personTypeDict 人员类型
+	 * @return 当前对象
+	*/
+	public Person setPersonTypeDict(DictItem personTypeDict) {
+		this.personTypeDict=personTypeDict;
 		return this;
 	}
 
 	/**
 	 * 将自己转换成指定类型的PO
 	 * @param poType  PO类型
-	 * @return HostPosition , 转换好的 HostPosition 对象
+	 * @return Person , 转换好的 Person 对象
 	*/
 	@Transient
 	public <T extends Entity> T toPO(Class<T> poType) {
@@ -375,7 +501,7 @@ public class HostPosition extends Entity {
 	/**
 	 * 将自己转换成任意指定类型
 	 * @param pojoType  Pojo类型
-	 * @return HostPosition , 转换好的 PoJo 对象
+	 * @return Person , 转换好的 PoJo 对象
 	*/
 	@Transient
 	public <T> T toPojo(Class<T> pojoType) {
@@ -392,35 +518,35 @@ public class HostPosition extends Entity {
 	}
 
 	/**
-	 * 将 Map 转换成 HostPosition
-	 * @param hostPositionMap 包含实体信息的 Map 对象
-	 * @return HostPosition , 转换好的的 HostPosition 对象
+	 * 将 Map 转换成 Person
+	 * @param personMap 包含实体信息的 Map 对象
+	 * @return Person , 转换好的的 Person 对象
 	*/
 	@Transient
-	public static HostPosition createFrom(Map<String,Object> hostPositionMap) {
-		if(hostPositionMap==null) return null;
-		HostPosition po = EntityContext.create(HostPosition.class, hostPositionMap);
+	public static Person createFrom(Map<String,Object> personMap) {
+		if(personMap==null) return null;
+		Person po = EntityContext.create(Person.class, personMap);
 		return po;
 	}
 
 	/**
-	 * 将 Pojo 转换成 HostPosition
+	 * 将 Pojo 转换成 Person
 	 * @param pojo 包含实体信息的 Pojo 对象
-	 * @return HostPosition , 转换好的的 HostPosition 对象
+	 * @return Person , 转换好的的 Person 对象
 	*/
 	@Transient
-	public static HostPosition createFrom(Object pojo) {
+	public static Person createFrom(Object pojo) {
 		if(pojo==null) return null;
-		HostPosition po = EntityContext.create(HostPosition.class,pojo);
+		Person po = EntityContext.create(Person.class,pojo);
 		return po;
 	}
 
 	/**
-	 * 创建一个 HostPosition，等同于 new
-	 * @return HostPosition 对象
+	 * 创建一个 Person，等同于 new
+	 * @return Person 对象
 	*/
 	@Transient
-	public static HostPosition create() {
-		return EntityContext.create(HostPosition.class);
+	public static Person create() {
+		return EntityContext.create(Person.class);
 	}
 }

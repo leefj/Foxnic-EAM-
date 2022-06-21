@@ -3,6 +3,7 @@ package com.dt.platform.proxy.ops;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.cloud.openfeign.FeignClient;
 import com.dt.platform.domain.ops.HostPosition;
 import com.dt.platform.domain.ops.HostPositionVO;
@@ -10,14 +11,13 @@ import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
 import com.dt.platform.proxy.ServiceNames;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * <p>
  * 主机位置  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:28:37
+ * @since 2022-06-21 10:03:49
  */
 @FeignClient(value = ServiceNames.OPS, contextId = HostPositionServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface HostPositionServiceProxy {
@@ -134,7 +134,7 @@ public interface HostPositionServiceProxy {
     Result<HostPosition> getById(@RequestParam(name = "id") String id);
 
     /**
-     * 批量删除主机位置
+     * 获取多个主机位置
      */
     @RequestMapping(HostPositionServiceProxy.GET_BY_IDS)
     Result<List<HostPosition>> getByIds(@RequestParam(name = "ids") List<String> ids);

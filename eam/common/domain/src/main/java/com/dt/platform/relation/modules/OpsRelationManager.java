@@ -33,13 +33,15 @@ public class OpsRelationManager extends RelationManager {
         this.setupVoucherPriv();
         this.setupInfoSystem();
         this.setupTplFile();
-
+        this.setupPerson();
         this.setupCertificate();
         this.setupCertificateItem();
 
     }
 
+    public void setupPerson() {
 
+    }
 
 
     public void setupCertificate() {
@@ -71,9 +73,9 @@ public class OpsRelationManager extends RelationManager {
     }
 
     private void setupRelations() {
-        //关联服务分组
-//        this.property(TplFileMeta.FILE_PROP)
-//                .using(EAMTables.EAM_TPL_FILE.FILE_ID).join(FoxnicWeb.SYS_FILE.ID);
+        this.property(PersonMeta.PERSON_TYPE_DICT_PROP)
+                .using(OpsTables.OPS_PERSON.PERSON_TYPE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='ops_person_type'");
     }
 
 

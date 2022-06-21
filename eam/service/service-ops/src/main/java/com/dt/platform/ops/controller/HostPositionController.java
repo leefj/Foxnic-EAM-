@@ -48,7 +48,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 主机位置 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:28:37
+ * @since 2022-06-21 10:03:49
 */
 
 @Api(tags = "主机位置")
@@ -73,7 +73,7 @@ public class HostPositionController extends SuperController {
 	@SentinelResource(value = HostPositionServiceProxy.INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(HostPositionServiceProxy.INSERT)
 	public Result insert(HostPositionVO hostPositionVO) {
-		Result result=hostPositionService.insert(hostPositionVO);
+		Result result=hostPositionService.insert(hostPositionVO,false);
 		return result;
 	}
 
@@ -122,12 +122,12 @@ public class HostPositionController extends SuperController {
 		@ApiImplicitParam(name = HostPositionVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "位置1"),
 		@ApiImplicitParam(name = HostPositionVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
-	@ApiOperationSupport( order=4 , ignoreParameters = { HostPositionVOMeta.PAGE_INDEX , HostPositionVOMeta.PAGE_SIZE , HostPositionVOMeta.SEARCH_FIELD , HostPositionVOMeta.FUZZY_FIELD , HostPositionVOMeta.SEARCH_VALUE , HostPositionVOMeta.SORT_FIELD , HostPositionVOMeta.SORT_TYPE , HostPositionVOMeta.IDS } )
+	@ApiOperationSupport( order=4 , ignoreParameters = { HostPositionVOMeta.PAGE_INDEX , HostPositionVOMeta.PAGE_SIZE , HostPositionVOMeta.SEARCH_FIELD , HostPositionVOMeta.FUZZY_FIELD , HostPositionVOMeta.SEARCH_VALUE , HostPositionVOMeta.DIRTY_FIELDS , HostPositionVOMeta.SORT_FIELD , HostPositionVOMeta.SORT_TYPE , HostPositionVOMeta.IDS } )
 	@NotNull(name = HostPositionVOMeta.ID)
 	@SentinelResource(value = HostPositionServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(HostPositionServiceProxy.UPDATE)
 	public Result update(HostPositionVO hostPositionVO) {
-		Result result=hostPositionService.update(hostPositionVO,SaveMode.NOT_NULL_FIELDS);
+		Result result=hostPositionService.update(hostPositionVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
 		return result;
 	}
 
@@ -141,12 +141,12 @@ public class HostPositionController extends SuperController {
 		@ApiImplicitParam(name = HostPositionVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "位置1"),
 		@ApiImplicitParam(name = HostPositionVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
-	@ApiOperationSupport(order=5 ,  ignoreParameters = { HostPositionVOMeta.PAGE_INDEX , HostPositionVOMeta.PAGE_SIZE , HostPositionVOMeta.SEARCH_FIELD , HostPositionVOMeta.FUZZY_FIELD , HostPositionVOMeta.SEARCH_VALUE , HostPositionVOMeta.SORT_FIELD , HostPositionVOMeta.SORT_TYPE , HostPositionVOMeta.IDS } )
+	@ApiOperationSupport(order=5 ,  ignoreParameters = { HostPositionVOMeta.PAGE_INDEX , HostPositionVOMeta.PAGE_SIZE , HostPositionVOMeta.SEARCH_FIELD , HostPositionVOMeta.FUZZY_FIELD , HostPositionVOMeta.SEARCH_VALUE , HostPositionVOMeta.DIRTY_FIELDS , HostPositionVOMeta.SORT_FIELD , HostPositionVOMeta.SORT_TYPE , HostPositionVOMeta.IDS } )
 	@NotNull(name = HostPositionVOMeta.ID)
 	@SentinelResource(value = HostPositionServiceProxy.SAVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(HostPositionServiceProxy.SAVE)
 	public Result save(HostPositionVO hostPositionVO) {
-		Result result=hostPositionService.save(hostPositionVO,SaveMode.NOT_NULL_FIELDS);
+		Result result=hostPositionService.save(hostPositionVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
 		return result;
 	}
 
@@ -165,11 +165,6 @@ public class HostPositionController extends SuperController {
 	public Result<HostPosition> getById(String id) {
 		Result<HostPosition> result=new Result<>();
 		HostPosition hostPosition=hostPositionService.getById(id);
-
-		// join 关联的对象
-		hostPositionService.dao().fill(hostPosition)
-			.execute();
-
 		result.success(true).data(hostPosition);
 		return result;
 	}
@@ -189,7 +184,7 @@ public class HostPositionController extends SuperController {
 	@PostMapping(HostPositionServiceProxy.GET_BY_IDS)
 	public Result<List<HostPosition>> getByIds(List<String> ids) {
 		Result<List<HostPosition>> result=new Result<>();
-		List<HostPosition> list=hostPositionService.getByIds(ids);
+		List<HostPosition> list=hostPositionService.queryListByIds(ids);
 		result.success(true).data(list);
 		return result;
 	}
@@ -230,11 +225,6 @@ public class HostPositionController extends SuperController {
 	public Result<PagedList<HostPosition>> queryPagedList(HostPositionVO sample) {
 		Result<PagedList<HostPosition>> result=new Result<>();
 		PagedList<HostPosition> list=hostPositionService.queryPagedList(sample,sample.getPageSize(),sample.getPageIndex());
-
-		// join 关联的对象
-		hostPositionService.dao().fill(list)
-			.execute();
-
 		result.success(true).data(list);
 		return result;
 	}
@@ -247,10 +237,14 @@ public class HostPositionController extends SuperController {
 	@SentinelResource(value = HostPositionServiceProxy.EXPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@RequestMapping(HostPositionServiceProxy.EXPORT_EXCEL)
 	public void exportExcel(HostPositionVO  sample,HttpServletResponse response) throws Exception {
+		try{
 			//生成 Excel 数据
 			ExcelWriter ew=hostPositionService.exportExcel(sample);
 			//下载
-			DownloadUtil.writeToOutput(response, ew.getWorkBook(), ew.getWorkBookName());
+			DownloadUtil.writeToOutput(response,ew.getWorkBook(),ew.getWorkBookName());
+		} catch (Exception e) {
+			DownloadUtil.writeDownloadError(response,e);
+		}
 	}
 
 
@@ -260,11 +254,15 @@ public class HostPositionController extends SuperController {
 	@SentinelResource(value = HostPositionServiceProxy.EXPORT_EXCEL_TEMPLATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@RequestMapping(HostPositionServiceProxy.EXPORT_EXCEL_TEMPLATE)
 	public void exportExcelTemplate(HttpServletResponse response) throws Exception {
+		try{
 			//生成 Excel 模版
 			ExcelWriter ew=hostPositionService.exportExcelTemplate();
 			//下载
 			DownloadUtil.writeToOutput(response, ew.getWorkBook(), ew.getWorkBookName());
+		} catch (Exception e) {
+			DownloadUtil.writeDownloadError(response,e);
 		}
+	}
 
 
 

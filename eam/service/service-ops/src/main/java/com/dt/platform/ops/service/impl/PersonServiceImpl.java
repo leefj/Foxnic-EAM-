@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import com.dt.platform.domain.ops.HostPosition;
-import com.dt.platform.domain.ops.HostPositionVO;
+import com.dt.platform.domain.ops.Person;
+import com.dt.platform.domain.ops.PersonVO;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -26,22 +26,22 @@ import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.meta.DBColumnMeta;
 import com.github.foxnic.sql.expr.Select;
 import java.util.ArrayList;
-import com.dt.platform.ops.service.IHostPositionService;
+import com.dt.platform.ops.service.IPersonService;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import java.util.Date;
 import java.util.Map;
 
 /**
  * <p>
- * 主机位置 服务实现
+ * 人员清单 服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-21 10:03:49
+ * @since 2022-06-21 11:02:18
 */
 
 
-@Service("OpsHostPositionService")
-public class HostPositionServiceImpl extends SuperService<HostPosition> implements IHostPositionService {
+@Service("OpsPersonService")
+public class PersonServiceImpl extends SuperService<Person> implements IPersonService {
 
 	/**
 	 * 注入DAO对象
@@ -64,49 +64,49 @@ public class HostPositionServiceImpl extends SuperService<HostPosition> implemen
 	/**
 	 * 添加，根据 throwsException 参数抛出异常或返回 Result 对象
 	 *
-	 * @param hostPosition  数据对象
+	 * @param person  数据对象
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 结果 , 如果失败返回 false，成功返回 true
 	 */
 	@Override
-	public Result insert(HostPosition hostPosition,boolean throwsException) {
-		Result r=super.insert(hostPosition,throwsException);
+	public Result insert(Person person,boolean throwsException) {
+		Result r=super.insert(person,throwsException);
 		return r;
 	}
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
-	 * @param hostPosition 数据对象
+	 * @param person 数据对象
 	 * @return 插入是否成功
 	 * */
 	@Override
-	public Result insert(HostPosition hostPosition) {
-		return this.insert(hostPosition,true);
+	public Result insert(Person person) {
+		return this.insert(person,true);
 	}
 
 	/**
 	 * 批量插入实体，事务内
-	 * @param hostPositionList 实体数据清单
+	 * @param personList 实体数据清单
 	 * @return 插入是否成功
 	 * */
 	@Override
-	public Result insertList(List<HostPosition> hostPositionList) {
-		return super.insertList(hostPositionList);
+	public Result insertList(List<Person> personList) {
+		return super.insertList(personList);
 	}
 
 	
 	/**
-	 * 按主键删除 主机位置
+	 * 按主键删除 人员清单
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
 	 */
 	public Result deleteByIdPhysical(String id) {
-		HostPosition hostPosition = new HostPosition();
+		Person person = new Person();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
-		hostPosition.setId(id);
+		person.setId(id);
 		try {
-			boolean suc = dao.deleteEntity(hostPosition);
+			boolean suc = dao.deleteEntity(person);
 			return suc?ErrorDesc.success():ErrorDesc.failure();
 		}
 		catch(Exception e) {
@@ -117,20 +117,20 @@ public class HostPositionServiceImpl extends SuperService<HostPosition> implemen
 	}
 	
 	/**
-	 * 按主键删除 主机位置
+	 * 按主键删除 人员清单
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
 	 */
 	public Result deleteByIdLogical(String id) {
-		HostPosition hostPosition = new HostPosition();
+		Person person = new Person();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
-		hostPosition.setId(id);
-		hostPosition.setDeleted(true);
-		hostPosition.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
-		hostPosition.setDeleteTime(new Date());
+		person.setId(id);
+		person.setDeleted(true);
+		person.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
+		person.setDeleteTime(new Date());
 		try {
-			boolean suc = dao.updateEntity(hostPosition,SaveMode.NOT_NULL_FIELDS);
+			boolean suc = dao.updateEntity(person,SaveMode.NOT_NULL_FIELDS);
 			return suc?ErrorDesc.success():ErrorDesc.failure();
 		}
 		catch(Exception e) {
@@ -142,42 +142,42 @@ public class HostPositionServiceImpl extends SuperService<HostPosition> implemen
 
 	/**
 	 * 更新，如果执行错误，则抛出异常
-	 * @param hostPosition 数据对象
+	 * @param person 数据对象
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
 	@Override
-	public Result update(HostPosition hostPosition , SaveMode mode) {
-		return this.update(hostPosition,mode,true);
+	public Result update(Person person , SaveMode mode) {
+		return this.update(person,mode,true);
 	}
 
 	/**
 	 * 更新，根据 throwsException 参数抛出异常或返回 Result 对象
-	 * @param hostPosition 数据对象
+	 * @param person 数据对象
 	 * @param mode 保存模式
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 保存是否成功
 	 * */
 	@Override
-	public Result update(HostPosition hostPosition , SaveMode mode,boolean throwsException) {
-		Result r=super.update(hostPosition , mode , throwsException);
+	public Result update(Person person , SaveMode mode,boolean throwsException) {
+		Result r=super.update(person , mode , throwsException);
 		return r;
 	}
 
 	/**
 	 * 更新实体集，事务内
-	 * @param hostPositionList 数据对象列表
+	 * @param personList 数据对象列表
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
 	@Override
-	public Result updateList(List<HostPosition> hostPositionList , SaveMode mode) {
-		return super.updateList(hostPositionList , mode);
+	public Result updateList(List<Person> personList , SaveMode mode) {
+		return super.updateList(personList , mode);
 	}
 
 	
 	/**
-	 * 按主键更新字段 主机位置
+	 * 按主键更新字段 人员清单
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -191,26 +191,26 @@ public class HostPositionServiceImpl extends SuperService<HostPosition> implemen
 
 	
 	/**
-	 * 按主键获取 主机位置
+	 * 按主键获取 人员清单
 	 *
 	 * @param id 主键
-	 * @return HostPosition 数据对象
+	 * @return Person 数据对象
 	 */
-	public HostPosition getById(String id) {
-		HostPosition sample = new HostPosition();
+	public Person getById(String id) {
+		Person sample = new Person();
 		if(id==null) throw new IllegalArgumentException("id 不允许为 null ");
 		sample.setId(id);
 		return dao.queryEntity(sample);
 	}
 
 	@Override
-	public List<HostPosition> queryListByIds(List<String> ids) {
+	public List<Person> queryListByIds(List<String> ids) {
 		return super.queryListByUKeys("id",ids);
 	}
 
 	@Override
-	public Map<String, HostPosition> queryMapByIds(List<String> ids) {
-		return super.queryMapByUKeys("id",ids, HostPosition::getId);
+	public Map<String, Person> queryMapByIds(List<String> ids) {
+		return super.queryMapByUKeys("id",ids, Person::getId);
 	}
 
 
@@ -222,7 +222,7 @@ public class HostPositionServiceImpl extends SuperService<HostPosition> implemen
 	 * @return 查询结果
 	 * */
 	@Override
-	public List<HostPosition> queryList(HostPosition sample) {
+	public List<Person> queryList(Person sample) {
 		return super.queryList(sample);
 	}
 
@@ -236,7 +236,7 @@ public class HostPositionServiceImpl extends SuperService<HostPosition> implemen
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<HostPosition> queryPagedList(HostPosition sample, int pageSize, int pageIndex) {
+	public PagedList<Person> queryPagedList(Person sample, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, pageSize, pageIndex);
 	}
 
@@ -250,25 +250,25 @@ public class HostPositionServiceImpl extends SuperService<HostPosition> implemen
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<HostPosition> queryPagedList(HostPosition sample, ConditionExpr condition, int pageSize, int pageIndex) {
+	public PagedList<Person> queryPagedList(Person sample, ConditionExpr condition, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, condition, pageSize, pageIndex);
 	}
 
 	/**
 	 * 检查 实体 是否已经存在 , 判断 主键值不同，但指定字段的值相同的记录是否存在
 	 *
-	 * @param hostPosition 数据对象
+	 * @param person 数据对象
 	 * @return 判断结果
 	 */
-	public Boolean checkExists(HostPosition hostPosition) {
+	public Boolean checkExists(Person person) {
 		//TDOD 此处添加判断段的代码
-		//boolean exists=super.checkExists(hostPosition, SYS_ROLE.NAME);
+		//boolean exists=super.checkExists(person, SYS_ROLE.NAME);
 		//return exists;
 		return false;
 	}
 
 	@Override
-	public ExcelWriter exportExcel(HostPosition sample) {
+	public ExcelWriter exportExcel(Person sample) {
 		return super.exportExcel(sample);
 	}
 

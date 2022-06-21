@@ -11,14 +11,14 @@ import com.github.foxnic.commons.bean.BeanUtil;
 
 
 /**
- * 主机位置
+ * 人员清单
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-21 10:03:49
- * @sign 6C01FF2C062B9AE95B4DAC83CEB77148
+ * @since 2022-06-21 11:02:18
+ * @sign A7E0DA823D7347ED4D99F32D4187A2AF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
-public class HostPositionVO extends HostPosition {
+public class PersonVO extends Person {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -89,7 +89,7 @@ public class HostPositionVO extends HostPosition {
 	 * @param pageIndex 页码
 	 * @return 当前对象
 	*/
-	public HostPositionVO setPageIndex(Integer pageIndex) {
+	public PersonVO setPageIndex(Integer pageIndex) {
 		this.pageIndex=pageIndex;
 		return this;
 	}
@@ -107,7 +107,7 @@ public class HostPositionVO extends HostPosition {
 	 * @param pageSize 分页大小
 	 * @return 当前对象
 	*/
-	public HostPositionVO setPageSize(Integer pageSize) {
+	public PersonVO setPageSize(Integer pageSize) {
 		this.pageSize=pageSize;
 		return this;
 	}
@@ -125,7 +125,7 @@ public class HostPositionVO extends HostPosition {
 	 * @param searchField 搜索字段
 	 * @return 当前对象
 	*/
-	public HostPositionVO setSearchField(String searchField) {
+	public PersonVO setSearchField(String searchField) {
 		this.searchField=searchField;
 		return this;
 	}
@@ -143,7 +143,7 @@ public class HostPositionVO extends HostPosition {
 	 * @param fuzzyField 模糊搜索字段
 	 * @return 当前对象
 	*/
-	public HostPositionVO setFuzzyField(String fuzzyField) {
+	public PersonVO setFuzzyField(String fuzzyField) {
 		this.fuzzyField=fuzzyField;
 		return this;
 	}
@@ -161,7 +161,7 @@ public class HostPositionVO extends HostPosition {
 	 * @param searchValue 搜索的值
 	 * @return 当前对象
 	*/
-	public HostPositionVO setSearchValue(String searchValue) {
+	public PersonVO setSearchValue(String searchValue) {
 		this.searchValue=searchValue;
 		return this;
 	}
@@ -179,7 +179,7 @@ public class HostPositionVO extends HostPosition {
 	 * @param dirtyFields 已修改字段
 	 * @return 当前对象
 	*/
-	public HostPositionVO setDirtyFields(List<String> dirtyFields) {
+	public PersonVO setDirtyFields(List<String> dirtyFields) {
 		this.dirtyFields=dirtyFields;
 		return this;
 	}
@@ -189,7 +189,7 @@ public class HostPositionVO extends HostPosition {
 	 * @param dirtyField 已修改字段
 	 * @return 当前对象
 	*/
-	public HostPositionVO addDirtyField(String... dirtyField) {
+	public PersonVO addDirtyField(String... dirtyField) {
 		if(this.dirtyFields==null) dirtyFields=new ArrayList<>();
 		this.dirtyFields.addAll(Arrays.asList(dirtyField));
 		return this;
@@ -208,7 +208,7 @@ public class HostPositionVO extends HostPosition {
 	 * @param sortField 排序字段
 	 * @return 当前对象
 	*/
-	public HostPositionVO setSortField(String sortField) {
+	public PersonVO setSortField(String sortField) {
 		this.sortField=sortField;
 		return this;
 	}
@@ -226,7 +226,7 @@ public class HostPositionVO extends HostPosition {
 	 * @param sortType 排序方式
 	 * @return 当前对象
 	*/
-	public HostPositionVO setSortType(String sortType) {
+	public PersonVO setSortType(String sortType) {
 		this.sortType=sortType;
 		return this;
 	}
@@ -245,7 +245,7 @@ public class HostPositionVO extends HostPosition {
 	 * @param ids 主键清单
 	 * @return 当前对象
 	*/
-	public HostPositionVO setIds(List<String> ids) {
+	public PersonVO setIds(List<String> ids) {
 		this.ids=ids;
 		return this;
 	}
@@ -255,7 +255,7 @@ public class HostPositionVO extends HostPosition {
 	 * @param id 主键清单
 	 * @return 当前对象
 	*/
-	public HostPositionVO addId(String... id) {
+	public PersonVO addId(String... id) {
 		if(this.ids==null) ids=new ArrayList<>();
 		this.ids.addAll(Arrays.asList(id));
 		return this;

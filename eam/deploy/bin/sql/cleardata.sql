@@ -102,6 +102,7 @@ delete from ops_voucher where 1=1 and tenant_id='T001' ;
 delete from ops_voucher_history where 1=1 and tenant_id='T001' ;
 delete from ops_voucher_owner where 1=1 and tenant_id='T001' ;
 delete from ops_voucher_priv where 1=1 and tenant_id='T001' ;
+delete from ops_person where 1=1 and tenant_id='T001' ;
 -- ops_certificate
 delete from ops_certificate where 1=1 and tenant_id='T001' ;
 
