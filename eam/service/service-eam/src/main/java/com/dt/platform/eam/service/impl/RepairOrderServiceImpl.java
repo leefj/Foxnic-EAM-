@@ -499,7 +499,8 @@ public class RepairOrderServiceImpl extends SuperService<RepairOrder> implements
 	 * */
 	@Override
 	public PagedList<RepairOrder> queryPagedList(RepairOrder sample, int pageSize, int pageIndex) {
-		return super.queryPagedList(sample, pageSize, pageIndex);
+		String dp=AssetOperateEnum.EAM_ASSET_REPAIR_ORDER.code();
+		return super.queryPagedList(sample, pageSize, pageIndex,dp);
 	}
 
 	/**
@@ -513,7 +514,8 @@ public class RepairOrderServiceImpl extends SuperService<RepairOrder> implements
 	 * */
 	@Override
 	public PagedList<RepairOrder> queryPagedList(RepairOrder sample, ConditionExpr condition, int pageSize, int pageIndex) {
-		return super.queryPagedList(sample, condition, pageSize, pageIndex);
+		String dp=AssetOperateEnum.EAM_ASSET_REPAIR_ORDER.code();
+		return super.queryPagedList(sample, condition, pageSize, pageIndex,dp);
 	}
 
 	/**

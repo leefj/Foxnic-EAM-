@@ -11,6 +11,12 @@ public enum AssetOperateEnum implements CodeTextEnum {
     EAM_ASSET_STORAGE(CodeModuleEnum.EAM_ASSET_STORAGE.code(), "EAM_资产-入库单"),
     EAM_BATCH_UPLOAD_ASSET("eam_batch_upload_asset" , "EAM_资产-批量导入"),
 
+    //
+    EAM_ASSET_EMPLOYEE_APPLY(CodeModuleEnum.EAM_ASSET_EMPLOYEE_APPLY.code(), "EAM_员工-领用申请"),
+    EAM_ASSET_EMPLOYEE_HANDOVER(CodeModuleEnum.EAM_ASSET_EMPLOYEE_HANDOVER.code() , "EAM_员工-资产交接"),
+    EAM_ASSET_EMPLOYEE_LOSS(CodeModuleEnum.EAM_ASSET_EMPLOYEE_LOSS.code(), "EAM_员工-资产报失"),
+    EAM_ASSET_EMPLOYEE_REPAIR(CodeModuleEnum.EAM_ASSET_EMPLOYEE_REPAIR.code(), "EAM_员工-资产报修"),
+
 
     //软件资产
     EAM_ASSET_SOFTWARE_INSERT(CodeModuleEnum.EAM_ASSET_SOFTWARE_INSERT.code(), "EAM_资产软件-登记"),

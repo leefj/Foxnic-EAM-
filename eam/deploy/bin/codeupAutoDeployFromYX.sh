@@ -40,8 +40,9 @@ sh updateApp.sh
 
 cd /opt/eam
 sh appRestart.sh
-
 sh /mn/exportEAM.sh
+
+
 
 #最新编译包
 cd /opt/eam

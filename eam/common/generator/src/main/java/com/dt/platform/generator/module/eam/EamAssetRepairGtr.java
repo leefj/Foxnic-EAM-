@@ -57,8 +57,7 @@ public class EamAssetRepairGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_ASSET_REPAIR.BUSINESS_DATE).table().hidden();
         cfg.view().field(EAMTables.EAM_ASSET_REPAIR.NAME).table().hidden();
         cfg.view().field(EAMTables.EAM_ASSET_REPAIR.TYPE).table().disable();
-        cfg.view().field(EAMTables.EAM_ASSET_REPAIR.REPORT_USER_ID).table().disable();
-
+        cfg.view().field(EAMTables.EAM_ASSET_REPAIR.REPORT_USER_NAME).table().disable();
         cfg.view().field(EAMTables.EAM_ASSET_REPAIR.CONTENT).search()
                 .form().validate().required().
                 form().textArea().height(30)
@@ -140,12 +139,13 @@ public class EamAssetRepairGtr extends BaseCodeGenerator{
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_REPAIR.NAME,
-                        EAMTables.EAM_ASSET_REPAIR.TYPE,
 //                        EAMTables.EAM_ASSET_REPAIR.REPAIR_STATUS,
-                }, new Object[] {
+                }
+                , new Object[] {
+                        EAMTables.EAM_ASSET_REPAIR.TYPE,
+                }
+                , new Object[] {
                         EAMTables.EAM_ASSET_REPAIR.PLAN_FINISH_DATE,
-                }, new Object[] {
-                        EAMTables.EAM_ASSET_REPAIR.REPORT_USER_ID,
                 }
         );
 

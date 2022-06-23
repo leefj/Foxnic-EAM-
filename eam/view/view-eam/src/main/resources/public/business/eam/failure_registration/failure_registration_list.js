@@ -1,7 +1,7 @@
 /**
  * 故障登记 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-02 05:33:57
+ * @since 2022-06-23 10:10:21
  */
 
 
@@ -83,7 +83,7 @@ function ListPage() {
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'type', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('故障类型'), templet: function (d) { return templet('type' ,fox.joinLabel(d.typeDict,"label"),d);}}
 					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('故障说明') , templet: function (d) { return templet('content',d.content,d);}  }
-					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","nameAndBadge"]),d);} }
+					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"]),d);} }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }

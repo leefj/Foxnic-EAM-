@@ -102,8 +102,53 @@ public class EamRelationManager extends RelationManager {
         this.setupMaintainTaskProject();
         this.setupCrontab();
 
+        this.setupEmployeeApply();
+        this.setupEmployeeRepair();
+        this.setupEmployeeLoss();
+        this.setupEmployeeHandover();
     }
 
+
+    public void setupEmployeeApply() {
+        this.property(AssetEmployeeApplyMeta.ORIGINATOR_PROP)
+                .using(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.ORIGINATOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+        this.property(AssetEmployeeApplyMeta.ORGANIZATION_PROP)
+                .using(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.ORG_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
+
+
+    }
+
+    public void setupEmployeeRepair() {
+        this.property(AssetEmployeeRepairMeta.ORIGINATOR_PROP)
+                .using(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.ORIGINATOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+        this.property(AssetEmployeeRepairMeta.ORGANIZATION_PROP)
+                .using(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.ORG_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
+
+
+    }
+    public void setupEmployeeLoss() {
+        this.property(AssetEmployeeLossMeta.ORIGINATOR_PROP)
+                .using(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.ORIGINATOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+        this.property(AssetEmployeeLossMeta.ORGANIZATION_PROP)
+                .using(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.ORG_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
+
+    }
+
+    public void setupEmployeeHandover() {
+        this.property(AssetEmployeeHandoverMeta.ORIGINATOR_PROP)
+                .using(EAMTables.EAM_ASSET_EMPLOYEE_HANDOVER.ORIGINATOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+        this.property(AssetEmployeeHandoverMeta.ORGANIZATION_PROP)
+                .using(EAMTables.EAM_ASSET_EMPLOYEE_HANDOVER.ORG_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
+
+//        this.property(AssetEmployeeHandoverMeta.O)
+//                .using(EAMTables.EAM_ASSET_EMPLOYEE_HANDOVER.RECEIVE_USER_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
+
+
+    }
 
     public void setupMaintainTaskProject() {
         this.property(MaintainTaskProjectMeta.MAINTAIN_TYPE_DICT_PROP)

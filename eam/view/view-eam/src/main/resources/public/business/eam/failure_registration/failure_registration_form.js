@@ -1,7 +1,7 @@
 /**
  * 故障登记 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-02 05:33:58
+ * @since 2022-06-23 10:10:21
  */
 
 function FormPage() {
@@ -213,7 +213,7 @@ function FormPage() {
 			if (r.success) {
 				fillFormData(r.data)
 			} else {
-				fox.showMessage(data);
+				fox.showMessage(r);
 			}
 		});
 	}

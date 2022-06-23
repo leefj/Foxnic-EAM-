@@ -8,10 +8,12 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
+import javax.persistence.Transient;
 import org.github.foxnic.web.domain.pcm.Catalog;
 import java.util.List;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
-import javax.persistence.Transient;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 
@@ -20,8 +22,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 折旧方案
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-03 14:39:47
- * @sign 2A21AC7ED0DCE920C08FDD3A2A75AEF6
+ * @since 2022-06-21 12:50:10
+ * @sign 23EE16C5B6A204325E20A6EDC7CFD127
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -116,6 +118,8 @@ public class AssetDepreciation extends Entity {
 	*/
 	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
+	@Transient
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -410,12 +414,42 @@ public class AssetDepreciation extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
 	public AssetDepreciation setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public AssetDepreciation setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -519,9 +553,9 @@ public class AssetDepreciation extends Entity {
 	 * @param entity 资产分类
 	 * @return 当前对象
 	*/
-	public AssetDepreciation addCategory(Catalog entity) {
+	public AssetDepreciation addCategory(Catalog... entity) {
 		if(this.category==null) category=new ArrayList<>();
-		this.category.add(entity);
+		this.category.addAll(Arrays.asList(entity));
 		return this;
 	}
 	
@@ -549,9 +583,9 @@ public class AssetDepreciation extends Entity {
 	 * @param categoryId 资产分类Ids
 	 * @return 当前对象
 	*/
-	public AssetDepreciation addCategoryId(String categoryId) {
+	public AssetDepreciation addCategoryId(String... categoryId) {
 		if(this.categoryIds==null) categoryIds=new ArrayList<>();
-		this.categoryIds.add(categoryId);
+		this.categoryIds.addAll(Arrays.asList(categoryId));
 		return this;
 	}
 

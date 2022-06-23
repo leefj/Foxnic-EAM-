@@ -8,11 +8,12 @@
 ### 系统DEMO
 - [Demo] 每天定时由阿里云效自动编译发布部署
 - [Demo] http://eam-demo.rainbooow.com:26788/index.html
-- [Demo] 账户:admin 密码:123456；其它账户密码 为 fx9090
+- [Demo] 超级管理员账户:admin 密码:123456  其它账户密码 为 fx9090
+- [Demo] 固定资产管理员(账户):eamadmin 密码:fx9090
+- [Demo] 固定资产普通员工(账户):eamuser 密码:fx9090
 
-### 下载地址
+### 系统及相关文档下载地址
 - 链接: https://pan.baidu.com/s/1d6Yvszugq2fdGNEsW8ijmQ 提取码: lm6i
-  
   <img width="200"  src="https://images.gitee.com/uploads/images/2022/0621/084431_f977a14d_448530.png" />
 
 
@@ -62,14 +63,6 @@
 - 1、EAM系统产品开源免费(协议:GPLv3)，并且将持续提供免费的社区技术支持，个人或企业内部可自由的接入和使用，但禁止任何单位或个人修改软件后再次发行或出售的行为
 - 2、EAM系统源代码已开源，软件介质以社区版形式供免费使用,在未授权情况下，禁止修改涉及版权信息的相关代码和名称
 
-
-## EAM系统使用帮助
-### 帮助文档
-- EAM安装手册:在EAM项目的相关文档目录
-- EAM使用手册:在EAM项目的相关文档目录
-- 应用框架[Foxnic-Web](https://gitee.com/LeeFJ/foxnic-web) [开发文档](http://foxnicweb.com/docs/doc.html)
-- 问题清单:系统使用常见问题清单.txt
-- 二次开发说明:系统二次开发说明文档.txt
 
 ## 二次开发说明
 ### 二次开发相关文档

@@ -20,6 +20,10 @@ public enum CodeModuleEnum implements CodeTextEnum {
 	EAM_ASSET_STOCK_CODE("eam_asset_stock_code" , "EAM_资产库存-编码"),
 	EAM_ASSET_CONSUMABLES_CODE("eam_asset_consumables_code" , "EAM_资产耗材-编码"),
 
+	EAM_ASSET_EMPLOYEE_APPLY("eam_asset_employee_apply" , "EAM_员工-领用申请"),
+	EAM_ASSET_EMPLOYEE_HANDOVER("eam_asset_employee_handover" , "EAM_员工-资产交接"),
+	EAM_ASSET_EMPLOYEE_LOSS("eam_asset_employee_loss" , "EAM_员工-资产报失"),
+	EAM_ASSET_EMPLOYEE_REPAIR("eam_asset_employee_repair" , "EAM_员工-资产报修"),
 
 
 

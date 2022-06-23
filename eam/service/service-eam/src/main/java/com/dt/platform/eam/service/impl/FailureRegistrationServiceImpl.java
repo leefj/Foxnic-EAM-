@@ -12,6 +12,7 @@ import com.dt.platform.domain.eam.meta.FailureRegistrationMeta;
 import com.dt.platform.eam.service.*;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.commons.lang.StringUtil;
+import org.apache.poi.ss.formula.DataValidationEvaluator;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -363,7 +364,8 @@ public class FailureRegistrationServiceImpl extends SuperService<FailureRegistra
 	 * */
 	@Override
 	public PagedList<FailureRegistration> queryPagedList(FailureRegistration sample, int pageSize, int pageIndex) {
-		return super.queryPagedList(sample, pageSize, pageIndex);
+		String dp=AssetOperateEnum.EAM_EQUIPMENT_FAILURE_REGISTRATION.code();
+		return super.queryPagedList(sample, pageSize, pageIndex,dp);
 	}
 
 	/**
@@ -377,7 +379,8 @@ public class FailureRegistrationServiceImpl extends SuperService<FailureRegistra
 	 * */
 	@Override
 	public PagedList<FailureRegistration> queryPagedList(FailureRegistration sample, ConditionExpr condition, int pageSize, int pageIndex) {
-		return super.queryPagedList(sample, condition, pageSize, pageIndex);
+		String dp=AssetOperateEnum.EAM_EQUIPMENT_FAILURE_REGISTRATION.code();
+		return super.queryPagedList(sample, condition, pageSize, pageIndex,dp);
 	}
 
 	/**

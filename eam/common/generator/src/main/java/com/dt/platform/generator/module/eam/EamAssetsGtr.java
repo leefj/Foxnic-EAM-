@@ -62,18 +62,13 @@ public class EamAssetsGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(Maintainer.class,"maintnainer","维保商","维保商");
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"ownerCompany","所属公司","所属公司");
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"useOrganization","使用公司/部门","使用公司/部门");
-
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"source","来源","来源");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"equipmentEnvironment","设备运行环境","设备运行环境");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"safetyLevel","安全等级","安全等级");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"assetMaintenanceStatus","维保状态","维保状态");
         cfg.getPoClassFile().addSimpleProperty(Rack.class,"rack","机柜","机柜");
         cfg.getPoClassFile().addSimpleProperty(ChangeInstance.class,"changeInstance","变更实例","变更实例");
-
-
         cfg.getPoClassFile().addSimpleProperty(GoodsStock.class,"goodsStock","库存物品","库存物品");
-
-
 
         cfg.view().field(EAMTables.EAM_ASSET.NAME).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET.ASSET_NOTES).search().fuzzySearch();

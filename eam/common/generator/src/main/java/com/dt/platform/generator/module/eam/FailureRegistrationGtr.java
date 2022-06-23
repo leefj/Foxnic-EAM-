@@ -67,7 +67,7 @@ public class FailureRegistrationGtr extends BaseCodeGenerator {
                 textField(DictItemMeta.LABEL).
                 fillWith(FailureRegistrationMeta.TYPE_DICT).muliti(false).defaultIndex(0);
 
-        cfg.view().field(EAMTables.EAM_FAILURE_REGISTRATION.ORIGINATOR_ID).table().fillBy("originator","nameAndBadge");
+        cfg.view().field(EAMTables.EAM_FAILURE_REGISTRATION.ORIGINATOR_ID).table().fillBy("originator","name");
         cfg.view().field(EAMTables.EAM_FAILURE_REGISTRATION.ORIGINATOR_ID).form()
                 .button().chooseEmployee(true);
 
@@ -84,6 +84,7 @@ public class FailureRegistrationGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_FAILURE_REGISTRATION.PICTURE_ID)
                 .form().label("图片").upload().acceptImageType().maxFileCount(6).buttonLabel("选择图片");
 
+        cfg.view().list().disableBatchDelete();
         cfg.view().formWindow().width("85%");
         cfg.view().formWindow().bottomSpace(60);
         cfg.view().form().addGroup(null,

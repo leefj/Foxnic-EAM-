@@ -1,7 +1,7 @@
 /**
  * 资产报修 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-02 05:32:26
+ * @since 2022-06-22 07:16:39
  */
 
 function FormPage() {
@@ -238,7 +238,7 @@ function FormPage() {
 			if (r.success) {
 				fillFormData(r.data)
 			} else {
-				fox.showMessage(data);
+				fox.showMessage(r);
 			}
 		});
 	}

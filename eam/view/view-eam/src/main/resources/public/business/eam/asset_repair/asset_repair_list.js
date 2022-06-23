@@ -1,7 +1,7 @@
 /**
  * 资产报修 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-02 05:32:26
+ * @since 2022-06-22 07:16:38
  */
 
 
@@ -85,7 +85,7 @@ function ListPage() {
 					,{ field: 'planFinishDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('计划完成日期') ,templet: function (d) { return templet('planFinishDate',fox.dateFormat(d.planFinishDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'actualFinishDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('实际完成日期') ,templet: function (d) { return templet('actualFinishDate',fox.dateFormat(d.actualFinishDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('报修内容') , templet: function (d) { return templet('content',d.content,d);}  }
-					,{ field: 'reportUserName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('报修人') , templet: function (d) { return templet('reportUserName',d.reportUserName,d);}  }
+					,{ field: 'reportUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('报修人') , templet: function (d) { return templet('reportUserId',fox.getProperty(d,["reportUser","nameAndBadge"]),d);} }
 					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","nameAndBadge"]),d);} }
 					,{ field: 'businessDate', align:"right", fixed:false, hide:true, sort: true   ,title: fox.translate('业务日期') ,templet: function (d) { return templet('businessDate',fox.dateFormat(d.businessDate,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'selectedCode', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('选择数据') , templet: function (d) { return templet('selectedCode',d.selectedCode,d);}  }

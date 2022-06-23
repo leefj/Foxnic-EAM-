@@ -132,7 +132,7 @@ public class AssetDepreciationServiceImpl extends SuperService<AssetDepreciation
 		AssetDepreciation assetDepreciation = new AssetDepreciation();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		assetDepreciation.setId(id);
-		assetDepreciation.setDeleted(dao.getDBTreaty().getTrueValue());
+		assetDepreciation.setDeleted(1);
 		assetDepreciation.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		assetDepreciation.setDeleteTime(new Date());
 		try {

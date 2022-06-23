@@ -102,7 +102,6 @@ if [[ -f $updateFileScript ]];then
 fi
 echo "app update success!"
 
-
 if [[ -f "$app_dir/update/update/update.sql" ]];then
   echo "update update.sql "
   sh $app_dir/bin/runSql.sh $app_dir/update/update/update.sql

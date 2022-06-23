@@ -59,6 +59,14 @@
                         </div>
                     </div>
 
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('预计残值率')}">预计残值率</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="preResidualRate" id="preResidualRate" name="preResidualRate" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('预计残值') }" type="text" class="layui-input"    lay-verify="|required"  />
+                    </div>
+                </div>
+
+
 
                 <!--结束：栏次内字段循环-->
             </div>

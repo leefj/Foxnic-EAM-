@@ -81,13 +81,16 @@ public class AssetDepreciationGtr extends BaseCodeGenerator {
 
         cfg.view().form().addJsVariable("ASSET_CATEGORY_DATA","[[${assetCategoryData}]]","ASSET_CATEGORY_DATA");
 
-
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION.PRE_RESIDUAL_RATE).form().validate().required().
+                form().numberInput().defaultValue(0);
+        cfg.view().list().disableBatchDelete();
         cfg.view().formWindow().width("85%");
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_DEPRECIATION.NAME,
                         EAMTables.EAM_ASSET_DEPRECIATION.STATUS,
+                        EAMTables.EAM_ASSET_DEPRECIATION.PRE_RESIDUAL_RATE,
                 },
                 new Object[] {
                         EAMTables.EAM_ASSET_DEPRECIATION.METHOD,

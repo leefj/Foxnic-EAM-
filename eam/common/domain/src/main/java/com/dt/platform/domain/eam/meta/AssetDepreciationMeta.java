@@ -11,8 +11,8 @@ import java.util.List;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-03 14:39:47
- * @sign 2A21AC7ED0DCE920C08FDD3A2A75AEF6
+ * @since 2022-06-21 12:50:10
+ * @sign 23EE16C5B6A204325E20A6EDC7CFD127
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 

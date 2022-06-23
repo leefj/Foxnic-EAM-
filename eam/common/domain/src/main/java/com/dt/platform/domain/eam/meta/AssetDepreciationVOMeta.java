@@ -12,7 +12,7 @@ import org.github.foxnic.web.domain.pcm.Catalog;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-03 14:39:47
+ * @since 2022-06-21 12:50:10
  * @sign 82B60E4BF029DC36F81F2CF789508C32
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
