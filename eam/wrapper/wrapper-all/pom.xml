@@ -159,6 +159,13 @@
 
 		<dependency>
 			<groupId>com.dt.platform</groupId>
+			<artifactId>service-mobile</artifactId>
+			<version>${platform.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.dt.platform</groupId>
 			<artifactId>view-console</artifactId>
 			<version>${platform.version}</version>
 		</dependency>
@@ -204,6 +211,12 @@
 		<dependency>
 			<groupId>com.dt.platform</groupId>
 			<artifactId>view-contract</artifactId>
+			<version>${platform.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.dt.platform</groupId>
+			<artifactId>view-mobile</artifactId>
 			<version>${platform.version}</version>
 		</dependency>
 
