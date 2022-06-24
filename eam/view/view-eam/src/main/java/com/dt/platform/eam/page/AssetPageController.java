@@ -149,6 +149,48 @@ public class AssetPageController extends ViewController {
 	}
 
 
+	/**
+	 * 资产 人员资产信息
+	 */
+	@RequestMapping("/asset_search/employee_assetInfo_selected_list.html")
+	public String employeeAssetInfoSelectedList(Model model,HttpServletRequest request,String employeeId,String ownerId,String selectedCode,String pageType) {
+
+		Result<HashMap<String,List<AssetAttributeItem>>> result = AssetAttributeItemServiceProxy.api().queryListColumnByModule(AssetAttributeItemOwnerEnum.PUBLIC_SHOW.code(),null);
+		if(result.isSuccess()){
+			HashMap<String,List<AssetAttributeItem>> data = result.getData();
+			List<AssetAttributeItem> list=data.get("attributeListData");
+			model.addAttribute("attributeListData",list);
+		}
+
+		model.addAttribute("employeeId",employeeId);
+		model.addAttribute("ownerId",ownerId);
+		model.addAttribute("selectedCode",selectedCode);
+		model.addAttribute("pageType",pageType);
+		return prefix+"/asset_search/employee_assetInfo_selected_list";
+
+	}
+
+	/**
+	 * 资产 人员资产信息
+	 */
+	@RequestMapping("/asset_search/employee_assetInfo_select_list.html")
+	public String employeeAssetInfoSelectList(Model model,HttpServletRequest request,String employeeId,String ownerId,String selectedCode,String pageType) {
+
+		Result<HashMap<String,List<AssetAttributeItem>>> result = AssetAttributeItemServiceProxy.api().queryListColumnByModule(AssetAttributeItemOwnerEnum.PUBLIC_SHOW.code(),null);
+		if(result.isSuccess()){
+			HashMap<String,List<AssetAttributeItem>> data = result.getData();
+			List<AssetAttributeItem> list=data.get("attributeListData");
+			model.addAttribute("attributeListData",list);
+		}
+
+		model.addAttribute("employeeId",employeeId);
+		model.addAttribute("ownerId",ownerId);
+		model.addAttribute("selectedCode",selectedCode);
+		model.addAttribute("pageType",pageType);
+		return prefix+"/asset_search/employee_assetInfo_select_list";
+	}
+
+
 
 	/**
 	 * 资产 台账

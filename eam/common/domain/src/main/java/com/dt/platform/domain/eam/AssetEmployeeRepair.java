@@ -8,9 +8,12 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import java.util.List;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
 import com.github.foxnic.commons.lang.DataParser;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 
@@ -19,8 +22,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 资产报修
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-23 10:10:52
- * @sign E0DBF4FD6EF36FF05E0AC4C1DCFB4160
+ * @since 2022-06-23 15:53:57
+ * @sign 632C330C8FE8FEB71B1C9B7692D82DDF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -153,6 +156,18 @@ public class AssetEmployeeRepair extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据")
 	private String selectedCode;
+	
+	/**
+	 * 资产：资产
+	*/
+	@ApiModelProperty(required = false,value="资产" , notes = "资产")
+	private List<Asset> assetList;
+	
+	/**
+	 * 资产列表：资产列表
+	*/
+	@ApiModelProperty(required = false,value="资产列表" , notes = "资产列表")
+	private List<String> assetIds;
 	
 	/**
 	 * 制单人：制单人
@@ -573,6 +588,66 @@ public class AssetEmployeeRepair extends Entity {
 	*/
 	public AssetEmployeeRepair setSelectedCode(String selectedCode) {
 		this.selectedCode=selectedCode;
+		return this;
+	}
+	
+	/**
+	 * 获得 资产<br>
+	 * 资产
+	 * @return 资产
+	*/
+	public List<Asset> getAssetList() {
+		return assetList;
+	}
+	
+	/**
+	 * 设置 资产
+	 * @param assetList 资产
+	 * @return 当前对象
+	*/
+	public AssetEmployeeRepair setAssetList(List<Asset> assetList) {
+		this.assetList=assetList;
+		return this;
+	}
+	
+	/**
+	 * 添加 资产
+	 * @param asset 资产
+	 * @return 当前对象
+	*/
+	public AssetEmployeeRepair addAsset(Asset... asset) {
+		if(this.assetList==null) assetList=new ArrayList<>();
+		this.assetList.addAll(Arrays.asList(asset));
+		return this;
+	}
+	
+	/**
+	 * 获得 资产列表<br>
+	 * 资产列表
+	 * @return 资产列表
+	*/
+	public List<String> getAssetIds() {
+		return assetIds;
+	}
+	
+	/**
+	 * 设置 资产列表
+	 * @param assetIds 资产列表
+	 * @return 当前对象
+	*/
+	public AssetEmployeeRepair setAssetIds(List<String> assetIds) {
+		this.assetIds=assetIds;
+		return this;
+	}
+	
+	/**
+	 * 添加 资产列表
+	 * @param assetId 资产列表
+	 * @return 当前对象
+	*/
+	public AssetEmployeeRepair addAssetId(String... assetId) {
+		if(this.assetIds==null) assetIds=new ArrayList<>();
+		this.assetIds.addAll(Arrays.asList(assetId));
 		return this;
 	}
 	

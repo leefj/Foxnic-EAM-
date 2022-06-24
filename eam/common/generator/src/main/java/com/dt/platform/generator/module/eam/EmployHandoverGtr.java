@@ -2,6 +2,7 @@ package com.dt.platform.generator.module.eam;
 
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
+import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.eam.page.AssetEmployeeHandoverPageController;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.AssetEmployeeHandoverServiceProxy;
@@ -17,6 +18,9 @@ public class EmployHandoverGtr extends BaseCodeGenerator {
     }
 
     public void generateCode() throws Exception {
+        cfg.getPoClassFile().addListProperty(Asset.class,"assetList","资产","资产");
+        cfg.getPoClassFile().addListProperty(String.class,"assetIds","资产列表","资产列表");
+
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"receiverUser","接收人","接收人");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"organization","使用公司/部门","使用公司/部门");
@@ -91,19 +95,19 @@ public class EmployHandoverGtr extends BaseCodeGenerator {
         );
 
 
+        cfg.view().form().addJsVariable("EMPLOYEE_ID",   "[[${user.getUser().getActivatedEmployeeId()}]]","用户ID");
 
-
-        cfg.view().form().addPage("物品列表","goodsSelectList");
+        cfg.view().form().addPage("资产列表","goodsSelectList");
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口
                 .setControllerAndAgent(WriteMode.COVER_EXISTS_FILE) //Rest
-                .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
+                .setPageController(WriteMode.IGNORE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)
-                .setExtendJsFile(WriteMode.COVER_EXISTS_FILE); //列表HTML页
+                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         ; //列表HTML页
         //生成代码
         cfg.buildAll();

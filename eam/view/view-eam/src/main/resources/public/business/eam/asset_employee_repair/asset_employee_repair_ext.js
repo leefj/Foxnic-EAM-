@@ -19,6 +19,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
     //模块基础路径
     const moduleURL="/service-eam/eam-asset-employee-repair";
+    var formAction=admin.getTempData('eam-asset-employee-repair-form-data-form-action');
+    var timestamp = Date.parse(new Date());
 
     //列表页的扩展
     var list={
@@ -267,8 +269,13 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log("goodsSelectList",ifr,data);
             //设置 iframe 高度
             ifr.height("400px");
+            var ownerId="";
+            if(data&&data.id){
+                ownerId=data.id;
+            }
+            var queryString="?employeeId="+EMPLOYEE_ID+"&pageType="+formAction+"&selectedCode="+timestamp+"&ownerId="+ownerId;
             //设置地址
-            win.location="/business/system/node/node_list.html?id="+data.id;
+            win.location="/business/eam/asset/asset_search/employee_assetInfo_selected_list.html"+queryString
         },
         /**
          * 文件上传组件回调

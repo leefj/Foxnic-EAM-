@@ -9,8 +9,11 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
 import org.github.foxnic.web.domain.hrm.Employee;
+import java.util.List;
 import org.github.foxnic.web.domain.hrm.Organization;
 import com.github.foxnic.commons.lang.DataParser;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 
@@ -19,8 +22,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 资产报失
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-23 10:10:49
- * @sign 671BB9FD5AD232C765761A28C91686A0
+ * @since 2022-06-23 15:53:48
+ * @sign 7759B10D3AFF15029FFFA5BF489D98D2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -153,6 +156,18 @@ public class AssetEmployeeLoss extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
 	private Employee originator;
+	
+	/**
+	 * 资产：资产
+	*/
+	@ApiModelProperty(required = false,value="资产" , notes = "资产")
+	private List<Asset> assetList;
+	
+	/**
+	 * 资产列表：资产列表
+	*/
+	@ApiModelProperty(required = false,value="资产列表" , notes = "资产列表")
+	private List<String> assetIds;
 	
 	/**
 	 * 使用公司/部门：使用公司/部门
@@ -567,6 +582,66 @@ public class AssetEmployeeLoss extends Entity {
 	*/
 	public AssetEmployeeLoss setOriginator(Employee originator) {
 		this.originator=originator;
+		return this;
+	}
+	
+	/**
+	 * 获得 资产<br>
+	 * 资产
+	 * @return 资产
+	*/
+	public List<Asset> getAssetList() {
+		return assetList;
+	}
+	
+	/**
+	 * 设置 资产
+	 * @param assetList 资产
+	 * @return 当前对象
+	*/
+	public AssetEmployeeLoss setAssetList(List<Asset> assetList) {
+		this.assetList=assetList;
+		return this;
+	}
+	
+	/**
+	 * 添加 资产
+	 * @param asset 资产
+	 * @return 当前对象
+	*/
+	public AssetEmployeeLoss addAsset(Asset... asset) {
+		if(this.assetList==null) assetList=new ArrayList<>();
+		this.assetList.addAll(Arrays.asList(asset));
+		return this;
+	}
+	
+	/**
+	 * 获得 资产列表<br>
+	 * 资产列表
+	 * @return 资产列表
+	*/
+	public List<String> getAssetIds() {
+		return assetIds;
+	}
+	
+	/**
+	 * 设置 资产列表
+	 * @param assetIds 资产列表
+	 * @return 当前对象
+	*/
+	public AssetEmployeeLoss setAssetIds(List<String> assetIds) {
+		this.assetIds=assetIds;
+		return this;
+	}
+	
+	/**
+	 * 添加 资产列表
+	 * @param assetId 资产列表
+	 * @return 当前对象
+	*/
+	public AssetEmployeeLoss addAssetId(String... assetId) {
+		if(this.assetIds==null) assetIds=new ArrayList<>();
+		this.assetIds.addAll(Arrays.asList(assetId));
 		return this;
 	}
 	

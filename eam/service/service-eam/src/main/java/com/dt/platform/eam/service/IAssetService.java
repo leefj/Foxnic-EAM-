@@ -323,6 +323,12 @@ public interface IAssetService extends ISuperService<Asset> {
 
 	PagedList<Asset> queryPagedListBySelect(AssetVO sample,String assetBusinessType,String assetOwnerId,String assetSelectedCode,String assetSearchContent);
 
+
+
+	PagedList<Asset> queryPagedListByEmployeeSelected(AssetVO sample,String selectedCode,String ownerId,String dataType);
+
+	PagedList<Asset> queryPagedListByEmployeeSelect(AssetVO sample,String selectedCode,String ownerId);
+
 	/**
 	 * 查询指定字段的数据清单
 	 * @param <T> 元素类型

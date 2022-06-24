@@ -1263,6 +1263,64 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 	}
 
 
+	@Override
+	public PagedList<Asset> queryPagedListBySelected(AssetVO sample,String assetSelectData,String assetOwnerId,String dataType){
+
+		ConditionExpr queryCondition=new ConditionExpr();
+		if(assetOwnerId!=null&&assetOwnerId.length()>0){
+			//实现临时快照
+			if("refresh".equals(dataType)){
+				dao.execute("delete from eam_asset_item where crd in ('cd','c') and handle_id=?",assetOwnerId);
+				dao.execute("update eam_asset_item set crd='r' where crd='d' and handle_id=?",assetOwnerId);
+			}
+			queryCondition.andIf("id in (select asset_id from eam_asset_item where crd in ('c','r') and deleted=0 and handle_id=?)" ,assetOwnerId);
+		}else{
+			if(assetSelectData!=null&&assetSelectData.length()>0){
+				queryCondition.andIf("id  in (select asset_id from eam_asset_selected_data where deleted=0 and asset_selected_code=?)" ,assetSelectData);
+			}
+		}
+		PagedList<Asset> list= queryPagedList(sample,queryCondition,sample.getPageSize(),sample.getPageIndex());
+		return list;
+	}
+
+
+	@Override
+	public PagedList<Asset> queryPagedListByEmployeeSelected(AssetVO sample, String selectedCode, String ownerId,String dataType) {
+		ConditionExpr queryCondition=new ConditionExpr();
+		if(ownerId!=null&&ownerId.length()>0){
+			//实现临时快照
+			if("refresh".equals(dataType)){
+				dao.execute("delete from eam_asset_item where crd in ('cd','c') and handle_id=?",ownerId);
+				dao.execute("update eam_asset_item set crd='r' where crd='d' and handle_id=?",ownerId);
+			}
+			queryCondition.andIf("id in (select asset_id from eam_asset_item where crd in ('c','r') and deleted=0 and handle_id=?)" ,ownerId);
+		}else{
+			if(selectedCode!=null&&selectedCode.length()>0){
+				queryCondition.andIf("id  in (select asset_id from eam_asset_selected_data where deleted=0 and asset_selected_code=?)" ,selectedCode);
+			}
+		}
+		PagedList<Asset> list= queryPagedList(sample,queryCondition,sample.getPageSize(),sample.getPageIndex());
+		return list;
+	}
+
+	@Override
+	public PagedList<Asset> queryPagedListByEmployeeSelect(AssetVO sample, String selectedCode, String ownerId) {
+		ConditionExpr queryCondition=new ConditionExpr();
+		sample.setUseUserId(SessionUser.getCurrent().getUser().getActivatedEmployeeId());
+
+		//过滤资产已选数据
+		if(!StringUtil.isBlank(ownerId)) {
+			queryCondition.andIf("id not in (select asset_id from eam_asset_item where deleted=0 and handle_id=?)" ,ownerId);
+		}else{
+			if(!StringUtil.isBlank(selectedCode)) {
+				queryCondition.andIf("id not in (select asset_id from eam_asset_selected_data where deleted=0 and asset_selected_code=?)" ,selectedCode);
+			}
+		}
+		PagedList<Asset> list= queryPagedList(sample,queryCondition,sample.getPageSize(),sample.getPageIndex());
+		return list;
+	}
+
+
 	/**
 	 * 插入实体
 	 * @param businessType 业务类型
@@ -1288,26 +1346,6 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 	}
 
 
-
-	@Override
-	public PagedList<Asset> queryPagedListBySelected(AssetVO sample,String assetSelectData,String assetOwnerId,String dataType){
-
-		ConditionExpr queryCondition=new ConditionExpr();
-		if(assetOwnerId!=null&&assetOwnerId.length()>0){
-			//实现临时快照
-			if("refresh".equals(dataType)){
-				dao.execute("delete from eam_asset_item where crd in ('cd','c') and handle_id=?",assetOwnerId);
-				dao.execute("update eam_asset_item set crd='r' where crd='d' and handle_id=?",assetOwnerId);
-			}
-			queryCondition.andIf("id in (select asset_id from eam_asset_item where crd in ('c','r') and deleted=0 and handle_id=?)" ,assetOwnerId);
-		}else{
-			if(assetSelectData!=null&&assetSelectData.length()>0){
-				queryCondition.andIf("id  in (select asset_id from eam_asset_selected_data where deleted=0 and asset_selected_code=?)" ,assetSelectData);
-			}
-		}
-		PagedList<Asset> list= queryPagedList(sample,queryCondition,sample.getPageSize(),sample.getPageIndex());
-		return list;
-	}
 
 	/**
 	 * 检查 角色 是否已经存在

@@ -3,6 +3,8 @@ package com.dt.platform.domain.eam.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.AssetEmployeeRepair;
 import java.util.Date;
+import com.dt.platform.domain.eam.Asset;
+import java.util.List;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
 
@@ -10,8 +12,8 @@ import org.github.foxnic.web.domain.hrm.Organization;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-23 10:10:52
- * @sign E0DBF4FD6EF36FF05E0AC4C1DCFB4160
+ * @since 2022-06-23 15:53:57
+ * @sign 632C330C8FE8FEB71B1C9B7692D82DDF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -218,6 +220,26 @@ public class AssetEmployeeRepairMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetEmployeeRepair,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetEmployeeRepair.class ,SELECTED_CODE, java.lang.String.class, "选择数据", "选择数据", java.lang.String.class, null);
 	
 	/**
+	 * 资产 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final String ASSET_LIST="assetList";
+	
+	/**
+	 * 资产 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetEmployeeRepair,com.dt.platform.domain.eam.Asset> ASSET_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetEmployeeRepair.class ,ASSET_LIST, java.util.List.class, "资产", "资产", com.dt.platform.domain.eam.Asset.class, null);
+	
+	/**
+	 * 资产列表 , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String ASSET_IDS="assetIds";
+	
+	/**
+	 * 资产列表 , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetEmployeeRepair,java.lang.String> ASSET_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetEmployeeRepair.class ,ASSET_IDS, java.util.List.class, "资产列表", "资产列表", java.lang.String.class, null);
+	
+	/**
 	 * 制单人 , 类型: org.github.foxnic.web.domain.hrm.Employee
 	*/
 	public static final String ORIGINATOR="originator";
@@ -240,7 +262,7 @@ public class AssetEmployeeRepairMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , BUSINESS_CODE , STATUS , NAME , ORG_ID , CONTENT , PICTURE_ID , NOTES , ORIGINATOR_ID , RECORD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , ORIGINATOR , ORGANIZATION };
+	public static final String[] $PROPS={ ID , BUSINESS_CODE , STATUS , NAME , ORG_ID , CONTENT , PICTURE_ID , NOTES , ORIGINATOR_ID , RECORD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , ASSET_LIST , ASSET_IDS , ORIGINATOR , ORGANIZATION };
 	
 	/**
 	 * 代理类
@@ -467,6 +489,28 @@ public class AssetEmployeeRepairMeta {
 		public AssetEmployeeRepair setSelectedCode(String selectedCode) {
 			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
 			super.setSelectedCode(selectedCode);
+			return this;
+		}
+		
+		/**
+		 * 设置 资产
+		 * @param assetList 资产
+		 * @return 当前对象
+		*/
+		public AssetEmployeeRepair setAssetList(List<Asset> assetList) {
+			super.change(ASSET_LIST,super.getAssetList(),assetList);
+			super.setAssetList(assetList);
+			return this;
+		}
+		
+		/**
+		 * 设置 资产列表
+		 * @param assetIds 资产列表
+		 * @return 当前对象
+		*/
+		public AssetEmployeeRepair setAssetIds(List<String> assetIds) {
+			super.change(ASSET_IDS,super.getAssetIds(),assetIds);
+			super.setAssetIds(assetIds);
 			return this;
 		}
 		

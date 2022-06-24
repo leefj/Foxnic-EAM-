@@ -8,8 +8,8 @@ import java.util.Date;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:27:48
- * @sign EB76ED3C9AECB9E5FF95CF5CF4875E2D
+ * @since 2022-06-23 16:52:57
+ * @sign 55474E1646CA66872D7A3B32EB9C563D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -146,6 +146,16 @@ public class AssetItemMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetItem,java.util.Date> DELETE_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetItem.class ,DELETE_TIME, java.util.Date.class, "删除时间", "删除时间", java.util.Date.class, null);
 	
 	/**
+	 * 选择 , 类型: java.lang.String
+	*/
+	public static final String SELECTED_CODE="selectedCode";
+	
+	/**
+	 * 选择 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetItem,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetItem.class ,SELECTED_CODE, java.lang.String.class, "选择", "选择", java.lang.String.class, null);
+	
+	/**
 	 * version , 类型: java.lang.Integer
 	*/
 	public static final String VERSION="version";
@@ -158,7 +168,7 @@ public class AssetItemMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , HANDLE_ID , ASSET_ID , BEFORE_USE_USER_ID , BEFORE_ASSET_STATUS , CRD , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
+	public static final String[] $PROPS={ ID , HANDLE_ID , ASSET_ID , BEFORE_USE_USER_ID , BEFORE_ASSET_STATUS , CRD , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION };
 	
 	/**
 	 * 代理类
@@ -308,6 +318,17 @@ public class AssetItemMeta {
 		public AssetItem setDeleteTime(Date deleteTime) {
 			super.change(DELETE_TIME,super.getDeleteTime(),deleteTime);
 			super.setDeleteTime(deleteTime);
+			return this;
+		}
+		
+		/**
+		 * 设置 选择
+		 * @param selectedCode 选择
+		 * @return 当前对象
+		*/
+		public AssetItem setSelectedCode(String selectedCode) {
+			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
+			super.setSelectedCode(selectedCode);
 			return this;
 		}
 		

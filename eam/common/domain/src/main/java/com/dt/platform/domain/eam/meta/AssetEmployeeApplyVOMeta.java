@@ -6,13 +6,14 @@ import java.util.List;
 import com.dt.platform.domain.eam.AssetEmployeeApply;
 import java.util.Date;
 import org.github.foxnic.web.domain.hrm.Employee;
+import com.dt.platform.domain.eam.Asset;
 import org.github.foxnic.web.domain.hrm.Organization;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-23 10:10:27
+ * @since 2022-06-23 15:52:11
  * @sign D12126EC7384092E9A5F66FB22B0A1B1
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -320,6 +321,26 @@ public class AssetEmployeeApplyVOMeta extends AssetEmployeeApplyMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetEmployeeApplyVO,org.github.foxnic.web.domain.hrm.Employee> ORIGINATOR_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetEmployeeApplyVO.class ,ORIGINATOR, org.github.foxnic.web.domain.hrm.Employee.class, "制单人", "制单人", org.github.foxnic.web.domain.hrm.Employee.class, null);
 	
 	/**
+	 * 资产 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final String ASSET_LIST="assetList";
+	
+	/**
+	 * 资产 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetEmployeeApplyVO,com.dt.platform.domain.eam.Asset> ASSET_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetEmployeeApplyVO.class ,ASSET_LIST, java.util.List.class, "资产", "资产", com.dt.platform.domain.eam.Asset.class, null);
+	
+	/**
+	 * 资产列表 , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String ASSET_IDS="assetIds";
+	
+	/**
+	 * 资产列表 , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetEmployeeApplyVO,java.lang.String> ASSET_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetEmployeeApplyVO.class ,ASSET_IDS, java.util.List.class, "资产列表", "资产列表", java.lang.String.class, null);
+	
+	/**
 	 * 使用公司/部门 , 类型: org.github.foxnic.web.domain.hrm.Organization
 	*/
 	public static final String ORGANIZATION="organization";
@@ -332,7 +353,7 @@ public class AssetEmployeeApplyVOMeta extends AssetEmployeeApplyMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , BUSINESS_CODE , STATUS , NAME , ORG_ID , CONTENT , APPLY_COUNT , NOTES , RECORD_TIME , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , ORIGINATOR , ORGANIZATION };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , BUSINESS_CODE , STATUS , NAME , ORG_ID , CONTENT , APPLY_COUNT , NOTES , RECORD_TIME , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , ORIGINATOR , ASSET_LIST , ASSET_IDS , ORGANIZATION };
 	
 	/**
 	 * 代理类
@@ -669,6 +690,28 @@ public class AssetEmployeeApplyVOMeta extends AssetEmployeeApplyMeta {
 		public AssetEmployeeApply setOriginator(Employee originator) {
 			super.change(ORIGINATOR,super.getOriginator(),originator);
 			super.setOriginator(originator);
+			return this;
+		}
+		
+		/**
+		 * 设置 资产
+		 * @param assetList 资产
+		 * @return 当前对象
+		*/
+		public AssetEmployeeApply setAssetList(List<Asset> assetList) {
+			super.change(ASSET_LIST,super.getAssetList(),assetList);
+			super.setAssetList(assetList);
+			return this;
+		}
+		
+		/**
+		 * 设置 资产列表
+		 * @param assetIds 资产列表
+		 * @return 当前对象
+		*/
+		public AssetEmployeeApply setAssetIds(List<String> assetIds) {
+			super.change(ASSET_IDS,super.getAssetIds(),assetIds);
+			super.setAssetIds(assetIds);
 			return this;
 		}
 		

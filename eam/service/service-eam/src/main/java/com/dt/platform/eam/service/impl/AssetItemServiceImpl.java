@@ -110,7 +110,7 @@ public class AssetItemServiceImpl extends SuperService<AssetItem> implements IAs
 		AssetItem assetItem = new AssetItem();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		assetItem.setId(id);
-		assetItem.setDeleted(dao.getDBTreaty().getTrueValue());
+		assetItem.setDeleted(1);
 		assetItem.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		assetItem.setDeleteTime(new Date());
 		try {

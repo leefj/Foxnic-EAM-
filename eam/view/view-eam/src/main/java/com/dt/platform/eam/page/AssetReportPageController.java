@@ -113,7 +113,23 @@ public class AssetReportPageController extends ViewController {
 		return prefix+"/report_dashboard_mro";
 	}
 
+	/**
+	 * 资产dashboard
+	 */
+	@RequestMapping("/report_employee_dashboard.html")
+	public String reportEmployeeDashboard(Model model,HttpServletRequest request , String tenantId) {
+		model.addAttribute("tenantId",tenantId);
+		return prefix+"/report_employee_dashboard";
+	}
 
+	/**
+	 * 资产dashboard
+	 */
+	@RequestMapping("/report_manage_dashboard.html")
+	public String reportManageDashboard(Model model,HttpServletRequest request , String tenantId) {
+		model.addAttribute("tenantId",tenantId);
+		return prefix+"/report_manage_dashboard";
+	}
 
 
 	/**

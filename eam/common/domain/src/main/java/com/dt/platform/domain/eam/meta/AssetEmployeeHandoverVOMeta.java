@@ -5,6 +5,7 @@ import com.dt.platform.domain.eam.AssetEmployeeHandoverVO;
 import java.util.List;
 import com.dt.platform.domain.eam.AssetEmployeeHandover;
 import java.util.Date;
+import com.dt.platform.domain.eam.Asset;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
 
@@ -12,7 +13,7 @@ import org.github.foxnic.web.domain.hrm.Organization;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-23 10:10:39
+ * @since 2022-06-23 15:53:03
  * @sign 05F868651FA86A1B428ACAA8601F5207
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -320,6 +321,26 @@ public class AssetEmployeeHandoverVOMeta extends AssetEmployeeHandoverMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetEmployeeHandoverVO,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetEmployeeHandoverVO.class ,SELECTED_CODE, java.lang.String.class, "选择数据", "选择数据", java.lang.String.class, null);
 	
 	/**
+	 * 资产 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final String ASSET_LIST="assetList";
+	
+	/**
+	 * 资产 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetEmployeeHandoverVO,com.dt.platform.domain.eam.Asset> ASSET_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetEmployeeHandoverVO.class ,ASSET_LIST, java.util.List.class, "资产", "资产", com.dt.platform.domain.eam.Asset.class, null);
+	
+	/**
+	 * 资产列表 , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String ASSET_IDS="assetIds";
+	
+	/**
+	 * 资产列表 , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetEmployeeHandoverVO,java.lang.String> ASSET_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetEmployeeHandoverVO.class ,ASSET_IDS, java.util.List.class, "资产列表", "资产列表", java.lang.String.class, null);
+	
+	/**
 	 * 接收人 , 类型: org.github.foxnic.web.domain.hrm.Employee
 	*/
 	public static final String RECEIVER_USER="receiverUser";
@@ -362,7 +383,7 @@ public class AssetEmployeeHandoverVOMeta extends AssetEmployeeHandoverMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , BUSINESS_CODE , STATUS , NAME , ORG_ID , RECEIVE_ORG_ID , RECEIVE_USER_ID , CONTENT , NOTES , RECORD_TIME , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , RECEIVER_USER , ORIGINATOR , ORGANIZATION , RECEIVE_ORGANIZATION };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , BUSINESS_CODE , STATUS , NAME , ORG_ID , RECEIVE_ORG_ID , RECEIVE_USER_ID , CONTENT , NOTES , RECORD_TIME , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , ASSET_LIST , ASSET_IDS , RECEIVER_USER , ORIGINATOR , ORGANIZATION , RECEIVE_ORGANIZATION };
 	
 	/**
 	 * 代理类
@@ -699,6 +720,28 @@ public class AssetEmployeeHandoverVOMeta extends AssetEmployeeHandoverMeta {
 		public AssetEmployeeHandover setSelectedCode(String selectedCode) {
 			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
 			super.setSelectedCode(selectedCode);
+			return this;
+		}
+		
+		/**
+		 * 设置 资产
+		 * @param assetList 资产
+		 * @return 当前对象
+		*/
+		public AssetEmployeeHandover setAssetList(List<Asset> assetList) {
+			super.change(ASSET_LIST,super.getAssetList(),assetList);
+			super.setAssetList(assetList);
+			return this;
+		}
+		
+		/**
+		 * 设置 资产列表
+		 * @param assetIds 资产列表
+		 * @return 当前对象
+		*/
+		public AssetEmployeeHandover setAssetIds(List<String> assetIds) {
+			super.change(ASSET_IDS,super.getAssetIds(),assetIds);
+			super.setAssetIds(assetIds);
 			return this;
 		}
 		

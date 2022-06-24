@@ -3,6 +3,7 @@ package com.dt.platform.proxy.eam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.cloud.openfeign.FeignClient;
 import com.dt.platform.domain.eam.AssetItem;
 import com.dt.platform.domain.eam.AssetItemVO;
@@ -10,14 +11,13 @@ import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
 import com.dt.platform.proxy.ServiceNames;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * <p>
  * 资产  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:27:48
+ * @since 2022-06-23 16:52:58
  */
 @FeignClient(value = ServiceNames.EAM, contextId = AssetItemServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AssetItemServiceProxy {
@@ -134,7 +134,7 @@ public interface AssetItemServiceProxy {
     Result<AssetItem> getById(@RequestParam(name = "id") String id);
 
     /**
-     * 批量删除资产
+     * 获取多个资产
      */
     @RequestMapping(AssetItemServiceProxy.GET_BY_IDS)
     Result<List<AssetItem>> getByIds(@RequestParam(name = "ids") List<String> ids);

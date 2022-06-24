@@ -50,6 +50,8 @@ public class AssetEmployeeApplyPageController extends ViewController {
 	 */
 	@RequestMapping("/asset_employee_apply_form.html")
 	public String form(Model model,HttpServletRequest request , String id) {
+
+
 		return prefix+"/asset_employee_apply_form";
 	}
 }

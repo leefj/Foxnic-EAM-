@@ -269,6 +269,7 @@ public class AssetSelectedDataController extends SuperController {
 				obj.setAssetId(ids.get(i));
 				obj.setCrd("c");
 				obj.setHandleId(assetOwnerId);
+				obj.setSelectedCode(assetSelectedCode);
 				list.add(obj);
 			}
 			return assetItemService.insertList(list);

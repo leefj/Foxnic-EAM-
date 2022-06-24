@@ -94,6 +94,16 @@ public interface AssetServiceProxy {
     public static final String QUERY_PAGED_LIST_BY_SELECTED = API_PREFIX + "query-paged-list-by-selected";
 
     /**
+     * 分页查询资产
+     */
+    public static final String QUERY_PAGED_LIST_BY_EMPLOYEE_SELECT = API_PREFIX + "query-paged-list-by-employee-select";
+
+    /**
+     * 分页查询资产
+     */
+    public static final String QUERY_PAGED_LIST_BY_EMPLOYEE_SELECTED = API_PREFIX + "query-paged-list-by-employee-selected";
+
+    /**
      * 导出资产数据(Excel)
      */
     public static final String EXPORT_EXCEL = API_PREFIX + "export-excel";
@@ -220,6 +230,8 @@ public interface AssetServiceProxy {
      */
     @RequestMapping(AssetServiceProxy.QUERY_PAGED_LIST_BY_SELECTED)
     Result<PagedList<Asset>> queryPagedListBySelected(@RequestParam(name = "sample") AssetVO sample, @RequestParam(name = "assetBusinessType") String assetBusinessType, @RequestParam(name = "assetSelectedCode") String assetSelectedCode, @RequestParam(name = "assetSearchContent") String assetSearchContent);
+
+
 
     /**
      * 控制器类名
