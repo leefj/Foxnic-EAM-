@@ -16,6 +16,24 @@ function ListPage() {
         admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate;
         table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,dropdown=layui.dropdown;;
 
+        var api=moduleURL+"/query-asset-data-by-label";
+        var param={}
+        param.label="myAssetCountData,myAssetBusinessCountData";
+        admin.post(api, param, function (data) {
+            if (data.success) {
+                var coutData=data.data.myAssetCountData;
+                $("#myAssetCount").html(coutData.assetTotalCount);
+
+
+                 var businessData=data.data.myAssetBusinessCountData;
+                 $("#myBusinessCount").html(businessData.businessCount);
+
+
+            } else {
+            }
+        }, {delayLoading:1000,elms:[]});
+
+
 
         $("#myasset").click(function(){
 
@@ -167,6 +185,25 @@ function ListPage() {
                 type: 2,
                 id:"eam-asset-employee-repair-form-data-win",
                 content: '/business/eam/asset_employee_repair/asset_employee_repair_form.html' + (queryString?("?"+queryString):""),
+                finish: function () {
+
+                }
+            });
+        })
+
+
+        $("#softdownload").click(function(){
+
+            var data={};
+            queryString="?groupCode=eam_mobile"
+            admin.popupCenter({
+                title: "移动端下载",
+                resize: false,
+                offset: [2,null],
+                area: ["85%","85%"],
+                type: 2,
+                id:"eam-asset-employee-repair-form-data-win",
+                content: '/business/mobile/software_info/software_download_list.html' + queryString,
                 finish: function () {
 
                 }

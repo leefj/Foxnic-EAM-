@@ -11,7 +11,7 @@ import com.dt.platform.domain.mobile.ModuleInfo;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-20 14:10:59
+ * @since 2022-06-24 19:27:20
  * @sign 0FE896D2F5E6F99FF6DEA95AA3CC2EDC
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

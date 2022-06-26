@@ -17,7 +17,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 移动端模块  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-20 14:04:06
+ * @since 2022-06-24 19:28:56
  */
 @FeignClient(value = ServiceNames.MOBILE, contextId = ModuleInfoServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface ModuleInfoServiceProxy {

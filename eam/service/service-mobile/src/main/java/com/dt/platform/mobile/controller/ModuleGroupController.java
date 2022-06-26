@@ -3,6 +3,7 @@ package com.dt.platform.mobile.controller;
 
 import java.util.List;
 
+import com.dt.platform.domain.eam.meta.MaintainTaskMeta;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,7 +50,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 移动端模块分组 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-20 14:10:59
+ * @since 2022-06-24 19:27:21
 */
 
 @Api(tags = "移动端模块分组")
@@ -66,12 +67,12 @@ public class ModuleGroupController extends SuperController {
 	*/
 	@ApiOperation(value = "添加移动端模块分组")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = ModuleGroupVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = ModuleGroupVOMeta.TYPE , value = "类型" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = ModuleGroupVOMeta.LABEL , value = "标签" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = ModuleGroupVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = ModuleGroupVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = ModuleGroupVOMeta.SORT , value = "排序" , required = false , dataTypeClass=Integer.class),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.TYPE , value = "类型" , required = true , dataTypeClass=String.class , example = "eam"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.LABEL , value = "标签" , required = false , dataTypeClass=String.class , example = "固资管理"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "EAM_固资产管理"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.SORT , value = "排序" , required = false , dataTypeClass=Integer.class , example = "0"),
 	})
 	@ApiOperationSupport(order=1)
 	@NotNull(name = ModuleGroupVOMeta.TYPE)
@@ -89,7 +90,7 @@ public class ModuleGroupController extends SuperController {
 	*/
 	@ApiOperation(value = "删除移动端模块分组")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = ModuleGroupVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class)
+		@ApiImplicitParam(name = ModuleGroupVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1")
 	})
 	@ApiOperationSupport(order=2)
 	@NotNull(name = ModuleGroupVOMeta.ID)
@@ -123,12 +124,12 @@ public class ModuleGroupController extends SuperController {
 	*/
 	@ApiOperation(value = "更新移动端模块分组")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = ModuleGroupVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = ModuleGroupVOMeta.TYPE , value = "类型" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = ModuleGroupVOMeta.LABEL , value = "标签" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = ModuleGroupVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = ModuleGroupVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = ModuleGroupVOMeta.SORT , value = "排序" , required = false , dataTypeClass=Integer.class),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.TYPE , value = "类型" , required = true , dataTypeClass=String.class , example = "eam"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.LABEL , value = "标签" , required = false , dataTypeClass=String.class , example = "固资管理"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "EAM_固资产管理"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.SORT , value = "排序" , required = false , dataTypeClass=Integer.class , example = "0"),
 	})
 	@ApiOperationSupport( order=4 , ignoreParameters = { ModuleGroupVOMeta.PAGE_INDEX , ModuleGroupVOMeta.PAGE_SIZE , ModuleGroupVOMeta.SEARCH_FIELD , ModuleGroupVOMeta.FUZZY_FIELD , ModuleGroupVOMeta.SEARCH_VALUE , ModuleGroupVOMeta.DIRTY_FIELDS , ModuleGroupVOMeta.SORT_FIELD , ModuleGroupVOMeta.SORT_TYPE , ModuleGroupVOMeta.IDS } )
 	@NotNull(name = ModuleGroupVOMeta.ID)
@@ -146,12 +147,12 @@ public class ModuleGroupController extends SuperController {
 	*/
 	@ApiOperation(value = "保存移动端模块分组")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = ModuleGroupVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = ModuleGroupVOMeta.TYPE , value = "类型" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = ModuleGroupVOMeta.LABEL , value = "标签" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = ModuleGroupVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = ModuleGroupVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = ModuleGroupVOMeta.SORT , value = "排序" , required = false , dataTypeClass=Integer.class),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.TYPE , value = "类型" , required = true , dataTypeClass=String.class , example = "eam"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.LABEL , value = "标签" , required = false , dataTypeClass=String.class , example = "固资管理"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "EAM_固资产管理"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.SORT , value = "排序" , required = false , dataTypeClass=Integer.class , example = "0"),
 	})
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { ModuleGroupVOMeta.PAGE_INDEX , ModuleGroupVOMeta.PAGE_SIZE , ModuleGroupVOMeta.SEARCH_FIELD , ModuleGroupVOMeta.FUZZY_FIELD , ModuleGroupVOMeta.SEARCH_VALUE , ModuleGroupVOMeta.DIRTY_FIELDS , ModuleGroupVOMeta.SORT_FIELD , ModuleGroupVOMeta.SORT_TYPE , ModuleGroupVOMeta.IDS } )
 	@NotNull(name = ModuleGroupVOMeta.ID)
@@ -208,12 +209,12 @@ public class ModuleGroupController extends SuperController {
 	*/
 	@ApiOperation(value = "查询移动端模块分组")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = ModuleGroupVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = ModuleGroupVOMeta.TYPE , value = "类型" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = ModuleGroupVOMeta.LABEL , value = "标签" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = ModuleGroupVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = ModuleGroupVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = ModuleGroupVOMeta.SORT , value = "排序" , required = false , dataTypeClass=Integer.class),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.TYPE , value = "类型" , required = true , dataTypeClass=String.class , example = "eam"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.LABEL , value = "标签" , required = false , dataTypeClass=String.class , example = "固资管理"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "EAM_固资产管理"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.SORT , value = "排序" , required = false , dataTypeClass=Integer.class , example = "0"),
 	})
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { ModuleGroupVOMeta.PAGE_INDEX , ModuleGroupVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = ModuleGroupServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -221,6 +222,9 @@ public class ModuleGroupController extends SuperController {
 	public Result<List<ModuleGroup>> queryList(ModuleGroupVO sample) {
 		Result<List<ModuleGroup>> result=new Result<>();
 		List<ModuleGroup> list=moduleGroupService.queryList(sample);
+
+
+
 		result.success(true).data(list);
 		return result;
 	}
@@ -231,12 +235,12 @@ public class ModuleGroupController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询移动端模块分组")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = ModuleGroupVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = ModuleGroupVOMeta.TYPE , value = "类型" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = ModuleGroupVOMeta.LABEL , value = "标签" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = ModuleGroupVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = ModuleGroupVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = ModuleGroupVOMeta.SORT , value = "排序" , required = false , dataTypeClass=Integer.class),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.TYPE , value = "类型" , required = true , dataTypeClass=String.class , example = "eam"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.LABEL , value = "标签" , required = false , dataTypeClass=String.class , example = "固资管理"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "EAM_固资产管理"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.SORT , value = "排序" , required = false , dataTypeClass=Integer.class , example = "0"),
 	})
 	@ApiOperationSupport(order=8)
 	@SentinelResource(value = ModuleGroupServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )

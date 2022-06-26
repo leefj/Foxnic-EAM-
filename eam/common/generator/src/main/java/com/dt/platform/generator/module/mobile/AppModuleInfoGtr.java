@@ -29,8 +29,6 @@ public class AppModuleInfoGtr extends BaseCodeGenerator {
         cfg.view().field(MobileTables.APP_MODULE_INFO.ID).basic().hidden(true);
 
         cfg.getPoClassFile().addSimpleProperty(ModuleGroup.class,"moduleGroup","组","组");
-
-
         cfg.view().search().inputLayout(
                 new Object[]{
                         MobileTables.APP_MODULE_INFO.GROUP_ID,
@@ -42,6 +40,8 @@ public class AppModuleInfoGtr extends BaseCodeGenerator {
         cfg.view().field(MobileTables.APP_MODULE_INFO.STATUS).form().validate().required().form()
                 .selectBox().enumType(StatusEnableEnum.class).defaultIndex(0);
 
+        cfg.view().field(MobileTables.APP_MODULE_INFO.PATH).form().validate().required();
+
         cfg.view().field(MobileTables.APP_MODULE_INFO.GROUP_ID).form().validate().required()
                 .form().selectBox().queryApi(ModuleGroupServiceProxy.QUERY_PAGED_LIST)
                 .paging(true).filter(true).toolbar(false)
@@ -52,16 +52,13 @@ public class AppModuleInfoGtr extends BaseCodeGenerator {
         cfg.view().field(MobileTables.APP_MODULE_INFO.NAME).form().validate().required();
         cfg.view().field(MobileTables.APP_MODULE_INFO.LABEL).form().validate().required();
 
+
+
+
         cfg.view().formWindow().width("75%");
         cfg.view().formWindow().bottomSpace(80);
+        cfg.view().list().disableBatchDelete();
         cfg.view().form().addGroup(null,
-                new Object[] {
-
-
-                }
-        );
-
-        cfg.view().search().inputLayout(
                 new Object[]{
                         MobileTables.APP_MODULE_INFO.LABEL,
                         MobileTables.APP_MODULE_INFO.GROUP_ID,
@@ -73,7 +70,7 @@ public class AppModuleInfoGtr extends BaseCodeGenerator {
                         MobileTables.APP_MODULE_INFO.SORT,
                 }
         );
-        cfg.view().search().inputLayout(
+        cfg.view().form().addGroup(null,
                 new Object[]{
                         MobileTables.APP_MODULE_INFO.NOTES
                 }
@@ -102,7 +99,7 @@ public class AppModuleInfoGtr extends BaseCodeGenerator {
 
      //   g.removeByBatchId("582429214846746624");
         //移除之前生成的菜单，视情况执行
-         g.generateMenu(ModuleInfoServiceProxy.class, ModuleInfoPageController.class);
+        // g.generateMenu(ModuleInfoServiceProxy.class, ModuleInfoPageController.class);
         //生成菜单
 
     }

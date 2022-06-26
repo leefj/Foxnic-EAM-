@@ -183,7 +183,7 @@
         margin-bottom:20px;
         margin-top:20px;
         /*background-color: red;*/
-        width:80px;
+        width:70px;
         display: flex;
         justify-content:center;
         flex-direction: column;
@@ -198,10 +198,10 @@
         justify-content:center;
         flex-direction: column;
         align-items:center;
-        width:65px;
+        width:55px;
     }
     .boxPngValue{
-        width:60px;
+        width:50px;
     }
     .boxLabel{
         margin-top:8px;
@@ -211,7 +211,35 @@
         color: rgba(0,0,0,.45);
     }
 
+
 </style>
+
+<style>
+    table{
+    }
+    table, td, th
+    {
+        overflow-y: scroll;
+        border:1px solid #7CD8A5;
+    }
+    th
+    {
+        background-color:#7E96FE;
+        color:white;
+    }
+    .custTable{
+        overflow:auto;
+        width:100%;
+        overflow-y: scroll;
+        text-align: center;
+
+    }
+    .custTable,tr,td{
+        height: 35px!important;
+    }
+
+</style>
+
 
 <div class="layui-fluid">
         <div class="layui-row layui-col-space10">
@@ -223,7 +251,7 @@
                                     <image class="labelpng" src="/assets/libs/image/employee_dashboard/myasset.png" alt="" />
                                 </div>
                                 <div>
-                                    <span class="label">我的资产：<span>0</span></span>
+                                    <span class="label">我的资产：<span id="myAssetCount">0</span></span>
                                 </div>
                             </div>
                             <div th:if="${perm.checkAuth('my-asset:mgr')}"  style="margin-right:20px;font-size: 20px;">
@@ -240,7 +268,7 @@
                                 <image class="labelpng" src="/assets/libs/image/employee_dashboard/staffapprovel.png" alt="" />
                             </div>
                             <div>
-                                <span class="label">我发起的：<span>0</span></span>
+                                <span class="label">我发起的：<span id="myBusinessCount">0</span></span>
                             </div>
                         </div>
                         <div style="margin-right:20px;font-size: 20px;">
@@ -259,9 +287,7 @@
 
 </script>
 
-
     <div class="layui-row layui-col-space10" >
-
         <div class="layui-col-md12"  >
             <div class="panel layui-bg-number bannerF  " >
                 <div class="panel-body " >
@@ -313,37 +339,33 @@
                 </div>
             </div>
         </div>
+    </div>
 
 
-</div>
-
-<style>
-    table{
-    }
-    table, td, th
-    {
-        overflow-y: scroll;
-        border:1px solid #7CD8A5;
-    }
-    th
-    {
-        background-color:#7E96FE;
-        color:white;
-    }
-    .custTable{
-        overflow:auto;
-        width:100%;
-        overflow-y: scroll;
-        text-align: center;
-
-    }
-    .custTable,tr,td{
-        height: 35px!important;
-    }
-
-</style>
-
-
+    <div class="layui-row layui-col-space10" >
+        <div class="layui-col-md12"  >
+            <div class="panel layui-bg-number bannerF  " >
+                <div class="panel-body " >
+                    <div class="title ht">
+                        移动端
+                    </div>
+                    <div class="panel-content">
+                        <div class="box">
+                            <div id="softdownload" th:if="${perm.checkAuth('eam_employee_software_download')}" class="boxItem">
+                                <div class="boxPng">
+                                    <image class="boxPngValue" src="/assets/libs/image/employee_dashboard/zcly.png" alt="" />
+                                </div>
+                                <div class="boxLabel">
+                                    移动端下载
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top:40px"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 </div>

@@ -236,6 +236,7 @@ function installApp(){
 	echo "DB_PWD=$MYSQL_ROOT_PWD"                       >>$appConf
 	db_create_db_file=$app_dir/bin/sql/createdb.sql
 	db_sql_file=$app_dir/bin/sql/db.sql
+	db_file_conf_file=$app_dir/bin/sql/confuploadfile.sql
 	db_procedure_file=$app_dir/bin/sql/nextVal.sql
 	db_clear_data_file=$app_dir/bin/sql/cleardata.sql
 	db_app_setting_file=$app_dir/bin/sql/settingapp.sql
@@ -280,6 +281,8 @@ function installApp(){
 	echo "load tables success,table count:$tab_cnt"
 	echo "#########start to create procedure"
 	$MYSQL -u$db_user -p$db_pwd -h$db_host $db_name < $db_procedure_file  2>/dev/null
+	echo "#########start to conf upload file data"
+	$MYSQL -u$db_user -p$db_pwd -h$db_host $db_name < $db_file_conf_file  2>/dev/null
 	echo "#########start to clear data "
 	$MYSQL -u$db_user -p$db_pwd -h$db_host $db_name < $db_clear_data_file  2>/dev/null
 	echo "#########start to app setting data "

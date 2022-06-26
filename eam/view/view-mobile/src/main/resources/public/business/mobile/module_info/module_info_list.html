@@ -2,7 +2,7 @@
 /**
  * 移动端模块 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-20 14:04:06
+ * @since 2022-06-24 19:28:57
  */
  -->
  <!DOCTYPE html>
@@ -40,16 +40,24 @@
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 标签 , label ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 状态 , status ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 分组 , groupId ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 图标 , name ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 路径 , path ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 备注 , notes ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 分组 , groupId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('备注')}" class="search-label notes-label">备注</span><span class="search-colon">:</span></div>
-                        <input id="notes" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('分组')}" class="search-label groupId-label">分组</span><span class="search-colon">:</span></div>
+                        <div id="groupId" th:data="${'/service-mobile/app-module-group/query-paged-list'}" style="width:150px" extraParam="{}"></div>
                     </div>
+                    <!-- 路径 , path ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 备注 , notes ,typeName=text_input, isHideInSearch=true -->
                     <!-- 排序 , sort ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 状态 , status ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('状态')}" class="search-label status-label">状态</span><span class="search-colon">:</span></div>
+                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" style="width:150px" extraParam="{}"></div>
+                    </div>
+                    <!-- 图标 , name ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('图标')}" class="search-label name-label">图标</span><span class="search-colon">:</span></div>
+                        <input id="name" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
 
 
                 </div>
@@ -79,7 +87,6 @@
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
         <button th:if="${perm.checkAuth('app_module_info:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建')}">新建</span></button>
-        <button th:if="${perm.checkAuth('app_module_info:delete-by-ids')}" id="delete-button" class="layui-btn icon-btn layui-btn-danger layui-btn-sm batch-delete-button " lay-event="batch-del"><i class="layui-icon">&#xe67e;</i><span th:text="${lang.translate('删除')}">删除</span></button>
     </div>
 </script>
 

@@ -1,7 +1,7 @@
 /**
  * 移动端模块分组 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-20 14:11:00
+ * @since 2022-06-24 19:27:22
  */
 
 
@@ -144,10 +144,8 @@ function ListPage() {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
 		value.type={ inputType:"select_box", value: getSelectedValue("#type","value"), label:getSelectedValue("#type","nameStr") };
-		value.label={ inputType:"button",value: $("#label").val()};
 		value.status={ inputType:"select_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.sort={ inputType:"number_input", value: $("#sort").val() };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -193,7 +191,7 @@ function ListPage() {
 
 	function initSearchFields() {
 
-		fox.switchSearchRow(2);
+		fox.switchSearchRow(1);
 
 		//渲染 type 下拉字段
 		fox.renderSelectBox({
@@ -260,7 +258,7 @@ function ListPage() {
 
 		// 搜索按钮点击事件
 		$('#search-button-advance').click(function () {
-			fox.switchSearchRow(2,function (ex){
+			fox.switchSearchRow(1,function (ex){
 				if(ex=="1") {
 					$('#search-button-advance span').text("关闭");
 				} else {

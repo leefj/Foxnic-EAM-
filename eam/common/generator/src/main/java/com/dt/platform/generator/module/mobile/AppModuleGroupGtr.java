@@ -2,6 +2,7 @@ package com.dt.platform.generator.module.mobile;
 
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.db.MobileTables;
+import com.dt.platform.constants.db.OpsTables;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
 
 import com.dt.platform.constants.enums.mobile.moduleGroupTypeEnum;
@@ -39,8 +40,10 @@ public class AppModuleGroupGtr extends BaseCodeGenerator {
         cfg.view().field(MobileTables.APP_MODULE_GROUP.LABEL).form().validate().required();
         cfg.view().field(MobileTables.APP_MODULE_GROUP.NAME).form().validate().required();
         cfg.view().formWindow().bottomSpace(80);
+
+        cfg.view().list().disableBatchDelete();
         cfg.view().formWindow().width("75%");
-        cfg.view().search().inputLayout(
+        cfg.view().form().addGroup(null,
                 new Object[]{
                         MobileTables.APP_MODULE_GROUP.LABEL,
                         MobileTables.APP_MODULE_GROUP.NAME,
@@ -51,6 +54,7 @@ public class AppModuleGroupGtr extends BaseCodeGenerator {
                         MobileTables.APP_MODULE_GROUP.STATUS,
                 }
         );
+
         cfg.view().search().inputWidth(Config.searchInputWidth);
         //文件生成覆盖模式
         cfg.overrides()

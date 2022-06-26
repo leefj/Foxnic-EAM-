@@ -1,7 +1,7 @@
 /**
  * 移动端模块 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-20 14:04:07
+ * @since 2022-06-24 19:28:57
  */
 
 function FormPage() {
@@ -203,6 +203,10 @@ function FormPage() {
 
 
 
+			//设置  状态 设置下拉框勾选
+			fox.setSelectValue4Enum("#status",formData.status,SELECT_STATUS_DATA);
+			//设置  分组 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#groupId",formData.moduleGroup);
 
 			//处理fillBy
 
@@ -254,6 +258,10 @@ function FormPage() {
 
 
 
+		//获取 状态 下拉框的值
+		data["status"]=fox.getSelectedValue("status",false);
+		//获取 分组 下拉框的值
+		data["groupId"]=fox.getSelectedValue("groupId",false);
 
 		return data;
 	}

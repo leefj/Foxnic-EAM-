@@ -45,7 +45,9 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
 
 
     private static String LABEL_ASSET_TOTAL_DATA="assetTotalData";
-    private String LABEL_ASSET_STATUS_COUNT_DATA="assetStatusCountData";
+    private static String LABEL_ASSET_STATUS_COUNT_DATA="assetStatusCountData";
+    private static String LABEL_MY_ASSET_COUNT_DATA="myAssetCountData";
+    private static String LABEL_MY_ASSET_BUSINESS_COUNT_DATA="myAssetBusinessCountData";
     /**
      * 获得 DAO 对象
      * */
@@ -67,12 +69,42 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
                     resObj.put(LABEL_ASSET_TOTAL_DATA,queryAssetTotalCount());
                 }else if(LABEL_ASSET_STATUS_COUNT_DATA.equals(label)){
                     resObj.put(LABEL_ASSET_STATUS_COUNT_DATA,queryAssetStatusData());
+                }else if(LABEL_MY_ASSET_COUNT_DATA.equals(label)){
+                    resObj.put(LABEL_MY_ASSET_COUNT_DATA,queryMyAssetTotalCount());
+                }else if(LABEL_MY_ASSET_BUSINESS_COUNT_DATA.equals(label)){
+                    resObj.put(LABEL_MY_ASSET_BUSINESS_COUNT_DATA,queryMyEamBusinessCount());
                 }
             }
         }
         result.data(resObj);
         System.out.println(resObj);
         return result;
+    }
+
+
+    private JSONObject queryMyEamBusinessCount(){
+        //获取资产分类数据
+        String emplId=SessionUser.getCurrent().getUser().getActivatedEmployeeId();
+        String sql="select count(1) cnt from eam_asset_employee_apply where deleted=0 and originator_id='"+emplId+"' and status in ('approval','incomplete')\n" +
+                "union all\n" +
+                "select count(1)  cnt from eam_asset_employee_handover where deleted=0 and  originator_id='"+emplId+"' and status in ('approval','incomplete')\n" +
+                "union all\n" +
+                "select count(1) cnt from eam_asset_employee_loss where deleted=0 and  originator_id='"+emplId+"'  and status in ('approval','incomplete')\n" +
+                "union all\n" +
+                "select count(1) cnt from eam_asset_employee_repair where deleted=0 and  originator_id='"+emplId+"' and status in ('approval','incomplete')";
+        String sql2="select sum(cnt) business_count from ("+sql+") t";
+        JSONObject res=new JSONObject();
+        res.put("businessCount", dao.queryRecord(sql2).getInteger("business_count"));
+        return res;
+    }
+
+    private JSONObject queryMyAssetTotalCount(){
+        //获取资产分类数据
+        String emplId=SessionUser.getCurrent().getUser().getActivatedEmployeeId();
+        String sql="select count(1) asset_total_count from eam_asset where use_user_id=? and owner_code='asset' and deleted=0  and status='complete'";
+        JSONObject res=new JSONObject();
+        res.put("assetTotalCount", dao.queryRecord(sql,emplId).getInteger("asset_total_count"));
+        return res;
     }
 
     private JSONObject queryAssetTotalCount(){

@@ -1,7 +1,7 @@
 /**
  * 移动端模块分组 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-20 14:10:59
+ * @since 2022-06-24 19:27:21
  */
 
 layui.config({
