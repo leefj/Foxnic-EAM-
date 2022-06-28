@@ -57,6 +57,17 @@ public class AssetReportPageController extends ViewController {
 	/**
 	 * 资产分类查询数据
 	 */
+	@RequestMapping("/screen.html")
+	public String screen(Model model,HttpServletRequest request , String id) {
+
+		return prefix+"/screen";
+	}
+
+
+
+	/**
+	 * 资产分类查询数据
+	 */
 	@RequestMapping("/category_report_list.html")
 	public String categoryReportList(Model model,HttpServletRequest request , String id) {
 

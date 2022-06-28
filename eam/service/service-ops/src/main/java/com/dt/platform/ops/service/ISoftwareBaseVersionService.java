@@ -1,10 +1,10 @@
-package com.dt.platform.eam.service;
+package com.dt.platform.ops.service;
 
 
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
-import com.dt.platform.domain.eam.AssetDepreciationDetail;
-import com.dt.platform.domain.eam.AssetDepreciationDetailVO;
+import com.dt.platform.domain.ops.SoftwareBaseVersion;
+import com.dt.platform.domain.ops.SoftwareBaseVersionVO;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -19,41 +19,41 @@ import java.util.Map;
 
 /**
  * <p>
- * 折旧明细 服务接口
+ * 软件基线版本 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-28 06:41:50
+ * @since 2022-06-27 20:16:21
 */
 
-public interface IAssetDepreciationDetailService extends ISuperService<AssetDepreciationDetail> {
+public interface ISoftwareBaseVersionService extends ISuperService<SoftwareBaseVersion> {
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
-	 * @param assetDepreciationDetail 数据对象
+	 * @param softwareBaseVersion 数据对象
 	 * @return 插入是否成功
 	 * */
-	Result insert(AssetDepreciationDetail assetDepreciationDetail);
+	Result insert(SoftwareBaseVersion softwareBaseVersion);
 
 	/**
 	 * 添加，根据 throwsException 参数抛出异常或返回 Result 对象
 	 *
-	 * @param assetDepreciationDetail  数据对象
+	 * @param softwareBaseVersion  数据对象
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 结果 , 如果失败返回 false，成功返回 true
 	 */
-	Result insert(AssetDepreciationDetail assetDepreciationDetail,boolean throwsException);
+	Result insert(SoftwareBaseVersion softwareBaseVersion,boolean throwsException);
 
 	/**
 	 * 批量插入实体，事务内
-	 * @param assetDepreciationDetailList 实体数据清单
+	 * @param softwareBaseVersionList 实体数据清单
 	 * @return 插入是否成功
 	 * */
-	Result insertList(List<AssetDepreciationDetail> assetDepreciationDetailList);
+	Result insertList(List<SoftwareBaseVersion> softwareBaseVersionList);
 
 
 		
 	/**
-	 * 按主键删除 折旧明细
+	 * 按主键删除 软件基线版本
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -61,7 +61,7 @@ public interface IAssetDepreciationDetailService extends ISuperService<AssetDepr
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 折旧明细
+	 * 按主键删除 软件基线版本
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -84,7 +84,7 @@ public interface IAssetDepreciationDetailService extends ISuperService<AssetDepr
 
 		
 	/**
-	 * 按主键更新字段 折旧明细
+	 * 按主键更新字段 软件基线版本
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -93,103 +93,103 @@ public interface IAssetDepreciationDetailService extends ISuperService<AssetDepr
 
 	/**
 	 * 更新，如果执行错误，则抛出异常
-	 * @param assetDepreciationDetail 数据对象
+	 * @param softwareBaseVersion 数据对象
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
-	Result update(AssetDepreciationDetail assetDepreciationDetail , SaveMode mode);
+	Result update(SoftwareBaseVersion softwareBaseVersion , SaveMode mode);
 
 
 	/**
 	 * 更新，根据 throwsException 参数抛出异常或返回 Result 对象
 	 *
-	 * @param assetDepreciationDetail 数据对象
+	 * @param softwareBaseVersion 数据对象
 	 * @param mode SaveMode,数据更新的模式
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 结果
 	 */
-	Result update(AssetDepreciationDetail assetDepreciationDetail , SaveMode mode,boolean throwsException);
+	Result update(SoftwareBaseVersion softwareBaseVersion , SaveMode mode,boolean throwsException);
 
 
 	/**
 	 * 更新实体集，事务内
-	 * @param assetDepreciationDetailList 数据对象列表
+	 * @param softwareBaseVersionList 数据对象列表
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
-	Result updateList(List<AssetDepreciationDetail> assetDepreciationDetailList, SaveMode mode);
+	Result updateList(List<SoftwareBaseVersion> softwareBaseVersionList, SaveMode mode);
 
 	/**
 	 * 保存实体，根据 throwsException 参数抛出异常或返回 Result 对象
-	 * @param assetDepreciationDetail 实体数据
+	 * @param softwareBaseVersion 实体数据
 	 * @param mode 保存模式
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 保存是否成功
 	 * */
-	Result save(AssetDepreciationDetail assetDepreciationDetail , SaveMode mode,boolean throwsException);
+	Result save(SoftwareBaseVersion softwareBaseVersion , SaveMode mode,boolean throwsException);
 
 	/**
 	 * 保存实体，如果语句错误，则抛出异常
-	 * @param assetDepreciationDetail 实体数据
+	 * @param softwareBaseVersion 实体数据
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
-	Result save(AssetDepreciationDetail assetDepreciationDetail , SaveMode mode);
+	Result save(SoftwareBaseVersion softwareBaseVersion , SaveMode mode);
 
 	/**
 	 * 保存实体，如果主键值不为null，则更新，否则插入
-	 * @param assetDepreciationDetailList 实体数据清单
+	 * @param softwareBaseVersionList 实体数据清单
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
-	Result saveList(List<AssetDepreciationDetail> assetDepreciationDetailList , SaveMode mode);
+	Result saveList(List<SoftwareBaseVersion> softwareBaseVersionList , SaveMode mode);
 
 	/**
 	 * 检查实体中的数据字段是否已经存在 . 判断 主键值不同，但指定字段的值相同的记录是否存在
-	 * @param assetDepreciationDetail  实体对象
+	 * @param softwareBaseVersion  实体对象
 	 * @param field  字段清单，至少指定一个
 	 * @return 是否已经存在
 	 * */
-	boolean checkExists(AssetDepreciationDetail assetDepreciationDetail,DBField... field);
+	boolean checkExists(SoftwareBaseVersion softwareBaseVersion,DBField... field);
 
 		
 	/**
-	 * 按主键获取 折旧明细
+	 * 按主键获取 软件基线版本
 	 *
 	 * @param id 主键
-	 * @return AssetDepreciationDetail 数据对象
+	 * @return SoftwareBaseVersion 数据对象
 	 */
-	AssetDepreciationDetail getById(String id);
+	SoftwareBaseVersion getById(String id);
 
 	/**
 	 * 按 id 获取多个对象
 	 * @param ids  主键清单
 	 * @return 实体集
 	 * */
-	List<AssetDepreciationDetail> queryListByIds(List<String> ids);
+	List<SoftwareBaseVersion> queryListByIds(List<String> ids);
 
 	/**
 	 * 按 id 列表查询 Map
 	 * @param ids  主键清单
 	 * */
-	Map<String, AssetDepreciationDetail> queryMapByIds(List<String> ids);
+	Map<String, SoftwareBaseVersion> queryMapByIds(List<String> ids);
 
 
 
 	/**
 	 * 检查 实体 是否已经存在 , 判断 主键值不同，但指定字段的值相同的记录是否存在
 	 *
-	 * @param assetDepreciationDetail 数据对象
+	 * @param softwareBaseVersion 数据对象
 	 * @return 判断结果
 	 */
-	Boolean checkExists(AssetDepreciationDetail assetDepreciationDetail);
+	Boolean checkExists(SoftwareBaseVersion softwareBaseVersion);
 
 	/**
 	 * 根据实体数构建默认的条件表达式, 不支持 Join 其它表
 	 * @param sample 数据样例
 	 * @return ConditionExpr 条件表达式
 	 * */
-	ConditionExpr buildQueryCondition(AssetDepreciationDetail sample);
+	ConditionExpr buildQueryCondition(SoftwareBaseVersion sample);
 
 	/**
 	 * 根据实体数构建默认的条件表达式, 不支持 Join 其它表
@@ -197,14 +197,14 @@ public interface IAssetDepreciationDetailService extends ISuperService<AssetDepr
 	 * @param tableAliase 数据表别名
 	 * 	@return ConditionExpr 条件表达式
 	 * */
-	ConditionExpr buildQueryCondition(AssetDepreciationDetail sample,String tableAliase);
+	ConditionExpr buildQueryCondition(SoftwareBaseVersion sample,String tableAliase);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
-	List<AssetDepreciationDetail> queryList(AssetDepreciationDetail sample);
+	List<SoftwareBaseVersion> queryList(SoftwareBaseVersion sample);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -213,7 +213,7 @@ public interface IAssetDepreciationDetailService extends ISuperService<AssetDepr
 	 * @param orderBy  排序
 	 * @return 查询结果
 	 * */
-	List<AssetDepreciationDetail> queryList(AssetDepreciationDetail sample,ConditionExpr condition,OrderBy orderBy);
+	List<SoftwareBaseVersion> queryList(SoftwareBaseVersion sample,ConditionExpr condition,OrderBy orderBy);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -221,7 +221,7 @@ public interface IAssetDepreciationDetailService extends ISuperService<AssetDepr
 	 * @param orderBy  排序
 	 * @return 查询结果
 	 * */
-	List<AssetDepreciationDetail> queryList(AssetDepreciationDetail sample,OrderBy orderBy);
+	List<SoftwareBaseVersion> queryList(SoftwareBaseVersion sample,OrderBy orderBy);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -229,14 +229,14 @@ public interface IAssetDepreciationDetailService extends ISuperService<AssetDepr
 	 * @param condition  其它条件
 	 * @return 查询结果
 	 * */
-	List<AssetDepreciationDetail> queryList(AssetDepreciationDetail sample,ConditionExpr condition);
+	List<SoftwareBaseVersion> queryList(SoftwareBaseVersion sample,ConditionExpr condition);
 
 	/**
 	 * 查询单个实体
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
-	AssetDepreciationDetail queryEntity(AssetDepreciationDetail sample);
+	SoftwareBaseVersion queryEntity(SoftwareBaseVersion sample);
 
 	/**
 	 * 分页查询实体集
@@ -245,7 +245,7 @@ public interface IAssetDepreciationDetailService extends ISuperService<AssetDepr
 	 * @param pageIndex 页码
 	 * @return 查询结果
 	 * */
-	PagedList<AssetDepreciationDetail> queryPagedList(AssetDepreciationDetail sample,int pageSize,int pageIndex);
+	PagedList<SoftwareBaseVersion> queryPagedList(SoftwareBaseVersion sample,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -256,7 +256,7 @@ public interface IAssetDepreciationDetailService extends ISuperService<AssetDepr
 	 * @param orderBy  排序
 	 * @return 查询结果
 	 * */
-	PagedList<AssetDepreciationDetail> queryPagedList(AssetDepreciationDetail sample,ConditionExpr condition,OrderBy orderBy,int pageSize,int pageIndex);
+	PagedList<SoftwareBaseVersion> queryPagedList(SoftwareBaseVersion sample,ConditionExpr condition,OrderBy orderBy,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -266,7 +266,7 @@ public interface IAssetDepreciationDetailService extends ISuperService<AssetDepr
 	 * @param condition  其它条件
 	 * @return 查询结果
 	 * */
-	PagedList<AssetDepreciationDetail> queryPagedList(AssetDepreciationDetail sample,ConditionExpr condition,int pageSize,int pageIndex);
+	PagedList<SoftwareBaseVersion> queryPagedList(SoftwareBaseVersion sample,ConditionExpr condition,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -276,7 +276,7 @@ public interface IAssetDepreciationDetailService extends ISuperService<AssetDepr
 	 * @param orderBy  排序
 	 * @return 查询结果
 	 * */
-	PagedList<AssetDepreciationDetail> queryPagedList(AssetDepreciationDetail sample,OrderBy orderBy,int pageSize,int pageIndex);
+	PagedList<SoftwareBaseVersion> queryPagedList(SoftwareBaseVersion sample,OrderBy orderBy,int pageSize,int pageIndex);
 
  	/**
 	 * 查询指定字段的数据清单
@@ -302,7 +302,7 @@ public interface IAssetDepreciationDetailService extends ISuperService<AssetDepr
 	/**
 	 * 导出 Excel
 	 * */
-	ExcelWriter exportExcel(AssetDepreciationDetail sample);
+	ExcelWriter exportExcel(SoftwareBaseVersion sample);
 
 	/**
 	 * 导出用于数据导入的 Excel 模版

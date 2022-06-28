@@ -23,11 +23,8 @@ function ListPage() {
             if (data.success) {
                 var coutData=data.data.myAssetCountData;
                 $("#myAssetCount").html(coutData.assetTotalCount);
-
-
-                 var businessData=data.data.myAssetBusinessCountData;
-                 $("#myBusinessCount").html(businessData.businessCount);
-
+                var businessData=data.data.myAssetBusinessCountData;
+                $("#myBusinessCount").html(businessData.businessCount);
 
             } else {
             }

@@ -1,7 +1,7 @@
 /**
- * 折旧操作 列表页 JS 脚本
+ * 软件基线版本 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-03 14:47:45
+ * @since 2022-06-27 20:16:21
  */
 
 layui.config({
@@ -18,7 +18,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload;
 
     //模块基础路径
-    const moduleURL="/service-eam/eam-asset-depreciation-oper";
+    const moduleURL="/service-ops/ops-software-base-version";
 
     //列表页的扩展
     var list={
@@ -27,10 +27,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeInit:function () {
             console.log("list:beforeInit");
-
-            var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
-            operHtml=operHtml.replace(/lay-event="depreciation-rollback"/i, "style=\"display:none\"")
-            document.getElementById("tableOperationTemplate").innerHTML=operHtml;
         },
         /**
          * 表格渲染前调用
@@ -87,55 +83,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 查询结果渲染后调用
          * */
         afterQuery : function (data) {
-            for (var i = 0; i < data.length; i++) {
-                //如果审批中或审批通过的不允许编辑
-                //not_start-->acting-->sucess|failed
-                if(data[i].status=="not_start") {
-                    //fox.disableButton($('.depreciationDetail-btn').filter("[data-id='" + data[i].id + "']"), true);
-                  //  fox.disableButton($('.depreciationStart-btn').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.depreciationExecute-btn').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.depreciationRollback-btn').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.depreciationSync-btn').filter("[data-id='" + data[i].id + "']"), true);
-
-                  //  fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
-                    // fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
-
-                }else if(data[i].status=="acting"){
-                 //   fox.disableButton($('.depreciationDetail-btn').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.depreciationStart-btn').filter("[data-id='" + data[i].id + "']"), true);
-                    //fox.disableButton($('.depreciationExecute-btn').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.depreciationRollback-btn').filter("[data-id='" + data[i].id + "']"), true);
-                   // fox.disableButton($('.depreciationSync-btn').filter("[data-id='" + data[i].id + "']"), true);
-                      fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
-                    // fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
-
-                }else if(data[i].status=="sucess"){
-                 //   fox.disableButton($('.depreciationDetail-btn').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.depreciationStart-btn').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.depreciationExecute-btn').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.depreciationRollback-btn').filter("[data-id='" + data[i].id + "']"), true);
-                    //fox.disableButton($('.depreciationSync-btn').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
-                     fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
-
-                }else if(data[i].status=="failed"){
-               //     fox.disableButton($('.depreciationDetail-btn').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.depreciationStart-btn').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.depreciationExecute-btn').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.depreciationRollback-btn').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.depreciationSync-btn').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
-                  //  fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
-                }else if(data[i].status=="complete"){
-              //      fox.disableButton($('.depreciationDetail-btn').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.depreciationStart-btn').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.depreciationExecute-btn').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.depreciationRollback-btn').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.depreciationSync-btn').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
-                }
-            }
 
         },
         /**
@@ -200,61 +147,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         /**
          * 表格右侧操作列更多按钮事件
          * */
-        billOper:function(url,btnClass,ps,successMessage){
-            var btn=$('.'+btnClass).filter("[data-id='" +ps.id + "']");
-            var api=moduleURL+"/"+url;
-            top.layer.confirm(fox.translate('确定进行该操作吗？'), function (i) {
-                top.layer.close(i);
-                admin.post(api, ps, function (r) {
-                    if (r.success) {
-                        top.layer.msg(successMessage, {time: 1000});
-                        window.module.refreshTableData();
-                    } else {
-                        var errs = [];
-                        if (r.errors) {
-                            for (var i = 0; i < r.errors.length; i++) {
-                                if (errs.indexOf(r.errors[i].message) == -1) {
-                                    errs.push(r.errors[i].message);
-                                }
-                            }
-                            top.layer.msg(errs.join("<br>"), {time: 2000});
-                        } else {
-                            top.layer.msg(r.message, {time: 2000});
-                        }
-                    }
-                }, {delayLoading: 1000, elms: [btn]});
-            });
-        },
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
-        },
-        depreciationDetail:function (data){
-            console.log('depreciationDetail',data);
-            var formTop=2
-            var index=admin.popupCenter({
-                title: "折旧明细",
-                resize: false,
-                offset: [formTop,null],
-                area: ["95%","90%"],
-                type: 2,
-                id:"eam-asset-inventory-data",
-                content: '/business/eam/asset_depreciation_detail/asset_depreciation_detail_list.html?operId='+data.id,
-                finish: function () {
-                }
-            });
-            admin.putTempData('eam-asset-depreciation-data-popup-index', index);
-        },
-        depreciationStart:function (item){
-            list.billOper("start","depreciationStart-btn",{id:item.id},"已开始");
-        },
-        depreciationExecute:function (item){
-            list.billOper("execute","depreciationExecute-btn",{id:item.id},"已执行");
-        },
-        depreciationRollback:function (item){
-            list.billOper("rollback","depreciationRollback-btn",{id:item.id},"已回退");
-        },
-        depreciationSync:function (item){
-            list.billOper("syncData","depreciationSync-btn",{id:item.id},"已同步");
         },
         /**
          * 末尾执行
@@ -324,6 +218,16 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         },
         onCheckBoxChanged:function(id,data,checked) {
             console.log('onCheckBoxChanged',id,data,checked);
+        },
+
+        /**
+         * 在流程提交前处理表单数据
+         * */
+        processFormData4Bpm:function(processInstanceId,param,callback) {
+            // 设置流程变量，并通过回调返回
+            var variables={};
+            // 此回调是必须的，否则流程提交会被中断
+            callback(variables);
         },
         /**
          * 数据提交前，如果返回 false，停止后续步骤的执行

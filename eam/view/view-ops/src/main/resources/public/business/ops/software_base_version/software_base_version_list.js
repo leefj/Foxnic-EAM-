@@ -1,7 +1,7 @@
 /**
- * 折旧明细 列表页 JS 脚本
+ * 软件基线版本 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-28 06:41:51
+ * @since 2022-06-27 20:16:22
  */
 
 
@@ -9,7 +9,7 @@ function ListPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect;
 	//模块基础路径
-	const moduleURL="/service-eam/eam-asset-depreciation-detail";
+	const moduleURL="/service-ops/ops-software-base-version";
 	var dataTable=null;
 	var sort=null;
 	/**
@@ -77,21 +77,12 @@ function ListPage() {
 				cols: [[
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
-					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'depreciationMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧方式'), templet:function (d){ return templet('depreciationMethod',fox.getEnumText(SELECT_DEPRECIATIONMETHOD_DATA,d.depreciationMethod),d);}}
-					,{ field: 'result', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧结果'), templet:function (d){ return templet('result',fox.getEnumText(SELECT_RESULT_DATA,d.result),d);}}
-					,{ field: 'resultDetail', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧结果明细') , templet: function (d) { return templet('resultDetail',d.resultDetail,d);}  }
-					,{ field: 'serviceLife', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('使用周期(月)') , templet: function (d) { return templet('serviceLife',d.serviceLife,d);}  }
-					,{ field: 'residualRate', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('残值率') , templet: function (d) { return templet('residualRate',d.residualRate,d);}  }
-					,{ field: 'purchaseDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('采购日期') ,templet: function (d) { return templet('purchaseDate',fox.dateFormat(d.purchaseDate,"yyyy-MM-dd"),d); }  }
-					,{ field: 'purchaseUnitPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('采购价格') , templet: function (d) { return templet('purchaseUnitPrice',d.purchaseUnitPrice,d);}  }
-					,{ field: 'depreciationPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('本期折旧') , templet: function (d) { return templet('depreciationPrice',d.depreciationPrice,d);}  }
-					,{ field: 'curPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('当前净值') , templet: function (d) { return templet('curPrice',d.curPrice,d);}  }
-					,{ field: 'beforePrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧前净值') , templet: function (d) { return templet('beforePrice',d.beforePrice,d);}  }
-					,{ field: 'afterPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧后净值') , templet: function (d) { return templet('afterPrice',d.afterPrice,d);}  }
-					,{ field: 'assetCurName', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('资产名称'), templet: function (d) { return templet('assetCurName' ,fox.joinLabel(d.asset,"name"),d);}}
-					,{ field: 'assetCurModel', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('资产型号'), templet: function (d) { return templet('assetCurModel' ,fox.joinLabel(d.asset,"model"),d);}}
-					,{ field: 'assetCurCode', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('资产编号'), templet: function (d) { return templet('assetCurCode' ,fox.joinLabel(d.asset,"assetCode"),d);}}
+					,{ field: 'softwareTypeId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('类型'), templet: function (d) { return templet('softwareTypeId' ,fox.joinLabel(d.softwareBaseType,"name"),d);}}
+					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
+					,{ field: 'softwareVersion', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('版本') , templet: function (d) { return templet('softwareVersion',d.softwareVersion,d);}  }
+					,{ field: 'patchInfo', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('补丁') , templet: function (d) { return templet('patchInfo',d.patchInfo,d);}  }
+					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status),d);}}
+					,{ field: 'usageScenarios', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('使用场景') , templet: function (d) { return templet('usageScenarios',d.usageScenarios,d);}  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
 				]],
@@ -151,7 +142,10 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.depreciationId={ inputType:"select_box", value: getSelectedValue("#depreciationId","value") ,fillBy:["assetDepreciation"]  , label:getSelectedValue("#depreciationId","nameStr") };
+		value.softwareTypeId={ inputType:"select_box", value: getSelectedValue("#softwareTypeId","value") ,fillBy:["softwareBaseType"]  , label:getSelectedValue("#softwareTypeId","nameStr") };
+		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.softwareVersion={ inputType:"button",value: $("#softwareVersion").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.status={ inputType:"select_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -199,19 +193,17 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
-		//渲染 depreciationId 下拉字段
+		//渲染 softwareTypeId 下拉字段
 		fox.renderSelectBox({
-			el: "depreciationId",
+			el: "softwareTypeId",
 			radio: true,
 			size: "small",
 			filterable: true,
 			on: function(data){
 				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("depreciationId",data.arr,data.change,data.isAdd);
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("softwareTypeId",data.arr,data.change,data.isAdd);
 				},1);
 			},
-			paging: true,
-			pageRemote: true,
 			//转换数据
 			searchField: "name", //请自行调整用于搜索的字段名称
 			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
@@ -222,6 +214,28 @@ function ListPage() {
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
 					opts.push({data:data[i],name:data[i].name,value:data[i].id});
+				}
+				return opts;
+			}
+		});
+		//渲染 status 下拉字段
+		fox.renderSelectBox({
+			el: "status",
+			radio: true,
+			size: "small",
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					opts.push({data:data[i],name:data[i].text,value:data[i].code});
 				}
 				return opts;
 			}
@@ -291,7 +305,7 @@ function ListPage() {
         function openCreateFrom() {
         	//设置新增是初始化数据
         	var data={};
-			admin.putTempData('eam-asset-depreciation-detail-form-data-form-action', "create",true);
+			admin.putTempData('ops-software-base-version-form-data-form-action', "create",true);
             showEditForm(data);
         };
 
@@ -305,11 +319,11 @@ function ListPage() {
 
 			var ids=getCheckedList("id");
             if(ids.length==0) {
-				top.layer.msg(fox.translate('请选择需要删除的')+fox.translate('折旧明细')+"!");
+				top.layer.msg(fox.translate('请选择需要删除的')+fox.translate('软件基线版本')+"!");
             	return;
             }
             //调用批量删除接口
-			top.layer.confirm(fox.translate('确定删除已选中的')+fox.translate('折旧明细')+fox.translate('吗？'), function (i) {
+			top.layer.confirm(fox.translate('确定删除已选中的')+fox.translate('软件基线版本')+fox.translate('吗？'), function (i) {
                 admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
                     if (data.success) {
 						if(window.pageExt.list.afterBatchDelete) {
@@ -340,11 +354,11 @@ function ListPage() {
 				if(!doNext) return;
 			}
 
-			admin.putTempData('eam-asset-depreciation-detail-form-data-form-action', "",true);
+			admin.putTempData('ops-software-base-version-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
 				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
 					if(data.success) {
-						admin.putTempData('eam-asset-depreciation-detail-form-data-form-action', "edit",true);
+						admin.putTempData('ops-software-base-version-form-data-form-action', "edit",true);
 						showEditForm(data.data);
 					} else {
 						 fox.showMessage(data);
@@ -353,7 +367,7 @@ function ListPage() {
 			} else if (layEvent === 'view') { // 查看
 				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
 					if(data.success) {
-						admin.putTempData('eam-asset-depreciation-detail-form-data-form-action', "view",true);
+						admin.putTempData('ops-software-base-version-form-data-form-action', "view",true);
 						showEditForm(data.data);
 					} else {
 						fox.showMessage(data);
@@ -366,7 +380,7 @@ function ListPage() {
 					var doNext=window.pageExt.list.beforeSingleDelete(data);
 					if(!doNext) return;
 				}
-				top.layer.confirm(fox.translate('确定删除此')+fox.translate('折旧明细')+fox.translate('吗？'), function (i) {
+				top.layer.confirm(fox.translate('确定删除此')+fox.translate('软件基线版本')+fox.translate('吗？'), function (i) {
 					top.layer.close(i);
 
 					top.layer.load(2);
@@ -398,17 +412,17 @@ function ListPage() {
 			var doNext=window.pageExt.list.beforeEdit(data);
 			if(!doNext) return;
 		}
-		var action=admin.getTempData('eam-asset-depreciation-detail-form-data-form-action');
+		var action=admin.getTempData('ops-software-base-version-form-data-form-action');
 		var queryString="";
 		if(data && data.id) queryString='id=' + data.id;
 		if(window.pageExt.list.makeFormQueryString) {
 			queryString=window.pageExt.list.makeFormQueryString(data,queryString,action);
 		}
-		admin.putTempData('eam-asset-depreciation-detail-form-data', data);
-		var area=admin.getTempData('eam-asset-depreciation-detail-form-area');
+		admin.putTempData('ops-software-base-version-form-data', data);
+		var area=admin.getTempData('ops-software-base-version-form-area');
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
 		var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
-		var title = fox.translate('折旧明细');
+		var title = fox.translate('软件基线版本');
 		if(action=="create") title=fox.translate('添加')+title;
 		else if(action=="edit") title=fox.translate('修改')+title;
 		else if(action=="view") title=fox.translate('查看')+title;
@@ -417,10 +431,10 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["85%",height+"px"],
+			area: ["65%",height+"px"],
 			type: 2,
-			id:"eam-asset-depreciation-detail-form-data-win",
-			content: '/business/eam/asset_depreciation_detail/asset_depreciation_detail_form.html' + (queryString?("?"+queryString):""),
+			id:"ops-software-base-version-form-data-win",
+			content: '/business/ops/software_base_version/software_base_version_form.html' + (queryString?("?"+queryString):""),
 			finish: function () {
 				if(action=="create") {
 					refreshTableData();

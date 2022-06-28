@@ -36,6 +36,7 @@ public class EamAssetStockCollectionGtr extends BaseCodeGenerator{
 
 
 
+
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_COLLECTION.ORIGINATOR_ID).table().fillBy("originator","nameAndBadge");
 
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_COLLECTION.SELECTED_CODE).basic().hidden(true);

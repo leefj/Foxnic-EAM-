@@ -1,6 +1,8 @@
 package com.dt.platform.generator.module.eam;
 
 import com.dt.platform.constants.db.EAMTables;
+import com.dt.platform.constants.enums.eam.AssetDepreciationMethodEnum;
+import com.dt.platform.constants.enums.eam.AssetDetailDepreciationResultEnum;
 import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.AssetDepreciation;
 import com.dt.platform.domain.eam.AssetDepreciationDetail;
@@ -36,11 +38,11 @@ public class AssetDepreciationDetailGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(String.class,"assetCurName","名称","名称");
         cfg.getPoClassFile().addSimpleProperty(String.class,"assetCurModel","类型","类型");
         cfg.getPoClassFile().addSimpleProperty(String.class,"assetCurCode","编码","编码");
-        cfg.getPoClassFile().addSimpleProperty(String.class,"assetCurPurchaseUnitPrice","采购单价","采购单价");
-        cfg.getPoClassFile().addSimpleProperty(String.class,"assetCurNavPrice","资产净值","资产净值");
+ //       cfg.getPoClassFile().addSimpleProperty(String.class,"assetCurPurchaseUnitPrice","采购单价","采购单价");
 
-        cfg.getPoClassFile().addSimpleProperty(String.class,"assetAfterNavPrice","资产净值","资产净值");
-        cfg.getPoClassFile().addSimpleProperty(String.class,"assetBeforeNavPrice","资产净值","资产净值");
+//        cfg.getPoClassFile().addSimpleProperty(String.class,"assetCurNavPrice","资产净值","资产净值");
+//        cfg.getPoClassFile().addSimpleProperty(String.class,"assetAfterNavPrice","资产净值","资产净值");
+//        cfg.getPoClassFile().addSimpleProperty(String.class,"assetBeforeNavPrice","资产净值","资产净值");
 
 
 
@@ -51,6 +53,12 @@ public class AssetDepreciationDetailGtr extends BaseCodeGenerator {
                 }
         );
 
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.PURCHASE_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
+
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.DEPRECIATION_METHOD).
+                form().selectBox().enumType(AssetDepreciationMethodEnum.class);
+
+
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.DEPRECIATION_ID)
                 .form().validate().required().form().selectBox().queryApi(AssetDepreciationServiceProxy.QUERY_PAGED_LIST)
                 .paging(true).filter(true).toolbar(false)
@@ -58,6 +66,7 @@ public class AssetDepreciationDetailGtr extends BaseCodeGenerator {
                 textField(AssetDepreciationMeta.NAME).
                 fillWith(AssetDepreciationDetailMeta.ASSET_DEPRECIATION).muliti(false).defaultIndex(0);
 
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.RESULT).form().selectBox().enumType(AssetDetailDepreciationResultEnum.class);
 
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.OPER_ID)
                 .form().validate().required().form().selectBox().queryApi(AssetDepreciationOperServiceProxy.QUERY_PAGED_LIST)
@@ -87,26 +96,26 @@ public class AssetDepreciationDetailGtr extends BaseCodeGenerator {
 
 
 
-        cfg.view().field(AssetDepreciationDetailMeta.ASSET_CUR_PURCHASE_UNIT_PRICE)
-                .basic().label("当前采购单价")
-                .form().selectBox().queryApi(AssetServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
-                .valueField(AssetMeta.ID).textField( AssetMeta.PURCHASE_UNIT_PRICE).fillWith(AssetDepreciationDetailMeta.ASSET).muliti(false);
-
-        cfg.view().field(AssetDepreciationDetailMeta.ASSET_CUR_NAV_PRICE)
-                .basic().label("当前净值")
-                .form().selectBox().queryApi(AssetServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
-                .valueField(AssetMeta.ID).textField( AssetMeta.NAV_PRICE).fillWith(AssetDepreciationDetailMeta.ASSET).muliti(false);
-
-        cfg.view().field(AssetDepreciationDetailMeta.ASSET_BEFORE_NAV_PRICE)
-                .basic().label("折旧前净值")
-                .form().selectBox().queryApi(AssetServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
-                .valueField(AssetMeta.ID).textField( AssetMeta.NAV_PRICE).fillWith(AssetDepreciationDetailMeta.ASSET_SOURCE).muliti(false);
-
-        cfg.view().field(AssetDepreciationDetailMeta.ASSET_AFTER_NAV_PRICE)
-                .basic().label("折旧后净值")
-                .form().selectBox().queryApi(AssetServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
-                .valueField(AssetMeta.ID).textField( AssetMeta.NAV_PRICE).fillWith(AssetDepreciationDetailMeta.ASSET_TARGET).muliti(false);
-
+//        cfg.view().field(AssetDepreciationDetailMeta.ASSET_CUR_PURCHASE_UNIT_PRICE)
+//                .basic().label("当前采购单价")
+//                .form().selectBox().queryApi(AssetServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
+//                .valueField(AssetMeta.ID).textField( AssetMeta.PURCHASE_UNIT_PRICE).fillWith(AssetDepreciationDetailMeta.ASSET).muliti(false);
+//
+//        cfg.view().field(AssetDepreciationDetailMeta.ASSET_CUR_NAV_PRICE)
+//                .basic().label("当前净值")
+//                .form().selectBox().queryApi(AssetServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
+//                .valueField(AssetMeta.ID).textField( AssetMeta.NAV_PRICE).fillWith(AssetDepreciationDetailMeta.ASSET).muliti(false);
+//
+//        cfg.view().field(AssetDepreciationDetailMeta.ASSET_BEFORE_NAV_PRICE)
+//                .basic().label("折旧前净值")
+//                .form().selectBox().queryApi(AssetServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
+//                .valueField(AssetMeta.ID).textField( AssetMeta.NAV_PRICE).fillWith(AssetDepreciationDetailMeta.ASSET_SOURCE).muliti(false);
+//
+//        cfg.view().field(AssetDepreciationDetailMeta.ASSET_AFTER_NAV_PRICE)
+//                .basic().label("折旧后净值")
+//                .form().selectBox().queryApi(AssetServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
+//                .valueField(AssetMeta.ID).textField( AssetMeta.NAV_PRICE).fillWith(AssetDepreciationDetailMeta.ASSET_TARGET).muliti(false);
+//
 
 
         cfg.view().list().addJsVariable("OPER_ID","[[${operId}]]","OPER_ID");
@@ -118,9 +127,9 @@ public class AssetDepreciationDetailGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.DETAIL_ID_TARGET).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.CREATE_TIME).table().disable(true);
 
-        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.CUR_PRICE).table().disable(true);
-        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.AFTER_PRICE).table().disable(true);
-        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.BEFORE_PRICE).table().disable(true);
+//        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.CUR_PRICE).table().disable(true);
+//        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.AFTER_PRICE).table().disable(true);
+//        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.BEFORE_PRICE).table().disable(true);
 
         cfg.view().formWindow().width("85%");
         cfg.view().formWindow().bottomSpace(20);
@@ -132,10 +141,14 @@ public class AssetDepreciationDetailGtr extends BaseCodeGenerator {
                         AssetDepreciationDetailMeta.ASSET_CUR_NAME,
                         AssetDepreciationDetailMeta.ASSET_CUR_MODEL,
                         AssetDepreciationDetailMeta.ASSET_CUR_CODE,
-                        AssetDepreciationDetailMeta.ASSET_CUR_PURCHASE_UNIT_PRICE,
-                        AssetDepreciationDetailMeta.ASSET_CUR_NAV_PRICE,
-                        AssetDepreciationDetailMeta.ASSET_BEFORE_NAV_PRICE,
-                        AssetDepreciationDetailMeta.ASSET_AFTER_NAV_PRICE
+
+                        EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.CUR_PRICE,
+                        EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.BEFORE_PRICE,
+                        EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.AFTER_PRICE,
+//                        AssetDepreciationDetailMeta.ASSET_CUR_PURCHASE_UNIT_PRICE,
+//                        AssetDepreciationDetailMeta.ASSET_CUR_NAV_PRICE,
+//                        AssetDepreciationDetailMeta.ASSET_BEFORE_NAV_PRICE,
+//                        AssetDepreciationDetailMeta.ASSET_AFTER_NAV_PRICE
                 }
         );
 
@@ -143,8 +156,10 @@ public class AssetDepreciationDetailGtr extends BaseCodeGenerator {
         cfg.view().list().disableBatchDelete();
         cfg.view().list().disableModify();
         cfg.view().list().disableCreateNew();
-        cfg.view().list().disableSingleDelete();
+      //  cfg.view().list().disableSingleDelete();
         cfg.view().list().disableFormView();
+
+
 
         cfg.view().search().inputWidth(Config.searchInputWidth);
         //文件生成覆盖模式

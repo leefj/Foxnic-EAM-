@@ -36,6 +36,7 @@ public class OpsRelationManager extends RelationManager {
         this.setupPerson();
         this.setupCertificate();
         this.setupCertificateItem();
+        this.setupSoftwareBaseVersion();
 
     }
 
@@ -43,6 +44,11 @@ public class OpsRelationManager extends RelationManager {
 
     }
 
+    public void setupSoftwareBaseVersion() {
+        this.property(SoftwareBaseVersionMeta.SOFTWARE_BASE_TYPE_PROP)
+                .using(OpsTables.OPS_SOFTWARE_BASE_VERSION.SOFTWARE_TYPE_ID).join(OpsTables.OPS_SOFTWARE_BASE_TYPE.ID);
+
+    }
 
     public void setupCertificate() {
         this.property(CertificateMeta.ORIGINATOR_PROP)

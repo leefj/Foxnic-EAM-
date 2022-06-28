@@ -894,6 +894,11 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			asset.setRegisterDate(new Date());
 		}
 
+
+		if(asset.getNavPrice()==null){
+			asset.setNavPrice(asset.getPurchaseUnitPrice());
+		}
+
 		//编码
 		String codeRule="";
 		if(AssetOwnerCodeEnum.ASSET.code().equals(asset.getOwnerCode())){
@@ -1036,6 +1041,8 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		if(!StringUtil.isBlank(asset.getAssetCode())){
 			asset.setAssetCode(null);
 		}
+
+
 
 		//判断是否序列号要唯一,满足非空唯一即可
 		if(AssetOwnerCodeEnum.ASSET.code().equals(asset.getOwnerCode())&& !StringUtil.isBlank(asset.getSerialNumber()) && operateService.queryAssetSerialNumberNeedUnique() ){

@@ -26,6 +26,21 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 列表页初始化前调用
          * */
         beforeInit:function () {
+
+
+            var moduleURL2="/service-eam/eam-asset-depreciation-oper";
+            admin.post(moduleURL2+"/get-by-id", { id :OPER_ID }, function (r) {
+                if (r.success) {
+                   if(r.data.status&&r.data.status=="complete"){
+                       var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+                       operHtml=operHtml.replace(/lay-event="del"/i, "style=\"display:none\"")
+                       document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+                   }
+                } else {
+                    fox.showMessage(data);
+                }
+            });
+
             console.log("list:beforeInit");
         },
         /**

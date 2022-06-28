@@ -1,4 +1,4 @@
-package com.dt.platform.domain.eam;
+package com.dt.platform.domain.ops;
 
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
@@ -11,14 +11,14 @@ import com.github.foxnic.commons.bean.BeanUtil;
 
 
 /**
- * 折旧明细
+ * 软件基线版本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-28 06:41:50
- * @sign 7C63F5B12C219DD383FAF181BCD660BA
+ * @since 2022-06-27 20:16:21
+ * @sign 17605FEAC3DCDA167E3AC4285495C6FB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
-public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
+public class SoftwareBaseVersionVO extends SoftwareBaseVersion {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -89,7 +89,7 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 	 * @param pageIndex 页码
 	 * @return 当前对象
 	*/
-	public AssetDepreciationDetailVO setPageIndex(Integer pageIndex) {
+	public SoftwareBaseVersionVO setPageIndex(Integer pageIndex) {
 		this.pageIndex=pageIndex;
 		return this;
 	}
@@ -107,7 +107,7 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 	 * @param pageSize 分页大小
 	 * @return 当前对象
 	*/
-	public AssetDepreciationDetailVO setPageSize(Integer pageSize) {
+	public SoftwareBaseVersionVO setPageSize(Integer pageSize) {
 		this.pageSize=pageSize;
 		return this;
 	}
@@ -125,7 +125,7 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 	 * @param searchField 搜索字段
 	 * @return 当前对象
 	*/
-	public AssetDepreciationDetailVO setSearchField(String searchField) {
+	public SoftwareBaseVersionVO setSearchField(String searchField) {
 		this.searchField=searchField;
 		return this;
 	}
@@ -143,7 +143,7 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 	 * @param fuzzyField 模糊搜索字段
 	 * @return 当前对象
 	*/
-	public AssetDepreciationDetailVO setFuzzyField(String fuzzyField) {
+	public SoftwareBaseVersionVO setFuzzyField(String fuzzyField) {
 		this.fuzzyField=fuzzyField;
 		return this;
 	}
@@ -161,7 +161,7 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 	 * @param searchValue 搜索的值
 	 * @return 当前对象
 	*/
-	public AssetDepreciationDetailVO setSearchValue(String searchValue) {
+	public SoftwareBaseVersionVO setSearchValue(String searchValue) {
 		this.searchValue=searchValue;
 		return this;
 	}
@@ -179,7 +179,7 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 	 * @param dirtyFields 已修改字段
 	 * @return 当前对象
 	*/
-	public AssetDepreciationDetailVO setDirtyFields(List<String> dirtyFields) {
+	public SoftwareBaseVersionVO setDirtyFields(List<String> dirtyFields) {
 		this.dirtyFields=dirtyFields;
 		return this;
 	}
@@ -189,7 +189,7 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 	 * @param dirtyField 已修改字段
 	 * @return 当前对象
 	*/
-	public AssetDepreciationDetailVO addDirtyField(String... dirtyField) {
+	public SoftwareBaseVersionVO addDirtyField(String... dirtyField) {
 		if(this.dirtyFields==null) dirtyFields=new ArrayList<>();
 		this.dirtyFields.addAll(Arrays.asList(dirtyField));
 		return this;
@@ -208,7 +208,7 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 	 * @param sortField 排序字段
 	 * @return 当前对象
 	*/
-	public AssetDepreciationDetailVO setSortField(String sortField) {
+	public SoftwareBaseVersionVO setSortField(String sortField) {
 		this.sortField=sortField;
 		return this;
 	}
@@ -226,7 +226,7 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 	 * @param sortType 排序方式
 	 * @return 当前对象
 	*/
-	public AssetDepreciationDetailVO setSortType(String sortType) {
+	public SoftwareBaseVersionVO setSortType(String sortType) {
 		this.sortType=sortType;
 		return this;
 	}
@@ -245,7 +245,7 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 	 * @param ids 主键清单
 	 * @return 当前对象
 	*/
-	public AssetDepreciationDetailVO setIds(List<String> ids) {
+	public SoftwareBaseVersionVO setIds(List<String> ids) {
 		this.ids=ids;
 		return this;
 	}
@@ -255,7 +255,7 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 	 * @param id 主键清单
 	 * @return 当前对象
 	*/
-	public AssetDepreciationDetailVO addId(String... id) {
+	public SoftwareBaseVersionVO addId(String... id) {
 		if(this.ids==null) ids=new ArrayList<>();
 		this.ids.addAll(Arrays.asList(id));
 		return this;

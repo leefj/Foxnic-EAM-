@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 
@@ -17,8 +18,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 折旧明细
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-03 22:05:32
- * @sign CFC92D9AF8FCEB21AB8A2BA0E6D5A220
+ * @since 2022-06-28 06:41:50
+ * @sign 5E832C61B8A047EC98221499C26774F0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -55,6 +56,42 @@ public class AssetDepreciationDetail extends Entity {
 	private String assetId;
 	
 	/**
+	 * 折旧方式：折旧方式
+	*/
+	@ApiModelProperty(required = false,value="折旧方式" , notes = "折旧方式")
+	private String depreciationMethod;
+	
+	/**
+	 * 折旧结果：折旧结果
+	*/
+	@ApiModelProperty(required = false,value="折旧结果" , notes = "折旧结果")
+	private String result;
+	
+	/**
+	 * 折旧结果明细：折旧结果明细
+	*/
+	@ApiModelProperty(required = false,value="折旧结果明细" , notes = "折旧结果明细")
+	private String resultDetail;
+	
+	/**
+	 * 使用周期(月)：使用周期(月)
+	*/
+	@ApiModelProperty(required = false,value="使用周期(月)" , notes = "使用周期(月)")
+	private BigDecimal serviceLife;
+	
+	/**
+	 * 残值率：残值率
+	*/
+	@ApiModelProperty(required = false,value="残值率" , notes = "残值率")
+	private BigDecimal residualRate;
+	
+	/**
+	 * 采购日期：采购日期
+	*/
+	@ApiModelProperty(required = false,value="采购日期" , notes = "采购日期")
+	private Date purchaseDate;
+	
+	/**
 	 * 折旧前：折旧前
 	*/
 	@ApiModelProperty(required = false,value="折旧前" , notes = "折旧前")
@@ -65,6 +102,18 @@ public class AssetDepreciationDetail extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="折旧后" , notes = "折旧后")
 	private String detailIdTarget;
+	
+	/**
+	 * 采购价格：采购价格
+	*/
+	@ApiModelProperty(required = false,value="采购价格" , notes = "采购价格")
+	private BigDecimal purchaseUnitPrice;
+	
+	/**
+	 * 本期折旧：本期折旧
+	*/
+	@ApiModelProperty(required = false,value="本期折旧" , notes = "本期折旧")
+	private BigDecimal depreciationPrice;
 	
 	/**
 	 * 当前净值：当前净值
@@ -113,6 +162,8 @@ public class AssetDepreciationDetail extends Entity {
 	*/
 	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
+	@Transient
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -185,30 +236,6 @@ public class AssetDepreciationDetail extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="编码" , notes = "编码")
 	private String assetCurCode;
-	
-	/**
-	 * 采购单价：采购单价
-	*/
-	@ApiModelProperty(required = false,value="采购单价" , notes = "采购单价")
-	private String assetCurPurchaseUnitPrice;
-	
-	/**
-	 * 资产净值：资产净值
-	*/
-	@ApiModelProperty(required = false,value="资产净值" , notes = "资产净值")
-	private String assetCurNavPrice;
-	
-	/**
-	 * 资产净值：资产净值
-	*/
-	@ApiModelProperty(required = false,value="资产净值" , notes = "资产净值")
-	private String assetAfterNavPrice;
-	
-	/**
-	 * 资产净值：资产净值
-	*/
-	@ApiModelProperty(required = false,value="资产净值" , notes = "资产净值")
-	private String assetBeforeNavPrice;
 	
 	/**
 	 * 获得 主键<br>
@@ -287,6 +314,120 @@ public class AssetDepreciationDetail extends Entity {
 	}
 	
 	/**
+	 * 获得 折旧方式<br>
+	 * 折旧方式
+	 * @return 折旧方式
+	*/
+	public String getDepreciationMethod() {
+		return depreciationMethod;
+	}
+	
+	/**
+	 * 设置 折旧方式
+	 * @param depreciationMethod 折旧方式
+	 * @return 当前对象
+	*/
+	public AssetDepreciationDetail setDepreciationMethod(String depreciationMethod) {
+		this.depreciationMethod=depreciationMethod;
+		return this;
+	}
+	
+	/**
+	 * 获得 折旧结果<br>
+	 * 折旧结果
+	 * @return 折旧结果
+	*/
+	public String getResult() {
+		return result;
+	}
+	
+	/**
+	 * 设置 折旧结果
+	 * @param result 折旧结果
+	 * @return 当前对象
+	*/
+	public AssetDepreciationDetail setResult(String result) {
+		this.result=result;
+		return this;
+	}
+	
+	/**
+	 * 获得 折旧结果明细<br>
+	 * 折旧结果明细
+	 * @return 折旧结果明细
+	*/
+	public String getResultDetail() {
+		return resultDetail;
+	}
+	
+	/**
+	 * 设置 折旧结果明细
+	 * @param resultDetail 折旧结果明细
+	 * @return 当前对象
+	*/
+	public AssetDepreciationDetail setResultDetail(String resultDetail) {
+		this.resultDetail=resultDetail;
+		return this;
+	}
+	
+	/**
+	 * 获得 使用周期(月)<br>
+	 * 使用周期(月)
+	 * @return 使用周期(月)
+	*/
+	public BigDecimal getServiceLife() {
+		return serviceLife;
+	}
+	
+	/**
+	 * 设置 使用周期(月)
+	 * @param serviceLife 使用周期(月)
+	 * @return 当前对象
+	*/
+	public AssetDepreciationDetail setServiceLife(BigDecimal serviceLife) {
+		this.serviceLife=serviceLife;
+		return this;
+	}
+	
+	/**
+	 * 获得 残值率<br>
+	 * 残值率
+	 * @return 残值率
+	*/
+	public BigDecimal getResidualRate() {
+		return residualRate;
+	}
+	
+	/**
+	 * 设置 残值率
+	 * @param residualRate 残值率
+	 * @return 当前对象
+	*/
+	public AssetDepreciationDetail setResidualRate(BigDecimal residualRate) {
+		this.residualRate=residualRate;
+		return this;
+	}
+	
+	/**
+	 * 获得 采购日期<br>
+	 * 采购日期
+	 * @return 采购日期
+	*/
+	public Date getPurchaseDate() {
+		return purchaseDate;
+	}
+	
+	/**
+	 * 设置 采购日期
+	 * @param purchaseDate 采购日期
+	 * @return 当前对象
+	*/
+	public AssetDepreciationDetail setPurchaseDate(Date purchaseDate) {
+		this.purchaseDate=purchaseDate;
+		return this;
+	}
+	
+	/**
 	 * 获得 折旧前<br>
 	 * 折旧前
 	 * @return 折旧前
@@ -321,6 +462,44 @@ public class AssetDepreciationDetail extends Entity {
 	*/
 	public AssetDepreciationDetail setDetailIdTarget(String detailIdTarget) {
 		this.detailIdTarget=detailIdTarget;
+		return this;
+	}
+	
+	/**
+	 * 获得 采购价格<br>
+	 * 采购价格
+	 * @return 采购价格
+	*/
+	public BigDecimal getPurchaseUnitPrice() {
+		return purchaseUnitPrice;
+	}
+	
+	/**
+	 * 设置 采购价格
+	 * @param purchaseUnitPrice 采购价格
+	 * @return 当前对象
+	*/
+	public AssetDepreciationDetail setPurchaseUnitPrice(BigDecimal purchaseUnitPrice) {
+		this.purchaseUnitPrice=purchaseUnitPrice;
+		return this;
+	}
+	
+	/**
+	 * 获得 本期折旧<br>
+	 * 本期折旧
+	 * @return 本期折旧
+	*/
+	public BigDecimal getDepreciationPrice() {
+		return depreciationPrice;
+	}
+	
+	/**
+	 * 设置 本期折旧
+	 * @param depreciationPrice 本期折旧
+	 * @return 当前对象
+	*/
+	public AssetDepreciationDetail setDepreciationPrice(BigDecimal depreciationPrice) {
+		this.depreciationPrice=depreciationPrice;
 		return this;
 	}
 	
@@ -467,12 +646,42 @@ public class AssetDepreciationDetail extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
 	public AssetDepreciationDetail setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public AssetDepreciationDetail setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -701,82 +910,6 @@ public class AssetDepreciationDetail extends Entity {
 	*/
 	public AssetDepreciationDetail setAssetCurCode(String assetCurCode) {
 		this.assetCurCode=assetCurCode;
-		return this;
-	}
-	
-	/**
-	 * 获得 采购单价<br>
-	 * 采购单价
-	 * @return 采购单价
-	*/
-	public String getAssetCurPurchaseUnitPrice() {
-		return assetCurPurchaseUnitPrice;
-	}
-	
-	/**
-	 * 设置 采购单价
-	 * @param assetCurPurchaseUnitPrice 采购单价
-	 * @return 当前对象
-	*/
-	public AssetDepreciationDetail setAssetCurPurchaseUnitPrice(String assetCurPurchaseUnitPrice) {
-		this.assetCurPurchaseUnitPrice=assetCurPurchaseUnitPrice;
-		return this;
-	}
-	
-	/**
-	 * 获得 资产净值<br>
-	 * 资产净值
-	 * @return 资产净值
-	*/
-	public String getAssetCurNavPrice() {
-		return assetCurNavPrice;
-	}
-	
-	/**
-	 * 设置 资产净值
-	 * @param assetCurNavPrice 资产净值
-	 * @return 当前对象
-	*/
-	public AssetDepreciationDetail setAssetCurNavPrice(String assetCurNavPrice) {
-		this.assetCurNavPrice=assetCurNavPrice;
-		return this;
-	}
-	
-	/**
-	 * 获得 资产净值<br>
-	 * 资产净值
-	 * @return 资产净值
-	*/
-	public String getAssetAfterNavPrice() {
-		return assetAfterNavPrice;
-	}
-	
-	/**
-	 * 设置 资产净值
-	 * @param assetAfterNavPrice 资产净值
-	 * @return 当前对象
-	*/
-	public AssetDepreciationDetail setAssetAfterNavPrice(String assetAfterNavPrice) {
-		this.assetAfterNavPrice=assetAfterNavPrice;
-		return this;
-	}
-	
-	/**
-	 * 获得 资产净值<br>
-	 * 资产净值
-	 * @return 资产净值
-	*/
-	public String getAssetBeforeNavPrice() {
-		return assetBeforeNavPrice;
-	}
-	
-	/**
-	 * 设置 资产净值
-	 * @param assetBeforeNavPrice 资产净值
-	 * @return 当前对象
-	*/
-	public AssetDepreciationDetail setAssetBeforeNavPrice(String assetBeforeNavPrice) {
-		this.assetBeforeNavPrice=assetBeforeNavPrice;
 		return this;
 	}
 

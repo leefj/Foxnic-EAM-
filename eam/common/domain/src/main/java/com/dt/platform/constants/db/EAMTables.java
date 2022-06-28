@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-06-26 07:29:44
+ * @since 2022-06-27 14:18:49
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -2511,6 +2511,36 @@ public class EAMTables {
 		public static final DBField ASSET_ID = new DBField(DBDataType.STRING , "asset_id","assetId","资产","资产",false,false,true);
 		
 		/**
+		 * 折旧方式
+		*/
+		public static final DBField DEPRECIATION_METHOD = new DBField(DBDataType.STRING , "depreciation_method","depreciationMethod","折旧方式","折旧方式",false,false,true);
+		
+		/**
+		 * 折旧结果
+		*/
+		public static final DBField RESULT = new DBField(DBDataType.STRING , "result","result","折旧结果","折旧结果",false,false,true);
+		
+		/**
+		 * 折旧结果明细
+		*/
+		public static final DBField RESULT_DETAIL = new DBField(DBDataType.STRING , "result_detail","resultDetail","折旧结果明细","折旧结果明细",false,false,true);
+		
+		/**
+		 * 使用周期(月)
+		*/
+		public static final DBField SERVICE_LIFE = new DBField(DBDataType.DECIMAL , "service_life","serviceLife","使用周期(月)","使用周期(月)",false,false,true);
+		
+		/**
+		 * 残值率
+		*/
+		public static final DBField RESIDUAL_RATE = new DBField(DBDataType.DECIMAL , "residual_rate","residualRate","残值率","残值率",false,false,true);
+		
+		/**
+		 * 采购日期
+		*/
+		public static final DBField PURCHASE_DATE = new DBField(DBDataType.DATE , "purchase_date","purchaseDate","采购日期","采购日期",false,false,true);
+		
+		/**
 		 * 折旧前
 		*/
 		public static final DBField DETAIL_ID_SOURCE = new DBField(DBDataType.STRING , "detail_id_source","detailIdSource","折旧前","折旧前",false,false,true);
@@ -2519,6 +2549,16 @@ public class EAMTables {
 		 * 折旧后
 		*/
 		public static final DBField DETAIL_ID_TARGET = new DBField(DBDataType.STRING , "detail_id_target","detailIdTarget","折旧后","折旧后",false,false,true);
+		
+		/**
+		 * 采购价格
+		*/
+		public static final DBField PURCHASE_UNIT_PRICE = new DBField(DBDataType.DECIMAL , "purchase_unit_price","purchaseUnitPrice","采购价格","采购价格",false,false,true);
+		
+		/**
+		 * 本期折旧
+		*/
+		public static final DBField DEPRECIATION_PRICE = new DBField(DBDataType.DECIMAL , "depreciation_price","depreciationPrice","本期折旧","本期折旧",false,false,true);
 		
 		/**
 		 * 当前净值
@@ -2580,7 +2620,7 @@ public class EAMTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public EAM_ASSET_DEPRECIATION_DETAIL() {
-			this.init($NAME,"折旧明细" , ID , DEPRECIATION_ID , OPER_ID , ASSET_ID , DETAIL_ID_SOURCE , DETAIL_ID_TARGET , CUR_PRICE , BEFORE_PRICE , AFTER_PRICE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"折旧明细" , ID , DEPRECIATION_ID , OPER_ID , ASSET_ID , DEPRECIATION_METHOD , RESULT , RESULT_DETAIL , SERVICE_LIFE , RESIDUAL_RATE , PURCHASE_DATE , DETAIL_ID_SOURCE , DETAIL_ID_TARGET , PURCHASE_UNIT_PRICE , DEPRECIATION_PRICE , CUR_PRICE , BEFORE_PRICE , AFTER_PRICE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final EAM_ASSET_DEPRECIATION_DETAIL $TABLE=new EAM_ASSET_DEPRECIATION_DETAIL();
 	}
