@@ -337,7 +337,7 @@ public class AssetScrapServiceImpl extends SuperService<AssetScrap> implements I
 			instances.add(bill.getChangeInstanceId());
 			processApproveVO.setOpinion("撤销");
 			processApproveVO.setInstanceIds(instances);
-			processApproveVO.setAction(ApprovalAction.revoke.code());
+			processApproveVO.setAction(ApprovalAction.fetch_back.code());
 			Result processApproveResult=approve(processApproveVO);
 			if(!processApproveResult.isSuccess()) return processApproveResult;
 			billData.setStatus(AssetHandleStatusEnum.INCOMPLETE.code());

@@ -8,13 +8,18 @@ layui.config({
     foxnicUpload: 'upload/foxnic-upload'
 })
 //
-layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','laydate','foxnicUpload','dropdown'],function () {
+layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','laydate','foxnicUpload','dropdown'#if(bpm),'bpm'#end],function () {
 
     var admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate,dropdown=layui.dropdown;
-    table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload;
+    table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload#if(bpm),bpm=layui.bpm#end;
 
     //模块基础路径
     const moduleURL="#(moduleURL)";
+
+    #if(bpm)
+    var processId=QueryString.get("processId");
+    var processInstance=null;
+    #end
 
     //列表页的扩展
     var list={
@@ -188,6 +193,31 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         beforeDataFill:function (data) {
             console.log('beforeDataFill',data);
         },
+        #if(bpm)
+        /**
+         * 请求流程数据成功时
+         * */
+        onProcessInstanceReady:function (result) {
+            // 可根据流程状态、当前审批节点判断和控制表单页面
+            processInstance=result.data;
+            console.log("processInstance",processInstance);
+            // 获得所有待办节点
+            var todoNodes=bpm.getTodoNodes(processInstance);
+            console.log("todoNodes",todoNodes);
+            // 判断是否为待办节点
+            var isTodoNode=bpm.isTodoNodes(processInstance,"N1");
+            console.log("isTodoNode:N1",isTodoNode);
+            // 判断是否为当前账户的待办节点
+            var isMyTodoNode=bpm.isCurrentUserTodoNode(processInstance,"N1");
+            console.log("isMyTodoNode:N1",isMyTodoNode);
+        },
+        /**
+         * 请求流程数据错误时
+         * */
+        onProcessInstanceError:function (result) {
+            return true;
+        },
+        #end
         /**
          * 表单数据填充后
          * */

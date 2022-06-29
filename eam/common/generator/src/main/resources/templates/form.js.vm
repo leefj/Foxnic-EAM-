@@ -2,7 +2,7 @@
 
 function FormPage() {
 
-	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup;
+	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup#if(bpm),bpm#end;
 	const moduleURL="#(moduleURL)";
 	// 表单执行操作类型：view，create，edit
 	var action=null;
@@ -10,14 +10,18 @@ function FormPage() {
 	var disableModify=#(disableModify);
 	var dataBeforeEdit=null;
 	const bpmIntegrateMode="#(bpmIntegrateMode)";
-	var isInProcess=QueryString.get("isInProcess")
+	var isInProcess=QueryString.get("isInProcess");
+	#if(bpm)
+	var processId=QueryString.get("processId");
+	var processInstance=null;
+	#end
 
 	/**
       * 入口函数，初始化
       */
 	this.init=function(layui) {
      	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload;
-		laydate = layui.laydate,table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect;
+		laydate = layui.laydate,table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect#if(bpm),bpm=layui.bpm#end;
 
 		action=admin.getTempData('#(formDataKey)-form-action');
 		//如果没有修改和保存权限
@@ -49,7 +53,30 @@ function FormPage() {
 		//调整窗口的高度与位置
 		adjustPopup();
 		#end
+		#if(bpm)
+		//取流程数据
+		fetchProcessInstance();
+		#end
 	}
+
+	#if(bpm)
+	//取流程数据
+	function fetchProcessInstance() {
+		if(!processId) return;
+		bpm.getProcessInstance(processId,function (r){
+			if(r.success) {
+				processInstance=r.data;
+				window.pageExt.form.onProcessInstanceReady && window.pageExt.form.onProcessInstanceReady(r);
+			} else {
+				if(window.pageExt.form.onProcessInstanceError) {
+					var next=window.pageExt.form.onProcessInstanceError(r);
+					if(!next) return;
+				}
+				fox.showMessage(r);
+			}
+		})
+	}
+	#end
 
 	/**
 	 * 自动调节窗口高度
@@ -64,15 +91,26 @@ function FormPage() {
 			if(!doNext) return;
 		}
 
-		if(bpmIntegrateMode=="front" && isInProcess==1) return;
+
 
 		clearTimeout(adjustPopupTask);
 		var scroll=$(".form-container").attr("scroll");
 		if(scroll=='yes') return;
+		var prevBodyHeight=-1;
 		adjustPopupTask=setTimeout(function () {
 			var body=$("body");
 			var bodyHeight=body.height();
 			var footerHeight=$(".model-form-footer").height();
+			if(bpmIntegrateMode=="front" && isInProcess==1) {
+				var updateFormIframeHeight=admin.getVar("updateFormIframeHeight");
+				if(bodyHeight>0 && bodyHeight!=prevBodyHeight) {
+					updateFormIframeHeight && updateFormIframeHeight(bodyHeight);
+				} else {
+					setTimeout(adjustPopup,1000);
+				}
+				prevBodyHeight = bodyHeight;
+				return;
+			}
 			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'#(formDataKey)-win');
 			if(area==null) return;
 			admin.putTempData('#(formAreaKey)', area);
@@ -552,7 +590,7 @@ function FormPage() {
 
 }
 
-layui.use(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','foxnicUpload','laydate'],function() {
+layui.use(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','foxnicUpload','laydate'#if(bpm),'bpm'#end],function() {
 	var task=setInterval(function (){
 		if(!window["pageExt"]) return;
 		clearInterval(task);

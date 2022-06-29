@@ -5,6 +5,12 @@ import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
 import org.springframework.web.bind.annotation.RequestParam;
 
+#if(bpm)
+import org.github.foxnic.web.proxy.bpm.BpmCallbackController;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
+#end
+
 #if(isEnableMicroService)import org.springframework.cloud.openfeign.FeignClient;#end
 
 #(imports)
@@ -12,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 #(classJavaDoc)
 
 #if(isEnableMicroService)@FeignClient(value = #(msNameConst), contextId = #(simpleName).API_CONTEXT_PATH , configuration = FeignConfiguration.class)#end
-public interface #(simpleName) {
+public interface #(simpleName)  #if(bpm)extends BpmCallbackController#end  {
 
 	/**
 	 * 基础路径 , #(apiBasicPath)
@@ -100,62 +106,77 @@ public interface #(simpleName) {
 	 */
 	public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
 
+	#if(bpm)
+	/**
+	  * 流程事件回调接收接口
+	  */
+	public static final String BPM_CALLBACK = API_PREFIX + "bpm-callback";
+	#end
+
 	/**
 	 * 添加#(topic)
-	*/
+	 */
 	@RequestMapping(#(agentSimpleName).INSERT)
 	Result insert(#(voSimpleName) #(voVar));
 
 	/**
 	 * 删除#(topic)
-	*/
+	 */
 	@RequestMapping(#(agentSimpleName).DELETE)
 	Result deleteById(#(controllerMethodParameterDeclare4DeleteById));
 
 	#if(isSimplePk)
 	/**
 	 * 批量删除#(topic)
-	*/
+	 */
 	@RequestMapping(#(agentSimpleName).DELETE_BY_IDS)
 	Result deleteByIds(List<#(pkType)> #(idPropertyName)s);
 	#end
 
 	/**
 	 * 更新#(topic)
-	*/
+	 */
 	@RequestMapping(#(agentSimpleName).UPDATE)
 	Result update(#(voSimpleName) #(voVar));
 
 	/**
 	 * 更新#(topic)
-	*/
+	 */
 	@RequestMapping(#(agentSimpleName).SAVE)
 	Result save(#(voSimpleName) #(voVar));
 
 	/**
 	 * 获取#(topic)
-	*/
+	 */
 	@RequestMapping(#(agentSimpleName).GET_BY_ID)
 	Result<#(poSimpleName)> getById(#(controllerMethodParameterDeclare4GetById));
 
 	#if(isSimplePk)
 	/**
 	 * 获取多个#(topic)
-	*/
+	 */
 	@RequestMapping(#(agentSimpleName).GET_BY_IDS)
 	Result<List<#(poSimpleName)>> getByIds(List<#(pkType)> #(idPropertyName)s);
 	#end
 	/**
 	 * 查询#(topic)
-	*/
+	 */
 	@RequestMapping(#(agentSimpleName).QUERY_LIST)
 	Result<List<#(poSimpleName)>> queryList(#(voSimpleName) sample);
 
 	/**
 	 * 分页查询#(topic)
-	*/
+	 */
 	@RequestMapping(#(agentSimpleName).QUERY_PAGED_LIST)
 	Result<PagedList<#(poSimpleName)>> queryPagedList(#(voSimpleName) sample);
+
+	#if(bpm)
+	/**
+	 * 分页查询#(topic)
+	 */
+	@RequestMapping(#(agentSimpleName).BPM_CALLBACK)
+	BpmActionResult onProcessCallback(BpmEvent event);
+	#end
 
 
 	/**

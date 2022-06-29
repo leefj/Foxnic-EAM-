@@ -36,6 +36,19 @@
         }
     #end
     #end
+    #if(bpm)
+    .form-column {
+        padding-top: 0px;
+        padding-right: 0px;
+        padding-left: 4px;
+        display: inline-block;
+    }
+    .model-form {
+        padding-top: 0px;
+        margin-right: 0px;
+        margin-left: 4px;
+    }
+    #end
     </style>
     <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
 </head>
@@ -216,9 +229,11 @@
         #end
         #end <!--结束：group循环-->
 
+        #if(!bpm)
         <div style="height: 8px"></div>
         #if(formWindow.bottomSpace!=null)
         <div style="height: #(formWindow.bottomSpace)px"></div>
+        #end
         #end
 
 

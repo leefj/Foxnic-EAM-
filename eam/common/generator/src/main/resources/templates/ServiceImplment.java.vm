@@ -1,9 +1,17 @@
 package #(package);
 
-
+#if(bpm)
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
+import org.github.foxnic.web.framework.bpm.BpmEventAdaptor;
+import org.github.foxnic.web.framework.bpm.BpmAssistant;
+#end
 import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.github.foxnic.commons.collection.MapUtil;
+import java.util.Arrays;
 
 #(imports)
 
@@ -138,6 +146,14 @@ public class #(simpleName) extends SuperService<#(poSimpleName)> implements #(in
 #(getByIdMethod)
 
 #if(isSimplePK)
+	/**
+	 * 等价于 queryListByIds
+	 * */
+	@Override
+	public List<#(poSimpleName)> getByIds(List<String> ids) {
+		return this.queryListByIds(ids);
+	}
+
 	@Override
 	public List<#(poSimpleName)> queryListByIds(List<#(idPropertyType)> #(idPropertyName)s) {
 		return super.queryListByUKeys("#(idPropertyName)",#(idPropertyName)s);
@@ -203,6 +219,27 @@ public class #(simpleName) extends SuperService<#(poSimpleName)> implements #(in
 		return false;
 	}
 
+	#if(isSimplePK)
+
+	@Override
+	public Boolean hasRefers(String #(idPropertyName)) {
+		Map<#(idPropertyType), Boolean> map=this.hasRefers(Arrays.asList(#(idPropertyName)));
+		Boolean ex=map.get(#(idPropertyName));
+		if(ex==null) return false;
+		return ex;
+	}
+
+	@Override
+	public Map<#(idPropertyType), Boolean> hasRefers(List<#(idPropertyType)> #(idPropertyName)s) {
+		// 默认无业务逻辑，返回此行；有业务逻辑需要校验时，请修改并使用已注释的行代码！！！
+		return MapUtil.asMap(ids,false);
+		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,#(idPropertyName)s);
+	}
+
+	#end
+
+
+
 	@Override
 	public ExcelWriter exportExcel(#(poSimpleName) sample) {
 		return super.exportExcel(sample);
@@ -232,6 +269,31 @@ public class #(simpleName) extends SuperService<#(poSimpleName)> implements #(in
 	public void saveRelation(#(relationMasterVarType) #(relationMasterVar),List<#(relationSlaveVarType)> #(relationSlaveVar)) {
 		super.saveRelation(#(relationMasterPoType).class,#(relationMasterIdField),#(relationMasterVar),#(relationSlavePoType).class,#(relationSlaveIdField),#(relationSlaveVar),#(isRelationClearWhenEmpty));
 	}
+	#end
+
+	#if(bpm)
+	/**
+	 * 处理流程回调
+	 * */
+	public  BpmActionResult onProcessCallback(BpmEvent event) {
+		return (new #(bpmEventAdaptorName)(this)).onProcessCallback(event);
+	}
+
+	@Override
+	public void joinProcess(#(poSimpleName) #(poVar)) {
+		this.joinProcess(Arrays.asList(#(poVar)));
+	}
+
+	@Override
+	public void joinProcess(List<#(poSimpleName)> #(poVar)List) {
+		BpmAssistant.joinProcess(#(poVar)List,#(interfaceName).FORM_DEFINITION_CODE);
+	}
+
+	@Override
+	public void joinProcess(PagedList<#(poSimpleName)> #(poVar)List) {
+		this.joinProcess(#(poVar)List.getList());
+	}
+
 	#end
 
 }

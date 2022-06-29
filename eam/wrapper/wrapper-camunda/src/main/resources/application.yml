@@ -88,8 +88,34 @@ spring:
 #  session:
 #    store-type: redis # 使用 redis 存储session
   redis:
-      port: 6379
-      host: 127.0.0.1
+    # 是否启用单节点的 redis
+    enable: false
+    pool:
+      #连接池最大连接数（使用负值表示没有限制）
+      max-active: 8
+      #连接池最大阻塞等待时间（使用负值表示没有限制）
+      max-wait: -1
+      #连接池中的最大空闲连接
+      max-idle: 8
+      #连接池中的最小空闲连接
+      min-idle: 0
+      #连接超时时间（毫秒）
+      timeout: 30000
+    # 单节配置
+    port: 6379
+    host: 127.0.0.1
+    password:
+    # 哨兵配置
+    sentinel:
+      # 是否启用哨兵模式的 redis
+      enable: false
+      master: common
+      nodes: 192.168.1.84:26379,192.168.1.85:26379
+    #集群配置
+    cluster:
+      # 是否启用集群模式的 redis
+      enable: false
+      nodes: 192.168.1.24:6389,192.168.1.24:6479,192.168.1.24:6579
 
 
 #设置开发选项
@@ -121,12 +147,16 @@ foxnic:
   # 配置集群节点简单替代注册中心，如果启用微服务，则一下配置无效
   cluster:
     # 节点间用于通信的 key，各节点要保持一致
-    key: FOXNIC-EAM-20220527-9494
+    key: FOXNIC-EAM-202200701-3386
     service:
       service-camunda:
         enable: true
         # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
         end-points: http://127.0.0.1:8099,1 | http://127.0.0.1:8099,1
+      service-bpm:
+        enable: true
+        # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
+        end-points: http://127.0.0.1:8089,1 | http://127.0.0.1:8089,2
       service-hrm:
         enable: true
         # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...

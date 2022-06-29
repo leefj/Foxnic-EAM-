@@ -596,10 +596,15 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
+					admin.putTempData('#(formDataKey)', {});
+					#if(bpm)
+					bpm.openProcessView(null,null,false,{"formDefinitionCode":"#(bpmFormCode)"},refreshTableData,refreshRowData,"bill");
+					#else
 					#if(createNewButton.functionName==null)
 					openCreateFrom();
 					#else
 					window.pageExt.list.#(createNewButton.functionName)();
+					#end
 					#end
 					break;
 				#if(isSimplePK)
@@ -685,6 +690,11 @@ function ListPage() {
 
 			admin.putTempData('#(formDataKey)-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
+				#if(bpm)
+				bpm.getProcessInstanceByBill("#(bpmFormCode)",{ #(paramJson) },function(p) {
+						bpm.openProcessView(p.id,null,false,{"formDefinitionCode":"#(bpmFormCode)"},refreshTableData,refreshRowData,"bill");
+				});
+				#else
 				#if(modifyButton.functionName==null)
 				admin.post(moduleURL+"/get-by-id", { #(paramJson) }, function (data) {
 					if(data.success) {
@@ -696,6 +706,7 @@ function ListPage() {
 				});
 				#else
 				window.pageExt.list.#(modifyButton.functionName)({ #(paramJson) });
+				#end
 				#end
 			} else if (layEvent === 'view') { // 查看
 				#if(formViewButton.functionName==null)
@@ -717,6 +728,22 @@ function ListPage() {
 					var doNext=window.pageExt.list.beforeSingleDelete(data);
 					if(!doNext) return;
 				}
+
+				#if(bpm)
+				top.layer.confirm(fox.translate('确定要废弃当前')+fox.translate('流程实例')+fox.translate('吗？'), function (i) {
+					top.layer.close(i);
+					bpm.getProcessInstanceByBill("#(bpmFormCode)",{ #(paramJson) },function(p) {
+						bpm.abandon({processInstanceId:p.id,reason:"无",force:false},function (r){
+							if(r.success) {
+								fox.showMessage(r);
+								window.module.refreshRowData(data,true);
+							} else {
+								fox.showMessage(r);
+							}
+						});
+					});
+				});
+				#else
 				#if(deleteButton.functionName==null)
 				top.layer.confirm(fox.translate('确定删除此')+fox.translate('#(topic)')+fox.translate('吗？'), function (i) {
 					top.layer.close(i);
@@ -738,6 +765,7 @@ function ListPage() {
 				});
 				#else
 				window.pageExt.list.#(deleteButton.functionName)({ #(paramJson) });
+				#end
 				#end
 			}
 			#for(b:opColumnButtons)

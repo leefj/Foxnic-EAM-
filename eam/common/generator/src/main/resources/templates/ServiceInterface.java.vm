@@ -1,11 +1,25 @@
 package #(package);
 
+#if(bpm)
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
+#end
+#if(isSimplePK)
+import com.github.foxnic.dao.entity.ISimpleIdService;
+#end
 #(imports)
 
 #(classJavaDoc)
 
-public interface #(simpleName) extends ISuperService<#(poSimpleName)> {
+public interface #(simpleName) extends #if(isSimplePK) ISimpleIdService<#(poSimpleName),#(idPropertyType)> #else ISuperService<#(poSimpleName)> #end {
 
+
+	#if(bpm)
+	/**
+ 	  * 表单定义代码
+      **/
+	public static final String FORM_DEFINITION_CODE="#(bpmFormCode)";
+	#end
 	/**
 	 * 添加，如果语句错误，则抛出异常
 	 * @param #(poVar) 数据对象
@@ -113,6 +127,16 @@ public interface #(simpleName) extends ISuperService<#(poSimpleName)> {
 
 	#(getByIdMethod)
 	#if(isSimplePK)
+
+	/**
+	 * 检查引用
+	 * */
+	Boolean hasRefers(#(idPropertyType) #(idPropertyName));
+
+	/**
+	 * 批量检查引用
+	 * */
+	Map<#(idPropertyType),Boolean> hasRefers(List<#(idPropertyType)> #(idPropertyName)s);
 
 	/**
 	 * 按 #(idPropertyName) 获取多个对象
@@ -283,6 +307,20 @@ public interface #(simpleName) extends ISuperService<#(poSimpleName)> {
 	 * @param #(relationSlaveVar) #(relationSlaveVarDoc)
 	 */
 	void saveRelation(#(relationMasterVarType) #(relationMasterVar),List<#(relationSlaveVarType)> #(relationSlaveVar));
+	#end
+
+	#if(bpm)
+	/**
+	 * 处理流程回调
+	 * */
+	BpmActionResult onProcessCallback(BpmEvent event);
+
+
+	void joinProcess(#(poSimpleName) #(poVar));
+
+	void joinProcess(List<#(poSimpleName)> #(poVar)List);
+
+	void joinProcess(PagedList<#(poSimpleName)> #(poVar)List);
 	#end
 
 }
