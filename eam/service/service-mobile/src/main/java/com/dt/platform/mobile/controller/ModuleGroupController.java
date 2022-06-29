@@ -3,7 +3,7 @@ package com.dt.platform.mobile.controller;
 
 import java.util.List;
 
-import com.dt.platform.domain.eam.meta.MaintainTaskMeta;
+import com.dt.platform.domain.mobile.meta.ModuleInfoMeta;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,7 +50,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 移动端模块分组 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-24 19:27:21
+ * @since 2022-06-28 20:41:10
 */
 
 @Api(tags = "移动端模块分组")
@@ -68,6 +68,7 @@ public class ModuleGroupController extends SuperController {
 	@ApiOperation(value = "添加移动端模块分组")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ModuleGroupVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ModuleGroupVOMeta.TYPE , value = "类型" , required = true , dataTypeClass=String.class , example = "eam"),
 		@ApiImplicitParam(name = ModuleGroupVOMeta.LABEL , value = "标签" , required = false , dataTypeClass=String.class , example = "固资管理"),
 		@ApiImplicitParam(name = ModuleGroupVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
@@ -125,6 +126,7 @@ public class ModuleGroupController extends SuperController {
 	@ApiOperation(value = "更新移动端模块分组")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ModuleGroupVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ModuleGroupVOMeta.TYPE , value = "类型" , required = true , dataTypeClass=String.class , example = "eam"),
 		@ApiImplicitParam(name = ModuleGroupVOMeta.LABEL , value = "标签" , required = false , dataTypeClass=String.class , example = "固资管理"),
 		@ApiImplicitParam(name = ModuleGroupVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
@@ -148,6 +150,7 @@ public class ModuleGroupController extends SuperController {
 	@ApiOperation(value = "保存移动端模块分组")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ModuleGroupVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ModuleGroupVOMeta.TYPE , value = "类型" , required = true , dataTypeClass=String.class , example = "eam"),
 		@ApiImplicitParam(name = ModuleGroupVOMeta.LABEL , value = "标签" , required = false , dataTypeClass=String.class , example = "固资管理"),
 		@ApiImplicitParam(name = ModuleGroupVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
@@ -210,6 +213,7 @@ public class ModuleGroupController extends SuperController {
 	@ApiOperation(value = "查询移动端模块分组")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ModuleGroupVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ModuleGroupVOMeta.TYPE , value = "类型" , required = true , dataTypeClass=String.class , example = "eam"),
 		@ApiImplicitParam(name = ModuleGroupVOMeta.LABEL , value = "标签" , required = false , dataTypeClass=String.class , example = "固资管理"),
 		@ApiImplicitParam(name = ModuleGroupVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
@@ -222,9 +226,10 @@ public class ModuleGroupController extends SuperController {
 	public Result<List<ModuleGroup>> queryList(ModuleGroupVO sample) {
 		Result<List<ModuleGroup>> result=new Result<>();
 		List<ModuleGroup> list=moduleGroupService.queryList(sample);
-
-
-
+		// join 关联的对象
+		moduleGroupService.dao().fill(list)
+				.with(ModuleGroupMeta.MODULE_INFO_LIST)
+				.execute();
 		result.success(true).data(list);
 		return result;
 	}
@@ -236,6 +241,7 @@ public class ModuleGroupController extends SuperController {
 	@ApiOperation(value = "分页查询移动端模块分组")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ModuleGroupVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
+		@ApiImplicitParam(name = ModuleGroupVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ModuleGroupVOMeta.TYPE , value = "类型" , required = true , dataTypeClass=String.class , example = "eam"),
 		@ApiImplicitParam(name = ModuleGroupVOMeta.LABEL , value = "标签" , required = false , dataTypeClass=String.class , example = "固资管理"),
 		@ApiImplicitParam(name = ModuleGroupVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
@@ -248,6 +254,11 @@ public class ModuleGroupController extends SuperController {
 	public Result<PagedList<ModuleGroup>> queryPagedList(ModuleGroupVO sample) {
 		Result<PagedList<ModuleGroup>> result=new Result<>();
 		PagedList<ModuleGroup> list=moduleGroupService.queryPagedList(sample,sample.getPageSize(),sample.getPageIndex());
+		// join 关联的对象
+		moduleGroupService.dao().fill(list)
+				.with(ModuleGroupMeta.MODULE_INFO_LIST)
+				.execute();
+
 		result.success(true).data(list);
 		return result;
 	}

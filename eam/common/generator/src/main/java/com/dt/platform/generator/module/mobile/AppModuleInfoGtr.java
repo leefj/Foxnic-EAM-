@@ -52,6 +52,7 @@ public class AppModuleInfoGtr extends BaseCodeGenerator {
         cfg.view().field(MobileTables.APP_MODULE_INFO.NAME).form().validate().required();
         cfg.view().field(MobileTables.APP_MODULE_INFO.LABEL).form().validate().required();
 
+        cfg.view().field(MobileTables.APP_MODULE_INFO.CODE).form().validate().required();
 
 
 
@@ -60,6 +61,7 @@ public class AppModuleInfoGtr extends BaseCodeGenerator {
         cfg.view().list().disableBatchDelete();
         cfg.view().form().addGroup(null,
                 new Object[]{
+                        MobileTables.APP_MODULE_INFO.CODE,
                         MobileTables.APP_MODULE_INFO.LABEL,
                         MobileTables.APP_MODULE_INFO.GROUP_ID,
                         MobileTables.APP_MODULE_INFO.STATUS,

@@ -1,7 +1,7 @@
 /**
  * 移动端模块 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-24 19:28:57
+ * @since 2022-06-28 20:42:21
  */
 
 
@@ -78,6 +78,7 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
+					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编码') , templet: function (d) { return templet('code',d.code,d);}  }
 					,{ field: 'label', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标签') , templet: function (d) { return templet('label',d.label,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status),d);}}
 					,{ field: 'groupId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('分组'), templet: function (d) { return templet('groupId' ,fox.joinLabel(d.moduleGroup,"name"),d);}}

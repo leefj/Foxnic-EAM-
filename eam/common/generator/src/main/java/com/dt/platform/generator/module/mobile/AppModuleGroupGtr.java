@@ -37,6 +37,7 @@ public class AppModuleGroupGtr extends BaseCodeGenerator {
                 .selectBox().enumType(StatusEnableEnum.class).defaultIndex(0);
         cfg.view().field(MobileTables.APP_MODULE_GROUP.TYPE).form().validate().required().form()
                 .selectBox().enumType(moduleGroupTypeEnum.class).defaultIndex(0);
+        cfg.view().field(MobileTables.APP_MODULE_GROUP.CODE).form().validate().required();
         cfg.view().field(MobileTables.APP_MODULE_GROUP.LABEL).form().validate().required();
         cfg.view().field(MobileTables.APP_MODULE_GROUP.NAME).form().validate().required();
         cfg.view().formWindow().bottomSpace(80);
@@ -45,13 +46,14 @@ public class AppModuleGroupGtr extends BaseCodeGenerator {
         cfg.view().formWindow().width("75%");
         cfg.view().form().addGroup(null,
                 new Object[]{
+                        MobileTables.APP_MODULE_GROUP.CODE,
                         MobileTables.APP_MODULE_GROUP.LABEL,
                         MobileTables.APP_MODULE_GROUP.NAME,
-                        MobileTables.APP_MODULE_GROUP.SORT,
                 },
                 new Object[]{
                         MobileTables.APP_MODULE_GROUP.TYPE,
                         MobileTables.APP_MODULE_GROUP.STATUS,
+                        MobileTables.APP_MODULE_GROUP.SORT,
                 }
         );
 
@@ -59,7 +61,7 @@ public class AppModuleGroupGtr extends BaseCodeGenerator {
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口
-                .setControllerAndAgent(WriteMode.COVER_EXISTS_FILE) //Rest
+                .setControllerAndAgent(WriteMode.IGNORE) //Rest
                 .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)

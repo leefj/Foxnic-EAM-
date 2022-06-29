@@ -11,7 +11,7 @@ import com.dt.platform.domain.mobile.ModuleInfo;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-24 19:27:20
+ * @since 2022-06-28 20:41:10
  * @sign 0FE896D2F5E6F99FF6DEA95AA3CC2EDC
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -117,6 +117,16 @@ public class ModuleGroupVOMeta extends ModuleGroupMeta {
 	 * 主键 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.mobile.ModuleGroupVO,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.mobile.ModuleGroupVO.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
+	
+	/**
+	 * 编码 , 类型: java.lang.String
+	*/
+	public static final String CODE="code";
+	
+	/**
+	 * 编码 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.mobile.ModuleGroupVO,java.lang.String> CODE_PROP = new BeanProperty(com.dt.platform.domain.mobile.ModuleGroupVO.class ,CODE, java.lang.String.class, "编码", "编码", java.lang.String.class, null);
 	
 	/**
 	 * 类型 , 类型: java.lang.String
@@ -271,7 +281,7 @@ public class ModuleGroupVOMeta extends ModuleGroupMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , TYPE , LABEL , STATUS , NAME , SORT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , MODULE_INFO_LIST };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , CODE , TYPE , LABEL , STATUS , NAME , SORT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , MODULE_INFO_LIST };
 	
 	/**
 	 * 代理类
@@ -388,6 +398,17 @@ public class ModuleGroupVOMeta extends ModuleGroupMeta {
 		public ModuleGroup setId(String id) {
 			super.change(ID,super.getId(),id);
 			super.setId(id);
+			return this;
+		}
+		
+		/**
+		 * 设置 编码
+		 * @param code 编码
+		 * @return 当前对象
+		*/
+		public ModuleGroup setCode(String code) {
+			super.change(CODE,super.getCode(),code);
+			super.setCode(code);
 			return this;
 		}
 		

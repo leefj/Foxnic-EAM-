@@ -20,8 +20,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 移动端模块分组
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-24 19:27:20
- * @sign 4BB9F0E5121149B8EDB7D64258E02477
+ * @since 2022-06-28 20:41:10
+ * @sign 17006D2C73A2215FC287E2F6050407F6
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -38,6 +38,12 @@ public class ModuleGroup extends Entity {
 	@Id
 	@ApiModelProperty(required = true,value="主键" , notes = "主键")
 	private String id;
+	
+	/**
+	 * 编码：编码
+	*/
+	@ApiModelProperty(required = false,value="编码" , notes = "编码")
+	private String code;
 	
 	/**
 	 * 类型：类型
@@ -147,6 +153,25 @@ public class ModuleGroup extends Entity {
 	*/
 	public ModuleGroup setId(String id) {
 		this.id=id;
+		return this;
+	}
+	
+	/**
+	 * 获得 编码<br>
+	 * 编码
+	 * @return 编码
+	*/
+	public String getCode() {
+		return code;
+	}
+	
+	/**
+	 * 设置 编码
+	 * @param code 编码
+	 * @return 当前对象
+	*/
+	public ModuleGroup setCode(String code) {
+		this.code=code;
 		return this;
 	}
 	

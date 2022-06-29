@@ -10,8 +10,8 @@ import java.util.List;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-24 19:27:20
- * @sign 4BB9F0E5121149B8EDB7D64258E02477
+ * @since 2022-06-28 20:41:10
+ * @sign 17006D2C73A2215FC287E2F6050407F6
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -26,6 +26,16 @@ public class ModuleGroupMeta {
 	 * 主键 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.mobile.ModuleGroup,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.mobile.ModuleGroup.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
+	
+	/**
+	 * 编码 , 类型: java.lang.String
+	*/
+	public static final String CODE="code";
+	
+	/**
+	 * 编码 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.mobile.ModuleGroup,java.lang.String> CODE_PROP = new BeanProperty(com.dt.platform.domain.mobile.ModuleGroup.class ,CODE, java.lang.String.class, "编码", "编码", java.lang.String.class, null);
 	
 	/**
 	 * 类型 , 类型: java.lang.String
@@ -180,7 +190,7 @@ public class ModuleGroupMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , TYPE , LABEL , STATUS , NAME , SORT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , MODULE_INFO_LIST };
+	public static final String[] $PROPS={ ID , CODE , TYPE , LABEL , STATUS , NAME , SORT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , MODULE_INFO_LIST };
 	
 	/**
 	 * 代理类
@@ -198,6 +208,17 @@ public class ModuleGroupMeta {
 		public ModuleGroup setId(String id) {
 			super.change(ID,super.getId(),id);
 			super.setId(id);
+			return this;
+		}
+		
+		/**
+		 * 设置 编码
+		 * @param code 编码
+		 * @return 当前对象
+		*/
+		public ModuleGroup setCode(String code) {
+			super.change(CODE,super.getCode(),code);
+			super.setCode(code);
 			return this;
 		}
 		

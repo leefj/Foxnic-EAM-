@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-06-26 09:03:16
+ * @since 2022-06-28 20:40:28
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -29,6 +29,11 @@ public class MobileTables {
 		 * 主键
 		*/
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 编码
+		*/
+		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","编码","编码",false,false,true);
 		
 		/**
 		 * 类型
@@ -100,7 +105,7 @@ public class MobileTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public APP_MODULE_GROUP() {
-			this.init($NAME,"移动端模块分组" , ID , TYPE , LABEL , STATUS , NAME , SORT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"移动端模块分组" , ID , CODE , TYPE , LABEL , STATUS , NAME , SORT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final APP_MODULE_GROUP $TABLE=new APP_MODULE_GROUP();
 	}
@@ -119,6 +124,11 @@ public class MobileTables {
 		 * 主键
 		*/
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 编码
+		*/
+		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","编码","编码",false,false,true);
 		
 		/**
 		 * 标签
@@ -200,7 +210,7 @@ public class MobileTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public APP_MODULE_INFO() {
-			this.init($NAME,"移动端模块" , ID , LABEL , STATUS , GROUP_ID , NAME , PATH , NOTES , SORT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"移动端模块" , ID , CODE , LABEL , STATUS , GROUP_ID , NAME , PATH , NOTES , SORT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final APP_MODULE_INFO $TABLE=new APP_MODULE_INFO();
 	}

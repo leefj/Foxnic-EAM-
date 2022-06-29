@@ -49,7 +49,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 移动端模块 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-24 19:28:56
+ * @since 2022-06-28 20:42:20
 */
 
 @Api(tags = "移动端模块")
@@ -67,6 +67,7 @@ public class ModuleInfoController extends SuperController {
 	@ApiOperation(value = "添加移动端模块")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ModuleInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ModuleInfoVOMeta.LABEL , value = "标签" , required = false , dataTypeClass=String.class , example = "简单报修"),
 		@ApiImplicitParam(name = ModuleInfoVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
 		@ApiImplicitParam(name = ModuleInfoVOMeta.GROUP_ID , value = "分组" , required = false , dataTypeClass=String.class , example = "1"),
@@ -125,6 +126,7 @@ public class ModuleInfoController extends SuperController {
 	@ApiOperation(value = "更新移动端模块")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ModuleInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ModuleInfoVOMeta.LABEL , value = "标签" , required = false , dataTypeClass=String.class , example = "简单报修"),
 		@ApiImplicitParam(name = ModuleInfoVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
 		@ApiImplicitParam(name = ModuleInfoVOMeta.GROUP_ID , value = "分组" , required = false , dataTypeClass=String.class , example = "1"),
@@ -149,6 +151,7 @@ public class ModuleInfoController extends SuperController {
 	@ApiOperation(value = "保存移动端模块")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ModuleInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ModuleInfoVOMeta.LABEL , value = "标签" , required = false , dataTypeClass=String.class , example = "简单报修"),
 		@ApiImplicitParam(name = ModuleInfoVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
 		@ApiImplicitParam(name = ModuleInfoVOMeta.GROUP_ID , value = "分组" , required = false , dataTypeClass=String.class , example = "1"),
@@ -216,6 +219,7 @@ public class ModuleInfoController extends SuperController {
 	@ApiOperation(value = "查询移动端模块")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ModuleInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ModuleInfoVOMeta.LABEL , value = "标签" , required = false , dataTypeClass=String.class , example = "简单报修"),
 		@ApiImplicitParam(name = ModuleInfoVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
 		@ApiImplicitParam(name = ModuleInfoVOMeta.GROUP_ID , value = "分组" , required = false , dataTypeClass=String.class , example = "1"),
@@ -241,6 +245,7 @@ public class ModuleInfoController extends SuperController {
 	@ApiOperation(value = "分页查询移动端模块")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ModuleInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ModuleInfoVOMeta.LABEL , value = "标签" , required = false , dataTypeClass=String.class , example = "简单报修"),
 		@ApiImplicitParam(name = ModuleInfoVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
 		@ApiImplicitParam(name = ModuleInfoVOMeta.GROUP_ID , value = "分组" , required = false , dataTypeClass=String.class , example = "1"),

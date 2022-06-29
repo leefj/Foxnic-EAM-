@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * 移动端模块 模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-24 19:28:57
+ * @since 2022-06-28 20:42:21
 */
 
 @Controller("AppModuleInfoPageController")
@@ -36,8 +36,7 @@ public class ModuleInfoPageController extends ViewController {
 		}
 		return proxy;
 	}
-
-
+	
 	/**
 	 * 移动端模块 功能主页面
 	 */
