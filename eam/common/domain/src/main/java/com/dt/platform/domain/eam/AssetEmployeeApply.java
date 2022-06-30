@@ -11,6 +11,7 @@ import javax.persistence.Transient;
 import org.github.foxnic.web.domain.hrm.Employee;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Organization;
+import org.github.foxnic.web.domain.bpm.ProcessInstance;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,9 +22,9 @@ import com.github.foxnic.dao.entity.EntityContext;
 
 /**
  * 领用申请
- * @author 金杰 , maillank@qq.com
- * @since 2022-06-29 19:15:25
- * @sign 5A9FD0467E84E24FA43350BFAD38F360
+ * @author 李方捷 , leefangjie@qq.com
+ * @since 2022-06-30 19:26:54
+ * @sign D2AA254F0284F62671007EE568DF1BCD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -180,6 +181,24 @@ public class AssetEmployeeApply extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="使用公司/部门" , notes = "使用公司/部门")
 	private Organization organization;
+	
+	/**
+	 * 历史流程清单：历史流程清单
+	*/
+	@ApiModelProperty(required = false,value="历史流程清单" , notes = "历史流程清单")
+	private List<ProcessInstance> historicProcessList;
+	
+	/**
+	 * 在批的流程清单：在批的流程清单
+	*/
+	@ApiModelProperty(required = false,value="在批的流程清单" , notes = "在批的流程清单")
+	private List<ProcessInstance> currentProcessList;
+	
+	/**
+	 * 默认流程：优先取在批的流程
+	*/
+	@ApiModelProperty(required = false,value="默认流程" , notes = "优先取在批的流程")
+	private ProcessInstance defaultProcess;
 	
 	/**
 	 * 获得 主键<br>
@@ -686,6 +705,85 @@ public class AssetEmployeeApply extends Entity {
 	*/
 	public AssetEmployeeApply setOrganization(Organization organization) {
 		this.organization=organization;
+		return this;
+	}
+	
+	/**
+	 * 获得 历史流程清单<br>
+	 * 历史流程清单
+	 * @return 历史流程清单
+	*/
+	public List<ProcessInstance> getHistoricProcessList() {
+		return historicProcessList;
+	}
+	
+	/**
+	 * 设置 历史流程清单
+	 * @param historicProcessList 历史流程清单
+	 * @return 当前对象
+	*/
+	public AssetEmployeeApply setHistoricProcessList(List<ProcessInstance> historicProcessList) {
+		this.historicProcessList=historicProcessList;
+		return this;
+	}
+	
+	/**
+	 * 添加 历史流程清单
+	 * @param historicProcess 历史流程清单
+	 * @return 当前对象
+	*/
+	public AssetEmployeeApply addHistoricProcess(ProcessInstance... historicProcess) {
+		if(this.historicProcessList==null) historicProcessList=new ArrayList<>();
+		this.historicProcessList.addAll(Arrays.asList(historicProcess));
+		return this;
+	}
+	
+	/**
+	 * 获得 在批的流程清单<br>
+	 * 在批的流程清单
+	 * @return 在批的流程清单
+	*/
+	public List<ProcessInstance> getCurrentProcessList() {
+		return currentProcessList;
+	}
+	
+	/**
+	 * 设置 在批的流程清单
+	 * @param currentProcessList 在批的流程清单
+	 * @return 当前对象
+	*/
+	public AssetEmployeeApply setCurrentProcessList(List<ProcessInstance> currentProcessList) {
+		this.currentProcessList=currentProcessList;
+		return this;
+	}
+	
+	/**
+	 * 添加 在批的流程清单
+	 * @param currentProcess 在批的流程清单
+	 * @return 当前对象
+	*/
+	public AssetEmployeeApply addCurrentProcess(ProcessInstance... currentProcess) {
+		if(this.currentProcessList==null) currentProcessList=new ArrayList<>();
+		this.currentProcessList.addAll(Arrays.asList(currentProcess));
+		return this;
+	}
+	
+	/**
+	 * 获得 默认流程<br>
+	 * 优先取在批的流程
+	 * @return 默认流程
+	*/
+	public ProcessInstance getDefaultProcess() {
+		return defaultProcess;
+	}
+	
+	/**
+	 * 设置 默认流程
+	 * @param defaultProcess 默认流程
+	 * @return 当前对象
+	*/
+	public AssetEmployeeApply setDefaultProcess(ProcessInstance defaultProcess) {
+		this.defaultProcess=defaultProcess;
 		return this;
 	}
 

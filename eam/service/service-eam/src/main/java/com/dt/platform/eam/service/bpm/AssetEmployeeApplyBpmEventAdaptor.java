@@ -1,25 +1,24 @@
-package #(package);
+package com.dt.platform.eam.service.bpm;
 
-#if(bpm)
+import com.dt.platform.domain.eam.AssetEmployeeApply;
+import com.dt.platform.eam.service.IAssetEmployeeApplyService;
 import org.github.foxnic.web.domain.bpm.BpmActionResult;
 import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.framework.bpm.BpmEventAdaptor;
-import org.github.foxnic.web.framework.bpm.BpmAssistant;
-#end
-import javax.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import com.github.foxnic.commons.collection.MapUtil;
-import java.util.Arrays;
 
-#(imports)
 
-#(classJavaDoc)
+/**
+ * <p>
+ * 领用申请 流程回调事件适配器
+ * </p>
+ * @author 李方捷 , leefangjie@qq.com
+ * @since 2022-06-30 19:26:54
+*/
 
-public class #(poSimpleName)BpmEventAdaptor extends BpmEventAdaptor<#(poSimpleName),#(serviceSimpleName)> {
+public class AssetEmployeeApplyBpmEventAdaptor extends BpmEventAdaptor<AssetEmployeeApply, IAssetEmployeeApplyService> {
 
-	public #(poSimpleName)BpmEventAdaptor(#(serviceSimpleName) service) {
+	public AssetEmployeeApplyBpmEventAdaptor(IAssetEmployeeApplyService service) {
 		super(service);
 	}
 

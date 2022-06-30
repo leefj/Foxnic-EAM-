@@ -1,5 +1,7 @@
 package com.dt.platform.eam.service;
 
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -22,13 +24,17 @@ import java.util.Map;
  * <p>
  * 领用申请 服务接口
  * </p>
- * @author 金杰 , maillank@qq.com
- * @since 2022-06-29 19:15:25
+ * @author 李方捷 , leefangjie@qq.com
+ * @since 2022-06-30 19:26:54
 */
 
 public interface IAssetEmployeeApplyService extends  ISimpleIdService<AssetEmployeeApply,String> {
 
 
+	/**
+ 	  * 表单定义代码
+      **/
+	public static final String FORM_DEFINITION_CODE="eam_asset_employee_apply";
 	/**
 	 * 添加，如果语句错误，则抛出异常
 	 * @param assetEmployeeApply 数据对象
@@ -335,5 +341,16 @@ public interface IAssetEmployeeApplyService extends  ISimpleIdService<AssetEmplo
 	List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch);
 
 
+	/**
+	 * 处理流程回调
+	 * */
+	BpmActionResult onProcessCallback(BpmEvent event);
+
+
+	void joinProcess(AssetEmployeeApply assetEmployeeApply);
+
+	void joinProcess(List<AssetEmployeeApply> assetEmployeeApplyList);
+
+	void joinProcess(PagedList<AssetEmployeeApply> assetEmployeeApplyList);
 
 }

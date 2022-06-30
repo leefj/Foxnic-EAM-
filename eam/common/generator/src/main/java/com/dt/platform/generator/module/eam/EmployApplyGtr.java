@@ -1,13 +1,9 @@
 package com.dt.platform.generator.module.eam;
 
 import com.dt.platform.constants.db.EAMTables;
-import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.domain.eam.Asset;
-import com.dt.platform.eam.page.AssetEmployeeApplyPageController;
-import com.dt.platform.eam.service.IAssetEmployeeApplyService;
 import com.dt.platform.generator.config.Config;
-import com.dt.platform.proxy.eam.AssetEmployeeApplyServiceProxy;
 import com.github.foxnic.api.bpm.IntegrateMode;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
@@ -99,8 +95,8 @@ public class EmployApplyGtr extends BaseCodeGenerator {
 
 
 
-//        bpm.form("test");
-//        bpm.integrate(IntegrateMode.FRONT);
+        cfg.bpm().form("eam_asset_employee_apply");
+        cfg.bpm().integrate(IntegrateMode.FRONT);
 
         //文件生成覆盖模式
         cfg.overrides()

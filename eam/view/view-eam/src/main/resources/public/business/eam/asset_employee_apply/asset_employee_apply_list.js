@@ -1,7 +1,7 @@
 /**
  * 领用申请 列表页 JS 脚本
- * @author 金杰 , maillank@qq.com
- * @since 2022-06-29 19:15:26
+ * @author 李方捷 , leefangjie@qq.com
+ * @since 2022-06-30 19:26:58
  */
 
 
@@ -263,7 +263,7 @@ function ListPage() {
 			switch(obj.event){
 				case 'create':
 					admin.putTempData('eam-asset-employee-apply-form-data', {});
-					openCreateFrom();
+					bpm.openProcessView(null,null,false,{"formDefinitionCode":"eam_asset_employee_apply"},refreshTableData,refreshRowData,"bill");
 					break;
 				case 'batch-del':
 					batchDelete(selected);
@@ -332,14 +332,17 @@ function ListPage() {
 
 			admin.putTempData('eam-asset-employee-apply-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
-				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
-					if(data.success) {
-						admin.putTempData('eam-asset-employee-apply-form-data-form-action', "edit",true);
-						showEditForm(data.data);
+				bpm.getProcessInstanceByBill("eam_asset_employee_apply",{ id : data.id },function(p) {
+					if(p) {
+						bpm.openProcessView(p.id,null,false,{"formDefinitionCode":"eam_asset_employee_apply"},refreshTableData,refreshRowData,"bill");
 					} else {
-						 fox.showMessage(data);
+						if(window.pageExt.list.bpmOpenWithoutProcess) {
+							window.pageExt.list.bpmOpenWithoutProcess({id : data.id});
+						} else {
+							top.layer.msg('当前业务单据尚未关联流程', {icon: 2, time: 1500});
+						}
 					}
-				});
+				},"bill");
 			} else if (layEvent === 'view') { // 查看
 				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
 					if(data.success) {
@@ -357,23 +360,34 @@ function ListPage() {
 					if(!doNext) return;
 				}
 
-				top.layer.confirm(fox.translate('确定删除此')+fox.translate('领用申请')+fox.translate('吗？'), function (i) {
+				top.layer.confirm(fox.translate('确定要废弃当前')+fox.translate('流程实例')+fox.translate('吗？'), function (i) {
 					top.layer.close(i);
-
-					top.layer.load(2);
-					admin.request(moduleURL+"/delete", { id : data.id }, function (data) {
-						top.layer.closeAll('loading');
-						if (data.success) {
-							if(window.pageExt.list.afterSingleDelete) {
-								var doNext=window.pageExt.list.afterSingleDelete(data);
-								if(!doNext) return;
-							}
-							fox.showMessage(data);
-							refreshTableData();
+					bpm.getProcessInstanceByBill("eam_asset_employee_apply",{ id : data.id },function(p) {
+						if(p) {
+							bpm.abandon({processInstanceId:p.id,reason:"无",force:false},function (r){
+								if(r.success) {
+									fox.showMessage(r);
+									window.module.refreshRowData(data,true);
+								} else {
+									fox.showMessage(r);
+								}
+							});
 						} else {
-							fox.showMessage(data);
+							admin.request(moduleURL+"/delete", { id : data.id }, function (data) {
+								top.layer.closeAll('loading');
+								if (data.success) {
+									if(window.pageExt.list.afterSingleDelete) {
+										var doNext=window.pageExt.list.afterSingleDelete(data);
+										if(!doNext) return;
+									}
+									fox.showMessage(data);
+									refreshTableData();
+								} else {
+									fox.showMessage(data);
+								}
+							});
 						}
-					});
+					},"bill");
 				});
 			}
 			

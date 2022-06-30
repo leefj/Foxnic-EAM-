@@ -1,64 +1,58 @@
 package com.dt.platform.eam.controller;
 
 
-import java.util.List;
-import java.util.ArrayList;
-
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import org.github.foxnic.web.framework.web.SuperController;
-import org.github.foxnic.web.framework.sentinel.SentinelExceptionUtil;
-import org.springframework.web.bind.annotation.RequestMapping;
-import javax.servlet.http.HttpServletResponse;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
-
-
-import com.dt.platform.proxy.eam.AssetEmployeeApplyServiceProxy;
-import com.dt.platform.domain.eam.meta.AssetEmployeeApplyVOMeta;
 import com.dt.platform.domain.eam.AssetEmployeeApply;
 import com.dt.platform.domain.eam.AssetEmployeeApplyVO;
+import com.dt.platform.domain.eam.meta.AssetEmployeeApplyVOMeta;
+import com.dt.platform.eam.service.IAssetEmployeeApplyService;
+import com.dt.platform.proxy.eam.AssetEmployeeApplyServiceProxy;
+import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
+import com.github.foxnic.api.validate.annotations.NotNull;
+import com.github.foxnic.commons.io.StreamUtil;
+import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.excel.ExcelWriter;
-import com.github.foxnic.springboot.web.DownloadUtil;
-import com.github.foxnic.dao.data.PagedList;
-import java.util.Date;
-import java.sql.Timestamp;
-import com.github.foxnic.api.error.ErrorDesc;
-import com.github.foxnic.commons.io.StreamUtil;
-import java.util.Map;
 import com.github.foxnic.dao.excel.ValidateResult;
-import java.io.InputStream;
-import com.dt.platform.domain.eam.meta.AssetEmployeeApplyMeta;
-import org.github.foxnic.web.domain.hrm.Employee;
-import com.dt.platform.domain.eam.Asset;
-import org.github.foxnic.web.domain.hrm.Organization;
-import io.swagger.annotations.Api;
-import com.github.xiaoymin.knife4j.annotations.ApiSort;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiImplicitParam;
+import com.github.foxnic.springboot.web.DownloadUtil;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
-import com.alibaba.csp.sentinel.annotation.SentinelResource;
-import com.dt.platform.eam.service.IAssetEmployeeApplyService;
-import com.github.foxnic.api.validate.annotations.NotNull;
+import com.github.xiaoymin.knife4j.annotations.ApiSort;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
+import org.github.foxnic.web.framework.sentinel.SentinelExceptionUtil;
+import org.github.foxnic.web.framework.web.SuperController;
+import org.github.foxnic.web.proxy.bpm.BpmCallbackController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
  * 领用申请 接口控制器
  * </p>
- * @author 金杰 , maillank@qq.com
- * @since 2022-06-29 19:15:25
+ * @author 李方捷 , leefangjie@qq.com
+ * @since 2022-06-30 19:26:55
 */
 
 @Api(tags = "领用申请")
 @ApiSort(0)
 @RestController("EamAssetEmployeeApplyController")
-public class AssetEmployeeApplyController extends SuperController {
+public class AssetEmployeeApplyController extends SuperController implements BpmCallbackController{
 
 	@Autowired
 	private IAssetEmployeeApplyService assetEmployeeApplyService;
@@ -325,11 +319,21 @@ public class AssetEmployeeApplyController extends SuperController {
 			.with("organization")
 			.with("originator")
 			.execute();
+		// 填充流程相关的属性
+		assetEmployeeApplyService.joinProcess(list);
 		result.success(true).data(list);
 		return result;
 	}
 
 
+	/**
+     *  流程回调处理
+     */
+	@SentinelResource(value = AssetEmployeeApplyServiceProxy.BPM_CALLBACK , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(AssetEmployeeApplyServiceProxy.BPM_CALLBACK)
+    public BpmActionResult onProcessCallback(BpmEvent event){
+		return assetEmployeeApplyService.onProcessCallback(event);
+	}
 
 
 

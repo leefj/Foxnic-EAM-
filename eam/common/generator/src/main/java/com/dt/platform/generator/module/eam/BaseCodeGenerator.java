@@ -5,7 +5,6 @@ import com.dt.platform.generator.menu.MenuGenerator;
 import com.dt.platform.proxy.ServiceNames;
 import com.github.foxnic.dao.data.RcdSet;
 import com.github.foxnic.dao.spec.DAO;
-import com.github.foxnic.generator.builder.view.option.BpmOptions;
 import com.github.foxnic.generator.config.ModuleContext;
 import com.github.foxnic.sql.meta.DBTable;
 
@@ -66,9 +65,6 @@ public class BaseCodeGenerator {
     private String parentMenuId;
 
     protected ModuleContext cfg;
-
-    protected BpmOptions bpm;
-
 
     public BaseCodeGenerator(DBTable table,String parentMenuId) {
         this.table=table;

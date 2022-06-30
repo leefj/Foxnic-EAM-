@@ -4,6 +4,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.github.foxnic.web.proxy.bpm.BpmCallbackController;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.springframework.cloud.openfeign.FeignClient;
 import com.dt.platform.domain.eam.AssetEmployeeApply;
 import com.dt.platform.domain.eam.AssetEmployeeApplyVO;
@@ -16,11 +19,11 @@ import com.dt.platform.proxy.ServiceNames;
  * <p>
  * 领用申请  控制器服务代理
  * </p>
- * @author 金杰 , maillank@qq.com
- * @since 2022-06-29 19:15:25
+ * @author 李方捷 , leefangjie@qq.com
+ * @since 2022-06-30 19:26:54
  */
 @FeignClient(value = ServiceNames.EAM, contextId = AssetEmployeeApplyServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
-public interface AssetEmployeeApplyServiceProxy {
+public interface AssetEmployeeApplyServiceProxy extends BpmCallbackController {
 
     /**
      * 基础路径 , service-eam
@@ -98,6 +101,11 @@ public interface AssetEmployeeApplyServiceProxy {
     public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
 
     /**
+     * 流程事件回调接收接口
+     */
+    public static final String BPM_CALLBACK = API_PREFIX + "bpm-callback";
+
+    /**
      * 添加领用申请
      */
     @RequestMapping(AssetEmployeeApplyServiceProxy.INSERT)
@@ -150,6 +158,12 @@ public interface AssetEmployeeApplyServiceProxy {
      */
     @RequestMapping(AssetEmployeeApplyServiceProxy.QUERY_PAGED_LIST)
     Result<PagedList<AssetEmployeeApply>> queryPagedList(@RequestParam(name = "sample") AssetEmployeeApplyVO sample);
+
+    /**
+     * 分页查询领用申请
+     */
+    @RequestMapping(AssetEmployeeApplyServiceProxy.BPM_CALLBACK)
+    BpmActionResult onProcessCallback(@RequestParam(name = "event") BpmEvent event);
 
     /**
      * 控制器类名
