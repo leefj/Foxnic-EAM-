@@ -1,52 +1,63 @@
 package com.dt.platform.eam.controller;
 
 
-import com.alibaba.csp.sentinel.annotation.SentinelResource;
-import com.dt.platform.domain.eam.AssetEmployeeApply;
-import com.dt.platform.domain.eam.AssetEmployeeApplyVO;
-import com.dt.platform.domain.eam.meta.AssetEmployeeApplyVOMeta;
-import com.dt.platform.eam.service.IAssetEmployeeApplyService;
-import com.dt.platform.proxy.eam.AssetEmployeeApplyServiceProxy;
-import com.github.foxnic.api.error.ErrorDesc;
-import com.github.foxnic.api.transter.Result;
-import com.github.foxnic.api.validate.annotations.NotNull;
-import com.github.foxnic.commons.io.StreamUtil;
-import com.github.foxnic.dao.data.PagedList;
-import com.github.foxnic.dao.data.SaveMode;
-import com.github.foxnic.dao.excel.ExcelWriter;
-import com.github.foxnic.dao.excel.ValidateResult;
-import com.github.foxnic.springboot.web.DownloadUtil;
-import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
-import com.github.xiaoymin.knife4j.annotations.ApiSort;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-import org.github.foxnic.web.domain.bpm.BpmActionResult;
-import org.github.foxnic.web.domain.bpm.BpmEvent;
-import org.github.foxnic.web.framework.sentinel.SentinelExceptionUtil;
-import org.github.foxnic.web.framework.web.SuperController;
-import org.github.foxnic.web.proxy.bpm.BpmCallbackController;
+import java.util.List;
+import java.util.ArrayList;
+
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import org.github.foxnic.web.framework.web.SuperController;
+import org.github.foxnic.web.framework.sentinel.SentinelExceptionUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import org.github.foxnic.web.constants.enums.bpm.BpmEventType;
+import org.github.foxnic.web.proxy.bpm.BpmCallbackController;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.InputStream;
-import java.util.ArrayList;
+
+import com.dt.platform.proxy.eam.AssetEmployeeApplyServiceProxy;
+import com.dt.platform.domain.eam.meta.AssetEmployeeApplyVOMeta;
+import com.dt.platform.domain.eam.AssetEmployeeApply;
+import com.dt.platform.domain.eam.AssetEmployeeApplyVO;
+import com.github.foxnic.api.transter.Result;
+import com.github.foxnic.dao.data.SaveMode;
+import com.github.foxnic.dao.excel.ExcelWriter;
+import com.github.foxnic.springboot.web.DownloadUtil;
+import com.github.foxnic.dao.data.PagedList;
 import java.util.Date;
-import java.util.List;
+import java.sql.Timestamp;
+import com.github.foxnic.api.error.ErrorDesc;
+import com.github.foxnic.commons.io.StreamUtil;
 import java.util.Map;
+import com.github.foxnic.dao.excel.ValidateResult;
+import java.io.InputStream;
+import com.dt.platform.domain.eam.meta.AssetEmployeeApplyMeta;
+import org.github.foxnic.web.domain.hrm.Employee;
+import com.dt.platform.domain.eam.Asset;
+import org.github.foxnic.web.domain.hrm.Organization;
+import org.github.foxnic.web.domain.bpm.ProcessInstance;
+import io.swagger.annotations.Api;
+import com.github.xiaoymin.knife4j.annotations.ApiSort;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiImplicitParam;
+import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.dt.platform.eam.service.IAssetEmployeeApplyService;
+import com.github.foxnic.api.validate.annotations.NotNull;
 
 /**
  * <p>
  * 领用申请 接口控制器
  * </p>
- * @author 李方捷 , leefangjie@qq.com
- * @since 2022-06-30 19:26:55
+ * @author 金杰 , maillank@qq.com
+ * @since 2022-06-30 20:16:50
 */
 
 @Api(tags = "领用申请")

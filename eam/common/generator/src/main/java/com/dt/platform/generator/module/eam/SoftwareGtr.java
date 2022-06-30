@@ -34,7 +34,6 @@ public class SoftwareGtr extends BaseCodeGenerator {
 
     public void generateCode() throws Exception {
 
-
         System.out.println(this.getClass().getName());
         cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE.ID).basic().hidden(true);
         cfg.getPoClassFile().addSimpleProperty(Catalog.class,"category","资产分类","资产分类");

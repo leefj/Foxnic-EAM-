@@ -1,7 +1,7 @@
 /**
  * 领用申请 列表页 JS 脚本
- * @author 李方捷 , leefangjie@qq.com
- * @since 2022-06-30 19:26:59
+ * @author 金杰 , maillank@qq.com
+ * @since 2022-06-30 20:16:52
  */
 
 function FormPage() {

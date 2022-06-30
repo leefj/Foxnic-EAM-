@@ -1,7 +1,7 @@
 /**
  * 领用申请 列表页 JS 脚本
- * @author 李方捷 , leefangjie@qq.com
- * @since 2022-06-30 19:26:58
+ * @author 金杰 , maillank@qq.com
+ * @since 2022-06-30 20:16:51
  */
 
 
@@ -19,6 +19,19 @@ function ListPage() {
 
      	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate;
 		table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,dropdown=layui.dropdown;;
+
+
+
+		//
+		var formMethod=MODE;
+		if(mode=11)
+		{
+			jquery("#").html(新建)
+
+		}else{
+			jquery("#").html(新建)
+		}
+
 
 		if(window.pageExt.list.beforeInit) {
 			window.pageExt.list.beforeInit();
@@ -263,7 +276,13 @@ function ListPage() {
 			switch(obj.event){
 				case 'create':
 					admin.putTempData('eam-asset-employee-apply-form-data', {});
+				if(mode=1){
 					bpm.openProcessView(null,null,false,{"formDefinitionCode":"eam_asset_employee_apply"},refreshTableData,refreshRowData,"bill");
+
+				}else{
+						showEditForm()
+					}
+
 					break;
 				case 'batch-del':
 					batchDelete(selected);

@@ -42,8 +42,8 @@ import com.dt.platform.eam.service.bpm.AssetEmployeeApplyBpmEventAdaptor;
  * <p>
  * 领用申请 服务实现
  * </p>
- * @author 李方捷 , leefangjie@qq.com
- * @since 2022-06-30 19:26:54
+ * @author 金杰 , maillank@qq.com
+ * @since 2022-06-30 20:16:50
 */
 
 

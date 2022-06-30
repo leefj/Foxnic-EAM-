@@ -2,6 +2,8 @@ package com.dt.platform.eam.service.bpm;
 
 import com.dt.platform.domain.eam.AssetEmployeeApply;
 import com.dt.platform.eam.service.IAssetEmployeeApplyService;
+import com.dt.platform.eam.service.IGroupUserService;
+import com.github.foxnic.springboot.spring.SpringUtil;
 import org.github.foxnic.web.domain.bpm.BpmActionResult;
 import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.framework.bpm.BpmEventAdaptor;
@@ -18,6 +20,8 @@ import org.github.foxnic.web.framework.bpm.BpmEventAdaptor;
 
 public class AssetEmployeeApplyBpmEventAdaptor extends BpmEventAdaptor<AssetEmployeeApply, IAssetEmployeeApplyService> {
 
+
+
 	public AssetEmployeeApplyBpmEventAdaptor(IAssetEmployeeApplyService service) {
 		super(service);
 	}
@@ -26,6 +30,8 @@ public class AssetEmployeeApplyBpmEventAdaptor extends BpmEventAdaptor<AssetEmpl
 	 * 流程暂存开始，通过返回 BpmActionResult  的 success 或  failure 控制暂存过程是否继续进行
 	 * */
 	protected BpmActionResult onTemporarySaveStart(BpmEvent event) {
+
+		//IGroupUserService sss= SpringUtil.
 		return event.getActionResult();
 	}
 
