@@ -1,27 +1,29 @@
 /**
  * 资产报修 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-29 19:16:05
+ * @since 2022-07-01 06:12:35
  */
 
 function FormPage() {
 
-	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup;
+	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,bpm;
 	const moduleURL="/service-eam/eam-asset-employee-repair";
 	// 表单执行操作类型：view，create，edit
 	var action=null;
 	var disableCreateNew=false;
 	var disableModify=false;
 	var dataBeforeEdit=null;
-	const bpmIntegrateMode="none";
+	const bpmIntegrateMode="front";
 	var isInProcess=QueryString.get("isInProcess");
+	var processId=QueryString.get("processId");
+	var processInstance=null;
 
 	/**
       * 入口函数，初始化
       */
 	this.init=function(layui) {
      	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload;
-		laydate = layui.laydate,table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect;
+		laydate = layui.laydate,table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,bpm=layui.bpm;
 
 		action=admin.getTempData('eam-asset-employee-repair-form-data-form-action');
 		//如果没有修改和保存权限
@@ -49,8 +51,26 @@ function FormPage() {
 		//绑定提交事件
 		bindButtonEvent();
 
+		//取流程数据
+		fetchProcessInstance();
 	}
 
+	//取流程数据
+	function fetchProcessInstance() {
+		if(!processId) return;
+		bpm.getProcessInstance(processId,function (r){
+			if(r.success) {
+				processInstance=r.data;
+				window.pageExt.form.onProcessInstanceReady && window.pageExt.form.onProcessInstanceReady(r);
+			} else {
+				if(window.pageExt.form.onProcessInstanceError) {
+					var next=window.pageExt.form.onProcessInstanceError(r);
+					if(!next) return;
+				}
+				fox.showMessage(r);
+			}
+		})
+	}
 
 	/**
 	 * 自动调节窗口高度
@@ -392,7 +412,7 @@ function FormPage() {
 
 }
 
-layui.use(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','foxnicUpload','laydate'],function() {
+layui.use(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','foxnicUpload','laydate','bpm'],function() {
 	var task=setInterval(function (){
 		if(!window["pageExt"]) return;
 		clearInterval(task);

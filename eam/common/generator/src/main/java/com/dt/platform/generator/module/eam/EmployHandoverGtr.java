@@ -6,6 +6,7 @@ import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.eam.page.AssetEmployeeHandoverPageController;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.AssetEmployeeHandoverServiceProxy;
+import com.github.foxnic.api.bpm.IntegrateMode;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
@@ -41,6 +42,10 @@ public class EmployHandoverGtr extends BaseCodeGenerator {
                 }
         );
 
+        cfg.bpm().form("eam_asset_employee_handover");
+        cfg.bpm().integrate(IntegrateMode.FRONT);
+
+        cfg.view().form().labelWidth(70);
         cfg.view().list().disableBatchDelete();
         cfg.view().formWindow().width("85%");
         cfg.view().formWindow().bottomSpace(30);

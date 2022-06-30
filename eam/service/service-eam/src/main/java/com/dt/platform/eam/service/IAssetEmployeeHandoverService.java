@@ -1,5 +1,7 @@
 package com.dt.platform.eam.service;
 
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -23,12 +25,16 @@ import java.util.Map;
  * 资产交接 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-29 19:15:37
+ * @since 2022-07-01 06:11:44
 */
 
 public interface IAssetEmployeeHandoverService extends  ISimpleIdService<AssetEmployeeHandover,String> {
 
 
+	/**
+ 	  * 表单定义代码
+      **/
+	public static final String FORM_DEFINITION_CODE="eam_asset_employee_handover";
 	/**
 	 * 添加，如果语句错误，则抛出异常
 	 * @param assetEmployeeHandover 数据对象
@@ -335,5 +341,16 @@ public interface IAssetEmployeeHandoverService extends  ISimpleIdService<AssetEm
 	List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch);
 
 
+	/**
+	 * 处理流程回调
+	 * */
+	BpmActionResult onProcessCallback(BpmEvent event);
+
+
+	void joinProcess(AssetEmployeeHandover assetEmployeeHandover);
+
+	void joinProcess(List<AssetEmployeeHandover> assetEmployeeHandoverList);
+
+	void joinProcess(PagedList<AssetEmployeeHandover> assetEmployeeHandoverList);
 
 }

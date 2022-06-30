@@ -1,5 +1,9 @@
 package com.dt.platform.eam.service.impl;
 
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
+import org.github.foxnic.web.framework.bpm.BpmEventAdaptor;
+import org.github.foxnic.web.framework.bpm.BpmAssistant;
 import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,13 +36,14 @@ import com.dt.platform.eam.service.IAssetEmployeeRepairService;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import java.util.Date;
 import java.util.Map;
+import com.dt.platform.eam.service.bpm.AssetEmployeeRepairBpmEventAdaptor;
 
 /**
  * <p>
  * 资产报修 服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-29 19:16:03
+ * @since 2022-07-01 06:12:33
 */
 
 
@@ -316,6 +321,28 @@ public class AssetEmployeeRepairServiceImpl extends SuperService<AssetEmployeeRe
 		return super.buildExcelStructure(isForExport);
 	}
 
+
+	/**
+	 * 处理流程回调
+	 * */
+	public  BpmActionResult onProcessCallback(BpmEvent event) {
+		return (new AssetEmployeeRepairBpmEventAdaptor(this)).onProcessCallback(event);
+	}
+
+	@Override
+	public void joinProcess(AssetEmployeeRepair assetEmployeeRepair) {
+		this.joinProcess(Arrays.asList(assetEmployeeRepair));
+	}
+
+	@Override
+	public void joinProcess(List<AssetEmployeeRepair> assetEmployeeRepairList) {
+		BpmAssistant.joinProcess(assetEmployeeRepairList,IAssetEmployeeRepairService.FORM_DEFINITION_CODE);
+	}
+
+	@Override
+	public void joinProcess(PagedList<AssetEmployeeRepair> assetEmployeeRepairList) {
+		this.joinProcess(assetEmployeeRepairList.getList());
+	}
 
 
 }

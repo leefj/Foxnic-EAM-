@@ -7,13 +7,14 @@ import com.dt.platform.domain.eam.Asset;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
+import org.github.foxnic.web.domain.bpm.ProcessInstance;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-29 19:15:37
- * @sign DA039A79FA7093EF905B3ECAC9048C12
+ * @since 2022-07-01 06:11:44
+ * @sign DAED6BE82E97512AC358D580E51AC98A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -290,9 +291,39 @@ public class AssetEmployeeHandoverMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetEmployeeHandover,org.github.foxnic.web.domain.hrm.Organization> RECEIVE_ORGANIZATION_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetEmployeeHandover.class ,RECEIVE_ORGANIZATION, org.github.foxnic.web.domain.hrm.Organization.class, "使用公司/部门", "使用公司/部门", org.github.foxnic.web.domain.hrm.Organization.class, null);
 	
 	/**
+	 * 历史流程清单 , 集合类型: LIST , 类型: org.github.foxnic.web.domain.bpm.ProcessInstance
+	*/
+	public static final String HISTORIC_PROCESS_LIST="historicProcessList";
+	
+	/**
+	 * 历史流程清单 , 集合类型: LIST , 类型: org.github.foxnic.web.domain.bpm.ProcessInstance
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetEmployeeHandover,org.github.foxnic.web.domain.bpm.ProcessInstance> HISTORIC_PROCESS_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetEmployeeHandover.class ,HISTORIC_PROCESS_LIST, java.util.List.class, "历史流程清单", "历史流程清单", org.github.foxnic.web.domain.bpm.ProcessInstance.class, null);
+	
+	/**
+	 * 在批的流程清单 , 集合类型: LIST , 类型: org.github.foxnic.web.domain.bpm.ProcessInstance
+	*/
+	public static final String CURRENT_PROCESS_LIST="currentProcessList";
+	
+	/**
+	 * 在批的流程清单 , 集合类型: LIST , 类型: org.github.foxnic.web.domain.bpm.ProcessInstance
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetEmployeeHandover,org.github.foxnic.web.domain.bpm.ProcessInstance> CURRENT_PROCESS_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetEmployeeHandover.class ,CURRENT_PROCESS_LIST, java.util.List.class, "在批的流程清单", "在批的流程清单", org.github.foxnic.web.domain.bpm.ProcessInstance.class, null);
+	
+	/**
+	 * 默认流程 , 优先取在批的流程 , 类型: org.github.foxnic.web.domain.bpm.ProcessInstance
+	*/
+	public static final String DEFAULT_PROCESS="defaultProcess";
+	
+	/**
+	 * 默认流程 , 优先取在批的流程 , 类型: org.github.foxnic.web.domain.bpm.ProcessInstance
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetEmployeeHandover,org.github.foxnic.web.domain.bpm.ProcessInstance> DEFAULT_PROCESS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetEmployeeHandover.class ,DEFAULT_PROCESS, org.github.foxnic.web.domain.bpm.ProcessInstance.class, "默认流程", "优先取在批的流程", org.github.foxnic.web.domain.bpm.ProcessInstance.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , BUSINESS_CODE , STATUS , NAME , ORG_ID , RECEIVE_ORG_ID , RECEIVE_USER_ID , CONTENT , NOTES , RECORD_TIME , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , ASSET_LIST , ASSET_IDS , RECEIVER_USER , ORIGINATOR , ORGANIZATION , RECEIVE_ORGANIZATION };
+	public static final String[] $PROPS={ ID , BUSINESS_CODE , STATUS , NAME , ORG_ID , RECEIVE_ORG_ID , RECEIVE_USER_ID , CONTENT , NOTES , RECORD_TIME , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , ASSET_LIST , ASSET_IDS , RECEIVER_USER , ORIGINATOR , ORGANIZATION , RECEIVE_ORGANIZATION , HISTORIC_PROCESS_LIST , CURRENT_PROCESS_LIST , DEFAULT_PROCESS };
 	
 	/**
 	 * 代理类
@@ -596,6 +627,39 @@ public class AssetEmployeeHandoverMeta {
 		public AssetEmployeeHandover setReceiveOrganization(Organization receiveOrganization) {
 			super.change(RECEIVE_ORGANIZATION,super.getReceiveOrganization(),receiveOrganization);
 			super.setReceiveOrganization(receiveOrganization);
+			return this;
+		}
+		
+		/**
+		 * 设置 历史流程清单
+		 * @param historicProcessList 历史流程清单
+		 * @return 当前对象
+		*/
+		public AssetEmployeeHandover setHistoricProcessList(List<ProcessInstance> historicProcessList) {
+			super.change(HISTORIC_PROCESS_LIST,super.getHistoricProcessList(),historicProcessList);
+			super.setHistoricProcessList(historicProcessList);
+			return this;
+		}
+		
+		/**
+		 * 设置 在批的流程清单
+		 * @param currentProcessList 在批的流程清单
+		 * @return 当前对象
+		*/
+		public AssetEmployeeHandover setCurrentProcessList(List<ProcessInstance> currentProcessList) {
+			super.change(CURRENT_PROCESS_LIST,super.getCurrentProcessList(),currentProcessList);
+			super.setCurrentProcessList(currentProcessList);
+			return this;
+		}
+		
+		/**
+		 * 设置 默认流程
+		 * @param defaultProcess 默认流程
+		 * @return 当前对象
+		*/
+		public AssetEmployeeHandover setDefaultProcess(ProcessInstance defaultProcess) {
+			super.change(DEFAULT_PROCESS,super.getDefaultProcess(),defaultProcess);
+			super.setDefaultProcess(defaultProcess);
 			return this;
 		}
 	}

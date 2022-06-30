@@ -1,5 +1,9 @@
 package com.dt.platform.eam.service.impl;
 
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
+import org.github.foxnic.web.framework.bpm.BpmEventAdaptor;
+import org.github.foxnic.web.framework.bpm.BpmAssistant;
 import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,13 +36,14 @@ import com.dt.platform.eam.service.IAssetEmployeeHandoverService;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import java.util.Date;
 import java.util.Map;
+import com.dt.platform.eam.service.bpm.AssetEmployeeHandoverBpmEventAdaptor;
 
 /**
  * <p>
  * 资产交接 服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-29 19:15:37
+ * @since 2022-07-01 06:11:44
 */
 
 
@@ -316,6 +321,28 @@ public class AssetEmployeeHandoverServiceImpl extends SuperService<AssetEmployee
 		return super.buildExcelStructure(isForExport);
 	}
 
+
+	/**
+	 * 处理流程回调
+	 * */
+	public  BpmActionResult onProcessCallback(BpmEvent event) {
+		return (new AssetEmployeeHandoverBpmEventAdaptor(this)).onProcessCallback(event);
+	}
+
+	@Override
+	public void joinProcess(AssetEmployeeHandover assetEmployeeHandover) {
+		this.joinProcess(Arrays.asList(assetEmployeeHandover));
+	}
+
+	@Override
+	public void joinProcess(List<AssetEmployeeHandover> assetEmployeeHandoverList) {
+		BpmAssistant.joinProcess(assetEmployeeHandoverList,IAssetEmployeeHandoverService.FORM_DEFINITION_CODE);
+	}
+
+	@Override
+	public void joinProcess(PagedList<AssetEmployeeHandover> assetEmployeeHandoverList) {
+		this.joinProcess(assetEmployeeHandoverList.getList());
+	}
 
 
 }

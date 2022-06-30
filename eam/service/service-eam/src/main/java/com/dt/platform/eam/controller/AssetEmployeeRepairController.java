@@ -15,6 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import org.github.foxnic.web.constants.enums.bpm.BpmEventType;
+import org.github.foxnic.web.proxy.bpm.BpmCallbackController;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 
 
 import com.dt.platform.proxy.eam.AssetEmployeeRepairServiceProxy;
@@ -37,6 +41,7 @@ import com.dt.platform.domain.eam.meta.AssetEmployeeRepairMeta;
 import com.dt.platform.domain.eam.Asset;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
+import org.github.foxnic.web.domain.bpm.ProcessInstance;
 import io.swagger.annotations.Api;
 import com.github.xiaoymin.knife4j.annotations.ApiSort;
 import io.swagger.annotations.ApiOperation;
@@ -52,13 +57,13 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 资产报修 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-29 19:16:03
+ * @since 2022-07-01 06:12:33
 */
 
 @Api(tags = "资产报修")
 @ApiSort(0)
 @RestController("EamAssetEmployeeRepairController")
-public class AssetEmployeeRepairController extends SuperController {
+public class AssetEmployeeRepairController extends SuperController implements BpmCallbackController{
 
 	@Autowired
 	private IAssetEmployeeRepairService assetEmployeeRepairService;
@@ -325,11 +330,21 @@ public class AssetEmployeeRepairController extends SuperController {
 			.with("organization")
 			.with("originator")
 			.execute();
+		// 填充流程相关的属性
+		assetEmployeeRepairService.joinProcess(list);
 		result.success(true).data(list);
 		return result;
 	}
 
 
+	/**
+     *  流程回调处理
+     */
+	@SentinelResource(value = AssetEmployeeRepairServiceProxy.BPM_CALLBACK , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(AssetEmployeeRepairServiceProxy.BPM_CALLBACK)
+    public BpmActionResult onProcessCallback(BpmEvent event){
+		return assetEmployeeRepairService.onProcessCallback(event);
+	}
 
 
 

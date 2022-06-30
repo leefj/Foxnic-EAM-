@@ -12,10 +12,10 @@ layui.config({
     foxnicUpload: 'upload/foxnic-upload'
 })
 //
-layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','laydate','foxnicUpload','dropdown'],function () {
+layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','laydate','foxnicUpload','dropdown','bpm'],function () {
 
     var admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate,dropdown=layui.dropdown;
-    table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload;
+    table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload,bpm=layui.bpm;
 
     //模块基础路径
     const moduleURL="/service-eam/eam-asset-employee-repair";
@@ -24,6 +24,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
     //列表页的扩展
     var list={
+        bpmOpenWithoutProcess:function(pkdata) {
+            top.layer.msg('当前业务单据尚未关联流程', {icon: 2, time: 1500});
+        },
         /**
          * 列表页初始化前调用
          * */
@@ -171,6 +174,23 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
     //表单页的扩展
     var form={
+        /**
+         * 请求流程数据成功时
+         * */
+        onProcessInstanceReady:function (result) {
+            // 可根据流程状态、当前审批节点判断和控制表单页面
+            processInstance=result.data;
+            console.log("processInstance",åprocessInstance);
+            // 获得所有待办节点
+            var todoNodes=bpm.getTodoNodes(processInstance);
+            console.log("todoNodes",todoNodes);
+            // 判断是否为待办节点
+            var isTodoNode=bpm.isTodoNodes(processInstance,"N1");
+            console.log("isTodoNode:N1",isTodoNode);
+            // 判断是否为当前账户的待办节点
+            var isMyTodoNode=bpm.isCurrentUserTodoNode(processInstance,"N1");
+            console.log("isMyTodoNode:N1",isMyTodoNode);
+        },
         /**
          * 表单初始化前调用 , 并传入表单数据
          * */

@@ -8,6 +8,7 @@ import com.dt.platform.eam.page.AssetEmployeeRepairPageController;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.AssetEmployeeLossServiceProxy;
 import com.dt.platform.proxy.eam.AssetEmployeeRepairServiceProxy;
+import com.github.foxnic.api.bpm.IntegrateMode;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
@@ -67,7 +68,9 @@ public class EmployLossGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.STATUS).basic().label("办理状态")
                 .form().selectBox().enumType(AssetHandleStatusEnum.class);
 
-
+        cfg.bpm().form("eam_asset_employee_loss");
+        cfg.bpm().integrate(IntegrateMode.FRONT);
+        cfg.view().form().labelWidth(70);
         cfg.view().list().disableBatchDelete();
         cfg.view().formWindow().width("85%");
         cfg.view().formWindow().bottomSpace(30);

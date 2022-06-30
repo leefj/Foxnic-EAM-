@@ -4,6 +4,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.github.foxnic.web.proxy.bpm.BpmCallbackController;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.springframework.cloud.openfeign.FeignClient;
 import com.dt.platform.domain.eam.AssetEmployeeRepair;
 import com.dt.platform.domain.eam.AssetEmployeeRepairVO;
@@ -17,10 +20,10 @@ import com.dt.platform.proxy.ServiceNames;
  * 资产报修  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-29 19:16:03
+ * @since 2022-07-01 06:12:33
  */
 @FeignClient(value = ServiceNames.EAM, contextId = AssetEmployeeRepairServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
-public interface AssetEmployeeRepairServiceProxy {
+public interface AssetEmployeeRepairServiceProxy extends BpmCallbackController {
 
     /**
      * 基础路径 , service-eam
@@ -98,6 +101,11 @@ public interface AssetEmployeeRepairServiceProxy {
     public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
 
     /**
+     * 流程事件回调接收接口
+     */
+    public static final String BPM_CALLBACK = API_PREFIX + "bpm-callback";
+
+    /**
      * 添加资产报修
      */
     @RequestMapping(AssetEmployeeRepairServiceProxy.INSERT)
@@ -150,6 +158,12 @@ public interface AssetEmployeeRepairServiceProxy {
      */
     @RequestMapping(AssetEmployeeRepairServiceProxy.QUERY_PAGED_LIST)
     Result<PagedList<AssetEmployeeRepair>> queryPagedList(@RequestParam(name = "sample") AssetEmployeeRepairVO sample);
+
+    /**
+     * 分页查询资产报修
+     */
+    @RequestMapping(AssetEmployeeRepairServiceProxy.BPM_CALLBACK)
+    BpmActionResult onProcessCallback(@RequestParam(name = "event") BpmEvent event);
 
     /**
      * 控制器类名

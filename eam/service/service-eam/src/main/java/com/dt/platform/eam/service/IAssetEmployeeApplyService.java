@@ -25,7 +25,7 @@ import java.util.Map;
  * 领用申请 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-30 20:16:50
+ * @since 2022-07-01 06:05:47
 */
 
 public interface IAssetEmployeeApplyService extends  ISimpleIdService<AssetEmployeeApply,String> {

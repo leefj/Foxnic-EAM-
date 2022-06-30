@@ -6,6 +6,7 @@ import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.eam.page.AssetEmployeeRepairPageController;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.AssetEmployeeRepairServiceProxy;
+import com.github.foxnic.api.bpm.IntegrateMode;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
@@ -64,11 +65,13 @@ public class EmployRepairGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.PICTURE_ID).form().upload().acceptImageType().maxFileCount(3).buttonLabel("选择图片");
 
-        cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_stock_goods_out:for-approval");
-        cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_stock_goods_out:confirm");
-        cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_stock_goods_out:revoke");
+     //   cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_stock_goods_out:for-approval");
+     //   cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_stock_goods_out:confirm");
 
+        cfg.bpm().form("eam_asset_employee_repair");
+        cfg.bpm().integrate(IntegrateMode.FRONT);
 
+        cfg.view().form().labelWidth(70);
         cfg.view().list().disableBatchDelete();
         cfg.view().formWindow().width("85%");
         cfg.view().formWindow().bottomSpace(30);

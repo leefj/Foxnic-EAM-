@@ -11,6 +11,7 @@ import javax.persistence.Transient;
 import org.github.foxnic.web.domain.hrm.Employee;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Organization;
+import org.github.foxnic.web.domain.bpm.ProcessInstance;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,8 +23,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 资产报失
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-29 19:15:54
- * @sign 7759B10D3AFF15029FFFA5BF489D98D2
+ * @since 2022-07-01 06:11:53
+ * @sign C0FD5713F771365070F9D254DDD201BF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -174,6 +175,24 @@ public class AssetEmployeeLoss extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="使用公司/部门" , notes = "使用公司/部门")
 	private Organization organization;
+	
+	/**
+	 * 历史流程清单：历史流程清单
+	*/
+	@ApiModelProperty(required = false,value="历史流程清单" , notes = "历史流程清单")
+	private List<ProcessInstance> historicProcessList;
+	
+	/**
+	 * 在批的流程清单：在批的流程清单
+	*/
+	@ApiModelProperty(required = false,value="在批的流程清单" , notes = "在批的流程清单")
+	private List<ProcessInstance> currentProcessList;
+	
+	/**
+	 * 默认流程：优先取在批的流程
+	*/
+	@ApiModelProperty(required = false,value="默认流程" , notes = "优先取在批的流程")
+	private ProcessInstance defaultProcess;
 	
 	/**
 	 * 获得 主键<br>
@@ -661,6 +680,85 @@ public class AssetEmployeeLoss extends Entity {
 	*/
 	public AssetEmployeeLoss setOrganization(Organization organization) {
 		this.organization=organization;
+		return this;
+	}
+	
+	/**
+	 * 获得 历史流程清单<br>
+	 * 历史流程清单
+	 * @return 历史流程清单
+	*/
+	public List<ProcessInstance> getHistoricProcessList() {
+		return historicProcessList;
+	}
+	
+	/**
+	 * 设置 历史流程清单
+	 * @param historicProcessList 历史流程清单
+	 * @return 当前对象
+	*/
+	public AssetEmployeeLoss setHistoricProcessList(List<ProcessInstance> historicProcessList) {
+		this.historicProcessList=historicProcessList;
+		return this;
+	}
+	
+	/**
+	 * 添加 历史流程清单
+	 * @param historicProcess 历史流程清单
+	 * @return 当前对象
+	*/
+	public AssetEmployeeLoss addHistoricProcess(ProcessInstance... historicProcess) {
+		if(this.historicProcessList==null) historicProcessList=new ArrayList<>();
+		this.historicProcessList.addAll(Arrays.asList(historicProcess));
+		return this;
+	}
+	
+	/**
+	 * 获得 在批的流程清单<br>
+	 * 在批的流程清单
+	 * @return 在批的流程清单
+	*/
+	public List<ProcessInstance> getCurrentProcessList() {
+		return currentProcessList;
+	}
+	
+	/**
+	 * 设置 在批的流程清单
+	 * @param currentProcessList 在批的流程清单
+	 * @return 当前对象
+	*/
+	public AssetEmployeeLoss setCurrentProcessList(List<ProcessInstance> currentProcessList) {
+		this.currentProcessList=currentProcessList;
+		return this;
+	}
+	
+	/**
+	 * 添加 在批的流程清单
+	 * @param currentProcess 在批的流程清单
+	 * @return 当前对象
+	*/
+	public AssetEmployeeLoss addCurrentProcess(ProcessInstance... currentProcess) {
+		if(this.currentProcessList==null) currentProcessList=new ArrayList<>();
+		this.currentProcessList.addAll(Arrays.asList(currentProcess));
+		return this;
+	}
+	
+	/**
+	 * 获得 默认流程<br>
+	 * 优先取在批的流程
+	 * @return 默认流程
+	*/
+	public ProcessInstance getDefaultProcess() {
+		return defaultProcess;
+	}
+	
+	/**
+	 * 设置 默认流程
+	 * @param defaultProcess 默认流程
+	 * @return 当前对象
+	*/
+	public AssetEmployeeLoss setDefaultProcess(ProcessInstance defaultProcess) {
+		this.defaultProcess=defaultProcess;
 		return this;
 	}
 

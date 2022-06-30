@@ -15,6 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import org.github.foxnic.web.constants.enums.bpm.BpmEventType;
+import org.github.foxnic.web.proxy.bpm.BpmCallbackController;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 
 
 import com.dt.platform.proxy.eam.AssetEmployeeHandoverServiceProxy;
@@ -37,6 +41,7 @@ import com.dt.platform.domain.eam.meta.AssetEmployeeHandoverMeta;
 import com.dt.platform.domain.eam.Asset;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
+import org.github.foxnic.web.domain.bpm.ProcessInstance;
 import io.swagger.annotations.Api;
 import com.github.xiaoymin.knife4j.annotations.ApiSort;
 import io.swagger.annotations.ApiOperation;
@@ -52,13 +57,13 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 资产交接 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-29 19:15:38
+ * @since 2022-07-01 06:11:44
 */
 
 @Api(tags = "资产交接")
 @ApiSort(0)
 @RestController("EamAssetEmployeeHandoverController")
-public class AssetEmployeeHandoverController extends SuperController {
+public class AssetEmployeeHandoverController extends SuperController implements BpmCallbackController{
 
 	@Autowired
 	private IAssetEmployeeHandoverService assetEmployeeHandoverService;
@@ -334,11 +339,21 @@ public class AssetEmployeeHandoverController extends SuperController {
 			.with("originator")
 			.with("receiverUser")
 			.execute();
+		// 填充流程相关的属性
+		assetEmployeeHandoverService.joinProcess(list);
 		result.success(true).data(list);
 		return result;
 	}
 
 
+	/**
+     *  流程回调处理
+     */
+	@SentinelResource(value = AssetEmployeeHandoverServiceProxy.BPM_CALLBACK , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(AssetEmployeeHandoverServiceProxy.BPM_CALLBACK)
+    public BpmActionResult onProcessCallback(BpmEvent event){
+		return assetEmployeeHandoverService.onProcessCallback(event);
+	}
 
 
 
