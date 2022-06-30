@@ -76,6 +76,7 @@ public class EamRelationManager extends RelationManager {
         this.setupAssetDepreciationDetail();
         this.setupAssetDepreciationOper();
         this.setupAssetDepreciation();
+        this.setupAssetDepreciationHistory();
 
         this.setupAssetSoftware();
         this.setupAssetSoftwareDistribute();
@@ -557,6 +558,18 @@ public class EamRelationManager extends RelationManager {
 
 
     }
+
+
+    public void  setupAssetDepreciationHistory(){
+        //制单人
+        this.property(AssetDepreciationHistoryMeta.ORIGINATOR_PROP)
+                .using(EAMTables.EAM_ASSET_DEPRECIATION_HISTORY.OPER_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+        this.property(AssetDepreciationHistoryMeta.ASSET_PROP)
+                .using(EAMTables.EAM_ASSET_DEPRECIATION_HISTORY.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
+
+    }
+
 
     public void setupAssetDepreciation() {
 

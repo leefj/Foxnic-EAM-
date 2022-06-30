@@ -1,9 +1,11 @@
 package com.dt.platform.eam.service.impl;
 
-
 import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.github.foxnic.commons.collection.MapUtil;
+import java.util.Arrays;
 
 
 import com.dt.platform.domain.eam.AssetEmployeeApply;
@@ -36,7 +38,7 @@ import java.util.Map;
  * 领用申请 服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-23 15:52:11
+ * @since 2022-06-29 19:15:25
 */
 
 
@@ -203,6 +205,14 @@ public class AssetEmployeeApplyServiceImpl extends SuperService<AssetEmployeeApp
 		return dao.queryEntity(sample);
 	}
 
+	/**
+	 * 等价于 queryListByIds
+	 * */
+	@Override
+	public List<AssetEmployeeApply> getByIds(List<String> ids) {
+		return this.queryListByIds(ids);
+	}
+
 	@Override
 	public List<AssetEmployeeApply> queryListByIds(List<String> ids) {
 		return super.queryListByUKeys("id",ids);
@@ -267,6 +277,25 @@ public class AssetEmployeeApplyServiceImpl extends SuperService<AssetEmployeeApp
 		return false;
 	}
 
+
+	@Override
+	public Boolean hasRefers(String id) {
+		Map<String, Boolean> map=this.hasRefers(Arrays.asList(id));
+		Boolean ex=map.get(id);
+		if(ex==null) return false;
+		return ex;
+	}
+
+	@Override
+	public Map<String, Boolean> hasRefers(List<String> ids) {
+		// 默认无业务逻辑，返回此行；有业务逻辑需要校验时，请修改并使用已注释的行代码！！！
+		return MapUtil.asMap(ids,false);
+		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
+	}
+
+
+
+
 	@Override
 	public ExcelWriter exportExcel(AssetEmployeeApply sample) {
 		return super.exportExcel(sample);
@@ -286,6 +315,7 @@ public class AssetEmployeeApplyServiceImpl extends SuperService<AssetEmployeeApp
 	public ExcelStructure buildExcelStructure(boolean isForExport) {
 		return super.buildExcelStructure(isForExport);
 	}
+
 
 
 }

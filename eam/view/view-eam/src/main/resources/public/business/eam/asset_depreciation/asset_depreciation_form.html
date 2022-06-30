@@ -75,7 +75,15 @@
             <div class="layui-col-xs4 form-column" >
 
 
-                    <div class="layui-form-item" >
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('残值选择')}">残值选择</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <div id="residualValueSelect" input-type="select" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.AssetDepreciationResidualValueSelectEnum')}" extraParam="{}"></div>
+                    </div>
+                </div>
+
+
+                <div class="layui-form-item" >
                         <div class="layui-form-label "><div th:text="${lang.translate('折旧方式')}">折旧方式</div><div class="layui-required">*</div></div>
                         <div class="layui-input-block ">
                             <div id="method" input-type="select" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.AssetDepreciationMethodEnum')}" extraParam="{}"></div>
@@ -137,7 +145,7 @@
         <!--结束：group循环-->
 
         <div style="height: 8px"></div>
-        <div style="height: 400px"></div>
+        <div style="height: 120px"></div>
 
 
     </form>
@@ -161,7 +169,7 @@
     var SELECT_FIRSTDEPRECIATIONDATE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetFirstDepreciationDateTypeEnum')}]];
     var VALIDATE_CONFIG={"firstDepreciationDate":{"labelInForm":"首次折旧时间","inputType":"select_box","required":true},"method":{"labelInForm":"折旧方式","inputType":"select_box","required":true},"name":{"labelInForm":"折旧方案","inputType":"text_input","required":true},"status":{"labelInForm":"状态","inputType":"select_box","required":true}};
     var AUTH_PREFIX="eam_asset_depreciation";
-
+    var SELECT_RESIDUALVALUESELECT_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetDepreciationResidualValueSelectEnum')}]];
     // ASSET_CATEGORY_DATA
     var ASSET_CATEGORY_DATA = [[${assetCategoryData}]] ;
 

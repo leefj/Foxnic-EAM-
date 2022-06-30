@@ -1,7 +1,7 @@
 /**
  * 资产报修 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-23 15:53:58
+ * @since 2022-06-29 19:16:05
  */
 
 function FormPage() {
@@ -14,7 +14,7 @@ function FormPage() {
 	var disableModify=false;
 	var dataBeforeEdit=null;
 	const bpmIntegrateMode="none";
-	var isInProcess=QueryString.get("isInProcess")
+	var isInProcess=QueryString.get("isInProcess");
 
 	/**
       * 入口函数，初始化
@@ -51,6 +51,7 @@ function FormPage() {
 
 	}
 
+
 	/**
 	 * 自动调节窗口高度
 	 * */
@@ -61,15 +62,26 @@ function FormPage() {
 			if(!doNext) return;
 		}
 
-		if(bpmIntegrateMode=="front" && isInProcess==1) return;
+
 
 		clearTimeout(adjustPopupTask);
 		var scroll=$(".form-container").attr("scroll");
 		if(scroll=='yes') return;
+		var prevBodyHeight=-1;
 		adjustPopupTask=setTimeout(function () {
 			var body=$("body");
 			var bodyHeight=body.height();
 			var footerHeight=$(".model-form-footer").height();
+			if(bpmIntegrateMode=="front" && isInProcess==1) {
+				var updateFormIframeHeight=admin.getVar("updateFormIframeHeight");
+				if(bodyHeight>0 && bodyHeight!=prevBodyHeight) {
+					updateFormIframeHeight && updateFormIframeHeight(bodyHeight);
+				} else {
+					setTimeout(adjustPopup,1000);
+				}
+				prevBodyHeight = bodyHeight;
+				return;
+			}
 			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'eam-asset-employee-repair-form-data-win');
 			if(area==null) return;
 			admin.putTempData('eam-asset-employee-repair-form-area', area);

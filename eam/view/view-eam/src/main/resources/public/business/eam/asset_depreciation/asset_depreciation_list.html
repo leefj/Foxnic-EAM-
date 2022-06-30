@@ -2,7 +2,7 @@
 /**
  * 折旧方案 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-21 12:50:11
+ * @since 2022-06-30 07:26:03
  */
  -->
  <!DOCTYPE html>
@@ -45,6 +45,7 @@
                         <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" style="width:150px" extraParam="{}"></div>
                     </div>
                     <!-- 预计残值率 , preResidualRate ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 残值选择 , residualValueSelect ,typeName=select_box, isHideInSearch=true -->
                     <!-- 首次折旧时间 , firstDepreciationDate ,typeName=select_box, isHideInSearch=true -->
                     <!-- 所属公司 , ownCompanyId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 资产分类 , categoryId ,typeName=text_area, isHideInSearch=true -->
@@ -109,6 +110,7 @@
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
     var SELECT_METHOD_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetDepreciationMethodEnum')}]];
+    var SELECT_RESIDUALVALUESELECT_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetDepreciationResidualValueSelectEnum')}]];
     var SELECT_FIRSTDEPRECIATIONDATE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetFirstDepreciationDateTypeEnum')}]];
     var AUTH_PREFIX="eam_asset_depreciation";
 

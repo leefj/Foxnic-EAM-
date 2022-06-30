@@ -29,8 +29,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 资产
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-30 19:14:53
- * @sign 351B0F4F344E0584E161BEDDA5140943
+ * @since 2022-06-29 19:27:39
+ * @sign 96F66F35209299E81DB5DA23A6C84981
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -379,16 +379,34 @@ public class Asset extends Entity {
 	private BigDecimal originalUnitPrice;
 	
 	/**
+	 * 本年折旧：本年折旧
+	*/
+	@ApiModelProperty(required = false,value="本年折旧" , notes = "本年折旧")
+	private BigDecimal currentYearDepreciation;
+	
+	/**
 	 * 累计折旧：累计折旧
 	*/
 	@ApiModelProperty(required = false,value="累计折旧" , notes = "累计折旧")
 	private BigDecimal accumulatedDepreciation;
 	
 	/**
+	 * 月折旧额：月折旧额
+	*/
+	@ApiModelProperty(required = false,value="月折旧额" , notes = "月折旧额")
+	private BigDecimal monthDepreciationPrice;
+	
+	/**
 	 * 残值率：残值率
 	*/
 	@ApiModelProperty(required = false,value="残值率" , notes = "残值率")
 	private BigDecimal residualsRate;
+	
+	/**
+	 * 残值：残值
+	*/
+	@ApiModelProperty(required = false,value="残值" , notes = "残值")
+	private BigDecimal residualsPrice;
 	
 	/**
 	 * 资产净值：资产净值
@@ -1859,6 +1877,25 @@ public class Asset extends Entity {
 	}
 	
 	/**
+	 * 获得 本年折旧<br>
+	 * 本年折旧
+	 * @return 本年折旧
+	*/
+	public BigDecimal getCurrentYearDepreciation() {
+		return currentYearDepreciation;
+	}
+	
+	/**
+	 * 设置 本年折旧
+	 * @param currentYearDepreciation 本年折旧
+	 * @return 当前对象
+	*/
+	public Asset setCurrentYearDepreciation(BigDecimal currentYearDepreciation) {
+		this.currentYearDepreciation=currentYearDepreciation;
+		return this;
+	}
+	
+	/**
 	 * 获得 累计折旧<br>
 	 * 累计折旧
 	 * @return 累计折旧
@@ -1878,6 +1915,25 @@ public class Asset extends Entity {
 	}
 	
 	/**
+	 * 获得 月折旧额<br>
+	 * 月折旧额
+	 * @return 月折旧额
+	*/
+	public BigDecimal getMonthDepreciationPrice() {
+		return monthDepreciationPrice;
+	}
+	
+	/**
+	 * 设置 月折旧额
+	 * @param monthDepreciationPrice 月折旧额
+	 * @return 当前对象
+	*/
+	public Asset setMonthDepreciationPrice(BigDecimal monthDepreciationPrice) {
+		this.monthDepreciationPrice=monthDepreciationPrice;
+		return this;
+	}
+	
+	/**
 	 * 获得 残值率<br>
 	 * 残值率
 	 * @return 残值率
@@ -1893,6 +1949,25 @@ public class Asset extends Entity {
 	*/
 	public Asset setResidualsRate(BigDecimal residualsRate) {
 		this.residualsRate=residualsRate;
+		return this;
+	}
+	
+	/**
+	 * 获得 残值<br>
+	 * 残值
+	 * @return 残值
+	*/
+	public BigDecimal getResidualsPrice() {
+		return residualsPrice;
+	}
+	
+	/**
+	 * 设置 残值
+	 * @param residualsPrice 残值
+	 * @return 当前对象
+	*/
+	public Asset setResidualsPrice(BigDecimal residualsPrice) {
+		this.residualsPrice=residualsPrice;
 		return this;
 	}
 	

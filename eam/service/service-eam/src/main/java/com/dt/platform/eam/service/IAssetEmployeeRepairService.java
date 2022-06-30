@@ -1,5 +1,6 @@
 package com.dt.platform.eam.service;
 
+import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
@@ -22,10 +23,11 @@ import java.util.Map;
  * 资产报修 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-23 15:53:57
+ * @since 2022-06-29 19:16:03
 */
 
-public interface IAssetEmployeeRepairService extends ISuperService<AssetEmployeeRepair> {
+public interface IAssetEmployeeRepairService extends  ISimpleIdService<AssetEmployeeRepair,String> {
+
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
@@ -160,6 +162,16 @@ public interface IAssetEmployeeRepairService extends ISuperService<AssetEmployee
 	 * @return AssetEmployeeRepair 数据对象
 	 */
 	AssetEmployeeRepair getById(String id);
+
+	/**
+	 * 检查引用
+	 * */
+	Boolean hasRefers(String id);
+
+	/**
+	 * 批量检查引用
+	 * */
+	Map<String,Boolean> hasRefers(List<String> ids);
 
 	/**
 	 * 按 id 获取多个对象
@@ -321,6 +333,7 @@ public interface IAssetEmployeeRepairService extends ISuperService<AssetEmployee
 	 * @return  错误信息，成功时返回 null
 	 * */
 	List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch);
+
 
 
 }

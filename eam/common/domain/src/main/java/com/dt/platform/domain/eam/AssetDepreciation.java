@@ -22,8 +22,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 折旧方案
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-21 12:50:10
- * @sign 23EE16C5B6A204325E20A6EDC7CFD127
+ * @since 2022-06-30 07:26:02
+ * @sign E609DF99B005FCD76C36556FFEFDCFB0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -64,6 +64,12 @@ public class AssetDepreciation extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="预计残值率" , notes = "预计残值率")
 	private BigDecimal preResidualRate;
+	
+	/**
+	 * 残值选择：残值选择
+	*/
+	@ApiModelProperty(required = false,value="残值选择" , notes = "残值选择")
+	private String residualValueSelect;
 	
 	/**
 	 * 首次折旧时间：首次折旧时间
@@ -249,6 +255,25 @@ public class AssetDepreciation extends Entity {
 	*/
 	public AssetDepreciation setPreResidualRate(BigDecimal preResidualRate) {
 		this.preResidualRate=preResidualRate;
+		return this;
+	}
+	
+	/**
+	 * 获得 残值选择<br>
+	 * 残值选择
+	 * @return 残值选择
+	*/
+	public String getResidualValueSelect() {
+		return residualValueSelect;
+	}
+	
+	/**
+	 * 设置 残值选择
+	 * @param residualValueSelect 残值选择
+	 * @return 当前对象
+	*/
+	public AssetDepreciation setResidualValueSelect(String residualValueSelect) {
+		this.residualValueSelect=residualValueSelect;
 		return this;
 	}
 	

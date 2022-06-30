@@ -1,7 +1,7 @@
 /**
  * 领用申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-23 15:52:12
+ * @since 2022-06-29 19:15:26
  */
 
 
@@ -262,6 +262,7 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
+					admin.putTempData('eam-asset-employee-apply-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
@@ -355,6 +356,7 @@ function ListPage() {
 					var doNext=window.pageExt.list.beforeSingleDelete(data);
 					if(!doNext) return;
 				}
+
 				top.layer.confirm(fox.translate('确定删除此')+fox.translate('领用申请')+fox.translate('吗？'), function (i) {
 					top.layer.close(i);
 

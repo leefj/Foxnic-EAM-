@@ -3,6 +3,7 @@ package com.dt.platform.generator.module.eam;
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.eam.AssetDepreciationMethodEnum;
+import com.dt.platform.constants.enums.eam.AssetDepreciationResidualValueSelectEnum;
 import com.dt.platform.constants.enums.eam.AssetFirstDepreciationDateTypeEnum;
 import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.meta.AssetDepreciationMeta;
@@ -50,10 +51,11 @@ public class AssetDepreciationGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION.METHOD).form().validate().required().
                 form().selectBox().enumType(AssetDepreciationMethodEnum.class);
 
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION.RESIDUAL_VALUE_SELECT).form().validate().required().
+                form().selectBox().enumType(AssetDepreciationResidualValueSelectEnum.class);
 
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION.FIRST_DEPRECIATION_DATE).form().validate().required().
                 form().selectBox().enumType(AssetFirstDepreciationDateTypeEnum.class);
-
 
 
         cfg.view().field(AssetDepreciationMeta.CATEGORY_IDS)
@@ -77,10 +79,9 @@ public class AssetDepreciationGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION.CATEGORY_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION.OWN_COMPANY_ID).table().disable(true);
 
-
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION.CREATE_TIME).table().disable(true);
 
         cfg.view().form().addJsVariable("ASSET_CATEGORY_DATA","[[${assetCategoryData}]]","ASSET_CATEGORY_DATA");
-
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION.PRE_RESIDUAL_RATE).form().validate().required().
                 form().numberInput().defaultValue(0);
         cfg.view().list().disableBatchDelete();
@@ -93,6 +94,7 @@ public class AssetDepreciationGtr extends BaseCodeGenerator {
                         EAMTables.EAM_ASSET_DEPRECIATION.PRE_RESIDUAL_RATE,
                 },
                 new Object[] {
+                        EAMTables.EAM_ASSET_DEPRECIATION.RESIDUAL_VALUE_SELECT,
                         EAMTables.EAM_ASSET_DEPRECIATION.METHOD,
                         EAMTables.EAM_ASSET_DEPRECIATION.FIRST_DEPRECIATION_DATE,
                 },
@@ -114,7 +116,7 @@ public class AssetDepreciationGtr extends BaseCodeGenerator {
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
                 .setControllerAndAgent(WriteMode.IGNORE) //Rest
                 .setPageController(WriteMode.IGNORE) //页面控制器
-                .setFormPage(WriteMode.IGNORE) //表单HTML页
+                .setFormPage(WriteMode.WRITE_TEMP_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)
                 .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         ; //列表HTML页

@@ -11,8 +11,8 @@ import java.util.List;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-21 12:50:10
- * @sign 23EE16C5B6A204325E20A6EDC7CFD127
+ * @since 2022-06-30 07:26:02
+ * @sign E609DF99B005FCD76C36556FFEFDCFB0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -67,6 +67,16 @@ public class AssetDepreciationMeta {
 	 * 预计残值率 , 类型: java.math.BigDecimal
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciation,java.math.BigDecimal> PRE_RESIDUAL_RATE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciation.class ,PRE_RESIDUAL_RATE, java.math.BigDecimal.class, "预计残值率", "预计残值率", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 残值选择 , 类型: java.lang.String
+	*/
+	public static final String RESIDUAL_VALUE_SELECT="residualValueSelect";
+	
+	/**
+	 * 残值选择 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciation,java.lang.String> RESIDUAL_VALUE_SELECT_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciation.class ,RESIDUAL_VALUE_SELECT, java.lang.String.class, "残值选择", "残值选择", java.lang.String.class, null);
 	
 	/**
 	 * 首次折旧时间 , 类型: java.lang.String
@@ -221,7 +231,7 @@ public class AssetDepreciationMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , STATUS , NAME , METHOD , PRE_RESIDUAL_RATE , FIRST_DEPRECIATION_DATE , OWN_COMPANY_ID , CATEGORY_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CATEGORY , CATEGORY_IDS };
+	public static final String[] $PROPS={ ID , STATUS , NAME , METHOD , PRE_RESIDUAL_RATE , RESIDUAL_VALUE_SELECT , FIRST_DEPRECIATION_DATE , OWN_COMPANY_ID , CATEGORY_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CATEGORY , CATEGORY_IDS };
 	
 	/**
 	 * 代理类
@@ -283,6 +293,17 @@ public class AssetDepreciationMeta {
 		public AssetDepreciation setPreResidualRate(BigDecimal preResidualRate) {
 			super.change(PRE_RESIDUAL_RATE,super.getPreResidualRate(),preResidualRate);
 			super.setPreResidualRate(preResidualRate);
+			return this;
+		}
+		
+		/**
+		 * 设置 残值选择
+		 * @param residualValueSelect 残值选择
+		 * @return 当前对象
+		*/
+		public AssetDepreciation setResidualValueSelect(String residualValueSelect) {
+			super.change(RESIDUAL_VALUE_SELECT,super.getResidualValueSelect(),residualValueSelect);
+			super.setResidualValueSelect(residualValueSelect);
 			return this;
 		}
 		

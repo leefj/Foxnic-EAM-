@@ -17,7 +17,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 资产报失  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-23 15:53:48
+ * @since 2022-06-29 19:15:54
  */
 @FeignClient(value = ServiceNames.EAM, contextId = AssetEmployeeLossServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AssetEmployeeLossServiceProxy {

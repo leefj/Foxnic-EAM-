@@ -8,6 +8,7 @@ import com.dt.platform.eam.page.AssetEmployeeApplyPageController;
 import com.dt.platform.eam.service.IAssetEmployeeApplyService;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.AssetEmployeeApplyServiceProxy;
+import com.github.foxnic.api.bpm.IntegrateMode;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
@@ -20,6 +21,9 @@ public class EmployApplyGtr extends BaseCodeGenerator {
     }
 
     public void generateCode() throws Exception {
+
+
+
 
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
         cfg.getPoClassFile().addListProperty(Asset.class,"assetList","资产","资产");
@@ -92,6 +96,11 @@ public class EmployApplyGtr extends BaseCodeGenerator {
 
         cfg.view().form().addPage("资产列表","goodsSelectList");
         cfg.view().search().inputWidth(Config.searchInputWidth);
+
+
+
+//        bpm.form("test");
+//        bpm.integrate(IntegrateMode.FRONT);
 
         //文件生成覆盖模式
         cfg.overrides()

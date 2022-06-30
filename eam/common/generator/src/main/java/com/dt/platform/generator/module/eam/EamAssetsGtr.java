@@ -44,8 +44,6 @@ public class EamAssetsGtr extends BaseCodeGenerator {
 //        cfg.getPoClassFile().addSimpleProperty(AssetExtEquipment.class,"assetEquipment","设备信息","设备信息");
 //        cfg.getPoClassFile().addSimpleProperty(AssetExtSoftware.class,"assetExtSoftware","软件信息","软件信息");
 
-
-
         cfg.getPoClassFile().addSimpleProperty(AssetExtData.class,"extData","扩展数据","扩展数据");
         cfg.getPoClassFile().addMapProperty(String.class,Object.class,"pcmData","PCM数据","PCM数据");
         cfg.getPoClassFile().addListProperty(CatalogAttribute.class,"catalogAttribute","自定义数据属性字段","自定义数据属性字段");

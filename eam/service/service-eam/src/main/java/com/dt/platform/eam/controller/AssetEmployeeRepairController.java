@@ -2,6 +2,7 @@ package com.dt.platform.eam.controller;
 
 
 import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +52,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 资产报修 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-23 15:53:57
+ * @since 2022-06-29 19:16:03
 */
 
 @Api(tags = "资产报修")
@@ -68,12 +69,12 @@ public class AssetEmployeeRepairController extends SuperController {
 	*/
 	@ApiOperation(value = "添加资产报修")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "592479694884962304"),
 		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.BUSINESS_CODE , value = "业务编号" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.STATUS , value = "办理状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.NAME , value = "业务名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ORG_ID , value = "申请部门" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.CONTENT , value = "故障原因" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.NAME , value = "业务名称" , required = false , dataTypeClass=String.class , example = "12"),
+		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ORG_ID , value = "申请部门" , required = false , dataTypeClass=String.class , example = "500994919175819264"),
+		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.CONTENT , value = "故障原因" , required = false , dataTypeClass=String.class , example = "121212"),
 		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.PICTURE_ID , value = "图片" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ORIGINATOR_ID , value = "制单人" , required = false , dataTypeClass=String.class),
@@ -95,13 +96,24 @@ public class AssetEmployeeRepairController extends SuperController {
 	*/
 	@ApiOperation(value = "删除资产报修")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class)
+		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "592479694884962304")
 	})
 	@ApiOperationSupport(order=2)
 	@NotNull(name = AssetEmployeeRepairVOMeta.ID)
 	@SentinelResource(value = AssetEmployeeRepairServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AssetEmployeeRepairServiceProxy.DELETE)
 	public Result deleteById(String id) {
+		this.validator().asserts(id).require("缺少id值");
+		if(this.validator().failure()) {
+			return this.validator().getFirstResult();
+		}
+		// 引用校验
+		Boolean hasRefer = assetEmployeeRepairService.hasRefers(id);
+		// 判断是否可以删除
+		this.validator().asserts(hasRefer).mustInList("不允许删除当前记录",false);
+		if(this.validator().failure()) {
+			return this.validator().getFirstResult();
+		}
 		Result result=assetEmployeeRepairService.deleteByIdLogical(id);
 		return result;
 	}
@@ -120,8 +132,43 @@ public class AssetEmployeeRepairController extends SuperController {
 	@SentinelResource(value = AssetEmployeeRepairServiceProxy.DELETE_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AssetEmployeeRepairServiceProxy.DELETE_BY_IDS)
 	public Result deleteByIds(List<String> ids) {
-		Result result=assetEmployeeRepairService.deleteByIdsLogical(ids);
-		return result;
+
+		// 参数校验
+		this.validator().asserts(ids).require("缺少ids参数");
+		if(this.validator().failure()) {
+			return this.validator().getFirstResult();
+		}
+
+		// 查询引用
+		Map<String, Boolean> hasRefersMap = assetEmployeeRepairService.hasRefers(ids);
+		// 收集可以删除的ID值
+		List<String> canDeleteIds = new ArrayList<>();
+		for (Map.Entry<String, Boolean> e : hasRefersMap.entrySet()) {
+			if (!e.getValue()) {
+				canDeleteIds.add(e.getKey());
+			}
+		}
+
+		// 执行删除
+		if (canDeleteIds.isEmpty()) {
+			// 如果没有一行可以被删除
+			return ErrorDesc.failure().message("无法删除您选中的数据行");
+		} else if (canDeleteIds.size() == ids.size()) {
+			// 如果全部可以删除
+			Result result=assetEmployeeRepairService.deleteByIdsLogical(canDeleteIds);
+			return result;
+		} else if (canDeleteIds.size()>0 && canDeleteIds.size() < ids.size()) {
+			// 如果部分行可以删除
+			Result result=assetEmployeeRepairService.deleteByIdsLogical(canDeleteIds);
+			if (result.failure()) {
+				return result;
+			} else {
+				return ErrorDesc.success().message("已删除 " + canDeleteIds.size() + " 行，但另有 " + (ids.size() - canDeleteIds.size()) + " 行数据无法删除").messageLevel4Confirm();
+			}
+		} else {
+			// 理论上，这个分支不存在
+			return ErrorDesc.success().message("数据删除未处理");
+		}
 	}
 
 	/**
@@ -129,12 +176,12 @@ public class AssetEmployeeRepairController extends SuperController {
 	*/
 	@ApiOperation(value = "更新资产报修")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "592479694884962304"),
 		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.BUSINESS_CODE , value = "业务编号" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.STATUS , value = "办理状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.NAME , value = "业务名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ORG_ID , value = "申请部门" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.CONTENT , value = "故障原因" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.NAME , value = "业务名称" , required = false , dataTypeClass=String.class , example = "12"),
+		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ORG_ID , value = "申请部门" , required = false , dataTypeClass=String.class , example = "500994919175819264"),
+		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.CONTENT , value = "故障原因" , required = false , dataTypeClass=String.class , example = "121212"),
 		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.PICTURE_ID , value = "图片" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ORIGINATOR_ID , value = "制单人" , required = false , dataTypeClass=String.class),
@@ -156,12 +203,12 @@ public class AssetEmployeeRepairController extends SuperController {
 	*/
 	@ApiOperation(value = "保存资产报修")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "592479694884962304"),
 		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.BUSINESS_CODE , value = "业务编号" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.STATUS , value = "办理状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.NAME , value = "业务名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ORG_ID , value = "申请部门" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.CONTENT , value = "故障原因" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.NAME , value = "业务名称" , required = false , dataTypeClass=String.class , example = "12"),
+		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ORG_ID , value = "申请部门" , required = false , dataTypeClass=String.class , example = "500994919175819264"),
+		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.CONTENT , value = "故障原因" , required = false , dataTypeClass=String.class , example = "121212"),
 		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.PICTURE_ID , value = "图片" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ORIGINATOR_ID , value = "制单人" , required = false , dataTypeClass=String.class),
@@ -227,12 +274,12 @@ public class AssetEmployeeRepairController extends SuperController {
 	*/
 	@ApiOperation(value = "查询资产报修")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "592479694884962304"),
 		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.BUSINESS_CODE , value = "业务编号" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.STATUS , value = "办理状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.NAME , value = "业务名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ORG_ID , value = "申请部门" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.CONTENT , value = "故障原因" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.NAME , value = "业务名称" , required = false , dataTypeClass=String.class , example = "12"),
+		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ORG_ID , value = "申请部门" , required = false , dataTypeClass=String.class , example = "500994919175819264"),
+		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.CONTENT , value = "故障原因" , required = false , dataTypeClass=String.class , example = "121212"),
 		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.PICTURE_ID , value = "图片" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ORIGINATOR_ID , value = "制单人" , required = false , dataTypeClass=String.class),
@@ -255,12 +302,12 @@ public class AssetEmployeeRepairController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询资产报修")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "592479694884962304"),
 		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.BUSINESS_CODE , value = "业务编号" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.STATUS , value = "办理状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.NAME , value = "业务名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ORG_ID , value = "申请部门" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.CONTENT , value = "故障原因" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.NAME , value = "业务名称" , required = false , dataTypeClass=String.class , example = "12"),
+		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ORG_ID , value = "申请部门" , required = false , dataTypeClass=String.class , example = "500994919175819264"),
+		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.CONTENT , value = "故障原因" , required = false , dataTypeClass=String.class , example = "121212"),
 		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.PICTURE_ID , value = "图片" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetEmployeeRepairVOMeta.ORIGINATOR_ID , value = "制单人" , required = false , dataTypeClass=String.class),
@@ -281,6 +328,8 @@ public class AssetEmployeeRepairController extends SuperController {
 		result.success(true).data(list);
 		return result;
 	}
+
+
 
 
 

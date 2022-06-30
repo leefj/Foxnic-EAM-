@@ -12,7 +12,7 @@ import org.github.foxnic.web.domain.pcm.Catalog;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-21 12:50:10
+ * @since 2022-06-30 07:26:02
  * @sign 82B60E4BF029DC36F81F2CF789508C32
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -158,6 +158,16 @@ public class AssetDepreciationVOMeta extends AssetDepreciationMeta {
 	 * 预计残值率 , 类型: java.math.BigDecimal
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationVO,java.math.BigDecimal> PRE_RESIDUAL_RATE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationVO.class ,PRE_RESIDUAL_RATE, java.math.BigDecimal.class, "预计残值率", "预计残值率", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 残值选择 , 类型: java.lang.String
+	*/
+	public static final String RESIDUAL_VALUE_SELECT="residualValueSelect";
+	
+	/**
+	 * 残值选择 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationVO,java.lang.String> RESIDUAL_VALUE_SELECT_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationVO.class ,RESIDUAL_VALUE_SELECT, java.lang.String.class, "残值选择", "残值选择", java.lang.String.class, null);
 	
 	/**
 	 * 首次折旧时间 , 类型: java.lang.String
@@ -312,7 +322,7 @@ public class AssetDepreciationVOMeta extends AssetDepreciationMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , STATUS , NAME , METHOD , PRE_RESIDUAL_RATE , FIRST_DEPRECIATION_DATE , OWN_COMPANY_ID , CATEGORY_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CATEGORY , CATEGORY_IDS };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , STATUS , NAME , METHOD , PRE_RESIDUAL_RATE , RESIDUAL_VALUE_SELECT , FIRST_DEPRECIATION_DATE , OWN_COMPANY_ID , CATEGORY_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CATEGORY , CATEGORY_IDS };
 	
 	/**
 	 * 代理类
@@ -473,6 +483,17 @@ public class AssetDepreciationVOMeta extends AssetDepreciationMeta {
 		public AssetDepreciation setPreResidualRate(BigDecimal preResidualRate) {
 			super.change(PRE_RESIDUAL_RATE,super.getPreResidualRate(),preResidualRate);
 			super.setPreResidualRate(preResidualRate);
+			return this;
+		}
+		
+		/**
+		 * 设置 残值选择
+		 * @param residualValueSelect 残值选择
+		 * @return 当前对象
+		*/
+		public AssetDepreciation setResidualValueSelect(String residualValueSelect) {
+			super.change(RESIDUAL_VALUE_SELECT,super.getResidualValueSelect(),residualValueSelect);
+			super.setResidualValueSelect(residualValueSelect);
 			return this;
 		}
 		

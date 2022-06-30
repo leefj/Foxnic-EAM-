@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-30 19:14:55
+ * @since 2022-06-29 19:27:40
  */
 
 
@@ -128,8 +128,11 @@ function ListPage() {
 					,{ field: 'taxAmountPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('含税金额') , templet: function (d) { return templet('taxAmountPrice',d.taxAmountPrice,d);}  }
 					,{ field: 'totalAmountPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('资产总值') , templet: function (d) { return templet('totalAmountPrice',d.totalAmountPrice,d);}  }
 					,{ field: 'originalUnitPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('资产原值(单价)') , templet: function (d) { return templet('originalUnitPrice',d.originalUnitPrice,d);}  }
+					,{ field: 'currentYearDepreciation', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('本年折旧') , templet: function (d) { return templet('currentYearDepreciation',d.currentYearDepreciation,d);}  }
 					,{ field: 'accumulatedDepreciation', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('累计折旧') , templet: function (d) { return templet('accumulatedDepreciation',d.accumulatedDepreciation,d);}  }
+					,{ field: 'monthDepreciationPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('月折旧额') , templet: function (d) { return templet('monthDepreciationPrice',d.monthDepreciationPrice,d);}  }
 					,{ field: 'residualsRate', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('残值率') , templet: function (d) { return templet('residualsRate',d.residualsRate,d);}  }
+					,{ field: 'residualsPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('残值') , templet: function (d) { return templet('residualsPrice',d.residualsPrice,d);}  }
 					,{ field: 'navPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('资产净值') , templet: function (d) { return templet('navPrice',d.navPrice,d);}  }
 					,{ field: 'purchaseUnitPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('采购单价') , templet: function (d) { return templet('purchaseUnitPrice',d.purchaseUnitPrice,d);}  }
 					,{ field: 'entryTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('入账时间') ,templet: function (d) { return templet('entryTime',fox.dateFormat(d.entryTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
@@ -559,6 +562,7 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
+					admin.putTempData('eam-asset-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
@@ -652,6 +656,7 @@ function ListPage() {
 					var doNext=window.pageExt.list.beforeSingleDelete(data);
 					if(!doNext) return;
 				}
+
 				top.layer.confirm(fox.translate('确定删除此')+fox.translate('资产')+fox.translate('吗？'), function (i) {
 					top.layer.close(i);
 

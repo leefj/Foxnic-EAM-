@@ -27,8 +27,8 @@ import com.dt.platform.domain.eam.GoodsStock;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-30 19:14:53
- * @sign 351B0F4F344E0584E161BEDDA5140943
+ * @since 2022-06-29 19:27:39
+ * @sign 96F66F35209299E81DB5DA23A6C84981
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -595,6 +595,16 @@ public class AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.math.BigDecimal> ORIGINAL_UNIT_PRICE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,ORIGINAL_UNIT_PRICE, java.math.BigDecimal.class, "资产原值(单价)", "资产原值(单价)", java.math.BigDecimal.class, null);
 	
 	/**
+	 * 本年折旧 , 类型: java.math.BigDecimal
+	*/
+	public static final String CURRENT_YEAR_DEPRECIATION="currentYearDepreciation";
+	
+	/**
+	 * 本年折旧 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.math.BigDecimal> CURRENT_YEAR_DEPRECIATION_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,CURRENT_YEAR_DEPRECIATION, java.math.BigDecimal.class, "本年折旧", "本年折旧", java.math.BigDecimal.class, null);
+	
+	/**
 	 * 累计折旧 , 类型: java.math.BigDecimal
 	*/
 	public static final String ACCUMULATED_DEPRECIATION="accumulatedDepreciation";
@@ -605,6 +615,16 @@ public class AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.math.BigDecimal> ACCUMULATED_DEPRECIATION_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,ACCUMULATED_DEPRECIATION, java.math.BigDecimal.class, "累计折旧", "累计折旧", java.math.BigDecimal.class, null);
 	
 	/**
+	 * 月折旧额 , 类型: java.math.BigDecimal
+	*/
+	public static final String MONTH_DEPRECIATION_PRICE="monthDepreciationPrice";
+	
+	/**
+	 * 月折旧额 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.math.BigDecimal> MONTH_DEPRECIATION_PRICE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,MONTH_DEPRECIATION_PRICE, java.math.BigDecimal.class, "月折旧额", "月折旧额", java.math.BigDecimal.class, null);
+	
+	/**
 	 * 残值率 , 类型: java.math.BigDecimal
 	*/
 	public static final String RESIDUALS_RATE="residualsRate";
@@ -613,6 +633,16 @@ public class AssetMeta {
 	 * 残值率 , 类型: java.math.BigDecimal
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.math.BigDecimal> RESIDUALS_RATE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,RESIDUALS_RATE, java.math.BigDecimal.class, "残值率", "残值率", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 残值 , 类型: java.math.BigDecimal
+	*/
+	public static final String RESIDUALS_PRICE="residualsPrice";
+	
+	/**
+	 * 残值 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.math.BigDecimal> RESIDUALS_PRICE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,RESIDUALS_PRICE, java.math.BigDecimal.class, "残值", "残值", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 资产净值 , 类型: java.math.BigDecimal
@@ -1287,7 +1317,7 @@ public class AssetMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , SUPPLIER_ID , TAX_AMOUNT_RATE , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , ORIGINAL_UNIT_PRICE , ACCUMULATED_DEPRECIATION , RESIDUALS_RATE , NAV_PRICE , PURCHASE_UNIT_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL2 , LABEL3 , LABEL4 , INTERNAL_CONTROL_LABEL , BILL_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA , EXT_DATA , PCM_DATA , CATALOG_ATTRIBUTE , POSITION , CATEGORY_FINANCE , CATEGORY , GOODS , MANUFACTURER , WAREHOUSE , USE_USER , MANAGER , ORIGINATOR , SUPPLIER , MAINTNAINER , OWNER_COMPANY , USE_ORGANIZATION , SOURCE , EQUIPMENT_ENVIRONMENT , SAFETY_LEVEL , ASSET_MAINTENANCE_STATUS , RACK , CHANGE_INSTANCE , GOODS_STOCK };
+	public static final String[] $PROPS={ ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , SUPPLIER_ID , TAX_AMOUNT_RATE , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , ORIGINAL_UNIT_PRICE , CURRENT_YEAR_DEPRECIATION , ACCUMULATED_DEPRECIATION , MONTH_DEPRECIATION_PRICE , RESIDUALS_RATE , RESIDUALS_PRICE , NAV_PRICE , PURCHASE_UNIT_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL2 , LABEL3 , LABEL4 , INTERNAL_CONTROL_LABEL , BILL_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA , EXT_DATA , PCM_DATA , CATALOG_ATTRIBUTE , POSITION , CATEGORY_FINANCE , CATEGORY , GOODS , MANUFACTURER , WAREHOUSE , USE_USER , MANAGER , ORIGINATOR , SUPPLIER , MAINTNAINER , OWNER_COMPANY , USE_ORGANIZATION , SOURCE , EQUIPMENT_ENVIRONMENT , SAFETY_LEVEL , ASSET_MAINTENANCE_STATUS , RACK , CHANGE_INSTANCE , GOODS_STOCK };
 	
 	/**
 	 * 代理类
@@ -1914,6 +1944,17 @@ public class AssetMeta {
 		}
 		
 		/**
+		 * 设置 本年折旧
+		 * @param currentYearDepreciation 本年折旧
+		 * @return 当前对象
+		*/
+		public Asset setCurrentYearDepreciation(BigDecimal currentYearDepreciation) {
+			super.change(CURRENT_YEAR_DEPRECIATION,super.getCurrentYearDepreciation(),currentYearDepreciation);
+			super.setCurrentYearDepreciation(currentYearDepreciation);
+			return this;
+		}
+		
+		/**
 		 * 设置 累计折旧
 		 * @param accumulatedDepreciation 累计折旧
 		 * @return 当前对象
@@ -1925,6 +1966,17 @@ public class AssetMeta {
 		}
 		
 		/**
+		 * 设置 月折旧额
+		 * @param monthDepreciationPrice 月折旧额
+		 * @return 当前对象
+		*/
+		public Asset setMonthDepreciationPrice(BigDecimal monthDepreciationPrice) {
+			super.change(MONTH_DEPRECIATION_PRICE,super.getMonthDepreciationPrice(),monthDepreciationPrice);
+			super.setMonthDepreciationPrice(monthDepreciationPrice);
+			return this;
+		}
+		
+		/**
 		 * 设置 残值率
 		 * @param residualsRate 残值率
 		 * @return 当前对象
@@ -1932,6 +1984,17 @@ public class AssetMeta {
 		public Asset setResidualsRate(BigDecimal residualsRate) {
 			super.change(RESIDUALS_RATE,super.getResidualsRate(),residualsRate);
 			super.setResidualsRate(residualsRate);
+			return this;
+		}
+		
+		/**
+		 * 设置 残值
+		 * @param residualsPrice 残值
+		 * @return 当前对象
+		*/
+		public Asset setResidualsPrice(BigDecimal residualsPrice) {
+			super.change(RESIDUALS_PRICE,super.getResidualsPrice(),residualsPrice);
+			super.setResidualsPrice(residualsPrice);
 			return this;
 		}
 		

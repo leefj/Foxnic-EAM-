@@ -1,7 +1,7 @@
 /**
  * 资产交接 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-23 15:53:04
+ * @since 2022-06-29 19:15:38
  */
 
 
@@ -264,6 +264,7 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
+					admin.putTempData('eam-asset-employee-handover-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
@@ -357,6 +358,7 @@ function ListPage() {
 					var doNext=window.pageExt.list.beforeSingleDelete(data);
 					if(!doNext) return;
 				}
+
 				top.layer.confirm(fox.translate('确定删除此')+fox.translate('资产交接')+fox.translate('吗？'), function (i) {
 					top.layer.close(i);
 
