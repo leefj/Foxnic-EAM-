@@ -85,7 +85,7 @@ function FormPage() {
 		}
 
 
-
+		debugger
 		clearTimeout(adjustPopupTask);
 		var scroll=$(".form-container").attr("scroll");
 		if(scroll=='yes') return;

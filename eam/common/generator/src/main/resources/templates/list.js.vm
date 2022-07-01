@@ -598,7 +598,11 @@ function ListPage() {
 				case 'create':
 					admin.putTempData('#(formDataKey)', {});
 					#if(bpm)
-					bpm.openProcessView(null,null,false,{"formDefinitionCode":"#(bpmFormCode)"},refreshTableData,refreshRowData,"bill");
+					var defaultValue={};
+					if(window.pageExt.list.getBpmDefaultValue) {
+						defaultValue=window.pageExt.list.getBpmDefaultValue();
+					}
+					bpm.openProcessView(null,null,false,{"formDefinitionCode":"#(bpmFormCode)"},refreshTableData,refreshRowData,"bill",defaultValue);
 					#else
 					#if(createNewButton.functionName==null)
 					openCreateFrom();
@@ -695,8 +699,8 @@ function ListPage() {
 					if(p) {
 						bpm.openProcessView(p.id,null,false,{"formDefinitionCode":"#(bpmFormCode)"},refreshTableData,refreshRowData,"bill");
 					} else {
-						if(window.pageExt.list.bpmOpenWithoutProcess) {
-							window.pageExt.list.bpmOpenWithoutProcess({#(paramJson)});
+						if(window.pageExt.list.handleNoProcessBill) {
+							window.pageExt.list.handleNoProcessBill({#(paramJson)});
 						} else {
 							top.layer.msg('当前业务单据尚未关联流程', {icon: 2, time: 1500});
 						}
