@@ -20,7 +20,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 资产报修  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-01 06:12:33
+ * @since 2022-07-02 12:53:52
  */
 @FeignClient(value = ServiceNames.EAM, contextId = AssetEmployeeRepairServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AssetEmployeeRepairServiceProxy extends BpmCallbackController {

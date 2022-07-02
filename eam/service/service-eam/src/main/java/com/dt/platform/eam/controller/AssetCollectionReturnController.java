@@ -330,21 +330,6 @@ public class AssetCollectionReturnController extends SuperController {
 	}
 
 
-	/**
-	 * 领用归还送审
-	 * */
-	@ApiOperation(value = "领用归还送审")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetCollectionReturnVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetCollectionReturnVOMeta.ID)
-	@ApiOperationSupport(order=12)
-	@SentinelResource(value = AssetCollectionReturnServiceProxy.FOR_APPROVAL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetCollectionReturnServiceProxy.FOR_APPROVAL)
-	public Result forApproval(String id)  {
-		return assetCollectionReturnService.forApproval(id);
-	}
-
 
 
 
@@ -364,34 +349,6 @@ public class AssetCollectionReturnController extends SuperController {
 		return assetCollectionReturnService.confirmOperation(id);
 	}
 
-
-
-	/**
-	 * 撤销
-	 * */
-	@ApiOperation(value = "撤销")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetCollectionReturnVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetCollectionReturnVOMeta.ID)
-	@ApiOperationSupport(order=14)
-	@SentinelResource(value = AssetCollectionReturnServiceProxy.REVOKE_OPERATION , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetCollectionReturnServiceProxy.REVOKE_OPERATION)
-	public Result revokeOperation(String id)  {
-		return assetCollectionReturnService.revokeOperation(id);
-	}
-
-
-	/**
-	 * 审批
-	 * */
-	@ApiOperation(value = "审批")
-	@ApiOperationSupport(order=15)
-	@SentinelResource(value = AssetCollectionReturnServiceProxy.APPROVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetCollectionReturnServiceProxy.APPROVE)
-	public Result approve(ProcessApproveVO approveVO)  {
-		return assetCollectionReturnService.approve(approveVO);
-	}
 
 
 	/**

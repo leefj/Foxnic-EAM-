@@ -368,22 +368,7 @@ public class PurchaseApplyController extends SuperController {
 	}
 
 
-	/**
-	 * 报废送审
-	 * */
-	@ApiOperation(value = "报废送审")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = PurchaseApplyVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = PurchaseApplyVOMeta.ID)
-	@ApiOperationSupport(order=12)
-	@SentinelResource(value = PurchaseApplyServiceProxy.FOR_APPROVAL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(PurchaseApplyServiceProxy.FOR_APPROVAL)
-	public Result forApproval(String id)  {
-		return purchaseApplyService.forApproval(id);
-	}
-
-
+ 
 	/**
 	 * 确认
 	 * */
@@ -400,34 +385,6 @@ public class PurchaseApplyController extends SuperController {
 	}
 
 
-
-
-	/**
-	 * 撤销
-	 * */
-	@ApiOperation(value = "撤销")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = PurchaseApplyVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = PurchaseApplyVOMeta.ID)
-	@ApiOperationSupport(order=14)
-	@SentinelResource(value = PurchaseApplyServiceProxy.REVOKE_OPERATION , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(PurchaseApplyServiceProxy.REVOKE_OPERATION)
-	public Result revokeOperation(String id)  {
-		return purchaseApplyService.revokeOperation(id);
-	}
-
-
-	/**
-	 * 审批
-	 * */
-	@ApiOperation(value = "审批")
-	@ApiOperationSupport(order=15)
-	@SentinelResource(value = PurchaseApplyServiceProxy.APPROVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(PurchaseApplyServiceProxy.APPROVE)
-	public Result approve(ProcessApproveVO approveVO)  {
-		return purchaseApplyService.approve(approveVO);
-	}
 
 
 	/**

@@ -379,21 +379,6 @@ public class AssetStockGoodsTranferController extends SuperController {
 
 
 
-	/**
-	 * 送审
-	 * */
-	@ApiOperation(value = "送审")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetStockGoodsTranferVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetStockGoodsTranferVOMeta.ID)
-	@ApiOperationSupport(order=12)
-	@SentinelResource(value = AssetStockGoodsAdjustServiceProxy.FOR_APPROVAL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetStockGoodsTranferServiceProxy.FOR_APPROVAL)
-	public Result forApproval(String id)  {
-		return assetStockGoodsTranferService.forApproval(id);
-	}
-
 
 	/**
 	 * 确认
@@ -410,33 +395,6 @@ public class AssetStockGoodsTranferController extends SuperController {
 		return assetStockGoodsTranferService.confirmOperation(id);
 	}
 
-
-	/**
-	 * 撤销
-	 * */
-	@ApiOperation(value = "撤销")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetStockGoodsTranferVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetStockGoodsTranferVOMeta.ID)
-	@ApiOperationSupport(order=14)
-	@SentinelResource(value = AssetStockGoodsTranferServiceProxy.REVOKE_OPERATION , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetStockGoodsTranferServiceProxy.REVOKE_OPERATION)
-	public Result revokeOperation(String id)  {
-		return assetStockGoodsTranferService.revokeOperation(id);
-	}
-
-
-	/**
-	 * 审批
-	 * */
-	@ApiOperation(value = "审批")
-	@ApiOperationSupport(order=15)
-	@SentinelResource(value = AssetStockGoodsTranferServiceProxy.APPROVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetStockGoodsTranferServiceProxy.APPROVE)
-	public Result approve(ProcessApproveVO approveVO)  {
-		return assetStockGoodsTranferService.approve(approveVO);
-	}
 
 
 

@@ -104,23 +104,6 @@ public class AssetCollectionServiceImpl extends SuperService<AssetCollection> im
 
 
 
-	@Override
-	public Result startProcess(ProcessStartVO startVO) {
-		return null;
-	}
-
-	@Override
-	public Result approve(ProcessApproveVO approveVO) {
-		return null;
-	}
-
-
-
-	@Override
-	public Result approve(String instanceId, List<AssetCollection> assets, String approveAction, String opinion) {
-		return null;
-	}
-
 
 	@Override
 	public Map<String, Object> getBill(String id) {
@@ -154,52 +137,9 @@ public class AssetCollectionServiceImpl extends SuperService<AssetCollection> im
 		this.update(asset4Update,SaveMode.BESET_FIELDS);
 	}
 
-	/**
-	 * 启动流程
-	 * */
-	public Result startProcess(String id) {
-		return null;
-	}
-
-
-	/**
-	 * 撤销
-	 * @param id ID
-	 * @return 是否成功
-	 * */
-	@Override
-	public Result revokeOperation(String id) {
-		AssetCollection billData=getById(id);
-		if(AssetHandleStatusEnum.APPROVAL.code().equals(billData.getStatus())){
-		}else{
-			return ErrorDesc.failureMessage("当前状态不能，不能进行撤销操作");
-		}
-		return ErrorDesc.success();
-	}
 
 
 
-	/**
-	 * 送审
-	 * @param id ID
-	 * @return 是否成功
-	 * */
-	@Override
-	public Result forApproval(String id){
-
-		AssetCollection billData=getById(id);
-		if(AssetHandleStatusEnum.INCOMPLETE.code().equals(billData.getStatus())){
-			if(operateService.approvalRequired(AssetOperateEnum.EAM_ASSET_COLLECTION.code()) ) {
-				//审批操作
-
-			}else{
-				return ErrorDesc.failureMessage("当前操作不需要送审,请直接进行确认操作");
-			}
-		}else{
-			return ErrorDesc.failureMessage("当前状态为:"+billData.getStatus()+",不能进行该操作");
-		}
-		return ErrorDesc.success();
-	}
 
 	/**
 	 * 操作

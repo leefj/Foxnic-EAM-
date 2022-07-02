@@ -1,7 +1,7 @@
 /**
  * 资产报修 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-01 06:12:34
+ * @since 2022-07-02 12:53:53
  */
 
 
@@ -263,7 +263,11 @@ function ListPage() {
 			switch(obj.event){
 				case 'create':
 					admin.putTempData('eam-asset-employee-repair-form-data', {});
-					bpm.openProcessView(null,null,false,{"formDefinitionCode":"eam_asset_employee_repair"},refreshTableData,refreshRowData,"bill");
+					var defaultValue={};
+					if(window.pageExt.list.getBpmDefaultValue) {
+						defaultValue=window.pageExt.list.getBpmDefaultValue();
+					}
+					bpm.openProcessView(null,null,false,{"formDefinitionCode":"eam_asset_employee_repair"},refreshTableData,refreshRowData,"bill",defaultValue);
 					break;
 				case 'batch-del':
 					batchDelete(selected);
@@ -336,8 +340,8 @@ function ListPage() {
 					if(p) {
 						bpm.openProcessView(p.id,null,false,{"formDefinitionCode":"eam_asset_employee_repair"},refreshTableData,refreshRowData,"bill");
 					} else {
-						if(window.pageExt.list.bpmOpenWithoutProcess) {
-							window.pageExt.list.bpmOpenWithoutProcess({id : data.id});
+						if(window.pageExt.list.handleNoProcessBill) {
+							window.pageExt.list.handleNoProcessBill({id : data.id});
 						} else {
 							top.layer.msg('当前业务单据尚未关联流程', {icon: 2, time: 1500});
 						}

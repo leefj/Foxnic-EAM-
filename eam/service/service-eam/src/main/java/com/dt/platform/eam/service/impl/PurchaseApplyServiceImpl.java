@@ -143,20 +143,6 @@ public class PurchaseApplyServiceImpl extends SuperService<PurchaseApply> implem
 		return r;
 	}
 
-	@Override
-	public Result startProcess(ProcessStartVO startVO) {
-		return null;
-	}
-
-	@Override
-	public Result approve(ProcessApproveVO approveVO) {
-		return null;
-	}
-
-	@Override
-	public Result approve(String instanceId, List<AssetScrap> assets, String approveAction, String opinion) {
-		return null;
-	}
 
 	@Override
 	public Map<String, Object> getBill(String id) {
@@ -171,16 +157,6 @@ public class PurchaseApplyServiceImpl extends SuperService<PurchaseApply> implem
 		PurchaseCheck check=purchaseCheckService.getById(checkId);
 		obj.setCheckCode(check.getBusinessCode());
 		return super.update(obj,SaveMode.NOT_NULL_FIELDS,false);
-	}
-
-	@Override
-	public Result revokeOperation(String id) {
-		return null;
-	}
-
-	@Override
-	public Result forApproval(String id) {
-		return null;
 	}
 
 

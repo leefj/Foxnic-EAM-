@@ -325,22 +325,6 @@ public class AssetStorageController extends SuperController {
 	}
 
 
-	/**
-	 * 转移送审
-	 * */
-	@ApiOperation(value = "送审")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetStorageVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetStorageVOMeta.ID)
-	@ApiOperationSupport(order=12)
-	@SentinelResource(value = AssetStorageServiceProxy.FOR_APPROVAL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetStorageServiceProxy.FOR_APPROVAL)
-	public Result forApproval(String id)  {
-		return assetStorageService.forApproval(id);
-	}
-
-
 
 	/**
 	 * 确认
@@ -357,33 +341,6 @@ public class AssetStorageController extends SuperController {
 		return assetStorageService.confirmOperation(id);
 	}
 
-
-
-	/**
-	 * 撤销
-	 * */
-	@ApiOperation(value = "撤销")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetStorageVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetStorageVOMeta.ID)
-	@ApiOperationSupport(order=14)
-	@SentinelResource(value = AssetStorageServiceProxy.REVOKE_OPERATION , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetStorageServiceProxy.REVOKE_OPERATION)
-	public Result revokeOperation(String id)  {
-		return assetStorageService.revokeOperation(id);
-	}
-
-	/**
-	 * 审批
-	 * */
-	@ApiOperation(value = "审批")
-	@ApiOperationSupport(order=15)
-	@SentinelResource(value = AssetStorageServiceProxy.APPROVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetStorageServiceProxy.APPROVE)
-	public Result approve(ProcessApproveVO approveVO)  {
-		return assetStorageService.approve(approveVO);
-	}
 
 
 

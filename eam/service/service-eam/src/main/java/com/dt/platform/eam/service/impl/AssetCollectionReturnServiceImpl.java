@@ -95,22 +95,6 @@ public class AssetCollectionReturnServiceImpl extends SuperService<AssetCollecti
 
 
 	@Override
-	public Result startProcess(ProcessStartVO startVO) {
-		return null;
-	}
-
-	@Override
-	public Result approve(ProcessApproveVO approveVO) {
-		return null;
-	}
-
-
-	@Override
-	public Result approve(String instanceId,List<AssetCollectionReturn> assets, String approveAction, String opinion) {
-		return null;
-	}
-
-	@Override
 	public Map<String, Object> getBill(String id) {
 
 		AssetCollectionReturn data= AssetCollectionReturnServiceProxy.api().getById(id).getData();
@@ -124,72 +108,6 @@ public class AssetCollectionReturnServiceImpl extends SuperService<AssetCollecti
 		return map;
 	}
 
-	private void syncBill(String id, ChangeEvent event) {
-		AssetCollectionReturn asset4Update=AssetCollectionReturn.create();
-//		asset4Update.setId(id)
-//				//设置变更ID
-//				.setChangeInstanceId(event.getInstance().getId())
-//				//更新状态
-//				.setChsStatus(event.getInstance().getStatusEnum().code())
-//				//更新最后审批人
-//				.setLatestApproverId(event.getApproverId())
-//				.setLatestApproverName(event.getApproverName())
-//				//设置下一节点审批人
-//				.setNextApproverIds(event.getSimpleNextApproverIds())
-//				.setNextApproverNames(event.getSimpleNextApproverNames())
-//				//更新流程概要
-//				.setSummary(event.getDefinition().getName()+","+event.getApproveActionEnum().text());
-		//执行更新
-		this.update(asset4Update,SaveMode.BESET_FIELDS);
-	}
-
-	/**
-	 * 启动流程
-	 * */
-	public Result startProcess(String id) {
-		return null;
-	}
-
-
-
-	/**
-	 * 撤销
-	 * @param id ID
-	 * @return 是否成功
-	 * */
-	@Override
-	public Result revokeOperation(String id) {
-		AssetCollectionReturn billData=getById(id);
-		if(AssetHandleStatusEnum.APPROVAL.code().equals(billData.getStatus())){
-
-		}else{
-			return ErrorDesc.failureMessage("当前状态不能，不能进行撤销操作");
-		}
-		return ErrorDesc.success();
-	}
-
-
-	/**
-	 * 送审
-	 * @param id ID
-	 * @return 是否成功
-	 * */
-	@Override
-	public Result forApproval(String id){
-
-		AssetCollectionReturn billData=getById(id);
-		if(AssetHandleStatusEnum.INCOMPLETE.code().equals(billData.getStatus())){
-			if(operateService.approvalRequired(AssetOperateEnum.EAM_ASSET_COLLECTION_RETURN.code()) ) {
-				//审批操作
-
-			}else{
-				return ErrorDesc.failureMessage("当前操作不需要送审,请直接进行确认操作");
-			}
-		}else{
-			return ErrorDesc.failureMessage("当前状态为:"+billData.getStatus()+",不能进行该操作");
-		}
-		return ErrorDesc.success();
-	}
 
 	/**
 	 * 确认操作

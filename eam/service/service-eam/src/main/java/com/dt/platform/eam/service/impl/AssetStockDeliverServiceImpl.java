@@ -174,35 +174,14 @@ public class AssetStockDeliverServiceImpl extends SuperService<AssetStockDeliver
 		return moduleCode;
 	}
 
-	@Override
-	public Result startProcess(ProcessStartVO startVO) {
-		return null;
-	}
 
-	@Override
-	public Result approve(ProcessApproveVO approveVO) {
-		return null;
-	}
 
-	@Override
-	public Result approve(String instanceId, List<AssetRepair> assets, String approveAction, String opinion) {
-		return null;
-	}
 
 	@Override
 	public Map<String, Object> getBill(String id) {
 		return null;
 	}
 
-	@Override
-	public Result revokeOperation(String id) {
-		return null;
-	}
-
-	@Override
-	public Result forApproval(String id) {
-		return null;
-	}
 
 	private String queryOperateCode(String ownerCode){
 		String operCode="";

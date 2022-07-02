@@ -1,7 +1,7 @@
 /**
  * 领用申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-02 07:38:40
+ * @since 2022-07-02 12:53:19
  */
 
 function FormPage() {
@@ -85,7 +85,7 @@ function FormPage() {
 		}
 
 
-		debugger
+
 		clearTimeout(adjustPopupTask);
 		var scroll=$(".form-container").attr("scroll");
 		if(scroll=='yes') return;

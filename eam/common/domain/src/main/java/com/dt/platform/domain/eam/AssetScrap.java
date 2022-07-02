@@ -7,11 +7,14 @@ import com.dt.platform.constants.db.EAMTables.EAM_ASSET_SCRAP;
 import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
+import javax.persistence.Transient;
 import java.util.List;
+import org.github.foxnic.web.domain.bpm.ProcessInstance;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.changes.ChangeInstance;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
-import javax.persistence.Transient;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 
@@ -20,8 +23,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 资产报废
  * @author 金杰 , maillank@qq.com
- * @since 2022-01-07 09:06:32
- * @sign 912C90BF9DA78C3B4DB7DE25B2884599
+ * @since 2022-07-02 11:07:39
+ * @sign AD6DFEF59FC6ABBE8792BF7D7A5AF8E8
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -128,6 +131,8 @@ public class AssetScrap extends Entity {
 	*/
 	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
+	@Transient
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -230,6 +235,24 @@ public class AssetScrap extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="资产列表" , notes = "资产列表")
 	private List<String> assetIds;
+	
+	/**
+	 * 历史流程清单：历史流程清单
+	*/
+	@ApiModelProperty(required = false,value="历史流程清单" , notes = "历史流程清单")
+	private List<ProcessInstance> historicProcessList;
+	
+	/**
+	 * 在批的流程清单：在批的流程清单
+	*/
+	@ApiModelProperty(required = false,value="在批的流程清单" , notes = "在批的流程清单")
+	private List<ProcessInstance> currentProcessList;
+	
+	/**
+	 * 默认流程：优先取在批的流程
+	*/
+	@ApiModelProperty(required = false,value="默认流程" , notes = "优先取在批的流程")
+	private ProcessInstance defaultProcess;
 	
 	/**
 	 * 制单人：制单人
@@ -538,12 +561,42 @@ public class AssetScrap extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
 	public AssetScrap setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public AssetScrap setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -856,9 +909,9 @@ public class AssetScrap extends Entity {
 	 * @param asset 资产
 	 * @return 当前对象
 	*/
-	public AssetScrap addAsset(Asset asset) {
+	public AssetScrap addAsset(Asset... asset) {
 		if(this.assetList==null) assetList=new ArrayList<>();
-		this.assetList.add(asset);
+		this.assetList.addAll(Arrays.asList(asset));
 		return this;
 	}
 	
@@ -886,9 +939,88 @@ public class AssetScrap extends Entity {
 	 * @param assetId 资产列表
 	 * @return 当前对象
 	*/
-	public AssetScrap addAssetId(String assetId) {
+	public AssetScrap addAssetId(String... assetId) {
 		if(this.assetIds==null) assetIds=new ArrayList<>();
-		this.assetIds.add(assetId);
+		this.assetIds.addAll(Arrays.asList(assetId));
+		return this;
+	}
+	
+	/**
+	 * 获得 历史流程清单<br>
+	 * 历史流程清单
+	 * @return 历史流程清单
+	*/
+	public List<ProcessInstance> getHistoricProcessList() {
+		return historicProcessList;
+	}
+	
+	/**
+	 * 设置 历史流程清单
+	 * @param historicProcessList 历史流程清单
+	 * @return 当前对象
+	*/
+	public AssetScrap setHistoricProcessList(List<ProcessInstance> historicProcessList) {
+		this.historicProcessList=historicProcessList;
+		return this;
+	}
+	
+	/**
+	 * 添加 历史流程清单
+	 * @param historicProcess 历史流程清单
+	 * @return 当前对象
+	*/
+	public AssetScrap addHistoricProcess(ProcessInstance... historicProcess) {
+		if(this.historicProcessList==null) historicProcessList=new ArrayList<>();
+		this.historicProcessList.addAll(Arrays.asList(historicProcess));
+		return this;
+	}
+	
+	/**
+	 * 获得 在批的流程清单<br>
+	 * 在批的流程清单
+	 * @return 在批的流程清单
+	*/
+	public List<ProcessInstance> getCurrentProcessList() {
+		return currentProcessList;
+	}
+	
+	/**
+	 * 设置 在批的流程清单
+	 * @param currentProcessList 在批的流程清单
+	 * @return 当前对象
+	*/
+	public AssetScrap setCurrentProcessList(List<ProcessInstance> currentProcessList) {
+		this.currentProcessList=currentProcessList;
+		return this;
+	}
+	
+	/**
+	 * 添加 在批的流程清单
+	 * @param currentProcess 在批的流程清单
+	 * @return 当前对象
+	*/
+	public AssetScrap addCurrentProcess(ProcessInstance... currentProcess) {
+		if(this.currentProcessList==null) currentProcessList=new ArrayList<>();
+		this.currentProcessList.addAll(Arrays.asList(currentProcess));
+		return this;
+	}
+	
+	/**
+	 * 获得 默认流程<br>
+	 * 优先取在批的流程
+	 * @return 默认流程
+	*/
+	public ProcessInstance getDefaultProcess() {
+		return defaultProcess;
+	}
+	
+	/**
+	 * 设置 默认流程
+	 * @param defaultProcess 默认流程
+	 * @return 当前对象
+	*/
+	public AssetScrap setDefaultProcess(ProcessInstance defaultProcess) {
+		this.defaultProcess=defaultProcess;
 		return this;
 	}
 	

@@ -99,22 +99,6 @@ public class AssetTranferServiceImpl extends SuperService<AssetTranfer> implemen
 
 
 	@Override
-	public Result startProcess(ProcessStartVO startVO) {
-		return null;
-	}
-
-	@Override
-	public Result approve(ProcessApproveVO approveVO) {
-		return null;
-	}
-
-
-	@Override
-	public Result approve(String instanceId, List<AssetTranfer> assets, String approveAction, String opinion) {
-		return null;
-	}
-
-	@Override
 	public Map<String, Object> getBill(String id) {
 		AssetTranfer data= AssetTranferServiceProxy.api().getById(id).getData();
 		join(data, AssetTranferMeta.ASSET_LIST);
@@ -127,63 +111,8 @@ public class AssetTranferServiceImpl extends SuperService<AssetTranfer> implemen
 	}
 
 
-	private void syncBill(String id, ChangeEvent event) {
-		AssetTranfer asset4Update=AssetTranfer.create();
-//		asset4Update.setId(id)
-//				//设置变更ID
-//				.setChangeInstanceId(event.getInstance().getId())
-//				//更新状态
-//				.setChsStatus(event.getInstance().getStatusEnum().code())
-//				//更新最后审批人
-//				.setLatestApproverId(event.getApproverId())
-//				.setLatestApproverName(event.getApproverName())
-//				//设置下一节点审批人
-//				.setNextApproverIds(event.getSimpleNextApproverIds())
-//				.setNextApproverNames(event.getSimpleNextApproverNames())
-//				//更新流程概要
-//				.setSummary(event.getDefinition().getName()+","+event.getApproveActionEnum().text());
-		//执行更新
-		this.update(asset4Update,SaveMode.BESET_FIELDS);
-	}
-
-	/**
-	 * 撤销
-	 * @param id ID
-	 * @return 是否成功
-	 * */
-	@Override
-	public Result revokeOperation(String id) {
-		AssetTranfer billData=getById(id);
-		if(AssetHandleStatusEnum.APPROVAL.code().equals(billData.getStatus())){
-
-		}else{
-			return ErrorDesc.failureMessage("当前状态不能，不能进行撤销操作");
-		}
-		return ErrorDesc.success();
-	}
 
 
-	/**
-	 * 送审
-	 * @param id ID
-	 * @return 是否成功
-	 * */
-	@Override
-	public Result forApproval(String id){
-
-		AssetTranfer billData=getById(id);
-		if(AssetHandleStatusEnum.INCOMPLETE.code().equals(billData.getStatus())){
-			if(operateService.approvalRequired(AssetOperateEnum.EAM_ASSET_TRANFER.code()) ) {
-				//审批操作
-
-			}else{
-				return ErrorDesc.failureMessage("当前操作不需要送审,请直接进行确认操作");
-			}
-		}else{
-			return ErrorDesc.failureMessage("当前状态为:"+billData.getStatus()+",不能进行该操作");
-		}
-		return ErrorDesc.success();
-	}
 
 	/**
 	 * 操作

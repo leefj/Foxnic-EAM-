@@ -113,7 +113,7 @@ public class EmployHandoverGtr extends BaseCodeGenerator {
                 .setBpmEventAdaptor(WriteMode.IGNORE)
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)
-                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
+                .setExtendJsFile(WriteMode.WRITE_TEMP_FILE); //列表HTML页
         ; //列表HTML页
         //生成代码
         cfg.buildAll();

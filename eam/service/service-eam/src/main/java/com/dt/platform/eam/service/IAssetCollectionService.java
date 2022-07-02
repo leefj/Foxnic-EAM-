@@ -35,32 +35,12 @@ import org.github.foxnic.web.domain.changes.ProcessStartVO;
 public interface IAssetCollectionService extends ISuperService<AssetCollection> {
 
 
-	Result startProcess(ProcessStartVO startVO);
-
-	Result approve(ProcessApproveVO approveVO);
-
-	Result approve(String instanceId, List<AssetCollection> assets, String approveAction, String opinion);
-
 	/**
 	 * 获取单据数据
 	 * @param id ID
 	 * @return 返回结果
 	 * */
 	Map<String, Object> getBill(String id);
-
-	/**
-	 * 撤销流程
-	 * @param id ID
-	 * @return 是否成功
-	 * */
-	Result revokeOperation(String id);
-
-	/**
-	 * 送审
-	 * @param id ID
-	 * @return 是否成功
-	 * */
-	Result forApproval(String id);
 
 	/**
 	 * 确认操作

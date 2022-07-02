@@ -322,23 +322,6 @@ public class AssetStockCollectionController extends SuperController {
 	}
 
 
-	/**
-	 * 送审
-	 * */
-	@ApiOperation(value = "变更送审")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetStockCollectionVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetStockCollectionVOMeta.ID)
-	@ApiOperationSupport(order=12)
-	@SentinelResource(value = AssetStockCollectionServiceProxy.FOR_APPROVAL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetStockCollectionServiceProxy.FOR_APPROVAL)
-	public Result forApproval(String id)  {
-		return assetStockCollectionService.forApproval(id);
-	}
-
-
-
 
 
 	/**
@@ -355,35 +338,6 @@ public class AssetStockCollectionController extends SuperController {
 	public Result confirmOperation(String id)  {
 		return assetStockCollectionService.confirmOperation(id);
 	}
-
-
-	/**
-	 * 撤销
-	 * */
-	@ApiOperation(value = "变更撤销")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetStockCollectionVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetStockCollectionVOMeta.ID)
-	@ApiOperationSupport(order=14)
-	@SentinelResource(value = AssetStockCollectionServiceProxy.REVOKE_OPERATION , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetStockCollectionServiceProxy.REVOKE_OPERATION)
-	public Result revokeOperation(String id)  {
-		return assetStockCollectionService.revokeOperation(id);
-	}
-
-
-	/**
-	 * 审批
-	 * */
-	@ApiOperation(value = "审批")
-	@ApiOperationSupport(order=15)
-	@SentinelResource(value = AssetStockCollectionServiceProxy.APPROVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetStockCollectionServiceProxy.APPROVE)
-	public Result approve(ProcessApproveVO approveVO)  {
-		return assetStockCollectionService.approve(approveVO);
-	}
-
 
 
 

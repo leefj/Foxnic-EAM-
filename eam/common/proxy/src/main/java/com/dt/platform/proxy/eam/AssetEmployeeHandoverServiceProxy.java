@@ -20,7 +20,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 资产交接  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-02 07:41:42
+ * @since 2022-07-02 12:53:28
  */
 @FeignClient(value = ServiceNames.EAM, contextId = AssetEmployeeHandoverServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AssetEmployeeHandoverServiceProxy extends BpmCallbackController {

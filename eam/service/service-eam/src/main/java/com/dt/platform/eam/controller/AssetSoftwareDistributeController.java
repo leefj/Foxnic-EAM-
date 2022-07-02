@@ -320,21 +320,6 @@ public class AssetSoftwareDistributeController extends SuperController {
 	}
 
 
-	/**
-	 * 送审
-	 * */
-	@ApiOperation(value = "送审")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetSoftwareDistributeVOMeta.ID)
-	@ApiOperationSupport(order=12)
-	@SentinelResource(value = AssetSoftwareDistributeServiceProxy.FOR_APPROVAL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetSoftwareDistributeServiceProxy.FOR_APPROVAL)
-	public Result forApproval(String id)  {
-		return assetSoftwareDistributeService.forApproval(id);
-	}
-
 
 	/**
 	 * 确认
@@ -351,34 +336,6 @@ public class AssetSoftwareDistributeController extends SuperController {
 		return assetSoftwareDistributeService.confirmOperation(id);
 	}
 
-
-	/**
-	 * 撤销
-	 * */
-	@ApiOperation(value = "撤销")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetSoftwareDistributeVOMeta.ID)
-	@ApiOperationSupport(order=14)
-	@SentinelResource(value = AssetSoftwareDistributeServiceProxy.REVOKE_OPERATION , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetSoftwareDistributeServiceProxy.REVOKE_OPERATION)
-	public Result revokeOperation(String id)  {
-		return assetSoftwareDistributeService.revokeOperation(id);
-	}
-
-
-
-	/**
-	 * 审批
-	 * */
-	@ApiOperation(value = "审批")
-	@ApiOperationSupport(order=15)
-	@SentinelResource(value = AssetSoftwareDistributeServiceProxy.APPROVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetSoftwareDistributeServiceProxy.APPROVE)
-	public Result approve(ProcessApproveVO approveVO)  {
-		return assetSoftwareDistributeService.approve(approveVO);
-	}
 
 
 

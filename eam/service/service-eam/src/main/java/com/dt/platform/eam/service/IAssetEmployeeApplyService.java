@@ -25,7 +25,7 @@ import java.util.Map;
  * 领用申请 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-02 07:38:38
+ * @since 2022-07-02 12:53:18
 */
 
 public interface IAssetEmployeeApplyService extends  ISimpleIdService<AssetEmployeeApply,String> {
@@ -171,11 +171,13 @@ public interface IAssetEmployeeApplyService extends  ISimpleIdService<AssetEmplo
 
 	/**
 	 * 检查引用
+	 * @param id  检查ID是否又被外部表引用
 	 * */
 	Boolean hasRefers(String id);
 
 	/**
 	 * 批量检查引用
+	 * @param ids  检查这些ID是否又被外部表引用
 	 * */
 	Map<String,Boolean> hasRefers(List<String> ids);
 
@@ -222,7 +224,7 @@ public interface IAssetEmployeeApplyService extends  ISimpleIdService<AssetEmplo
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
-	List<AssetEmployeeApply> queryList(AssetEmployeeApply sample);
+	List<AssetEmployeeApply> queryList(AssetEmployeeApplyVO sample);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -263,7 +265,7 @@ public interface IAssetEmployeeApplyService extends  ISimpleIdService<AssetEmplo
 	 * @param pageIndex 页码
 	 * @return 查询结果
 	 * */
-	PagedList<AssetEmployeeApply> queryPagedList(AssetEmployeeApply sample,int pageSize,int pageIndex);
+	PagedList<AssetEmployeeApply> queryPagedList(AssetEmployeeApplyVO sample,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集

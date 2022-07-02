@@ -17,6 +17,10 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     var admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate,dropdown=layui.dropdown;
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload,bpm=layui.bpm;
 
+
+    var processId=QueryString.get("processId");
+    var processInstance=null;
+
     //模块基础路径
     const moduleURL="/service-eam/eam-asset-employee-handover";
     var formAction=admin.getTempData('eam-asset-employee-handover-form-data-form-action');

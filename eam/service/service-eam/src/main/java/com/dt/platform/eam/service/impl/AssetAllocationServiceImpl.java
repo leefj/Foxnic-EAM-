@@ -94,20 +94,7 @@ public class AssetAllocationServiceImpl extends SuperService<AssetAllocation> im
 	}
 
 
-	@Override
-	public Result startProcess(ProcessStartVO startVO) {
-		return null;
-	}
 
-	@Override
-	public Result approve(ProcessApproveVO approveVO) {
-		return null;
-	}
-
-	@Override
-	public Result approve(String instanceId, List<AssetAllocation> assets, String approveAction, String opinion) {
-		return null;
-	}
 
 	@Override
 	public Map<String, Object> getBill(String id) {
@@ -125,54 +112,6 @@ public class AssetAllocationServiceImpl extends SuperService<AssetAllocation> im
 
 	}
 
-
-	private void syncBill(String id, ChangeEvent event) {
-		AssetAllocation asset4Update=AssetAllocation.create();
-//		asset4Update.setId(id)
-//				//设置变更ID
-//				.setChangeInstanceId(event.getInstance().getId())
-//				//更新状态
-//				.setChsStatus(event.getInstance().getStatusEnum().code())
-//				//更新最后审批人
-//				.setLatestApproverId(event.getApproverId())
-//				.setLatestApproverName(event.getApproverName())
-//				//设置下一节点审批人
-//				.setNextApproverIds(event.getSimpleNextApproverIds())
-//				.setNextApproverNames(event.getSimpleNextApproverNames())
-//				//更新流程概要
-//				.setSummary(event.getDefinition().getName()+","+event.getApproveActionEnum().text());
-		//执行更新
-		this.update(asset4Update,SaveMode.BESET_FIELDS);
-	}
-
-	/**
-	 * 启动流程
-	 * */
-	public Result startProcess(String id) {
-		return null;
-	}
-
-	/**
-	 * 送审
-	 * @param id ID
-	 * @return 是否成功
-	 * */
-	@Override
-	public Result forApproval(String id){
-		AssetAllocation billData=getById(id);
-		if(AssetHandleStatusEnum.INCOMPLETE.code().equals(billData.getStatus())){
-			if(operateService.approvalRequired(AssetOperateEnum.EAM_ASSET_ALLOCATE.code()) ) {
-				 //审批操作
-
-			}else{
-				return ErrorDesc.failureMessage("当前操作不需要送审,请直接进行确认操作");
-			}
-		}else{
-			return ErrorDesc.failureMessage("当前状态为:"+billData.getStatus()+",不能进行该操作");
-		}
-		return ErrorDesc.success();
-
-	}
 
 
 	/**
@@ -215,21 +154,6 @@ public class AssetAllocationServiceImpl extends SuperService<AssetAllocation> im
 		return ErrorDesc.success();
 	}
 
-	/**
-	 * 撤销
-	 * @param id ID
-	 * @return 是否成功
-	 * */
-	@Override
-	public Result revokeOperation(String id) {
-		AssetAllocation billData=getById(id);
-		if(AssetHandleStatusEnum.APPROVAL.code().equals(billData.getStatus())){
-
-		}else{
-			return ErrorDesc.failureMessage("当前状态不能，不能进行撤销操作");
-		}
-		return ErrorDesc.success();
-	}
 
 	//顺序:新建(未完成)  -- 送审核 --- 确认
 	/**

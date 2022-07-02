@@ -43,7 +43,7 @@ import com.dt.platform.eam.service.bpm.AssetEmployeeHandoverBpmEventAdaptor;
  * 资产交接 服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-02 07:41:42
+ * @since 2022-07-02 12:53:28
 */
 
 
@@ -237,7 +237,7 @@ public class AssetEmployeeHandoverServiceImpl extends SuperService<AssetEmployee
 	 * @return 查询结果
 	 * */
 	@Override
-	public List<AssetEmployeeHandover> queryList(AssetEmployeeHandover sample) {
+	public List<AssetEmployeeHandover> queryList(AssetEmployeeHandoverVO sample) {
 		return super.queryList(sample);
 	}
 
@@ -251,7 +251,7 @@ public class AssetEmployeeHandoverServiceImpl extends SuperService<AssetEmployee
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<AssetEmployeeHandover> queryPagedList(AssetEmployeeHandover sample, int pageSize, int pageIndex) {
+	public PagedList<AssetEmployeeHandover> queryPagedList(AssetEmployeeHandoverVO sample, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, pageSize, pageIndex);
 	}
 
@@ -283,6 +283,10 @@ public class AssetEmployeeHandoverServiceImpl extends SuperService<AssetEmployee
 	}
 
 
+	/**
+	 * 检查引用
+	 * @param id  检查ID是否又被外部表引用
+	 * */
 	@Override
 	public Boolean hasRefers(String id) {
 		Map<String, Boolean> map=this.hasRefers(Arrays.asList(id));
@@ -291,6 +295,10 @@ public class AssetEmployeeHandoverServiceImpl extends SuperService<AssetEmployee
 		return ex;
 	}
 
+	/**
+	 * 批量检查引用
+	 * @param ids  检查这些ID是否又被外部表引用
+	 * */
 	@Override
 	public Map<String, Boolean> hasRefers(List<String> ids) {
 		// 默认无业务逻辑，返回此行；有业务逻辑需要校验时，请修改并使用已注释的行代码！！！

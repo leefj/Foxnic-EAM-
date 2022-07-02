@@ -366,21 +366,6 @@ public class AssetTranferController extends SuperController {
 
 
 
-	/**
-	 * 转移送审
-	 * */
-	@ApiOperation(value = "转移送审")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetTranferVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetTranferVOMeta.ID)
-	@ApiOperationSupport(order=12)
-	@SentinelResource(value = AssetTranferServiceProxy.FOR_APPROVAL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetTranferServiceProxy.FOR_APPROVAL)
-	public Result forApproval(String id)  {
-		return assetTranferService.forApproval(id);
-	}
-
 
 
 	/**
@@ -400,31 +385,6 @@ public class AssetTranferController extends SuperController {
 
 
 
-	/**
-	 * 撤销
-	 * */
-	@ApiOperation(value = "撤销")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetTranferVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetTranferVOMeta.ID)
-	@ApiOperationSupport(order=14)
-	@SentinelResource(value = AssetTranferServiceProxy.REVOKE_OPERATION , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetTranferServiceProxy.REVOKE_OPERATION)
-	public Result revokeOperation(String id)  {
-		return assetTranferService.revokeOperation(id);
-	}
-
-	/**
-	 * 审批
-	 * */
-	@ApiOperation(value = "审批")
-	@ApiOperationSupport(order=15)
-	@SentinelResource(value = AssetTranferServiceProxy.APPROVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetTranferServiceProxy.APPROVE)
-	public Result approve(ProcessApproveVO approveVO)  {
-		return assetTranferService.approve(approveVO);
-	}
 
 
 	/**

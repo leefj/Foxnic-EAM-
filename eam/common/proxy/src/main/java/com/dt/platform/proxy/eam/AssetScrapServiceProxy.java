@@ -97,15 +97,6 @@ public interface AssetScrapServiceProxy {
      */
     public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
 
-    /**
-     * 审批
-     */
-    public static final String APPROVE = API_PREFIX + "approve";
-
-    /**
-     * 提交审批
-     */
-    public static final String FOR_APPROVAL = API_PREFIX + "for-approval";
 
     /**
      * 确认操作
@@ -113,14 +104,16 @@ public interface AssetScrapServiceProxy {
     public static final String CONFIRM_OPERATION = API_PREFIX + "confirm-operation";
 
     /**
-     * 撤销操作
-     */
-    public static final String REVOKE_OPERATION = API_PREFIX + "revoke-operation";
-
-    /**
      * 数据清理
      */
     public static final String CLEAN_OUT = API_PREFIX + "clean-out";
+
+
+    /**
+     * 流程事件回调接收接口
+     */
+    public static final String BPM_CALLBACK = API_PREFIX + "bpm-callback";
+
 
     /**
      * 添加资产报废
