@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="/assets/libs/toast/css/toast.css" type="text/css" th:href="'/assets/libs/toast/css/toast.css?'+${cacheKey}">
     <link rel="stylesheet" href="/assets/css/foxnic-web.css" th:href="'/assets/css/foxnic-web.css?'+${cacheKey}">
     <link href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css" th:href="@{/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link href="/assets/libs/css/app_workbench.css" th:href="@{/assets/libs/css/app_workbench.css}" rel="stylesheet"/>
+
     <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:if(theme.ico!="null") rel="icon" th:href="theme.ico" type="image/vnd.microsoft.icon">
@@ -89,16 +91,10 @@
         }
 
 
-        .hwork{
-            /*height: 450px;*/
-        }
-
         .hh{
             height: 150px;
         }
-        .ht{
-            margin-top:10px;
-        }
+
         .hm{
             margin-top:7px;
             margin-bottom:5px;
@@ -107,114 +103,6 @@
 </head>
 
 <body>
-
-<style>
-    .bannerF{
-        width:100%;
-        /*background-color: red;*/
-        display: flex;
-        justify-content:space-between;
-        flex-direction: row;
-        /*align-items:center;*/
-    }
-    .banner{
-        width:100%;
-        /*background-color: red;*/
-        display: flex;
-        justify-content:space-between;
-        flex-direction: row;
-        align-items:center;
-    }
-    .labelpng{
-        width:120px;
-    }
-    .info{
-        height: 80px;
-        margin-left:15px;
-        /*background-color: red;*/
-        display: flex;
-        flex-direction: row;
-        align-items:center;
-    }
-    .label{
-        font-family: Avenir,Helvetica,Arial,sans-serif;
-        font-weight: 400;
-        margin-right: 0px;
-        padding-right: 0;
-        padding-left: 0;
-        font-size: 24px;
-        color: #188cfb;
-    }
-    .ops-detail-button{
-        font-family: Avenir,Helvetica,Arial,sans-serif;
-        font-weight: 400;
-        white-space: nowrap;
-        color:#188cfb!important;
-        font-size: 14px!important;
-        border: 1px solid #188cfb; /* Green */
-    }
-    .title{
-        /*background-color: red;*/
-        -webkit-font-smoothing: antialiased;
-        font-size: 20px!important;
-        font-family: Avenir,Helvetica,Arial,sans-serif;
-        font-weight: 600;
-        color:rgba(0,0,0,.65)!important;
-        margin-left:50px;
-        margin-top:35px;
-        margin-bottom:20px;
-    }
-
-    .box{
-        flex-wrap: wrap;
-        width:100%;
-        /*background-color: red;*/
-        display: flex;
-        justify-content:left;
-        flex-direction: row;
-        align-items:center;
-        /*background-color: blue;*/
-
-    }
-    .boxItem{
-        align-content:center;
-        margin-left:40px;
-        margin-right:40px;
-        margin-bottom:20px;
-        margin-top:20px;
-        /*background-color: red;*/
-        width:70px;
-        display: flex;
-        justify-content:center;
-        flex-direction: column;
-        align-items:center;
-
-    }
-    .boxPng{
-        align-content:center;
-        margin:1px;
-    //  background-color: red;
-        display: flex;
-        justify-content:center;
-        flex-direction: column;
-        align-items:center;
-        width:55px;
-    }
-    .boxPngValue{
-        width:50px;
-    }
-    .boxLabel{
-        margin-top:8px;
-        font-family: Avenir,Helvetica,Arial,sans-serif;
-        font-weight: 400;
-        font-size: 14px;
-        color: rgba(0,0,0,.45);
-    }
-
-
-
-
-</style>
 
 <style>
     table{
@@ -417,8 +305,7 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
-
-
+<script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
 
 <script th:inline="javascript">
     var TENANT_ID = [[${tenantId}]] ;

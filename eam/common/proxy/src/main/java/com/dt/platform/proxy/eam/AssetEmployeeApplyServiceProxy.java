@@ -20,7 +20,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 领用申请  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-01 06:05:47
+ * @since 2022-07-02 07:38:38
  */
 @FeignClient(value = ServiceNames.EAM, contextId = AssetEmployeeApplyServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AssetEmployeeApplyServiceProxy extends BpmCallbackController {

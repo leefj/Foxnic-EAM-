@@ -20,10 +20,10 @@ import java.util.Arrays;
  * 资产交接 流程回调事件适配器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-01 06:07:02
+ * @since 2022-07-02 07:41:42
 */
 
-public class AssetEmployeeHandoverBpmEventAdaptor extends BpmEventAdaptor<AssetEmployeeHandover,IAssetEmployeeHandoverService> {
+public class AssetEmployeeHandoverBpmEventAdaptor extends BpmEventAdaptor<AssetEmployeeHandover, IAssetEmployeeHandoverService> {
 
 	public AssetEmployeeHandoverBpmEventAdaptor(IAssetEmployeeHandoverService service) {
 		super(service);

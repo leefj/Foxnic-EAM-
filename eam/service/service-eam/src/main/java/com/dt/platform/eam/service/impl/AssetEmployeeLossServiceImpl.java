@@ -43,7 +43,7 @@ import com.dt.platform.eam.service.bpm.AssetEmployeeLossBpmEventAdaptor;
  * 资产报失 服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-01 06:11:53
+ * @since 2022-07-02 08:03:24
 */
 
 
@@ -237,7 +237,7 @@ public class AssetEmployeeLossServiceImpl extends SuperService<AssetEmployeeLoss
 	 * @return 查询结果
 	 * */
 	@Override
-	public List<AssetEmployeeLoss> queryList(AssetEmployeeLoss sample) {
+	public List<AssetEmployeeLoss> queryList(AssetEmployeeLossVO sample) {
 		return super.queryList(sample);
 	}
 
@@ -251,7 +251,7 @@ public class AssetEmployeeLossServiceImpl extends SuperService<AssetEmployeeLoss
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<AssetEmployeeLoss> queryPagedList(AssetEmployeeLoss sample, int pageSize, int pageIndex) {
+	public PagedList<AssetEmployeeLoss> queryPagedList(AssetEmployeeLossVO sample, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, pageSize, pageIndex);
 	}
 
@@ -283,6 +283,10 @@ public class AssetEmployeeLossServiceImpl extends SuperService<AssetEmployeeLoss
 	}
 
 
+	/**
+	 * 检查引用
+	 * @param id  检查ID是否又被外部表引用
+	 * */
 	@Override
 	public Boolean hasRefers(String id) {
 		Map<String, Boolean> map=this.hasRefers(Arrays.asList(id));
@@ -291,6 +295,10 @@ public class AssetEmployeeLossServiceImpl extends SuperService<AssetEmployeeLoss
 		return ex;
 	}
 
+	/**
+	 * 批量检查引用
+	 * @param ids  检查这些ID是否又被外部表引用
+	 * */
 	@Override
 	public Map<String, Boolean> hasRefers(List<String> ids) {
 		// 默认无业务逻辑，返回此行；有业务逻辑需要校验时，请修改并使用已注释的行代码！！！

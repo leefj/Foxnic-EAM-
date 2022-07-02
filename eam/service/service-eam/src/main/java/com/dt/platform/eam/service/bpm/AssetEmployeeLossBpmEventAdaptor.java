@@ -20,7 +20,7 @@ import java.util.Arrays;
  * 资产报失 流程回调事件适配器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-01 06:11:53
+ * @since 2022-07-02 08:03:24
 */
 
 public class AssetEmployeeLossBpmEventAdaptor extends BpmEventAdaptor<AssetEmployeeLoss,IAssetEmployeeLossService> {
