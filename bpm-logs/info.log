@@ -8277,3 +8277,118 @@ Caused by: com.alibaba.druid.pool.DataSourceClosedException: dataSource already 
 	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:79)
 	... 23 more
 
+13:00:09.964 [main] - [] - INFO  o.g.f.w.w.WrapperCamundaApp - [logStarting,55] - Starting WrapperCamundaApp on lankLdeMacBook-Pro.local with PID 51102 (/Users/lankl/IdeaProjects/eam/eam/wrapper/wrapper-camunda/target/classes started by lankl in /Users/lankl/IdeaProjects/eam)
+13:00:09.966 [main] - [] - INFO  o.g.f.w.w.WrapperCamundaApp - [logStartupProfileInfo,651] - No active profile set, falling back to default profiles: default
+13:00:10.741 [main] - [] - INFO  c.g.f.s.a.a.ApplicationAwareHandler - [setApplicationContext,50] - service-bpm(default) is ready on port 8099
+13:00:11.059 [main] - [] - INFO  o.c.b.s.b.s.r.CamundaJerseyResourceConfig - [registerCamundaRestResources,38] - Configuring camunda rest api.
+13:00:11.070 [main] - [] - INFO  o.c.b.s.b.s.r.CamundaJerseyResourceConfig - [registerCamundaRestResources,44] - Finished configuring camunda rest api.
+13:00:17.892 [simple-taskmgr] - [] - INFO  c.g.f.d.s.l.TQLCache - [scan,217] - TQL Scan Complete
+13:00:18.353 [main] - [] - INFO  c.g.f.s.m.ControllerAspector - [init,57] - ControllerAspector Init
+13:00:21.927 [main] - [] - INFO  o.c.bpm.spring.boot - [logInfo,132] - STARTER-SB040 Setting up jobExecutor with corePoolSize=3, maxPoolSize:10
+13:00:21.993 [main] - [] - INFO  o.c.bpm.engine.cfg - [logInfo,132] - ENGINE-12003 Plugin 'CompositeProcessEnginePlugin[genericPropertiesConfiguration, getCamundaDatasourceConfiguration, camundaProcessEngineConfiguration, camundaJobConfiguration, camundaHistoryConfiguration, camundaMetricsConfiguration, camundaAuthorizationConfiguration, CreateAdminUserConfiguration[adminUser=AdminUserProperty[id=110588348101165911, firstName=admin, lastName=110588348101165911, email=110588348101165911@localhost, password=******]], failedJobConfiguration, CamundaGlobalListenerPlugin, disableDeploymentResourcePattern, eventPublisherPlugin, ApplicationContextClassloaderSwitchPlugin, SpringBootSpinProcessEnginePlugin]' activated on process engine 'default'
+13:00:21.995 [main] - [] - INFO  o.c.bpm.spring.boot - [logInfo,132] - STARTER-SB020 ProcessApplication enabled: autoDeployment via springConfiguration#deploymentResourcePattern is disabled
+13:00:21.995 [main] - [] - INFO  o.c.b.s.b.s.e.EventPublisherPlugin - [preInit,57] - EVENTING-001: Initialized Camunda Spring Boot Eventing Engine Plugin.
+13:00:21.996 [main] - [] - INFO  o.c.b.s.b.s.e.EventPublisherPlugin - [preInit,59] - EVENTING-003: Task events will be published as Spring Events.
+13:00:21.996 [main] - [] - INFO  o.c.b.s.b.s.e.EventPublisherPlugin - [preInit,65] - EVENTING-005: Execution events will be published as Spring Events.
+13:00:21.996 [main] - [] - INFO  o.c.b.s.b.s.e.EventPublisherPlugin - [preInit,74] - EVENTING-007: History events will be published as Spring events.
+13:00:21.998 [main] - [] - INFO  org.camunda.spin - [logInfo,132] - SPIN-01010 Discovered Spin data format provider: org.camunda.spin.impl.json.jackson.format.JacksonJsonDataFormatProvider[name = application/json]
+13:00:22.012 [main] - [] - INFO  org.camunda.spin - [logInfo,132] - SPIN-01011 Discovered Spin data format configurator: class org.camunda.bpm.spring.boot.starter.spin.CamundaJacksonFormatConfiguratorJSR310[dataformat = org.camunda.spin.impl.json.jackson.format.JacksonJsonDataFormat]
+13:00:22.012 [main] - [] - INFO  org.camunda.spin - [logInfo,132] - SPIN-01011 Discovered Spin data format configurator: class org.camunda.bpm.spring.boot.starter.spin.CamundaJacksonFormatConfiguratorParameterNames[dataformat = org.camunda.spin.impl.json.jackson.format.JacksonJsonDataFormat]
+13:00:22.013 [main] - [] - INFO  org.camunda.spin - [logInfo,132] - SPIN-01011 Discovered Spin data format configurator: class org.camunda.bpm.spring.boot.starter.spin.CamundaJacksonFormatConfiguratorJdk8[dataformat = org.camunda.spin.impl.json.jackson.format.JacksonJsonDataFormat]
+13:00:22.013 [main] - [] - INFO  org.camunda.spin - [logInfo,132] - SPIN-01009 Discovered Spin data format: org.camunda.spin.impl.json.jackson.format.JacksonJsonDataFormat[name = application/json]
+13:00:22.036 [main] - [] - INFO  o.c.b.dmn.feel.scala - [logInfo,132] - FEEL/SCALA-01001 Spin value mapper detected
+13:00:22.119 [main] - [] - INFO  o.c.feel.FeelEngine - [<init>,124] - Engine created. [value-mapper: CompositeValueMapper(List(org.camunda.feel.impl.JavaValueMapper@63f3366a, org.camunda.spin.plugin.impl.feel.integration.SpinValueMapper@37e491e2)), function-provider: org.camunda.bpm.dmn.feel.impl.scala.function.CustomFunctionTransformer@1d7f7962, clock: SystemClock, configuration: Configuration(false)]
+13:00:30.518 [main] - [] - INFO  o.c.bpm.connect - [logInfo,132] - CNCT-01004 Discovered provider for connector id 'http-connector' and class 'org.camunda.connect.httpclient.impl.HttpConnectorImpl': 'org.camunda.connect.httpclient.impl.HttpConnectorProviderImpl'
+13:00:30.519 [main] - [] - INFO  o.c.bpm.connect - [logInfo,132] - CNCT-01004 Discovered provider for connector id 'soap-http-connector' and class 'org.camunda.connect.httpclient.soap.impl.SoapHttpConnectorImpl': 'org.camunda.connect.httpclient.soap.impl.SoapHttpConnectorProviderImpl'
+13:00:39.195 [main] - [] - INFO  o.camunda.bpm.engine - [logInfo,132] - ENGINE-00001 Process Engine default created.
+13:00:39.489 [main] - [] - INFO  o.c.bpm.spring.boot - [logInfo,132] - STARTER-SB011 skip creating initial Admin User, user does exist: UserEntity[id=110588348101165911, revision=1, firstName=admin, lastName=110588348101165911, email=110588348101165911@localhost, password={SHA-512}0nmC9lBzBG/bBfExYZqrRWftFPpZ9K3QCbtjX8pGB9jO2YMx+kFd4pH3+C9DkZsRSZC3/dY7ITgZ76Y+bzz4mA==, salt=qioesnQej3iMXcqOvBhe5g==, lockExpirationTime=null, attempts=0]
+13:00:39.841 [main] - [] - INFO  o.c.b.s.b.s.w.f.LazyInitRegistration - [lazyInit,66] - lazy initialized org.camunda.bpm.spring.boot.starter.webapp.filter.LazyProcessEnginesFilter@64eb14da
+13:00:39.869 [main] - [] - INFO  o.c.b.s.b.s.w.f.LazyInitRegistration - [lazyInit,66] - lazy initialized org.camunda.bpm.spring.boot.starter.webapp.filter.LazySecurityFilter@25a52a60
+13:00:39.939 [main] - [] - INFO  o.c.bpm.container - [logInfo,132] - ENGINE-08026 No processes.xml file found in process application 'wrapperCamundaApp'
+13:00:39.942 [main] - [] - INFO  o.c.bpm.container - [logInfo,132] - ENGINE-08050 Process application wrapperCamundaApp successfully deployed
+13:00:39.944 [main] - [] - INFO  o.g.f.w.w.WrapperCamundaApp - [logStarted,61] - Started WrapperCamundaApp in 30.293 seconds (JVM running for 31.356)
+13:00:39.945 [main] - [] - INFO  c.g.f.s.w.WebContext - [gatherUrlMapping,128] - Request Mappings: 
+
+url = /v2/api-docs , method = springfox.documentation.swagger2.web.Swagger2ControllerWebMvc.getDocumentation
+url = /swagger-resources/configuration/security , method = springfox.documentation.swagger.web.ApiResourceController.securityConfiguration
+url = /swagger-resources/configuration/ui , method = springfox.documentation.swagger.web.ApiResourceController.uiConfiguration
+url = /swagger-resources , method = springfox.documentation.swagger.web.ApiResourceController.swaggerResources
+url = /service-camunda/camunda-incident/query-by-process-instance-ids , method = org.github.foxnic.web.camunda.api.CamundaIncidentController.queryIncidentsByProcessInstanceIds
+url = /service-camunda/camunda-process/start , method = org.github.foxnic.web.camunda.api.CamundaProcessController.start
+url = /service-camunda/camunda-process/query-by-ids , method = org.github.foxnic.web.camunda.api.CamundaProcessController.queryByIds
+url = /service-camunda/camunda-process/abandon-process , method = org.github.foxnic.web.camunda.api.CamundaProcessController.abandonProcess
+url = /service-camunda/camunda-process/fetch-back , method = org.github.foxnic.web.camunda.api.CamundaProcessController.fetchBack
+url = /service-camunda/camunda-process/jump , method = org.github.foxnic.web.camunda.api.CamundaProcessController.jumpToNode
+url = /service-camunda/camunda-process/set-variables , method = org.github.foxnic.web.camunda.api.CamundaProcessController.setVariables
+url = /service-camunda/camunda-tenant/create , method = org.github.foxnic.web.camunda.api.CamundaTenantController.create
+url = /service-camunda/camunda-task/todo-tasks , method = org.github.foxnic.web.camunda.api.CamundaTaskController.getTodoTasks
+url = /service-camunda/camunda-task/process-task , method = org.github.foxnic.web.camunda.api.CamundaTaskController.processTask
+url = /service-camunda/camunda-task/query-tasks-by-process-instance-ids , method = org.github.foxnic.web.camunda.api.CamundaTaskController.queryTasksByProcessInstanceIds
+url = /service-camunda/camunda-user/query-list , method = org.github.foxnic.web.camunda.api.CamundaUserController.queryList
+url = /service-camunda/camunda-user/get-by-id , method = org.github.foxnic.web.camunda.api.CamundaUserController.getById
+url = /service-camunda/camunda-deploy/deploy , method = org.github.foxnic.web.camunda.api.CamundaDeployController.deploy
+url = /v3/api-docs , method = springfox.documentation.oas.web.OpenApiControllerWebMvc.getDocumentation
+url = /error , method = org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.error
+url = /error , method = org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController.errorHtml
+
+13:00:39.945 [main] - [] - INFO  c.g.f.s.a.a.ApplicationAwareHandler - [onApplicationEvent,66] - url scan time : 1ms
+13:00:39.948 [main] - [] - INFO  c.g.f.s.a.a.ApplicationAwareHandler - [onApplicationEvent,86] - 
+
+======================== FOX-NIC-WEB IS READY ========================
+	Internal Version				1.6.2-20211214
+	Machine Id						76C24FBF9BD15F8A
+	Process Id						51102
+	Application Name				service-bpm
+	Active Profile					default
+	Port							8099
+	Boot Time						29s
+	Visit Local						http://127.0.0.1:8099/
+	Visit LAN(0)					http://172.20.10.3:8099/
+======================== FOX-NIC-WEB IS READY ========================
+
+13:00:39.949 [simple-parallel-task] - [] - INFO  o.g.f.w.f.d.DeployMonitor - [regist,57] - start monitor view-console@ /Users/lankl/IdeaProjects/eam/eam/view/view-console
+13:00:39.951 [simple-parallel-task] - [] - INFO  o.g.f.w.f.d.DeployMonitor - [regist,72] - deploy is ready on 5 dirs
+13:00:40.031 [main] - [] - INFO  c.g.f.d.s.SQLPrinter - [printIn,123] - 
+┏━━━━━ SQL [ SELECT TABLE_NAME,TABLE_COMMENT TC,TABLE_TYPE FROM INFORMATION_SCHEMA.TABLES W... ] ━━━━━ 
+┣ 语句：SELECT TABLE_NAME,TABLE_COMMENT TC,TABLE_TYPE FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA IN( ? ,UPPER( ? ))
+┣ 参数：{"PARAM_1":"eam","PARAM_2":"eam"}
+┣ 执行：SELECT TABLE_NAME,TABLE_COMMENT TC,TABLE_TYPE FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA IN( 'eam' ,UPPER( 'eam' ))
+┣ 结果： 
+┣━ 耗时：79ms , start = 1656738039950
+┣━ 返回：RcdSet,size=364
+┣ 调用栈：
+    org.github.foxnic.web.camunda.listener.defaults.execution.EventCallbackQueue.onApplicationEvent(EventCallbackQueue.java:42)
+    org.github.foxnic.web.camunda.listener.defaults.execution.EventCallbackQueue.onApplicationEvent(EventCallbackQueue.java:30)
+    org.github.foxnic.web.framework.starter.BootApplication.run(BootApplication.java:23)
+    org.github.foxnic.web.wrapper.WrapperCamundaApp.main(WrapperCamundaApp.java:20)
+┣ TID：null
+┗━━━━━ SQL [ SELECT TABLE_NAME,TABLE_COMMENT TC,TABLE_TYPE FROM INFORMATION_SCHEMA.TABLES W... ] ━━━━━ 
+
+13:00:40.101 [main] - [] - INFO  c.g.f.d.s.SQLPrinter - [printIn,123] - 
+┏━━━━━ SQL [ SELECT DISTINCT TABLE_NAME,COLUMN_NAME,DATA_TYPE, CHARACTER_MAXIMUM_LENGTH CHA... ] ━━━━━ 
+┣ 语句：SELECT DISTINCT TABLE_NAME,COLUMN_NAME,DATA_TYPE, CHARACTER_MAXIMUM_LENGTH CHAR_LENGTH, CHARACTER_OCTET_LENGTH DATA_LENGTH ,  
+NUMERIC_PRECISION NUM_PRECISION,NUMERIC_SCALE NUM_SCALE,IS_NULLABLE NULLABLE, (CASE WHEN EXTRA='auto_increment' THEN 'YES' ELSE 'NO' END)  AUTO_INCREASE, 
+COLUMN_KEY KEY_TYPE,COLUMN_COMMENT COMMENTS,COLUMN_DEFAULT  
+FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA IN( ? ,UPPER( ? )) AND LOWER(TABLE_NAME)= ?
+┣ 参数：{"PARAM_1":"eam","PARAM_3":"act_ru_event_callback","PARAM_2":"eam"}
+┣ 执行：SELECT DISTINCT TABLE_NAME,COLUMN_NAME,DATA_TYPE, CHARACTER_MAXIMUM_LENGTH CHAR_LENGTH, CHARACTER_OCTET_LENGTH DATA_LENGTH ,  
+NUMERIC_PRECISION NUM_PRECISION,NUMERIC_SCALE NUM_SCALE,IS_NULLABLE NULLABLE, (CASE WHEN EXTRA='auto_increment' THEN 'YES' ELSE 'NO' END)  AUTO_INCREASE, 
+COLUMN_KEY KEY_TYPE,COLUMN_COMMENT COMMENTS,COLUMN_DEFAULT  
+FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA IN( 'eam' ,UPPER( 'eam' )) AND LOWER(TABLE_NAME)= 'act_ru_event_callback'
+┣ 结果： 
+┣━ 耗时：55ms , start = 1656738040046
+┣━ 返回：RcdSet,size=15
+┣ 调用栈：
+    org.github.foxnic.web.camunda.listener.defaults.execution.EventCallbackQueue.onApplicationEvent(EventCallbackQueue.java:42)
+    org.github.foxnic.web.camunda.listener.defaults.execution.EventCallbackQueue.onApplicationEvent(EventCallbackQueue.java:30)
+    org.github.foxnic.web.framework.starter.BootApplication.run(BootApplication.java:23)
+    org.github.foxnic.web.wrapper.WrapperCamundaApp.main(WrapperCamundaApp.java:20)
+┣ TID：null
+┗━━━━━ SQL [ SELECT DISTINCT TABLE_NAME,COLUMN_NAME,DATA_TYPE, CHARACTER_MAXIMUM_LENGTH CHA... ] ━━━━━ 
+
+13:00:40.573 [main] - [] - INFO  o.c.b.e.jobexecutor - [logInfo,132] - ENGINE-14014 Starting up the JobExecutor[org.camunda.bpm.engine.spring.components.jobexecutor.SpringJobExecutor].
+13:00:40.577 [JobExecutor[org.camunda.bpm.engine.spring.components.jobexecutor.SpringJobExecutor]] - [] - INFO  o.c.b.e.jobexecutor - [logInfo,132] - ENGINE-14018 JobExecutor[org.camunda.bpm.engine.spring.components.jobexecutor.SpringJobExecutor] starting to acquire jobs
+14:04:38.108 [SpringContextShutdownHook] - [] - INFO  o.c.bpm.container - [logInfo,132] - ENGINE-08051 Process application wrapperCamundaApp undeployed
+14:39:32.558 [SpringContextShutdownHook] - [] - INFO  o.c.b.e.jobexecutor - [logInfo,132] - ENGINE-14015 Shutting down the JobExecutor[org.camunda.bpm.engine.spring.components.jobexecutor.SpringJobExecutor]
+14:39:32.558 [JobExecutor[org.camunda.bpm.engine.spring.components.jobexecutor.SpringJobExecutor]] - [] - INFO  o.c.b.e.jobexecutor - [logInfo,132] - ENGINE-14020 JobExecutor[org.camunda.bpm.engine.spring.components.jobexecutor.SpringJobExecutor] stopped job acquisition
+14:39:33.682 [SpringContextShutdownHook] - [] - INFO  o.camunda.bpm.engine - [logInfo,132] - ENGINE-00007 Process Engine default closed

@@ -200,9 +200,10 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 请求流程数据成功时
          * */
         onProcessInstanceReady:function (result) {
+
             // 可根据流程状态、当前审批节点判断和控制表单页面
             processInstance=result.data;
-            console.log("processInstance",åprocessInstance);
+            console.log("processInstance",processInstance);
             // 获得所有待办节点
             var todoNodes=bpm.getTodoNodes(processInstance);
             console.log("todoNodes",todoNodes);
@@ -239,13 +240,36 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单数据填充前
          * */
         beforeDataFill:function (data) {
+
+
             console.log('beforeDataFill',data);
         },
         /**
          * 表单数据填充后
          * */
         afterDataFill:function (data) {
+            if(data.status&&data.status=="incomplete"){
+                console.log("edit")
+            }else{
+                fox.lockForm($("#data-form"),true);
+            }
             console.log('afterDataFill',data);
+
+
+            var ownerId="";
+            if(data&&data.id){
+                ownerId=data.id;
+            }
+            $("#iframe").height("400px");
+            formAction="view";
+            var queryString="?employeeId="+EMPLOYEE_ID+"&pageType="+formAction+"&selectedCode="+timestamp+"&ownerId="+ownerId;
+            //设置地址
+            console.log("queryString",queryString);
+            $("#iframe")[0].contentWindow.location="/business/eam/asset/asset_search/employee_assetInfo_selected_list.html"+queryString
+
+
+
+
         },
         /**
          * 对话框打开之前调用，如果返回 null 则不打开对话框
@@ -319,11 +343,13 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             ifr.height("400px");
             var ownerId="";
             if(data&&data.id){
-                ownerId=data.id;
+            }else{
+                formAction="create";
+                var queryString="?employeeId="+EMPLOYEE_ID+"&pageType="+formAction+"&selectedCode="+timestamp+"&ownerId="+ownerId;
+                //设置地址
+                win.location="/business/eam/asset/asset_search/employee_assetInfo_selected_list.html"+queryString
+
             }
-            var queryString="?employeeId="+EMPLOYEE_ID+"&pageType="+formAction+"&selectedCode="+timestamp+"&ownerId="+ownerId;
-            //设置地址
-            win.location="/business/eam/asset/asset_search/employee_assetInfo_selected_list.html"+queryString
         },
         /**
          * 文件上传组件回调

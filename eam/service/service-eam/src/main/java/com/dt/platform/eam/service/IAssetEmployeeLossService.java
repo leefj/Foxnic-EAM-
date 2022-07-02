@@ -25,7 +25,7 @@ import java.util.Map;
  * 资产报失 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-02 12:53:40
+ * @since 2022-07-02 22:09:17
 */
 
 public interface IAssetEmployeeLossService extends  ISimpleIdService<AssetEmployeeLoss,String> {

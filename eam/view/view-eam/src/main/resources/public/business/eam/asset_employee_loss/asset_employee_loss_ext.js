@@ -26,6 +26,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     var timestamp = Date.parse(new Date());
     //列表页的扩展
     var list={
+        getBpmDefaultValue:function () {
+            return {
+                title:"资产报失申请",
+                priority:"normal" // priority 的可选值 urgency，normal
+            }
+        },
         bpmOpenWithoutProcess:function(pkdata) {
             top.layer.msg('当前业务单据尚未关联流程', {icon: 2, time: 1500});
         },

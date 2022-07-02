@@ -26,7 +26,9 @@ import java.util.Arrays;
 public class AssetEmployeeLossBpmEventAdaptor extends BpmEventAdaptor<AssetEmployeeLoss,IAssetEmployeeLossService> {
 
 	public AssetEmployeeLossBpmEventAdaptor(IAssetEmployeeLossService service) {
+
 		super(service);
+
 	}
 
 	/***

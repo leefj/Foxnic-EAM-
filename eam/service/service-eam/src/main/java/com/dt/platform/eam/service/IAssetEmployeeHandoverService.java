@@ -25,7 +25,7 @@ import java.util.Map;
  * 资产交接 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-02 12:53:28
+ * @since 2022-07-02 22:09:25
 */
 
 public interface IAssetEmployeeHandoverService extends  ISimpleIdService<AssetEmployeeHandover,String> {
