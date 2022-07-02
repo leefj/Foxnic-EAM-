@@ -10,6 +10,7 @@ import com.dt.platform.eam.page.AssetScrapPageController;
 import com.dt.platform.eam.service.impl.AssetItemServiceImpl;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.AssetScrapServiceProxy;
+import com.github.foxnic.api.bpm.IntegrateMode;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.changes.ChangeInstance;
 import org.github.foxnic.web.domain.hrm.Employee;
@@ -26,6 +27,10 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
 
         cfg.getPoClassFile().addListProperty(Asset.class,"assetList","资产","资产");
         cfg.getPoClassFile().addListProperty(String.class,"assetIds","资产列表","资产列表");
+
+
+        cfg.bpm().form("eam_asset_scrap");
+        cfg.bpm().integrate(IntegrateMode.FRONT);
 
         //cfg.service().addRelationSaveAction(AssetItemServiceImpl.class, AssetScrapVOMeta.ASSET_IDS);
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
@@ -95,9 +100,9 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
 //        cfg.view().list().operationColumn().addActionButton("单据","downloadBill",null);
 
 
-        cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_scrap:for-approval");
+     //   cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_scrap:for-approval");
         cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_scrap:confirm");
-        cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_scrap:revoke");
+//        cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_scrap:revoke");
         cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_scrap:bill");
 
 
@@ -141,6 +146,7 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
                 .setPageController(WriteMode.IGNORE) //页面控制器
                 .setFormPage(WriteMode.IGNORE) //表单HTML页
                 .setListPage(WriteMode.IGNORE)
+                .setBpmEventAdaptor(WriteMode.IGNORE)
                 .setExtendJsFile(WriteMode.IGNORE); //列表HTML页; //列表HTML页
         cfg.buildAll();
     }

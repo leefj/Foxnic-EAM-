@@ -39,6 +39,7 @@
         padding-top: 0px;
         margin-right: 0px;
         margin-left: 4px;
+        margin-right: 10px;
     }
     </style>
     <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
@@ -47,6 +48,7 @@
 <body style="overflow-y: hidden;">
 <div class="form-container" >
 
+    <div style="height: 4px;"></div>
     <form id="data-form" lay-filter="data-form" class="layui-form model-form" style="display:none">
 
         <input name="id" id="id"  type="hidden"/>

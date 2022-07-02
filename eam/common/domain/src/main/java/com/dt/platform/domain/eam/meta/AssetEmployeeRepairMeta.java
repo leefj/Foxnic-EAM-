@@ -13,7 +13,7 @@ import org.github.foxnic.web.domain.bpm.ProcessInstance;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-01 06:12:33
+ * @since 2022-07-02 10:49:33
  * @sign 796431AB45B8EE88E6CFFCDD25398CD1
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

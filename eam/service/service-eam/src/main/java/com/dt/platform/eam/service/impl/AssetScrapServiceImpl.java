@@ -14,9 +14,9 @@ import com.dt.platform.domain.eam.meta.AssetDataChangeMeta;
 import com.dt.platform.domain.eam.meta.AssetRepairMeta;
 import com.dt.platform.domain.eam.meta.AssetScrapMeta;
 import com.dt.platform.eam.common.AssetCommonError;
-import com.dt.platform.eam.service.IAssetSelectedDataService;
-import com.dt.platform.eam.service.IAssetService;
-import com.dt.platform.eam.service.IOperateService;
+import com.dt.platform.eam.service.*;
+import com.dt.platform.eam.service.bpm.AssetEmployeeLossBpmEventAdaptor;
+import com.dt.platform.eam.service.bpm.AssetScrapBpmEventAdaptor;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.dt.platform.proxy.eam.AssetRepairServiceProxy;
 import com.dt.platform.proxy.eam.AssetScrapServiceProxy;
@@ -31,7 +31,10 @@ import org.github.foxnic.web.constants.enums.changes.ApprovalAction;
 import org.github.foxnic.web.constants.enums.changes.ApprovalMode;
 import org.github.foxnic.web.constants.enums.changes.ChangeType;
 import org.github.foxnic.web.domain.bpm.Assignee;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.*;
+import org.github.foxnic.web.framework.bpm.BpmAssistant;
 import org.github.foxnic.web.framework.change.ChangesAssistant;
 import org.github.foxnic.web.proxy.changes.ChangeDefinitionServiceProxy;
 import org.github.foxnic.web.session.SessionUser;
@@ -59,7 +62,6 @@ import com.github.foxnic.dao.meta.DBColumnMeta;
 import com.github.foxnic.sql.expr.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import com.dt.platform.eam.service.IAssetScrapService;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 
 /**
@@ -594,7 +596,7 @@ public class AssetScrapServiceImpl extends SuperService<AssetScrap> implements I
 		AssetScrap assetScrap = new AssetScrap();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		assetScrap.setId(id);
-		assetScrap.setDeleted(dao.getDBTreaty().getTrueValue());
+		assetScrap.setDeleted(1);
 		assetScrap.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		assetScrap.setDeleteTime(new Date());
 		try {
@@ -755,6 +757,30 @@ public class AssetScrapServiceImpl extends SuperService<AssetScrap> implements I
 	public List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch) {
 		return super.importExcel(input,sheetIndex,batch);
 	}
+
+
+	/**
+	 * 处理流程回调
+	 * */
+	public  BpmActionResult onProcessCallback(BpmEvent event) {
+		return (new AssetScrapBpmEventAdaptor(this)).onProcessCallback(event);
+	}
+
+	@Override
+	public void joinProcess(AssetEmployeeLoss assetEmployeeLoss) {
+		this.joinProcess(Arrays.asList(assetEmployeeLoss));
+	}
+
+	@Override
+	public void joinProcess(List<AssetEmployeeLoss> assetEmployeeLossList) {
+		BpmAssistant.joinProcess(assetEmployeeLossList, IAssetEmployeeLossService.FORM_DEFINITION_CODE);
+	}
+
+	@Override
+	public void joinProcess(PagedList<AssetEmployeeLoss> assetEmployeeLossList) {
+		this.joinProcess(assetEmployeeLossList.getList());
+	}
+
 
 	@Override
 	public ExcelStructure buildExcelStructure(boolean isForExport) {

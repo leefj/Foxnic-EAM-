@@ -25,7 +25,7 @@ import java.util.Map;
  * 资产报失 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-02 08:03:24
+ * @since 2022-07-02 08:11:33
 */
 
 public interface IAssetEmployeeLossService extends  ISimpleIdService<AssetEmployeeLoss,String> {
@@ -34,7 +34,7 @@ public interface IAssetEmployeeLossService extends  ISimpleIdService<AssetEmploy
 	/**
  	  * 表单定义代码
       **/
-	public static final String FORM_DEFINITION_CODE="eam_asset_employee_loss";
+	public static final String FORM_DEFINITION_CODE="eam_asset_scrap";
 	/**
 	 * 添加，如果语句错误，则抛出异常
 	 * @param assetEmployeeLoss 数据对象

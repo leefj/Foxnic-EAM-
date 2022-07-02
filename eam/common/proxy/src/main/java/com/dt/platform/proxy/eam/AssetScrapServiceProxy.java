@@ -122,6 +122,13 @@ public interface AssetScrapServiceProxy {
      */
     public static final String CLEAN_OUT = API_PREFIX + "clean-out";
 
+
+    /**
+     * 流程事件回调接收接口
+     */
+    public static final String BPM_CALLBACK = API_PREFIX + "bpm-callback";
+
+
     /**
      * 添加资产报废
      */

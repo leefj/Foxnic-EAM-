@@ -17,10 +17,18 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     var admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate,dropdown=layui.dropdown;
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload,bpm=layui.bpm;
 
+
+
+    var processId=QueryString.get("processId");
+    var processInstance=null;
+
+
+
     //模块基础路径
     const moduleURL="/service-eam/eam-asset-employee-repair";
     var formAction=admin.getTempData('eam-asset-employee-repair-form-data-form-action');
     var timestamp = Date.parse(new Date());
+
 
     //列表页的扩展
     var list={
@@ -190,6 +198,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             // 判断是否为当前账户的待办节点
             var isMyTodoNode=bpm.isCurrentUserTodoNode(processInstance,"N1");
             console.log("isMyTodoNode:N1",isMyTodoNode);
+        },
+        /**
+         * 请求流程数据错误时
+         * */
+        onProcessInstanceError:function (result) {
+            return true;
         },
         /**
          * 表单初始化前调用 , 并传入表单数据

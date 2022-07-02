@@ -8,9 +8,12 @@ import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
 import com.dt.platform.domain.eam.AssetRepair;
 import com.dt.platform.domain.eam.meta.*;
+import com.dt.platform.proxy.eam.AssetEmployeeRepairServiceProxy;
 import com.dt.platform.proxy.eam.AssetRepairServiceProxy;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.commons.lang.StringUtil;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.domain.hrm.Person;
 import org.springframework.web.bind.annotation.RestController;
@@ -540,6 +543,17 @@ public class AssetScrapController extends SuperController {
 				return ErrorDesc.failure().message("导入失败").data(errors);
 			}
 		}
+
+
+
+	/**
+	 *  流程回调处理
+	 */
+	@SentinelResource(value = AssetScrapServiceProxy.BPM_CALLBACK , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(AssetScrapServiceProxy.BPM_CALLBACK)
+	public BpmActionResult onProcessCallback(BpmEvent event){
+		return assetScrapService.onProcessCallback(event);
+	}
 
 
 }
