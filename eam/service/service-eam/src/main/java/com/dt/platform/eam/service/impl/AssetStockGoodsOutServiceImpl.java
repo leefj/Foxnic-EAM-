@@ -152,20 +152,7 @@ public class AssetStockGoodsOutServiceImpl extends SuperService<AssetStockGoodsO
 		return goodsStockService.saveOwnerData(assetStockGoodsOut.getId(),assetStockGoodsOut.getOwnerType(),list);
 	}
 
-	@Override
-	public Result startProcess(ProcessStartVO startVO) {
-		return null;
-	}
 
-	@Override
-	public Result approve(ProcessApproveVO approveVO) {
-		return null;
-	}
-
-	@Override
-	public Result approve(String instanceId, List<AssetAllocation> assets, String approveAction, String opinion) {
-		return null;
-	}
 
 	@Override
 	public Map<String, Object> getBill(String id) {
@@ -211,15 +198,6 @@ public class AssetStockGoodsOutServiceImpl extends SuperService<AssetStockGoodsO
 
 	}
 
-	@Override
-	public Result revokeOperation(String id) {
-		return null;
-	}
-
-	@Override
-	public Result forApproval(String id) {
-		return null;
-	}
 
 
 	/**

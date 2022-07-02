@@ -418,21 +418,6 @@ public class AssetScrapController extends SuperController {
 
 
 
-	/**
-	 * 报废送审
-	 * */
-	@ApiOperation(value = "报废送审")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetScrapVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetScrapVOMeta.ID)
-	@ApiOperationSupport(order=12)
-	@SentinelResource(value = AssetScrapServiceProxy.FOR_APPROVAL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetScrapServiceProxy.FOR_APPROVAL)
-	public Result forApproval(String id)  {
-		return assetScrapService.forApproval(id);
-	}
-
 
 	/**
 	 * 确认
@@ -450,34 +435,6 @@ public class AssetScrapController extends SuperController {
 	}
 
 
-
-
-	/**
-	 * 撤销
-	 * */
-	@ApiOperation(value = "撤销")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetScrapVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetScrapVOMeta.ID)
-	@ApiOperationSupport(order=14)
-	@SentinelResource(value = AssetScrapServiceProxy.REVOKE_OPERATION , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetScrapServiceProxy.REVOKE_OPERATION)
-	public Result revokeOperation(String id)  {
-		return assetScrapService.revokeOperation(id);
-	}
-
-
-	/**
-	 * 审批
-	 * */
-	@ApiOperation(value = "审批")
-	@ApiOperationSupport(order=15)
-	@SentinelResource(value = AssetScrapServiceProxy.APPROVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetScrapServiceProxy.APPROVE)
-	public Result approve(ProcessApproveVO approveVO)  {
-		return assetScrapService.approve(approveVO);
-	}
 
 
 	/**

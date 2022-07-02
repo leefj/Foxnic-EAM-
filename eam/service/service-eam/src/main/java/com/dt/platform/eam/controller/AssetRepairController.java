@@ -338,23 +338,7 @@ public class AssetRepairController extends SuperController {
 		return result;
 	}
 
-
-	/**
-	 * 报修送审
-	 * */
-	@ApiOperation(value = "报修送审")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetRepairVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetRepairVOMeta.ID)
-	@ApiOperationSupport(order=12)
-	@SentinelResource(value = AssetRepairServiceProxy.FOR_APPROVAL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetRepairServiceProxy.FOR_APPROVAL)
-	public Result forApproval(String id)  {
-		return assetRepairService.forApproval(id);
-	}
-
-
+ 
 	/**
 	 * 确认
 	 * */
@@ -371,33 +355,6 @@ public class AssetRepairController extends SuperController {
 	}
 
 
-
-	/**
-	 * 撤销
-	 * */
-	@ApiOperation(value = "撤销")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetRepairVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetRepairVOMeta.ID)
-	@ApiOperationSupport(order=14)
-	@SentinelResource(value = AssetRepairServiceProxy.REVOKE_OPERATION , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetRepairServiceProxy.REVOKE_OPERATION)
-	public Result revokeOperation(String id)  {
-		return assetRepairService.revokeOperation(id);
-	}
-
-
-	/**
-	 * 审批
-	 * */
-	@ApiOperation(value = "审批")
-	@ApiOperationSupport(order=15)
-	@SentinelResource(value = AssetRepairServiceProxy.APPROVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetRepairServiceProxy.APPROVE)
-	public Result approve(ProcessApproveVO approveVO)  {
-		return assetRepairService.approve(approveVO);
-	}
 
 
 	/**

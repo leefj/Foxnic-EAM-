@@ -29,10 +29,6 @@ import org.github.foxnic.web.domain.changes.ProcessStartVO;
 public interface IOperateService extends ISuperService<Operate> {
 
 
-	Result startProcess(ProcessStartVO startVO);
-
-	Result approve(ProcessApproveVO approveVO);
-
 
 	/**
 	 * 资产数据权限启用

@@ -77,38 +77,6 @@ public class OperateServiceImpl extends SuperService<Operate> implements IOperat
 	}
 
 
-	/**
-	 * 批量启动审批
-	 * */
-	@Override
-	public Result startProcess(ProcessStartVO startVO) {
-		Result result=new Result();
-		for (String id : startVO.getBillIds()) {
-			Result<ChangeEvent> r=startProcess(id);
-			if(r.failure()) {
-				result.addError(r);
-			} else {
-				// 处理逻辑
-				ChangeEvent event=r.data();
-				//syncOrder(id,event);
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * 启动审批
-	 * */
-	public Result startProcess(String id) {
-
-		return null;
-	}
-
-
-	@Override
-	public Result approve(ProcessApproveVO approveVO) {
-		return null;
-	}
 
 
 

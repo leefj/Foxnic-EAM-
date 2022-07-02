@@ -84,25 +84,6 @@ public class StockServiceImpl extends SuperService<Stock> implements IStockServi
 	}
 
 
-	@Override
-	public Result startProcess(ProcessStartVO startVO) {
-		return null;
-	}
-
-	@Override
-	public Result approve(ProcessApproveVO approveVO) {
-		return null;
-	}
-
-	@Override
-	public Result revokeOperation(String id) {
-		return null;
-	}
-
-	@Override
-	public Result forApproval(String id) {
-		return null;
-	}
 
 	@Override
 	public Result confirmOperation(String id) {

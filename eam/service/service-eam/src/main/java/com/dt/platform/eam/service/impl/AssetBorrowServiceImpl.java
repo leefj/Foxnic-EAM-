@@ -101,24 +101,6 @@ public class AssetBorrowServiceImpl extends SuperService<AssetBorrow> implements
 
 
 
-	@Override
-	public Result startProcess(ProcessStartVO startVO) {
-		return null;
-	}
-
-	@Override
-	public Result approve(ProcessApproveVO approveVO) {
-		return null;
-	}
-
-
-
-	@Override
-	public Result approve(String instanceId, List<AssetBorrow> assets, String approveAction, String opinion) {
-		return null;
-	}
-
-
 	/**
 	 * 归还资产
 	 * @param ids 单据IDS
@@ -192,72 +174,6 @@ public class AssetBorrowServiceImpl extends SuperService<AssetBorrow> implements
 		return map;
 	}
 
-	private void syncBill(String id, ChangeEvent event) {
-		AssetBorrow asset4Update=AssetBorrow.create();
-//		asset4Update.setId(id)
-//				//设置变更ID
-//				.setChangeInstanceId(event.getInstance().getId())
-//				//更新状态
-//				.setChsStatus(event.getInstance().getStatusEnum().code())
-//				//更新最后审批人
-//				.setLatestApproverId(event.getApproverId())
-//				.setLatestApproverName(event.getApproverName())
-//				//设置下一节点审批人
-//				.setNextApproverIds(event.getSimpleNextApproverIds())
-//				.setNextApproverNames(event.getSimpleNextApproverNames())
-//				//更新流程概要
-//				.setSummary(event.getDefinition().getName()+","+event.getApproveActionEnum().text());
-		//执行更新
-		this.update(asset4Update,SaveMode.BESET_FIELDS);
-	}
-
-	/**
-	 * 启动流程
-	 * */
-	public Result startProcess(String id) {
-		return null;
-	}
-
-
-	/**
-	 * 撤销
-	 * @param id ID
-	 * @return 是否成功
-	 * */
-	@Override
-	public Result revokeOperation(String id) {
-		AssetBorrow billData=getById(id);
-		if(AssetHandleStatusEnum.APPROVAL.code().equals(billData.getStatus())){
-
-		}else{
-			return ErrorDesc.failureMessage("当前状态不能，不能进行撤销操作");
-		}
-		return ErrorDesc.success();
-	}
-
-
-
-	/**
-	 * 送审
-	 * @param id ID
-	 * @return 是否成功
-	 * */
-	@Override
-	public Result forApproval(String id){
-
-		AssetBorrow billData=getById(id);
-		if(AssetHandleStatusEnum.INCOMPLETE.code().equals(billData.getStatus())){
-			if(operateService.approvalRequired(AssetOperateEnum.EAM_ASSET_BORROW.code()) ) {
-				//审批操作
-			}else{
-				return ErrorDesc.failureMessage("当前操作不需要送审,请直接进行确认操作");
-			}
-		}else{
-			return ErrorDesc.failureMessage("当前状态为:"+billData.getStatus()+",不能进行该操作");
-		}
-		return ErrorDesc.success();
-
-	}
 
 
 	private Result applyChange(String id){

@@ -97,25 +97,11 @@ public interface StockServiceProxy {
      */
     public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
 
-    /**
-     * 提交审批
-     */
-    public static final String FOR_APPROVAL = API_PREFIX + "for-approval";
-
-    /**
-     * 审批
-     */
-    public static final String APPROVE = API_PREFIX + "approve";
 
     /**
      * 确认操作
      */
     public static final String CONFIRM_OPERATION = API_PREFIX + "confirm-operation";
-
-    /**
-     * 撤销操作
-     */
-    public static final String REVOKE_OPERATION = API_PREFIX + "revoke-operation";
 
     /**
      * 添加资产库存

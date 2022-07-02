@@ -372,21 +372,6 @@ public class AssetStockGoodsAdjustController extends SuperController {
 		return result;
 	}
 
-	/**
-	 * 送审
-	 * */
-	@ApiOperation(value = "送审")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetStockGoodsAdjustVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetStockGoodsAdjustVOMeta.ID)
-	@ApiOperationSupport(order=12)
-	@SentinelResource(value = AssetStockGoodsAdjustServiceProxy.FOR_APPROVAL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetStockGoodsAdjustServiceProxy.FOR_APPROVAL)
-	public Result forApproval(String id)  {
-		return assetStockGoodsAdjustService.forApproval(id);
-	}
-
 
 	/**
 	 * 确认
@@ -403,33 +388,6 @@ public class AssetStockGoodsAdjustController extends SuperController {
 		return assetStockGoodsAdjustService.confirmOperation(id);
 	}
 
-
-	/**
-	 * 撤销
-	 * */
-	@ApiOperation(value = "撤销")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetStockGoodsAdjustVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetStockGoodsAdjustVOMeta.ID)
-	@ApiOperationSupport(order=14)
-	@SentinelResource(value = AssetStockGoodsAdjustServiceProxy.REVOKE_OPERATION , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetStockGoodsAdjustServiceProxy.REVOKE_OPERATION)
-	public Result revokeOperation(String id)  {
-		return assetStockGoodsAdjustService.revokeOperation(id);
-	}
-
-
-	/**
-	 * 审批
-	 * */
-	@ApiOperation(value = "审批")
-	@ApiOperationSupport(order=15)
-	@SentinelResource(value = AssetStockGoodsAdjustServiceProxy.APPROVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetStockGoodsAdjustServiceProxy.APPROVE)
-	public Result approve(ProcessApproveVO approveVO)  {
-		return assetStockGoodsAdjustService.approve(approveVO);
-	}
 
 
 

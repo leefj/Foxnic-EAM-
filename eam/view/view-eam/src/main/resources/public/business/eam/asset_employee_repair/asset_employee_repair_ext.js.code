@@ -1,7 +1,7 @@
 /**
- * 领用申请 列表页 JS 脚本
+ * 资产报修 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-02 12:53:18
+ * @since 2022-07-02 12:53:52
  */
 
 layui.config({
@@ -18,7 +18,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload,bpm=layui.bpm;
 
     //模块基础路径
-    const moduleURL="/service-eam/eam-asset-employee-apply";
+    const moduleURL="/service-eam/eam-asset-employee-repair";
 
     var processId=QueryString.get("processId");
     var processInstance=null;

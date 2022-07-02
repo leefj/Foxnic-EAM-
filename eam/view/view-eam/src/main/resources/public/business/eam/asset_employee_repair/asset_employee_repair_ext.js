@@ -19,6 +19,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
 
 
+
     var processId=QueryString.get("processId");
     var processInstance=null;
 
@@ -32,7 +33,20 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
     //列表页的扩展
     var list={
-        bpmOpenWithoutProcess:function(pkdata) {
+
+        /**
+         * 新建流程时返回流程表单需要预填的默认值
+         * */
+        getBpmDefaultValue:function () {
+            return {
+                title:"这是默认标题",
+                priority:"urgency" // priority 的可选值 urgency，normal
+            }
+        },
+        /**
+         * 表单没有关联的流程时的处理逻辑
+         * */
+        handleNoProcessBill:function(idValue) {
             top.layer.msg('当前业务单据尚未关联流程', {icon: 2, time: 1500});
         },
         /**

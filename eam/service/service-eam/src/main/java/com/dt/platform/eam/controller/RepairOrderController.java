@@ -342,22 +342,6 @@ public class RepairOrderController extends SuperController {
 
 
 	/**
-	 * 报修送审
-	 * */
-	@ApiOperation(value = "报修送审")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = RepairOrderVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = RepairOrderVOMeta.ID)
-	@ApiOperationSupport(order=12)
-	@SentinelResource(value = RepairOrderServiceProxy.FOR_APPROVAL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(RepairOrderServiceProxy.FOR_APPROVAL)
-	public Result forApproval(String id)  {
-		return repairOrderService.forApproval(id);
-	}
-
-
-	/**
 	 * 确认
 	 * */
 	@ApiOperation(value = "报修确认")
@@ -373,33 +357,6 @@ public class RepairOrderController extends SuperController {
 	}
 
 
-
-	/**
-	 * 撤销
-	 * */
-	@ApiOperation(value = "撤销")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = RepairOrderVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = RepairOrderVOMeta.ID)
-	@ApiOperationSupport(order=14)
-	@SentinelResource(value = RepairOrderServiceProxy.REVOKE_OPERATION , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(RepairOrderServiceProxy.REVOKE_OPERATION)
-	public Result revokeOperation(String id)  {
-		return repairOrderService.revokeOperation(id);
-	}
-
-
-	/**
-	 * 审批
-	 * */
-	@ApiOperation(value = "审批")
-	@ApiOperationSupport(order=15)
-	@SentinelResource(value = RepairOrderServiceProxy.APPROVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(RepairOrderServiceProxy.APPROVE)
-	public Result approve(ProcessApproveVO approveVO)  {
-		return repairOrderService.approve(approveVO);
-	}
 
 
 	/**

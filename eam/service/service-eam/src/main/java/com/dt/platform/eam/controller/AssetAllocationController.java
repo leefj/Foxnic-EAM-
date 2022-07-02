@@ -332,20 +332,6 @@ public class AssetAllocationController extends SuperController {
 
 
 
-	/**
-	 * 送审
-	 * */
-	@ApiOperation(value = "调拨送审")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetAllocationVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetAllocationVOMeta.ID)
-	@ApiOperationSupport(order=12)
-	@SentinelResource(value = AssetAllocationServiceProxy.FOR_APPROVAL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetAllocationServiceProxy.FOR_APPROVAL)
-	public Result forApproval(String id)  {
-		return assetAllocationService.forApproval(id);
-	}
 
 	/**
 	 * 确认
@@ -363,31 +349,6 @@ public class AssetAllocationController extends SuperController {
 	}
 
 
-	/**
-	 * 撤销
-	 * */
-	@ApiOperation(value = "撤销")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetAllocationVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetAllocationVOMeta.ID)
-	@ApiOperationSupport(order=14)
-	@SentinelResource(value = AssetAllocationServiceProxy.REVOKE_OPERATION , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetAllocationServiceProxy.REVOKE_OPERATION)
-	public Result revokeOperation(String id)  {
-		return assetAllocationService.revokeOperation(id);
-	}
-
-	/**
-	 * 审批
-	 * */
-	@ApiOperation(value = "审批")
-	@ApiOperationSupport(order=15)
-	@SentinelResource(value = AssetAllocationServiceProxy.APPROVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetAllocationServiceProxy.APPROVE)
-	public Result approve(ProcessApproveVO approveVO)  {
-		return assetAllocationService.approve(approveVO);
-	}
 
 	/**
 	 * 导出 Excel

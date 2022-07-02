@@ -331,22 +331,6 @@ public class AssetStockDeliverController extends SuperController {
 	}
 
 	/**
-	 * 送审
-	 * */
-	@ApiOperation(value = "送审")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetStockDeliverVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetStockDeliverVOMeta.ID)
-	@ApiOperationSupport(order=12)
-	@SentinelResource(value = AssetStockDeliverServiceProxy.FOR_APPROVAL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetStockDeliverServiceProxy.FOR_APPROVAL)
-	public Result forApproval(String id)  {
-		return assetStockDeliverService.forApproval(id);
-	}
-
-
-	/**
 	 * 确认
 	 * */
 	@ApiOperation(value = "确认")
@@ -359,34 +343,6 @@ public class AssetStockDeliverController extends SuperController {
 	@RequestMapping(AssetStockDeliverServiceProxy.CONFIRM_OPERATION)
 	public Result confirmOperation(String id)  {
 		return assetStockDeliverService.confirmOperation(id);
-	}
-
-
-	/**
-	 * 撤销
-	 * */
-	@ApiOperation(value = "撤销")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetStockDeliverVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetStockDeliverVOMeta.ID)
-	@ApiOperationSupport(order=14)
-	@SentinelResource(value = AssetStockDeliverServiceProxy.REVOKE_OPERATION , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetStockDeliverServiceProxy.REVOKE_OPERATION)
-	public Result revokeOperation(String id)  {
-		return assetStockDeliverService.revokeOperation(id);
-	}
-
-
-	/**
-	 * 审批
-	 * */
-	@ApiOperation(value = "审批")
-	@ApiOperationSupport(order=15)
-	@SentinelResource(value = AssetStockDeliverServiceProxy.APPROVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetStockDeliverServiceProxy.APPROVE)
-	public Result approve(ProcessApproveVO approveVO)  {
-		return assetStockDeliverService.approve(approveVO);
 	}
 
 

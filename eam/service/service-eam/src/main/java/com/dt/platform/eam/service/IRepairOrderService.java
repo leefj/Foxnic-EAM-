@@ -37,11 +37,8 @@ public interface IRepairOrderService extends ISuperService<RepairOrder> {
 
 	Result dispatchOrder(List<String> ids,String actId);
 
-	Result startProcess(ProcessStartVO startVO);
 
-	Result approve(ProcessApproveVO approveVO);
 
-	Result approve(String instanceId, List<AssetRepair> assets, String approveAction, String opinion);
 
 	/**
 	 * 获取单据数据
@@ -50,19 +47,7 @@ public interface IRepairOrderService extends ISuperService<RepairOrder> {
 	 * */
 	Map<String, Object> getBill(String id);
 
-	/**
-	 * 撤销流程
-	 * @param id ID
-	 * @return 是否成功
-	 * */
-	Result revokeOperation(String id);
 
-	/**
-	 * 送审
-	 * @param id ID
-	 * @return 是否成功
-	 * */
-	Result forApproval(String id);
 
 	/**
 	 * 确认操作

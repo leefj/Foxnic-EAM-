@@ -147,33 +147,10 @@ public class AssetSoftwareDistributeServiceImpl extends SuperService<AssetSoftwa
 		return ErrorDesc.success();
 	}
 
-	@Override
-	public Result startProcess(ProcessStartVO startVO) {
-		return null;
-	}
 
-	@Override
-	public Result approve(ProcessApproveVO approveVO) {
-		return null;
-	}
-
-	@Override
-	public Result approve(String instanceId, List<AssetAllocation> assets, String approveAction, String opinion) {
-		return null;
-	}
 
 	@Override
 	public Map<String, Object> getBill(String id) {
-		return null;
-	}
-
-	@Override
-	public Result revokeOperation(String id) {
-		return null;
-	}
-
-	@Override
-	public Result forApproval(String id) {
 		return null;
 	}
 

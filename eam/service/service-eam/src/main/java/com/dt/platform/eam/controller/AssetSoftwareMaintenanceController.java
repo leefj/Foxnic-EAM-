@@ -335,20 +335,6 @@ public class AssetSoftwareMaintenanceController extends SuperController {
 	}
 
 
-	/**
-	 * 送审
-	 * */
-	@ApiOperation(value = "送审")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetSoftwareMaintenanceVOMeta.ID)
-	@ApiOperationSupport(order=12)
-	@SentinelResource(value = AssetSoftwareMaintenanceServiceProxy.FOR_APPROVAL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetSoftwareMaintenanceServiceProxy.FOR_APPROVAL)
-	public Result forApproval(String id)  {
-		return assetSoftwareMaintenanceService.forApproval(id);
-	}
 
 
 	/**
@@ -364,34 +350,6 @@ public class AssetSoftwareMaintenanceController extends SuperController {
 	@RequestMapping(AssetSoftwareMaintenanceServiceProxy.CONFIRM_OPERATION)
 	public Result confirmOperation(String id)  {
 		return assetSoftwareMaintenanceService.confirmOperation(id);
-	}
-
-
-	/**
-	 * 撤销
-	 * */
-	@ApiOperation(value = "撤销")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetSoftwareMaintenanceVOMeta.ID)
-	@ApiOperationSupport(order=14)
-	@SentinelResource(value = AssetSoftwareMaintenanceServiceProxy.REVOKE_OPERATION , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetSoftwareMaintenanceServiceProxy.REVOKE_OPERATION)
-	public Result revokeOperation(String id)  {
-		return assetSoftwareMaintenanceService.revokeOperation(id);
-	}
-
-
-	/**
-	 * 审批
-	 * */
-	@ApiOperation(value = "审批")
-	@ApiOperationSupport(order=15)
-	@SentinelResource(value = AssetSoftwareMaintenanceServiceProxy.APPROVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetSoftwareMaintenanceServiceProxy.APPROVE)
-	public Result approve(ProcessApproveVO approveVO)  {
-		return assetSoftwareMaintenanceService.approve(approveVO);
 	}
 
 

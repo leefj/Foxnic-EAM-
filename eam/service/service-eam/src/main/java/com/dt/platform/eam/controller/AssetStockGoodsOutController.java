@@ -415,21 +415,6 @@ public class AssetStockGoodsOutController extends SuperController {
 
 
 
-	/**
-	 * 送审
-	 * */
-	@ApiOperation(value = "送审")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetStockGoodsOutVOMeta.ID)
-	@ApiOperationSupport(order=12)
-	@SentinelResource(value = AssetStockGoodsOutServiceProxy.FOR_APPROVAL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetStockGoodsOutServiceProxy.FOR_APPROVAL)
-	public Result forApproval(String id)  {
-		return assetStockGoodsOutService.forApproval(id);
-	}
-
 
 	/**
 	 * 确认
@@ -444,34 +429,6 @@ public class AssetStockGoodsOutController extends SuperController {
 	@RequestMapping(AssetStockGoodsOutServiceProxy.CONFIRM_OPERATION)
 	public Result confirmOperation(String id)  {
 		return assetStockGoodsOutService.confirmOperation(id);
-	}
-
-
-	/**
-	 * 撤销
-	 * */
-	@ApiOperation(value = "撤销")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetStockGoodsOutVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetStockGoodsOutVOMeta.ID)
-	@ApiOperationSupport(order=14)
-	@SentinelResource(value = AssetStockGoodsOutServiceProxy.REVOKE_OPERATION , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetStockGoodsOutServiceProxy.REVOKE_OPERATION)
-	public Result revokeOperation(String id)  {
-		return assetStockGoodsOutService.revokeOperation(id);
-	}
-
-
-	/**
-	 * 审批
-	 * */
-	@ApiOperation(value = "审批")
-	@ApiOperationSupport(order=15)
-	@SentinelResource(value = AssetStockGoodsOutServiceProxy.APPROVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetStockGoodsOutServiceProxy.APPROVE)
-	public Result approve(ProcessApproveVO approveVO)  {
-		return assetStockGoodsOutService.approve(approveVO);
 	}
 
 

@@ -339,21 +339,6 @@ public class AssetBorrowController extends SuperController {
 		return result;
 	}
 
-	/**
-	 * 送审
-	 * */
-	@ApiOperation(value = "借用送审")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetBorrowVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetBorrowVOMeta.ID)
-	@ApiOperationSupport(order=12)
-	@SentinelResource(value = AssetBorrowServiceProxy.FOR_APPROVAL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetBorrowServiceProxy.FOR_APPROVAL)
-	public Result forApproval(String id)  {
-		return assetBorrowService.forApproval(id);
-	}
-
 
 	/**
 	 * 确认
@@ -368,22 +353,6 @@ public class AssetBorrowController extends SuperController {
 	@RequestMapping(AssetBorrowServiceProxy.CONFIRM_OPERATION)
 	public Result confirmOperation(String id)  {
 		return assetBorrowService.confirmOperation(id);
-	}
-
-
-	/**
-	 * 撤销
-	 * */
-	@ApiOperation(value = "撤销")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetBorrowVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetBorrowVOMeta.ID)
-	@ApiOperationSupport(order=14)
-	@SentinelResource(value = AssetBorrowServiceProxy.REVOKE_OPERATION , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetBorrowServiceProxy.REVOKE_OPERATION)
-	public Result revokeOperation(String id)  {
-		return assetBorrowService.revokeOperation(id);
 	}
 
 

@@ -392,24 +392,6 @@ public class StockController extends SuperController {
 	}
 
 
-	/**
-	 * 送审
-	 * */
-	@ApiOperation(value = "变更送审")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = StockVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = StockVOMeta.ID)
-	@ApiOperationSupport(order=9)
-	@SentinelResource(value = StockServiceProxy.FOR_APPROVAL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(StockServiceProxy.FOR_APPROVAL)
-	public Result forApproval(String id)  {
-		return stockService.forApproval(id);
-	}
-
-
-
-
 
 	/**
 	 * 确认
@@ -424,34 +406,6 @@ public class StockController extends SuperController {
 	@RequestMapping(StockServiceProxy.CONFIRM_OPERATION)
 	public Result confirmOperation(String id)  {
 		return stockService.confirmOperation(id);
-	}
-
-
-	/**
-	 * 撤销
-	 * */
-	@ApiOperation(value = "变更撤销")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = StockVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = StockVOMeta.ID)
-	@ApiOperationSupport(order=11)
-	@SentinelResource(value = StockServiceProxy.REVOKE_OPERATION , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(StockServiceProxy.REVOKE_OPERATION)
-	public Result revokeOperation(String id)  {
-		return stockService.revokeOperation(id);
-	}
-
-
-	/**
-	 * 审批
-	 * */
-	@ApiOperation(value = "审批")
-	@ApiOperationSupport(order=12)
-	@SentinelResource(value = StockServiceProxy.APPROVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(StockServiceProxy.APPROVE)
-	public Result approve(ProcessApproveVO approveVO)  {
-		return stockService.approve(approveVO);
 	}
 
 

@@ -494,23 +494,6 @@ public class AssetSoftwareController extends SuperController {
 		return result;
 	}
 
-
-	/**
-	 * 送审
-	 * */
-	@ApiOperation(value = "送审")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetSoftwareVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetSoftwareVOMeta.ID)
-	@ApiOperationSupport(order=12)
-	@SentinelResource(value = AssetSoftwareServiceProxy.FOR_APPROVAL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetSoftwareServiceProxy.FOR_APPROVAL)
-	public Result forApproval(String id)  {
-		return assetSoftwareService.forApproval(id);
-	}
-
-
 	/**
 	 * 确认
 	 * */
@@ -525,36 +508,6 @@ public class AssetSoftwareController extends SuperController {
 	public Result confirmOperation(String id)  {
 		return assetSoftwareService.confirmOperation(id);
 	}
-
-
-	/**
-	 * 撤销
-	 * */
-	@ApiOperation(value = "撤销")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = AssetSoftwareVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@NotNull(name = AssetSoftwareVOMeta.ID)
-	@ApiOperationSupport(order=14)
-	@SentinelResource(value = AssetSoftwareServiceProxy.REVOKE_OPERATION , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetSoftwareServiceProxy.REVOKE_OPERATION)
-	public Result revokeOperation(String id)  {
-		return assetSoftwareService.revokeOperation(id);
-	}
-
-
-
-	/**
-	 * 审批
-	 * */
-	@ApiOperation(value = "审批")
-	@ApiOperationSupport(order=15)
-	@SentinelResource(value = AssetSoftwareServiceProxy.APPROVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetSoftwareServiceProxy.APPROVE)
-	public Result approve(ProcessApproveVO approveVO)  {
-		return assetSoftwareService.approve(approveVO);
-	}
-
 
 
 	@ApiOperationSupport(order=16)
