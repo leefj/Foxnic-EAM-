@@ -599,8 +599,8 @@ function ListPage() {
 					admin.putTempData('#(formDataKey)', {});
 					#if(bpm)
 					var defaultValue={};
-					if(window.pageExt.list.getBpmDefaultValue) {
-						defaultValue=window.pageExt.list.getBpmDefaultValue();
+					if(window.pageExt.list.getBpmViewConfig) {
+						defaultValue=window.pageExt.list.getBpmViewConfig();
 					}
 					bpm.openProcessView(null,null,false,{"formDefinitionCode":"#(bpmFormCode)"},refreshTableData,refreshRowData,"bill",defaultValue);
 					#else

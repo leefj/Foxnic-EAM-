@@ -103,7 +103,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         /**
          * 新建流程时返回流程表单需要预填的默认值
          * */
-        getBpmDefaultValue:function () {
+        getBpmViewConfig:function () {
             return {
                 title:"这是默认标题",
                 priority:"urgency" // priority 的可选值 urgency，normal
