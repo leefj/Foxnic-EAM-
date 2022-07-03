@@ -2,7 +2,7 @@
 /**
  * 资产交接 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-03 11:04:07
+ * @since 2022-07-03 17:55:03
  */
  -->
  <!DOCTYPE html>
@@ -55,7 +55,7 @@
 
 
 
-        <div class="layui-row form-row" id="random-9679-content">
+        <div class="layui-row form-row" id="random-4015-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -76,7 +76,7 @@
 
 
 
-        <div class="layui-row form-row" id="random-6441-content">
+        <div class="layui-row form-row" id="random-8553-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -111,7 +111,7 @@
 
 
 
-        <div class="layui-row form-row" id="random-7410-content">
+        <div class="layui-row form-row" id="random-7682-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -147,7 +147,7 @@
 
 
 
-        <div class="layui-row form-row" id="random-8028-content">
+        <div class="layui-row form-row" id="random-0188-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -162,16 +162,25 @@
                 </div>
 
 
+                
+                    <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
+                    <div class="layui-input-block ">
+                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" class="layui-textarea" style="height: 120px" ></textarea>
+                    </div>
+                </div>
+
+
                 <!--结束：栏次内字段循环-->
             </div>
             <!--结束：栏次输入框循环-->
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-2754-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-3513-fieldset">
         <legend>资产列表</legend>
         </fieldset>
-        <div class="layui-row form-row" style="text-align: center;" id="random-2754-content">
+        <div class="layui-row form-row" style="text-align: center;" id="random-3513-content">
             <div style="display: inline-block;padding-right: 8px;padding-left: 8px" class="layui-col-xs12">
             <iframe js-fn="goodsSelectList" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
             </div>

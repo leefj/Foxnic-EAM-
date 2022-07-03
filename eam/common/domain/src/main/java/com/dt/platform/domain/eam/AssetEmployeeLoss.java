@@ -23,7 +23,7 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 资产报失
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-03 11:05:52
+ * @since 2022-07-03 16:21:03
  * @sign FC1A912601AAFA19B258E299119C982B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

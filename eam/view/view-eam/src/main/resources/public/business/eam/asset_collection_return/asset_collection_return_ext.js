@@ -226,6 +226,10 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单初始化前调用
          * */
         beforeInit:function () {
+
+            $("#originatorUserName").attr("disabled","disabled").css("background-color","#e6e6e6");
+            $("#originatorUserName").attr("placeholder","自动填充")
+
              $("#useOrganizationId-button").css({"border-color":"#eee","height": "38px","color": "rgba(0,0,0,.85)","border-style": "solid","background-color":"white","border-radius": "2px","border-width": "1px"});
 
             //获取参数，并调整下拉框查询用的URL

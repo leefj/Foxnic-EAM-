@@ -1,7 +1,7 @@
 /**
  * 资产报废 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-03 15:27:57
+ * @since 2022-07-03 18:53:23
  */
 
 function FormPage() {
@@ -317,7 +317,7 @@ function FormPage() {
 	function saveForm(param,callback) {
 
 		if(window.pageExt.form.beforeSubmit) {
-			var doNext=window.pageExt.form.beforeSubmit(data.field);
+			var doNext=window.pageExt.form.beforeSubmit(param);
 			if(!doNext) return ;
 		}
 

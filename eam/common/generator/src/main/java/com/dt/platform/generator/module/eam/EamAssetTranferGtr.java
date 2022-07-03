@@ -141,11 +141,11 @@ public class EamAssetTranferGtr extends BaseCodeGenerator {
 //        cfg.view().form().addJsVariable("EMPLOYEE_ID",   "[[${user.getUser().getActivatedEmployeeId()}]]","用户ID");
 //        cfg.view().form().addJsVariable("EMPLOYEE_NAME", "[[${user.getUser().getActivatedEmployeeName()}]]","用户姓名");
 //
-
+        cfg.view().field(EAMTables.EAM_ASSET_TRANFER.NAME).form().validate().required();
 
         //分成分组布局
         cfg.view().form().labelWidth(70);
-        cfg.view().formWindow().width("98%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().form().addGroup(null,
                 new Object[] {
@@ -159,17 +159,14 @@ public class EamAssetTranferGtr extends BaseCodeGenerator {
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_TRANFER.OUT_USE_ORGANIZATION_ID,
-                        EAMTables.EAM_ASSET_TRANFER.IN_USE_ORGANIZATION_ID,
-
-                }, new Object[] {
                         EAMTables.EAM_ASSET_TRANFER.MANAGER_ID,
-                        EAMTables.EAM_ASSET_TRANFER.USE_USER_ID,
-                }, new Object[] {
                         EAMTables.EAM_ASSET_TRANFER.POSITION_ID,
+                }, new Object[] {
+                        EAMTables.EAM_ASSET_TRANFER.IN_USE_ORGANIZATION_ID,
                         EAMTables.EAM_ASSET_TRANFER.POSITION_DETAIL,
+                        EAMTables.EAM_ASSET_TRANFER.USE_USER_ID,
                 }
         );
-
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_TRANFER.CONTENT,

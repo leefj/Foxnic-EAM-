@@ -88,6 +88,7 @@ public class AssetEmployeeApplyServiceImpl extends SuperService<AssetEmployeeApp
 		if(StringUtil.isBlank(assetEmployeeApply.getOriginatorId())){
 			assetEmployeeApply.setOriginatorId(SessionUser.getCurrent().getUser().getActivatedEmployeeId());
 		}
+
 		//办理状态
 		if(StringUtil.isBlank(assetEmployeeApply.getStatus())){
 			assetEmployeeApply.setStatus(AssetHandleStatusEnum.INCOMPLETE.code());

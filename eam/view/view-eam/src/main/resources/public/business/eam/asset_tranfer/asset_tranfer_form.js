@@ -1,7 +1,7 @@
 /**
  * 资产转移 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-03 14:22:54
+ * @since 2022-07-03 16:45:50
  */
 
 function FormPage() {
@@ -249,6 +249,7 @@ function FormPage() {
 			fox.setSelectValue4QueryApi("#positionId",formData.position);
 
 			//处理fillBy
+			$("#originatorUserName").val(fox.getProperty(formData,["originator","name"]));
 
 			//
 	     	fm.attr('method', 'POST');
@@ -311,7 +312,7 @@ function FormPage() {
 	function saveForm(param,callback) {
 
 		if(window.pageExt.form.beforeSubmit) {
-			var doNext=window.pageExt.form.beforeSubmit(data.field);
+			var doNext=window.pageExt.form.beforeSubmit(param);
 			if(!doNext) return ;
 		}
 

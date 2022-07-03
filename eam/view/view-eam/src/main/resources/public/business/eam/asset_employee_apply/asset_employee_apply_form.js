@@ -1,7 +1,7 @@
 /**
  * 领用申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-03 11:03:52
+ * @since 2022-07-03 16:20:35
  */
 
 function FormPage() {
@@ -275,7 +275,7 @@ function FormPage() {
 	function saveForm(param,callback) {
 
 		if(window.pageExt.form.beforeSubmit) {
-			var doNext=window.pageExt.form.beforeSubmit(data.field);
+			var doNext=window.pageExt.form.beforeSubmit(param);
 			if(!doNext) return ;
 		}
 

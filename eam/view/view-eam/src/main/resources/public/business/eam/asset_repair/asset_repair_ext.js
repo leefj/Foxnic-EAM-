@@ -245,6 +245,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单初始化前调用
          * */
         beforeInit:function () {
+            $("#originatorUserName").attr("disabled","disabled").css("background-color","#e6e6e6");
+            $("#originatorUserName").attr("placeholder","自动填充")
             //获取参数，并调整下拉框查询用的URL
             //var companyId=admin.getTempData("companyId");
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);

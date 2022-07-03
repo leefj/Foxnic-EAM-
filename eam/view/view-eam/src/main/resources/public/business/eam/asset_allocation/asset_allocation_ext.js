@@ -235,6 +235,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单初始化前调用
          * */
         beforeInit:function () {
+
+            $("#originatorUserName").attr("disabled","disabled").css("background-color","#e6e6e6");
+            $("#originatorUserName").attr("placeholder","自动填充")
+
+            
             $("#inOwnCompanyId-button").css({"border-color":"#eee","height": "38px","color": "rgba(0,0,0,.85)","border-style": "solid","background-color":"white","border-radius": "2px","border-width": "1px"});
             $("#outOwnCompanyId-button").css({"border-color":"#eee","height": "38px","color": "rgba(0,0,0,.85)","border-style": "solid","background-color":"white","border-radius": "2px","border-width": "1px"});
             $("#managerId-button").css({"border-color":"#eee","height": "38px","color": "rgba(0,0,0,.85)","border-style": "solid","background-color":"white","border-radius": "2px","border-width": "1px"});
