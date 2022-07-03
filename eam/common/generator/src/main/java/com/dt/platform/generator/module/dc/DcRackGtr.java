@@ -141,7 +141,7 @@ public class DcRackGtr extends BaseCodeGenerator {
 
 
         //分成分组布局
-        cfg.view().formWindow().width("98%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().formWindow().bottomSpace(80);
         cfg.view().form().addGroup("基本信息",
                 new Object[] {

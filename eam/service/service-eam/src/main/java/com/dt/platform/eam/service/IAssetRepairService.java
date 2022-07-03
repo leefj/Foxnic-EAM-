@@ -2,6 +2,7 @@ package com.dt.platform.eam.service;
 
 
 import com.dt.platform.domain.eam.*;
+import com.github.foxnic.dao.entity.ISimpleIdService;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
 
@@ -18,6 +19,8 @@ import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ExcelStructure;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.data.SaveMode;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.domain.changes.ProcessStartVO;
 
@@ -29,7 +32,26 @@ import org.github.foxnic.web.domain.changes.ProcessStartVO;
  * @since 2021-08-20 21:17:05
 */
 
-public interface IAssetRepairService extends ISuperService<AssetRepair> {
+public interface IAssetRepairService extends ISimpleIdService<AssetRepair,String> {
+
+
+	/**
+	 * 表单定义代码
+	 **/
+	public static final String FORM_DEFINITION_CODE="eam_asset_repair";
+
+
+	/**
+	 * 处理流程回调
+	 * */
+	BpmActionResult onProcessCallback(BpmEvent event);
+
+
+	void joinProcess(AssetRepair assetRepair);
+
+	void joinProcess(List<AssetRepair> assetRepairList);
+
+	void joinProcess(PagedList<AssetRepair> assetRepairList);
 
 
 	/**

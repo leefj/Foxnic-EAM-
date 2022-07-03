@@ -246,7 +246,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 title: title,
                 resize: false,
                 offset: [top,null],
-                area: ["85%",height+"px"],
+                area: ["80%",height+"px"],
                 type: 2,
                 id:"eam-repair-order-acceptance-form-data-win",
                 content: '/business/eam/repair_order_acceptance/repair_order_acceptance_form.html' + queryString,

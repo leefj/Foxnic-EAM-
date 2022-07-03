@@ -7,10 +7,7 @@ import com.dt.platform.domain.eam.AssetCollectionReturn;
 import com.dt.platform.domain.eam.AssetDataPermissions;
 import com.dt.platform.domain.eam.Position;
 
-import com.dt.platform.domain.eam.meta.AssetCollectionMeta;
-import com.dt.platform.domain.eam.meta.AssetCollectionReturnVOMeta;
-import com.dt.platform.domain.eam.meta.AssetCollectionVOMeta;
-import com.dt.platform.domain.eam.meta.PositionMeta;
+import com.dt.platform.domain.eam.meta.*;
 import com.dt.platform.eam.page.AssetCollectionReturnPageController;
 import com.dt.platform.eam.page.AssetDataPermissionsPageController;
 import com.dt.platform.eam.service.impl.AssetHandleServiceImpl;
@@ -32,12 +29,13 @@ public class EamAssetCollectionReturnGtr extends BaseCodeGenerator {
 
     public void generateCode() throws Exception {
 
+        cfg.bpm().form("eam_asset_collection_return");
         System.out.println(this.getClass().getName());
         cfg.getPoClassFile().addSimpleProperty(Position.class,"position","存放位置","存放位置");
 
         cfg.getPoClassFile().addListProperty(Asset.class,"assetList","资产","资产");
         cfg.getPoClassFile().addListProperty(String.class,"assetIds","资产列表","资产列表");
-
+        cfg.getPoClassFile().addSimpleProperty(String.class,"originatorUserName","申请人","申请人");
         //cfg.service().addRelationSaveAction(AssetItemServiceImpl.class, AssetCollectionReturnVOMeta.ASSET_IDS);
 
 
@@ -50,8 +48,13 @@ public class EamAssetCollectionReturnGtr extends BaseCodeGenerator {
                 .form().button().chooseOrganization(true);
         cfg.view().field(EAMTables.EAM_ASSET_COLLECTION_RETURN.USE_ORGANIZATION_ID).table().fillBy("useOrganization","fullName");
 
-        cfg.view().field(EAMTables.EAM_ASSET_COLLECTION_RETURN.ORIGINATOR_ID).table().fillBy("originator","nameAndBadge");
+        cfg.view().field(AssetCollectionReturnMeta.ORIGINATOR_USER_NAME).table().disable(true);
+        cfg.view().field(AssetCollectionReturnMeta.ORIGINATOR_USER_NAME).table().label("申请人").form().label("申请人")
+                .form().fillBy("originator","name");
+        cfg.view().field(EAMTables.EAM_ASSET_COLLECTION_RETURN.ORIGINATOR_ID).table().fillBy("originator","name");
 
+
+        cfg.view().field(EAMTables.EAM_ASSET_COLLECTION_RETURN.NAME).form().validate().required();
 
         cfg.view().field(EAMTables.EAM_ASSET_COLLECTION_RETURN.ATTACH)
                 .form().label("附件").upload().buttonLabel("选择附件").acceptSingleFile().displayFileName(false);
@@ -90,7 +93,7 @@ public class EamAssetCollectionReturnGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_ASSET_COLLECTION_RETURN.STATUS).form().selectBox().enumType(AssetHandleStatusEnum.class);
 
-        cfg.view().field(EAMTables.EAM_ASSET_COLLECTION_RETURN.CONTENT).form().textArea().height(30).search().fuzzySearch();
+        cfg.view().field(EAMTables.EAM_ASSET_COLLECTION_RETURN.CONTENT).form().textArea().height(Config.textAreaHeight).search().fuzzySearch();
 
         cfg.view().field(EAMTables.EAM_ASSET_COLLECTION_RETURN.RETURN_DATE).form().validate().required().search().range();
 
@@ -105,24 +108,27 @@ public class EamAssetCollectionReturnGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_COLLECTION_RETURN.RETURN_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
 
         //分成分组布局
+        cfg.view().form().labelWidth(70);
         cfg.view().formWindow().bottomSpace(20);
-        cfg.view().formWindow().width("98%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
+
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_COLLECTION_RETURN.NAME,
+                },
+                new Object[] {
+                        AssetCollectionReturnMeta.ORIGINATOR_USER_NAME,
+                }
+        );
+        cfg.view().form().addGroup(null,
+                new Object[] {
                         EAMTables.EAM_ASSET_COLLECTION_RETURN.USE_ORGANIZATION_ID,
-
-                }
-                , new Object[] {
                         EAMTables.EAM_ASSET_COLLECTION_RETURN.POSITION_ID,
-
-                }
-                , new Object[] {
+                },
+                new Object[] {
                         EAMTables.EAM_ASSET_COLLECTION_RETURN.RETURN_DATE,
                 }
-
         );
-
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_COLLECTION_RETURN.CONTENT,
@@ -142,10 +148,10 @@ public class EamAssetCollectionReturnGtr extends BaseCodeGenerator {
 //        cfg.view().list().operationColumn().addActionButton("撤销","revokeData",null);
 
 
-        cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_collection_return:for-approval");
+    //    cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_collection_return:for-approval");
         cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_collection_return:confirm");
         cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_collection_return:revoke");
-        cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_collection_return:bill");
+    //    cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_collection_return:bill");
         cfg.view().list().operationColumn().width(350);
 
 //        cfg.view().form().addJsVariable("EMPLOYEE_ID",   "[[${user.getUser().getActivatedEmployeeId()}]]","用户ID");
@@ -156,6 +162,7 @@ public class EamAssetCollectionReturnGtr extends BaseCodeGenerator {
                 .setServiceIntfAnfImpl(WriteMode.CREATE_IF_NOT_EXISTS) //服务与接口
                 .setControllerAndAgent(WriteMode.CREATE_IF_NOT_EXISTS) //Rest
                 .setPageController(WriteMode.CREATE_IF_NOT_EXISTS) //页面控制器
+                .setBpmEventAdaptor(WriteMode.IGNORE)
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
                 .setExtendJsFile(WriteMode.CREATE_IF_NOT_EXISTS); //列表HTML页

@@ -142,13 +142,14 @@ public class EamRelationManager extends RelationManager {
         this.property(AssetEmployeeHandoverMeta.ORIGINATOR_PROP)
                 .using(EAMTables.EAM_ASSET_EMPLOYEE_HANDOVER.ORIGINATOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 
+        this.property(AssetEmployeeHandoverMeta.RECEIVER_USER_PROP)
+                .using(EAMTables.EAM_ASSET_EMPLOYEE_HANDOVER.RECEIVE_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
         this.property(AssetEmployeeHandoverMeta.ORGANIZATION_PROP)
                 .using(EAMTables.EAM_ASSET_EMPLOYEE_HANDOVER.ORG_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
 
-//        this.property(AssetEmployeeHandoverMeta.O)
-//                .using(EAMTables.EAM_ASSET_EMPLOYEE_HANDOVER.RECEIVE_USER_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
-
-
+        this.property(AssetEmployeeHandoverMeta.RECEIVE_ORGANIZATION_PROP)
+                .using(EAMTables.EAM_ASSET_EMPLOYEE_HANDOVER.RECEIVE_ORG_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
     }
 
     public void setupMaintainTaskProject() {

@@ -1,7 +1,10 @@
 package com.dt.platform.eam.service.impl;
 
+import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
+import com.dt.platform.domain.eam.AssetItem;
+import com.dt.platform.eam.service.*;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.commons.lang.StringUtil;
 import org.github.foxnic.web.domain.bpm.BpmActionResult;
@@ -38,7 +41,7 @@ import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.meta.DBColumnMeta;
 import com.github.foxnic.sql.expr.Select;
 import java.util.ArrayList;
-import com.dt.platform.eam.service.IAssetEmployeeRepairService;
+
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import java.util.Date;
 import java.util.Map;
@@ -67,6 +70,17 @@ public class AssetEmployeeRepairServiceImpl extends SuperService<AssetEmployeeRe
 	 * */
 	public DAO dao() { return dao; }
 
+	@Autowired
+	private IAssetItemService assetItemService;
+
+	@Autowired
+	private IAssetSelectedDataService assetSelectedDataService;
+
+	@Autowired
+	private IAssetService assetService;
+
+	@Autowired
+	private IOperateService operateService;
 
 
 	@Override
@@ -83,6 +97,19 @@ public class AssetEmployeeRepairServiceImpl extends SuperService<AssetEmployeeRe
 	 */
 	@Override
 	public Result insert(AssetEmployeeRepair assetEmployeeRepair,boolean throwsException) {
+
+		if(assetEmployeeRepair.getAssetIds()==null||assetEmployeeRepair.getAssetIds().size()==0){
+			String assetSelectedCode=assetEmployeeRepair.getSelectedCode();
+			ConditionExpr condition=new ConditionExpr();
+			condition.andIn("asset_selected_code",assetSelectedCode==null?"":assetSelectedCode);
+			List<String> list=assetSelectedDataService.queryValues(EAMTables.EAM_ASSET_SELECTED_DATA.ASSET_ID,String.class,condition);
+			assetEmployeeRepair.setAssetIds(list);
+		}
+
+		//校验数据资产
+		if(assetEmployeeRepair.getAssetIds().size()==0){
+			return ErrorDesc.failure().message("请选择资产");
+		}
 
 		//制单人
 		if(StringUtil.isBlank(assetEmployeeRepair.getOriginatorId())){
@@ -104,6 +131,21 @@ public class AssetEmployeeRepairServiceImpl extends SuperService<AssetEmployeeRe
 		}
 
 		Result r=super.insert(assetEmployeeRepair,throwsException);
+		if (r.isSuccess()){
+			//保存资产数据
+			List<AssetItem> saveList=new ArrayList<AssetItem>();
+			for(int i=0;i<assetEmployeeRepair.getAssetIds().size();i++){
+				AssetItem asset=new AssetItem();
+				asset.setId(IDGenerator.getSnowflakeIdString());
+				asset.setHandleId(assetEmployeeRepair.getId());
+				asset.setAssetId(assetEmployeeRepair.getAssetIds().get(i));
+				saveList.add(asset);
+			}
+			Result batchInsertReuslt= assetItemService.insertList(saveList);
+			if(!batchInsertReuslt.isSuccess()){
+				return batchInsertReuslt;
+			}
+		}
 		return r;
 	}
 
@@ -181,7 +223,10 @@ public class AssetEmployeeRepairServiceImpl extends SuperService<AssetEmployeeRe
 	 * */
 	@Override
 	public Result update(AssetEmployeeRepair assetEmployeeRepair , SaveMode mode) {
+
+
 		return this.update(assetEmployeeRepair,mode,true);
+
 	}
 
 	/**
@@ -193,7 +238,13 @@ public class AssetEmployeeRepairServiceImpl extends SuperService<AssetEmployeeRe
 	 * */
 	@Override
 	public Result update(AssetEmployeeRepair assetEmployeeRepair , SaveMode mode,boolean throwsException) {
+
 		Result r=super.update(assetEmployeeRepair , mode , throwsException);
+		if(r.success()){
+			//保存表单数据
+			dao.execute("update eam_asset_item set crd='r' where crd='c' and handle_id=?",assetEmployeeRepair.getId());
+			dao.execute("delete from eam_asset_item where crd in ('d','rd') and  handle_id=?",assetEmployeeRepair.getId());
+		}
 		return r;
 	}
 

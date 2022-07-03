@@ -139,7 +139,7 @@ public class KnContentGtr extends BaseCodeGenerator {
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
         //分成分组布局
-        cfg.view().formWindow().width("95%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().formWindow().bottomSpace(300);
         cfg.view().form().addGroup(null,
                 new Object[] {

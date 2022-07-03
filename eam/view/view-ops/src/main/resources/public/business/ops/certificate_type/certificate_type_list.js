@@ -380,7 +380,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["50%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"ops-certificate-type-form-data-win",
 			content: '/business/ops/certificate_type/certificate_type_form.html' + (queryString?("?"+queryString):""),

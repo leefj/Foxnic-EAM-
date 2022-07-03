@@ -435,7 +435,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["95%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-asset-software-change-form-data-win",
 			content: '/business/eam/asset_software_change/asset_software_change_form.html' + (queryString?("?"+queryString):""),

@@ -84,7 +84,7 @@ function ListPage() {
 					,{ field: 'executionStartTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('执行时间') ,templet: function (d) { return templet('executionStartTime',fox.dateFormat(d.executionStartTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'executionEndTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('结束时间') ,templet: function (d) { return templet('executionEndTime',fox.dateFormat(d.executionEndTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
-					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","nameAndBadge"]),d);} }
+					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"]),d);} }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
@@ -449,7 +449,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["85%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-asset-depreciation-oper-form-data-win",
 			content: '/business/eam/asset_depreciation_oper/asset_depreciation_oper_form.html' + (queryString?("?"+queryString):""),

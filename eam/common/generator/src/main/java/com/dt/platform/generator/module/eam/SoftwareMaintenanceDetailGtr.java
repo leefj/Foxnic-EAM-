@@ -29,7 +29,7 @@ public class SoftwareMaintenanceDetailGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
 
         cfg.view().list().disableBatchDelete();
-        cfg.view().formWindow().width("95%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().form().addGroup(null,
                 new Object[] {

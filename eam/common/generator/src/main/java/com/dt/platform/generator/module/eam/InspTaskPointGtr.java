@@ -75,7 +75,7 @@ public class InspTaskPointGtr extends BaseCodeGenerator {
                 fillWith(InspectionTaskPointMeta.ROUTE).muliti(false).defaultIndex(0);
 
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.OPER_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").defaultNow();
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().list().disableBatchDelete();
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().form().addGroup(null,

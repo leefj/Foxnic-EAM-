@@ -86,7 +86,7 @@ public class InspTaskGtr extends BaseCodeGenerator {
                 .fillWith(InspectionTaskMeta.INSPECTION_GROUP).muliti(false);
 
 
-        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ORIGINATOR_ID).table().fillBy("originator","nameAndBadge");
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ORIGINATOR_ID).table().fillBy("originator","name");
 
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.EXECUTOR_ID)
              .form().selectBox().queryApi(GroupUserServiceProxy.QUERY_EMPLOYEE_PERSON)
@@ -119,7 +119,7 @@ public class InspTaskGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(3,Config.searchLabelWidth+50);
         cfg.view().search().labelWidth(4,Config.searchLabelWidth+50);
         cfg.view().search().inputWidth(Config.searchInputWidth);
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(85);
         cfg.view().form().addGroup(null,
                 new Object[] {

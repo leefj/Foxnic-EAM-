@@ -19,6 +19,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
 
 
+    var bpmFunction=layui.bpmFunction;
 
     var processId=QueryString.get("processId");
     var processInstance=null;
@@ -39,7 +40,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         getBpmDefaultValue:function () {
             return {
-                title:"这是默认标题",
+                title:"资产报修申请",
                 priority:"urgency" // priority 的可选值 urgency，normal
             }
         },
@@ -53,6 +54,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 列表页初始化前调用
          * */
         beforeInit:function () {
+            $("#originatorUserName").attr("disabled","disabled").css("background-color","#e6e6e6");
+            $("#originatorUserName").attr("placeholder","自动填充")
             console.log("list:beforeInit");
         },
         /**
@@ -110,7 +113,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 查询结果渲染后调用
          * */
         afterQuery : function (data) {
-
+            for(var i=0;i<data.length;i++){
+                bpmFunction.columnBpmOpenButtonStatus(data[i]);
+            }
         },
         /**
          * 进一步转换 list 数据
@@ -201,6 +206,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         onProcessInstanceReady:function (result) {
 
+
             // 可根据流程状态、当前审批节点判断和控制表单页面
             processInstance=result.data;
             console.log("processInstance",processInstance);
@@ -248,24 +254,29 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单数据填充后
          * */
         afterDataFill:function (data) {
-            if(data.status&&data.status=="incomplete"){
-                console.log("edit")
-            }else{
-                fox.lockForm($("#data-form"),true);
+            if(data.status){
+                if(data.status=="incomplte"){
+                    console.log("can edit");
+                }else{
+                    fox.lockForm($("#data-form"),true);
+                }
             }
-            console.log('afterDataFill',data);
 
-
+            //iframe
             var ownerId="";
             if(data&&data.id){
                 ownerId=data.id;
             }
             $("#iframe").height("400px");
-            formAction="view";
+            if(data.status=="incomplete"){
+                formAction="modify";
+            }else{
+                formAction="view";
+            }
             var queryString="?employeeId="+EMPLOYEE_ID+"&pageType="+formAction+"&selectedCode="+timestamp+"&ownerId="+ownerId;
             //设置地址
             console.log("queryString",queryString);
-            $("#iframe")[0].contentWindow.location="/business/eam/asset/asset_search/employee_assetInfo_selected_list.html"+queryString
+            $(".form-iframe")[0].contentWindow.location="/business/eam/asset/asset_search/employee_assetInfo_selected_list.html"+queryString
 
 
 
@@ -316,6 +327,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 数据提交前，如果返回 false，停止后续步骤的执行
          * */
         beforeSubmit:function (data) {
+            data.selectedCode=timestamp;
             console.log("beforeSubmit",data);
             return true;
         },
@@ -348,7 +360,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 var queryString="?employeeId="+EMPLOYEE_ID+"&pageType="+formAction+"&selectedCode="+timestamp+"&ownerId="+ownerId;
                 //设置地址
                 win.location="/business/eam/asset/asset_search/employee_assetInfo_selected_list.html"+queryString
-
             }
         },
         /**

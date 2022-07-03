@@ -1,5 +1,8 @@
 package com.dt.platform.proxy.eam;
 
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
+import org.github.foxnic.web.proxy.bpm.BpmCallbackController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
@@ -20,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @since 2021-09-22 16:52:24
  */
 @FeignClient(value = ServiceNames.EAM, contextId = AssetAllocationServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
-public interface AssetAllocationServiceProxy {
+public interface AssetAllocationServiceProxy extends BpmCallbackController {
 
     /**
      * 基础路径 , service-eam
@@ -102,6 +105,16 @@ public interface AssetAllocationServiceProxy {
      * 确认操作
      */
     public static final String CONFIRM_OPERATION = API_PREFIX + "confirm-operation";
+
+    /**
+     * 流程事件回调接收接口
+     */
+    public static final String BPM_CALLBACK = API_PREFIX + "bpm-callback";
+    /**
+     * 分页查询资产报失
+     */
+    @RequestMapping(AssetAllocationServiceProxy.BPM_CALLBACK)
+    BpmActionResult onProcessCallback(@RequestParam(name = "event") BpmEvent event);
 
     /**
      * 添加资产调拨

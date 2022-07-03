@@ -22,8 +22,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 资产报修
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-22 07:16:37
- * @sign E6879E0A8257F983234DA85923D95213
+ * @since 2022-07-03 15:26:38
+ * @sign B8989EC4C3F4BC5F3ABDDC536FC02E2A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -198,6 +198,12 @@ public class AssetRepair extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="资产列表" , notes = "资产列表")
 	private List<String> assetIds;
+	
+	/**
+	 * 申请人：申请人
+	*/
+	@ApiModelProperty(required = false,value="申请人" , notes = "申请人")
+	private String originatorUserName;
 	
 	/**
 	 * 制单人：制单人
@@ -779,6 +785,25 @@ public class AssetRepair extends Entity {
 	public AssetRepair addAssetId(String... assetId) {
 		if(this.assetIds==null) assetIds=new ArrayList<>();
 		this.assetIds.addAll(Arrays.asList(assetId));
+		return this;
+	}
+	
+	/**
+	 * 获得 申请人<br>
+	 * 申请人
+	 * @return 申请人
+	*/
+	public String getOriginatorUserName() {
+		return originatorUserName;
+	}
+	
+	/**
+	 * 设置 申请人
+	 * @param originatorUserName 申请人
+	 * @return 当前对象
+	*/
+	public AssetRepair setOriginatorUserName(String originatorUserName) {
+		this.originatorUserName=originatorUserName;
 		return this;
 	}
 	

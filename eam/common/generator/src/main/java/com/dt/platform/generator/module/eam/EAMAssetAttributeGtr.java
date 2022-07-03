@@ -78,11 +78,11 @@ public class EAMAssetAttributeGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_ASSET_ATTRIBUTE.NOTES)
                 .form().textArea().height(30);
 
-        cfg.view().field(EAMTables.EAM_ASSET_ATTRIBUTE.COMPONENT_CONTENT).form().textArea().height(30);
+        cfg.view().field(EAMTables.EAM_ASSET_ATTRIBUTE.COMPONENT_CONTENT).form().textArea().height(Config.textAreaHeight);
 
         cfg.view().formWindow().bottomSpace(80);
 
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
 
 
         //文件生成覆盖模式

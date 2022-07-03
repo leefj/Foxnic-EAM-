@@ -37,7 +37,8 @@ public interface IAssetScrapService extends ISimpleIdService<AssetScrap,String> 
 	/**
 	 * 表单定义代码
 	 **/
-	public static final String FORM_DEFINITION_CODE="eam_asset_employee_loss";
+	public static final String FORM_DEFINITION_CODE="eam_asset_scrap";
+
 
 	/**
 	 * 清理资产

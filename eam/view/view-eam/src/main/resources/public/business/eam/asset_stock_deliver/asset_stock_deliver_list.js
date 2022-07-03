@@ -163,7 +163,7 @@ function ListPage() {
 		value.content={ inputType:"button",value: $("#content").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.attach={ inputType:"button",value: $("#attach").val()};
 		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.originatorId={ inputType:"button",value: $("#originatorId").val(),fillBy:["originator","nameAndBadge"] ,label:$("#originatorId-button").text() };
+		value.originatorId={ inputType:"button",value: $("#originatorId").val(),fillBy:["originator","name"] ,label:$("#originatorId-button").text() };
 		value.createTime={ inputType:"date_input", value: $("#createTime").val() ,matchType:"auto"};
 		value.selectedCode={ inputType:"button",value: $("#selectedCode").val()};
 		var ps={searchField:"$composite"};
@@ -505,7 +505,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["85%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-asset-stock-deliver-form-data-win",
 			//content: '/business/eam/asset_stock_collection/asset_stock_collection_form.html?ownerCode=' + OWNER_CODE+queryString,

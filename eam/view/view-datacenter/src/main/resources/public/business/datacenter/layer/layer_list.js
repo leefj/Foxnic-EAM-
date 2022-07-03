@@ -407,7 +407,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["75%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"dc-layer-form-data-win",
 			content: '/business/datacenter/layer/layer_form.html' + (queryString?("?"+queryString):""),

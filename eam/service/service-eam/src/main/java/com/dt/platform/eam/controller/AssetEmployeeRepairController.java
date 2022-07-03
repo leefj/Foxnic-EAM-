@@ -4,6 +4,9 @@ package com.dt.platform.eam.controller;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.dt.platform.domain.eam.AssetEmployeeLoss;
+import com.github.foxnic.commons.collection.CollectorUtil;
+import org.github.foxnic.web.domain.hrm.Person;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -249,6 +252,7 @@ public class AssetEmployeeRepairController extends SuperController implements Bp
 			.with("organization")
 			.with("originator")
 			.execute();
+		assetEmployeeRepairService.dao().join(assetEmployeeRepair.getOriginator(),Person.class);
 		result.success(true).data(assetEmployeeRepair);
 		return result;
 	}
@@ -297,6 +301,11 @@ public class AssetEmployeeRepairController extends SuperController implements Bp
 	public Result<List<AssetEmployeeRepair>> queryList(AssetEmployeeRepairVO sample) {
 		Result<List<AssetEmployeeRepair>> result=new Result<>();
 		List<AssetEmployeeRepair> list=assetEmployeeRepairService.queryList(sample);
+
+
+		List<Employee> employees= CollectorUtil.collectList(list, AssetEmployeeRepair::getOriginator);
+		assetEmployeeRepairService.dao().join(employees, Person.class);
+
 		result.success(true).data(list);
 		return result;
 	}
@@ -332,6 +341,9 @@ public class AssetEmployeeRepairController extends SuperController implements Bp
 			.execute();
 		// 填充流程相关的属性
 		assetEmployeeRepairService.joinProcess(list);
+
+		List<Employee> employees= CollectorUtil.collectList(list, AssetEmployeeRepair::getOriginator);
+		assetEmployeeRepairService.dao().join(employees, Person.class);
 		result.success(true).data(list);
 		return result;
 	}

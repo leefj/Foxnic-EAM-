@@ -66,7 +66,7 @@ public class AssetDepreciationOperGtr extends BaseCodeGenerator {
         cfg.view().list().operationColumn().addActionButton("同步数据","depreciationSync","depreciationSync-btn","eam_asset_depreciation_oper:sync");
 
 
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().form().addGroup(null,
                 new Object[] {
@@ -94,12 +94,12 @@ public class AssetDepreciationOperGtr extends BaseCodeGenerator {
                 textField(AssetDepreciationMeta.NAME).
                 fillWith(AssetDepreciationOperMeta.ASSET_DEPRECIATION).muliti(false).defaultIndex(0);
 
-        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_OPER.ORIGINATOR_ID).table().fillBy("originator","nameAndBadge");
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_OPER.ORIGINATOR_ID).table().fillBy("originator","name");
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_OPER.ORIGINATOR_ID).form()
                 .button().chooseEmployee(true);
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_OPER.NAME).form().validate().required();
-        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_OPER.CONTENT).form().textArea().height(60);
-        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_OPER.NOTES).form().textArea().height(60);
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_OPER.CONTENT).form().textArea().height(Config.textAreaHeight);
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_OPER.NOTES).form().textArea().height(Config.textAreaHeight);
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_OPER.BUSINESS_DATE).form().validate().required().form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_OPER.STATUS).form().selectBox().enumType(AssetDepreciationStatusEnum.class);
 

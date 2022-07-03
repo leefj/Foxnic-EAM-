@@ -108,12 +108,12 @@ public class EamAssetStockDeliverGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_DELIVER.RECEIVING_ORG_ID).table().form().validate().table().fillBy("receivingOrg","fullName");
 
 
-        cfg.view().field(EAMTables.EAM_ASSET_STOCK_DELIVER.ORIGINATOR_ID).table().fillBy("originator","nameAndBadge");
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_DELIVER.ORIGINATOR_ID).table().fillBy("originator","name");
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_DELIVER.ORIGINATOR_ID).form()
                 .button().chooseEmployee(true);
 
 
-        cfg.view().field(EAMTables.EAM_ASSET_STOCK_DELIVER.RECEIVER_ID).table().form().validate().required().form().fillBy("receiver","nameAndBadge");
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_DELIVER.RECEIVER_ID).table().form().validate().required().form().fillBy("receiver","name");
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_DELIVER.RECEIVER_ID).form()
                 .button().chooseEmployee(true);
 
@@ -128,15 +128,15 @@ public class EamAssetStockDeliverGtr extends BaseCodeGenerator {
         cfg.view().list().disableBatchDelete();
 
 
-        cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_stock_deliver:for-approval");
+      // cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_stock_deliver:for-approval");
         cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_stock_deliver:confirm");
-        cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_stock_deliver:revoke");
+       // cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_stock_deliver:revoke");
         cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_stock_deliver:bill");
 
 
 
         cfg.view().formWindow().bottomSpace(250);
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_STOCK_DELIVER.NAME,

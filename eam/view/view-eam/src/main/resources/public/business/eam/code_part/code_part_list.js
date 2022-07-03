@@ -377,7 +377,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["500px",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-code-part-form-data-win",
 			content: '/business/eam/code_part/code_part_form.html' + (queryString?("?"+queryString):""),

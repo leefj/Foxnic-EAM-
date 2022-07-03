@@ -8,11 +8,15 @@ import com.dt.platform.domain.eam.AssetBorrow;
 import com.dt.platform.domain.eam.meta.AssetDataChangeVOMeta;
 import com.dt.platform.domain.eam.meta.AssetVOMeta;
 import com.dt.platform.proxy.eam.AssetDataChangeServiceProxy;
+import com.dt.platform.proxy.eam.AssetScrapServiceProxy;
 import com.dt.platform.proxy.eam.AssetServiceProxy;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.commons.lang.StringUtil;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.domain.hrm.Person;
+import org.github.foxnic.web.proxy.bpm.BpmCallbackController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -67,7 +71,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
 @Api(tags = "资产调拨")
 @ApiSort(0)
 @RestController("EamAssetAllocationController")
-public class AssetAllocationController extends SuperController {
+public class AssetAllocationController extends SuperController implements BpmCallbackController {
 
 	@Autowired
 	private IAssetAllocationService assetAllocationService;
@@ -376,6 +380,15 @@ public class AssetAllocationController extends SuperController {
 		}
 
 
+	/**
+	 *  流程回调处理
+	 */
+	@SentinelResource(value = AssetAllocationServiceProxy.BPM_CALLBACK , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(AssetAllocationServiceProxy.BPM_CALLBACK)
+	public BpmActionResult onProcessCallback(BpmEvent event){
+		return assetAllocationService.onProcessCallback(event);
+	}
+
 
 	@SentinelResource(value = AssetAllocationServiceProxy.IMPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@RequestMapping(AssetAllocationServiceProxy.IMPORT_EXCEL)
@@ -400,6 +413,7 @@ public class AssetAllocationController extends SuperController {
 				return ErrorDesc.failure().message("导入失败").data(errors);
 			}
 		}
+
 
 
 }

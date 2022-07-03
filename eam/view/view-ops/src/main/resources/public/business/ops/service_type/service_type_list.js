@@ -222,7 +222,7 @@ function ListPage() {
 			title: title,
 			resize: true,
 			offset: [top,null],
-			area: ["500px",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			content: '/business/ops/service_type/service_type_form.html' + queryString,
 			finish: function () {

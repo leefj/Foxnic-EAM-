@@ -488,7 +488,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["800px",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"cont-contract-form-data-win",
 			content: '/business/contract/contract/contract_form.html' + queryString,

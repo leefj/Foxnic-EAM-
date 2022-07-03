@@ -266,7 +266,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["500px",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			content: '/business/eam/area/area_form.html' + queryString,
 			finish: function () {

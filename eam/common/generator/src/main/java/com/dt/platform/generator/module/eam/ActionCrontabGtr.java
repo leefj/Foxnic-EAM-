@@ -36,9 +36,9 @@ public class ActionCrontabGtr extends BaseCodeGenerator {
         );
         cfg.view().field(EAMTables.EAM_ACTION_CRONTAB.CRONTAB).form().validate().required().form().readOnly();
         cfg.view().field(EAMTables.EAM_ACTION_CRONTAB.NAME).table().disable(true);
-        cfg.view().field(EAMTables.EAM_ACTION_CRONTAB.NOTES).form().textArea().height(80);
+        cfg.view().field(EAMTables.EAM_ACTION_CRONTAB.NOTES).form().textArea().height(Config.textAreaHeight);
         cfg.view().field(EAMTables.EAM_ACTION_CRONTAB.START_EXECUTION_TIME).form().validate().required().form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(300);
         cfg.view().form().addGroup(null,
                 new Object[] {

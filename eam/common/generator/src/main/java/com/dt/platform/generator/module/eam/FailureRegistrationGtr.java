@@ -58,7 +58,7 @@ public class FailureRegistrationGtr extends BaseCodeGenerator {
                 .form().selectBox().enumType(AssetHandleStatusEnum.class);
 
         cfg.view().field(EAMTables.EAM_FAILURE_REGISTRATION.NAME).form().validate().required();
-        cfg.view().field(EAMTables.EAM_FAILURE_REGISTRATION.CONTENT).form().textArea().height(60);
+        cfg.view().field(EAMTables.EAM_FAILURE_REGISTRATION.CONTENT).form().textArea().height(Config.textAreaHeight);
 
         cfg.view().field(EAMTables.EAM_FAILURE_REGISTRATION.TYPE)
                 .form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=eam_equipment_failure")
@@ -85,7 +85,7 @@ public class FailureRegistrationGtr extends BaseCodeGenerator {
                 .form().label("图片").upload().acceptImageType().maxFileCount(6).buttonLabel("选择图片");
 
         cfg.view().list().disableBatchDelete();
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(60);
         cfg.view().form().addGroup(null,
                 new Object[] {

@@ -261,7 +261,7 @@ function ListPage() {
             title: title,
             resize: false,
             offset: [top,null],
-            area: ["95%","95%"],
+            area: ["80%","95%"],
             type: 2,
             id:"eam-report-form-data-win",
             content: '/business/ops/monitor_node_resource/monitor_node_collect_data.html?nodeId=' + data.nodeId,

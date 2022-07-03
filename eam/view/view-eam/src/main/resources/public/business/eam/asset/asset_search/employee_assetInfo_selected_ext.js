@@ -24,6 +24,14 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeInit:function () {
             console.log("list:beforeInit");
+            var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
+            if(PAGE_TYPE&&PAGE_TYPE=="view"){
+                toolHtml=toolHtml.repeat(/lay-event="create"/i,"style=\"display:none\"")
+                toolHtml=toolHtml.repeat(/lay-event="batch-del"/i,"style=\"display:none\"")
+                document.getElementById("toolbarTemplate").innerHTML=toolHtml;
+            }
+            console.log("list:beforeInit");
+
         },
         afterSearchInputReady: function() {
             console.log("list:afterSearchInputReady");

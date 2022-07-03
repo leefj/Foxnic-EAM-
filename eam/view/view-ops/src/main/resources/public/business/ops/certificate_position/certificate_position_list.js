@@ -378,7 +378,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["50%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"ops-certificate-position-form-data-win",
 			content: '/business/ops/certificate_position/certificate_position_form.html' + (queryString?("?"+queryString):""),

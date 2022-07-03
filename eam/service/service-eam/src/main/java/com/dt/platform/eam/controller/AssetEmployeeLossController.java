@@ -4,6 +4,8 @@ package com.dt.platform.eam.controller;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.github.foxnic.commons.collection.CollectorUtil;
+import org.github.foxnic.web.domain.hrm.Person;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -246,6 +248,10 @@ public class AssetEmployeeLossController extends SuperController implements BpmC
 			.with("organization")
 			.with("originator")
 			.execute();
+
+		assetEmployeeLossService.dao().join(assetEmployeeLoss.getOriginator(), Person.class);
+
+
 		result.success(true).data(assetEmployeeLoss);
 		return result;
 	}
@@ -293,6 +299,12 @@ public class AssetEmployeeLossController extends SuperController implements BpmC
 	public Result<List<AssetEmployeeLoss>> queryList(AssetEmployeeLossVO sample) {
 		Result<List<AssetEmployeeLoss>> result=new Result<>();
 		List<AssetEmployeeLoss> list=assetEmployeeLossService.queryList(sample);
+
+
+		List<Employee> employees= CollectorUtil.collectList(list, AssetEmployeeLoss::getOriginator);
+		assetEmployeeLossService.dao().join(employees, Person.class);
+
+
 		result.success(true).data(list);
 		return result;
 	}
@@ -326,6 +338,12 @@ public class AssetEmployeeLossController extends SuperController implements BpmC
 			.with("originator")
 			.execute();
 		// 填充流程相关的属性
+
+
+		List<Employee> employees= CollectorUtil.collectList(list, AssetEmployeeLoss::getOriginator);
+		assetEmployeeLossService.dao().join(employees, Person.class);
+
+
 		assetEmployeeLossService.joinProcess(list);
 		result.success(true).data(list);
 		return result;

@@ -91,13 +91,13 @@ public class RepairOrderAcceptGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.ACTUAL_COST).form().numberInput().defaultValue(0.0);
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.FINISH_TIME).form().validate().required().form().dateInput().format("yyyy-MM-dd").defaultNow();
-        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.ORIGINATOR_ID).table().fillBy("originator","nameAndBadge");
-        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.ACCEPTER_ID).table().fillBy("accepter","nameAndBadge");
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.ORIGINATOR_ID).table().fillBy("originator","name");
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.ACCEPTER_ID).table().fillBy("accepter","name");
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACCEPTANCE.ACCEPTER_ID).form().validate().required().form()
                 .button().chooseEmployee(true);
 
 
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(200);
         cfg.view().list().operationColumn().width(30);
         cfg.view().list().disableBatchDelete();

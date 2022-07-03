@@ -377,7 +377,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["65%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"ops-software-base-type-form-data-win",
 			content: '/business/ops/software_base_type/software_base_type_form.html' + (queryString?("?"+queryString):""),

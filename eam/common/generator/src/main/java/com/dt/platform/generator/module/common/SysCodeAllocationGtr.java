@@ -81,8 +81,8 @@ public class SysCodeAllocationGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(3,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
-        cfg.view().formWindow().bottomSpace(250);
-        cfg.view().formWindow().width("85%");
+        cfg.view().formWindow().bottomSpace(100);
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().form().addGroup(null,
                 new Object[]{
                         EAMTables.SYS_CODE_ALLOCATION.CODE,

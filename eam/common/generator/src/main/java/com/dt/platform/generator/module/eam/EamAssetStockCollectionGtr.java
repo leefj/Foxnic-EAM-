@@ -37,7 +37,7 @@ public class EamAssetStockCollectionGtr extends BaseCodeGenerator{
 
 
 
-        cfg.view().field(EAMTables.EAM_ASSET_STOCK_COLLECTION.ORIGINATOR_ID).table().fillBy("originator","nameAndBadge");
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_COLLECTION.ORIGINATOR_ID).table().fillBy("originator","name");
 
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_COLLECTION.SELECTED_CODE).basic().hidden(true);
 
@@ -45,7 +45,7 @@ public class EamAssetStockCollectionGtr extends BaseCodeGenerator{
                 .form().button().chooseOrganization(true);
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_COLLECTION.USE_ORGANIZATION_ID).table().fillBy("useOrganization","fullName");
 
-        cfg.view().field(EAMTables.EAM_ASSET_STOCK_COLLECTION.USE_USER_ID).table().fillBy("useUser","nameAndBadge");
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_COLLECTION.USE_USER_ID).table().fillBy("useUser","name");
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_COLLECTION.USE_USER_ID).form().validate().required().form()
                 .button().chooseEmployee(true);
 
@@ -101,23 +101,23 @@ public class EamAssetStockCollectionGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_COLLECTION.BUSINESS_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_COLLECTION.COLLECTION_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
 
-        cfg.view().field(EAMTables.EAM_ASSET_STOCK_COLLECTION.CONTENT).form().textArea().height(30).search().fuzzySearch();
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_COLLECTION.CONTENT).form().textArea().height(Config.textAreaHeight).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_COLLECTION.POSITION_ID)
                 .basic().label("存放位置")
                 .form().selectBox().queryApi(PositionServiceProxy.QUERY_LIST).paging(false).filter(true).toolbar(false)
                 .valueField(PositionMeta.ID).textField(PositionMeta.NAME).fillWith(AssetCollectionMeta.POSITION).muliti(false);
 
 
-        cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_stock_collection:for-approval");
+     //   cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_stock_collection:for-approval");
         cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_stock_collection:confirm");
-        cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_stock_collection:revoke");
+      //  cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_stock_collection:revoke");
         cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_stock_collection:bill");
 
         cfg.view().list().operationColumn().width(350);
 
         //分成分组布局
         cfg.view().formWindow().bottomSpace(20);
-        cfg.view().formWindow().width("98%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_STOCK_COLLECTION.NAME,

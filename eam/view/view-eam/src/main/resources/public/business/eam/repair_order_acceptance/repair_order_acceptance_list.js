@@ -80,12 +80,12 @@ function ListPage() {
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'businessCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务编号') , templet: function (d) { return templet('businessCode',d.businessCode,d);}  }
 					,{ field: 'resultType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维修结果'), templet: function (d) { return templet('resultType' ,fox.joinLabel(d.resultTypeDict,"label"),d);}}
-					,{ field: 'accepterId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('验收人') , templet: function (d) { return templet('accepterId',fox.getProperty(d,["accepter","nameAndBadge"]),d);} }
+					,{ field: 'accepterId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('验收人') , templet: function (d) { return templet('accepterId',fox.getProperty(d,["accepter","name"]),d);} }
 					,{ field: 'categoryTplId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('实际故障'), templet: function (d) { return templet('categoryTplId' ,fox.joinLabel(d.categoryTpl,"name"),d);}}
 					,{ field: 'actualCost', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('实际花费') , templet: function (d) { return templet('actualCost',d.actualCost,d);}  }
 					,{ field: 'finishTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('完成时间') ,templet: function (d) { return templet('finishTime',fox.dateFormat(d.finishTime,"yyyy-MM-dd"),d); }  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('验收备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
-					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","nameAndBadge"]),d);} }
+					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"]),d);} }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'orderBusinessCode', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('订单编号') , templet: function (d) { return templet('orderBusinessCode',fox.getProperty(d,["order","businessCode"]),d);} }
 					,{ field: 'orderName', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('订单名称') , templet: function (d) { return templet('orderName',fox.getProperty(d,["order","name"]),d);} }
@@ -462,7 +462,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["85%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-repair-order-acceptance-form-data-win",
 			content: '/business/eam/repair_order_acceptance/repair_order_acceptance_form.html' + (queryString?("?"+queryString):""),

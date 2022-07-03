@@ -69,7 +69,7 @@ public class MonitorTplGraphGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_GRAPH.NAME).form().validate().required();
 
         cfg.view().formWindow().bottomSpace(120);
-        cfg.view().formWindow().width("98%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_MONITOR_TPL_GRAPH.NAME,

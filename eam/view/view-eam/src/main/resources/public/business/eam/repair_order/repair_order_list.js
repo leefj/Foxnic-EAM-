@@ -88,7 +88,7 @@ function ListPage() {
 					,{ field: 'reportOrgId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('报修部门') , templet: function (d) { return templet('reportOrgId',fox.getProperty(d,["organization","fullName"]),d);} }
 					,{ field: 'repairCost', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('维修费用') , templet: function (d) { return templet('repairCost',d.repairCost,d);}  }
 					,{ field: 'planFinishDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('计划完成日期') ,templet: function (d) { return templet('planFinishDate',fox.dateFormat(d.planFinishDate,"yyyy-MM-dd"),d); }  }
-					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","nameAndBadge"]),d);} }
+					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"]),d);} }
 					,{ field: 'businessDate', align:"right", fixed:false, hide:true, sort: true   ,title: fox.translate('业务日期') ,templet: function (d) { return templet('businessDate',fox.dateFormat(d.businessDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'selectedCode', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('选择数据') , templet: function (d) { return templet('selectedCode',d.selectedCode,d);}  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
@@ -498,7 +498,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["85%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-repair-order-form-data-win",
 			content: '/business/eam/repair_order/repair_order_form.html' + (queryString?("?"+queryString):""),

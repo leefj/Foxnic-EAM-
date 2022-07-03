@@ -444,7 +444,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["95%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-goods-stock-form-data-win",
 			content: '/business/eam/goods_stock/goods_stock_form.html' + (queryString?("?"+queryString):""),

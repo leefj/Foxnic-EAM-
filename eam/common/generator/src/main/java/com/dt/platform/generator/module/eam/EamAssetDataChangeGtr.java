@@ -63,7 +63,7 @@ public class EamAssetDataChangeGtr extends BaseCodeGenerator{
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
 
-        cfg.view().field(EAMTables.EAM_ASSET_DATA_CHANGE.ORIGINATOR_ID).table().fillBy("originator","nameAndBadge");
+        cfg.view().field(EAMTables.EAM_ASSET_DATA_CHANGE.ORIGINATOR_ID).table().fillBy("originator","name");
         cfg.view().field(EAMTables.EAM_ASSET_DATA_CHANGE.CHANGE_DATE).form().validate().required().form().dateInput().format("yyyy-MM-dd").search().range();
         cfg.view().field(EAMTables.EAM_ASSET_DATA_CHANGE.STATUS).form().selectBox().enumType(AssetHandleStatusEnum.class);
 
@@ -85,7 +85,7 @@ public class EamAssetDataChangeGtr extends BaseCodeGenerator{
         cfg.view().list().operationColumn().width(350);
 
         cfg.view().formWindow().bottomSpace(20);
-        cfg.view().formWindow().width("98%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_DATA_CHANGE.BUSINESS_NAME,

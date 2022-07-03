@@ -413,7 +413,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["75%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"ops-person-form-data-win",
 			content: '/business/ops/person/person_form.html' + (queryString?("?"+queryString):""),

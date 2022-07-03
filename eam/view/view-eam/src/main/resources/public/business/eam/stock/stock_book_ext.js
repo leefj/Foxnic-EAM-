@@ -26,7 +26,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 title: "变更明细",
                 resize: false,
                 offset: [15,null],
-                area: ["95%","80%"],
+                area: ["80%","80%"],
                 type: 2,
                 id:"eam-asset-data-change-detail-form-data-win",
                 content: '/business/eam/asset_process_record/asset_process_record_list.html' + queryString,

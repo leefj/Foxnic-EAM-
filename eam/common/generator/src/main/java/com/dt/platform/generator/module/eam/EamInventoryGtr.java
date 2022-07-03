@@ -128,7 +128,7 @@ public class EamInventoryGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_INVENTORY.INVENTORY_STATUS).form().
                 label("盘点状态").selectBox().enumType(AssetInventoryActionStatusEnum.class).muliti(false);
 
-        cfg.view().field(EAMTables.EAM_INVENTORY.NOTES).form().textArea().height(30);
+        cfg.view().field(EAMTables.EAM_INVENTORY.NOTES).form().textArea().height(Config.textAreaHeight);
 
         cfg.view().field(EAMTables.EAM_INVENTORY.ASSET_STATUS).form().
                 label("资产状态").selectBox().enumType(AssetStatusEnum.class).muliti(true);
@@ -204,7 +204,7 @@ public class EamInventoryGtr extends BaseCodeGenerator{
        cfg.view().list().operationColumn().addActionButton("明细","inventoryDetail","inventory-detail-button",null);
 
         cfg.view().formWindow().bottomSpace(250);
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_INVENTORY.NAME,

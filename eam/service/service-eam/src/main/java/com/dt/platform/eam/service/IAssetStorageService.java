@@ -2,6 +2,7 @@ package com.dt.platform.eam.service;
 
 
 import com.dt.platform.domain.eam.AssetTranfer;
+import com.github.foxnic.dao.entity.ISimpleIdService;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
 import com.dt.platform.domain.eam.AssetStorage;
@@ -16,6 +17,8 @@ import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ExcelStructure;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.data.SaveMode;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.domain.changes.ProcessStartVO;
 
@@ -29,7 +32,12 @@ import java.util.Map;
  * @since 2022-05-19 13:26:20
 */
 
-public interface IAssetStorageService extends ISuperService<AssetStorage> {
+public interface IAssetStorageService extends ISimpleIdService<AssetStorage,String> {
+
+	/**
+	 * 表单定义代码
+	 **/
+	public static final String FORM_DEFINITION_CODE="eam_asset_storage";
 
 	/**
 	 * 获取单据数据
@@ -37,6 +45,20 @@ public interface IAssetStorageService extends ISuperService<AssetStorage> {
 	 * @return 返回结果
 	 * */
 	Map<String, Object> getBill(String id);
+
+
+
+	/**
+	 * 处理流程回调
+	 * */
+	BpmActionResult onProcessCallback(BpmEvent event);
+
+
+	void joinProcess(AssetStorage assetStorage);
+
+	void joinProcess(List<AssetStorage> assetStorageList);
+
+	void joinProcess(PagedList<AssetStorage> assetStorageList);
 
 
 

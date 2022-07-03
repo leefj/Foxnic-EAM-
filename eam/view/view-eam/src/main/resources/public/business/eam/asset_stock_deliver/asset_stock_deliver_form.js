@@ -239,7 +239,7 @@ function FormPage() {
 			fox.setSelectValue4Enum("#deliverType",formData.deliverType,SELECT_DELIVERTYPE_DATA);
 
 			//处理fillBy
-			$("#receiverId").val(fox.getProperty(formData,["receiver","nameAndBadge"]));
+			$("#receiverId").val(fox.getProperty(formData,["receiver","name"]));
 
 			//
 	     	fm.attr('method', 'POST');

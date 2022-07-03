@@ -89,7 +89,7 @@ public class EamGoodsGtr extends BaseCodeGenerator {
 
 
         cfg.view().formWindow().bottomSpace(250);
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_GOODS.CATEGORY_ID,

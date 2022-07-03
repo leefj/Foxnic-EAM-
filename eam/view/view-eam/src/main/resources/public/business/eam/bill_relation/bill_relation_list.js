@@ -380,7 +380,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["500px",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-bill-relation-form-data-win",
 			content: '/business/eam/bill_relation/bill_relation_form.html' + (queryString?("?"+queryString):""),

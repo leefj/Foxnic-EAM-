@@ -3,6 +3,8 @@ package com.dt.platform.generator.module.eam;
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.domain.eam.Asset;
+import com.dt.platform.domain.eam.AssetEmployeeRepair;
+import com.dt.platform.domain.eam.meta.AssetEmployeeRepairMeta;
 import com.dt.platform.eam.page.AssetEmployeeRepairPageController;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.AssetEmployeeRepairServiceProxy;
@@ -22,12 +24,11 @@ public class EmployRepairGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addListProperty(Asset.class,"assetList","资产","资产");
         cfg.getPoClassFile().addListProperty(String.class,"assetIds","资产列表","资产列表");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"originatorUserName","申请人","申请人");
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"organization","使用公司/部门","使用公司/部门");
         System.out.println(this.getClass().getName());
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.ID).basic().hidden(true);
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.NAME).search().fuzzySearch();
-
-
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.BUSINESS_CODE).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.NAME).search().fuzzySearch();
 
@@ -46,41 +47,47 @@ public class EmployRepairGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.NOTES).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.SELECTED_CODE).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.RECORD_TIME).table().disable(true);
-
+        cfg.view().field(AssetEmployeeRepairMeta.ORIGINATOR_USER_NAME).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.PICTURE_ID).table().disable(true);
-        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.NOTES).form().textArea().height(50);
+        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.NOTES).form().textArea().height(Config.textAreaHeight);
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.NAME).form().validate().required();
-        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.CONTENT).form().validate().required().form().textArea().height(50);
+        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.CONTENT).form().validate().required().form().textArea().height(Config.textAreaHeight);
+
 
 
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.ORG_ID)
                 .form().validate().required().form().button().chooseOrganization(true);
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.ORG_ID).table().fillBy("organization","fullName");
 
-        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.ORIGINATOR_ID).table().fillBy("originator","name");
-        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.ORIGINATOR_ID).form()
-                .button().chooseEmployee(true);
+
+
+        cfg.view().field(AssetEmployeeRepairMeta.ORIGINATOR_USER_NAME).table().label("申请人").form().label("申请人").
+                form().fillBy("originator","name");
+        cfg.view().field(AssetEmployeeRepairMeta.ORIGINATOR_ID).table().fillBy("originator","name");
+
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.STATUS).basic().label("办理状态")
                 .form().selectBox().enumType(AssetHandleStatusEnum.class);
-
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.PICTURE_ID).form().upload().acceptImageType().maxFileCount(3).buttonLabel("选择图片");
-
-     //   cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_stock_goods_out:for-approval");
-     //   cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_stock_goods_out:confirm");
 
         cfg.bpm().form("eam_asset_employee_repair");
         cfg.bpm().integrate(IntegrateMode.FRONT);
 
         cfg.view().form().labelWidth(70);
         cfg.view().list().disableBatchDelete();
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(30);
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.NAME,
-                },
+                }
+        );
+        cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.ORG_ID,
+
+                },
+                new Object[] {
+                        AssetEmployeeRepairMeta.ORIGINATOR_USER_NAME,
                 }
         );
         cfg.view().form().addGroup(null,
@@ -93,6 +100,10 @@ public class EmployRepairGtr extends BaseCodeGenerator {
                         EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.PICTURE_ID,
                 }
         );
+//
+//       <script type="text/javascript" src="/module/commonFunction/commonFunction.js" th:src="'/module/commonFunction/commonFunction.js?'+${cacheKey}"></script>
+
+
 
         cfg.view().form().addJsVariable("EMPLOYEE_ID",   "[[${user.getUser().getActivatedEmployeeId()}]]","用户ID");
         cfg.view().form().addPage("资产列表","goodsSelectList");
@@ -104,7 +115,7 @@ public class EmployRepairGtr extends BaseCodeGenerator {
                 .setPageController(WriteMode.IGNORE) //页面控制器
                 .setBpmEventAdaptor(WriteMode.IGNORE)
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
-                .setListPage(WriteMode.COVER_EXISTS_FILE)
+                .setListPage(WriteMode.IGNORE)
                 .setExtendJsFile(WriteMode.WRITE_TEMP_FILE); //列表HTML页
         ; //列表HTML页
         //生成代码

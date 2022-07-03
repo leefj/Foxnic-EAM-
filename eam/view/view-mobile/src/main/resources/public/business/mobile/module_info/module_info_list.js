@@ -436,7 +436,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["75%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"app-module-info-form-data-win",
 			content: '/business/mobile/module_info/module_info_form.html' + (queryString?("?"+queryString):""),

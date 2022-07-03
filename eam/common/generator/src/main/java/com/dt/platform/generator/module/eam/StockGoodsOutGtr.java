@@ -97,13 +97,13 @@ public class StockGoodsOutGtr extends BaseCodeGenerator {
         cfg.view().list().addJsVariable("APPROVAL_REQUIRED","[[${approvalRequired}]]","APPROVAL_REQUIRED");
 
 
-        cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_stock_goods_out:for-approval");
+   //     cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_stock_goods_out:for-approval");
         cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_stock_goods_out:confirm");
-        cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_stock_goods_out:revoke");
+    //    cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_stock_goods_out:revoke");
         cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_stock_goods_out:bill");
 
 
-        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.CONTENT).form().textArea().height(60);
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.CONTENT).form().textArea().height(Config.textAreaHeight);
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.ATTACH_ID)
                 .form().label("附件").upload().acceptSingleFile().maxFileCount(1).displayFileName(false);
 
@@ -138,11 +138,11 @@ public class StockGoodsOutGtr extends BaseCodeGenerator {
 
 
 
-        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.ORIGINATOR_ID).table().fillBy("originator","nameAndBadge");
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.ORIGINATOR_ID).table().fillBy("originator","name");
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.ORIGINATOR_ID).form()
                 .button().chooseEmployee(true);
 
-        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.USE_USER_ID).table().fillBy("useUser","nameAndBadge");
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.USE_USER_ID).table().fillBy("useUser","name");
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_OUT.USE_USER_ID).form()
                 .button().chooseEmployee(true);
 

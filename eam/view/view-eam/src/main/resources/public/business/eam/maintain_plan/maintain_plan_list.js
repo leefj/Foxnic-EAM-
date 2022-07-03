@@ -89,7 +89,7 @@ function ListPage() {
 					,{ field: 'totalCost', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('总工时') , templet: function (d) { return templet('totalCost',d.totalCost,d);}  }
 					,{ field: 'timeout', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('超时时间') , templet: function (d) { return templet('timeout',d.timeout,d);}  }
 					,{ field: 'info', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('方案说明') , templet: function (d) { return templet('info',d.info,d);}  }
-					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","nameAndBadge"]),d);} }
+					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"]),d);} }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 250 }
@@ -497,7 +497,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["95%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-maintain-plan-form-data-win",
 			content: '/business/eam/maintain_plan/maintain_plan_form.html' + (queryString?("?"+queryString):""),

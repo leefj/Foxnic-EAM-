@@ -616,7 +616,7 @@ function ListPage() {
             title: title,
             resize: false,
             offset: [top,null],
-            area: ["95%",height+"px"],
+            area: ["80%",height+"px"],
             type: 2,
             id:"eam-asset-form-data-win",
             content: '/business/eam/asset/asset_info_form.html' + queryString,

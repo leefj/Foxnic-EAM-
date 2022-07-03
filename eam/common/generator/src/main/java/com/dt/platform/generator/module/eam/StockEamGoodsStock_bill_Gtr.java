@@ -253,12 +253,12 @@ public class StockEamGoodsStock_bill_Gtr extends BaseCodeGenerator {
 
 
 
-        cfg.view().field(EAMTables.EAM_GOODS_STOCK.MANAGER_ID).table().fillBy("manager","nameAndBadge");
+        cfg.view().field(EAMTables.EAM_GOODS_STOCK.MANAGER_ID).table().fillBy("manager","name");
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.MANAGER_ID).form()
                 .button().chooseEmployee(true);
 
 
-        cfg.view().field(EAMTables.EAM_GOODS_STOCK.ORIGINATOR_ID).table().fillBy("originator","nameAndBadge");
+        cfg.view().field(EAMTables.EAM_GOODS_STOCK.ORIGINATOR_ID).table().fillBy("originator","name");
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.ORIGINATOR_ID).form()
                 .button().chooseEmployee(true);
 
@@ -268,7 +268,7 @@ public class StockEamGoodsStock_bill_Gtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.BAR_CODE).form().validate().required();
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.NAME).form().validate().required();
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.MODEL).form().validate().required();
-        cfg.view().field(EAMTables.EAM_GOODS_STOCK.NOTES).form().textArea().height(60);
+        cfg.view().field(EAMTables.EAM_GOODS_STOCK.NOTES).form().textArea().height(Config.textAreaHeight);
 
 
         cfg.view().list().addJsVariable("OWNER_CODE","[[${ownerCode}]]","OWNER_CODE");
@@ -285,7 +285,7 @@ public class StockEamGoodsStock_bill_Gtr extends BaseCodeGenerator {
         cfg.view().list().disableBatchDelete();
 
         cfg.view().formWindow().bottomSpace(250);
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_GOODS_STOCK.CATEGORY_ID,

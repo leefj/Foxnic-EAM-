@@ -80,7 +80,7 @@ function ListPage() {
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'warehouseOutId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('调出仓库'), templet: function (d) { return templet('warehouseOutId' ,fox.joinLabel(d.warehouseOut,"warehouseName"),d);}}
 					,{ field: 'warehouseInId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('调入仓库'), templet: function (d) { return templet('warehouseInId' ,fox.joinLabel(d.warehouseIn,"warehouseName"),d);}}
-					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","nameAndBadge"]),d);} }
+					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"]),d);} }
 					,{ field: 'businessDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('业务日期') ,templet: function (d) { return templet('businessDate',fox.dateFormat(d.businessDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
@@ -491,7 +491,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["95%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-asset-stock-goods-tranfer-form-data-win",
 			content: '/business/eam/asset_stock_goods_tranfer/asset_stock_goods_tranfer_form.html' + (queryString?("?"+queryString):""),

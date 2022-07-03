@@ -43,7 +43,7 @@ public class AppModuleGroupGtr extends BaseCodeGenerator {
         cfg.view().formWindow().bottomSpace(80);
 
         cfg.view().list().disableBatchDelete();
-        cfg.view().formWindow().width("75%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().form().addGroup(null,
                 new Object[]{
                         MobileTables.APP_MODULE_GROUP.CODE,

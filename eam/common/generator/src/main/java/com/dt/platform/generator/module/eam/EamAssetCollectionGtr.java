@@ -28,7 +28,7 @@ public class EamAssetCollectionGtr extends BaseCodeGenerator {
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
 
-
+        cfg.bpm().form("eam_asset_collection");
         cfg.getPoClassFile().addSimpleProperty(Position.class,"position","存放位置","存放位置");
 
         cfg.getPoClassFile().addListProperty(Asset.class,"assetList","资产","资产");
@@ -37,7 +37,7 @@ public class EamAssetCollectionGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"useUser","使用人员","使用人员");
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"useOrganization","领用公司/部门","领用公司/部门");
-
+        cfg.getPoClassFile().addSimpleProperty(String.class,"originatorUserName","申请人","申请人");
 
         cfg.view().field(EAMTables.EAM_ASSET_COLLECTION.SELECTED_CODE).basic().hidden(true);
 
@@ -46,8 +46,12 @@ public class EamAssetCollectionGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_COLLECTION.USE_ORGANIZATION_ID).table().fillBy("useOrganization","fullName");
 
 
-        cfg.view().field(EAMTables.EAM_ASSET_COLLECTION.ORIGINATOR_ID).table().fillBy("originator","nameAndBadge");
-        cfg.view().field(EAMTables.EAM_ASSET_COLLECTION.USE_USER_ID).table().fillBy("useUser","nameAndBadge");
+        cfg.view().field(AssetCollectionMeta .ORIGINATOR_USER_NAME).table().disable(true);
+        cfg.view().field(AssetCollectionMeta.ORIGINATOR_USER_NAME).table().label("申请人").form().label("申请人")
+                .form().fillBy("originator","name");
+
+        cfg.view().field(EAMTables.EAM_ASSET_COLLECTION.ORIGINATOR_ID).table().fillBy("originator","name");
+        cfg.view().field(EAMTables.EAM_ASSET_COLLECTION.USE_USER_ID).table().fillBy("useUser","name");
         cfg.view().field(EAMTables.EAM_ASSET_COLLECTION.USE_USER_ID).form().validate().required().form()
                 .button().chooseEmployee(true);
 
@@ -104,7 +108,7 @@ public class EamAssetCollectionGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_COLLECTION.BUSINESS_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
         cfg.view().field(EAMTables.EAM_ASSET_COLLECTION.COLLECTION_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
 
-        cfg.view().field(EAMTables.EAM_ASSET_COLLECTION.CONTENT).form().textArea().height(30).search().fuzzySearch();
+        cfg.view().field(EAMTables.EAM_ASSET_COLLECTION.CONTENT).form().textArea().height(Config.textAreaHeight).search().fuzzySearch();
 
         cfg.view().field(EAMTables.EAM_ASSET_COLLECTION.POSITION_ID)
                 .basic().label("存放位置")
@@ -115,34 +119,37 @@ public class EamAssetCollectionGtr extends BaseCodeGenerator {
 //        cfg.view().list().operationColumn().addActionButton("确认","confirmData",null);
 //        cfg.view().list().operationColumn().addActionButton("撤销","revokeData",null);
 //        cfg.view().list().operationColumn().addActionButton("单据","downloadBill",null);
-        cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_collection:for-approval");
+   //     cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_collection:for-approval");
         cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_collection:confirm");
-        cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_collection:revoke");
+     //   cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_collection:revoke");
         cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_collection:bill");
 
         cfg.view().list().operationColumn().width(350);
 
+        cfg.view().field(EAMTables.EAM_ASSET_COLLECTION.NAME).form().validate().required();
+
         //分成分组布局
+        cfg.view().form().labelWidth(70);
         cfg.view().formWindow().bottomSpace(20);
-        cfg.view().formWindow().width("98%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
+
         cfg.view().form().addGroup(null,
                 new Object[] {
-                        EAMTables.EAM_ASSET_COLLECTION.NAME,
+                        EAMTables.EAM_ASSET_COLLECTION.NAME
+                },
+                new Object[] {
+                        AssetCollectionMeta.ORIGINATOR_USER_NAME,
+                }
+
+        );
+        cfg.view().form().addGroup(null,
+                new Object[] {
                         EAMTables.EAM_ASSET_COLLECTION.USE_ORGANIZATION_ID,
+                        EAMTables.EAM_ASSET_COLLECTION.USE_USER_ID,
+                        EAMTables.EAM_ASSET_COLLECTION.COLLECTION_DATE,
                 }, new Object[] {
                         EAMTables.EAM_ASSET_COLLECTION.POSITION_ID,
                         EAMTables.EAM_ASSET_COLLECTION.POSITION_DETAIL,
-
-                },
-                new Object[] {
-                        EAMTables.EAM_ASSET_COLLECTION.USE_USER_ID,
-                        EAMTables.EAM_ASSET_COLLECTION.COLLECTION_DATE,
-                }
-        );
-
-        cfg.view().form().addGroup(null,
-                new Object[] {
-
                 }
         );
         cfg.view().form().addGroup(null,
@@ -150,6 +157,9 @@ public class EamAssetCollectionGtr extends BaseCodeGenerator {
                         EAMTables.EAM_ASSET_COLLECTION.CONTENT,
                 }
         );
+
+
+
         cfg.view().list().disableBatchDelete();
         cfg.view().form().addPage("资产列表","assetSelectList");
         cfg.view().form().addJsVariable("BILL_ID","[[${billId}]]","单据ID");
@@ -164,6 +174,7 @@ public class EamAssetCollectionGtr extends BaseCodeGenerator {
                 .setServiceIntfAnfImpl(WriteMode.CREATE_IF_NOT_EXISTS) //服务与接口
                 .setControllerAndAgent(WriteMode.CREATE_IF_NOT_EXISTS) //Rest
                 .setPageController(WriteMode.CREATE_IF_NOT_EXISTS) //页面控制器
+                .setBpmEventAdaptor(WriteMode.IGNORE)
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
                 .setExtendJsFile(WriteMode.CREATE_IF_NOT_EXISTS); //列表HTML页

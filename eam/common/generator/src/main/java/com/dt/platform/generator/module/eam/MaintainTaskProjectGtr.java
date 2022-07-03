@@ -57,7 +57,7 @@ public class MaintainTaskProjectGtr extends BaseCodeGenerator {
                 fillWith(MaintainProjectMeta.MAINTAIN_TYPE_DICT).muliti(false).defaultIndex(0);
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK_PROJECT.PROJECT_BASE_COST).form().numberInput().defaultValue(0.0);
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK_PROJECT.PROJECT_ATTACH_ID).form().upload().acceptSingleFile().buttonLabel("保养手册");
-  //      cfg.view().field(EAMTables.EAM_MAINTAIN_TASK_PROJECT.NO).form().textArea().height(60);
+
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK_PROJECT.START_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK_PROJECT.END_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
@@ -82,7 +82,7 @@ public class MaintainTaskProjectGtr extends BaseCodeGenerator {
 
         cfg.view().list().disableBatchDelete();
         cfg.view().search().inputWidth(Config.searchInputWidth);
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(80);
 
         cfg.view().form().addGroup("保养项目",

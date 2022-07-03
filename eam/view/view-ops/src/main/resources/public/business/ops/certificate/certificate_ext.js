@@ -155,7 +155,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 title: "证书项",
                 resize: false,
                 id: "form-certificate-window",
-                area: ["90%", "700px"],
+                area: ["80%", "700px"],
                 type: 2,
                 content: "/business/ops/certificate_item/certificate_item_list.html?certificateId="+data.id
             });

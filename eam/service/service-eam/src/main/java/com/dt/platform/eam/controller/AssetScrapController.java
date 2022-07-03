@@ -16,6 +16,7 @@ import org.github.foxnic.web.domain.bpm.BpmActionResult;
 import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.domain.hrm.Person;
+import org.github.foxnic.web.proxy.bpm.BpmCallbackController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -73,7 +74,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
 @Api(tags = "资产报废")
 @ApiSort(0)
 @RestController("EamAssetScrapController")
-public class AssetScrapController extends SuperController {
+public class AssetScrapController extends SuperController implements BpmCallbackController {
 
 	@Autowired
 	private IAssetScrapService assetScrapService;

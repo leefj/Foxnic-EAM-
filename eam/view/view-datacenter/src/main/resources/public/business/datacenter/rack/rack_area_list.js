@@ -561,7 +561,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["98%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"dc-rack-form-data-win",
 			content: '/business/datacenter/rack/rack_form.html' + (queryString?("?"+queryString):""),

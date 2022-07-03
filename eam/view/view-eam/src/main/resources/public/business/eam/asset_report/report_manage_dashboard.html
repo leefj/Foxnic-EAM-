@@ -140,13 +140,69 @@
             <div class="panel layui-bg-number bannerF " >
                 <div class="panel-body " >
                     <div class="title ht">
+                        简单审批
+                    </div>
+                    <div class="panel-content">
+                        <div class="box">
+                            <div id="djsp" th:if="${perm.checkAuth('my-business:asset-insert')}" class="boxItem">
+                                <div class="boxPng">
+                                    <image class="boxPngValue" src="/assets/images/workbench/zcly.png" alt="" />
+                                </div>
+                                <div class="boxLabel">
+                                    登记审批
+                                </div>
+                            </div>
+
+
+                            <div id="changeJC" th:if="${perm.checkAuth('my-business:change-base-info')}" class="boxItem">
+                                <div class="boxPng">
+                                    <image class="boxPngValue" src="/assets/images/workbench/msghandover.png" alt="" />
+                                </div>
+                                <div class="boxLabel">
+                                    基础变更审批
+                                </div>
+                            </div>
+
+                            <div id="changeWB" th:if="${perm.checkAuth('my-business:change-maintenance')}" class="boxItem">
+                                <div class="boxPng">
+                                    <image class="boxPngValue" src="/assets/images/workbench/zichanjiaojie.png" alt="" />
+                                </div>
+                                <div class="boxLabel">
+                                    维保变更审批
+                                </div>
+                            </div>
+
+                            <div id="changeCW" th:if="${perm.checkAuth('my-business:change-finance')}" class="boxItem">
+                                <div class="boxPng">
+                                    <image class="boxPngValue" src="/assets/images/workbench/zichanjiaojie.png" alt="" />
+                                </div>
+                                <div class="boxLabel">
+                                    财务变更审批
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div style="margin-top:40px"></div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="layui-col-md12"  >
+            <div class="panel layui-bg-number bannerF " >
+                <div class="panel-body " >
+                    <div class="title ht">
                         资产管理
                     </div>
                     <div class="panel-content">
                         <div class="box">
                             <div id="zcrk" th:if="${perm.checkAuth('eam_asset_storage:mngr')}" class="boxItem">
                                 <div class="boxPng">
-                                    <image class="boxPngValue" src="/assets/libs/image/employee_dashboard/zcly.png" alt="" />
+                                    <image class="boxPngValue" src="/assets/images/workbench/zcly.png" alt="" />
                                 </div>
                                 <div class="boxLabel">
                                     资产入库
@@ -156,7 +212,7 @@
 
                             <div id="zcpf" th:if="${perm.checkAuth('eam_asset_collection:mngr')}" class="boxItem">
                                 <div class="boxPng">
-                                    <image class="boxPngValue" src="/assets/libs/image/employee_dashboard/msghandover.png" alt="" />
+                                    <image class="boxPngValue" src="/assets/images/workbench/msghandover.png" alt="" />
                                 </div>
                                 <div class="boxLabel">
                                     资产派发
@@ -165,7 +221,7 @@
 
                             <div id="zcdb" th:if="${perm.checkAuth('eam_asset_allocation:mngr')}" class="boxItem">
                                 <div class="boxPng">
-                                    <image class="boxPngValue" src="/assets/libs/image/employee_dashboard/zichanjiaojie.png" alt="" />
+                                    <image class="boxPngValue" src="/assets/images/workbench/zichanjiaojie.png" alt="" />
                                 </div>
                                 <div class="boxLabel">
                                     资产调拨
@@ -174,12 +230,21 @@
 
                             <div id="zczy" th:if="${perm.checkAuth('eam_asset_tranfer:mngr')}" class="boxItem">
                                 <div class="boxPng">
-                                    <image class="boxPngValue" src="/assets/libs/image/employee_dashboard/zichanjiaojie.png" alt="" />
+                                    <image class="boxPngValue" src="/assets/images/workbench/zichanjiaojie.png" alt="" />
                                 </div>
                                 <div class="boxLabel">
                                     资产转移
                                 </div>
                             </div>
+
+<!--                            <div id="zcbf" th:if="${perm.checkAuth('eam_asset_scrap:mngr')}" class="boxItem">-->
+<!--                                <div class="boxPng">-->
+<!--                                    <image class="boxPngValue" src="/assets/images/workbench/zichanjiaojie.png" alt="" />-->
+<!--                                </div>-->
+<!--                                <div class="boxLabel">-->
+<!--                                    资产报废-->
+<!--                                </div>-->
+<!--                            </div>-->
 
 
                         </div>
@@ -202,7 +267,7 @@
                         <div class="box">
                             <div id="rjdj" th:if="${perm.checkAuth('eam_asset_software:mngr')}" class="boxItem">
                                 <div class="boxPng">
-                                    <image class="boxPngValue" src="/assets/libs/image/employee_dashboard/kczcjy.png" alt="" />
+                                    <image class="boxPngValue" src="/assets/images/workbench/kczcjy.png" alt="" />
                                 </div>
                                 <div class="boxLabel">
                                     软件登记
@@ -212,7 +277,7 @@
 
                             <div id="rjff" th:if="${perm.checkAuth('eam_asset_software_distribute:mngr')}" class="boxItem">
                                 <div class="boxPng">
-                                    <image class="boxPngValue" src="/assets/libs/image/employee_dashboard/kczcly.png" alt="" />
+                                    <image class="boxPngValue" src="/assets/images/workbench/kczcly.png" alt="" />
                                 </div>
                                 <div class="boxLabel">
                                     软件分发
@@ -221,7 +286,7 @@
 
                             <div id="rjwb" th:if="${perm.checkAuth('eam_asset_software_maintenance:mngr')}" class="boxItem">
                                 <div class="boxPng">
-                                    <image class="boxPngValue" src="/assets/libs/image/employee_dashboard/msghandover.png" alt="" />
+                                    <image class="boxPngValue" src="/assets/images/workbench/msghandover.png" alt="" />
                                 </div>
                                 <div class="boxLabel">
                                     软件维保

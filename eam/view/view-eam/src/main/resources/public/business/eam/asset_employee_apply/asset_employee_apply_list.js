@@ -1,7 +1,7 @@
 /**
  * 领用申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-02 22:09:47
+ * @since 2022-07-03 07:55:06
  */
 
 
@@ -426,7 +426,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["85%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-asset-employee-apply-form-data-win",
 			content: '/business/eam/asset_employee_apply/asset_employee_apply_form.html' + (queryString?("?"+queryString):""),

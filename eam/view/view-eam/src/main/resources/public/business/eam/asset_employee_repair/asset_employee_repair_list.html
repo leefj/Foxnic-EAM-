@@ -2,7 +2,7 @@
 /**
  * 资产报修 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-02 22:09:00
+ * @since 2022-07-03 07:56:48
  */
  -->
  <!DOCTYPE html>
@@ -109,9 +109,11 @@
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetHandleStatusEnum')}]];
     var AUTH_PREFIX="eam_asset_employee_repair";
-
-
 </script>
+
+<script type="text/javascript" src="/module/commonFunction/commonFunction.js" th:src="'/module/commonFunction/commonFunction.js?'+${cacheKey}"></script>
+
+
 
 <script th:src="'/business/eam/asset_employee_repair/asset_employee_repair_ext.js?'+${cacheKey}"></script>
 <script th:src="'/business/eam/asset_employee_repair/asset_employee_repair_list.js?'+${cacheKey}"></script>

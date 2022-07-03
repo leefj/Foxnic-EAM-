@@ -14,7 +14,7 @@ import org.github.foxnic.web.domain.bpm.ProcessInstance;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-02 22:09:17
+ * @since 2022-07-03 11:05:52
  * @sign E6C96F96D90734FBF34189F5ADF52CF8
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -342,6 +342,16 @@ public class AssetEmployeeLossVOMeta extends AssetEmployeeLossMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetEmployeeLossVO,org.github.foxnic.web.domain.hrm.Organization> ORGANIZATION_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetEmployeeLossVO.class ,ORGANIZATION, org.github.foxnic.web.domain.hrm.Organization.class, "使用公司/部门", "使用公司/部门", org.github.foxnic.web.domain.hrm.Organization.class, null);
 	
 	/**
+	 * 申请人 , 类型: java.lang.String
+	*/
+	public static final String ORIGINATOR_USER_NAME="originatorUserName";
+	
+	/**
+	 * 申请人 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetEmployeeLossVO,java.lang.String> ORIGINATOR_USER_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetEmployeeLossVO.class ,ORIGINATOR_USER_NAME, java.lang.String.class, "申请人", "申请人", java.lang.String.class, null);
+	
+	/**
 	 * 历史流程清单 , 集合类型: LIST , 类型: org.github.foxnic.web.domain.bpm.ProcessInstance
 	*/
 	public static final String HISTORIC_PROCESS_LIST="historicProcessList";
@@ -374,7 +384,7 @@ public class AssetEmployeeLossVOMeta extends AssetEmployeeLossMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , BUSINESS_CODE , STATUS , NAME , CONTENT , NOTES , ORIGINATOR_ID , RECORD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , ORG_ID , ORIGINATOR , ASSET_LIST , ASSET_IDS , ORGANIZATION , HISTORIC_PROCESS_LIST , CURRENT_PROCESS_LIST , DEFAULT_PROCESS };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , BUSINESS_CODE , STATUS , NAME , CONTENT , NOTES , ORIGINATOR_ID , RECORD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , ORG_ID , ORIGINATOR , ASSET_LIST , ASSET_IDS , ORGANIZATION , ORIGINATOR_USER_NAME , HISTORIC_PROCESS_LIST , CURRENT_PROCESS_LIST , DEFAULT_PROCESS };
 	
 	/**
 	 * 代理类
@@ -733,6 +743,17 @@ public class AssetEmployeeLossVOMeta extends AssetEmployeeLossMeta {
 		public AssetEmployeeLoss setOrganization(Organization organization) {
 			super.change(ORGANIZATION,super.getOrganization(),organization);
 			super.setOrganization(organization);
+			return this;
+		}
+		
+		/**
+		 * 设置 申请人
+		 * @param originatorUserName 申请人
+		 * @return 当前对象
+		*/
+		public AssetEmployeeLoss setOriginatorUserName(String originatorUserName) {
+			super.change(ORIGINATOR_USER_NAME,super.getOriginatorUserName(),originatorUserName);
+			super.setOriginatorUserName(originatorUserName);
 			return this;
 		}
 		

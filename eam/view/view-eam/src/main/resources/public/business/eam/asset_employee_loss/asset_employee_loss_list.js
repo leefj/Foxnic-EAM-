@@ -1,7 +1,7 @@
 /**
  * 资产报失 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-02 22:09:18
+ * @since 2022-07-03 07:55:40
  */
 
 
@@ -13,7 +13,6 @@ function ListPage() {
 	var dataTable=null;
 	var sort=null;
 	/**
-      * 入口函数，初始化
       * 入口函数，初始化
       */
 	this.init=function(layui) {
@@ -268,7 +267,6 @@ function ListPage() {
 					if(window.pageExt.list.getBpmDefaultValue) {
 						defaultValue=window.pageExt.list.getBpmDefaultValue();
 					}
-					console.log("getBpmDefaultValue",defaultValue);
 					bpm.openProcessView(null,null,false,{"formDefinitionCode":"eam_asset_employee_loss"},refreshTableData,refreshRowData,"bill",defaultValue);
 					break;
 				case 'batch-del':
@@ -428,7 +426,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["85%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-asset-employee-loss-form-data-win",
 			content: '/business/eam/asset_employee_loss/asset_employee_loss_form.html' + (queryString?("?"+queryString):""),

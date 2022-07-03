@@ -1,7 +1,7 @@
 /**
  * 资产报修 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-02 22:09:00
+ * @since 2022-07-03 11:06:36
  */
 
 function FormPage() {
@@ -244,6 +244,7 @@ function FormPage() {
 
 
 			//处理fillBy
+			$("#originatorUserName").val(fox.getProperty(formData,["originator","name"]));
 
 			//
 	     	fm.attr('method', 'POST');
@@ -302,6 +303,12 @@ function FormPage() {
 	}
 
 	function saveForm(param,callback) {
+
+		if(window.pageExt.form.beforeSubmit) {
+			var doNext=window.pageExt.form.beforeSubmit(data.field);
+			if(!doNext) return ;
+		}
+
 		param.dirtyFields=fox.compareDirtyFields(dataBeforeEdit,param);
 		var action=param.id?"edit":"create";
 		var api=moduleURL+"/"+(param.id?"update":"insert");
@@ -345,10 +352,7 @@ function FormPage() {
 	    	//debugger;
 			data.field = getFormData();
 
-			if(window.pageExt.form.beforeSubmit) {
-				var doNext=window.pageExt.form.beforeSubmit(data.field);
-				if(!doNext) return ;
-			}
+
 			//校验表单
 			if(!verifyForm(data.field)) return;
 
@@ -371,22 +375,6 @@ function FormPage() {
 				callback:function(param,result){ window.pageExt.form.afterDialog && window.pageExt.form.afterDialog(param,result);}
 			};
 			fox.chooseOrgNode(orgIdDialogOptions);
-		});
-		// 请选择人员对话框
-		$("#originatorId-button").click(function(){
-				var originatorIdDialogOptions={
-				field:"originatorId",
-				formData:getFormData(),
-				inputEl:$("#originatorId"),
-				buttonEl:$(this),
-				single:true,
-				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
-				root: "",
-				targetType:"emp",
-				prepose:function(param){ return window.pageExt.form.beforeDialog && window.pageExt.form.beforeDialog(param);},
-				callback:function(param,result){ window.pageExt.form.afterDialog && window.pageExt.form.afterDialog(param,result);}
-			};
-			fox.chooseEmployee(originatorIdDialogOptions);
 		});
 
 	    //关闭窗口

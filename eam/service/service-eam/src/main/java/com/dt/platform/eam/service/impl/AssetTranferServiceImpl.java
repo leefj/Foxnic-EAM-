@@ -13,9 +13,9 @@ import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.AssetScrapMeta;
 import com.dt.platform.domain.eam.meta.AssetTranferMeta;
 import com.dt.platform.eam.common.AssetCommonError;
-import com.dt.platform.eam.service.IAssetSelectedDataService;
-import com.dt.platform.eam.service.IAssetService;
-import com.dt.platform.eam.service.IOperateService;
+import com.dt.platform.eam.service.*;
+import com.dt.platform.eam.service.bpm.AssetStorageBpmEventAdaptor;
+import com.dt.platform.eam.service.bpm.AssetTranferBpmEventAdaptor;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.dt.platform.proxy.eam.AssetScrapServiceProxy;
 import com.dt.platform.proxy.eam.AssetTranferServiceProxy;
@@ -24,9 +24,12 @@ import com.github.foxnic.commons.bean.BeanUtil;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.commons.reflect.EnumUtil;
 import com.github.foxnic.sql.expr.SQL;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ChangeEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.domain.changes.ProcessStartVO;
+import org.github.foxnic.web.framework.bpm.BpmAssistant;
 import org.github.foxnic.web.proxy.utils.SessionUserProxyUtil;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +56,6 @@ import com.github.foxnic.dao.meta.DBColumnMeta;
 import com.github.foxnic.sql.expr.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import com.dt.platform.eam.service.IAssetTranferService;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 
 /**
@@ -95,6 +97,30 @@ public class AssetTranferServiceImpl extends SuperService<AssetTranfer> implemen
 	public Object generateId(Field field) {
 		return IDGenerator.getSnowflakeIdString();
 	}
+
+
+	/**
+	 * 处理流程回调
+	 * */
+	public BpmActionResult onProcessCallback(BpmEvent event) {
+		return (new AssetTranferBpmEventAdaptor(this)).onProcessCallback(event);
+	}
+
+	@Override
+	public void joinProcess(AssetTranfer assetTranfer) {
+		this.joinProcess(Arrays.asList(assetTranfer));
+	}
+
+	@Override
+	public void joinProcess(List<AssetTranfer> assetTranferList) {
+		BpmAssistant.joinProcess(assetTranferList, IAssetAllocationService.FORM_DEFINITION_CODE);
+	}
+
+	@Override
+	public void joinProcess(PagedList<AssetTranfer> assetTranferList) {
+		this.joinProcess(assetTranferList.getList());
+	}
+
 
 
 
@@ -301,7 +327,7 @@ public class AssetTranferServiceImpl extends SuperService<AssetTranfer> implemen
 		AssetTranfer assetTranfer = new AssetTranfer();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		assetTranfer.setId(id);
-		assetTranfer.setDeleted(dao.getDBTreaty().getTrueValue());
+		assetTranfer.setDeleted(1);
 		assetTranfer.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		assetTranfer.setDeleteTime(new Date());
 		try {

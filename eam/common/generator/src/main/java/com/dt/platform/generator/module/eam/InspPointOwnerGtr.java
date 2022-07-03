@@ -30,7 +30,7 @@ public class InspPointOwnerGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_INSPECTION_POINT_OWNER.SELECTED_CODE).table().disable(true);
 
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().list().disableBatchDelete();
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().form().addGroup(null,

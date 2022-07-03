@@ -31,11 +31,12 @@ public class EamAssetRepairGtr extends BaseCodeGenerator{
 
     public void generateCode() throws Exception {
 
+        cfg.bpm().form("eam_asset_repair");
         System.out.println(this.getClass().getName());
         cfg.getPoClassFile().addListProperty(Asset.class,"assetList","资产","资产");
         cfg.getPoClassFile().addListProperty(String.class,"assetIds","资产列表","资产列表");
        // cfg.service().addRelationSaveAction(AssetItemServiceImpl.class, AssetRepairVOMeta.ASSET_IDS);
-
+        cfg.getPoClassFile().addSimpleProperty(String.class,"originatorUserName","申请人","申请人");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"reportUser","报修人","报修人");
 
@@ -49,7 +50,7 @@ public class EamAssetRepairGtr extends BaseCodeGenerator{
 
         cfg.view().field(EAMTables.EAM_ASSET_REPAIR.BUSINESS_DATE).search().range();
         cfg.view().field(EAMTables.EAM_ASSET_REPAIR.BUSINESS_CODE).search();
-
+        cfg.view().field(EAMTables.EAM_ASSET_REPAIR.NAME).form().validate().required();
 
         cfg.view().field(EAMTables.EAM_ASSET_REPAIR.PROC_ID).table().disable();
         cfg.view().field(EAMTables.EAM_ASSET_REPAIR.CREATE_TIME).table().disable();
@@ -60,7 +61,7 @@ public class EamAssetRepairGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_ASSET_REPAIR.REPORT_USER_NAME).table().disable();
         cfg.view().field(EAMTables.EAM_ASSET_REPAIR.CONTENT).search()
                 .form().validate().required().
-                form().textArea().height(30)
+                form().textArea().height(Config.textAreaHeight)
                 .search().fuzzySearch();
 
         cfg.view().field(EAMTables.EAM_ASSET_REPAIR.STATUS).form().form().selectBox().enumType(AssetHandleStatusEnum.class);
@@ -82,8 +83,12 @@ public class EamAssetRepairGtr extends BaseCodeGenerator{
 //        cfg.view().field(EAMTables.EAM_ASSET_REPAIR.TYPE)
 //                .form().selectBox().dict(DictEnum.EAM_REPAIR_TYPE).defaultValue(AssetRepairStatusEnum.REPAIRING.code());
 
-        cfg.view().field(EAMTables.EAM_ASSET_REPAIR.ORIGINATOR_ID).table().fillBy("originator","nameAndBadge");
-        cfg.view().field(EAMTables.EAM_ASSET_REPAIR.REPORT_USER_ID).table().fillBy("reportUser","nameAndBadge");
+        cfg.view().field(AssetRepairMeta.ORIGINATOR_USER_NAME).table().disable(true);
+        cfg.view().field(AssetRepairMeta.ORIGINATOR_USER_NAME).table().label("申请人").form().label("申请人")
+                .form().fillBy("originator","name");
+
+        cfg.view().field(EAMTables.EAM_ASSET_REPAIR.ORIGINATOR_ID).table().fillBy("originator","name");
+        cfg.view().field(EAMTables.EAM_ASSET_REPAIR.REPORT_USER_ID).table().fillBy("reportUser","name");
 
 
         cfg.view().field(EAMTables.EAM_ASSET_REPAIR.NAME).form().validate().required();
@@ -100,9 +105,14 @@ public class EamAssetRepairGtr extends BaseCodeGenerator{
         cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_repair:bill");
 
 
-
+        cfg.view().form().labelWidth(70);
         cfg.view().list().operationColumn().width(350);
-        cfg.view().formWindow().width("98%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
+
+
+        cfg.view().form().labelWidth(70);
+        cfg.view().list().operationColumn().width(350);
+
         cfg.view().search().inputLayout(
                 new Object[]{
                         EAMTables.EAM_ASSET_REPAIR.STATUS,
@@ -117,6 +127,7 @@ public class EamAssetRepairGtr extends BaseCodeGenerator{
                 }
 
         );
+
 
 
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
@@ -135,13 +146,18 @@ public class EamAssetRepairGtr extends BaseCodeGenerator{
 //        cfg.view().form().addJsVariable("EMPLOYEE_NAME", "[[${user.getUser().getActivatedEmployeeName()}]]","用户姓名");
 
 
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_REPAIR.NAME,
-//                        EAMTables.EAM_ASSET_REPAIR.REPAIR_STATUS,
+                },
+                new Object[] {
+                        AssetRepairMeta.ORIGINATOR_USER_NAME,
                 }
-                , new Object[] {
+        );
+
+        cfg.view().form().addGroup(null,
+                 new Object[] {
                         EAMTables.EAM_ASSET_REPAIR.TYPE,
                 }
                 , new Object[] {
@@ -165,6 +181,7 @@ public class EamAssetRepairGtr extends BaseCodeGenerator{
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
                 .setControllerAndAgent(WriteMode.IGNORE) //Rest
                 .setPageController(WriteMode.IGNORE) //页面控制器
+                .setBpmEventAdaptor(WriteMode.IGNORE)
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
                 .setExtendJsFile(WriteMode.IGNORE); //列表HTML页

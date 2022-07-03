@@ -9,6 +9,7 @@ import com.dt.platform.domain.datacenter.Rack;
 import com.dt.platform.domain.datacenter.meta.RackMeta;
 import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.*;
+import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.datacenter.RackServiceProxy;
 import com.dt.platform.proxy.eam.*;
 
@@ -251,8 +252,8 @@ public class EamAssetsGtr extends BaseCodeGenerator {
                 .valueField(GoodsStockMeta.ID).textField( GoodsStockMeta.NAME).fillWith(AssetMeta.GOODS_STOCK).muliti(false);
 
 
-        cfg.view().field(EAMTables.EAM_ASSET.LABEL3).form().textArea().height(50);
-        cfg.view().field(EAMTables.EAM_ASSET.LABEL4).form().textArea().height(50);
+        cfg.view().field(EAMTables.EAM_ASSET.LABEL3).form().textArea().height(Config.textAreaHeight);
+        cfg.view().field(EAMTables.EAM_ASSET.LABEL4).form().textArea().height(Config.textAreaHeight);
 
 
         cfg.view().field(EAMTables.EAM_ASSET.MANUFACTURER_ID)
@@ -279,10 +280,10 @@ public class EamAssetsGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET.PURCHASE_UNIT_PRICE).form().numberInput().allowNegative(false).scale(2);
 
 
-        cfg.view().field(EAMTables.EAM_ASSET.ASSET_NOTES).form().textArea().height(30);
+        cfg.view().field(EAMTables.EAM_ASSET.ASSET_NOTES).form().textArea().height(Config.textAreaHeight);
 
-        cfg.view().field(EAMTables.EAM_ASSET.FINANCIAL_NOTES).form().textArea().height(30);
-        cfg.view().field(EAMTables.EAM_ASSET.MAINTENANCE_NOTES).form().textArea().height(30);
+        cfg.view().field(EAMTables.EAM_ASSET.FINANCIAL_NOTES).form().textArea().height(Config.textAreaHeight);
+        cfg.view().field(EAMTables.EAM_ASSET.MAINTENANCE_NOTES).form().textArea().height(Config.textAreaHeight);
 
 
         cfg.view().field(EAMTables.EAM_ASSET.OWN_COMPANY_ID)
@@ -323,7 +324,7 @@ public class EamAssetsGtr extends BaseCodeGenerator {
         cfg.view().list().operationColumn().addActionButton("变更","assetDataChange");
 
         //分成分组布局
-        cfg.view().formWindow().width("98%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
 //        cfg.view().form().addGroup(null,
 //                new Object[] {
 //                        EAMTables.EAM_ASSET.CATEGORY_ID,

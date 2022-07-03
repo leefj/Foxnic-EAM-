@@ -54,7 +54,7 @@ public class EamProcessRecord extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_ASSET_PROCESS_RECORD.ID).form().hidden();
         cfg.view().field(EAMTables.EAM_ASSET_PROCESS_RECORD.PROCESS_USER_ID).form().hidden();
         cfg.view().formWindow().bottomSpace(100);
-        cfg.view().formWindow().width("80%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
 
 
         //文件生成覆盖模式

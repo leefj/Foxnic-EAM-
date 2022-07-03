@@ -52,9 +52,9 @@ public class SoftwareChangeGtr extends BaseCodeGenerator {
 
 
         cfg.view().list().addJsVariable("APPROVAL_REQUIRED","[[${approvalRequired}]]","APPROVAL_REQUIRED");
-        cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_software_change:for-approval");
+     //   cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_software_change:for-approval");
         cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_software_change:confirm");
-        cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_software_change:revoke");
+      //  cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_software_change:revoke");
         cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_software_change:bill");
 
         cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE_CHANGE.CONTENT).table().disable(true);
@@ -64,8 +64,8 @@ public class SoftwareChangeGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE_CHANGE.PROC_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE_CHANGE.BUSINESS_DATE).form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
         cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE_CHANGE.NAME).form().validate().required();
-        cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE_CHANGE.NOTES).form().textArea().height(60);
-        cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE_CHANGE.CONTENT).form().textArea().height(60);
+        cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE_CHANGE.NOTES).form().textArea().height(Config.textAreaHeight);
+        cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE_CHANGE.CONTENT).form().textArea().height(Config.textAreaHeight);
         cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE_CHANGE.ATTACH_ID).form().upload().acceptSingleFile().maxFileCount(1);
         cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE_CHANGE.STATUS).form().selectBox().enumType(AssetHandleStatusEnum.class);
 

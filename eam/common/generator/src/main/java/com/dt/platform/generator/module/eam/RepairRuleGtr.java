@@ -48,7 +48,7 @@ public class RepairRuleGtr extends BaseCodeGenerator {
                 .form().validate().required();
 
         cfg.view().field(EAMTables.EAM_REPAIR_RULE.NOTES)
-                .form().textArea().height(60);
+                .form().textArea().height(Config.textAreaHeight);
 
         cfg.view().field(EAMTables.EAM_REPAIR_RULE.GROUP_ID)
                 .form().validate().required().form().selectBox().queryApi(RepairGroupServiceProxy.QUERY_LIST)

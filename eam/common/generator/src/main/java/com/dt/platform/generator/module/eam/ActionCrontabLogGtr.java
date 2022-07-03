@@ -28,7 +28,7 @@ public class ActionCrontabLogGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_ACTION_CRONTAB_LOG.CRONTAB_ID).table().disable(true);
 
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(220);
         cfg.view().form().addGroup(null,
                 new Object[] {

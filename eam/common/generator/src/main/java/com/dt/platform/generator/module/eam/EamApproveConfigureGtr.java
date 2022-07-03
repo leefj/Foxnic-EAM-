@@ -52,7 +52,7 @@ public class EamApproveConfigureGtr extends BaseCodeGenerator{
                 .form().validate().required().form().selectBox().enumType(AssetApprovalTypeEnum.class);
 
         cfg.view().field(EAMTables.EAM_APPROVE_CONFIGURE.NOTES)
-                .form().textArea().height(30);
+                .form().textArea().height(Config.textAreaHeight);
 
         //分成分组布局
         cfg.view().formWindow().width("800px");

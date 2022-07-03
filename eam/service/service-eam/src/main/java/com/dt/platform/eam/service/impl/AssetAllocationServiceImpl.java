@@ -14,6 +14,8 @@ import com.dt.platform.domain.eam.meta.AssetCollectionMeta;
 import com.dt.platform.domain.eam.meta.AssetDataChangeMeta;
 import com.dt.platform.eam.common.AssetCommonError;
 import com.dt.platform.eam.service.*;
+import com.dt.platform.eam.service.bpm.AssetAllocationBpmEventAdaptor;
+import com.dt.platform.eam.service.bpm.AssetEmployeeApplyBpmEventAdaptor;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.dt.platform.proxy.eam.AssetAllocationServiceProxy;
 import com.github.foxnic.api.constant.CodeTextEnum;
@@ -21,9 +23,12 @@ import com.github.foxnic.commons.bean.BeanUtil;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.commons.reflect.EnumUtil;
 import com.github.foxnic.sql.expr.SQL;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ChangeEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.domain.changes.ProcessStartVO;
+import org.github.foxnic.web.framework.bpm.BpmAssistant;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -94,7 +99,27 @@ public class AssetAllocationServiceImpl extends SuperService<AssetAllocation> im
 	}
 
 
+	/**
+	 * 处理流程回调
+	 * */
+	public BpmActionResult onProcessCallback(BpmEvent event) {
+		return (new AssetAllocationBpmEventAdaptor(this)).onProcessCallback(event);
+	}
 
+	@Override
+	public void joinProcess(AssetAllocation assetAllocation) {
+		this.joinProcess(Arrays.asList(assetAllocation));
+	}
+
+	@Override
+	public void joinProcess(List<AssetAllocation> assetAllocationList) {
+		BpmAssistant.joinProcess(assetAllocationList,IAssetAllocationService.FORM_DEFINITION_CODE);
+	}
+
+	@Override
+	public void joinProcess(PagedList<AssetAllocation> assetAllocationList) {
+		this.joinProcess(assetAllocationList.getList());
+	}
 
 	@Override
 	public Map<String, Object> getBill(String id) {
@@ -292,7 +317,7 @@ public class AssetAllocationServiceImpl extends SuperService<AssetAllocation> im
 		AssetAllocation assetAllocation = new AssetAllocation();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		assetAllocation.setId(id);
-		assetAllocation.setDeleted(dao.getDBTreaty().getTrueValue());
+		assetAllocation.setDeleted(1);
 		assetAllocation.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		assetAllocation.setDeleteTime(new Date());
 		try {

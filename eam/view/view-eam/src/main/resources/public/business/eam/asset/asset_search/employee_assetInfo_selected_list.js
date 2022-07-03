@@ -67,9 +67,16 @@ function ListPage() {
                     return value;
                 }
             }
+
+
+            var checkboxhide=false;
+            if (PAGE_TYPE=="view"){
+                checkboxhide=true;
+            }
+            console.log("pageType",PAGE_TYPE);
             var h=$(".search-bar").height();
             var COL_ALL_DATA= assetListColumn.getColumnList(templet);
-            var COL_DATA=[{ fixed: 'left',type: 'numbers' }]
+            var COL_DATA=[{ fixed: 'left',type: 'numbers' },{ fixed: 'left',type:'checkbox', hide:checkboxhide}];
             for(var i=0;i<ATTRIBUTE_LIST_DATA.length;i++){
                 COL_DATA.push(COL_ALL_DATA[ATTRIBUTE_LIST_DATA[i].attribute.code])
             }
@@ -227,7 +234,7 @@ function ListPage() {
                         title: "选择资产",
                         resize: false,
                         offset: [null,null],
-                        area: ["85%","75%"],
+                        area: ["80%","75%"],
                         type: 2,
                         id:"eam-asset-employee-select-form-data-win",
                         content: '/business/eam/asset/asset_search/employee_assetInfo_select_list.html'+q,
@@ -237,7 +244,7 @@ function ListPage() {
                     });
                     break;
                 case 'batch-del':
-                  //  batchDelete(selected);
+                    batchDelete(selected);
                     break;
                 case 'refresh-data':
                     refreshTableData();
@@ -257,40 +264,42 @@ function ListPage() {
         // };
 
         //批量删除按钮点击事件
-        // function batchDelete(selected) {
-        //
-        //     if(window.pageExt.list.beforeBatchDelete) {
-        //         var doNext=window.pageExt.list.beforeBatchDelete(selected);
-        //         if(!doNext) return;
-        //     }
-        //
-        //     var ids=getCheckedList("id");
-        //     if(ids.length==0) {
-        //         top.layer.msg(fox.translate('请选择需要删除的')+fox.translate('资产')+"!");
-        //         return;
-        //     }
-        //     //调用批量删除接口
-        //     top.layer.confirm(fox.translate('确定删除已选中的')+fox.translate('资产')+fox.translate('吗？'), function (i) {
-        //         top.layer.close(i);
-        //         top.layer.load(2);
-        //         admin.request(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
-        //             top.layer.closeAll('loading');
-        //             if (data.success) {
-        //                 if(window.pageExt.list.afterBatchDelete) {
-        //                     var doNext=window.pageExt.list.afterBatchDelete(data);
-        //                     if(!doNext) return;
-        //                 }
-        //                 top.layer.msg(data.message, {icon: 1, time: 500});
-        //                 refreshTableData();
-        //             } else {
-        //                 top.layer.msg(data.message, {icon: 2, time: 1500});
-        //             }
-        //         });
-        //
-        //     });
-        // }
-        //
-        //
+        function batchDelete(selected) {
+
+            if(window.pageExt.list.beforeBatchDelete) {
+                var doNext=window.pageExt.list.beforeBatchDelete(selected);
+                if(!doNext) return;
+            }
+
+            var ids=getCheckedList("id");
+            if(ids.length==0) {
+                top.layer.msg(fox.translate('请选择需要删除的')+fox.translate('资产')+"!");
+                return;
+            }
+            //调用批量删除接口
+            top.layer.confirm(fox.translate('确定删除已选中的')+fox.translate('资产')+fox.translate('吗？'), function (i) {
+                top.layer.close(i);
+                top.layer.load(2);
+                var selectmoduleURL="/service-eam/eam-asset-selected-data";
+                var p={ ids: ids,assetSelectedCode:SELECTED_CODE,assetOwnerId:OWNER_ID};
+                admin.request(selectmoduleURL+"/delete-by-ids", p , function (data) {
+                    top.layer.closeAll('loading');
+                    if (data.success) {
+                        if(window.pageExt.list.afterBatchDelete) {
+                            var doNext=window.pageExt.list.afterBatchDelete(data);
+                            if(!doNext) return;
+                        }
+                        top.layer.msg(data.message, {icon: 1, time: 500});
+                        refreshTableData();
+                    } else {
+                        top.layer.msg(data.message, {icon: 2, time: 1500});
+                    }
+                });
+
+            });
+        }
+
+
 
 
     }
@@ -323,7 +332,7 @@ function ListPage() {
             title: title,
             resize: false,
             offset: [top,null],
-            area: ["95%",height+"px"],
+            area: ["80%",height+"px"],
             type: 2,
             id:"eam-asset-form-data-win",
             content: '/business/eam/asset/asset_info_form.html' + queryString,

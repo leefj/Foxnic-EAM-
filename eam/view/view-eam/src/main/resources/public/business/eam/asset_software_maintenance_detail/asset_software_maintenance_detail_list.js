@@ -377,7 +377,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["95%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-asset-software-maintenance-detail-form-data-win",
 			content: '/business/eam/asset_software_maintenance_detail/asset_software_maintenance_detail_form.html' + (queryString?("?"+queryString):""),

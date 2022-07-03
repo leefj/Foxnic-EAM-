@@ -3,6 +3,7 @@ package com.dt.platform.domain.eam;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import com.github.foxnic.api.model.CompositeParameter;
 import javax.persistence.Transient;
 import com.github.foxnic.commons.bean.BeanUtil;
@@ -12,7 +13,7 @@ import com.github.foxnic.commons.bean.BeanUtil;
 /**
  * 资产领用
  * @author 金杰 , maillank@qq.com
- * @since 2021-12-15 15:14:27
+ * @since 2022-07-03 15:18:27
  * @sign 0094305D2528FACC4E3B88E7A570827F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -188,9 +189,9 @@ public class AssetCollectionVO extends AssetCollection {
 	 * @param dirtyField 已修改字段
 	 * @return 当前对象
 	*/
-	public AssetCollectionVO addDirtyField(String dirtyField) {
+	public AssetCollectionVO addDirtyField(String... dirtyField) {
 		if(this.dirtyFields==null) dirtyFields=new ArrayList<>();
-		this.dirtyFields.add(dirtyField);
+		this.dirtyFields.addAll(Arrays.asList(dirtyField));
 		return this;
 	}
 	
@@ -254,9 +255,9 @@ public class AssetCollectionVO extends AssetCollection {
 	 * @param id 主键清单
 	 * @return 当前对象
 	*/
-	public AssetCollectionVO addId(String id) {
+	public AssetCollectionVO addId(String... id) {
 		if(this.ids==null) ids=new ArrayList<>();
-		this.ids.add(id);
+		this.ids.addAll(Arrays.asList(id));
 		return this;
 	}
 	@Transient

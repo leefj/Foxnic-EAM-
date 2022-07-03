@@ -72,7 +72,7 @@ public class EamPurchaseOrderGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.GOODS_TYPE).form().validate().required().form().selectBox().enumType(AssetPurchaseAssetTypeEnum.class).defaultValue(AssetPurchaseAssetTypeEnum.ASSET.code());
         cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.STORAGE_TYPE).form().validate().required().form().selectBox().enumType(AssetPurchaseStorageTypeEnum.class).defaultValue(AssetPurchaseStorageTypeEnum.ASSET.code());
-        cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.NOTES).form().textArea().height(50);
+        cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.NOTES).form().textArea().height(Config.textAreaHeight);
 
         cfg.view().field(EAMTables.EAM_PURCHASE_ORDER.APPLY_ID)
                 .basic()
@@ -94,7 +94,7 @@ public class EamPurchaseOrderGtr extends BaseCodeGenerator {
 
 
         cfg.view().formWindow().bottomSpace(250);
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_PURCHASE_ORDER.NAME,

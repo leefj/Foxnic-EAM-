@@ -16,9 +16,9 @@ import com.dt.platform.domain.eam.AssetItem;
 import com.dt.platform.domain.eam.meta.AssetCollectionMeta;
 import com.dt.platform.domain.eam.meta.AssetCollectionReturnMeta;
 import com.dt.platform.eam.common.AssetCommonError;
-import com.dt.platform.eam.service.IAssetSelectedDataService;
-import com.dt.platform.eam.service.IAssetService;
-import com.dt.platform.eam.service.IOperateService;
+import com.dt.platform.eam.service.*;
+import com.dt.platform.eam.service.bpm.AssetCollectionBpmEventAdaptor;
+import com.dt.platform.eam.service.bpm.AssetCollectionReturnBpmEventAdaptor;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.dt.platform.proxy.eam.AssetCollectionReturnServiceProxy;
 import com.dt.platform.proxy.eam.AssetCollectionServiceProxy;
@@ -27,9 +27,12 @@ import com.github.foxnic.commons.bean.BeanUtil;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.commons.reflect.EnumUtil;
 import com.github.foxnic.sql.expr.SQL;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ChangeEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.domain.changes.ProcessStartVO;
+import org.github.foxnic.web.framework.bpm.BpmAssistant;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,7 +61,6 @@ import com.github.foxnic.dao.meta.DBColumnMeta;
 import com.github.foxnic.sql.expr.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import com.dt.platform.eam.service.IAssetCollectionService;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 
 /**
@@ -103,6 +105,29 @@ public class AssetCollectionServiceImpl extends SuperService<AssetCollection> im
 	}
 
 
+
+
+	/**
+	 * 处理流程回调
+	 * */
+	public BpmActionResult onProcessCallback(BpmEvent event) {
+		return (new AssetCollectionBpmEventAdaptor(this)).onProcessCallback(event);
+	}
+
+	@Override
+	public void joinProcess(AssetCollection assetCollection) {
+		this.joinProcess(Arrays.asList(assetCollection));
+	}
+
+	@Override
+	public void joinProcess(List<AssetCollection> assetCollectionList) {
+		BpmAssistant.joinProcess(assetCollectionList, IAssetAllocationService.FORM_DEFINITION_CODE);
+	}
+
+	@Override
+	public void joinProcess(PagedList<AssetCollection> assetCollectionList) {
+		this.joinProcess(assetCollectionList.getList());
+	}
 
 
 	@Override
@@ -331,7 +356,7 @@ public class AssetCollectionServiceImpl extends SuperService<AssetCollection> im
 		AssetCollection assetCollection = new AssetCollection();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		assetCollection.setId(id);
-		assetCollection.setDeleted(dao.getDBTreaty().getTrueValue());
+		assetCollection.setDeleted(1);
 		assetCollection.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		assetCollection.setDeleteTime(new Date());
 		try {

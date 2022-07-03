@@ -364,7 +364,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["85%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"sys-code-rule-form-data-win",
 			content: '/business/common/code_rule/code_rule_form.html' + queryString,

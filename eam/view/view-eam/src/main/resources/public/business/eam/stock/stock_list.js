@@ -77,7 +77,7 @@ function ListPage() {
 				,{ field: 'warehouseId', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('仓库'), templet: function (d) { return templet('warehouseId' ,fox.joinLabel(d.warehouse,"warehouseName"),d);}}
 				,{ field: 'amount', align:"right",fixed:false,  hide:false, sort: true, title: fox.translate('总金额') , templet: function (d) { return templet('amount',d.amount,d);}  }
 				,{ field: 'purchaseDate', align:"right", fixed:false, hide:false, sort: true, title: fox.translate('购置日期') ,templet: function (d) { return templet('purchaseDate',fox.dateFormat(d.purchaseDate,"yyyy-MM-dd HH:mm:ss"),d); }  }
-				,{ field: 'managerId', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('管理人') , templet: function (d) { return templet('managerId',fox.getProperty(d,["manager","nameAndBadge"]),d);} }
+				,{ field: 'managerId', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('管理人') , templet: function (d) { return templet('managerId',fox.getProperty(d,["manager","name"]),d);} }
 				,{ field: 'receiverUserName', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('接收人') , templet: function (d) { return templet('receiverUserName',d.receiverUserName,d);}  }
 				,{ field: 'businessDate', align:"right", fixed:false, hide:false, sort: true, title: fox.translate('业务时间') ,templet: function (d) { return templet('businessDate',fox.dateFormat(d.businessDate,"yyyy-MM-dd"),d); }  }
 				,{ field: 'stockNotes', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('备注') , templet: function (d) { return templet('stockNotes',d.stockNotes,d);}  }
@@ -473,7 +473,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["98%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-stock-form-data-win",
 			content: '/business/eam/stock/stock_form.html' + queryString,

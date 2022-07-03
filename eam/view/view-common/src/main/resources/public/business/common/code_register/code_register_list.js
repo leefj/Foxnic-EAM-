@@ -384,7 +384,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["85%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"sys-code-register-form-data-win",
 			content: '/business/common/code_register/code_register_form.html' + queryString,

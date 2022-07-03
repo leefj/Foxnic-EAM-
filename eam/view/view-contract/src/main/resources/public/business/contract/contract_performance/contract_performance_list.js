@@ -363,7 +363,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["600px",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"cont-contract-performance-form-data-win",
 			content: '/business/contract/contract_performance/contract_performance_form.html' + queryString,

@@ -10,8 +10,11 @@ import com.dt.platform.proxy.eam.AssetAllocationServiceProxy;
 import com.dt.platform.proxy.eam.AssetBorrowServiceProxy;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.commons.lang.StringUtil;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.domain.hrm.Person;
+import org.github.foxnic.web.proxy.bpm.BpmCallbackController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,7 +66,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
 @Api(tags = "资产领用")
 @ApiSort(0)
 @RestController("EamAssetCollectionController")
-public class AssetCollectionController extends SuperController {
+public class AssetCollectionController extends SuperController implements BpmCallbackController {
 
 	@Autowired
 	private IAssetCollectionService assetCollectionService;
@@ -381,6 +384,17 @@ public class AssetCollectionController extends SuperController {
 			//下载
 			DownloadUtil.writeToOutput(response, ew.getWorkBook(), ew.getWorkBookName());
 		}
+
+
+
+	/**
+	 *  流程回调处理
+	 */
+	@SentinelResource(value = AssetCollectionServiceProxy.BPM_CALLBACK , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(AssetCollectionServiceProxy.BPM_CALLBACK)
+	public BpmActionResult onProcessCallback(BpmEvent event){
+		return assetCollectionService.onProcessCallback(event);
+	}
 
 
 

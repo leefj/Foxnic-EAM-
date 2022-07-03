@@ -54,7 +54,7 @@ public class EamTplFileGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_TPL_FILE.TYPE).form().validate().required().form()
                 .selectBox().enumType(AssetTplFileTypeEnum.class).defaultIndex(0);
 
-        cfg.view().field(EAMTables.EAM_TPL_FILE.NOTES).form().textArea().height(30);
+        cfg.view().field(EAMTables.EAM_TPL_FILE.NOTES).form().textArea().height(Config.textAreaHeight);
 
 
         cfg.view().field(EAMTables.EAM_TPL_FILE.CODE)
@@ -66,7 +66,7 @@ public class EamTplFileGtr extends BaseCodeGenerator{
 
 
         //分成分组布局
-        cfg.view().formWindow().width("80%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().formWindow().bottomSpace(200);
         cfg.view().form().addGroup(null,
                 new Object[] {

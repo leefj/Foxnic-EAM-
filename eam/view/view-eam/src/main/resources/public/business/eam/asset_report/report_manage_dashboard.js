@@ -16,6 +16,62 @@ function ListPage() {
         admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate;
         table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,dropdown=layui.dropdown;;
 
+        $("#djsp").click(function(){
+            admin.popupCenter({
+                title: "资产登记审批清单",
+                resize: false,
+                offset: [null,null],
+                area: ["80%","500px"],
+                type: 2,
+                id:"eam-asset-employee-approval-form-data-win",
+                content: '/business/eam/asset_data_change/asset_data_change_list.html',
+                finish: function () {
+                }
+            });
+        })
+
+
+        $("#changeJC").click(function(){
+            admin.popupCenter({
+                title: "资产基础变更审批清单",
+                resize: false,
+                offset: [null,null],
+                area: ["80%","500px"],
+                type: 2,
+                id:"eam-asset-employee-approval-form-data-win",
+                content: '/business/eam/asset_data_change/asset_data_change_list.html?changeType=eam_asset_change_base_info&pageType=approval',
+                finish: function () {
+                }
+            });
+        })
+
+        $("#changeWB").click(function(){
+            admin.popupCenter({
+                title: "资产维保变更审批清单",
+                resize: false,
+                offset: [null,null],
+                area: ["80%","500px"],
+                type: 2,
+                id:"eam-asset-employee-approval-form-data-win",
+                content: '/business/eam/asset_data_change/asset_data_change_list.html?changeType=eam_asset_change_maintenance&pageType=approval',
+                finish: function () {
+                }
+            });
+        })
+
+        $("#changeCW").click(function(){
+            admin.popupCenter({
+                title: "资产财务变更审批清单",
+                resize: false,
+                offset: [null,null],
+                area: ["80%","500px"],
+                type: 2,
+                id:"eam-asset-employee-approval-form-data-win",
+                content: '/business/eam/asset_data_change/asset_data_change_list.html?changeType=eam_asset_change_financial&pageType=approval',
+                finish: function () {
+                }
+            });
+        })
 
 
         $("#rjdj").click(function(){
@@ -36,7 +92,7 @@ function ListPage() {
                 title: title,
                 resize: false,
                 offset: [top,null],
-                area: ["95%",height+"px"],
+                area: ["80%",height+"px"],
                 type: 2,
                 id:"eam-asset-software-form-data-win",
                 content: '/business/eam/asset_software/asset_software_form.html' + (queryString?("?"+queryString):""),
@@ -65,7 +121,7 @@ function ListPage() {
                 title: title,
                 resize: false,
                 offset: [top,null],
-                area: ["95%",height+"px"],
+                area: ["80%",height+"px"],
                 type: 2,
                 id:"eam-asset-software-distribute-form-data-win",
                 content: '/business/eam/asset_software_distribute/asset_software_distribute_form.html' + (queryString?("?"+queryString):""),
@@ -97,7 +153,7 @@ function ListPage() {
                 title: title,
                 resize: false,
                 offset: [top,null],
-                area: ["95%",height+"px"],
+                area: ["80%",height+"px"],
                 type: 2,
                 id:"eam-asset-software-maintenance-form-data-win",
                 content: '/business/eam/asset_software_maintenance/asset_software_maintenance_form.html' + (queryString?("?"+queryString):""),
@@ -166,7 +222,7 @@ function ListPage() {
                 title: title,
                 resize: false,
                 offset: [top,null],
-                area: ["98%",height+"px"],
+                area: ["80%",height+"px"],
                 type: 2,
                 id:"eam-asset-scrap-form-data-win",
                 content: '/business/eam/asset_scrap/asset_scrap_form.html' + queryString,
@@ -197,7 +253,7 @@ function ListPage() {
                 title: title,
                 resize: false,
                 offset: [top,null],
-                area: ["98%",height+"px"],
+                area: ["80%",height+"px"],
                 type: 2,
                 id:"eam-asset-allocation-form-data-win",
                 content: '/business/eam/asset_allocation/asset_allocation_form.html' + queryString,
@@ -228,7 +284,7 @@ function ListPage() {
                 title: title,
                 resize: false,
                 offset: [top,null],
-                area: ["98%",height+"px"],
+                area: ["80%",height+"px"],
                 type: 2,
                 id:"eam-asset-tranfer-form-data-win",
                 content: '/business/eam/asset_tranfer/asset_tranfer_form.html' + queryString,

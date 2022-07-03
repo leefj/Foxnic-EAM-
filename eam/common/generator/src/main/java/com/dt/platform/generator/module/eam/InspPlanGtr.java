@@ -63,7 +63,7 @@ public class InspPlanGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(3,Config.searchLabelWidth);
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().list().operationColumn().width(300);
 
@@ -116,7 +116,7 @@ public class InspPlanGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.PLAN_TYPE).form().validate().required().form()
                 .selectBox().enumType(InspectionPlanTypeEnum.class).defaultIndex(0);
 
-        cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.NOTES).form().textArea().height(80);
+        cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.NOTES).form().textArea().height(Config.textAreaHeight);
 
         cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.REMIND_TIME).form().validate().required().form().numberInput().defaultValue(2.0);
 

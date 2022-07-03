@@ -37,7 +37,7 @@ public class EamPurchaseApplyItemGtr extends BaseCodeGenerator {
 
 
         cfg.view().formWindow().bottomSpace(250);
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_PURCHASE_ORDER_DETAIL.ID,

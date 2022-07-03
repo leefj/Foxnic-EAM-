@@ -13,8 +13,8 @@ import org.github.foxnic.web.domain.bpm.ProcessInstance;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-02 22:08:59
- * @sign 796431AB45B8EE88E6CFFCDD25398CD1
+ * @since 2022-07-03 11:06:34
+ * @sign 1FD3E8269BAC22BFBF9D5DE3CA3A73FD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -251,6 +251,16 @@ public class AssetEmployeeRepairMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetEmployeeRepair,org.github.foxnic.web.domain.hrm.Employee> ORIGINATOR_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetEmployeeRepair.class ,ORIGINATOR, org.github.foxnic.web.domain.hrm.Employee.class, "制单人", "制单人", org.github.foxnic.web.domain.hrm.Employee.class, null);
 	
 	/**
+	 * 申请人 , 类型: java.lang.String
+	*/
+	public static final String ORIGINATOR_USER_NAME="originatorUserName";
+	
+	/**
+	 * 申请人 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetEmployeeRepair,java.lang.String> ORIGINATOR_USER_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetEmployeeRepair.class ,ORIGINATOR_USER_NAME, java.lang.String.class, "申请人", "申请人", java.lang.String.class, null);
+	
+	/**
 	 * 使用公司/部门 , 类型: org.github.foxnic.web.domain.hrm.Organization
 	*/
 	public static final String ORGANIZATION="organization";
@@ -293,7 +303,7 @@ public class AssetEmployeeRepairMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , BUSINESS_CODE , STATUS , NAME , ORG_ID , CONTENT , PICTURE_ID , NOTES , ORIGINATOR_ID , RECORD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , ASSET_LIST , ASSET_IDS , ORIGINATOR , ORGANIZATION , HISTORIC_PROCESS_LIST , CURRENT_PROCESS_LIST , DEFAULT_PROCESS };
+	public static final String[] $PROPS={ ID , BUSINESS_CODE , STATUS , NAME , ORG_ID , CONTENT , PICTURE_ID , NOTES , ORIGINATOR_ID , RECORD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , ASSET_LIST , ASSET_IDS , ORIGINATOR , ORIGINATOR_USER_NAME , ORGANIZATION , HISTORIC_PROCESS_LIST , CURRENT_PROCESS_LIST , DEFAULT_PROCESS };
 	
 	/**
 	 * 代理类
@@ -553,6 +563,17 @@ public class AssetEmployeeRepairMeta {
 		public AssetEmployeeRepair setOriginator(Employee originator) {
 			super.change(ORIGINATOR,super.getOriginator(),originator);
 			super.setOriginator(originator);
+			return this;
+		}
+		
+		/**
+		 * 设置 申请人
+		 * @param originatorUserName 申请人
+		 * @return 当前对象
+		*/
+		public AssetEmployeeRepair setOriginatorUserName(String originatorUserName) {
+			super.change(ORIGINATOR_USER_NAME,super.getOriginatorUserName(),originatorUserName);
+			super.setOriginatorUserName(originatorUserName);
 			return this;
 		}
 		

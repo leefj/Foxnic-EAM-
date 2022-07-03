@@ -377,7 +377,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["500px",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"vehicle-select-item-form-data-win",
 			content: '/business/vehicle/select_item/select_item_form.html' + (queryString?("?"+queryString):""),

@@ -434,7 +434,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["75%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"app-software-info-form-data-win",
 			content: '/business/mobile/software_info/software_info_form.html' + (queryString?("?"+queryString):""),

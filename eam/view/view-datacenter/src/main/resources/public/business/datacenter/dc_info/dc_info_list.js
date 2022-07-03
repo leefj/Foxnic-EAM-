@@ -223,7 +223,7 @@ function ListPage() {
 			title: title,
 			resize: true,
 			offset: [top,null],
-			area: ["500px",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			content: '/business/datacenter/dc_info/dc_info_form.html' + queryString,
 			finish: function () {

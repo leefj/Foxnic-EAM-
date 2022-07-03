@@ -4,6 +4,9 @@ package com.dt.platform.eam.controller;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.dt.platform.domain.eam.AssetEmployeeApply;
+import com.github.foxnic.commons.collection.CollectorUtil;
+import org.github.foxnic.web.domain.hrm.Person;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -254,6 +257,11 @@ public class AssetEmployeeHandoverController extends SuperController implements 
 			.with("originator")
 			.with("receiverUser")
 			.execute();
+
+		assetEmployeeHandoverService.dao().join(assetEmployeeHandover.getOriginator(),Person.class);
+		assetEmployeeHandoverService.dao().join(assetEmployeeHandover.getReceiverUser(),Person.class);
+
+
 		result.success(true).data(assetEmployeeHandover);
 		return result;
 	}
@@ -303,6 +311,13 @@ public class AssetEmployeeHandoverController extends SuperController implements 
 	public Result<List<AssetEmployeeHandover>> queryList(AssetEmployeeHandoverVO sample) {
 		Result<List<AssetEmployeeHandover>> result=new Result<>();
 		List<AssetEmployeeHandover> list=assetEmployeeHandoverService.queryList(sample);
+
+		List<Employee> employees= CollectorUtil.collectList(list, AssetEmployeeHandover::getOriginator);
+		assetEmployeeHandoverService.dao().join(employees, Person.class);
+
+		List<Employee> receivers= CollectorUtil.collectList(list, AssetEmployeeHandover::getReceiverUser);
+		assetEmployeeHandoverService.dao().join(receivers, Person.class);
+
 		result.success(true).data(list);
 		return result;
 	}
@@ -341,6 +356,14 @@ public class AssetEmployeeHandoverController extends SuperController implements 
 			.execute();
 		// 填充流程相关的属性
 		assetEmployeeHandoverService.joinProcess(list);
+
+
+		List<Employee> employees= CollectorUtil.collectList(list, AssetEmployeeHandover::getOriginator);
+		assetEmployeeHandoverService.dao().join(employees, Person.class);
+
+		List<Employee> receivers= CollectorUtil.collectList(list, AssetEmployeeHandover::getReceiverUser);
+		assetEmployeeHandoverService.dao().join(receivers, Person.class);
+
 		result.success(true).data(list);
 		return result;
 	}

@@ -86,7 +86,7 @@ public class MaintainPlanGtr extends BaseCodeGenerator {
                 fillWith(MaintainPlanMeta.MAINTAIN_TYPE_DICT).muliti(false).defaultIndex(0);
 
 
-        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ORIGINATOR_ID).table().fillBy("originator","nameAndBadge");
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ORIGINATOR_ID).table().fillBy("originator","name");
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.GROUP_ID)
                 .form().validate().required().form().selectBox().queryApi(MaintainGroupServiceProxy.QUERY_LIST)
@@ -101,7 +101,7 @@ public class MaintainPlanGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.TOTAL_COST).form().readOnly();
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.TOTAL_COST).form().numberInput();
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.TIMEOUT).form().validate().required().form().numberInput().defaultValue(2.0);
-      //  cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.NOTES).form().textArea().height(60);
+      //  cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.NOTES).form().textArea().height(Config.textAreaHeight);
 
         cfg.view().search().inputWidth(Config.searchInputWidth);
         cfg.view().formWindow().width("95%");

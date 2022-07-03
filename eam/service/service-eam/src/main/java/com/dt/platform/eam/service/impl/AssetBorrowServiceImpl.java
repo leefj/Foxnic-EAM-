@@ -15,6 +15,8 @@ import com.dt.platform.domain.eam.meta.AssetCollectionMeta;
 import com.dt.platform.domain.eam.meta.AssetSelectedDataMeta;
 import com.dt.platform.eam.common.AssetCommonError;
 import com.dt.platform.eam.service.*;
+import com.dt.platform.eam.service.bpm.AssetAllocationBpmEventAdaptor;
+import com.dt.platform.eam.service.bpm.AssetBorrowBpmEventAdaptor;
 import com.dt.platform.proxy.common.CodeAllocationServiceProxy;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.dt.platform.proxy.eam.AssetAllocationServiceProxy;
@@ -25,9 +27,12 @@ import com.github.foxnic.commons.bean.BeanUtil;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.commons.reflect.EnumUtil;
 import com.github.foxnic.sql.expr.SQL;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ChangeEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.domain.changes.ProcessStartVO;
+import org.github.foxnic.web.framework.bpm.BpmAssistant;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -97,6 +102,30 @@ public class AssetBorrowServiceImpl extends SuperService<AssetBorrow> implements
 	@Override
 	public Object generateId(Field field) {
 		return IDGenerator.getSnowflakeIdString();
+	}
+
+
+
+	/**
+	 * 处理流程回调
+	 * */
+	public BpmActionResult onProcessCallback(BpmEvent event) {
+		return (new AssetBorrowBpmEventAdaptor(this)).onProcessCallback(event);
+	}
+
+	@Override
+	public void joinProcess(AssetBorrow assetBorrow) {
+		this.joinProcess(Arrays.asList(assetBorrow));
+	}
+
+	@Override
+	public void joinProcess(List<AssetBorrow> assetBorrowList) {
+		BpmAssistant.joinProcess(assetBorrowList,IAssetAllocationService.FORM_DEFINITION_CODE);
+	}
+
+	@Override
+	public void joinProcess(PagedList<AssetBorrow> assetBorrowList) {
+		this.joinProcess(assetBorrowList.getList());
 	}
 
 
@@ -359,7 +388,7 @@ public class AssetBorrowServiceImpl extends SuperService<AssetBorrow> implements
 		AssetBorrow assetBorrow = new AssetBorrow();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		assetBorrow.setId(id);
-		assetBorrow.setDeleted(dao.getDBTreaty().getTrueValue());
+		assetBorrow.setDeleted(1);
 		assetBorrow.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		assetBorrow.setDeleteTime(new Date());
 		try {

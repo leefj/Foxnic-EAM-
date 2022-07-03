@@ -94,7 +94,7 @@ public class RepairOrderActGtr extends BaseCodeGenerator {
                 textField(PersonMeta.NAME).
                 fillWith(RepairOrderActMeta.EXECUTOR).muliti(false);
 
-        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.NOTES).form().textArea().height(80);
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.NOTES).form().textArea().height(Config.textAreaHeight);
 
 
 
@@ -102,7 +102,7 @@ public class RepairOrderActGtr extends BaseCodeGenerator {
         cfg.view().field(RepairOrderActMeta.ORDER_NAME).table().label("订单名称").fillBy("order","name");
         cfg.view().field(RepairOrderActMeta.ORDER_REPAIR_STATUS).table().label("订单状态").fillBy("order","repairStatus");
 
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(200);
         cfg.view().list().operationColumn().width(300);
         cfg.view().list().disableBatchDelete();

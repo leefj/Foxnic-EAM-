@@ -60,7 +60,7 @@ public class DcLayerGtr extends BaseCodeGenerator {
                 fillWith(LayerMeta.AREA).muliti(false).defaultIndex(0);
 
         //分成分组布局
-        cfg.view().formWindow().width("75%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().formWindow().bottomSpace(80);
         cfg.view().form().addGroup("基本信息",
                 new Object[] {

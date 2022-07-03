@@ -363,7 +363,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["85%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"sys-code-allocation-form-data-win",
 			content: '/business/common/code_allocation/code_allocation_form.html' + queryString,

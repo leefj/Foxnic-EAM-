@@ -336,7 +336,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["500px",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"workorder-category-form-data-win",
 			content: '/business/ops/workorder_category/workorder_category_form.html' + queryString,

@@ -1,7 +1,7 @@
 /**
  * 资产报修 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-02 22:09:00
+ * @since 2022-07-03 07:56:48
  */
 
 
@@ -426,7 +426,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["85%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-asset-employee-repair-form-data-win",
 			content: '/business/eam/asset_employee_repair/asset_employee_repair_form.html' + (queryString?("?"+queryString):""),

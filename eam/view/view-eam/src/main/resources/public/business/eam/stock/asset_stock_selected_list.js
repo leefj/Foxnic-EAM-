@@ -268,7 +268,7 @@ function ListPage() {
             title: "选择资产",
             resize: false,
             offset: [formTop,null],
-            area: ["95%","90%"],
+            area: ["80%","90%"],
             type: 2,
             id:"eam-asset-select-data-win",
             content: '/business/eam/stock/asset_stock_select_list.html?ownerCode='+OWNER_CODE+'&assetSelectedCode='+ASSET_SELECTED_CODE,

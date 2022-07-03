@@ -92,13 +92,13 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
 
 
         cfg.view().search().inputWidth(Config.searchInputWidth);
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(80);
 
 
 
 
-        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ORIGINATOR_ID).table().fillBy("originator","nameAndBadge");
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ORIGINATOR_ID).table().fillBy("originator","name");
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.EXECUTOR_ID)
                 .form().selectBox().queryApi(GroupUserServiceProxy.QUERY_EMPLOYEE_PERSON)
@@ -107,9 +107,9 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
                 textField(PersonMeta.NAME).
                 fillWith(MaintainTaskMeta.EXECUTOR).muliti(false);
 
-        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.NOTES).form().textArea().height(80);
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER_ACT.NOTES).form().textArea().height(Config.textAreaHeight);
 
-        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.NOTES).form().textArea().height(60);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.NOTES).form().textArea().height(Config.textAreaHeight);
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.GROUP_ID).form().readOnly();
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.GROUP_ID)

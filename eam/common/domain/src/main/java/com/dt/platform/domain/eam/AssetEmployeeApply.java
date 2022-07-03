@@ -23,8 +23,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 领用申请
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-02 22:09:46
- * @sign D2AA254F0284F62671007EE568DF1BCD
+ * @since 2022-07-03 11:03:50
+ * @sign D602ED741A725591A22DC05C048AF786
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -175,6 +175,12 @@ public class AssetEmployeeApply extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="资产列表" , notes = "资产列表")
 	private List<String> assetIds;
+	
+	/**
+	 * 申请人：申请人
+	*/
+	@ApiModelProperty(required = false,value="申请人" , notes = "申请人")
+	private String originatorUserName;
 	
 	/**
 	 * 使用公司/部门：使用公司/部门
@@ -686,6 +692,25 @@ public class AssetEmployeeApply extends Entity {
 	public AssetEmployeeApply addAssetId(String... assetId) {
 		if(this.assetIds==null) assetIds=new ArrayList<>();
 		this.assetIds.addAll(Arrays.asList(assetId));
+		return this;
+	}
+	
+	/**
+	 * 获得 申请人<br>
+	 * 申请人
+	 * @return 申请人
+	*/
+	public String getOriginatorUserName() {
+		return originatorUserName;
+	}
+	
+	/**
+	 * 设置 申请人
+	 * @param originatorUserName 申请人
+	 * @return 当前对象
+	*/
+	public AssetEmployeeApply setOriginatorUserName(String originatorUserName) {
+		this.originatorUserName=originatorUserName;
 		return this;
 	}
 	

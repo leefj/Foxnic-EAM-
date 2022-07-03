@@ -384,7 +384,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["85%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-maintainer-form-data-win",
 			content: '/business/eam/maintainer/maintainer_form.html' + (queryString?("?"+queryString):""),

@@ -12,8 +12,8 @@ import org.github.foxnic.web.domain.hrm.Organization;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2021-11-17 13:21:32
- * @sign E8FF191E7DD41BC06268B67E3526B04E
+ * @since 2022-07-03 15:17:38
+ * @sign 9B2CB39C7CB1F016169D0B0B11EDF6CA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -300,9 +300,19 @@ public class AssetAllocationMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetAllocation,org.github.foxnic.web.domain.hrm.Organization> IN_OWNER_COMPANY_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetAllocation.class ,IN_OWNER_COMPANY, org.github.foxnic.web.domain.hrm.Organization.class, "调入公司", "调入公司", org.github.foxnic.web.domain.hrm.Organization.class, null);
 	
 	/**
+	 * 申请人 , 类型: java.lang.String
+	*/
+	public static final String ORIGINATOR_USER_NAME="originatorUserName";
+	
+	/**
+	 * 申请人 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetAllocation,java.lang.String> ORIGINATOR_USER_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetAllocation.class ,ORIGINATOR_USER_NAME, java.lang.String.class, "申请人", "申请人", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , BUSINESS_CODE , PROC_ID , STATUS , NAME , OUT_OWN_COMPANY_ID , IN_OWN_COMPANY_ID , MANAGER_ID , CONTENT , ORIGINATOR_ID , BUSINESS_DATE , ATTACH , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , ASSET_LIST , ASSET_IDS , ORIGINATOR , MANAGER , OUT_OWNER_COMPANY , IN_OWNER_COMPANY };
+	public static final String[] $PROPS={ ID , BUSINESS_CODE , PROC_ID , STATUS , NAME , OUT_OWN_COMPANY_ID , IN_OWN_COMPANY_ID , MANAGER_ID , CONTENT , ORIGINATOR_ID , BUSINESS_DATE , ATTACH , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , ASSET_LIST , ASSET_IDS , ORIGINATOR , MANAGER , OUT_OWNER_COMPANY , IN_OWNER_COMPANY , ORIGINATOR_USER_NAME };
 	
 	/**
 	 * 代理类
@@ -617,6 +627,17 @@ public class AssetAllocationMeta {
 		public AssetAllocation setInOwnerCompany(Organization inOwnerCompany) {
 			super.change(IN_OWNER_COMPANY,super.getInOwnerCompany(),inOwnerCompany);
 			super.setInOwnerCompany(inOwnerCompany);
+			return this;
+		}
+		
+		/**
+		 * 设置 申请人
+		 * @param originatorUserName 申请人
+		 * @return 当前对象
+		*/
+		public AssetAllocation setOriginatorUserName(String originatorUserName) {
+			super.change(ORIGINATOR_USER_NAME,super.getOriginatorUserName(),originatorUserName);
+			super.setOriginatorUserName(originatorUserName);
 			return this;
 		}
 	}

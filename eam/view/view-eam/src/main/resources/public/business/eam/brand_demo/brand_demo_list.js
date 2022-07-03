@@ -363,7 +363,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["500px",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-brand-demo-form-data-win",
 			content: '/business/eam/brand_demo/brand_demo_form.html' + queryString,

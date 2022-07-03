@@ -92,7 +92,7 @@ public class StockGoodsGtr extends BaseCodeGenerator {
 
 
 //      cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS.PURCHASE_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
-        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS.NOTES).form().textArea().height(60);
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS.NOTES).form().textArea().height(Config.textAreaHeight);
 
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS.OWN_COMPANY_ID)
                 .form().button().chooseCompany(true);
@@ -147,7 +147,7 @@ public class StockGoodsGtr extends BaseCodeGenerator {
 
         cfg.view().list().disableBatchDelete();
 
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().form().addGroup("基本信息",
                 new Object[] {

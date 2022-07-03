@@ -11,6 +11,8 @@ import com.dt.platform.domain.eam.meta.AssetCollectionMeta;
 import com.dt.platform.domain.eam.meta.AssetRepairMeta;
 import com.dt.platform.eam.common.AssetCommonError;
 import com.dt.platform.eam.service.*;
+import com.dt.platform.eam.service.bpm.AssetCollectionBpmEventAdaptor;
+import com.dt.platform.eam.service.bpm.AssetRepairBpmEventAdaptor;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.dt.platform.proxy.eam.AssetCollectionServiceProxy;
 import com.dt.platform.proxy.eam.AssetRepairServiceProxy;
@@ -20,9 +22,12 @@ import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.commons.reflect.EnumUtil;
 import com.github.foxnic.dao.data.Rcd;
 import com.github.foxnic.sql.expr.SQL;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ChangeEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.domain.changes.ProcessStartVO;
+import org.github.foxnic.web.framework.bpm.BpmAssistant;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -89,6 +94,29 @@ public class AssetRepairServiceImpl extends SuperService<AssetRepair> implements
 	@Autowired
 	private IAssetProcessRecordService assetProcessRecordService;
 
+
+
+	/**
+	 * 处理流程回调
+	 * */
+	public BpmActionResult onProcessCallback(BpmEvent event) {
+		return (new AssetRepairBpmEventAdaptor(this)).onProcessCallback(event);
+	}
+
+	@Override
+	public void joinProcess(AssetRepair assetRepair) {
+		this.joinProcess(Arrays.asList(assetRepair));
+	}
+
+	@Override
+	public void joinProcess(List<AssetRepair> assetRepairList) {
+		BpmAssistant.joinProcess(assetRepairList, IAssetAllocationService.FORM_DEFINITION_CODE);
+	}
+
+	@Override
+	public void joinProcess(PagedList<AssetRepair> assetRepairList) {
+		this.joinProcess(assetRepairList.getList());
+	}
 
 
 

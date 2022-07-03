@@ -4,6 +4,7 @@ import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.domain.eam.meta.RepairGroupMeta;
 import com.dt.platform.eam.page.RepairCategoryPageController;
+import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.RepairCategoryServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 
@@ -21,9 +22,9 @@ public class RepairCategoryGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_REPAIR_CATEGORY.REPAIR_NAME).form().validate().required();
         cfg.view().field(EAMTables.EAM_REPAIR_CATEGORY.REPAIR_CODE).form().validate().required();
 
-        cfg.view().field(EAMTables.EAM_REPAIR_CATEGORY.NOTES).form().textArea().height(60);
+        cfg.view().field(EAMTables.EAM_REPAIR_CATEGORY.NOTES).form().textArea().height(Config.textAreaHeight);
 
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(120);
         cfg.view().list().disableBatchDelete();
         cfg.view().form().addGroup(null,

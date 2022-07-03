@@ -447,7 +447,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["98%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"ops-information-system-form-data-win",
 			content: '/business/ops/information_system/information_system_form.html' + queryString,

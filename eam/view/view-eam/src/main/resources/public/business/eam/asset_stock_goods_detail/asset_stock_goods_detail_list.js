@@ -381,7 +381,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["500px",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-asset-stock-goods-detail-form-data-win",
 			content: '/business/eam/asset_stock_goods_detail/asset_stock_goods_detail_form.html' + (queryString?("?"+queryString):""),

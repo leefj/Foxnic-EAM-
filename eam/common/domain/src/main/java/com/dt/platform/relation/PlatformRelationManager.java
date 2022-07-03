@@ -30,6 +30,8 @@ public class PlatformRelationManager extends RelationManager {
 				new MonitorRelationManager(),
 				new MobileRelationManager()
 
+
+
 		);
 		//启动动态刷入
 		startMonitor();

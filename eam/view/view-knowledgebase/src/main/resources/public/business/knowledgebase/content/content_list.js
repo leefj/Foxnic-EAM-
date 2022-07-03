@@ -447,7 +447,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["95%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"kn-content-form-data-win",
 			content: '/business/knowledgebase/content/content_form.html' + queryString,

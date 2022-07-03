@@ -44,7 +44,7 @@ public class SysLicenceGtr extends BaseCodeGenerator{
 
 
         //分成分组布局
-        cfg.view().formWindow().width("80%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().formWindow().bottomSpace(200);
         cfg.view().form().addGroup(null,
                 new Object[] {

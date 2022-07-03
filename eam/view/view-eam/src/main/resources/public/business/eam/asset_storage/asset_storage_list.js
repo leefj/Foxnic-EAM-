@@ -1,7 +1,7 @@
 /**
  * 资产入库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-18 08:17:26
+ * @since 2022-07-03 14:22:43
  */
 
 
@@ -83,10 +83,10 @@ function ListPage() {
 					,{ field: 'supplierId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('供应商'), templet: function (d) { return templet('supplierId' ,fox.joinLabel(d.supplier,"supplierName"),d);}}
 					,{ field: 'supplierInfo', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('供应商备注') , templet: function (d) { return templet('supplierInfo',d.supplierInfo,d);}  }
 					,{ field: 'ownCompanyId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('归属公司') , templet: function (d) { return templet('ownCompanyId',fox.getProperty(d,["ownerCompany","fullName"]),d);} }
-					,{ field: 'managerUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('管理人员') , templet: function (d) { return templet('managerUserId',fox.getProperty(d,["managerUser","nameAndBadge"]),d);} }
+					,{ field: 'managerUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('管理人员') , templet: function (d) { return templet('managerUserId',fox.getProperty(d,["managerUser","name"]),d);} }
 					,{ field: 'locationName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置信息') , templet: function (d) { return templet('locationName',d.locationName,d);}  }
 					,{ field: 'businessDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('业务日期') ,templet: function (d) { return templet('businessDate',fox.dateFormat(d.businessDate,"yyyy-MM-dd"),d); }  }
-					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","nameAndBadge"]),d);} }
+					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"]),d);} }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 350 }
@@ -314,6 +314,7 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
+					admin.putTempData('eam-asset-storage-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
@@ -407,6 +408,7 @@ function ListPage() {
 					var doNext=window.pageExt.list.beforeSingleDelete(data);
 					if(!doNext) return;
 				}
+
 				top.layer.confirm(fox.translate('确定删除此')+fox.translate('资产入库')+fox.translate('吗？'), function (i) {
 					top.layer.close(i);
 
@@ -426,14 +428,8 @@ function ListPage() {
 					});
 				});
 			}
-			else if (layEvent === 'for-approval') { // 送审
-				window.pageExt.list.forApproval(data,this);
-			}
 			else if (layEvent === 'confirm-data') { // 确认
 				window.pageExt.list.confirmData(data,this);
-			}
-			else if (layEvent === 'revoke-data') { // 撤销
-				window.pageExt.list.revokeData(data,this);
 			}
 			else if (layEvent === 'download-bill') { // 单据
 				window.pageExt.list.downloadBill(data,this);
@@ -470,8 +466,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			// area: ["100%",height+"px"],
-			area: ["100%","100%"],
+			area: ["100%",height+"px"],
 			type: 2,
 			id:"eam-asset-storage-form-data-win",
 			content: '/business/eam/asset_storage/asset_storage_form.html' + (queryString?("?"+queryString):""),

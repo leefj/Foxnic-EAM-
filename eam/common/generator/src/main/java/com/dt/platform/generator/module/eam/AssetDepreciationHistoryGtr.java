@@ -73,7 +73,7 @@ public class AssetDepreciationHistoryGtr extends BaseCodeGenerator {
         cfg.view().list().disableCreateNew();
 
 
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().form().addGroup(null,
                 new Object[] {

@@ -61,7 +61,7 @@ public class RepairOrderGtr extends BaseCodeGenerator{
 
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.CONTENT).search()
                 .form().validate().required().
-                form().textArea().height(60)
+                form().textArea().height(Config.textAreaHeight)
                 .search().fuzzySearch();
 
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.STATUS).form().form().selectBox().enumType(AssetHandleStatusEnum.class);
@@ -97,8 +97,8 @@ public class RepairOrderGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.REPORT_ORG_ID).table().fillBy("organization","fullName");
 
 
-        cfg.view().field(EAMTables.EAM_REPAIR_ORDER.ORIGINATOR_ID).table().fillBy("originator","nameAndBadge");
-        cfg.view().field(EAMTables.EAM_REPAIR_ORDER.REPORT_USER_ID).table().fillBy("reportUser","nameAndBadge");
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER.ORIGINATOR_ID).table().fillBy("originator","name");
+        cfg.view().field(EAMTables.EAM_REPAIR_ORDER.REPORT_USER_ID).table().fillBy("reportUser","name");
         cfg.view().field(EAMTables.EAM_REPAIR_ORDER.REPORT_USER_ID).form().validate().required().form()
                 .button().chooseEmployee(true);
 
@@ -107,8 +107,8 @@ public class RepairOrderGtr extends BaseCodeGenerator{
 
         cfg.view().list().addToolButton("派单","dispatchOrder","","eam_repair_order:dispatch");
 
-        cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_repair_order:for-approval");
-        cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_repair_order:revoke");
+      //  cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_repair_order:for-approval");
+    //    cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_repair_order:revoke");
         cfg.view().list().operationColumn().addActionButton("结束维修","finishData","finish-data-button","eam_repair_order:finish");
         cfg.view().list().operationColumn().addActionButton("确认工单","confirmData","confirm-data-button","eam_repair_order:confirm");
         cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_repair_order:bill");
@@ -146,7 +146,7 @@ public class RepairOrderGtr extends BaseCodeGenerator{
 
         cfg.view().list().operationColumn().width(300);
 
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_REPAIR_ORDER.NAME,

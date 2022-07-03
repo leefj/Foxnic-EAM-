@@ -411,7 +411,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["90%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"ops-db-instance-form-data-win",
 			content: '/business/ops/db_instance/db_instance_form.html' + queryString,

@@ -13,6 +13,7 @@ import com.dt.platform.domain.ops.CertificateType;
 import com.dt.platform.domain.ops.meta.CertificateMeta;
 import com.dt.platform.domain.ops.meta.CertificatePositionMeta;
 import com.dt.platform.domain.ops.meta.CertificateTypeMeta;
+import com.dt.platform.generator.config.Config;
 import com.dt.platform.ops.page.CertificatePageController;
 import com.dt.platform.proxy.eam.SupplierServiceProxy;
 import com.dt.platform.proxy.ops.CertificatePositionServiceProxy;
@@ -52,7 +53,7 @@ public class CertificateGtr extends BaseCodeGenerator{
 
 
         cfg.view().field(OpsTables.OPS_CERTIFICATE.ID).basic().hidden(true);
-        cfg.view().field(OpsTables.OPS_CERTIFICATE.ORIGINATOR_ID).table().fillBy("originator","nameAndBadge");
+        cfg.view().field(OpsTables.OPS_CERTIFICATE.ORIGINATOR_ID).table().fillBy("originator","name");
         cfg.view().field(OpsTables.OPS_CERTIFICATE.STATUS).table().form().validate().required().form().selectBox().enumType(CertificateStatusEnum.class);
 
         cfg.view().field(OpsTables.OPS_CERTIFICATE.TYPE)
@@ -75,7 +76,7 @@ public class CertificateGtr extends BaseCodeGenerator{
 
 
         cfg.view().formWindow().bottomSpace(80);
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_CERTIFICATE.NAME,

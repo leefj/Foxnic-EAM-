@@ -23,8 +23,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 资产交接
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-02 22:09:25
- * @sign DAED6BE82E97512AC358D580E51AC98A
+ * @since 2022-07-03 11:04:06
+ * @sign 5CDF66FF7D329CF68CD5BBCEA33F0D5F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -175,6 +175,12 @@ public class AssetEmployeeHandover extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="资产列表" , notes = "资产列表")
 	private List<String> assetIds;
+	
+	/**
+	 * 申请人：申请人
+	*/
+	@ApiModelProperty(required = false,value="申请人" , notes = "申请人")
+	private String originatorUserName;
 	
 	/**
 	 * 接收人：接收人
@@ -704,6 +710,25 @@ public class AssetEmployeeHandover extends Entity {
 	public AssetEmployeeHandover addAssetId(String... assetId) {
 		if(this.assetIds==null) assetIds=new ArrayList<>();
 		this.assetIds.addAll(Arrays.asList(assetId));
+		return this;
+	}
+	
+	/**
+	 * 获得 申请人<br>
+	 * 申请人
+	 * @return 申请人
+	*/
+	public String getOriginatorUserName() {
+		return originatorUserName;
+	}
+	
+	/**
+	 * 设置 申请人
+	 * @param originatorUserName 申请人
+	 * @return 当前对象
+	*/
+	public AssetEmployeeHandover setOriginatorUserName(String originatorUserName) {
+		this.originatorUserName=originatorUserName;
 		return this;
 	}
 	

@@ -47,7 +47,7 @@ public class EamAssetOperateGtr extends BaseCodeGenerator{
 
         cfg.view().field(EAMTables.EAM_OPERATE.ALLOCATE_CODE).form().validate().required();
 
-        cfg.view().formWindow().width("80%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().formWindow().bottomSpace(200);
         cfg.view().form().addGroup(null,
                 new Object[] {

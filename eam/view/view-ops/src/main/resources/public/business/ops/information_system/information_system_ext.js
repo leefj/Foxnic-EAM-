@@ -137,7 +137,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 title: "主机条目",
                 resize: false,
                 id: 'hostWindow',
-                area: ["90%", "700px"],
+                area: ["80%", "700px"],
                 type: 2,
                 content: "/business/ops/host/host_list.html"
             });

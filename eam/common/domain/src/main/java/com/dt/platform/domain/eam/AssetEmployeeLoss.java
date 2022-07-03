@@ -23,8 +23,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 资产报失
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-02 22:09:17
- * @sign C0FD5713F771365070F9D254DDD201BF
+ * @since 2022-07-03 11:05:52
+ * @sign FC1A912601AAFA19B258E299119C982B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -175,6 +175,12 @@ public class AssetEmployeeLoss extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="使用公司/部门" , notes = "使用公司/部门")
 	private Organization organization;
+	
+	/**
+	 * 申请人：申请人
+	*/
+	@ApiModelProperty(required = false,value="申请人" , notes = "申请人")
+	private String originatorUserName;
 	
 	/**
 	 * 历史流程清单：历史流程清单
@@ -680,6 +686,25 @@ public class AssetEmployeeLoss extends Entity {
 	*/
 	public AssetEmployeeLoss setOrganization(Organization organization) {
 		this.organization=organization;
+		return this;
+	}
+	
+	/**
+	 * 获得 申请人<br>
+	 * 申请人
+	 * @return 申请人
+	*/
+	public String getOriginatorUserName() {
+		return originatorUserName;
+	}
+	
+	/**
+	 * 设置 申请人
+	 * @param originatorUserName 申请人
+	 * @return 当前对象
+	*/
+	public AssetEmployeeLoss setOriginatorUserName(String originatorUserName) {
+		this.originatorUserName=originatorUserName;
 		return this;
 	}
 	

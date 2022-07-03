@@ -381,7 +381,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["50%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-repair-urgency-form-data-win",
 			content: '/business/eam/repair_urgency/repair_urgency_form.html' + (queryString?("?"+queryString):""),

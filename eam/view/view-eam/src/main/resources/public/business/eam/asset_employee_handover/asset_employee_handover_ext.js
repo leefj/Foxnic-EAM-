@@ -27,6 +27,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     var timestamp = Date.parse(new Date());
     //列表页的扩展
     var list={
+        getBpmDefaultValue:function () {
+            return {
+                title:"资产交接申请",
+                priority:"urgency" // priority 的可选值 urgency，normal
+            }
+        },
         bpmOpenWithoutProcess:function(pkdata) {
             top.layer.msg('当前业务单据尚未关联流程', {icon: 2, time: 1500});
         },
@@ -189,9 +195,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单初始化前调用 , 并传入表单数据
          * */
         beforeInit:function (action,data) {
-            //获取参数，并调整下拉框查询用的URL
-            //var companyId=admin.getTempData("companyId");
-            //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
+            $("#originatorUserName").attr("disabled","disabled").css("background-color","#e6e6e6");
+            $("#originatorUserName").attr("placeholder","自动填充")
             console.log("form:beforeInit")
         },
         /**
@@ -211,7 +216,31 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单数据填充后
          * */
         afterDataFill:function (data) {
-            console.log('afterDataFill',data);
+            if(data.status){
+                if(data.status=="incomplte"){
+                    console.log("can edit");
+                }else{
+                    fox.lockForm($("#data-form"),true);
+                }
+            }
+
+            //iframe
+            var ownerId="";
+            if(data&&data.id){
+                ownerId=data.id;
+            }
+            $("#iframe").height("400px");
+            if(data.status=="incomplete"){
+                formAction="modify";
+            }else{
+                formAction="view";
+            }
+            var queryString="?employeeId="+EMPLOYEE_ID+"&pageType="+formAction+"&selectedCode="+timestamp+"&ownerId="+ownerId;
+            //设置地址
+            console.log("queryString",queryString);
+            $(".form-iframe")[0].contentWindow.location="/business/eam/asset/asset_search/employee_assetInfo_selected_list.html"+queryString
+
+
         },
         /**
          * 对话框打开之前调用，如果返回 null 则不打开对话框
@@ -259,6 +288,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeSubmit:function (data) {
             console.log("beforeSubmit",data);
+            data.selectedCode=timestamp;
+
             return true;
         },
         /**
@@ -285,13 +316,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             ifr.height("400px");
             var ownerId="";
             if(data&&data.id){
-                ownerId=data.id;
+            }else{
+                formAction="create";
+                var queryString="?employeeId="+EMPLOYEE_ID+"&pageType="+formAction+"&selectedCode="+timestamp+"&ownerId="+ownerId;
+                //设置地址
+                win.location="/business/eam/asset/asset_search/employee_assetInfo_selected_list.html"+queryString
             }
-            console.log("formAction",formAction);
-
-            var queryString="?employeeId="+EMPLOYEE_ID+"&pageType="+formAction+"&selectedCode="+timestamp+"&ownerId="+ownerId;
-            //设置地址
-            win.location="/business/eam/asset/asset_search/employee_assetInfo_selected_list.html"+queryString
         },
         /**
          * 文件上传组件回调

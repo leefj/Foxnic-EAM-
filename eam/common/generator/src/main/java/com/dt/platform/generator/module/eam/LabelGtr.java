@@ -42,7 +42,7 @@ public class LabelGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_ASSET_LABEL.LABEL_WIDTH).form().numberInput().defaultValue(3.0).allowNegative(false).scale(1);
         cfg.view().field(EAMTables.EAM_ASSET_LABEL.LABEL_HEIGHT).form().numberInput().defaultValue(3.0).allowNegative(false).scale(1);
         cfg.view().field(EAMTables.EAM_ASSET_LABEL.PAPER_TYPE_ID).form().radioBox().enumType(StatusEnableEnum.class);
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().form().addGroup(null,
                 new Object[] {

@@ -430,7 +430,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["85%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-goods-form-data-win",
 			content: '/business/eam/goods/goods_form.html' + queryString,

@@ -85,9 +85,9 @@ public class SoftwareDisGtr extends BaseCodeGenerator {
 
         cfg.view().list().addJsVariable("APPROVAL_REQUIRED","[[${approvalRequired}]]","APPROVAL_REQUIRED");
 
-        cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_software_distribute:for-approval");
+     //   cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_software_distribute:for-approval");
         cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_software_distribute:confirm");
-        cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_software_distribute:revoke");
+      //  cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_software_distribute:revoke");
         cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_software_distribute:bill");
 
         cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE_DISTRIBUTE.ATTACH_ID).form().upload().acceptSingleFile().maxFileCount(1);
@@ -97,12 +97,12 @@ public class SoftwareDisGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE_DISTRIBUTE.ORIGINATOR_ID).form()
                 .button().chooseEmployee(true);
 
-        cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE_DISTRIBUTE.NOTES).form().textArea().height(60);
-        cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE_DISTRIBUTE.CONTENT).form().textArea().height(60);
+        cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE_DISTRIBUTE.NOTES).form().textArea().height(Config.textAreaHeight);
+        cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE_DISTRIBUTE.CONTENT).form().textArea().height(Config.textAreaHeight);
 
 
         cfg.view().list().disableBatchDelete();
-        cfg.view().formWindow().width("95%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().formWindow().bottomSpace(20);
 
         cfg.view().form().addGroup(null,

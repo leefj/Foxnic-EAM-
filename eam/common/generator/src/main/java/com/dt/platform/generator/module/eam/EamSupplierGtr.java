@@ -33,10 +33,10 @@ public class EamSupplierGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_SUPPLIER.SUPPLIER_NAME).form().validate().required();
 
 
-        cfg.view().field(EAMTables.EAM_SUPPLIER.ADDRESS).form().textArea().height(60);
-        cfg.view().field(EAMTables.EAM_SUPPLIER.SUPPLIER_NOTES).form().textArea().height(60);
+        cfg.view().field(EAMTables.EAM_SUPPLIER.ADDRESS).form().textArea().height(Config.textAreaHeight);
+        cfg.view().field(EAMTables.EAM_SUPPLIER.SUPPLIER_NOTES).form().textArea().height(Config.textAreaHeight);
 
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().form().addGroup(null,
                 new Object[] {

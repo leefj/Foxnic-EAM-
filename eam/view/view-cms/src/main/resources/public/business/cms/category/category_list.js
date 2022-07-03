@@ -379,7 +379,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["600px",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"cms-category-form-data-win",
 			content: '/business/cms/category/category_form.html' + (queryString?("?"+queryString):""),

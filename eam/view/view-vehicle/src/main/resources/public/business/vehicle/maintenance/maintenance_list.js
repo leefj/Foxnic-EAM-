@@ -428,7 +428,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["98%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"vehicle-maintenance-form-data-win",
 			content: '/business/vehicle/maintenance/maintenance_form.html' + (queryString?("?"+queryString):""),

@@ -12,6 +12,12 @@ import com.github.foxnic.dao.data.PagedList;
 import com.dt.platform.proxy.ServiceNames;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
+
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
+import org.github.foxnic.web.proxy.bpm.BpmCallbackController;
+
 /**
  * <p>
  * 资产转移  控制器服务代理
@@ -20,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @since 2021-09-19 07:31:47
  */
 @FeignClient(value = ServiceNames.EAM, contextId = AssetTranferServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
-public interface AssetTranferServiceProxy {
+public interface AssetTranferServiceProxy extends BpmCallbackController{
 
     /**
      * 基础路径 , service-eam
@@ -103,6 +109,15 @@ public interface AssetTranferServiceProxy {
      */
     public static final String CONFIRM_OPERATION = API_PREFIX + "confirm-operation";
 
+    /**
+     * 流程事件回调接收接口
+     */
+    public static final String BPM_CALLBACK = API_PREFIX + "bpm-callback";
+    /**
+     * 分页查询资产报失
+     */
+    @RequestMapping(AssetRepairServiceProxy.BPM_CALLBACK)
+    BpmActionResult onProcessCallback(@RequestParam(name = "event") BpmEvent event);
 
     /**
      * 添加资产转移

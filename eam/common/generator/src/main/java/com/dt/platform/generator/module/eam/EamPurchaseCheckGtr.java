@@ -79,8 +79,8 @@ public class EamPurchaseCheckGtr extends BaseCodeGenerator {
                 .form().label("附件").upload().acceptSingleImage().maxFileCount(1).displayFileName(false);
 
 
-        cfg.view().field(EAMTables.EAM_PURCHASE_CHECK.CHECK_INFORMATION).form().textArea().height(50);
-        cfg.view().field(EAMTables.EAM_PURCHASE_CHECK.NOTES).form().textArea().height(50);
+        cfg.view().field(EAMTables.EAM_PURCHASE_CHECK.CHECK_INFORMATION).form().textArea().height(Config.textAreaHeight);
+        cfg.view().field(EAMTables.EAM_PURCHASE_CHECK.NOTES).form().textArea().height(Config.textAreaHeight);
 
 
 
@@ -116,9 +116,9 @@ public class EamPurchaseCheckGtr extends BaseCodeGenerator {
 
 
 
-        cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_purchase_check:for-approval");
+      //  cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_purchase_check:for-approval");
         cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_purchase_check:confirm");
-        cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_purchase_check:revoke");
+       // cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_purchase_check:revoke");
         cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_purchase_check:bill");
 
 
@@ -126,7 +126,7 @@ public class EamPurchaseCheckGtr extends BaseCodeGenerator {
         cfg.view().list().addJsVariable("PAGE_TYPE","[[${pageType}]]","pageType");
 
         cfg.view().formWindow().bottomSpace(250);
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_PURCHASE_CHECK.NAME,

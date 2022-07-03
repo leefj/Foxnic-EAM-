@@ -32,7 +32,7 @@ public class CodeRuleGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_CODE_RULE.NUMBER_SEQ).form().numberInput().defaultValue(3.0).allowNegative(false).scale(1);
         cfg.view().field(EAMTables.EAM_CODE_RULE.VALUE).form().readOnly();
 
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(20);
 
         cfg.view().field(EAMTables.EAM_CODE_RULE.NAME).table().disable(true);

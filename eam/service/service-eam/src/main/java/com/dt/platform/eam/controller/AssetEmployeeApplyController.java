@@ -4,6 +4,8 @@ package com.dt.platform.eam.controller;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.github.foxnic.commons.collection.CollectorUtil;
+import org.github.foxnic.web.domain.hrm.Person;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -250,6 +252,8 @@ public class AssetEmployeeApplyController extends SuperController implements Bpm
 			.with("originator")
 			.execute();
 		result.success(true).data(assetEmployeeApply);
+
+		assetEmployeeApplyService.dao().join(assetEmployeeApply.getOriginator(),Person.class);
 		return result;
 	}
 
@@ -297,6 +301,11 @@ public class AssetEmployeeApplyController extends SuperController implements Bpm
 	public Result<List<AssetEmployeeApply>> queryList(AssetEmployeeApplyVO sample) {
 		Result<List<AssetEmployeeApply>> result=new Result<>();
 		List<AssetEmployeeApply> list=assetEmployeeApplyService.queryList(sample);
+
+		List<Employee> employees= CollectorUtil.collectList(list,AssetEmployeeApply::getOriginator);
+		assetEmployeeApplyService.dao().join(employees, Person.class);
+
+
 		result.success(true).data(list);
 		return result;
 	}
@@ -332,6 +341,10 @@ public class AssetEmployeeApplyController extends SuperController implements Bpm
 			.execute();
 		// 填充流程相关的属性
 		assetEmployeeApplyService.joinProcess(list);
+
+		List<Employee> employees= CollectorUtil.collectList(list,AssetEmployeeApply::getOriginator);
+		assetEmployeeApplyService.dao().join(employees, Person.class);
+
 		result.success(true).data(list);
 		return result;
 	}

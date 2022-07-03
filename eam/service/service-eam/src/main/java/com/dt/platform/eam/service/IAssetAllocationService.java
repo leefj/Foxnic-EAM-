@@ -3,6 +3,7 @@ package com.dt.platform.eam.service;
 
 import com.dt.platform.domain.eam.AssetBorrow;
 import com.dt.platform.domain.eam.AssetDataChange;
+import com.github.foxnic.dao.entity.ISimpleIdService;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
 import com.dt.platform.domain.eam.AssetAllocation;
@@ -21,6 +22,8 @@ import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ExcelStructure;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.data.SaveMode;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.domain.changes.ProcessStartVO;
 
@@ -32,7 +35,25 @@ import org.github.foxnic.web.domain.changes.ProcessStartVO;
  * @since 2021-08-20 20:57:55
 */
 
-public interface IAssetAllocationService extends ISuperService<AssetAllocation> {
+public interface IAssetAllocationService extends ISimpleIdService<AssetAllocation,String> {
+
+
+	/**
+	 * 表单定义代码
+	 **/
+	public static final String FORM_DEFINITION_CODE="eam_asset_allocate";
+
+	/**
+	 * 处理流程回调
+	 * */
+	BpmActionResult onProcessCallback(BpmEvent event);
+
+
+	void joinProcess(AssetAllocation assetAllocation);
+
+	void joinProcess(List<AssetAllocation> assetAllocationList);
+
+	void joinProcess(PagedList<AssetAllocation> assetAllocationList);
 
 
 

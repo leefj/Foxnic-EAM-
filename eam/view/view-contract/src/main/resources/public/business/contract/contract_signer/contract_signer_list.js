@@ -413,7 +413,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["600px",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"cont-contract-signer-form-data-win",
 			content: '/business/contract/contract_signer/contract_signer_form.html' + queryString,

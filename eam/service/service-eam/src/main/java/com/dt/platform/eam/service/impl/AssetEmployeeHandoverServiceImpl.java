@@ -1,10 +1,19 @@
 package com.dt.platform.eam.service.impl;
 
+import com.dt.platform.constants.db.EAMTables;
+import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
+import com.dt.platform.constants.enums.eam.AssetOperateEnum;
+import com.dt.platform.domain.eam.AssetItem;
+import com.dt.platform.eam.service.*;
+import com.dt.platform.proxy.common.CodeModuleServiceProxy;
+import com.github.foxnic.commons.lang.StringUtil;
 import org.github.foxnic.web.domain.bpm.BpmActionResult;
 import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.framework.bpm.BpmEventAdaptor;
 import org.github.foxnic.web.framework.bpm.BpmAssistant;
 import javax.annotation.Resource;
+
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +41,7 @@ import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.meta.DBColumnMeta;
 import com.github.foxnic.sql.expr.Select;
 import java.util.ArrayList;
-import com.dt.platform.eam.service.IAssetEmployeeHandoverService;
+
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import java.util.Date;
 import java.util.Map;
@@ -49,6 +58,19 @@ import com.dt.platform.eam.service.bpm.AssetEmployeeHandoverBpmEventAdaptor;
 
 @Service("EamAssetEmployeeHandoverService")
 public class AssetEmployeeHandoverServiceImpl extends SuperService<AssetEmployeeHandover> implements IAssetEmployeeHandoverService {
+
+
+	@Autowired
+	private IAssetItemService assetItemService;
+
+	@Autowired
+	private IAssetSelectedDataService assetSelectedDataService;
+
+	@Autowired
+	private IAssetService assetService;
+
+	@Autowired
+	private IOperateService operateService;
 
 	/**
 	 * 注入DAO对象
@@ -77,7 +99,52 @@ public class AssetEmployeeHandoverServiceImpl extends SuperService<AssetEmployee
 	 */
 	@Override
 	public Result insert(AssetEmployeeHandover assetEmployeeHandover,boolean throwsException) {
+
+
+		if(assetEmployeeHandover.getAssetIds()==null||assetEmployeeHandover.getAssetIds().size()==0){
+			String assetSelectedCode=assetEmployeeHandover.getSelectedCode();
+			ConditionExpr condition=new ConditionExpr();
+			condition.andIn("asset_selected_code",assetSelectedCode==null?"":assetSelectedCode);
+			List<String> list=assetSelectedDataService.queryValues(EAMTables.EAM_ASSET_SELECTED_DATA.ASSET_ID,String.class,condition);
+			assetEmployeeHandover.setAssetIds(list);
+		}
+
+
+		//制单人
+		if(StringUtil.isBlank(assetEmployeeHandover.getOriginatorId())){
+			assetEmployeeHandover.setOriginatorId(SessionUser.getCurrent().getUser().getActivatedEmployeeId());
+		}
+		//办理状态
+		if(StringUtil.isBlank(assetEmployeeHandover.getStatus())){
+			assetEmployeeHandover.setStatus(AssetHandleStatusEnum.INCOMPLETE.code());
+		}
+
+		//生成编码规则
+		if(StringUtil.isBlank(assetEmployeeHandover.getBusinessCode())){
+			Result codeResult= CodeModuleServiceProxy.api().generateCode(AssetOperateEnum.EAM_ASSET_EMPLOYEE_HANDOVER.code());
+			if(!codeResult.isSuccess()){
+				return codeResult;
+			}else{
+				assetEmployeeHandover.setBusinessCode(codeResult.getData().toString());
+			}
+		}
+
 		Result r=super.insert(assetEmployeeHandover,throwsException);
+		if (r.isSuccess()){
+			//保存资产数据
+			List<AssetItem> saveList=new ArrayList<AssetItem>();
+			for(int i=0;i<assetEmployeeHandover.getAssetIds().size();i++){
+				AssetItem asset=new AssetItem();
+				asset.setId(IDGenerator.getSnowflakeIdString());
+				asset.setHandleId(assetEmployeeHandover.getId());
+				asset.setAssetId(assetEmployeeHandover.getAssetIds().get(i));
+				saveList.add(asset);
+			}
+			Result batchInsertReuslt= assetItemService.insertList(saveList);
+			if(!batchInsertReuslt.isSuccess()){
+				return batchInsertReuslt;
+			}
+		}
 		return r;
 	}
 
@@ -168,6 +235,11 @@ public class AssetEmployeeHandoverServiceImpl extends SuperService<AssetEmployee
 	@Override
 	public Result update(AssetEmployeeHandover assetEmployeeHandover , SaveMode mode,boolean throwsException) {
 		Result r=super.update(assetEmployeeHandover , mode , throwsException);
+		if(r.success()){
+			//保存表单数据
+			dao.execute("update eam_asset_item set crd='r' where crd='c' and handle_id=?",assetEmployeeHandover.getId());
+			dao.execute("delete from eam_asset_item where crd in ('d','rd') and  handle_id=?",assetEmployeeHandover.getId());
+		}
 		return r;
 	}
 

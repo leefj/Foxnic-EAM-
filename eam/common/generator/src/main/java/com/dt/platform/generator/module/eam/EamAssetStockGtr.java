@@ -124,7 +124,7 @@ public class EamAssetStockGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_ASSET.OWN_COMPANY_ID).table().fillBy("ownerCompany","fullName");
 
 
-        cfg.view().field(EAMTables.EAM_STOCK.MANAGER_ID).table().fillBy("manager","nameAndBadge");
+        cfg.view().field(EAMTables.EAM_STOCK.MANAGER_ID).table().fillBy("manager","name");
         cfg.view().field(EAMTables.EAM_STOCK.MANAGER_ID).form()
                 .button().chooseEmployee(true);
 
@@ -147,9 +147,9 @@ public class EamAssetStockGtr extends BaseCodeGenerator{
 
 
 
-        cfg.view().list().operationColumn().addActionButton("送审","forApproval",null);
+       // cfg.view().list().operationColumn().addActionButton("送审","forApproval",null);
         cfg.view().list().operationColumn().addActionButton("确认","confirmData",null);
-        cfg.view().list().operationColumn().addActionButton("撤销","revokeData",null);
+        //cfg.view().list().operationColumn().addActionButton("撤销","revokeData",null);
 
 
 

@@ -379,7 +379,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["500px",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-asset-label-paper-form-data-win",
 			content: '/business/eam/asset_label_paper/asset_label_paper_form.html' + (queryString?("?"+queryString):""),

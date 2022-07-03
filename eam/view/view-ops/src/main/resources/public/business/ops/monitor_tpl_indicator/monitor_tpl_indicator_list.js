@@ -442,7 +442,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["98%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"ops-monitor-tpl-indicator-form-data-win",
 			content: '/business/ops/monitor_tpl_indicator/monitor_tpl_indicator_form.html' + (queryString?("?"+queryString):""),

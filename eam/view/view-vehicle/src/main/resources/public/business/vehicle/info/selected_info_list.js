@@ -391,7 +391,7 @@ function ListPage() {
             title: title,
             resize: false,
             offset: [top,null],
-            area: ["98%","95%"],
+            area: ["80%","95%"],
             type: 2,
             id:"vehicle-info-form-data-win",
             content: '/business/vehicle/info/select_info_list.html'+q ,

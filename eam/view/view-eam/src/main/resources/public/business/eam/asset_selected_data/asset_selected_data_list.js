@@ -362,7 +362,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["500px",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-asset-selected-data-form-data-win",
 			content: '/business/eam/asset_selected_data/asset_selected_data_form.html' + queryString,

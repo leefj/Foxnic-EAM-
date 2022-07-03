@@ -46,7 +46,7 @@ public class MaintainGroupGtr extends BaseCodeGenerator {
 
 
 
-        cfg.view().field(EAMTables.EAM_MAINTAIN_GROUP.LEADER_ID).table().fillBy("leader","nameAndBadge");
+        cfg.view().field(EAMTables.EAM_MAINTAIN_GROUP.LEADER_ID).table().fillBy("leader","name");
         cfg.view().field(EAMTables.EAM_MAINTAIN_GROUP.LEADER_ID).form()
                 .button().chooseEmployee(true);
 
@@ -67,7 +67,7 @@ public class MaintainGroupGtr extends BaseCodeGenerator {
         cfg.view().list().disableBatchDelete();
 
         cfg.view().search().inputWidth(Config.searchInputWidth);
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(120);
 
         cfg.view().form().addGroup(null,

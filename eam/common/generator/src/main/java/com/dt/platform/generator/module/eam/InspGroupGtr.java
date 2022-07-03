@@ -47,7 +47,7 @@ public class InspGroupGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(3,Config.searchLabelWidth);
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(20);
 
 
@@ -57,10 +57,10 @@ public class InspGroupGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_INSPECTION_GROUP.NAME).form().validate().required();
         cfg.view().field(EAMTables.EAM_INSPECTION_GROUP.LEADER_ID).form();
-        cfg.view().field(EAMTables.EAM_INSPECTION_GROUP.NOTES).form().textArea().height(60);
+        cfg.view().field(EAMTables.EAM_INSPECTION_GROUP.NOTES).form().textArea().height(Config.textAreaHeight);
 
 
-        cfg.view().field(EAMTables.EAM_INSPECTION_GROUP.LEADER_ID).table().fillBy("leader","nameAndBadge");
+        cfg.view().field(EAMTables.EAM_INSPECTION_GROUP.LEADER_ID).table().fillBy("leader","name");
         cfg.view().field(EAMTables.EAM_INSPECTION_GROUP.LEADER_ID).form()
                 .button().chooseEmployee(true);
 

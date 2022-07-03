@@ -8,6 +8,7 @@ import com.dt.platform.domain.eam.meta.AssetHandleVOMeta;
 import com.dt.platform.eam.page.AssetHandlePageController;
 import com.dt.platform.eam.service.impl.AssetHandleServiceImpl;
 import com.dt.platform.eam.service.impl.AssetItemServiceImpl;
+import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.AssetHandleServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
@@ -61,7 +62,7 @@ public class EamAssetHandleGtr extends BaseCodeGenerator{
             );
 
 
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_HANDLE.TYPE,

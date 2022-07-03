@@ -120,7 +120,7 @@ public class EamAssetDataPermGtr extends BaseCodeGenerator{
 
 
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.PRIORITY).form().numberInput().integer().defaultValue(100);
-        cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.NOTES).form().textArea().height(20);
+        cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.NOTES).form().textArea().height(Config.textAreaHeight);
 
 
         cfg.service().addRelationSaveAction(AssetDataPermissionsPositionServiceImpl.class,AssetDataPermissionsMeta.POSITION_IDS);

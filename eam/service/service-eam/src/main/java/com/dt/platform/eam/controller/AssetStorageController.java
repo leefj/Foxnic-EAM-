@@ -5,10 +5,14 @@ import java.util.List;
 
 import com.dt.platform.domain.eam.AssetTranfer;
 import com.dt.platform.domain.eam.meta.AssetTranferVOMeta;
+import com.dt.platform.proxy.eam.AssetRepairServiceProxy;
 import com.dt.platform.proxy.eam.AssetTranferServiceProxy;
 import com.github.foxnic.commons.collection.CollectorUtil;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.domain.hrm.Person;
+import org.github.foxnic.web.proxy.bpm.BpmCallbackController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,7 +67,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
 @Api(tags = "资产入库")
 @ApiSort(0)
 @RestController("EamAssetStorageController")
-public class AssetStorageController extends SuperController {
+public class AssetStorageController extends SuperController implements BpmCallbackController {
 
 	@Autowired
 	private IAssetStorageService assetStorageService;
@@ -375,6 +379,16 @@ public class AssetStorageController extends SuperController {
 		} catch (Exception e) {
 			DownloadUtil.writeDownloadError(response,e);
 		}
+	}
+
+
+	/**
+	 *  流程回调处理
+	 */
+	@SentinelResource(value = AssetStorageServiceProxy.BPM_CALLBACK , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(AssetStorageServiceProxy.BPM_CALLBACK)
+	public BpmActionResult onProcessCallback(BpmEvent event){
+		return assetStorageService.onProcessCallback(event);
 	}
 
 

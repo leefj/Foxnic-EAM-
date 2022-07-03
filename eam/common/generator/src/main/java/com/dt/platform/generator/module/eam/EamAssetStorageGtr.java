@@ -24,9 +24,9 @@ public class EamAssetStorageGtr extends BaseCodeGenerator {
 
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
+        cfg.bpm().form("eam_asset_storage");
 
-
-
+        cfg.getPoClassFile().addSimpleProperty(String.class,"originatorUserName","申请人","申请人");
         cfg.getPoClassFile().addListProperty(Asset.class,"assetList","资产","资产");
         cfg.getPoClassFile().addListProperty(String.class,"assetIds","资产列表","资产列表");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
@@ -34,8 +34,12 @@ public class EamAssetStorageGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"ownerCompany","所属公司","所属公司");
         cfg.getPoClassFile().addSimpleProperty(Supplier.class,"supplier","供应商","供应商");
 
-        cfg.view().field(EAMTables.EAM_ASSET_STORAGE.ORIGINATOR_ID).table().fillBy("originator","nameAndBadge");
-        cfg.view().field(EAMTables.EAM_ASSET_STORAGE.MANAGER_USER_ID).table().fillBy("managerUser","nameAndBadge");
+        cfg.view().field(AssetStorageMeta.ORIGINATOR_USER_NAME).table().disable(true);
+        cfg.view().field(AssetStorageMeta.ORIGINATOR_USER_NAME).table().label("申请人").form().label("申请人")
+                .form().fillBy("originator","name");
+
+        cfg.view().field(EAMTables.EAM_ASSET_STORAGE.ORIGINATOR_ID).table().fillBy("originator","name");
+        cfg.view().field(EAMTables.EAM_ASSET_STORAGE.MANAGER_USER_ID).table().fillBy("managerUser","name");
         cfg.view().field(EAMTables.EAM_ASSET_STORAGE.MANAGER_USER_ID).form().validate().required().form()
                 .button().chooseEmployee(true);
 
@@ -90,7 +94,7 @@ public class EamAssetStorageGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_ASSET_STORAGE.BUSINESS_DATE).form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
 
-        cfg.view().field(EAMTables.EAM_ASSET_STORAGE.CONTENT).form().textArea().height(20).search().fuzzySearch();
+        cfg.view().field(EAMTables.EAM_ASSET_STORAGE.CONTENT).form().textArea().height(Config.textAreaHeight).search().fuzzySearch();
 
         cfg.view().field(EAMTables.EAM_ASSET_STORAGE.OWN_COMPANY_ID)
                 .form().validate().required().form().button().chooseCompany(true);
@@ -102,9 +106,9 @@ public class EamAssetStorageGtr extends BaseCodeGenerator {
                 .valueField(SupplierMeta.ID).textField(SupplierMeta.SUPPLIER_NAME).fillWith(AssetStorageMeta.SUPPLIER).muliti(false);
 
 
-        cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_storage:for-approval");
+      //  cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_storage:for-approval");
         cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_storage:confirm");
-        cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_storage:revoke");
+   //     cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_storage:revoke");
         cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_storage:bill");
         cfg.view().list().operationColumn().width(350);
 
@@ -113,7 +117,7 @@ public class EamAssetStorageGtr extends BaseCodeGenerator {
         //分成分组布局
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().formWindow().width("100%");
-
+        cfg.view().form().labelWidth(70);
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_STORAGE.NAME,
@@ -148,6 +152,7 @@ public class EamAssetStorageGtr extends BaseCodeGenerator {
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
                 .setControllerAndAgent(WriteMode.IGNORE) //Rest
                 .setPageController(WriteMode.IGNORE) //页面控制器
+                .setBpmEventAdaptor(WriteMode.IGNORE)
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
                 .setExtendJsFile(WriteMode.IGNORE); //列表HTML页

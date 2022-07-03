@@ -57,8 +57,8 @@ public class InspPointGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_INSPECTION_POINT.POS_LATITUDE).form().numberInput().defaultValue(0);
         cfg.view().field(EAMTables.EAM_INSPECTION_POINT.POS_LONGITUDE).form().numberInput().defaultValue(0);
 
-        cfg.view().field(EAMTables.EAM_INSPECTION_POINT.NOTES).form().textArea().height(60);
-        cfg.view().field(EAMTables.EAM_INSPECTION_POINT.CONTENT).form().textArea().height(60);
+        cfg.view().field(EAMTables.EAM_INSPECTION_POINT.NOTES).form().textArea().height(Config.textAreaHeight);
+        cfg.view().field(EAMTables.EAM_INSPECTION_POINT.CONTENT).form().textArea().height(Config.textAreaHeight);
         cfg.view().field(EAMTables.EAM_INSPECTION_POINT.PICTURE_ID)
                 .form().label("图片").upload().buttonLabel("选择图片").acceptImageType().acceptSingleImage();
 
@@ -71,7 +71,7 @@ public class InspPointGtr extends BaseCodeGenerator {
                 fillWith(InspectionPointMeta.ROUTE).muliti(false).defaultIndex(0);
 
 
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
 
         cfg.view().list().disableBatchDelete();
         cfg.view().formWindow().bottomSpace(20);

@@ -538,7 +538,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["98%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"ops-host-form-data-win",
 			content: '/business/ops/host/host_form.html' + queryString,

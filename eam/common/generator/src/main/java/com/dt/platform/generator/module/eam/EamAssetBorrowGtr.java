@@ -7,8 +7,10 @@ import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.AssetBorrow;
 import com.dt.platform.domain.eam.AssetHandle;
 import com.dt.platform.domain.eam.AssetItem;
+import com.dt.platform.domain.eam.meta.AssetAllocationMeta;
 import com.dt.platform.domain.eam.meta.AssetBorrowMeta;
 import com.dt.platform.domain.eam.meta.AssetBorrowVOMeta;
+import com.dt.platform.domain.eam.meta.AssetCollectionMeta;
 import com.dt.platform.domain.knowledgebase.meta.ContentMeta;
 import com.dt.platform.domain.ops.meta.HostVOMeta;
 import com.dt.platform.eam.page.AssetBorrowPageController;
@@ -35,13 +37,14 @@ public class EamAssetBorrowGtr extends BaseCodeGenerator {
 
     public void generateCode() throws Exception {
 
+        cfg.bpm().form("eam_asset_borrow");
         System.out.println(this.getClass().getName());
         //此设置用于覆盖字段的独立配置；清单中没有出现的，设置为隐藏；重复出现或不存在的字段将抛出异常；只接受 DBField 或 String 类型的元素
         cfg.getPoClassFile().addListProperty(Asset.class,"assetList","资产","资产");
         cfg.getPoClassFile().addListProperty(String.class,"assetIds","资产列表","资产列表");
 
         cfg.getPoClassFile().addListProperty(AssetItem.class,"assetItemList","资产列表","资产列表");
-
+        cfg.getPoClassFile().addSimpleProperty(String.class,"originatorUserName","申请人","申请人");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"borrower","借用人","借用人");
         //cfg.service().addRelationSaveAction(AssetItemServiceImpl.class,AssetBorrowVOMeta.ASSET_IDS);
@@ -68,7 +71,7 @@ public class EamAssetBorrowGtr extends BaseCodeGenerator {
 
 
 
-        cfg.view().field(EAMTables.EAM_ASSET_BORROW.CONTENT).form().textArea().height(30).search().fuzzySearch();
+        cfg.view().field(EAMTables.EAM_ASSET_BORROW.CONTENT).form().textArea().height(Config.textAreaHeight).search().fuzzySearch();
 
 
 //        cfg.view().list().operationColumn().addActionButton("送审","forApproval",null);
@@ -76,9 +79,9 @@ public class EamAssetBorrowGtr extends BaseCodeGenerator {
 //        cfg.view().list().operationColumn().addActionButton("撤销","revokeData",null);
 //        cfg.view().list().operationColumn().addActionButton("单据","downloadBill",null);
         cfg.view().list().addToolButton("归还","assetReturn","asset_return_buttion","eam_asset_borrow:return");
-        cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_borrow:for-approval");
+ //       cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_borrow:for-approval");
         cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_borrow:confirm");
-        cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_borrow:revoke");
+  //      cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_borrow:revoke");
         cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_borrow:bill");
 
 
@@ -93,9 +96,12 @@ public class EamAssetBorrowGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_BORROW.RETURN_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
 
 
+        cfg.view().field(AssetBorrowMeta.ORIGINATOR_USER_NAME).table().disable(true);
+        cfg.view().field(AssetBorrowMeta.ORIGINATOR_USER_NAME).table().label("申请人").form().label("申请人")
+                .form().fillBy("originator","name");
+        cfg.view().field(EAMTables.EAM_ASSET_BORROW.ORIGINATOR_ID).table().fillBy("originator","name");
 
-        cfg.view().field(EAMTables.EAM_ASSET_BORROW.ORIGINATOR_ID).table().fillBy("originator","nameAndBadge");
-        cfg.view().field(EAMTables.EAM_ASSET_BORROW.BORROWER_ID).table().fillBy("borrower","nameAndBadge");
+        cfg.view().field(EAMTables.EAM_ASSET_BORROW.BORROWER_ID).table().fillBy("borrower","name");
 
 
         cfg.view().field(EAMTables.EAM_ASSET_BORROW.ATTACH)
@@ -119,7 +125,7 @@ public class EamAssetBorrowGtr extends BaseCodeGenerator {
                 }
         );
         //分成分组布局
-
+        cfg.view().field(EAMTables.EAM_ASSET_BORROW.NAME).form().validate().required();
 
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);
@@ -127,20 +133,26 @@ public class EamAssetBorrowGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
-
+        cfg.view().form().labelWidth(70);
         cfg.view().formWindow().bottomSpace(20);
-        cfg.view().formWindow().width("98%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
+
         cfg.view().form().addGroup(null,
                 new Object[] {
-                        EAMTables.EAM_ASSET_BORROW.NAME,
-                        EAMTables.EAM_ASSET_BORROW.BORROWER_ID,
-                }, new Object[] {
-                        EAMTables.EAM_ASSET_BORROW.BORROW_TIME
-                }, new Object[] {
-                        EAMTables.EAM_ASSET_BORROW.PLAN_RETURN_DATE
+                        EAMTables.EAM_ASSET_COLLECTION.NAME,
+                },
+                new Object[] {
+                        AssetBorrowMeta.ORIGINATOR_USER_NAME,
                 }
         );
-
+        cfg.view().form().addGroup(null,
+                new Object[] {
+                        EAMTables.EAM_ASSET_BORROW.BORROWER_ID,
+                        EAMTables.EAM_ASSET_BORROW.BORROW_TIME
+                }, new Object[] {
+                        EAMTables.EAM_ASSET_BORROW.PLAN_RETURN_DATE,
+                }
+        );
 
         cfg.view().form().addGroup(null,
                 new Object[] {
@@ -159,6 +171,7 @@ public class EamAssetBorrowGtr extends BaseCodeGenerator {
                 .setServiceIntfAnfImpl(WriteMode.CREATE_IF_NOT_EXISTS) //服务与接口
                 .setControllerAndAgent(WriteMode.CREATE_IF_NOT_EXISTS) //Rest
                 .setPageController(WriteMode.CREATE_IF_NOT_EXISTS) //页面控制器
+                .setBpmEventAdaptor(WriteMode.IGNORE)
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)
                 .setExtendJsFile(WriteMode.CREATE_IF_NOT_EXISTS); //列表HTML页

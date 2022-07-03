@@ -1,7 +1,7 @@
 /**
  * 资产报失 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-02 22:09:18
+ * @since 2022-07-03 11:05:53
  */
 
 function FormPage() {
@@ -214,6 +214,7 @@ function FormPage() {
 
 
 			//处理fillBy
+			$("#originatorUserName").val(fox.getProperty(formData,["originator","name"]));
 
 			//
 	     	fm.attr('method', 'POST');
@@ -272,6 +273,12 @@ function FormPage() {
 	}
 
 	function saveForm(param,callback) {
+
+		if(window.pageExt.form.beforeSubmit) {
+			var doNext=window.pageExt.form.beforeSubmit(data.field);
+			if(!doNext) return ;
+		}
+
 		param.dirtyFields=fox.compareDirtyFields(dataBeforeEdit,param);
 		var action=param.id?"edit":"create";
 		var api=moduleURL+"/"+(param.id?"update":"insert");
@@ -315,10 +322,7 @@ function FormPage() {
 	    	//debugger;
 			data.field = getFormData();
 
-			if(window.pageExt.form.beforeSubmit) {
-				var doNext=window.pageExt.form.beforeSubmit(data.field);
-				if(!doNext) return ;
-			}
+
 			//校验表单
 			if(!verifyForm(data.field)) return;
 

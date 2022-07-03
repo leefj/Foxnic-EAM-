@@ -3,11 +3,9 @@ package com.dt.platform.generator.module.eam;
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.domain.eam.Asset;
+import com.dt.platform.domain.eam.AssetTranfer;
 import com.dt.platform.domain.eam.Position;
-import com.dt.platform.domain.eam.meta.AssetCollectionMeta;
-import com.dt.platform.domain.eam.meta.AssetRepairVOMeta;
-import com.dt.platform.domain.eam.meta.AssetTranferVOMeta;
-import com.dt.platform.domain.eam.meta.PositionMeta;
+import com.dt.platform.domain.eam.meta.*;
 import com.dt.platform.eam.page.AssetTranferPageController;
 import com.dt.platform.eam.service.impl.AssetHandleServiceImpl;
 import com.dt.platform.eam.service.impl.AssetItemServiceImpl;
@@ -28,10 +26,12 @@ public class EamAssetTranferGtr extends BaseCodeGenerator {
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
 
+        cfg.bpm().form("eam_asset_tranfer");
+
         cfg.getPoClassFile().addListProperty(Asset.class,"assetList","资产","资产");
         cfg.getPoClassFile().addListProperty(String.class,"assetIds","资产列表","资产列表");
 
-
+        cfg.getPoClassFile().addSimpleProperty(String.class,"originatorUserName","申请人","申请人");
 
         cfg.getPoClassFile().addSimpleProperty(Position.class,"position","位置","位置");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
@@ -63,7 +63,7 @@ public class EamAssetTranferGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_TRANFER.OUT_USE_ORGANIZATION_ID).form().validate().required();
         cfg.view().field(EAMTables.EAM_ASSET_TRANFER.IN_USE_ORGANIZATION_ID).form().validate().required();
         cfg.view().field(EAMTables.EAM_ASSET_TRANFER.MANAGER_ID).form().form().validate().required();
-        cfg.view().field(EAMTables.EAM_ASSET_TRANFER.CONTENT).form().textArea().height(30).search().fuzzySearch();
+        cfg.view().field(EAMTables.EAM_ASSET_TRANFER.CONTENT).form().textArea().height(Config.textAreaHeight).search().fuzzySearch();
 
 
 
@@ -76,9 +76,13 @@ public class EamAssetTranferGtr extends BaseCodeGenerator {
                 .form().button().chooseOrganization(true);
         cfg.view().field(EAMTables.EAM_ASSET_TRANFER.IN_USE_ORGANIZATION_ID).table().fillBy("inUseOrganization","fullName");
 
-        cfg.view().field(EAMTables.EAM_ASSET_TRANFER.MANAGER_ID).table().fillBy("manager","nameAndBadge");
-        cfg.view().field(EAMTables.EAM_ASSET_TRANFER.ORIGINATOR_ID).table().fillBy("originator","nameAndBadge");
-        cfg.view().field(EAMTables.EAM_ASSET_TRANFER.USE_USER_ID).table().fillBy("useUser","nameAndBadge");
+        cfg.view().field(EAMTables.EAM_ASSET_TRANFER.MANAGER_ID).table().fillBy("manager","name");
+        cfg.view().field(AssetTranferMeta.ORIGINATOR_USER_NAME).table().disable(true);
+        cfg.view().field(AssetTranferMeta.ORIGINATOR_USER_NAME).table().label("申请人").form().label("申请人")
+                .form().fillBy("originator","name");
+
+        cfg.view().field(EAMTables.EAM_ASSET_TRANFER.ORIGINATOR_ID).table().fillBy("originator","name");
+        cfg.view().field(EAMTables.EAM_ASSET_TRANFER.USE_USER_ID).table().fillBy("useUser","name");
         cfg.view().field(EAMTables.EAM_ASSET_TRANFER.MANAGER_ID).form()
                 .button().chooseEmployee(true);
         cfg.view().field(EAMTables.EAM_ASSET_TRANFER.USE_USER_ID).form()
@@ -118,9 +122,9 @@ public class EamAssetTranferGtr extends BaseCodeGenerator {
 //        cfg.view().list().operationColumn().addActionButton("撤销","revokeData",null);
 //        cfg.view().list().operationColumn().addActionButton("单据","downloadBill",null);
 
-        cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_tranfer:for-approval");
+//        cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_tranfer:for-approval");
         cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_tranfer:confirm");
-        cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_tranfer:revoke");
+    //    cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_tranfer:revoke");
         cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_tranfer:bill");
 
 
@@ -140,8 +144,18 @@ public class EamAssetTranferGtr extends BaseCodeGenerator {
 
 
         //分成分组布局
+        cfg.view().form().labelWidth(70);
         cfg.view().formWindow().width("98%");
         cfg.view().formWindow().bottomSpace(20);
+        cfg.view().form().addGroup(null,
+                new Object[] {
+                        EAMTables.EAM_ASSET_TRANFER.NAME,
+                },
+                new Object[] {
+                        AssetTranferMeta.ORIGINATOR_USER_NAME,
+                }
+        );
+
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_TRANFER.OUT_USE_ORGANIZATION_ID,
@@ -168,6 +182,7 @@ public class EamAssetTranferGtr extends BaseCodeGenerator {
                 .setServiceIntfAnfImpl(WriteMode.CREATE_IF_NOT_EXISTS) //服务与接口
                 .setControllerAndAgent(WriteMode.CREATE_IF_NOT_EXISTS) //Rest
                 .setPageController(WriteMode.CREATE_IF_NOT_EXISTS) //页面控制器
+                .setBpmEventAdaptor(WriteMode.IGNORE)
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
                 .setExtendJsFile(WriteMode.CREATE_IF_NOT_EXISTS); //列表HTML页

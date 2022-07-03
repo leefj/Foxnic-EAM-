@@ -9,6 +9,7 @@ import com.dt.platform.domain.eam.InventoryPlan;
 import com.dt.platform.domain.eam.meta.AssetMeta;
 import com.dt.platform.domain.eam.meta.InventoryPlanMeta;
 import com.dt.platform.eam.page.InventoryPlanPageController;
+import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.InventoryPlanServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
@@ -52,7 +53,7 @@ public class EamInventoryPlanAssetGtr extends BaseCodeGenerator{
                 fillWith(InventoryPlanMeta.INVENTORY_PLAN_TYPE).muliti(false);
 
         cfg.view().formWindow().bottomSpace(250);
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_INVENTORY_PLAN.NAME,

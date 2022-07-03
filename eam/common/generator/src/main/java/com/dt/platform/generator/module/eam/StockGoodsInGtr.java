@@ -107,7 +107,7 @@ public class StockGoodsInGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.BUSINESS_DATE).form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.PURCHASE_DATE).form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
 
-        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.NOTES).form().textArea().height(60);
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.NOTES).form().textArea().height(Config.textAreaHeight);
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.ATTACH_ID)
                 .form().label("附件").upload().acceptSingleFile().maxFileCount(1).displayFileName(false);
 
@@ -146,11 +146,11 @@ public class StockGoodsInGtr extends BaseCodeGenerator {
                 .form().selectBox().enumType(AssetHandleStatusEnum.class);
 
 
-        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.ORIGINATOR_ID).table().fillBy("originator","nameAndBadge");
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.ORIGINATOR_ID).table().fillBy("originator","name");
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.ORIGINATOR_ID).form()
                 .button().chooseEmployee(true);
 
-        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.MANAGER_ID).table().fillBy("manager","nameAndBadge");
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.MANAGER_ID).table().fillBy("manager","name");
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_IN.MANAGER_ID).form()
                 .button().chooseEmployee(true);
 
@@ -165,14 +165,14 @@ public class StockGoodsInGtr extends BaseCodeGenerator {
 
 
 
-        cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_stock_goods_in:for-approval");
+      //  cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_stock_goods_in:for-approval");
         cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_stock_goods_in:confirm");
-        cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_stock_goods_in:revoke");
+       // cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_stock_goods_in:revoke");
         cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_stock_goods_in:bill");
 
 
 
-        cfg.view().formWindow().width("95%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().form().addGroup("基本信息",
                 new Object[] {

@@ -1,5 +1,8 @@
 package com.dt.platform.proxy.eam;
 
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
+import org.github.foxnic.web.proxy.bpm.BpmCallbackController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
@@ -20,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @since 2021-09-12 13:04:38
  */
 @FeignClient(value = ServiceNames.EAM, contextId = AssetRepairServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
-public interface AssetRepairServiceProxy {
+public interface AssetRepairServiceProxy  extends BpmCallbackController {
 
     /**
      * 基础路径 , service-eam
@@ -107,6 +110,17 @@ public interface AssetRepairServiceProxy {
      * 撤销操作
      */
     public static final String FINISH_REPAIR = API_PREFIX + "finish-repair";
+
+
+    /**
+     * 流程事件回调接收接口
+     */
+    public static final String BPM_CALLBACK = API_PREFIX + "bpm-callback";
+    /**
+     * 分页查询资产报失
+     */
+    @RequestMapping(AssetRepairServiceProxy.BPM_CALLBACK)
+    BpmActionResult onProcessCallback(@RequestParam(name = "event") BpmEvent event);
 
     /**
      * 添加资产报修

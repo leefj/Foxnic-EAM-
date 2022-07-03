@@ -88,8 +88,7 @@
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
         <button id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('选择')}">选择</span></button>
-        <button id="del-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="delete"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('删除')}">删除</span></button>
-
+        <button id="delete-button" class="layui-btn icon-btn layui-btn-danger layui-btn-sm batch-delete-button" lay-event="batch-del"><i class="layui-icon">&#xe67e;</i><span th:text="${lang.translate('删除')}">删除</span></button>
     </div>
 </script>
 

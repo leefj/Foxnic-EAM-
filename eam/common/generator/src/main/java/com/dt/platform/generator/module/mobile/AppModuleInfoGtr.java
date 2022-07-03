@@ -56,7 +56,7 @@ public class AppModuleInfoGtr extends BaseCodeGenerator {
 
 
 
-        cfg.view().formWindow().width("75%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().formWindow().bottomSpace(80);
         cfg.view().list().disableBatchDelete();
         cfg.view().form().addGroup(null,

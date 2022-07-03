@@ -145,10 +145,10 @@ public class SoftwareGtr extends BaseCodeGenerator {
                 fillWith(AssetSoftwareMeta.LICENSE_MODE_DICT).muliti(false);
 
 
-        cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE.NOTES).form().textArea().height(60);
-        cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE.AUTHORIZATION_CODE).form().textArea().height(60);
-        cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE.AUTHORIZATION_INFO).form().textArea().height(60);
-        cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE.CONTENT).form().textArea().height(60);
+        cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE.NOTES).form().textArea().height(Config.textAreaHeight);
+        cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE.AUTHORIZATION_CODE).form().textArea().height(Config.textAreaHeight);
+        cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE.AUTHORIZATION_INFO).form().textArea().height(Config.textAreaHeight);
+        cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE.CONTENT).form().textArea().height(Config.textAreaHeight);
 
     //    cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE.AUTHORIZED_AVAILABLE_NUMBER).form().readOnly();
 
@@ -183,16 +183,16 @@ public class SoftwareGtr extends BaseCodeGenerator {
 
         cfg.view().list().addJsVariable("APPROVAL_REQUIRED","[[${approvalRequired}]]","APPROVAL_REQUIRED");
 
-        cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_software:for-approval");
+     //   cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_software:for-approval");
         cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_software:confirm");
-        cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_software:revoke");
+      //  cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_software:revoke");
         cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_software:bill");
 
         cfg.view().form().addJsVariable("ASSET_CATEGORY_DATA","[[${assetCategoryData}]]","ASSET_CATEGORY_DATA");
 
 
         cfg.view().list().disableBatchDelete();
-        cfg.view().formWindow().width("95%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().form().addGroup("基本信息",
                 new Object[] {

@@ -433,7 +433,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["75%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-repair-rule-form-data-win",
 			content: '/business/eam/repair_rule/repair_rule_form.html' + (queryString?("?"+queryString):""),

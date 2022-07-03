@@ -47,8 +47,8 @@ public class RepairCategoryTplGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_REPAIR_CATEGORY_TPL.CODE).form().validate().required();
         cfg.view().field(EAMTables.EAM_REPAIR_CATEGORY_TPL.NAME).form().validate().required();
         cfg.view().field(EAMTables.EAM_REPAIR_CATEGORY_TPL.COST_TIME).form().label("标准耗时(分)").numberInput();
-        cfg.view().field(EAMTables.EAM_REPAIR_CATEGORY_TPL.NOTES).form().textArea().height(60);
-        cfg.view().field(EAMTables.EAM_REPAIR_CATEGORY_TPL.REPAIR_SOLUTION).form().validate().required().form().textArea().height(60);
+        cfg.view().field(EAMTables.EAM_REPAIR_CATEGORY_TPL.NOTES).form().textArea().height(Config.textAreaHeight);
+        cfg.view().field(EAMTables.EAM_REPAIR_CATEGORY_TPL.REPAIR_SOLUTION).form().validate().required().form().textArea().height(Config.textAreaHeight);
 
         cfg.view().field(EAMTables.EAM_REPAIR_CATEGORY_TPL.CATEGORY_ID)
         .basic().label("故障类型")
@@ -61,7 +61,7 @@ public class RepairCategoryTplGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_REPAIR_CATEGORY_TPL.ATTACH_ID).form().upload().acceptSingleFile().maxFileCount(1);
 
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(80);
         cfg.view().list().disableBatchDelete();
         cfg.view().form().addGroup(null,

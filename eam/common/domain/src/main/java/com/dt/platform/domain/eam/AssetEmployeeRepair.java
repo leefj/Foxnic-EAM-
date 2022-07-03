@@ -23,8 +23,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 资产报修
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-02 22:08:59
- * @sign 796431AB45B8EE88E6CFFCDD25398CD1
+ * @since 2022-07-03 11:06:34
+ * @sign 1FD3E8269BAC22BFBF9D5DE3CA3A73FD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -175,6 +175,12 @@ public class AssetEmployeeRepair extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
 	private Employee originator;
+	
+	/**
+	 * 申请人：申请人
+	*/
+	@ApiModelProperty(required = false,value="申请人" , notes = "申请人")
+	private String originatorUserName;
 	
 	/**
 	 * 使用公司/部门：使用公司/部门
@@ -686,6 +692,25 @@ public class AssetEmployeeRepair extends Entity {
 	*/
 	public AssetEmployeeRepair setOriginator(Employee originator) {
 		this.originator=originator;
+		return this;
+	}
+	
+	/**
+	 * 获得 申请人<br>
+	 * 申请人
+	 * @return 申请人
+	*/
+	public String getOriginatorUserName() {
+		return originatorUserName;
+	}
+	
+	/**
+	 * 设置 申请人
+	 * @param originatorUserName 申请人
+	 * @return 当前对象
+	*/
+	public AssetEmployeeRepair setOriginatorUserName(String originatorUserName) {
+		this.originatorUserName=originatorUserName;
 		return this;
 	}
 	

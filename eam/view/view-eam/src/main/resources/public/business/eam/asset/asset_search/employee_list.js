@@ -298,7 +298,7 @@ function ListPage() {
             title: title,
             resize: false,
             offset: [top,null],
-            area: ["500px",height+"px"],
+            area: ["80%",height+"px"],
             type: 2,
             id:"hrm-employee-form-data-win",
             content: '/business/hrm/employee/employee_form.html' + queryString,

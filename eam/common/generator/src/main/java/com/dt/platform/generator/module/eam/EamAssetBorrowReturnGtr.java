@@ -10,6 +10,7 @@ import com.dt.platform.domain.eam.meta.PositionMeta;
 import com.dt.platform.eam.page.AssetBorrowReturnPageController;
 import com.dt.platform.eam.service.impl.AssetHandleServiceImpl;
 import com.dt.platform.eam.service.impl.AssetItemServiceImpl;
+import com.dt.platform.generator.config.Config;
 import com.dt.platform.ops.service.impl.HostMidServiceImpl;
 import com.dt.platform.proxy.eam.AssetBorrowReturnServiceProxy;
 import com.dt.platform.proxy.eam.PositionServiceProxy;
@@ -40,7 +41,7 @@ public class EamAssetBorrowReturnGtr extends BaseCodeGenerator {
 
 
         //分成分组布局
-        cfg.view().formWindow().width("85%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_BORROW_RETURN.RETURN_DATE,

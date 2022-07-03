@@ -6,6 +6,7 @@ import com.dt.platform.constants.enums.DictEnum;
 import com.dt.platform.constants.enums.common.StatusValidEnum;
 import com.dt.platform.constants.enums.ops.CertificateItemStatusEnum;
 import com.dt.platform.constants.enums.ops.CertificateStatusEnum;
+import com.dt.platform.generator.config.Config;
 import com.dt.platform.ops.page.CertificateItemPageController;
 import com.dt.platform.ops.page.CertificatePageController;
 import com.dt.platform.proxy.ops.CertificateItemServiceProxy;
@@ -39,7 +40,7 @@ public class CertificateItemGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_CERTIFICATE_ITEM.ID).basic().hidden(true);
         cfg.view().field(OpsTables.OPS_CERTIFICATE_ITEM.OPER_USER_ID).form().button().chooseEmployee(true);
-        cfg.view().field(OpsTables.OPS_CERTIFICATE_ITEM.OPER_USER_ID).table().fillBy("operUser","nameAndBadge");
+        cfg.view().field(OpsTables.OPS_CERTIFICATE_ITEM.OPER_USER_ID).table().fillBy("operUser","name");
 
 
 
@@ -59,7 +60,7 @@ public class CertificateItemGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_CERTIFICATE_ITEM.CONTENT).table().disable();
 
         cfg.view().formWindow().bottomSpace(80);
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_CERTIFICATE_ITEM.STATUS,

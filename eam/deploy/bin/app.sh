@@ -11,9 +11,6 @@ app_dir=$cur_dir/..
 app_log=$app_dir/logs
 app_log_file=$app_log/app.log
 
-app_name=`cat $app_conf|grep -v "#"|grep APP_NAME=|awk -F "=" '{print $2}'`
-app_uid=`cat $app_conf|grep -v "#"|grep APP_UID=|awk -F "=" '{print $2}'`
-
 ####################### Java Environment ############################
 JAVA=`cat $app_conf|grep -v "#"|grep JAVA=|awk -F "=" '{print $2}'`
 #java_Xmx="-Xmx1024m"
@@ -39,7 +36,18 @@ do
   fi
 done
 ####################### Parameter ####################################
-app_process_mark="wctuihw_${app_name}_${app_uid}"
+app=app
+if [[ -n $2 ]];then
+  app=$2
+fi
+app_name=${app}.jar
+if [[ ! -f "$app_dir/$app_name" ]];then
+  echo "jar not exist,jar:$app_dir/$app_name"
+  exit 1
+fi
+
+app_uid=`cat $app_conf|grep -v "#"|grep APP_UID=|awk -F "=" '{print $2}'`
+app_process_mark="dtDw01_${app_name}_${app_uid}"
 action=start
 if [[ -n $1 ]];then
   action=$1

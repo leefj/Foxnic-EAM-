@@ -1,12 +1,10 @@
 package com.dt.platform.eam.service;
 
 
-import com.dt.platform.domain.eam.AssetAllocation;
-import com.dt.platform.domain.eam.AssetCollectionReturn;
+import com.dt.platform.domain.eam.*;
+import com.github.foxnic.dao.entity.ISimpleIdService;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
-import com.dt.platform.domain.eam.AssetCollection;
-import com.dt.platform.domain.eam.AssetCollectionVO;
 
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +19,8 @@ import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ExcelStructure;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.data.SaveMode;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.domain.changes.ProcessStartVO;
 
@@ -32,7 +32,26 @@ import org.github.foxnic.web.domain.changes.ProcessStartVO;
  * @since 2021-08-20 20:54:09
 */
 
-public interface IAssetCollectionService extends ISuperService<AssetCollection> {
+public interface IAssetCollectionService extends ISimpleIdService<AssetCollection,String>  {
+
+
+	/**
+	 * 表单定义代码
+	 **/
+	public static final String FORM_DEFINITION_CODE="eam_asset_collection";
+
+
+	/**
+	 * 处理流程回调
+	 * */
+	BpmActionResult onProcessCallback(BpmEvent event);
+
+
+	void joinProcess(AssetCollection assetCollection);
+
+	void joinProcess(List<AssetCollection> assetCollectionList);
+
+	void joinProcess(PagedList<AssetCollection> assetCollectionList);
 
 
 	/**

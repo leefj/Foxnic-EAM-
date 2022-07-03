@@ -3,6 +3,9 @@ package com.dt.platform.generator.module.eam;
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.domain.eam.Asset;
+import com.dt.platform.domain.eam.meta.AssetEmployeeHandoverMeta;
+import com.dt.platform.domain.eam.meta.AssetEmployeeLossMeta;
+import com.dt.platform.domain.eam.meta.AssetEmployeeRepairMeta;
 import com.dt.platform.eam.page.AssetEmployeeLossPageController;
 import com.dt.platform.eam.page.AssetEmployeeRepairPageController;
 import com.dt.platform.generator.config.Config;
@@ -27,6 +30,8 @@ public class EmployLossGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addListProperty(String.class,"assetIds","资产列表","资产列表");
 
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"organization","使用公司/部门","使用公司/部门");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"originatorUserName","申请人","申请人");
+
         System.out.println(this.getClass().getName());
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.ID).basic().hidden(true);
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.NAME).search().fuzzySearch();
@@ -47,17 +52,21 @@ public class EmployLossGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.SELECTED_CODE).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.RECORD_TIME).table().disable(true);
 
-        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.NOTES).form().textArea().height(50);
+        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.NOTES).form().textArea().height(Config.textAreaHeight);
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.NAME).form().validate().required();
-        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.CONTENT).form().validate().required().form().textArea().height(50);
+        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.CONTENT).form().validate().required().form().textArea().height(Config.textAreaHeight);
 
-
+        cfg.view().field(AssetEmployeeLossMeta.ORIGINATOR_USER_NAME).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.ORG_ID)
                 .form().validate().required().form().button().chooseOrganization(true);
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.ORG_ID).table().fillBy("organization","fullName");
 
 
-        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.ORIGINATOR_ID).table().fillBy("originator","name");
+        cfg.view().field(AssetEmployeeLossMeta.ORIGINATOR_USER_NAME).table().label("申请人").form().label("申请人")
+                .form().fillBy("originator","name");
+        cfg.view().field(AssetEmployeeLossMeta.ORIGINATOR_ID).table().fillBy("originator","name");
+
+
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_LOSS.ORIGINATOR_ID).form()
                 .button().chooseEmployee(true);
 
@@ -72,15 +81,23 @@ public class EmployLossGtr extends BaseCodeGenerator {
         cfg.bpm().integrate(IntegrateMode.FRONT);
         cfg.view().form().labelWidth(70);
         cfg.view().list().disableBatchDelete();
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(30);
 
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_EMPLOYEE_LOSS.NAME,
-                },
+                }
+
+        );
+
+        cfg.view().form().addGroup(null,
+
                 new Object[] {
                         EAMTables.EAM_ASSET_EMPLOYEE_LOSS.ORG_ID,
+                },
+                new Object[] {
+                        AssetEmployeeLossMeta.ORIGINATOR_USER_NAME,
                 }
         );
         cfg.view().form().addGroup(null,
@@ -99,12 +116,12 @@ public class EmployLossGtr extends BaseCodeGenerator {
 
         //文件生成覆盖模式
         cfg.overrides()
-                .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口
-                .setControllerAndAgent(WriteMode.COVER_EXISTS_FILE) //Rest
+                .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
+                .setControllerAndAgent(WriteMode.IGNORE) //Rest
                 .setPageController(WriteMode.IGNORE) //页面控制器
                 .setBpmEventAdaptor(WriteMode.IGNORE)
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
-                .setListPage(WriteMode.COVER_EXISTS_FILE)
+                .setListPage(WriteMode.IGNORE)
                 .setExtendJsFile(WriteMode.WRITE_TEMP_FILE); //列表HTML页
         ; //列表HTML页
         //生成代码

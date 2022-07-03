@@ -1,10 +1,16 @@
 package com.dt.platform.eam.service.impl;
 
+import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
+import com.dt.platform.constants.enums.eam.AssetOperateEnum;
+import com.dt.platform.proxy.common.CodeModuleServiceProxy;
+import com.github.foxnic.commons.lang.StringUtil;
 import org.github.foxnic.web.domain.bpm.BpmActionResult;
 import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.framework.bpm.BpmEventAdaptor;
 import org.github.foxnic.web.framework.bpm.BpmAssistant;
 import javax.annotation.Resource;
+
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,6 +69,7 @@ public class AssetEmployeeApplyServiceImpl extends SuperService<AssetEmployeeApp
 
 
 
+
 	@Override
 	public Object generateId(Field field) {
 		return IDGenerator.getSnowflakeIdString();
@@ -77,6 +84,25 @@ public class AssetEmployeeApplyServiceImpl extends SuperService<AssetEmployeeApp
 	 */
 	@Override
 	public Result insert(AssetEmployeeApply assetEmployeeApply,boolean throwsException) {
+		//制单人
+		if(StringUtil.isBlank(assetEmployeeApply.getOriginatorId())){
+			assetEmployeeApply.setOriginatorId(SessionUser.getCurrent().getUser().getActivatedEmployeeId());
+		}
+		//办理状态
+		if(StringUtil.isBlank(assetEmployeeApply.getStatus())){
+			assetEmployeeApply.setStatus(AssetHandleStatusEnum.INCOMPLETE.code());
+		}
+
+		//生成编码规则
+		if(StringUtil.isBlank(assetEmployeeApply.getBusinessCode())){
+			Result codeResult= CodeModuleServiceProxy.api().generateCode(AssetOperateEnum.EAM_ASSET_EMPLOYEE_APPLY.code());
+			if(!codeResult.isSuccess()){
+				return codeResult;
+			}else{
+				assetEmployeeApply.setBusinessCode(codeResult.getData().toString());
+			}
+		}
+
 		Result r=super.insert(assetEmployeeApply,throwsException);
 		return r;
 	}

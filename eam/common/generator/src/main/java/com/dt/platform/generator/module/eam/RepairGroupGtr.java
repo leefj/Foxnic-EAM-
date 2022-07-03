@@ -52,9 +52,9 @@ public class RepairGroupGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_REPAIR_GROUP.STATUS).form().validate().required().form().selectBox().enumType(StatusEnableEnum.class).defaultIndex(0);
         cfg.view().field(EAMTables.EAM_REPAIR_GROUP.NAME).form().validate().required();
-        cfg.view().field(EAMTables.EAM_REPAIR_GROUP.NOTES).form().textArea().height(60);
+        cfg.view().field(EAMTables.EAM_REPAIR_GROUP.NOTES).form().textArea().height(Config.textAreaHeight);
 
-        cfg.view().field(EAMTables.EAM_REPAIR_GROUP.LEADER_ID).table().fillBy("leader","nameAndBadge");
+        cfg.view().field(EAMTables.EAM_REPAIR_GROUP.LEADER_ID).table().fillBy("leader","name");
         cfg.view().field(EAMTables.EAM_REPAIR_GROUP.LEADER_ID).form()
                 .button().chooseEmployee(true);
 
@@ -63,7 +63,7 @@ public class RepairGroupGtr extends BaseCodeGenerator {
 
 
 
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(120);
         cfg.view().list().disableBatchDelete();
         cfg.view().form().addGroup(null,

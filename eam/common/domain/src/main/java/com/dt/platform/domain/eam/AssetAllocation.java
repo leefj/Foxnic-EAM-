@@ -7,11 +7,13 @@ import com.dt.platform.constants.db.EAMTables.EAM_ASSET_ALLOCATION;
 import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
+import javax.persistence.Transient;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
-import javax.persistence.Transient;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 
@@ -20,8 +22,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 资产调拨
  * @author 金杰 , maillank@qq.com
- * @since 2021-11-17 13:21:32
- * @sign E8FF191E7DD41BC06268B67E3526B04E
+ * @since 2022-07-03 15:17:38
+ * @sign 9B2CB39C7CB1F016169D0B0B11EDF6CA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -134,6 +136,8 @@ public class AssetAllocation extends Entity {
 	*/
 	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
+	@Transient
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -200,6 +204,12 @@ public class AssetAllocation extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="调入公司" , notes = "调入公司")
 	private Organization inOwnerCompany;
+	
+	/**
+	 * 申请人：申请人
+	*/
+	@ApiModelProperty(required = false,value="申请人" , notes = "申请人")
+	private String originatorUserName;
 	
 	/**
 	 * 获得 主键<br>
@@ -515,12 +525,42 @@ public class AssetAllocation extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
 	public AssetAllocation setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public AssetAllocation setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -643,9 +683,9 @@ public class AssetAllocation extends Entity {
 	 * @param asset 资产
 	 * @return 当前对象
 	*/
-	public AssetAllocation addAsset(Asset asset) {
+	public AssetAllocation addAsset(Asset... asset) {
 		if(this.assetList==null) assetList=new ArrayList<>();
-		this.assetList.add(asset);
+		this.assetList.addAll(Arrays.asList(asset));
 		return this;
 	}
 	
@@ -673,9 +713,9 @@ public class AssetAllocation extends Entity {
 	 * @param assetId 资产列表
 	 * @return 当前对象
 	*/
-	public AssetAllocation addAssetId(String assetId) {
+	public AssetAllocation addAssetId(String... assetId) {
 		if(this.assetIds==null) assetIds=new ArrayList<>();
-		this.assetIds.add(assetId);
+		this.assetIds.addAll(Arrays.asList(assetId));
 		return this;
 	}
 	
@@ -752,6 +792,25 @@ public class AssetAllocation extends Entity {
 	*/
 	public AssetAllocation setInOwnerCompany(Organization inOwnerCompany) {
 		this.inOwnerCompany=inOwnerCompany;
+		return this;
+	}
+	
+	/**
+	 * 获得 申请人<br>
+	 * 申请人
+	 * @return 申请人
+	*/
+	public String getOriginatorUserName() {
+		return originatorUserName;
+	}
+	
+	/**
+	 * 设置 申请人
+	 * @param originatorUserName 申请人
+	 * @return 当前对象
+	*/
+	public AssetAllocation setOriginatorUserName(String originatorUserName) {
+		this.originatorUserName=originatorUserName;
 		return this;
 	}
 

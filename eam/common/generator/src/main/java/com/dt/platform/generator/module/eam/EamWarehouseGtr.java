@@ -36,7 +36,7 @@ public class EamWarehouseGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_WAREHOUSE.WAREHOUSE_NAME).form().validate().required();
         cfg.view().field(EAMTables.EAM_WAREHOUSE.STATUS).form().validate().required().form().selectBox().enumType(StatusEnableEnum.class);
         cfg.view().field(EAMTables.EAM_WAREHOUSE.CODE).form().validate().required();
-        cfg.view().field(EAMTables.EAM_WAREHOUSE.WAREHOUSE_NOTES).form().textArea().height(60);
+        cfg.view().field(EAMTables.EAM_WAREHOUSE.WAREHOUSE_NOTES).form().textArea().height(Config.textAreaHeight);
 
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().form().addGroup(null,

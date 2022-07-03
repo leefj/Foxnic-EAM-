@@ -8,18 +8,24 @@ import com.dt.platform.constants.enums.eam.*;
 import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.AssetStorageMeta;
 import com.dt.platform.eam.service.*;
+import com.dt.platform.eam.service.bpm.AssetRepairBpmEventAdaptor;
+import com.dt.platform.eam.service.bpm.AssetStorageBpmEventAdaptor;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.dao.data.Rcd;
 import com.github.foxnic.dao.data.RcdSet;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.domain.changes.ProcessStartVO;
+import org.github.foxnic.web.framework.bpm.BpmAssistant;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import java.util.List;
+import java.util.*;
+
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.entity.SuperService;
@@ -36,11 +42,8 @@ import com.github.foxnic.sql.meta.DBField;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.meta.DBColumnMeta;
 import com.github.foxnic.sql.expr.Select;
-import java.util.ArrayList;
 
 import org.github.foxnic.web.framework.dao.DBConfigs;
-import java.util.Date;
-import java.util.Map;
 
 /**
  * <p>
@@ -79,6 +82,30 @@ public class AssetStorageServiceImpl extends SuperService<AssetStorage> implemen
 	 * 获得 DAO 对象
 	 * */
 	public DAO dao() { return dao; }
+
+
+	/**
+	 * 处理流程回调
+	 * */
+	public BpmActionResult onProcessCallback(BpmEvent event) {
+		return (new AssetStorageBpmEventAdaptor(this)).onProcessCallback(event);
+	}
+
+	@Override
+	public void joinProcess(AssetStorage assetStorage) {
+		this.joinProcess(Arrays.asList(assetStorage));
+	}
+
+	@Override
+	public void joinProcess(List<AssetStorage> assetStorageList) {
+		BpmAssistant.joinProcess(assetStorageList, IAssetAllocationService.FORM_DEFINITION_CODE);
+	}
+
+	@Override
+	public void joinProcess(PagedList<AssetStorage> assetStorageList) {
+		this.joinProcess(assetStorageList.getList());
+	}
+
 
 
 
@@ -376,6 +403,11 @@ public class AssetStorageServiceImpl extends SuperService<AssetStorage> implemen
 		if(id==null) throw new IllegalArgumentException("id 不允许为 null ");
 		sample.setId(id);
 		return dao.queryEntity(sample);
+	}
+
+	@Override
+	public List<AssetStorage> getByIds(List<String> list) {
+		return null;
 	}
 
 	@Override

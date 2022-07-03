@@ -66,7 +66,7 @@ public class SysCodeRegisterGtr extends BaseCodeGenerator {
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
         cfg.view().formWindow().bottomSpace(80);
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().form().addGroup(null,
                 new Object[]{
                         EAMTables.SYS_CODE_REGISTER.TYPE,

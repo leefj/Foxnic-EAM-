@@ -80,10 +80,10 @@ public class MaintainProjectGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_MAINTAIN_PROJECT.ATTACH_ID).form().upload().acceptSingleFile().buttonLabel("保养手册");
 
 
-        cfg.view().field(EAMTables.EAM_MAINTAIN_PROJECT.NOTES).form().textArea().height(60);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PROJECT.NOTES).form().textArea().height(Config.textAreaHeight);
         cfg.view().list().disableBatchDelete();
         cfg.view().search().inputWidth(Config.searchInputWidth);
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(80);
 
         cfg.view().form().addGroup(null,

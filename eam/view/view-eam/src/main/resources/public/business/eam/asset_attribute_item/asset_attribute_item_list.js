@@ -460,7 +460,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["85%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-asset-attribute-item-form-data-win",
 			content: '/business/eam/asset_attribute_item/asset_attribute_item_form.html' + queryString,

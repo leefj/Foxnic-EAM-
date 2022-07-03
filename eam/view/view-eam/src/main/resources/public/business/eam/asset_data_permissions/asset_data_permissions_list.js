@@ -393,7 +393,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["98%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-asset-data-permissions-form-data-win",
 			content: '/business/eam/asset_data_permissions/asset_data_permissions_form.html' + queryString,

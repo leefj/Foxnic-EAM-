@@ -361,7 +361,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["98%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"ops-monitor-tpl-graph-item-form-data-win",
 			content: '/business/ops/monitor_tpl_graph_item/monitor_tpl_graph_item_form.html' + (queryString?("?"+queryString):""),

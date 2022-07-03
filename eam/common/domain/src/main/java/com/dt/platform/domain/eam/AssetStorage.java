@@ -22,8 +22,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 资产入库
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-18 08:17:24
- * @sign FB5A0A04D9A12DCA871E9283AEE6048E
+ * @since 2022-07-03 14:22:42
+ * @sign F38E48F5E41957225F82C37181173201
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -186,6 +186,12 @@ public class AssetStorage extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="选择" , notes = "选择")
 	private String selectedCode;
+	
+	/**
+	 * 申请人：申请人
+	*/
+	@ApiModelProperty(required = false,value="申请人" , notes = "申请人")
+	private String originatorUserName;
 	
 	/**
 	 * 资产：资产
@@ -725,6 +731,25 @@ public class AssetStorage extends Entity {
 	*/
 	public AssetStorage setSelectedCode(String selectedCode) {
 		this.selectedCode=selectedCode;
+		return this;
+	}
+	
+	/**
+	 * 获得 申请人<br>
+	 * 申请人
+	 * @return 申请人
+	*/
+	public String getOriginatorUserName() {
+		return originatorUserName;
+	}
+	
+	/**
+	 * 设置 申请人
+	 * @param originatorUserName 申请人
+	 * @return 当前对象
+	*/
+	public AssetStorage setOriginatorUserName(String originatorUserName) {
+		this.originatorUserName=originatorUserName;
 		return this;
 	}
 	

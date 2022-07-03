@@ -48,7 +48,7 @@ function ListPage() {
 			title: "自定义标签",
 			resize: false,
 			offset: [15,null],
-			area: ["98%","98%"],
+			area: ["80%","98%"],
 			type: 2,
 			id:"eam-asset-label-custom-win",
 			content: '/business/eam/asset_label/asset_label_custom.html' + queryString,

@@ -3,6 +3,9 @@ package com.dt.platform.generator.module.eam;
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.domain.eam.Asset;
+import com.dt.platform.domain.eam.meta.AssetEmployeeApplyMeta;
+import com.dt.platform.domain.eam.meta.AssetEmployeeHandoverMeta;
+import com.dt.platform.domain.eam.meta.AssetEmployeeRepairMeta;
 import com.dt.platform.generator.config.Config;
 import com.github.foxnic.api.bpm.IntegrateMode;
 import com.github.foxnic.generator.config.WriteMode;
@@ -44,7 +47,7 @@ public class EmployApplyGtr extends BaseCodeGenerator {
         );
 
         cfg.view().list().disableBatchDelete();
-        cfg.view().formWindow().width("85%");
+         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().form().labelWidth(70);
         cfg.view().formWindow().bottomSpace(30);
 
@@ -54,11 +57,11 @@ public class EmployApplyGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.SELECTED_CODE).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.RECORD_TIME).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.APPLY_COUNT).table().disable(true);
+        cfg.view().field(AssetEmployeeApplyMeta.ORIGINATOR_USER_NAME).table().disable(true);
 
-
-        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.NOTES).form().textArea().height(50);
+        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.NOTES).form().textArea().height(Config.textAreaHeight);
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.NAME).form().validate().required();
-        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.CONTENT).form().validate().required().form().textArea().height(50);
+        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.CONTENT).form().validate().required().form().textArea().height(Config.textAreaHeight);
 
 
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.ORG_ID)
@@ -66,9 +69,12 @@ public class EmployApplyGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.ORG_ID).table().fillBy("organization","fullName");
 
 
-        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.ORIGINATOR_ID).table().fillBy("originator","name");
-        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.ORIGINATOR_ID).form()
-                .button().chooseEmployee(true);
+
+        cfg.view().field(AssetEmployeeApplyMeta.ORIGINATOR_USER_NAME).table().label("申请人").form().label("申请人")
+                .form().fillBy("originator","name");
+        cfg.view().field(AssetEmployeeApplyMeta.ORIGINATOR_ID).table().fillBy("originator","name");
+//        cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.ORIGINATOR_ID).form().validate().required().form()
+//                .button().chooseEmployee(true);
 
         cfg.view().field(EAMTables.EAM_ASSET_EMPLOYEE_APPLY.STATUS).basic().label("办理状态")
                 .form().selectBox().enumType(AssetHandleStatusEnum.class);
@@ -77,10 +83,17 @@ public class EmployApplyGtr extends BaseCodeGenerator {
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_EMPLOYEE_APPLY.NAME,
-                },
+                }
+        );
+        cfg.view().form().addGroup(null,
+
                 new Object[] {
                         EAMTables.EAM_ASSET_EMPLOYEE_APPLY.ORG_ID,
+                },
+                new Object[] {
+                        AssetEmployeeApplyMeta.ORIGINATOR_USER_NAME
                 }
+
         );
         cfg.view().form().addGroup(null,
                 new Object[] {
@@ -91,8 +104,8 @@ public class EmployApplyGtr extends BaseCodeGenerator {
 
         cfg.view().form().addJsVariable("EMPLOYEE_ID",   "[[${user.getUser().getActivatedEmployeeId()}]]","用户ID");
 
-        cfg.view().form().addPage("资产列表","goodsSelectList");
-        cfg.view().search().inputWidth(Config.searchInputWidth);
+//        cfg.view().form().addPage("资产列表","goodsSelectList");
+//        cfg.view().search().inputWidth(Config.searchInputWidth);
 
 
 
@@ -101,12 +114,12 @@ public class EmployApplyGtr extends BaseCodeGenerator {
 
         //文件生成覆盖模式
         cfg.overrides()
-                .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口
-                .setControllerAndAgent(WriteMode.COVER_EXISTS_FILE) //Rest
+                .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
+                .setControllerAndAgent(WriteMode.IGNORE) //Rest
                 .setPageController(WriteMode.IGNORE) //页面控制器
                 .setBpmEventAdaptor(WriteMode.IGNORE)
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
-                .setListPage(WriteMode.COVER_EXISTS_FILE)
+                .setListPage(WriteMode.IGNORE)
                 .setExtendJsFile(WriteMode.WRITE_TEMP_FILE); //列表HTML页
         ; //列表HTML页
         //生成代码

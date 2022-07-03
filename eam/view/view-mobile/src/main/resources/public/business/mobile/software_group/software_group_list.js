@@ -381,7 +381,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["75%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"app-software-group-form-data-win",
 			content: '/business/mobile/software_group/software_group_form.html' + (queryString?("?"+queryString):""),

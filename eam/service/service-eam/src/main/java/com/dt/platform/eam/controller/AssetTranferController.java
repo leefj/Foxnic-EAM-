@@ -7,10 +7,15 @@ import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.AssetScrapVOMeta;
 import com.dt.platform.domain.ops.meta.InformationSystemMeta;
+import com.dt.platform.proxy.eam.AssetRepairServiceProxy;
 import com.dt.platform.proxy.eam.AssetScrapServiceProxy;
+import com.dt.platform.proxy.eam.AssetStorageServiceProxy;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.commons.lang.StringUtil;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
+import org.github.foxnic.web.proxy.bpm.BpmCallbackController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -63,7 +68,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
 @Api(tags = "资产转移")
 @ApiSort(0)
 @RestController("EamAssetTranferController")
-public class AssetTranferController extends SuperController {
+public class AssetTranferController extends SuperController implements BpmCallbackController {
 
 	@Autowired
 	private IAssetTranferService assetTranferService;
@@ -413,6 +418,15 @@ public class AssetTranferController extends SuperController {
 		}
 
 
+
+	/**
+	 *  流程回调处理
+	 */
+	@SentinelResource(value = AssetTranferServiceProxy.BPM_CALLBACK , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(AssetTranferServiceProxy.BPM_CALLBACK)
+	public BpmActionResult onProcessCallback(BpmEvent event){
+		return assetTranferService.onProcessCallback(event);
+	}
 
 
 	@SentinelResource(value = AssetTranferServiceProxy.IMPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )

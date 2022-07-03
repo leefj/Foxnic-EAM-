@@ -4,8 +4,7 @@ import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.AssetScrap;
-import com.dt.platform.domain.eam.meta.AssetRepairVOMeta;
-import com.dt.platform.domain.eam.meta.AssetScrapVOMeta;
+import com.dt.platform.domain.eam.meta.*;
 import com.dt.platform.eam.page.AssetScrapPageController;
 import com.dt.platform.eam.service.impl.AssetItemServiceImpl;
 import com.dt.platform.generator.config.Config;
@@ -25,12 +24,14 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
 
+        cfg.bpm().form("eam_asset_scrap");
+
         cfg.getPoClassFile().addListProperty(Asset.class,"assetList","资产","资产");
         cfg.getPoClassFile().addListProperty(String.class,"assetIds","资产列表","资产列表");
-
-
-        cfg.bpm().form("eam_asset_scrap");
-        cfg.bpm().integrate(IntegrateMode.FRONT);
+        cfg.getPoClassFile().addSimpleProperty(String.class,"originatorUserName","申请人","申请人");
+//
+//        cfg.bpm().form("eam_asset_scrap");
+//        cfg.bpm().integrate(IntegrateMode.FRONT);
 
         //cfg.service().addRelationSaveAction(AssetItemServiceImpl.class, AssetScrapVOMeta.ASSET_IDS);
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
@@ -58,10 +59,12 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.CLEAN_STATUS).form().selectBox().enumType(AssetHandleStatusEnum.class);
 
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.NAME).form().validate().required();
-        cfg.view().field(EAMTables.EAM_ASSET_SCRAP.CONTENT).form().textArea().height(30);
+        cfg.view().field(EAMTables.EAM_ASSET_SCRAP.CONTENT).form().textArea().height(Config.textAreaHeight);
 
 
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.SCRAP_DATE).form().validate().required();
+
+        cfg.view().field(EAMTables.EAM_ASSET_SCRAP.NAME).form().validate().required();
 
         cfg.view().search().inputLayout(
                 new Object[]{
@@ -82,16 +85,15 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
-       // cfg.view().search().
-
-
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.CLEAN_STATUS).table().disable();
       //  cfg.view().field(EAMTables.EAM_ASSET_SCRAP.NAME).table().disable();
 
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.ATTACH).form().upload().acceptSingleFile().displayFileName(false);
 
-
-        cfg.view().field(EAMTables.EAM_ASSET_SCRAP.ORIGINATOR_ID).table().fillBy("originator","nameAndBadge");
+        cfg.view().field(AssetScrapMeta.ORIGINATOR_USER_NAME).table().disable(true);
+        cfg.view().field(AssetScrapMeta.ORIGINATOR_USER_NAME).table().label("申请人").form().label("申请人")
+                .form().fillBy("originator","name");
+        cfg.view().field(EAMTables.EAM_ASSET_SCRAP.ORIGINATOR_ID).table().fillBy("originator","name");
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.SCRAP_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.BUSINESS_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
 //        cfg.view().list().operationColumn().addActionButton("送审","forApproval",null);
@@ -105,21 +107,24 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
 //        cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_scrap:revoke");
         cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_scrap:bill");
 
-
+        cfg.view().form().labelWidth(70);
         cfg.view().list().operationColumn().width(350);
         //分成分组布局
         cfg.view().formWindow().bottomSpace(20);
-        cfg.view().formWindow().width("98%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().form().addGroup(null,
-                new Object[]
-                        {
-                           EAMTables.EAM_ASSET_SCRAP.NAME
-                        },
+                new Object[] {
+                        EAMTables.EAM_ASSET_SCRAP.NAME,
+                },
+                new Object[] {
+                        AssetScrapMeta.ORIGINATOR_USER_NAME,
+                }
+        );
+
+        cfg.view().form().addGroup(null,
               new Object[]
                       {
                         EAMTables.EAM_ASSET_SCRAP.SCRAP_DATE
-                }, new Object[] {
-
                 }
         );
 
@@ -133,6 +138,7 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
         cfg.view().form().addPage("资产列表","assetSelectList");
         cfg.view().form().addJsVariable("BILL_ID","[[${billId}]]","单据ID");
         cfg.view().form().addJsVariable("BILL_TYPE","[[${billType}]]","单据类型");
+        cfg.view().list().addJsVariable("PAGE_TYPE","[[${pageType}]]","PAGE_TYPE");
         cfg.view().list().addJsVariable("APPROVAL_REQUIRED","[[${approvalRequired}]]","是否需要审批");
 
 //        cfg.view().form().addJsVariable("EMPLOYEE_ID",   "[[${user.getUser().getActivatedEmployeeId()}]]","用户ID");
@@ -144,8 +150,9 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
                 .setControllerAndAgent(WriteMode.IGNORE) //Rest
                 .setPageController(WriteMode.IGNORE) //页面控制器
-                .setFormPage(WriteMode.IGNORE) //表单HTML页
-                .setListPage(WriteMode.IGNORE)
+                .setBpmEventAdaptor(WriteMode.IGNORE)
+                .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
+                .setListPage(WriteMode.COVER_EXISTS_FILE)
                 .setBpmEventAdaptor(WriteMode.IGNORE)
                 .setExtendJsFile(WriteMode.IGNORE); //列表HTML页; //列表HTML页
         cfg.buildAll();

@@ -14,7 +14,7 @@ import com.dt.platform.domain.eam.Supplier;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-18 08:17:24
+ * @since 2022-07-03 14:22:42
  * @sign 1A0905D818F4B74AC4900C5B81620709
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -362,6 +362,16 @@ public class AssetStorageVOMeta extends AssetStorageMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetStorageVO,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetStorageVO.class ,SELECTED_CODE, java.lang.String.class, "选择", "选择", java.lang.String.class, null);
 	
 	/**
+	 * 申请人 , 类型: java.lang.String
+	*/
+	public static final String ORIGINATOR_USER_NAME="originatorUserName";
+	
+	/**
+	 * 申请人 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetStorageVO,java.lang.String> ORIGINATOR_USER_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetStorageVO.class ,ORIGINATOR_USER_NAME, java.lang.String.class, "申请人", "申请人", java.lang.String.class, null);
+	
+	/**
 	 * 资产 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
 	*/
 	public static final String ASSET_LIST="assetList";
@@ -424,7 +434,7 @@ public class AssetStorageVOMeta extends AssetStorageMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , BUSINESS_CODE , PROC_ID , STATUS , NAME , SUPPLIER_ID , SUPPLIER_INFO , OWN_COMPANY_ID , MANAGER_USER_ID , LOCATION_NAME , CONTENT , BUSINESS_DATE , ATTACH , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CUSTOM_DATA , SELECTED_CODE , ASSET_LIST , ASSET_IDS , ORIGINATOR , MANAGER_USER , OWNER_COMPANY , SUPPLIER };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , BUSINESS_CODE , PROC_ID , STATUS , NAME , SUPPLIER_ID , SUPPLIER_INFO , OWN_COMPANY_ID , MANAGER_USER_ID , LOCATION_NAME , CONTENT , BUSINESS_DATE , ATTACH , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CUSTOM_DATA , SELECTED_CODE , ORIGINATOR_USER_NAME , ASSET_LIST , ASSET_IDS , ORIGINATOR , MANAGER_USER , OWNER_COMPANY , SUPPLIER };
 	
 	/**
 	 * 代理类
@@ -805,6 +815,17 @@ public class AssetStorageVOMeta extends AssetStorageMeta {
 		public AssetStorage setSelectedCode(String selectedCode) {
 			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
 			super.setSelectedCode(selectedCode);
+			return this;
+		}
+		
+		/**
+		 * 设置 申请人
+		 * @param originatorUserName 申请人
+		 * @return 当前对象
+		*/
+		public AssetStorage setOriginatorUserName(String originatorUserName) {
+			super.change(ORIGINATOR_USER_NAME,super.getOriginatorUserName(),originatorUserName);
+			super.setOriginatorUserName(originatorUserName);
 			return this;
 		}
 		

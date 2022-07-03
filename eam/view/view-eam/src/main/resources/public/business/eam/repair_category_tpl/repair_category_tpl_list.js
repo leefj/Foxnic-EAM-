@@ -407,7 +407,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["85%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-repair-category-tpl-form-data-win",
 			content: '/business/eam/repair_category_tpl/repair_category_tpl_form.html' + (queryString?("?"+queryString):""),

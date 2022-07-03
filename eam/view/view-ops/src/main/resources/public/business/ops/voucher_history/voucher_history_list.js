@@ -335,7 +335,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["500px",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"ops-voucher-history-form-data-win",
 			content: '/business/ops/voucher_history/voucher_history_form.html' + queryString,

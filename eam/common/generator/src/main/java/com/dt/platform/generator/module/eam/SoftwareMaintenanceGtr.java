@@ -102,15 +102,15 @@ public class SoftwareMaintenanceGtr extends BaseCodeGenerator {
                 .button().chooseEmployee(true);
 
         cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE_MAINTENANCE.NAME).form().validate().required();
-        cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE_MAINTENANCE.NOTES).form().textArea().height(60);
-        cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE_MAINTENANCE.CONTENT).form().textArea().height(60);
+        cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE_MAINTENANCE.NOTES).form().textArea().height(Config.textAreaHeight);
+        cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE_MAINTENANCE.CONTENT).form().textArea().height(Config.textAreaHeight);
         cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE_MAINTENANCE.ATTACH_ID).form().upload().acceptSingleFile().maxFileCount(1);
 
         cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE_MAINTENANCE.STATUS).form().selectBox().enumType(AssetHandleStatusEnum.class);
 
 
         cfg.view().list().disableBatchDelete();
-        cfg.view().formWindow().width("95%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().form().addGroup(null,
                 new Object[] {

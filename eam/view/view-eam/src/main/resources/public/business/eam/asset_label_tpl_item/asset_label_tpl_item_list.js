@@ -394,7 +394,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["500px",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-asset-label-tpl-item-form-data-win",
 			content: '/business/eam/asset_label_tpl_item/asset_label_tpl_item_form.html' + (queryString?("?"+queryString):""),

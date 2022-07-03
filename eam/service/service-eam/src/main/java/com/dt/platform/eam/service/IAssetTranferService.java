@@ -1,12 +1,10 @@
 package com.dt.platform.eam.service;
 
 
-import com.dt.platform.domain.eam.AssetCollectionReturn;
-import com.dt.platform.domain.eam.AssetScrap;
+import com.dt.platform.domain.eam.*;
+import com.github.foxnic.dao.entity.ISimpleIdService;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
-import com.dt.platform.domain.eam.AssetTranfer;
-import com.dt.platform.domain.eam.AssetTranferVO;
 
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +19,8 @@ import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ExcelStructure;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.data.SaveMode;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.domain.changes.ProcessStartVO;
 
@@ -32,8 +32,24 @@ import org.github.foxnic.web.domain.changes.ProcessStartVO;
  * @since 2021-08-20 21:13:42
 */
 
-public interface IAssetTranferService extends ISuperService<AssetTranfer> {
+public interface IAssetTranferService extends ISimpleIdService<AssetTranfer,String> {
 
+	/**
+	 * 表单定义代码
+	 **/
+	public static final String FORM_DEFINITION_CODE="eam_asset_tranfer";
+
+	/**
+	 * 处理流程回调
+	 * */
+	BpmActionResult onProcessCallback(BpmEvent event);
+
+
+	void joinProcess(AssetTranfer assetTranfer);
+
+	void joinProcess(List<AssetTranfer> assetTranferList);
+
+	void joinProcess(PagedList<AssetTranfer> assetTranferList);
 
 	/**
 	 * 获取单据数据

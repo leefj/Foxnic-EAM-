@@ -377,7 +377,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["85%",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-purchase-order-detail-form-data-win",
 			content: '/business/eam/purchase_order_detail/purchase_order_detail_form.html' + (queryString?("?"+queryString):""),

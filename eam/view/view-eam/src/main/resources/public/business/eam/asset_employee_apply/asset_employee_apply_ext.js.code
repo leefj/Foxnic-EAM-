@@ -1,7 +1,7 @@
 /**
  * 领用申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-02 22:09:47
+ * @since 2022-07-03 11:03:51
  */
 
 layui.config({
@@ -104,7 +104,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         /**
          * 新建流程时返回流程表单需要预填的默认值
          * */
-        getBpmDefaultValue:function () {
+        getBpmViewConfig:function () {
             return {
                 title:"这是默认标题",
                 priority:"urgency" // priority 的可选值 urgency，normal
@@ -291,17 +291,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log("afterSubmitt",param,result);
         },
 
-        /**
-         *  加载 资产列表
-         */
-        goodsSelectList:function (ifr,win,data) {
-            // debugger
-            console.log("goodsSelectList",ifr,data);
-            //设置 iframe 高度
-            ifr.height("400px");
-            //设置地址
-            win.location="/business/system/node/node_list.html?id="+data.id;
-        },
         /**
          * 文件上传组件回调
          *  event 类型包括：
