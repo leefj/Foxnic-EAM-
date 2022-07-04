@@ -52,6 +52,12 @@ public class ServiceNames {
 	public static final String VEHICLE="service-vehicle";
 
 	/**
+	 * 车辆服务 <br>
+	 * 对应 bootstrap.yml 中 spring.application.name 属性
+	 * */
+	public static final String WORKORDER="service-workorder";
+
+	/**
 	 * CMS服务 <br>
 	 * 对应 bootstrap.yml 中 spring.application.name 属性
 	 * */

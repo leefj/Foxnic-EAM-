@@ -12,9 +12,9 @@ public class BaseCodeGenerator {
 
     public static final String SERVICE_STAGE="472358699843715073";
     //
-    private String appId="service-vehicle";
+    private String appId="service-workorder";
 
-    private String appConfigPrefix= "service-vehicle";
+    private String appConfigPrefix= "service-workorder";
 
     public String getTablePrefix() {
         return tablePrefix;
@@ -24,7 +24,7 @@ public class BaseCodeGenerator {
         this.tablePrefix = tablePrefix;
     }
 
-    private String tablePrefix="vehicle_";
+    private String tablePrefix="wo_";
 
     private PlatformConfigs configs;
 

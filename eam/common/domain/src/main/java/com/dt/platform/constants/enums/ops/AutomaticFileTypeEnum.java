@@ -13,9 +13,9 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 public enum AutomaticFileTypeEnum implements CodeTextEnum {
 
-    configuration("configuration" , "配置文件"),
-    script("script" , "脚本"),
-    medium("medium" , "介质"),
+    CONFIGURATION("configuration" , "配置文件"),
+    SCRIPT("script" , "脚本"),
+    MEDIUM("medium" , "介质"),
     ;
 
     private String code;

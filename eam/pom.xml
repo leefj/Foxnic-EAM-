@@ -70,6 +70,7 @@
 
 		<!-- 聚合 -->
 		<module>./wrapper/wrapper-all</module>
+		<module>./wrapper/wrapper-camunda</module>
 	</modules>
 
 
