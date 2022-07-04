@@ -183,7 +183,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         onProcessInstanceReady:function (result) {
             // 可根据流程状态、当前审批节点判断和控制表单页面
             processInstance=result.data;
-            console.log("processInstance",åprocessInstance);
+            console.log("processInstance",processInstance);
             // 获得所有待办节点
             var todoNodes=bpm.getTodoNodes(processInstance);
             console.log("todoNodes",todoNodes);
