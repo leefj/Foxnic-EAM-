@@ -132,8 +132,8 @@ function ListPage() {
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
-					exportExcel : admin.checkAuth(AUTH_PREFIX+":export"),
-					importExcel : admin.checkAuth(AUTH_PREFIX+":import")?{
+					exportExcel : #if(isEnableExportExcel) admin.checkAuth(AUTH_PREFIX+":export") #else false #end,
+					importExcel : #if(isEnableImportExcel) admin.checkAuth(AUTH_PREFIX+":import")?{
 						params : {} ,
 						callback : function(r) {
 							if(r.success) {
@@ -144,7 +144,7 @@ function ListPage() {
 							// 是否执行后续逻辑：错误提示
 							return false;
 						}
-					}:false
+					}:false #else false #end
 				}
 			};
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);

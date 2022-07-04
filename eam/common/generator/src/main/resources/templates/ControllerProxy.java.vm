@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 #if(bpm)
 import org.github.foxnic.web.proxy.bpm.BpmCallbackController;
@@ -91,11 +93,13 @@ public interface #(simpleName)  #if(bpm)extends BpmCallbackController#end  {
 	 */
 	public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
+	#if(isEnableExportExcel)
 	/**
 	 * 导出#(topic)数据(Excel)
 	 */
 	public static final String EXPORT_EXCEL = API_PREFIX + "export-excel";
-
+	#end
+	#if(isEnableImportExcel)
 	/**
 	 * 下载#(topic)导入模版(Excel)
 	 */
@@ -105,6 +109,7 @@ public interface #(simpleName)  #if(bpm)extends BpmCallbackController#end  {
 	 * 导入#(topic)数据(Excel)
 	 */
 	public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
+	#end
 
 	#if(bpm)
 	/**
@@ -164,6 +169,28 @@ public interface #(simpleName)  #if(bpm)extends BpmCallbackController#end  {
 	@RequestMapping(#(agentSimpleName).QUERY_LIST)
 	Result<List<#(poSimpleName)>> queryList(#(voSimpleName) sample);
 
+	#if(isEnableExportExcel)
+
+	/**
+	 * 导出 Excel
+	 * */
+	@RequestMapping(#(agentSimpleName).EXPORT_EXCEL)
+	void exportExcel(DemoCommonVO  sample,HttpServletResponse response) throws Exception;
+	#end
+
+	#if(isEnableImportExcel)
+	/**
+	 * 导出 Excel 模板
+	 * */
+	@RequestMapping(#(agentSimpleName).EXPORT_EXCEL_TEMPLATE)
+	void exportExcelTemplate(HttpServletResponse response) throws Exception;
+	/**
+	 * 导入 Excel
+	 * */
+	@RequestMapping(#(agentSimpleName).IMPORT_EXCEL)
+	Result importExcel(MultipartHttpServletRequest request, HttpServletResponse response) throws Exception;
+	#end
+
 	/**
 	 * 分页查询#(topic)
 	 */
@@ -177,6 +204,8 @@ public interface #(simpleName)  #if(bpm)extends BpmCallbackController#end  {
 	@RequestMapping(#(agentSimpleName).BPM_CALLBACK)
 	BpmActionResult onProcessCallback(BpmEvent event);
 	#end
+
+
 
 
 	/**

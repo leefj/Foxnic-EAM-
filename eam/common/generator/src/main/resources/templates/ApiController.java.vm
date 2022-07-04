@@ -352,7 +352,7 @@ public class #(simpleName) extends SuperController #if(bpm)implements BpmCallbac
 	#end
 
 
-
+	#if(isEnableExportExcel)
 	/**
 	 * 导出 Excel
 	 * */
@@ -370,8 +370,9 @@ public class #(simpleName) extends SuperController #if(bpm)implements BpmCallbac
 			DownloadUtil.writeDownloadError(response,e);
 		}
 	}
+	#end
 
-
+	#if(isEnableImportExcel)
 	/**
 	 * 导出 Excel 模板
 	 * */
@@ -417,6 +418,6 @@ public class #(simpleName) extends SuperController #if(bpm)implements BpmCallbac
 			return ErrorDesc.failure().message("导入失败").data(errors);
 		}
 	}
-
+	#end
 
 }

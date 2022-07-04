@@ -247,12 +247,13 @@ public class #(simpleName) extends SuperService<#(poSimpleName)> implements #(in
 	#end
 
 
-
+	#if(isEnableExportExcel)
 	@Override
 	public ExcelWriter exportExcel(#(poSimpleName) sample) {
 		return super.exportExcel(sample);
 	}
-
+	#end
+	#if(isEnableImportExcel)
 	@Override
 	public ExcelWriter exportExcelTemplate() {
 		return super.exportExcelTemplate();
@@ -262,11 +263,13 @@ public class #(simpleName) extends SuperService<#(poSimpleName)> implements #(in
 	public List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch) {
 		return super.importExcel(input,sheetIndex,batch);
 	}
-
+	#end
+	#if(isEnableImportExcel || isEnableExportExcel)
 	@Override
 	public ExcelStructure buildExcelStructure(boolean isForExport) {
 		return super.buildExcelStructure(isForExport);
 	}
+	#end
 
 	#if(relationMasterIdField!=null)
 	/**
