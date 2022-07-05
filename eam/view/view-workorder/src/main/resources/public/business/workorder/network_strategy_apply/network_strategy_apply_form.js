@@ -1,7 +1,7 @@
 /**
  * 网络策略申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-06 05:47:45
+ * @since 2022-07-06 06:11:22
  */
 
 function FormPage() {
@@ -221,8 +221,7 @@ function FormPage() {
 	    });
 		laydate.render({
 			elem: '#completionDate',
-			format:"yyyy-MM-dd",
-			value:$('#completionDate').val()?$('#completionDate').val():new Date(),
+			format:"yyyy-MM-dd HH:mm:ss",
 			trigger:"click",
 			done: function(value, date, endDate){
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("completionDate",value, date, endDate);
@@ -294,7 +293,7 @@ function FormPage() {
 			}
 			//设置 完成日期 显示复选框勾选
 			if(formData["completionDate"]) {
-				$("#completionDate").val(fox.dateFormat(formData["completionDate"],"yyyy-MM-dd"));
+				$("#completionDate").val(fox.dateFormat(formData["completionDate"],"yyyy-MM-dd HH:mm:ss"));
 			}
 
 

@@ -66,7 +66,7 @@ public class NetworkStrategryApplyGtr extends BaseCodeGenerator {
         cfg.view().field(WorkorderTables.WO_NETWORK_STRATEGY_APPLY.APPLY_DATE).form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
         cfg.view().field(WorkorderTables.WO_NETWORK_STRATEGY_APPLY.EXPIRATION_DATE).form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
         cfg.view().field(WorkorderTables.WO_NETWORK_STRATEGY_APPLY.EXPECTED_COMPLETION_DATE).form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
-        cfg.view().field(WorkorderTables.WO_NETWORK_STRATEGY_APPLY.COMPLETION_DATE).form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
+ //       cfg.view().field(WorkorderTables.WO_NETWORK_STRATEGY_APPLY.COMPLETION_DATE).form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
         cfg.view().field(WorkorderTables.WO_NETWORK_STRATEGY_APPLY.FILE_ID)
                 .form().label("附件").upload().buttonLabel("选择附件").acceptSingleImage().maxFileCount(1).displayFileName(false);
 
@@ -136,7 +136,7 @@ public class NetworkStrategryApplyGtr extends BaseCodeGenerator {
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)
                 .setBpmEventAdaptor(WriteMode.IGNORE)
-                .setExtendJsFile(WriteMode.COVER_EXISTS_FILE); //列表HTML页
+                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         //列表HTML页
         //生成代码
         cfg.buildAll();

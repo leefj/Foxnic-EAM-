@@ -13,7 +13,7 @@ import com.github.foxnic.commons.bean.BeanUtil;
 /**
  * 服务器资源申请
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-06 05:46:55
+ * @since 2022-07-06 06:12:15
  * @sign CB0EF0B20D99E4843761DB5A886A5A51
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

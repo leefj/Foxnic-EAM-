@@ -19,7 +19,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
     //模块基础路径
     const moduleURL="/service-workorder/wo-network-strategy-apply";
-
+    var timestamp = Date.parse(new Date());
     var processId=QueryString.get("processId");
     var processInstance=null;
 
@@ -228,6 +228,27 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         afterDataFill:function (data) {
             console.log('afterDataFill',data);
+
+
+            var formAction="modify";
+
+            //iframe
+            var ownerId="";
+            if(data&&data.id){
+                ownerId=data.id;
+            }
+            $("#iframe").height("400px");
+            if(data.status=="incomplete"){
+                formAction="modify";
+            }else{
+                formAction="view";
+            }
+            var queryString="?pageType="+formAction+"&selectedCode="+timestamp+"&ownerId="+ownerId;
+            //设置地址
+            console.log("queryString",queryString);
+            $(".form-iframe")[0].contentWindow.location="/business/workorder/network_strategy_info/network_strategy_info_list.html"+queryString
+
+
         },
         /**
          * 对话框打开之前调用，如果返回 null 则不打开对话框
@@ -295,12 +316,18 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          *  加载 资源信息
          */
         assetSelectList:function (ifr,win,data) {
-            // debugger
-            console.log("assetSelectList",ifr,data);
+            console.log("goodsSelectList",ifr,data);
             //设置 iframe 高度
             ifr.height("400px");
-            //设置地址
-            win.location="/business/system/node/node_list.html?id="+data.id;
+            var ownerId="";
+            if(data&&data.id){
+            }else{
+                var formAction="create";
+                var queryString="?pageType="+formAction+"&selectedCode="+timestamp+"&ownerId="+ownerId;
+                //设置地址
+                win.location="/business/workorder/network_strategy_info/network_strategy_info_list.html"+queryString
+            }
+
         },
         /**
          * 文件上传组件回调

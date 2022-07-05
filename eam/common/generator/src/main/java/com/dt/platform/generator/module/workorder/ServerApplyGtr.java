@@ -71,7 +71,7 @@ public class ServerApplyGtr extends BaseCodeGenerator {
         cfg.view().field(WorkorderTables.WO_SERVER_APPLY.APPLY_DATE).form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
         cfg.view().field(WorkorderTables.WO_SERVER_APPLY.EXPIRATION_DATE).form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
         cfg.view().field(WorkorderTables.WO_SERVER_APPLY.EXPECTED_COMPLETION_DATE).form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
-        cfg.view().field(WorkorderTables.WO_SERVER_APPLY.COMPLETION_DATE).form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
+        //cfg.view().field(WorkorderTables.WO_SERVER_APPLY.COMPLETION_DATE).form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
 
         cfg.view().field(WorkorderTables.WO_SERVER_APPLY.CONTENT).form().textArea().height(Config.textAreaHeight).search().fuzzySearch();
 
@@ -136,7 +136,7 @@ public class ServerApplyGtr extends BaseCodeGenerator {
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)
                 .setBpmEventAdaptor(WriteMode.IGNORE)
-                .setExtendJsFile(WriteMode.COVER_EXISTS_FILE); //列表HTML页
+                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         //列表HTML页
         //生成代码
         cfg.buildAll();

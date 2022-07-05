@@ -13,7 +13,7 @@ import com.github.foxnic.commons.bean.BeanUtil;
 /**
  * 网络策略申请
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-06 05:47:44
+ * @since 2022-07-06 06:11:20
  * @sign 539FFB804325539AEEF2CA18EB5C3FE9
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

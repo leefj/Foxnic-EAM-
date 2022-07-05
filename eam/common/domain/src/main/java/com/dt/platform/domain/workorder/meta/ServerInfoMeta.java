@@ -9,7 +9,7 @@ import com.dt.platform.domain.workorder.ServerOsType;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-05 21:23:33
+ * @since 2022-07-06 06:19:24
  * @sign 5A3E7E35F57F548660D514FDF3EA5A61
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
