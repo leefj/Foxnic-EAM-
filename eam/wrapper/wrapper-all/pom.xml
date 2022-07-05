@@ -166,10 +166,17 @@
 
 		<dependency>
 			<groupId>com.dt.platform</groupId>
-			<artifactId>view-console</artifactId>
+			<artifactId>service-workorder</artifactId>
 			<version>${platform.version}</version>
 		</dependency>
 
+
+
+		<dependency>
+			<groupId>com.dt.platform</groupId>
+			<artifactId>view-console</artifactId>
+			<version>${platform.version}</version>
+		</dependency>
 
 
 		<dependency>
@@ -234,6 +241,14 @@
 			<version>${platform.version}</version>
 		</dependency>
 
+
+		<dependency>
+			<groupId>com.dt.platform</groupId>
+			<artifactId>view-workorder</artifactId>
+			<version>${platform.version}</version>
+		</dependency>
+
+
 		<dependency>
 			<groupId>com.dt.platform</groupId>
 			<artifactId>view-cms</artifactId>
@@ -251,6 +266,8 @@
 			<artifactId>view-bpm</artifactId>
 			<version>${foxnic-web.version}</version>
 		</dependency>
+
+
 
 
 		<dependency>

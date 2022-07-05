@@ -1,7 +1,7 @@
 /**
  * 折旧历史 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-29 20:46:45
+ * @since 2022-07-04 17:13:20
  */
 
 function FormPage() {
@@ -322,6 +322,12 @@ function FormPage() {
 	}
 
 	function saveForm(param,callback) {
+
+		if(window.pageExt.form.beforeSubmit) {
+			var doNext=window.pageExt.form.beforeSubmit(param);
+			if(!doNext) return ;
+		}
+
 		param.dirtyFields=fox.compareDirtyFields(dataBeforeEdit,param);
 		var action=param.id?"edit":"create";
 		var api=moduleURL+"/"+(param.id?"update":"insert");
@@ -365,10 +371,7 @@ function FormPage() {
 	    	//debugger;
 			data.field = getFormData();
 
-			if(window.pageExt.form.beforeSubmit) {
-				var doNext=window.pageExt.form.beforeSubmit(data.field);
-				if(!doNext) return ;
-			}
+
 			//校验表单
 			if(!verifyForm(data.field)) return;
 

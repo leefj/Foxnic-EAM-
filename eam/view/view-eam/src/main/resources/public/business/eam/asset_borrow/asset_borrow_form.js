@@ -1,7 +1,7 @@
 /**
  * 资产借用 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-03 15:18:02
+ * @since 2022-07-05 10:13:08
  */
 
 function FormPage() {
@@ -261,6 +261,12 @@ function FormPage() {
 			fm[0].reset();
 			form.val('data-form', formData);
 
+			//设置 附件 显示附件
+		    if($("#attach").val()) {
+				foxup.fill("attach",$("#attach").val());
+		    } else {
+				adjustPopup();
+			}
 
 
 
@@ -337,7 +343,7 @@ function FormPage() {
 	function saveForm(param,callback) {
 
 		if(window.pageExt.form.beforeSubmit) {
-			var doNext=window.pageExt.form.beforeSubmit(data.field);
+			var doNext=window.pageExt.form.beforeSubmit(param);
 			if(!doNext) return ;
 		}
 

@@ -38,7 +38,7 @@ import java.util.Map;
  * 折旧历史 服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-29 20:46:43
+ * @since 2022-07-04 17:13:19
 */
 
 
@@ -232,7 +232,7 @@ public class AssetDepreciationHistoryServiceImpl extends SuperService<AssetDepre
 	 * @return 查询结果
 	 * */
 	@Override
-	public List<AssetDepreciationHistory> queryList(AssetDepreciationHistory sample) {
+	public List<AssetDepreciationHistory> queryList(AssetDepreciationHistoryVO sample) {
 		return super.queryList(sample);
 	}
 
@@ -246,7 +246,7 @@ public class AssetDepreciationHistoryServiceImpl extends SuperService<AssetDepre
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<AssetDepreciationHistory> queryPagedList(AssetDepreciationHistory sample, int pageSize, int pageIndex) {
+	public PagedList<AssetDepreciationHistory> queryPagedList(AssetDepreciationHistoryVO sample, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, pageSize, pageIndex);
 	}
 
@@ -278,6 +278,10 @@ public class AssetDepreciationHistoryServiceImpl extends SuperService<AssetDepre
 	}
 
 
+	/**
+	 * 检查引用
+	 * @param id  检查ID是否又被外部表引用
+	 * */
 	@Override
 	public Boolean hasRefers(String id) {
 		Map<String, Boolean> map=this.hasRefers(Arrays.asList(id));
@@ -286,6 +290,10 @@ public class AssetDepreciationHistoryServiceImpl extends SuperService<AssetDepre
 		return ex;
 	}
 
+	/**
+	 * 批量检查引用
+	 * @param ids  检查这些ID是否又被外部表引用
+	 * */
 	@Override
 	public Map<String, Boolean> hasRefers(List<String> ids) {
 		// 默认无业务逻辑，返回此行；有业务逻辑需要校验时，请修改并使用已注释的行代码！！！
@@ -295,26 +303,6 @@ public class AssetDepreciationHistoryServiceImpl extends SuperService<AssetDepre
 
 
 
-
-	@Override
-	public ExcelWriter exportExcel(AssetDepreciationHistory sample) {
-		return super.exportExcel(sample);
-	}
-
-	@Override
-	public ExcelWriter exportExcelTemplate() {
-		return super.exportExcelTemplate();
-	}
-
-	@Override
-	public List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch) {
-		return super.importExcel(input,sheetIndex,batch);
-	}
-
-	@Override
-	public ExcelStructure buildExcelStructure(boolean isForExport) {
-		return super.buildExcelStructure(isForExport);
-	}
 
 
 

@@ -143,6 +143,7 @@ public class EamAssetAllocationGtr extends BaseCodeGenerator {
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_ALLOCATION.CONTENT,
+                        EAMTables.EAM_ASSET_ALLOCATION.ATTACH,
                 }
         );
         cfg.view().list().disableBatchDelete();

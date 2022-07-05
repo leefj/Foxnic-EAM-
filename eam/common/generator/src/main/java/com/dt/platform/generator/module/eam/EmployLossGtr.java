@@ -24,12 +24,13 @@ public class EmployLossGtr extends BaseCodeGenerator {
     }
 
     public void generateCode() throws Exception {
-        cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
+
 
         cfg.getPoClassFile().addListProperty(Asset.class,"assetList","资产","资产");
         cfg.getPoClassFile().addListProperty(String.class,"assetIds","资产列表","资产列表");
 
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"organization","使用公司/部门","使用公司/部门");
+        cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
         cfg.getPoClassFile().addSimpleProperty(String.class,"originatorUserName","申请人","申请人");
 
         System.out.println(this.getClass().getName());
@@ -88,7 +89,6 @@ public class EmployLossGtr extends BaseCodeGenerator {
                 new Object[] {
                         EAMTables.EAM_ASSET_EMPLOYEE_LOSS.NAME,
                 }
-
         );
 
         cfg.view().form().addGroup(null,

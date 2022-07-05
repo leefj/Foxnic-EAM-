@@ -157,6 +157,7 @@ public class EamAssetBorrowGtr extends BaseCodeGenerator {
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_BORROW.CONTENT,
+                        EAMTables.EAM_ASSET_BORROW.ATTACH,
                 }
         );
 

@@ -13,6 +13,8 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 public enum CodeModuleEnum implements CodeTextEnum {
 
+	COMMON_CODE("common_code" , "通用编码"),
+
 
 	EAM_ASSET_STORAGE("eam_asset_storage" , "EAM_资产入库"),
 	EAM_ASSET_CODE("eam_asset_code" , "EAM_资产编码"),

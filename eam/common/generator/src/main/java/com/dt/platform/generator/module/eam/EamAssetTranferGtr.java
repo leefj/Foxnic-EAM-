@@ -170,6 +170,7 @@ public class EamAssetTranferGtr extends BaseCodeGenerator {
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_TRANFER.CONTENT,
+                        EAMTables.EAM_ASSET_TRANFER.ATTACH,
                 }
         );
 

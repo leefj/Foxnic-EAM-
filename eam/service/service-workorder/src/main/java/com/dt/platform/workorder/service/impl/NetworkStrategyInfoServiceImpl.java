@@ -38,7 +38,7 @@ import java.util.Map;
  * 网络策略 服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-03 21:17:59
+ * @since 2022-07-05 08:51:26
 */
 
 
@@ -303,26 +303,6 @@ public class NetworkStrategyInfoServiceImpl extends SuperService<NetworkStrategy
 
 
 
-
-	@Override
-	public ExcelWriter exportExcel(NetworkStrategyInfo sample) {
-		return super.exportExcel(sample);
-	}
-
-	@Override
-	public ExcelWriter exportExcelTemplate() {
-		return super.exportExcelTemplate();
-	}
-
-	@Override
-	public List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch) {
-		return super.importExcel(input,sheetIndex,batch);
-	}
-
-	@Override
-	public ExcelStructure buildExcelStructure(boolean isForExport) {
-		return super.buildExcelStructure(isForExport);
-	}
 
 
 
