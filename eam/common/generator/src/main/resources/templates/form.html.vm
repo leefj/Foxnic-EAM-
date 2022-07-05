@@ -132,7 +132,7 @@
                 <div class="layui-form-item" #if(f.isHideInForm)style="display: none"#end>
                     <div class="layui-form-label #if(groups.size()==1)layui-form-label-c1#end"><div th:text="${lang.translate('#(f.labelInForm)')}">#(f.labelInForm)</div>#if(f.validate!=null && f.validate.isRequired)<div class="layui-required">*</div>#end</div>
                     <div class="layui-input-block #if(groups.size()==1)layui-input-block-c1#end">
-                        <input #if(f.readOnlyInForm) readonly #end input-type="switch" type="checkbox" #if(f.logicField.defaultValue)checked="yes" #end id="#(f.varName)"  name="#(f.varName)" lay-skin="switch" lay-filter="#(f.varName)" lay-text="#(f.logicField.labelOn)|#(f.logicField.labelOff)&nbsp;" value="#(f.logicField.valueOn)">
+                        <input #if(f.readOnlyInForm) readonly #end input-type="switch" type="checkbox" #if(f.logicField.defaultValue)checked#end id="#(f.varName)"  name="#(f.varName)" lay-skin="switch" lay-filter="#(f.varName)" lay-text="#(f.logicField.labelOn)|#(f.logicField.labelOff)&nbsp;" value="#(f.logicField.valueOn)">
                     </div>
                 </div>
 
@@ -142,10 +142,10 @@
                     <div class="layui-form-label #if(groups.size()==1)layui-form-label-c1#end"><div th:text="${lang.translate('#(f.labelInForm)')}">#(f.labelInForm)</div>#if(f.validate!=null && f.validate.isRequired)<div class="layui-required">*</div>#end</div>
                     <div class="layui-input-block #if(groups.size()==1)layui-input-block-c1#end">
                         #if(f.radioField.dictCode!=null)
-                        <input #if(f.readOnlyInForm) readonly #end input-type="radio" type="radio" name="#(f.varName)" lay-filter="#(f.varName)" th:each="e,stat:${dict.toArray('#(f.radioField.dictCode)')}" th:value="${e.code}" th:title="${e.text}"  th:checked="${(e.code=='#(f.radioField.defaultValue)' || stat.index==#(f.radioField.defaultIndex))?'yes':'no'}">
+                        <input #if(f.readOnlyInForm) readonly #end input-type="radio" type="radio" name="#(f.varName)" lay-filter="#(f.varName)" th:each="e,stat:${dict.toArray('#(f.radioField.dictCode)')}" th:value="${e.code}" th:title="${e.text}"  th:checked="${(e.code=='#(f.radioField.defaultValue)' || stat.index==#(f.radioField.defaultIndex))}">
                         #end
                         #if(f.radioField.enumTypeName!=null)
-                        <input #if(f.readOnlyInForm) readonly #end input-type="radio" type="radio" name="#(f.varName)" lay-filter="#(f.varName)" th:each="e,stat:${enum.toArray('#(f.radioField.enumTypeName)')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='#(f.radioField.defaultValue)' || stat.index==#(f.radioField.defaultIndex))?'yes':'no'}">
+                        <input #if(f.readOnlyInForm) readonly #end input-type="radio" type="radio" name="#(f.varName)" lay-filter="#(f.varName)" th:each="e,stat:${enum.toArray('#(f.radioField.enumTypeName)')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='#(f.radioField.defaultValue)' || stat.index==#(f.radioField.defaultIndex))}">
                         #end
                     </div>
                 </div>
@@ -156,10 +156,10 @@
                         <div class="layui-form-label #if(groups.size()==1)layui-form-label-c1#end"><div th:text="${lang.translate('#(f.labelInForm)')}">#(f.labelInForm)</div>#if(f.validate!=null && f.validate.isRequired)<div class="layui-required">*</div>#end</div>
                         <div class="layui-input-block #if(groups.size()==1)layui-input-block-c1#end">
                             #if(f.checkField.dictCode!=null)
-                                <input #if(f.readOnlyInForm) readonly #end input-type="checkbox" type="checkbox" name="#(f.varName)" lay-filter="#(f.varName)" lay-skin="primary" th:each="e,stat:${dict.toArray('#(f.checkField.dictCode)')}" th:value="${e.code}" th:title="${e.text}" th:checked="${pageHelper.checkDefault(e.code,stat.index,'#(f.checkField.defaultValues)','#(f.checkField.defaultIndexs)')?'yes':'no'}">
+                                <input #if(f.readOnlyInForm) readonly #end input-type="checkbox" type="checkbox" name="#(f.varName)" lay-filter="#(f.varName)" lay-skin="primary" th:each="e,stat:${dict.toArray('#(f.checkField.dictCode)')}" th:value="${e.code}" th:title="${e.text}" th:checked="${pageHelper.checkDefault(e.code,stat.index,'#(f.checkField.defaultValues)','#(f.checkField.defaultIndexs)')}">
                             #end
                             #if(f.checkField.enumTypeName!=null)
-                                <input #if(f.readOnlyInForm) readonly #end input-type="checkbox" type="checkbox" name="#(f.varName)" lay-filter="#(f.varName)" lay-skin="primary" th:each="e,stat:${enum.toArray('#(f.checkField.enumTypeName)')}" th:value="${e.code}" th:title="${e.text}" th:checked="${pageHelper.checkDefault(e.code,stat.index,'#(f.checkField.defaultValues)','#(f.checkField.defaultIndexs)')?'yes':'no'}">
+                                <input #if(f.readOnlyInForm) readonly #end input-type="checkbox" type="checkbox" name="#(f.varName)" lay-filter="#(f.varName)" lay-skin="primary" th:each="e,stat:${enum.toArray('#(f.checkField.enumTypeName)')}" th:value="${e.code}" th:title="${e.text}" th:checked="${pageHelper.checkDefault(e.code,stat.index,'#(f.checkField.defaultValues)','#(f.checkField.defaultIndexs)')}">
                             #end
                         </div>
                     </div>
