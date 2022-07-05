@@ -22,7 +22,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 服务器资源申请  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-05 09:22:45
+ * @since 2022-07-06 05:46:55
  */
 @FeignClient(value = ServiceNames.WORKORDER, contextId = ServerApplyServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface ServerApplyServiceProxy extends BpmCallbackController {

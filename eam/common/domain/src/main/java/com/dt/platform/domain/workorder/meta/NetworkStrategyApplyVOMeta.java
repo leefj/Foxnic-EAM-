@@ -13,7 +13,7 @@ import org.github.foxnic.web.domain.bpm.ProcessInstance;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-05 09:22:21
+ * @since 2022-07-06 05:47:44
  * @sign 539FFB804325539AEEF2CA18EB5C3FE9
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -261,6 +261,26 @@ public class NetworkStrategyApplyVOMeta extends NetworkStrategyApplyMeta {
 	public static final BeanProperty<com.dt.platform.domain.workorder.NetworkStrategyApplyVO,java.util.Date> COMPLETION_DATE_PROP = new BeanProperty(com.dt.platform.domain.workorder.NetworkStrategyApplyVO.class ,COMPLETION_DATE, java.util.Date.class, "完成日期", "完成日期", java.util.Date.class, null);
 	
 	/**
+	 * 结果状态 , 类型: java.lang.String
+	*/
+	public static final String RESULT_STATUS="resultStatus";
+	
+	/**
+	 * 结果状态 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.workorder.NetworkStrategyApplyVO,java.lang.String> RESULT_STATUS_PROP = new BeanProperty(com.dt.platform.domain.workorder.NetworkStrategyApplyVO.class ,RESULT_STATUS, java.lang.String.class, "结果状态", "结果状态", java.lang.String.class, null);
+	
+	/**
+	 * 结果 , 类型: java.lang.String
+	*/
+	public static final String RESULT_CONTENT="resultContent";
+	
+	/**
+	 * 结果 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.workorder.NetworkStrategyApplyVO,java.lang.String> RESULT_CONTENT_PROP = new BeanProperty(com.dt.platform.domain.workorder.NetworkStrategyApplyVO.class ,RESULT_CONTENT, java.lang.String.class, "结果", "结果", java.lang.String.class, null);
+	
+	/**
 	 * 创建人ID , 类型: java.lang.String
 	*/
 	public static final String CREATE_BY="createBy";
@@ -413,7 +433,7 @@ public class NetworkStrategyApplyVOMeta extends NetworkStrategyApplyMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , CATEGORY_ID , CODE , STATUS , NAME , PROJECT_NAME , ENVIRONMENT_ID , PERIOD_TYPE , EXPIRATION_DATE , APPLY_DATE , EXPECTED_COMPLETION_DATE , CONTENT , FILE_ID , ORIGINATOR_ID , COMPLETION_DATE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , NETWORK_STRATEGY_INFO_LIST , NETWORK_STRATEGY_IDS , ORIGINATOR , ORIGINATOR_USER_NAME , HISTORIC_PROCESS_LIST , CURRENT_PROCESS_LIST , DEFAULT_PROCESS };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , CATEGORY_ID , CODE , STATUS , NAME , PROJECT_NAME , ENVIRONMENT_ID , PERIOD_TYPE , EXPIRATION_DATE , APPLY_DATE , EXPECTED_COMPLETION_DATE , CONTENT , FILE_ID , ORIGINATOR_ID , COMPLETION_DATE , RESULT_STATUS , RESULT_CONTENT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , NETWORK_STRATEGY_INFO_LIST , NETWORK_STRATEGY_IDS , ORIGINATOR , ORIGINATOR_USER_NAME , HISTORIC_PROCESS_LIST , CURRENT_PROCESS_LIST , DEFAULT_PROCESS };
 	
 	/**
 	 * 代理类
@@ -684,6 +704,28 @@ public class NetworkStrategyApplyVOMeta extends NetworkStrategyApplyMeta {
 		public NetworkStrategyApply setCompletionDate(Date completionDate) {
 			super.change(COMPLETION_DATE,super.getCompletionDate(),completionDate);
 			super.setCompletionDate(completionDate);
+			return this;
+		}
+		
+		/**
+		 * 设置 结果状态
+		 * @param resultStatus 结果状态
+		 * @return 当前对象
+		*/
+		public NetworkStrategyApply setResultStatus(String resultStatus) {
+			super.change(RESULT_STATUS,super.getResultStatus(),resultStatus);
+			super.setResultStatus(resultStatus);
+			return this;
+		}
+		
+		/**
+		 * 设置 结果
+		 * @param resultContent 结果
+		 * @return 当前对象
+		*/
+		public NetworkStrategyApply setResultContent(String resultContent) {
+			super.change(RESULT_CONTENT,super.getResultContent(),resultContent);
+			super.setResultContent(resultContent);
 			return this;
 		}
 		

@@ -132,6 +132,7 @@ public class EamAssetCollectionReturnGtr extends BaseCodeGenerator {
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_COLLECTION_RETURN.CONTENT,
+                        EAMTables.EAM_ASSET_COLLECTION_RETURN.ATTACH,
                 }
         );
 

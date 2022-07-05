@@ -150,7 +150,7 @@ public class NetworkStrategryApplyGtr extends BaseCodeGenerator {
         //移除之前生成的菜单，视情况执行
 //        g.removeByBatchId("471622036347682816");
         //生成菜单
-       g.generateMenu(NetworkStrategyApplyServiceProxy.class, NetworkStrategyApplyPageController.class);
+    //  g.generateMenu(NetworkStrategyApplyServiceProxy.class, NetworkStrategyApplyPageController.class);
 
 
 

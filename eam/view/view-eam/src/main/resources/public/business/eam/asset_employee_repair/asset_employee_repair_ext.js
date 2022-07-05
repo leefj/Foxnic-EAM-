@@ -41,7 +41,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         getBpmDefaultValue:function () {
             return {
                 title:"资产报修申请",
-                priority:"urgency" // priority 的可选值 urgency，normal
+                priority:"normal" // priority 的可选值 urgency，normal
             }
         },
         /**

@@ -2,7 +2,7 @@
 /**
  * 网络策略申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-05 09:22:22
+ * @since 2022-07-06 05:47:45
  */
  -->
  <!DOCTYPE html>
@@ -55,7 +55,7 @@
 
 
 
-        <div class="layui-row form-row" id="random-0530-content">
+        <div class="layui-row form-row" id="random-0675-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -89,7 +89,7 @@
 
 
 
-        <div class="layui-row form-row" id="random-5977-content">
+        <div class="layui-row form-row" id="random-5801-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -106,7 +106,7 @@
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('运行环境')}">运行环境</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
-                        <input input-type="radio" type="radio" name="environmentId" lay-filter="environmentId" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.workorder.ResourceRunEnvironmentEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)?'yes':'no'}">
+                        <input input-type="radio" type="radio" name="environmentId" lay-filter="environmentId" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.workorder.ResourceRunEnvironmentEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)}">
                     </div>
                 </div>
 
@@ -121,7 +121,7 @@
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('使用期限')}">使用期限</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
-                        <input input-type="radio" type="radio" name="periodType" lay-filter="periodType" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.workorder.PeriodTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)?'yes':'no'}">
+                        <input input-type="radio" type="radio" name="periodType" lay-filter="periodType" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.workorder.PeriodTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)}">
                     </div>
                 </div>
 
@@ -150,7 +150,7 @@
 
 
 
-        <div class="layui-row form-row" id="random-7719-content">
+        <div class="layui-row form-row" id="random-0692-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -173,7 +173,7 @@
 
 
 
-        <div class="layui-row form-row" id="random-1213-content">
+        <div class="layui-row form-row" id="random-1902-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -197,10 +197,10 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-6795-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-0032-fieldset">
         <legend>资源信息</legend>
         </fieldset>
-        <div class="layui-row form-row" style="text-align: center;" id="random-6795-content">
+        <div class="layui-row form-row" style="text-align: center;" id="random-0032-content">
             <div style="display: inline-block;padding-right: 8px;padding-left: 8px" class="layui-col-xs12">
             <iframe js-fn="assetSelectList" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
             </div>
@@ -209,7 +209,7 @@
 
 
 
-        <div class="layui-row form-row" id="random-5412-content">
+        <div class="layui-row form-row" id="random-5134-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->

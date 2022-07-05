@@ -1,7 +1,7 @@
 /**
  * 服务器资源申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-05 09:22:45
+ * @since 2022-07-06 05:46:56
  */
 
 layui.config({
@@ -106,8 +106,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         getBpmViewConfig:function () {
             return {
-                title:"这是默认标题",
-                priority:"urgency" // priority 的可选值 urgency，normal
+                title:"服务器资源申请",
+                priority:"normal" // priority 的可选值 urgency，normal
             }
         },
         /**
@@ -206,7 +206,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         onProcessInstanceReady:function (result) {
             // 可根据流程状态、当前审批节点判断和控制表单页面
             processInstance=result.data;
-            console.log("processInstance",processInstance);
+            console.log("processInstance",processInstance)
             // 获得所有待办节点
             var todoNodes=bpm.getTodoNodes(processInstance);
             console.log("todoNodes",todoNodes);

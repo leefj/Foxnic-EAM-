@@ -25,7 +25,7 @@ import java.util.Map;
  * 服务器资源申请 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-05 09:22:45
+ * @since 2022-07-06 05:46:55
 */
 
 public interface IServerApplyService extends  ISimpleIdService<ServerApply,String> {

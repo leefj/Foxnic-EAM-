@@ -83,6 +83,7 @@ public class NetworkStrategyInfoGtr extends BaseCodeGenerator {
 
         cfg.view().list().addJsVariable("ownerId",   "[[${ownerId}]]","ownerId");
         cfg.view().list().addJsVariable("pageType",   "[[${pageType}]]","pageType");
+        cfg.view().list().addJsVariable("selectedCode",   "[[${selectedCode}]]","selectedCode");
 
 
         cfg.view().list().disableBatchDelete();
