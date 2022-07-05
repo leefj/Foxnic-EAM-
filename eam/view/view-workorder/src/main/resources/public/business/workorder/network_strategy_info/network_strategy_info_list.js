@@ -1,7 +1,7 @@
 /**
  * 网络策略 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-03 21:18:00
+ * @since 2022-07-05 08:51:27
  */
 
 
@@ -77,13 +77,13 @@ function ListPage() {
 				cols: [[
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
-					,{ field: 'id', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'sourceName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('源名称') , templet: function (d) { return templet('sourceName',d.sourceName,d);}  }
 					,{ field: 'sourceIp', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('源IP') , templet: function (d) { return templet('sourceIp',d.sourceIp,d);}  }
 					,{ field: 'targetName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('目标名称') , templet: function (d) { return templet('targetName',d.targetName,d);}  }
 					,{ field: 'targetIp', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('目标IP') , templet: function (d) { return templet('targetIp',d.targetIp,d);}  }
-					,{ field: 'usedProtocolType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('使用协议') , templet: function (d) { return templet('usedProtocolType',d.usedProtocolType,d);}  }
-					,{ field: 'sessionType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('连接类型') , templet: function (d) { return templet('sessionType',d.sessionType,d);}  }
+					,{ field: 'targetPorts', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('目标端口') , templet: function (d) { return templet('targetPorts',d.targetPorts,d);}  }
+					,{ field: 'usedProtocolType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('使用协议'), templet:function (d){ return templet('usedProtocolType',fox.getEnumText(SELECT_USEDPROTOCOLTYPE_DATA,d.usedProtocolType),d);}}
+					,{ field: 'sessionType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('连接类型'), templet:function (d){ return templet('sessionType',fox.getEnumText(RADIO_SESSIONTYPE_DATA,d.sessionType),d);}}
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
@@ -91,19 +91,8 @@ function ListPage() {
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
-					exportExcel : admin.checkAuth(AUTH_PREFIX+":export"),
-					importExcel : admin.checkAuth(AUTH_PREFIX+":import")?{
-						params : {} ,
-						callback : function(r) {
-							if(r.success) {
-								layer.msg(fox.translate('数据导入成功')+"!");
-							} else {
-								layer.msg(fox.translate('数据导入失败')+"!");
-							}
-							// 是否执行后续逻辑：错误提示
-							return false;
-						}
-					}:false
+					exportExcel : false ,
+					importExcel : false 
 				}
 			};
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
@@ -145,15 +134,10 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.id={ inputType:"button",value: $("#id").val()};
-		value.sourceName={ inputType:"button",value: $("#sourceName").val()};
-		value.sourceIp={ inputType:"button",value: $("#sourceIp").val()};
-		value.targetName={ inputType:"button",value: $("#targetName").val()};
-		value.targetIp={ inputType:"button",value: $("#targetIp").val()};
-		value.usedProtocolType={ inputType:"button",value: $("#usedProtocolType").val()};
-		value.sessionType={ inputType:"button",value: $("#sessionType").val()};
-		value.notes={ inputType:"button",value: $("#notes").val()};
-		value.createTime={ inputType:"date_input", value: $("#createTime").val() ,matchType:"auto"};
+		value.sourceName={ inputType:"button",value: $("#sourceName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.sourceIp={ inputType:"button",value: $("#sourceIp").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.targetName={ inputType:"button",value: $("#targetName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.targetIp={ inputType:"button",value: $("#targetIp").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -394,7 +378,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["500px",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"wo-network-strategy-info-form-data-win",
 			content: '/business/workorder/network_strategy_info/network_strategy_info_form.html' + (queryString?("?"+queryString):""),

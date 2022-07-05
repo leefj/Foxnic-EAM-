@@ -2,7 +2,7 @@
 /**
  * 网络策略 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-03 21:17:59
+ * @since 2022-07-05 08:51:26
  */
  -->
  <!DOCTYPE html>
@@ -38,20 +38,22 @@
             <div class="search-input-rows" style="opacity: 0">
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
-                    <!-- 主键 , id ,typeName=text_input, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('主键')}" class="search-label id-label">主键</span><span class="search-colon">:</span></div>
-                        <input id="id" class="layui-input search-input" style="width: 140px" type="text" />
-                    </div>
-                    <!-- 源名称 , sourceName ,typeName=text_input, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('源名称')}" class="search-label sourceName-label">源名称</span><span class="search-colon">:</span></div>
-                        <input id="sourceName" class="layui-input search-input" style="width: 140px" type="text" />
-                    </div>
+                    <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 所属 , ownerId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 源IP , sourceIp ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style=""><span th:text="${lang.translate('源IP')}" class="search-label sourceIp-label">源IP</span><span class="search-colon">:</span></div>
                         <input id="sourceIp" class="layui-input search-input" style="width: 140px" type="text" />
+                    </div>
+                    <!-- 目标端口 , targetPorts ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 使用协议 , usedProtocolType ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 连接类型 , sessionType ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 选择 , selectedCode ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 源名称 , sourceName ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('源名称')}" class="search-label sourceName-label">源名称</span><span class="search-colon">:</span></div>
+                        <input id="sourceName" class="layui-input search-input" style="width: 140px" type="text" />
                     </div>
                     <!-- 目标名称 , targetName ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
@@ -62,21 +64,6 @@
                     <div class="search-unit">
                         <div class="search-label-div" style=""><span th:text="${lang.translate('目标IP')}" class="search-label targetIp-label">目标IP</span><span class="search-colon">:</span></div>
                         <input id="targetIp" class="layui-input search-input" style="width: 140px" type="text" />
-                    </div>
-                    <!-- 使用协议 , usedProtocolType ,typeName=text_input, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('使用协议')}" class="search-label usedProtocolType-label">使用协议</span><span class="search-colon">:</span></div>
-                        <input id="usedProtocolType" class="layui-input search-input" style="width: 140px" type="text" />
-                    </div>
-                    <!-- 连接类型 , sessionType ,typeName=text_input, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('连接类型')}" class="search-label sessionType-label">连接类型</span><span class="search-colon">:</span></div>
-                        <input id="sessionType" class="layui-input search-input" style="width: 140px" type="text" />
-                    </div>
-                    <!-- 备注 , notes ,typeName=text_input, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('备注')}" class="search-label notes-label">备注</span><span class="search-colon">:</span></div>
-                        <input id="notes" class="layui-input search-input" style="width: 140px" type="text" />
                     </div>
 
 
@@ -102,12 +89,10 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
-
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
         <button th:if="${perm.checkAuth('wo_network_strategy_info:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建')}">新建</span></button>
-        <button th:if="${perm.checkAuth('wo_network_strategy_info:delete-by-ids')}" id="delete-button" class="layui-btn icon-btn layui-btn-danger layui-btn-sm batch-delete-button " lay-event="batch-del"><i class="layui-icon">&#xe67e;</i><span th:text="${lang.translate('删除')}">删除</span></button>
     </div>
 </script>
 
@@ -126,8 +111,14 @@
 
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
+    var SELECT_USEDPROTOCOLTYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.workorder.ProtocolTypeEnum')}]];
+    var RADIO_SESSIONTYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.workorder.NetworkStrategySessionTypeEnum')}]];
     var AUTH_PREFIX="wo_network_strategy_info";
 
+    // ownerId
+    var ownerId = [[${ownerId}]] ;
+    // pageType
+    var pageType = [[${pageType}]] ;
 
 </script>
 

@@ -2,7 +2,7 @@
 /**
  * 折旧历史 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-29 20:46:44
+ * @since 2022-07-04 17:13:20
  */
  -->
  <!DOCTYPE html>
@@ -88,7 +88,6 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
-
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
@@ -111,6 +110,8 @@
     var SELECT_DEPRECIATIONMETHOD_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetDepreciationMethodEnum')}]];
     var AUTH_PREFIX="eam_asset_depreciation_history";
 
+    // ASSET_ID
+    var ASSET_ID = [[${assetId}]] ;
 
 </script>
 

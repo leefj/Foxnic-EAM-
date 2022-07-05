@@ -49,7 +49,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 网络策略 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-03 21:17:59
+ * @since 2022-07-05 08:51:26
 */
 
 @Api(tags = "网络策略")
@@ -66,14 +66,17 @@ public class NetworkStrategyInfoController extends SuperController {
 	*/
 	@ApiOperation(value = "添加网络策略")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SOURCE_NAME , value = "源名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SOURCE_IP , value = "源IP" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.TARGET_NAME , value = "目标名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.TARGET_IP , value = "目标IP" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.USED_PROTOCOL_TYPE , value = "使用协议" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SESSION_TYPE , value = "连接类型" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "596613755035451392"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SOURCE_NAME , value = "源名称" , required = false , dataTypeClass=String.class , example = "终端"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.OWNER_ID , value = "所属" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SOURCE_IP , value = "源IP" , required = false , dataTypeClass=String.class , example = "192.168.1.1"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.TARGET_NAME , value = "目标名称" , required = false , dataTypeClass=String.class , example = "网站"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.TARGET_IP , value = "目标IP" , required = false , dataTypeClass=String.class , example = "192.168.1.1"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.TARGET_PORTS , value = "目标端口" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.USED_PROTOCOL_TYPE , value = "使用协议" , required = false , dataTypeClass=String.class , example = "tcp"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SESSION_TYPE , value = "连接类型" , required = false , dataTypeClass=String.class , example = "long"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=1)
 	@SentinelResource(value = NetworkStrategyInfoServiceProxy.INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -90,7 +93,7 @@ public class NetworkStrategyInfoController extends SuperController {
 	*/
 	@ApiOperation(value = "删除网络策略")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class)
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "596613755035451392")
 	})
 	@ApiOperationSupport(order=2)
 	@NotNull(name = NetworkStrategyInfoVOMeta.ID)
@@ -170,14 +173,17 @@ public class NetworkStrategyInfoController extends SuperController {
 	*/
 	@ApiOperation(value = "更新网络策略")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SOURCE_NAME , value = "源名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SOURCE_IP , value = "源IP" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.TARGET_NAME , value = "目标名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.TARGET_IP , value = "目标IP" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.USED_PROTOCOL_TYPE , value = "使用协议" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SESSION_TYPE , value = "连接类型" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "596613755035451392"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SOURCE_NAME , value = "源名称" , required = false , dataTypeClass=String.class , example = "终端"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.OWNER_ID , value = "所属" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SOURCE_IP , value = "源IP" , required = false , dataTypeClass=String.class , example = "192.168.1.1"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.TARGET_NAME , value = "目标名称" , required = false , dataTypeClass=String.class , example = "网站"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.TARGET_IP , value = "目标IP" , required = false , dataTypeClass=String.class , example = "192.168.1.1"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.TARGET_PORTS , value = "目标端口" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.USED_PROTOCOL_TYPE , value = "使用协议" , required = false , dataTypeClass=String.class , example = "tcp"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SESSION_TYPE , value = "连接类型" , required = false , dataTypeClass=String.class , example = "long"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport( order=4 , ignoreParameters = { NetworkStrategyInfoVOMeta.PAGE_INDEX , NetworkStrategyInfoVOMeta.PAGE_SIZE , NetworkStrategyInfoVOMeta.SEARCH_FIELD , NetworkStrategyInfoVOMeta.FUZZY_FIELD , NetworkStrategyInfoVOMeta.SEARCH_VALUE , NetworkStrategyInfoVOMeta.DIRTY_FIELDS , NetworkStrategyInfoVOMeta.SORT_FIELD , NetworkStrategyInfoVOMeta.SORT_TYPE , NetworkStrategyInfoVOMeta.IDS } )
 	@NotNull(name = NetworkStrategyInfoVOMeta.ID)
@@ -194,14 +200,17 @@ public class NetworkStrategyInfoController extends SuperController {
 	*/
 	@ApiOperation(value = "保存网络策略")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SOURCE_NAME , value = "源名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SOURCE_IP , value = "源IP" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.TARGET_NAME , value = "目标名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.TARGET_IP , value = "目标IP" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.USED_PROTOCOL_TYPE , value = "使用协议" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SESSION_TYPE , value = "连接类型" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "596613755035451392"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SOURCE_NAME , value = "源名称" , required = false , dataTypeClass=String.class , example = "终端"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.OWNER_ID , value = "所属" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SOURCE_IP , value = "源IP" , required = false , dataTypeClass=String.class , example = "192.168.1.1"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.TARGET_NAME , value = "目标名称" , required = false , dataTypeClass=String.class , example = "网站"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.TARGET_IP , value = "目标IP" , required = false , dataTypeClass=String.class , example = "192.168.1.1"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.TARGET_PORTS , value = "目标端口" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.USED_PROTOCOL_TYPE , value = "使用协议" , required = false , dataTypeClass=String.class , example = "tcp"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SESSION_TYPE , value = "连接类型" , required = false , dataTypeClass=String.class , example = "long"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { NetworkStrategyInfoVOMeta.PAGE_INDEX , NetworkStrategyInfoVOMeta.PAGE_SIZE , NetworkStrategyInfoVOMeta.SEARCH_FIELD , NetworkStrategyInfoVOMeta.FUZZY_FIELD , NetworkStrategyInfoVOMeta.SEARCH_VALUE , NetworkStrategyInfoVOMeta.DIRTY_FIELDS , NetworkStrategyInfoVOMeta.SORT_FIELD , NetworkStrategyInfoVOMeta.SORT_TYPE , NetworkStrategyInfoVOMeta.IDS } )
 	@NotNull(name = NetworkStrategyInfoVOMeta.ID)
@@ -257,14 +266,17 @@ public class NetworkStrategyInfoController extends SuperController {
 	*/
 	@ApiOperation(value = "查询网络策略")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SOURCE_NAME , value = "源名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SOURCE_IP , value = "源IP" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.TARGET_NAME , value = "目标名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.TARGET_IP , value = "目标IP" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.USED_PROTOCOL_TYPE , value = "使用协议" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SESSION_TYPE , value = "连接类型" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "596613755035451392"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SOURCE_NAME , value = "源名称" , required = false , dataTypeClass=String.class , example = "终端"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.OWNER_ID , value = "所属" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SOURCE_IP , value = "源IP" , required = false , dataTypeClass=String.class , example = "192.168.1.1"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.TARGET_NAME , value = "目标名称" , required = false , dataTypeClass=String.class , example = "网站"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.TARGET_IP , value = "目标IP" , required = false , dataTypeClass=String.class , example = "192.168.1.1"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.TARGET_PORTS , value = "目标端口" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.USED_PROTOCOL_TYPE , value = "使用协议" , required = false , dataTypeClass=String.class , example = "tcp"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SESSION_TYPE , value = "连接类型" , required = false , dataTypeClass=String.class , example = "long"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { NetworkStrategyInfoVOMeta.PAGE_INDEX , NetworkStrategyInfoVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = NetworkStrategyInfoServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -282,14 +294,17 @@ public class NetworkStrategyInfoController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询网络策略")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SOURCE_NAME , value = "源名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SOURCE_IP , value = "源IP" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.TARGET_NAME , value = "目标名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.TARGET_IP , value = "目标IP" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.USED_PROTOCOL_TYPE , value = "使用协议" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SESSION_TYPE , value = "连接类型" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "596613755035451392"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SOURCE_NAME , value = "源名称" , required = false , dataTypeClass=String.class , example = "终端"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.OWNER_ID , value = "所属" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SOURCE_IP , value = "源IP" , required = false , dataTypeClass=String.class , example = "192.168.1.1"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.TARGET_NAME , value = "目标名称" , required = false , dataTypeClass=String.class , example = "网站"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.TARGET_IP , value = "目标IP" , required = false , dataTypeClass=String.class , example = "192.168.1.1"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.TARGET_PORTS , value = "目标端口" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.USED_PROTOCOL_TYPE , value = "使用协议" , required = false , dataTypeClass=String.class , example = "tcp"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SESSION_TYPE , value = "连接类型" , required = false , dataTypeClass=String.class , example = "long"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = NetworkStrategyInfoVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=8)
 	@SentinelResource(value = NetworkStrategyInfoServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -304,65 +319,6 @@ public class NetworkStrategyInfoController extends SuperController {
 
 
 
-
-	/**
-	 * 导出 Excel
-	 * */
-	@SentinelResource(value = NetworkStrategyInfoServiceProxy.EXPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(NetworkStrategyInfoServiceProxy.EXPORT_EXCEL)
-	public void exportExcel(NetworkStrategyInfoVO  sample,HttpServletResponse response) throws Exception {
-		try{
-			//生成 Excel 数据
-			ExcelWriter ew=networkStrategyInfoService.exportExcel(sample);
-			//下载
-			DownloadUtil.writeToOutput(response,ew.getWorkBook(),ew.getWorkBookName());
-		} catch (Exception e) {
-			DownloadUtil.writeDownloadError(response,e);
-		}
-	}
-
-
-	/**
-	 * 导出 Excel 模板
-	 * */
-	@SentinelResource(value = NetworkStrategyInfoServiceProxy.EXPORT_EXCEL_TEMPLATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(NetworkStrategyInfoServiceProxy.EXPORT_EXCEL_TEMPLATE)
-	public void exportExcelTemplate(HttpServletResponse response) throws Exception {
-		try{
-			//生成 Excel 模版
-			ExcelWriter ew=networkStrategyInfoService.exportExcelTemplate();
-			//下载
-			DownloadUtil.writeToOutput(response, ew.getWorkBook(), ew.getWorkBookName());
-		} catch (Exception e) {
-			DownloadUtil.writeDownloadError(response,e);
-		}
-	}
-
-
-
-	@SentinelResource(value = NetworkStrategyInfoServiceProxy.IMPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(NetworkStrategyInfoServiceProxy.IMPORT_EXCEL)
-	public Result importExcel(MultipartHttpServletRequest request, HttpServletResponse response) throws Exception {
-
-		//获得上传的文件
-		Map<String, MultipartFile> map = request.getFileMap();
-		InputStream input=null;
-		for (MultipartFile mf : map.values()) {
-			input=StreamUtil.bytes2input(mf.getBytes());
-			break;
-		}
-
-		if(input==null) {
-			return ErrorDesc.failure().message("缺少上传的文件");
-		}
-
-		List<ValidateResult> errors=networkStrategyInfoService.importExcel(input,0,true);
-		if(errors==null || errors.isEmpty()) {
-			return ErrorDesc.success();
-		} else {
-			return ErrorDesc.failure().message("导入失败").data(errors);
-		}
-	}
 
 
 }

@@ -17,8 +17,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 网络策略
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-03 21:17:59
- * @sign BD05F851EF801C88FEE835D067B0266C
+ * @since 2022-07-05 08:51:25
+ * @sign 68905C1676F1D6517B0DBC155EDAC4EE
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -43,6 +43,12 @@ public class NetworkStrategyInfo extends Entity {
 	private String sourceName;
 	
 	/**
+	 * 所属：所属
+	*/
+	@ApiModelProperty(required = false,value="所属" , notes = "所属")
+	private String ownerId;
+	
+	/**
 	 * 源IP：源IP
 	*/
 	@ApiModelProperty(required = false,value="源IP" , notes = "源IP")
@@ -61,6 +67,12 @@ public class NetworkStrategyInfo extends Entity {
 	private String targetIp;
 	
 	/**
+	 * 目标端口：目标端口
+	*/
+	@ApiModelProperty(required = false,value="目标端口" , notes = "目标端口")
+	private String targetPorts;
+	
+	/**
 	 * 使用协议：使用协议
 	*/
 	@ApiModelProperty(required = false,value="使用协议" , notes = "使用协议")
@@ -77,6 +89,12 @@ public class NetworkStrategyInfo extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="备注" , notes = "备注")
 	private String notes;
+	
+	/**
+	 * 选择：选择
+	*/
+	@ApiModelProperty(required = false,value="选择" , notes = "选择")
+	private String selectedCode;
 	
 	/**
 	 * 创建人ID：创建人ID
@@ -167,6 +185,25 @@ public class NetworkStrategyInfo extends Entity {
 	}
 	
 	/**
+	 * 获得 所属<br>
+	 * 所属
+	 * @return 所属
+	*/
+	public String getOwnerId() {
+		return ownerId;
+	}
+	
+	/**
+	 * 设置 所属
+	 * @param ownerId 所属
+	 * @return 当前对象
+	*/
+	public NetworkStrategyInfo setOwnerId(String ownerId) {
+		this.ownerId=ownerId;
+		return this;
+	}
+	
+	/**
 	 * 获得 源IP<br>
 	 * 源IP
 	 * @return 源IP
@@ -224,6 +261,25 @@ public class NetworkStrategyInfo extends Entity {
 	}
 	
 	/**
+	 * 获得 目标端口<br>
+	 * 目标端口
+	 * @return 目标端口
+	*/
+	public String getTargetPorts() {
+		return targetPorts;
+	}
+	
+	/**
+	 * 设置 目标端口
+	 * @param targetPorts 目标端口
+	 * @return 当前对象
+	*/
+	public NetworkStrategyInfo setTargetPorts(String targetPorts) {
+		this.targetPorts=targetPorts;
+		return this;
+	}
+	
+	/**
 	 * 获得 使用协议<br>
 	 * 使用协议
 	 * @return 使用协议
@@ -277,6 +333,25 @@ public class NetworkStrategyInfo extends Entity {
 	*/
 	public NetworkStrategyInfo setNotes(String notes) {
 		this.notes=notes;
+		return this;
+	}
+	
+	/**
+	 * 获得 选择<br>
+	 * 选择
+	 * @return 选择
+	*/
+	public String getSelectedCode() {
+		return selectedCode;
+	}
+	
+	/**
+	 * 设置 选择
+	 * @param selectedCode 选择
+	 * @return 当前对象
+	*/
+	public NetworkStrategyInfo setSelectedCode(String selectedCode) {
+		this.selectedCode=selectedCode;
 		return this;
 	}
 	

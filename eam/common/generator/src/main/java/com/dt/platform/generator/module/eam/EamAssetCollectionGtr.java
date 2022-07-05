@@ -155,6 +155,7 @@ public class EamAssetCollectionGtr extends BaseCodeGenerator {
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_COLLECTION.CONTENT,
+                        EAMTables.EAM_ASSET_COLLECTION.ATTACH,
                 }
         );
 

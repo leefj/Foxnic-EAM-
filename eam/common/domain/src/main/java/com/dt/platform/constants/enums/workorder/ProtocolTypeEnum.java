@@ -2,16 +2,16 @@ package com.dt.platform.constants.enums.workorder;
 
 import com.github.foxnic.api.constant.CodeTextEnum;
 
-public enum resourceRunEnvironmentEnum implements CodeTextEnum {
+public enum ProtocolTypeEnum implements CodeTextEnum {
 
-    prod("prod" , "生产环境"),
-    TEST("test" , "测试环境"),
-    UAT("uat" , "UAT环境");
-
+    TCP("tcp" , "TCP协议"),
+    UDP("udp" , "TCP协议"),
+    SOCKET("socket" , "Socket"),
+    HTTP("http" , "HTTP协议");
 
     private String code;
     private String text;
-    private resourceRunEnvironmentEnum(String code, String text)  {
+    private ProtocolTypeEnum(String code, String text)  {
         this.code=code;
         this.text=text;
     }

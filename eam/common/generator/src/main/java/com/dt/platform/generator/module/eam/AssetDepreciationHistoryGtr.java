@@ -5,10 +5,9 @@ import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.eam.AssetDepreciationMethodEnum;
 import com.dt.platform.constants.enums.eam.AssetFirstDepreciationDateTypeEnum;
 import com.dt.platform.domain.eam.Asset;
-import com.dt.platform.domain.eam.meta.AssetDepreciationDetailMeta;
-import com.dt.platform.domain.eam.meta.AssetDepreciationHistoryMeta;
-import com.dt.platform.domain.eam.meta.AssetDepreciationMeta;
-import com.dt.platform.domain.eam.meta.AssetMeta;
+import com.dt.platform.domain.eam.meta.*;
+import com.dt.platform.domain.workorder.NetworkStrategyApply;
+import com.dt.platform.domain.workorder.meta.NetworkStrategyApplyMeta;
 import com.dt.platform.eam.page.AssetDepreciationHistoryPageController;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.AssetDepreciationHistoryServiceProxy;
@@ -51,6 +50,10 @@ public class AssetDepreciationHistoryGtr extends BaseCodeGenerator {
                 }
         );
 
+        cfg.view().field(NetworkStrategyApplyMeta.ORIGINATOR_USER_NAME).table().label("申请人").form().label("申请人")
+                .form().fillBy("originator","name");
+        cfg.view().field(NetworkStrategyApplyMeta.ORIGINATOR_ID).table().fillBy("originator","name");
+
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_HISTORY.ASSET_ID).table().disable(true);
@@ -90,7 +93,7 @@ public class AssetDepreciationHistoryGtr extends BaseCodeGenerator {
 
 
 
-        cfg.view().form().addJsVariable("ASSET_ID","[[${assetID}]]","ASSET_ID");
+        cfg.view().list().addJsVariable("ASSET_ID","[[${assetId}]]","ASSET_ID");
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口

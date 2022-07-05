@@ -1,7 +1,7 @@
 /**
  * 资产报废 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-03 18:53:23
+ * @since 2022-07-05 10:13:32
  */
 
 function FormPage() {
@@ -245,6 +245,12 @@ function FormPage() {
 			fm[0].reset();
 			form.val('data-form', formData);
 
+			//设置 附件 显示附件
+		    if($("#attach").val()) {
+				foxup.fill("attach",$("#attach").val());
+		    } else {
+				adjustPopup();
+			}
 
 
 

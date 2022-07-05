@@ -76,7 +76,7 @@ public class CertificateGtr extends BaseCodeGenerator{
 
 
         cfg.view().formWindow().bottomSpace(80);
-         cfg.view().formWindow().width(Config.baseFormWidth);;
+        cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_CERTIFICATE.NAME,

@@ -8,8 +8,8 @@ import java.util.Date;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-03 21:17:59
- * @sign BD05F851EF801C88FEE835D067B0266C
+ * @since 2022-07-05 08:51:25
+ * @sign 68905C1676F1D6517B0DBC155EDAC4EE
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -34,6 +34,16 @@ public class NetworkStrategyInfoMeta {
 	 * 源名称 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.workorder.NetworkStrategyInfo,java.lang.String> SOURCE_NAME_PROP = new BeanProperty(com.dt.platform.domain.workorder.NetworkStrategyInfo.class ,SOURCE_NAME, java.lang.String.class, "源名称", "源名称", java.lang.String.class, null);
+	
+	/**
+	 * 所属 , 类型: java.lang.String
+	*/
+	public static final String OWNER_ID="ownerId";
+	
+	/**
+	 * 所属 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.workorder.NetworkStrategyInfo,java.lang.String> OWNER_ID_PROP = new BeanProperty(com.dt.platform.domain.workorder.NetworkStrategyInfo.class ,OWNER_ID, java.lang.String.class, "所属", "所属", java.lang.String.class, null);
 	
 	/**
 	 * 源IP , 类型: java.lang.String
@@ -66,6 +76,16 @@ public class NetworkStrategyInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.workorder.NetworkStrategyInfo,java.lang.String> TARGET_IP_PROP = new BeanProperty(com.dt.platform.domain.workorder.NetworkStrategyInfo.class ,TARGET_IP, java.lang.String.class, "目标IP", "目标IP", java.lang.String.class, null);
 	
 	/**
+	 * 目标端口 , 类型: java.lang.String
+	*/
+	public static final String TARGET_PORTS="targetPorts";
+	
+	/**
+	 * 目标端口 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.workorder.NetworkStrategyInfo,java.lang.String> TARGET_PORTS_PROP = new BeanProperty(com.dt.platform.domain.workorder.NetworkStrategyInfo.class ,TARGET_PORTS, java.lang.String.class, "目标端口", "目标端口", java.lang.String.class, null);
+	
+	/**
 	 * 使用协议 , 类型: java.lang.String
 	*/
 	public static final String USED_PROTOCOL_TYPE="usedProtocolType";
@@ -94,6 +114,16 @@ public class NetworkStrategyInfoMeta {
 	 * 备注 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.workorder.NetworkStrategyInfo,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.workorder.NetworkStrategyInfo.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
+	
+	/**
+	 * 选择 , 类型: java.lang.String
+	*/
+	public static final String SELECTED_CODE="selectedCode";
+	
+	/**
+	 * 选择 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.workorder.NetworkStrategyInfo,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.workorder.NetworkStrategyInfo.class ,SELECTED_CODE, java.lang.String.class, "选择", "选择", java.lang.String.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -178,7 +208,7 @@ public class NetworkStrategyInfoMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , SOURCE_NAME , SOURCE_IP , TARGET_NAME , TARGET_IP , USED_PROTOCOL_TYPE , SESSION_TYPE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
+	public static final String[] $PROPS={ ID , SOURCE_NAME , OWNER_ID , SOURCE_IP , TARGET_NAME , TARGET_IP , TARGET_PORTS , USED_PROTOCOL_TYPE , SESSION_TYPE , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
 	
 	/**
 	 * 代理类
@@ -207,6 +237,17 @@ public class NetworkStrategyInfoMeta {
 		public NetworkStrategyInfo setSourceName(String sourceName) {
 			super.change(SOURCE_NAME,super.getSourceName(),sourceName);
 			super.setSourceName(sourceName);
+			return this;
+		}
+		
+		/**
+		 * 设置 所属
+		 * @param ownerId 所属
+		 * @return 当前对象
+		*/
+		public NetworkStrategyInfo setOwnerId(String ownerId) {
+			super.change(OWNER_ID,super.getOwnerId(),ownerId);
+			super.setOwnerId(ownerId);
 			return this;
 		}
 		
@@ -244,6 +285,17 @@ public class NetworkStrategyInfoMeta {
 		}
 		
 		/**
+		 * 设置 目标端口
+		 * @param targetPorts 目标端口
+		 * @return 当前对象
+		*/
+		public NetworkStrategyInfo setTargetPorts(String targetPorts) {
+			super.change(TARGET_PORTS,super.getTargetPorts(),targetPorts);
+			super.setTargetPorts(targetPorts);
+			return this;
+		}
+		
+		/**
 		 * 设置 使用协议
 		 * @param usedProtocolType 使用协议
 		 * @return 当前对象
@@ -273,6 +325,17 @@ public class NetworkStrategyInfoMeta {
 		public NetworkStrategyInfo setNotes(String notes) {
 			super.change(NOTES,super.getNotes(),notes);
 			super.setNotes(notes);
+			return this;
+		}
+		
+		/**
+		 * 设置 选择
+		 * @param selectedCode 选择
+		 * @return 当前对象
+		*/
+		public NetworkStrategyInfo setSelectedCode(String selectedCode) {
+			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
+			super.setSelectedCode(selectedCode);
 			return this;
 		}
 		

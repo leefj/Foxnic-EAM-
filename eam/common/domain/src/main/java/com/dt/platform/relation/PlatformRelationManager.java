@@ -28,8 +28,8 @@ public class PlatformRelationManager extends RelationManager {
 				new DatacenterRelationManager(),
 				new ContractRelationManager(),
 				new MonitorRelationManager(),
-				new MobileRelationManager()
-
+				new MobileRelationManager(),
+				new WorkOrderRelationManager()
 
 
 		);

@@ -52,7 +52,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 折旧历史 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-29 20:46:43
+ * @since 2022-07-04 17:13:19
 */
 
 @Api(tags = "折旧历史")
@@ -335,65 +335,6 @@ public class AssetDepreciationHistoryController extends SuperController {
 
 
 
-
-	/**
-	 * 导出 Excel
-	 * */
-	@SentinelResource(value = AssetDepreciationHistoryServiceProxy.EXPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetDepreciationHistoryServiceProxy.EXPORT_EXCEL)
-	public void exportExcel(AssetDepreciationHistoryVO  sample,HttpServletResponse response) throws Exception {
-		try{
-			//生成 Excel 数据
-			ExcelWriter ew=assetDepreciationHistoryService.exportExcel(sample);
-			//下载
-			DownloadUtil.writeToOutput(response,ew.getWorkBook(),ew.getWorkBookName());
-		} catch (Exception e) {
-			DownloadUtil.writeDownloadError(response,e);
-		}
-	}
-
-
-	/**
-	 * 导出 Excel 模板
-	 * */
-	@SentinelResource(value = AssetDepreciationHistoryServiceProxy.EXPORT_EXCEL_TEMPLATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetDepreciationHistoryServiceProxy.EXPORT_EXCEL_TEMPLATE)
-	public void exportExcelTemplate(HttpServletResponse response) throws Exception {
-		try{
-			//生成 Excel 模版
-			ExcelWriter ew=assetDepreciationHistoryService.exportExcelTemplate();
-			//下载
-			DownloadUtil.writeToOutput(response, ew.getWorkBook(), ew.getWorkBookName());
-		} catch (Exception e) {
-			DownloadUtil.writeDownloadError(response,e);
-		}
-	}
-
-
-
-	@SentinelResource(value = AssetDepreciationHistoryServiceProxy.IMPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetDepreciationHistoryServiceProxy.IMPORT_EXCEL)
-	public Result importExcel(MultipartHttpServletRequest request, HttpServletResponse response) throws Exception {
-
-		//获得上传的文件
-		Map<String, MultipartFile> map = request.getFileMap();
-		InputStream input=null;
-		for (MultipartFile mf : map.values()) {
-			input=StreamUtil.bytes2input(mf.getBytes());
-			break;
-		}
-
-		if(input==null) {
-			return ErrorDesc.failure().message("缺少上传的文件");
-		}
-
-		List<ValidateResult> errors=assetDepreciationHistoryService.importExcel(input,0,true);
-		if(errors==null || errors.isEmpty()) {
-			return ErrorDesc.success();
-		} else {
-			return ErrorDesc.failure().message("导入失败").data(errors);
-		}
-	}
 
 
 }
