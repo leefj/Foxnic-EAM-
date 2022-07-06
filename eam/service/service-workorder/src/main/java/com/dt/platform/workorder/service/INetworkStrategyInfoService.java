@@ -23,7 +23,7 @@ import java.util.Map;
  * 网络策略 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-05 08:51:25
+ * @since 2022-07-06 06:16:46
 */
 
 public interface INetworkStrategyInfoService extends  ISimpleIdService<NetworkStrategyInfo,String> {

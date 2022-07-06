@@ -23,7 +23,7 @@ import java.util.Map;
  * 服务器资源 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-05 09:31:29
+ * @since 2022-07-06 06:19:24
 */
 
 public interface IServerInfoService extends  ISimpleIdService<ServerInfo,String> {

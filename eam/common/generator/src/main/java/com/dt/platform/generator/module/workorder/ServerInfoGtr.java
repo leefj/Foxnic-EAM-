@@ -36,9 +36,13 @@ public class ServerInfoGtr extends BaseCodeGenerator {
 
         cfg.getPoClassFile().addSimpleProperty(ServerOsType.class,"serverOsType","serverOsType","serverOsType");
 
+
+        cfg.view().field(WorkorderTables.WO_SERVER_INFO.NAME).search().fuzzySearch();
+
         cfg.view().search().inputLayout(
                 new Object[]{
-                        WorkorderTables.WO_SERVER_INFO.NAME
+                        WorkorderTables.WO_SERVER_INFO.SERVER_TYPE,
+                        WorkorderTables.WO_SERVER_INFO.NAME,
                 }
         );
         cfg.view().field(WorkorderTables.WO_SERVER_INFO.ID).basic().hidden(true);
@@ -103,6 +107,7 @@ public class ServerInfoGtr extends BaseCodeGenerator {
 
         cfg.view().list().addJsVariable("ownerId",   "[[${ownerId}]]","ownerId");
         cfg.view().list().addJsVariable("pageType",   "[[${pageType}]]","pageType");
+        cfg.view().list().addJsVariable("selectedCode",   "[[${selectedCode}]]","selectedCode");
 
         //文件生成覆盖模式
         cfg.overrides()
@@ -112,7 +117,7 @@ public class ServerInfoGtr extends BaseCodeGenerator {
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)
                 .setBpmEventAdaptor(WriteMode.IGNORE)
-                .setExtendJsFile(WriteMode.COVER_EXISTS_FILE); //列表HTML页
+                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         //列表HTML页
         //生成代码
         cfg.buildAll();

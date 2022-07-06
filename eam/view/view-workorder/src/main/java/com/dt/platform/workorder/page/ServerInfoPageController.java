@@ -41,7 +41,12 @@ public class ServerInfoPageController extends ViewController {
 	 * 服务器资源 功能主页面
 	 */
 	@RequestMapping("/server_info_list.html")
-	public String list(Model model,HttpServletRequest request) {
+	public String list(Model model,HttpServletRequest request,String pageType,String ownerId,String selectedCode) {
+
+		model.addAttribute("pageType",pageType);
+		model.addAttribute("ownerId",ownerId);
+		model.addAttribute("selectedCode",selectedCode);
+
 		return prefix+"/server_info_list";
 	}
 

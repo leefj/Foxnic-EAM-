@@ -1,7 +1,7 @@
 /**
  * 服务器资源申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-05 09:22:46
+ * @since 2022-07-06 06:12:17
  */
 
 function FormPage() {
@@ -221,8 +221,7 @@ function FormPage() {
 	    });
 		laydate.render({
 			elem: '#completionDate',
-			format:"yyyy-MM-dd",
-			value:$('#completionDate').val()?$('#completionDate').val():new Date(),
+			format:"yyyy-MM-dd HH:mm:ss",
 			trigger:"click",
 			done: function(value, date, endDate){
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("completionDate",value, date, endDate);

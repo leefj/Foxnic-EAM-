@@ -22,8 +22,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 网络策略申请
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-05 09:22:21
- * @sign 3B0641CC7FDA03469C6291AFECBF9650
+ * @since 2022-07-06 06:11:20
+ * @sign 8048722AFB5A86FCC5430E0AA116C731
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -124,6 +124,18 @@ public class NetworkStrategyApply extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="完成日期" , notes = "完成日期")
 	private Date completionDate;
+	
+	/**
+	 * 结果状态：结果状态
+	*/
+	@ApiModelProperty(required = false,value="结果状态" , notes = "结果状态")
+	private String resultStatus;
+	
+	/**
+	 * 结果：结果
+	*/
+	@ApiModelProperty(required = false,value="结果" , notes = "结果")
+	private String resultContent;
 	
 	/**
 	 * 创建人ID：创建人ID
@@ -499,6 +511,44 @@ public class NetworkStrategyApply extends Entity {
 	*/
 	public NetworkStrategyApply setCompletionDate(Date completionDate) {
 		this.completionDate=completionDate;
+		return this;
+	}
+	
+	/**
+	 * 获得 结果状态<br>
+	 * 结果状态
+	 * @return 结果状态
+	*/
+	public String getResultStatus() {
+		return resultStatus;
+	}
+	
+	/**
+	 * 设置 结果状态
+	 * @param resultStatus 结果状态
+	 * @return 当前对象
+	*/
+	public NetworkStrategyApply setResultStatus(String resultStatus) {
+		this.resultStatus=resultStatus;
+		return this;
+	}
+	
+	/**
+	 * 获得 结果<br>
+	 * 结果
+	 * @return 结果
+	*/
+	public String getResultContent() {
+		return resultContent;
+	}
+	
+	/**
+	 * 设置 结果
+	 * @param resultContent 结果
+	 * @return 当前对象
+	*/
+	public NetworkStrategyApply setResultContent(String resultContent) {
+		this.resultContent=resultContent;
 		return this;
 	}
 	

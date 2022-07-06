@@ -16,6 +16,8 @@ public class NetworkStrategyInfoGtr extends BaseCodeGenerator {
     public void generateCode() throws Exception {
 
 
+        cfg.view().field(WorkorderTables.WO_NETWORK_STRATEGY_INFO.SOURCE_IP).search().fuzzySearch();
+        cfg.view().field(WorkorderTables.WO_NETWORK_STRATEGY_INFO.TARGET_IP).search().fuzzySearch();
         cfg.view().search().inputLayout(
                 new Object[]{
                         WorkorderTables.WO_NETWORK_STRATEGY_INFO.SOURCE_IP,
@@ -83,6 +85,7 @@ public class NetworkStrategyInfoGtr extends BaseCodeGenerator {
 
         cfg.view().list().addJsVariable("ownerId",   "[[${ownerId}]]","ownerId");
         cfg.view().list().addJsVariable("pageType",   "[[${pageType}]]","pageType");
+        cfg.view().list().addJsVariable("selectedCode",   "[[${selectedCode}]]","selectedCode");
 
 
         cfg.view().list().disableBatchDelete();
@@ -94,7 +97,7 @@ public class NetworkStrategyInfoGtr extends BaseCodeGenerator {
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)
                 .setBpmEventAdaptor(WriteMode.IGNORE)
-                .setExtendJsFile(WriteMode.COVER_EXISTS_FILE); //列表HTML页
+                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         //列表HTML页
         //生成代码
         cfg.buildAll();

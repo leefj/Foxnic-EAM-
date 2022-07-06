@@ -25,7 +25,7 @@ import java.util.Map;
  * 网络策略申请 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-05 09:22:21
+ * @since 2022-07-06 06:11:20
 */
 
 public interface INetworkStrategyApplyService extends  ISimpleIdService<NetworkStrategyApply,String> {

@@ -1,7 +1,7 @@
 /**
  * 服务器资源申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-05 09:22:46
+ * @since 2022-07-06 06:12:16
  */
 
 
@@ -88,7 +88,7 @@ function ListPage() {
 					,{ field: 'expectedCompletionDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('期望日期') ,templet: function (d) { return templet('expectedCompletionDate',fox.dateFormat(d.expectedCompletionDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'domainName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('系统域名') , templet: function (d) { return templet('domainName',d.domainName,d);}  }
 					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('申请人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"]),d);} }
-					,{ field: 'completionDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('完成日期') ,templet: function (d) { return templet('completionDate',fox.dateFormat(d.completionDate,"yyyy-MM-dd"),d); }  }
+					,{ field: 'completionDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('完成日期') ,templet: function (d) { return templet('completionDate',fox.dateFormat(d.completionDate,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }

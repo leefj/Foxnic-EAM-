@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 网络策略  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-05 08:51:26
+ * @since 2022-07-06 06:16:46
  */
 @FeignClient(value = ServiceNames.WORKORDER, contextId = NetworkStrategyInfoServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface NetworkStrategyInfoServiceProxy {
