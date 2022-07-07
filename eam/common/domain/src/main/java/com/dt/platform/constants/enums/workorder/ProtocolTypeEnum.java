@@ -5,7 +5,7 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 public enum ProtocolTypeEnum implements CodeTextEnum {
 
     TCP("tcp" , "TCP协议"),
-    UDP("udp" , "TCP协议"),
+    UDP("udp" , "UDP协议"),
     SOCKET("socket" , "Socket"),
     HTTP("http" , "HTTP协议");
 

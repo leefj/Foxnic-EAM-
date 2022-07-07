@@ -3,7 +3,7 @@
 cur_dir=$(cd `dirname $0`; pwd)
 app_conf="${cur_dir}/app.conf"
 app_dir=$cur_dir/..
-yml_file=$cur_dir/../application.yml
+yml_file=$app_dir/app/app/application.yml
 
 APP_NAME=`cat $app_conf|grep -v "#"|grep APP_NAME=|awk -F "=" '{print $2}'`
 JAVA=`cat $app_conf|grep -v "#"|grep JAVA=|awk -F "=" '{print $2}'`
@@ -34,7 +34,7 @@ if [[ -f "$yml_file" ]];then
 fi
 
 echo "###start to check app jar exist"
-if [[ -f "$app_dir/$APP_NAME" ]];then
+if [[ -f "$app_dir/app/app/$APP_NAME" ]];then
   echo -e "   \033[33m check app $app_dir/$APP_NAME exist success! \033[0m"
 else
   echo -e "   \033[31m check app $app_dir/$APP_NAME exist failed! \033[0m"

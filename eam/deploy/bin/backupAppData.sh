@@ -1,19 +1,12 @@
 #!/bin/sh
 #cron:
-#   12 12 * * * sh /opt/eam/bin/backupAppDATA.sh
+#   12 12 * * * sh /app/app/bin/backupAppDATA.sh
 ########################################
 cur_dir=$(cd `dirname $0`; pwd)
 app_conf="${cur_dir}/app.conf"
 app_dir=$cur_dir/..
-backup_dir=$app_dir/backup/app
+backup_dir=$app_dir/app/backup
 curTime=`date +"%Y%m%d%H%M%S"`
-BACKUP_DIR_CNT=`cat $app_conf|grep -v "#"|grep BACKUP_DIR=|awk -F "=" '{print $2}'|wc -l`
-
-if [[ $BACKUP_DIR_CNT -gt 0 ]];then
-  dir=`cat $app_conf|grep -v "#"|grep BACKUP_DIR=|awk -F "=" '{print $2}'`
-  backup_dir=$dir/app
-fi
-
 if [[ ! -d $backup_dir ]];then
   mkdir -p $backup_dir
 fi
@@ -24,10 +17,10 @@ if [[ ! -d $backup_dir ]];then
 fi
 
 echo "Start to backup application!"
-cd $app_dir
-backupfile=eam_backup_${curTime}.tar.gz
-tar zcvf $backupfile ./lib/* ./*.jar ./application.yml
-if [[ ! -f "eam_backup_${curTime}.tar.gz" ]];then
+cd $app_dir/app/app/
+backupfile=app_backup_${curTime}.tar.gz
+tar zcvf $backupfile ./lib/* *.jar *.yml
+if [[ ! -f "app_backup_${curTime}.tar.gz" ]];then
   echo "Backup Application Failed!";
   exit 1;
 fi

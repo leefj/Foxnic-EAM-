@@ -9,6 +9,7 @@ import com.dt.platform.domain.vehicle.meta.MaintenanceMeta;
 import com.dt.platform.domain.workorder.meta.NetworkStrategyApplyMeta;
 import com.dt.platform.domain.workorder.meta.ServerApplyMeta;
 import com.dt.platform.domain.workorder.meta.ServerInfoMeta;
+import com.dt.platform.domain.workorder.meta.SlbStrategyApplyMeta;
 import com.github.foxnic.dao.relation.RelationManager;
 import org.github.foxnic.web.constants.db.FoxnicWeb;
 
@@ -21,6 +22,16 @@ public class WorkOrderRelationManager extends RelationManager {
 		this.setupServerApply();
 		this.setupServerInfo();
 		this.setupNetworkStrategyApply();
+		this.setupSlbStrategyApply();
+	}
+
+
+
+	public void setupSlbStrategyApply() {
+		//制单人
+		this.property(SlbStrategyApplyMeta.ORIGINATOR_PROP)
+				.using(WorkorderTables.WO_SLB_STRATEGY_APPLY.ORIGINATOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
 	}
 
 

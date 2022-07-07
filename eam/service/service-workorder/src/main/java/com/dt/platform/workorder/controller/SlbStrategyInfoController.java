@@ -49,7 +49,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 负载策略 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-04 21:04:50
+ * @since 2022-07-06 19:45:53
 */
 
 @Api(tags = "负载策略")
@@ -68,12 +68,15 @@ public class SlbStrategyInfoController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.OWNER_ID , value = "所属" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SOURCE_NAME , value = "源名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SOURCE_IP , value = "源IP" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.TARGET_NAME , value = "目标名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.TARGET_IP , value = "目标IP" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SERVICE_NAME , value = "服务名称" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SERVICE_IP , value = "服务IP" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.NODE_IP , value = "节点IP" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.PORT , value = "端口" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.BALANCE_STRATEGY , value = "均衡策略" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SESSION_KEEP , value = "会话保持" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SESSION_KEEP_METHOD , value = "保持方式" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.USED_PROTOCOL_TYPE , value = "使用协议" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SESSION_TYPE , value = "连接类型" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=1)
@@ -173,12 +176,15 @@ public class SlbStrategyInfoController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.OWNER_ID , value = "所属" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SOURCE_NAME , value = "源名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SOURCE_IP , value = "源IP" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.TARGET_NAME , value = "目标名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.TARGET_IP , value = "目标IP" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SERVICE_NAME , value = "服务名称" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SERVICE_IP , value = "服务IP" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.NODE_IP , value = "节点IP" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.PORT , value = "端口" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.BALANCE_STRATEGY , value = "均衡策略" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SESSION_KEEP , value = "会话保持" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SESSION_KEEP_METHOD , value = "保持方式" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.USED_PROTOCOL_TYPE , value = "使用协议" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SESSION_TYPE , value = "连接类型" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport( order=4 , ignoreParameters = { SlbStrategyInfoVOMeta.PAGE_INDEX , SlbStrategyInfoVOMeta.PAGE_SIZE , SlbStrategyInfoVOMeta.SEARCH_FIELD , SlbStrategyInfoVOMeta.FUZZY_FIELD , SlbStrategyInfoVOMeta.SEARCH_VALUE , SlbStrategyInfoVOMeta.DIRTY_FIELDS , SlbStrategyInfoVOMeta.SORT_FIELD , SlbStrategyInfoVOMeta.SORT_TYPE , SlbStrategyInfoVOMeta.IDS } )
@@ -198,12 +204,15 @@ public class SlbStrategyInfoController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.OWNER_ID , value = "所属" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SOURCE_NAME , value = "源名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SOURCE_IP , value = "源IP" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.TARGET_NAME , value = "目标名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.TARGET_IP , value = "目标IP" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SERVICE_NAME , value = "服务名称" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SERVICE_IP , value = "服务IP" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.NODE_IP , value = "节点IP" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.PORT , value = "端口" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.BALANCE_STRATEGY , value = "均衡策略" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SESSION_KEEP , value = "会话保持" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SESSION_KEEP_METHOD , value = "保持方式" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.USED_PROTOCOL_TYPE , value = "使用协议" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SESSION_TYPE , value = "连接类型" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { SlbStrategyInfoVOMeta.PAGE_INDEX , SlbStrategyInfoVOMeta.PAGE_SIZE , SlbStrategyInfoVOMeta.SEARCH_FIELD , SlbStrategyInfoVOMeta.FUZZY_FIELD , SlbStrategyInfoVOMeta.SEARCH_VALUE , SlbStrategyInfoVOMeta.DIRTY_FIELDS , SlbStrategyInfoVOMeta.SORT_FIELD , SlbStrategyInfoVOMeta.SORT_TYPE , SlbStrategyInfoVOMeta.IDS } )
@@ -262,12 +271,15 @@ public class SlbStrategyInfoController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.OWNER_ID , value = "所属" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SOURCE_NAME , value = "源名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SOURCE_IP , value = "源IP" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.TARGET_NAME , value = "目标名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.TARGET_IP , value = "目标IP" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SERVICE_NAME , value = "服务名称" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SERVICE_IP , value = "服务IP" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.NODE_IP , value = "节点IP" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.PORT , value = "端口" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.BALANCE_STRATEGY , value = "均衡策略" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SESSION_KEEP , value = "会话保持" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SESSION_KEEP_METHOD , value = "保持方式" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.USED_PROTOCOL_TYPE , value = "使用协议" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SESSION_TYPE , value = "连接类型" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { SlbStrategyInfoVOMeta.PAGE_INDEX , SlbStrategyInfoVOMeta.PAGE_SIZE } )
@@ -288,12 +300,15 @@ public class SlbStrategyInfoController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.OWNER_ID , value = "所属" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SOURCE_NAME , value = "源名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SOURCE_IP , value = "源IP" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.TARGET_NAME , value = "目标名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.TARGET_IP , value = "目标IP" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SERVICE_NAME , value = "服务名称" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SERVICE_IP , value = "服务IP" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.NODE_IP , value = "节点IP" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.PORT , value = "端口" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.BALANCE_STRATEGY , value = "均衡策略" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SESSION_KEEP , value = "会话保持" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SESSION_KEEP_METHOD , value = "保持方式" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.USED_PROTOCOL_TYPE , value = "使用协议" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SESSION_TYPE , value = "连接类型" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=8)

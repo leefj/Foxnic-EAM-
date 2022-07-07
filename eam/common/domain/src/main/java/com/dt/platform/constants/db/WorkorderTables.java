@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-07-05 09:25:02
+ * @since 2022-07-07 07:36:11
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -106,11 +106,6 @@ public class WorkorderTables {
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
 		
 		/**
-		 * 类型
-		*/
-		public static final DBField CATEGORY_ID = new DBField(DBDataType.STRING , "category_id","categoryId","类型","类型",false,false,true);
-		
-		/**
 		 * 编码
 		*/
 		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","编码","编码",false,false,true);
@@ -171,11 +166,6 @@ public class WorkorderTables {
 		public static final DBField ORIGINATOR_ID = new DBField(DBDataType.STRING , "originator_id","originatorId","申请人","申请人",false,false,true);
 		
 		/**
-		 * 完成日期
-		*/
-		public static final DBField COMPLETION_DATE = new DBField(DBDataType.DATE , "completion_date","completionDate","完成日期","完成日期",false,false,true);
-		
-		/**
 		 * 创建人ID
 		*/
 		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
@@ -215,7 +205,7 @@ public class WorkorderTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public WO_NETWORK_STRATEGY_APPLY() {
-			this.init($NAME,"网络策略申请" , ID , CATEGORY_ID , CODE , STATUS , NAME , PROJECT_NAME , ENVIRONMENT_ID , PERIOD_TYPE , EXPIRATION_DATE , APPLY_DATE , EXPECTED_COMPLETION_DATE , CONTENT , FILE_ID , ORIGINATOR_ID , COMPLETION_DATE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"网络策略申请" , ID , CODE , STATUS , NAME , PROJECT_NAME , ENVIRONMENT_ID , PERIOD_TYPE , EXPIRATION_DATE , APPLY_DATE , EXPECTED_COMPLETION_DATE , CONTENT , FILE_ID , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final WO_NETWORK_STRATEGY_APPLY $TABLE=new WO_NETWORK_STRATEGY_APPLY();
 	}
@@ -346,11 +336,6 @@ public class WorkorderTables {
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
 		
 		/**
-		 * 类型
-		*/
-		public static final DBField CATEGORY_ID = new DBField(DBDataType.STRING , "category_id","categoryId","类型","类型",false,false,true);
-		
-		/**
 		 * 编号
 		*/
 		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","编号","编号",false,false,true);
@@ -460,7 +445,7 @@ public class WorkorderTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public WO_SERVER_APPLY() {
-			this.init($NAME,"服务器资源申请" , ID , CATEGORY_ID , CODE , STATUS , NAME , PROJECT_NAME , ENVIRONMENT_ID , PERIOD_TYPE , EXPIRATION_DATE , APPLY_DATE , EXPECTED_COMPLETION_DATE , DOMAIN_NAME , CONTENT , FILE_ID , ORIGINATOR_ID , COMPLETION_DATE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"服务器资源申请" , ID , CODE , STATUS , NAME , PROJECT_NAME , ENVIRONMENT_ID , PERIOD_TYPE , EXPIRATION_DATE , APPLY_DATE , EXPECTED_COMPLETION_DATE , DOMAIN_NAME , CONTENT , FILE_ID , ORIGINATOR_ID , COMPLETION_DATE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final WO_SERVER_APPLY $TABLE=new WO_SERVER_APPLY();
 	}
@@ -671,6 +656,126 @@ public class WorkorderTables {
 	}
 	
 	/**
+	 * 服务台
+	*/
+	public static class WO_SERVICE_DESK extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "wo_service_desk";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 父节点
+		*/
+		public static final DBField PID = new DBField(DBDataType.STRING , "pid","pid","父节点","父节点",false,false,true);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
+		
+		/**
+		 * 标签
+		*/
+		public static final DBField LABEL = new DBField(DBDataType.STRING , "label","label","标签","标签",false,false,true);
+		
+		/**
+		 * 编码
+		*/
+		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","编码","编码",false,false,true);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
+		
+		/**
+		 * 类型
+		*/
+		public static final DBField TYPE = new DBField(DBDataType.STRING , "type","type","类型","类型",false,false,true);
+		
+		/**
+		 * 流程编码
+		*/
+		public static final DBField PROCESS_CODE = new DBField(DBDataType.STRING , "process_code","processCode","流程编码","流程编码",false,false,true);
+		
+		/**
+		 * 权限
+		*/
+		public static final DBField PERM = new DBField(DBDataType.STRING , "perm","perm","权限","权限",false,false,true);
+		
+		/**
+		 * 图片
+		*/
+		public static final DBField IMAGE = new DBField(DBDataType.STRING , "image","image","图片","图片",false,false,true);
+		
+		/**
+		 * 参数
+		*/
+		public static final DBField PARAMETER = new DBField(DBDataType.STRING , "parameter","parameter","参数","参数",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 排序
+		*/
+		public static final DBField SORT = new DBField(DBDataType.INTEGER , "sort","sort","排序","排序",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		public WO_SERVICE_DESK() {
+			this.init($NAME,"服务台" , ID , PID , NAME , LABEL , CODE , STATUS , TYPE , PROCESS_CODE , PERM , IMAGE , PARAMETER , NOTES , SORT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+		}
+		public static final WO_SERVICE_DESK $TABLE=new WO_SERVICE_DESK();
+	}
+	
+	/**
 	 * 负载策略申请
 	*/
 	public static class WO_SLB_STRATEGY_APPLY extends DBTable {
@@ -684,11 +789,6 @@ public class WorkorderTables {
 		 * 主键
 		*/
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
-		
-		/**
-		 * 类型
-		*/
-		public static final DBField CATEGORY_ID = new DBField(DBDataType.STRING , "category_id","categoryId","类型","类型",false,false,true);
 		
 		/**
 		 * 编号
@@ -756,11 +856,6 @@ public class WorkorderTables {
 		public static final DBField ORIGINATOR_ID = new DBField(DBDataType.STRING , "originator_id","originatorId","申请人","申请人",false,false,true);
 		
 		/**
-		 * 完成日期
-		*/
-		public static final DBField COMPLETION_DATE = new DBField(DBDataType.DATE , "completion_date","completionDate","完成日期","完成日期",false,false,true);
-		
-		/**
 		 * 创建人ID
 		*/
 		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
@@ -800,7 +895,7 @@ public class WorkorderTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public WO_SLB_STRATEGY_APPLY() {
-			this.init($NAME,"负载策略申请" , ID , CATEGORY_ID , CODE , STATUS , NAME , PROJECT_NAME , ENVIRONMENT_ID , PERIOD_TYPE , EXPIRATION_DATE , APPLY_DATE , EXPECTED_COMPLETION_DATE , CONTENT , FILE_ID , NOTES , ORIGINATOR_ID , COMPLETION_DATE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"负载策略申请" , ID , CODE , STATUS , NAME , PROJECT_NAME , ENVIRONMENT_ID , PERIOD_TYPE , EXPIRATION_DATE , APPLY_DATE , EXPECTED_COMPLETION_DATE , CONTENT , FILE_ID , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final WO_SLB_STRATEGY_APPLY $TABLE=new WO_SLB_STRATEGY_APPLY();
 	}
@@ -826,24 +921,39 @@ public class WorkorderTables {
 		public static final DBField OWNER_ID = new DBField(DBDataType.STRING , "owner_id","ownerId","所属","所属",false,false,true);
 		
 		/**
-		 * 源名称
+		 * 服务名称
 		*/
-		public static final DBField SOURCE_NAME = new DBField(DBDataType.STRING , "source_name","sourceName","源名称","源名称",false,false,true);
+		public static final DBField SERVICE_NAME = new DBField(DBDataType.STRING , "service_name","serviceName","服务名称","服务名称",false,false,true);
 		
 		/**
-		 * 源IP
+		 * 服务IP
 		*/
-		public static final DBField SOURCE_IP = new DBField(DBDataType.STRING , "source_ip","sourceIp","源IP","源IP",false,false,true);
+		public static final DBField SERVICE_IP = new DBField(DBDataType.STRING , "service_ip","serviceIp","服务IP","服务IP",false,false,true);
 		
 		/**
-		 * 目标名称
+		 * 节点IP
 		*/
-		public static final DBField TARGET_NAME = new DBField(DBDataType.STRING , "target_name","targetName","目标名称","目标名称",false,false,true);
+		public static final DBField NODE_IP = new DBField(DBDataType.STRING , "node_ip","nodeIp","节点IP","节点IP",false,false,true);
 		
 		/**
-		 * 目标IP
+		 * 端口
 		*/
-		public static final DBField TARGET_IP = new DBField(DBDataType.STRING , "target_ip","targetIp","目标IP","目标IP",false,false,true);
+		public static final DBField PORT = new DBField(DBDataType.STRING , "port","port","端口","端口",false,false,true);
+		
+		/**
+		 * 均衡策略
+		*/
+		public static final DBField BALANCE_STRATEGY = new DBField(DBDataType.STRING , "balance_strategy","balanceStrategy","均衡策略","均衡策略",false,false,true);
+		
+		/**
+		 * 会话保持
+		*/
+		public static final DBField SESSION_KEEP = new DBField(DBDataType.STRING , "session_keep","sessionKeep","会话保持","会话保持",false,false,true);
+		
+		/**
+		 * 保持方式
+		*/
+		public static final DBField SESSION_KEEP_METHOD = new DBField(DBDataType.STRING , "session_keep_method","sessionKeepMethod","保持方式","保持方式",false,false,true);
 		
 		/**
 		 * 使用协议
@@ -851,9 +961,9 @@ public class WorkorderTables {
 		public static final DBField USED_PROTOCOL_TYPE = new DBField(DBDataType.STRING , "used_protocol_type","usedProtocolType","使用协议","使用协议",false,false,true);
 		
 		/**
-		 * 连接类型
+		 * 选择
 		*/
-		public static final DBField SESSION_TYPE = new DBField(DBDataType.STRING , "session_type","sessionType","连接类型","连接类型",false,false,true);
+		public static final DBField SELECTED_CODE = new DBField(DBDataType.STRING , "selected_code","selectedCode","选择","选择",false,false,true);
 		
 		/**
 		 * 备注
@@ -900,7 +1010,7 @@ public class WorkorderTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public WO_SLB_STRATEGY_INFO() {
-			this.init($NAME,"负载策略" , ID , OWNER_ID , SOURCE_NAME , SOURCE_IP , TARGET_NAME , TARGET_IP , USED_PROTOCOL_TYPE , SESSION_TYPE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"负载策略" , ID , OWNER_ID , SERVICE_NAME , SERVICE_IP , NODE_IP , PORT , BALANCE_STRATEGY , SESSION_KEEP , SESSION_KEEP_METHOD , USED_PROTOCOL_TYPE , SELECTED_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final WO_SLB_STRATEGY_INFO $TABLE=new WO_SLB_STRATEGY_INFO();
 	}

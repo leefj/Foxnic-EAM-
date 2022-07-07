@@ -56,7 +56,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 网络策略申请 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-06 06:11:21
+ * @since 2022-07-06 17:05:34
 */
 
 @Api(tags = "网络策略申请")
@@ -87,9 +87,6 @@ public class NetworkStrategyApplyController extends SuperController implements B
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CONTENT , value = "申请原因" , required = false , dataTypeClass=String.class , example = "服务器策略申请"),
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.FILE_ID , value = "附件" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ORIGINATOR_ID , value = "申请人" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.COMPLETION_DATE , value = "完成日期" , required = false , dataTypeClass=Date.class , example = "2022-07-14 12:00:00"),
-		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.RESULT_STATUS , value = "结果状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.RESULT_CONTENT , value = "结果" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=1)
 	@SentinelResource(value = NetworkStrategyApplyServiceProxy.INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -200,9 +197,6 @@ public class NetworkStrategyApplyController extends SuperController implements B
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CONTENT , value = "申请原因" , required = false , dataTypeClass=String.class , example = "服务器策略申请"),
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.FILE_ID , value = "附件" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ORIGINATOR_ID , value = "申请人" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.COMPLETION_DATE , value = "完成日期" , required = false , dataTypeClass=Date.class , example = "2022-07-14 12:00:00"),
-		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.RESULT_STATUS , value = "结果状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.RESULT_CONTENT , value = "结果" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport( order=4 , ignoreParameters = { NetworkStrategyApplyVOMeta.PAGE_INDEX , NetworkStrategyApplyVOMeta.PAGE_SIZE , NetworkStrategyApplyVOMeta.SEARCH_FIELD , NetworkStrategyApplyVOMeta.FUZZY_FIELD , NetworkStrategyApplyVOMeta.SEARCH_VALUE , NetworkStrategyApplyVOMeta.DIRTY_FIELDS , NetworkStrategyApplyVOMeta.SORT_FIELD , NetworkStrategyApplyVOMeta.SORT_TYPE , NetworkStrategyApplyVOMeta.IDS } )
 	@NotNull(name = NetworkStrategyApplyVOMeta.ID)
@@ -233,9 +227,6 @@ public class NetworkStrategyApplyController extends SuperController implements B
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CONTENT , value = "申请原因" , required = false , dataTypeClass=String.class , example = "服务器策略申请"),
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.FILE_ID , value = "附件" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ORIGINATOR_ID , value = "申请人" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.COMPLETION_DATE , value = "完成日期" , required = false , dataTypeClass=Date.class , example = "2022-07-14 12:00:00"),
-		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.RESULT_STATUS , value = "结果状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.RESULT_CONTENT , value = "结果" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { NetworkStrategyApplyVOMeta.PAGE_INDEX , NetworkStrategyApplyVOMeta.PAGE_SIZE , NetworkStrategyApplyVOMeta.SEARCH_FIELD , NetworkStrategyApplyVOMeta.FUZZY_FIELD , NetworkStrategyApplyVOMeta.SEARCH_VALUE , NetworkStrategyApplyVOMeta.DIRTY_FIELDS , NetworkStrategyApplyVOMeta.SORT_FIELD , NetworkStrategyApplyVOMeta.SORT_TYPE , NetworkStrategyApplyVOMeta.IDS } )
 	@NotNull(name = NetworkStrategyApplyVOMeta.ID)
@@ -309,9 +300,6 @@ public class NetworkStrategyApplyController extends SuperController implements B
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CONTENT , value = "申请原因" , required = false , dataTypeClass=String.class , example = "服务器策略申请"),
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.FILE_ID , value = "附件" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ORIGINATOR_ID , value = "申请人" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.COMPLETION_DATE , value = "完成日期" , required = false , dataTypeClass=Date.class , example = "2022-07-14 12:00:00"),
-		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.RESULT_STATUS , value = "结果状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.RESULT_CONTENT , value = "结果" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { NetworkStrategyApplyVOMeta.PAGE_INDEX , NetworkStrategyApplyVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = NetworkStrategyApplyServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -343,9 +331,6 @@ public class NetworkStrategyApplyController extends SuperController implements B
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CONTENT , value = "申请原因" , required = false , dataTypeClass=String.class , example = "服务器策略申请"),
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.FILE_ID , value = "附件" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ORIGINATOR_ID , value = "申请人" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.COMPLETION_DATE , value = "完成日期" , required = false , dataTypeClass=Date.class , example = "2022-07-14 12:00:00"),
-		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.RESULT_STATUS , value = "结果状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.RESULT_CONTENT , value = "结果" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=8)
 	@SentinelResource(value = NetworkStrategyApplyServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )

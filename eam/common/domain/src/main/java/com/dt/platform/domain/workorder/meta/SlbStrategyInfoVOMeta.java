@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-04 21:04:50
+ * @since 2022-07-06 19:45:53
  * @sign 8EE25508031CA449944455E7B9206078
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -128,44 +128,74 @@ public class SlbStrategyInfoVOMeta extends SlbStrategyInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.workorder.SlbStrategyInfoVO,java.lang.String> OWNER_ID_PROP = new BeanProperty(com.dt.platform.domain.workorder.SlbStrategyInfoVO.class ,OWNER_ID, java.lang.String.class, "所属", "所属", java.lang.String.class, null);
 	
 	/**
-	 * 源名称 , 类型: java.lang.String
+	 * 服务名称 , 类型: java.lang.String
 	*/
-	public static final String SOURCE_NAME="sourceName";
+	public static final String SERVICE_NAME="serviceName";
 	
 	/**
-	 * 源名称 , 类型: java.lang.String
+	 * 服务名称 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.workorder.SlbStrategyInfoVO,java.lang.String> SOURCE_NAME_PROP = new BeanProperty(com.dt.platform.domain.workorder.SlbStrategyInfoVO.class ,SOURCE_NAME, java.lang.String.class, "源名称", "源名称", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.workorder.SlbStrategyInfoVO,java.lang.String> SERVICE_NAME_PROP = new BeanProperty(com.dt.platform.domain.workorder.SlbStrategyInfoVO.class ,SERVICE_NAME, java.lang.String.class, "服务名称", "服务名称", java.lang.String.class, null);
 	
 	/**
-	 * 源IP , 类型: java.lang.String
+	 * 服务IP , 类型: java.lang.String
 	*/
-	public static final String SOURCE_IP="sourceIp";
+	public static final String SERVICE_IP="serviceIp";
 	
 	/**
-	 * 源IP , 类型: java.lang.String
+	 * 服务IP , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.workorder.SlbStrategyInfoVO,java.lang.String> SOURCE_IP_PROP = new BeanProperty(com.dt.platform.domain.workorder.SlbStrategyInfoVO.class ,SOURCE_IP, java.lang.String.class, "源IP", "源IP", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.workorder.SlbStrategyInfoVO,java.lang.String> SERVICE_IP_PROP = new BeanProperty(com.dt.platform.domain.workorder.SlbStrategyInfoVO.class ,SERVICE_IP, java.lang.String.class, "服务IP", "服务IP", java.lang.String.class, null);
 	
 	/**
-	 * 目标名称 , 类型: java.lang.String
+	 * 节点IP , 类型: java.lang.String
 	*/
-	public static final String TARGET_NAME="targetName";
+	public static final String NODE_IP="nodeIp";
 	
 	/**
-	 * 目标名称 , 类型: java.lang.String
+	 * 节点IP , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.workorder.SlbStrategyInfoVO,java.lang.String> TARGET_NAME_PROP = new BeanProperty(com.dt.platform.domain.workorder.SlbStrategyInfoVO.class ,TARGET_NAME, java.lang.String.class, "目标名称", "目标名称", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.workorder.SlbStrategyInfoVO,java.lang.String> NODE_IP_PROP = new BeanProperty(com.dt.platform.domain.workorder.SlbStrategyInfoVO.class ,NODE_IP, java.lang.String.class, "节点IP", "节点IP", java.lang.String.class, null);
 	
 	/**
-	 * 目标IP , 类型: java.lang.String
+	 * 端口 , 类型: java.lang.String
 	*/
-	public static final String TARGET_IP="targetIp";
+	public static final String PORT="port";
 	
 	/**
-	 * 目标IP , 类型: java.lang.String
+	 * 端口 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.workorder.SlbStrategyInfoVO,java.lang.String> TARGET_IP_PROP = new BeanProperty(com.dt.platform.domain.workorder.SlbStrategyInfoVO.class ,TARGET_IP, java.lang.String.class, "目标IP", "目标IP", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.workorder.SlbStrategyInfoVO,java.lang.String> PORT_PROP = new BeanProperty(com.dt.platform.domain.workorder.SlbStrategyInfoVO.class ,PORT, java.lang.String.class, "端口", "端口", java.lang.String.class, null);
+	
+	/**
+	 * 均衡策略 , 类型: java.lang.String
+	*/
+	public static final String BALANCE_STRATEGY="balanceStrategy";
+	
+	/**
+	 * 均衡策略 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.workorder.SlbStrategyInfoVO,java.lang.String> BALANCE_STRATEGY_PROP = new BeanProperty(com.dt.platform.domain.workorder.SlbStrategyInfoVO.class ,BALANCE_STRATEGY, java.lang.String.class, "均衡策略", "均衡策略", java.lang.String.class, null);
+	
+	/**
+	 * 会话保持 , 类型: java.lang.String
+	*/
+	public static final String SESSION_KEEP="sessionKeep";
+	
+	/**
+	 * 会话保持 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.workorder.SlbStrategyInfoVO,java.lang.String> SESSION_KEEP_PROP = new BeanProperty(com.dt.platform.domain.workorder.SlbStrategyInfoVO.class ,SESSION_KEEP, java.lang.String.class, "会话保持", "会话保持", java.lang.String.class, null);
+	
+	/**
+	 * 保持方式 , 类型: java.lang.String
+	*/
+	public static final String SESSION_KEEP_METHOD="sessionKeepMethod";
+	
+	/**
+	 * 保持方式 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.workorder.SlbStrategyInfoVO,java.lang.String> SESSION_KEEP_METHOD_PROP = new BeanProperty(com.dt.platform.domain.workorder.SlbStrategyInfoVO.class ,SESSION_KEEP_METHOD, java.lang.String.class, "保持方式", "保持方式", java.lang.String.class, null);
 	
 	/**
 	 * 使用协议 , 类型: java.lang.String
@@ -178,14 +208,14 @@ public class SlbStrategyInfoVOMeta extends SlbStrategyInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.workorder.SlbStrategyInfoVO,java.lang.String> USED_PROTOCOL_TYPE_PROP = new BeanProperty(com.dt.platform.domain.workorder.SlbStrategyInfoVO.class ,USED_PROTOCOL_TYPE, java.lang.String.class, "使用协议", "使用协议", java.lang.String.class, null);
 	
 	/**
-	 * 连接类型 , 类型: java.lang.String
+	 * 选择 , 类型: java.lang.String
 	*/
-	public static final String SESSION_TYPE="sessionType";
+	public static final String SELECTED_CODE="selectedCode";
 	
 	/**
-	 * 连接类型 , 类型: java.lang.String
+	 * 选择 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.workorder.SlbStrategyInfoVO,java.lang.String> SESSION_TYPE_PROP = new BeanProperty(com.dt.platform.domain.workorder.SlbStrategyInfoVO.class ,SESSION_TYPE, java.lang.String.class, "连接类型", "连接类型", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.workorder.SlbStrategyInfoVO,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.workorder.SlbStrategyInfoVO.class ,SELECTED_CODE, java.lang.String.class, "选择", "选择", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -280,7 +310,7 @@ public class SlbStrategyInfoVOMeta extends SlbStrategyInfoMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , OWNER_ID , SOURCE_NAME , SOURCE_IP , TARGET_NAME , TARGET_IP , USED_PROTOCOL_TYPE , SESSION_TYPE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , OWNER_ID , SERVICE_NAME , SERVICE_IP , NODE_IP , PORT , BALANCE_STRATEGY , SESSION_KEEP , SESSION_KEEP_METHOD , USED_PROTOCOL_TYPE , SELECTED_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
 	
 	/**
 	 * 代理类
@@ -412,46 +442,79 @@ public class SlbStrategyInfoVOMeta extends SlbStrategyInfoMeta {
 		}
 		
 		/**
-		 * 设置 源名称
-		 * @param sourceName 源名称
+		 * 设置 服务名称
+		 * @param serviceName 服务名称
 		 * @return 当前对象
 		*/
-		public SlbStrategyInfo setSourceName(String sourceName) {
-			super.change(SOURCE_NAME,super.getSourceName(),sourceName);
-			super.setSourceName(sourceName);
+		public SlbStrategyInfo setServiceName(String serviceName) {
+			super.change(SERVICE_NAME,super.getServiceName(),serviceName);
+			super.setServiceName(serviceName);
 			return this;
 		}
 		
 		/**
-		 * 设置 源IP
-		 * @param sourceIp 源IP
+		 * 设置 服务IP
+		 * @param serviceIp 服务IP
 		 * @return 当前对象
 		*/
-		public SlbStrategyInfo setSourceIp(String sourceIp) {
-			super.change(SOURCE_IP,super.getSourceIp(),sourceIp);
-			super.setSourceIp(sourceIp);
+		public SlbStrategyInfo setServiceIp(String serviceIp) {
+			super.change(SERVICE_IP,super.getServiceIp(),serviceIp);
+			super.setServiceIp(serviceIp);
 			return this;
 		}
 		
 		/**
-		 * 设置 目标名称
-		 * @param targetName 目标名称
+		 * 设置 节点IP
+		 * @param nodeIp 节点IP
 		 * @return 当前对象
 		*/
-		public SlbStrategyInfo setTargetName(String targetName) {
-			super.change(TARGET_NAME,super.getTargetName(),targetName);
-			super.setTargetName(targetName);
+		public SlbStrategyInfo setNodeIp(String nodeIp) {
+			super.change(NODE_IP,super.getNodeIp(),nodeIp);
+			super.setNodeIp(nodeIp);
 			return this;
 		}
 		
 		/**
-		 * 设置 目标IP
-		 * @param targetIp 目标IP
+		 * 设置 端口
+		 * @param port 端口
 		 * @return 当前对象
 		*/
-		public SlbStrategyInfo setTargetIp(String targetIp) {
-			super.change(TARGET_IP,super.getTargetIp(),targetIp);
-			super.setTargetIp(targetIp);
+		public SlbStrategyInfo setPort(String port) {
+			super.change(PORT,super.getPort(),port);
+			super.setPort(port);
+			return this;
+		}
+		
+		/**
+		 * 设置 均衡策略
+		 * @param balanceStrategy 均衡策略
+		 * @return 当前对象
+		*/
+		public SlbStrategyInfo setBalanceStrategy(String balanceStrategy) {
+			super.change(BALANCE_STRATEGY,super.getBalanceStrategy(),balanceStrategy);
+			super.setBalanceStrategy(balanceStrategy);
+			return this;
+		}
+		
+		/**
+		 * 设置 会话保持
+		 * @param sessionKeep 会话保持
+		 * @return 当前对象
+		*/
+		public SlbStrategyInfo setSessionKeep(String sessionKeep) {
+			super.change(SESSION_KEEP,super.getSessionKeep(),sessionKeep);
+			super.setSessionKeep(sessionKeep);
+			return this;
+		}
+		
+		/**
+		 * 设置 保持方式
+		 * @param sessionKeepMethod 保持方式
+		 * @return 当前对象
+		*/
+		public SlbStrategyInfo setSessionKeepMethod(String sessionKeepMethod) {
+			super.change(SESSION_KEEP_METHOD,super.getSessionKeepMethod(),sessionKeepMethod);
+			super.setSessionKeepMethod(sessionKeepMethod);
 			return this;
 		}
 		
@@ -467,13 +530,13 @@ public class SlbStrategyInfoVOMeta extends SlbStrategyInfoMeta {
 		}
 		
 		/**
-		 * 设置 连接类型
-		 * @param sessionType 连接类型
+		 * 设置 选择
+		 * @param selectedCode 选择
 		 * @return 当前对象
 		*/
-		public SlbStrategyInfo setSessionType(String sessionType) {
-			super.change(SESSION_TYPE,super.getSessionType(),sessionType);
-			super.setSessionType(sessionType);
+		public SlbStrategyInfo setSelectedCode(String selectedCode) {
+			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
+			super.setSelectedCode(selectedCode);
 			return this;
 		}
 		

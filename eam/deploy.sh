@@ -79,10 +79,11 @@ mv $app_tar $tmp_dir
 if [[ $ops_remotefile_recreate -eq 1 ]];then
 	echo "">$ops_remotefile_recreate_file
 	echo "UPLOAD sf=$tmp_dir/$app_tar         @@ dd=/tmp @@ df=app.tar"        >>$ops_remotefile_recreate_file
-	echo "UPLOAD sf=$tmp_dir/deploy_app.sh    @@ dd=/tmp @@ df=deploy_app.sh"  >>$ops_remotefile_recreate_file
-	echo "cd /tmp/"                           >>$ops_remotefile_recreate_file
-	echo "sh deploy_app.sh "                  >>$ops_remotefile_recreate_file
-	echo "exit 0"												      >>$ops_remotefile_recreate_file
+	echo "cd /opt/eam/bin"                           >>$ops_remotefile_recreate_file
+	echo "sh deployDemoFromDev.sh "                  >>$ops_remotefile_recreate_file
+	echo "cd /opt/eam "                              >>$ops_remotefile_recreate_file
+	echo "sh appRestart.sh "                         >>$ops_remotefile_recreate_file
+	echo "exit 0"												             >>$ops_remotefile_recreate_file
 fi
 ####################### Create Base Node File ###############
 if [[ $ops_node_file_recreate -eq 1 ]];then

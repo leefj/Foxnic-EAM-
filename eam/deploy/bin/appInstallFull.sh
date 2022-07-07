@@ -212,6 +212,8 @@ function installApp(){
 		clearTips
 		exit 1
 	fi
+
+	#app.jar
 	cd $app_dir
 	cp $app_soft .
 	tar xvf $app_soft
@@ -240,8 +242,13 @@ function installApp(){
 	db_procedure_file=$app_dir/bin/sql/nextVal.sql
 	db_clear_data_file=$app_dir/bin/sql/cleardata.sql
 	db_app_setting_file=$app_dir/bin/sql/settingapp.sql
-	application_tpl_yml=$app_dir/application_tpl.yml
-	application_yml=$app_dir/application.yml
+	application_tpl_yml=$app_dir/app/app/application_tpl.yml
+	application_yml=$app_dir/app/app/application.yml
+	bpm_application_tpl_yml=$app_dir/app/bpm/application_tpl.yml
+	bpm_application_yml=$app_dir/app/bpm/application.yml
+	job_application_tpl_yml=$app_dir/app/job/application_tpl.yml
+	job_application_yml=$app_dir/app/job/application.yml
+
 	if [[ ! -f "$db_sql_file" ]];then
 	  echo "Error|db sql file:$db_sql_file not exist"
 	  echo "deploy failed!"
@@ -254,7 +261,7 @@ function installApp(){
 	  exit 1
 	fi
 	app_port=8089
-	app_upload_dir=$app_dir/upload
+	app_upload_dir=$app_dir/app/app/upload
 	db_host=127.0.0.1
 	db_port=3306
 	db_name=eam
@@ -295,12 +302,27 @@ function installApp(){
 	sed -i "s/APP_DB_NAME/$db_name/g"               $application_yml
 	sed -i "s/APP_DB_USERNAME/$db_user/g"           $application_yml
 	sed -i "s/APP_DB_PASSWORD/$db_pwd/g"            $application_yml
+	echo "#########start to create bpm_application.yml from $bpm_application_tpl_yml"
+	if [[ -f $job_application_yml ]];then
+	  cat $bpm_application_tpl_yml>$bpm_application_yml
+	  sed -i "s/APP_DB_USERNAME/$db_user/g"           $bpm_application_yml
+  	sed -i "s/APP_DB_PASSWORD/$db_pwd/g"            $bpm_application_yml
+	fi
+	echo "#########start to create job_application.yml from $job_application_tpl_yml"
+	if [[ -f $job_application_yml ]];then
+	  cat $job_application_tpl_yml>$job_application_yml
+	  sed -i "s/APP_DB_USERNAME/$db_user/g"           $job_application_yml
+	  sed -i "s/APP_DB_PASSWORD/$db_pwd/g"            $job_application_yml
+	fi
 	echo "#############install app success#############"
 	#restart app
 	chmod +x /etc/rc.d/rc.local
-	echo "sleep 10">>/etc/rc.d/rc.local
-	sed -i '/appRestart/d' /etc/rc.d/rc.local
-	echo "cd $app_dir;sh appRestart.sh">>/etc/rc.d/rc.local
+	echo "sleep 5">>/etc/rc.d/rc.local
+	sed -i '/restartApp/d' /etc/rc.d/rc.local
+	echo "cd $app_dir;sh restartApp.sh">>/etc/rc.d/rc.local
+	echo "sleep 5">>/etc/rc.d/rc.local
+	sed -i '/restartBpm/d' /etc/rc.d/rc.local
+	echo "cd $app_dir;sh restartBpm.sh">>/etc/rc.d/rc.local
 }
 function stopFirewalld(){
   btcnt=`ps -ef|grep python|grep BT|grep -v grep|wc -l`
@@ -434,10 +456,14 @@ else
 fi
 ## install app
 installApp
+
 ## stop Firewalld
 stopFirewalld
+
 cd $app_dir
-sh appStart.sh
+sh startApp.sh
+sleep 3
+sh startBpm.sh
 
 echo "################## install result ###################"
 echo "Install Finish"

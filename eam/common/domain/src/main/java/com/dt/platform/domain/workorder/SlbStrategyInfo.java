@@ -17,8 +17,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 负载策略
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-04 21:04:50
- * @sign 610609423A8379B6AF4A88C97A1FE7EF
+ * @since 2022-07-06 19:45:52
+ * @sign 4FEE2B400C4C835965FD09FB6D2BAF36
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -43,28 +43,46 @@ public class SlbStrategyInfo extends Entity {
 	private String ownerId;
 	
 	/**
-	 * 源名称：源名称
+	 * 服务名称：服务名称
 	*/
-	@ApiModelProperty(required = false,value="源名称" , notes = "源名称")
-	private String sourceName;
+	@ApiModelProperty(required = false,value="服务名称" , notes = "服务名称")
+	private String serviceName;
 	
 	/**
-	 * 源IP：源IP
+	 * 服务IP：服务IP
 	*/
-	@ApiModelProperty(required = false,value="源IP" , notes = "源IP")
-	private String sourceIp;
+	@ApiModelProperty(required = false,value="服务IP" , notes = "服务IP")
+	private String serviceIp;
 	
 	/**
-	 * 目标名称：目标名称
+	 * 节点IP：节点IP
 	*/
-	@ApiModelProperty(required = false,value="目标名称" , notes = "目标名称")
-	private String targetName;
+	@ApiModelProperty(required = false,value="节点IP" , notes = "节点IP")
+	private String nodeIp;
 	
 	/**
-	 * 目标IP：目标IP
+	 * 端口：端口
 	*/
-	@ApiModelProperty(required = false,value="目标IP" , notes = "目标IP")
-	private String targetIp;
+	@ApiModelProperty(required = false,value="端口" , notes = "端口")
+	private String port;
+	
+	/**
+	 * 均衡策略：均衡策略
+	*/
+	@ApiModelProperty(required = false,value="均衡策略" , notes = "均衡策略")
+	private String balanceStrategy;
+	
+	/**
+	 * 会话保持：会话保持
+	*/
+	@ApiModelProperty(required = false,value="会话保持" , notes = "会话保持")
+	private String sessionKeep;
+	
+	/**
+	 * 保持方式：保持方式
+	*/
+	@ApiModelProperty(required = false,value="保持方式" , notes = "保持方式")
+	private String sessionKeepMethod;
 	
 	/**
 	 * 使用协议：使用协议
@@ -73,10 +91,10 @@ public class SlbStrategyInfo extends Entity {
 	private String usedProtocolType;
 	
 	/**
-	 * 连接类型：连接类型
+	 * 选择：选择
 	*/
-	@ApiModelProperty(required = false,value="连接类型" , notes = "连接类型")
-	private String sessionType;
+	@ApiModelProperty(required = false,value="选择" , notes = "选择")
+	private String selectedCode;
 	
 	/**
 	 * 备注：备注
@@ -173,78 +191,135 @@ public class SlbStrategyInfo extends Entity {
 	}
 	
 	/**
-	 * 获得 源名称<br>
-	 * 源名称
-	 * @return 源名称
+	 * 获得 服务名称<br>
+	 * 服务名称
+	 * @return 服务名称
 	*/
-	public String getSourceName() {
-		return sourceName;
+	public String getServiceName() {
+		return serviceName;
 	}
 	
 	/**
-	 * 设置 源名称
-	 * @param sourceName 源名称
+	 * 设置 服务名称
+	 * @param serviceName 服务名称
 	 * @return 当前对象
 	*/
-	public SlbStrategyInfo setSourceName(String sourceName) {
-		this.sourceName=sourceName;
+	public SlbStrategyInfo setServiceName(String serviceName) {
+		this.serviceName=serviceName;
 		return this;
 	}
 	
 	/**
-	 * 获得 源IP<br>
-	 * 源IP
-	 * @return 源IP
+	 * 获得 服务IP<br>
+	 * 服务IP
+	 * @return 服务IP
 	*/
-	public String getSourceIp() {
-		return sourceIp;
+	public String getServiceIp() {
+		return serviceIp;
 	}
 	
 	/**
-	 * 设置 源IP
-	 * @param sourceIp 源IP
+	 * 设置 服务IP
+	 * @param serviceIp 服务IP
 	 * @return 当前对象
 	*/
-	public SlbStrategyInfo setSourceIp(String sourceIp) {
-		this.sourceIp=sourceIp;
+	public SlbStrategyInfo setServiceIp(String serviceIp) {
+		this.serviceIp=serviceIp;
 		return this;
 	}
 	
 	/**
-	 * 获得 目标名称<br>
-	 * 目标名称
-	 * @return 目标名称
+	 * 获得 节点IP<br>
+	 * 节点IP
+	 * @return 节点IP
 	*/
-	public String getTargetName() {
-		return targetName;
+	public String getNodeIp() {
+		return nodeIp;
 	}
 	
 	/**
-	 * 设置 目标名称
-	 * @param targetName 目标名称
+	 * 设置 节点IP
+	 * @param nodeIp 节点IP
 	 * @return 当前对象
 	*/
-	public SlbStrategyInfo setTargetName(String targetName) {
-		this.targetName=targetName;
+	public SlbStrategyInfo setNodeIp(String nodeIp) {
+		this.nodeIp=nodeIp;
 		return this;
 	}
 	
 	/**
-	 * 获得 目标IP<br>
-	 * 目标IP
-	 * @return 目标IP
+	 * 获得 端口<br>
+	 * 端口
+	 * @return 端口
 	*/
-	public String getTargetIp() {
-		return targetIp;
+	public String getPort() {
+		return port;
 	}
 	
 	/**
-	 * 设置 目标IP
-	 * @param targetIp 目标IP
+	 * 设置 端口
+	 * @param port 端口
 	 * @return 当前对象
 	*/
-	public SlbStrategyInfo setTargetIp(String targetIp) {
-		this.targetIp=targetIp;
+	public SlbStrategyInfo setPort(String port) {
+		this.port=port;
+		return this;
+	}
+	
+	/**
+	 * 获得 均衡策略<br>
+	 * 均衡策略
+	 * @return 均衡策略
+	*/
+	public String getBalanceStrategy() {
+		return balanceStrategy;
+	}
+	
+	/**
+	 * 设置 均衡策略
+	 * @param balanceStrategy 均衡策略
+	 * @return 当前对象
+	*/
+	public SlbStrategyInfo setBalanceStrategy(String balanceStrategy) {
+		this.balanceStrategy=balanceStrategy;
+		return this;
+	}
+	
+	/**
+	 * 获得 会话保持<br>
+	 * 会话保持
+	 * @return 会话保持
+	*/
+	public String getSessionKeep() {
+		return sessionKeep;
+	}
+	
+	/**
+	 * 设置 会话保持
+	 * @param sessionKeep 会话保持
+	 * @return 当前对象
+	*/
+	public SlbStrategyInfo setSessionKeep(String sessionKeep) {
+		this.sessionKeep=sessionKeep;
+		return this;
+	}
+	
+	/**
+	 * 获得 保持方式<br>
+	 * 保持方式
+	 * @return 保持方式
+	*/
+	public String getSessionKeepMethod() {
+		return sessionKeepMethod;
+	}
+	
+	/**
+	 * 设置 保持方式
+	 * @param sessionKeepMethod 保持方式
+	 * @return 当前对象
+	*/
+	public SlbStrategyInfo setSessionKeepMethod(String sessionKeepMethod) {
+		this.sessionKeepMethod=sessionKeepMethod;
 		return this;
 	}
 	
@@ -268,21 +343,21 @@ public class SlbStrategyInfo extends Entity {
 	}
 	
 	/**
-	 * 获得 连接类型<br>
-	 * 连接类型
-	 * @return 连接类型
+	 * 获得 选择<br>
+	 * 选择
+	 * @return 选择
 	*/
-	public String getSessionType() {
-		return sessionType;
+	public String getSelectedCode() {
+		return selectedCode;
 	}
 	
 	/**
-	 * 设置 连接类型
-	 * @param sessionType 连接类型
+	 * 设置 选择
+	 * @param selectedCode 选择
 	 * @return 当前对象
 	*/
-	public SlbStrategyInfo setSessionType(String sessionType) {
-		this.sessionType=sessionType;
+	public SlbStrategyInfo setSelectedCode(String selectedCode) {
+		this.selectedCode=selectedCode;
 		return this;
 	}
 	

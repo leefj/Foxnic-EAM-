@@ -1,7 +1,7 @@
 /**
  * 负载策略 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-04 21:04:51
+ * @since 2022-07-06 19:45:54
  */
 
 function FormPage() {
@@ -106,6 +106,72 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
+		//渲染 balanceStrategy 下拉字段
+		fox.renderSelectBox({
+			el: "balanceStrategy",
+			radio: true,
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("balanceStrategy",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "0".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
+		form.on('radio(sessionKeep)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=sessionKeep]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("sessionKeep",data,checked);
+		});
+		form.on('radio(sessionKeepMethod)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=sessionKeepMethod]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("sessionKeepMethod",data,checked);
+		});
+		//渲染 usedProtocolType 下拉字段
+		fox.renderSelectBox({
+			el: "usedProtocolType",
+			radio: true,
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("usedProtocolType",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "0".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
 	}
 
 	/**
@@ -158,6 +224,10 @@ function FormPage() {
 
 
 
+			//设置  均衡策略 设置下拉框勾选
+			fox.setSelectValue4Enum("#balanceStrategy",formData.balanceStrategy,SELECT_BALANCESTRATEGY_DATA);
+			//设置  使用协议 设置下拉框勾选
+			fox.setSelectValue4Enum("#usedProtocolType",formData.usedProtocolType,SELECT_USEDPROTOCOLTYPE_DATA);
 
 			//处理fillBy
 
@@ -209,6 +279,10 @@ function FormPage() {
 
 
 
+		//获取 均衡策略 下拉框的值
+		data["balanceStrategy"]=fox.getSelectedValue("balanceStrategy",false);
+		//获取 使用协议 下拉框的值
+		data["usedProtocolType"]=fox.getSelectedValue("usedProtocolType",false);
 
 		return data;
 	}

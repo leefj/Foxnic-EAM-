@@ -12,8 +12,8 @@ import org.github.foxnic.web.domain.bpm.ProcessInstance;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-06 06:11:20
- * @sign 8048722AFB5A86FCC5430E0AA116C731
+ * @since 2022-07-06 17:05:33
+ * @sign 3ACEE6243772050F5B2E80E61D57A24E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -158,36 +158,6 @@ public class NetworkStrategyApplyMeta {
 	 * 申请人 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.workorder.NetworkStrategyApply,java.lang.String> ORIGINATOR_ID_PROP = new BeanProperty(com.dt.platform.domain.workorder.NetworkStrategyApply.class ,ORIGINATOR_ID, java.lang.String.class, "申请人", "申请人", java.lang.String.class, null);
-	
-	/**
-	 * 完成日期 , 类型: java.util.Date
-	*/
-	public static final String COMPLETION_DATE="completionDate";
-	
-	/**
-	 * 完成日期 , 类型: java.util.Date
-	*/
-	public static final BeanProperty<com.dt.platform.domain.workorder.NetworkStrategyApply,java.util.Date> COMPLETION_DATE_PROP = new BeanProperty(com.dt.platform.domain.workorder.NetworkStrategyApply.class ,COMPLETION_DATE, java.util.Date.class, "完成日期", "完成日期", java.util.Date.class, null);
-	
-	/**
-	 * 结果状态 , 类型: java.lang.String
-	*/
-	public static final String RESULT_STATUS="resultStatus";
-	
-	/**
-	 * 结果状态 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.workorder.NetworkStrategyApply,java.lang.String> RESULT_STATUS_PROP = new BeanProperty(com.dt.platform.domain.workorder.NetworkStrategyApply.class ,RESULT_STATUS, java.lang.String.class, "结果状态", "结果状态", java.lang.String.class, null);
-	
-	/**
-	 * 结果 , 类型: java.lang.String
-	*/
-	public static final String RESULT_CONTENT="resultContent";
-	
-	/**
-	 * 结果 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.workorder.NetworkStrategyApply,java.lang.String> RESULT_CONTENT_PROP = new BeanProperty(com.dt.platform.domain.workorder.NetworkStrategyApply.class ,RESULT_CONTENT, java.lang.String.class, "结果", "结果", java.lang.String.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -342,7 +312,7 @@ public class NetworkStrategyApplyMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CATEGORY_ID , CODE , STATUS , NAME , PROJECT_NAME , ENVIRONMENT_ID , PERIOD_TYPE , EXPIRATION_DATE , APPLY_DATE , EXPECTED_COMPLETION_DATE , CONTENT , FILE_ID , ORIGINATOR_ID , COMPLETION_DATE , RESULT_STATUS , RESULT_CONTENT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , NETWORK_STRATEGY_INFO_LIST , NETWORK_STRATEGY_IDS , ORIGINATOR , ORIGINATOR_USER_NAME , HISTORIC_PROCESS_LIST , CURRENT_PROCESS_LIST , DEFAULT_PROCESS };
+	public static final String[] $PROPS={ ID , CATEGORY_ID , CODE , STATUS , NAME , PROJECT_NAME , ENVIRONMENT_ID , PERIOD_TYPE , EXPIRATION_DATE , APPLY_DATE , EXPECTED_COMPLETION_DATE , CONTENT , FILE_ID , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , NETWORK_STRATEGY_INFO_LIST , NETWORK_STRATEGY_IDS , ORIGINATOR , ORIGINATOR_USER_NAME , HISTORIC_PROCESS_LIST , CURRENT_PROCESS_LIST , DEFAULT_PROCESS };
 	
 	/**
 	 * 代理类
@@ -503,39 +473,6 @@ public class NetworkStrategyApplyMeta {
 		public NetworkStrategyApply setOriginatorId(String originatorId) {
 			super.change(ORIGINATOR_ID,super.getOriginatorId(),originatorId);
 			super.setOriginatorId(originatorId);
-			return this;
-		}
-		
-		/**
-		 * 设置 完成日期
-		 * @param completionDate 完成日期
-		 * @return 当前对象
-		*/
-		public NetworkStrategyApply setCompletionDate(Date completionDate) {
-			super.change(COMPLETION_DATE,super.getCompletionDate(),completionDate);
-			super.setCompletionDate(completionDate);
-			return this;
-		}
-		
-		/**
-		 * 设置 结果状态
-		 * @param resultStatus 结果状态
-		 * @return 当前对象
-		*/
-		public NetworkStrategyApply setResultStatus(String resultStatus) {
-			super.change(RESULT_STATUS,super.getResultStatus(),resultStatus);
-			super.setResultStatus(resultStatus);
-			return this;
-		}
-		
-		/**
-		 * 设置 结果
-		 * @param resultContent 结果
-		 * @return 当前对象
-		*/
-		public NetworkStrategyApply setResultContent(String resultContent) {
-			super.change(RESULT_CONTENT,super.getResultContent(),resultContent);
-			super.setResultContent(resultContent);
 			return this;
 		}
 		

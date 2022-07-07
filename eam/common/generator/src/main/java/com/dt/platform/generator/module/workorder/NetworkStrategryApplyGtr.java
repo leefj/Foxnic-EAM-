@@ -44,7 +44,6 @@ public class NetworkStrategryApplyGtr extends BaseCodeGenerator {
         cfg.view().field(WorkorderTables.WO_NETWORK_STRATEGY_APPLY.FILE_ID).table().disable(true);
 
         cfg.view().field(WorkorderTables.WO_NETWORK_STRATEGY_APPLY.CONTENT).table().disable(true);
-        cfg.view().field(WorkorderTables.WO_NETWORK_STRATEGY_APPLY.CATEGORY_ID).table().disable(true);
         cfg.view().field(NetworkStrategyApplyMeta.ORIGINATOR_USER_NAME).table().disable(true);
 
         cfg.view().field(NetworkStrategyApplyMeta.ORIGINATOR_USER_NAME).table().label("申请人").form().label("申请人")
@@ -119,11 +118,6 @@ public class NetworkStrategryApplyGtr extends BaseCodeGenerator {
         cfg.view().list().disableBatchDelete();
 
         cfg.view().form().addPage("资源信息","assetSelectList");
-        cfg.view().form().addGroup(null,
-                new Object[] {
-                        WorkorderTables.WO_NETWORK_STRATEGY_APPLY.COMPLETION_DATE,
-                }
-        );
 
 
 

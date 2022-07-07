@@ -1,7 +1,7 @@
 /**
  * 负载策略 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-04 21:04:51
+ * @since 2022-07-06 19:45:54
  */
 
 
@@ -77,14 +77,14 @@ function ListPage() {
 				cols: [[
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
-					,{ field: 'id', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'ownerId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('所属') , templet: function (d) { return templet('ownerId',d.ownerId,d);}  }
-					,{ field: 'sourceName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('源名称') , templet: function (d) { return templet('sourceName',d.sourceName,d);}  }
-					,{ field: 'sourceIp', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('源IP') , templet: function (d) { return templet('sourceIp',d.sourceIp,d);}  }
-					,{ field: 'targetName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('目标名称') , templet: function (d) { return templet('targetName',d.targetName,d);}  }
-					,{ field: 'targetIp', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('目标IP') , templet: function (d) { return templet('targetIp',d.targetIp,d);}  }
-					,{ field: 'usedProtocolType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('使用协议') , templet: function (d) { return templet('usedProtocolType',d.usedProtocolType,d);}  }
-					,{ field: 'sessionType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('连接类型') , templet: function (d) { return templet('sessionType',d.sessionType,d);}  }
+					,{ field: 'serviceName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('服务名称') , templet: function (d) { return templet('serviceName',d.serviceName,d);}  }
+					,{ field: 'serviceIp', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('服务IP') , templet: function (d) { return templet('serviceIp',d.serviceIp,d);}  }
+					,{ field: 'nodeIp', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('节点IP') , templet: function (d) { return templet('nodeIp',d.nodeIp,d);}  }
+					,{ field: 'port', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('端口') , templet: function (d) { return templet('port',d.port,d);}  }
+					,{ field: 'balanceStrategy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('均衡策略'), templet:function (d){ return templet('balanceStrategy',fox.getEnumText(SELECT_BALANCESTRATEGY_DATA,d.balanceStrategy),d);}}
+					,{ field: 'sessionKeep', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('会话保持'), templet:function (d){ return templet('sessionKeep',fox.getEnumText(RADIO_SESSIONKEEP_DATA,d.sessionKeep),d);}}
+					,{ field: 'sessionKeepMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('保持方式'), templet:function (d){ return templet('sessionKeepMethod',fox.getEnumText(RADIO_SESSIONKEEPMETHOD_DATA,d.sessionKeepMethod),d);}}
+					,{ field: 'usedProtocolType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('使用协议'), templet:function (d){ return templet('usedProtocolType',fox.getEnumText(SELECT_USEDPROTOCOLTYPE_DATA,d.usedProtocolType),d);}}
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
@@ -135,16 +135,8 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.id={ inputType:"button",value: $("#id").val()};
-		value.ownerId={ inputType:"button",value: $("#ownerId").val()};
-		value.sourceName={ inputType:"button",value: $("#sourceName").val()};
-		value.sourceIp={ inputType:"button",value: $("#sourceIp").val()};
-		value.targetName={ inputType:"button",value: $("#targetName").val()};
-		value.targetIp={ inputType:"button",value: $("#targetIp").val()};
-		value.usedProtocolType={ inputType:"button",value: $("#usedProtocolType").val()};
-		value.sessionType={ inputType:"button",value: $("#sessionType").val()};
-		value.notes={ inputType:"button",value: $("#notes").val()};
-		value.createTime={ inputType:"date_input", value: $("#createTime").val() ,matchType:"auto"};
+		value.serviceName={ inputType:"button",value: $("#serviceName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.serviceIp={ inputType:"button",value: $("#serviceIp").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -385,7 +377,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["500px",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"wo-slb-strategy-info-form-data-win",
 			content: '/business/workorder/slb_strategy_info/slb_strategy_info_form.html' + (queryString?("?"+queryString):""),

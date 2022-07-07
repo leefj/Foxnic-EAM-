@@ -49,7 +49,6 @@ public class ServerApplyGtr extends BaseCodeGenerator {
         cfg.view().field(WorkorderTables.WO_SERVER_APPLY.CONTENT).table().disable(true);
 
 
-        cfg.view().field(WorkorderTables.WO_SERVER_APPLY.CATEGORY_ID).table().disable(true);
         cfg.view().field(ServerApplyMeta.ORIGINATOR_USER_NAME).table().disable(true);
 
 

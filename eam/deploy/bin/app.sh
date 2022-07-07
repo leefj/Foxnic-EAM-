@@ -1,7 +1,7 @@
 #!/bin/sh
 #####################################################################
 # Script Help:
-#     sh eam.sh start|stop|restart
+#     sh app.sh start|stop|restart
 #
 #####################################################################
 ####################### Configure ###################################
@@ -21,13 +21,8 @@ if [[ ! -d $app_dir ]];then
   exit 1;
 fi
 
-cDir="$app_dir/data
-$app_dir/logs
-$app_dir/tmp
+cDir="$app_dir/logs
 $app_dir/update
-$app_dir/backup/dbdata
-$app_dir/upload
-$app_dir/upload/tpl/T001
 "
 for cdir in $cDir
 do
@@ -41,8 +36,9 @@ if [[ -n $2 ]];then
   app=$2
 fi
 app_name=${app}.jar
-if [[ ! -f "$app_dir/$app_name" ]];then
-  echo "jar not exist,jar:$app_dir/$app_name"
+
+if [[ ! -f "$app_dir/app/$app/$app_name" ]];then
+  echo "jar not exist,jar:$app_dir/app/$app/$app_name"
   exit 1
 fi
 
@@ -77,7 +73,8 @@ start(){
   if [[ $pidcnt -ge 1 ]];then
     echo "Process is already running,please first stop it."
   else
-    nohup $JAVA -noverify -Dfile.encoding=UTF-8 -Dloader.path=./lib/ $java_Xmx -jar $app_name -dprocess_Mark=$app_process_mark --Dspring.config.location=$app_dir/application.yml>$app_log_file 2>&1 &
+    cd $app_dir/app/$app
+    nohup $JAVA -noverify -Dfile.encoding=UTF-8 -Dloader.path=./lib/ $java_Xmx -jar $app_name -dprocess_Mark=$app_process_mark --Dspring.config.location=application.yml>$app_log_file 2>&1 &
     sleep 3
     pidlist2=`ps -ef|grep java|grep $app_process_mark|grep -v grep |awk '{print $2}'`
     pidcnt2=`ps -ef|grep java|grep $app_process_mark|grep -v grep |awk '{print $2}'|wc -l`
