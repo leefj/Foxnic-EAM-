@@ -11,7 +11,9 @@ echo "maven_dir:$maven_dir"
 if [[ -d "$maven_dir/com/github/foxnic" ]];then
   cd $maven_dir/com/github/foxnic
   echo "start to clear foxnic maven lib";
-  rm -rf *
+  rm -rf foxnic*
+  rm -rf web*
+  rm -rf par*
 fi
 
 if [[ -d "/Users/lank/IdeaProjectsnew/eam/logs" ]];then

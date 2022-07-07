@@ -106,3 +106,21 @@ delete from ops_person where 1=1 and tenant_id='T001' ;
 -- ops_certificate
 delete from ops_certificate where 1=1 and tenant_id='T001' ;
 
+-- eam employ
+delete from eam_asset_employee_apply where 1=1 and tenant_id='T001' ;
+delete from eam_asset_employee_handover where 1=1 and tenant_id='T001' ;
+delete from eam_asset_employee_loss where 1=1 and tenant_id='T001' ;
+delete from eam_asset_employee_repair where 1=1 and tenant_id='T001' ;
+
+-- workorder
+delete from wo_network_strategy_apply where 1=1 and tenant_id='T001' ;
+delete from wo_network_strategy_info ;
+delete from wo_server_apply where 1=1 and tenant_id='T001' ;
+delete from wo_server_info ;
+delete from wo_slb_strategy_apply where 1=1 and tenant_id='T001' ;
+delete from wo_slb_strategy_info ;
+
+
+
+
+
