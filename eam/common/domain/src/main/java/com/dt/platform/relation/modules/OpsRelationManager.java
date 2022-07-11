@@ -9,6 +9,7 @@ import com.dt.platform.domain.eam.meta.AssetCollectionReturnMeta;
 import com.dt.platform.domain.eam.meta.AssetMeta;
 import com.dt.platform.domain.eam.meta.MaintainTaskMeta;
 import com.dt.platform.domain.eam.meta.TplFileMeta;
+import com.dt.platform.domain.ops.MonitorObject;
 import com.dt.platform.domain.ops.Voucher;
 import com.dt.platform.domain.ops.VoucherPriv;
 import com.dt.platform.domain.ops.meta.*;
@@ -38,11 +39,39 @@ public class OpsRelationManager extends RelationManager {
         this.setupCertificateItem();
         this.setupSoftwareBaseVersion();
 
+
+        this.setupMonitorObject();
+
+
+        this.setupMonitorModel();
+
+    }
+
+    public void setupMonitorObject() {
+        this.property(MonitorObjectMeta.GROUP_PROP)
+                .using(OpsTables.OPS_MONITOR_OBJECT.GROUP_CODE).join(OpsTables.OPS_MONITOR_OBJECT_GROUP.CODE);
+
+        this.property(MonitorObjectMeta.OBJECT_MODEL_PROP)
+                .using(OpsTables.OPS_MONITOR_OBJECT.OBJECT_MODEL_ID).join(OpsTables.OPS_MONITOR_OBJECT_MODEL.ID);
+
+
+    }
+
+    public void setupMonitorModel() {
+
+        this.property(MonitorObjectModelMeta.GROUP_PROP)
+                .using(OpsTables.OPS_MONITOR_OBJECT_MODEL.GROUP_ID).join(OpsTables.OPS_MONITOR_OBJECT_GROUP.ID);
+
+        this.property(MonitorObjectModelMeta.GRAFANA_PROP)
+                .using(OpsTables.OPS_MONITOR_OBJECT_MODEL.GRAFANA_ID).join(OpsTables.OPS_MONITOR_OBJECT_GRAFANA.ID);
+
+
     }
 
     public void setupPerson() {
 
     }
+
 
     public void setupSoftwareBaseVersion() {
         this.property(SoftwareBaseVersionMeta.SOFTWARE_BASE_TYPE_PROP)

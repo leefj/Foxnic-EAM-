@@ -5,6 +5,7 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 public enum ServiceDeskTypeEnum implements CodeTextEnum {
 
     PROCESS("process" , "流程"),
+    OUTLINK("outlink" , "外链"),
     DIR("dir" , "目录");
 
 

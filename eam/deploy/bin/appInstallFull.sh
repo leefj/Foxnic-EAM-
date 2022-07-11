@@ -11,6 +11,12 @@
 #   java_soft:/tmp/jdk-8u333-linux-x64.tar.gz
 #   app_soft:/tmp/app_release_last.tar.gz
 #                                           modify at 20220611
+#clear all
+#   rm -rf /app/java
+#   rm -rf /app/db
+#   rm -rf /app/eam
+#   ps -ef|grep java |grep -v grep |awk '{print $2}'|xargs kill -9
+#   ps -ef|grep mysql |grep -v grep |awk '{print $2}'|xargs kill -9
 ########################################################################
 #################################### config
 ## soft
@@ -242,6 +248,7 @@ function installApp(){
 	db_procedure_file=$app_dir/bin/sql/nextVal.sql
 	db_clear_data_file=$app_dir/bin/sql/cleardata.sql
 	db_app_setting_file=$app_dir/bin/sql/settingapp.sql
+
 	application_tpl_yml=$app_dir/app/app/application_tpl.yml
 	application_yml=$app_dir/app/app/application.yml
 	bpm_application_tpl_yml=$app_dir/app/bpm/application_tpl.yml
@@ -303,14 +310,18 @@ function installApp(){
 	sed -i "s/APP_DB_USERNAME/$db_user/g"           $application_yml
 	sed -i "s/APP_DB_PASSWORD/$db_pwd/g"            $application_yml
 	echo "#########start to create bpm_application.yml from $bpm_application_tpl_yml"
-	if [[ -f $job_application_yml ]];then
+	if [[ -f $bpm_application_tpl_yml ]];then
 	  cat $bpm_application_tpl_yml>$bpm_application_yml
+	  sed -i "s/APP_DB_PORT/$db_port/g"               $bpm_application_yml
+  	sed -i "s/APP_DB_NAME/$db_name/g"                $bpm_application_yml
 	  sed -i "s/APP_DB_USERNAME/$db_user/g"           $bpm_application_yml
   	sed -i "s/APP_DB_PASSWORD/$db_pwd/g"            $bpm_application_yml
 	fi
 	echo "#########start to create job_application.yml from $job_application_tpl_yml"
-	if [[ -f $job_application_yml ]];then
+	if [[ -f $job_application_tpl_yml ]];then
 	  cat $job_application_tpl_yml>$job_application_yml
+	  sed -i "s/APP_DB_PORT/$db_user/g"               $job_application_yml
+  	sed -i "s/APP_DB_NAME/$db_pwd/g"                $job_application_yml
 	  sed -i "s/APP_DB_USERNAME/$db_user/g"           $job_application_yml
 	  sed -i "s/APP_DB_PASSWORD/$db_pwd/g"            $job_application_yml
 	fi
@@ -318,11 +329,8 @@ function installApp(){
 	#restart app
 	chmod +x /etc/rc.d/rc.local
 	echo "sleep 5">>/etc/rc.d/rc.local
-	sed -i '/restartApp/d' /etc/rc.d/rc.local
-	echo "cd $app_dir;sh restartApp.sh">>/etc/rc.d/rc.local
-	echo "sleep 5">>/etc/rc.d/rc.local
-	sed -i '/restartBpm/d' /etc/rc.d/rc.local
-	echo "cd $app_dir;sh restartBpm.sh">>/etc/rc.d/rc.local
+	sed -i '/startALL/d' /etc/rc.d/rc.local
+	echo "cd $app_dir;sh startALL.sh">>/etc/rc.d/rc.local
 }
 function stopFirewalld(){
   btcnt=`ps -ef|grep python|grep BT|grep -v grep|wc -l`
@@ -401,7 +409,9 @@ if [[ -f $app_soft ]];then
 fi
 echo "start to download app"
 #wget http://resource.rainbooow.com/$app_soft_name
+#wget http://resource.rainbooow.com/app_release_last.tar.gz
 wget http://resourceupyun.rainbooow.com/$app_soft_name
+#cp /tmp/app.tar.gz /tmp/app_release_last.tar.gz
 ################### verify soft ###################
 verifySoft $app_soft
 app_soft_VR=$?
@@ -461,9 +471,8 @@ installApp
 stopFirewalld
 
 cd $app_dir
-sh startApp.sh
-sleep 3
-sh startBpm.sh
+sh startALL.sh
+
 
 echo "################## install result ###################"
 echo "Install Finish"
@@ -476,3 +485,10 @@ echo "Login username:admin"
 echo "Login password:123456"
 echo "################## install end #######################"
 exit 0
+
+
+rm -rf /app/java
+rm -rf /app/db
+rm -rf /app/eam
+ps -ef|grep java |grep -v grep |awk '{print $2}'|xargs kill -9
+ps -ef|grep mysql |grep -v grep |awk '{print $2}'|xargs kill -9

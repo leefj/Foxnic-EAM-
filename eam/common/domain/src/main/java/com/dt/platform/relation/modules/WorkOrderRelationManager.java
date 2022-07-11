@@ -1,15 +1,14 @@
 package com.dt.platform.relation.modules;
 
  
+import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.db.VehicleTables;
 import com.dt.platform.constants.db.WorkorderTables;
+import com.dt.platform.domain.eam.meta.MaintainTaskMeta;
 import com.dt.platform.domain.vehicle.meta.ApplyMeta;
 import com.dt.platform.domain.vehicle.meta.InfoMeta;
 import com.dt.platform.domain.vehicle.meta.MaintenanceMeta;
-import com.dt.platform.domain.workorder.meta.NetworkStrategyApplyMeta;
-import com.dt.platform.domain.workorder.meta.ServerApplyMeta;
-import com.dt.platform.domain.workorder.meta.ServerInfoMeta;
-import com.dt.platform.domain.workorder.meta.SlbStrategyApplyMeta;
+import com.dt.platform.domain.workorder.meta.*;
 import com.github.foxnic.dao.relation.RelationManager;
 import org.github.foxnic.web.constants.db.FoxnicWeb;
 
@@ -23,6 +22,17 @@ public class WorkOrderRelationManager extends RelationManager {
 		this.setupServerInfo();
 		this.setupNetworkStrategyApply();
 		this.setupSlbStrategyApply();
+
+		this.setupServicePortal();
+	}
+
+	public void setupServicePortal() {
+
+
+		this.property(ServicePortalMeta.GROUP_PROP)
+				.using(WorkorderTables.WO_SERVICE_PORTAL.GROUP_ID).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+				.condition("dict_code='wo_portal_group'");
+
 	}
 
 

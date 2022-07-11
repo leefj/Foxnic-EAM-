@@ -26,6 +26,9 @@ import java.util.Arrays;
 
 public class AssetEmployeeHandoverBpmEventAdaptor extends BpmEventAdaptor<AssetEmployeeHandover, IAssetEmployeeHandoverService> {
 
+	public String BPM_TABLE="eam_asset_employee_handover";
+
+
 	public AssetEmployeeHandoverBpmEventAdaptor(IAssetEmployeeHandoverService service) {
 		super(service);
 	}
@@ -119,7 +122,9 @@ public class AssetEmployeeHandoverBpmEventAdaptor extends BpmEventAdaptor<AssetE
 	 * 流程废弃开始，通过返回 BpmActionResult  的 success 或  failure 控制流程废弃处理过程是否继续进行
 	 * */
 	protected BpmActionResult onProcessAbandonStart(BpmEvent event) {
+		this.dao().execute("update eam_asset_employee_handover set status=? where id=?", AssetHandleStatusEnum.CANCEL.code(), event.getBillId());
 		return event.getActionResult();
+
 	}
 
 	/***

@@ -26,6 +26,10 @@ import java.util.Arrays;
 
 public class AssetEmployeeLossBpmEventAdaptor extends BpmEventAdaptor<AssetEmployeeLoss,IAssetEmployeeLossService> {
 
+	public String BPM_TABLE="eam_asset_employee_loss";
+
+
+
 	public AssetEmployeeLossBpmEventAdaptor(IAssetEmployeeLossService service) {
 
 		super(service);
