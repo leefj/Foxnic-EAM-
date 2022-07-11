@@ -138,7 +138,7 @@ foxnic:
     enable: true
     debug:
       enable: true
-      process-definition-code-list: foxnic-leave,p-expense-all,a-expense-all,a-expense-any,p-expense-any,fetchback-jump,draft-test
+      process-definition-code-list: eam_asset_employee_apply,eam_asset_employee_handover,eam_asset_employee_loss,eam_asset_employee_repair,eam_asset_storage,eam_asset_tranfer,eam_asset_allocate,eam_asset_borrow,eam_asset_scrap,eam_asset_collection,eam_asset_repair_order,eam_asset_collection_return,wo_server_apply,wo_network_strategy_apply,wo_slb_strategy_appl
   cache:
     # 默认配置
     default:
