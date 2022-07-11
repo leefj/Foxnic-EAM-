@@ -133,6 +133,12 @@ foxnic:
   api:
     # 是否开启 API 日志输出
     log-enable: true
+  # 设置 BPM 相关内容
+  bpm:
+    enable: true
+    debug:
+      enable: true
+      process-definition-code-list: foxnic-leave,p-expense-all,a-expense-all,a-expense-any,p-expense-any,fetchback-jump,draft-test
   cache:
     # 默认配置
     default:
