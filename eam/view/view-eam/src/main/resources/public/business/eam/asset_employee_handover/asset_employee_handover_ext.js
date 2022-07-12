@@ -21,6 +21,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     var processId=QueryString.get("processId");
     var processInstance=null;
 
+    var bpmFunction=layui.bpmFunction;
+
     //模块基础路径
     const moduleURL="/service-eam/eam-asset-employee-handover";
     var formAction=admin.getTempData('eam-asset-employee-handover-form-data-form-action');
@@ -97,7 +99,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 查询结果渲染后调用
          * */
         afterQuery : function (data) {
-
+            console.log('afterDataFill',data);
+            for(var i=0;i<data.length;i++){
+                console.log(data[i]);
+                bpmFunction.columnBpmOpenButtonStatus(data[i]);
+            }
         },
         /**
          * 进一步转换 list 数据

@@ -17,6 +17,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     var admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate,dropdown=layui.dropdown;
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload,bpm=layui.bpm;
 
+    var bpmFunction=layui.bpmFunction;
 
     var processId=QueryString.get("processId");
     var processInstance=null;
@@ -100,7 +101,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 查询结果渲染后调用
          * */
         afterQuery : function (data) {
-
+            console.log('afterDataFill',data);
+            for(var i=0;i<data.length;i++){
+                console.log(data[i]);
+                bpmFunction.columnBpmOpenButtonStatus(data[i]);
+            }
         },
         /**
          * 进一步转换 list 数据
@@ -228,7 +233,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单数据填充后
          * */
         afterDataFill:function (data) {
-            console.log('afterDataFill',data);
+
         },
         /**
          * 对话框打开之前调用，如果返回 null 则不打开对话框
