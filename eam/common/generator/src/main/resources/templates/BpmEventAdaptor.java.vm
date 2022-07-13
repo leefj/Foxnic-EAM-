@@ -46,14 +46,14 @@ public class #(poSimpleName)BpmEventAdaptor extends BpmEventAdaptor<#(poSimpleNa
 	}
 
 	/***
-	 * 流程节点执行前，此事件由 camunda 提供，返回值仅记录无意义
+	 * 流程节点执行前，此事件由 camunda 提供，返回值仅在 act_ru_event_callback 表记录，不做其它控制
 	 * */
 	protected BpmActionResult onNodeStart(BpmEvent event) {
 		return event.getActionResult();
 	}
 
 	/***
-	 * 流程节点执行后，此事件由 camunda 提供，返回值仅记录无意义
+	 * 流程节点执行后，此事件由 camunda 提供，返回值仅在 act_ru_event_callback 表记录，不做其它控制
 	 * */
 	protected BpmActionResult onNodeEnd(BpmEvent event) {
 		return event.getActionResult();

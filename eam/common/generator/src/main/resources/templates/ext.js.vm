@@ -107,6 +107,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             return {
                 title:"这是默认标题",
                 priority:"normal", // priority 的可选值 urgency，normal
+                labelWidth:77, // 标签宽度，用于对齐
                 displayTitle:true,  // 是否显示标题与优先级
                 displayPriority:true, // 是否显示优先级
                 displayDraftComment:true, // 是否显示起草节点的流程说明
