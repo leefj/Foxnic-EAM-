@@ -58,6 +58,7 @@ public class OpsServiceInfoGtr extends BaseCodeGenerator{
                 .form().selectBox().queryApi(ServiceCategoryServiceProxy.QUERY_LIST).paging(false).filter(true).toolbar(false)
                 .valueField(ServiceCategoryMeta.ID).textField(ServiceCategoryMeta.NAME).fillWith(ServiceInfoMeta.SERVICE_CATEGORY).muliti(false);
 
+        cfg.view().field(OpsTables.OPS_SERVICE_INFO.NOTES).form().textArea().height(Config.textAreaHeight);
         cfg.view().field(OpsTables.OPS_SERVICE_INFO.NAME).form().validate().required();
         cfg.view().search().inputLayout(
                 new Object[]{
@@ -78,7 +79,7 @@ public class OpsServiceInfoGtr extends BaseCodeGenerator{
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
         cfg.view().formWindow().bottomSpace(80);
-        cfg.view().formWindow().width("800px");
+        cfg.view().formWindow().width(Config.baseFormWidth);
 
 
         //文件生成覆盖模式

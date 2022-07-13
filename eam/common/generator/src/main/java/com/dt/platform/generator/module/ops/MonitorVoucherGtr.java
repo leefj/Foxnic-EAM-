@@ -37,8 +37,10 @@ public class MonitorVoucherGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_MONITOR_VOUCHER.ACCOUNT).form().validate().required();
         cfg.view().field(OpsTables.OPS_MONITOR_VOUCHER.VOUCHER).form().validate().required();
 
+        cfg.view().field(OpsTables.OPS_MONITOR_VOUCHER.NOTES).form().textArea().height(Config.textAreaHeight);
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().formWindow().bottomSpace(120);
-        cfg.view().formWindow().width("800px");
+
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_MONITOR_VOUCHER.NAME,

@@ -39,9 +39,13 @@ public class SoftwareBaseTypeGtr extends BaseCodeGenerator{
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
+        cfg.view().field(OpsTables.OPS_SOFTWARE_BASE_TYPE.NAME).form().validate().required();
+        cfg.view().field(OpsTables.OPS_SOFTWARE_BASE_TYPE.NOTES).form().textArea().height(Config.textAreaHeight);
+
+
 
         cfg.view().list().disableBatchDelete();
-        cfg.view().formWindow().width("65%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().form().addGroup(null,
                 new Object[] {

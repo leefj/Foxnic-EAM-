@@ -1,9 +1,11 @@
 package com.dt.platform.eam.service.impl;
 
-
 import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.github.foxnic.commons.collection.MapUtil;
+import java.util.Arrays;
 
 
 import com.dt.platform.domain.eam.Position;
@@ -29,13 +31,14 @@ import java.util.ArrayList;
 import com.dt.platform.eam.service.IPositionService;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * <p>
  * 存放位置 服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-12-14 14:22:42
+ * @since 2022-07-13 07:23:23
 */
 
 
@@ -125,7 +128,7 @@ public class PositionServiceImpl extends SuperService<Position> implements IPosi
 		Position position = new Position();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		position.setId(id);
-		position.setDeleted(dao.getDBTreaty().getTrueValue());
+		position.setDeleted(true);
 		position.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		position.setDeleteTime(new Date());
 		try {
@@ -202,9 +205,22 @@ public class PositionServiceImpl extends SuperService<Position> implements IPosi
 		return dao.queryEntity(sample);
 	}
 
+	/**
+	 * 等价于 queryListByIds
+	 * */
 	@Override
 	public List<Position> getByIds(List<String> ids) {
+		return this.queryListByIds(ids);
+	}
+
+	@Override
+	public List<Position> queryListByIds(List<String> ids) {
 		return super.queryListByUKeys("id",ids);
+	}
+
+	@Override
+	public Map<String, Position> queryMapByIds(List<String> ids) {
+		return super.queryMapByUKeys("id",ids, Position::getId);
 	}
 
 
@@ -216,7 +232,7 @@ public class PositionServiceImpl extends SuperService<Position> implements IPosi
 	 * @return 查询结果
 	 * */
 	@Override
-	public List<Position> queryList(Position sample) {
+	public List<Position> queryList(PositionVO sample) {
 		return super.queryList(sample);
 	}
 
@@ -230,7 +246,7 @@ public class PositionServiceImpl extends SuperService<Position> implements IPosi
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<Position> queryPagedList(Position sample, int pageSize, int pageIndex) {
+	public PagedList<Position> queryPagedList(PositionVO sample, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, pageSize, pageIndex);
 	}
 
@@ -261,25 +277,33 @@ public class PositionServiceImpl extends SuperService<Position> implements IPosi
 		return false;
 	}
 
+
+	/**
+	 * 检查引用
+	 * @param id  检查ID是否又被外部表引用
+	 * */
 	@Override
-	public ExcelWriter exportExcel(Position sample) {
-		return super.exportExcel(sample);
+	public Boolean hasRefers(String id) {
+		Map<String, Boolean> map=this.hasRefers(Arrays.asList(id));
+		Boolean ex=map.get(id);
+		if(ex==null) return false;
+		return ex;
 	}
 
+	/**
+	 * 批量检查引用
+	 * @param ids  检查这些ID是否又被外部表引用
+	 * */
 	@Override
-	public ExcelWriter exportExcelTemplate() {
-		return super.exportExcelTemplate();
+	public Map<String, Boolean> hasRefers(List<String> ids) {
+		// 默认无业务逻辑，返回此行；有业务逻辑需要校验时，请修改并使用已注释的行代码！！！
+		return MapUtil.asMap(ids,false);
+		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
 	}
 
-	@Override
-	public List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch) {
-		return super.importExcel(input,sheetIndex,batch);
-	}
 
-	@Override
-	public ExcelStructure buildExcelStructure(boolean isForExport) {
-		return super.buildExcelStructure(isForExport);
-	}
+
+
 
 
 }

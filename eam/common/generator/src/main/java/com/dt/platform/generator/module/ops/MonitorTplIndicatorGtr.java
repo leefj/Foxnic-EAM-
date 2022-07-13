@@ -84,6 +84,7 @@ public class MonitorTplIndicatorGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_MONITOR_TPL.CODE).form().validate().required();
         cfg.view().field(OpsTables.OPS_MONITOR_TPL.NAME).form().validate().required();
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL.NOTES).form().textArea().height(Config.textAreaHeight);
 
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.STATUS).form().validate().required().form()
                 .label("状态").radioBox().defaultIndex(0).enumType(MonitorEnableEnum.class);

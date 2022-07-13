@@ -137,7 +137,7 @@ public class VoucherPrivServiceImpl extends SuperService<VoucherPriv> implements
 		VoucherPriv voucherPriv = new VoucherPriv();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		voucherPriv.setId(id);
-		voucherPriv.setDeleted(dao.getDBTreaty().getTrueValue());
+		voucherPriv.setDeleted(1);
 		voucherPriv.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		voucherPriv.setDeleteTime(new Date());
 		try {

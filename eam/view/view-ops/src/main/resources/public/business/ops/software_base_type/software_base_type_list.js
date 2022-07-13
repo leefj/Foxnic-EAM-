@@ -1,7 +1,7 @@
 /**
  * 软件基线类型 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-27 20:16:25
+ * @since 2022-07-12 21:52:04
  */
 
 
@@ -84,19 +84,8 @@ function ListPage() {
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
-					exportExcel : admin.checkAuth(AUTH_PREFIX+":export"),
-					importExcel : admin.checkAuth(AUTH_PREFIX+":import")?{
-						params : {} ,
-						callback : function(r) {
-							if(r.success) {
-								layer.msg(fox.translate('数据导入成功')+"!");
-							} else {
-								layer.msg(fox.translate('数据导入失败')+"!");
-							}
-							// 是否执行后续逻辑：错误提示
-							return false;
-						}
-					}:false
+					exportExcel : false ,
+					importExcel : false 
 				}
 			};
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
@@ -233,6 +222,7 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
+					admin.putTempData('ops-software-base-type-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
@@ -326,6 +316,7 @@ function ListPage() {
 					var doNext=window.pageExt.list.beforeSingleDelete(data);
 					if(!doNext) return;
 				}
+
 				top.layer.confirm(fox.translate('确定删除此')+fox.translate('软件基线类型')+fox.translate('吗？'), function (i) {
 					top.layer.close(i);
 

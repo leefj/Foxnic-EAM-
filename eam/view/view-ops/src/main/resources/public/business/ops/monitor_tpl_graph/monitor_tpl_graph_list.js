@@ -1,7 +1,7 @@
 /**
  * 模版图形 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-02-17 15:12:43
+ * @since 2022-07-12 22:14:43
  */
 
 
@@ -45,6 +45,9 @@ function ListPage() {
 		});
 		fox.adjustSearchElement();
 		//
+		 var marginTop=$(".search-bar").height()+$(".search-bar").css("padding-top")+$(".search-bar").css("padding-bottom")
+		 $("#table-area").css("margin-top",marginTop+"px");
+		//
 		function renderTableInternal() {
 
 			var ps={searchField: "$composite"};
@@ -79,7 +82,7 @@ function ListPage() {
 					,{ field: 'tplCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('图形模版'), templet: function (d) { return templet('tplCode' ,fox.joinLabel(d.tpl,"name"),d);}}
 					,{ field: 'graphWidth', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('宽度') , templet: function (d) { return templet('graphWidth',d.graphWidth,d);}  }
 					,{ field: 'graphHeight', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('高度') , templet: function (d) { return templet('graphHeight',d.graphHeight,d);}  }
-					,{ field: 'graphType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('图形类别'), templet:function (d){ return templet('graphType',fox.getEnumText(RADIO_GRAPHTYPE_DATA,d.graphType),d);}}
+					,{ field: 'graphType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('图形类别'), templet:function (d){ return templet('graphType',fox.getEnumText(SELECT_GRAPHTYPE_DATA,d.graphType),d);}}
 					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('图形设置') , templet: function (d) { return templet('content',d.content,d);}  }
 					,{ field: 'ds', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('数据来源') , templet: function (d) { return templet('ds',d.ds,d);}  }
 					,{ field: 'label', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标签') , templet: function (d) { return templet('label',d.label,d);}  }
@@ -90,19 +93,8 @@ function ListPage() {
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
-					exportExcel : admin.checkAuth(AUTH_PREFIX+":export"),
-					importExcel : admin.checkAuth(AUTH_PREFIX+":import")?{
-						params : {} ,
-						callback : function(r) {
-							if(r.success) {
-								layer.msg(fox.translate('数据导入成功')+"!");
-							} else {
-								layer.msg(fox.translate('数据导入失败')+"!");
-							}
-							// 是否执行后续逻辑：错误提示
-							return false;
-						}
-					}:false
+					exportExcel : false ,
+					importExcel : false 
 				}
 			};
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
@@ -117,24 +109,35 @@ function ListPage() {
     };
 
 	/**
+	 * 刷新单号数据
+	 * */
+	function refreshRowData(data,remote) {
+		var context=dataTable.getDataRowContext( { id : data.id } );
+		if(context==null) return;
+		if(remote) {
+			admin.post(moduleURL+"/get-by-id", { id : data.id }, function (r) {
+				if (r.success) {
+					data = r.data;
+					context.update(data);
+					fox.renderFormInputs(form);
+				} else {
+					fox.showMessage(data);
+				}
+			});
+		} else {
+			context.update(data);
+			fox.renderFormInputs(form);
+		}
+	}
+
+	/**
       * 刷新表格数据
       */
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.id={ inputType:"button",value: $("#id").val()};
-		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
-		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
-		value.tplCode={ inputType:"select_box", value: $("#tplCode").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" ,fillBy:["tpl"] };
-		value.graphWidth={ inputType:"number_input", value: $("#graphWidth").val() };
-		value.graphHeight={ inputType:"number_input", value: $("#graphHeight").val() };
-		value.graphType={ inputType:"radio_box", value: getSelectedValue("#graphType","value"), label:getSelectedValue("#graphType","nameStr") };
-		value.content={ inputType:"button",value: $("#content").val()};
-		value.ds={ inputType:"button",value: $("#ds").val()};
-		value.label={ inputType:"button",value: $("#label").val()};
-		value.sort={ inputType:"number_input", value: $("#sort").val() };
+		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.notes={ inputType:"button",value: $("#notes").val()};
-		value.createTime={ inputType:"date_input", value: $("#createTime").val() ,matchType:"auto"};
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -229,6 +232,7 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
+					admin.putTempData('ops-monitor-tpl-graph-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
@@ -272,10 +276,10 @@ function ListPage() {
 							var doNext=window.pageExt.list.afterBatchDelete(data);
 							if(!doNext) return;
 						}
-                    	top.layer.msg(data.message, {icon: 1, time: 500});
+						fox.showMessage(data);
                         refreshTableData();
                     } else {
-						top.layer.msg(data.message, {icon: 2, time: 1500});
+						fox.showMessage(data);
                     }
                 });
 			});
@@ -303,7 +307,7 @@ function ListPage() {
 						admin.putTempData('ops-monitor-tpl-graph-form-data-form-action', "edit",true);
 						showEditForm(data.data);
 					} else {
-						 top.layer.msg(data.message, {icon: 1, time: 1500});
+						 fox.showMessage(data);
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
@@ -312,7 +316,7 @@ function ListPage() {
 						admin.putTempData('ops-monitor-tpl-graph-form-data-form-action', "view",true);
 						showEditForm(data.data);
 					} else {
-						top.layer.msg(data.message, {icon: 1, time: 1500});
+						fox.showMessage(data);
 					}
 				});
 			}
@@ -322,6 +326,7 @@ function ListPage() {
 					var doNext=window.pageExt.list.beforeSingleDelete(data);
 					if(!doNext) return;
 				}
+
 				top.layer.confirm(fox.translate('确定删除此')+fox.translate('模版图形')+fox.translate('吗？'), function (i) {
 					top.layer.close(i);
 
@@ -333,10 +338,10 @@ function ListPage() {
 								var doNext=window.pageExt.list.afterSingleDelete(data);
 								if(!doNext) return;
 							}
-							top.layer.msg(data.message, {icon: 1, time: 500});
+							fox.showMessage(data);
 							refreshTableData();
 						} else {
-							top.layer.msg(data.message, {icon: 2, time: 1500});
+							fox.showMessage(data);
 						}
 					});
 				});
@@ -378,14 +383,21 @@ function ListPage() {
 			id:"ops-monitor-tpl-graph-form-data-win",
 			content: '/business/ops/monitor_tpl_graph/monitor_tpl_graph_form.html' + (queryString?("?"+queryString):""),
 			finish: function () {
-				refreshTableData();
+				if(action=="create") {
+					refreshTableData();
+				}
+				if(action=="edit") {
+					false?refreshTableData():refreshRowData(data,true);
+				}
 			}
 		});
 	};
 
 	window.module={
 		refreshTableData: refreshTableData,
-		getCheckedList: getCheckedList
+		refreshRowData: refreshRowData,
+		getCheckedList: getCheckedList,
+		showEditForm: showEditForm
 	};
 
 	window.pageExt.list.ending && window.pageExt.list.ending();

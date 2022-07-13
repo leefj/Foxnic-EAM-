@@ -74,7 +74,7 @@ public class OpsInformationSystemGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_INFORMATION_SYSTEM.STATUS)
                 .basic().label("状态")
-                .form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=ops_system_status")
+                .form().validate().required().form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=ops_system_status")
                 .paging(false).filter(false).toolbar(false)
                 .valueField(DictItemMeta.CODE).
                 textField(DictItemMeta.LABEL).

@@ -148,7 +148,7 @@ public class HostServiceImpl extends SuperService<Host> implements IHostService 
 		Host host = new Host();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		host.setId(id);
-		host.setDeleted(dao.getDBTreaty().getTrueValue());
+		host.setDeleted(1);
 		host.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		host.setDeleteTime(new Date());
 		try {

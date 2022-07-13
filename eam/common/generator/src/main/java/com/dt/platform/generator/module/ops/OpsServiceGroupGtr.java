@@ -35,6 +35,17 @@ public class OpsServiceGroupGtr extends BaseCodeGenerator{
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
+        cfg.view().formWindow().width(Config.baseFormWidth);
+        cfg.view().formWindow().bottomSpace(50);
+        cfg.view().list().disableBatchDelete();
+        cfg.view().form().addGroup(null,
+                new Object[] {
+                        OpsTables.OPS_SERVICE_GROUP.NAME,
+                        OpsTables.OPS_SERVICE_GROUP.CODE,
+                }
+        );
+
+
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口

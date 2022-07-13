@@ -3,6 +3,7 @@ package com.dt.platform.generator.module.ops;
 import com.dt.platform.constants.db.OpsTables;
 import com.dt.platform.constants.enums.DictEnum;
 import com.dt.platform.constants.enums.common.StatusValidEnum;
+import com.dt.platform.generator.config.Config;
 import com.dt.platform.ops.page.CertificateItemPageController;
 import com.dt.platform.ops.page.CertificateTypePageController;
 import com.dt.platform.proxy.ops.CertificateItemServiceProxy;
@@ -31,8 +32,10 @@ public class CertificateTypeGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_CERTIFICATE_TYPE.ID).basic().hidden(true);
         cfg.view().field(OpsTables.OPS_CERTIFICATE_TYPE.CODE).table().form().validate().required();
         cfg.view().field(OpsTables.OPS_CERTIFICATE_TYPE.NAME).table().form().validate().required();
+
+        cfg.view().field(OpsTables.OPS_CERTIFICATE_TYPE.NOTES).table().form().textArea().height(Config.textAreaHeight);
         cfg.view().list().disableBatchDelete();
-        cfg.view().formWindow().width("50%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().formWindow().bottomSpace(80);
         cfg.view().form().addGroup(null,
                 new Object[] {

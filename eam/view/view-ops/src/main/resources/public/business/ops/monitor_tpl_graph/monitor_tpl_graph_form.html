@@ -2,7 +2,7 @@
 /**
  * 模版图形 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-02-17 15:12:43
+ * @since 2022-07-12 22:14:43
  */
  -->
  <!DOCTYPE html>
@@ -38,35 +38,35 @@
 
 
 
-        <div class="layui-row form-row" id="random-7988-content">
+        <div class="layui-row form-row" id="random-9820-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs4 form-column" >
 
                     <div class="layui-form-item" >
-                        <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('名称')}">名称</div><div class="layui-required">*</div></div>
-                        <div class="layui-input-block layui-input-block-c1">
+                        <div class="layui-form-label "><div th:text="${lang.translate('名称')}">名称</div><div class="layui-required">*</div></div>
+                        <div class="layui-input-block ">
                             <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('名称') }" type="text" class="layui-input"    lay-verify="|required"  />
                         </div>
                     </div>
 
                 
                 <div class="layui-form-item" >
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
-                    <div class="layui-input-block layui-input-block-c1">
-                        <input input-type="radio" type="radio" name="status" lay-filter="status" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.ops.MonitorEnableEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)?'yes':'no'}">
+                    <div class="layui-form-label "><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="status" lay-filter="status" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.ops.MonitorEnableEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)}">
                     </div>
                 </div>
 
 
                 
-                <div class="layui-form-item" >
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('图形类型')}">图形类型</div><div class="layui-required">*</div></div>
-                    <div class="layui-input-block layui-input-block-c1">
-                        <input input-type="radio" type="radio" name="graphType" lay-filter="graphType" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.ops.MonitorTplGraphTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)?'yes':'no'}">
+                    <div class="layui-form-item" >
+                        <div class="layui-form-label "><div th:text="${lang.translate('类型')}">类型</div><div class="layui-required">*</div></div>
+                        <div class="layui-input-block ">
+                            <div id="graphType" input-type="select" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.MonitorTplGraphTypeEnum')}" extraParam="{}"></div>
+                        </div>
                     </div>
-                </div>
 
 
                 <!--结束：栏次内字段循环-->
@@ -77,8 +77,8 @@
 
 
                     <div class="layui-form-item" >
-                        <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('图形模版')}">图形模版</div></div>
-                        <div class="layui-input-block layui-input-block-c1">
+                        <div class="layui-form-label "><div th:text="${lang.translate('图形模版')}">图形模版</div><div class="layui-required">*</div></div>
+                        <div class="layui-input-block ">
                             <div id="tplCode" input-type="select" th:data="${'/service-ops/ops-monitor-tpl/query-paged-list'}" extraParam="{}"></div>
                         </div>
                     </div>
@@ -86,19 +86,12 @@
 
                 
                     <div class="layui-form-item" >
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('图形设置')}">图形设置</div></div>
-                    <div class="layui-input-block layui-input-block-c1">
-                        <textarea lay-filter="content" id="content" name="content" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('图形设置') }" class="layui-textarea" style="height: 120px" ></textarea>
-                    </div>
-                </div>
-
-
-                                    <div class="layui-form-item" >
-                        <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备注')}">备注</div></div>
-                        <div class="layui-input-block layui-input-block-c1">
-                            <input lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" type="text" class="layui-input"  />
+                        <div class="layui-form-label "><div th:text="${lang.translate('排序')}">排序</div></div>
+                        <div class="layui-input-block ">
+                            <input lay-filter="sort" id="sort" name="sort" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('排序') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
                         </div>
                     </div>
+
 
                 <!--结束：栏次内字段循环-->
             </div>
@@ -108,8 +101,8 @@
 
 
                     <div class="layui-form-item" >
-                        <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('宽度')}">宽度</div></div>
-                        <div class="layui-input-block layui-input-block-c1">
+                        <div class="layui-form-label "><div th:text="${lang.translate('宽度')}">宽度</div></div>
+                        <div class="layui-input-block ">
                             <input lay-filter="graphWidth" id="graphWidth" name="graphWidth" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('宽度') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
                         </div>
                     </div>
@@ -117,20 +110,57 @@
 
                 
                     <div class="layui-form-item" >
-                        <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('高度')}">高度</div></div>
-                        <div class="layui-input-block layui-input-block-c1">
+                        <div class="layui-form-label "><div th:text="${lang.translate('高度')}">高度</div></div>
+                        <div class="layui-input-block ">
                             <input lay-filter="graphHeight" id="graphHeight" name="graphHeight" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('高度') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
                         </div>
                     </div>
 
 
-                
+                <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+
+
+        <div class="layui-row form-row" id="random-0610-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs12 form-column"  style="padding-top: 0px" >
+
+
                     <div class="layui-form-item" >
-                        <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('排序')}">排序</div></div>
-                        <div class="layui-input-block layui-input-block-c1">
-                            <input lay-filter="sort" id="sort" name="sort" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('排序') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
-                        </div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('图形设置')}">图形设置</div></div>
+                    <div class="layui-input-block ">
+                        <textarea lay-filter="content" id="content" name="content" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('图形设置') }" class="layui-textarea" style="height: 120px" ></textarea>
                     </div>
+                </div>
+
+
+                <!--结束：栏次内字段循环-->
+            </div>
+            <!--结束：栏次输入框循环-->
+        </div>
+         <!--开始：group 循环-->
+
+
+
+        <div class="layui-row form-row" id="random-2938-content">
+
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs12 form-column"  style="padding-top: 0px" >
+
+
+                    <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
+                    <div class="layui-input-block ">
+                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" class="layui-textarea" style="height: 120px" ></textarea>
+                    </div>
+                </div>
 
 
                 <!--结束：栏次内字段循环-->
@@ -156,12 +186,11 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
-
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.MonitorEnableEnum')}]];
-    var RADIO_GRAPHTYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.MonitorTplGraphTypeEnum')}]];
-    var VALIDATE_CONFIG={"graphType":{"labelInForm":"图形类型","inputType":"radio_box","required":true},"name":{"labelInForm":"名称","inputType":"text_input","required":true},"status":{"labelInForm":"状态","inputType":"radio_box","required":true}};
+    var SELECT_GRAPHTYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.MonitorTplGraphTypeEnum')}]];
+    var VALIDATE_CONFIG={"graphType":{"labelInForm":"类型","inputType":"select_box","required":true},"name":{"labelInForm":"名称","inputType":"text_input","required":true},"tplCode":{"labelInForm":"图形模版","inputType":"select_box","required":true},"status":{"labelInForm":"状态","inputType":"radio_box","required":true}};
     var AUTH_PREFIX="ops_monitor_tpl_graph";
 
 

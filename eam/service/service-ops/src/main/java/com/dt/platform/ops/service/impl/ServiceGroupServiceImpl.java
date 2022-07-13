@@ -1,9 +1,11 @@
 package com.dt.platform.ops.service.impl;
 
-
 import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.github.foxnic.commons.collection.MapUtil;
+import java.util.Arrays;
 
 
 import com.dt.platform.domain.ops.ServiceGroup;
@@ -29,48 +31,61 @@ import java.util.ArrayList;
 import com.dt.platform.ops.service.IServiceGroupService;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * <p>
  * 服务分组 服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:28:45
+ * @since 2022-07-12 22:05:33
 */
 
 
 @Service("OpsServiceGroupService")
 public class ServiceGroupServiceImpl extends SuperService<ServiceGroup> implements IServiceGroupService {
-	
+
 	/**
 	 * 注入DAO对象
 	 * */
 	@Resource(name=DBConfigs.PRIMARY_DAO) 
 	private DAO dao=null;
-	
+
 	/**
 	 * 获得 DAO 对象
 	 * */
 	public DAO dao() { return dao; }
 
 
-	
+
 	@Override
 	public Object generateId(Field field) {
 		return IDGenerator.getSnowflakeIdString();
 	}
-	
+
 	/**
-	 * 插入实体
-	 * @param serviceGroup 实体数据
+	 * 添加，根据 throwsException 参数抛出异常或返回 Result 对象
+	 *
+	 * @param serviceGroup  数据对象
+	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
+	 * @return 结果 , 如果失败返回 false，成功返回 true
+	 */
+	@Override
+	public Result insert(ServiceGroup serviceGroup,boolean throwsException) {
+		Result r=super.insert(serviceGroup,throwsException);
+		return r;
+	}
+
+	/**
+	 * 添加，如果语句错误，则抛出异常
+	 * @param serviceGroup 数据对象
 	 * @return 插入是否成功
 	 * */
 	@Override
 	public Result insert(ServiceGroup serviceGroup) {
-		Result r=super.insert(serviceGroup);
-		return r;
+		return this.insert(serviceGroup,true);
 	}
-	
+
 	/**
 	 * 批量插入实体，事务内
 	 * @param serviceGroupList 实体数据清单
@@ -80,7 +95,7 @@ public class ServiceGroupServiceImpl extends SuperService<ServiceGroup> implemen
 	public Result insertList(List<ServiceGroup> serviceGroupList) {
 		return super.insertList(serviceGroupList);
 	}
-	
+
 	
 	/**
 	 * 按主键删除 服务分组
@@ -113,7 +128,7 @@ public class ServiceGroupServiceImpl extends SuperService<ServiceGroup> implemen
 		ServiceGroup serviceGroup = new ServiceGroup();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		serviceGroup.setId(id);
-		serviceGroup.setDeleted(dao.getDBTreaty().getTrueValue());
+		serviceGroup.setDeleted(true);
 		serviceGroup.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		serviceGroup.setDeleteTime(new Date());
 		try {
@@ -126,19 +141,31 @@ public class ServiceGroupServiceImpl extends SuperService<ServiceGroup> implemen
 			return r;
 		}
 	}
-	
+
 	/**
-	 * 更新实体
+	 * 更新，如果执行错误，则抛出异常
 	 * @param serviceGroup 数据对象
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
 	@Override
 	public Result update(ServiceGroup serviceGroup , SaveMode mode) {
-		Result r=super.update(serviceGroup , mode);
+		return this.update(serviceGroup,mode,true);
+	}
+
+	/**
+	 * 更新，根据 throwsException 参数抛出异常或返回 Result 对象
+	 * @param serviceGroup 数据对象
+	 * @param mode 保存模式
+	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
+	 * @return 保存是否成功
+	 * */
+	@Override
+	public Result update(ServiceGroup serviceGroup , SaveMode mode,boolean throwsException) {
+		Result r=super.update(serviceGroup , mode , throwsException);
 		return r;
 	}
-	
+
 	/**
 	 * 更新实体集，事务内
 	 * @param serviceGroupList 数据对象列表
@@ -149,7 +176,7 @@ public class ServiceGroupServiceImpl extends SuperService<ServiceGroup> implemen
 	public Result updateList(List<ServiceGroup> serviceGroupList , SaveMode mode) {
 		return super.updateList(serviceGroupList , mode);
 	}
-	
+
 	
 	/**
 	 * 按主键更新字段 服务分组
@@ -162,8 +189,8 @@ public class ServiceGroupServiceImpl extends SuperService<ServiceGroup> implemen
 		if(!field.table().name().equals(this.table())) throw new IllegalArgumentException("更新的数据表["+field.table().name()+"]与服务对应的数据表["+this.table()+"]不一致");
 		int suc=dao.update(field.table().name()).set(field.name(), value).where().and("id = ? ",id).top().execute();
 		return suc>0;
-	} 
-	
+	}
+
 	
 	/**
 	 * 按主键获取 服务分组
@@ -178,41 +205,54 @@ public class ServiceGroupServiceImpl extends SuperService<ServiceGroup> implemen
 		return dao.queryEntity(sample);
 	}
 
+	/**
+	 * 等价于 queryListByIds
+	 * */
 	@Override
 	public List<ServiceGroup> getByIds(List<String> ids) {
+		return this.queryListByIds(ids);
+	}
+
+	@Override
+	public List<ServiceGroup> queryListByIds(List<String> ids) {
 		return super.queryListByUKeys("id",ids);
+	}
+
+	@Override
+	public Map<String, ServiceGroup> queryMapByIds(List<String> ids) {
+		return super.queryMapByUKeys("id",ids, ServiceGroup::getId);
 	}
 
 
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
-	 * 
+	 *
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
 	@Override
-	public List<ServiceGroup> queryList(ServiceGroup sample) {
+	public List<ServiceGroup> queryList(ServiceGroupVO sample) {
 		return super.queryList(sample);
 	}
-	
-	
+
+
 	/**
 	 * 分页查询实体集，字符串使用模糊匹配，非字符串使用精确匹配
-	 * 
+	 *
 	 * @param sample  查询条件
 	 * @param pageSize 分页条数
 	 * @param pageIndex 页码
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<ServiceGroup> queryPagedList(ServiceGroup sample, int pageSize, int pageIndex) {
+	public PagedList<ServiceGroup> queryPagedList(ServiceGroupVO sample, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, pageSize, pageIndex);
 	}
-	
+
 	/**
 	 * 分页查询实体集，字符串使用模糊匹配，非字符串使用精确匹配
-	 * 
+	 *
 	 * @param sample  查询条件
 	 * @param condition 其它条件
 	 * @param pageSize 分页条数
@@ -223,39 +263,47 @@ public class ServiceGroupServiceImpl extends SuperService<ServiceGroup> implemen
 	public PagedList<ServiceGroup> queryPagedList(ServiceGroup sample, ConditionExpr condition, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, condition, pageSize, pageIndex);
 	}
-	
+
 	/**
-	 * 检查 角色 是否已经存在
+	 * 检查 实体 是否已经存在 , 判断 主键值不同，但指定字段的值相同的记录是否存在
 	 *
 	 * @param serviceGroup 数据对象
 	 * @return 判断结果
 	 */
-	public Result<ServiceGroup> checkExists(ServiceGroup serviceGroup) {
+	public Boolean checkExists(ServiceGroup serviceGroup) {
 		//TDOD 此处添加判断段的代码
-		//boolean exists=this.checkExists(serviceGroup, SYS_ROLE.NAME);
+		//boolean exists=super.checkExists(serviceGroup, SYS_ROLE.NAME);
 		//return exists;
-		return ErrorDesc.success();
+		return false;
 	}
 
+
+	/**
+	 * 检查引用
+	 * @param id  检查ID是否又被外部表引用
+	 * */
 	@Override
-	public ExcelWriter exportExcel(ServiceGroup sample) {
-		return super.exportExcel(sample);
+	public Boolean hasRefers(String id) {
+		Map<String, Boolean> map=this.hasRefers(Arrays.asList(id));
+		Boolean ex=map.get(id);
+		if(ex==null) return false;
+		return ex;
 	}
 
+	/**
+	 * 批量检查引用
+	 * @param ids  检查这些ID是否又被外部表引用
+	 * */
 	@Override
-	public ExcelWriter exportExcelTemplate() {
-		return super.exportExcelTemplate();
+	public Map<String, Boolean> hasRefers(List<String> ids) {
+		// 默认无业务逻辑，返回此行；有业务逻辑需要校验时，请修改并使用已注释的行代码！！！
+		return MapUtil.asMap(ids,false);
+		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
 	}
 
-	@Override
-	public List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch) {
-		return super.importExcel(input,sheetIndex,batch);
-	}
 
-	@Override
-	public ExcelStructure buildExcelStructure(boolean isForExport) {
-		return super.buildExcelStructure(isForExport);
-	}
+
+
 
 
 }

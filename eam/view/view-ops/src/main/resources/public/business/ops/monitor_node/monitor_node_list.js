@@ -1,7 +1,7 @@
 /**
  * 节点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-02-22 17:47:12
+ * @since 2022-07-12 22:08:46
  */
 
 
@@ -44,6 +44,9 @@ function ListPage() {
 			fox.adjustSearchElement();
 		});
 		fox.adjustSearchElement();
+		//
+		 var marginTop=$(".search-bar").height()+$(".search-bar").css("padding-top")+$(".search-bar").css("padding-bottom")
+		 $("#table-area").css("margin-top",marginTop+"px");
 		//
 		function renderTableInternal() {
 
@@ -97,19 +100,8 @@ function ListPage() {
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
-					exportExcel : admin.checkAuth(AUTH_PREFIX+":export"),
-					importExcel : admin.checkAuth(AUTH_PREFIX+":import")?{
-						params : {} ,
-						callback : function(r) {
-							if(r.success) {
-								layer.msg(fox.translate('数据导入成功')+"!");
-							} else {
-								layer.msg(fox.translate('数据导入失败')+"!");
-							}
-							// 是否执行后续逻辑：错误提示
-							return false;
-						}
-					}:false
+					exportExcel : false ,
+					importExcel : false 
 				}
 			};
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
@@ -124,35 +116,40 @@ function ListPage() {
     };
 
 	/**
+	 * 刷新单号数据
+	 * */
+	function refreshRowData(data,remote) {
+		var context=dataTable.getDataRowContext( { id : data.id } );
+		if(context==null) return;
+		if(remote) {
+			admin.post(moduleURL+"/get-by-id", { id : data.id }, function (r) {
+				if (r.success) {
+					data = r.data;
+					context.update(data);
+					fox.renderFormInputs(form);
+				} else {
+					fox.showMessage(data);
+				}
+			});
+		} else {
+			context.update(data);
+			fox.renderFormInputs(form);
+		}
+	}
+
+	/**
       * 刷新表格数据
       */
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.id={ inputType:"button",value: $("#id").val()};
-		value.nodeIp={ inputType:"button",value: $("#nodeIp").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
-		value.pid={ inputType:"button",value: $("#pid").val()};
+		value.nodeIp={ inputType:"button",value: $("#nodeIp").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.type={ inputType:"select_box", value: getSelectedValue("#type","value") ,fillBy:["monitorNodeType"]  , label:getSelectedValue("#type","nameStr") };
-		value.subType={ inputType:"button",value: $("#subType").val()};
 		value.groupId={ inputType:"select_box", value: getSelectedValue("#groupId","value") ,fillBy:["monitorNodeGroup"]  , label:getSelectedValue("#groupId","nameStr") };
-		value.nodeName={ inputType:"button",value: $("#nodeName").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
-		value.nodeNameShow={ inputType:"button",value: $("#nodeNameShow").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
-		value.nodeType={ inputType:"button",value: $("#nodeType").val()};
+		value.nodeNameShow={ inputType:"button",value: $("#nodeNameShow").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.nodeEnabled={ inputType:"radio_box", value: getSelectedValue("#nodeEnabled","value"), label:getSelectedValue("#nodeEnabled","nameStr") };
 		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
-		value.sshVoucherId={ inputType:"select_box", value: getSelectedValue("#sshVoucherId","value") ,fillBy:["sshVoucher"]  , label:getSelectedValue("#sshVoucherId","nameStr") };
-		value.sshPort={ inputType:"number_input", value: $("#sshPort").val() };
-		value.agentPort={ inputType:"number_input", value: $("#agentPort").val() };
-		value.zabbixAgentPort={ inputType:"number_input", value: $("#zabbixAgentPort").val() };
-		value.snmpPort={ inputType:"number_input", value: $("#snmpPort").val() };
-		value.snmpVersion={ inputType:"button",value: $("#snmpVersion").val()};
-		value.snmpCommunity={ inputType:"button",value: $("#snmpCommunity").val()};
-		value.jmxPort={ inputType:"number_input", value: $("#jmxPort").val() };
-		value.impiPort={ inputType:"number_input", value: $("#impiPort").val() };
-		value.jdbcUrl={ inputType:"button",value: $("#jdbcUrl").val()};
-		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
-		value.createTime={ inputType:"date_input", value: $("#createTime").val() ,matchType:"auto"};
-		value.monitorTplIds={ inputType:"select_box", value: getSelectedValue("#monitorTplIds","value") ,fillBy:["monitorTplList"]  , label:getSelectedValue("#monitorTplIds","nameStr") };
+		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -343,6 +340,7 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
+					admin.putTempData('ops-monitor-node-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
@@ -386,10 +384,10 @@ function ListPage() {
 							var doNext=window.pageExt.list.afterBatchDelete(data);
 							if(!doNext) return;
 						}
-                    	top.layer.msg(data.message, {icon: 1, time: 500});
+						fox.showMessage(data);
                         refreshTableData();
                     } else {
-						top.layer.msg(data.message, {icon: 2, time: 1500});
+						fox.showMessage(data);
                     }
                 });
 			});
@@ -417,7 +415,7 @@ function ListPage() {
 						admin.putTempData('ops-monitor-node-form-data-form-action', "edit",true);
 						showEditForm(data.data);
 					} else {
-						 top.layer.msg(data.message, {icon: 1, time: 1500});
+						 fox.showMessage(data);
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
@@ -426,7 +424,7 @@ function ListPage() {
 						admin.putTempData('ops-monitor-node-form-data-form-action', "view",true);
 						showEditForm(data.data);
 					} else {
-						top.layer.msg(data.message, {icon: 1, time: 1500});
+						fox.showMessage(data);
 					}
 				});
 			}
@@ -436,6 +434,7 @@ function ListPage() {
 					var doNext=window.pageExt.list.beforeSingleDelete(data);
 					if(!doNext) return;
 				}
+
 				top.layer.confirm(fox.translate('确定删除此')+fox.translate('节点')+fox.translate('吗？'), function (i) {
 					top.layer.close(i);
 
@@ -447,10 +446,10 @@ function ListPage() {
 								var doNext=window.pageExt.list.afterSingleDelete(data);
 								if(!doNext) return;
 							}
-							top.layer.msg(data.message, {icon: 1, time: 500});
+							fox.showMessage(data);
 							refreshTableData();
 						} else {
-							top.layer.msg(data.message, {icon: 2, time: 1500});
+							fox.showMessage(data);
 						}
 					});
 				});
@@ -492,14 +491,21 @@ function ListPage() {
 			id:"ops-monitor-node-form-data-win",
 			content: '/business/ops/monitor_node/monitor_node_form.html' + (queryString?("?"+queryString):""),
 			finish: function () {
-				refreshTableData();
+				if(action=="create") {
+					refreshTableData();
+				}
+				if(action=="edit") {
+					false?refreshTableData():refreshRowData(data,true);
+				}
 			}
 		});
 	};
 
 	window.module={
 		refreshTableData: refreshTableData,
-		getCheckedList: getCheckedList
+		refreshRowData: refreshRowData,
+		getCheckedList: getCheckedList,
+		showEditForm: showEditForm
 	};
 
 	window.pageExt.list.ending && window.pageExt.list.ending();

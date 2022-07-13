@@ -132,7 +132,7 @@ public class InformationSystemServiceImpl extends SuperService<InformationSystem
 		InformationSystem informationSystem = new InformationSystem();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		informationSystem.setId(id);
-		informationSystem.setDeleted(dao.getDBTreaty().getTrueValue());
+		informationSystem.setDeleted(1);
 		informationSystem.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		informationSystem.setDeleteTime(new Date());
 		try {

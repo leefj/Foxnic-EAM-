@@ -45,12 +45,7 @@ public class OpsVoucherOwnerGtr extends BaseCodeGenerator{
                         OpsTables.OPS_VOUCHER_OWNER.LABEL,
                         OpsTables.OPS_VOUCHER_OWNER.NAME,
                         OpsTables.OPS_VOUCHER_OWNER.POSITION,
-                },
-                    new Object[]{
-
-                            OpsTables.OPS_VOUCHER_OWNER.NOTES
-                    }
-
+                }
         );
 
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
@@ -67,7 +62,7 @@ public class OpsVoucherOwnerGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_VOUCHER_OWNER.NAME).form().validate().required();
 
-        cfg.view().field(OpsTables.OPS_VOUCHER_OWNER.NOTES).form().textArea().height(30);
+        cfg.view().field(OpsTables.OPS_VOUCHER_OWNER.NOTES).form().textArea().height(Config.textAreaHeight);
 
 
 
@@ -82,7 +77,7 @@ public class OpsVoucherOwnerGtr extends BaseCodeGenerator{
 
 
         cfg.view().formWindow().bottomSpace(120);
-        cfg.view().formWindow().width("800px");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_VOUCHER_OWNER.NAME,

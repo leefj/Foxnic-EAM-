@@ -48,7 +48,9 @@ public class MonitorNodeGroupGtr extends BaseCodeGenerator{
        // cfg.view().list().disableBatchDelete();
 
         cfg.view().formWindow().bottomSpace(120);
-        cfg.view().formWindow().width("800px");
+        cfg.view().field(OpsTables.OPS_MONITOR_NODE_GROUP.NOTES).form().textArea().height(Config.textAreaHeight);
+
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_MONITOR_NODE_GROUP.NAME,

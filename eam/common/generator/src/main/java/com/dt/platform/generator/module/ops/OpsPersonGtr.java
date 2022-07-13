@@ -38,6 +38,7 @@ public class OpsPersonGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_PERSON.CONTACT_INFORMATION).search().fuzzySearch();
 
 
+
         cfg.view().search().inputLayout(
                 new Object[]{
                         OpsTables.OPS_PERSON.PERSON_TYPE,
@@ -55,17 +56,18 @@ public class OpsPersonGtr extends BaseCodeGenerator{
         cfg.view().search().labelWidth(3,Config.searchLabelWidth);
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
-
-
+        cfg.view().field(OpsTables.OPS_PERSON.NOTES).form().textArea().height(Config.textAreaHeight);
+        cfg.view().field(OpsTables.OPS_PERSON.NAME).form().validate().required();
+        cfg.view().field(OpsTables.OPS_PERSON.COMPANY_NAME).form().validate().required();
         cfg.view().field(OpsTables.OPS_PERSON.PERSON_TYPE)
                 .basic().label("人员类型")
                 .table().sort(false)
-                .form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=ops_person_type")
+                .form().validate().required().form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=ops_person_type")
                 .valueField("code").textField("label")
                 .toolbar(false).paging(false)
                 .fillWith(PersonMeta.PERSON_TYPE_DICT).muliti(false);
 
-        cfg.view().formWindow().width("75%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().formWindow().bottomSpace(50);
         cfg.view().list().disableBatchDelete();
         cfg.view().form().addGroup(null,

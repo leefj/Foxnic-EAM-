@@ -16,8 +16,8 @@ import com.dt.platform.domain.ops.MonitorTpl;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-02-22 17:47:09
- * @sign 1E4445C7D63FE940F72B0945961CA866
+ * @since 2022-07-12 22:08:44
+ * @sign 1901A1E912B1D0B13636A1FE27796F4C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 

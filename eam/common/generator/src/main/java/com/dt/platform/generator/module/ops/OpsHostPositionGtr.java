@@ -27,13 +27,15 @@ public class OpsHostPositionGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_HOST_POSITION.NAME).form().validate().required();
 
+        cfg.view().field(OpsTables.OPS_HOST_POSITION.NOTES).form().textArea().height(Config.textAreaHeight);
+
         cfg.view().search().inputLayout(
                 new Object[]{
                         OpsTables.OPS_HOST_POSITION.NAME,
                         OpsTables.OPS_HOST_POSITION.NOTES,
                 }
         );
-
+        cfg.view().formWindow().width(Config.baseFormWidth);
 
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);

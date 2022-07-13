@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import com.dt.platform.domain.mobile.ModuleInfo;
 import com.dt.platform.domain.mobile.ModuleInfoVO;
@@ -17,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 移动端模块  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-28 20:42:20
+ * @since 2022-07-13 07:17:36
  */
 @FeignClient(value = ServiceNames.MOBILE, contextId = ModuleInfoServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface ModuleInfoServiceProxy {
@@ -81,21 +83,6 @@ public interface ModuleInfoServiceProxy {
      * 分页查询移动端模块
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
-
-    /**
-     * 导出移动端模块数据(Excel)
-     */
-    public static final String EXPORT_EXCEL = API_PREFIX + "export-excel";
-
-    /**
-     * 下载移动端模块导入模版(Excel)
-     */
-    public static final String EXPORT_EXCEL_TEMPLATE = API_PREFIX + "export-excel-template";
-
-    /**
-     * 导入移动端模块数据(Excel)
-     */
-    public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
 
     /**
      * 添加移动端模块

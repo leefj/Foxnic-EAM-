@@ -3,6 +3,7 @@ package com.dt.platform.domain.ops;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import com.github.foxnic.api.model.CompositeParameter;
 import javax.persistence.Transient;
 import com.github.foxnic.commons.bean.BeanUtil;
@@ -12,7 +13,7 @@ import com.github.foxnic.commons.bean.BeanUtil;
 /**
  * 模版图形
  * @author 金杰 , maillank@qq.com
- * @since 2022-02-17 15:12:42
+ * @since 2022-07-12 22:14:42
  * @sign 01D6D829C65447B90A44F8E5C9ADA5A5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -188,9 +189,9 @@ public class MonitorTplGraphVO extends MonitorTplGraph {
 	 * @param dirtyField 已修改字段
 	 * @return 当前对象
 	*/
-	public MonitorTplGraphVO addDirtyField(String dirtyField) {
+	public MonitorTplGraphVO addDirtyField(String... dirtyField) {
 		if(this.dirtyFields==null) dirtyFields=new ArrayList<>();
-		this.dirtyFields.add(dirtyField);
+		this.dirtyFields.addAll(Arrays.asList(dirtyField));
 		return this;
 	}
 	
@@ -254,9 +255,9 @@ public class MonitorTplGraphVO extends MonitorTplGraph {
 	 * @param id 主键清单
 	 * @return 当前对象
 	*/
-	public MonitorTplGraphVO addId(String id) {
+	public MonitorTplGraphVO addId(String... id) {
 		if(this.ids==null) ids=new ArrayList<>();
-		this.ids.add(id);
+		this.ids.addAll(Arrays.asList(id));
 		return this;
 	}
 	@Transient

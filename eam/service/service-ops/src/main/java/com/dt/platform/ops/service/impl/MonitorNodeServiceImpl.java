@@ -1,9 +1,11 @@
 package com.dt.platform.ops.service.impl;
 
-
 import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.github.foxnic.commons.collection.MapUtil;
+import java.util.Arrays;
 
 
 import com.dt.platform.domain.ops.MonitorNode;
@@ -31,13 +33,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dt.platform.ops.service.IMonitorNodeService;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * <p>
  * 节点 服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-02-22 17:47:09
+ * @since 2022-07-12 22:08:44
 */
 
 
@@ -135,7 +138,7 @@ public class MonitorNodeServiceImpl extends SuperService<MonitorNode> implements
 		MonitorNode monitorNode = new MonitorNode();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		monitorNode.setId(id);
-		monitorNode.setDeleted(dao.getDBTreaty().getTrueValue());
+		monitorNode.setDeleted(true);
 		monitorNode.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		monitorNode.setDeleteTime(new Date());
 		try {
@@ -218,9 +221,22 @@ public class MonitorNodeServiceImpl extends SuperService<MonitorNode> implements
 		return dao.queryEntity(sample);
 	}
 
+	/**
+	 * 等价于 queryListByIds
+	 * */
 	@Override
 	public List<MonitorNode> getByIds(List<String> ids) {
+		return this.queryListByIds(ids);
+	}
+
+	@Override
+	public List<MonitorNode> queryListByIds(List<String> ids) {
 		return super.queryListByUKeys("id",ids);
+	}
+
+	@Override
+	public Map<String, MonitorNode> queryMapByIds(List<String> ids) {
+		return super.queryMapByUKeys("id",ids, MonitorNode::getId);
 	}
 
 
@@ -232,7 +248,7 @@ public class MonitorNodeServiceImpl extends SuperService<MonitorNode> implements
 	 * @return 查询结果
 	 * */
 	@Override
-	public List<MonitorNode> queryList(MonitorNode sample) {
+	public List<MonitorNode> queryList(MonitorNodeVO sample) {
 		return super.queryList(sample);
 	}
 
@@ -246,7 +262,7 @@ public class MonitorNodeServiceImpl extends SuperService<MonitorNode> implements
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<MonitorNode> queryPagedList(MonitorNode sample, int pageSize, int pageIndex) {
+	public PagedList<MonitorNode> queryPagedList(MonitorNodeVO sample, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, pageSize, pageIndex);
 	}
 
@@ -277,25 +293,33 @@ public class MonitorNodeServiceImpl extends SuperService<MonitorNode> implements
 		return false;
 	}
 
+
+	/**
+	 * 检查引用
+	 * @param id  检查ID是否又被外部表引用
+	 * */
 	@Override
-	public ExcelWriter exportExcel(MonitorNode sample) {
-		return super.exportExcel(sample);
+	public Boolean hasRefers(String id) {
+		Map<String, Boolean> map=this.hasRefers(Arrays.asList(id));
+		Boolean ex=map.get(id);
+		if(ex==null) return false;
+		return ex;
 	}
 
+	/**
+	 * 批量检查引用
+	 * @param ids  检查这些ID是否又被外部表引用
+	 * */
 	@Override
-	public ExcelWriter exportExcelTemplate() {
-		return super.exportExcelTemplate();
+	public Map<String, Boolean> hasRefers(List<String> ids) {
+		// 默认无业务逻辑，返回此行；有业务逻辑需要校验时，请修改并使用已注释的行代码！！！
+		return MapUtil.asMap(ids,false);
+		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
 	}
 
-	@Override
-	public List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch) {
-		return super.importExcel(input,sheetIndex,batch);
-	}
 
-	@Override
-	public ExcelStructure buildExcelStructure(boolean isForExport) {
-		return super.buildExcelStructure(isForExport);
-	}
+
+
 
 
 }

@@ -3,6 +3,9 @@ package com.dt.platform.proxy.eam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import com.dt.platform.domain.eam.Position;
 import com.dt.platform.domain.eam.PositionVO;
@@ -10,14 +13,13 @@ import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
 import com.dt.platform.proxy.ServiceNames;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * <p>
  * 存放位置  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-12-14 14:22:42
+ * @since 2022-07-13 07:23:23
  */
 @FeignClient(value = ServiceNames.EAM, contextId = PositionServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface PositionServiceProxy {
@@ -81,21 +83,6 @@ public interface PositionServiceProxy {
      * 分页查询存放位置
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
-
-    /**
-     * 导出存放位置数据(Excel)
-     */
-    public static final String EXPORT_EXCEL = API_PREFIX + "export-excel";
-
-    /**
-     * 下载存放位置导入模版(Excel)
-     */
-    public static final String EXPORT_EXCEL_TEMPLATE = API_PREFIX + "export-excel-template";
-
-    /**
-     * 导入存放位置数据(Excel)
-     */
-    public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
 
     /**
      * 添加存放位置

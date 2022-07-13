@@ -1,24 +1,22 @@
 /**
  * 所属凭证 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-12 02:31:44
+ * @since 2022-07-12 22:03:08
  */
 
 
 function ListPage() {
-        
+
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect;
 	//模块基础路径
 	const moduleURL="/service-ops/ops-voucher-owner";
 	var dataTable=null;
 	var sort=null;
-
-
 	/**
       * 入口函数，初始化
       */
 	this.init=function(layui) {
-     	
+
      	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate;
 		table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,dropdown=layui.dropdown;;
 
@@ -36,8 +34,8 @@ function ListPage() {
 		//绑定行操作按钮事件
     	bindRowOperationEvent();
      }
-     
-     
+
+
      /**
       * 渲染表格
       */
@@ -46,6 +44,9 @@ function ListPage() {
 			fox.adjustSearchElement();
 		});
 		fox.adjustSearchElement();
+		//
+		 var marginTop=$(".search-bar").height()+$(".search-bar").css("padding-top")+$(".search-bar").css("padding-bottom")
+		 $("#table-area").css("margin-top",marginTop+"px");
 		//
 		function renderTableInternal() {
 
@@ -75,36 +76,27 @@ function ListPage() {
 				where: ps,
 				cols: [[
 					{ fixed: 'left',type: 'numbers' },
-					{ fixed: 'left',type:'checkbox' }
-					,{ field: 'categoryCode', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('类别'), templet: function (d) { return templet('categoryCode',fox.joinLabel(d.voucherCategory,"label"),d);}}
-					,{ field: 'label', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('标签'), templet:function (d){ return templet('label',fox.getDictText(SELECT_LABEL_DATA,d.label),d);}}
-					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'position', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('位置') , templet: function (d) { return templet('position',d.position,d);}  }
-					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
-					,{ field: 'voucherIds', align:"",fixed:false,  hide:false, sort: false, title: fox.translate('用户凭证'), templet: function (d) { return templet('voucherIds',fox.joinLabel(d.voucherList,"voucher"),d);}}
+					{ fixed: 'left',type:'checkbox'}
+					,{ field: 'categoryCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('类别'), templet: function (d) { return templet('categoryCode' ,fox.joinLabel(d.voucherCategory,"label"),d);}}
+					,{ field: 'label', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标签'), templet:function (d){ return templet('label',fox.getDictText(SELECT_LABEL_DATA,d.label),d);}}
+					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
+					,{ field: 'position', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置') , templet: function (d) { return templet('position',d.position,d);}  }
+					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
+					,{ field: 'voucherIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('用户凭证'), templet: function (d) { return templet('voucherIds' ,fox.joinLabel(d.voucherList,"voucher"),d);}}
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 250 }
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
-					exportExcel : admin.checkAuth(AUTH_PREFIX+":export"),
-					importExcel : admin.checkAuth(AUTH_PREFIX+":import")?{
-						params : {} ,
-						callback : function(r) {
-							if(r.success) {
-								layer.msg(fox.translate('数据导入成功')+"!");
-							} else {
-								layer.msg(fox.translate('数据导入失败')+"!");
-							}
-						}
-					}:false
+					exportExcel : false ,
+					importExcel : false 
 				}
 			};
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
 			dataTable=fox.renderTable(tableConfig);
 			//绑定排序事件
 			table.on('sort(data-table)', function(obj){
-			  refreshTableData(obj.field,obj.type);
+			  refreshTableData(obj.sortField,obj.type);
 			});
 			window.pageExt.list.afterTableRender && window.pageExt.list.afterTableRender();
 		}
@@ -112,15 +104,37 @@ function ListPage() {
     };
 
 	/**
+	 * 刷新单号数据
+	 * */
+	function refreshRowData(data,remote) {
+		var context=dataTable.getDataRowContext( { id : data.id } );
+		if(context==null) return;
+		if(remote) {
+			admin.post(moduleURL+"/get-by-id", { id : data.id }, function (r) {
+				if (r.success) {
+					data = r.data;
+					context.update(data);
+					fox.renderFormInputs(form);
+				} else {
+					fox.showMessage(data);
+				}
+			});
+		} else {
+			context.update(data);
+			fox.renderFormInputs(form);
+		}
+	}
+
+	/**
       * 刷新表格数据
       */
 	function refreshTableData(sortField,sortType,reset) {
+		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.categoryCode={ inputType:"select_box", value: xmSelect.get("#categoryCode",true).getValue("value"), fillBy:"voucherCategory", label:xmSelect.get("#categoryCode",true).getValue("nameStr") };
-		value.label={ inputType:"select_box", value: xmSelect.get("#label",true).getValue("value"), label:xmSelect.get("#label",true).getValue("nameStr")};
-		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,valuePrefix:"",valueSuffix:""};
-		value.position={ inputType:"button",value: $("#position").val() ,fuzzy: true,valuePrefix:"",valueSuffix:""};
-		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,valuePrefix:"",valueSuffix:""};
+		value.categoryCode={ inputType:"select_box", value: getSelectedValue("#categoryCode","value") ,fillBy:["voucherCategory"]  , label:getSelectedValue("#categoryCode","nameStr") };
+		value.label={ inputType:"select_box", value: getSelectedValue("#label","value"), label:getSelectedValue("#label","nameStr") };
+		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.position={ inputType:"button",value: $("#position").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -141,10 +155,9 @@ function ListPage() {
 		} else {
 			table.reload('data-table', { where : ps });
 		}
-
 	}
-    
-	
+
+
 	/**
 	  * 获得已经选中行的数据,不传入 field 时，返回所有选中的记录，指定 field 时 返回指定的字段集合
 	  */
@@ -155,7 +168,7 @@ function ListPage() {
 		for(var i=0;i<data.length;i++) data[i]=data[i][field];
 		return data;
 	}
-	
+
 	/**
 	 * 重置搜索框
 	 */
@@ -167,14 +180,19 @@ function ListPage() {
 
 	function initSearchFields() {
 
-		fox.switchSearchRow(2);
+		fox.switchSearchRow(1);
 
 		//渲染 categoryCode 下拉字段
 		fox.renderSelectBox({
 			el: "categoryCode",
-			radio: false,
+			radio: true,
 			size: "small",
 			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("categoryCode",data.arr,data.change,data.isAdd);
+				},1);
+			},
 			//转换数据
 			transform: function(data) {
 				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
@@ -182,7 +200,7 @@ function ListPage() {
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
-					opts.push({name:data[i].label,value:data[i].code});
+					opts.push({data:data[i],name:data[i].label,value:data[i].code});
 				}
 				return opts;
 			}
@@ -190,16 +208,21 @@ function ListPage() {
 		//渲染 label 下拉字段
 		fox.renderSelectBox({
 			el: "label",
-			radio: false,
+			radio: true,
 			size: "small",
 			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("label",data.arr,data.change,data.isAdd);
+				},1);
+			},
 			//转换数据
 			transform: function(data) {
 				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
 				var opts=[];
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
-					opts.push({name:data[i].text,value:data[i].code});
+					opts.push({data:data[i],name:data[i].text,value:data[i].code});
 				}
 				return opts;
 			}
@@ -207,7 +230,7 @@ function ListPage() {
 		fox.renderSearchInputs();
 		window.pageExt.list.afterSearchInputReady && window.pageExt.list.afterSearchInputReady();
 	}
-	
+
 	/**
 	 * 绑定搜索框事件
 	 */
@@ -215,7 +238,7 @@ function ListPage() {
 		//回车键查询
         $(".search-input").keydown(function(event) {
 			if(event.keyCode !=13) return;
-			refreshTableData(null,null,true);
+		  	refreshTableData(null,null,true);
         });
 
         // 搜索按钮点击事件
@@ -225,7 +248,7 @@ function ListPage() {
 
 		// 搜索按钮点击事件
 		$('#search-button-advance').click(function () {
-			fox.switchSearchRow(2,function (ex){
+			fox.switchSearchRow(1,function (ex){
 				if(ex=="1") {
 					$('#search-button-advance span').text("关闭");
 				} else {
@@ -235,7 +258,7 @@ function ListPage() {
 		});
 
 	}
-	
+
 	/**
 	 * 绑定按钮事件
 	  */
@@ -251,6 +274,7 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
+					admin.putTempData('ops-voucher-owner-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
@@ -272,7 +296,7 @@ function ListPage() {
 			admin.putTempData('ops-voucher-owner-form-data-form-action', "create",true);
             showEditForm(data);
         };
-		
+
         //批量删除按钮点击事件
         function batchDelete(selected) {
 
@@ -288,26 +312,22 @@ function ListPage() {
             }
             //调用批量删除接口
 			top.layer.confirm(fox.translate('确定删除已选中的')+fox.translate('所属凭证')+fox.translate('吗？'), function (i) {
-				top.layer.close(i);
-				top.layer.load(2);
-                admin.request(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
-					top.layer.closeAll('loading');
+                admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
                     if (data.success) {
 						if(window.pageExt.list.afterBatchDelete) {
 							var doNext=window.pageExt.list.afterBatchDelete(data);
 							if(!doNext) return;
 						}
-                    	top.layer.msg(data.message, {icon: 1, time: 500});
+						fox.showMessage(data);
                         refreshTableData();
                     } else {
-						top.layer.msg(data.message, {icon: 2, time: 1500});
+						fox.showMessage(data);
                     }
                 });
-
 			});
         }
 	}
-     
+
     /**
      * 绑定行操作按钮事件
      */
@@ -324,29 +344,21 @@ function ListPage() {
 
 			admin.putTempData('ops-voucher-owner-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
-				//延迟显示加载动画，避免界面闪动
-				var task=setTimeout(function(){layer.load(2);},1000);
-				admin.request(moduleURL+"/get-by-id", { id : data.id }, function (data) {
-					clearTimeout(task);
-					layer.closeAll('loading');
+				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
 					if(data.success) {
 						admin.putTempData('ops-voucher-owner-form-data-form-action', "edit",true);
 						showEditForm(data.data);
 					} else {
-						 layer.msg(data.message, {icon: 1, time: 1500});
+						 fox.showMessage(data);
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
-				//延迟显示加载动画，避免界面闪动
-				var task=setTimeout(function(){layer.load(2);},1000);
-				admin.request(moduleURL+"/get-by-id", { id : data.id }, function (data) {
-					clearTimeout(task);
-					layer.closeAll('loading');
+				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
 					if(data.success) {
 						admin.putTempData('ops-voucher-owner-form-data-form-action', "view",true);
 						showEditForm(data.data);
 					} else {
-						layer.msg(data.message, {icon: 1, time: 1500});
+						fox.showMessage(data);
 					}
 				});
 			}
@@ -368,23 +380,22 @@ function ListPage() {
 								var doNext=window.pageExt.list.afterSingleDelete(data);
 								if(!doNext) return;
 							}
-							top.layer.msg(data.message, {icon: 1, time: 500});
+							fox.showMessage(data);
 							refreshTableData();
 						} else {
-							top.layer.msg(data.message, {icon: 2, time: 1500});
+							fox.showMessage(data);
 						}
 					});
 				});
-				
 			}
 			else if (layEvent === 'open-host-voucher-window') { // 凭证
-				window.pageExt.list.openHostVoucherWindow(data);
+				window.pageExt.list.openHostVoucherWindow(data,this);
 			}
 			
 		});
- 
+
     };
-    
+
     /**
      * 打开编辑窗口
      */
@@ -395,7 +406,10 @@ function ListPage() {
 		}
 		var action=admin.getTempData('ops-voucher-owner-form-data-form-action');
 		var queryString="";
-		if(data && data.id) queryString="?" + 'id=' + data.id;
+		if(data && data.id) queryString='id=' + data.id;
+		if(window.pageExt.list.makeFormQueryString) {
+			queryString=window.pageExt.list.makeFormQueryString(data,queryString,action);
+		}
 		admin.putTempData('ops-voucher-owner-form-data', data);
 		var area=admin.getTempData('ops-voucher-owner-form-area');
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
@@ -405,24 +419,30 @@ function ListPage() {
 		else if(action=="edit") title=fox.translate('修改')+title;
 		else if(action=="view") title=fox.translate('查看')+title;
 
-		var index=admin.popupCenter({
+		admin.popupCenter({
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["800px",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"ops-voucher-owner-form-data-win",
-			content: '/business/ops/voucher_owner/voucher_owner_form.html' + queryString,
+			content: '/business/ops/voucher_owner/voucher_owner_form.html' + (queryString?("?"+queryString):""),
 			finish: function () {
-				refreshTableData();
+				if(action=="create") {
+					refreshTableData();
+				}
+				if(action=="edit") {
+					false?refreshTableData():refreshRowData(data,true);
+				}
 			}
 		});
-		admin.putTempData('ops-voucher-owner-form-data-popup-index', index);
 	};
 
 	window.module={
 		refreshTableData: refreshTableData,
-		getCheckedList: getCheckedList
+		refreshRowData: refreshRowData,
+		getCheckedList: getCheckedList,
+		showEditForm: showEditForm
 	};
 
 	window.pageExt.list.ending && window.pageExt.list.ending();

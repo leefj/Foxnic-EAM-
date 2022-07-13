@@ -17,7 +17,7 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 证书类型
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-15 07:17:54
+ * @since 2022-07-12 21:52:10
  * @sign 635E1D6957D8EF11C5A319EA77421388
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

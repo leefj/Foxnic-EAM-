@@ -11,8 +11,8 @@ import com.dt.platform.domain.ops.Voucher;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-12 02:31:40
- * @sign 81171921326C14C155183858A896E27C
+ * @since 2022-07-12 22:03:07
+ * @sign F87B3D8E9000C0B0CF5DB0060D4C46D4
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 

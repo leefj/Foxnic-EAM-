@@ -7,12 +7,14 @@ import com.dt.platform.constants.db.OpsTables.OPS_HOST;
 import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
-import java.util.*;
-
-import org.github.foxnic.web.domain.system.DictItem;
-
+import java.util.Date;
 import javax.persistence.Transient;
-
+import java.util.List;
+import org.github.foxnic.web.domain.system.DictItem;
+import com.github.foxnic.commons.lang.DataParser;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 
 
@@ -20,8 +22,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 主机
  * @author 金杰 , maillank@qq.com
- * @since 2021-11-20 16:56:42
- * @sign FBC43798A92959AD7C39379BB9155DD2
+ * @since 2022-07-12 22:00:46
+ * @sign 7BFB8DA7DB392535EDBA80A158331784
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -230,6 +232,8 @@ public class Host extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
+	@Transient
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -939,12 +943,42 @@ public class Host extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
 	public Host setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public Host setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -1048,9 +1082,9 @@ public class Host extends Entity {
 	 * @param voucher 凭证
 	 * @return 当前对象
 	*/
-	public Host addVoucher(Voucher voucher) {
+	public Host addVoucher(Voucher... voucher) {
 		if(this.voucherList==null) voucherList=new ArrayList<>();
-		this.voucherList.add(voucher);
+		this.voucherList.addAll(Arrays.asList(voucher));
 		return this;
 	}
 	
@@ -1078,9 +1112,9 @@ public class Host extends Entity {
 	 * @param voucherId 凭证
 	 * @return 当前对象
 	*/
-	public Host addVoucherId(String voucherId) {
+	public Host addVoucherId(String... voucherId) {
 		if(this.voucherIds==null) voucherIds=new ArrayList<>();
-		this.voucherIds.add(voucherId);
+		this.voucherIds.addAll(Arrays.asList(voucherId));
 		return this;
 	}
 	
@@ -1146,9 +1180,9 @@ public class Host extends Entity {
 	 * @param hostDb 数据库
 	 * @return 当前对象
 	*/
-	public Host addHostDb(ServiceInfo hostDb) {
+	public Host addHostDb(ServiceInfo... hostDb) {
 		if(this.hostDbList==null) hostDbList=new ArrayList<>();
-		this.hostDbList.add(hostDb);
+		this.hostDbList.addAll(Arrays.asList(hostDb));
 		return this;
 	}
 	
@@ -1176,9 +1210,9 @@ public class Host extends Entity {
 	 * @param hostDbId 数据库列表
 	 * @return 当前对象
 	*/
-	public Host addHostDbId(String hostDbId) {
+	public Host addHostDbId(String... hostDbId) {
 		if(this.hostDbIds==null) hostDbIds=new ArrayList<>();
-		this.hostDbIds.add(hostDbId);
+		this.hostDbIds.addAll(Arrays.asList(hostDbId));
 		return this;
 	}
 	
@@ -1206,9 +1240,9 @@ public class Host extends Entity {
 	 * @param hostMiddleware 中间件
 	 * @return 当前对象
 	*/
-	public Host addHostMiddleware(ServiceInfo hostMiddleware) {
+	public Host addHostMiddleware(ServiceInfo... hostMiddleware) {
 		if(this.hostMiddlewareList==null) hostMiddlewareList=new ArrayList<>();
-		this.hostMiddlewareList.add(hostMiddleware);
+		this.hostMiddlewareList.addAll(Arrays.asList(hostMiddleware));
 		return this;
 	}
 	
@@ -1236,9 +1270,9 @@ public class Host extends Entity {
 	 * @param hostMiddlewareId 中间件列表
 	 * @return 当前对象
 	*/
-	public Host addHostMiddlewareId(String hostMiddlewareId) {
+	public Host addHostMiddlewareId(String... hostMiddlewareId) {
 		if(this.hostMiddlewareIds==null) hostMiddlewareIds=new ArrayList<>();
-		this.hostMiddlewareIds.add(hostMiddlewareId);
+		this.hostMiddlewareIds.addAll(Arrays.asList(hostMiddlewareId));
 		return this;
 	}
 	
@@ -1266,9 +1300,9 @@ public class Host extends Entity {
 	 * @param hostOs 操作系统
 	 * @return 当前对象
 	*/
-	public Host addHostOs(ServiceInfo hostOs) {
+	public Host addHostOs(ServiceInfo... hostOs) {
 		if(this.hostOsList==null) hostOsList=new ArrayList<>();
-		this.hostOsList.add(hostOs);
+		this.hostOsList.addAll(Arrays.asList(hostOs));
 		return this;
 	}
 	
@@ -1296,9 +1330,9 @@ public class Host extends Entity {
 	 * @param hostOsId 操作系统列表
 	 * @return 当前对象
 	*/
-	public Host addHostOsId(String hostOsId) {
+	public Host addHostOsId(String... hostOsId) {
 		if(this.hostOsIds==null) hostOsIds=new ArrayList<>();
-		this.hostOsIds.add(hostOsId);
+		this.hostOsIds.addAll(Arrays.asList(hostOsId));
 		return this;
 	}
 	
@@ -1382,5 +1416,4 @@ public class Host extends Entity {
 	public static Host create() {
 		return EntityContext.create(Host.class);
 	}
-
 }

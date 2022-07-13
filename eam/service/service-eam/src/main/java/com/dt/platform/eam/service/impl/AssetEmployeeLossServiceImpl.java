@@ -321,7 +321,9 @@ public class AssetEmployeeLossServiceImpl extends SuperService<AssetEmployeeLoss
 	 * */
 	@Override
 	public PagedList<AssetEmployeeLoss> queryPagedList(AssetEmployeeLossVO sample, int pageSize, int pageIndex) {
-		return super.queryPagedList(sample, pageSize, pageIndex);
+
+		String dp=AssetOperateEnum.EAM_ASSET_EMPLOYEE_LOSS.code();
+		return super.queryPagedList(sample, pageSize, pageIndex,dp);
 	}
 
 	/**
@@ -335,7 +337,8 @@ public class AssetEmployeeLossServiceImpl extends SuperService<AssetEmployeeLoss
 	 * */
 	@Override
 	public PagedList<AssetEmployeeLoss> queryPagedList(AssetEmployeeLoss sample, ConditionExpr condition, int pageSize, int pageIndex) {
-		return super.queryPagedList(sample, condition, pageSize, pageIndex);
+		String dp=AssetOperateEnum.EAM_ASSET_EMPLOYEE_LOSS.code();
+		return super.queryPagedList(sample, condition, pageSize, pageIndex,dp);
 	}
 
 	/**

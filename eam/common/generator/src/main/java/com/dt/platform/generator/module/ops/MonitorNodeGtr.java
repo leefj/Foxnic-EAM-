@@ -135,11 +135,11 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
 //                fillWith(MonitorNodeMeta.MONITOR_NODE_SUB_TYPE).muliti(false);
 
         cfg.view().formWindow().bottomSpace(120);
-        cfg.view().formWindow().width("98%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().form().addGroup(null,
                 new Object[] {
-                        OpsTables.OPS_MONITOR_NODE.NODE_IP,
                         OpsTables.OPS_MONITOR_NODE.NODE_NAME_SHOW,
+                        OpsTables.OPS_MONITOR_NODE.NODE_IP,
                         OpsTables.OPS_MONITOR_NODE.GROUP_ID,
                 },
                 new Object[] {
