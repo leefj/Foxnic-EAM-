@@ -53,14 +53,15 @@ public class MonitorTplGraphGtr extends BaseCodeGenerator{
                 .label("状态").radioBox().defaultIndex(0).enumType(MonitorEnableEnum.class);
 
 
-
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_GRAPH.NOTES).form().textArea().height(Config.textAreaHeight);
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_GRAPH.CONTENT).form().textArea().height(Config.textAreaHeight);
 
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_GRAPH.GRAPH_TYPE).form().validate().required().form()
-                .label("类型").radioBox().defaultIndex(0).enumType(MonitorTplGraphTypeEnum.class);
+                .label("类型").selectBox().defaultIndex(0).enumType(MonitorTplGraphTypeEnum.class);
 
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_GRAPH.TPL_CODE)
                 .basic().label("图形模版")
-                .form().selectBox().queryApi(MonitorTplServiceProxy.QUERY_PAGED_LIST)
+                .form().validate().required().form().selectBox().queryApi(MonitorTplServiceProxy.QUERY_PAGED_LIST)
                 .paging(true).filter(true).toolbar(false)
                 .valueField(MonitorTplMeta.CODE).
                 textField(MonitorTplMeta.NAME).

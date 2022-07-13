@@ -1,7 +1,7 @@
 /**
  * 软件基线类型 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-27 20:16:26
+ * @since 2022-07-12 21:52:04
  */
 
 function FormPage() {
@@ -14,7 +14,7 @@ function FormPage() {
 	var disableModify=false;
 	var dataBeforeEdit=null;
 	const bpmIntegrateMode="none";
-	var isInProcess=QueryString.get("isInProcess")
+	var isInProcess=QueryString.get("isInProcess");
 
 	/**
       * 入口函数，初始化
@@ -53,6 +53,7 @@ function FormPage() {
 		adjustPopup();
 	}
 
+
 	/**
 	 * 自动调节窗口高度
 	 * */
@@ -63,15 +64,26 @@ function FormPage() {
 			if(!doNext) return;
 		}
 
-		if(bpmIntegrateMode=="front" && isInProcess==1) return;
+
 
 		clearTimeout(adjustPopupTask);
 		var scroll=$(".form-container").attr("scroll");
 		if(scroll=='yes') return;
+		var prevBodyHeight=-1;
 		adjustPopupTask=setTimeout(function () {
 			var body=$("body");
 			var bodyHeight=body.height();
 			var footerHeight=$(".model-form-footer").height();
+			if(bpmIntegrateMode=="front" && isInProcess==1) {
+				var updateFormIframeHeight=admin.getVar("updateFormIframeHeight");
+				if(bodyHeight>0 && bodyHeight!=prevBodyHeight) {
+					updateFormIframeHeight && updateFormIframeHeight(bodyHeight);
+				} else {
+					setTimeout(adjustPopup,1000);
+				}
+				prevBodyHeight = bodyHeight;
+				return;
+			}
 			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'ops-software-base-type-form-data-win');
 			if(area==null) return;
 			admin.putTempData('ops-software-base-type-form-area', area);
@@ -206,6 +218,12 @@ function FormPage() {
 	}
 
 	function saveForm(param,callback) {
+
+		if(window.pageExt.form.beforeSubmit) {
+			var doNext=window.pageExt.form.beforeSubmit(param);
+			if(!doNext) return ;
+		}
+
 		param.dirtyFields=fox.compareDirtyFields(dataBeforeEdit,param);
 		var action=param.id?"edit":"create";
 		var api=moduleURL+"/"+(param.id?"update":"insert");
@@ -249,10 +267,7 @@ function FormPage() {
 	    	//debugger;
 			data.field = getFormData();
 
-			if(window.pageExt.form.beforeSubmit) {
-				var doNext=window.pageExt.form.beforeSubmit(data.field);
-				if(!doNext) return ;
-			}
+
 			//校验表单
 			if(!verifyForm(data.field)) return;
 

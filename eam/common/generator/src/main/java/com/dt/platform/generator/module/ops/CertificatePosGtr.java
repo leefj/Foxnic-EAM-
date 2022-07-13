@@ -1,6 +1,7 @@
 package com.dt.platform.generator.module.ops;
 
 import com.dt.platform.constants.db.OpsTables;
+import com.dt.platform.generator.config.Config;
 import com.dt.platform.ops.page.CertificatePositionPageController;
 import com.dt.platform.proxy.ops.CertificatePositionServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
@@ -26,8 +27,11 @@ public class CertificatePosGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_CERTIFICATE_POSITION.ID).basic().hidden(true);
         cfg.view().field(OpsTables.OPS_CERTIFICATE_POSITION.NAME).table().form().validate().required();
         cfg.view().list().disableBatchDelete();
-        cfg.view().formWindow().width("50%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().formWindow().bottomSpace(80);
+
+        cfg.view().field(OpsTables.OPS_CERTIFICATE_POSITION.NOTES).table().form().textArea().height(Config.textAreaHeight);
+
         cfg.view().form().addGroup(null,
                 new Object[] {
 
@@ -52,7 +56,7 @@ public class CertificatePosGtr extends BaseCodeGenerator{
         //生成代码
         g.generateCode();
         //移除之前生成的菜单，视情况执行
-       g.generateMenu(CertificatePositionServiceProxy.class, CertificatePositionPageController.class);
+      // g.generateMenu(CertificatePositionServiceProxy.class, CertificatePositionPageController.class);
         //g.removeByBatchId("478921035245158400");
         // g.generateMenu(VoucherPrivServiceProxy.class, VoucherPrivPageController.class);
     }

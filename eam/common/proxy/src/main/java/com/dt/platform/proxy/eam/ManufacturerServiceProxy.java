@@ -3,6 +3,9 @@ package com.dt.platform.proxy.eam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import com.dt.platform.domain.eam.Manufacturer;
 import com.dt.platform.domain.eam.ManufacturerVO;
@@ -10,14 +13,13 @@ import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
 import com.dt.platform.proxy.ServiceNames;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * <p>
  * 生产厂商  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:28:02
+ * @since 2022-07-13 07:21:45
  */
 @FeignClient(value = ServiceNames.EAM, contextId = ManufacturerServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface ManufacturerServiceProxy {
@@ -83,21 +85,6 @@ public interface ManufacturerServiceProxy {
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
     /**
-     * 导出生产厂商数据(Excel)
-     */
-    public static final String EXPORT_EXCEL = API_PREFIX + "export-excel";
-
-    /**
-     * 下载生产厂商导入模版(Excel)
-     */
-    public static final String EXPORT_EXCEL_TEMPLATE = API_PREFIX + "export-excel-template";
-
-    /**
-     * 导入生产厂商数据(Excel)
-     */
-    public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
-
-    /**
      * 添加生产厂商
      */
     @RequestMapping(ManufacturerServiceProxy.INSERT)
@@ -134,7 +121,7 @@ public interface ManufacturerServiceProxy {
     Result<Manufacturer> getById(@RequestParam(name = "id") String id);
 
     /**
-     * 批量删除生产厂商
+     * 获取多个生产厂商
      */
     @RequestMapping(ManufacturerServiceProxy.GET_BY_IDS)
     Result<List<Manufacturer>> getByIds(@RequestParam(name = "ids") List<String> ids);

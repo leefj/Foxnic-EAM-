@@ -13,7 +13,7 @@ import com.github.foxnic.commons.bean.BeanUtil;
 /**
  * 人员清单
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-21 11:02:18
+ * @since 2022-07-12 21:51:48
  * @sign A7E0DA823D7347ED4D99F32D4187A2AF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

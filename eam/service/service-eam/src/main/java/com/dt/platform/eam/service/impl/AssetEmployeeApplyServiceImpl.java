@@ -279,7 +279,8 @@ public class AssetEmployeeApplyServiceImpl extends SuperService<AssetEmployeeApp
 	 * */
 	@Override
 	public PagedList<AssetEmployeeApply> queryPagedList(AssetEmployeeApplyVO sample, int pageSize, int pageIndex) {
-		return super.queryPagedList(sample, pageSize, pageIndex);
+		String dp=AssetOperateEnum.EAM_ASSET_EMPLOYEE_APPLY.code();
+		return super.queryPagedList(sample, pageSize, pageIndex,dp);
 	}
 
 	/**
@@ -293,7 +294,8 @@ public class AssetEmployeeApplyServiceImpl extends SuperService<AssetEmployeeApp
 	 * */
 	@Override
 	public PagedList<AssetEmployeeApply> queryPagedList(AssetEmployeeApply sample, ConditionExpr condition, int pageSize, int pageIndex) {
-		return super.queryPagedList(sample, condition, pageSize, pageIndex);
+		String dp=AssetOperateEnum.EAM_ASSET_EMPLOYEE_APPLY.code();
+		return super.queryPagedList(sample, condition, pageSize, pageIndex,dp);
 	}
 
 	/**

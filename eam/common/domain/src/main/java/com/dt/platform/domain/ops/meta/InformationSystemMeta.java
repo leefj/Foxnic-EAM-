@@ -12,8 +12,8 @@ import org.github.foxnic.web.domain.system.DictItem;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2021-11-17 14:45:15
- * @sign C789E92C0477A0AB6EC7881B9348278A
+ * @since 2022-07-12 21:59:08
+ * @sign B6CFCCAE7AE68A00B67D5020B1DE50A2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 

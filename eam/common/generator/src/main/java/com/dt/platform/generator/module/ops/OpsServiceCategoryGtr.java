@@ -33,7 +33,7 @@ public class OpsServiceCategoryGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_SERVICE_CATEGORY.NOTES).search().fuzzySearch();
 
 
-
+        cfg.view().field(OpsTables.OPS_SERVICE_CATEGORY.NOTES).form().textArea().height(Config.textAreaHeight);
         cfg.view().field(OpsTables.OPS_SERVICE_CATEGORY.GROUP_ID)
                 .basic().label("服务分组")
                 .form().validate().required().form().selectBox().queryApi(ServiceGroupServiceProxy.QUERY_LIST)
@@ -44,7 +44,8 @@ public class OpsServiceCategoryGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_SERVICE_CATEGORY.NAME)
                 .form().validate().required();
 
-
+        cfg.view().formWindow().bottomSpace(80);
+        cfg.view().formWindow().width(Config.baseFormWidth);
 
         cfg.view().search().inputLayout(
                 new Object[]{
@@ -59,8 +60,7 @@ public class OpsServiceCategoryGtr extends BaseCodeGenerator{
 
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
-        cfg.view().formWindow().bottomSpace(80);
-        cfg.view().formWindow().width("800px");
+
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口

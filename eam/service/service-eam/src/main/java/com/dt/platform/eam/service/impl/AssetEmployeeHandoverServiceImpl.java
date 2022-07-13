@@ -324,7 +324,8 @@ public class AssetEmployeeHandoverServiceImpl extends SuperService<AssetEmployee
 	 * */
 	@Override
 	public PagedList<AssetEmployeeHandover> queryPagedList(AssetEmployeeHandoverVO sample, int pageSize, int pageIndex) {
-		return super.queryPagedList(sample, pageSize, pageIndex);
+		String dp=AssetOperateEnum.EAM_ASSET_EMPLOYEE_HANDOVER.code();
+		return super.queryPagedList(sample, pageSize, pageIndex,dp);
 	}
 
 	/**
@@ -338,7 +339,8 @@ public class AssetEmployeeHandoverServiceImpl extends SuperService<AssetEmployee
 	 * */
 	@Override
 	public PagedList<AssetEmployeeHandover> queryPagedList(AssetEmployeeHandover sample, ConditionExpr condition, int pageSize, int pageIndex) {
-		return super.queryPagedList(sample, condition, pageSize, pageIndex);
+		String dp=AssetOperateEnum.EAM_ASSET_EMPLOYEE_HANDOVER.code();
+		return super.queryPagedList(sample, condition, pageSize, pageIndex,dp);
 	}
 
 	/**

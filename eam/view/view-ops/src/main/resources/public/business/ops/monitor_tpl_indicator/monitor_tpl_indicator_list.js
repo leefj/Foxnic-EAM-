@@ -1,7 +1,7 @@
 /**
  * 模版指标 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-02-20 12:42:52
+ * @since 2022-07-12 22:11:45
  */
 
 
@@ -44,6 +44,9 @@ function ListPage() {
 			fox.adjustSearchElement();
 		});
 		fox.adjustSearchElement();
+		//
+		 var marginTop=$(".search-bar").height()+$(".search-bar").css("padding-top")+$(".search-bar").css("padding-bottom")
+		 $("#table-area").css("margin-top",marginTop+"px");
 		//
 		function renderTableInternal() {
 
@@ -100,19 +103,8 @@ function ListPage() {
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
-					exportExcel : admin.checkAuth(AUTH_PREFIX+":export"),
-					importExcel : admin.checkAuth(AUTH_PREFIX+":import")?{
-						params : {} ,
-						callback : function(r) {
-							if(r.success) {
-								layer.msg(fox.translate('数据导入成功')+"!");
-							} else {
-								layer.msg(fox.translate('数据导入失败')+"!");
-							}
-							// 是否执行后续逻辑：错误提示
-							return false;
-						}
-					}:false
+					exportExcel : false ,
+					importExcel : false 
 				}
 			};
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
@@ -127,35 +119,40 @@ function ListPage() {
     };
 
 	/**
+	 * 刷新单号数据
+	 * */
+	function refreshRowData(data,remote) {
+		var context=dataTable.getDataRowContext( { id : data.id } );
+		if(context==null) return;
+		if(remote) {
+			admin.post(moduleURL+"/get-by-id", { id : data.id }, function (r) {
+				if (r.success) {
+					data = r.data;
+					context.update(data);
+					fox.renderFormInputs(form);
+				} else {
+					fox.showMessage(data);
+				}
+			});
+		} else {
+			context.update(data);
+			fox.renderFormInputs(form);
+		}
+	}
+
+	/**
       * 刷新表格数据
       */
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.id={ inputType:"button",value: $("#id").val()};
 		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
-		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
-		value.code={ inputType:"button",value: $("#code").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
+		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.code={ inputType:"button",value: $("#code").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.monitorTplCode={ inputType:"select_box", value: getSelectedValue("#monitorTplCode","value") ,fillBy:["tpl"]  , label:getSelectedValue("#monitorTplCode","nameStr") };
-		value.monitorMethod={ inputType:"select_box", value: getSelectedValue("#monitorMethod","value"), label:getSelectedValue("#monitorMethod","nameStr") };
-		value.indicatorType={ inputType:"select_box", value: getSelectedValue("#indicatorType","value") ,fillBy:["monitorIndicatorType"]  , label:getSelectedValue("#indicatorType","nameStr") };
-		value.valueColumnRows={ inputType:"select_box", value: getSelectedValue("#valueColumnRows","value"), label:getSelectedValue("#valueColumnRows","nameStr") };
-		value.valueColumnCols={ inputType:"select_box", value: getSelectedValue("#valueColumnCols","value"), label:getSelectedValue("#valueColumnCols","nameStr") };
-		value.valueColumnType={ inputType:"select_box", value: getSelectedValue("#valueColumnType","value"), label:getSelectedValue("#valueColumnType","nameStr") };
-		value.valueColumn={ inputType:"button",value: $("#valueColumn").val()};
-		value.valueColumnMap={ inputType:"button",value: $("#valueColumnMap").val()};
-		value.valueColumnName={ inputType:"button",value: $("#valueColumnName").val()};
-		value.timeOut={ inputType:"number_input", value: $("#timeOut").val() };
-		value.intervalTime={ inputType:"number_input", value: $("#intervalTime").val() };
-		value.dataKeepDay={ inputType:"number_input", value: $("#dataKeepDay").val() };
 		value.command={ inputType:"button",value: $("#command").val()};
-		value.commandValue={ inputType:"button",value: $("#commandValue").val()};
-		value.indicatorVariable={ inputType:"button",value: $("#indicatorVariable").val()};
-		value.snmpOid={ inputType:"button",value: $("#snmpOid").val()};
 		value.label={ inputType:"button",value: $("#label").val()};
-		value.itemSort={ inputType:"number_input", value: $("#itemSort").val() };
 		value.notes={ inputType:"button",value: $("#notes").val()};
-		value.createTime={ inputType:"date_input", value: $("#createTime").val() ,matchType:"auto"};
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -298,6 +295,7 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
+					admin.putTempData('ops-monitor-tpl-indicator-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
@@ -341,10 +339,10 @@ function ListPage() {
 							var doNext=window.pageExt.list.afterBatchDelete(data);
 							if(!doNext) return;
 						}
-                    	top.layer.msg(data.message, {icon: 1, time: 500});
+						fox.showMessage(data);
                         refreshTableData();
                     } else {
-						top.layer.msg(data.message, {icon: 2, time: 1500});
+						fox.showMessage(data);
                     }
                 });
 			});
@@ -372,7 +370,7 @@ function ListPage() {
 						admin.putTempData('ops-monitor-tpl-indicator-form-data-form-action', "edit",true);
 						showEditForm(data.data);
 					} else {
-						 top.layer.msg(data.message, {icon: 1, time: 1500});
+						 fox.showMessage(data);
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
@@ -381,7 +379,7 @@ function ListPage() {
 						admin.putTempData('ops-monitor-tpl-indicator-form-data-form-action', "view",true);
 						showEditForm(data.data);
 					} else {
-						top.layer.msg(data.message, {icon: 1, time: 1500});
+						fox.showMessage(data);
 					}
 				});
 			}
@@ -391,6 +389,7 @@ function ListPage() {
 					var doNext=window.pageExt.list.beforeSingleDelete(data);
 					if(!doNext) return;
 				}
+
 				top.layer.confirm(fox.translate('确定删除此')+fox.translate('模版指标')+fox.translate('吗？'), function (i) {
 					top.layer.close(i);
 
@@ -402,10 +401,10 @@ function ListPage() {
 								var doNext=window.pageExt.list.afterSingleDelete(data);
 								if(!doNext) return;
 							}
-							top.layer.msg(data.message, {icon: 1, time: 500});
+							fox.showMessage(data);
 							refreshTableData();
 						} else {
-							top.layer.msg(data.message, {icon: 2, time: 1500});
+							fox.showMessage(data);
 						}
 					});
 				});
@@ -442,19 +441,26 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["80%",height+"px"],
+			area: ["98%",height+"px"],
 			type: 2,
 			id:"ops-monitor-tpl-indicator-form-data-win",
 			content: '/business/ops/monitor_tpl_indicator/monitor_tpl_indicator_form.html' + (queryString?("?"+queryString):""),
 			finish: function () {
-				refreshTableData();
+				if(action=="create") {
+					refreshTableData();
+				}
+				if(action=="edit") {
+					false?refreshTableData():refreshRowData(data,true);
+				}
 			}
 		});
 	};
 
 	window.module={
 		refreshTableData: refreshTableData,
-		getCheckedList: getCheckedList
+		refreshRowData: refreshRowData,
+		getCheckedList: getCheckedList,
+		showEditForm: showEditForm
 	};
 
 	window.pageExt.list.ending && window.pageExt.list.ending();

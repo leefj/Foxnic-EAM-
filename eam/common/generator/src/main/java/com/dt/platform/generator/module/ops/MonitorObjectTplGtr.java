@@ -45,6 +45,7 @@ public class MonitorObjectTplGtr extends BaseCodeGenerator{
 
        // cfg.view().list().disableBatchDelete();
         cfg.view().form().labelWidth(70);
+
         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().form().addGroup(null,

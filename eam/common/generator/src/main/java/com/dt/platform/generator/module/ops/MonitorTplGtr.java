@@ -58,7 +58,7 @@ public class MonitorTplGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_MONITOR_TPL.TYPE)
                 .basic().label("归类")
-                .form().selectBox().queryApi(MonitorTplTypeServiceProxy.QUERY_PAGED_LIST)
+                .form().validate().required().form().selectBox().queryApi(MonitorTplTypeServiceProxy.QUERY_PAGED_LIST)
                 .paging(true).filter(true).toolbar(false)
                 .valueField(MonitorTplTypeMeta.CODE).
                 textField(MonitorTplTypeMeta.NAME).
@@ -68,7 +68,8 @@ public class MonitorTplGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_MONITOR_TPL.CODE).form().validate().required();
 
         cfg.view().formWindow().bottomSpace(120);
-        cfg.view().formWindow().width("800px");
+
+        cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_MONITOR_TPL.TYPE,

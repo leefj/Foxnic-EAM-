@@ -33,6 +33,7 @@ public class EamManufacturerGtr extends BaseCodeGenerator{
 
         cfg.view().field(EAMTables.EAM_MANUFACTURER.MANUFACTURER_NAME).form().validate().required();
 
+        cfg.view().field(EAMTables.EAM_MANUFACTURER.MANUFACTURER_NOTES).form().textArea().height(Config.textAreaHeight);
 
         //文件生成覆盖模式
         cfg.overrides()

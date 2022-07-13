@@ -2,7 +2,7 @@
 /**
  * 证书位置 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-15 07:17:51
+ * @since 2022-07-12 21:52:17
  */
  -->
  <!DOCTYPE html>
@@ -44,7 +44,7 @@
                         <div class="search-label-div" style=""><span th:text="${lang.translate('名称')}" class="search-label name-label">名称</span><span class="search-colon">:</span></div>
                         <input id="name" class="layui-input search-input" style="width: 140px" type="text" />
                     </div>
-                    <!-- 备注 , notes ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
 
 
                 </div>
@@ -69,7 +69,6 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
-
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">

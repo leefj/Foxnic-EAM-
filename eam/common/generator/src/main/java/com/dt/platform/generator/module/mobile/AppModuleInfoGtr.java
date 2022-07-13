@@ -54,7 +54,7 @@ public class AppModuleInfoGtr extends BaseCodeGenerator {
 
         cfg.view().field(MobileTables.APP_MODULE_INFO.CODE).form().validate().required();
 
-
+        cfg.view().field(MobileTables.APP_MODULE_INFO.NOTES).form().textArea().height(Config.textAreaHeight);
 
         cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().formWindow().bottomSpace(80);

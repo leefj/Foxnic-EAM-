@@ -2,7 +2,7 @@
 /**
  * 移动端模块 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-28 20:42:21
+ * @since 2022-07-13 07:17:37
  */
  -->
  <!DOCTYPE html>
@@ -38,7 +38,7 @@
 
 
 
-        <div class="layui-row form-row" id="random-1004-content">
+        <div class="layui-row form-row" id="random-7097-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -113,18 +113,20 @@
 
 
 
-        <div class="layui-row form-row" id="random-0382-content">
+        <div class="layui-row form-row" id="random-1210-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs12 form-column"  style="padding-top: 0px" >
 
+
                     <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" type="text" class="layui-input"  />
-                        </div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
+                    <div class="layui-input-block ">
+                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" class="layui-textarea" style="height: 120px" ></textarea>
                     </div>
+                </div>
+
 
                 <!--结束：栏次内字段循环-->
             </div>
@@ -149,7 +151,6 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
-
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];

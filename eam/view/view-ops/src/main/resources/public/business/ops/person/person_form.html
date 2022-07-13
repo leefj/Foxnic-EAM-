@@ -2,7 +2,7 @@
 /**
  * 人员清单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-21 11:02:19
+ * @since 2022-07-12 21:51:49
  */
  -->
  <!DOCTYPE html>
@@ -38,22 +38,22 @@
 
 
 
-        <div class="layui-row form-row" id="random-1672-content">
+        <div class="layui-row form-row" id="random-2504-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs6 form-column" >
 
                     <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('姓名')}">姓名</div></div>
+                        <div class="layui-form-label "><div th:text="${lang.translate('姓名')}">姓名</div><div class="layui-required">*</div></div>
                         <div class="layui-input-block ">
-                            <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('姓名') }" type="text" class="layui-input"  />
+                            <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('姓名') }" type="text" class="layui-input"    lay-verify="|required"  />
                         </div>
                     </div>
 
                 
                     <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('人员类型')}">人员类型</div></div>
+                        <div class="layui-form-label "><div th:text="${lang.translate('人员类型')}">人员类型</div><div class="layui-required">*</div></div>
                         <div class="layui-input-block ">
                             <div id="personType" input-type="select" th:data="${'/service-system/sys-dict-item/query-list?dictCode=ops_person_type'}" extraParam="{}"></div>
                         </div>
@@ -74,9 +74,9 @@
             <div class="layui-col-xs6 form-column" >
 
                     <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('组织名称')}">组织名称</div></div>
+                        <div class="layui-form-label "><div th:text="${lang.translate('组织名称')}">组织名称</div><div class="layui-required">*</div></div>
                         <div class="layui-input-block ">
-                            <input lay-filter="companyName" id="companyName" name="companyName" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('组织名称') }" type="text" class="layui-input"  />
+                            <input lay-filter="companyName" id="companyName" name="companyName" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('组织名称') }" type="text" class="layui-input"    lay-verify="|required"  />
                         </div>
                     </div>
 
@@ -95,7 +95,7 @@
 
 
 
-        <div class="layui-row form-row" id="random-7348-content">
+        <div class="layui-row form-row" id="random-5185-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -133,10 +133,9 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
-
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
-    var VALIDATE_CONFIG={};
+    var VALIDATE_CONFIG={"companyName":{"labelInForm":"组织名称","inputType":"text_input","required":true},"name":{"labelInForm":"姓名","inputType":"text_input","required":true},"personType":{"labelInForm":"人员类型","inputType":"select_box","required":true}};
     var AUTH_PREFIX="ops_person";
 
 

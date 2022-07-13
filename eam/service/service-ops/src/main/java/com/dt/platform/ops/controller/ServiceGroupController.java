@@ -2,6 +2,7 @@ package com.dt.platform.ops.controller;
 
 
 import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 服务分组 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:28:45
+ * @since 2022-07-12 22:05:33
 */
 
 @Api(tags = "服务分组")
@@ -73,7 +74,7 @@ public class ServiceGroupController extends SuperController {
 	@SentinelResource(value = ServiceGroupServiceProxy.INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(ServiceGroupServiceProxy.INSERT)
 	public Result insert(ServiceGroupVO serviceGroupVO) {
-		Result result=serviceGroupService.insert(serviceGroupVO);
+		Result result=serviceGroupService.insert(serviceGroupVO,false);
 		return result;
 	}
 
@@ -91,6 +92,17 @@ public class ServiceGroupController extends SuperController {
 	@SentinelResource(value = ServiceGroupServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(ServiceGroupServiceProxy.DELETE)
 	public Result deleteById(String id) {
+		this.validator().asserts(id).require("缺少id值");
+		if(this.validator().failure()) {
+			return this.validator().getFirstResult();
+		}
+		// 引用校验
+		Boolean hasRefer = serviceGroupService.hasRefers(id);
+		// 判断是否可以删除
+		this.validator().asserts(hasRefer).mustInList("不允许删除当前记录",false);
+		if(this.validator().failure()) {
+			return this.validator().getFirstResult();
+		}
 		Result result=serviceGroupService.deleteByIdLogical(id);
 		return result;
 	}
@@ -109,8 +121,43 @@ public class ServiceGroupController extends SuperController {
 	@SentinelResource(value = ServiceGroupServiceProxy.DELETE_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(ServiceGroupServiceProxy.DELETE_BY_IDS)
 	public Result deleteByIds(List<String> ids) {
-		Result result=serviceGroupService.deleteByIdsLogical(ids);
-		return result;
+
+		// 参数校验
+		this.validator().asserts(ids).require("缺少ids参数");
+		if(this.validator().failure()) {
+			return this.validator().getFirstResult();
+		}
+
+		// 查询引用
+		Map<String, Boolean> hasRefersMap = serviceGroupService.hasRefers(ids);
+		// 收集可以删除的ID值
+		List<String> canDeleteIds = new ArrayList<>();
+		for (Map.Entry<String, Boolean> e : hasRefersMap.entrySet()) {
+			if (!e.getValue()) {
+				canDeleteIds.add(e.getKey());
+			}
+		}
+
+		// 执行删除
+		if (canDeleteIds.isEmpty()) {
+			// 如果没有一行可以被删除
+			return ErrorDesc.failure().message("无法删除您选中的数据行");
+		} else if (canDeleteIds.size() == ids.size()) {
+			// 如果全部可以删除
+			Result result=serviceGroupService.deleteByIdsLogical(canDeleteIds);
+			return result;
+		} else if (canDeleteIds.size()>0 && canDeleteIds.size() < ids.size()) {
+			// 如果部分行可以删除
+			Result result=serviceGroupService.deleteByIdsLogical(canDeleteIds);
+			if (result.failure()) {
+				return result;
+			} else {
+				return ErrorDesc.success().message("已删除 " + canDeleteIds.size() + " 行，但另有 " + (ids.size() - canDeleteIds.size()) + " 行数据无法删除").messageLevel4Confirm();
+			}
+		} else {
+			// 理论上，这个分支不存在
+			return ErrorDesc.success().message("数据删除未处理");
+		}
 	}
 
 	/**
@@ -122,12 +169,12 @@ public class ServiceGroupController extends SuperController {
 		@ApiImplicitParam(name = ServiceGroupVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class , example = "db"),
 		@ApiImplicitParam(name = ServiceGroupVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "数据库"),
 	})
-	@ApiOperationSupport( order=4 , ignoreParameters = { ServiceGroupVOMeta.PAGE_INDEX , ServiceGroupVOMeta.PAGE_SIZE , ServiceGroupVOMeta.SEARCH_FIELD , ServiceGroupVOMeta.FUZZY_FIELD , ServiceGroupVOMeta.SEARCH_VALUE , ServiceGroupVOMeta.SORT_FIELD , ServiceGroupVOMeta.SORT_TYPE , ServiceGroupVOMeta.IDS } )
+	@ApiOperationSupport( order=4 , ignoreParameters = { ServiceGroupVOMeta.PAGE_INDEX , ServiceGroupVOMeta.PAGE_SIZE , ServiceGroupVOMeta.SEARCH_FIELD , ServiceGroupVOMeta.FUZZY_FIELD , ServiceGroupVOMeta.SEARCH_VALUE , ServiceGroupVOMeta.DIRTY_FIELDS , ServiceGroupVOMeta.SORT_FIELD , ServiceGroupVOMeta.SORT_TYPE , ServiceGroupVOMeta.IDS } )
 	@NotNull(name = ServiceGroupVOMeta.ID)
 	@SentinelResource(value = ServiceGroupServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(ServiceGroupServiceProxy.UPDATE)
 	public Result update(ServiceGroupVO serviceGroupVO) {
-		Result result=serviceGroupService.update(serviceGroupVO,SaveMode.NOT_NULL_FIELDS);
+		Result result=serviceGroupService.update(serviceGroupVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
 		return result;
 	}
 
@@ -141,12 +188,12 @@ public class ServiceGroupController extends SuperController {
 		@ApiImplicitParam(name = ServiceGroupVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class , example = "db"),
 		@ApiImplicitParam(name = ServiceGroupVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "数据库"),
 	})
-	@ApiOperationSupport(order=5 ,  ignoreParameters = { ServiceGroupVOMeta.PAGE_INDEX , ServiceGroupVOMeta.PAGE_SIZE , ServiceGroupVOMeta.SEARCH_FIELD , ServiceGroupVOMeta.FUZZY_FIELD , ServiceGroupVOMeta.SEARCH_VALUE , ServiceGroupVOMeta.SORT_FIELD , ServiceGroupVOMeta.SORT_TYPE , ServiceGroupVOMeta.IDS } )
+	@ApiOperationSupport(order=5 ,  ignoreParameters = { ServiceGroupVOMeta.PAGE_INDEX , ServiceGroupVOMeta.PAGE_SIZE , ServiceGroupVOMeta.SEARCH_FIELD , ServiceGroupVOMeta.FUZZY_FIELD , ServiceGroupVOMeta.SEARCH_VALUE , ServiceGroupVOMeta.DIRTY_FIELDS , ServiceGroupVOMeta.SORT_FIELD , ServiceGroupVOMeta.SORT_TYPE , ServiceGroupVOMeta.IDS } )
 	@NotNull(name = ServiceGroupVOMeta.ID)
 	@SentinelResource(value = ServiceGroupServiceProxy.SAVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(ServiceGroupServiceProxy.SAVE)
 	public Result save(ServiceGroupVO serviceGroupVO) {
-		Result result=serviceGroupService.save(serviceGroupVO,SaveMode.NOT_NULL_FIELDS);
+		Result result=serviceGroupService.save(serviceGroupVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
 		return result;
 	}
 
@@ -165,11 +212,6 @@ public class ServiceGroupController extends SuperController {
 	public Result<ServiceGroup> getById(String id) {
 		Result<ServiceGroup> result=new Result<>();
 		ServiceGroup serviceGroup=serviceGroupService.getById(id);
-
-		// join 关联的对象
-		serviceGroupService.dao().fill(serviceGroup)
-			.execute();
-
 		result.success(true).data(serviceGroup);
 		return result;
 	}
@@ -189,7 +231,7 @@ public class ServiceGroupController extends SuperController {
 	@PostMapping(ServiceGroupServiceProxy.GET_BY_IDS)
 	public Result<List<ServiceGroup>> getByIds(List<String> ids) {
 		Result<List<ServiceGroup>> result=new Result<>();
-		List<ServiceGroup> list=serviceGroupService.getByIds(ids);
+		List<ServiceGroup> list=serviceGroupService.queryListByIds(ids);
 		result.success(true).data(list);
 		return result;
 	}
@@ -230,67 +272,13 @@ public class ServiceGroupController extends SuperController {
 	public Result<PagedList<ServiceGroup>> queryPagedList(ServiceGroupVO sample) {
 		Result<PagedList<ServiceGroup>> result=new Result<>();
 		PagedList<ServiceGroup> list=serviceGroupService.queryPagedList(sample,sample.getPageSize(),sample.getPageIndex());
-
-		// join 关联的对象
-		serviceGroupService.dao().fill(list)
-			.execute();
-
 		result.success(true).data(list);
 		return result;
 	}
 
 
 
-	/**
-	 * 导出 Excel
-	 * */
-	@SentinelResource(value = ServiceGroupServiceProxy.EXPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(ServiceGroupServiceProxy.EXPORT_EXCEL)
-	public void exportExcel(ServiceGroupVO  sample,HttpServletResponse response) throws Exception {
-			//生成 Excel 数据
-			ExcelWriter ew=serviceGroupService.exportExcel(sample);
-			//下载
-			DownloadUtil.writeToOutput(response, ew.getWorkBook(), ew.getWorkBookName());
-	}
 
-
-	/**
-	 * 导出 Excel 模板
-	 * */
-	@SentinelResource(value = ServiceGroupServiceProxy.EXPORT_EXCEL_TEMPLATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(ServiceGroupServiceProxy.EXPORT_EXCEL_TEMPLATE)
-	public void exportExcelTemplate(HttpServletResponse response) throws Exception {
-			//生成 Excel 模版
-			ExcelWriter ew=serviceGroupService.exportExcelTemplate();
-			//下载
-			DownloadUtil.writeToOutput(response, ew.getWorkBook(), ew.getWorkBookName());
-		}
-
-
-
-	@SentinelResource(value = ServiceGroupServiceProxy.IMPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(ServiceGroupServiceProxy.IMPORT_EXCEL)
-	public Result importExcel(MultipartHttpServletRequest request, HttpServletResponse response) throws Exception {
-
-		//获得上传的文件
-		Map<String, MultipartFile> map = request.getFileMap();
-		InputStream input=null;
-		for (MultipartFile mf : map.values()) {
-			input=StreamUtil.bytes2input(mf.getBytes());
-			break;
-		}
-
-		if(input==null) {
-			return ErrorDesc.failure().message("缺少上传的文件");
-		}
-
-		List<ValidateResult> errors=serviceGroupService.importExcel(input,0,true);
-		if(errors==null || errors.isEmpty()) {
-			return ErrorDesc.success();
-		} else {
-			return ErrorDesc.failure().message("导入失败").data(errors);
-		}
-	}
 
 
 }

@@ -3,6 +3,7 @@ package com.dt.platform.generator.module.ops;
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.DictEnum;
 import com.dt.platform.constants.enums.common.StatusValidEnum;
+import com.dt.platform.generator.config.Config;
 import com.dt.platform.ops.page.VoucherPrivPageController;
 import com.dt.platform.proxy.ops.VoucherPrivServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
@@ -41,12 +42,14 @@ public class OpsVoucherPrivGtr extends BaseCodeGenerator{
                 .radioBox().enumType(StatusValidEnum.class).defaultIndex(0);
 
         cfg.view().formWindow().bottomSpace(120);
-        cfg.view().formWindow().width("800px");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_VOUCHER_PRIV.TYPE,
-                        OpsTables.OPS_VOUCHER_PRIV.EMPL_ID,
                         OpsTables.OPS_VOUCHER_PRIV.STATUS,
+                },
+                new Object[] {
+                        OpsTables.OPS_VOUCHER_PRIV.EMPL_ID,
                 }
         );
 

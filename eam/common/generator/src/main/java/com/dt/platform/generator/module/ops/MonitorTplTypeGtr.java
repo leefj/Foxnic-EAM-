@@ -36,9 +36,16 @@ public class MonitorTplTypeGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_TYPE.CREATE_TIME).table().disable(true);
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_TYPE.CODE).form().validate().required();
 
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_TYPE.NAME).form().validate().required();
 
         cfg.view().formWindow().bottomSpace(120);
-        cfg.view().formWindow().width("800px");
+        cfg.view().formWindow().width(Config.baseFormWidth);;
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_TYPE.NOTES).form().textArea().height(Config.textAreaHeight);
+
+
+
+        cfg.view().formWindow().bottomSpace(120);
+
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_MONITOR_TPL_TYPE.NAME,

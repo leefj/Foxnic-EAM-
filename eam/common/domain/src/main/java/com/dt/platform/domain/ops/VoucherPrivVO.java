@@ -3,6 +3,7 @@ package com.dt.platform.domain.ops;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import com.github.foxnic.api.model.CompositeParameter;
 import javax.persistence.Transient;
 import com.github.foxnic.commons.bean.BeanUtil;
@@ -12,8 +13,8 @@ import com.github.foxnic.commons.bean.BeanUtil;
 /**
  * 凭证权限
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:28:15
- * @sign F05EBD29CB2E86175415CA9569824326
+ * @since 2022-07-12 21:51:56
+ * @sign E896F536001B856F2B2D3BA60FA3E395
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -50,6 +51,12 @@ public class VoucherPrivVO extends VoucherPriv {
 	*/
 	@ApiModelProperty(required = false,value="搜索的值" , notes = "")
 	private String searchValue;
+	
+	/**
+	 * 已修改字段
+	*/
+	@ApiModelProperty(required = false,value="已修改字段" , notes = "")
+	private List<String> dirtyFields;
 	
 	/**
 	 * 排序字段
@@ -160,6 +167,35 @@ public class VoucherPrivVO extends VoucherPriv {
 	}
 	
 	/**
+	 * 获得 已修改字段<br>
+	 * @return 已修改字段
+	*/
+	public List<String> getDirtyFields() {
+		return dirtyFields;
+	}
+	
+	/**
+	 * 设置 已修改字段
+	 * @param dirtyFields 已修改字段
+	 * @return 当前对象
+	*/
+	public VoucherPrivVO setDirtyFields(List<String> dirtyFields) {
+		this.dirtyFields=dirtyFields;
+		return this;
+	}
+	
+	/**
+	 * 添加 已修改字段
+	 * @param dirtyField 已修改字段
+	 * @return 当前对象
+	*/
+	public VoucherPrivVO addDirtyField(String... dirtyField) {
+		if(this.dirtyFields==null) dirtyFields=new ArrayList<>();
+		this.dirtyFields.addAll(Arrays.asList(dirtyField));
+		return this;
+	}
+	
+	/**
 	 * 获得 排序字段<br>
 	 * @return 排序字段
 	*/
@@ -219,9 +255,9 @@ public class VoucherPrivVO extends VoucherPriv {
 	 * @param id 主键清单
 	 * @return 当前对象
 	*/
-	public VoucherPrivVO addId(String id) {
+	public VoucherPrivVO addId(String... id) {
 		if(this.ids==null) ids=new ArrayList<>();
-		this.ids.add(id);
+		this.ids.addAll(Arrays.asList(id));
 		return this;
 	}
 	@Transient

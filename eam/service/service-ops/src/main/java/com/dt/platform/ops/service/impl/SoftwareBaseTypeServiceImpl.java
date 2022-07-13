@@ -1,9 +1,11 @@
 package com.dt.platform.ops.service.impl;
 
-
 import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.github.foxnic.commons.collection.MapUtil;
+import java.util.Arrays;
 
 
 import com.dt.platform.domain.ops.SoftwareBaseType;
@@ -36,7 +38,7 @@ import java.util.Map;
  * 软件基线类型 服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-27 20:16:25
+ * @since 2022-07-12 21:52:03
 */
 
 
@@ -203,6 +205,14 @@ public class SoftwareBaseTypeServiceImpl extends SuperService<SoftwareBaseType> 
 		return dao.queryEntity(sample);
 	}
 
+	/**
+	 * 等价于 queryListByIds
+	 * */
+	@Override
+	public List<SoftwareBaseType> getByIds(List<String> ids) {
+		return this.queryListByIds(ids);
+	}
+
 	@Override
 	public List<SoftwareBaseType> queryListByIds(List<String> ids) {
 		return super.queryListByUKeys("id",ids);
@@ -222,7 +232,7 @@ public class SoftwareBaseTypeServiceImpl extends SuperService<SoftwareBaseType> 
 	 * @return 查询结果
 	 * */
 	@Override
-	public List<SoftwareBaseType> queryList(SoftwareBaseType sample) {
+	public List<SoftwareBaseType> queryList(SoftwareBaseTypeVO sample) {
 		return super.queryList(sample);
 	}
 
@@ -236,7 +246,7 @@ public class SoftwareBaseTypeServiceImpl extends SuperService<SoftwareBaseType> 
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<SoftwareBaseType> queryPagedList(SoftwareBaseType sample, int pageSize, int pageIndex) {
+	public PagedList<SoftwareBaseType> queryPagedList(SoftwareBaseTypeVO sample, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, pageSize, pageIndex);
 	}
 
@@ -267,25 +277,33 @@ public class SoftwareBaseTypeServiceImpl extends SuperService<SoftwareBaseType> 
 		return false;
 	}
 
+
+	/**
+	 * 检查引用
+	 * @param id  检查ID是否又被外部表引用
+	 * */
 	@Override
-	public ExcelWriter exportExcel(SoftwareBaseType sample) {
-		return super.exportExcel(sample);
+	public Boolean hasRefers(String id) {
+		Map<String, Boolean> map=this.hasRefers(Arrays.asList(id));
+		Boolean ex=map.get(id);
+		if(ex==null) return false;
+		return ex;
 	}
 
+	/**
+	 * 批量检查引用
+	 * @param ids  检查这些ID是否又被外部表引用
+	 * */
 	@Override
-	public ExcelWriter exportExcelTemplate() {
-		return super.exportExcelTemplate();
+	public Map<String, Boolean> hasRefers(List<String> ids) {
+		// 默认无业务逻辑，返回此行；有业务逻辑需要校验时，请修改并使用已注释的行代码！！！
+		return MapUtil.asMap(ids,false);
+		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
 	}
 
-	@Override
-	public List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch) {
-		return super.importExcel(input,sheetIndex,batch);
-	}
 
-	@Override
-	public ExcelStructure buildExcelStructure(boolean isForExport) {
-		return super.buildExcelStructure(isForExport);
-	}
+
+
 
 
 }

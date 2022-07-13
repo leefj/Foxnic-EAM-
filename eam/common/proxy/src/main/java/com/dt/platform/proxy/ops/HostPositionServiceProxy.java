@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import com.dt.platform.domain.ops.HostPosition;
 import com.dt.platform.domain.ops.HostPositionVO;
@@ -17,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 主机位置  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-21 10:03:49
+ * @since 2022-07-12 22:04:48
  */
 @FeignClient(value = ServiceNames.OPS, contextId = HostPositionServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface HostPositionServiceProxy {
@@ -81,21 +83,6 @@ public interface HostPositionServiceProxy {
      * 分页查询主机位置
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
-
-    /**
-     * 导出主机位置数据(Excel)
-     */
-    public static final String EXPORT_EXCEL = API_PREFIX + "export-excel";
-
-    /**
-     * 下载主机位置导入模版(Excel)
-     */
-    public static final String EXPORT_EXCEL_TEMPLATE = API_PREFIX + "export-excel-template";
-
-    /**
-     * 导入主机位置数据(Excel)
-     */
-    public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
 
     /**
      * 添加主机位置

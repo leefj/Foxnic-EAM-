@@ -12,7 +12,7 @@ import com.dt.platform.domain.ops.MonitorTplIndicatorType;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-02-20 12:42:51
+ * @since 2022-07-12 22:11:44
  * @sign C0886492D704913F5D2D80E8CED30CF8
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -280,14 +280,14 @@ public class MonitorTplIndicatorVOMeta extends MonitorTplIndicatorMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplIndicatorVO,java.lang.String> COMMAND_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplIndicatorVO.class ,COMMAND, java.lang.String.class, "命令", "命令", java.lang.String.class, null);
 	
 	/**
-	 * command_value , 类型: java.lang.String
+	 * 命令值 , 类型: java.lang.String
 	*/
 	public static final String COMMAND_VALUE="commandValue";
 	
 	/**
-	 * command_value , 类型: java.lang.String
+	 * 命令值 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplIndicatorVO,java.lang.String> COMMAND_VALUE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplIndicatorVO.class ,COMMAND_VALUE, java.lang.String.class, "command_value", "command_value", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.MonitorTplIndicatorVO,java.lang.String> COMMAND_VALUE_PROP = new BeanProperty(com.dt.platform.domain.ops.MonitorTplIndicatorVO.class ,COMMAND_VALUE, java.lang.String.class, "命令值", "命令值", java.lang.String.class, null);
 	
 	/**
 	 * 变量 , 类型: java.lang.String
@@ -739,8 +739,8 @@ public class MonitorTplIndicatorVOMeta extends MonitorTplIndicatorMeta {
 		}
 		
 		/**
-		 * 设置 command_value
-		 * @param commandValue command_value
+		 * 设置 命令值
+		 * @param commandValue 命令值
 		 * @return 当前对象
 		*/
 		public MonitorTplIndicator setCommandValue(String commandValue) {
