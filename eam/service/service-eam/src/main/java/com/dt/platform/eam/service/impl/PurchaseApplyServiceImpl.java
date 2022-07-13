@@ -10,19 +10,23 @@ import com.dt.platform.constants.enums.eam.AssetHandleConfirmOperationEnum;
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
 import com.dt.platform.domain.eam.*;
-import com.dt.platform.eam.service.IOperateService;
-import com.dt.platform.eam.service.IPurchaseCheckService;
-import com.dt.platform.eam.service.IPurchaseOrderService;
+import com.dt.platform.eam.service.*;
+import com.dt.platform.eam.service.bpm.AssetStorageBpmEventAdaptor;
+import com.dt.platform.eam.service.bpm.PurchaseApplyBpmEventAdaptor;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.commons.lang.StringUtil;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.domain.changes.ProcessStartVO;
+import org.github.foxnic.web.framework.bpm.BpmAssistant;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import java.util.List;
+import java.util.*;
+
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.entity.SuperService;
@@ -39,13 +43,9 @@ import com.github.foxnic.sql.meta.DBField;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.meta.DBColumnMeta;
 import com.github.foxnic.sql.expr.Select;
-import java.util.ArrayList;
-import com.dt.platform.eam.service.IPurchaseApplyService;
+
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Date;
-import java.util.Map;
 
 /**
  * <p>
@@ -75,6 +75,31 @@ public class PurchaseApplyServiceImpl extends SuperService<PurchaseApply> implem
 	 * */
 	@Resource(name=DBConfigs.PRIMARY_DAO) 
 	private DAO dao=null;
+
+	/**
+	 * 处理流程回调
+	 * */
+	public BpmActionResult onProcessCallback(BpmEvent event) {
+		return (new PurchaseApplyBpmEventAdaptor(this)).onProcessCallback(event);
+	}
+
+	@Override
+	public void joinProcess(PurchaseApply purchaseApply) {
+		this.joinProcess(Arrays.asList(purchaseApply));
+	}
+
+
+	@Override
+	public void joinProcess(List<PurchaseApply> purchaseApplyList) {
+		BpmAssistant.joinProcess(purchaseApplyList, IPurchaseApplyService.FORM_DEFINITION_CODE);
+	}
+
+	@Override
+	public void joinProcess(PagedList<PurchaseApply> purchaseApplyList) {
+		this.joinProcess(purchaseApplyList.getList());
+	}
+
+
 
 	/**
 	 * 获得 DAO 对象
@@ -248,7 +273,7 @@ public class PurchaseApplyServiceImpl extends SuperService<PurchaseApply> implem
 		PurchaseApply purchaseApply = new PurchaseApply();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		purchaseApply.setId(id);
-		purchaseApply.setDeleted(dao.getDBTreaty().getTrueValue());
+		purchaseApply.setDeleted(1);
 		purchaseApply.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		purchaseApply.setDeleteTime(new Date());
 		try {

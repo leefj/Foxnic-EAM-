@@ -37,7 +37,7 @@ public class OsTypeGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
         cfg.view().field( WorkorderTables.WO_SERVER_OS_TYPE.NAME).form().validate().required();
-
+        cfg.view().field( WorkorderTables.WO_SERVER_OS_TYPE.NOTES).form().textArea().height(Config.textAreaHeight);
 
         cfg.view().form().labelWidth(70);
         cfg.view().list().disableBatchDelete();
@@ -46,8 +46,9 @@ public class OsTypeGtr extends BaseCodeGenerator {
         cfg.view().form().addGroup(null,
                 new Object[] {
                         WorkorderTables.WO_SERVER_OS_TYPE.NAME,
+                        WorkorderTables.WO_SERVER_OS_TYPE.SORT,
                         WorkorderTables.WO_SERVER_OS_TYPE.NOTES,
-                        WorkorderTables.WO_SERVER_OS_TYPE.SORT
+
                 }
 
         );
@@ -71,6 +72,6 @@ public class OsTypeGtr extends BaseCodeGenerator {
 
         //生成菜单
         //  g.removeByBatchId("");
-       // g.generateMenu(ServerOsTypeServiceProxy.class, ServerOsTypePageController.class);
+        //g.generateMenu(ServerOsTypeServiceProxy.class, ServerOsTypePageController.class);
     }
 }

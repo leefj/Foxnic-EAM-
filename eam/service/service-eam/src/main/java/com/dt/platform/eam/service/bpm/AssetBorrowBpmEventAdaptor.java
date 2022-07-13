@@ -22,8 +22,7 @@ import org.github.foxnic.web.framework.bpm.BpmEventAdaptor;
 public class AssetBorrowBpmEventAdaptor extends BpmEventAdaptor<AssetBorrow, IAssetBorrowService> {
 
 	public String BPM_TABLE="eam_asset_borrow";
-
-	private void updateBillStatus(String id,String status ){
+	private void updateBillStatus(String status ,String id){
 		this.dao().execute("update "+BPM_TABLE+" set status=? where id=?", status, id);
 	}
 

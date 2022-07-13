@@ -10,6 +10,7 @@ import com.dt.platform.domain.eam.meta.PurchaseApplyMeta;
 import com.dt.platform.domain.eam.meta.SupplierMeta;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.SupplierServiceProxy;
+import com.github.foxnic.api.bpm.IntegrateMode;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.changes.ChangeInstance;
 import org.github.foxnic.web.domain.hrm.Employee;
@@ -122,11 +123,13 @@ public class EamPurchaseApplyGtr extends BaseCodeGenerator {
 
         cfg.view().list().operationColumn().addActionButton("验收","check","check-bill-button","eam_asset_purchase_apply:check");
       //  cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_purchase_apply:for-approval");
-        cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_purchase_apply:confirm");
+   //     cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_purchase_apply:confirm");
        // cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_purchase_apply:revoke");
         cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_purchase_apply:bill");
 
 
+        cfg.bpm().form("eam_asset_purchase_apply");
+        cfg.bpm().integrate(IntegrateMode.FRONT);
 
 
         cfg.view().formWindow().bottomSpace(250);
@@ -162,6 +165,7 @@ public class EamPurchaseApplyGtr extends BaseCodeGenerator {
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
                 .setControllerAndAgent(WriteMode.IGNORE) //Rest
                 .setPageController(WriteMode.IGNORE) //页面控制器
+                .setBpmEventAdaptor(WriteMode.IGNORE)
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
                 .setExtendJsFile(WriteMode.IGNORE); //列表HTML页

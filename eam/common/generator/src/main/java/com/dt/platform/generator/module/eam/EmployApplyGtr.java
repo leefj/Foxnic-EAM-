@@ -107,7 +107,7 @@ public class EmployApplyGtr extends BaseCodeGenerator {
 //        cfg.view().form().addPage("资产列表","goodsSelectList");
 //        cfg.view().search().inputWidth(Config.searchInputWidth);
 
-
+        cfg.view().list().addJs("/extmodule/commonFunction/commonFunction.js");
 
         cfg.bpm().form("eam_asset_employee_apply");
         cfg.bpm().integrate(IntegrateMode.FRONT);
@@ -119,7 +119,7 @@ public class EmployApplyGtr extends BaseCodeGenerator {
                 .setPageController(WriteMode.IGNORE) //页面控制器
                 .setBpmEventAdaptor(WriteMode.IGNORE)
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
-                .setListPage(WriteMode.IGNORE)
+                .setListPage(WriteMode.COVER_EXISTS_FILE)
                 .setExtendJsFile(WriteMode.WRITE_TEMP_FILE); //列表HTML页
         ; //列表HTML页
         //生成代码

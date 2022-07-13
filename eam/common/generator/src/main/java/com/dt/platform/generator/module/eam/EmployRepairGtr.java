@@ -103,7 +103,7 @@ public class EmployRepairGtr extends BaseCodeGenerator {
 //
 //       <script type="text/javascript" src="/module/commonFunction/commonFunction.js" th:src="'/module/commonFunction/commonFunction.js?'+${cacheKey}"></script>
 
-
+        cfg.view().list().addJs("/extmodule/commonFunction/commonFunction.js");
 
         cfg.view().form().addJsVariable("EMPLOYEE_ID",   "[[${user.getUser().getActivatedEmployeeId()}]]","用户ID");
         cfg.view().form().addPage("资产列表","goodsSelectList");

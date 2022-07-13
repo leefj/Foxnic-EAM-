@@ -1,8 +1,6 @@
 package com.dt.platform.eam.service.bpm;
 
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
-import com.dt.platform.domain.eam.AssetEmployeeRepair;
-import com.dt.platform.eam.service.IAssetEmployeeRepairService;
 import com.github.foxnic.commons.log.Logger;
 import org.github.foxnic.web.domain.bpm.BpmActionResult;
 import org.github.foxnic.web.domain.bpm.BpmEvent;
@@ -16,29 +14,31 @@ import com.github.foxnic.commons.collection.MapUtil;
 import java.util.Arrays;
 
 
+import com.dt.platform.domain.eam.PurchaseApply;
+import com.dt.platform.eam.service.IPurchaseApplyService;
 
 /**
  * <p>
- * 资产报修 流程回调事件适配器
+ * 采购申请 流程回调事件适配器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-01 06:12:33
+ * @since 2022-07-13 18:38:14
 */
 
-public class AssetEmployeeRepairBpmEventAdaptor extends BpmEventAdaptor<AssetEmployeeRepair,IAssetEmployeeRepairService> {
+public class PurchaseApplyBpmEventAdaptor extends BpmEventAdaptor<PurchaseApply,IPurchaseApplyService> {
 
-
-	public String BPM_TABLE="eam_asset_employee_repair";
+	public String BPM_TABLE="eam_asset_purchase_apply";
 
 	private void updateBillStatus(String status ,String id){
 		this.dao().execute("update "+BPM_TABLE+" set status=? where id=?", status, id);
 	}
 
 
-
-	public AssetEmployeeRepairBpmEventAdaptor(IAssetEmployeeRepairService service) {
+	public PurchaseApplyBpmEventAdaptor(IPurchaseApplyService service) {
 		super(service);
 	}
+
+
 	/***
 	 * 流程暂存开始，通过返回 BpmActionResult  的 success 或  failure 控制暂存过程是否继续进行
 	 * */

@@ -5,6 +5,9 @@ import java.util.List;
 
 import com.dt.platform.domain.eam.meta.AssetScrapVOMeta;
 import com.dt.platform.proxy.eam.AssetScrapServiceProxy;
+import com.dt.platform.proxy.eam.AssetTranferServiceProxy;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -435,6 +438,17 @@ public class PurchaseApplyController extends SuperController {
 		} catch (Exception e) {
 			DownloadUtil.writeDownloadError(response,e);
 		}
+	}
+
+
+
+	/**
+	 *  流程回调处理
+	 */
+	@SentinelResource(value = PurchaseApplyServiceProxy.BPM_CALLBACK , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(PurchaseApplyServiceProxy.BPM_CALLBACK)
+	public BpmActionResult onProcessCallback(BpmEvent event){
+		return purchaseApplyService.onProcessCallback(event);
 	}
 
 

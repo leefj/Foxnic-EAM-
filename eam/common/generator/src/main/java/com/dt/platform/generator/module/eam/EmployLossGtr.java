@@ -109,7 +109,7 @@ public class EmployLossGtr extends BaseCodeGenerator {
 
         cfg.view().form().addJsVariable("EMPLOYEE_ID",   "[[${user.getUser().getActivatedEmployeeId()}]]","用户ID");
 
-
+        cfg.view().list().addJs("/extmodule/commonFunction/commonFunction.js");
         cfg.view().form().addPage("资产列表","goodsSelectList");
 
         cfg.view().search().inputWidth(Config.searchInputWidth);

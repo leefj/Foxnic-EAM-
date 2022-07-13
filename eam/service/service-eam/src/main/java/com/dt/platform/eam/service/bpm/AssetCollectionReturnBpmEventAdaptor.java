@@ -24,7 +24,7 @@ public class AssetCollectionReturnBpmEventAdaptor extends BpmEventAdaptor<AssetC
 
 	public String BPM_TABLE="eam_asset_collection_return";
 
-	private void updateBillStatus(String id,String status ){
+	private void updateBillStatus(String status ,String id){
 		this.dao().execute("update "+BPM_TABLE+" set status=? where id=?", status, id);
 	}
 

@@ -23,7 +23,7 @@ public class AssetTranferBpmEventAdaptor extends BpmEventAdaptor<AssetTranfer, I
 
 	public String BPM_TABLE="eam_asset_tranfer";
 
-	private void updateBillStatus(String id,String status ){
+	private void updateBillStatus(String status ,String id){
 		this.dao().execute("update "+BPM_TABLE+" set status=? where id=?", status, id);
 	}
 

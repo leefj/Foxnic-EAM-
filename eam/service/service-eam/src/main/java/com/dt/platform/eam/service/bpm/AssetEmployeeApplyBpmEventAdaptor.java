@@ -25,7 +25,7 @@ public class AssetEmployeeApplyBpmEventAdaptor extends BpmEventAdaptor<AssetEmpl
 
 	public String BPM_TABLE="eam_asset_employee_apply";
 
-	private void updateBillStatus(String id,String status ){
+	private void updateBillStatus(String status ,String id){
 		this.dao().execute("update "+BPM_TABLE+" set status=? where id=?", status, id);
 	}
 
@@ -55,6 +55,7 @@ public class AssetEmployeeApplyBpmEventAdaptor extends BpmEventAdaptor<AssetEmpl
 		Logger.info("onProcessSubmitStart result:"+event.getActionResult().code());
 		Logger.info("onProcessSubmitStart result:"+event.getActionResult().getData());
 		Logger.info("onProcessSubmitStart result:"+event.getActionResult().getMessage());
+		Logger.info("onProcessSubmitStart result:"+event.getActionResult().isSuccess());
 		if(event.getActionResult().isSuccess()){
 			updateBillStatus(AssetHandleStatusEnum.APPROVAL.code(), event.getBillId());
 		}
@@ -69,6 +70,7 @@ public class AssetEmployeeApplyBpmEventAdaptor extends BpmEventAdaptor<AssetEmpl
 		Logger.info("onTaskStart result:"+event.getActionResult().code());
 		Logger.info("onTaskStart result:"+event.getActionResult().getData());
 		Logger.info("onTaskStart result:"+event.getActionResult().getMessage());
+		Logger.info("onTaskStart result:"+event.getActionResult().isSuccess());
 		if(event.getActionResult().isSuccess()){
 			updateBillStatus(AssetHandleStatusEnum.APPROVAL.code(), event.getBillId());
 		}
@@ -96,10 +98,7 @@ public class AssetEmployeeApplyBpmEventAdaptor extends BpmEventAdaptor<AssetEmpl
 		Logger.info("onNodeEnd result:"+event.getActionResult().code());
 		Logger.info("onNodeEnd result:"+event.getActionResult().getData());
 		Logger.info("onNodeEnd result:"+event.getActionResult().getMessage());
-
-
-
-
+		Logger.info("onNodeEnd result:"+event.getNodeId());
 		if("END".equals(event.getNodeId())){
 			updateBillStatus(AssetHandleStatusEnum.COMPLETE.code(), event.getBillId());
 		}

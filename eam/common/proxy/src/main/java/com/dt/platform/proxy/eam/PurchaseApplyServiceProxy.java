@@ -1,5 +1,7 @@
 package com.dt.platform.proxy.eam;
 
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
@@ -106,6 +108,17 @@ public interface PurchaseApplyServiceProxy {
      * 验收
      */
     public static final String CHECK = API_PREFIX + "check";
+
+    /**
+     * 流程事件回调接收接口
+     */
+    public static final String BPM_CALLBACK = API_PREFIX + "bpm-callback";
+    /**
+     * 分页查询资产报失
+     */
+    @RequestMapping(PurchaseApplyServiceProxy.BPM_CALLBACK)
+    BpmActionResult onProcessCallback(@RequestParam(name = "event") BpmEvent event);
+
 
 
     /**

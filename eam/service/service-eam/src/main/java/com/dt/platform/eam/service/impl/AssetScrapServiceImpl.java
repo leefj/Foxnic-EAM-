@@ -767,18 +767,18 @@ public class AssetScrapServiceImpl extends SuperService<AssetScrap> implements I
 	}
 
 	@Override
-	public void joinProcess(AssetEmployeeLoss assetEmployeeLoss) {
-		this.joinProcess(Arrays.asList(assetEmployeeLoss));
+	public void joinProcess(AssetScrap assetScrap) {
+		this.joinProcess(Arrays.asList(assetScrap));
 	}
 
 	@Override
-	public void joinProcess(List<AssetEmployeeLoss> assetEmployeeLossList) {
-		BpmAssistant.joinProcess(assetEmployeeLossList, IAssetEmployeeLossService.FORM_DEFINITION_CODE);
+	public void joinProcess(List<AssetScrap> assetScrapList) {
+		BpmAssistant.joinProcess(assetScrapList, IAssetEmployeeLossService.FORM_DEFINITION_CODE);
 	}
 
 	@Override
-	public void joinProcess(PagedList<AssetEmployeeLoss> assetEmployeeLossList) {
-		this.joinProcess(assetEmployeeLossList.getList());
+	public void joinProcess(PagedList<AssetScrap> assetScrapList) {
+		this.joinProcess(assetScrapList.getList());
 	}
 
 

@@ -25,7 +25,7 @@ public class AssetRepairBpmEventAdaptor extends BpmEventAdaptor<AssetRepair, IAs
 
 	public String BPM_TABLE="eam_asset_repair";
 
-	private void updateBillStatus(String id,String status ){
+	private void updateBillStatus(String status ,String id){
 		this.dao().execute("update "+BPM_TABLE+" set status=? where id=?", status, id);
 	}
 

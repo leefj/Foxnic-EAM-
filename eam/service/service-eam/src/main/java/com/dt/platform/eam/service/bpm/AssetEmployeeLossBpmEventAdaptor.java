@@ -31,7 +31,7 @@ public class AssetEmployeeLossBpmEventAdaptor extends BpmEventAdaptor<AssetEmplo
 
 	public String BPM_TABLE="eam_asset_employee_loss";
 
-	private void updateBillStatus(String id,String status ){
+	private void updateBillStatus(String status ,String id){
 		this.dao().execute("update "+BPM_TABLE+" set status=? where id=?", status, id);
 	}
 

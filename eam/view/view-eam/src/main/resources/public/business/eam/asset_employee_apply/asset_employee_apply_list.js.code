@@ -1,7 +1,7 @@
 /**
- * 采购申请 列表页 JS 脚本
+ * 领用申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-13 18:38:15
+ * @since 2022-07-13 21:13:49
  */
 
 
@@ -9,7 +9,7 @@ function ListPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect;
 	//模块基础路径
-	const moduleURL="/service-eam/eam-purchase-apply";
+	const moduleURL="/service-eam/eam-asset-employee-apply";
 	var dataTable=null;
 	var sort=null;
 	/**
@@ -77,19 +77,12 @@ function ListPage() {
 				cols: [[
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
-					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'businessCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务编号') , templet: function (d) { return templet('businessCode',d.businessCode,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('办理状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status),d);}}
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'applyOrgId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('申请部门') , templet: function (d) { return templet('applyOrgId',fox.getProperty(d,["applyOrg","fullName"]),d);} }
-					,{ field: 'supplierId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('供应商'), templet: function (d) { return templet('supplierId' ,fox.joinLabel(d.supplier,"supplierName"),d);}}
-					,{ field: 'harvestInformation', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('收货信息') , templet: function (d) { return templet('harvestInformation',d.harvestInformation,d);}  }
-					,{ field: 'expectedArrivalDate', align:"left", fixed:false, hide:false, sort: true   ,title: fox.translate('期望到货时间') ,templet: function (d) { return templet('expectedArrivalDate',fox.dateFormat(d.expectedArrivalDate,"yyyy-MM-dd"),d); }  }
-					,{ field: 'applyContent', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('申请说明') , templet: function (d) { return templet('applyContent',d.applyContent,d);}  }
-					,{ field: 'applyDate', align:"left", fixed:false, hide:false, sort: true   ,title: fox.translate('申请日期') ,templet: function (d) { return templet('applyDate',fox.dateFormat(d.applyDate,"yyyy-MM-dd"),d); }  }
-					,{ field: 'assetCheck', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('验收情况'), templet:function (d){ return templet('assetCheck',fox.getEnumText(SELECT_ASSETCHECK_DATA,d.assetCheck),d);}}
-					,{ field: 'checkCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('验收编号') , templet: function (d) { return templet('checkCode',d.checkCode,d);}  }
-					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
+					,{ field: 'orgId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('申请部门') , templet: function (d) { return templet('orgId',fox.getProperty(d,["organization","fullName"]),d);} }
+					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('原因') , templet: function (d) { return templet('content',d.content,d);}  }
+					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"]),d);} }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
@@ -142,10 +135,6 @@ function ListPage() {
 		value.businessCode={ inputType:"button",value: $("#businessCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.status={ inputType:"select_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.applyOrgId={ inputType:"button",value: $("#applyOrgId").val(),fillBy:["applyOrg","fullName"] ,label:$("#applyOrgId-button").text() };
-		value.supplierId={ inputType:"select_box", value: getSelectedValue("#supplierId","value") ,fillBy:["supplier"]  , label:getSelectedValue("#supplierId","nameStr") };
-		value.applyDate={ inputType:"date_input", begin: $("#applyDate-begin").val(), end: $("#applyDate-end").val() ,matchType:"auto" };
-		value.assetCheck={ inputType:"select_box", value: getSelectedValue("#assetCheck","value"), label:getSelectedValue("#assetCheck","nameStr") };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -191,7 +180,7 @@ function ListPage() {
 
 	function initSearchFields() {
 
-		fox.switchSearchRow(2);
+		fox.switchSearchRow(1);
 
 		//渲染 status 下拉字段
 		fox.renderSelectBox({
@@ -202,73 +191,6 @@ function ListPage() {
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			transform:function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					opts.push({data:data[i],name:data[i].text,value:data[i].code});
-				}
-				return opts;
-			}
-		});
-		//渲染 supplierId 下拉字段
-		fox.renderSelectBox({
-			el: "supplierId",
-			radio: true,
-			size: "small",
-			filterable: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("supplierId",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			paging: true,
-			pageRemote: true,
-			//转换数据
-			searchField: "supplierName", //请自行调整用于搜索的字段名称
-			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					opts.push({data:data[i],name:data[i].supplierName,value:data[i].id});
-				}
-				return opts;
-			}
-		});
-		laydate.render({
-			elem: '#applyDate-begin',
-			trigger:"click",
-			done: function(value, date, endDate) {
-				setTimeout(function () {
-					window.pageExt.list.onDatePickerChanged && window.pageExt.list.onDatePickerChanged("applyDate",value, date, endDate);
-				},1);
-			}
-		});
-		laydate.render({
-			elem: '#applyDate-end',
-			trigger:"click",
-			done: function(value, date, endDate) {
-				setTimeout(function () {
-					window.pageExt.list.onDatePickerChanged && window.pageExt.list.onDatePickerChanged("applyDate",value, date, endDate);
-				},1);
-			}
-		});
-		//渲染 assetCheck 下拉字段
-		fox.renderSelectBox({
-			el: "assetCheck",
-			radio: true,
-			size: "small",
-			filterable: false,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("assetCheck",data.arr,data.change,data.isAdd);
 				},1);
 			},
 			//转换数据
@@ -303,7 +225,7 @@ function ListPage() {
 
 		// 搜索按钮点击事件
 		$('#search-button-advance').click(function () {
-			fox.switchSearchRow(2,function (ex){
+			fox.switchSearchRow(1,function (ex){
 				if(ex=="1") {
 					$('#search-button-advance span').text("关闭");
 				} else {
@@ -312,21 +234,6 @@ function ListPage() {
 			});
 		});
 
-		// 请选择组织节点对话框
-		$("#applyOrgId-button").click(function(){
-			var applyOrgIdDialogOptions={
-				field:"applyOrgId",
-				inputEl:$("#applyOrgId"),
-				buttonEl:$(this),
-				single:false,
-				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
-				root: "",
-				targetType:"org",
-				prepose:function(param){ return window.pageExt.list.beforeDialog && window.pageExt.list.beforeDialog(param);},
-				callback:function(param,result){ window.pageExt.list.afterDialog && window.pageExt.list.afterDialog(param,result);}
-			};
-			fox.chooseOrgNode(applyOrgIdDialogOptions);
-		});
 	}
 
 	/**
@@ -344,12 +251,12 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
-					admin.putTempData('eam-purchase-apply-form-data', {});
+					admin.putTempData('eam-asset-employee-apply-form-data', {});
 					var defaultValue={};
 					if(window.pageExt.list.getBpmViewConfig) {
 						defaultValue=window.pageExt.list.getBpmViewConfig();
 					}
-					bpm.openProcessView(null,null,false,{"formDefinitionCode":"eam_asset_purchase_apply"},refreshTableData,refreshRowData,"bill",defaultValue);
+					bpm.openProcessView(null,null,false,{"formDefinitionCode":"eam_asset_employee_apply"},refreshTableData,refreshRowData,"bill",defaultValue);
 					break;
 				case 'batch-del':
 					batchDelete(selected);
@@ -367,7 +274,7 @@ function ListPage() {
         function openCreateFrom() {
         	//设置新增是初始化数据
         	var data={};
-			admin.putTempData('eam-purchase-apply-form-data-form-action', "create",true);
+			admin.putTempData('eam-asset-employee-apply-form-data-form-action', "create",true);
             showEditForm(data);
         };
 
@@ -381,11 +288,11 @@ function ListPage() {
 
 			var ids=getCheckedList("id");
             if(ids.length==0) {
-				top.layer.msg(fox.translate('请选择需要删除的')+fox.translate('采购申请')+"!");
+				top.layer.msg(fox.translate('请选择需要删除的')+fox.translate('领用申请')+"!");
             	return;
             }
             //调用批量删除接口
-			top.layer.confirm(fox.translate('确定删除已选中的')+fox.translate('采购申请')+fox.translate('吗？'), function (i) {
+			top.layer.confirm(fox.translate('确定删除已选中的')+fox.translate('领用申请')+fox.translate('吗？'), function (i) {
                 admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
                     if (data.success) {
 						if(window.pageExt.list.afterBatchDelete) {
@@ -416,11 +323,11 @@ function ListPage() {
 				if(!doNext) return;
 			}
 
-			admin.putTempData('eam-purchase-apply-form-data-form-action', "",true);
+			admin.putTempData('eam-asset-employee-apply-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
-				bpm.getProcessInstanceByBill("eam_asset_purchase_apply",{ id : data.id },function(p) {
+				bpm.getProcessInstanceByBill("eam_asset_employee_apply",{ id : data.id },function(p) {
 					if(p) {
-						bpm.openProcessView(p.id,null,false,{"formDefinitionCode":"eam_asset_purchase_apply"},refreshTableData,refreshRowData,"bill");
+						bpm.openProcessView(p.id,null,false,{"formDefinitionCode":"eam_asset_employee_apply"},refreshTableData,refreshRowData,"bill");
 					} else {
 						if(window.pageExt.list.handleNoProcessBill) {
 							window.pageExt.list.handleNoProcessBill({id : data.id});
@@ -432,7 +339,7 @@ function ListPage() {
 			} else if (layEvent === 'view') { // 查看
 				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
 					if(data.success) {
-						admin.putTempData('eam-purchase-apply-form-data-form-action', "view",true);
+						admin.putTempData('eam-asset-employee-apply-form-data-form-action', "view",true);
 						showEditForm(data.data);
 					} else {
 						fox.showMessage(data);
@@ -448,7 +355,7 @@ function ListPage() {
 
 				top.layer.confirm(fox.translate('确定要废弃当前')+fox.translate('流程实例')+fox.translate('吗？'), function (i) {
 					top.layer.close(i);
-					bpm.getProcessInstanceByBill("eam_asset_purchase_apply",{ id : data.id },function(p) {
+					bpm.getProcessInstanceByBill("eam_asset_employee_apply",{ id : data.id },function(p) {
 						if(p) {
 							bpm.abandon({processInstanceId:p.id,reason:"无",force:false},function (r){
 								if(r.success) {
@@ -476,12 +383,6 @@ function ListPage() {
 					},"bill");
 				});
 			}
-			else if (layEvent === 'check') { // 验收
-				window.pageExt.list.check(data,this);
-			}
-			else if (layEvent === 'download-bill') { // 单据
-				window.pageExt.list.downloadBill(data,this);
-			}
 			
 		});
 
@@ -495,17 +396,17 @@ function ListPage() {
 			var doNext=window.pageExt.list.beforeEdit(data);
 			if(!doNext) return;
 		}
-		var action=admin.getTempData('eam-purchase-apply-form-data-form-action');
+		var action=admin.getTempData('eam-asset-employee-apply-form-data-form-action');
 		var queryString="";
 		if(data && data.id) queryString='id=' + data.id;
 		if(window.pageExt.list.makeFormQueryString) {
 			queryString=window.pageExt.list.makeFormQueryString(data,queryString,action);
 		}
-		admin.putTempData('eam-purchase-apply-form-data', data);
-		var area=admin.getTempData('eam-purchase-apply-form-area');
+		admin.putTempData('eam-asset-employee-apply-form-data', data);
+		var area=admin.getTempData('eam-asset-employee-apply-form-area');
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
 		var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
-		var title = fox.translate('采购申请');
+		var title = fox.translate('领用申请');
 		if(action=="create") title=fox.translate('添加')+title;
 		else if(action=="edit") title=fox.translate('修改')+title;
 		else if(action=="view") title=fox.translate('查看')+title;
@@ -516,8 +417,8 @@ function ListPage() {
 			offset: [top,null],
 			area: ["80%",height+"px"],
 			type: 2,
-			id:"eam-purchase-apply-form-data-win",
-			content: '/business/eam/purchase_apply/purchase_apply_form.html' + (queryString?("?"+queryString):""),
+			id:"eam-asset-employee-apply-form-data-win",
+			content: '/business/eam/asset_employee_apply/asset_employee_apply_form.html' + (queryString?("?"+queryString):""),
 			finish: function () {
 				if(action=="create") {
 					refreshTableData();

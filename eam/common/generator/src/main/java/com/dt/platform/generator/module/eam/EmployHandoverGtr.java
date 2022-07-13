@@ -117,7 +117,7 @@ public class EmployHandoverGtr extends BaseCodeGenerator {
                 }
         );
 
-
+        cfg.view().list().addJs("/extmodule/commonFunction/commonFunction.js");
         cfg.view().form().addJsVariable("EMPLOYEE_ID",   "[[${user.getUser().getActivatedEmployeeId()}]]","用户ID");
 
         cfg.view().form().addPage("资产列表","goodsSelectList");

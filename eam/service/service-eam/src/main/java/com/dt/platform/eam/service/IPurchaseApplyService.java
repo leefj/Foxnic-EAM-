@@ -1,7 +1,9 @@
 package com.dt.platform.eam.service;
 
 
+import com.dt.platform.domain.eam.AssetBorrow;
 import com.dt.platform.domain.eam.AssetScrap;
+import com.github.foxnic.dao.entity.ISimpleIdService;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
 import com.dt.platform.domain.eam.PurchaseApply;
@@ -18,6 +20,8 @@ import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ExcelStructure;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.data.SaveMode;
+import org.github.foxnic.web.domain.bpm.BpmActionResult;
+import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.domain.changes.ProcessStartVO;
 
@@ -29,8 +33,23 @@ import org.github.foxnic.web.domain.changes.ProcessStartVO;
  * @since 2022-04-14 21:29:05
 */
 
-public interface IPurchaseApplyService extends ISuperService<PurchaseApply> {
+public interface IPurchaseApplyService extends ISimpleIdService<PurchaseApply,String> {
 
+	/**
+	 * 表单定义代码
+	 **/
+	public static final String FORM_DEFINITION_CODE="eam_asset_purchase_apply";
+
+	/**
+	 * 处理流程回调
+	 * */
+	BpmActionResult onProcessCallback(BpmEvent event);
+
+	void joinProcess(PurchaseApply purchaseApply);
+
+	void joinProcess(List<PurchaseApply> purchaseApplyList);
+
+	void joinProcess(PagedList<PurchaseApply> purchaseApplyList);
 
 	/**
 	 * 获取单据数据
