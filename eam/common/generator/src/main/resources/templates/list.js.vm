@@ -325,7 +325,9 @@ function ListPage() {
 			on: function(data){
 				setTimeout(function () {
 					#if(f.search.triggerOnSelect)
-					refreshTableData();
+					if(data.change && data.change.length>0) {
+						refreshTableData();
+					}
 					#end
 					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("#(f.varName)",data.arr,data.change,data.isAdd);
 				},1);
@@ -340,7 +342,9 @@ function ListPage() {
 			on: function(data){
 				setTimeout(function () {
 					#if(f.search.triggerOnSelect)
-					refreshTableData();
+					if(data.change && data.change.length>0) {
+						refreshTableData();
+					}
 					#end
 					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("#(f.varName)",data.arr,data.change,data.isAdd);
 				},1);
@@ -378,7 +382,9 @@ function ListPage() {
 			on: function(data){
 				setTimeout(function () {
 					#if(f.search.triggerOnSelect)
-					refreshTableData();
+					if(data.change && data.change.length>0) {
+						refreshTableData();
+					}
 					#end
 					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("#(f.varName)",data.arr,data.change,data.isAdd);
 				},1);
@@ -415,7 +421,9 @@ function ListPage() {
 			done: function(value, date, endDate) {
 				setTimeout(function () {
 					#if(f.search.triggerOnSelect)
-					refreshTableData();
+					if(data.change && data.change.length>0) {
+						refreshTableData();
+					}
 					#end
 					window.pageExt.list.onDatePickerChanged && window.pageExt.list.onDatePickerChanged("#(f.varName)",value, date, endDate);
 				},1);
@@ -457,7 +465,9 @@ function ListPage() {
 			on: function(data){
 				setTimeout(function () {
 					#if(f.search.triggerOnSelect)
-					refreshTableData();
+					if(data.change && data.change.length>0) {
+						refreshTableData();
+					}
 					#end
 					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("#(f.varName)",data.arr,data.change,data.isAdd);
 				},1);
