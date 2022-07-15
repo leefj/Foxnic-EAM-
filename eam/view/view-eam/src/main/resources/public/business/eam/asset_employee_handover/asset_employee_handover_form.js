@@ -236,7 +236,11 @@ function FormPage() {
         },1);
 
         //禁用编辑
+		console.log("hasData")
+		console.log("disableModify")
+
 		if((hasData && disableModify) || (!hasData &&disableCreateNew)) {
+			console.log("lockFormlockForm")
 			fox.lockForm($("#data-form"),true);
 			$("#submit-button").hide();
 			$("#cancel-button").css("margin-right","15px")
