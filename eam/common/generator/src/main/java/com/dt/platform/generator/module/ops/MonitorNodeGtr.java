@@ -96,7 +96,7 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
 
         cfg.view().field(MonitorNodeMeta.MONITOR_TPL_IDS)
                 .basic().label("监控模版")
-                .table().sort(false).form().selectBox().queryApi(MonitorTplServiceProxy.QUERY_LIST)
+                .table().sort(false).form().validate().required().form().selectBox().queryApi(MonitorTplServiceProxy.QUERY_LIST)
                 .valueField(MonitorTplMeta.CODE).textField(MonitorTplMeta.NAME)
                 .toolbar(false).paging(false).defaultIndex(0)
                 .fillWith(MonitorNodeMeta.MONITOR_TPL_LIST).muliti(true);
@@ -111,7 +111,7 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_MONITOR_NODE.GROUP_ID)
                 .basic().label("节点分组")
-                .form().selectBox().queryApi(MonitorNodeGroupServiceProxy.QUERY_PAGED_LIST)
+                .form().validate().required().form().selectBox().queryApi(MonitorNodeGroupServiceProxy.QUERY_PAGED_LIST)
                 .paging(true).filter(true).toolbar(false)
                 .valueField(MonitorNodeGroupMeta.ID).
                 textField(MonitorNodeGroupMeta.NAME).
@@ -184,6 +184,7 @@ public class MonitorNodeGtr extends BaseCodeGenerator{
                 .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口
                 .setControllerAndAgent(WriteMode.COVER_EXISTS_FILE) //Rest
                 .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
+                .setBpmEventAdaptor(WriteMode.IGNORE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
                 .setExtendJsFile(WriteMode.COVER_EXISTS_FILE); //列表HTML页

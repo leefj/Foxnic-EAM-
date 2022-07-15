@@ -8,13 +8,15 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
+import javax.persistence.Transient;
 import java.util.List;
 import org.github.foxnic.web.domain.changes.ChangeInstance;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.system.DictItem;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
-import javax.persistence.Transient;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 
@@ -23,8 +25,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 资产库存
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-17 19:21:07
- * @sign F4443130CBD041049C830D051E99EA4F
+ * @since 2022-07-15 11:00:38
+ * @sign 6F0EB4834B499E7643382739DD0DBFF5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -185,6 +187,8 @@ public class Stock extends Entity {
 	*/
 	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
+	@Transient
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -796,12 +800,42 @@ public class Stock extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
 	public Stock setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public Stock setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -1114,9 +1148,9 @@ public class Stock extends Entity {
 	 * @param stockAsset 库存资产
 	 * @return 当前对象
 	*/
-	public Stock addStockAsset(Asset stockAsset) {
+	public Stock addStockAsset(Asset... stockAsset) {
 		if(this.stockAssetList==null) stockAssetList=new ArrayList<>();
-		this.stockAssetList.add(stockAsset);
+		this.stockAssetList.addAll(Arrays.asList(stockAsset));
 		return this;
 	}
 	
@@ -1144,9 +1178,9 @@ public class Stock extends Entity {
 	 * @param stockAssetId 库存资产
 	 * @return 当前对象
 	*/
-	public Stock addStockAssetId(String stockAssetId) {
+	public Stock addStockAssetId(String... stockAssetId) {
 		if(this.stockAssetIds==null) stockAssetIds=new ArrayList<>();
-		this.stockAssetIds.add(stockAssetId);
+		this.stockAssetIds.addAll(Arrays.asList(stockAssetId));
 		return this;
 	}
 	

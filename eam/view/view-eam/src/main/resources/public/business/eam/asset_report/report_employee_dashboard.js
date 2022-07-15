@@ -56,28 +56,62 @@ function ListPage() {
 
         $("#zcly").click(function(){
             admin.putTempData('eam-asset-employee-apply-form-data', {});
-            bpm.openProcessView(null,null,false,{"formDefinitionCode":"eam_asset_employee_apply"},refreshTableData,refreshRowData,"bill");
+
+            var ps={
+                title:"资产申请",
+                priority:"normal", // priority 的可选值 urgency，normal
+                displayTitle:true,
+                displayPriority:false,
+                displayDraftComment:true,
+                displayApprovalComment:true,
+            }
+
+            bpm.openProcessView(null,null,false,{"formDefinitionCode":"eam_asset_employee_apply"},refreshTableData,refreshRowData,"bill",ps);
         })
 
 
         $("#zcjj").click(function(){
+            var ps={
+                title:"资产交接申请",
+                priority:"normal", // priority 的可选值 urgency，normal
+                displayTitle:true,
+                displayPriority:false,
+                displayDraftComment:true,
+                displayApprovalComment:true,
+            }
             admin.putTempData('eam-asset-employee-handover-form-data', {});
-            bpm.openProcessView(null,null,false,{"formDefinitionCode":"eam_asset_employee_handover"},refreshTableData,refreshRowData,"bill");
+            bpm.openProcessView(null,null,false,{"formDefinitionCode":"eam_asset_employee_handover"},refreshTableData,refreshRowData,"bill",ps);
 
 
         })
 
 
         $("#zcbs").click(function(){
+            var ps={
+                title:"资产报失申请",
+                priority:"normal", // priority 的可选值 urgency，normal
+                displayTitle:true,
+                displayPriority:false,
+                displayDraftComment:true,
+                displayApprovalComment:true,
+            }
             admin.putTempData('eam-asset-employee-loss-form-data', {});
-            bpm.openProcessView(null,null,false,{"formDefinitionCode":"eam_asset_employee_loss"},refreshTableData,refreshRowData,"bill");
+            bpm.openProcessView(null,null,false,{"formDefinitionCode":"eam_asset_employee_loss"},refreshTableData,refreshRowData,"bill",ps);
 
         })
 
 
         $("#zcbx").click(function(){
+            var ps={
+                title:"资产报修申请",
+                priority:"normal", // priority 的可选值 urgency，normal
+                displayTitle:true,
+                displayPriority:false,
+                displayDraftComment:true,
+                displayApprovalComment:true,
+            }
             admin.putTempData('eam-asset-employee-repair-form-data', {});
-            bpm.openProcessView(null,null,false,{"formDefinitionCode":"eam_asset_employee_repair"},refreshTableData,refreshRowData,"bill");
+            bpm.openProcessView(null,null,false,{"formDefinitionCode":"eam_asset_employee_repair"},refreshTableData,refreshRowData,"bill",ps);
 
         })
 

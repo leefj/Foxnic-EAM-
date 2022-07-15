@@ -2,6 +2,7 @@ package com.dt.platform.eam.controller;
 
 
 import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 仓库 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-20 13:08:21
+ * @since 2022-07-15 07:11:03
 */
 
 @Api(tags = "仓库")
@@ -66,10 +67,10 @@ public class WarehouseController extends SuperController {
 	@ApiOperation(value = "添加仓库")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = WarehouseVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "558599358870716416"),
-		@ApiImplicitParam(name = WarehouseVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = WarehouseVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = WarehouseVOMeta.WAREHOUSE_NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "仓库1"),
-		@ApiImplicitParam(name = WarehouseVOMeta.WAREHOUSE_NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "仓库1"),
+		@ApiImplicitParam(name = WarehouseVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class , example = "c1"),
+		@ApiImplicitParam(name = WarehouseVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = WarehouseVOMeta.WAREHOUSE_NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "上海仓库"),
+		@ApiImplicitParam(name = WarehouseVOMeta.WAREHOUSE_NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "上海仓库"),
 	})
 	@ApiOperationSupport(order=1)
 	@SentinelResource(value = WarehouseServiceProxy.INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -93,6 +94,17 @@ public class WarehouseController extends SuperController {
 	@SentinelResource(value = WarehouseServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(WarehouseServiceProxy.DELETE)
 	public Result deleteById(String id) {
+		this.validator().asserts(id).require("缺少id值");
+		if(this.validator().failure()) {
+			return this.validator().getFirstResult();
+		}
+		// 引用校验
+		Boolean hasRefer = warehouseService.hasRefers(id);
+		// 判断是否可以删除
+		this.validator().asserts(hasRefer).mustInList("不允许删除当前记录",false);
+		if(this.validator().failure()) {
+			return this.validator().getFirstResult();
+		}
 		Result result=warehouseService.deleteByIdLogical(id);
 		return result;
 	}
@@ -111,8 +123,43 @@ public class WarehouseController extends SuperController {
 	@SentinelResource(value = WarehouseServiceProxy.DELETE_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(WarehouseServiceProxy.DELETE_BY_IDS)
 	public Result deleteByIds(List<String> ids) {
-		Result result=warehouseService.deleteByIdsLogical(ids);
-		return result;
+
+		// 参数校验
+		this.validator().asserts(ids).require("缺少ids参数");
+		if(this.validator().failure()) {
+			return this.validator().getFirstResult();
+		}
+
+		// 查询引用
+		Map<String, Boolean> hasRefersMap = warehouseService.hasRefers(ids);
+		// 收集可以删除的ID值
+		List<String> canDeleteIds = new ArrayList<>();
+		for (Map.Entry<String, Boolean> e : hasRefersMap.entrySet()) {
+			if (!e.getValue()) {
+				canDeleteIds.add(e.getKey());
+			}
+		}
+
+		// 执行删除
+		if (canDeleteIds.isEmpty()) {
+			// 如果没有一行可以被删除
+			return ErrorDesc.failure().message("无法删除您选中的数据行");
+		} else if (canDeleteIds.size() == ids.size()) {
+			// 如果全部可以删除
+			Result result=warehouseService.deleteByIdsLogical(canDeleteIds);
+			return result;
+		} else if (canDeleteIds.size()>0 && canDeleteIds.size() < ids.size()) {
+			// 如果部分行可以删除
+			Result result=warehouseService.deleteByIdsLogical(canDeleteIds);
+			if (result.failure()) {
+				return result;
+			} else {
+				return ErrorDesc.success().message("已删除 " + canDeleteIds.size() + " 行，但另有 " + (ids.size() - canDeleteIds.size()) + " 行数据无法删除").messageLevel4Confirm();
+			}
+		} else {
+			// 理论上，这个分支不存在
+			return ErrorDesc.success().message("数据删除未处理");
+		}
 	}
 
 	/**
@@ -121,10 +168,10 @@ public class WarehouseController extends SuperController {
 	@ApiOperation(value = "更新仓库")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = WarehouseVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "558599358870716416"),
-		@ApiImplicitParam(name = WarehouseVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = WarehouseVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = WarehouseVOMeta.WAREHOUSE_NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "仓库1"),
-		@ApiImplicitParam(name = WarehouseVOMeta.WAREHOUSE_NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "仓库1"),
+		@ApiImplicitParam(name = WarehouseVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class , example = "c1"),
+		@ApiImplicitParam(name = WarehouseVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = WarehouseVOMeta.WAREHOUSE_NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "上海仓库"),
+		@ApiImplicitParam(name = WarehouseVOMeta.WAREHOUSE_NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "上海仓库"),
 	})
 	@ApiOperationSupport( order=4 , ignoreParameters = { WarehouseVOMeta.PAGE_INDEX , WarehouseVOMeta.PAGE_SIZE , WarehouseVOMeta.SEARCH_FIELD , WarehouseVOMeta.FUZZY_FIELD , WarehouseVOMeta.SEARCH_VALUE , WarehouseVOMeta.DIRTY_FIELDS , WarehouseVOMeta.SORT_FIELD , WarehouseVOMeta.SORT_TYPE , WarehouseVOMeta.IDS } )
 	@NotNull(name = WarehouseVOMeta.ID)
@@ -142,10 +189,10 @@ public class WarehouseController extends SuperController {
 	@ApiOperation(value = "保存仓库")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = WarehouseVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "558599358870716416"),
-		@ApiImplicitParam(name = WarehouseVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = WarehouseVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = WarehouseVOMeta.WAREHOUSE_NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "仓库1"),
-		@ApiImplicitParam(name = WarehouseVOMeta.WAREHOUSE_NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "仓库1"),
+		@ApiImplicitParam(name = WarehouseVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class , example = "c1"),
+		@ApiImplicitParam(name = WarehouseVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = WarehouseVOMeta.WAREHOUSE_NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "上海仓库"),
+		@ApiImplicitParam(name = WarehouseVOMeta.WAREHOUSE_NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "上海仓库"),
 	})
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { WarehouseVOMeta.PAGE_INDEX , WarehouseVOMeta.PAGE_SIZE , WarehouseVOMeta.SEARCH_FIELD , WarehouseVOMeta.FUZZY_FIELD , WarehouseVOMeta.SEARCH_VALUE , WarehouseVOMeta.DIRTY_FIELDS , WarehouseVOMeta.SORT_FIELD , WarehouseVOMeta.SORT_TYPE , WarehouseVOMeta.IDS } )
 	@NotNull(name = WarehouseVOMeta.ID)
@@ -190,7 +237,7 @@ public class WarehouseController extends SuperController {
 	@PostMapping(WarehouseServiceProxy.GET_BY_IDS)
 	public Result<List<Warehouse>> getByIds(List<String> ids) {
 		Result<List<Warehouse>> result=new Result<>();
-		List<Warehouse> list=warehouseService.getByIds(ids);
+		List<Warehouse> list=warehouseService.queryListByIds(ids);
 		result.success(true).data(list);
 		return result;
 	}
@@ -202,10 +249,10 @@ public class WarehouseController extends SuperController {
 	@ApiOperation(value = "查询仓库")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = WarehouseVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "558599358870716416"),
-		@ApiImplicitParam(name = WarehouseVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = WarehouseVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = WarehouseVOMeta.WAREHOUSE_NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "仓库1"),
-		@ApiImplicitParam(name = WarehouseVOMeta.WAREHOUSE_NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "仓库1"),
+		@ApiImplicitParam(name = WarehouseVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class , example = "c1"),
+		@ApiImplicitParam(name = WarehouseVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = WarehouseVOMeta.WAREHOUSE_NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "上海仓库"),
+		@ApiImplicitParam(name = WarehouseVOMeta.WAREHOUSE_NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "上海仓库"),
 	})
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { WarehouseVOMeta.PAGE_INDEX , WarehouseVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = WarehouseServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -224,10 +271,10 @@ public class WarehouseController extends SuperController {
 	@ApiOperation(value = "分页查询仓库")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = WarehouseVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "558599358870716416"),
-		@ApiImplicitParam(name = WarehouseVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = WarehouseVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = WarehouseVOMeta.WAREHOUSE_NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "仓库1"),
-		@ApiImplicitParam(name = WarehouseVOMeta.WAREHOUSE_NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "仓库1"),
+		@ApiImplicitParam(name = WarehouseVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class , example = "c1"),
+		@ApiImplicitParam(name = WarehouseVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = WarehouseVOMeta.WAREHOUSE_NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "上海仓库"),
+		@ApiImplicitParam(name = WarehouseVOMeta.WAREHOUSE_NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "上海仓库"),
 	})
 	@ApiOperationSupport(order=8)
 	@SentinelResource(value = WarehouseServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -241,64 +288,7 @@ public class WarehouseController extends SuperController {
 
 
 
-	/**
-	 * 导出 Excel
-	 * */
-	@SentinelResource(value = WarehouseServiceProxy.EXPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(WarehouseServiceProxy.EXPORT_EXCEL)
-	public void exportExcel(WarehouseVO  sample,HttpServletResponse response) throws Exception {
-		try{
-			//生成 Excel 数据
-			ExcelWriter ew=warehouseService.exportExcel(sample);
-			//下载
-			DownloadUtil.writeToOutput(response,ew.getWorkBook(),ew.getWorkBookName());
-		} catch (Exception e) {
-			DownloadUtil.writeDownloadError(response,e);
-		}
-	}
 
-
-	/**
-	 * 导出 Excel 模板
-	 * */
-	@SentinelResource(value = WarehouseServiceProxy.EXPORT_EXCEL_TEMPLATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(WarehouseServiceProxy.EXPORT_EXCEL_TEMPLATE)
-	public void exportExcelTemplate(HttpServletResponse response) throws Exception {
-		try{
-			//生成 Excel 模版
-			ExcelWriter ew=warehouseService.exportExcelTemplate();
-			//下载
-			DownloadUtil.writeToOutput(response, ew.getWorkBook(), ew.getWorkBookName());
-		} catch (Exception e) {
-			DownloadUtil.writeDownloadError(response,e);
-		}
-	}
-
-
-
-	@SentinelResource(value = WarehouseServiceProxy.IMPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(WarehouseServiceProxy.IMPORT_EXCEL)
-	public Result importExcel(MultipartHttpServletRequest request, HttpServletResponse response) throws Exception {
-
-		//获得上传的文件
-		Map<String, MultipartFile> map = request.getFileMap();
-		InputStream input=null;
-		for (MultipartFile mf : map.values()) {
-			input=StreamUtil.bytes2input(mf.getBytes());
-			break;
-		}
-
-		if(input==null) {
-			return ErrorDesc.failure().message("缺少上传的文件");
-		}
-
-		List<ValidateResult> errors=warehouseService.importExcel(input,0,true);
-		if(errors==null || errors.isEmpty()) {
-			return ErrorDesc.success();
-		} else {
-			return ErrorDesc.failure().message("导入失败").data(errors);
-		}
-	}
 
 
 }

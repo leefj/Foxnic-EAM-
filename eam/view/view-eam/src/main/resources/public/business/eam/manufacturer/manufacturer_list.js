@@ -1,7 +1,7 @@
 /**
  * 生产厂商 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-13 07:21:45
+ * @since 2022-07-15 07:09:10
  */
 
 
@@ -372,7 +372,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["500px",height+"px"],
+			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-manufacturer-form-data-win",
 			content: '/business/eam/manufacturer/manufacturer_form.html' + (queryString?("?"+queryString):""),

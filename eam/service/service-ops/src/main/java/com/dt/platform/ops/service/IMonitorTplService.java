@@ -23,7 +23,7 @@ import java.util.Map;
  * 监控模版 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-12 22:10:22
+ * @since 2022-07-14 16:26:05
 */
 
 public interface IMonitorTplService extends  ISimpleIdService<MonitorTpl,String> {

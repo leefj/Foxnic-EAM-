@@ -316,7 +316,7 @@ public class AssetSoftwareController extends SuperController {
 			.with("originator")
 			.with(AssetSoftwareMeta.CATEGORY)
 			.with(AssetSoftwareMeta.SUPPLIER)
-			.with(AssetSoftwareMeta.SOURCE)
+			.with(AssetSoftwareMeta.SOURCE).with(AssetSoftwareMeta.MAINTAINER)
 			.with(AssetSoftwareMeta.COPYRIGHT_TYPE_DICT)
 			.with(AssetSoftwareMeta.LICENSE_MODE_DICT)
 			.execute();
@@ -525,6 +525,7 @@ public class AssetSoftwareController extends SuperController {
 				.with(AssetSoftwareMeta.CATEGORY)
 				.with(AssetSoftwareMeta.SUPPLIER)
 				.with(AssetSoftwareMeta.SOURCE)
+				.with(AssetSoftwareMeta.MAINTAINER)
 				.with(AssetSoftwareMeta.COPYRIGHT_TYPE_DICT)
 				.with(AssetSoftwareMeta.LICENSE_MODE_DICT)
 				.execute();
@@ -546,6 +547,7 @@ public class AssetSoftwareController extends SuperController {
 				.with(AssetSoftwareMeta.CATEGORY)
 				.with(AssetSoftwareMeta.SUPPLIER)
 				.with(AssetSoftwareMeta.SOURCE)
+				.with(AssetSoftwareMeta.MAINTAINER)
 				.with(AssetSoftwareMeta.COPYRIGHT_TYPE_DICT)
 				.with(AssetSoftwareMeta.LICENSE_MODE_DICT)
 				.execute();

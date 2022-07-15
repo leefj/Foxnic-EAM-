@@ -1,7 +1,7 @@
 /**
  * 服务器资源 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-06 06:19:25
+ * @since 2022-07-14 07:39:59
  */
 
 
@@ -80,6 +80,7 @@ function ListPage() {
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'serverType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('服务器类型'), templet:function (d){ return templet('serverType',fox.getEnumText(RADIO_SERVERTYPE_DATA,d.serverType),d);}}
 					,{ field: 'osVersion', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('系统版本'), templet: function (d) { return templet('osVersion' ,fox.joinLabel(d.serverOsType,"name"),d);}}
+					,{ field: 'ip', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('IP地址') , templet: function (d) { return templet('ip',d.ip,d);}  }
 					,{ field: 'databaseVersion', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('数据库') , templet: function (d) { return templet('databaseVersion',d.databaseVersion,d);}  }
 					,{ field: 'middlewareVersion', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('中间件') , templet: function (d) { return templet('middlewareVersion',d.middlewareVersion,d);}  }
 					,{ field: 'cpu', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('CPU数') , templet: function (d) { return templet('cpu',d.cpu,d);}  }

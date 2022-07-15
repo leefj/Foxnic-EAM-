@@ -180,7 +180,7 @@ public class PurchaseOrderServiceImpl extends SuperService<PurchaseOrder> implem
 		PurchaseOrder purchaseOrder = new PurchaseOrder();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		purchaseOrder.setId(id);
-		purchaseOrder.setDeleted(dao.getDBTreaty().getTrueValue());
+		purchaseOrder.setDeleted(1);
 		purchaseOrder.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		purchaseOrder.setDeleteTime(new Date());
 		try {

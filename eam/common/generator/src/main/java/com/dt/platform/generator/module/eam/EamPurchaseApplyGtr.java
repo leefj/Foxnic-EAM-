@@ -37,6 +37,8 @@ public class EamPurchaseApplyGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addListProperty(PurchaseOrder.class,"orderList","订单","订单");
         cfg.getPoClassFile().addListProperty(String.class,"orderIds","订单列表","订单列表");
 
+        cfg.bpm().form("eam_asset_purchase_apply");
+        cfg.bpm().integrate(IntegrateMode.FRONT);
 
 
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.ID).basic().hidden(true);
@@ -48,7 +50,7 @@ public class EamPurchaseApplyGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.EXPECTED_ARRIVAL_DATE).basic().search().range();
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.APPLY_DATE).basic().search().range();
 
-        cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.APPLY_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
+        cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.APPLY_DATE).form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.EXPECTED_ARRIVAL_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
 
 
@@ -115,7 +117,7 @@ public class EamPurchaseApplyGtr extends BaseCodeGenerator {
 
 
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.APPLY_ORG_ID)
-                .form().button().chooseOrganization(true);
+                .form().validate().required().form().button().chooseOrganization(true);
         cfg.view().field(EAMTables.EAM_PURCHASE_APPLY.APPLY_ORG_ID).table().fillBy("applyOrg","fullName");
         cfg.view().list().addJsVariable("APPROVAL_REQUIRED","[[${approvalRequired}]]","approvalRequired");
 
@@ -128,20 +130,19 @@ public class EamPurchaseApplyGtr extends BaseCodeGenerator {
         cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_purchase_apply:bill");
 
 
-        cfg.bpm().form("eam_asset_purchase_apply");
-        cfg.bpm().integrate(IntegrateMode.FRONT);
 
-
+        cfg.view().form().labelWidth(70);
         cfg.view().formWindow().bottomSpace(250);
-         cfg.view().formWindow().width(Config.baseFormWidth);;
+        cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_PURCHASE_APPLY.NAME,
                         EAMTables.EAM_PURCHASE_APPLY.HARVEST_INFORMATION,
                 },
                 new Object[] {
-                        EAMTables.EAM_PURCHASE_APPLY.SUPPLIER_ID,
                         EAMTables.EAM_PURCHASE_APPLY.APPLY_ORG_ID,
+                        EAMTables.EAM_PURCHASE_APPLY.SUPPLIER_ID,
+
                 },
                 new Object[] {
                         EAMTables.EAM_PURCHASE_APPLY.APPLY_DATE,
@@ -159,6 +160,9 @@ public class EamPurchaseApplyGtr extends BaseCodeGenerator {
 
         //订单
         cfg.view().form().addPage("订单列表","assetSelectOrderList");
+
+
+        cfg.view().list().addJs("/extmodule/commonFunction/commonFunction.js");
 
         //文件生成覆盖模式
         cfg.overrides()

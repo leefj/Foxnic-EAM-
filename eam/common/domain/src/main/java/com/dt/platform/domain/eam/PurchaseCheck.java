@@ -7,11 +7,13 @@ import com.dt.platform.constants.db.EAMTables.EAM_PURCHASE_CHECK;
 import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
+import javax.persistence.Transient;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.hrm.Employee;
 import java.util.List;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
-import javax.persistence.Transient;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 
@@ -20,8 +22,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 采购验收
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-16 23:19:16
- * @sign D7AAD2772C31E9DF866A154F07E07429
+ * @since 2022-07-14 07:31:06
+ * @sign 516C88823BC6EBD290C9406F0A8FDFBF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -158,6 +160,8 @@ public class PurchaseCheck extends Entity {
 	*/
 	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
+	@Transient
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -196,12 +200,6 @@ public class PurchaseCheck extends Entity {
 	private Supplier supplier;
 	
 	/**
-	 * 领用申请：领用申请
-	*/
-	@ApiModelProperty(required = false,value="领用申请" , notes = "领用申请")
-	private PurchaseApply purchaseApply;
-	
-	/**
 	 * 验收公司/部门：验收公司/部门
 	*/
 	@ApiModelProperty(required = false,value="验收公司/部门" , notes = "验收公司/部门")
@@ -212,6 +210,12 @@ public class PurchaseCheck extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
 	private Employee originator;
+	
+	/**
+	 * 领用申请：领用申请
+	*/
+	@ApiModelProperty(required = false,value="领用申请" , notes = "领用申请")
+	private PurchaseApply purchaseApply;
 	
 	/**
 	 * 订单：订单
@@ -615,12 +619,42 @@ public class PurchaseCheck extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
 	public PurchaseCheck setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public PurchaseCheck setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -739,25 +773,6 @@ public class PurchaseCheck extends Entity {
 	}
 	
 	/**
-	 * 获得 领用申请<br>
-	 * 领用申请
-	 * @return 领用申请
-	*/
-	public PurchaseApply getPurchaseApply() {
-		return purchaseApply;
-	}
-	
-	/**
-	 * 设置 领用申请
-	 * @param purchaseApply 领用申请
-	 * @return 当前对象
-	*/
-	public PurchaseCheck setPurchaseApply(PurchaseApply purchaseApply) {
-		this.purchaseApply=purchaseApply;
-		return this;
-	}
-	
-	/**
 	 * 获得 验收公司/部门<br>
 	 * 验收公司/部门
 	 * @return 验收公司/部门
@@ -796,6 +811,25 @@ public class PurchaseCheck extends Entity {
 	}
 	
 	/**
+	 * 获得 领用申请<br>
+	 * 领用申请
+	 * @return 领用申请
+	*/
+	public PurchaseApply getPurchaseApply() {
+		return purchaseApply;
+	}
+	
+	/**
+	 * 设置 领用申请
+	 * @param purchaseApply 领用申请
+	 * @return 当前对象
+	*/
+	public PurchaseCheck setPurchaseApply(PurchaseApply purchaseApply) {
+		this.purchaseApply=purchaseApply;
+		return this;
+	}
+	
+	/**
 	 * 获得 订单<br>
 	 * 订单
 	 * @return 订单
@@ -819,9 +853,9 @@ public class PurchaseCheck extends Entity {
 	 * @param order 订单
 	 * @return 当前对象
 	*/
-	public PurchaseCheck addOrder(PurchaseOrder order) {
+	public PurchaseCheck addOrder(PurchaseOrder... order) {
 		if(this.orderList==null) orderList=new ArrayList<>();
-		this.orderList.add(order);
+		this.orderList.addAll(Arrays.asList(order));
 		return this;
 	}
 	
@@ -849,9 +883,9 @@ public class PurchaseCheck extends Entity {
 	 * @param orderId 订单列表
 	 * @return 当前对象
 	*/
-	public PurchaseCheck addOrderId(String orderId) {
+	public PurchaseCheck addOrderId(String... orderId) {
 		if(this.orderIds==null) orderIds=new ArrayList<>();
-		this.orderIds.add(orderId);
+		this.orderIds.addAll(Arrays.asList(orderId));
 		return this;
 	}
 

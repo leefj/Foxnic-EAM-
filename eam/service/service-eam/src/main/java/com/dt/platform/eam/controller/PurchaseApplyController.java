@@ -9,6 +9,7 @@ import com.dt.platform.proxy.eam.AssetTranferServiceProxy;
 import org.github.foxnic.web.domain.bpm.BpmActionResult;
 import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
+import org.github.foxnic.web.proxy.bpm.BpmCallbackController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -65,7 +66,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
 @Api(tags = "采购申请")
 @ApiSort(0)
 @RestController("EamPurchaseApplyController")
-public class PurchaseApplyController extends SuperController {
+public class PurchaseApplyController extends SuperController implements BpmCallbackController {
 
 	@Autowired
 	private IPurchaseApplyService purchaseApplyService;

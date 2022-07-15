@@ -97,6 +97,7 @@ public class ServerInfoGtr extends BaseCodeGenerator {
         );
         cfg.view().form().addGroup(null,
                 new Object[] {
+                        WorkorderTables.WO_SERVER_INFO.IP,
                         WorkorderTables.WO_SERVER_INFO.USERLIST,
                         WorkorderTables.WO_SERVER_INFO.PORTLIST,
                         WorkorderTables.WO_SERVER_INFO.NOTES,

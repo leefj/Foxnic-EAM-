@@ -155,7 +155,7 @@ public class PurchaseCheckServiceImpl extends SuperService<PurchaseCheck> implem
 		PurchaseCheck purchaseCheck = new PurchaseCheck();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		purchaseCheck.setId(id);
-		purchaseCheck.setDeleted(dao.getDBTreaty().getTrueValue());
+		purchaseCheck.setDeleted(1);
 		purchaseCheck.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		purchaseCheck.setDeleteTime(new Date());
 		try {
@@ -261,7 +261,8 @@ public class PurchaseCheckServiceImpl extends SuperService<PurchaseCheck> implem
 	 * */
 	@Override
 	public PagedList<PurchaseCheck> queryPagedList(PurchaseCheck sample, int pageSize, int pageIndex) {
-		return super.queryPagedList(sample, pageSize, pageIndex);
+		String dp=AssetOperateEnum.EAM_ASSET_PURCHASE_CHECK.code();
+		return super.queryPagedList(sample, pageSize, pageIndex,dp);
 	}
 
 	/**
@@ -275,7 +276,8 @@ public class PurchaseCheckServiceImpl extends SuperService<PurchaseCheck> implem
 	 * */
 	@Override
 	public PagedList<PurchaseCheck> queryPagedList(PurchaseCheck sample, ConditionExpr condition, int pageSize, int pageIndex) {
-		return super.queryPagedList(sample, condition, pageSize, pageIndex);
+		String dp=AssetOperateEnum.EAM_ASSET_PURCHASE_CHECK.code();
+		return super.queryPagedList(sample, condition, pageSize, pageIndex,dp);
 	}
 
 	/**

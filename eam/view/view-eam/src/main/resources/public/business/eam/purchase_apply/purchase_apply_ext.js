@@ -15,22 +15,29 @@ layui.config({
 layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','laydate','foxnicUpload','dropdown','bpm'],function () {
 
     var admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate,dropdown=layui.dropdown;
-    table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload;
-    var bpm=layui.bpm;
+    table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload,bpm=layui.bpm;
+
     //模块基础路径
     const moduleURL="/service-eam/eam-purchase-apply";
+
     var bpmFunction=layui.bpmFunction;
     var processId=QueryString.get("processId");
     var processInstance=null;
 
     //列表页的扩展
     var list={
-        getBpmDefaultValue:function () {
+        getBpmViewConfig:function () {
             return {
                 title:"资产采购申请",
-                priority:"normal" // priority 的可选值 urgency，normal
+                priority:"normal", // priority 的可选值 urgency，normal
+                displayTitle:true,
+                displayPriority:false,
+                displayDraftComment:true,
+                displayApprovalComment:true,
             }
         },
+
+
 
         bpmOpenWithoutProcess:function(pkdata) {
             top.layer.msg('当前业务单据尚未关联流程', {icon: 2, time: 1500});
@@ -135,7 +142,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         afterQuery : function (data) {
 
+
+
             for (var i = 0; i < data.length; i++) {
+
+                bpmFunction.columnBpmOpenButtonStatus(data[i]);
+
                 //如果审批中或审批通过的不允许编辑
                 if(data[i].status=="complete") {
                     fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
@@ -335,9 +347,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         }
     }
     var timestamp = Date.parse(new Date());
+
     //表单页的扩展
     var form={
-
             onProcessInstanceReady:function (result) {
             // 可根据流程状态、当前审批节点判断和控制表单页面
             processInstance=result.data;

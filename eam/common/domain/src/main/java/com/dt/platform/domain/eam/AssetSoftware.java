@@ -8,11 +8,12 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
+import javax.persistence.Transient;
 import org.github.foxnic.web.domain.pcm.Catalog;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
-import javax.persistence.Transient;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 
@@ -21,8 +22,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 软件资产
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-06 21:34:26
- * @sign 1B84BCA61152A65A4B61686FD338FDCF
+ * @since 2022-07-15 06:50:47
+ * @sign E7161E4F6B5AB2B91EF3726CB6B463DB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -197,6 +198,12 @@ public class AssetSoftware extends Entity {
 	private String needMaintenance;
 	
 	/**
+	 * 维保厂商：维保厂商
+	*/
+	@ApiModelProperty(required = false,value="维保厂商" , notes = "维保厂商")
+	private String maintainerId;
+	
+	/**
 	 * 维保开始时间：维保开始时间
 	*/
 	@ApiModelProperty(required = false,value="维保开始时间" , notes = "维保开始时间")
@@ -297,6 +304,8 @@ public class AssetSoftware extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
+	@Transient
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -447,6 +456,12 @@ public class AssetSoftware extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="许可" , notes = "许可")
 	private DictItem licenseModeDict;
+	
+	/**
+	 * 维保商：维保商
+	*/
+	@ApiModelProperty(required = false,value="维保商" , notes = "维保商")
+	private Maintainer maintainer;
 	
 	/**
 	 * 获得 主键<br>
@@ -962,6 +977,25 @@ public class AssetSoftware extends Entity {
 	}
 	
 	/**
+	 * 获得 维保厂商<br>
+	 * 维保厂商
+	 * @return 维保厂商
+	*/
+	public String getMaintainerId() {
+		return maintainerId;
+	}
+	
+	/**
+	 * 设置 维保厂商
+	 * @param maintainerId 维保厂商
+	 * @return 当前对象
+	*/
+	public AssetSoftware setMaintainerId(String maintainerId) {
+		this.maintainerId=maintainerId;
+		return this;
+	}
+	
+	/**
 	 * 获得 维保开始时间<br>
 	 * 维保开始时间
 	 * @return 维保开始时间
@@ -1275,12 +1309,42 @@ public class AssetSoftware extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
 	public AssetSoftware setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public AssetSoftware setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -1756,6 +1820,25 @@ public class AssetSoftware extends Entity {
 	*/
 	public AssetSoftware setLicenseModeDict(DictItem licenseModeDict) {
 		this.licenseModeDict=licenseModeDict;
+		return this;
+	}
+	
+	/**
+	 * 获得 维保商<br>
+	 * 维保商
+	 * @return 维保商
+	*/
+	public Maintainer getMaintainer() {
+		return maintainer;
+	}
+	
+	/**
+	 * 设置 维保商
+	 * @param maintainer 维保商
+	 * @return 当前对象
+	*/
+	public AssetSoftware setMaintainer(Maintainer maintainer) {
+		this.maintainer=maintainer;
 		return this;
 	}
 

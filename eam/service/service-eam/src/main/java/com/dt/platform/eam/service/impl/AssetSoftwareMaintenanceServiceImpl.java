@@ -173,6 +173,7 @@ public class AssetSoftwareMaintenanceServiceImpl extends SuperService<AssetSoftw
 				for(int i=0;i<list.size();i++){
 					AssetSoftware software=new AssetSoftware();
 					software.setId(list.get(i).getId());
+					software.setMaintainerId((data.getMaintainerId()));
 					software.setMaintenanceEndDate(data.getMaintenanceEndDate());
 					software.setMaintenanceStartDate(data.getMaintenanceStartDate());
 					assetSoftwareService.update(software,SaveMode.NOT_NULL_FIELDS,false);

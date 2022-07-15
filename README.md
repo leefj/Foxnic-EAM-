@@ -40,7 +40,6 @@
 #### 最新EAM编译后的包下载(为开发同步版本，并非发布版本)
 - 1、存储过程:[下载SQL](http://foxnicweb.com/docs/chapters/base/1.1/NextVal.zip)
 - 2、SQL文件:(每日更新):http://eam-demo.rainbooow.com/upload/sql.tar.gz
-- 3、EAM编译包:(自动更新):http://eam-demo.rainbooow.com/upload/eam.tar.gz
 
 ### 联系方式
 - 1、QQ群:634770774 

@@ -5,15 +5,14 @@ import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.common.StatusYNEnum;
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.domain.eam.AssetSoftware;
+import com.dt.platform.domain.eam.Maintainer;
 import com.dt.platform.domain.eam.Supplier;
 import com.dt.platform.domain.eam.Warehouse;
-import com.dt.platform.domain.eam.meta.AssetMeta;
-import com.dt.platform.domain.eam.meta.AssetSoftwareMeta;
-import com.dt.platform.domain.eam.meta.AssetStockGoodsInMeta;
-import com.dt.platform.domain.eam.meta.SupplierMeta;
+import com.dt.platform.domain.eam.meta.*;
 import com.dt.platform.eam.page.AssetSoftwarePageController;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.AssetSoftwareServiceProxy;
+import com.dt.platform.proxy.eam.MaintainerServiceProxy;
 import com.dt.platform.proxy.eam.SupplierServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
@@ -45,6 +44,10 @@ public class SoftwareGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"manager","管理人","管理人");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"copyrightTypeDict","版权","版权");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"licenseModeDict","许可","许可");
+        cfg.getPoClassFile().addSimpleProperty(Maintainer.class,"maintainer","维保商","维保商");
+
+
+
         cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE.POSITION_DETAIL).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE.NAME).search().fuzzySearch();
         cfg.view().search().inputLayout(
@@ -62,6 +65,7 @@ public class SoftwareGtr extends BaseCodeGenerator {
                 },
                 new Object[]{
                         EAMTables.EAM_ASSET_SOFTWARE.PURCHASE_DATE,
+                        EAMTables.EAM_ASSET_SOFTWARE.MAINTAINER_ID,
                 }
         );
         cfg.view().search().inputWidth(Config.searchInputWidth);
@@ -109,7 +113,7 @@ public class SoftwareGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE.CATEGORY_ID)
                 .basic().label("软件分类")
-                .form().selectBox().queryApi(CatalogServiceProxy.QUERY_NODES)
+                .form().validate().required().form().selectBox().queryApi(CatalogServiceProxy.QUERY_NODES)
                 .paging(false).filter(false).toolbar(false)
                 .valueField(CatalogMeta.ID).textField(CatalogMeta.NAME)
                 .fillWith(AssetSoftwareMeta.CATEGORY).muliti(false);
@@ -121,7 +125,7 @@ public class SoftwareGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE.SOURCE_ID)
                 .basic().label("来源")
-                .form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=eam_source")
+                .form().validate().required().form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=eam_source")
                 .paging(false).filter(false).toolbar(false)
                 .valueField(DictItemMeta.CODE).
                 textField(DictItemMeta.LABEL).
@@ -170,6 +174,13 @@ public class SoftwareGtr extends BaseCodeGenerator {
                 .button().chooseEmployee(true);
 
 
+        cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE.MAINTAINER_ID)
+                .basic().label("维保商")
+                .form().validate().required().form().selectBox().queryApi(MaintainerServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
+                .valueField(MaintainerMeta.ID).textField(MaintainerMeta.MAINTAINER_NAME).fillWith(AssetSoftwareMeta.MAINTAINER).muliti(false);
+
+
+
         cfg.view().field(EAMTables.EAM_ASSET_SOFTWARE.AUTHORIZED_NUMBER_UNLIMIT).table().form().validate().required().form()
                 .radioBox().enumType(StatusYNEnum.class).defaultIndex(1);
 
@@ -199,39 +210,48 @@ public class SoftwareGtr extends BaseCodeGenerator {
                         EAMTables.EAM_ASSET_SOFTWARE.NAME,
                         EAMTables.EAM_ASSET_SOFTWARE.OWN_COMPANY_ID,
                         EAMTables.EAM_ASSET_SOFTWARE.USE_ORGANIZATION_ID,
-                        EAMTables.EAM_ASSET_SOFTWARE.SUPPLIER_ID,
-                        EAMTables.EAM_ASSET_SOFTWARE.MANAGER_ID,
                 },
-
                 new Object[] {
                         EAMTables.EAM_ASSET_SOFTWARE.CATEGORY_ID,
-                        EAMTables.EAM_ASSET_SOFTWARE.SOURCE_ID,
-                        EAMTables.EAM_ASSET_SOFTWARE.SOURCE_DETAIL,
-                        EAMTables.EAM_ASSET_SOFTWARE.PURCHASE_DATE,
+                        EAMTables.EAM_ASSET_SOFTWARE.MANAGER_ID,
                         EAMTables.EAM_ASSET_SOFTWARE.REGISTER_DATE,
                 },
                 new Object[] {
-                        EAMTables.EAM_ASSET_SOFTWARE.COPYRIGHT_TYPE,
-                        EAMTables.EAM_ASSET_SOFTWARE.LICENSE_MODE,
                         EAMTables.EAM_ASSET_SOFTWARE.POSITION_DETAIL,
                         EAMTables.EAM_ASSET_SOFTWARE.COST_PRICE,
                 }
         );
 
 
+        cfg.view().form().addGroup("软件来源",
+                new Object[] {
+                        EAMTables.EAM_ASSET_SOFTWARE.SOURCE_ID,
+                        EAMTables.EAM_ASSET_SOFTWARE.SOURCE_DETAIL,
+                },
+                new Object[] {
+                        EAMTables.EAM_ASSET_SOFTWARE.SUPPLIER_ID,
+                },
+                new Object[] {
+                        EAMTables.EAM_ASSET_SOFTWARE.PURCHASE_DATE,
+                }
 
+        );
 
         cfg.view().form().addGroup("授权信息",
                 new Object[] {
-                        EAMTables.EAM_ASSET_SOFTWARE.AUTHORIZATION_EXPIRATION_UNLIMIT,
-                        EAMTables.EAM_ASSET_SOFTWARE.AUTHORIZATION_EXPIRATION_DATE,
-                },
-                new Object[] {
+                        EAMTables.EAM_ASSET_SOFTWARE.LICENSE_MODE,
+                        EAMTables.EAM_ASSET_SOFTWARE.COPYRIGHT_TYPE,
                         EAMTables.EAM_ASSET_SOFTWARE.AUTHORIZED_NUMBER_UNLIMIT,
-                        EAMTables.EAM_ASSET_SOFTWARE.AUTHORIZED_NUMBER,
+
                 },
                 new Object[] {
                         EAMTables.EAM_ASSET_SOFTWARE.AUTHORIZED_AVAILABLE_NUMBER,
+                        EAMTables.EAM_ASSET_SOFTWARE.AUTHORIZED_NUMBER,
+                },
+                new Object[] {
+                        EAMTables.EAM_ASSET_SOFTWARE.AUTHORIZATION_EXPIRATION_UNLIMIT,
+                        EAMTables.EAM_ASSET_SOFTWARE.AUTHORIZATION_EXPIRATION_DATE,
+
                 }
         );
         cfg.view().form().addGroup(null,
@@ -244,15 +264,19 @@ public class SoftwareGtr extends BaseCodeGenerator {
 
         cfg.view().form().addGroup("维保信息",
                 new Object[] {
+                        EAMTables.EAM_ASSET_SOFTWARE.MAINTAINER_ID,
                         EAMTables.EAM_ASSET_SOFTWARE.NEED_MAINTENANCE,
                 },
-                new Object[] {
-                        EAMTables.EAM_ASSET_SOFTWARE.MAINTENANCE_START_DATE,
-                },
+
+
                 new Object[] {
                         EAMTables.EAM_ASSET_SOFTWARE.MAINTENANCE_END_DATE,
+                        EAMTables.EAM_ASSET_SOFTWARE.MAINTENANCE_START_DATE,
                 }
+
         );
+
+
 
         cfg.view().form().addGroup("其他信息",
                 new Object[] {
@@ -270,8 +294,9 @@ public class SoftwareGtr extends BaseCodeGenerator {
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
                 .setControllerAndAgent(WriteMode.IGNORE) //Rest
                 .setPageController(WriteMode.IGNORE) //页面控制器
-                .setFormPage(WriteMode.IGNORE) //表单HTML页
-                .setListPage(WriteMode.IGNORE)
+                .setBpmEventAdaptor(WriteMode.IGNORE) //页面控制器
+                .setFormPage(WriteMode.WRITE_TEMP_FILE) //表单HTML页
+                .setListPage(WriteMode.WRITE_TEMP_FILE)
                 .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         ; //列表HTML页
         //生成代码

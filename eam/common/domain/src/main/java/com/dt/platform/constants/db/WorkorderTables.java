@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-07-08 21:24:41
+ * @since 2022-07-14 07:38:20
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -496,6 +496,11 @@ public class WorkorderTables {
 		public static final DBField OS_VERSION = new DBField(DBDataType.STRING , "os_version","osVersion","系统版本","系统版本",false,false,true);
 		
 		/**
+		 * IP地址
+		*/
+		public static final DBField IP = new DBField(DBDataType.STRING , "ip","ip","IP地址","IP地址",false,false,true);
+		
+		/**
 		 * 数据库
 		*/
 		public static final DBField DATABASE_VERSION = new DBField(DBDataType.STRING , "database_version","databaseVersion","数据库","数据库",false,false,true);
@@ -585,7 +590,7 @@ public class WorkorderTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public WO_SERVER_INFO() {
-			this.init($NAME,"服务器资源" , ID , OWNER_ID , NAME , SERVER_TYPE , OS_VERSION , DATABASE_VERSION , MIDDLEWARE_VERSION , CPU , MEMORY , SPACE_SIZE , SERVER_NUMBER , USERLIST , PORTLIST , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"服务器资源" , ID , OWNER_ID , NAME , SERVER_TYPE , OS_VERSION , IP , DATABASE_VERSION , MIDDLEWARE_VERSION , CPU , MEMORY , SPACE_SIZE , SERVER_NUMBER , USERLIST , PORTLIST , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final WO_SERVER_INFO $TABLE=new WO_SERVER_INFO();
 	}

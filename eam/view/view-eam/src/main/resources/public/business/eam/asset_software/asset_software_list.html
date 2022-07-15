@@ -127,6 +127,14 @@
                 </div>
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
+
+                    <!-- 维保商 , maintainerId ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('维保商')}" class="search-label maintainerId-label">维保商</span><span class="search-colon">:</span></div>
+                        <div id="maintainerId" th:data="${'/service-eam/eam-maintainer/query-paged-list'}" style="width:150px" extraParam="{}"></div>
+                    </div>
+
+
                     <!-- 购置日期 , purchaseDate ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('购置日期')}" class="search-label purchaseDate-label">购置日期</span><span class="search-colon">:</span></div>

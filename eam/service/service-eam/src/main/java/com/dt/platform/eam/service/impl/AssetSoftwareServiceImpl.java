@@ -254,7 +254,7 @@ public class AssetSoftwareServiceImpl extends SuperService<AssetSoftware> implem
 		AssetSoftware assetSoftware = new AssetSoftware();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		assetSoftware.setId(id);
-		assetSoftware.setDeleted(dao.getDBTreaty().getTrueValue());
+		assetSoftware.setDeleted(1);
 		assetSoftware.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		assetSoftware.setDeleteTime(new Date());
 		try {

@@ -51,7 +51,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 模版指标 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-12 22:11:44
+ * @since 2022-07-14 16:33:31
 */
 
 @Api(tags = "模版指标")

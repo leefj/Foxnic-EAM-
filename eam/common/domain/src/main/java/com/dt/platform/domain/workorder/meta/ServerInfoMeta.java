@@ -9,8 +9,8 @@ import com.dt.platform.domain.workorder.ServerOsType;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-06 06:19:24
- * @sign 5A3E7E35F57F548660D514FDF3EA5A61
+ * @since 2022-07-14 07:39:58
+ * @sign DEE89AC6709AAFB0CB71F04221D27DAA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -65,6 +65,16 @@ public class ServerInfoMeta {
 	 * 系统版本 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.workorder.ServerInfo,java.lang.String> OS_VERSION_PROP = new BeanProperty(com.dt.platform.domain.workorder.ServerInfo.class ,OS_VERSION, java.lang.String.class, "系统版本", "系统版本", java.lang.String.class, null);
+	
+	/**
+	 * IP地址 , 类型: java.lang.String
+	*/
+	public static final String IP="ip";
+	
+	/**
+	 * IP地址 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.workorder.ServerInfo,java.lang.String> IP_PROP = new BeanProperty(com.dt.platform.domain.workorder.ServerInfo.class ,IP, java.lang.String.class, "IP地址", "IP地址", java.lang.String.class, null);
 	
 	/**
 	 * 数据库 , 类型: java.lang.String
@@ -259,7 +269,7 @@ public class ServerInfoMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , OWNER_ID , NAME , SERVER_TYPE , OS_VERSION , DATABASE_VERSION , MIDDLEWARE_VERSION , CPU , MEMORY , SPACE_SIZE , SERVER_NUMBER , USERLIST , PORTLIST , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , SERVER_OS_TYPE };
+	public static final String[] $PROPS={ ID , OWNER_ID , NAME , SERVER_TYPE , OS_VERSION , IP , DATABASE_VERSION , MIDDLEWARE_VERSION , CPU , MEMORY , SPACE_SIZE , SERVER_NUMBER , USERLIST , PORTLIST , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , SERVER_OS_TYPE };
 	
 	/**
 	 * 代理类
@@ -321,6 +331,17 @@ public class ServerInfoMeta {
 		public ServerInfo setOsVersion(String osVersion) {
 			super.change(OS_VERSION,super.getOsVersion(),osVersion);
 			super.setOsVersion(osVersion);
+			return this;
+		}
+		
+		/**
+		 * 设置 IP地址
+		 * @param ip IP地址
+		 * @return 当前对象
+		*/
+		public ServerInfo setIp(String ip) {
+			super.change(IP,super.getIp(),ip);
+			super.setIp(ip);
 			return this;
 		}
 		

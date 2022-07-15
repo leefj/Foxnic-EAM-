@@ -15,6 +15,7 @@ import com.dt.platform.eam.service.bpm.AssetStorageBpmEventAdaptor;
 import com.dt.platform.eam.service.bpm.PurchaseApplyBpmEventAdaptor;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.commons.lang.StringUtil;
+import org.apache.poi.ss.formula.DataValidationEvaluator;
 import org.github.foxnic.web.domain.bpm.BpmActionResult;
 import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
@@ -391,7 +392,8 @@ public class PurchaseApplyServiceImpl extends SuperService<PurchaseApply> implem
 	 * */
 	@Override
 	public PagedList<PurchaseApply> queryPagedList(PurchaseApply sample, int pageSize, int pageIndex) {
-		return super.queryPagedList(sample, pageSize, pageIndex);
+		String dp= AssetOperateEnum.EAM_ASSET_PURCHASE_APPLY.code();
+		return super.queryPagedList(sample, pageSize, pageIndex,dp);
 	}
 
 	/**
@@ -405,7 +407,8 @@ public class PurchaseApplyServiceImpl extends SuperService<PurchaseApply> implem
 	 * */
 	@Override
 	public PagedList<PurchaseApply> queryPagedList(PurchaseApply sample, ConditionExpr condition, int pageSize, int pageIndex) {
-		return super.queryPagedList(sample, condition, pageSize, pageIndex);
+		String dp= AssetOperateEnum.EAM_ASSET_PURCHASE_APPLY.code();
+		return super.queryPagedList(sample, condition, pageSize, pageIndex,dp);
 	}
 
 	/**

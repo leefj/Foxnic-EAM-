@@ -1,7 +1,7 @@
 /**
  * 采购申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-13 18:38:16
+ * @since 2022-07-14 06:41:49
  */
 
 function FormPage() {
@@ -192,6 +192,7 @@ function FormPage() {
 		laydate.render({
 			elem: '#applyDate',
 			format:"yyyy-MM-dd",
+			value:$('#applyDate').val()?$('#applyDate').val():new Date(),
 			trigger:"click",
 			done: function(value, date, endDate){
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("applyDate",value, date, endDate);

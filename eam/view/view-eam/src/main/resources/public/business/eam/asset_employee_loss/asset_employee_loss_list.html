@@ -2,7 +2,7 @@
 /**
  * 资产报失 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-03 07:55:39
+ * @since 2022-07-14 06:31:40
  */
  -->
  <!DOCTYPE html>
@@ -50,6 +50,7 @@
                     <!-- 记录时间 , recordTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 选择数据 , selectedCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 申请部门 , orgId ,typeName=button, isHideInSearch=true -->
+                    <!-- originatorUserName , originatorUserName ,typeName=text_input, isHideInSearch=true -->
                     <!-- 业务编号 , businessCode ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style=""><span th:text="${lang.translate('业务编号')}" class="search-label businessCode-label">业务编号</span><span class="search-colon">:</span></div>
@@ -84,7 +85,7 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
-
+<script type="text/javascript" src="/extmodule/commonFunction/commonFunction.js" th:src="'/extmodule/commonFunction/commonFunction.js?'+${cacheKey}"></script>
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
@@ -111,7 +112,6 @@
 
 
 </script>
-<script type="text/javascript" src="/extmodule/commonFunction/commonFunction.js" th:src="'/extmodule/commonFunction/commonFunction.js?'+${cacheKey}"></script>
 
 <script th:src="'/business/eam/asset_employee_loss/asset_employee_loss_ext.js?'+${cacheKey}"></script>
 <script th:src="'/business/eam/asset_employee_loss/asset_employee_loss_list.js?'+${cacheKey}"></script>

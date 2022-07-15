@@ -9,13 +9,14 @@ import com.dt.platform.domain.eam.Supplier;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
+import com.dt.platform.domain.eam.Maintainer;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-06 21:34:26
- * @sign 1B84BCA61152A65A4B61686FD338FDCF
+ * @since 2022-07-15 06:50:47
+ * @sign E7161E4F6B5AB2B91EF3726CB6B463DB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -290,6 +291,16 @@ public class AssetSoftwareMeta {
 	 * 是否维保 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetSoftware,java.lang.String> NEED_MAINTENANCE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetSoftware.class ,NEED_MAINTENANCE, java.lang.String.class, "是否维保", "是否维保", java.lang.String.class, null);
+	
+	/**
+	 * 维保厂商 , 类型: java.lang.String
+	*/
+	public static final String MAINTAINER_ID="maintainerId";
+	
+	/**
+	 * 维保厂商 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetSoftware,java.lang.String> MAINTAINER_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetSoftware.class ,MAINTAINER_ID, java.lang.String.class, "维保厂商", "维保厂商", java.lang.String.class, null);
 	
 	/**
 	 * 维保开始时间 , 类型: java.util.Date
@@ -712,9 +723,19 @@ public class AssetSoftwareMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetSoftware,org.github.foxnic.web.domain.system.DictItem> LICENSE_MODE_DICT_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetSoftware.class ,LICENSE_MODE_DICT, org.github.foxnic.web.domain.system.DictItem.class, "许可", "许可", org.github.foxnic.web.domain.system.DictItem.class, null);
 	
 	/**
+	 * 维保商 , 类型: com.dt.platform.domain.eam.Maintainer
+	*/
+	public static final String MAINTAINER="maintainer";
+	
+	/**
+	 * 维保商 , 类型: com.dt.platform.domain.eam.Maintainer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetSoftware,com.dt.platform.domain.eam.Maintainer> MAINTAINER_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetSoftware.class ,MAINTAINER, com.dt.platform.domain.eam.Maintainer.class, "维保商", "维保商", com.dt.platform.domain.eam.Maintainer.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , BUSINESS_CODE , OWNER_CODE , PROC_ID , STATUS , NAME , CATEGORY_ID , CODE , SOFTWARE_VERSION , COPYRIGHT_TYPE , LICENSE_MODE , COST_PRICE , OWN_COMPANY_ID , USE_ORGANIZATION_ID , SUPPLIER_ID , MANAGER_ID , POSITION_DETAIL , SOURCE_ID , SOURCE_DETAIL , AUTHORIZATION_INFO , AUTHORIZED_NUMBER , AUTHORIZED_AVAILABLE_NUMBER , AUTHORIZED_NUMBER_UNLIMIT , AUTHORIZATION_CODE , AUTHORIZATION_EXPIRATION_DATE , AUTHORIZATION_EXPIRATION_UNLIMIT , NEED_MAINTENANCE , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , PURCHASE_DATE , REGISTER_DATE , CONTENT , NOTES , ATTACH_ID , LABEL1 , LABEL2 , LABEL3 , LABEL4 , CTL , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , SELECTED_CODE , CATEGORY , SUPPLIER , USE_ORGANIZATION , OWNER_COMPANY , SOURCE , ORIGINATOR , MANAGER , COPYRIGHT_TYPE_DICT , LICENSE_MODE_DICT };
+	public static final String[] $PROPS={ ID , BUSINESS_CODE , OWNER_CODE , PROC_ID , STATUS , NAME , CATEGORY_ID , CODE , SOFTWARE_VERSION , COPYRIGHT_TYPE , LICENSE_MODE , COST_PRICE , OWN_COMPANY_ID , USE_ORGANIZATION_ID , SUPPLIER_ID , MANAGER_ID , POSITION_DETAIL , SOURCE_ID , SOURCE_DETAIL , AUTHORIZATION_INFO , AUTHORIZED_NUMBER , AUTHORIZED_AVAILABLE_NUMBER , AUTHORIZED_NUMBER_UNLIMIT , AUTHORIZATION_CODE , AUTHORIZATION_EXPIRATION_DATE , AUTHORIZATION_EXPIRATION_UNLIMIT , NEED_MAINTENANCE , MAINTAINER_ID , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , PURCHASE_DATE , REGISTER_DATE , CONTENT , NOTES , ATTACH_ID , LABEL1 , LABEL2 , LABEL3 , LABEL4 , CTL , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , SELECTED_CODE , CATEGORY , SUPPLIER , USE_ORGANIZATION , OWNER_COMPANY , SOURCE , ORIGINATOR , MANAGER , COPYRIGHT_TYPE_DICT , LICENSE_MODE_DICT , MAINTAINER };
 	
 	/**
 	 * 代理类
@@ -1018,6 +1039,17 @@ public class AssetSoftwareMeta {
 		public AssetSoftware setNeedMaintenance(String needMaintenance) {
 			super.change(NEED_MAINTENANCE,super.getNeedMaintenance(),needMaintenance);
 			super.setNeedMaintenance(needMaintenance);
+			return this;
+		}
+		
+		/**
+		 * 设置 维保厂商
+		 * @param maintainerId 维保厂商
+		 * @return 当前对象
+		*/
+		public AssetSoftware setMaintainerId(String maintainerId) {
+			super.change(MAINTAINER_ID,super.getMaintainerId(),maintainerId);
+			super.setMaintainerId(maintainerId);
 			return this;
 		}
 		
@@ -1480,6 +1512,17 @@ public class AssetSoftwareMeta {
 		public AssetSoftware setLicenseModeDict(DictItem licenseModeDict) {
 			super.change(LICENSE_MODE_DICT,super.getLicenseModeDict(),licenseModeDict);
 			super.setLicenseModeDict(licenseModeDict);
+			return this;
+		}
+		
+		/**
+		 * 设置 维保商
+		 * @param maintainer 维保商
+		 * @return 当前对象
+		*/
+		public AssetSoftware setMaintainer(Maintainer maintainer) {
+			super.change(MAINTAINER,super.getMaintainer(),maintainer);
+			super.setMaintainer(maintainer);
 			return this;
 		}
 	}

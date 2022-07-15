@@ -8,9 +8,9 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
-import org.github.foxnic.web.domain.hrm.Employee;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Organization;
+import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.bpm.ProcessInstance;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
@@ -23,8 +23,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 资产报失
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-03 16:21:03
- * @sign FC1A912601AAFA19B258E299119C982B
+ * @since 2022-07-14 06:31:39
+ * @sign 585FE041FA3E1C566E0FE019D31C3FE3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -153,12 +153,6 @@ public class AssetEmployeeLoss extends Entity {
 	private String orgId;
 	
 	/**
-	 * 制单人：制单人
-	*/
-	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
-	private Employee originator;
-	
-	/**
 	 * 资产：资产
 	*/
 	@ApiModelProperty(required = false,value="资产" , notes = "资产")
@@ -175,6 +169,12 @@ public class AssetEmployeeLoss extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="使用公司/部门" , notes = "使用公司/部门")
 	private Organization organization;
+	
+	/**
+	 * 制单人：制单人
+	*/
+	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
+	private Employee originator;
 	
 	/**
 	 * 申请人：申请人
@@ -592,25 +592,6 @@ public class AssetEmployeeLoss extends Entity {
 	}
 	
 	/**
-	 * 获得 制单人<br>
-	 * 制单人
-	 * @return 制单人
-	*/
-	public Employee getOriginator() {
-		return originator;
-	}
-	
-	/**
-	 * 设置 制单人
-	 * @param originator 制单人
-	 * @return 当前对象
-	*/
-	public AssetEmployeeLoss setOriginator(Employee originator) {
-		this.originator=originator;
-		return this;
-	}
-	
-	/**
 	 * 获得 资产<br>
 	 * 资产
 	 * @return 资产
@@ -686,6 +667,25 @@ public class AssetEmployeeLoss extends Entity {
 	*/
 	public AssetEmployeeLoss setOrganization(Organization organization) {
 		this.organization=organization;
+		return this;
+	}
+	
+	/**
+	 * 获得 制单人<br>
+	 * 制单人
+	 * @return 制单人
+	*/
+	public Employee getOriginator() {
+		return originator;
+	}
+	
+	/**
+	 * 设置 制单人
+	 * @param originator 制单人
+	 * @return 当前对象
+	*/
+	public AssetEmployeeLoss setOriginator(Employee originator) {
+		this.originator=originator;
 		return this;
 	}
 	

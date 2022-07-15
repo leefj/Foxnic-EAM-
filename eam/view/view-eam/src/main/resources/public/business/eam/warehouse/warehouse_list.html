@@ -2,7 +2,7 @@
 /**
  * 仓库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-20 13:08:22
+ * @since 2022-07-15 07:11:04
  */
  -->
  <!DOCTYPE html>
@@ -40,10 +40,13 @@
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 编号 , code ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 状态 , status ,typeName=select_box, isHideInSearch=false -->
+                    <!-- 状态 , status ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('状态')}" class="search-label status-label">状态</span><span class="search-colon">:</span></div>
-                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" style="width:150px" extraParam="{}"></div>
+
+
+                        <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" style="width:150px"></div>
+
                     </div>
                     <!-- 名称 , warehouseName ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
@@ -52,7 +55,7 @@
                     </div>
                     <!-- 备注 , warehouseNotes ,typeName=text_area, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('备注')}" class="search-label warehouseNotes-label">备注</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('备注')}" class="search-label warehouseNotes-label">备注</span><span class="search-colon">:</span></div>
                         <input id="warehouseNotes" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
 
@@ -62,12 +65,12 @@
 
 
             <!-- 按钮区域 -->
-            <div class="layui-form toolbar search-buttons" style="opacity: 0">
+            <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">
                 <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索')}">搜索</span></button>
             </div>
         </div>
 
-        <div style="margin-top: 42px ">
+        <div id="table-area" style="margin-top: 42px ">
             <table class="layui-table" id="data-table" lay-filter="data-table"></table>
         </div>
 
@@ -79,7 +82,6 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
-
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
@@ -103,7 +105,7 @@
 
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
-    var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
     var AUTH_PREFIX="eam_warehouse";
 
 

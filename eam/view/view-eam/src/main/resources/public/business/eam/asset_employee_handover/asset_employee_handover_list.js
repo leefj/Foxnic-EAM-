@@ -1,7 +1,7 @@
 /**
  * 资产交接 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-03 07:55:27
+ * @since 2022-07-14 06:31:36
  */
 
 
@@ -91,19 +91,8 @@ function ListPage() {
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
-					exportExcel : admin.checkAuth(AUTH_PREFIX+":export"),
-					importExcel : admin.checkAuth(AUTH_PREFIX+":import")?{
-						params : {} ,
-						callback : function(r) {
-							if(r.success) {
-								layer.msg(fox.translate('数据导入成功')+"!");
-							} else {
-								layer.msg(fox.translate('数据导入失败')+"!");
-							}
-							// 是否执行后续逻辑：错误提示
-							return false;
-						}
-					}:false
+					exportExcel : false ,
+					importExcel : false 
 				}
 			};
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
@@ -266,8 +255,8 @@ function ListPage() {
 				case 'create':
 					admin.putTempData('eam-asset-employee-handover-form-data', {});
 					var defaultValue={};
-					if(window.pageExt.list.getBpmDefaultValue) {
-						defaultValue=window.pageExt.list.getBpmDefaultValue();
+					if(window.pageExt.list.getBpmViewConfig) {
+						defaultValue=window.pageExt.list.getBpmViewConfig();
 					}
 					bpm.openProcessView(null,null,false,{"formDefinitionCode":"eam_asset_employee_handover"},refreshTableData,refreshRowData,"bill",defaultValue);
 					break;

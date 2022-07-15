@@ -1,7 +1,7 @@
 /**
  * 模版图形 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-12 22:14:43
+ * @since 2022-07-14 16:30:58
  */
 
 
@@ -137,7 +137,7 @@ function ListPage() {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.notes={ inputType:"button",value: $("#notes").val()};
+		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;

@@ -100,8 +100,6 @@ public class EmployRepairGtr extends BaseCodeGenerator {
                         EAMTables.EAM_ASSET_EMPLOYEE_REPAIR.PICTURE_ID,
                 }
         );
-//
-//       <script type="text/javascript" src="/module/commonFunction/commonFunction.js" th:src="'/module/commonFunction/commonFunction.js?'+${cacheKey}"></script>
 
         cfg.view().list().addJs("/extmodule/commonFunction/commonFunction.js");
 
@@ -115,7 +113,7 @@ public class EmployRepairGtr extends BaseCodeGenerator {
                 .setPageController(WriteMode.IGNORE) //页面控制器
                 .setBpmEventAdaptor(WriteMode.IGNORE)
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
-                .setListPage(WriteMode.IGNORE)
+                .setListPage(WriteMode.COVER_EXISTS_FILE)
                 .setExtendJsFile(WriteMode.WRITE_TEMP_FILE); //列表HTML页
         ; //列表HTML页
         //生成代码

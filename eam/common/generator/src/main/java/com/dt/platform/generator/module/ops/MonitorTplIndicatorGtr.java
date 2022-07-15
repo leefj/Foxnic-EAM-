@@ -54,6 +54,12 @@ public class MonitorTplIndicatorGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.NAME).search().fuzzySearch();
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.CODE).search().fuzzySearch();
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.NOTES).search().fuzzySearch();
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.COMMAND).search().fuzzySearch();
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.COMMAND_VALUE).search().fuzzySearch();
+
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.LABEL).search().fuzzySearch();
+
 
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.ID).basic().hidden(true);
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_INDICATOR.ID).table().disable(true);
@@ -161,6 +167,7 @@ public class MonitorTplIndicatorGtr extends BaseCodeGenerator{
                 .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口
                 .setControllerAndAgent(WriteMode.COVER_EXISTS_FILE) //Rest
                 .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
+                .setBpmEventAdaptor(WriteMode.IGNORE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
                 .setExtendJsFile(WriteMode.COVER_EXISTS_FILE); //列表HTML页

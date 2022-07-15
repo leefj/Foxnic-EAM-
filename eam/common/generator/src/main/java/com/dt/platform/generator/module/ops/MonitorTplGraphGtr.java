@@ -44,6 +44,7 @@ public class MonitorTplGraphGtr extends BaseCodeGenerator{
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_GRAPH.NAME).search().fuzzySearch();
+        cfg.view().field(OpsTables.OPS_MONITOR_TPL_GRAPH.NOTES).search().fuzzySearch();
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_GRAPH.TPL_CODE).search().fuzzySearch();
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_GRAPH.ID).basic().hidden(true);
         cfg.view().field(OpsTables.OPS_MONITOR_TPL_GRAPH.ID).table().disable(true);
@@ -104,6 +105,7 @@ public class MonitorTplGraphGtr extends BaseCodeGenerator{
                 .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口
                 .setControllerAndAgent(WriteMode.COVER_EXISTS_FILE) //Rest
                 .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
+                .setBpmEventAdaptor(WriteMode.IGNORE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
                 .setExtendJsFile(WriteMode.COVER_EXISTS_FILE); //列表HTML页

@@ -168,10 +168,10 @@ public class EamAssetStockGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_STOCK.LATEST_APPROVER_NAME).table().disable();
         cfg.view().field(EAMTables.EAM_STOCK.NEXT_APPROVER_IDS).table().disable();
         cfg.view().field(EAMTables.EAM_STOCK.NEXT_APPROVER_NAMES).table().disable();
-
+        cfg.view().field(EAMTables.EAM_STOCK.STOCK_NOTES).form().textArea().height(Config.textAreaHeight);
 
         cfg.view().formWindow().bottomSpace(100);
-        cfg.view().formWindow().width("98%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_STOCK.STOCK_NAME,
@@ -192,8 +192,6 @@ public class EamAssetStockGtr extends BaseCodeGenerator{
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_STOCK.STOCK_NOTES,
-                },
-                new Object[] {
                         EAMTables.EAM_STOCK.ATTACH_ID
                 }
         );
@@ -207,7 +205,7 @@ public class EamAssetStockGtr extends BaseCodeGenerator{
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
                 .setControllerAndAgent(WriteMode.IGNORE) //Rest
                 .setPageController(WriteMode.IGNORE) //页面控制器
-                .setFormPage(WriteMode.IGNORE) //表单HTML页
+                .setFormPage(WriteMode.WRITE_TEMP_FILE) //表单HTML页
                 .setListPage(WriteMode.IGNORE)//列表HTML页
                 .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         cfg.buildAll();

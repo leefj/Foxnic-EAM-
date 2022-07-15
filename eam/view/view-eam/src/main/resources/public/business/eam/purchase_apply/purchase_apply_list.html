@@ -2,7 +2,7 @@
 /**
  * 采购申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-13 18:38:15
+ * @since 2022-07-14 06:41:48
  */
  -->
  <!DOCTYPE html>
@@ -77,7 +77,7 @@
                     <!-- 申请部门 , applyOrgId ,typeName=button, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('申请部门')}" class="search-label applyOrgId-label">申请部门</span><span class="search-colon">:</span></div>
-                            <input lay-filter="applyOrgId" id="applyOrgId" name="applyOrgId"  type="hidden" class="layui-input"   />
+                            <input lay-filter="applyOrgId" id="applyOrgId" name="applyOrgId"  type="hidden" class="layui-input"    lay-verify="|required"   />
                             <button id="applyOrgId-button" type="button" action-type="org-dialog" class="layui-btn layui-btn-primary   " style="width: 150px"> <i class='layui-icon layui-icon-search'></i> <span th:text="${lang.translate('请选择组织节点')}" th:default-label="${lang.translate('请选择组织节点')}">按钮文本</span></button>
                     </div>
 
@@ -126,6 +126,7 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/extmodule/commonFunction/commonFunction.js" th:src="'/extmodule/commonFunction/commonFunction.js?'+${cacheKey}"></script>
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">

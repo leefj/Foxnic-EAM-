@@ -1,7 +1,7 @@
 /**
  * 仓库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-20 13:08:21
+ * @since 2022-07-15 07:11:03
  */
 
 layui.config({
@@ -19,6 +19,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
     //模块基础路径
     const moduleURL="/service-eam/eam-warehouse";
+
 
     //列表页的扩展
     var list={
@@ -212,6 +213,22 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         onDatePickerChanged:function(id,value, date, endDate) {
             console.log('onDatePickerChanged',id,value, date, endDate);
+        },
+        onRadioBoxChanged:function(id,data,checked) {
+            console.log('onRadioChanged',id,data,checked);
+        },
+        onCheckBoxChanged:function(id,data,checked) {
+            console.log('onCheckBoxChanged',id,data,checked);
+        },
+
+        /**
+         * 在流程提交前处理表单数据
+         * */
+        processFormData4Bpm:function(processInstanceId,param,callback) {
+            // 设置流程变量，并通过回调返回
+            var variables={};
+            // 此回调是必须的，否则流程提交会被中断
+            callback(variables);
         },
         /**
          * 数据提交前，如果返回 false，停止后续步骤的执行

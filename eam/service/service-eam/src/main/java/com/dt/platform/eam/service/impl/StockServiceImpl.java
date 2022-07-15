@@ -307,7 +307,7 @@ public class StockServiceImpl extends SuperService<Stock> implements IStockServi
 		Stock stock = new Stock();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		stock.setId(id);
-		stock.setDeleted(dao.getDBTreaty().getTrueValue());
+		stock.setDeleted(1);
 		stock.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		stock.setDeleteTime(new Date());
 		try {

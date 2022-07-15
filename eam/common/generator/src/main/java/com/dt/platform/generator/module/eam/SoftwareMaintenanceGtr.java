@@ -35,7 +35,7 @@ public class SoftwareMaintenanceGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"manager","负责人","负责人");
 
-        cfg.getPoClassFile().addSimpleProperty(Maintainer.class,"maintainer","负责人","负责人");
+        cfg.getPoClassFile().addSimpleProperty(Maintainer.class,"maintainer","维保商","维保商");
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"useOrganization","负责部门","负责部门");
 
         cfg.getPoClassFile().addListProperty(AssetSoftware.class,"assetSoftwareList","软件信息","软件信息");
@@ -67,9 +67,9 @@ public class SoftwareMaintenanceGtr extends BaseCodeGenerator {
 
 
         cfg.view().list().addJsVariable("APPROVAL_REQUIRED","[[${approvalRequired}]]","APPROVAL_REQUIRED");
-        cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_software_maintenance:for-approval");
+     //   cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_software_maintenance:for-approval");
         cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_software_maintenance:confirm");
-        cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_software_maintenance:revoke");
+    //    cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_software_maintenance:revoke");
         cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_software_maintenance:bill");
 
 

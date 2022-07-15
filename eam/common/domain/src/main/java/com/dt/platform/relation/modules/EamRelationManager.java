@@ -534,6 +534,10 @@ public class EamRelationManager extends RelationManager {
                 .condition("dict_code='asset_software_license_mode'");
 
 
+        this.property(AssetSoftwareMeta.MAINTAINER_PROP)
+                .using(EAMTables.EAM_ASSET_SOFTWARE.MAINTAINER_ID).join(EAMTables.EAM_MAINTAINER.ID);
+
+
         this.property(AssetSoftwareMeta.SUPPLIER_PROP)
                 .using(EAMTables.EAM_ASSET_SOFTWARE.SUPPLIER_ID).join(EAMTables.EAM_SUPPLIER.ID);
 

@@ -1,7 +1,7 @@
 /**
  * 模版指标 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-12 22:11:45
+ * @since 2022-07-14 16:33:32
  */
 
 
@@ -150,9 +150,9 @@ function ListPage() {
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.code={ inputType:"button",value: $("#code").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.monitorTplCode={ inputType:"select_box", value: getSelectedValue("#monitorTplCode","value") ,fillBy:["tpl"]  , label:getSelectedValue("#monitorTplCode","nameStr") };
-		value.command={ inputType:"button",value: $("#command").val()};
-		value.label={ inputType:"button",value: $("#label").val()};
-		value.notes={ inputType:"button",value: $("#notes").val()};
+		value.command={ inputType:"button",value: $("#command").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.label={ inputType:"button",value: $("#label").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;

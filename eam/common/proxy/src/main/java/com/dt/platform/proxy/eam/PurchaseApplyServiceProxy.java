@@ -2,6 +2,7 @@ package com.dt.platform.proxy.eam;
 
 import org.github.foxnic.web.domain.bpm.BpmActionResult;
 import org.github.foxnic.web.domain.bpm.BpmEvent;
+import org.github.foxnic.web.proxy.bpm.BpmCallbackController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
@@ -22,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @since 2022-04-16 22:09:37
  */
 @FeignClient(value = ServiceNames.EAM, contextId = PurchaseApplyServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
-public interface PurchaseApplyServiceProxy {
+public interface PurchaseApplyServiceProxy extends BpmCallbackController {
 
     /**
      * 基础路径 , service-eam

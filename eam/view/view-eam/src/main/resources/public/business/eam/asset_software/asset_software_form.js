@@ -194,6 +194,37 @@ function FormPage() {
 				return opts;
 			}
 		});
+		//渲染 maintainerId 下拉字段
+		fox.renderSelectBox({
+			el: "maintainerId",
+			radio: true,
+			filterable: true,
+			paging: true,
+			pageRemote: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("maintainerId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "maintainerName", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].maintainerName,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
 		//渲染 licenseMode 下拉字段
 		fox.renderSelectBox({
 			el: "licenseMode",
@@ -433,6 +464,10 @@ function FormPage() {
 			//设置  来源 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#sourceId",formData.source);
 
+			//设置  维保商 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#maintainerId",formData.maintainer);
+
+
 			setTimeout(function(){
 				if(categorySelect){
 					if(formData.category&&formData.categoryId){
@@ -500,6 +535,9 @@ function FormPage() {
 		data["supplierId"]=fox.getSelectedValue("supplierId",false);
 		//获取 来源 下拉框的值
 		data["sourceId"]=fox.getSelectedValue("sourceId",false);
+
+		//获取 维保商 下拉框的值
+		data["maintainerId"]=fox.getSelectedValue("maintainerId",false);
 
 		return data;
 	}

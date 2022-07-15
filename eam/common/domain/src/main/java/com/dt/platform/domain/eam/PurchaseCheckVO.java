@@ -3,6 +3,7 @@ package com.dt.platform.domain.eam;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import com.github.foxnic.api.model.CompositeParameter;
 import javax.persistence.Transient;
 import com.github.foxnic.commons.bean.BeanUtil;
@@ -12,7 +13,7 @@ import com.github.foxnic.commons.bean.BeanUtil;
 /**
  * 采购验收
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-16 23:19:16
+ * @since 2022-07-14 07:31:06
  * @sign 0195E75D1437044564ACD2B3A16B6ECC
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -188,9 +189,9 @@ public class PurchaseCheckVO extends PurchaseCheck {
 	 * @param dirtyField 已修改字段
 	 * @return 当前对象
 	*/
-	public PurchaseCheckVO addDirtyField(String dirtyField) {
+	public PurchaseCheckVO addDirtyField(String... dirtyField) {
 		if(this.dirtyFields==null) dirtyFields=new ArrayList<>();
-		this.dirtyFields.add(dirtyField);
+		this.dirtyFields.addAll(Arrays.asList(dirtyField));
 		return this;
 	}
 	
@@ -254,9 +255,9 @@ public class PurchaseCheckVO extends PurchaseCheck {
 	 * @param id 主键清单
 	 * @return 当前对象
 	*/
-	public PurchaseCheckVO addId(String id) {
+	public PurchaseCheckVO addId(String... id) {
 		if(this.ids==null) ids=new ArrayList<>();
-		this.ids.add(id);
+		this.ids.addAll(Arrays.asList(id));
 		return this;
 	}
 	@Transient

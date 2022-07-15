@@ -96,6 +96,7 @@ function ListPage() {
 					,{ field: 'authorizationCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('授权码') , templet: function (d) { return templet('authorizationCode',d.authorizationCode,d);}  }
 					,{ field: 'authorizationExpirationDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('授权到期时间') ,templet: function (d) { return templet('authorizationExpirationDate',fox.dateFormat(d.authorizationExpirationDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'authorizationExpirationUnlimit', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('永久授权'), templet:function (d){ return templet('authorizationExpirationUnlimit',fox.getEnumText(RADIO_AUTHORIZATIONEXPIRATIONUNLIMIT_DATA,d.authorizationExpirationUnlimit),d);}}
+					,{ field: 'maintainerId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维保商'), templet: function (d) { return templet('maintainerId' ,fox.joinLabel(d.maintainer,"maintainerName"),d);}}
 					,{ field: 'needMaintenance', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('是否维保'), templet:function (d){ return templet('needMaintenance',fox.getEnumText(RADIO_NEEDMAINTENANCE_DATA,d.needMaintenance),d);}}
 					,{ field: 'maintenanceStartDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('维保开始时间') ,templet: function (d) { return templet('maintenanceStartDate',fox.dateFormat(d.maintenanceStartDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'maintenanceEndDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('维保到期时间') ,templet: function (d) { return templet('maintenanceEndDate',fox.dateFormat(d.maintenanceEndDate,"yyyy-MM-dd"),d); }  }
@@ -173,6 +174,7 @@ function ListPage() {
 		value.licenseMode={ inputType:"select_box", value: getSelectedValue("#licenseMode","value") ,fillBy:["licenseModeDict"]  , label:getSelectedValue("#licenseMode","nameStr") };
 		value.supplierId={ inputType:"select_box", value: getSelectedValue("#supplierId","value") ,fillBy:["supplier"]  , label:getSelectedValue("#supplierId","nameStr") };
 		//value.positionDetail={ inputType:"button",value: $("#positionDetail").val()};
+		value.maintainerId={ inputType:"select_box", value: getSelectedValue("#maintainerId","value") ,fillBy:["maintainer"]  , label:getSelectedValue("#maintainerId","nameStr") };
 
 		value.sourceId={ inputType:"select_box", value: getSelectedValue("#sourceId","value") ,fillBy:["source"]  , label:getSelectedValue("#sourceId","nameStr") };
 		value.purchaseDate={ inputType:"date_input", begin: $("#purchaseDate-begin").val(), end: $("#purchaseDate-end").val() ,matchType:"auto" };
@@ -287,6 +289,33 @@ function ListPage() {
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
 					opts.push({data:data[i],name:data[i].label,value:data[i].code});
+				}
+				return opts;
+			}
+		});
+		//渲染 maintainerId 下拉字段
+		fox.renderSelectBox({
+			el: "maintainerId",
+			radio: true,
+			size: "small",
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("maintainerId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			paging: true,
+			pageRemote: true,
+			//转换数据
+			searchField: "maintainerName", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].maintainerName,value:data[i].id});
 				}
 				return opts;
 			}

@@ -28,7 +28,7 @@ public class BrandGtr extends BaseCodeGenerator {
 
 
         cfg.view().field(EAMTables.EAM_BRAND.STATUS).form().validate().required().
-                form().selectBox().enumType(StatusEnableEnum.class)
+                form().radioBox().enumType(StatusEnableEnum.class).defaultIndex(0);
 ;
 
         cfg.view().search().inputLayout(
@@ -39,6 +39,7 @@ public class BrandGtr extends BaseCodeGenerator {
                 }
         );
 
+        cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().form().addGroup(null,
                 new Object[] {

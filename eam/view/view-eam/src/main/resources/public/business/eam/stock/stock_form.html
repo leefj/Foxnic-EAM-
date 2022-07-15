@@ -31,41 +31,42 @@
 
         <input name="id" id="id"  type="hidden"/>
 
-         <!--开始：group 循环-->
+        <!--开始：group 循环-->
 
 
 
-        <div class="layui-row form-row">
+        <div class="layui-row form-row" id="random-4423-content">
 
-             <!--开始：group 循环-->
-            <div class="layui-col-xs4 form-column">
+            <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
 
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('单据名称')}">单据名称</div><div class="layui-required">*</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="stockName" id="stockName" name="stockName" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('单据名称') }" type="text" class="layui-input"    lay-verify="|required"  />
-                        </div>
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('单据名称')}">单据名称</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="stockName" id="stockName" name="stockName" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('单据名称') }" type="text" class="layui-input"    lay-verify="|required"  />
                     </div>
+                </div>
 
-                                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('批次号')}">批次号</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="stockBatchCode" id="stockBatchCode" name="stockBatchCode" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('批次号') }" type="text" class="layui-input"  />
-                        </div>
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('批次号')}">批次号</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="stockBatchCode" id="stockBatchCode" name="stockBatchCode" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('批次号') }" type="text" class="layui-input"  />
                     </div>
+                </div>
 
-                                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('接收人')}">接收人</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="receiverUserName" id="receiverUserName" name="receiverUserName" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('接收人') }" type="text" class="layui-input"  />
-                        </div>
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('接收人')}">接收人</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="receiverUserName" id="receiverUserName" name="receiverUserName" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('接收人') }" type="text" class="layui-input"  />
                     </div>
+                </div>
 
                 <!--结束：栏次内字段循环-->
             </div>
-             <!--开始：group 循环-->
-            <div class="layui-col-xs4 form-column">
-
+            <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
 
 
                 <div class="layui-form-item" >
@@ -76,79 +77,78 @@
                 </div>
 
 
+
                 <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('供应商')}">供应商</div></div>
-                        <div class="layui-input-block ">
-                            <div id="supplierId" input-type="select" th:data="${'/service-eam/eam-supplier/query-list'}" extraParam="{}"></div>
-                        </div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('供应商')}">供应商</div></div>
+                    <div class="layui-input-block ">
+                        <div id="supplierId" input-type="select" th:data="${'/service-eam/eam-supplier/query-list'}" extraParam="{}"></div>
                     </div>
+                </div>
 
 
 
-
-                
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('仓库')}">仓库</div></div>
-                        <div class="layui-input-block ">
-                            <div id="warehouseId" input-type="select" th:data="${'/service-eam/eam-warehouse/query-list'}" extraParam="{}"></div>
-                        </div>
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('仓库')}">仓库</div></div>
+                    <div class="layui-input-block ">
+                        <div id="warehouseId" input-type="select" th:data="${'/service-eam/eam-warehouse/query-list'}" extraParam="{}"></div>
                     </div>
+                </div>
 
 
                 <!--结束：栏次内字段循环-->
             </div>
-             <!--开始：group 循环-->
-            <div class="layui-col-xs4 form-column">
+            <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs4 form-column" >
 
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('所属公司')}">所属公司</div><div class="layui-required">*</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="ownCompanyId" id="ownCompanyId" name="ownCompanyId"  type="hidden" class="layui-input"   />
-                            <button id="ownCompanyId-button" type="button" action-type="org-dialog" class="layui-btn   " style="width: 100%"> <i class='layui-icon layui-icon-search'></i> <span th:text="${lang.translate('请选择公司')}" th:default-label="${lang.translate('请选择公司')}">按钮文本</span></button>
-                        </div>
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('所属公司')}">所属公司</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="ownCompanyId" id="ownCompanyId" name="ownCompanyId"  type="hidden" class="layui-input"   />
+                        <button id="ownCompanyId-button" type="button" action-type="org-dialog" class="layui-btn   " style="width: 100%"> <i class='layui-icon layui-icon-search'></i> <span th:text="${lang.translate('请选择公司')}" th:default-label="${lang.translate('请选择公司')}">按钮文本</span></button>
                     </div>
+                </div>
 
-                   <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('管理人')}">管理人</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="managerId" id="managerId" name="managerId"  type="hidden" class="layui-input"   />
-                            <button id="managerId-button" type="button" action-type="emp-dialog" class="layui-btn   " style="width: 100%"> <i class='layui-icon layui-icon-search'></i> <span th:text="${lang.translate('请选择人员')}" th:default-label="${lang.translate('请选择人员')}">按钮文本</span></button>
-                        </div>
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('管理人')}">管理人</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="managerId" id="managerId" name="managerId"  type="hidden" class="layui-input"   />
+                        <button id="managerId-button" type="button" action-type="emp-dialog" class="layui-btn   " style="width: 100%"> <i class='layui-icon layui-icon-search'></i> <span th:text="${lang.translate('请选择人员')}" th:default-label="${lang.translate('请选择人员')}">按钮文本</span></button>
                     </div>
+                </div>
 
-                
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('总金额')}">总金额</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="amount" id="amount" name="amount" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('总金额') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="1.0"   scale="2" />
-                        </div>
+
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('总金额')}">总金额</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="amount" id="amount" name="amount" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('总金额') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="1.0"   scale="2" />
                     </div>
+                </div>
 
 
                 <!--结束：栏次内字段循环-->
             </div>
             <!--结束：栏次输入框循环-->
         </div>
-         <!--开始：group 循环-->
+        <!--开始：group 循环-->
 
 
 
-        <div class="layui-row form-row">
+        <div class="layui-row form-row" id="random-7397-content">
 
-             <!--开始：group 循环-->
-            <div class="layui-col-xs6 form-column">
+            <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
+            <div class="layui-col-xs12 form-column"  style="padding-top: 0px" >
 
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="stockNotes" id="stockNotes" name="stockNotes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" type="text" class="layui-input"  />
-                        </div>
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
+                    <div class="layui-input-block ">
+
+                        <textarea lay-filter="stockNotes" id="stockNotes" name="stockNotes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" class="layui-textarea" style="height: 120px" ></textarea>
+
+
                     </div>
-
-                <!--结束：栏次内字段循环-->
-            </div>
-             <!--开始：group 循环-->
-            <div class="layui-col-xs6 form-column">
+                </div>
 
 
                 <div class="layui-form-item" >
@@ -166,14 +166,14 @@
             </div>
             <!--结束：栏次输入框循环-->
         </div>
-         <!--开始：group 循环-->
+        <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title">
-        <legend>资产</legend>
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-0148-fieldset">
+            <legend>资产列表</legend>
         </fieldset>
-        <div class="layui-row form-row" style="text-align: center;">
+        <div class="layui-row form-row" style="text-align: center;" id="random-0148-content">
             <div style="display: inline-block;padding-right: 8px;padding-left: 8px" class="layui-col-xs12">
-            <iframe js-fn="assetSelectList" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
+                <iframe js-fn="assetSelectList" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
             </div>
         </div>
         <!--结束：group循环-->
@@ -185,6 +185,8 @@
     </form>
 
 </div>
+
+
 <div class="model-form-footer">
     <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消')}" >取消</button>
     <button class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存')}">保存</button>

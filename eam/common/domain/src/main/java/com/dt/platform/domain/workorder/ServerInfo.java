@@ -17,8 +17,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 服务器资源
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-06 06:19:24
- * @sign 5A3E7E35F57F548660D514FDF3EA5A61
+ * @since 2022-07-14 07:39:58
+ * @sign DEE89AC6709AAFB0CB71F04221D27DAA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -59,6 +59,12 @@ public class ServerInfo extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="系统版本" , notes = "系统版本")
 	private String osVersion;
+	
+	/**
+	 * IP地址：IP地址
+	*/
+	@ApiModelProperty(required = false,value="IP地址" , notes = "IP地址")
+	private String ip;
 	
 	/**
 	 * 数据库：数据库
@@ -268,6 +274,25 @@ public class ServerInfo extends Entity {
 	*/
 	public ServerInfo setOsVersion(String osVersion) {
 		this.osVersion=osVersion;
+		return this;
+	}
+	
+	/**
+	 * 获得 IP地址<br>
+	 * IP地址
+	 * @return IP地址
+	*/
+	public String getIp() {
+		return ip;
+	}
+	
+	/**
+	 * 设置 IP地址
+	 * @param ip IP地址
+	 * @return 当前对象
+	*/
+	public ServerInfo setIp(String ip) {
+		this.ip=ip;
 		return this;
 	}
 	

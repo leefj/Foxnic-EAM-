@@ -4,9 +4,9 @@ import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.PurchaseCheck;
 import java.util.Date;
 import com.dt.platform.domain.eam.Supplier;
-import com.dt.platform.domain.eam.PurchaseApply;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.hrm.Employee;
+import com.dt.platform.domain.eam.PurchaseApply;
 import com.dt.platform.domain.eam.PurchaseOrder;
 import java.util.List;
 
@@ -14,8 +14,8 @@ import java.util.List;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-16 23:19:16
- * @sign D7AAD2772C31E9DF866A154F07E07429
+ * @since 2022-07-14 07:31:06
+ * @sign 516C88823BC6EBD290C9406F0A8FDFBF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -292,16 +292,6 @@ public class PurchaseCheckMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseCheck,com.dt.platform.domain.eam.Supplier> SUPPLIER_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseCheck.class ,SUPPLIER, com.dt.platform.domain.eam.Supplier.class, "供应商", "供应商", com.dt.platform.domain.eam.Supplier.class, null);
 	
 	/**
-	 * 领用申请 , 类型: com.dt.platform.domain.eam.PurchaseApply
-	*/
-	public static final String PURCHASE_APPLY="purchaseApply";
-	
-	/**
-	 * 领用申请 , 类型: com.dt.platform.domain.eam.PurchaseApply
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseCheck,com.dt.platform.domain.eam.PurchaseApply> PURCHASE_APPLY_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseCheck.class ,PURCHASE_APPLY, com.dt.platform.domain.eam.PurchaseApply.class, "领用申请", "领用申请", com.dt.platform.domain.eam.PurchaseApply.class, null);
-	
-	/**
 	 * 验收公司/部门 , 类型: org.github.foxnic.web.domain.hrm.Organization
 	*/
 	public static final String CHECK_ORG="checkOrg";
@@ -320,6 +310,16 @@ public class PurchaseCheckMeta {
 	 * 制单人 , 类型: org.github.foxnic.web.domain.hrm.Employee
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseCheck,org.github.foxnic.web.domain.hrm.Employee> ORIGINATOR_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseCheck.class ,ORIGINATOR, org.github.foxnic.web.domain.hrm.Employee.class, "制单人", "制单人", org.github.foxnic.web.domain.hrm.Employee.class, null);
+	
+	/**
+	 * 领用申请 , 类型: com.dt.platform.domain.eam.PurchaseApply
+	*/
+	public static final String PURCHASE_APPLY="purchaseApply";
+	
+	/**
+	 * 领用申请 , 类型: com.dt.platform.domain.eam.PurchaseApply
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.PurchaseCheck,com.dt.platform.domain.eam.PurchaseApply> PURCHASE_APPLY_PROP = new BeanProperty(com.dt.platform.domain.eam.PurchaseCheck.class ,PURCHASE_APPLY, com.dt.platform.domain.eam.PurchaseApply.class, "领用申请", "领用申请", com.dt.platform.domain.eam.PurchaseApply.class, null);
 	
 	/**
 	 * 订单 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.PurchaseOrder
@@ -344,7 +344,7 @@ public class PurchaseCheckMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , PROC_ID , STATUS , BUSINESS_CODE , NAME , APPLY_ID , CODE , SUPPLIER_ID , CHECK_ORG_ID , CHECK_USER_NAME , RECEIVE_DATE , CHECK_DATE , CHECK_INFORMATION , NOTES , ATTACH , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , SUPPLIER , PURCHASE_APPLY , CHECK_ORG , ORIGINATOR , ORDER_LIST , ORDER_IDS };
+	public static final String[] $PROPS={ ID , PROC_ID , STATUS , BUSINESS_CODE , NAME , APPLY_ID , CODE , SUPPLIER_ID , CHECK_ORG_ID , CHECK_USER_NAME , RECEIVE_DATE , CHECK_DATE , CHECK_INFORMATION , NOTES , ATTACH , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , SUPPLIER , CHECK_ORG , ORIGINATOR , PURCHASE_APPLY , ORDER_LIST , ORDER_IDS };
 	
 	/**
 	 * 代理类
@@ -652,17 +652,6 @@ public class PurchaseCheckMeta {
 		}
 		
 		/**
-		 * 设置 领用申请
-		 * @param purchaseApply 领用申请
-		 * @return 当前对象
-		*/
-		public PurchaseCheck setPurchaseApply(PurchaseApply purchaseApply) {
-			super.change(PURCHASE_APPLY,super.getPurchaseApply(),purchaseApply);
-			super.setPurchaseApply(purchaseApply);
-			return this;
-		}
-		
-		/**
 		 * 设置 验收公司/部门
 		 * @param checkOrg 验收公司/部门
 		 * @return 当前对象
@@ -681,6 +670,17 @@ public class PurchaseCheckMeta {
 		public PurchaseCheck setOriginator(Employee originator) {
 			super.change(ORIGINATOR,super.getOriginator(),originator);
 			super.setOriginator(originator);
+			return this;
+		}
+		
+		/**
+		 * 设置 领用申请
+		 * @param purchaseApply 领用申请
+		 * @return 当前对象
+		*/
+		public PurchaseCheck setPurchaseApply(PurchaseApply purchaseApply) {
+			super.change(PURCHASE_APPLY,super.getPurchaseApply(),purchaseApply);
+			super.setPurchaseApply(purchaseApply);
 			return this;
 		}
 		
