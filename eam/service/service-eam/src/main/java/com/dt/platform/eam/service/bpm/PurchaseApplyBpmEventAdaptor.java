@@ -27,7 +27,7 @@ import com.dt.platform.eam.service.IPurchaseApplyService;
 
 public class PurchaseApplyBpmEventAdaptor extends BpmEventAdaptor<PurchaseApply,IPurchaseApplyService> {
 
-	public String BPM_TABLE="eam_asset_purchase_apply";
+	public String BPM_TABLE="eam_purchase_apply";
 
 	private void updateBillStatus(String status ,String id){
 		this.dao().execute("update "+BPM_TABLE+" set status=? where id=?", status, id);
@@ -61,9 +61,9 @@ public class PurchaseApplyBpmEventAdaptor extends BpmEventAdaptor<PurchaseApply,
 		Logger.info("onProcessSubmitStart result:"+event.getActionResult().code());
 		Logger.info("onProcessSubmitStart result:"+event.getActionResult().getData());
 		Logger.info("onProcessSubmitStart result:"+event.getActionResult().getMessage());
-		if(event.getActionResult().isSuccess()){
-			updateBillStatus(AssetHandleStatusEnum.APPROVAL.code(), event.getBillId());
-		}
+//		if(event.getActionResult().isSuccess()){
+//			updateBillStatus(AssetHandleStatusEnum.APPROVAL.code(), event.getBillId());
+//		}
 		return event.getActionResult();
 	}
 
