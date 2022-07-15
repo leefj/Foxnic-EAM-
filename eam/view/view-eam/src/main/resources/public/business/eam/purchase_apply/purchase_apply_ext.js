@@ -150,11 +150,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
                 //如果审批中或审批通过的不允许编辑
                 if(data[i].status=="complete") {
-                    fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.for-approval-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.revoke-data-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.for-approval-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.revoke-data-button').filter("[data-id='" + data[i].id + "']"), true);
                     if(data[i].assetCheck=="not_check"){
                         console.log("enable")
                     }else{
@@ -170,29 +170,30 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     // fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
 
 
-                    fox.disableButton($('.revoke-data-button').filter("[data-id='" + data[i].id + "']"), true);
+                  //  fox.disableButton($('.revoke-data-button').filter("[data-id='" + data[i].id + "']"), true);
                 }else if(data[i].status=="deny"){
-
-
-                    fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.for-approval-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.revoke-data-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.check-bill-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.check-bill-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.for-approval-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.revoke-data-button').filter("[data-id='" + data[i].id + "']"), true);
                 }else if(data[i].status=="approval"){
-
-                    fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.for-approval-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.check-bill-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.check-bill-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.for-approval-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
                     // fox.disableButton($('.revoke-data-button').filter("[data-id='" + data[i].id + "']"), true);
                 }else if(data[i].status=="cancel"){
 
-                    fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.for-approval-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.revoke-data-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.for-approval-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.revoke-data-button').filter("[data-id='" + data[i].id + "']"), true);
                 }
 
                 if(data[i].cleanStatus=="complete"){
@@ -350,6 +351,15 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
     //表单页的扩展
     var form={
+            /**
+             * 在流程提交前处理表单数据
+             * */
+            processFormData4Bpm:function(processInstanceId,param,callback) {
+                // 设置流程变量，并通过回调返回
+                var variables={};
+                // 此回调是必须的，否则流程提交会被中断
+                callback(variables);
+            },
             onProcessInstanceReady:function (result) {
             // 可根据流程状态、当前审批节点判断和控制表单页面
             processInstance=result.data;

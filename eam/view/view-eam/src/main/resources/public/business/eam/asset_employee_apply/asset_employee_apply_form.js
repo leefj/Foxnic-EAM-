@@ -1,7 +1,7 @@
 /**
  * 领用申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-14 06:30:04
+ * @since 2022-07-15 12:42:47
  */
 
 function FormPage() {
@@ -237,6 +237,7 @@ function FormPage() {
 
         //禁用编辑
 		if((hasData && disableModify) || (!hasData &&disableCreateNew)) {
+			console.log("lockFormlockForm")
 			fox.lockForm($("#data-form"),true);
 			$("#submit-button").hide();
 			$("#cancel-button").css("margin-right","15px")

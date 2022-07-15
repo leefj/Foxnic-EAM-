@@ -56,9 +56,9 @@ public class AssetEmployeeApplyBpmEventAdaptor extends BpmEventAdaptor<AssetEmpl
 		Logger.info("onProcessSubmitStart result:"+event.getActionResult().getData());
 		Logger.info("onProcessSubmitStart result:"+event.getActionResult().getMessage());
 		Logger.info("onProcessSubmitStart result:"+event.getActionResult().isSuccess());
-		if(event.getActionResult().isSuccess()){
-			updateBillStatus(AssetHandleStatusEnum.APPROVAL.code(), event.getBillId());
-		}
+//		if(event.getActionResult().isSuccess()){
+//			updateBillStatus(AssetHandleStatusEnum.APPROVAL.code(), event.getBillId());
+//		}
 		return event.getActionResult();
 	}
 

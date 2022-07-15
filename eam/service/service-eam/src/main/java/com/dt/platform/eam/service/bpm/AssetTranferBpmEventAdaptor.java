@@ -54,9 +54,9 @@ public class AssetTranferBpmEventAdaptor extends BpmEventAdaptor<AssetTranfer, I
 		Logger.info("onProcessSubmitStart result:"+event.getActionResult().code());
 		Logger.info("onProcessSubmitStart result:"+event.getActionResult().getData());
 		Logger.info("onProcessSubmitStart result:"+event.getActionResult().getMessage());
-		if(event.getActionResult().isSuccess()){
-			updateBillStatus(AssetHandleStatusEnum.APPROVAL.code(), event.getBillId());
-		}
+//		if(event.getActionResult().isSuccess()){
+//			updateBillStatus(AssetHandleStatusEnum.APPROVAL.code(), event.getBillId());
+//		}
 		return event.getActionResult();
 	}
 
