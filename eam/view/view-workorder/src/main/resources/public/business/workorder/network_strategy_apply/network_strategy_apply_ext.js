@@ -16,7 +16,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
     var admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate,dropdown=layui.dropdown;
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload,bpm=layui.bpm;
-
+    var bpmFunction=layui.bpmFunction;
     //模块基础路径
     const moduleURL="/service-workorder/wo-network-strategy-apply";
     var timestamp = Date.parse(new Date());
@@ -86,7 +86,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 查询结果渲染后调用
          * */
         afterQuery : function (data) {
-
+            console.log('afterDataFill',data);
+            for(var i=0;i<data.length;i++){
+                console.log(data[i]);
+                bpmFunction.columnBpmOpenButtonStatus(data[i]);
+            }
         },
         /**
          * 进一步转换 list 数据
@@ -234,6 +238,14 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         afterDataFill:function (data) {
             console.log('afterDataFill',data);
+
+            if(data.status){
+                if(data.status=="incomplte"){
+                    console.log("can edit");
+                }else{
+                    fox.lockForm($("#data-form"),true);
+                }
+            }
 
 
             var formAction="modify";

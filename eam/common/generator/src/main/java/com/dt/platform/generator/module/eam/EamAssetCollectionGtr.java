@@ -160,7 +160,7 @@ public class EamAssetCollectionGtr extends BaseCodeGenerator {
         );
 
 
-
+        cfg.view().list().addJs("/extmodule/commonFunction/commonFunction.js");
         cfg.view().list().disableBatchDelete();
         cfg.view().form().addPage("资产列表","assetSelectList");
         cfg.view().form().addJsVariable("BILL_ID","[[${billId}]]","单据ID");

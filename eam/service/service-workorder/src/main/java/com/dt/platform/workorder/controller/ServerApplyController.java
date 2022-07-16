@@ -56,7 +56,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 服务器资源申请 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-06 06:12:15
+ * @since 2022-07-15 20:04:01
 */
 
 @Api(tags = "服务器资源申请")
@@ -74,7 +74,6 @@ public class ServerApplyController extends SuperController implements BpmCallbac
 	@ApiOperation(value = "添加服务器资源申请")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ServerApplyVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "596627925189525504"),
-		@ApiImplicitParam(name = ServerApplyVOMeta.CATEGORY_ID , value = "类型" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ServerApplyVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ServerApplyVOMeta.STATUS , value = "办理状态" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ServerApplyVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "12"),
@@ -186,7 +185,6 @@ public class ServerApplyController extends SuperController implements BpmCallbac
 	@ApiOperation(value = "更新服务器资源申请")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ServerApplyVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "596627925189525504"),
-		@ApiImplicitParam(name = ServerApplyVOMeta.CATEGORY_ID , value = "类型" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ServerApplyVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ServerApplyVOMeta.STATUS , value = "办理状态" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ServerApplyVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "12"),
@@ -218,7 +216,6 @@ public class ServerApplyController extends SuperController implements BpmCallbac
 	@ApiOperation(value = "保存服务器资源申请")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ServerApplyVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "596627925189525504"),
-		@ApiImplicitParam(name = ServerApplyVOMeta.CATEGORY_ID , value = "类型" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ServerApplyVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ServerApplyVOMeta.STATUS , value = "办理状态" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ServerApplyVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "12"),
@@ -293,7 +290,6 @@ public class ServerApplyController extends SuperController implements BpmCallbac
 	@ApiOperation(value = "查询服务器资源申请")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ServerApplyVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "596627925189525504"),
-		@ApiImplicitParam(name = ServerApplyVOMeta.CATEGORY_ID , value = "类型" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ServerApplyVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ServerApplyVOMeta.STATUS , value = "办理状态" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ServerApplyVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "12"),
@@ -326,7 +322,6 @@ public class ServerApplyController extends SuperController implements BpmCallbac
 	@ApiOperation(value = "分页查询服务器资源申请")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ServerApplyVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "596627925189525504"),
-		@ApiImplicitParam(name = ServerApplyVOMeta.CATEGORY_ID , value = "类型" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ServerApplyVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ServerApplyVOMeta.STATUS , value = "办理状态" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ServerApplyVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "12"),

@@ -12,8 +12,8 @@ import org.github.foxnic.web.domain.bpm.ProcessInstance;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-06 17:29:23
- * @sign 337DA9B0B57E30D1114B98935B338B84
+ * @since 2022-07-15 20:04:21
+ * @sign 6FCB7C6CE5367D0B1E32C33449C01F7E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -28,16 +28,6 @@ public class SlbStrategyApplyMeta {
 	 * 主键 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.workorder.SlbStrategyApply,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.workorder.SlbStrategyApply.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
-	
-	/**
-	 * 类型 , 类型: java.lang.String
-	*/
-	public static final String CATEGORY_ID="categoryId";
-	
-	/**
-	 * 类型 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.workorder.SlbStrategyApply,java.lang.String> CATEGORY_ID_PROP = new BeanProperty(com.dt.platform.domain.workorder.SlbStrategyApply.class ,CATEGORY_ID, java.lang.String.class, "类型", "类型", java.lang.String.class, null);
 	
 	/**
 	 * 编号 , 类型: java.lang.String
@@ -250,6 +240,16 @@ public class SlbStrategyApplyMeta {
 	public static final BeanProperty<com.dt.platform.domain.workorder.SlbStrategyApply,java.lang.Integer> VERSION_PROP = new BeanProperty(com.dt.platform.domain.workorder.SlbStrategyApply.class ,VERSION, java.lang.Integer.class, "version", "version", java.lang.Integer.class, null);
 	
 	/**
+	 * 租户 , 类型: java.lang.String
+	*/
+	public static final String TENANT_ID="tenantId";
+	
+	/**
+	 * 租户 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.workorder.SlbStrategyApply,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.workorder.SlbStrategyApply.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
+	
+	/**
 	 * slbStrategyInfoList , 集合类型: LIST , 类型: com.dt.platform.domain.workorder.SlbStrategyInfo
 	*/
 	public static final String SLB_STRATEGY_INFO_LIST="slbStrategyInfoList";
@@ -322,7 +322,7 @@ public class SlbStrategyApplyMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CATEGORY_ID , CODE , STATUS , NAME , PROJECT_NAME , ENVIRONMENT_ID , PERIOD_TYPE , EXPIRATION_DATE , APPLY_DATE , EXPECTED_COMPLETION_DATE , CONTENT , FILE_ID , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , SLB_STRATEGY_INFO_LIST , SLB_STRATEGY_INFO_IDS , ORIGINATOR , ORIGINATOR_USER_NAME , HISTORIC_PROCESS_LIST , CURRENT_PROCESS_LIST , DEFAULT_PROCESS };
+	public static final String[] $PROPS={ ID , CODE , STATUS , NAME , PROJECT_NAME , ENVIRONMENT_ID , PERIOD_TYPE , EXPIRATION_DATE , APPLY_DATE , EXPECTED_COMPLETION_DATE , CONTENT , FILE_ID , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SLB_STRATEGY_INFO_LIST , SLB_STRATEGY_INFO_IDS , ORIGINATOR , ORIGINATOR_USER_NAME , HISTORIC_PROCESS_LIST , CURRENT_PROCESS_LIST , DEFAULT_PROCESS };
 	
 	/**
 	 * 代理类
@@ -340,17 +340,6 @@ public class SlbStrategyApplyMeta {
 		public SlbStrategyApply setId(String id) {
 			super.change(ID,super.getId(),id);
 			super.setId(id);
-			return this;
-		}
-		
-		/**
-		 * 设置 类型
-		 * @param categoryId 类型
-		 * @return 当前对象
-		*/
-		public SlbStrategyApply setCategoryId(String categoryId) {
-			super.change(CATEGORY_ID,super.getCategoryId(),categoryId);
-			super.setCategoryId(categoryId);
 			return this;
 		}
 		
@@ -582,6 +571,17 @@ public class SlbStrategyApplyMeta {
 		public SlbStrategyApply setVersion(Integer version) {
 			super.change(VERSION,super.getVersion(),version);
 			super.setVersion(version);
+			return this;
+		}
+		
+		/**
+		 * 设置 租户
+		 * @param tenantId 租户
+		 * @return 当前对象
+		*/
+		public SlbStrategyApply setTenantId(String tenantId) {
+			super.change(TENANT_ID,super.getTenantId(),tenantId);
+			super.setTenantId(tenantId);
 			return this;
 		}
 		

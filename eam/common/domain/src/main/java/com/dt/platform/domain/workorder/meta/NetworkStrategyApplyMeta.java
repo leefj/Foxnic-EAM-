@@ -12,8 +12,8 @@ import org.github.foxnic.web.domain.bpm.ProcessInstance;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-06 17:05:33
- * @sign 3ACEE6243772050F5B2E80E61D57A24E
+ * @since 2022-07-15 20:03:46
+ * @sign 557083E0BA8A168071216D83D96A558E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -28,16 +28,6 @@ public class NetworkStrategyApplyMeta {
 	 * 主键 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.workorder.NetworkStrategyApply,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.workorder.NetworkStrategyApply.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
-	
-	/**
-	 * 类型 , 类型: java.lang.String
-	*/
-	public static final String CATEGORY_ID="categoryId";
-	
-	/**
-	 * 类型 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.workorder.NetworkStrategyApply,java.lang.String> CATEGORY_ID_PROP = new BeanProperty(com.dt.platform.domain.workorder.NetworkStrategyApply.class ,CATEGORY_ID, java.lang.String.class, "类型", "类型", java.lang.String.class, null);
 	
 	/**
 	 * 编码 , 类型: java.lang.String
@@ -230,6 +220,16 @@ public class NetworkStrategyApplyMeta {
 	public static final BeanProperty<com.dt.platform.domain.workorder.NetworkStrategyApply,java.util.Date> DELETE_TIME_PROP = new BeanProperty(com.dt.platform.domain.workorder.NetworkStrategyApply.class ,DELETE_TIME, java.util.Date.class, "删除时间", "删除时间", java.util.Date.class, null);
 	
 	/**
+	 * 租户 , 类型: java.lang.String
+	*/
+	public static final String TENANT_ID="tenantId";
+	
+	/**
+	 * 租户 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.workorder.NetworkStrategyApply,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.workorder.NetworkStrategyApply.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
+	
+	/**
 	 * version , 类型: java.lang.Integer
 	*/
 	public static final String VERSION="version";
@@ -312,7 +312,7 @@ public class NetworkStrategyApplyMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CATEGORY_ID , CODE , STATUS , NAME , PROJECT_NAME , ENVIRONMENT_ID , PERIOD_TYPE , EXPIRATION_DATE , APPLY_DATE , EXPECTED_COMPLETION_DATE , CONTENT , FILE_ID , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , NETWORK_STRATEGY_INFO_LIST , NETWORK_STRATEGY_IDS , ORIGINATOR , ORIGINATOR_USER_NAME , HISTORIC_PROCESS_LIST , CURRENT_PROCESS_LIST , DEFAULT_PROCESS };
+	public static final String[] $PROPS={ ID , CODE , STATUS , NAME , PROJECT_NAME , ENVIRONMENT_ID , PERIOD_TYPE , EXPIRATION_DATE , APPLY_DATE , EXPECTED_COMPLETION_DATE , CONTENT , FILE_ID , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , NETWORK_STRATEGY_INFO_LIST , NETWORK_STRATEGY_IDS , ORIGINATOR , ORIGINATOR_USER_NAME , HISTORIC_PROCESS_LIST , CURRENT_PROCESS_LIST , DEFAULT_PROCESS };
 	
 	/**
 	 * 代理类
@@ -330,17 +330,6 @@ public class NetworkStrategyApplyMeta {
 		public NetworkStrategyApply setId(String id) {
 			super.change(ID,super.getId(),id);
 			super.setId(id);
-			return this;
-		}
-		
-		/**
-		 * 设置 类型
-		 * @param categoryId 类型
-		 * @return 当前对象
-		*/
-		public NetworkStrategyApply setCategoryId(String categoryId) {
-			super.change(CATEGORY_ID,super.getCategoryId(),categoryId);
-			super.setCategoryId(categoryId);
 			return this;
 		}
 		
@@ -550,6 +539,17 @@ public class NetworkStrategyApplyMeta {
 		public NetworkStrategyApply setDeleteTime(Date deleteTime) {
 			super.change(DELETE_TIME,super.getDeleteTime(),deleteTime);
 			super.setDeleteTime(deleteTime);
+			return this;
+		}
+		
+		/**
+		 * 设置 租户
+		 * @param tenantId 租户
+		 * @return 当前对象
+		*/
+		public NetworkStrategyApply setTenantId(String tenantId) {
+			super.change(TENANT_ID,super.getTenantId(),tenantId);
+			super.setTenantId(tenantId);
 			return this;
 		}
 		

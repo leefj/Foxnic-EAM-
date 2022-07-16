@@ -22,7 +22,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 负载策略申请  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-06 17:29:23
+ * @since 2022-07-15 20:04:21
  */
 @FeignClient(value = ServiceNames.WORKORDER, contextId = SlbStrategyApplyServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface SlbStrategyApplyServiceProxy extends BpmCallbackController {

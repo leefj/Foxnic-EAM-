@@ -20,6 +20,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
     const moduleURL="/service-eam/eam-asset-allocation";
 
+
     //列表页的扩展
     var list={
         /**

@@ -119,6 +119,7 @@ public class NetworkStrategryApplyGtr extends BaseCodeGenerator {
 
         cfg.view().form().addPage("资源信息","assetSelectList");
 
+        cfg.view().list().addJs("/extmodule/commonFunction/commonFunction.js");
 
 
 

@@ -22,7 +22,7 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 资产调拨
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-15 15:35:31
+ * @since 2022-07-15 20:34:37
  * @sign 9B2CB39C7CB1F016169D0B0B11EDF6CA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

@@ -74,6 +74,7 @@ public class EamAssetBorrowGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_BORROW.CONTENT).form().textArea().height(Config.textAreaHeight).search().fuzzySearch();
 
 
+
 //        cfg.view().list().operationColumn().addActionButton("送审","forApproval",null);
 //        cfg.view().list().operationColumn().addActionButton("确认","confirmData",null);
 //        cfg.view().list().operationColumn().addActionButton("撤销","revokeData",null);
@@ -126,7 +127,7 @@ public class EamAssetBorrowGtr extends BaseCodeGenerator {
         );
         //分成分组布局
         cfg.view().field(EAMTables.EAM_ASSET_BORROW.NAME).form().validate().required();
-
+        cfg.view().list().addJs("/extmodule/commonFunction/commonFunction.js");
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);
         cfg.view().search().labelWidth(3,Config.searchLabelWidth);

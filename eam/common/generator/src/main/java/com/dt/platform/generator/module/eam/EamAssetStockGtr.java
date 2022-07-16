@@ -135,7 +135,7 @@ public class EamAssetStockGtr extends BaseCodeGenerator{
 
 
         cfg.view().list().disableBatchDelete();
-
+        cfg.view().list().addJs("/extmodule/commonFunction/commonFunction.js");
 
         cfg.view().form().addJsVariable("BILL_ID","[[${billId}]]","单据ID");
         cfg.view().form().addJsVariable("BILL_TYPE","[[${billType}]]","单据类型");

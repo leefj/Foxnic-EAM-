@@ -122,7 +122,7 @@ public class SlbApplyGtr extends BaseCodeGenerator {
         cfg.view().list().disableBatchDelete();
 
         cfg.view().form().addPage("资源信息","assetSelectList");
-
+        cfg.view().list().addJs("/extmodule/commonFunction/commonFunction.js");
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口

@@ -25,7 +25,7 @@ import java.util.Map;
  * 负载策略申请 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-06 17:29:23
+ * @since 2022-07-15 20:04:21
 */
 
 public interface ISlbStrategyApplyService extends  ISimpleIdService<SlbStrategyApply,String> {

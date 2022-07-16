@@ -133,6 +133,8 @@ public class EamAssetTranferGtr extends BaseCodeGenerator {
         cfg.view().list().operationColumn().width(350);
 
 
+        cfg.view().list().addJs("/extmodule/commonFunction/commonFunction.js");
+
         cfg.view().list().disableBatchDelete();
 
         cfg.view().form().addJsVariable("BILL_ID","[[${billId}]]","单据ID");

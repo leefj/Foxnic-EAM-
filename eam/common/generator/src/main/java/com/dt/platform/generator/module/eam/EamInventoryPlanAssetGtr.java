@@ -42,7 +42,7 @@ public class EamInventoryPlanAssetGtr extends BaseCodeGenerator{
         );
 
         cfg.view().field(EAMTables.EAM_INVENTORY_PLAN.STATUS).form().validate().required().form()
-                .label("状态").selectBox().enumType(StatusEnableEnum.class);
+                .label("状态").radioBox().enumType(StatusEnableEnum.class);
 
         cfg.view().field(EAMTables.EAM_INVENTORY_PLAN.PLAN_TYPE)
                 .basic().label("计划类型")
