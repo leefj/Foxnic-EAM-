@@ -257,6 +257,9 @@ function FormPage() {
 			#if(f.dateField.defaultValue=="now")
 			value:$('##(f.varName)').val()?$('##(f.varName)').val():new Date(),
 			#end
+			#if(f.dateField.renderAtTop)
+			renderAtTop:true,
+			#end
 			trigger:"click",
 			done: function(value, date, endDate){
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("#(f.varName)",value, date, endDate);
