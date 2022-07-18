@@ -2,7 +2,7 @@
 /**
  * 资产入库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-03 14:22:43
+ * @since 2022-07-15 20:36:07
  */
  -->
  <!DOCTYPE html>
@@ -53,6 +53,7 @@
                     <!-- 制单人 , originatorId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 自定义数据 , customData ,typeName=text_area, isHideInSearch=true -->
                     <!-- 选择 , selectedCode ,typeName=text_input, isHideInSearch=true -->
+                    <!-- originatorUserName , originatorUserName ,typeName=text_input, isHideInSearch=true -->
                     <!-- 供应商 , supplierId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('供应商')}" class="search-label supplierId-label">供应商</span><span class="search-colon">:</span></div>
@@ -109,7 +110,7 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
-
+<script type="text/javascript" src="/extmodule/commonFunction/commonFunction.js" th:src="'/extmodule/commonFunction/commonFunction.js?'+${cacheKey}"></script>
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">

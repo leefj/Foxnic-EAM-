@@ -22,8 +22,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 网络策略申请
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-06 17:05:33
- * @sign 3ACEE6243772050F5B2E80E61D57A24E
+ * @since 2022-07-15 20:03:46
+ * @sign 557083E0BA8A168071216D83D96A558E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -40,12 +40,6 @@ public class NetworkStrategyApply extends Entity {
 	@Id
 	@ApiModelProperty(required = true,value="主键" , notes = "主键")
 	private String id;
-	
-	/**
-	 * 类型：类型
-	*/
-	@ApiModelProperty(required = false,value="类型" , notes = "类型")
-	private String categoryId;
 	
 	/**
 	 * 编码：编码
@@ -164,6 +158,12 @@ public class NetworkStrategyApply extends Entity {
 	private Date deleteTime;
 	
 	/**
+	 * 租户：租户
+	*/
+	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	private String tenantId;
+	
+	/**
 	 * version：version
 	*/
 	@ApiModelProperty(required = true,value="version" , notes = "version")
@@ -227,25 +227,6 @@ public class NetworkStrategyApply extends Entity {
 	*/
 	public NetworkStrategyApply setId(String id) {
 		this.id=id;
-		return this;
-	}
-	
-	/**
-	 * 获得 类型<br>
-	 * 类型
-	 * @return 类型
-	*/
-	public String getCategoryId() {
-		return categoryId;
-	}
-	
-	/**
-	 * 设置 类型
-	 * @param categoryId 类型
-	 * @return 当前对象
-	*/
-	public NetworkStrategyApply setCategoryId(String categoryId) {
-		this.categoryId=categoryId;
 		return this;
 	}
 	
@@ -637,6 +618,25 @@ public class NetworkStrategyApply extends Entity {
 	*/
 	public NetworkStrategyApply setDeleteTime(Date deleteTime) {
 		this.deleteTime=deleteTime;
+		return this;
+	}
+	
+	/**
+	 * 获得 租户<br>
+	 * 租户
+	 * @return 租户
+	*/
+	public String getTenantId() {
+		return tenantId;
+	}
+	
+	/**
+	 * 设置 租户
+	 * @param tenantId 租户
+	 * @return 当前对象
+	*/
+	public NetworkStrategyApply setTenantId(String tenantId) {
+		this.tenantId=tenantId;
 		return this;
 	}
 	

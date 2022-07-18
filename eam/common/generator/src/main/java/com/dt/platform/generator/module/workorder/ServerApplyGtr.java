@@ -124,7 +124,7 @@ public class ServerApplyGtr extends BaseCodeGenerator {
 
 
         cfg.view().list().disableBatchDelete();
-
+        cfg.view().list().addJs("/extmodule/commonFunction/commonFunction.js");
         cfg.view().form().addPage("资源信息","assetSelectList");
 
         //文件生成覆盖模式

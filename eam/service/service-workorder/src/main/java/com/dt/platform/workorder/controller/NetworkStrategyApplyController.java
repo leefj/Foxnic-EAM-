@@ -56,7 +56,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 网络策略申请 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-06 17:05:34
+ * @since 2022-07-15 20:03:47
 */
 
 @Api(tags = "网络策略申请")
@@ -74,7 +74,6 @@ public class NetworkStrategyApplyController extends SuperController implements B
 	@ApiOperation(value = "添加网络策略申请")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "596614640608215040"),
-		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CATEGORY_ID , value = "类型" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.STATUS , value = "办理状态" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "服务器策略申请"),
@@ -184,7 +183,6 @@ public class NetworkStrategyApplyController extends SuperController implements B
 	@ApiOperation(value = "更新网络策略申请")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "596614640608215040"),
-		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CATEGORY_ID , value = "类型" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.STATUS , value = "办理状态" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "服务器策略申请"),
@@ -214,7 +212,6 @@ public class NetworkStrategyApplyController extends SuperController implements B
 	@ApiOperation(value = "保存网络策略申请")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "596614640608215040"),
-		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CATEGORY_ID , value = "类型" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.STATUS , value = "办理状态" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "服务器策略申请"),
@@ -287,7 +284,6 @@ public class NetworkStrategyApplyController extends SuperController implements B
 	@ApiOperation(value = "查询网络策略申请")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "596614640608215040"),
-		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CATEGORY_ID , value = "类型" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.STATUS , value = "办理状态" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "服务器策略申请"),
@@ -318,7 +314,6 @@ public class NetworkStrategyApplyController extends SuperController implements B
 	@ApiOperation(value = "分页查询网络策略申请")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "596614640608215040"),
-		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CATEGORY_ID , value = "类型" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.STATUS , value = "办理状态" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "服务器策略申请"),

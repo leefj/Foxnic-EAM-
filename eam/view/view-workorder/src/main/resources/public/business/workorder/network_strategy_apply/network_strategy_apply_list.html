@@ -2,7 +2,7 @@
 /**
  * 网络策略申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-06 17:05:34
+ * @since 2022-07-15 20:03:47
  */
  -->
  <!DOCTYPE html>
@@ -39,7 +39,6 @@
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 类型 , categoryId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 编码 , code ,typeName=text_input, isHideInSearch=true -->
                     <!-- 办理状态 , status ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
@@ -89,6 +88,7 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
+<script type="text/javascript" src="/extmodule/commonFunction/commonFunction.js" th:src="'/extmodule/commonFunction/commonFunction.js?'+${cacheKey}"></script>
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">

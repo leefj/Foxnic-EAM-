@@ -22,8 +22,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 负载策略申请
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-06 17:29:23
- * @sign 337DA9B0B57E30D1114B98935B338B84
+ * @since 2022-07-15 20:04:21
+ * @sign 6FCB7C6CE5367D0B1E32C33449C01F7E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -40,12 +40,6 @@ public class SlbStrategyApply extends Entity {
 	@Id
 	@ApiModelProperty(required = true,value="主键" , notes = "主键")
 	private String id;
-	
-	/**
-	 * 类型：类型
-	*/
-	@ApiModelProperty(required = false,value="类型" , notes = "类型")
-	private String categoryId;
 	
 	/**
 	 * 编号：编号
@@ -176,6 +170,12 @@ public class SlbStrategyApply extends Entity {
 	private Integer version;
 	
 	/**
+	 * 租户：租户
+	*/
+	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	private String tenantId;
+	
+	/**
 	 * slbStrategyInfoList：slbStrategyInfoList
 	*/
 	@ApiModelProperty(required = false,value="slbStrategyInfoList" , notes = "slbStrategyInfoList")
@@ -233,25 +233,6 @@ public class SlbStrategyApply extends Entity {
 	*/
 	public SlbStrategyApply setId(String id) {
 		this.id=id;
-		return this;
-	}
-	
-	/**
-	 * 获得 类型<br>
-	 * 类型
-	 * @return 类型
-	*/
-	public String getCategoryId() {
-		return categoryId;
-	}
-	
-	/**
-	 * 设置 类型
-	 * @param categoryId 类型
-	 * @return 当前对象
-	*/
-	public SlbStrategyApply setCategoryId(String categoryId) {
-		this.categoryId=categoryId;
 		return this;
 	}
 	
@@ -681,6 +662,25 @@ public class SlbStrategyApply extends Entity {
 	*/
 	public SlbStrategyApply setVersion(Integer version) {
 		this.version=version;
+		return this;
+	}
+	
+	/**
+	 * 获得 租户<br>
+	 * 租户
+	 * @return 租户
+	*/
+	public String getTenantId() {
+		return tenantId;
+	}
+	
+	/**
+	 * 设置 租户
+	 * @param tenantId 租户
+	 * @return 当前对象
+	*/
+	public SlbStrategyApply setTenantId(String tenantId) {
+		this.tenantId=tenantId;
 		return this;
 	}
 	

@@ -13,7 +13,7 @@ import com.github.foxnic.commons.bean.BeanUtil;
 /**
  * 资产领用
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-05 10:13:16
+ * @since 2022-07-15 20:35:14
  * @sign 0094305D2528FACC4E3B88E7A570827F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

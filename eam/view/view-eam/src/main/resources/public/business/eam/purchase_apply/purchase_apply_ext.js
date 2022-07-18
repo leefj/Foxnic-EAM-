@@ -16,6 +16,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
     var admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate,dropdown=layui.dropdown;
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload,bpm=layui.bpm;
+    var bpmFunction=layui.bpmFunction;
 
     //模块基础路径
     const moduleURL="/service-eam/eam-purchase-apply";
@@ -401,6 +402,15 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         afterDataFill:function (data) {
             console.log('afterDataFill',data);
+
+            if(data.status){
+                if(data.status=="incomplte"){
+                    console.log("can edit");
+                }else{
+                    fox.lockForm($("#data-form"),true);
+                }
+            }
+
         },
         /**
          * 对话框打开之前调用，如果返回 null 则不打开对话框

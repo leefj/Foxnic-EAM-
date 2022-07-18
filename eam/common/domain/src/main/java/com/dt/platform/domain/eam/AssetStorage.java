@@ -22,7 +22,7 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 资产入库
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-03 14:22:42
+ * @since 2022-07-15 20:36:06
  * @sign F38E48F5E41957225F82C37181173201
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

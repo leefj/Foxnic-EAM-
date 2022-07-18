@@ -242,7 +242,13 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单数据填充后
          * */
         afterDataFill:function (data) {
-
+            if(data.status){
+                if(data.status=="incomplte"){
+                    console.log("can edit");
+                }else{
+                    fox.lockForm($("#data-form"),true);
+                }
+            }
         },
         /**
          * 对话框打开之前调用，如果返回 null 则不打开对话框

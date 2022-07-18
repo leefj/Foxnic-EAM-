@@ -56,7 +56,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 负载策略申请 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-06 17:29:23
+ * @since 2022-07-15 20:04:21
 */
 
 @Api(tags = "负载策略申请")
@@ -74,7 +74,6 @@ public class SlbStrategyApplyController extends SuperController implements BpmCa
 	@ApiOperation(value = "添加负载策略申请")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.CATEGORY_ID , value = "类型" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.STATUS , value = "办理状态" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
@@ -185,7 +184,6 @@ public class SlbStrategyApplyController extends SuperController implements BpmCa
 	@ApiOperation(value = "更新负载策略申请")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.CATEGORY_ID , value = "类型" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.STATUS , value = "办理状态" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
@@ -216,7 +214,6 @@ public class SlbStrategyApplyController extends SuperController implements BpmCa
 	@ApiOperation(value = "保存负载策略申请")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.CATEGORY_ID , value = "类型" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.STATUS , value = "办理状态" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
@@ -290,7 +287,6 @@ public class SlbStrategyApplyController extends SuperController implements BpmCa
 	@ApiOperation(value = "查询负载策略申请")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.CATEGORY_ID , value = "类型" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.STATUS , value = "办理状态" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
@@ -322,7 +318,6 @@ public class SlbStrategyApplyController extends SuperController implements BpmCa
 	@ApiOperation(value = "分页查询负载策略申请")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.CATEGORY_ID , value = "类型" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.CODE , value = "编号" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.STATUS , value = "办理状态" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
