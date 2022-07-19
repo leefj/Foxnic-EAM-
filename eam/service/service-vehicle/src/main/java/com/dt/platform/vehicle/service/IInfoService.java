@@ -5,10 +5,15 @@ import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
 import com.dt.platform.domain.vehicle.Info;
 import com.dt.platform.domain.vehicle.InfoVO;
+
+import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
 import java.io.InputStream;
+import java.util.Map;
+
 import com.github.foxnic.sql.expr.OrderBy;
 import com.github.foxnic.sql.meta.DBField;
 import com.github.foxnic.dao.excel.ExcelWriter;
@@ -300,6 +305,9 @@ public interface IInfoService extends ISuperService<Info> {
 	 * */
 	ExcelWriter  exportExcelTemplate();
 
+
+	InputStream buildExcelTemplate(String code);
+
 	/**
 	 * 构建 Excel 结构
 	 * @param  isForExport 是否用于数据导出
@@ -307,11 +315,17 @@ public interface IInfoService extends ISuperService<Info> {
 	 * */
 	ExcelStructure buildExcelStructure(boolean isForExport);
 
+	ExcelStructure buildExcelStructure(InputStream inputStream,String code);
+
+	HashMap<String,String>  queryOrganizationNodes(String type);
 	/**
 	 * 导入 Excel 数据
 	 * @return  错误信息，成功时返回 null
 	 * */
-	List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch);
+	List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch,String code,String selectedCode);
 
+	File saveTempFile(InputStream is, String fileName);
+
+	Map<String, Object> queryVehicleInfoMap(Info sample);
 
 }

@@ -1,12 +1,23 @@
 package com.dt.platform.vehicle.controller;
 
 
+import java.io.File;
+import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.util.List;
-
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
+import com.dt.platform.constants.enums.eam.AssetOperateEnum;
 import com.dt.platform.constants.enums.vehicle.VehicleOperationEnum;
 import com.dt.platform.constants.enums.vehicle.VehicleStatusEnum;
+import com.dt.platform.proxy.eam.OperateServiceProxy;
+import com.github.foxnic.commons.busi.id.IDGenerator;
+import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.sql.expr.ConditionExpr;
+import org.apache.commons.io.IOUtils;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.github.foxnic.web.domain.hrm.Person;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -77,7 +88,7 @@ public class InfoController extends SuperController {
 		@ApiImplicitParam(name = InfoVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "1212"),
 		@ApiImplicitParam(name = InfoVOMeta.VEHICLE_STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "idle"),
 		@ApiImplicitParam(name = InfoVOMeta.TYPE , value = "车辆类型" , required = false , dataTypeClass=String.class , example = "jiaoche"),
-		@ApiImplicitParam(name = InfoVOMeta.CODE , value = "车牌号" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = InfoVOMeta.VEHICLE_CODE , value = "车牌号" , required = false , dataTypeClass=String.class , example = "1212"),
 		@ApiImplicitParam(name = InfoVOMeta.MODEL , value = "品牌型号" , required = false , dataTypeClass=String.class , example = "1212"),
 		@ApiImplicitParam(name = InfoVOMeta.REGISTRANT , value = "登记人" , required = false , dataTypeClass=String.class , example = "1212"),
 		@ApiImplicitParam(name = InfoVOMeta.OWNER_ORG_ID , value = "所属组织" , required = false , dataTypeClass=String.class),
@@ -152,7 +163,7 @@ public class InfoController extends SuperController {
 		@ApiImplicitParam(name = InfoVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "1212"),
 		@ApiImplicitParam(name = InfoVOMeta.VEHICLE_STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "idle"),
 		@ApiImplicitParam(name = InfoVOMeta.TYPE , value = "车辆类型" , required = false , dataTypeClass=String.class , example = "jiaoche"),
-		@ApiImplicitParam(name = InfoVOMeta.CODE , value = "车牌号" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = InfoVOMeta.VEHICLE_CODE , value = "车牌号" , required = false , dataTypeClass=String.class , example = "1212"),
 		@ApiImplicitParam(name = InfoVOMeta.MODEL , value = "品牌型号" , required = false , dataTypeClass=String.class , example = "1212"),
 		@ApiImplicitParam(name = InfoVOMeta.REGISTRANT , value = "登记人" , required = false , dataTypeClass=String.class , example = "1212"),
 		@ApiImplicitParam(name = InfoVOMeta.OWNER_ORG_ID , value = "所属组织" , required = false , dataTypeClass=String.class),
@@ -193,7 +204,7 @@ public class InfoController extends SuperController {
 		@ApiImplicitParam(name = InfoVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "1212"),
 		@ApiImplicitParam(name = InfoVOMeta.VEHICLE_STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "idle"),
 		@ApiImplicitParam(name = InfoVOMeta.TYPE , value = "车辆类型" , required = false , dataTypeClass=String.class , example = "jiaoche"),
-		@ApiImplicitParam(name = InfoVOMeta.CODE , value = "车牌号" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = InfoVOMeta.VEHICLE_CODE , value = "车牌号" , required = false , dataTypeClass=String.class , example = "1212"),
 		@ApiImplicitParam(name = InfoVOMeta.MODEL , value = "品牌型号" , required = false , dataTypeClass=String.class , example = "1212"),
 		@ApiImplicitParam(name = InfoVOMeta.REGISTRANT , value = "登记人" , required = false , dataTypeClass=String.class , example = "1212"),
 		@ApiImplicitParam(name = InfoVOMeta.OWNER_ORG_ID , value = "所属组织" , required = false , dataTypeClass=String.class),
@@ -281,7 +292,7 @@ public class InfoController extends SuperController {
 		@ApiImplicitParam(name = InfoVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "1212"),
 		@ApiImplicitParam(name = InfoVOMeta.VEHICLE_STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "idle"),
 		@ApiImplicitParam(name = InfoVOMeta.TYPE , value = "车辆类型" , required = false , dataTypeClass=String.class , example = "jiaoche"),
-		@ApiImplicitParam(name = InfoVOMeta.CODE , value = "车牌号" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = InfoVOMeta.VEHICLE_CODE , value = "车牌号" , required = false , dataTypeClass=String.class , example = "1212"),
 		@ApiImplicitParam(name = InfoVOMeta.MODEL , value = "品牌型号" , required = false , dataTypeClass=String.class , example = "1212"),
 		@ApiImplicitParam(name = InfoVOMeta.REGISTRANT , value = "登记人" , required = false , dataTypeClass=String.class , example = "1212"),
 		@ApiImplicitParam(name = InfoVOMeta.OWNER_ORG_ID , value = "所属组织" , required = false , dataTypeClass=String.class),
@@ -323,7 +334,7 @@ public class InfoController extends SuperController {
 		@ApiImplicitParam(name = InfoVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "1212"),
 		@ApiImplicitParam(name = InfoVOMeta.VEHICLE_STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "idle"),
 		@ApiImplicitParam(name = InfoVOMeta.TYPE , value = "车辆类型" , required = false , dataTypeClass=String.class , example = "jiaoche"),
-		@ApiImplicitParam(name = InfoVOMeta.CODE , value = "车牌号" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = InfoVOMeta.VEHICLE_CODE , value = "车牌号" , required = false , dataTypeClass=String.class , example = "1212"),
 		@ApiImplicitParam(name = InfoVOMeta.MODEL , value = "品牌型号" , required = false , dataTypeClass=String.class , example = "1212"),
 		@ApiImplicitParam(name = InfoVOMeta.REGISTRANT , value = "登记人" , required = false , dataTypeClass=String.class , example = "1212"),
 		@ApiImplicitParam(name = InfoVOMeta.OWNER_ORG_ID , value = "所属组织" , required = false , dataTypeClass=String.class),
@@ -359,6 +370,10 @@ public class InfoController extends SuperController {
 			.with(InfoMeta.VEHICLE_STATUS_DICT)
 			.with(InfoMeta.VEHICLE_TYPE_DICT)
 			.execute();
+
+		List<Employee> useUser= CollectorUtil.collectList(list, Info::getUseUser);
+		infoService.dao().join(useUser, Person.class);
+
 		result.success(true).data(list);
 		return result;
 	}
@@ -372,7 +387,7 @@ public class InfoController extends SuperController {
 			@ApiImplicitParam(name = InfoVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "1212"),
 			@ApiImplicitParam(name = InfoVOMeta.VEHICLE_STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "idle"),
 			@ApiImplicitParam(name = InfoVOMeta.TYPE , value = "车辆类型" , required = false , dataTypeClass=String.class , example = "jiaoche"),
-			@ApiImplicitParam(name = InfoVOMeta.CODE , value = "车牌号" , required = false , dataTypeClass=String.class , example = "1212"),
+			@ApiImplicitParam(name = InfoVOMeta.VEHICLE_CODE , value = "车牌号" , required = false , dataTypeClass=String.class , example = "1212"),
 			@ApiImplicitParam(name = InfoVOMeta.MODEL , value = "品牌型号" , required = false , dataTypeClass=String.class , example = "1212"),
 			@ApiImplicitParam(name = InfoVOMeta.REGISTRANT , value = "登记人" , required = false , dataTypeClass=String.class , example = "1212"),
 			@ApiImplicitParam(name = InfoVOMeta.OWNER_ORG_ID , value = "所属组织" , required = false , dataTypeClass=String.class),
@@ -421,6 +436,8 @@ public class InfoController extends SuperController {
 				.with(InfoMeta.VEHICLE_STATUS_DICT)
 				.with(InfoMeta.VEHICLE_TYPE_DICT)
 				.execute();
+		List<Employee> useUser= CollectorUtil.collectList(list, Info::getUseUser);
+		infoService.dao().join(useUser, Person.class);
 		result.success(true).data(list);
 		return result;
 	}
@@ -432,11 +449,24 @@ public class InfoController extends SuperController {
 	@SentinelResource(value = InfoServiceProxy.EXPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@RequestMapping(InfoServiceProxy.EXPORT_EXCEL)
 	public void exportExcel(InfoVO  sample,HttpServletResponse response) throws Exception {
+
 		try{
 			//生成 Excel 数据
-			ExcelWriter ew=infoService.exportExcel(sample);
+			InputStream inputstream= infoService.buildExcelTemplate(VehicleOperationEnum.VEHICLE_INFO_DOWNLOAD.code());
+			if(inputstream==null){
+				return;
+			}
+			File f=infoService.saveTempFile(inputstream,"tmp_vehicle_info_download.xls");
+			Map<String,Object> map= infoService.queryVehicleInfoMap(sample);
+			TemplateExportParams templateExportParams = new TemplateExportParams(f.getPath());
+			templateExportParams.setScanAllsheet(true);
+			Workbook workbook = ExcelExportUtil.exportExcel(templateExportParams, map);
+			response.setCharacterEncoding("UTF-8");
+			response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("车辆数据.xls", "UTF-8"))));
+			response.setContentType("application/vnd.ms-excel");
+
 			//下载
-			DownloadUtil.writeToOutput(response,ew.getWorkBook(),ew.getWorkBookName());
+			DownloadUtil.writeToOutput(response,workbook,"车辆数据.xls");
 		} catch (Exception e) {
 			DownloadUtil.writeDownloadError(response,e);
 		}
@@ -449,14 +479,25 @@ public class InfoController extends SuperController {
 	@SentinelResource(value = InfoServiceProxy.EXPORT_EXCEL_TEMPLATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@RequestMapping(InfoServiceProxy.EXPORT_EXCEL_TEMPLATE)
 	public void exportExcelTemplate(HttpServletResponse response) throws Exception {
+
+		//生成 Excel 模版
+		//categoryId="497488128370540545";
 		try{
-			//生成 Excel 模版
-			ExcelWriter ew=infoService.exportExcelTemplate();
-			//下载
-			DownloadUtil.writeToOutput(response, ew.getWorkBook(), ew.getWorkBookName());
+			InputStream inputstream=infoService.buildExcelTemplate(VehicleOperationEnum.VEHICLE_INFO_DOWNLOAD.code());
+
+			if(inputstream==null){
+			}
+			response.setCharacterEncoding("UTF-8");
+			response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("车辆模板.xls", "UTF-8"))));
+			response.setContentType("application/vnd.ms-excel");
+			OutputStream out = response.getOutputStream();
+			IOUtils.copy(inputstream,out);
+			out.flush();
+
 		} catch (Exception e) {
 			DownloadUtil.writeDownloadError(response,e);
 		}
+
 	}
 
 
@@ -472,16 +513,22 @@ public class InfoController extends SuperController {
 			input=StreamUtil.bytes2input(mf.getBytes());
 			break;
 		}
-
 		if(input==null) {
 			return ErrorDesc.failure().message("缺少上传的文件");
 		}
 
-		List<ValidateResult> errors=infoService.importExcel(input,0,true);
+		List<ValidateResult> errors=infoService.importExcel(input,0,true,VehicleOperationEnum.VEHICLE_INFO_DOWNLOAD.code(),IDGenerator.getSnowflakeIdString());
+
 		if(errors==null || errors.isEmpty()) {
 			return ErrorDesc.success();
 		} else {
-			return ErrorDesc.failure().message("导入失败").data(errors);
+			System.out.println("import Result:");
+			String msg="导入失败";
+			for(int i=0;i<errors.size();i++){
+				System.out.println(i+":"+errors.get(i).message);
+				msg=errors.get(i).message;
+			}
+			return ErrorDesc.failure().message(msg).data(errors);
 		}
 	}
 

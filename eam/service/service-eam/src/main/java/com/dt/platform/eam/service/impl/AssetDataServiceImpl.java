@@ -692,7 +692,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
             String valueCol=rcd.getString(col);
             if(!StringUtil.isBlank(valueCol)){
                 if(map.containsValue(valueCol)){
-                    rcd.setValue(valueCol, queryMapKeyByValue(map,valueCol));
+                    rcd.setValue(col,queryMapKeyByValue(map,valueCol));
                 }else{
                     return ErrorDesc.failureMessage(notes+":"+valueCol);
                 }
@@ -795,24 +795,26 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         String manager=BeanNameUtil.instance().depart(AssetMeta.MANAGER_ID);
         String valueManager=rcd.getString(manager);
         if(!StringUtil.isBlank(valueManager)){
-            Employee emp= EmployeeServiceProxy.api().getByBadge(valueManager).data();
-            if(emp==null){
-                //报错
-                return ErrorDesc.failureMessage("管理人员不存在:"+valueManager);
+            Result<Employee> resEmp=EmployeeServiceProxy.api().getByBadge(valueManager);
+            if(resEmp.isSuccess()){
+                String empId=resEmp.getData().getId();
+                rcd.setValue(manager,empId);
             }else{
-                rcd.setValue(manager,emp.getId());
+                System.out.println("获取人员失败:"+resEmp.getMessage());
+                return ErrorDesc.failureMessage("管理人员不存在:"+valueManager);
             }
         }
 
         String useUser=BeanNameUtil.instance().depart(AssetMeta.USE_USER_ID);
         String valueUseUser=rcd.getString(useUser);
         if(!StringUtil.isBlank(valueUseUser)){
-            Employee emp= EmployeeServiceProxy.api().getByBadge(valueUseUser).data();
-            if(emp==null){
-                //报错
-                return ErrorDesc.failureMessage("使用人员不存在:"+valueUseUser);
+            Result<Employee> resEmp=EmployeeServiceProxy.api().getByBadge(valueUseUser);
+            if(resEmp.isSuccess()){
+                String empId=resEmp.getData().getId();
+                rcd.setValue(useUser,empId);
             }else{
-                rcd.setValue(useUser,emp.getId());
+                System.out.println("获取人员失败:"+resEmp.getMessage());
+                return ErrorDesc.failureMessage("使用人员不存在:"+valueUseUser);
             }
         }
 

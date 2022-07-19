@@ -565,16 +565,17 @@ function ListPage() {
 					});
 					break;
 				case 'exportMore':
-					//更多下拉菜单
 					menuSelect=selected;
+					var exportArr=[];
+					if(BATCH_INSERT_BTN){
+						exportArr.push({"code":"batchInsert","id":"1","title":"资产批量入库"});
+					}
+					exportArr.push({"code":"highExportData","id":"2","title":"资产数据导出"});
+					exportArr.push({"code":"downloadAssetTpl","id":"3","title":"下载导入模版"});
 					dropdown.render({
 						elem: this
 						,show: true //外部事件触发即显示
-						,data: [
-							{"code":"batchInsert","id":"1","title":"资产批量入库"},
-							{"code":"highExportData","id":"2","title":"资产数据导出"},
-							{"code":"downloadAssetTpl","id":"3","title":"下载导入模版"}
-						]
+						,data: exportArr
 						,click: function(menu, othis){
 
 							// if(menu.perm && !admin.checkAuth(menu.perm)) {

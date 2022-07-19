@@ -43,7 +43,7 @@ if [[ ! -f "$app_dir/app/$app/$app_name" ]];then
 fi
 
 app_uid=`cat $app_conf|grep -v "#"|grep APP_UID=|awk -F "=" '{print $2}'`
-app_process_mark="dtDw01_${app_name}_${app_uid}"
+app_process_mark="app01_${app_name}_${app_uid}"
 action=start
 if [[ -n $1 ]];then
   action=$1

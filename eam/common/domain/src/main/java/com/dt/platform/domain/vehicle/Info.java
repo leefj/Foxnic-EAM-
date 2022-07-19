@@ -8,10 +8,11 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
+import javax.persistence.Transient;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
-import javax.persistence.Transient;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 
@@ -20,8 +21,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 车辆信息
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-07 10:46:16
- * @sign 65F9DAD00050139567C4AE0CD802E3CC
+ * @since 2022-07-18 19:30:41
+ * @sign DBEA16E6D9B2B81B8DB3C846BAC44592
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -61,7 +62,7 @@ public class Info extends Entity {
 	 * 车牌号：车牌号
 	*/
 	@ApiModelProperty(required = false,value="车牌号" , notes = "车牌号")
-	private String code;
+	private String vehicleCode;
 	
 	/**
 	 * 品牌型号：品牌型号
@@ -230,6 +231,8 @@ public class Info extends Entity {
 	*/
 	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
+	@Transient
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -372,17 +375,17 @@ public class Info extends Entity {
 	 * 车牌号
 	 * @return 车牌号
 	*/
-	public String getCode() {
-		return code;
+	public String getVehicleCode() {
+		return vehicleCode;
 	}
 	
 	/**
 	 * 设置 车牌号
-	 * @param code 车牌号
+	 * @param vehicleCode 车牌号
 	 * @return 当前对象
 	*/
-	public Info setCode(String code) {
-		this.code=code;
+	public Info setVehicleCode(String vehicleCode) {
+		this.vehicleCode=vehicleCode;
 		return this;
 	}
 	
@@ -909,12 +912,42 @@ public class Info extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
 	public Info setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public Info setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
