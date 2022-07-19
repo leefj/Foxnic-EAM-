@@ -187,6 +187,10 @@ function FormPage() {
 			paging: true,
 			pageRemote: true,
 			#end
+			#if(f.validate!=null && f.validate.isRequired)
+			layVerify: 'required',
+			layVerType: 'msg',
+			#end
 			#if(f.selectField.toolbar)
 			toolbar: {show:true,showIcon:true,list:[ "ALL", "CLEAR","REVERSE"]},
 			#end
