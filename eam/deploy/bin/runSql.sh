@@ -1,5 +1,7 @@
 #!/bin/sh
 #
+#   sh runSql.sh sql db_name
+#
 ###############################################################
 cur_dir=$(cd `dirname $0`; pwd)
 app_conf="${cur_dir}/app.conf"

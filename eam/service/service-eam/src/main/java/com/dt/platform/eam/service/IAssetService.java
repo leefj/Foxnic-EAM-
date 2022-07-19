@@ -358,7 +358,7 @@ public interface IAssetService extends ISuperService<Asset> {
 	/**
 	 * 导出用于数据导入的 Excel 模版
 	 * */
-	ExcelWriter  exportExcelTemplate();
+	ExcelWriter exportExcelTemplate();
 
 	/**
 	 * @return   ExcelStructure

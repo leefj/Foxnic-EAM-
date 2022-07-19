@@ -45,9 +45,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             }else if(menu.code=="downloadAssetTpl"){
                 window.pageExt.list.downloadAssetTpl(data,null);
             }
-
-
-
         },
         downloadAssetTpl:function (data){
             var categoryId;
@@ -153,12 +150,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             admin.putTempData('eam-asset-data-change-form-data-popup-index', index);
         },
         batchInsert:function(data,item){
-            var ps={}
-            admin.request("/service-eam/eam-asset-data/batch-import-asset", ps, function (attributeData) {
-
-            }, "POST");
-
-
+            // var ps={}
+            // admin.request("/service-eam/eam-asset-data/batch-import-asset", ps, function (attributeData) {
+            // }, "POST");
             var queryString=""
             var index=admin.popupCenter({
                 title: "数据导入",

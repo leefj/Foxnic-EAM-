@@ -1,7 +1,7 @@
 /**
  * 车辆信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-07 10:46:17
+ * @since 2022-07-18 19:30:42
  */
 
 
@@ -12,6 +12,7 @@ function ListPage() {
 	const moduleURL="/service-vehicle/vehicle-info";
 	var dataTable=null;
 	var sort=null;
+	var menuSelect=[];
 	/**
       * 入口函数，初始化
       */
@@ -44,6 +45,9 @@ function ListPage() {
 			fox.adjustSearchElement();
 		});
 		fox.adjustSearchElement();
+		//
+		 var marginTop=$(".search-bar").height()+$(".search-bar").css("padding-top")+$(".search-bar").css("padding-bottom")
+		 $("#table-area").css("margin-top",marginTop+"px");
 		//
 		function renderTableInternal() {
 
@@ -78,7 +82,7 @@ function ListPage() {
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'vehicleStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('车辆状态'), templet: function (d) { return templet('vehicleStatus' ,fox.joinLabel(d.vehicleStatusDict,"label"),d);}}
 					,{ field: 'type', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('车辆类型'), templet: function (d) { return templet('type' ,fox.joinLabel(d.vehicleTypeDict,"label"),d);}}
-					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('车牌号') , templet: function (d) { return templet('code',d.code,d);}  }
+					,{ field: 'vehicleCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('车牌号') , templet: function (d) { return templet('vehicleCode',d.vehicleCode,d);}  }
 					,{ field: 'model', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('品牌型号') , templet: function (d) { return templet('model',d.model,d);}  }
 					,{ field: 'registrant', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('登记人') , templet: function (d) { return templet('registrant',d.registrant,d);}  }
 					,{ field: 'ownerOrgId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('所属组织') , templet: function (d) { return templet('ownerOrgId',fox.getProperty(d,["ownerCompany","fullName"]),d);} }
@@ -93,25 +97,34 @@ function ListPage() {
 					,{ field: 'insuranceExpireDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('保险到期') ,templet: function (d) { return templet('insuranceExpireDate',fox.dateFormat(d.insuranceExpireDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'scrapTime', align:"right", fixed:false, hide:true, sort: true   ,title: fox.translate('报废时间') ,templet: function (d) { return templet('scrapTime',fox.dateFormat(d.scrapTime,"yyyy-MM-dd"),d); }  }
 					,{ field: 'positionDetail', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('存放位置') , templet: function (d) { return templet('positionDetail',d.positionDetail,d);}  }
-					,{ field: 'technicalParameter', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('技术参数') , templet: function (d) { return templet('technicalParameter',d.technicalParameter,d);}  }
+				//	,{ field: 'technicalParameter', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('技术参数') , templet: function (d) { return templet('technicalParameter',d.technicalParameter,d);}  }
 					,{ field: 'vehicleCount', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('数量') , templet: function (d) { return templet('vehicleCount',d.vehicleCount,d);}  }
-					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
+				//	,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
-					exportExcel : admin.checkAuth(AUTH_PREFIX+":export"),
+					exportExcel : false ,
 					importExcel : admin.checkAuth(AUTH_PREFIX+":import")?{
 						params : {} ,
 						callback : function(r) {
 							if(r.success) {
 								layer.msg(fox.translate('数据导入成功')+"!");
+								refreshTableData(null,null,true);
 							} else {
-								layer.msg(fox.translate('数据导入失败')+"!");
+								var errs = [];
+								if (r.data&&r.data.length>0) {
+									for (var i = 0; i < r.data.length; i++) {
+										if (errs.indexOf(r.data[i].message) == -1) {
+											errs.push(r.data[i].message);
+										}
+									}
+									top.layer.msg(errs.join("<br>"), {time: 2000});
+								} else {
+									top.layer.msg(r.message, {time: 2000});
+								}
 							}
-							// 是否执行后续逻辑：错误提示
-							return false;
 						}
 					}:false
 				}
@@ -138,12 +151,14 @@ function ListPage() {
 				if (r.success) {
 					data = r.data;
 					context.update(data);
+					fox.renderFormInputs(form);
 				} else {
 					fox.showMessage(data);
 				}
 			});
 		} else {
 			context.update(data);
+			fox.renderFormInputs(form);
 		}
 	}
 
@@ -153,34 +168,16 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.id={ inputType:"button",value: $("#id").val()};
-		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.vehicleStatus={ inputType:"select_box", value: getSelectedValue("#vehicleStatus","value") ,fillBy:["vehicleStatusDict"]  , label:getSelectedValue("#vehicleStatus","nameStr") };
 		value.type={ inputType:"select_box", value: getSelectedValue("#type","value") ,fillBy:["vehicleTypeDict"]  , label:getSelectedValue("#type","nameStr") };
-		value.code={ inputType:"button",value: $("#code").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.vehicleCode={ inputType:"button",value: $("#vehicleCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.model={ inputType:"button",value: $("#model").val()};
 		value.registrant={ inputType:"button",value: $("#registrant").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.ownerOrgId={ inputType:"button",value: $("#ownerOrgId").val(),fillBy:["ownerCompany","fullName"] ,label:$("#ownerOrgId-button").text() };
-		value.useOrgId={ inputType:"button",value: $("#useOrgId").val(),fillBy:["useOrganization","fullName"] ,label:$("#useOrgId-button").text() };
-		value.useUserId={ inputType:"button",value: $("#useUserId").val(),fillBy:["useUser","name"] ,label:$("#useUserId-button").text() };
-		value.color={ inputType:"button",value: $("#color").val()};
 		value.engineNumber={ inputType:"button",value: $("#engineNumber").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.frameNumber={ inputType:"button",value: $("#frameNumber").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.drivingLicense={ inputType:"button",value: $("#drivingLicense").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.kilometers={ inputType:"number_input", value: $("#kilometers").val() };
-		value.rescueMoney={ inputType:"number_input", value: $("#rescueMoney").val() };
-		value.commercialInsuranceMoney={ inputType:"number_input", value: $("#commercialInsuranceMoney").val() };
 		value.insuranceCompany={ inputType:"button",value: $("#insuranceCompany").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.licensingTime={ inputType:"date_input", begin: $("#licensingTime-begin").val(), end: $("#licensingTime-end").val() ,matchType:"auto" };
 		value.insuranceExpireDate={ inputType:"date_input", begin: $("#insuranceExpireDate-begin").val(), end: $("#insuranceExpireDate-end").val() ,matchType:"auto" };
-		value.scrapTime={ inputType:"date_input", begin: $("#scrapTime-begin").val(), end: $("#scrapTime-end").val() ,matchType:"auto" };
-		value.positionDetail={ inputType:"button",value: $("#positionDetail").val()};
-		value.pictures={ inputType:"button",value: $("#pictures").val()};
-		value.originatorId={ inputType:"button",value: $("#originatorId").val()};
-		value.technicalParameter={ inputType:"button",value: $("#technicalParameter").val()};
-		value.vehicleCount={ inputType:"number_input", value: $("#vehicleCount").val() };
-		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.createTime={ inputType:"date_input", value: $("#createTime").val() ,matchType:"auto"};
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -339,6 +336,7 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
+					admin.putTempData('vehicle-info-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
@@ -348,6 +346,23 @@ function ListPage() {
 					refreshTableData();
 					break;
 				case 'other':
+					break;
+				case 'exportMore':
+					//更多下拉菜单
+					menuSelect=selected;
+					dropdown.render({
+						elem: this
+						,show: true //外部事件触发即显示
+						,data: [
+							{"code":"highExportData","id":"2","title":"车辆数据导出"},
+							{"code":"downloadTpl","id":"3","title":"下载导入模版"}
+						]
+						,click: function(menu, othis){
+							window.pageExt.list.moreAction && window.pageExt.list.moreAction(menu,menuSelect, othis);
+						}
+						,align: 'right'
+						,style: 'box-shadow: 1px 1px 10px rgb(0 0 0 / 12%);'
+					});
 					break;
 			};
 		});
@@ -432,6 +447,7 @@ function ListPage() {
 					var doNext=window.pageExt.list.beforeSingleDelete(data);
 					if(!doNext) return;
 				}
+
 				top.layer.confirm(fox.translate('确定删除此')+fox.translate('车辆信息')+fox.translate('吗？'), function (i) {
 					top.layer.close(i);
 
@@ -483,7 +499,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["80%",height+"px"],
+			area: ["98%",height+"px"],
 			type: 2,
 			id:"vehicle-info-form-data-win",
 			content: '/business/vehicle/info/info_form.html' + (queryString?("?"+queryString):""),
@@ -501,7 +517,8 @@ function ListPage() {
 	window.module={
 		refreshTableData: refreshTableData,
 		refreshRowData: refreshRowData,
-		getCheckedList: getCheckedList
+		getCheckedList: getCheckedList,
+		showEditForm: showEditForm
 	};
 
 	window.pageExt.list.ending && window.pageExt.list.ending();

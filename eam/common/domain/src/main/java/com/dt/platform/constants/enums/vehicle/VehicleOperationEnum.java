@@ -13,6 +13,9 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 
 public enum VehicleOperationEnum implements CodeTextEnum {
+
+
+	VEHICLE_INFO_DOWNLOAD("vehicle_info_download" , "VEHICLE_车辆数据下载"),
 	VEHICLE_APPLY(CodeModuleEnum.VEHICLE_APPLY.code() , "申请领用"),
 	VEHICLE_MAINTENANCE(CodeModuleEnum.VEHICLE_MAINTENANCE.code(), "报修保险")
 	;

@@ -14,7 +14,7 @@ import org.github.foxnic.web.domain.hrm.Employee;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-07 10:46:16
+ * @since 2022-07-18 19:30:41
  * @sign A82F27772F72E013524EB233825CE59A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -154,12 +154,12 @@ public class InfoVOMeta extends InfoMeta {
 	/**
 	 * 车牌号 , 类型: java.lang.String
 	*/
-	public static final String CODE="code";
+	public static final String VEHICLE_CODE="vehicleCode";
 	
 	/**
 	 * 车牌号 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.vehicle.InfoVO,java.lang.String> CODE_PROP = new BeanProperty(com.dt.platform.domain.vehicle.InfoVO.class ,CODE, java.lang.String.class, "车牌号", "车牌号", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.vehicle.InfoVO,java.lang.String> VEHICLE_CODE_PROP = new BeanProperty(com.dt.platform.domain.vehicle.InfoVO.class ,VEHICLE_CODE, java.lang.String.class, "车牌号", "车牌号", java.lang.String.class, null);
 	
 	/**
 	 * 品牌型号 , 类型: java.lang.String
@@ -544,7 +544,7 @@ public class InfoVOMeta extends InfoMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , NAME , VEHICLE_STATUS , TYPE , CODE , MODEL , REGISTRANT , OWNER_ORG_ID , USE_ORG_ID , USE_USER_ID , COLOR , ENGINE_NUMBER , FRAME_NUMBER , DRIVING_LICENSE , KILOMETERS , RESCUE_MONEY , COMMERCIAL_INSURANCE_MONEY , INSURANCE_COMPANY , LICENSING_TIME , INSURANCE_EXPIRE_DATE , VERSION , SCRAP_TIME , POSITION_DETAIL , PICTURES , ORIGINATOR_ID , TECHNICAL_PARAMETER , VEHICLE_COUNT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , OWNER_COMPANY , USE_ORGANIZATION , VEHICLE_TYPE_DICT , VEHICLE_STATUS_DICT , ORIGINATOR , USE_USER , SELECT_IDS };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , NAME , VEHICLE_STATUS , TYPE , VEHICLE_CODE , MODEL , REGISTRANT , OWNER_ORG_ID , USE_ORG_ID , USE_USER_ID , COLOR , ENGINE_NUMBER , FRAME_NUMBER , DRIVING_LICENSE , KILOMETERS , RESCUE_MONEY , COMMERCIAL_INSURANCE_MONEY , INSURANCE_COMPANY , LICENSING_TIME , INSURANCE_EXPIRE_DATE , VERSION , SCRAP_TIME , POSITION_DETAIL , PICTURES , ORIGINATOR_ID , TECHNICAL_PARAMETER , VEHICLE_COUNT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , OWNER_COMPANY , USE_ORGANIZATION , VEHICLE_TYPE_DICT , VEHICLE_STATUS_DICT , ORIGINATOR , USE_USER , SELECT_IDS };
 	
 	/**
 	 * 代理类
@@ -699,12 +699,12 @@ public class InfoVOMeta extends InfoMeta {
 		
 		/**
 		 * 设置 车牌号
-		 * @param code 车牌号
+		 * @param vehicleCode 车牌号
 		 * @return 当前对象
 		*/
-		public Info setCode(String code) {
-			super.change(CODE,super.getCode(),code);
-			super.setCode(code);
+		public Info setVehicleCode(String vehicleCode) {
+			super.change(VEHICLE_CODE,super.getVehicleCode(),vehicleCode);
+			super.setVehicleCode(vehicleCode);
 			return this;
 		}
 		

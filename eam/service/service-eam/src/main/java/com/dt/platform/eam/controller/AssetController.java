@@ -1190,7 +1190,7 @@ public class AssetController extends SuperController {
 	 * */
 	@SentinelResource(value = AssetServiceProxy.EXPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@RequestMapping(AssetServiceProxy.EXPORT_EXCEL)
-	public void exportExcel(AssetVO  sample,HttpServletResponse response,String categoryId) throws Exception {
+	public void exportExcel(AssetVO sample,HttpServletResponse response,String categoryId) throws Exception {
 
 		try{
             //生成 Excel 数据
@@ -1199,7 +1199,7 @@ public class AssetController extends SuperController {
                 return;
             }
 
-            File f=assetDataService.saveTempFile(inputstream,"TMP_download_asset_data.xls");
+            File f=assetDataService.saveTempFile(inputstream,"tmp_download_asset_data.xls");
             Map<String,Object> map= assetDataService.queryAssetMap(assetDataService.queryAssetList(null,sample),categoryId);
             TemplateExportParams templateExportParams = new TemplateExportParams(f.getPath());
             templateExportParams.setScanAllsheet(true);

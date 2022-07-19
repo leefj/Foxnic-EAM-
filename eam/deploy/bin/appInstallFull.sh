@@ -14,7 +14,7 @@
 #clear all
 #   rm -rf /app/java
 #   rm -rf /app/db
-#   rm -rf /app/eam
+#   rm -rf /app/app
 #   ps -ef|grep java |grep -v grep |awk '{print $2}'|xargs kill -9
 #   ps -ef|grep mysql |grep -v grep |awk '{print $2}'|xargs kill -9
 ########################################################################
@@ -489,6 +489,6 @@ exit 0
 
 rm -rf /app/java
 rm -rf /app/db
-rm -rf /app/eam
+rm -rf /app/app
 ps -ef|grep java |grep -v grep |awk '{print $2}'|xargs kill -9
 ps -ef|grep mysql |grep -v grep |awk '{print $2}'|xargs kill -9

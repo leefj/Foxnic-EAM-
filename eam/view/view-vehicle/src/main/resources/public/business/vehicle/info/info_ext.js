@@ -20,6 +20,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     //模块基础路径
     const moduleURL="/service-vehicle/vehicle-info";
 
+
     //列表页的扩展
     var list={
         /**
@@ -150,8 +151,75 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表格右侧操作列更多按钮事件
          * */
         moreAction:function (menu,data, it){
+            // {"code":"card","id":"1","title":"打印资产卡片"},
+            // {"code":"labelCard","id":"2","title":"打印资产标签"},
+            // {"code":"labelDown","id":"3","title":"下载资产标签"}
+            // {"code":"batchInsert","id":"1","title":"资产批量入库"},
+            // {"code":"highExportData","id":"2","title":"资产数据导出"}
             console.log('moreAction',menu,data,it);
+            if(menu.code=="batchInsert"){
+                window.pageExt.list.batchInsert(data,null);
+            }else if(menu.code=="highExportData"){
+                window.pageExt.list.highExportData(data,null);
+            }else if(menu.code=="downloadTpl"){
+                window.pageExt.list.downloadTpl(data,null);
+            }
         },
+        downloadTpl:function (data){
+            var value = {};
+            value.businessCode={ inputType:"button",value: "1234567890" ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
+            var ps={searchField: "$composite", searchValue: JSON.stringify(value)};
+            var downloadUrl="/service-vehicle/vehicle-info/export-excel"
+            ps.id="123456789";
+            var task=setTimeout(function(){layer.load(2);},10);
+            fox.submit(downloadUrl,ps,"post",function(){
+                clearTimeout(task);
+                layer.closeAll('loading');
+            });
+        },
+        batchInsert:function(data,item){
+            var ps={}
+            admin.request("/service-eam/eam-asset-data/batch-import-asset", ps, function (attributeData) {
+            }, "POST");
+            var queryString=""
+            var index=admin.popupCenter({
+                title: "数据导入",
+                resize: false,
+                offset: [15,null],
+                area: ["80%","95%"],
+                type: 2,
+                id:"eam-asset-data-batch-insert-data-win",
+                content: '/business/eam/asset/asset_excel_oper.html' + queryString,
+                finish: function () {
+                    window.module.refreshTableData();
+                }
+            });
+            admin.putTempData('eam-asset-data-batch-insert-data-popup-index', index);
+
+        },
+        highExportData:function(data,item){
+            function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
+            var value = {};
+            value.vehicleStatus={ inputType:"select_box", value: getSelectedValue("#vehicleStatus","value") ,fillBy:["vehicleStatusDict"]  , label:getSelectedValue("#vehicleStatus","nameStr") };
+            value.type={ inputType:"select_box", value: getSelectedValue("#type","value") ,fillBy:["vehicleTypeDict"]  , label:getSelectedValue("#type","nameStr") };
+            value.vehicleCode={ inputType:"button",value: $("#vehicleCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+            value.model={ inputType:"button",value: $("#model").val()};
+            value.registrant={ inputType:"button",value: $("#registrant").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+            value.engineNumber={ inputType:"button",value: $("#engineNumber").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+            value.frameNumber={ inputType:"button",value: $("#frameNumber").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+            value.drivingLicense={ inputType:"button",value: $("#drivingLicense").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+            value.insuranceCompany={ inputType:"button",value: $("#insuranceCompany").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+            value.insuranceExpireDate={ inputType:"date_input", begin: $("#insuranceExpireDate-begin").val(), end: $("#insuranceExpireDate-end").val() ,matchType:"auto" };
+            var ps={searchField: "$composite", searchValue: JSON.stringify(value)};
+            var downloadUrl="/service-vehicle/vehicle-info/export-excel"
+            var task=setTimeout(function(){layer.load(2);},10);
+            fox.submit(downloadUrl,ps,"post",function(){
+                clearTimeout(task);
+                layer.closeAll('loading');
+                console.log("execute finish");
+            });
+        },
+
         /**
          * 末尾执行
          */
