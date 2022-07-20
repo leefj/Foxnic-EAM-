@@ -1,7 +1,7 @@
 /**
  * 移动端模块分组 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-28 20:41:11
+ * @since 2022-07-20 22:37:49
  */
 
 layui.config({
@@ -19,6 +19,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
     //模块基础路径
     const moduleURL="/service-mobile/app-module-group";
+
 
     //列表页的扩展
     var list={

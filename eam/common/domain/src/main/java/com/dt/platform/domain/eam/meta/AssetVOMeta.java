@@ -28,7 +28,7 @@ import com.dt.platform.domain.eam.GoodsStock;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-29 19:27:39
+ * @since 2022-07-19 14:05:53
  * @sign 89BE5E11F1CFC4EB8031962586039C06
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -696,6 +696,16 @@ public class AssetVOMeta extends AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.math.BigDecimal> CURRENT_YEAR_DEPRECIATION_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,CURRENT_YEAR_DEPRECIATION, java.math.BigDecimal.class, "本年折旧", "本年折旧", java.math.BigDecimal.class, null);
 	
 	/**
+	 * 折旧年份 , 类型: java.lang.Integer
+	*/
+	public static final String DEPRECIATION_YEAR="depreciationYear";
+	
+	/**
+	 * 折旧年份 , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.Integer> DEPRECIATION_YEAR_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,DEPRECIATION_YEAR, java.lang.Integer.class, "折旧年份", "折旧年份", java.lang.Integer.class, null);
+	
+	/**
 	 * 累计折旧 , 类型: java.math.BigDecimal
 	*/
 	public static final String ACCUMULATED_DEPRECIATION="accumulatedDepreciation";
@@ -906,44 +916,54 @@ public class AssetVOMeta extends AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.Integer> RACK_DOWN_NUMBER_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,RACK_DOWN_NUMBER, java.lang.Integer.class, "设备机柜下位置", "设备机柜下位置", java.lang.Integer.class, null);
 	
 	/**
-	 * 标签1 , 类型: java.lang.String
+	 * 短标签1 , 类型: java.lang.String
 	*/
 	public static final String LABEL="label";
 	
 	/**
-	 * 标签1 , 类型: java.lang.String
+	 * 短标签1 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> LABEL_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,LABEL, java.lang.String.class, "标签1", "标签1", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> LABEL_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,LABEL, java.lang.String.class, "短标签1", "短标签1", java.lang.String.class, null);
 	
 	/**
-	 * 标签2 , 类型: java.lang.String
+	 * 长标签2 , 类型: java.lang.String
 	*/
 	public static final String LABEL2="label2";
 	
 	/**
-	 * 标签2 , 类型: java.lang.String
+	 * 长标签2 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> LABEL2_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,LABEL2, java.lang.String.class, "标签2", "标签2", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> LABEL2_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,LABEL2, java.lang.String.class, "长标签2", "长标签2", java.lang.String.class, null);
 	
 	/**
-	 * 标签3 , 类型: java.lang.String
+	 * 短标签3 , 类型: java.lang.String
 	*/
 	public static final String LABEL3="label3";
 	
 	/**
-	 * 标签3 , 类型: java.lang.String
+	 * 短标签3 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> LABEL3_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,LABEL3, java.lang.String.class, "标签3", "标签3", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> LABEL3_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,LABEL3, java.lang.String.class, "短标签3", "短标签3", java.lang.String.class, null);
 	
 	/**
-	 * 标签4 , 类型: java.lang.String
+	 * 长标签4 , 类型: java.lang.String
 	*/
 	public static final String LABEL4="label4";
 	
 	/**
-	 * 标签4 , 类型: java.lang.String
+	 * 长标签4 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> LABEL4_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,LABEL4, java.lang.String.class, "标签4", "标签4", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> LABEL4_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,LABEL4, java.lang.String.class, "长标签4", "长标签4", java.lang.String.class, null);
+	
+	/**
+	 * 短标签5 , 类型: java.lang.String
+	*/
+	public static final String LABEL5="label5";
+	
+	/**
+	 * 短标签5 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> LABEL5_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,LABEL5, java.lang.String.class, "短标签5", "短标签5", java.lang.String.class, null);
 	
 	/**
 	 * 内部控制标签 , 类型: java.lang.String
@@ -1408,7 +1428,7 @@ public class AssetVOMeta extends AssetMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , SUPPLIER_ID , TAX_AMOUNT_RATE , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , ORIGINAL_UNIT_PRICE , CURRENT_YEAR_DEPRECIATION , ACCUMULATED_DEPRECIATION , MONTH_DEPRECIATION_PRICE , RESIDUALS_RATE , RESIDUALS_PRICE , NAV_PRICE , PURCHASE_UNIT_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL2 , LABEL3 , LABEL4 , INTERNAL_CONTROL_LABEL , BILL_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA , EXT_DATA , PCM_DATA , CATALOG_ATTRIBUTE , POSITION , CATEGORY_FINANCE , CATEGORY , GOODS , MANUFACTURER , WAREHOUSE , USE_USER , MANAGER , ORIGINATOR , SUPPLIER , MAINTNAINER , OWNER_COMPANY , USE_ORGANIZATION , SOURCE , EQUIPMENT_ENVIRONMENT , SAFETY_LEVEL , ASSET_MAINTENANCE_STATUS , RACK , CHANGE_INSTANCE , GOODS_STOCK };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , SUPPLIER_ID , TAX_AMOUNT_RATE , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , ORIGINAL_UNIT_PRICE , CURRENT_YEAR_DEPRECIATION , DEPRECIATION_YEAR , ACCUMULATED_DEPRECIATION , MONTH_DEPRECIATION_PRICE , RESIDUALS_RATE , RESIDUALS_PRICE , NAV_PRICE , PURCHASE_UNIT_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL2 , LABEL3 , LABEL4 , LABEL5 , INTERNAL_CONTROL_LABEL , BILL_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA , EXT_DATA , PCM_DATA , CATALOG_ATTRIBUTE , POSITION , CATEGORY_FINANCE , CATEGORY , GOODS , MANUFACTURER , WAREHOUSE , USE_USER , MANAGER , ORIGINATOR , SUPPLIER , MAINTNAINER , OWNER_COMPANY , USE_ORGANIZATION , SOURCE , EQUIPMENT_ENVIRONMENT , SAFETY_LEVEL , ASSET_MAINTENANCE_STATUS , RACK , CHANGE_INSTANCE , GOODS_STOCK };
 	
 	/**
 	 * 代理类
@@ -2145,6 +2165,17 @@ public class AssetVOMeta extends AssetMeta {
 		}
 		
 		/**
+		 * 设置 折旧年份
+		 * @param depreciationYear 折旧年份
+		 * @return 当前对象
+		*/
+		public Asset setDepreciationYear(Integer depreciationYear) {
+			super.change(DEPRECIATION_YEAR,super.getDepreciationYear(),depreciationYear);
+			super.setDepreciationYear(depreciationYear);
+			return this;
+		}
+		
+		/**
 		 * 设置 累计折旧
 		 * @param accumulatedDepreciation 累计折旧
 		 * @return 当前对象
@@ -2376,8 +2407,8 @@ public class AssetVOMeta extends AssetMeta {
 		}
 		
 		/**
-		 * 设置 标签1
-		 * @param label 标签1
+		 * 设置 短标签1
+		 * @param label 短标签1
 		 * @return 当前对象
 		*/
 		public Asset setLabel(String label) {
@@ -2387,8 +2418,8 @@ public class AssetVOMeta extends AssetMeta {
 		}
 		
 		/**
-		 * 设置 标签2
-		 * @param label2 标签2
+		 * 设置 长标签2
+		 * @param label2 长标签2
 		 * @return 当前对象
 		*/
 		public Asset setLabel2(String label2) {
@@ -2398,8 +2429,8 @@ public class AssetVOMeta extends AssetMeta {
 		}
 		
 		/**
-		 * 设置 标签3
-		 * @param label3 标签3
+		 * 设置 短标签3
+		 * @param label3 短标签3
 		 * @return 当前对象
 		*/
 		public Asset setLabel3(String label3) {
@@ -2409,13 +2440,24 @@ public class AssetVOMeta extends AssetMeta {
 		}
 		
 		/**
-		 * 设置 标签4
-		 * @param label4 标签4
+		 * 设置 长标签4
+		 * @param label4 长标签4
 		 * @return 当前对象
 		*/
 		public Asset setLabel4(String label4) {
 			super.change(LABEL4,super.getLabel4(),label4);
 			super.setLabel4(label4);
+			return this;
+		}
+		
+		/**
+		 * 设置 短标签5
+		 * @param label5 短标签5
+		 * @return 当前对象
+		*/
+		public Asset setLabel5(String label5) {
+			super.change(LABEL5,super.getLabel5(),label5);
+			super.setLabel5(label5);
 			return this;
 		}
 		

@@ -1,7 +1,7 @@
 /**
  * 移动端模块 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-13 07:17:37
+ * @since 2022-07-20 22:31:34
  */
 
 
@@ -80,7 +80,7 @@ function ListPage() {
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编码') , templet: function (d) { return templet('code',d.code,d);}  }
 					,{ field: 'label', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标签') , templet: function (d) { return templet('label',d.label,d);}  }
-					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status),d);}}
+					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status),d);}}
 					,{ field: 'groupId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('分组'), templet: function (d) { return templet('groupId' ,fox.joinLabel(d.moduleGroup,"name"),d);}}
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('图标') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'path', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('路径') , templet: function (d) { return templet('path',d.path,d);}  }
@@ -135,7 +135,7 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.status={ inputType:"select_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
+		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.groupId={ inputType:"select_box", value: getSelectedValue("#groupId","value") ,fillBy:["moduleGroup"]  , label:getSelectedValue("#groupId","nameStr") };
 		value.name={ inputType:"button",value: $("#name").val()};
 		var ps={searchField:"$composite"};
@@ -185,18 +185,17 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
-		//渲染 status 下拉字段
+		//渲染 status 搜索框
 		fox.renderSelectBox({
 			el: "status",
-			radio: true,
 			size: "small",
-			filterable: false,
+			radio: true,
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
 				},1);
 			},
-			//转换数据
+			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
 			transform:function(data) {
 				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
 				var opts=[];

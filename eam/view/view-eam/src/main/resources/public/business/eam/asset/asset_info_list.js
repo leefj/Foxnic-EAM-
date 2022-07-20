@@ -114,6 +114,7 @@ function ListPage() {
 							console.log(12345,r)
 							if(r.success) {
 								layer.msg(fox.translate('数据导入成功')+"!");
+								refreshTableData(null,null,true);
 							} else {
 								var errs = [];
 								if (r.data&&r.data.length>0) {

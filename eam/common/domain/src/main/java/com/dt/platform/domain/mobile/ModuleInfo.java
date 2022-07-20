@@ -17,7 +17,7 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 移动端模块
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-13 07:17:36
+ * @since 2022-07-20 22:31:33
  * @sign B09D1DC559253B0BA6A42579E730E12B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

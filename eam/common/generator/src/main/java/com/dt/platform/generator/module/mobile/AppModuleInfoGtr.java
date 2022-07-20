@@ -38,7 +38,7 @@ public class AppModuleInfoGtr extends BaseCodeGenerator {
         );
 
         cfg.view().field(MobileTables.APP_MODULE_INFO.STATUS).form().validate().required().form()
-                .selectBox().enumType(StatusEnableEnum.class).defaultIndex(0);
+                .radioBox().enumType(StatusEnableEnum.class).defaultIndex(0);
 
         cfg.view().field(MobileTables.APP_MODULE_INFO.PATH).form().validate().required();
 

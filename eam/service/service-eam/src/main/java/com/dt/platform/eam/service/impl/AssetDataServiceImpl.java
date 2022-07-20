@@ -584,10 +584,23 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
     public HashMap<String,String> queryAssetCategoryNodes(String type){
         //所有分类转换成  id + 全路径名称
         HashMap<String,String> map=new HashMap<>();
+
+        CatalogVO voGId=new CatalogVO();
+        voGId.setCode("asset");
+        Result<List<Catalog>> vgGidRes=CatalogServiceProxy.api().queryList(voGId);
+        if(!vgGidRes.isSuccess()){
+            return map;
+        }
+        List<Catalog> vgGidList=vgGidRes.getData();
+        if(vgGidList.size()!=1){
+            return map;
+        }
+        String rootId= vgGidList.get(0).getId();
+        System.out.println("asset category root id:"+rootId);
         CatalogVO vo=new CatalogVO();
         vo.setTenantId(SessionUser.getCurrent().getActivatedTenantId());
+        vo.setRoot(rootId);
         vo.setIsLoadAllDescendants(1);
-        vo.setRoot("486917609841758209");
         Result r= CatalogServiceProxy.api().queryNodesFlatten(vo);
         if(r.isSuccess()){
             List<ZTreeNode> list= (List<ZTreeNode> )r.getData();
@@ -600,8 +613,10 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                         path=path+"/"+node.getNamePathArray().get(j);
                     }
                 }
-                System.out.println(node.getId()+","+path);
-                map.put(node.getId(),path);
+                System.out.println(node.getId()+","+path+","+node.getHierarchy());
+                if(node.getHierarchy().startsWith(rootId)){
+                    map.put(node.getId(),path);
+                }
             }
         }
 

@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-29 19:27:40
+ * @since 2022-07-19 14:05:54
  */
 
 
@@ -129,6 +129,7 @@ function ListPage() {
 					,{ field: 'totalAmountPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('资产总值') , templet: function (d) { return templet('totalAmountPrice',d.totalAmountPrice,d);}  }
 					,{ field: 'originalUnitPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('资产原值(单价)') , templet: function (d) { return templet('originalUnitPrice',d.originalUnitPrice,d);}  }
 					,{ field: 'currentYearDepreciation', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('本年折旧') , templet: function (d) { return templet('currentYearDepreciation',d.currentYearDepreciation,d);}  }
+					,{ field: 'depreciationYear', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧年份') , templet: function (d) { return templet('depreciationYear',d.depreciationYear,d);}  }
 					,{ field: 'accumulatedDepreciation', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('累计折旧') , templet: function (d) { return templet('accumulatedDepreciation',d.accumulatedDepreciation,d);}  }
 					,{ field: 'monthDepreciationPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('月折旧额') , templet: function (d) { return templet('monthDepreciationPrice',d.monthDepreciationPrice,d);}  }
 					,{ field: 'residualsRate', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('残值率') , templet: function (d) { return templet('residualsRate',d.residualsRate,d);}  }
@@ -150,10 +151,11 @@ function ListPage() {
 					,{ field: 'rackId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('机柜'), templet: function (d) { return templet('rackId' ,fox.joinLabel(d.rack,"rackName"),d);}}
 					,{ field: 'rackUpNumber', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('设备机柜上位置') , templet: function (d) { return templet('rackUpNumber',d.rackUpNumber,d);}  }
 					,{ field: 'rackDownNumber', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('设备机柜下位置') , templet: function (d) { return templet('rackDownNumber',d.rackDownNumber,d);}  }
-					,{ field: 'label', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('标签1') , templet: function (d) { return templet('label',d.label,d);}  }
-					,{ field: 'label2', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标签2') , templet: function (d) { return templet('label2',d.label2,d);}  }
-					,{ field: 'label3', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标签3') , templet: function (d) { return templet('label3',d.label3,d);}  }
-					,{ field: 'label4', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标签4') , templet: function (d) { return templet('label4',d.label4,d);}  }
+					,{ field: 'label', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('短标签1') , templet: function (d) { return templet('label',d.label,d);}  }
+					,{ field: 'label2', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('长标签2') , templet: function (d) { return templet('label2',d.label2,d);}  }
+					,{ field: 'label3', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('短标签3') , templet: function (d) { return templet('label3',d.label3,d);}  }
+					,{ field: 'label4', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('长标签4') , templet: function (d) { return templet('label4',d.label4,d);}  }
+					,{ field: 'label5', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('短标签5') , templet: function (d) { return templet('label5',d.label5,d);}  }
 					,{ field: 'internalControlLabel', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('内部控制标签') , templet: function (d) { return templet('internalControlLabel',d.internalControlLabel,d);}  }
 					,{ field: 'billId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('单据') , templet: function (d) { return templet('billId',d.billId,d);}  }
 					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',d.originatorId,d);}  }
@@ -173,19 +175,8 @@ function ListPage() {
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
-					exportExcel : admin.checkAuth(AUTH_PREFIX+":export"),
-					importExcel : admin.checkAuth(AUTH_PREFIX+":import")?{
-						params : {} ,
-						callback : function(r) {
-							if(r.success) {
-								layer.msg(fox.translate('数据导入成功')+"!");
-							} else {
-								layer.msg(fox.translate('数据导入失败')+"!");
-							}
-							// 是否执行后续逻辑：错误提示
-							return false;
-						}
-					}:false
+					exportExcel : false ,
+					importExcel : false 
 				}
 			};
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
