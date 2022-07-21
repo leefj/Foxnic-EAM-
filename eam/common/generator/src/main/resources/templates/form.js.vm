@@ -2,7 +2,7 @@
 
 function FormPage() {
 
-	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup#if(bpm),bpm#end;
+	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown#if(bpm),bpm#end;
 	const moduleURL="#(moduleURL)";
 	// 表单执行操作类型：view，create，edit
 	var action=null;
@@ -20,7 +20,7 @@ function FormPage() {
       * 入口函数，初始化
       */
 	this.init=function(layui) {
-     	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload;
+     	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload,dropdown=layui.dropdown;
 		laydate = layui.laydate,table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect#if(bpm),bpm=layui.bpm#end;
 
 		action=admin.getTempData('#(formDataKey)-form-action');
@@ -57,7 +57,80 @@ function FormPage() {
 		//取流程数据
 		fetchProcessInstance();
 		#end
+
+		#if(enableContextMenu)
+		//右键菜单
+		initContextMenu();
+		#end
+
 	}
+
+
+	#if(enableContextMenu)
+	function initContextMenu() {
+
+		var data=[];
+		if(action=="edit" || action=="create") {
+			data.push({
+				id:"save",title: '保存',
+				handler:function (obj, othis) {
+					verifyAndSaveForm();
+				}
+			});
+		};
+
+		if(window!=top) {
+			data.push({
+				id: "cancel", title: '取消',
+				handler:function (obj, othis) {
+					admin.finishPopupCenterById('#(formDataKey)-win',this);
+				}
+			});
+		};
+
+		data.push({
+			id: "refresh",
+			title: '刷新',
+			// templet: '<div><i class="layui-icon layui-icon-refresh"></i>&nbsp;{{d.title}}</div>',
+			handler:function (obj, othis) {
+				var formData=admin.getTempData('#(formDataKey)');
+				admin.post(moduleURL+"/get-by-id", { id : formData.id }, function (r) {
+					if (r.success) {
+						admin.putTempData('#(formDataKey)', r.data);
+						location.reload();
+					} else {
+						fox.showMessage(data);
+					}
+				});
+
+			}
+		});
+
+		if(window.pageExt.form.processContentMenuItem) {
+			data=window.pageExt.form.onProcessInstanceReady(data);
+		}
+
+		if(data.length==0) return;
+
+		var handlerMap={};
+		for (var i = 0; i < data.length; i++) {
+			handlerMap[data[i].id]=data[i].handler;
+		}
+
+		dropdown.render({
+			elem: 'body',
+			trigger: 'contextmenu',
+			isAllowSpread: false,
+			id: 'contextmenu',
+			style:"width:135px;",
+			data: data,
+			click: function(obj, othis){
+				var handler=handlerMap[obj.id];
+				handler && handler(obj, othis);
+			}});
+	}
+	#end
+
 
 	#if(bpm)
 	//取流程数据
@@ -518,22 +591,22 @@ function FormPage() {
 		}, {delayLoading:1000,elms:[$("#submit-button")]});
 	}
 
+	function verifyAndSaveForm(data) {
+		if(!data) data={};
+		//debugger;
+		data.field = getFormData();
+		//校验表单
+		if(!verifyForm(data.field)) return;
+		saveForm(data.field);
+		return false;
+	}
+
 	/**
       * 保存数据，表单提交事件
       */
     function bindButtonEvent() {
 
-	    form.on('submit(submit-button)', function (data) {
-	    	//debugger;
-			data.field = getFormData();
-
-
-			//校验表单
-			if(!verifyForm(data.field)) return;
-
-			saveForm(data.field);
-	        return false;
-	    });
+	    form.on('submit(submit-button)', verifyAndSaveForm);
 
 		#for(f : fields)
 		#if(f.typeName.equals("button"))
@@ -586,6 +659,7 @@ function FormPage() {
 		getFormData: getFormData,
 		verifyForm: verifyForm,
 		saveForm: saveForm,
+		verifyAndSaveForm:verifyAndSaveForm,
 		fillFormData: fillFormData,
 		fillFormDataByIds:fillFormDataByIds,
 		processFormData4Bpm:processFormData4Bpm,
@@ -600,7 +674,7 @@ function FormPage() {
 
 }
 
-layui.use(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','foxnicUpload','laydate'#if(bpm),'bpm'#end],function() {
+layui.use(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','foxnicUpload','laydate','dropdown'#if(bpm),'bpm'#end],function() {
 	var task=setInterval(function (){
 		if(!window["pageExt"]) return;
 		clearInterval(task);

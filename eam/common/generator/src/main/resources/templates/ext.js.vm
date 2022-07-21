@@ -278,6 +278,15 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log('onCheckBoxChanged',id,data,checked);
         },
 
+        #if(enableContextMenu)
+        /**
+         * 处理右键菜单项目
+         * */
+        processContentMenuItem:function(items) {
+            console.log('processContentMenuItem',items);
+            return items;
+        },
+        #end
         /**
          * 在流程提交前处理表单数据
          * */
