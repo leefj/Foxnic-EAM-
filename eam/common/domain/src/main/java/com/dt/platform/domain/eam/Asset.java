@@ -29,8 +29,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 资产
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-29 19:27:39
- * @sign 96F66F35209299E81DB5DA23A6C84981
+ * @since 2022-07-19 14:05:53
+ * @sign C004F2D873B45B476A0BEF104F839D00
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -385,6 +385,12 @@ public class Asset extends Entity {
 	private BigDecimal currentYearDepreciation;
 	
 	/**
+	 * 折旧年份：折旧年份
+	*/
+	@ApiModelProperty(required = false,value="折旧年份" , notes = "折旧年份")
+	private Integer depreciationYear;
+	
+	/**
 	 * 累计折旧：累计折旧
 	*/
 	@ApiModelProperty(required = false,value="累计折旧" , notes = "累计折旧")
@@ -511,28 +517,34 @@ public class Asset extends Entity {
 	private Integer rackDownNumber;
 	
 	/**
-	 * 标签1：标签1
+	 * 短标签1：短标签1
 	*/
-	@ApiModelProperty(required = false,value="标签1" , notes = "标签1")
+	@ApiModelProperty(required = false,value="短标签1" , notes = "短标签1")
 	private String label;
 	
 	/**
-	 * 标签2：标签2
+	 * 长标签2：长标签2
 	*/
-	@ApiModelProperty(required = false,value="标签2" , notes = "标签2")
+	@ApiModelProperty(required = false,value="长标签2" , notes = "长标签2")
 	private String label2;
 	
 	/**
-	 * 标签3：标签3
+	 * 短标签3：短标签3
 	*/
-	@ApiModelProperty(required = false,value="标签3" , notes = "标签3")
+	@ApiModelProperty(required = false,value="短标签3" , notes = "短标签3")
 	private String label3;
 	
 	/**
-	 * 标签4：标签4
+	 * 长标签4：长标签4
 	*/
-	@ApiModelProperty(required = false,value="标签4" , notes = "标签4")
+	@ApiModelProperty(required = false,value="长标签4" , notes = "长标签4")
 	private String label4;
+	
+	/**
+	 * 短标签5：短标签5
+	*/
+	@ApiModelProperty(required = false,value="短标签5" , notes = "短标签5")
+	private String label5;
 	
 	/**
 	 * 内部控制标签：内部控制标签
@@ -1896,6 +1908,25 @@ public class Asset extends Entity {
 	}
 	
 	/**
+	 * 获得 折旧年份<br>
+	 * 折旧年份
+	 * @return 折旧年份
+	*/
+	public Integer getDepreciationYear() {
+		return depreciationYear;
+	}
+	
+	/**
+	 * 设置 折旧年份
+	 * @param depreciationYear 折旧年份
+	 * @return 当前对象
+	*/
+	public Asset setDepreciationYear(Integer depreciationYear) {
+		this.depreciationYear=depreciationYear;
+		return this;
+	}
+	
+	/**
 	 * 获得 累计折旧<br>
 	 * 累计折旧
 	 * @return 累计折旧
@@ -2295,17 +2326,17 @@ public class Asset extends Entity {
 	}
 	
 	/**
-	 * 获得 标签1<br>
-	 * 标签1
-	 * @return 标签1
+	 * 获得 短标签1<br>
+	 * 短标签1
+	 * @return 短标签1
 	*/
 	public String getLabel() {
 		return label;
 	}
 	
 	/**
-	 * 设置 标签1
-	 * @param label 标签1
+	 * 设置 短标签1
+	 * @param label 短标签1
 	 * @return 当前对象
 	*/
 	public Asset setLabel(String label) {
@@ -2314,17 +2345,17 @@ public class Asset extends Entity {
 	}
 	
 	/**
-	 * 获得 标签2<br>
-	 * 标签2
-	 * @return 标签2
+	 * 获得 长标签2<br>
+	 * 长标签2
+	 * @return 长标签2
 	*/
 	public String getLabel2() {
 		return label2;
 	}
 	
 	/**
-	 * 设置 标签2
-	 * @param label2 标签2
+	 * 设置 长标签2
+	 * @param label2 长标签2
 	 * @return 当前对象
 	*/
 	public Asset setLabel2(String label2) {
@@ -2333,17 +2364,17 @@ public class Asset extends Entity {
 	}
 	
 	/**
-	 * 获得 标签3<br>
-	 * 标签3
-	 * @return 标签3
+	 * 获得 短标签3<br>
+	 * 短标签3
+	 * @return 短标签3
 	*/
 	public String getLabel3() {
 		return label3;
 	}
 	
 	/**
-	 * 设置 标签3
-	 * @param label3 标签3
+	 * 设置 短标签3
+	 * @param label3 短标签3
 	 * @return 当前对象
 	*/
 	public Asset setLabel3(String label3) {
@@ -2352,21 +2383,40 @@ public class Asset extends Entity {
 	}
 	
 	/**
-	 * 获得 标签4<br>
-	 * 标签4
-	 * @return 标签4
+	 * 获得 长标签4<br>
+	 * 长标签4
+	 * @return 长标签4
 	*/
 	public String getLabel4() {
 		return label4;
 	}
 	
 	/**
-	 * 设置 标签4
-	 * @param label4 标签4
+	 * 设置 长标签4
+	 * @param label4 长标签4
 	 * @return 当前对象
 	*/
 	public Asset setLabel4(String label4) {
 		this.label4=label4;
+		return this;
+	}
+	
+	/**
+	 * 获得 短标签5<br>
+	 * 短标签5
+	 * @return 短标签5
+	*/
+	public String getLabel5() {
+		return label5;
+	}
+	
+	/**
+	 * 设置 短标签5
+	 * @param label5 短标签5
+	 * @return 当前对象
+	*/
+	public Asset setLabel5(String label5) {
+		this.label5=label5;
 		return this;
 	}
 	

@@ -34,7 +34,7 @@ public class AppModuleGroupGtr extends BaseCodeGenerator {
                 }
         );
         cfg.view().field(MobileTables.APP_MODULE_GROUP.STATUS).form().validate().required().form()
-                .selectBox().enumType(StatusEnableEnum.class).defaultIndex(0);
+                .radioBox().enumType(StatusEnableEnum.class).defaultIndex(0);
         cfg.view().field(MobileTables.APP_MODULE_GROUP.TYPE).form().validate().required().form()
                 .selectBox().enumType(moduleGroupTypeEnum.class).defaultIndex(0);
         cfg.view().field(MobileTables.APP_MODULE_GROUP.CODE).form().validate().required();

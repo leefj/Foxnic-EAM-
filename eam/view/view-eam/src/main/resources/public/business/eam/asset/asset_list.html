@@ -2,7 +2,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-29 19:27:40
+ * @since 2022-07-19 14:05:54
  */
  -->
  <!DOCTYPE html>
@@ -83,6 +83,7 @@
                     <!-- 资产总值 , totalAmountPrice ,typeName=number_input, isHideInSearch=true -->
                     <!-- 资产原值(单价) , originalUnitPrice ,typeName=number_input, isHideInSearch=true -->
                     <!-- 本年折旧 , currentYearDepreciation ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 折旧年份 , depreciationYear ,typeName=number_input, isHideInSearch=true -->
                     <!-- 累计折旧 , accumulatedDepreciation ,typeName=number_input, isHideInSearch=true -->
                     <!-- 月折旧额 , monthDepreciationPrice ,typeName=number_input, isHideInSearch=true -->
                     <!-- 残值率 , residualsRate ,typeName=number_input, isHideInSearch=true -->
@@ -104,10 +105,11 @@
                     <!-- 机柜 , rackId ,typeName=select_box, isHideInSearch=true -->
                     <!-- 设备机柜上位置 , rackUpNumber ,typeName=number_input, isHideInSearch=true -->
                     <!-- 设备机柜下位置 , rackDownNumber ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 标签1 , label ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 标签2 , label2 ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 标签3 , label3 ,typeName=text_area, isHideInSearch=true -->
-                    <!-- 标签4 , label4 ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 短标签1 , label ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 长标签2 , label2 ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 短标签3 , label3 ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 长标签4 , label4 ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 短标签5 , label5 ,typeName=text_input, isHideInSearch=true -->
                     <!-- 内部控制标签 , internalControlLabel ,typeName=text_input, isHideInSearch=true -->
                     <!-- 单据 , billId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 制单人 , originatorId ,typeName=text_input, isHideInSearch=true -->
@@ -248,7 +250,6 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
-
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">

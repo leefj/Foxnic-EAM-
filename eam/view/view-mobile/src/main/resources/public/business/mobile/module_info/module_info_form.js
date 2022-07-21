@@ -1,7 +1,7 @@
 /**
  * 移动端模块 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-13 07:17:37
+ * @since 2022-07-20 22:31:34
  */
 
 function FormPage() {
@@ -106,31 +106,12 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
-		//渲染 status 下拉字段
-		fox.renderSelectBox({
-			el: "status",
-			radio: true,
-			filterable: false,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			transform:function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var defaultValues=[],defaultIndexs=[];
-				if(action=="create") {
-					defaultValues = "".split(",");
-					defaultIndexs = "0".split(",");
-				}
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
-				}
-				return opts;
-			}
+		form.on('radio(status)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=status]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("status",data,checked);
 		});
 		//渲染 groupId 下拉字段
 		fox.renderSelectBox({
@@ -215,8 +196,6 @@ function FormPage() {
 
 
 
-			//设置  状态 设置下拉框勾选
-			fox.setSelectValue4Enum("#status",formData.status,SELECT_STATUS_DATA);
 			//设置  分组 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#groupId",formData.moduleGroup);
 
@@ -270,8 +249,6 @@ function FormPage() {
 
 
 
-		//获取 状态 下拉框的值
-		data["status"]=fox.getSelectedValue("status",false);
 		//获取 分组 下拉框的值
 		data["groupId"]=fox.getSelectedValue("groupId",false);
 

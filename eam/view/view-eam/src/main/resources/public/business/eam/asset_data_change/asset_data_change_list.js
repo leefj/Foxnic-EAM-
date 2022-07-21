@@ -84,6 +84,9 @@ function ListPage() {
 				{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"]),d);}}
 
 			];
+
+			console.log("@@@","ATTRIBUTE_LIST_DATA",ATTRIBUTE_LIST_DATA);
+
 			for(var i=0;i<ATTRIBUTE_LIST_DATA.length;i++){
 				if(ATTRIBUTE_LIST_DATA[i].attribute&&ATTRIBUTE_LIST_DATA[i].attribute.code){
 					var code=ATTRIBUTE_LIST_DATA[i].attribute.code;
@@ -92,16 +95,19 @@ function ListPage() {
 				}
 			}
 
+
+
 			if(APPROVAL_REQUIRED){
 			    var ap={ field: 'chsApprovalOpinion', align:"right",fixed:false,  hide:false, sort: true, title: fox.translate('审批意见') , templet: function (d) { return templet('chsApprovalOpinion',d.chsApprovalOpinion,d);}  };
 				COL_DATA.push(ap);
 			}
 
 
-
-
 			var oper={ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 360 };
 			COL_DATA.push(oper)
+
+
+			console.log("@@@","COL_DATA",COL_DATA);
 			var responseData=[];
 			var tableConfig={
 				elem: '#'+TABLE_ID,
@@ -120,7 +126,6 @@ function ListPage() {
 					}
 					var data=[];
 					for(var i=0;i<res.data.list.length;i++){
-					//	console.log(res.data.list[i])
 						if(res.data.list[i].changeData){
 							var d=res.data.list[i].changeData;
 							d.status=res.data.list[i].status;

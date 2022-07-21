@@ -23,7 +23,7 @@ import java.util.Map;
  * 移动端模块 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-13 07:17:36
+ * @since 2022-07-20 22:31:33
 */
 
 public interface IModuleInfoService extends  ISimpleIdService<ModuleInfo,String> {

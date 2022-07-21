@@ -2,7 +2,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-29 19:27:40
+ * @since 2022-07-19 14:05:55
  */
  -->
  <!DOCTYPE html>
@@ -512,6 +512,15 @@
 
                 
                     <div class="layui-form-item" >
+                        <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('折旧年份')}">折旧年份</div></div>
+                        <div class="layui-input-block layui-input-block-c1">
+                            <input lay-filter="depreciationYear" id="depreciationYear" name="depreciationYear" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('折旧年份') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
+                        </div>
+                    </div>
+
+
+                
+                    <div class="layui-form-item" >
                         <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('累计折旧')}">累计折旧</div></div>
                         <div class="layui-input-block layui-input-block-c1">
                             <input lay-filter="accumulatedDepreciation" id="accumulatedDepreciation" name="accumulatedDepreciation" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('累计折旧') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="1.0"   scale="2" />
@@ -685,36 +694,45 @@
 
 
                                     <div class="layui-form-item" >
-                        <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('标签1')}">标签1</div></div>
+                        <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('短标签1')}">短标签1</div></div>
                         <div class="layui-input-block layui-input-block-c1">
-                            <input lay-filter="label" id="label" name="label" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('标签1') }" type="text" class="layui-input"  />
+                            <input lay-filter="label" id="label" name="label" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('短标签1') }" type="text" class="layui-input"  />
                         </div>
                     </div>
+
+                
+                    <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('长标签2')}">长标签2</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <textarea lay-filter="label2" id="label2" name="label2" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('长标签2') }" class="layui-textarea" style="height: 120px" ></textarea>
+                    </div>
+                </div>
+
+
+                
+                    <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('短标签3')}">短标签3</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <textarea lay-filter="label3" id="label3" name="label3" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('短标签3') }" class="layui-textarea" style="height: 120px" ></textarea>
+                    </div>
+                </div>
+
+
+                
+                    <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('长标签4')}">长标签4</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <textarea lay-filter="label4" id="label4" name="label4" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('长标签4') }" class="layui-textarea" style="height: 120px" ></textarea>
+                    </div>
+                </div>
+
 
                                     <div class="layui-form-item" >
-                        <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('标签2')}">标签2</div></div>
+                        <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('短标签5')}">短标签5</div></div>
                         <div class="layui-input-block layui-input-block-c1">
-                            <input lay-filter="label2" id="label2" name="label2" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('标签2') }" type="text" class="layui-input"  />
+                            <input lay-filter="label5" id="label5" name="label5" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('短标签5') }" type="text" class="layui-input"  />
                         </div>
                     </div>
-
-                
-                    <div class="layui-form-item" >
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('标签3')}">标签3</div></div>
-                    <div class="layui-input-block layui-input-block-c1">
-                        <textarea lay-filter="label3" id="label3" name="label3" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('标签3') }" class="layui-textarea" style="height: 120px" ></textarea>
-                    </div>
-                </div>
-
-
-                
-                    <div class="layui-form-item" >
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('标签4')}">标签4</div></div>
-                    <div class="layui-input-block layui-input-block-c1">
-                        <textarea lay-filter="label4" id="label4" name="label4" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('标签4') }" class="layui-textarea" style="height: 120px" ></textarea>
-                    </div>
-                </div>
-
 
                                     <div class="layui-form-item" >
                         <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('内部控制标签')}">内部控制标签</div></div>
@@ -836,7 +854,6 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
-
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetHandleStatusEnum')}]];
