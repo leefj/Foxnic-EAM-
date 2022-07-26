@@ -27,6 +27,7 @@ public enum VehicleDataExportColumnEnum implements CodeTextEnum {
     INSURANCE_COMPANY("insuranceCompany","insurance_company" ),
     LICENSING_TIME("licensingTime","licensing_time"),
     INSURANCE_EXPIRE_DATE( "insuranceExpireDate","insurance_expire_date" ),
+    RESCUE_DUE_DATE( "rescueDueDate","rescue_due_date" ),
     SCRAP_TIME( "scrapTime","scrap_time" ),
     POSITION_DETAIL( "positionDetail","position_detail" ),
     TECHNICAL_PARAMETER("technicalParameter","technical_parameter"  ),

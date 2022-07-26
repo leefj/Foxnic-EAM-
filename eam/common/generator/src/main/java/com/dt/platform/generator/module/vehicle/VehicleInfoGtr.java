@@ -101,12 +101,16 @@ public class VehicleInfoGtr extends BaseCodeGenerator {
         cfg.view().field(VehicleTables.VEHICLE_INFO.LICENSING_TIME).form().dateInput().format("yyyy-MM-dd").search().range();
         cfg.view().field(VehicleTables.VEHICLE_INFO.SCRAP_TIME).form().dateInput().format("yyyy-MM-dd").search().range();
         cfg.view().field(VehicleTables.VEHICLE_INFO.INSURANCE_EXPIRE_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
+        cfg.view().field(VehicleTables.VEHICLE_INFO.RESCUE_DUE_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
+
 
         cfg.view().field(VehicleTables.VEHICLE_INFO.NOTES).form().textArea().height(Config.textAreaHeight);
 
         cfg.view().field(VehicleTables.VEHICLE_INFO.TECHNICAL_PARAMETER).form().textArea().height(Config.textAreaHeight);
 
-
+        cfg.view().field(VehicleTables.VEHICLE_INFO.COMMERCIAL_INSURANCE_MONEY).form().numberInput().decimal().scale(2);
+        cfg.view().field(VehicleTables.VEHICLE_INFO.CAR_BOAT_TAX).form().numberInput().decimal().scale(2);
+        cfg.view().field(VehicleTables.VEHICLE_INFO.RESCUE_MONEY).form().numberInput().decimal().scale(2);
 
         cfg.view().field(VehicleTables.VEHICLE_INFO.VEHICLE_STATUS)
                 .basic().label("车辆状态")
@@ -152,6 +156,14 @@ public class VehicleInfoGtr extends BaseCodeGenerator {
                         VehicleTables.VEHICLE_INFO.VEHICLE_STATUS,
                         VehicleTables.VEHICLE_INFO.TYPE,
                         VehicleTables.VEHICLE_INFO.REGISTRANT,
+                        VehicleTables.VEHICLE_INFO.VEHICLE_COUNT,
+                },
+
+                new Object[] {
+                        VehicleTables.VEHICLE_INFO.INSURANCE_COMPANY,
+                        VehicleTables.VEHICLE_INFO.INSURANCE_EXPIRE_DATE,
+                        VehicleTables.VEHICLE_INFO.RESCUE_DUE_DATE,
+                        VehicleTables.VEHICLE_INFO.POSITION_DETAIL,
                 },
                 new Object[] {
                         VehicleTables.VEHICLE_INFO.OWNER_ORG_ID,
@@ -160,14 +172,10 @@ public class VehicleInfoGtr extends BaseCodeGenerator {
 
                 },
                 new Object[] {
-                        VehicleTables.VEHICLE_INFO.INSURANCE_COMPANY,
-                        VehicleTables.VEHICLE_INFO.INSURANCE_EXPIRE_DATE,
-                        VehicleTables.VEHICLE_INFO.POSITION_DETAIL,
-                },
-                new Object[] {
                         VehicleTables.VEHICLE_INFO.RESCUE_MONEY,
+                        VehicleTables.VEHICLE_INFO.CAR_BOAT_TAX,
+
                         VehicleTables.VEHICLE_INFO.COMMERCIAL_INSURANCE_MONEY,
-                        VehicleTables.VEHICLE_INFO.VEHICLE_COUNT,
                 }
 
         );
@@ -207,8 +215,8 @@ public class VehicleInfoGtr extends BaseCodeGenerator {
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
                 .setControllerAndAgent(WriteMode.IGNORE) //Rest
                 .setPageController(WriteMode.IGNORE) //页面控制器
-                .setFormPage(WriteMode.IGNORE) //表单HTML页
-                .setListPage(WriteMode.IGNORE)
+                .setFormPage(WriteMode.WRITE_TEMP_FILE) //表单HTML页
+                .setListPage(WriteMode.WRITE_TEMP_FILE)
                 .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         //列表HTML页
         //生成代码

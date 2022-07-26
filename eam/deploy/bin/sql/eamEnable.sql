@@ -1,4 +1,10 @@
-
+update sys_config set value=0 where value='eam.assetDataPermissions';
+update sys_config set value=1 where value='eam.assetDirectUpdateMode';
+update sys_config set value=0 where value='eam.assetImportAssetCodeKeep';
+update sys_config set value=0 where value='eam.assetImportDataReplenish';
+update sys_config set value=0 where value='eam.assetSerialNumberIsUnique';
+update sys_config set value=0 where value='eam.assetStatusColumnDisable';
+update sys_config set value=0 where value='eam.assetDataPermissions';
 
 -- 功能演示
 update sys_menu set hidden=1 where id='495201409763901440';
@@ -27,11 +33,12 @@ update sys_menu set hidden=1 where id='474155549546512385';
 -- 设备
 update sys_menu set hidden=1 where id='568076619713875968';
 
+-- 车辆
+update sys_menu set hidden=1 where id='562317041218879488';
 
 -- 员工
 update sys_menu set hidden=1 where id='592108832759488512';
 update sys_menu set hidden=1 where id='592348823129427968';
-
 
 -- 财务
 update sys_menu set hidden=1 where id='475955437510852608';

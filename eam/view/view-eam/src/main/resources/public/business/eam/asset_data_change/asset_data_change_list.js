@@ -77,7 +77,6 @@ function ListPage() {
 				{ fixed: 'left',type: 'numbers' },
 				{ fixed: 'left',type:'checkbox'},
 				{ field: 'businessCode', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('业务编号') , templet: function (d) { return templet('businessCode',d.businessCode,d);}  },
-
 				{ field: 'status', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('办理状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status),d);}},
 				{ field: 'businessName', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('业务名称'), templet:function (d){ return templet('businessName',d.businessName,d);}  },
 				{ field: 'changeDate', align:"right", fixed:false, hide:false, sort: true, title: fox.translate('变更日期'), templet: function (d) { return templet('changeDate',fox.dateFormat(d.changeDate,"yyyy-MM-dd"),d); }},

@@ -598,7 +598,7 @@ public class InfoServiceImpl extends SuperService<Info> implements IInfoService 
 
 
 
-		String[] dateColumns = {InfoMeta.INSURANCE_EXPIRE_DATE,InfoMeta.LICENSING_TIME,InfoMeta.LICENSING_TIME,InfoMeta.SCRAP_TIME};
+		String[] dateColumns = {InfoMeta.RESCUE_DUE_DATE,InfoMeta.INSURANCE_EXPIRE_DATE,InfoMeta.LICENSING_TIME,InfoMeta.LICENSING_TIME,InfoMeta.SCRAP_TIME};
 		for(int j=0;j<dateColumns.length;j++){
 			String dateColumn=dateColumns[j];
 			String value=rcd.getString(BeanNameUtil.instance().depart(dateColumn));
@@ -622,6 +622,7 @@ public class InfoServiceImpl extends SuperService<Info> implements IInfoService 
 		}
 
 		String useUser=BeanNameUtil.instance().depart(InfoMeta.USE_USER_ID);
+		System.out.println("useUser:"+useUser);
 		String valueUseUser=rcd.getString(useUser);
 		if(!StringUtil.isBlank(valueUseUser)){
 			Result<Employee> resEmp=EmployeeServiceProxy.api().getByBadge(valueUseUser);

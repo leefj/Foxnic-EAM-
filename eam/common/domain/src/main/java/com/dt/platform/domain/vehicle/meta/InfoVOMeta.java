@@ -14,7 +14,7 @@ import org.github.foxnic.web.domain.hrm.Employee;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-18 19:30:41
+ * @since 2022-07-21 17:43:13
  * @sign A82F27772F72E013524EB233825CE59A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -262,6 +262,16 @@ public class InfoVOMeta extends InfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.vehicle.InfoVO,java.math.BigDecimal> KILOMETERS_PROP = new BeanProperty(com.dt.platform.domain.vehicle.InfoVO.class ,KILOMETERS, java.math.BigDecimal.class, "公里数", "公里数", java.math.BigDecimal.class, null);
 	
 	/**
+	 * 车船税 , 类型: java.math.BigDecimal
+	*/
+	public static final String CAR_BOAT_TAX="carBoatTax";
+	
+	/**
+	 * 车船税 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.vehicle.InfoVO,java.math.BigDecimal> CAR_BOAT_TAX_PROP = new BeanProperty(com.dt.platform.domain.vehicle.InfoVO.class ,CAR_BOAT_TAX, java.math.BigDecimal.class, "车船税", "车船税", java.math.BigDecimal.class, null);
+	
+	/**
 	 * 抢险(元) , 类型: java.math.BigDecimal
 	*/
 	public static final String RESCUE_MONEY="rescueMoney";
@@ -302,14 +312,24 @@ public class InfoVOMeta extends InfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.vehicle.InfoVO,java.util.Date> LICENSING_TIME_PROP = new BeanProperty(com.dt.platform.domain.vehicle.InfoVO.class ,LICENSING_TIME, java.util.Date.class, "上牌时间", "上牌时间", java.util.Date.class, null);
 	
 	/**
-	 * 保险到期 , 类型: java.util.Date
+	 * 商业险到期 , 类型: java.util.Date
 	*/
 	public static final String INSURANCE_EXPIRE_DATE="insuranceExpireDate";
 	
 	/**
-	 * 保险到期 , 类型: java.util.Date
+	 * 商业险到期 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.dt.platform.domain.vehicle.InfoVO,java.util.Date> INSURANCE_EXPIRE_DATE_PROP = new BeanProperty(com.dt.platform.domain.vehicle.InfoVO.class ,INSURANCE_EXPIRE_DATE, java.util.Date.class, "保险到期", "保险到期", java.util.Date.class, null);
+	public static final BeanProperty<com.dt.platform.domain.vehicle.InfoVO,java.util.Date> INSURANCE_EXPIRE_DATE_PROP = new BeanProperty(com.dt.platform.domain.vehicle.InfoVO.class ,INSURANCE_EXPIRE_DATE, java.util.Date.class, "商业险到期", "商业险到期", java.util.Date.class, null);
+	
+	/**
+	 * 抢险到期 , 类型: java.util.Date
+	*/
+	public static final String RESCUE_DUE_DATE="rescueDueDate";
+	
+	/**
+	 * 抢险到期 , 类型: java.util.Date
+	*/
+	public static final BeanProperty<com.dt.platform.domain.vehicle.InfoVO,java.util.Date> RESCUE_DUE_DATE_PROP = new BeanProperty(com.dt.platform.domain.vehicle.InfoVO.class ,RESCUE_DUE_DATE, java.util.Date.class, "抢险到期", "抢险到期", java.util.Date.class, null);
 	
 	/**
 	 * 版本 , 类型: java.lang.Integer
@@ -544,7 +564,7 @@ public class InfoVOMeta extends InfoMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , NAME , VEHICLE_STATUS , TYPE , VEHICLE_CODE , MODEL , REGISTRANT , OWNER_ORG_ID , USE_ORG_ID , USE_USER_ID , COLOR , ENGINE_NUMBER , FRAME_NUMBER , DRIVING_LICENSE , KILOMETERS , RESCUE_MONEY , COMMERCIAL_INSURANCE_MONEY , INSURANCE_COMPANY , LICENSING_TIME , INSURANCE_EXPIRE_DATE , VERSION , SCRAP_TIME , POSITION_DETAIL , PICTURES , ORIGINATOR_ID , TECHNICAL_PARAMETER , VEHICLE_COUNT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , OWNER_COMPANY , USE_ORGANIZATION , VEHICLE_TYPE_DICT , VEHICLE_STATUS_DICT , ORIGINATOR , USE_USER , SELECT_IDS };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , NAME , VEHICLE_STATUS , TYPE , VEHICLE_CODE , MODEL , REGISTRANT , OWNER_ORG_ID , USE_ORG_ID , USE_USER_ID , COLOR , ENGINE_NUMBER , FRAME_NUMBER , DRIVING_LICENSE , KILOMETERS , CAR_BOAT_TAX , RESCUE_MONEY , COMMERCIAL_INSURANCE_MONEY , INSURANCE_COMPANY , LICENSING_TIME , INSURANCE_EXPIRE_DATE , RESCUE_DUE_DATE , VERSION , SCRAP_TIME , POSITION_DETAIL , PICTURES , ORIGINATOR_ID , TECHNICAL_PARAMETER , VEHICLE_COUNT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , OWNER_COMPANY , USE_ORGANIZATION , VEHICLE_TYPE_DICT , VEHICLE_STATUS_DICT , ORIGINATOR , USE_USER , SELECT_IDS };
 	
 	/**
 	 * 代理类
@@ -819,6 +839,17 @@ public class InfoVOMeta extends InfoMeta {
 		}
 		
 		/**
+		 * 设置 车船税
+		 * @param carBoatTax 车船税
+		 * @return 当前对象
+		*/
+		public Info setCarBoatTax(BigDecimal carBoatTax) {
+			super.change(CAR_BOAT_TAX,super.getCarBoatTax(),carBoatTax);
+			super.setCarBoatTax(carBoatTax);
+			return this;
+		}
+		
+		/**
 		 * 设置 抢险(元)
 		 * @param rescueMoney 抢险(元)
 		 * @return 当前对象
@@ -863,13 +894,24 @@ public class InfoVOMeta extends InfoMeta {
 		}
 		
 		/**
-		 * 设置 保险到期
-		 * @param insuranceExpireDate 保险到期
+		 * 设置 商业险到期
+		 * @param insuranceExpireDate 商业险到期
 		 * @return 当前对象
 		*/
 		public Info setInsuranceExpireDate(Date insuranceExpireDate) {
 			super.change(INSURANCE_EXPIRE_DATE,super.getInsuranceExpireDate(),insuranceExpireDate);
 			super.setInsuranceExpireDate(insuranceExpireDate);
+			return this;
+		}
+		
+		/**
+		 * 设置 抢险到期
+		 * @param rescueDueDate 抢险到期
+		 * @return 当前对象
+		*/
+		public Info setRescueDueDate(Date rescueDueDate) {
+			super.change(RESCUE_DUE_DATE,super.getRescueDueDate(),rescueDueDate);
+			super.setRescueDueDate(rescueDueDate);
 			return this;
 		}
 		

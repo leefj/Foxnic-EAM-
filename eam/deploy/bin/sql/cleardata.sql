@@ -120,6 +120,14 @@ delete from wo_server_info ;
 delete from wo_slb_strategy_apply where 1=1 and tenant_id='T001' ;
 delete from wo_slb_strategy_info ;
 
+-- vehicle
+delete from vehicle_a_select_item where 1=1;
+delete from vehicle_apply where 1=1;
+delete from vehicle_info where 1=1;
+delete from vehicle_insurance_record where 1=1;
+delete from vehicle_m_select_item where 1=1;
+delete from vehicle_maintenance where 1=1;
+delete from vehicle_select_item where 1=1;
 
 
 
