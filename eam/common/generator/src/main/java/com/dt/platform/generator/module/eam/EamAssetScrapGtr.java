@@ -49,7 +49,7 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
 
 
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.PROC_ID).table().disable();
-        cfg.view().field(EAMTables.EAM_ASSET_SCRAP.CREATE_TIME).table().disable();
+       // cfg.view().field(EAMTables.EAM_ASSET_SCRAP.CREATE_TIME).table().disable();
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.ATTACH).table().disable();
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.BUSINESS_DATE).table().hidden();
       //  cfg.view().field(EAMTables.EAM_ASSET_SCRAP.NAME).table().hidden();
@@ -65,6 +65,20 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.SCRAP_DATE).form().validate().required();
 
         cfg.view().field(EAMTables.EAM_ASSET_SCRAP.NAME).form().validate().required();
+
+
+        cfg.view().field(EAMTables.EAM_ASSET_SCRAP.PROC_ID).table().disable();
+        cfg.view().field(EAMTables.EAM_ASSET_SCRAP.CHS_TYPE).table().disable();
+        cfg.view().field(EAMTables.EAM_ASSET_SCRAP.SELECTED_CODE).table().disable();
+        cfg.view().field(EAMTables.EAM_ASSET_SCRAP.CHS_STATUS).table().disable();
+        cfg.view().field(EAMTables.EAM_ASSET_SCRAP.CHS_VERSION).table().disable();
+        cfg.view().field(EAMTables.EAM_ASSET_SCRAP.CHANGE_INSTANCE_ID).table().disable();
+        cfg.view().field(EAMTables.EAM_ASSET_SCRAP.SUMMARY).table().disable();
+        cfg.view().field(EAMTables.EAM_ASSET_SCRAP.LATEST_APPROVER_ID).table().disable();
+        cfg.view().field(EAMTables.EAM_ASSET_SCRAP.LATEST_APPROVER_NAME).table().disable();
+        cfg.view().field(EAMTables.EAM_ASSET_SCRAP.NEXT_APPROVER_IDS).table().disable();
+        cfg.view().field(EAMTables.EAM_ASSET_SCRAP.NEXT_APPROVER_NAMES).table().disable();
+        cfg.view().field(EAMTables.EAM_ASSET_SCRAP.APPROVAL_OPINION).table().disable();
 
         cfg.view().search().inputLayout(
                 new Object[]{
@@ -105,6 +119,9 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
      //   cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_scrap:for-approval");
         cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_scrap:confirm");
 //        cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_scrap:revoke");
+
+        cfg.view().list().operationColumn().addActionButton("清理","cleanOut","clean-out-button","eam_asset_scrap:clean-out");
+
         cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_scrap:bill");
 
         cfg.view().form().labelWidth(70);

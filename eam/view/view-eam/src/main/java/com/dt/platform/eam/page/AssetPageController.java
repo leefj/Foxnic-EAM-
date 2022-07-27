@@ -401,6 +401,7 @@ public class AssetPageController extends ViewController {
 
 		model.addAttribute("agreeBtn",SessionUser.getCurrent().permission().checkAuth(authPrefix+":agree") );
 		model.addAttribute("denyBtn",SessionUser.getCurrent().permission().checkAuth(authPrefix+":deny"));
+
 		model.addAttribute("createBtn",SessionUser.getCurrent().permission().checkAuth(authPrefix+":create") );
 		model.addAttribute("updateBtn",SessionUser.getCurrent().permission().checkAuth(authPrefix+":update") );
 		model.addAttribute("deleteBtn",SessionUser.getCurrent().permission().checkAuth(authPrefix+":delete") );

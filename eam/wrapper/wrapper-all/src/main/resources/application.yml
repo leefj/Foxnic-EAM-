@@ -118,7 +118,8 @@ spring:
       # 是否启用集群模式的 redis
       enable: false
       nodes: 192.168.1.24:6389,192.168.1.24:6479,192.168.1.24:6579
-
+  #profiles:
+    #active: local
 
 foxnic:
   api:
@@ -143,7 +144,7 @@ foxnic:
         #在不同的环境下选择不同的路径
         windows: c:/uploads
         mac: /Users/Shared/upload
-        linux: /opt/eam/upload
+        linux: /app/app/app/app/upload
   # 设置 BPM 相关内容
   bpm:
     enable: true
