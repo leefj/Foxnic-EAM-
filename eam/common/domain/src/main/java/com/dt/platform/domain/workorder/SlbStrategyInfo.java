@@ -17,7 +17,7 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 负载策略
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-06 19:45:52
+ * @since 2022-07-27 20:38:50
  * @sign 4FEE2B400C4C835965FD09FB6D2BAF36
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

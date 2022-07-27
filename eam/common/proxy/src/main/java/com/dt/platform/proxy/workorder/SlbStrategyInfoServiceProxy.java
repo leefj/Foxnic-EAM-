@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 负载策略  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-06 19:45:53
+ * @since 2022-07-27 20:38:50
  */
 @FeignClient(value = ServiceNames.WORKORDER, contextId = SlbStrategyInfoServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface SlbStrategyInfoServiceProxy {

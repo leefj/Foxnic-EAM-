@@ -229,7 +229,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         afterDataFill:function (data) {
             if(data.status){
-                if(data.status=="incomplte"){
+                if(data.status=="incomplete"){
                     console.log("can edit");
                 }else{
                     fox.lockForm($("#data-form"),true);

@@ -223,7 +223,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
 
     var timestamp = Date.parse(new Date());
-    var formAction=admin.getTempData('eam-asset-borrow-form-data-form-action');
+    var formAction=admin.getTempData('eam-asset-collection-form-data-form-action');
 
     //表单页的扩展
     var form={

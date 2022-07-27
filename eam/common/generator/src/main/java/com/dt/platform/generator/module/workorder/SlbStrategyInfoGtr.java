@@ -93,6 +93,11 @@ public class SlbStrategyInfoGtr extends BaseCodeGenerator {
                 }
         );
 
+        cfg.view().list().addJsVariable("ownerId",   "[[${ownerId}]]","ownerId");
+        cfg.view().list().addJsVariable("pageType",   "[[${pageType}]]","pageType");
+        cfg.view().list().addJsVariable("selectedCode",   "[[${selectedCode}]]","selectedCode");
+
+
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口

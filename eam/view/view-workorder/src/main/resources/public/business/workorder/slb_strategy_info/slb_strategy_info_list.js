@@ -1,7 +1,7 @@
 /**
  * 负载策略 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-06 19:45:54
+ * @since 2022-07-27 20:38:51
  */
 
 
@@ -81,10 +81,10 @@ function ListPage() {
 					,{ field: 'serviceIp', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('服务IP') , templet: function (d) { return templet('serviceIp',d.serviceIp,d);}  }
 					,{ field: 'nodeIp', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('节点IP') , templet: function (d) { return templet('nodeIp',d.nodeIp,d);}  }
 					,{ field: 'port', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('端口') , templet: function (d) { return templet('port',d.port,d);}  }
-					,{ field: 'balanceStrategy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('均衡策略'), templet:function (d){ return templet('balanceStrategy',fox.getEnumText(SELECT_BALANCESTRATEGY_DATA,d.balanceStrategy),d);}}
-					,{ field: 'sessionKeep', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('会话保持'), templet:function (d){ return templet('sessionKeep',fox.getEnumText(RADIO_SESSIONKEEP_DATA,d.sessionKeep),d);}}
-					,{ field: 'sessionKeepMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('保持方式'), templet:function (d){ return templet('sessionKeepMethod',fox.getEnumText(RADIO_SESSIONKEEPMETHOD_DATA,d.sessionKeepMethod),d);}}
-					,{ field: 'usedProtocolType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('使用协议'), templet:function (d){ return templet('usedProtocolType',fox.getEnumText(SELECT_USEDPROTOCOLTYPE_DATA,d.usedProtocolType),d);}}
+					,{ field: 'balanceStrategy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('均衡策略'), templet:function (d){ return templet('balanceStrategy',fox.getEnumText(SELECT_BALANCESTRATEGY_DATA,d.balanceStrategy,'','balanceStrategy'),d);}}
+					,{ field: 'sessionKeep', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('会话保持'), templet:function (d){ return templet('sessionKeep',fox.getEnumText(RADIO_SESSIONKEEP_DATA,d.sessionKeep,'','sessionKeep'),d);}}
+					,{ field: 'sessionKeepMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('保持方式'), templet:function (d){ return templet('sessionKeepMethod',fox.getEnumText(RADIO_SESSIONKEEPMETHOD_DATA,d.sessionKeepMethod,'','sessionKeepMethod'),d);}}
+					,{ field: 'usedProtocolType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('使用协议'), templet:function (d){ return templet('usedProtocolType',fox.getEnumText(SELECT_USEDPROTOCOLTYPE_DATA,d.usedProtocolType,'','usedProtocolType'),d);}}
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
@@ -269,7 +269,8 @@ function ListPage() {
             }
             //调用批量删除接口
 			top.layer.confirm(fox.translate('确定删除已选中的')+fox.translate('负载策略')+fox.translate('吗？'), function (i) {
-                admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
+                top.layer.close(i);
+				admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
                     if (data.success) {
 						if(window.pageExt.list.afterBatchDelete) {
 							var doNext=window.pageExt.list.afterBatchDelete(data);
@@ -280,7 +281,7 @@ function ListPage() {
                     } else {
 						fox.showMessage(data);
                     }
-                });
+                },{delayLoading:200,elms:[$("#delete-button")]});
 			});
         }
 	}
@@ -328,9 +329,7 @@ function ListPage() {
 
 				top.layer.confirm(fox.translate('确定删除此')+fox.translate('负载策略')+fox.translate('吗？'), function (i) {
 					top.layer.close(i);
-
-					top.layer.load(2);
-					admin.request(moduleURL+"/delete", { id : data.id }, function (data) {
+					admin.post(moduleURL+"/delete", { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
 						if (data.success) {
 							if(window.pageExt.list.afterSingleDelete) {
@@ -342,7 +341,7 @@ function ListPage() {
 						} else {
 							fox.showMessage(data);
 						}
-					});
+					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
 			}
 			
