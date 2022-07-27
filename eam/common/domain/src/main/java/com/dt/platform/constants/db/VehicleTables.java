@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-07-18 19:29:32
+ * @since 2022-07-21 17:41:44
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -322,6 +322,11 @@ public class VehicleTables {
 		public static final DBField KILOMETERS = new DBField(DBDataType.DECIMAL , "kilometers","kilometers","公里数","公里数",false,false,true);
 		
 		/**
+		 * 车船税
+		*/
+		public static final DBField CAR_BOAT_TAX = new DBField(DBDataType.DECIMAL , "car_boat_tax","carBoatTax","车船税","车船税",false,false,true);
+		
+		/**
 		 * 抢险(元)
 		*/
 		public static final DBField RESCUE_MONEY = new DBField(DBDataType.DECIMAL , "rescue_money","rescueMoney","抢险(元)","抢险(元)",false,false,true);
@@ -342,9 +347,14 @@ public class VehicleTables {
 		public static final DBField LICENSING_TIME = new DBField(DBDataType.DATE , "licensing_time","licensingTime","上牌时间","上牌时间",false,false,true);
 		
 		/**
-		 * 保险到期
+		 * 商业险到期
 		*/
-		public static final DBField INSURANCE_EXPIRE_DATE = new DBField(DBDataType.DATE , "insurance_expire_date","insuranceExpireDate","保险到期","保险到期",false,false,true);
+		public static final DBField INSURANCE_EXPIRE_DATE = new DBField(DBDataType.DATE , "insurance_expire_date","insuranceExpireDate","商业险到期","商业险到期",false,false,true);
+		
+		/**
+		 * 抢险到期
+		*/
+		public static final DBField RESCUE_DUE_DATE = new DBField(DBDataType.DATE , "rescue_due_date","rescueDueDate","抢险到期","抢险到期",false,false,true);
 		
 		/**
 		 * 版本
@@ -427,7 +437,7 @@ public class VehicleTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public VEHICLE_INFO() {
-			this.init($NAME,"车辆信息" , ID , NAME , VEHICLE_STATUS , TYPE , VEHICLE_CODE , MODEL , REGISTRANT , OWNER_ORG_ID , USE_ORG_ID , USE_USER_ID , COLOR , ENGINE_NUMBER , FRAME_NUMBER , DRIVING_LICENSE , KILOMETERS , RESCUE_MONEY , COMMERCIAL_INSURANCE_MONEY , INSURANCE_COMPANY , LICENSING_TIME , INSURANCE_EXPIRE_DATE , VERSION , SCRAP_TIME , POSITION_DETAIL , PICTURES , ORIGINATOR_ID , TECHNICAL_PARAMETER , VEHICLE_COUNT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
+			this.init($NAME,"车辆信息" , ID , NAME , VEHICLE_STATUS , TYPE , VEHICLE_CODE , MODEL , REGISTRANT , OWNER_ORG_ID , USE_ORG_ID , USE_USER_ID , COLOR , ENGINE_NUMBER , FRAME_NUMBER , DRIVING_LICENSE , KILOMETERS , CAR_BOAT_TAX , RESCUE_MONEY , COMMERCIAL_INSURANCE_MONEY , INSURANCE_COMPANY , LICENSING_TIME , INSURANCE_EXPIRE_DATE , RESCUE_DUE_DATE , VERSION , SCRAP_TIME , POSITION_DETAIL , PICTURES , ORIGINATOR_ID , TECHNICAL_PARAMETER , VEHICLE_COUNT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID);
 		}
 		public static final VEHICLE_INFO $TABLE=new VEHICLE_INFO();
 	}

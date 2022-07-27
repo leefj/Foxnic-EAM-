@@ -1,4 +1,4 @@
-#!/bin.sh
+#!/bin/sh
 #
 
 release_dir="/tmp/app_deploy"

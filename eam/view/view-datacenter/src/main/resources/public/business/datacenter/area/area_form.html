@@ -2,7 +2,7 @@
 /**
  * 区域 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-07 21:38:49
+ * @since 2022-07-22 21:40:44
  */
  -->
  <!DOCTYPE html>
@@ -54,7 +54,7 @@
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('类型')}">类型</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block layui-input-block-c1">
-                        <input input-type="radio" type="radio" name="type" lay-filter="type" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.datacenter.AreaTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==-1)?'yes':'no'}">
+                        <input input-type="radio" type="radio" name="type" lay-filter="type" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.datacenter.AreaTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)}">
                     </div>
                 </div>
 
@@ -75,12 +75,14 @@
                 </div>
 
 
-                                    <div class="layui-form-item" >
-                        <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备注')}">备注</div></div>
-                        <div class="layui-input-block layui-input-block-c1">
-                            <input lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" type="text" class="layui-input"  />
-                        </div>
+                
+                    <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备注')}">备注</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" class="layui-textarea" style="height: 120px" ></textarea>
                     </div>
+                </div>
+
 
                 <!--结束：栏次内字段循环-->
             </div>
@@ -89,6 +91,7 @@
         <!--结束：group循环-->
 
         <div style="height: 8px"></div>
+        <div style="height: 80px"></div>
 
 
     </form>
@@ -104,7 +107,6 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
-
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var RADIO_TYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.datacenter.AreaTypeEnum')}]];

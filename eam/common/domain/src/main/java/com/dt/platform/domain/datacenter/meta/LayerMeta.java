@@ -9,8 +9,8 @@ import com.dt.platform.domain.datacenter.Area;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-07 21:49:53
- * @sign 441BF44140F3D6B451350562CCA2A0EA
+ * @since 2022-07-22 21:41:05
+ * @sign C626B581EABA75DBFE867FF60F1305EB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 

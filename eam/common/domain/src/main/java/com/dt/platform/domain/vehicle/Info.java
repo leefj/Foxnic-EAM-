@@ -21,8 +21,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 车辆信息
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-18 19:30:41
- * @sign DBEA16E6D9B2B81B8DB3C846BAC44592
+ * @since 2022-07-21 17:43:13
+ * @sign B442C95932E8C02215F06403B8E4441A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -125,6 +125,12 @@ public class Info extends Entity {
 	private BigDecimal kilometers;
 	
 	/**
+	 * 车船税：车船税
+	*/
+	@ApiModelProperty(required = false,value="车船税" , notes = "车船税")
+	private BigDecimal carBoatTax;
+	
+	/**
 	 * 抢险(元)：抢险(元)
 	*/
 	@ApiModelProperty(required = false,value="抢险(元)" , notes = "抢险(元)")
@@ -149,10 +155,16 @@ public class Info extends Entity {
 	private Date licensingTime;
 	
 	/**
-	 * 保险到期：保险到期
+	 * 商业险到期：商业险到期
 	*/
-	@ApiModelProperty(required = false,value="保险到期" , notes = "保险到期")
+	@ApiModelProperty(required = false,value="商业险到期" , notes = "商业险到期")
 	private Date insuranceExpireDate;
+	
+	/**
+	 * 抢险到期：抢险到期
+	*/
+	@ApiModelProperty(required = false,value="抢险到期" , notes = "抢险到期")
+	private Date rescueDueDate;
 	
 	/**
 	 * 版本：版本
@@ -580,6 +592,25 @@ public class Info extends Entity {
 	}
 	
 	/**
+	 * 获得 车船税<br>
+	 * 车船税
+	 * @return 车船税
+	*/
+	public BigDecimal getCarBoatTax() {
+		return carBoatTax;
+	}
+	
+	/**
+	 * 设置 车船税
+	 * @param carBoatTax 车船税
+	 * @return 当前对象
+	*/
+	public Info setCarBoatTax(BigDecimal carBoatTax) {
+		this.carBoatTax=carBoatTax;
+		return this;
+	}
+	
+	/**
 	 * 获得 抢险(元)<br>
 	 * 抢险(元)
 	 * @return 抢险(元)
@@ -656,21 +687,40 @@ public class Info extends Entity {
 	}
 	
 	/**
-	 * 获得 保险到期<br>
-	 * 保险到期
-	 * @return 保险到期
+	 * 获得 商业险到期<br>
+	 * 商业险到期
+	 * @return 商业险到期
 	*/
 	public Date getInsuranceExpireDate() {
 		return insuranceExpireDate;
 	}
 	
 	/**
-	 * 设置 保险到期
-	 * @param insuranceExpireDate 保险到期
+	 * 设置 商业险到期
+	 * @param insuranceExpireDate 商业险到期
 	 * @return 当前对象
 	*/
 	public Info setInsuranceExpireDate(Date insuranceExpireDate) {
 		this.insuranceExpireDate=insuranceExpireDate;
+		return this;
+	}
+	
+	/**
+	 * 获得 抢险到期<br>
+	 * 抢险到期
+	 * @return 抢险到期
+	*/
+	public Date getRescueDueDate() {
+		return rescueDueDate;
+	}
+	
+	/**
+	 * 设置 抢险到期
+	 * @param rescueDueDate 抢险到期
+	 * @return 当前对象
+	*/
+	public Info setRescueDueDate(Date rescueDueDate) {
+		this.rescueDueDate=rescueDueDate;
 		return this;
 	}
 	

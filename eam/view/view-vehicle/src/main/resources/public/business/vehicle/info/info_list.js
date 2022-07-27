@@ -92,9 +92,12 @@ function ListPage() {
 					,{ field: 'frameNumber', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('车架号') , templet: function (d) { return templet('frameNumber',d.frameNumber,d);}  }
 					,{ field: 'drivingLicense', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('行驶证') , templet: function (d) { return templet('drivingLicense',d.drivingLicense,d);}  }
 					,{ field: 'kilometers', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('公里数') , templet: function (d) { return templet('kilometers',d.kilometers,d);}  }
+					,{ field: 'carBoatTax', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('车船税') , templet: function (d) { return templet('carBoatTax',d.carBoatTax,d);}  }
 					,{ field: 'insuranceCompany', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('保险公司') , templet: function (d) { return templet('insuranceCompany',d.insuranceCompany,d);}  }
 					,{ field: 'licensingTime', align:"right", fixed:false, hide:true, sort: true   ,title: fox.translate('上牌时间') ,templet: function (d) { return templet('licensingTime',fox.dateFormat(d.licensingTime,"yyyy-MM-dd"),d); }  }
-					,{ field: 'insuranceExpireDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('保险到期') ,templet: function (d) { return templet('insuranceExpireDate',fox.dateFormat(d.insuranceExpireDate,"yyyy-MM-dd"),d); }  }
+				 	,{ field: 'insuranceExpireDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('商业险到期') ,templet: function (d) { return templet('insuranceExpireDate',fox.dateFormat(d.insuranceExpireDate,"yyyy-MM-dd"),d); }  }
+					,{ field: 'rescueDueDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('抢险到期') ,templet: function (d) { return templet('rescueDueDate',fox.dateFormat(d.rescueDueDate,"yyyy-MM-dd"),d); }  }
+
 					,{ field: 'scrapTime', align:"right", fixed:false, hide:true, sort: true   ,title: fox.translate('报废时间') ,templet: function (d) { return templet('scrapTime',fox.dateFormat(d.scrapTime,"yyyy-MM-dd"),d); }  }
 					,{ field: 'positionDetail', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('存放位置') , templet: function (d) { return templet('positionDetail',d.positionDetail,d);}  }
 				//	,{ field: 'technicalParameter', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('技术参数') , templet: function (d) { return templet('technicalParameter',d.technicalParameter,d);}  }

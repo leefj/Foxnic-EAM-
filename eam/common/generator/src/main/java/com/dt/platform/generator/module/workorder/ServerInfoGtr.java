@@ -87,12 +87,13 @@ public class ServerInfoGtr extends BaseCodeGenerator {
                         WorkorderTables.WO_SERVER_INFO.OS_VERSION,
                         WorkorderTables.WO_SERVER_INFO.CPU,
                         WorkorderTables.WO_SERVER_INFO.MEMORY,
+                        WorkorderTables.WO_SERVER_INFO.SPACE_SIZE,
+
                 },
                 new Object[] {
                         WorkorderTables.WO_SERVER_INFO.MIDDLEWARE_VERSION,
-                        WorkorderTables.WO_SERVER_INFO.SPACE_SIZE,
+                        WorkorderTables.WO_SERVER_INFO.DATABASE_VERSION,
                         WorkorderTables.WO_SERVER_INFO.SERVER_NUMBER
-
                 }
         );
         cfg.view().form().addGroup(null,

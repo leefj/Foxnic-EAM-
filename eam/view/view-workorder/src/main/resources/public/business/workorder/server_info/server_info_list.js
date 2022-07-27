@@ -1,7 +1,7 @@
 /**
  * 服务器资源 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-14 07:39:59
+ * @since 2022-07-22 06:38:46
  */
 
 
@@ -78,8 +78,8 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'serverType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('服务器类型'), templet:function (d){ return templet('serverType',fox.getEnumText(RADIO_SERVERTYPE_DATA,d.serverType),d);}}
-					,{ field: 'osVersion', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('系统版本'), templet: function (d) { return templet('osVersion' ,fox.joinLabel(d.serverOsType,"name"),d);}}
+					,{ field: 'serverType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('服务器类型'), templet:function (d){ return templet('serverType',fox.getEnumText(RADIO_SERVERTYPE_DATA,d.serverType,'','serverType'),d);}}
+					,{ field: 'osVersion', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('系统版本'), templet: function (d) { return templet('osVersion' ,fox.joinLabel(d.serverOsType,"name",',','','osVersion'),d);}}
 					,{ field: 'ip', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('IP地址') , templet: function (d) { return templet('ip',d.ip,d);}  }
 					,{ field: 'databaseVersion', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('数据库') , templet: function (d) { return templet('databaseVersion',d.databaseVersion,d);}  }
 					,{ field: 'middlewareVersion', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('中间件') , templet: function (d) { return templet('middlewareVersion',d.middlewareVersion,d);}  }
@@ -294,7 +294,8 @@ function ListPage() {
             }
             //调用批量删除接口
 			top.layer.confirm(fox.translate('确定删除已选中的')+fox.translate('服务器资源')+fox.translate('吗？'), function (i) {
-                admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
+                top.layer.close(i);
+				admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
                     if (data.success) {
 						if(window.pageExt.list.afterBatchDelete) {
 							var doNext=window.pageExt.list.afterBatchDelete(data);
@@ -305,7 +306,7 @@ function ListPage() {
                     } else {
 						fox.showMessage(data);
                     }
-                });
+                },{delayLoading:200,elms:[$("#delete-button")]});
 			});
         }
 	}
@@ -353,9 +354,7 @@ function ListPage() {
 
 				top.layer.confirm(fox.translate('确定删除此')+fox.translate('服务器资源')+fox.translate('吗？'), function (i) {
 					top.layer.close(i);
-
-					top.layer.load(2);
-					admin.request(moduleURL+"/delete", { id : data.id }, function (data) {
+					admin.post(moduleURL+"/delete", { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
 						if (data.success) {
 							if(window.pageExt.list.afterSingleDelete) {
@@ -367,7 +366,7 @@ function ListPage() {
 						} else {
 							fox.showMessage(data);
 						}
-					});
+					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
 			}
 			

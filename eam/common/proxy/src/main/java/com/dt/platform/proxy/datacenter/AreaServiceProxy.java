@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import com.dt.platform.domain.datacenter.Area;
 import com.dt.platform.domain.datacenter.AreaVO;
@@ -17,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 区域  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-07 21:38:48
+ * @since 2022-07-22 21:40:43
  */
 @FeignClient(value = ServiceNames.DATACENTER, contextId = AreaServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AreaServiceProxy {
@@ -81,21 +83,6 @@ public interface AreaServiceProxy {
      * 分页查询区域
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
-
-    /**
-     * 导出区域数据(Excel)
-     */
-    public static final String EXPORT_EXCEL = API_PREFIX + "export-excel";
-
-    /**
-     * 下载区域导入模版(Excel)
-     */
-    public static final String EXPORT_EXCEL_TEMPLATE = API_PREFIX + "export-excel-template";
-
-    /**
-     * 导入区域数据(Excel)
-     */
-    public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
 
     /**
      * 添加区域

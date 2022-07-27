@@ -6,6 +6,7 @@ import com.dt.platform.constants.db.EAMTables;
 
 import com.dt.platform.constants.enums.datacenter.AreaTypeEnum;
 import com.dt.platform.datacenter.page.AreaPageController;
+import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.datacenter.AreaServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.constants.enums.DictEnum;
@@ -31,9 +32,15 @@ public class DcAreaGtr extends BaseCodeGenerator {
 
 
         cfg.view().field(DataCenterTables.DC_AREA.TYPE).basic().label("类型")
-              .form().validate().required().form().radioBox().enumType(AreaTypeEnum.class);
+              .form().validate().required().form().radioBox().enumType(AreaTypeEnum.class).defaultIndex(0);
 
         cfg.view().field(DataCenterTables.DC_AREA.NAME).form().validate().required();
+
+        cfg.view().field(DataCenterTables.DC_AREA.NOTES).form().textArea().height(Config.textAreaHeight);
+        cfg.view().field(DataCenterTables.DC_AREA.POSITION).form().textArea().height(Config.textAreaHeight);
+
+        cfg.view().formWindow().width(Config.baseFormWidth);
+        cfg.view().formWindow().bottomSpace(80);
 
         //文件生成覆盖模式
         cfg.overrides()

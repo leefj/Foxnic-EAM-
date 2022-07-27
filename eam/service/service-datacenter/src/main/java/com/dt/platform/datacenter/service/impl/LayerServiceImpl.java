@@ -1,9 +1,11 @@
 package com.dt.platform.datacenter.service.impl;
 
-
 import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.github.foxnic.commons.collection.MapUtil;
+import java.util.Arrays;
 
 
 import com.dt.platform.domain.datacenter.Layer;
@@ -36,7 +38,7 @@ import java.util.Map;
  * 层级 服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-07 21:49:53
+ * @since 2022-07-22 21:41:05
 */
 
 
@@ -46,7 +48,7 @@ public class LayerServiceImpl extends SuperService<Layer> implements ILayerServi
 	/**
 	 * 注入DAO对象
 	 * */
-	@Resource(name=DBConfigs.PRIMARY_DAO)
+	@Resource(name=DBConfigs.PRIMARY_DAO) 
 	private DAO dao=null;
 
 	/**
@@ -94,7 +96,7 @@ public class LayerServiceImpl extends SuperService<Layer> implements ILayerServi
 		return super.insertList(layerList);
 	}
 
-
+	
 	/**
 	 * 按主键删除 层级
 	 *
@@ -115,7 +117,7 @@ public class LayerServiceImpl extends SuperService<Layer> implements ILayerServi
 			return r;
 		}
 	}
-
+	
 	/**
 	 * 按主键删除 层级
 	 *
@@ -126,7 +128,7 @@ public class LayerServiceImpl extends SuperService<Layer> implements ILayerServi
 		Layer layer = new Layer();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		layer.setId(id);
-		layer.setDeleted(dao.getDBTreaty().getTrueValue());
+		layer.setDeleted(true);
 		layer.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		layer.setDeleteTime(new Date());
 		try {
@@ -175,7 +177,7 @@ public class LayerServiceImpl extends SuperService<Layer> implements ILayerServi
 		return super.updateList(layerList , mode);
 	}
 
-
+	
 	/**
 	 * 按主键更新字段 层级
 	 *
@@ -189,7 +191,7 @@ public class LayerServiceImpl extends SuperService<Layer> implements ILayerServi
 		return suc>0;
 	}
 
-
+	
 	/**
 	 * 按主键获取 层级
 	 *
@@ -203,9 +205,22 @@ public class LayerServiceImpl extends SuperService<Layer> implements ILayerServi
 		return dao.queryEntity(sample);
 	}
 
+	/**
+	 * 等价于 queryListByIds
+	 * */
 	@Override
 	public List<Layer> getByIds(List<String> ids) {
+		return this.queryListByIds(ids);
+	}
+
+	@Override
+	public List<Layer> queryListByIds(List<String> ids) {
 		return super.queryListByUKeys("id",ids);
+	}
+
+	@Override
+	public Map<String, Layer> queryMapByIds(List<String> ids) {
+		return super.queryMapByUKeys("id",ids, Layer::getId);
 	}
 
 
@@ -217,7 +232,7 @@ public class LayerServiceImpl extends SuperService<Layer> implements ILayerServi
 	 * @return 查询结果
 	 * */
 	@Override
-	public List<Layer> queryList(Layer sample) {
+	public List<Layer> queryList(LayerVO sample) {
 		return super.queryList(sample);
 	}
 
@@ -231,7 +246,7 @@ public class LayerServiceImpl extends SuperService<Layer> implements ILayerServi
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<Layer> queryPagedList(Layer sample, int pageSize, int pageIndex) {
+	public PagedList<Layer> queryPagedList(LayerVO sample, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, pageSize, pageIndex);
 	}
 
@@ -262,25 +277,33 @@ public class LayerServiceImpl extends SuperService<Layer> implements ILayerServi
 		return false;
 	}
 
+
+	/**
+	 * 检查引用
+	 * @param id  检查ID是否又被外部表引用
+	 * */
 	@Override
-	public ExcelWriter exportExcel(Layer sample) {
-		return super.exportExcel(sample);
+	public Boolean hasRefers(String id) {
+		Map<String, Boolean> map=this.hasRefers(Arrays.asList(id));
+		Boolean ex=map.get(id);
+		if(ex==null) return false;
+		return ex;
 	}
 
+	/**
+	 * 批量检查引用
+	 * @param ids  检查这些ID是否又被外部表引用
+	 * */
 	@Override
-	public ExcelWriter exportExcelTemplate() {
-		return super.exportExcelTemplate();
+	public Map<String, Boolean> hasRefers(List<String> ids) {
+		// 默认无业务逻辑，返回此行；有业务逻辑需要校验时，请修改并使用已注释的行代码！！！
+		return MapUtil.asMap(ids,false);
+		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
 	}
 
-	@Override
-	public List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch) {
-		return super.importExcel(input,sheetIndex,batch);
-	}
 
-	@Override
-	public ExcelStructure buildExcelStructure(boolean isForExport) {
-		return super.buildExcelStructure(isForExport);
-	}
+
+
 
 
 }
