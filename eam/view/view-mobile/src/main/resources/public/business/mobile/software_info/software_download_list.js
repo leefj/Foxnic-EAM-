@@ -42,14 +42,25 @@ function ListPage() {
 							var soft=list[i];
 							if(soft.status=="enable"){
 								//http://127.0.0.1:8089/service-storage/sys-file/download?id=593457868280172544&inline=0
+
+								// <div className="box">
+								// 	<div className="boxItem">
+								// 		<div className="boxPng">
+								// 			<image className="boxPngValue"
+								// 				   src="/assets/libs/image/employee_dashboard/zcly.png" alt=""/>
+								// 		</div>
+								// 		<div className="boxLabel">
+								// 			苹果移动端下载
+								// 		</div>
+								// 	</div>
+								// </div>
 								html= html+"    <div class=\"box\">\n" +
 									"                            <div class=\"boxItem\">\n" +
 									"                                <div class=\"boxPng\">\n" +
 									"                                    <image class=\"boxPngValue\" src=\"/assets/libs/image/employee_dashboard/zcly.png\" alt=\"\" />\n" +
 									"                                </div>\n" +
 									"                                <div class=\"boxLabel\">\n" +
-									"<a href=\"/service-storage/sys-file/download?id="+soft.fileId+"&inline=0\"> "+soft.name+"下载</a>"
-									// "                                    "+soft.name+"\n" +
+									 "<a href=\"/service-storage/sys-file/download?id="+soft.fileId+"&inline=0\"> "+soft.name+"下载</a>"+
 									"                                </div>\n" +
 									"                            </div>\n" +
 									"                        </div>"

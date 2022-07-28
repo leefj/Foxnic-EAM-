@@ -191,6 +191,7 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 		}
 
 		//每月的折旧价=(采购价格-采购价格*残值率 )/12/5年限
+		//serviceLifeYear=serviceLife/12  月份/12
 		//monthDepreciationPrice= (purchaseUnitPrice-purchaseUnitPrice*residualRate/100)/12/serviceLifeYear
 		BigDecimal serviceLifeYear=serviceLife.divide(new BigDecimal("12.0"),2,BigDecimal.ROUND_HALF_DOWN).setScale(0,BigDecimal.ROUND_UP);
 		BigDecimal residualPrice= (purchaseUnitPrice.multiply(residualRate)).divide(new BigDecimal("100.0"));
