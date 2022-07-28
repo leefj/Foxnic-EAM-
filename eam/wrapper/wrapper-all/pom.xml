@@ -178,6 +178,24 @@
 			<version>${platform.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.github.foxnic.web</groupId>
+			<artifactId>view-dataperm</artifactId>
+			<version>${foxnic-web.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.foxnic.web</groupId>
+			<artifactId>view-pcm</artifactId>
+			<version>${foxnic-web.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.foxnic.web</groupId>
+			<artifactId>view-changes</artifactId>
+			<version>${foxnic-web.version}</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>com.dt.platform</groupId>
