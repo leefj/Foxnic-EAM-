@@ -90,6 +90,7 @@ function ListPage() {
 				if(ATTRIBUTE_LIST_DATA[i].attribute&&ATTRIBUTE_LIST_DATA[i].attribute.code){
 					var code=ATTRIBUTE_LIST_DATA[i].attribute.code;
 					var e=COL_ALL_DATA[code];
+					e.title=ATTRIBUTE_LIST_DATA[i].attribute.label;
 					COL_DATA.push(e);
 				}
 			}

@@ -71,7 +71,11 @@ function ListPage() {
             var COL_ALL_DATA= assetListColumn.getColumnList(templet);
             var COL_DATA=[{ fixed: 'left',type: 'numbers' }]
             for(var i=0;i<ATTRIBUTE_LIST_DATA.length;i++){
-                COL_DATA.push(COL_ALL_DATA[ATTRIBUTE_LIST_DATA[i].attribute.code])
+                if(ATTRIBUTE_LIST_DATA[i].attribute&&ATTRIBUTE_LIST_DATA[i].attribute.code){
+                    var e=COL_ALL_DATA[ATTRIBUTE_LIST_DATA[i].attribute.code];
+                    e.title=ATTRIBUTE_LIST_DATA[i].attribute.label;
+                    COL_DATA.push(e)
+                }
             }
             dataTable=fox.renderTable({
                 elem: '#data-table',

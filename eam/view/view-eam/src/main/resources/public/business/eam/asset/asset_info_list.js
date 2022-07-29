@@ -86,9 +86,11 @@ function ListPage() {
 				{ fixed: 'left',type:'checkbox' }
 			]
 			for(var i=0;i<ATTRIBUTE_LIST_DATA.length;i++){
-				//console.log(ATTRIBUTE_LIST_DATA[i]);
-				if(ATTRIBUTE_LIST_DATA[i].attribute&&ATTRIBUTE_LIST_DATA[i].attribute.code)
-					COL_DATA.push(COL_ALL_DATA[ATTRIBUTE_LIST_DATA[i].attribute.code])
+				if(ATTRIBUTE_LIST_DATA[i].attribute&&ATTRIBUTE_LIST_DATA[i].attribute.code){
+					var e=COL_ALL_DATA[ATTRIBUTE_LIST_DATA[i].attribute.code];
+					e.title=ATTRIBUTE_LIST_DATA[i].attribute.label;
+					COL_DATA.push(e)
+				}
 			}
 			if(APPROVAL_REQUIRED){
 				COL_DATA.push(COL_ALL_DATA["approval_opinion"]);
