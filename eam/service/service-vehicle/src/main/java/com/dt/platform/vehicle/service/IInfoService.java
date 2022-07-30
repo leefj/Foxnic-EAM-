@@ -300,11 +300,12 @@ public interface IInfoService extends ISuperService<Info> {
 	 * */
 	ExcelWriter exportExcel(Info sample);
 
+	HashMap<String,String> queryOrganizationNodes(String type);
+
 	/**
 	 * 导出用于数据导入的 Excel 模版
 	 * */
 	ExcelWriter  exportExcelTemplate();
-
 
 	InputStream buildExcelTemplate(String code);
 
@@ -317,15 +318,14 @@ public interface IInfoService extends ISuperService<Info> {
 
 	ExcelStructure buildExcelStructure(InputStream inputStream,String code);
 
-	HashMap<String,String>  queryOrganizationNodes(String type);
 	/**
 	 * 导入 Excel 数据
 	 * @return  错误信息，成功时返回 null
 	 * */
 	List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch,String code,String selectedCode);
 
-	File saveTempFile(InputStream is, String fileName);
-
 	Map<String, Object> queryVehicleInfoMap(Info sample);
+
+	File saveTempFile(InputStream is, String fileName);
 
 }

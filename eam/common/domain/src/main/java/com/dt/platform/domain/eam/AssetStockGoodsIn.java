@@ -8,12 +8,14 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
+import javax.persistence.Transient;
 import java.util.List;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.hrm.Employee;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
-import javax.persistence.Transient;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 
@@ -22,8 +24,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 库存物品单
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-24 15:04:46
- * @sign A20A2FBD9A7F33863B959EE6721ECD20
+ * @since 2022-07-29 20:21:40
+ * @sign 3DDDC8BFB4C58030F676FF7A5D955C21
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -132,9 +134,9 @@ public class AssetStockGoodsIn extends Entity {
 	private Date purchaseDate;
 	
 	/**
-	 * 业务时间：业务时间
+	 * 业务日期：业务日期
 	*/
-	@ApiModelProperty(required = false,value="业务时间" , notes = "业务时间")
+	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期")
 	private Date businessDate;
 	
 	/**
@@ -184,6 +186,8 @@ public class AssetStockGoodsIn extends Entity {
 	*/
 	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
+	@Transient
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -634,17 +638,17 @@ public class AssetStockGoodsIn extends Entity {
 	}
 	
 	/**
-	 * 获得 业务时间<br>
-	 * 业务时间
-	 * @return 业务时间
+	 * 获得 业务日期<br>
+	 * 业务日期
+	 * @return 业务日期
 	*/
 	public Date getBusinessDate() {
 		return businessDate;
 	}
 	
 	/**
-	 * 设置 业务时间
-	 * @param businessDate 业务时间
+	 * 设置 业务日期
+	 * @param businessDate 业务日期
 	 * @return 当前对象
 	*/
 	public AssetStockGoodsIn setBusinessDate(Date businessDate) {
@@ -795,12 +799,42 @@ public class AssetStockGoodsIn extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
 	public AssetStockGoodsIn setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public AssetStockGoodsIn setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -1113,9 +1147,9 @@ public class AssetStockGoodsIn extends Entity {
 	 * @param goods 物品
 	 * @return 当前对象
 	*/
-	public AssetStockGoodsIn addGoods(GoodsStock goods) {
+	public AssetStockGoodsIn addGoods(GoodsStock... goods) {
 		if(this.goodsList==null) goodsList=new ArrayList<>();
-		this.goodsList.add(goods);
+		this.goodsList.addAll(Arrays.asList(goods));
 		return this;
 	}
 	
@@ -1143,9 +1177,9 @@ public class AssetStockGoodsIn extends Entity {
 	 * @param goodsId 物品
 	 * @return 当前对象
 	*/
-	public AssetStockGoodsIn addGoodsId(String goodsId) {
+	public AssetStockGoodsIn addGoodsId(String... goodsId) {
 		if(this.goodsIds==null) goodsIds=new ArrayList<>();
-		this.goodsIds.add(goodsId);
+		this.goodsIds.addAll(Arrays.asList(goodsId));
 		return this;
 	}
 	

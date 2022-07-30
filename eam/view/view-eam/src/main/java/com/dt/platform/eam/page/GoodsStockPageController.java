@@ -213,9 +213,10 @@ public class GoodsStockPageController extends ViewController {
 	@RequestMapping("/goods_stock_select_list.html")
 	public String selectList(Model model,HttpServletRequest request,String ownerTmpId,String operType,String pageType,String ownerType,String selectedCode) {
 
+
 		PageHelper p=new PageHelper(request, SessionUser.getCurrent());
-		String tableId="dt"+operType;
-		model.addAttribute("layuiTableWidthConfig2",p.getTableColumnWidthConfig(tableId));
+		String tableId="dt_"+operType;
+		model.addAttribute("layuiTableWidthConfig",p.getTableColumnWidthConfig(tableId));
 		model.addAttribute("tableId",tableId);
 		model.addAttribute("ownerCode",getOwnerCodeByOperType(operType,ownerType,PAGE_ACTION_SELECT));
 		model.addAttribute("ownerTmpId",ownerTmpId);

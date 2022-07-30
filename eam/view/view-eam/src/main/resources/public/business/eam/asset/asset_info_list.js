@@ -546,21 +546,21 @@ function ListPage() {
 				case 'printMore':
 					//更多下拉菜单
 					menuSelect=selected;
+					var exportArr=[];
+					if(admin.checkAuth("eam_asset:label")){
+						exportArr.push({"code":"labelDown","id":"3","title":"下载资产标签"});
+					}
+					if(admin.checkAuth("eam_asset:card")){
+						exportArr.push({"code":"card","id":"1","title":"打印资产卡片"});
+					}
+					if(admin.checkAuth("eam_asset:print-pdf")){
+						exportArr.push({"code":"labelCard","id":"2","title":"打印资产标签"});
+					}
 					dropdown.render({
 						elem: this
 						,show: true //外部事件触发即显示
-						,data: [
-							{"code":"card","id":"1","title":"打印资产卡片"},
-							{"code":"labelCard","id":"2","title":"打印资产标签"},
-							{"code":"labelDown","id":"3","title":"下载资产标签"}
-						]
+						,data: exportArr
 						,click: function(menu, othis){
-							// console.log("selected",selected);
-							// console.log(menu,othis);
-							// if(menu.perm && !admin.checkAuth(menu.perm)) {
-							// 	top.layer.msg(fox.translate('缺少操作权限'), {icon: 2, time: 1500});
-							// 	return;
-							// }
 							window.pageExt.list.moreAction && window.pageExt.list.moreAction(menu,menuSelect, othis);
 						}
 						,align: 'right'
@@ -570,21 +570,19 @@ function ListPage() {
 				case 'exportMore':
 					menuSelect=selected;
 					var exportArr=[];
-					if(BATCH_INSERT_BTN){
+					if(admin.checkAuth("eam_asset:eam_asset:import")){
 						exportArr.push({"code":"batchInsert","id":"1","title":"资产批量入库"});
 					}
-					exportArr.push({"code":"highExportData","id":"2","title":"资产数据导出"});
-					exportArr.push({"code":"downloadAssetTpl","id":"3","title":"下载导入模版"});
+
+					if(admin.checkAuth("eam_asset:high-export-data")){
+						exportArr.push({"code":"highExportData","id":"2","title":"资产数据导出"});
+					}
+					// exportArr.push({"code":"downloadAssetTpl","id":"3","title":"下载导入模版"});
 					dropdown.render({
 						elem: this
 						,show: true //外部事件触发即显示
 						,data: exportArr
 						,click: function(menu, othis){
-
-							// if(menu.perm && !admin.checkAuth(menu.perm)) {
-							// 	top.layer.msg(fox.translate('缺少操作权限'), {icon: 2, time: 1500});
-							// 	return;
-							// }
 							window.pageExt.list.moreAction && window.pageExt.list.moreAction(menu,menuSelect, othis);
 						}
 						,align: 'right'

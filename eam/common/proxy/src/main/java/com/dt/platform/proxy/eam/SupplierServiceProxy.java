@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import com.dt.platform.domain.eam.Supplier;
 import com.dt.platform.domain.eam.SupplierVO;
@@ -17,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 供应商  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-12 06:32:56
+ * @since 2022-07-30 08:31:34
  */
 @FeignClient(value = ServiceNames.EAM, contextId = SupplierServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface SupplierServiceProxy {
@@ -81,21 +83,6 @@ public interface SupplierServiceProxy {
      * 分页查询供应商
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
-
-    /**
-     * 导出供应商数据(Excel)
-     */
-    public static final String EXPORT_EXCEL = API_PREFIX + "export-excel";
-
-    /**
-     * 下载供应商导入模版(Excel)
-     */
-    public static final String EXPORT_EXCEL_TEMPLATE = API_PREFIX + "export-excel-template";
-
-    /**
-     * 导入供应商数据(Excel)
-     */
-    public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
 
     /**
      * 添加供应商

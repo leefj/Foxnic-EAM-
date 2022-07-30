@@ -31,8 +31,6 @@ public class StockEamGoodsStock_bill_Gtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(Brand.class,"brand","品牌","品牌");
         cfg.getPoClassFile().addSimpleProperty(GoodsStock.class,"goods","物品","物品");
         cfg.getPoClassFile().addSimpleProperty(GoodsStock.class,"realGoods","库存数据","库存数据");
-
-
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"ownerCompany","所属公司","所属公司");
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"useOrganization","使用公司/部门","使用公司/部门");
         cfg.getPoClassFile().addSimpleProperty(Warehouse.class,"warehouse","仓库","仓库");
@@ -45,7 +43,6 @@ public class StockEamGoodsStock_bill_Gtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsUnit","计算单位","计算单位");
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsCode","物品编码","物品编码");
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsBarCode","物品条码","物品条码");
-
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsStockMax","物品条码","物品条码");
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsStockMin","物品条码","物品条码");
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsStockSecurity","物品条码","物品条码");
@@ -143,8 +140,8 @@ public class StockEamGoodsStock_bill_Gtr extends BaseCodeGenerator {
 
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);
-        cfg.view().search().labelWidth(3,Config.searchLabelWidth+30);
-        cfg.view().search().labelWidth(4,Config.searchLabelWidth+30);
+        cfg.view().search().labelWidth(3,Config.searchLabelWidth);
+        cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
 

@@ -107,8 +107,19 @@ public class EamRelationManager extends RelationManager {
         this.setupEmployeeRepair();
         this.setupEmployeeLoss();
         this.setupEmployeeHandover();
+
+        this.setupSupplier();
     }
 
+    public void setupSupplier() {
+
+
+        this.property(SupplierMeta.GRADE_DICT_PROP)
+                .using(EAMTables.EAM_SUPPLIER.GRADE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='eam_supplier_grade'");
+
+
+    }
 
     public void setupEmployeeApply() {
         this.property(AssetEmployeeApplyMeta.ORIGINATOR_PROP)

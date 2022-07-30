@@ -1,7 +1,7 @@
 /**
  * 供应商 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-12 06:32:57
+ * @since 2022-07-30 08:31:35
  */
 
 
@@ -44,7 +44,9 @@ function ListPage() {
 			fox.adjustSearchElement();
 		});
 		fox.adjustSearchElement();
-		$("#table-area").css("margin-top",$(".search-bar").height()+"px");
+		//
+		 var marginTop=$(".search-bar").height()+$(".search-bar").css("padding-top")+$(".search-bar").css("padding-bottom")
+		 $("#table-area").css("margin-top",marginTop+"px");
 		//
 		function renderTableInternal() {
 
@@ -76,8 +78,10 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
+					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编码') , templet: function (d) { return templet('code',d.code,d);}  }
 					,{ field: 'supplierName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('supplierName',d.supplierName,d);}  }
 					,{ field: 'businessContacts', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('商务联系人') , templet: function (d) { return templet('businessContacts',d.businessContacts,d);}  }
+					,{ field: 'grade', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('评级'), templet: function (d) { return templet('grade' ,fox.joinLabel(d.gradeDict,"label",',','','grade'),d);}}
 					,{ field: 'businessContactsInfo', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('商务联系方式') , templet: function (d) { return templet('businessContactsInfo',d.businessContactsInfo,d);}  }
 					,{ field: 'afterSalesContacts', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('售后联系人') , templet: function (d) { return templet('afterSalesContacts',d.afterSalesContacts,d);}  }
 					,{ field: 'afterSalesContactsInfo', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('售后联系方式') , templet: function (d) { return templet('afterSalesContactsInfo',d.afterSalesContactsInfo,d);}  }
@@ -90,19 +94,8 @@ function ListPage() {
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
-					exportExcel : admin.checkAuth(AUTH_PREFIX+":export"),
-					importExcel : admin.checkAuth(AUTH_PREFIX+":import")?{
-						params : {} ,
-						callback : function(r) {
-							if(r.success) {
-								layer.msg(fox.translate('数据导入成功')+"!");
-							} else {
-								layer.msg(fox.translate('数据导入失败')+"!");
-							}
-							// 是否执行后续逻辑：错误提示
-							return false;
-						}
-					}:false
+					exportExcel : false ,
+					importExcel : false 
 				}
 			};
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
@@ -144,7 +137,9 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
+		value.code={ inputType:"button",value: $("#code").val()};
 		value.supplierName={ inputType:"button",value: $("#supplierName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.grade={ inputType:"select_box", value: getSelectedValue("#grade","value") ,fillBy:["gradeDict"]  , label:getSelectedValue("#grade","nameStr") };
 		value.unitCode={ inputType:"button",value: $("#unitCode").val()};
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
@@ -193,6 +188,29 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
+		//渲染 grade 下拉字段
+		fox.renderSelectBox({
+			el: "grade",
+			radio: true,
+			size: "small",
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("grade",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].label,value:data[i].code});
+				}
+				return opts;
+			}
+		});
 		fox.renderSearchInputs();
 		window.pageExt.list.afterSearchInputReady && window.pageExt.list.afterSearchInputReady();
 	}
@@ -240,6 +258,7 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
+					admin.putTempData('eam-supplier-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
@@ -277,7 +296,8 @@ function ListPage() {
             }
             //调用批量删除接口
 			top.layer.confirm(fox.translate('确定删除已选中的')+fox.translate('供应商')+fox.translate('吗？'), function (i) {
-                admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
+                top.layer.close(i);
+				admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
                     if (data.success) {
 						if(window.pageExt.list.afterBatchDelete) {
 							var doNext=window.pageExt.list.afterBatchDelete(data);
@@ -288,7 +308,7 @@ function ListPage() {
                     } else {
 						fox.showMessage(data);
                     }
-                });
+                },{delayLoading:200,elms:[$("#delete-button")]});
 			});
         }
 	}
@@ -333,11 +353,10 @@ function ListPage() {
 					var doNext=window.pageExt.list.beforeSingleDelete(data);
 					if(!doNext) return;
 				}
+
 				top.layer.confirm(fox.translate('确定删除此')+fox.translate('供应商')+fox.translate('吗？'), function (i) {
 					top.layer.close(i);
-
-					top.layer.load(2);
-					admin.request(moduleURL+"/delete", { id : data.id }, function (data) {
+					admin.post(moduleURL+"/delete", { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
 						if (data.success) {
 							if(window.pageExt.list.afterSingleDelete) {
@@ -349,7 +368,7 @@ function ListPage() {
 						} else {
 							fox.showMessage(data);
 						}
-					});
+					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
 			}
 			
@@ -402,7 +421,8 @@ function ListPage() {
 	window.module={
 		refreshTableData: refreshTableData,
 		refreshRowData: refreshRowData,
-		getCheckedList: getCheckedList
+		getCheckedList: getCheckedList,
+		showEditForm: showEditForm
 	};
 
 	window.pageExt.list.ending && window.pageExt.list.ending();

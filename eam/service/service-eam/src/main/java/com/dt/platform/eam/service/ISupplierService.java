@@ -1,5 +1,6 @@
 package com.dt.platform.eam.service;
 
+import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
@@ -22,10 +23,11 @@ import java.util.Map;
  * 供应商 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-12 06:32:56
+ * @since 2022-07-30 08:31:34
 */
 
-public interface ISupplierService extends ISuperService<Supplier> {
+public interface ISupplierService extends  ISimpleIdService<Supplier,String> {
+
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
@@ -162,6 +164,18 @@ public interface ISupplierService extends ISuperService<Supplier> {
 	Supplier getById(String id);
 
 	/**
+	 * 检查引用
+	 * @param id  检查ID是否又被外部表引用
+	 * */
+	Boolean hasRefers(String id);
+
+	/**
+	 * 批量检查引用
+	 * @param ids  检查这些ID是否又被外部表引用
+	 * */
+	Map<String,Boolean> hasRefers(List<String> ids);
+
+	/**
 	 * 按 id 获取多个对象
 	 * @param ids  主键清单
 	 * @return 实体集
@@ -204,7 +218,7 @@ public interface ISupplierService extends ISuperService<Supplier> {
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
-	List<Supplier> queryList(Supplier sample);
+	List<Supplier> queryList(SupplierVO sample);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -245,7 +259,7 @@ public interface ISupplierService extends ISuperService<Supplier> {
 	 * @param pageIndex 页码
 	 * @return 查询结果
 	 * */
-	PagedList<Supplier> queryPagedList(Supplier sample,int pageSize,int pageIndex);
+	PagedList<Supplier> queryPagedList(SupplierVO sample,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -299,28 +313,8 @@ public interface ISupplierService extends ISuperService<Supplier> {
 	 * */
 	<T> List<T> queryValues(DBField field, Class<T> type, String condition,Object... ps);
 
-	/**
-	 * 导出 Excel
-	 * */
-	ExcelWriter exportExcel(Supplier sample);
 
-	/**
-	 * 导出用于数据导入的 Excel 模版
-	 * */
-	ExcelWriter  exportExcelTemplate();
 
-	/**
-	 * 构建 Excel 结构
-	 * @param  isForExport 是否用于数据导出
-	 * @return   ExcelStructure
-	 * */
-	ExcelStructure buildExcelStructure(boolean isForExport);
-
-	/**
-	 * 导入 Excel 数据
-	 * @return  错误信息，成功时返回 null
-	 * */
-	List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch);
 
 
 }

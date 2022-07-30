@@ -2,7 +2,7 @@
 /**
  * 供应商 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-12 06:32:58
+ * @since 2022-07-30 08:31:36
  */
  -->
  <!DOCTYPE html>
@@ -38,7 +38,7 @@
 
 
 
-        <div class="layui-row form-row" id="random-4164-content">
+        <div class="layui-row form-row" id="random-7854-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -48,6 +48,13 @@
                         <div class="layui-form-label "><div th:text="${lang.translate('名称')}">名称</div><div class="layui-required">*</div></div>
                         <div class="layui-input-block ">
                             <input lay-filter="supplierName" id="supplierName" name="supplierName" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('名称') }" type="text" class="layui-input"    lay-verify="|required"  />
+                        </div>
+                    </div>
+
+                                    <div class="layui-form-item" >
+                        <div class="layui-form-label "><div th:text="${lang.translate('编码')}">编码</div></div>
+                        <div class="layui-input-block ">
+                            <input lay-filter="code" id="code" name="code" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('编码') }" type="text" class="layui-input"  />
                         </div>
                     </div>
 
@@ -64,7 +71,16 @@
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs4 form-column" >
 
+
                     <div class="layui-form-item" >
+                        <div class="layui-form-label "><div th:text="${lang.translate('评级')}">评级</div><div class="layui-required">*</div></div>
+                        <div class="layui-input-block ">
+                            <div id="grade" input-type="select" th:data="${'/service-system/sys-dict-item/query-list?dictCode=eam_supplier_grade'}" extraParam="{}"></div>
+                        </div>
+                    </div>
+
+
+                                    <div class="layui-form-item" >
                         <div class="layui-form-label "><div th:text="${lang.translate('商务联系人')}">商务联系人</div></div>
                         <div class="layui-input-block ">
                             <input lay-filter="businessContacts" id="businessContacts" name="businessContacts" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('商务联系人') }" type="text" class="layui-input"  />
@@ -106,7 +122,7 @@
 
 
 
-        <div class="layui-row form-row" id="random-8463-content">
+        <div class="layui-row form-row" id="random-3260-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -153,10 +169,9 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
-
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
-    var VALIDATE_CONFIG={"supplierName":{"labelInForm":"名称","inputType":"text_input","required":true}};
+    var VALIDATE_CONFIG={"supplierName":{"labelInForm":"名称","inputType":"text_input","required":true},"grade":{"labelInForm":"评级","inputType":"select_box","required":true}};
     var AUTH_PREFIX="eam_supplier";
 
 

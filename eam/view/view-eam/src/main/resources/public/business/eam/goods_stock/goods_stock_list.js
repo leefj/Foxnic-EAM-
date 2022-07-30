@@ -1,7 +1,7 @@
 /**
  * 库存物品 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-03 12:20:57
+ * @since 2022-07-30 08:42:46
  */
 
 
@@ -45,6 +45,9 @@ function ListPage() {
 		});
 		fox.adjustSearchElement();
 		//
+		 var marginTop=$(".search-bar").height()+$(".search-bar").css("padding-top")+$(".search-bar").css("padding-bottom")
+		 $("#table-area").css("margin-top",marginTop+"px");
+		//
 		function renderTableInternal() {
 
 			var ps={searchField: "$composite"};
@@ -75,14 +78,14 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'goodsStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('goodsStatus',fox.getEnumText(SELECT_GOODSSTATUS_DATA,d.goodsStatus),d);}}
-					,{ field: 'categoryId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('分类'), templet: function (d) { return templet('categoryId' ,fox.joinLabel(d.category,"name"),d);}}
+					,{ field: 'goodsStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('goodsStatus',fox.getEnumText(SELECT_GOODSSTATUS_DATA,d.goodsStatus,'','goodsStatus'),d);}}
+					,{ field: 'categoryId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('分类'), templet: function (d) { return templet('categoryId' ,fox.joinLabel(d.category,"name",',','','categoryId'),d);}}
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('物品名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'model', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('规格型号') , templet: function (d) { return templet('model',d.model,d);}  }
 					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('物品编码') , templet: function (d) { return templet('code',d.code,d);}  }
 					,{ field: 'barCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('物品条码') , templet: function (d) { return templet('barCode',d.barCode,d);}  }
-					,{ field: 'manufacturerId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('厂商'), templet: function (d) { return templet('manufacturerId' ,fox.joinLabel(d.manufacturer,"manufacturerName"),d);}}
-					,{ field: 'brandId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('品牌'), templet: function (d) { return templet('brandId' ,fox.joinLabel(d.brand,"brandName"),d);}}
+					,{ field: 'manufacturerId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('厂商'), templet: function (d) { return templet('manufacturerId' ,fox.joinLabel(d.manufacturer,"manufacturerName",',','','manufacturerId'),d);}}
+					,{ field: 'brandId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('品牌'), templet: function (d) { return templet('brandId' ,fox.joinLabel(d.brand,"brandName",',','','brandId'),d);}}
 					,{ field: 'unitPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('默认单价') , templet: function (d) { return templet('unitPrice',d.unitPrice,d);}  }
 					,{ field: 'unit', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('计量单位') , templet: function (d) { return templet('unit',d.unit,d);}  }
 					,{ field: 'stockMin', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('安全库存下限') , templet: function (d) { return templet('stockMin',d.stockMin,d);}  }
@@ -94,19 +97,8 @@ function ListPage() {
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
-					exportExcel : admin.checkAuth(AUTH_PREFIX+":export"),
-					importExcel : admin.checkAuth(AUTH_PREFIX+":import")?{
-						params : {} ,
-						callback : function(r) {
-							if(r.success) {
-								layer.msg(fox.translate('数据导入成功')+"!");
-							} else {
-								layer.msg(fox.translate('数据导入失败')+"!");
-							}
-							// 是否执行后续逻辑：错误提示
-							return false;
-						}
-					}:false
+					exportExcel : false ,
+					importExcel : false 
 				}
 			};
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
@@ -148,12 +140,15 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
+		value.goodsStatus={ inputType:"select_box", value: getSelectedValue("#goodsStatus","value"), label:getSelectedValue("#goodsStatus","nameStr") };
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.model={ inputType:"button",value: $("#model").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.code={ inputType:"button",value: $("#code").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.barCode={ inputType:"button",value: $("#barCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.manufacturerId={ inputType:"select_box", value: getSelectedValue("#manufacturerId","value") ,fillBy:["manufacturer"]  , label:getSelectedValue("#manufacturerId","nameStr") };
 		value.brandId={ inputType:"select_box", value: getSelectedValue("#brandId","value") ,fillBy:["brand"]  , label:getSelectedValue("#brandId","nameStr") };
+		value.warehouseId={ inputType:"select_box", value: getSelectedValue("#warehouseId","value") ,fillBy:["warehouse"]  , label:getSelectedValue("#warehouseId","nameStr") };
+		value.storageDate={ inputType:"date_input", begin: $("#storageDate-begin").val(), end: $("#storageDate-end").val() ,matchType:"auto" };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -201,6 +196,28 @@ function ListPage() {
 
 		fox.switchSearchRow(2);
 
+		//渲染 goodsStatus 下拉字段
+		fox.renderSelectBox({
+			el: "goodsStatus",
+			radio: true,
+			size: "small",
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("goodsStatus",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					opts.push({data:data[i],name:data[i].text,value:data[i].code});
+				}
+				return opts;
+			}
+		});
 		//渲染 manufacturerId 下拉字段
 		fox.renderSelectBox({
 			el: "manufacturerId",
@@ -253,6 +270,51 @@ function ListPage() {
 				return opts;
 			}
 		});
+		//渲染 warehouseId 下拉字段
+		fox.renderSelectBox({
+			el: "warehouseId",
+			radio: true,
+			size: "small",
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("warehouseId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			paging: true,
+			pageRemote: true,
+			//转换数据
+			searchField: "warehouseName", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].warehouseName,value:data[i].id});
+				}
+				return opts;
+			}
+		});
+		laydate.render({
+			elem: '#storageDate-begin',
+			trigger:"click",
+			done: function(value, date, endDate) {
+				setTimeout(function () {
+					window.pageExt.list.onDatePickerChanged && window.pageExt.list.onDatePickerChanged("storageDate",value, date, endDate);
+				},1);
+			}
+		});
+		laydate.render({
+			elem: '#storageDate-end',
+			trigger:"click",
+			done: function(value, date, endDate) {
+				setTimeout(function () {
+					window.pageExt.list.onDatePickerChanged && window.pageExt.list.onDatePickerChanged("storageDate",value, date, endDate);
+				},1);
+			}
+		});
 		fox.renderSearchInputs();
 		window.pageExt.list.afterSearchInputReady && window.pageExt.list.afterSearchInputReady();
 	}
@@ -300,6 +362,7 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
+					admin.putTempData('eam-goods-stock-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
@@ -337,7 +400,8 @@ function ListPage() {
             }
             //调用批量删除接口
 			top.layer.confirm(fox.translate('确定删除已选中的')+fox.translate('库存物品')+fox.translate('吗？'), function (i) {
-                admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
+                top.layer.close(i);
+				admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
                     if (data.success) {
 						if(window.pageExt.list.afterBatchDelete) {
 							var doNext=window.pageExt.list.afterBatchDelete(data);
@@ -348,7 +412,7 @@ function ListPage() {
                     } else {
 						fox.showMessage(data);
                     }
-                });
+                },{delayLoading:200,elms:[$("#delete-button")]});
 			});
         }
 	}
@@ -393,11 +457,10 @@ function ListPage() {
 					var doNext=window.pageExt.list.beforeSingleDelete(data);
 					if(!doNext) return;
 				}
+
 				top.layer.confirm(fox.translate('确定删除此')+fox.translate('库存物品')+fox.translate('吗？'), function (i) {
 					top.layer.close(i);
-
-					top.layer.load(2);
-					admin.request(moduleURL+"/delete", { id : data.id }, function (data) {
+					admin.post(moduleURL+"/delete", { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
 						if (data.success) {
 							if(window.pageExt.list.afterSingleDelete) {
@@ -409,7 +472,7 @@ function ListPage() {
 						} else {
 							fox.showMessage(data);
 						}
-					});
+					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
 			}
 			
@@ -462,7 +525,8 @@ function ListPage() {
 	window.module={
 		refreshTableData: refreshTableData,
 		refreshRowData: refreshRowData,
-		getCheckedList: getCheckedList
+		getCheckedList: getCheckedList,
+		showEditForm: showEditForm
 	};
 
 	window.pageExt.list.ending && window.pageExt.list.ending();

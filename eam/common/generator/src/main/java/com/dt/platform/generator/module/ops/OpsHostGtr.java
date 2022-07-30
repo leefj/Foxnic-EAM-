@@ -202,6 +202,9 @@ public class OpsHostGtr extends BaseCodeGenerator{
 
         cfg.view().list().addToolButton("数据导出","exportHost",null,"ops_host:export");
 
+       // cfg.view().list().addToolButton("数据导入","importHost",null,"ops_host:import");
+
+        cfg.view().list().excel(false,true);
         //此设置用于覆盖字段的独立配置；清单中没有出现的，设置为隐藏；重复出现或不存在的字段将抛出异常；只接受 DBField 或 String 类型的元素
         cfg.view().search().inputLayout(
                 new Object[]{
@@ -334,12 +337,12 @@ public class OpsHostGtr extends BaseCodeGenerator{
 
         //文件生成覆盖模式
         cfg.overrides()
-                .setServiceIntfAnfImpl(WriteMode.CREATE_IF_NOT_EXISTS) //服务与接口
-                .setControllerAndAgent(WriteMode.CREATE_IF_NOT_EXISTS) //Rest
-                .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
+                .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
+                .setControllerAndAgent(WriteMode.IGNORE) //Rest
+                .setPageController(WriteMode.IGNORE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)
-                .setExtendJsFile(WriteMode.CREATE_IF_NOT_EXISTS);
+                .setExtendJsFile(WriteMode.IGNORE);
         ; //列表HTML页
         //生成代码
         cfg.buildAll();

@@ -15,8 +15,8 @@ import org.github.foxnic.web.domain.hrm.Employee;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-24 15:04:46
- * @sign A20A2FBD9A7F33863B959EE6721ECD20
+ * @since 2022-07-29 20:21:40
+ * @sign 3DDDC8BFB4C58030F676FF7A5D955C21
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -183,14 +183,14 @@ public class AssetStockGoodsInMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetStockGoodsIn,java.util.Date> PURCHASE_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetStockGoodsIn.class ,PURCHASE_DATE, java.util.Date.class, "购置日期", "购置日期", java.util.Date.class, null);
 	
 	/**
-	 * 业务时间 , 类型: java.util.Date
+	 * 业务日期 , 类型: java.util.Date
 	*/
 	public static final String BUSINESS_DATE="businessDate";
 	
 	/**
-	 * 业务时间 , 类型: java.util.Date
+	 * 业务日期 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetStockGoodsIn,java.util.Date> BUSINESS_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetStockGoodsIn.class ,BUSINESS_DATE, java.util.Date.class, "业务时间", "业务时间", java.util.Date.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetStockGoodsIn,java.util.Date> BUSINESS_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetStockGoodsIn.class ,BUSINESS_DATE, java.util.Date.class, "业务日期", "业务日期", java.util.Date.class, null);
 	
 	/**
 	 * 附件 , 类型: java.lang.String
@@ -702,8 +702,8 @@ public class AssetStockGoodsInMeta {
 		}
 		
 		/**
-		 * 设置 业务时间
-		 * @param businessDate 业务时间
+		 * 设置 业务日期
+		 * @param businessDate 业务日期
 		 * @return 当前对象
 		*/
 		public AssetStockGoodsIn setBusinessDate(Date businessDate) {

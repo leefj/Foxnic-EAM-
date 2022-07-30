@@ -350,7 +350,7 @@ public class GoodsStockServiceImpl extends SuperService<GoodsStock> implements I
 		GoodsStock goodsStock = new GoodsStock();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		goodsStock.setId(id);
-		goodsStock.setDeleted(dao.getDBTreaty().getTrueValue());
+		goodsStock.setDeleted(1);
 		goodsStock.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		goodsStock.setDeleteTime(new Date());
 		try {
