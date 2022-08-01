@@ -205,6 +205,38 @@ function ListPage() {
         })
 
         $("#zcpf").click(function(){
+            var data={}
+            var action=admin.getTempData('eam-asset-collection-form-data-form-action');
+            var queryString="";
+            if(data && data.id) queryString="?" + 'id=' + data.id;
+
+            admin.putTempData('eam-asset-collection-form-data', data);
+            var area=admin.getTempData('eam-asset-collection-form-area');
+
+            var height= (area && area.height) ? area.height : ($(window).height()*0.6);
+            var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
+            var title = fox.translate('资产派发');
+            if(action=="create") title=fox.translate('添加')+title;
+            else if(action=="edit") title=fox.translate('修改')+title;
+            else if(action=="view") title=fox.translate('查看')+title;
+
+            var index=admin.popupCenter({
+                title: title,
+                resize: false,
+                offset: [top,null],
+                area: ["80%",height+"px"],
+                type: 2,
+                id:"eam-asset-collection-form-data-win",
+                content: '/business/eam/asset_collection/asset_collection_form.html' + queryString,
+                finish: function () {
+
+                }
+            });
+            admin.putTempData('eam-asset-collection-form-data-popup-index', index);
+        })
+
+
+        $("#zcbf").click(function(){
           var data={}
             var action=admin.getTempData('eam-asset-scrap-form-data-form-action');
             var queryString="";

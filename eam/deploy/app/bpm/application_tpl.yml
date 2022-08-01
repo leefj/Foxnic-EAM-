@@ -37,9 +37,6 @@ spring:
             mac: /Users/Shared/foxnic/passwd.txt
             linux: /foxnic/passwd.txt
         driver-class-name: com.mysql.cj.jdbc.Driver
-        #url: ai+mCm8asbK9SNrQDk7ac29neidjdgHp2jFU7HYbZZOmvbR4OKNXb877AJzdYToBGLgN+etaRMM4wzovFLMULMH6brIo3zgsyub026w4Il4Oqg9jzyYsLaa6LNyznmYm5kKoS17K9XHBX8e0lDuik9pcc/DfdjaUkhm0MmOALUM86dHiyURHUP5hfQ4otf/kE9gVP+GO1G7fUdc4JBLDYylfBzmp9SNKQcTLQ/5AkWcnbm89+5pAz4JNnCJILF0B
-        #username: tD5wkJAfnCt04A+Y+QN5GA==
-        #password: ODGx5F84xpWJgfRFnzAaYhViHJqrTO3uxxDZ2lRlZNk=
         url: jdbc:mysql://127.0.0.1:APP_DB_PORT/APP_DB_NAME?tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true
         username: APP_DB_USERNAME
         password: APP_DB_PASSWORD
@@ -136,6 +133,12 @@ foxnic:
   api:
     # 是否开启 API 日志输出
     log-enable: true
+  # 设置 BPM 相关内容
+  bpm:
+    enable: true
+    debug:
+      enable: true
+      process-definition-code-list: eam_asset_purchase_apply,eam_asset_employee_apply,eam_asset_employee_handover,eam_asset_employee_loss,eam_asset_employee_repair,eam_asset_storage,eam_asset_tranfer,eam_asset_allocate,eam_asset_borrow,eam_asset_scrap,eam_asset_collection,eam_asset_repair_order,eam_asset_collection_return,wo_server_apply,wo_network_strategy_apply,wo_slb_strategy_appl
   cache:
     # 默认配置
     default:
@@ -176,6 +179,14 @@ foxnic:
         enable: true
         # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
         end-points: http://127.0.0.1:8089,1 | http://127.0.0.1:8089,2
+      service-eam:
+        enable: true
+        # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
+        end-points: http://127.0.0.1:8089,2 | http://127.0.0.1:8089,1
+      service-workorder:
+        enable: true
+        # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
+        end-points: http://127.0.0.1:8089,2 | http://127.0.0.1:8089,1
 
 
 logging:

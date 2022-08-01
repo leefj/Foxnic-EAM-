@@ -124,7 +124,7 @@
 - 安装目录:/app目录
 ```
 #安装命令
-curl -L http://resource.rainbooow.com/appInstallFull.sh>/tmp/i.sh;sh /tmp/i.sh
+curl -L 'http://resource.rainbooow.com/appInstallFull.sh'|bash
 ```
 
 - 清理重新安装
