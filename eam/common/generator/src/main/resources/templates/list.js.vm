@@ -153,8 +153,9 @@ function ListPage() {
 			//绑定 Switch 切换事件
 			#for(f : fields)
 			#if(f.typeName.equals("logic_switch"))
-			fox.bindSwitchEvent("cell-tpl-#(f.varName)",moduleURL +'/update','#(idPropertyName)','#(f.varName)',function(data,ctx){
-				window.pageExt.list.afterSwitched && window.pageExt.list.afterSwitched("#(f.varName)",data,ctx);
+			fox.bindSwitchEvent("cell-tpl-#(f.varName)",moduleURL +'/update','#(idPropertyName)','#(f.varName)',function(result,data,ctx){
+				window.pageExt.list.afterSwitched && window.pageExt.list.afterSwitched("#(f.varName)",result,data,ctx);
+				refreshRowData(data,true);
 			});
 			#end
 			#end
