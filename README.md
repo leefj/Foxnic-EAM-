@@ -37,27 +37,5 @@
  | ---------- | -----------  |
 | 1.0.12      | 1.0.10       |
 
-#### 最新EAM编译后的包下载(为开发同步版本，并非发布版本)
-- 1、存储过程:[下载SQL](http://foxnicweb.com/docs/chapters/base/1.1/NextVal.zip)
-- 2、SQL文件:(每日更新):http://eam-demo.rainbooow.com/upload/sql.tar.gz
-
-### 联系方式
-- 1、QQ群:634770774 
-- 2、微信号:myxyjm
-- 3、微信群：      
-![微信群](eam/view/view-console/src/main/resources/static/assets/images/wx.png)
-
-### 主要技术栈
-#### 后端技术栈
-- 安全框架:Spring Security 5.3.4
-- 开发框架:SpringBoot 2.3.3
-- 数据库链接池:Druid 1.2.8
-- 模版引擎:Thymeleaf 3
-- 应用层框架:[Foxnic-Web](https://gitee.com/LeeFJ/foxnic-web) [开发文档](http://foxnicweb.com/docs/doc.html)
-- 持久层框架:[FoxnicSQL&FoxnicDAO](https://gitee.com/LeeFJ/foxnic)
-- 日志管理:Logback 1.2.3
-- 流程引擎:Camunda
-- 任务调度:Quartz 2.3.3
-- 项目管理框架: Maven 3.6、3.8
-- 运行容器:Undertow
+ 
   
