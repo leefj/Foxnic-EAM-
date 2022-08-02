@@ -174,12 +174,13 @@ public class StockGoodsInGtr extends BaseCodeGenerator {
 
         cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().formWindow().bottomSpace(20);
-        cfg.view().form().addGroup("基本信息",
+        cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_STOCK_GOODS_IN.NAME,
                         EAMTables.EAM_ASSET_STOCK_GOODS_IN.STOCK_TYPE,
-                        EAMTables.EAM_ASSET_STOCK_GOODS_IN.RECEIVER_USER_NAME,
                         EAMTables.EAM_ASSET_STOCK_GOODS_IN.MANAGER_ID,
+                        EAMTables.EAM_ASSET_STOCK_GOODS_IN.RECEIVER_USER_NAME,
+
                 },
                 new Object[] {
                         EAMTables.EAM_ASSET_STOCK_GOODS_IN.WAREHOUSE_ID,

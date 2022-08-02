@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-07-19 14:01:34
+ * @since 2022-07-30 07:13:26
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -656,9 +656,9 @@ public class EAMTables {
 		public static final DBField ACCUMULATED_DEPRECIATION = new DBField(DBDataType.DECIMAL , "accumulated_depreciation","accumulatedDepreciation","累计折旧","累计折旧",false,false,true);
 		
 		/**
-		 * 月折旧额
+		 * 月折金额
 		*/
-		public static final DBField MONTH_DEPRECIATION_PRICE = new DBField(DBDataType.DECIMAL , "month_depreciation_price","monthDepreciationPrice","月折旧额","月折旧额",false,false,true);
+		public static final DBField MONTH_DEPRECIATION_PRICE = new DBField(DBDataType.DECIMAL , "month_depreciation_price","monthDepreciationPrice","月折金额","月折金额",false,false,true);
 		
 		/**
 		 * 残值率
@@ -6586,9 +6586,9 @@ public class EAMTables {
 		public static final DBField PURCHASE_DATE = new DBField(DBDataType.DATE , "purchase_date","purchaseDate","购置日期","购置日期",false,false,true);
 		
 		/**
-		 * 业务时间
+		 * 业务日期
 		*/
-		public static final DBField BUSINESS_DATE = new DBField(DBDataType.DATE , "business_date","businessDate","业务时间","业务时间",false,false,true);
+		public static final DBField BUSINESS_DATE = new DBField(DBDataType.DATE , "business_date","businessDate","业务日期","业务日期",false,false,true);
 		
 		/**
 		 * 附件
@@ -14197,6 +14197,11 @@ public class EAMTables {
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
 		
 		/**
+		 * 编码
+		*/
+		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","编码","编码",false,false,true);
+		
+		/**
 		 * 名称
 		*/
 		public static final DBField SUPPLIER_NAME = new DBField(DBDataType.STRING , "supplier_name","supplierName","名称","名称",false,false,true);
@@ -14205,6 +14210,11 @@ public class EAMTables {
 		 * 商务联系人
 		*/
 		public static final DBField BUSINESS_CONTACTS = new DBField(DBDataType.STRING , "business_contacts","businessContacts","商务联系人","商务联系人",false,false,true);
+		
+		/**
+		 * 评级
+		*/
+		public static final DBField GRADE = new DBField(DBDataType.STRING , "grade","grade","评级","评级",false,false,true);
 		
 		/**
 		 * 商务联系方式
@@ -14282,7 +14292,7 @@ public class EAMTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public EAM_SUPPLIER() {
-			this.init($NAME,"供应商" , ID , SUPPLIER_NAME , BUSINESS_CONTACTS , BUSINESS_CONTACTS_INFO , AFTER_SALES_CONTACTS , AFTER_SALES_CONTACTS_INFO , UNIT_CODE , ADDRESS , SUPPLIER_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"供应商" , ID , CODE , SUPPLIER_NAME , BUSINESS_CONTACTS , GRADE , BUSINESS_CONTACTS_INFO , AFTER_SALES_CONTACTS , AFTER_SALES_CONTACTS_INFO , UNIT_CODE , ADDRESS , SUPPLIER_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final EAM_SUPPLIER $TABLE=new EAM_SUPPLIER();
 	}

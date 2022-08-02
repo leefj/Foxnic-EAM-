@@ -37,6 +37,7 @@ function FormPage() {
 			var e={};
 			e.value=CODE_PARTS[i].id;
 			e.title=CODE_PARTS[i].name;
+			console.log("tranfer",e);
 			data1.push(e);
 		}
 		tr=transfer.render({
@@ -137,6 +138,28 @@ function FormPage() {
 
 	}
 
+	function ArrayIndexOf(arr,attr,value){
+		//检测value在attr中出现的位置
+		for (var i=0;i<arr.length;i++){
+			if(arr[i][attr]===value){
+				console.log("catch it");
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	function transferRightSort(arr1,attr,arr2){
+		var arr=[];
+		for(var i=0;i<arr2.length;i++){
+			var index=ArrayIndexOf(arr1,attr,arr2[i]);
+			arr.push(arr1[index]);
+			arr1.splice($.inArray(arr1[index],arr1),1);
+		}
+		arr1.push.apply(arr1,arr);
+	}
+
+
 	/**
 	 * 填充表单数据
 	 */
@@ -144,16 +167,15 @@ function FormPage() {
 		if(!formData) {
 			formData = admin.getTempData('eam-code-rule-form-data');
 		}
-
+		var ids=JSON.parse(formData.partIds);
+		transferRightSort(data1,"value",ids);
 		tr=transfer.render({
 				elem: '#col'
 				,title: ['未选择', '已选择']
 				,data: data1
-				,value: JSON.parse(formData.partIds)
-				,height: 400 //定义高度
+				,value: ids
+				,height: 450 //定义高度
 	})
-
-		console.log(formData);
 		window.pageExt.form.beforeDataFill && window.pageExt.form.beforeDataFill(formData);
 
 		var hasData=true;
@@ -170,7 +192,6 @@ function FormPage() {
 			fm.attr('method', 'POST');
 			fox.fillDialogButtons();
 			renderFormFields();
-
 			window.pageExt.form.afterDataFill && window.pageExt.form.afterDataFill(formData);
 
 		}

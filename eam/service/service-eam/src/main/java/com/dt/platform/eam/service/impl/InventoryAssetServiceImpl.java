@@ -2,6 +2,8 @@ package com.dt.platform.eam.service.impl;
 
 
 import javax.annotation.Resource;
+
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -159,6 +161,12 @@ public class InventoryAssetServiceImpl extends SuperService<InventoryAsset> impl
 	 * */
 	@Override
 	public Result update(InventoryAsset inventoryAsset , SaveMode mode,boolean throwsException) {
+		if(inventoryAsset.getOperEmplId()==null){
+			inventoryAsset.setOperEmplId(SessionUser.getCurrent().getUser().getActivatedEmployeeId());
+		}
+		if(inventoryAsset.getOperDate()==null){
+			inventoryAsset.setOperDate(new Date());
+		}
 		Result r=super.update(inventoryAsset , mode , throwsException);
 		return r;
 	}

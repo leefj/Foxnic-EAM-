@@ -11,6 +11,11 @@ app_dir=$cur_dir/..
 app_log=$app_dir/logs
 app_log_file=$app_log/app.log
 
+
+if [[ ! -d "$app_dir/tmp" ]];then
+  mkdir -p $app_dir/tmp
+fi
+
 ####################### Java Environment ############################
 JAVA=`cat $app_conf|grep -v "#"|grep JAVA=|awk -F "=" '{print $2}'`
 #java_Xmx="-Xmx1024m"
@@ -74,7 +79,7 @@ start(){
     echo "Process is already running,please first stop it."
   else
     cd $app_dir/app/$app
-    nohup $JAVA -noverify -Dfile.encoding=UTF-8 -Dloader.path=./lib/ $java_Xmx -jar $app_name -dprocess_Mark=$app_process_mark --Dspring.config.location=application.yml>$app_log_file 2>&1 &
+    nohup $JAVA -noverify -Dfile.encoding=UTF-8 -Djava.io.tmpdir=$app_dir/tmp  -Dloader.path=./lib/ $java_Xmx -jar $app_name -dprocess_Mark=$app_process_mark --Dspring.config.location=application.yml>$app_log_file 2>&1 &
     sleep 3
     pidlist2=`ps -ef|grep java|grep $app_process_mark|grep -v grep |awk '{print $2}'`
     pidcnt2=`ps -ef|grep java|grep $app_process_mark|grep -v grep |awk '{print $2}'|wc -l`

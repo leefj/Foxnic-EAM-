@@ -99,7 +99,6 @@
 - 4、知乎文档集合 https://www.zhihu.com/people/leefj/posts
 
 
-
 ## EAM系统安装部署
 ### 实施方案
 - 1、传统方式:传统单体架构方式打包部署
@@ -124,20 +123,8 @@
 - 安装目录:/app目录
 ```
 #安装命令
-curl -L http://resource.rainbooow.com/appInstallFull.sh>/tmp/i.sh;sh /tmp/i.sh
+curl -L 'http://resource.rainbooow.com/appInstallFull.sh'|bash
 ```
-
-- 清理重新安装
-```
-#清理命令，会删除java 和mysql 进程。操作前请确保没有其他对应程序的业务在运行而导致误操作
-rm -rf /app/java
-rm -rf /app/db
-rm -rf /app/eam
-ps -ef|grep java |grep -v grep |awk '{print $2}'|xargs kill -9
-ps -ef|grep mysql |grep -v grep |awk '{print $2}'|xargs kill -9
-```
-
-
 
 ### 方案二 Docker方式-建议作为体验使用
 - 注意点:docker 版本可用作体验版本，正式使用不推荐docker部署方式。
@@ -166,27 +153,7 @@ ps -ef|grep mysql |grep -v grep |awk '{print $2}'|xargs kill -9
 - https://gitee.com/lank/eam/tree/master/%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3
 
 
-
-
-## 项目结构说明
- ![输入图片说明](https://images.gitee.com/uploads/images/2021/0610/145855_29614033_1470521.png "屏幕截图.png")
-### 安装教程
- Maven项目，支持 Eclipse 和 IDEA 开发。
-
-### 使用说明
- 1. 新建表或表结构调整后(包括注释)，执行 generator 项目下的 EamDbMetaGenerator 类的 main 函数，将表结构映射到 java 代码。执行后，domain 项目的 EAMTables 类代码将被刷新。
- 2. 必要时执行 generator 项目下的 EamEnumGenerator 类的 main 函数，该类用于生成字典枚举等，请按项目按需调整。执行后，在 domain 项目下 com.dt.eam.constants.enums 包下生成枚举类型的代码。
- 3. 这里是列表文本执行 generator 项目下的 EamCodeGenerator 生成模块代码。执行后，
-- domain 项目下的实体代码将被按照数据库结构重新生成；
-- proxy 项目下生成对应的 Proxy 类；
-- 在 service 项目生成对应的控制器，接口以及接口实现类；
-- 在前端项目生成页面控制器(前端模版引擎 thymeleaf)，列表页面和表单页面
-  **如重复执行，请在 EamCodeGenerator 类的代码生成逻辑中加入文件覆盖策略。** 
- 4. 调整 MenuGenerator 的代码，生成对应的菜单，并将菜单授权给 admin 角色，建议一次生成一组菜单，菜单生成后，会输出batchId，如果撤销可以调用 removeByBatchId 方法即可。
- 以上步骤因为调用main函数生成代码，开发工具并不能立即刷入，如果是Eclipse，请刷新项目。IDEA正常情况下会自动刷入，建议也刷新一下 relaod from disk 。
- :point_right: **注意：代码生成的逻辑，需要按照上面提到的类中给出的示例按需调整。** 
- 5. 相关源码与开发文档 [Foxnic-Web](https://gitee.com/LeeFJ/foxnic-web) [开发文档](http://foxnicweb.com/docs/doc.html)
-
+ 
 ## 系统演示预览
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/1213/212929_46438369_448530.jpeg "1.jpg")
 ![输入图片说明](https://images.gitee.com/uploads/images/2022/0513/115529_b00ce19a_448530.png "WechatIMG3.png")
@@ -205,37 +172,6 @@ ps -ef|grep mysql |grep -v grep |awk '{print $2}'|xargs kill -9
 <img width="200"  src="https://images.gitee.com/uploads/images/2022/0316/122824_f21ca8de_448530.jpeg" />
 <img width="200"  src="https://images.gitee.com/uploads/images/2022/0326/212016_f9fa171e_448530.jpeg" />
 <img width="200"  src="https://images.gitee.com/uploads/images/2022/0326/212025_135c19b0_448530.jpeg" />
-
-## 社区版本功能列表
-| 功能列表           |   社区版本        |    
-| ---------------- | --------------   |  
-|    权限管理        |   支持           |  
-|    组织管理        |   支持           |  
-|    人员管理        |   支持           |  
-|    菜单管理        |   支持           |  
-|    角色管理        |   支持           |   
-|    字典管理        |   支持           |   
-|    参数管理        |   支持           |   
-|    编码管理        |   支持           |   
-|    资产管理        |   支持           |   
-|    软件管理        |   支持           |   
-|    资产台账        |   支持           |  
-|    采购管理        |   支持           |  
-|    设备报修        |   支持           |  
-|    设备报修        |   支持           |   
-|    简单流程        |   支持           |   
-|    库存管理        |   支持           |  
-|    备件管理        |   支持           |   
-|    耗材管理        |   支持           |   
-|    盘点管理        |   支持           |  
-|    报表预警        |   支持           |  
-|    物品库存        |   支持           |  
-|    财务管理        |   支持           |   
-|    流程引擎        |   不支持         |
-|    巡检管理        |   不支持         |
-|    二次开发        |   根据相关开源协议 |   
-|    版权信息修改     |   禁止           | 
-|    当前价格        |   免费           |  
  
 ## 捐赠
 - 开源不易，坚持更难，如果您觉得本项目不错，可以捐赠请作者喝杯咖啡~，在此表示感谢^_^

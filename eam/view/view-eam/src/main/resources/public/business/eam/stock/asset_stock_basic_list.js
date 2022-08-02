@@ -86,7 +86,11 @@ function ListPage() {
             var COL_ALL_DATA= assetListColumn.getColumnList(templet);
             var COL_DATA=[{ fixed: 'left',type: 'numbers' },{ fixed: 'left',type:'checkbox' }]
             for(var i=0;i<ATTRIBUTE_LIST_DATA.length;i++){
-                COL_DATA.push(COL_ALL_DATA[ATTRIBUTE_LIST_DATA[i].attribute.code])
+                if(ATTRIBUTE_LIST_DATA[i].attribute&&ATTRIBUTE_LIST_DATA[i].attribute.code){
+                    var e=COL_ALL_DATA[ATTRIBUTE_LIST_DATA[i].attribute.code];
+                    e.title=ATTRIBUTE_LIST_DATA[i].attribute.label;
+                    COL_DATA.push(e)
+                }
             }
             COL_DATA.push({ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 });
 

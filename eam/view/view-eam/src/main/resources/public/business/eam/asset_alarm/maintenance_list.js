@@ -83,7 +83,15 @@ function ListPage() {
                   || ATTRIBUTE_LIST_DATA[i].attribute.code=="maintenance_end_date"  ){
                     continue
                 }
-                COL_DATA.push(COL_ALL_DATA[ATTRIBUTE_LIST_DATA[i].attribute.code])
+
+
+                if(ATTRIBUTE_LIST_DATA[i].attribute&&ATTRIBUTE_LIST_DATA[i].attribute.code){
+                    var e=COL_ALL_DATA[ATTRIBUTE_LIST_DATA[i].attribute.code];
+                    e.title=ATTRIBUTE_LIST_DATA[i].attribute.label;
+                    COL_DATA.push(e)
+                }
+
+
             }
 
             COL_DATA.push(oper)

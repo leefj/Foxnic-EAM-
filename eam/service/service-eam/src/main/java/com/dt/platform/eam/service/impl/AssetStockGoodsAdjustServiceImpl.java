@@ -307,7 +307,7 @@ public class AssetStockGoodsAdjustServiceImpl extends SuperService<AssetStockGoo
 		AssetStockGoodsAdjust assetStockGoodsAdjust = new AssetStockGoodsAdjust();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		assetStockGoodsAdjust.setId(id);
-		assetStockGoodsAdjust.setDeleted(dao.getDBTreaty().getTrueValue());
+		assetStockGoodsAdjust.setDeleted(1);
 		assetStockGoodsAdjust.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		assetStockGoodsAdjust.setDeleteTime(new Date());
 		try {

@@ -38,6 +38,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             var downloadUrl="/service-ops/ops-data/export-host";
             fox.submit(downloadUrl);
         },
+        importHost2:function (select,obj){
+            console.log('download',select,obj);
+            var downloadUrl="/service-ops/ops-data/export-host";
+            fox.submit(downloadUrl);
+        },
         /**
          * 打开凭证条目窗口
          * */

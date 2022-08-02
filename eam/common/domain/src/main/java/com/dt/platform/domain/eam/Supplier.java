@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import org.github.foxnic.web.domain.system.DictItem;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 
@@ -16,8 +18,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 供应商
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-12 06:32:56
- * @sign 0A1A62007DCE950EEB1FE05475AA3993
+ * @since 2022-07-30 08:31:34
+ * @sign 1EECD89C15EA9EE84F7AC74D281A0DDF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -36,6 +38,12 @@ public class Supplier extends Entity {
 	private String id;
 	
 	/**
+	 * 编码：编码
+	*/
+	@ApiModelProperty(required = false,value="编码" , notes = "编码")
+	private String code;
+	
+	/**
 	 * 名称：名称
 	*/
 	@ApiModelProperty(required = false,value="名称" , notes = "名称")
@@ -46,6 +54,12 @@ public class Supplier extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="商务联系人" , notes = "商务联系人")
 	private String businessContacts;
+	
+	/**
+	 * 评级：评级
+	*/
+	@ApiModelProperty(required = false,value="评级" , notes = "评级")
+	private String grade;
 	
 	/**
 	 * 商务联系方式：商务联系方式
@@ -112,6 +126,8 @@ public class Supplier extends Entity {
 	*/
 	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
+	@Transient
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -138,6 +154,12 @@ public class Supplier extends Entity {
 	private String tenantId;
 	
 	/**
+	 * gradeDict：gradeDict
+	*/
+	@ApiModelProperty(required = false,value="gradeDict" , notes = "gradeDict")
+	private DictItem gradeDict;
+	
+	/**
 	 * 获得 主键<br>
 	 * 主键
 	 * @return 主键
@@ -153,6 +175,25 @@ public class Supplier extends Entity {
 	*/
 	public Supplier setId(String id) {
 		this.id=id;
+		return this;
+	}
+	
+	/**
+	 * 获得 编码<br>
+	 * 编码
+	 * @return 编码
+	*/
+	public String getCode() {
+		return code;
+	}
+	
+	/**
+	 * 设置 编码
+	 * @param code 编码
+	 * @return 当前对象
+	*/
+	public Supplier setCode(String code) {
+		this.code=code;
 		return this;
 	}
 	
@@ -191,6 +232,25 @@ public class Supplier extends Entity {
 	*/
 	public Supplier setBusinessContacts(String businessContacts) {
 		this.businessContacts=businessContacts;
+		return this;
+	}
+	
+	/**
+	 * 获得 评级<br>
+	 * 评级
+	 * @return 评级
+	*/
+	public String getGrade() {
+		return grade;
+	}
+	
+	/**
+	 * 设置 评级
+	 * @param grade 评级
+	 * @return 当前对象
+	*/
+	public Supplier setGrade(String grade) {
+		this.grade=grade;
 		return this;
 	}
 	
@@ -394,12 +454,42 @@ public class Supplier extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
 	public Supplier setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public Supplier setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -476,6 +566,25 @@ public class Supplier extends Entity {
 	*/
 	public Supplier setTenantId(String tenantId) {
 		this.tenantId=tenantId;
+		return this;
+	}
+	
+	/**
+	 * 获得 gradeDict<br>
+	 * gradeDict
+	 * @return gradeDict
+	*/
+	public DictItem getGradeDict() {
+		return gradeDict;
+	}
+	
+	/**
+	 * 设置 gradeDict
+	 * @param gradeDict gradeDict
+	 * @return 当前对象
+	*/
+	public Supplier setGradeDict(DictItem gradeDict) {
+		this.gradeDict=gradeDict;
 		return this;
 	}
 

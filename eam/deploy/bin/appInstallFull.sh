@@ -1,49 +1,55 @@
 #!/bin/sh
-######################################################################
+####################################################################################
 # run:
-#   sh appInstallFull.sh 1.0.12
+#   sh appInstallFull.sh
 # check list:
-#   test on RedHat 7.9,8.0,8.2
+#   test on RedHat 7.9,8.0,8.2 or CentOS
 #   check yum source is ok
 #   check network connect is ok
 # soft list:
 #   mysql_soft:/tmp/mysql-5.7.37-linux-glibc2.12-x86_64.tar.gz
 #   java_soft:/tmp/jdk-8u333-linux-x64.tar.gz
 #   app_soft:/tmp/app_release_last.tar.gz
-#                                           modify at 20220611
-#clear all
+# clear all
 #   rm -rf /app/java
 #   rm -rf /app/db
 #   rm -rf /app/app
 #   ps -ef|grep java |grep -v grep |awk '{print $2}'|xargs kill -9
 #   ps -ef|grep mysql |grep -v grep |awk '{print $2}'|xargs kill -9
-########################################################################
-#################################### config
-## soft
+#
+#
+#                                                                 modify at 20220801
+#                                                                 by lank
+####################################################################################
+################################################################  config
 app_version="last"
 if [[ -n $1 ]];then
 	app_version=$1
 fi
 soft_base_dir=/tmp
 mysql_soft=$soft_base_dir/mysql-5.7.37-linux-glibc2.12-x86_64.tar.gz
-app_soft_name=app_release_${app_version}.tar.gz
-app_soft=$soft_base_dir/app_release_${app_version}.tar.gz
 mysql_soft_md5=423915249cc67bbfa75223d9753cde77
-java_soft=$soft_base_dir/jdk-8u333-linux-x64.tar.gz
+
+app_soft_name=app_release_${app_version}.tar.gz
+app_soft=$soft_base_dir/$app_soft_name
+
+java_file=jdk-linux-x64.tar.gz
+java_soft=$soft_base_dir/$java_file
 java_soft_md5=913c45332b22860b096217d9952c2ea4
 java_soft_remote=1
+
 ## directory
 java_dir="/app/java"
 app_dir="/app/app"
 mysql_dir="/app/db"
-############################################
+
 db_port=3306
 app_port=8089
-JAVA=$java_dir/jdk1.8.0_333/bin/java
+JAVA=$java_dir/java/bin/java
 MYSQL_HOME=$mysql_dir/mysql
 MYSQL=$mysql_dir/mysql/bin/mysql
 MYSQL_ROOT_PWD="root_pwd"
-#################################### verify command,netstat
+################################################################ verify command,netstat
 yum -y install unzip zip telnet net-tools wget java numactl
 yum -y install libaio
 yum -y install glibc-*
@@ -57,7 +63,7 @@ if [[ $netstatRes -ne 0 ]];then
 	echo "install check error,netstat command not exist,please install it first!"
 	exit 1
 fi
-#####check port 3306,8089
+################################################################ check port
 db_port_cnt=`netstat -ant|grep LISTEN|grep ":$db_port"|wc -l`
 if [[ $db_port_cnt -ne 0 ]];then
 	echo "install check error,db_port:$db_port already in use."
@@ -68,7 +74,7 @@ if [[ $app_port_cnt -ne 0 ]];then
 	echo "install check error,app_port:$app_port already in use."
 	exit 1
 fi
-#################################### Install Function
+################################################################ Install Function
 function verifySoft(){
 	if [[ -f $1 ]];then
 		return 0
@@ -76,6 +82,7 @@ function verifySoft(){
 		return 1
 	fi
 }
+
 function clearTips(){
 	echo "########################clear Tips########################"
 	echo "if you want to reinstall full app,please run below commands"
@@ -85,6 +92,7 @@ function clearTips(){
 	echo "ps -ef|grep java |grep -v grep |awk '{print \$2}'|xargs kill -9"
   echo "ps -ef|grep mysql |grep -v grep |awk '{print \$2}'|xargs kill -9"
 }
+
 function installJava(){
 	echo "#############install java start#############"
 	if [[ ! -d $java_dir ]];then
@@ -104,11 +112,14 @@ function installJava(){
 	cp $java_soft .
 	echo "start to tar $java_soft"
 	tar xvf $java_soft >/dev/null
+	cur_dir=`ls -rtl|grep j|grep -v gz|awk '{print $NF}'|tail -1`
+	mv $cur_dir java
 	echo "success">$java_dir/result.txt
 	echo "#############install java success#############"
 	echo ""
 	echo ""
 }
+
 function installMysql(){
 	echo "#############install mysql start#############"
 	if [[ ! -d $mysql_dir ]];then
@@ -143,6 +154,31 @@ function installMysql(){
 		mv /etc/my.cnf /etc/my.cnf.$d
 	fi
 	mycnftmp="/tmp/my.cnf.tmp"
+	mkdir -p /usr/local/mysql
+	innodb_buffer_pool_size=1024;
+	total_mem=`free -m|grep Mem|awk '{print $2}'`
+  innodb_buffer_pool_size_pre=`echo "$total_mem"|awk '{printf "%d",$1*0.5*0.75}'`
+  #<2048
+  if [[ $total_mem -lt 2048 ]];then
+    innodb_buffer_pool_size=512
+  fi
+  #2048<=v<4096
+  if [[ $total_mem -ge 2048 && $total_mem -lt 4096 ]];then
+    innodb_buffer_pool_size=1024
+  fi
+  #4096<=v<8192
+  if [[ $total_mem -ge 4096 && $total_mem -lt 8192 ]];then
+    innodb_buffer_pool_size=2048
+  fi
+  #8192<=v<16384
+  if [[ $total_mem -ge 8192 && $total_mem -lt 16384 ]];then
+    innodb_buffer_pool_size=$innodb_buffer_pool_size_pre
+  fi
+  #v>16384
+  if [[ $total_mem -ge 16384 ]];then
+    innodb_buffer_pool_size=8192
+  fi
+  echo "setting innodb_buffer_pool_size value:${innodb_buffer_pool_size}m"
 	cat > $mycnftmp <<EOF
 [mysqld]
 lower_case_table_names = 1
@@ -155,23 +191,62 @@ log-error=/usr/local/mysql/mysqld.log
 lc-messages=en_US
 lc-messages-dir=/usr/local/mysql/share
 symbolic-links=0
-port=3306
+port=$db_port
 sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'
 [client]
 default-character-set=utf8
 [mysql]
 default-character-set=utf8
 [mysqld]
-log-bin=mysql-bin
-binlog-format=ROW
 server_id=1
+log-bin=mysql-bin
+expire_logs_days=15
+binlog-format=ROW
+binlog_cache_size=128m
+max_binlog_cache_size=512m
+max_binlog_size=256m
 max_connections=1000
-#init_connect='set collation_connection = utf8_unicode_ci'
+max_connect_errors=2000
+max_allowed_packet=256M
+skip-external-locking
+skip-name-resolve
 init_connect='set names utf8'
 character-set-server=utf8
-#collation-server=utf8_unicode_ci
 skip-character-set-client-handshake
+slow_query_log=on
+slow_query_log=1
+long_query_time=3
+slow_query_log_file=/usr/local/mysql/mysql_slow.log
+back_log=500
+open_files_limit=65535
+connect_timeout=50
+wait_timeout=3600
+key_buffer_size=512m
+interactive_timeout=3600
+table_open_cache=2000
+max_heap_table_size=8M
+tmp_table_size=32M
+read_buffer_size=2M
+read_rnd_buffer_size=8M
+sort_buffer_size=8M
+join_buffer_size=8M
+thread_cache_size=120
+innodb_file_per_table=on
+innodb_buffer_pool_instances=8
+innodb_io_capacity_max=4000
+innodb_io_capacity=2000
+innodb_log_file_size=512m
+innodb_log_buffer_size=64M
+innodb_log_files_in_group=4
+innodb_buffer_pool_size=${innodb_buffer_pool_size}m
+innodb_open_files=65535
+innodb_page_cleaners=8
+innodb_lock_wait_timeout=10
+innodb_read_io_threads=16
+innodb_write_io_threads=16
+innodb_flush_log_at_trx_commit=2
 EOF
+  #innodb_buffer_pool_size=75%memory
 	smysqldir="/usr/local"
 	cat $mycnftmp |sed "s:${smysqldir}:${mysql_dir}:g">/etc/my.cnf
 	cp $mysql_soft ${mysql_dir}/mysql
@@ -218,7 +293,6 @@ function installApp(){
 		clearTips
 		exit 1
 	fi
-
 	#app.jar
 	cd $app_dir
 	cp $app_soft .
@@ -232,13 +306,13 @@ function installApp(){
 	echo "APP_NAME=app.jar"                             >>$appConf
 	echo "APP_DIR=$app_dir"                             >>$appConf
 	echo "BACKUP_DIR=$app_dir/backup"                   >>$appConf
-	echo "APP_WEB_PORT=8089"                            >>$appConf
+	echo "APP_WEB_PORT=$app_port"                       >>$appConf
 	echo "DATA_CLEAR=1"                                 >>$appConf
 	echo "MYSQL=$mysql_dir/mysql/bin/mysql"             >>$appConf
 	echo "MYSQL_DUMP=$mysql_dir/mysql/bin/mysqldump"    >>$appConf
 	echo "MYSQL_ADMIN=$mysql_dir/mysql/bin/mysqladmin"  >>$appConf
 	echo "DB_HOST=127.0.0.1"                            >>$appConf
-	echo "DB_PORT=3306"                                 >>$appConf
+	echo "DB_PORT=$db_port"                             >>$appConf
 	echo "DB_NAME=eam"                                  >>$appConf
 	echo "DB_USER=root"                                 >>$appConf
 	echo "DB_PWD=$MYSQL_ROOT_PWD"                       >>$appConf
@@ -248,7 +322,6 @@ function installApp(){
 	db_procedure_file=$app_dir/bin/sql/nextVal.sql
 	db_clear_data_file=$app_dir/bin/sql/cleardata.sql
 	db_app_setting_file=$app_dir/bin/sql/settingapp.sql
-
 	application_tpl_yml=$app_dir/app/app/application_tpl.yml
 	application_yml=$app_dir/app/app/application.yml
 	bpm_application_tpl_yml=$app_dir/app/bpm/application_tpl.yml
@@ -267,10 +340,10 @@ function installApp(){
 	  echo "deploy failed!"
 	  exit 1
 	fi
-	app_port=8089
+#  app_port=8089
+#	db_port=3306
 	app_upload_dir=$app_dir/app/app/upload
 	db_host=127.0.0.1
-	db_port=3306
 	db_name=eam
 	db_user=root
 	db_pwd=$MYSQL_ROOT_PWD
@@ -332,6 +405,7 @@ function installApp(){
 	sed -i '/startALL/d' /etc/rc.d/rc.local
 	echo "cd $app_dir;sh startALL.sh">>/etc/rc.d/rc.local
 }
+
 function stopFirewalld(){
   btcnt=`ps -ef|grep python|grep BT|grep -v grep|wc -l`
  if [[ $btcnt -gt 0 ]];then
@@ -340,8 +414,13 @@ function stopFirewalld(){
   fi
   systemctl disable firewalld.service;systemctl stop firewalld.service
 }
-####################### Main Run ##########################
-################### download mysql ###################
+##########################################################################################
+##########################################################################################
+##########################################################################################
+##########################################################################################
+##########################################################################################
+################################# Install Main Run Start #################################
+#################################################################### download mysql start
 cd $soft_base_dir
 # java_soft_md5=913c45332b22860b096217d9952c2ea4
 # mysql_soft_md5=423915249cc67bbfa75223d9753cde77
@@ -358,12 +437,16 @@ if [[ $mysql_download -eq 1 ]];then
 	echo "start to download mysql"
 	wget https://cdn.mysql.com/archives/mysql-5.7/mysql-5.7.37-linux-glibc2.12-x86_64.tar.gz
 fi
-################### download java ###################
-javaUrl1=http://shopcdn.maimaiyouhuiquan.com/upload/jdk-8u333-linux-x64.tar.gz
-javaUrl2=http://resource.rainbooow.com/jdk-8u333-linux-x64.tar.gz
+#################################################################### download mysql finish
+#################################################################### download java start
+javaUrl1=https://repo.huaweicloud.com/java/jdk/8u202-b08/jdk-8u202-linux-x64.tar.gz
+javaUrl2=http://prodshop.maimaiyouhuiquan.com/upload/jdk-8u333-linux-x64.tar.gz
+javaUrl3=http://resource.rainbooow.com/jdk-8u333-linux-x64.tar.gz
+javaUrl4=https://lank-public.oss-cn-hangzhou.aliyuncs.com/jdk-8u333-linux-x64.tar.gz
 java_soft_remote=1
 which java
 javaR=$?
+###### 验证java版本是否对
 if [[ $javaR -eq 0 ]];then
   javaVersion=`java -version 2>&1|grep 1.8 |wc -l`
   if [[ $javaVersion -gt 0 ]];then
@@ -371,72 +454,44 @@ if [[ $javaR -eq 0 ]];then
     JAVA=`which java|awk '{print $1}'`
   fi
 fi
-######java first down
+
+cd /tmp
+###### java first download
 if [[ $java_soft_remote -eq 1 ]];then
+  if [[ -f $app_soft ]];then
+    rm -rf $app_soft
+  fi
   java_download=1
-  if [[ -f $java_soft ]];then
-    md5=`md5sum $java_soft|awk '{print $1}'`
-    echo "java md5:$md5"
-    if [[ $md5 == $java_soft_md5 ]];then
-      java_download=0
-      echo "java_soft is checked."
-    fi
-  fi
-  if [[ $java_download -eq 1 ]];then
-    echo "start to download java"
-    wget $javaUrl1
-  fi
+  wget -O $java_file $javaUrl1
 fi
-######java second down
+###### java second download
+touch $java_file
 if [[ $java_soft_remote -eq 1 ]];then
-  java_download=1
-  if [[ -f $java_soft ]];then
-    md5=`md5sum $java_soft|awk '{print $1}'`
-    echo "java md5:$md5"
-    if [[ $md5 == $java_soft_md5 ]];then
-      java_download=0
-      echo "java_soft is checked."
-    fi
-  fi
-  if [[ $java_download -eq 1 ]];then
-    echo "start to download java"
-    wget $javaUrl2
+  java_size=`du -sm $java_file|awk '{print $1}'`
+  if [[ $java_size -lt 60 ]];then
+    java_download=1
+    wget -O $java_file $javaUrl2
   fi
 fi
-################### download app ###################
-if [[ -f $app_soft ]];then
-	 rm -rf $app_soft
-fi
-echo "start to download app"
-#wget http://resource.rainbooow.com/$app_soft_name
-#wget http://resource.rainbooow.com/app_release_last.tar.gz
-wget http://resourceupyun.rainbooow.com/$app_soft_name
-#cp /tmp/app.tar.gz /tmp/app_release_last.tar.gz
-################### verify soft ###################
-verifySoft $app_soft
-app_soft_VR=$?
-if [[ $app_soft_VR -eq 1 ]];then
-	echo "install error,app_soft:$app_soft not exist";
-	clearTips
-	exit 1
-fi
-verifySoft $mysql_soft
-mysql_soft_VR=$?
-if [[ $mysql_soft_VR -eq 1 ]];then
-	echo "install error,mysql_soft:$mysql_soft not exist";
-	clearTips
-	exit 1
-fi
+###### java third download
+touch $java_file
 if [[ $java_soft_remote -eq 1 ]];then
-  verifySoft $java_soft
-  java_soft_VR=$?
-  if [[ $java_soft_VR -eq 1 ]];then
-    echo "install error,java_soft:$java_soft not exist";
-    clearTips
-    exit 1
+  java_size=`du -sm $java_file|awk '{print $1}'`
+  if [[ $java_size -lt 60 ]];then
+    java_download=1
+    wget -O $java_file $javaUrl3
   fi
 fi
-## install java
+###### java fourth download
+touch $java_file
+if [[ $java_soft_remote -eq 1 ]];then
+  java_size=`du -sm $java_file|awk '{print $1}'`
+  if [[ $java_size -lt 60 ]];then
+    java_download=1
+    wget -O $java_file $javaUrl4
+  fi
+fi
+###### install java
 if [[ $java_soft_remote -eq 1 ]];then
   installJava
 fi
@@ -447,6 +502,69 @@ if [[ $java_command -eq 1 ]];then
 	clearTips
 	exit 1
 fi
+#################################################################### download java finish
+#################################################################### download app start
+echo "start to download app"
+if [[ -f $app_soft ]];then
+	 rm -rf $app_soft
+fi
+#app_release_last.tar.gz
+appUrl1=http://prodshop.maimaiyouhuiquan.com/upload/$app_soft_name
+appUrl2=http://resource.rainbooow.com/$app_soft_name
+appUrl3=https://lank-public.oss-cn-hangzhou.aliyuncs.com/$app_soft_name
+cd /tmp
+appbkfile=${app_soft_name}_backup
+if [[ -f "$appbkfile" ]];then
+  cp $appbkfile $app_soft_name
+fi
+#first donwload
+touch $app_soft_name
+app_size=`du -sm $app_soft_name|awk '{print $1}'`
+if [[ $app_size -lt 80 ]];then
+  wget $appUrl1
+fi
+#second donwload
+touch $app_soft_name
+app_size=`du -sm $app_soft_name|awk '{print $1}'`
+if [[ $app_size -lt 80 ]];then
+  wget $appUrl2
+fi
+#second donwload
+touch $app_soft_name
+app_size=`du -sm $app_soft_name|awk '{print $1}'`
+if [[ $app_size -lt 80 ]];then
+  wget $appUrl3
+fi
+#################################################################### download app finish
+#################################################################### verify soft start
+#verify app
+verifySoft $app_soft
+app_soft_VR=$?
+if [[ $app_soft_VR -eq 1 ]];then
+	echo "install error,app_soft:$app_soft not exist";
+	clearTips
+	exit 1
+fi
+#verify mysql
+verifySoft $mysql_soft
+mysql_soft_VR=$?
+if [[ $mysql_soft_VR -eq 1 ]];then
+	echo "install error,mysql_soft:$mysql_soft not exist";
+	clearTips
+	exit 1
+fi
+#verify java
+if [[ $java_soft_remote -eq 1 ]];then
+  verifySoft $java_soft
+  java_soft_VR=$?
+  if [[ $java_soft_VR -eq 1 ]];then
+    echo "install error,java_soft:$java_soft not exist";
+    clearTips
+    exit 1
+  fi
+fi
+#################################################################### verify soft finish
+#################################################################### install start
 ## install mysql
 installMysql
 which $MYSQL>/dev/null
@@ -466,14 +584,10 @@ else
 fi
 ## install app
 installApp
-
 ## stop Firewalld
 stopFirewalld
-
 cd $app_dir
 sh startALL.sh
-
-
 echo "################## install result ###################"
 echo "Install Finish"
 echo "App Install directory List:$mysql_dir,$app_dir"
@@ -483,10 +597,17 @@ echo "Mysql info:password=$MYSQL_ROOT_PWD";
 echo "Access Address:http://ip:$app_port"
 echo "Login username:admin"
 echo "Login password:123456"
-echo "################## install end #######################"
+#################################################################### install finish
 exit 0
-
-
+##########################################################################################
+##########################################################################################
+##########################################################################################
+##########################################################################################
+##########################################################################################
+##########################################################################################
+##########################################################################################
+##########################################################################################
+##########################################################################################
 rm -rf /app/java
 rm -rf /app/db
 rm -rf /app/app

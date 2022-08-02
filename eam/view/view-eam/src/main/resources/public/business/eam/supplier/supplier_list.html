@@ -2,7 +2,7 @@
 /**
  * 供应商 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-12 06:32:57
+ * @since 2022-07-30 08:31:35
  */
  -->
  <!DOCTYPE html>
@@ -39,10 +39,10 @@
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 名称 , supplierName ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 编码 , code ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('名称')}" class="search-label supplierName-label">名称</span><span class="search-colon">:</span></div>
-                        <input id="supplierName" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('编码')}" class="search-label code-label">编码</span><span class="search-colon">:</span></div>
+                        <input id="code" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
                     <!-- 商务联系人 , businessContacts ,typeName=text_input, isHideInSearch=true -->
                     <!-- 商务联系方式 , businessContactsInfo ,typeName=text_input, isHideInSearch=true -->
@@ -50,9 +50,19 @@
                     <!-- 售后联系方式 , afterSalesContactsInfo ,typeName=text_input, isHideInSearch=true -->
                     <!-- 地址 , address ,typeName=text_area, isHideInSearch=true -->
                     <!-- 备注 , supplierNotes ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 名称 , supplierName ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('名称')}" class="search-label supplierName-label">名称</span><span class="search-colon">:</span></div>
+                        <input id="supplierName" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+                    <!-- 评级 , grade ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('评级')}" class="search-label grade-label">评级</span><span class="search-colon">:</span></div>
+                        <div id="grade" th:data="${'/service-system/sys-dict-item/query-list?dictCode=eam_supplier_grade'}" style="width:150px" extraParam="{}"></div>
+                    </div>
                     <!-- 统一社会信用代码 , unitCode ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:130px"><span th:text="${lang.translate('统一社会信用代码')}" class="search-label unitCode-label">统一社会信用代码</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('统一社会信用代码')}" class="search-label unitCode-label">统一社会信用代码</span><span class="search-colon">:</span></div>
                         <input id="unitCode" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
 
@@ -79,7 +89,6 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
-
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">

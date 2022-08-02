@@ -81,32 +81,24 @@ function ListPage() {
 				{ field: 'businessName', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('业务名称'), templet:function (d){ return templet('businessName',d.businessName,d);}  },
 				{ field: 'changeDate', align:"right", fixed:false, hide:false, sort: true, title: fox.translate('变更日期'), templet: function (d) { return templet('changeDate',fox.dateFormat(d.changeDate,"yyyy-MM-dd"),d); }},
 				{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"]),d);}}
-
 			];
-
-			console.log("@@@","ATTRIBUTE_LIST_DATA",ATTRIBUTE_LIST_DATA);
-
 			for(var i=0;i<ATTRIBUTE_LIST_DATA.length;i++){
 				if(ATTRIBUTE_LIST_DATA[i].attribute&&ATTRIBUTE_LIST_DATA[i].attribute.code){
 					var code=ATTRIBUTE_LIST_DATA[i].attribute.code;
 					var e=COL_ALL_DATA[code];
+					e.title=ATTRIBUTE_LIST_DATA[i].attribute.label;
 					COL_DATA.push(e);
 				}
 			}
-
-
 
 			if(APPROVAL_REQUIRED){
 			    var ap={ field: 'chsApprovalOpinion', align:"right",fixed:false,  hide:false, sort: true, title: fox.translate('审批意见') , templet: function (d) { return templet('chsApprovalOpinion',d.chsApprovalOpinion,d);}  };
 				COL_DATA.push(ap);
 			}
 
-
 			var oper={ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 360 };
 			COL_DATA.push(oper)
 
-
-			console.log("@@@","COL_DATA",COL_DATA);
 			var responseData=[];
 			var tableConfig={
 				elem: '#'+TABLE_ID,

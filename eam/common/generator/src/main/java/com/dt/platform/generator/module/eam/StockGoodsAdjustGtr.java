@@ -40,7 +40,7 @@ public class StockGoodsAdjustGtr extends BaseCodeGenerator {
                 new Object[]{
                         EAMTables.EAM_ASSET_STOCK_GOODS_ADJUST.STATUS,
                         EAMTables.EAM_ASSET_STOCK_GOODS_ADJUST.BUSINESS_CODE,
-                        EAMTables.EAM_ASSET_STOCK_GOODS_ADJUST.WAREHOUSE_ID,
+//                        EAMTables.EAM_ASSET_STOCK_GOODS_ADJUST.WAREHOUSE_ID,
                         EAMTables.EAM_ASSET_STOCK_GOODS_ADJUST.CONTENT
                 },
                 new Object[] {
@@ -55,7 +55,7 @@ public class StockGoodsAdjustGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
 
 
-
+        cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_ADJUST.WAREHOUSE_ID).table().disable(true);
 
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_ADJUST.SELECTED_CODE).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_GOODS_ADJUST.OWNER_TYPE).table().disable(true);
@@ -103,9 +103,9 @@ public class StockGoodsAdjustGtr extends BaseCodeGenerator {
                 new Object[] {
                         EAMTables.EAM_ASSET_STOCK_GOODS_ADJUST.NAME,
                 },
-                new Object[] {
-                        EAMTables.EAM_ASSET_STOCK_GOODS_ADJUST.WAREHOUSE_ID,
-                },
+//                new Object[] {
+//                        EAMTables.EAM_ASSET_STOCK_GOODS_ADJUST.WAREHOUSE_ID,
+//                },
                 new Object[] {
                         EAMTables.EAM_ASSET_STOCK_GOODS_ADJUST.BUSINESS_DATE,
                 }

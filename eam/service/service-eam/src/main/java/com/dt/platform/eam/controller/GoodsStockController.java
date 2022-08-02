@@ -553,7 +553,7 @@ public class GoodsStockController extends SuperController {
 				e.setOwnerTmpId(ownerTmpId);
 			}
 			e.setSelectedCode(selectedCode);
-			e.setNotes("物品选择");
+			e.setNotes("");
 			goodsStockService.insert(e,false);
 
 		}

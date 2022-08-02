@@ -3,13 +3,14 @@ package com.dt.platform.domain.eam.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.Supplier;
 import java.util.Date;
+import org.github.foxnic.web.domain.system.DictItem;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-12 06:32:56
- * @sign 0A1A62007DCE950EEB1FE05475AA3993
+ * @since 2022-07-30 08:31:34
+ * @sign 1EECD89C15EA9EE84F7AC74D281A0DDF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -24,6 +25,16 @@ public class SupplierMeta {
 	 * 主键 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.Supplier,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.eam.Supplier.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
+	
+	/**
+	 * 编码 , 类型: java.lang.String
+	*/
+	public static final String CODE="code";
+	
+	/**
+	 * 编码 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Supplier,java.lang.String> CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.Supplier.class ,CODE, java.lang.String.class, "编码", "编码", java.lang.String.class, null);
 	
 	/**
 	 * 名称 , 类型: java.lang.String
@@ -44,6 +55,16 @@ public class SupplierMeta {
 	 * 商务联系人 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.Supplier,java.lang.String> BUSINESS_CONTACTS_PROP = new BeanProperty(com.dt.platform.domain.eam.Supplier.class ,BUSINESS_CONTACTS, java.lang.String.class, "商务联系人", "商务联系人", java.lang.String.class, null);
+	
+	/**
+	 * 评级 , 类型: java.lang.String
+	*/
+	public static final String GRADE="grade";
+	
+	/**
+	 * 评级 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Supplier,java.lang.String> GRADE_PROP = new BeanProperty(com.dt.platform.domain.eam.Supplier.class ,GRADE, java.lang.String.class, "评级", "评级", java.lang.String.class, null);
 	
 	/**
 	 * 商务联系方式 , 类型: java.lang.String
@@ -196,9 +217,19 @@ public class SupplierMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.Supplier,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.Supplier.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * gradeDict , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final String GRADE_DICT="gradeDict";
+	
+	/**
+	 * gradeDict , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Supplier,org.github.foxnic.web.domain.system.DictItem> GRADE_DICT_PROP = new BeanProperty(com.dt.platform.domain.eam.Supplier.class ,GRADE_DICT, org.github.foxnic.web.domain.system.DictItem.class, "gradeDict", "gradeDict", org.github.foxnic.web.domain.system.DictItem.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , SUPPLIER_NAME , BUSINESS_CONTACTS , BUSINESS_CONTACTS_INFO , AFTER_SALES_CONTACTS , AFTER_SALES_CONTACTS_INFO , UNIT_CODE , ADDRESS , SUPPLIER_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ ID , CODE , SUPPLIER_NAME , BUSINESS_CONTACTS , GRADE , BUSINESS_CONTACTS_INFO , AFTER_SALES_CONTACTS , AFTER_SALES_CONTACTS_INFO , UNIT_CODE , ADDRESS , SUPPLIER_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , GRADE_DICT };
 	
 	/**
 	 * 代理类
@@ -216,6 +247,17 @@ public class SupplierMeta {
 		public Supplier setId(String id) {
 			super.change(ID,super.getId(),id);
 			super.setId(id);
+			return this;
+		}
+		
+		/**
+		 * 设置 编码
+		 * @param code 编码
+		 * @return 当前对象
+		*/
+		public Supplier setCode(String code) {
+			super.change(CODE,super.getCode(),code);
+			super.setCode(code);
 			return this;
 		}
 		
@@ -238,6 +280,17 @@ public class SupplierMeta {
 		public Supplier setBusinessContacts(String businessContacts) {
 			super.change(BUSINESS_CONTACTS,super.getBusinessContacts(),businessContacts);
 			super.setBusinessContacts(businessContacts);
+			return this;
+		}
+		
+		/**
+		 * 设置 评级
+		 * @param grade 评级
+		 * @return 当前对象
+		*/
+		public Supplier setGrade(String grade) {
+			super.change(GRADE,super.getGrade(),grade);
+			super.setGrade(grade);
 			return this;
 		}
 		
@@ -403,6 +456,17 @@ public class SupplierMeta {
 		public Supplier setTenantId(String tenantId) {
 			super.change(TENANT_ID,super.getTenantId(),tenantId);
 			super.setTenantId(tenantId);
+			return this;
+		}
+		
+		/**
+		 * 设置 gradeDict
+		 * @param gradeDict gradeDict
+		 * @return 当前对象
+		*/
+		public Supplier setGradeDict(DictItem gradeDict) {
+			super.change(GRADE_DICT,super.getGradeDict(),gradeDict);
+			super.setGradeDict(gradeDict);
 			return this;
 		}
 	}

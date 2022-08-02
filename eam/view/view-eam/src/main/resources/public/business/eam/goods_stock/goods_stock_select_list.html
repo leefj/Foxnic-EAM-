@@ -43,15 +43,14 @@
                     <!-- 所属 , ownerTmpId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 库存所属 , ownerCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 所属类型 , ownerType ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 业务编号 , businessCode ,typeName=text_input, isHideInSearch=false -->
-
+                    <!-- 业务编号 , businessCode ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 状态 , goodsStatus ,typeName=select_box, isHideInSearch=true -->
                     <!-- 分类 , categoryId ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 状态 , status ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 物品名称 , name ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 规格型号 , model ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 物品编码 , code ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 物品条码 , barCode ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 品牌 , brandId ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 厂商 , manufacturerId ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('厂商')}" class="search-label manufacturerId-label">厂商</span><span class="search-colon">:</span></div>
+                        <div id="manufacturerId" th:data="${'/service-eam/eam-manufacturer/query-list'}" style="width:150px" extraParam="{}"></div>
+                    </div>
                     <!-- 默认单价 , unitPrice ,typeName=number_input, isHideInSearch=true -->
                     <!-- 计量单位 , unit ,typeName=text_input, isHideInSearch=true -->
                     <!-- 安全库存下限 , stockMin ,typeName=number_input, isHideInSearch=true -->
@@ -59,54 +58,87 @@
                     <!-- 安全库存 , stockSecurity ,typeName=number_input, isHideInSearch=true -->
                     <!-- 物品图片 , pictureId ,typeName=upload, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 批次号 , batchCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 所属公司 , ownCompanyId ,typeName=button, isHideInSearch=true -->
                     <!-- 使用组织 , useOrgId ,typeName=button, isHideInSearch=true -->
                     <!-- 供应商 , supplierName ,typeName=text_input, isHideInSearch=true -->
                     <!-- 来源 , sourceId ,typeName=select_box, isHideInSearch=true -->
                     <!-- 物品 , goodsId ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 入库存数量 , stockInNumber ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 当前库存数量 , stockCurNumber ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 入库数量 , stockInNumber ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 当前数量 , stockCurNumber ,typeName=number_input, isHideInSearch=true -->
                     <!-- 总金额 , amount ,typeName=number_input, isHideInSearch=true -->
                     <!-- 管理人 , managerId ,typeName=button, isHideInSearch=true -->
+                    <!-- 库存数据 , realStockId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 制单人 , originatorId ,typeName=button, isHideInSearch=true -->
                     <!-- 选择 , selectedCode ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 库存上限 , goodsStockMax ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 库存下限 , goodsStockMin ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 安全库存 , goodsStockSecurity ,typeName=select_box, isHideInSearch=true -->
                     <!-- 物品型号 , goodsModel ,typeName=select_box, isHideInSearch=true -->
+                    <!-- goodsName , goodsName ,typeName=text_input, isHideInSearch=true -->
+                    <!-- goodsCategoryName , goodsCategoryName ,typeName=text_input, isHideInSearch=true -->
                     <!-- 计量单位 , goodsUnit ,typeName=select_box, isHideInSearch=true -->
                     <!-- 物品编码 , goodsCode ,typeName=select_box, isHideInSearch=true -->
                     <!-- 物品条码 , goodsBarCode ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 批次号 , batchCode ,typeName=text_input, isHideInSearch=false -->
-
-                    <!-- 厂商 , manufacturerId ,typeName=select_box, isHideInSearch=false -->
+                    <!-- goodsStockMax , goodsStockMax ,typeName=text_input, isHideInSearch=true -->
+                    <!-- goodsStockMin , goodsStockMin ,typeName=text_input, isHideInSearch=true -->
+                    <!-- goodsStockSecurity , goodsStockSecurity ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 品牌 , brandId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('厂商')}" class="search-label manufacturerId-label">厂商</span><span class="search-colon">:</span></div>
-                        <div id="manufacturerId" th:data="${'/service-eam/eam-manufacturer/query-list'}" style="width:150px" extraParam="{}"></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('品牌')}" class="search-label brandId-label">品牌</span><span class="search-colon">:</span></div>
+                        <div id="brandId" th:data="${'/service-eam/eam-brand/query-paged-list'}" style="width:150px" extraParam="{}"></div>
                     </div>
-                    <!-- 仓库 , warehouseId ,typeName=select_box, isHideInSearch=false -->
+                    <!-- 规格型号 , model ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('仓库')}" class="search-label warehouseId-label">仓库</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('规格型号')}" class="search-label model-label">规格型号</span><span class="search-colon">:</span></div>
+                        <input id="model" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+                    <!-- 物品名称 , name ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('物品名称')}" class="search-label name-label">物品名称</span><span class="search-colon">:</span></div>
+                        <input id="name" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+
+
+                </div>
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 办理状态 , status ,typeName=select_box, isHideInSearch=false -->
+
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('状态')}" class="search-label goodsStatus-label">状态</span><span class="search-colon">:</span></div>
+                        <div id="goodsStatus" th:data="${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" style="width:150px" extraParam="{}"></div>
+                    </div>
+
+                    <!-- 仓库 , warehouseId ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('仓库')}" class="search-label warehouseId-label">仓库</span><span class="search-colon">:</span></div>
                         <div id="warehouseId" th:data="${'/service-eam/eam-warehouse/query-paged-list'}" style="width:150px" extraParam="{}"></div>
                     </div>
-
+                    <!-- 物品编码 , code ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:100px"><span th:text="${lang.translate('入库时间')}" class="search-label storageDate-label">入库时间</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('物品编码')}" class="search-label code-label">物品编码</span><span class="search-colon">:</span></div>
+                        <input id="code" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+                    <!-- 物品条码 , barCode ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('物品条码')}" class="search-label barCode-label">物品条码</span><span class="search-colon">:</span></div>
+                        <input id="barCode" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+
+
+                </div>
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 入库时间 , storageDate ,typeName=date_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('入库时间')}" class="search-label storageDate-label">入库时间</span><span class="search-colon">:</span></div>
                         <input type="text" id="storageDate-begin" style="width: 150px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
                         <span class="search-dash">-</span>
                         <input type="text" id="storageDate-end"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
                     </div>
 
-                </div>
-                <!-- 搜索输入区域 -->
-                <div class="layui-form toolbar search-inputs">
-
-                    <!-- 入库时间 , storageDate ,typeName=date_input, isHideInSearch=false -->
-
-
 
                 </div>
             </div>
+
 
 
             <!-- 按钮区域 -->
@@ -116,7 +148,7 @@
         </div>
 
         <div style="margin-top: 84px ">
-            <table class="layui-table" id="data-table" lay-filter="data-table"></table>
+            <table class="layui-table" th:id="(${tableId})"  lay-filter="data-table"></table>
         </div>
 
     </div>
@@ -140,12 +172,15 @@
 
 
 <script th:inline="javascript">
-    var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
-    var LAYUI_TABLE_WIDTH_CONFIG2 = [[${layuiTableWidthConfig}]] ;
+  //  var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
+
+    var TABLE_ID = [[${tableId}]] ;
+    var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]] ;
     var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
     var SELECT_GOODSSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+
     var AUTH_PREFIX="eam_goods_stock";
-    var TABLE_ID = [[${tableId}]] ;
+
     var OWNER_CODE = [[${ownerCode}]] ;
     var OWNER_TMP_ID = [[${ownerTmpId}]] ;
     var OPER_TYPE = [[${operType}]] ;

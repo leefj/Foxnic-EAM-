@@ -9,6 +9,7 @@ import com.dt.platform.domain.eam.meta.AssetCollectionReturnMeta;
 import com.dt.platform.domain.eam.meta.AssetMeta;
 import com.dt.platform.domain.eam.meta.MaintainTaskMeta;
 import com.dt.platform.domain.eam.meta.TplFileMeta;
+import com.dt.platform.domain.ops.IpAddressRange;
 import com.dt.platform.domain.ops.MonitorObject;
 import com.dt.platform.domain.ops.Voucher;
 import com.dt.platform.domain.ops.VoucherPriv;
@@ -45,7 +46,30 @@ public class OpsRelationManager extends RelationManager {
 
         this.setupMonitorModel();
 
+        this.setupIpAddressRange();
+
     }
+
+    public void setupIpAddressRange() {
+
+        this.property(IpAddressRangeMeta.PROD_DICT_PROP)
+                .using(OpsTables.OPS_IP_ADDRESS_RANGE.PROD_ID).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='ops_network_ip_prod'");
+
+
+        this.property(IpAddressRangeMeta.REGION_DICT_PROP)
+                .using(OpsTables.OPS_IP_ADDRESS_RANGE.REGION_ID).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='ops_network_ip_region'");
+
+
+        this.property(IpAddressRangeMeta.CLASS_DICT_PROP)
+                .using(OpsTables.OPS_IP_ADDRESS_RANGE.CLASS_ID).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='ops_network_ip_class'");
+
+
+    }
+
+
 
     public void setupMonitorObject() {
         this.property(MonitorObjectMeta.GROUP_PROP)

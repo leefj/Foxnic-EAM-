@@ -6,10 +6,7 @@ import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.*;
 import com.dt.platform.generator.config.Config;
-import com.dt.platform.proxy.eam.BrandServiceProxy;
-import com.dt.platform.proxy.eam.CategoryServiceProxy;
-import com.dt.platform.proxy.eam.GoodsStockServiceProxy;
-import com.dt.platform.proxy.eam.ManufacturerServiceProxy;
+import com.dt.platform.proxy.eam.*;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
@@ -33,28 +30,26 @@ public class StockEamGoodsStock_dangan_Gtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(Manufacturer.class,"manufacturer","生产厂商","生产厂商");
         cfg.getPoClassFile().addSimpleProperty(Brand.class,"brand","品牌","品牌");
         cfg.getPoClassFile().addSimpleProperty(GoodsStock.class,"goods","物品","物品");
-
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"ownerCompany","所属公司","所属公司");
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"useOrganization","使用公司/部门","使用公司/部门");
         cfg.getPoClassFile().addSimpleProperty(Warehouse.class,"warehouse","仓库","仓库");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"source","来源","来源");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"manager","管理人","管理人");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
-
         cfg.getPoClassFile().addSimpleProperty(GoodsStock.class,"realGoods","库存数据","库存数据");
-
-
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsModel","类型","类型");
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsName","名称","名称");
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsCategoryName","分类","分类");
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsUnit","计算单位","计算单位");
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsCode","物品编码","物品编码");
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsBarCode","物品条码","物品条码");
-
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsStockMax","物品条码","物品条码");
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsStockMin","物品条码","物品条码");
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsStockSecurity","物品条码","物品条码");
         cfg.getPoClassFile().addSimpleProperty(String.class,"goodsStockNotes","库存备注","库存备注");
+
+
+
 
         cfg.view().field(GoodsStockMeta.GOODS_MODEL).table().disable();
         cfg.view().field(GoodsStockMeta.GOODS_NAME).table().disable();
@@ -114,18 +109,23 @@ public class StockEamGoodsStock_dangan_Gtr extends BaseCodeGenerator {
                         EAMTables.EAM_GOODS_STOCK.MANUFACTURER_ID,
                         EAMTables.EAM_GOODS_STOCK.BRAND_ID,
                         EAMTables.EAM_GOODS_STOCK.MODEL,
+                        EAMTables.EAM_GOODS_STOCK.NAME,
                 },
                 new Object[]{
-                        EAMTables.EAM_GOODS_STOCK.NAME,
+                        EAMTables.EAM_GOODS_STOCK.GOODS_STATUS,
+                        EAMTables.EAM_GOODS_STOCK.WAREHOUSE_ID,
                         EAMTables.EAM_GOODS_STOCK.CODE,
                         EAMTables.EAM_GOODS_STOCK.BAR_CODE,
+                },
+                new Object[]{
+                        EAMTables.EAM_GOODS_STOCK.STORAGE_DATE,
                 }
         );
 
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);
-        cfg.view().search().labelWidth(3,Config.searchLabelWidth+30);
-        cfg.view().search().labelWidth(4,Config.searchLabelWidth+30);
+        cfg.view().search().labelWidth(3,Config.searchLabelWidth);
+        cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
 
@@ -197,6 +197,12 @@ public class StockEamGoodsStock_dangan_Gtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_GOODS_STOCK.GOODS_STATUS).basic().label("状态")
                 .form().validate().required().form().selectBox().enumType(StatusEnableEnum.class);
+
+
+        cfg.view().field(EAMTables.EAM_GOODS_STOCK.WAREHOUSE_ID)
+                .basic().label("仓库")
+                .form().selectBox().queryApi(WarehouseServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
+                .valueField(WarehouseMeta.ID).textField( WarehouseMeta.WAREHOUSE_NAME).fillWith(GoodsStockMeta.WAREHOUSE).muliti(false);
 
 
 
