@@ -41,12 +41,12 @@ import org.github.foxnic.web.domain.pcm.*;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.system.DictItemVO;
 import org.github.foxnic.web.framework.dao.DBConfigs;
+import org.github.foxnic.web.framework.pcm.PcmCatalogDelegate;
 import org.github.foxnic.web.misc.ztree.ZTreeNode;
 import org.github.foxnic.web.proxy.hrm.EmployeeServiceProxy;
 import org.github.foxnic.web.proxy.hrm.OrganizationServiceProxy;
 import org.github.foxnic.web.proxy.pcm.CatalogServiceProxy;
 import org.github.foxnic.web.proxy.system.DictItemServiceProxy;
-import org.github.foxnic.web.proxy.utils.PcmProxyUtil;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -608,7 +608,9 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
 //        vo.setParentId(rootId);
 //        vo.setIsLoadAllDescendants(1);
         //queryNodesFlatten
-        Result r= PcmProxyUtil.queryCatalogNodesTree(rootId,true);
+        PcmCatalogDelegate delegate=new PcmCatalogDelegate(rootId);
+        Result r = delegate.queryNodesTree(true);
+        // Result r = PcmProxyUtil.queryCatalogNodesTree(rootId,true);
         System.out.println(r);
         if(r.isSuccess()){
             List<ZTreeNode> list= (List<ZTreeNode> )r.getData();
