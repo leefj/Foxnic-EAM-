@@ -1198,7 +1198,6 @@ public class AssetController extends SuperController {
             if(inputstream==null){
                 return;
             }
-
             File f=assetDataService.saveTempFile(inputstream,"tmp_download_asset_data.xls");
             Map<String,Object> map= assetDataService.queryAssetMap(assetDataService.queryAssetList(null,sample),categoryId);
             TemplateExportParams templateExportParams = new TemplateExportParams(f.getPath());

@@ -204,15 +204,16 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             var assetCategorySelect= xmSelect.get('#categoryId',true);
             if(assetCategorySelect){
                categoryValue= assetCategorySelect.getValue();
-               console.log("categoryValue:"+categoryValue);
                if(categoryValue&&categoryValue.length>0){
                     categoryId=categoryValue[0].id;
+               }else{
+                   categoryId=CATEGORY_ID;
                }
+            }else{
+                categoryId=CATEGORY_ID;
             }
             var value = {};
             value.businessCode={ inputType:"button",value: $("#businessCode").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
-
-            //value.businessCode={ inputType:"button",value: $("#businessCode").val()};
             value.status={ inputType:"select_box", value: xmSelect.get("#status",true).getValue("value"), label:xmSelect.get("#status",true).getValue("nameStr") };
             value.assetCode={ inputType:"button",value: $("#assetCode").val()};
             value.assetStatus={ inputType:"select_box", value: xmSelect.get("#assetStatus",true).getValue("value"), label:xmSelect.get("#assetStatus",true).getValue("nameStr") };
@@ -229,8 +230,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             value.purchaseDate={ inputType:"date_input", begin: $("#purchaseDate-begin").val(), end: $("#purchaseDate-end").val() };
             value.assetNotes={ inputType:"button",value: $("#assetNotes").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
             value.maintainerId={ inputType:"select_box", value: xmSelect.get("#maintainerId",true).getValue("value") ,fillBy:["maintnainer"]  ,  label:xmSelect.get("#maintainerId",true).getValue("nameStr") };
-
-
 
             var ps={searchField: "$composite", searchValue: JSON.stringify(value)};
             var downloadUrl="/service-eam/eam-asset/export-excel";

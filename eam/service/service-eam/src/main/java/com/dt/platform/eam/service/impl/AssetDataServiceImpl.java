@@ -102,16 +102,20 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
 
     @Override
     public PagedList<Asset> queryAssetPagedList(List<String> ids, AssetVO asset) {
-        asset.setOwnerCode(AssetOwnerCodeEnum.ASSET.code());
+        if(StringUtil.isBlank(asset.getOwnerCode())){
+            asset.setOwnerCode(AssetOwnerCodeEnum.ASSET.code());
+        }
         return assetService.queryPagedList(asset,asset.getPageSize(),asset.getPageIndex());
 
     }
 
     @Override
     public List<Asset> queryAssetList(List<String> ids, AssetVO asset) {
-        asset.setOwnerCode(AssetOwnerCodeEnum.ASSET.code());
-        return assetService.queryList(asset);
-
+        if(StringUtil.isBlank(asset.getOwnerCode())){
+            asset.setOwnerCode(AssetOwnerCodeEnum.ASSET.code());
+        }
+        PagedList<Asset> pageList= assetService.queryPagedList(asset,10000000,0);
+        return pageList.getList();
     }
 
 
@@ -609,9 +613,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
 //        vo.setIsLoadAllDescendants(1);
         //queryNodesFlatten
         PcmCatalogDelegate delegate=new PcmCatalogDelegate(rootId);
-        Result r = delegate.queryNodesTree(true);
-        // Result r = PcmProxyUtil.queryCatalogNodesTree(rootId,true);
-        System.out.println(r);
+        Result r = delegate.queryNodesFlatten(true,true);
         if(r.isSuccess()){
             List<ZTreeNode> list= (List<ZTreeNode> )r.getData();
             for( ZTreeNode node:list){
@@ -964,7 +966,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
 
 
 
-    //将assetList转Map,保存dataList,categoryId 过滤条件
+    //将assetList转Map,保存dataList,categoryId过滤条件
     @Override
     public Map<String, Object> queryAssetMap(List<Asset> list,String categoryId) {
         HashMap<String,String> orgMap=queryOrganizationNodes("all");
@@ -976,15 +978,15 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         List<Map<String, Object>> listMap = new ArrayList<Map<String, Object>>();
         for(int i=0;i<list.size();i++){
             Asset assetItem=list.get(i);
-            System.out.println(categoryId+"map"+BeanUtil.toJSONObject(assetItem));
-            if(!StringUtil.isBlank(categoryId)){
-                if(!categoryId.equals(assetItem.getCategoryId())){
-                    continue;
-                }
-            }
+            System.out.println(categoryId+"#####map"+BeanUtil.toJSONObject(assetItem));
+//            if(!StringUtil.isBlank(categoryId)){
+//                if(!categoryId.equals(assetItem.getCategoryId())){
+//                    continue;
+//                }
+//            }
 
             Map<String, Object> assetMap= BeanUtil.toMap(assetItem);
-            System.out.println("assetMap"+BeanUtil.toJSONObject(assetItem));
+            System.out.println("######assetMap"+BeanUtil.toJSONObject(assetItem));
             //获取自定义属性
             DataQueryVo vo=new DataQueryVo();
             vo.setCatalogId(categoryId);
@@ -1071,8 +1073,6 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                 // 关联出 供应商 数据
                 assetMap.put(AssetDataExportColumnEnum.ASSET_SUPPLIER_NAME.code(),assetItem.getSupplier().getSupplierName());
             }
-
-
 
             String companyName=orgMap.get(assetItem.getOwnCompanyId());
             assetMap.put(AssetDataExportColumnEnum.OWN_COMPANY_NAME.code(),companyName);

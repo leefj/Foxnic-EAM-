@@ -1110,7 +1110,12 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 	 * */
 	@Override
 	public List<Asset> queryList(Asset sample) {
-		return super.queryList(sample);
+		String dp=applyAssetDataPermissions(sample,null);
+		if(StringUtil.isBlank(dp)){
+			return super.queryList(sample);
+		}else{
+			return super.queryList(sample, null, null,dp);
+		}
 	}
 
 

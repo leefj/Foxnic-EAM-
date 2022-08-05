@@ -470,6 +470,7 @@ if [[ $java_soft_remote -eq 1 ]];then
   java_size=`du -sm $java_file|awk '{print $1}'`
   if [[ $java_size -lt 60 ]];then
     java_download=1
+    rm -rf $java_file
     wget -O $java_file $javaUrl2
   fi
 fi
@@ -479,6 +480,7 @@ if [[ $java_soft_remote -eq 1 ]];then
   java_size=`du -sm $java_file|awk '{print $1}'`
   if [[ $java_size -lt 60 ]];then
     java_download=1
+    rm -rf $java_file
     wget -O $java_file $javaUrl3
   fi
 fi
@@ -488,6 +490,7 @@ if [[ $java_soft_remote -eq 1 ]];then
   java_size=`du -sm $java_file|awk '{print $1}'`
   if [[ $java_size -lt 60 ]];then
     java_download=1
+    rm -rf $java_file
     wget -O $java_file $javaUrl4
   fi
 fi
@@ -521,20 +524,31 @@ fi
 touch $app_soft_name
 app_size=`du -sm $app_soft_name|awk '{print $1}'`
 if [[ $app_size -lt 80 ]];then
+  rm -rf $app_soft_name
   wget $appUrl1
 fi
 #second donwload
 touch $app_soft_name
 app_size=`du -sm $app_soft_name|awk '{print $1}'`
 if [[ $app_size -lt 80 ]];then
+  rm -rf $app_soft_name
   wget $appUrl2
 fi
 #second donwload
 touch $app_soft_name
 app_size=`du -sm $app_soft_name|awk '{print $1}'`
 if [[ $app_size -lt 80 ]];then
+  rm -rf $app_soft_name
   wget $appUrl3
 fi
+
+touch $app_soft_name
+app_size=`du -sm $app_soft_name|awk '{print $1}'`
+if [[ $app_size -lt 80 ]];then
+  echo "app soft file maybe not right!"
+  exit 1
+fi
+
 #################################################################### download app finish
 #################################################################### verify soft start
 #verify app
