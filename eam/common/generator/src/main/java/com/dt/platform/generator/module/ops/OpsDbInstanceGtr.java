@@ -132,8 +132,8 @@ public class OpsDbInstanceGtr extends BaseCodeGenerator{
                 }
         );
 
-        cfg.view().formWindow().width("90%");
-        cfg.view().formWindow().bottomSpace(150);
+        cfg.view().formWindow().width(Config.baseFormWidth);
+        cfg.view().formWindow().bottomSpace(60);
         cfg.view().form().addGroup(null ,
                 new Object[] {
                         OpsTables.OPS_DB_INSTANCE.HOST_ID,
@@ -149,6 +149,7 @@ public class OpsDbInstanceGtr extends BaseCodeGenerator{
                 },
                 new Object[] {
                         OpsTables.OPS_DB_INSTANCE.BACKUP_METHOD,
+                        OpsTables.OPS_DB_INSTANCE.BACKUP_DATAKEEP,
                         OpsTables.OPS_DB_INSTANCE.BACKUP_SIZE,
                 }
         );

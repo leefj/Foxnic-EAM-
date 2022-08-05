@@ -1,7 +1,7 @@
 /**
  * 数据库实例 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:28:23
+ * @since 2022-08-04 06:17:09
  */
 
 
@@ -45,6 +45,9 @@ function ListPage() {
 		});
 		fox.adjustSearchElement();
 		//
+		 var marginTop=$(".search-bar").height()+$(".search-bar").css("padding-top")+$(".search-bar").css("padding-bottom")
+		 $("#table-area").css("margin-top",marginTop+"px");
+		//
 		function renderTableInternal() {
 
 			var ps={searchField: "$composite"};
@@ -74,43 +77,34 @@ function ListPage() {
 				cols: [[
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
-					,{ field: 'hostId', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('主机'), templet: function (d) { return templet('hostId' ,fox.joinLabel(d.host,"hostName"),d);}}
-					,{ field: 'resHostIp', align:"",fixed:false,  hide:false, sort: true, title: fox.translate('IP') , templet: function (d) { return templet('resHostIp',fox.getProperty(d,["host","hostIp"]),d);} }
-					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('实例名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'backupStatus', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('备份状态'), templet:function (d){ return templet('backupStatus',fox.getDictText(SELECT_BACKUPSTATUS_DATA,d.backupStatus),d);}}
-					,{ field: 'logMethod', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('日志模式'), templet:function (d){ return templet('logMethod',fox.getDictText(SELECT_LOGMETHOD_DATA,d.logMethod),d);}}
-					,{ field: 'backupType', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('备份状态'), templet:function (d){ return templet('backupType',fox.getDictText(SELECT_BACKUPTYPE_DATA,d.backupType),d);}}
-					,{ field: 'databaseId', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('数据库'), templet: function (d) { return templet('databaseId' ,fox.joinLabel(d.database,"name"),d);}}
-					,{ field: 'backupTime', align:"right", fixed:false, hide:false, sort: true, title: fox.translate('上次备份'), templet: function (d) { return templet('backupTime',fox.dateFormat(d.backupTime,"yyyy-MM-dd HH:mm:ss"),d); }}
-					,{ field: 'backupStrategy', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('备份策略') , templet: function (d) { return templet('backupStrategy',d.backupStrategy,d);}  }
-					,{ field: 'backupMethod', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('备份方式'), templet:function (d){ return templet('backupMethod',fox.getDictText(SELECT_BACKUPMETHOD_DATA,d.backupMethod),d);}}
-					,{ field: 'backupSize', align:"right",fixed:false,  hide:false, sort: true, title: fox.translate('备份大小') , templet: function (d) { return templet('backupSize',d.backupSize,d);}  }
-					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
-					,{ field: 'backupDatakeep', align:"left",fixed:false,  hide:true, sort: true, title: fox.translate('备份保留时长') , templet: function (d) { return templet('backupDatakeep',d.backupDatakeep,d);}  }
-					,{ field: 'labels', align:"left",fixed:false,  hide:true, sort: true, title: fox.translate('标签') , templet: function (d) { return templet('labels',d.labels,d);}  }
+					,{ field: 'hostId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('主机'), templet: function (d) { return templet('hostId' ,fox.joinLabel(d.host,"hostName",',','','hostId'),d);}}
+					,{ field: 'resHostIp', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('IP') , templet: function (d) { return templet('resHostIp',fox.getProperty(d,["host","hostIp"],0,'','resHostIp'),d);} }
+					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('实例名称') , templet: function (d) { return templet('name',d.name,d);}  }
+					,{ field: 'backupStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备份状态'), templet:function (d){ return templet('backupStatus',fox.getDictText(SELECT_BACKUPSTATUS_DATA,d.backupStatus,'','backupStatus'),d);}}
+					,{ field: 'logMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('日志模式'), templet:function (d){ return templet('logMethod',fox.getDictText(SELECT_LOGMETHOD_DATA,d.logMethod,'','logMethod'),d);}}
+					,{ field: 'backupType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备份状态'), templet:function (d){ return templet('backupType',fox.getDictText(SELECT_BACKUPTYPE_DATA,d.backupType,'','backupType'),d);}}
+					,{ field: 'databaseId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('数据库'), templet: function (d) { return templet('databaseId' ,fox.joinLabel(d.database,"name",',','','databaseId'),d);}}
+					,{ field: 'backupTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('上次备份') ,templet: function (d) { return templet('backupTime',fox.dateFormat(d.backupTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'backupStrategy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备份策略') , templet: function (d) { return templet('backupStrategy',d.backupStrategy,d);}  }
+					,{ field: 'backupMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备份方式'), templet:function (d){ return templet('backupMethod',fox.getDictText(SELECT_BACKUPMETHOD_DATA,d.backupMethod,'','backupMethod'),d);}}
+					,{ field: 'backupSize', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('备份大小') , templet: function (d) { return templet('backupSize',d.backupSize,d);}  }
+					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
+					,{ field: 'backupDatakeep', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('备份保留时长') , templet: function (d) { return templet('backupDatakeep',d.backupDatakeep,d);}  }
+					,{ field: 'labels', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('标签') , templet: function (d) { return templet('labels',d.labels,d);}  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
-					exportExcel : admin.checkAuth(AUTH_PREFIX+":export"),
-					importExcel : admin.checkAuth(AUTH_PREFIX+":import")?{
-						params : {} ,
-						callback : function(r) {
-							if(r.success) {
-								layer.msg(fox.translate('数据导入成功')+"!");
-							} else {
-								layer.msg(fox.translate('数据导入失败')+"!");
-							}
-						}
-					}:false
+					exportExcel : false ,
+					importExcel : false 
 				}
 			};
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
 			dataTable=fox.renderTable(tableConfig);
 			//绑定排序事件
 			table.on('sort(data-table)', function(obj){
-			  refreshTableData(obj.field,obj.type);
+			  refreshTableData(obj.sortField,obj.type);
 			});
 			window.pageExt.list.afterTableRender && window.pageExt.list.afterTableRender();
 		}
@@ -118,16 +112,39 @@ function ListPage() {
     };
 
 	/**
+	 * 刷新单号数据
+	 * */
+	function refreshRowData(data,remote) {
+		var context=dataTable.getDataRowContext( { id : data.id } );
+		if(context==null) return;
+		if(remote) {
+			admin.post(moduleURL+"/get-by-id", { id : data.id }, function (r) {
+				if (r.success) {
+					data = r.data;
+					context.update(data);
+					fox.renderFormInputs(form);
+				} else {
+					fox.showMessage(data);
+				}
+			});
+		} else {
+			context.update(data);
+			fox.renderFormInputs(form);
+		}
+	}
+
+	/**
       * 刷新表格数据
       */
 	function refreshTableData(sortField,sortType,reset) {
+		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
-		value.logMethod={ inputType:"select_box", value: xmSelect.get("#logMethod",true).getValue("value"), label:xmSelect.get("#logMethod",true).getValue("nameStr") };
+		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.backupStatus={ inputType:"select_box", value: getSelectedValue("#backupStatus","value"), label:getSelectedValue("#backupStatus","nameStr") };
+		value.logMethod={ inputType:"select_box", value: getSelectedValue("#logMethod","value"), label:getSelectedValue("#logMethod","nameStr") };
 		value.backupStrategy={ inputType:"button",value: $("#backupStrategy").val()};
-		value.backupStatus={ inputType:"select_box", value: xmSelect.get("#backupStatus",true).getValue("value"), label:xmSelect.get("#backupStatus",true).getValue("nameStr") };
-		value.labels={ inputType:"button",value: $("#labels").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
-		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
+		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.labels={ inputType:"button",value: $("#labels").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -178,16 +195,21 @@ function ListPage() {
 		//渲染 logMethod 下拉字段
 		fox.renderSelectBox({
 			el: "logMethod",
-			radio: false,
+			radio: true,
 			size: "small",
 			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("logMethod",data.arr,data.change,data.isAdd);
+				},1);
+			},
 			//转换数据
 			transform: function(data) {
 				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
 				var opts=[];
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
-					opts.push({name:data[i].text,value:data[i].code});
+					opts.push({data:data[i],name:data[i].text,value:data[i].code});
 				}
 				return opts;
 			}
@@ -195,16 +217,21 @@ function ListPage() {
 		//渲染 backupStatus 下拉字段
 		fox.renderSelectBox({
 			el: "backupStatus",
-			radio: false,
+			radio: true,
 			size: "small",
 			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("backupStatus",data.arr,data.change,data.isAdd);
+				},1);
+			},
 			//转换数据
 			transform: function(data) {
 				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
 				var opts=[];
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
-					opts.push({name:data[i].text,value:data[i].code});
+					opts.push({data:data[i],name:data[i].text,value:data[i].code});
 				}
 				return opts;
 			}
@@ -256,6 +283,7 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
+					admin.putTempData('ops-db-instance-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
@@ -293,22 +321,19 @@ function ListPage() {
             }
             //调用批量删除接口
 			top.layer.confirm(fox.translate('确定删除已选中的')+fox.translate('数据库实例')+fox.translate('吗？'), function (i) {
-				top.layer.close(i);
-				top.layer.load(2);
-                admin.request(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
-					top.layer.closeAll('loading');
+                top.layer.close(i);
+				admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
                     if (data.success) {
 						if(window.pageExt.list.afterBatchDelete) {
 							var doNext=window.pageExt.list.afterBatchDelete(data);
 							if(!doNext) return;
 						}
-                    	top.layer.msg(data.message, {icon: 1, time: 500});
+						fox.showMessage(data);
                         refreshTableData();
                     } else {
-						top.layer.msg(data.message, {icon: 2, time: 1500});
+						fox.showMessage(data);
                     }
-                });
-
+                },{delayLoading:200,elms:[$("#delete-button")]});
 			});
         }
 	}
@@ -329,29 +354,21 @@ function ListPage() {
 
 			admin.putTempData('ops-db-instance-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
-				//延迟显示加载动画，避免界面闪动
-				var task=setTimeout(function(){layer.load(2);},1000);
-				admin.request(moduleURL+"/get-by-id", { id : data.id }, function (data) {
-					clearTimeout(task);
-					layer.closeAll('loading');
+				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
 					if(data.success) {
 						admin.putTempData('ops-db-instance-form-data-form-action', "edit",true);
 						showEditForm(data.data);
 					} else {
-						 layer.msg(data.message, {icon: 1, time: 1500});
+						 fox.showMessage(data);
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
-				//延迟显示加载动画，避免界面闪动
-				var task=setTimeout(function(){layer.load(2);},1000);
-				admin.request(moduleURL+"/get-by-id", { id : data.id }, function (data) {
-					clearTimeout(task);
-					layer.closeAll('loading');
+				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
 					if(data.success) {
 						admin.putTempData('ops-db-instance-form-data-form-action', "view",true);
 						showEditForm(data.data);
 					} else {
-						layer.msg(data.message, {icon: 1, time: 1500});
+						fox.showMessage(data);
 					}
 				});
 			}
@@ -364,23 +381,20 @@ function ListPage() {
 
 				top.layer.confirm(fox.translate('确定删除此')+fox.translate('数据库实例')+fox.translate('吗？'), function (i) {
 					top.layer.close(i);
-
-					top.layer.load(2);
-					admin.request(moduleURL+"/delete", { id : data.id }, function (data) {
+					admin.post(moduleURL+"/delete", { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
 						if (data.success) {
 							if(window.pageExt.list.afterSingleDelete) {
 								var doNext=window.pageExt.list.afterSingleDelete(data);
 								if(!doNext) return;
 							}
-							top.layer.msg(data.message, {icon: 1, time: 500});
+							fox.showMessage(data);
 							refreshTableData();
 						} else {
-							top.layer.msg(data.message, {icon: 2, time: 1500});
+							fox.showMessage(data);
 						}
-					});
+					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
-
 			}
 			
 		});
@@ -397,7 +411,10 @@ function ListPage() {
 		}
 		var action=admin.getTempData('ops-db-instance-form-data-form-action');
 		var queryString="";
-		if(data && data.id) queryString="?" + 'id=' + data.id;
+		if(data && data.id) queryString='id=' + data.id;
+		if(window.pageExt.list.makeFormQueryString) {
+			queryString=window.pageExt.list.makeFormQueryString(data,queryString,action);
+		}
 		admin.putTempData('ops-db-instance-form-data', data);
 		var area=admin.getTempData('ops-db-instance-form-area');
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
@@ -407,24 +424,30 @@ function ListPage() {
 		else if(action=="edit") title=fox.translate('修改')+title;
 		else if(action=="view") title=fox.translate('查看')+title;
 
-		var index=admin.popupCenter({
+		admin.popupCenter({
 			title: title,
 			resize: false,
 			offset: [top,null],
 			area: ["80%",height+"px"],
 			type: 2,
 			id:"ops-db-instance-form-data-win",
-			content: '/business/ops/db_instance/db_instance_form.html' + queryString,
+			content: '/business/ops/db_instance/db_instance_form.html' + (queryString?("?"+queryString):""),
 			finish: function () {
-				refreshTableData();
+				if(action=="create") {
+					refreshTableData();
+				}
+				if(action=="edit") {
+					false?refreshTableData():refreshRowData(data,true);
+				}
 			}
 		});
-		admin.putTempData('ops-db-instance-form-data-popup-index', index);
 	};
 
 	window.module={
 		refreshTableData: refreshTableData,
-		getCheckedList: getCheckedList
+		refreshRowData: refreshRowData,
+		getCheckedList: getCheckedList,
+		showEditForm: showEditForm
 	};
 
 	window.pageExt.list.ending && window.pageExt.list.ending();

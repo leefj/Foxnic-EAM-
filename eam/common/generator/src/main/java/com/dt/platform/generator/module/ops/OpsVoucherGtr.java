@@ -66,12 +66,12 @@ public class OpsVoucherGtr extends BaseCodeGenerator{
 
 
         cfg.view().field(OpsTables.OPS_VOUCHER.NOTES).form()
-               .textArea().height(30);
+               .textArea().height(Config.textAreaHeight);
 
         cfg.view().list().disableBatchDelete();
 
-        cfg.view().formWindow().bottomSpace(120);
-        cfg.view().formWindow().width("800px");
+        cfg.view().formWindow().bottomSpace(60);
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_VOUCHER.TYPE,

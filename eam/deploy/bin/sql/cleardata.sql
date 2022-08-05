@@ -133,4 +133,21 @@ delete from vehicle_select_item where 1=1;
 
 
 
+-- BPM
+delete from bpm_demo_leave;
+delete from bpm_demo_common;
+delete from bpm_form_instance;
+delete from bpm_form_instance_bill;
+delete from bpm_process_instance;
+delete from bpm_task;
+delete from bpm_task_approval;
+delete from bpm_process_error;
+delete from bpm_task_assignee;
+delete from bpm_process_definition_deploy;
+delete from bpm_process_definition_node_assignee where node_id not in (select id from bpm_process_definition_node where process_definition_file_id in (select id from bpm_process_definition_file where activated=1));
+delete from bpm_process_definition_node where process_definition_file_id in (select id from bpm_process_definition_file where activated=0);
+delete from bpm_process_definition_file where activated=0;
+commit;
+
+
 

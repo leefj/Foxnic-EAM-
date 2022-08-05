@@ -46,6 +46,7 @@ import org.github.foxnic.web.proxy.hrm.EmployeeServiceProxy;
 import org.github.foxnic.web.proxy.hrm.OrganizationServiceProxy;
 import org.github.foxnic.web.proxy.pcm.CatalogServiceProxy;
 import org.github.foxnic.web.proxy.system.DictItemServiceProxy;
+import org.github.foxnic.web.proxy.utils.PcmProxyUtil;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -271,6 +272,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                 Row firstRow=sheet.getRow(0);
                 Row secondRow=sheet.getRow(1);
                 String charIndex="";
+                System.out.println("###row:"+secondRow.getLastCellNum());
                 for(int i=0;i<secondRow.getLastCellNum();i++){
                     AssetLuckySheetColumnMeta metaData=new AssetLuckySheetColumnMeta();
                     String firstAssetColumn=firstRow.getCell(i).toString();
@@ -283,6 +285,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                     metaData.setColName(firstAssetColumn);
                     metaData.setCol(secondAssetColumn);
 
+                    System.out.println("######"+secondAssetColumn);
                     //
                     JSONObject dataVer=new JSONObject();
                     JSONObject dataVerification=null;
@@ -436,11 +439,13 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                         dataVerification=dataVer;
                     }
 
+
                     if(dataVerification!=null){
                         metaData.setDataVerification(dataVerification);
                     }
 
 
+                    System.out.println("###metaData"+metaData);
                     list.add(metaData);
                 }
                 //追加自定义属性部分
@@ -550,7 +555,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                         path=path+"/"+node.getNamePathArray().get(j);
                     }
                 }
-                System.out.println(node.getId()+","+path);
+                System.out.println(""+node.getId()+","+path);
                 map.put(node.getId(),path);
             }
         }
@@ -597,14 +602,18 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         }
         String rootId= vgGidList.get(0).getId();
         System.out.println("asset category root id:"+rootId);
-        CatalogVO vo=new CatalogVO();
-        vo.setTenantId(SessionUser.getCurrent().getActivatedTenantId());
-        vo.setRoot(rootId);
-        vo.setIsLoadAllDescendants(1);
-        Result r= CatalogServiceProxy.api().queryNodesFlatten(vo);
+//        CatalogVO vo=new CatalogVO();
+//        vo.setTenantId(SessionUser.getCurrent().getActivatedTenantId());
+//      //  vo.setRoot(rootId);
+//        vo.setParentId(rootId);
+//        vo.setIsLoadAllDescendants(1);
+        //queryNodesFlatten
+        Result r= PcmProxyUtil.queryCatalogNodesTree(rootId,true);
+        System.out.println(r);
         if(r.isSuccess()){
             List<ZTreeNode> list= (List<ZTreeNode> )r.getData();
             for( ZTreeNode node:list){
+                System.out.println("##"+node.getId()+","+node.getHierarchy());
                 String path="";
                 for(int j=0;j<node.getNamePathArray().size();j++){
                     if(j==0){
@@ -613,7 +622,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                         path=path+"/"+node.getNamePathArray().get(j);
                     }
                 }
-                System.out.println(node.getId()+","+path+","+node.getHierarchy());
+                System.out.println("##"+node.getId()+","+path+","+node.getHierarchy());
                 if(node.getHierarchy().startsWith(rootId)){
                     map.put(node.getId(),path);
                 }
@@ -697,7 +706,6 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         dictColumns.put(AssetMeta.EQUIPMENT_ENVIRONMENT_CODE,"eam_equipment_environment,设备运行状态");
         dictColumns.put(AssetMeta.ASSET_MAINTENANCE_STATUS,"eam_maintenance_status,维保状态");
         for(String key:dictColumns.keySet()){
-            //来源
             String keyValue=dictColumns.get(key);
             String[] keyValueArr=keyValue.split(",");
             String dict=keyValueArr[0];

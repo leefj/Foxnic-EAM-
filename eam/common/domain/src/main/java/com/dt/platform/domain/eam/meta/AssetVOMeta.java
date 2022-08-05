@@ -28,7 +28,7 @@ import com.dt.platform.domain.eam.GoodsStock;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-19 14:05:53
+ * @since 2022-08-04 21:07:56
  * @sign 89BE5E11F1CFC4EB8031962586039C06
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -716,14 +716,14 @@ public class AssetVOMeta extends AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.math.BigDecimal> ACCUMULATED_DEPRECIATION_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,ACCUMULATED_DEPRECIATION, java.math.BigDecimal.class, "累计折旧", "累计折旧", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 月折旧额 , 类型: java.math.BigDecimal
+	 * 月折金额 , 类型: java.math.BigDecimal
 	*/
 	public static final String MONTH_DEPRECIATION_PRICE="monthDepreciationPrice";
 	
 	/**
-	 * 月折旧额 , 类型: java.math.BigDecimal
+	 * 月折金额 , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.math.BigDecimal> MONTH_DEPRECIATION_PRICE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,MONTH_DEPRECIATION_PRICE, java.math.BigDecimal.class, "月折旧额", "月折旧额", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.math.BigDecimal> MONTH_DEPRECIATION_PRICE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,MONTH_DEPRECIATION_PRICE, java.math.BigDecimal.class, "月折金额", "月折金额", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 残值率 , 类型: java.math.BigDecimal
@@ -2187,8 +2187,8 @@ public class AssetVOMeta extends AssetMeta {
 		}
 		
 		/**
-		 * 设置 月折旧额
-		 * @param monthDepreciationPrice 月折旧额
+		 * 设置 月折金额
+		 * @param monthDepreciationPrice 月折金额
 		 * @return 当前对象
 		*/
 		public Asset setMonthDepreciationPrice(BigDecimal monthDepreciationPrice) {

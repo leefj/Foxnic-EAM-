@@ -29,8 +29,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 资产
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-19 14:05:53
- * @sign C004F2D873B45B476A0BEF104F839D00
+ * @since 2022-08-04 21:07:56
+ * @sign EFA6C749220AEBACBAB0A0A2B1916196
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -397,9 +397,9 @@ public class Asset extends Entity {
 	private BigDecimal accumulatedDepreciation;
 	
 	/**
-	 * 月折旧额：月折旧额
+	 * 月折金额：月折金额
 	*/
-	@ApiModelProperty(required = false,value="月折旧额" , notes = "月折旧额")
+	@ApiModelProperty(required = false,value="月折金额" , notes = "月折金额")
 	private BigDecimal monthDepreciationPrice;
 	
 	/**
@@ -1946,17 +1946,17 @@ public class Asset extends Entity {
 	}
 	
 	/**
-	 * 获得 月折旧额<br>
-	 * 月折旧额
-	 * @return 月折旧额
+	 * 获得 月折金额<br>
+	 * 月折金额
+	 * @return 月折金额
 	*/
 	public BigDecimal getMonthDepreciationPrice() {
 		return monthDepreciationPrice;
 	}
 	
 	/**
-	 * 设置 月折旧额
-	 * @param monthDepreciationPrice 月折旧额
+	 * 设置 月折金额
+	 * @param monthDepreciationPrice 月折金额
 	 * @return 当前对象
 	*/
 	public Asset setMonthDepreciationPrice(BigDecimal monthDepreciationPrice) {

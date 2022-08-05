@@ -39,16 +39,21 @@ public class OpsRelationManager extends RelationManager {
         this.setupCertificate();
         this.setupCertificateItem();
         this.setupSoftwareBaseVersion();
-
-
         this.setupMonitorObject();
-
-
         this.setupMonitorModel();
-
         this.setupIpAddressRange();
+        this.setupSystemConsoleInfo();
 
     }
+
+    public void setupSystemConsoleInfo() {
+
+        this.property(SystemConsoleInfoMeta.TYPE_DICT_PROP)
+                .using(OpsTables.OPS_SYSTEM_CONSOLE_INFO.TYPE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='ops_system_console_type'");
+
+    }
+
 
     public void setupIpAddressRange() {
 
@@ -312,10 +317,9 @@ public class OpsRelationManager extends RelationManager {
         this.property(HostMeta.INFO_SYSTEM_PROP)
                 .using(OpsTables.OPS_HOST.SYSTEM_ID).join(OpsTables.OPS_INFORMATION_SYSTEM.ID);
 
-        //备份
         this.property(HostMeta.BACKUP_METHOD_PROP)
-                .using(OpsTables.OPS_HOST.HOST_BACKUP_METHOD).join(FoxnicWeb.SYS_DICT_ITEM.ID);
-
+                .using(OpsTables.OPS_HOST.HOST_BACKUP_METHOD).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='ops_host_backup_method'");
 
     }
 

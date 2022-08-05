@@ -1,7 +1,7 @@
 /**
  * 主机 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-29 19:42:36
+ * @since 2022-08-04 21:16:06
  */
 
 
@@ -101,7 +101,7 @@ function ListPage() {
 					,{ field: 'hostBackupMethod', align:"left",fixed:false,  hide:false, sort: false  , title: fox.translate('备份方式'), templet: function (d) { return templet('hostBackupMethod' ,fox.joinLabel(d.backupMethod,"label",',','','hostBackupMethod'),d);}}
 					,{ field: 'hostBackupInfo', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备份情况') , templet: function (d) { return templet('hostBackupInfo',d.hostBackupInfo,d);}  }
 					,{ field: 'offlineTime', align:"right", fixed:false, hide:true, sort: true   ,title: fox.translate('下线时间') ,templet: function (d) { return templet('offlineTime',fox.dateFormat(d.offlineTime,"yyyy-MM-dd"),d); }  }
-					,{ field: 'onlineTime', align:"right", fixed:false, hide:true, sort: true   ,title: fox.translate('上线时间') ,templet: function (d) { return templet('onlineTime',fox.dateFormat(d.onlineTime,"yyyy-MM-dd"),d); }  }
+					,{ field: 'onlineTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('上线时间') ,templet: function (d) { return templet('onlineTime',fox.dateFormat(d.onlineTime,"yyyy-MM-dd"),d); }  }
 					,{ field: 'labels', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('标签') , templet: function (d) { return templet('labels',d.labels,d);}  }
 					,{ field: 'hostNotes', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('hostNotes',d.hostNotes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:true, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }

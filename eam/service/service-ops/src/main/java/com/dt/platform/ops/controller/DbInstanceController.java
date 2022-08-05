@@ -2,6 +2,7 @@ package com.dt.platform.ops.controller;
 
 
 import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +53,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 数据库实例 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:28:23
+ * @since 2022-08-04 06:17:08
 */
 
 @Api(tags = "数据库实例")
@@ -69,26 +70,26 @@ public class DbInstanceController extends SuperController {
 	*/
 	@ApiOperation(value = "添加数据库实例")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = DbInstanceVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "478966734288584704"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.HOST_ID , value = "主机编号" , required = false , dataTypeClass=String.class , example = "480863361848840192"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.DATABASE_ID , value = "数据库编号" , required = false , dataTypeClass=String.class , example = "478685370704203776"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.NAME , value = "实例名称" , required = false , dataTypeClass=String.class , example = "12hgjhjg "),
-		@ApiImplicitParam(name = DbInstanceVOMeta.LOG_METHOD , value = "日志模式" , required = false , dataTypeClass=String.class , example = "[]"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_STRATEGY , value = "备份策略" , required = false , dataTypeClass=String.class , example = "q'w"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_TYPE , value = "备份类型" , required = false , dataTypeClass=String.class , example = "[]"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "599945424333176832"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.HOST_ID , value = "主机编号" , required = false , dataTypeClass=String.class , example = "599944128997883904"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.DATABASE_ID , value = "数据库编号" , required = false , dataTypeClass=String.class , example = "473626988658032641"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.NAME , value = "实例名称" , required = false , dataTypeClass=String.class , example = "ORCL"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.LOG_METHOD , value = "日志模式" , required = false , dataTypeClass=String.class , example = "metholog"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_STRATEGY , value = "备份策略" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_TYPE , value = "备份类型" , required = false , dataTypeClass=String.class , example = "physical"),
 		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_DATAKEEP , value = "备份保留时长" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_STATUS , value = "备份状态" , required = false , dataTypeClass=String.class , example = "[]"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_METHOD , value = "备份方式" , required = false , dataTypeClass=String.class , example = "[]"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_TIME , value = "上次备份" , required = false , dataTypeClass=Date.class , example = "2021-08-06 12:00:00"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_SIZE , value = "备份大小" , required = false , dataTypeClass=BigDecimal.class),
-		@ApiImplicitParam(name = DbInstanceVOMeta.LABELS , value = "标签" , required = false , dataTypeClass=String.class , example = "q'w"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "q'w'q'w"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_STATUS , value = "备份状态" , required = false , dataTypeClass=String.class , example = "success"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_METHOD , value = "备份方式" , required = false , dataTypeClass=String.class , example = "incr7"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_TIME , value = "上次备份" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_SIZE , value = "备份大小" , required = false , dataTypeClass=BigDecimal.class , example = "12.00"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.LABELS , value = "标签" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = DbInstanceVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=1)
 	@SentinelResource(value = DbInstanceServiceProxy.INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(DbInstanceServiceProxy.INSERT)
 	public Result insert(DbInstanceVO dbInstanceVO) {
-		Result result=dbInstanceService.insert(dbInstanceVO);
+		Result result=dbInstanceService.insert(dbInstanceVO,false);
 		return result;
 	}
 
@@ -99,13 +100,24 @@ public class DbInstanceController extends SuperController {
 	*/
 	@ApiOperation(value = "删除数据库实例")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = DbInstanceVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "478966734288584704")
+		@ApiImplicitParam(name = DbInstanceVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "599945424333176832")
 	})
 	@ApiOperationSupport(order=2)
 	@NotNull(name = DbInstanceVOMeta.ID)
 	@SentinelResource(value = DbInstanceServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(DbInstanceServiceProxy.DELETE)
 	public Result deleteById(String id) {
+		this.validator().asserts(id).require("缺少id值");
+		if(this.validator().failure()) {
+			return this.validator().getFirstResult();
+		}
+		// 引用校验
+		Boolean hasRefer = dbInstanceService.hasRefers(id);
+		// 判断是否可以删除
+		this.validator().asserts(hasRefer).mustInList("不允许删除当前记录",false);
+		if(this.validator().failure()) {
+			return this.validator().getFirstResult();
+		}
 		Result result=dbInstanceService.deleteByIdLogical(id);
 		return result;
 	}
@@ -124,8 +136,43 @@ public class DbInstanceController extends SuperController {
 	@SentinelResource(value = DbInstanceServiceProxy.DELETE_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(DbInstanceServiceProxy.DELETE_BY_IDS)
 	public Result deleteByIds(List<String> ids) {
-		Result result=dbInstanceService.deleteByIdsLogical(ids);
-		return result;
+
+		// 参数校验
+		this.validator().asserts(ids).require("缺少ids参数");
+		if(this.validator().failure()) {
+			return this.validator().getFirstResult();
+		}
+
+		// 查询引用
+		Map<String, Boolean> hasRefersMap = dbInstanceService.hasRefers(ids);
+		// 收集可以删除的ID值
+		List<String> canDeleteIds = new ArrayList<>();
+		for (Map.Entry<String, Boolean> e : hasRefersMap.entrySet()) {
+			if (!e.getValue()) {
+				canDeleteIds.add(e.getKey());
+			}
+		}
+
+		// 执行删除
+		if (canDeleteIds.isEmpty()) {
+			// 如果没有一行可以被删除
+			return ErrorDesc.failure().message("无法删除您选中的数据行");
+		} else if (canDeleteIds.size() == ids.size()) {
+			// 如果全部可以删除
+			Result result=dbInstanceService.deleteByIdsLogical(canDeleteIds);
+			return result;
+		} else if (canDeleteIds.size()>0 && canDeleteIds.size() < ids.size()) {
+			// 如果部分行可以删除
+			Result result=dbInstanceService.deleteByIdsLogical(canDeleteIds);
+			if (result.failure()) {
+				return result;
+			} else {
+				return ErrorDesc.success().message("已删除 " + canDeleteIds.size() + " 行，但另有 " + (ids.size() - canDeleteIds.size()) + " 行数据无法删除").messageLevel4Confirm();
+			}
+		} else {
+			// 理论上，这个分支不存在
+			return ErrorDesc.success().message("数据删除未处理");
+		}
 	}
 
 	/**
@@ -133,27 +180,26 @@ public class DbInstanceController extends SuperController {
 	*/
 	@ApiOperation(value = "更新数据库实例")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = DbInstanceVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "478966734288584704"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.HOST_ID , value = "主机编号" , required = false , dataTypeClass=String.class , example = "480863361848840192"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.DATABASE_ID , value = "数据库编号" , required = false , dataTypeClass=String.class , example = "478685370704203776"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.NAME , value = "实例名称" , required = false , dataTypeClass=String.class , example = "12hgjhjg "),
-		@ApiImplicitParam(name = DbInstanceVOMeta.LOG_METHOD , value = "日志模式" , required = false , dataTypeClass=String.class , example = "[]"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_STRATEGY , value = "备份策略" , required = false , dataTypeClass=String.class , example = "q'w"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_TYPE , value = "备份类型" , required = false , dataTypeClass=String.class , example = "[]"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "599945424333176832"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.HOST_ID , value = "主机编号" , required = false , dataTypeClass=String.class , example = "599944128997883904"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.DATABASE_ID , value = "数据库编号" , required = false , dataTypeClass=String.class , example = "473626988658032641"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.NAME , value = "实例名称" , required = false , dataTypeClass=String.class , example = "ORCL"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.LOG_METHOD , value = "日志模式" , required = false , dataTypeClass=String.class , example = "metholog"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_STRATEGY , value = "备份策略" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_TYPE , value = "备份类型" , required = false , dataTypeClass=String.class , example = "physical"),
 		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_DATAKEEP , value = "备份保留时长" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_STATUS , value = "备份状态" , required = false , dataTypeClass=String.class , example = "[]"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_METHOD , value = "备份方式" , required = false , dataTypeClass=String.class , example = "[]"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_TIME , value = "上次备份" , required = false , dataTypeClass=Date.class , example = "2021-08-06 12:00:00"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_SIZE , value = "备份大小" , required = false , dataTypeClass=BigDecimal.class),
-		@ApiImplicitParam(name = DbInstanceVOMeta.LABELS , value = "标签" , required = false , dataTypeClass=String.class , example = "q'w"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "q'w'q'w"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_STATUS , value = "备份状态" , required = false , dataTypeClass=String.class , example = "success"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_METHOD , value = "备份方式" , required = false , dataTypeClass=String.class , example = "incr7"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_TIME , value = "上次备份" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_SIZE , value = "备份大小" , required = false , dataTypeClass=BigDecimal.class , example = "12.00"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.LABELS , value = "标签" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = DbInstanceVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
-	@ApiOperationSupport( order=4 , ignoreParameters = { DbInstanceVOMeta.PAGE_INDEX , DbInstanceVOMeta.PAGE_SIZE , DbInstanceVOMeta.SEARCH_FIELD , DbInstanceVOMeta.FUZZY_FIELD , DbInstanceVOMeta.SEARCH_VALUE , DbInstanceVOMeta.SORT_FIELD , DbInstanceVOMeta.SORT_TYPE , DbInstanceVOMeta.IDS } )
-	@NotNull(name = DbInstanceVOMeta.ID)
+	@ApiOperationSupport( order=4 , ignoreParameters = { DbInstanceVOMeta.PAGE_INDEX , DbInstanceVOMeta.PAGE_SIZE , DbInstanceVOMeta.SEARCH_FIELD , DbInstanceVOMeta.FUZZY_FIELD , DbInstanceVOMeta.SEARCH_VALUE , DbInstanceVOMeta.DIRTY_FIELDS , DbInstanceVOMeta.SORT_FIELD , DbInstanceVOMeta.SORT_TYPE , DbInstanceVOMeta.IDS } )
 	@SentinelResource(value = DbInstanceServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(DbInstanceServiceProxy.UPDATE)
 	public Result update(DbInstanceVO dbInstanceVO) {
-		Result result=dbInstanceService.update(dbInstanceVO,SaveMode.NOT_NULL_FIELDS);
+		Result result=dbInstanceService.update(dbInstanceVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
 		return result;
 	}
 
@@ -163,27 +209,27 @@ public class DbInstanceController extends SuperController {
 	*/
 	@ApiOperation(value = "保存数据库实例")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = DbInstanceVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "478966734288584704"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.HOST_ID , value = "主机编号" , required = false , dataTypeClass=String.class , example = "480863361848840192"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.DATABASE_ID , value = "数据库编号" , required = false , dataTypeClass=String.class , example = "478685370704203776"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.NAME , value = "实例名称" , required = false , dataTypeClass=String.class , example = "12hgjhjg "),
-		@ApiImplicitParam(name = DbInstanceVOMeta.LOG_METHOD , value = "日志模式" , required = false , dataTypeClass=String.class , example = "[]"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_STRATEGY , value = "备份策略" , required = false , dataTypeClass=String.class , example = "q'w"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_TYPE , value = "备份类型" , required = false , dataTypeClass=String.class , example = "[]"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "599945424333176832"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.HOST_ID , value = "主机编号" , required = false , dataTypeClass=String.class , example = "599944128997883904"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.DATABASE_ID , value = "数据库编号" , required = false , dataTypeClass=String.class , example = "473626988658032641"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.NAME , value = "实例名称" , required = false , dataTypeClass=String.class , example = "ORCL"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.LOG_METHOD , value = "日志模式" , required = false , dataTypeClass=String.class , example = "metholog"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_STRATEGY , value = "备份策略" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_TYPE , value = "备份类型" , required = false , dataTypeClass=String.class , example = "physical"),
 		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_DATAKEEP , value = "备份保留时长" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_STATUS , value = "备份状态" , required = false , dataTypeClass=String.class , example = "[]"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_METHOD , value = "备份方式" , required = false , dataTypeClass=String.class , example = "[]"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_TIME , value = "上次备份" , required = false , dataTypeClass=Date.class , example = "2021-08-06 12:00:00"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_SIZE , value = "备份大小" , required = false , dataTypeClass=BigDecimal.class),
-		@ApiImplicitParam(name = DbInstanceVOMeta.LABELS , value = "标签" , required = false , dataTypeClass=String.class , example = "q'w"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "q'w'q'w"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_STATUS , value = "备份状态" , required = false , dataTypeClass=String.class , example = "success"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_METHOD , value = "备份方式" , required = false , dataTypeClass=String.class , example = "incr7"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_TIME , value = "上次备份" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_SIZE , value = "备份大小" , required = false , dataTypeClass=BigDecimal.class , example = "12.00"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.LABELS , value = "标签" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = DbInstanceVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
-	@ApiOperationSupport(order=5 ,  ignoreParameters = { DbInstanceVOMeta.PAGE_INDEX , DbInstanceVOMeta.PAGE_SIZE , DbInstanceVOMeta.SEARCH_FIELD , DbInstanceVOMeta.FUZZY_FIELD , DbInstanceVOMeta.SEARCH_VALUE , DbInstanceVOMeta.SORT_FIELD , DbInstanceVOMeta.SORT_TYPE , DbInstanceVOMeta.IDS } )
+	@ApiOperationSupport(order=5 ,  ignoreParameters = { DbInstanceVOMeta.PAGE_INDEX , DbInstanceVOMeta.PAGE_SIZE , DbInstanceVOMeta.SEARCH_FIELD , DbInstanceVOMeta.FUZZY_FIELD , DbInstanceVOMeta.SEARCH_VALUE , DbInstanceVOMeta.DIRTY_FIELDS , DbInstanceVOMeta.SORT_FIELD , DbInstanceVOMeta.SORT_TYPE , DbInstanceVOMeta.IDS } )
 	@NotNull(name = DbInstanceVOMeta.ID)
 	@SentinelResource(value = DbInstanceServiceProxy.SAVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(DbInstanceServiceProxy.SAVE)
 	public Result save(DbInstanceVO dbInstanceVO) {
-		Result result=dbInstanceService.save(dbInstanceVO,SaveMode.NOT_NULL_FIELDS);
+		Result result=dbInstanceService.save(dbInstanceVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
 		return result;
 	}
 
@@ -202,14 +248,12 @@ public class DbInstanceController extends SuperController {
 	public Result<DbInstance> getById(String id) {
 		Result<DbInstance> result=new Result<>();
 		DbInstance dbInstance=dbInstanceService.getById(id);
-
 		// join 关联的对象
 		dbInstanceService.dao().fill(dbInstance)
 			.with(DbInstanceMeta.HOST)
 			.with(DbInstanceMeta.HOST)
 			.with(DbInstanceMeta.DATABASE)
 			.execute();
-
 		result.success(true).data(dbInstance);
 		return result;
 	}
@@ -229,7 +273,7 @@ public class DbInstanceController extends SuperController {
 	@PostMapping(DbInstanceServiceProxy.GET_BY_IDS)
 	public Result<List<DbInstance>> getByIds(List<String> ids) {
 		Result<List<DbInstance>> result=new Result<>();
-		List<DbInstance> list=dbInstanceService.getByIds(ids);
+		List<DbInstance> list=dbInstanceService.queryListByIds(ids);
 		result.success(true).data(list);
 		return result;
 	}
@@ -240,20 +284,20 @@ public class DbInstanceController extends SuperController {
 	*/
 	@ApiOperation(value = "查询数据库实例")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = DbInstanceVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "478966734288584704"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.HOST_ID , value = "主机编号" , required = false , dataTypeClass=String.class , example = "480863361848840192"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.DATABASE_ID , value = "数据库编号" , required = false , dataTypeClass=String.class , example = "478685370704203776"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.NAME , value = "实例名称" , required = false , dataTypeClass=String.class , example = "12hgjhjg "),
-		@ApiImplicitParam(name = DbInstanceVOMeta.LOG_METHOD , value = "日志模式" , required = false , dataTypeClass=String.class , example = "[]"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_STRATEGY , value = "备份策略" , required = false , dataTypeClass=String.class , example = "q'w"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_TYPE , value = "备份类型" , required = false , dataTypeClass=String.class , example = "[]"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "599945424333176832"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.HOST_ID , value = "主机编号" , required = false , dataTypeClass=String.class , example = "599944128997883904"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.DATABASE_ID , value = "数据库编号" , required = false , dataTypeClass=String.class , example = "473626988658032641"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.NAME , value = "实例名称" , required = false , dataTypeClass=String.class , example = "ORCL"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.LOG_METHOD , value = "日志模式" , required = false , dataTypeClass=String.class , example = "metholog"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_STRATEGY , value = "备份策略" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_TYPE , value = "备份类型" , required = false , dataTypeClass=String.class , example = "physical"),
 		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_DATAKEEP , value = "备份保留时长" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_STATUS , value = "备份状态" , required = false , dataTypeClass=String.class , example = "[]"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_METHOD , value = "备份方式" , required = false , dataTypeClass=String.class , example = "[]"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_TIME , value = "上次备份" , required = false , dataTypeClass=Date.class , example = "2021-08-06 12:00:00"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_SIZE , value = "备份大小" , required = false , dataTypeClass=BigDecimal.class),
-		@ApiImplicitParam(name = DbInstanceVOMeta.LABELS , value = "标签" , required = false , dataTypeClass=String.class , example = "q'w"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "q'w'q'w"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_STATUS , value = "备份状态" , required = false , dataTypeClass=String.class , example = "success"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_METHOD , value = "备份方式" , required = false , dataTypeClass=String.class , example = "incr7"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_TIME , value = "上次备份" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_SIZE , value = "备份大小" , required = false , dataTypeClass=BigDecimal.class , example = "12.00"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.LABELS , value = "标签" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = DbInstanceVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { DbInstanceVOMeta.PAGE_INDEX , DbInstanceVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = DbInstanceServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -271,20 +315,20 @@ public class DbInstanceController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询数据库实例")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = DbInstanceVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "478966734288584704"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.HOST_ID , value = "主机编号" , required = false , dataTypeClass=String.class , example = "480863361848840192"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.DATABASE_ID , value = "数据库编号" , required = false , dataTypeClass=String.class , example = "478685370704203776"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.NAME , value = "实例名称" , required = false , dataTypeClass=String.class , example = "12hgjhjg "),
-		@ApiImplicitParam(name = DbInstanceVOMeta.LOG_METHOD , value = "日志模式" , required = false , dataTypeClass=String.class , example = "[]"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_STRATEGY , value = "备份策略" , required = false , dataTypeClass=String.class , example = "q'w"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_TYPE , value = "备份类型" , required = false , dataTypeClass=String.class , example = "[]"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "599945424333176832"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.HOST_ID , value = "主机编号" , required = false , dataTypeClass=String.class , example = "599944128997883904"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.DATABASE_ID , value = "数据库编号" , required = false , dataTypeClass=String.class , example = "473626988658032641"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.NAME , value = "实例名称" , required = false , dataTypeClass=String.class , example = "ORCL"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.LOG_METHOD , value = "日志模式" , required = false , dataTypeClass=String.class , example = "metholog"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_STRATEGY , value = "备份策略" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_TYPE , value = "备份类型" , required = false , dataTypeClass=String.class , example = "physical"),
 		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_DATAKEEP , value = "备份保留时长" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_STATUS , value = "备份状态" , required = false , dataTypeClass=String.class , example = "[]"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_METHOD , value = "备份方式" , required = false , dataTypeClass=String.class , example = "[]"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_TIME , value = "上次备份" , required = false , dataTypeClass=Date.class , example = "2021-08-06 12:00:00"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_SIZE , value = "备份大小" , required = false , dataTypeClass=BigDecimal.class),
-		@ApiImplicitParam(name = DbInstanceVOMeta.LABELS , value = "标签" , required = false , dataTypeClass=String.class , example = "q'w"),
-		@ApiImplicitParam(name = DbInstanceVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "q'w'q'w"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_STATUS , value = "备份状态" , required = false , dataTypeClass=String.class , example = "success"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_METHOD , value = "备份方式" , required = false , dataTypeClass=String.class , example = "incr7"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_TIME , value = "上次备份" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = DbInstanceVOMeta.BACKUP_SIZE , value = "备份大小" , required = false , dataTypeClass=BigDecimal.class , example = "12.00"),
+		@ApiImplicitParam(name = DbInstanceVOMeta.LABELS , value = "标签" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = DbInstanceVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=8)
 	@SentinelResource(value = DbInstanceServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -292,70 +336,19 @@ public class DbInstanceController extends SuperController {
 	public Result<PagedList<DbInstance>> queryPagedList(DbInstanceVO sample) {
 		Result<PagedList<DbInstance>> result=new Result<>();
 		PagedList<DbInstance> list=dbInstanceService.queryPagedList(sample,sample.getPageSize(),sample.getPageIndex());
-
 		// join 关联的对象
 		dbInstanceService.dao().fill(list)
 			.with(DbInstanceMeta.HOST)
 			.with(DbInstanceMeta.HOST)
 			.with(DbInstanceMeta.DATABASE)
 			.execute();
-
 		result.success(true).data(list);
 		return result;
 	}
 
 
 
-	/**
-	 * 导出 Excel
-	 * */
-	@SentinelResource(value = DbInstanceServiceProxy.EXPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(DbInstanceServiceProxy.EXPORT_EXCEL)
-	public void exportExcel(DbInstanceVO  sample,HttpServletResponse response) throws Exception {
-			//生成 Excel 数据
-			ExcelWriter ew=dbInstanceService.exportExcel(sample);
-			//下载
-			DownloadUtil.writeToOutput(response, ew.getWorkBook(), ew.getWorkBookName());
-	}
 
-
-	/**
-	 * 导出 Excel 模板
-	 * */
-	@SentinelResource(value = DbInstanceServiceProxy.EXPORT_EXCEL_TEMPLATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(DbInstanceServiceProxy.EXPORT_EXCEL_TEMPLATE)
-	public void exportExcelTemplate(HttpServletResponse response) throws Exception {
-			//生成 Excel 模版
-			ExcelWriter ew=dbInstanceService.exportExcelTemplate();
-			//下载
-			DownloadUtil.writeToOutput(response, ew.getWorkBook(), ew.getWorkBookName());
-		}
-
-
-
-	@SentinelResource(value = DbInstanceServiceProxy.IMPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(DbInstanceServiceProxy.IMPORT_EXCEL)
-	public Result importExcel(MultipartHttpServletRequest request, HttpServletResponse response) throws Exception {
-
-		//获得上传的文件
-		Map<String, MultipartFile> map = request.getFileMap();
-		InputStream input=null;
-		for (MultipartFile mf : map.values()) {
-			input=StreamUtil.bytes2input(mf.getBytes());
-			break;
-		}
-
-		if(input==null) {
-			return ErrorDesc.failure().message("缺少上传的文件");
-		}
-
-		List<ValidateResult> errors=dbInstanceService.importExcel(input,0,true);
-		if(errors==null || errors.isEmpty()) {
-			return ErrorDesc.success();
-		} else {
-			return ErrorDesc.failure().message("导入失败").data(errors);
-		}
-	}
 
 
 }

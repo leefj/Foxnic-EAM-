@@ -474,7 +474,7 @@ public class HostController extends SuperController {
 			return ErrorDesc.failure().message("缺少上传的文件");
 		}
 
-		List<ValidateResult> errors=hostService.importExcel(input,0,true,true);
+		List<ValidateResult> errors=hostService.importExcel(input,0,true,false);
 		if(errors==null || errors.isEmpty()) {
 			return ErrorDesc.success();
 		} else {

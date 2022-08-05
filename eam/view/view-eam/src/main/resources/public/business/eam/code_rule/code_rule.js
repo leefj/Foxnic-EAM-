@@ -78,7 +78,7 @@ function FormPage() {
 		renderFormFields();
 
 		//填充表单数据
-		fillFormData();
+	//	fillFormData();
 
 		//绑定提交事件
 		bindButtonEvent();

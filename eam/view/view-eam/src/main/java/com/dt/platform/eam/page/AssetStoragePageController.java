@@ -54,6 +54,7 @@ public class AssetStoragePageController extends ViewController {
 
 		Result r= AssetDataServiceProxy.api().queryAssetLuckySheet("",50,id);
 		JSONObject conf= (JSONObject) r.getData();
+		 
 		model.addAttribute("sheetConfig", JSON.toJSONString(conf, SerializerFeature.DisableCircularReferenceDetect));
 		return prefix+"/asset_excel_oper";
 	}

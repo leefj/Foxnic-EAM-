@@ -16,6 +16,7 @@ import com.dt.platform.proxy.ops.ServiceInfoServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.system.DictItem;
+import org.github.foxnic.web.domain.system.meta.DictItemMeta;
 import org.github.foxnic.web.proxy.system.DictItemServiceProxy;
 import com.dt.platform.constants.db.OpsTables;
 public class OpsHostGtr extends BaseCodeGenerator{
@@ -35,7 +36,6 @@ public class OpsHostGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addSimpleProperty(InformationSystem.class,"infoSystem","信息系统","信息系统");
 
         cfg.getPoClassFile().addSimpleProperty(HostPosition.class,"position","所在位置","所在位置");
-
 
         cfg.getPoClassFile().addListProperty(ServiceInfo.class,"hostDbList","数据库","数据库");
         cfg.getPoClassFile().addListProperty(String.class,"hostDbIds","数据库列表","数据库");
@@ -82,7 +82,7 @@ public class OpsHostGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_HOST.USER_OS_ADMIN).table().hidden(true);
         cfg.view().field(OpsTables.OPS_HOST.USER_OTHER).table().hidden(true);
         cfg.view().field(OpsTables.OPS_HOST.OFFLINE_TIME).table().hidden(true);
-        cfg.view().field(OpsTables.OPS_HOST.ONLINE_TIME).table().hidden(true);
+
         cfg.view().field(OpsTables.OPS_HOST.LABELS).table().hidden(true);
         cfg.view().field(OpsTables.OPS_HOST.CREATE_TIME).table().hidden(true);
         cfg.view().field(OpsTables.OPS_HOST.HOST_NOTES).table().hidden(true);
@@ -99,6 +99,7 @@ public class OpsHostGtr extends BaseCodeGenerator{
 
         //单选组织，包括公司和部门，并指定根节点
 
+        cfg.view().field(OpsTables.OPS_HOST.CREATE_TIME).search().range();
 
         cfg.view().field(OpsTables.OPS_HOST.ONLINE_TIME)
                 .form().dateInput().format("yyyy-MM-dd").search().range();
@@ -166,7 +167,7 @@ public class OpsHostGtr extends BaseCodeGenerator{
                 .basic().label("备份方式")
                 .table().sort(false)
                 .form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=ops_host_backup_method")
-                .valueField("id").textField("label")
+                .valueField(DictItemMeta.CODE).textField(DictItemMeta.LABEL)
                 .toolbar(false).paging(false)
                 .fillWith(HostMeta.BACKUP_METHOD).muliti(false);
 
@@ -224,6 +225,11 @@ public class OpsHostGtr extends BaseCodeGenerator{
                         OpsTables.OPS_HOST.ENVIRONMENT,
                         OpsTables.OPS_HOST.LABELS,
                         OpsTables.OPS_HOST.HOST_NOTES,
+                },
+                new Object[]{
+                        OpsTables.OPS_HOST.ONLINE_TIME,
+                        OpsTables.OPS_HOST.OFFLINE_TIME,
+
                 }
         );
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);

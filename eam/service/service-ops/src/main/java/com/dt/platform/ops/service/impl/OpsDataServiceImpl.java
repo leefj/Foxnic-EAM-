@@ -1,6 +1,7 @@
 package com.dt.platform.ops.service.impl;
 
 
+import com.dt.platform.constants.enums.DictEnum;
 import com.dt.platform.constants.enums.eam.AssetDataExportColumnEnum;
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.constants.enums.eam.AssetStatusEnum;
@@ -45,6 +46,7 @@ import org.github.foxnic.web.misc.ztree.ZTreeNode;
 import org.github.foxnic.web.proxy.hrm.OrganizationServiceProxy;
 import org.github.foxnic.web.proxy.system.DictItemServiceProxy;
 import org.github.foxnic.web.proxy.system.DictServiceProxy;
+import org.github.foxnic.web.proxy.utils.DictProxyUtil;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -161,9 +163,10 @@ public class OpsDataServiceImpl extends SuperService<Host> implements IOpsDataSe
 		hostService.join(list,HostMeta.HOST_MIDDLEWARE_LIST);
 		// 关联出 操作系统 数据
 		hostService.join(list,HostMeta.HOST_OS_LIST);
-
 		// 关联出 操作系统 数据
 		hostService.join(list,HostMeta.BACKUP_METHOD);
+
+
 
 		List<Map<String, Object>> listMap = new ArrayList<Map<String, Object>>();
 		for(int i=0;i<list.size();i++){
@@ -197,12 +200,9 @@ public class OpsDataServiceImpl extends SuperService<Host> implements IOpsDataSe
 			if(StringUtil.isBlank(hostType)){
 				hostMap.put(OpsHostDataExportColumnEnum.HOST_TYPE.code(),"");
 			}else{
-				DictItemVO vo=new DictItemVO();
-				vo.setDictCode("ops_host_type");
-				vo.setCode(hostType);
-				Result<List<DictItem>>hostTypeResult=DictItemServiceProxy.api().queryList(vo);
-				if(hostTypeResult.success()&&hostTypeResult.getData().size()>0){
-					hostMap.put(OpsHostDataExportColumnEnum.HOST_TYPE.code(),hostTypeResult.getData().get(0).getLabel());
+				Rcd rs=dao.queryRecord("select * from sys_dict_item where dict_code=? and code=?","ops_host_type",hostType);
+				if(rs!=null){
+					hostMap.put(OpsHostDataExportColumnEnum.HOST_TYPE.code(),rs.getString("label"));
 				}else{
 					hostMap.put(OpsHostDataExportColumnEnum.HOST_TYPE.code(),"");
 				}
@@ -214,15 +214,21 @@ public class OpsDataServiceImpl extends SuperService<Host> implements IOpsDataSe
 			if(StringUtil.isBlank(hostPasswordStrategy)){
 				hostMap.put(OpsHostDataExportColumnEnum.HOST_PASSWORD_STRATEGY.code(),"");
 			}else{
-				DictItemVO vo=new DictItemVO();
-				vo.setDictCode("ops_host_password_strategy");
-				vo.setCode(hostPasswordStrategy);
-				Result<List<DictItem>>hostTypeResult=DictItemServiceProxy.api().queryList(vo);
-				if(hostTypeResult.success()&&hostTypeResult.getData().size()>0){
-					hostMap.put(OpsHostDataExportColumnEnum.HOST_PASSWORD_STRATEGY.code(),hostTypeResult.getData().get(0).getLabel());
+				Rcd rs=dao.queryRecord("select * from sys_dict_item where dict_code=? and code=?","ops_host_password_strategy",hostPasswordStrategy);
+				if(rs!=null){
+					hostMap.put(OpsHostDataExportColumnEnum.HOST_PASSWORD_STRATEGY.code(),rs.getString("label"));
 				}else{
 					hostMap.put(OpsHostDataExportColumnEnum.HOST_PASSWORD_STRATEGY.code(),"");
 				}
+//				DictItemVO vo=new DictItemVO();
+//				vo.setDictCode("ops_host_password_strategy");
+//				vo.setCode(hostPasswordStrategy);
+//				List<DictItem> itemList=DictProxyUtil.getList(vo);
+//				if(itemList.size()==1){
+//					hostMap.put(OpsHostDataExportColumnEnum.HOST_PASSWORD_STRATEGY.code(),itemList.get(0).getLabel());
+//				}else{
+//					hostMap.put(OpsHostDataExportColumnEnum.HOST_PASSWORD_STRATEGY.code(),"");
+//				}
 			}
 
 			//ENVIRONMENT
@@ -230,18 +236,23 @@ public class OpsDataServiceImpl extends SuperService<Host> implements IOpsDataSe
 			if(StringUtil.isBlank(hostEnv)){
 				hostMap.put(OpsHostDataExportColumnEnum.HOST_ENVIRONMENT.code(),"");
 			}else{
-				DictItemVO vo=new DictItemVO();
-				vo.setDictCode("ops_environment");
-				vo.setCode(hostEnv);
-				Result<List<DictItem>>hostTypeResult=DictItemServiceProxy.api().queryList(vo);
-				if(hostTypeResult.success()&&hostTypeResult.getData().size()>0){
-					hostMap.put(OpsHostDataExportColumnEnum.HOST_ENVIRONMENT.code(),hostTypeResult.getData().get(0).getLabel());
+				Rcd rs=dao.queryRecord("select * from sys_dict_item where dict_code=? and code=?","ops_environment",hostEnv);
+				if(rs!=null){
+					hostMap.put(OpsHostDataExportColumnEnum.HOST_ENVIRONMENT.code(),rs.getString("label"));
 				}else{
 					hostMap.put(OpsHostDataExportColumnEnum.HOST_ENVIRONMENT.code(),"");
 				}
+
+//				DictItemVO vo=new DictItemVO();
+//				vo.setDictCode("ops_environment");
+//				vo.setCode(hostEnv);
+//				List<DictItem> itemList=DictProxyUtil.getList(vo);
+//				if(itemList.size()==1){
+//					hostMap.put(OpsHostDataExportColumnEnum.HOST_ENVIRONMENT.code(),itemList.get(0).getLabel());
+//				}else{
+//					hostMap.put(OpsHostDataExportColumnEnum.HOST_ENVIRONMENT.code(),"");
+//				}
 			}
-
-
 
 			if(item.getHostOsList()!=null){
 				List<ServiceInfo> os=item.getHostOsList();
@@ -421,21 +432,31 @@ public class OpsDataServiceImpl extends SuperService<Host> implements IOpsDataSe
 	public HashMap<String,String> queryDictItemData(String code){
 		HashMap<String,String> map=new HashMap<>();
 		DictItemVO vo=new DictItemVO();
-		vo.setCode(code);
+		vo.setDictCode(code);
 		Result<List<DictItem>> result=DictItemServiceProxy.api().queryList(vo);
 		if(result.isSuccess()){
 			List<DictItem> list=result.getData();
 			for(int i=0;i<list.size();i++){
-				map.put(list.get(i).getId(),list.get(i).getLabel());
+				 map.put(list.get(i).getCode(),list.get(i).getLabel());
 			}
 		}
 		return map;
 	}
 
+	public String queryMapKeyByValue(HashMap<String,String> map, String value){
+		String key = null;
+		//Map,HashMap并没有实现Iteratable接口.不能用于增强for循环.
+		for(String getKey: map.keySet()){
+			if(map.get(getKey).equals(value)){
+				key = getKey;
+				return key;
+			}
+		}
+		return key;
+	}
 	@Override
 	public Result verifyHostRecord(Rcd rcd, HashMap<String,HashMap<String,String>> matchMap, boolean filldata){
 
-		HashMap<String,String> backupMethodMap=matchMap.get("backupMethodMap");
 
 		//日期类型
 		String[] dateColumns = {HostMeta.OFFLINE_TIME,HostMeta.ONLINE_TIME};
@@ -493,79 +514,104 @@ public class OpsDataServiceImpl extends SuperService<Host> implements IOpsDataSe
 		}
 
 
-		String valueEnv=rcd.getString(BeanNameUtil.instance().depart(HostMeta.ENVIRONMENT));
-		if(!StringUtil.isBlank(valueEnv)){
-			DictItemVO dictVo=new DictItemVO();
-			dictVo.setLabel(valueEnv);
-			dictVo.setDictCode("ops_environment");
-			Result<List<DictItem> >dictItemResult= DictItemServiceProxy.api().queryList(dictVo);
-			if(dictItemResult.isSuccess()&&dictItemResult.getData().size()>0){
-				rcd.setValue(BeanNameUtil.instance().depart(HostMeta.ENVIRONMENT),dictItemResult.getData().get(0).getCode());
-			}else{
-				//返回报错
-				return ErrorDesc.failureMessage("环境不存在:"+valueEnv);
-			}
-		}
+//		String valueEnv=rcd.getString(BeanNameUtil.instance().depart(HostMeta.ENVIRONMENT));
+//		if(!StringUtil.isBlank(valueEnv)){
+//			DictItemVO dictVo=new DictItemVO();
+//			dictVo.setLabel(valueEnv);
+//			dictVo.setDictCode("ops_environment");
+//			Result<List<DictItem> >dictItemResult= DictItemServiceProxy.api().queryList(dictVo);
+//			if(dictItemResult.isSuccess()&&dictItemResult.getData().size()>0){
+//				rcd.setValue(BeanNameUtil.instance().depart(HostMeta.ENVIRONMENT),dictItemResult.getData().get(0).getCode());
+//			}else{
+//				//返回报错
+//				return ErrorDesc.failureMessage("环境不存在:"+valueEnv);
+//			}
+//		}
 
-		String valuePwdStragety=rcd.getString(BeanNameUtil.instance().depart(HostMeta.PASSWORD_STRATEGY_ID));
-		if(!StringUtil.isBlank(valuePwdStragety)){
-			DictItemVO dictVo=new DictItemVO();
-			dictVo.setLabel(valuePwdStragety);
-			dictVo.setDictCode("ops_host_password_strategy");
-			Result<List<DictItem> >dictItemResult= DictItemServiceProxy.api().queryList(dictVo);
-			if(dictItemResult.isSuccess()&&dictItemResult.getData().size()>0){
-				rcd.setValue(BeanNameUtil.instance().depart(HostMeta.PASSWORD_STRATEGY_ID),dictItemResult.getData().get(0).getCode());
-			}else{
-				//返回报错
-				return ErrorDesc.failureMessage("密码策略不存在:"+valuePwdStragety);
-			}
-		}
+//		String valuePwdStragety=rcd.getString(BeanNameUtil.instance().depart(HostMeta.PASSWORD_STRATEGY_ID));
+//		if(!StringUtil.isBlank(valuePwdStragety)){
+//			DictItemVO dictVo=new DictItemVO();
+//			dictVo.setLabel(valuePwdStragety);
+//			dictVo.setDictCode("ops_host_password_strategy");
+//			Result<List<DictItem> >dictItemResult= DictItemServiceProxy.api().queryList(dictVo);
+//			if(dictItemResult.isSuccess()&&dictItemResult.getData().size()>0){
+//				rcd.setValue(BeanNameUtil.instance().depart(HostMeta.PASSWORD_STRATEGY_ID),dictItemResult.getData().get(0).getCode());
+//			}else{
+//				//返回报错
+//				return ErrorDesc.failureMessage("密码策略不存在:"+valuePwdStragety);
+//			}
+//		}
 
 
 		String valueBackupMethod=rcd.getString(BeanNameUtil.instance().depart(HostMeta.HOST_BACKUP_METHOD));
 		String dictCode="ops_host_backup_method";
-		if(!StringUtil.isBlank(valueBackupMethod) &&backupMethodMap.containsValue(valueBackupMethod)){
-			String key=getMapKey(backupMethodMap,valueBackupMethod);
-			rcd.setValue(BeanNameUtil.instance().depart(HostMeta.HOST_BACKUP_METHOD),key);
-		}else{
-			if(filldata){
-				//返回报错
-				DictVO dictVO=new DictVO();
-				dictVO.setCode(dictCode);
-				Result<List<Dict>> dictResult=DictServiceProxy.api().queryList(dictVO);
-				if(dictResult.isSuccess()&&dictResult.getData().size()>0){
-					Dict dict=dictResult.getData().get(0);
-				 	String id=IDGenerator.getSnowflakeIdString();
-					DictItemVO dictItemVO=new DictItemVO();
-					dictItemVO.setDictCode(dict.getCode());
-					dictItemVO.setId(id);
-					dictItemVO.setDictId(dict.getId());
-					dictItemVO.setLabel(valueBackupMethod);
-					DictItemServiceProxy.api().insert(dictItemVO);
-					backupMethodMap.put(id,valueBackupMethod);
-					rcd.setValue(BeanNameUtil.instance().depart(HostMeta.HOST_BACKUP_METHOD),dictItemVO.getId());
+		System.out.println("dict:"+valueBackupMethod);
+//		if(!StringUtil.isBlank(valueBackupMethod)){
+//			if(backupMethodMap.containsValue(valueBackupMethod)){
+//				String key=getMapKey(backupMethodMap,valueBackupMethod);
+//				rcd.setValue(BeanNameUtil.instance().depart(HostMeta.HOST_BACKUP_METHOD),key);
+//			}else{
+//				if(filldata){
+//					//返回报错
+//					DictVO dictVO=new DictVO();
+//					dictVO.setCode(dictCode);
+//					Result<List<Dict>> dictResult=DictServiceProxy.api().queryList(dictVO);
+//					if(dictResult.isSuccess()&&dictResult.getData().size()>0){
+//						Dict dict=dictResult.getData().get(0);
+//						String id=IDGenerator.getSnowflakeIdString();
+//						DictItemVO dictItemVO=new DictItemVO();
+//						dictItemVO.setDictCode(dict.getCode());
+//						dictItemVO.setId(id);
+//						dictItemVO.setDictId(dict.getId());
+//						dictItemVO.setLabel(valueBackupMethod);
+//						DictItemServiceProxy.api().insert(dictItemVO);
+//						backupMethodMap.put(id,valueBackupMethod);
+//						rcd.setValue(BeanNameUtil.instance().depart(HostMeta.HOST_BACKUP_METHOD),dictItemVO.getId());
+//					}else{
+//						return ErrorDesc.failureMessage("备份方式数据字典不存在:"+valueBackupMethod);
+//					}
+//				}else{
+//					return ErrorDesc.failureMessage("备份方式数据字典条目不存在:"+valueBackupMethod);
+//				}
+//			}
+//		}
+
+		HashMap<String,String> dictColumns=new HashMap<>();
+		dictColumns.put(HostMeta.HOST_BACKUP_METHOD,"ops_host_backup_method,备份方式");
+		dictColumns.put(HostMeta.HOST_TYPE,"ops_host_type,主机类型");
+		dictColumns.put(HostMeta.ENVIRONMENT,"ops_environment,运行环境");
+		dictColumns.put(HostMeta.PASSWORD_STRATEGY_ID,"ops_host_password_strategy,改密策略");
+		for(String key:dictColumns.keySet()){
+			String keyValue=dictColumns.get(key);
+			String[] keyValueArr=keyValue.split(",");
+			String dict=keyValueArr[0];
+			String notes=keyValueArr[1];
+			HashMap<String,String> map=matchMap.get(dict);
+			String col=BeanNameUtil.instance().depart(key);
+			String valueCol=rcd.getString(col);
+			if(!StringUtil.isBlank(valueCol)){
+				if(map.containsValue(valueCol)){
+					rcd.setValue(col,queryMapKeyByValue(map,valueCol));
 				}else{
-					return ErrorDesc.failureMessage("备份情况数据字典存在:"+valueBackupMethod);
+					return ErrorDesc.failureMessage(notes+":"+valueCol);
 				}
-			}else{
-				return ErrorDesc.failureMessage("备份情况数据字典存在:"+valueBackupMethod);
 			}
 		}
 
 
-		String valeHostType=rcd.getString(BeanNameUtil.instance().depart(HostMeta.HOST_TYPE));
-		if(!StringUtil.isBlank(valeHostType)){
-			DictItemVO dictVo=new DictItemVO();
-			dictVo.setLabel(valeHostType);
-			dictVo.setDictCode("ops_host_type");
-			Result<List<DictItem> >dictItemResult= DictItemServiceProxy.api().queryList(dictVo);
-			if(dictItemResult.isSuccess()&&dictItemResult.getData().size()>0){
-				rcd.setValue(BeanNameUtil.instance().depart(HostMeta.HOST_TYPE),dictItemResult.getData().get(0).getCode());
-			}else{
-				//返回报错
-				return ErrorDesc.failureMessage("主机类型不存在:"+valeHostType);
-			}
-		}
+//		String valeHostType=rcd.getString(BeanNameUtil.instance().depart(HostMeta.HOST_TYPE));
+//		if(!StringUtil.isBlank(valeHostType)){
+//			DictItemVO dictVo=new DictItemVO();
+//			dictVo.setLabel(valeHostType);
+//			dictVo.setDictCode("ops_host_type");
+//			Result<List<DictItem>>dictItemResult = DictItemServiceProxy.api().queryList(dictVo);
+//			if(dictItemResult.isSuccess()&&dictItemResult.getData().size()>0){
+//				rcd.setValue(BeanNameUtil.instance().depart(HostMeta.HOST_TYPE),dictItemResult.getData().get(0).getCode());
+//			}else{
+//				//返回报错
+//				return ErrorDesc.failureMessage("主机类型不存在:"+valeHostType);
+//			}
+//		}
 
 
 		//枚举
@@ -586,12 +632,12 @@ public class OpsDataServiceImpl extends SuperService<Host> implements IOpsDataSe
 		if(!StringUtil.isBlank(valueMonitorStatus)){
 			CodeTextEnum value=EnumUtil.parseByText(HostMonitorStatusEnum.class,valueMonitorStatus) ;
 			if(value==null){
-				return ErrorDesc.failureMessage("主机状态不存在:"+valueMonitorStatus);
+				return ErrorDesc.failureMessage("监控状态不存在:"+valueMonitorStatus);
 			}else{
 				rcd.setValue(BeanNameUtil.instance().depart(HostMeta.MONITOR_STATUS),value.code());
 			}
 		} else{
-			return ErrorDesc.failureMessage("主机状态不存在:"+valueMonitorStatus);
+			return ErrorDesc.failureMessage("监控状态不存在:"+valueMonitorStatus);
 		}
 
 		return ErrorDesc.success();

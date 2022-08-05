@@ -1,9 +1,11 @@
 package com.dt.platform.ops.service.impl;
 
-
 import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.github.foxnic.commons.collection.MapUtil;
+import java.util.Arrays;
 
 
 import com.dt.platform.domain.ops.DbInstance;
@@ -29,13 +31,14 @@ import java.util.ArrayList;
 import com.dt.platform.ops.service.IDbInstanceService;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * <p>
  * 数据库实例 服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:28:23
+ * @since 2022-08-04 06:17:08
 */
 
 
@@ -45,7 +48,7 @@ public class DbInstanceServiceImpl extends SuperService<DbInstance> implements I
 	/**
 	 * 注入DAO对象
 	 * */
-	@Resource(name=DBConfigs.PRIMARY_DAO)
+	@Resource(name=DBConfigs.PRIMARY_DAO) 
 	private DAO dao=null;
 
 	/**
@@ -61,14 +64,26 @@ public class DbInstanceServiceImpl extends SuperService<DbInstance> implements I
 	}
 
 	/**
-	 * 插入实体
-	 * @param dbInstance 实体数据
+	 * 添加，根据 throwsException 参数抛出异常或返回 Result 对象
+	 *
+	 * @param dbInstance  数据对象
+	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
+	 * @return 结果 , 如果失败返回 false，成功返回 true
+	 */
+	@Override
+	public Result insert(DbInstance dbInstance,boolean throwsException) {
+		Result r=super.insert(dbInstance,throwsException);
+		return r;
+	}
+
+	/**
+	 * 添加，如果语句错误，则抛出异常
+	 * @param dbInstance 数据对象
 	 * @return 插入是否成功
 	 * */
 	@Override
 	public Result insert(DbInstance dbInstance) {
-		Result r=super.insert(dbInstance);
-		return r;
+		return this.insert(dbInstance,true);
 	}
 
 	/**
@@ -81,7 +96,7 @@ public class DbInstanceServiceImpl extends SuperService<DbInstance> implements I
 		return super.insertList(dbInstanceList);
 	}
 
-
+	
 	/**
 	 * 按主键删除 数据库实例
 	 *
@@ -102,7 +117,7 @@ public class DbInstanceServiceImpl extends SuperService<DbInstance> implements I
 			return r;
 		}
 	}
-
+	
 	/**
 	 * 按主键删除 数据库实例
 	 *
@@ -113,7 +128,7 @@ public class DbInstanceServiceImpl extends SuperService<DbInstance> implements I
 		DbInstance dbInstance = new DbInstance();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		dbInstance.setId(id);
-		dbInstance.setDeleted(dao.getDBTreaty().getTrueValue());
+		dbInstance.setDeleted(true);
 		dbInstance.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		dbInstance.setDeleteTime(new Date());
 		try {
@@ -128,14 +143,26 @@ public class DbInstanceServiceImpl extends SuperService<DbInstance> implements I
 	}
 
 	/**
-	 * 更新实体
+	 * 更新，如果执行错误，则抛出异常
 	 * @param dbInstance 数据对象
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
 	@Override
 	public Result update(DbInstance dbInstance , SaveMode mode) {
-		Result r=super.update(dbInstance , mode);
+		return this.update(dbInstance,mode,true);
+	}
+
+	/**
+	 * 更新，根据 throwsException 参数抛出异常或返回 Result 对象
+	 * @param dbInstance 数据对象
+	 * @param mode 保存模式
+	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
+	 * @return 保存是否成功
+	 * */
+	@Override
+	public Result update(DbInstance dbInstance , SaveMode mode,boolean throwsException) {
+		Result r=super.update(dbInstance , mode , throwsException);
 		return r;
 	}
 
@@ -150,7 +177,7 @@ public class DbInstanceServiceImpl extends SuperService<DbInstance> implements I
 		return super.updateList(dbInstanceList , mode);
 	}
 
-
+	
 	/**
 	 * 按主键更新字段 数据库实例
 	 *
@@ -164,7 +191,7 @@ public class DbInstanceServiceImpl extends SuperService<DbInstance> implements I
 		return suc>0;
 	}
 
-
+	
 	/**
 	 * 按主键获取 数据库实例
 	 *
@@ -178,9 +205,22 @@ public class DbInstanceServiceImpl extends SuperService<DbInstance> implements I
 		return dao.queryEntity(sample);
 	}
 
+	/**
+	 * 等价于 queryListByIds
+	 * */
 	@Override
 	public List<DbInstance> getByIds(List<String> ids) {
+		return this.queryListByIds(ids);
+	}
+
+	@Override
+	public List<DbInstance> queryListByIds(List<String> ids) {
 		return super.queryListByUKeys("id",ids);
+	}
+
+	@Override
+	public Map<String, DbInstance> queryMapByIds(List<String> ids) {
+		return super.queryMapByUKeys("id",ids, DbInstance::getId);
 	}
 
 
@@ -192,7 +232,7 @@ public class DbInstanceServiceImpl extends SuperService<DbInstance> implements I
 	 * @return 查询结果
 	 * */
 	@Override
-	public List<DbInstance> queryList(DbInstance sample) {
+	public List<DbInstance> queryList(DbInstanceVO sample) {
 		return super.queryList(sample);
 	}
 
@@ -206,7 +246,7 @@ public class DbInstanceServiceImpl extends SuperService<DbInstance> implements I
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<DbInstance> queryPagedList(DbInstance sample, int pageSize, int pageIndex) {
+	public PagedList<DbInstance> queryPagedList(DbInstanceVO sample, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, pageSize, pageIndex);
 	}
 
@@ -225,37 +265,45 @@ public class DbInstanceServiceImpl extends SuperService<DbInstance> implements I
 	}
 
 	/**
-	 * 检查 角色 是否已经存在
+	 * 检查 实体 是否已经存在 , 判断 主键值不同，但指定字段的值相同的记录是否存在
 	 *
 	 * @param dbInstance 数据对象
 	 * @return 判断结果
 	 */
-	public Result<DbInstance> checkExists(DbInstance dbInstance) {
+	public Boolean checkExists(DbInstance dbInstance) {
 		//TDOD 此处添加判断段的代码
-		//boolean exists=this.checkExists(dbInstance, SYS_ROLE.NAME);
+		//boolean exists=super.checkExists(dbInstance, SYS_ROLE.NAME);
 		//return exists;
-		return ErrorDesc.success();
+		return false;
 	}
 
+
+	/**
+	 * 检查引用
+	 * @param id  检查ID是否又被外部表引用
+	 * */
 	@Override
-	public ExcelWriter exportExcel(DbInstance sample) {
-		return super.exportExcel(sample);
+	public Boolean hasRefers(String id) {
+		Map<String, Boolean> map=this.hasRefers(Arrays.asList(id));
+		Boolean ex=map.get(id);
+		if(ex==null) return false;
+		return ex;
 	}
 
+	/**
+	 * 批量检查引用
+	 * @param ids  检查这些ID是否又被外部表引用
+	 * */
 	@Override
-	public ExcelWriter exportExcelTemplate() {
-		return super.exportExcelTemplate();
+	public Map<String, Boolean> hasRefers(List<String> ids) {
+		// 默认无业务逻辑，返回此行；有业务逻辑需要校验时，请修改并使用已注释的行代码！！！
+		return MapUtil.asMap(ids,false);
+		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
 	}
 
-	@Override
-	public List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch) {
-		return super.importExcel(input,sheetIndex,batch);
-	}
 
-	@Override
-	public ExcelStructure buildExcelStructure(boolean isForExport) {
-		return super.buildExcelStructure(isForExport);
-	}
+
+
 
 
 }

@@ -352,7 +352,7 @@ public class HostServiceImpl extends SuperService<Host> implements IHostService 
 		return result.success(true).data(list);
 	}
 
-		@Override
+	@Override
 	public List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch,boolean fill) {
 
 		List<ValidateResult> errors=new ArrayList<>();
@@ -387,7 +387,12 @@ public class HostServiceImpl extends SuperService<Host> implements IHostService 
 		List<SQL> insertSqls=new ArrayList<>();
 
 		HashMap<String,HashMap<String,String>> matchMap=new HashMap<String,HashMap<String,String>>();
-		matchMap.put("backupMethodMap",opsDataService.queryDictItemData("ops_host_backup_method"));
+		matchMap.put("ops_host_backup_method",opsDataService.queryDictItemData("ops_host_backup_method"));
+		matchMap.put("ops_host_type",opsDataService.queryDictItemData("ops_host_type"));
+		matchMap.put("ops_environment",opsDataService.queryDictItemData("ops_environment"));
+		matchMap.put("ops_host_password_strategy",opsDataService.queryDictItemData("ops_host_password_strategy"));
+
+
 		HashMap<String,HashMap<String,String>> matchMap2=new HashMap<String,HashMap<String,String>>();
 		List<ServiceInfo> dbList=serviceInfoService.queryList(ServiceInfo.create().setGroupId(ServiceTypeEnum.SERVICE_DB.code()));
 		List<ServiceInfo> osList=serviceInfoService.queryList(ServiceInfo.create().setGroupId(ServiceTypeEnum.SERVICE_OS.code()));

@@ -2,7 +2,7 @@
 /**
  * 主机 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-29 19:42:35
+ * @since 2022-08-04 21:16:06
  */
  -->
  <!DOCTYPE html>
@@ -62,8 +62,6 @@
                     <!-- 改密策略 , passwordStrategyId ,typeName=select_box, isHideInSearch=true -->
                     <!-- 备份方式 , hostBackupMethod ,typeName=select_box, isHideInSearch=true -->
                     <!-- 备份情况 , hostBackupInfo ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 下线时间 , offlineTime ,typeName=date_input, isHideInSearch=true -->
-                    <!-- 上线时间 , onlineTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 是否归档 , arch ,typeName=text_input, isHideInSearch=true -->
                     <!-- 用户凭证 , voucherIds ,typeName=select_box, isHideInSearch=true -->
                     <!-- 信息系统 , systemId ,typeName=select_box, isHideInSearch=false -->
@@ -131,6 +129,13 @@
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('备注')}" class="search-label hostNotes-label">备注</span><span class="search-colon">:</span></div>
                         <input id="hostNotes" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
+
+
+                </div>
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 上线时间 , onlineTime ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 下线时间 , offlineTime ,typeName=date_input, isHideInSearch=true -->
 
 
                 </div>

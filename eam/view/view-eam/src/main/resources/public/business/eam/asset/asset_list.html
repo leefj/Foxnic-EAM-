@@ -2,7 +2,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-19 14:05:54
+ * @since 2022-08-04 21:07:58
  */
  -->
  <!DOCTYPE html>
@@ -85,7 +85,7 @@
                     <!-- 本年折旧 , currentYearDepreciation ,typeName=number_input, isHideInSearch=true -->
                     <!-- 折旧年份 , depreciationYear ,typeName=number_input, isHideInSearch=true -->
                     <!-- 累计折旧 , accumulatedDepreciation ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 月折旧额 , monthDepreciationPrice ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 月折金额 , monthDepreciationPrice ,typeName=number_input, isHideInSearch=true -->
                     <!-- 残值率 , residualsRate ,typeName=number_input, isHideInSearch=true -->
                     <!-- 残值 , residualsPrice ,typeName=number_input, isHideInSearch=true -->
                     <!-- 资产净值 , navPrice ,typeName=number_input, isHideInSearch=true -->
@@ -94,13 +94,9 @@
                     <!-- 财务备注 , financialNotes ,typeName=text_area, isHideInSearch=true -->
                     <!-- 设备编号 , equipmentCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 设备状态 , equipmentStatus ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 设备IP , equipmentIp ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 管理IP , manageIp ,typeName=text_input, isHideInSearch=true -->
                     <!-- 设备CPU , equipmentCpu ,typeName=text_input, isHideInSearch=true -->
                     <!-- 设备内存 , equipmentMemory ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 设备标签 , equipmentLabel ,typeName=text_input, isHideInSearch=true -->
                     <!-- 设备配置 , equipmentConf ,typeName=text_area, isHideInSearch=true -->
-                    <!-- 运行环境 , equipmentEnvironmentCode ,typeName=select_box, isHideInSearch=true -->
                     <!-- 设备序列号 , equipmentSerialNumber ,typeName=text_input, isHideInSearch=true -->
                     <!-- 机柜 , rackId ,typeName=select_box, isHideInSearch=true -->
                     <!-- 设备机柜上位置 , rackUpNumber ,typeName=number_input, isHideInSearch=true -->
@@ -224,6 +220,31 @@
                             <input type="text" id="purchaseDate-begin" style="width: 140px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
                             <span class="search-dash">-</span>
                             <input type="text" id="purchaseDate-end"  style="width: 140px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
+                    </div>
+
+
+                </div>
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 运行环境 , equipmentEnvironmentCode ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('运行环境')}" class="search-label equipmentEnvironmentCode-label">运行环境</span><span class="search-colon">:</span></div>
+                        <div id="equipmentEnvironmentCode" th:data="${'/service-system/sys-dict-item/query-list?dictCode=eam_equipment_environment'}" style="width:140px" extraParam="{}"></div>
+                    </div>
+                    <!-- 管理IP , manageIp ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('管理IP')}" class="search-label manageIp-label">管理IP</span><span class="search-colon">:</span></div>
+                        <input id="manageIp" class="layui-input search-input" style="width: 140px" type="text" />
+                    </div>
+                    <!-- 设备IP , equipmentIp ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('设备IP')}" class="search-label equipmentIp-label">设备IP</span><span class="search-colon">:</span></div>
+                        <input id="equipmentIp" class="layui-input search-input" style="width: 140px" type="text" />
+                    </div>
+                    <!-- 设备标签 , equipmentLabel ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('设备标签')}" class="search-label equipmentLabel-label">设备标签</span><span class="search-colon">:</span></div>
+                        <input id="equipmentLabel" class="layui-input search-input" style="width: 140px" type="text" />
                     </div>
 
 

@@ -3,6 +3,9 @@ package com.dt.platform.proxy.ops;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import com.dt.platform.domain.ops.DbInstance;
 import com.dt.platform.domain.ops.DbInstanceVO;
@@ -10,14 +13,13 @@ import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
 import com.dt.platform.proxy.ServiceNames;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * <p>
  * 数据库实例  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:28:23
+ * @since 2022-08-04 06:17:08
  */
 @FeignClient(value = ServiceNames.OPS, contextId = DbInstanceServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface DbInstanceServiceProxy {
@@ -83,21 +85,6 @@ public interface DbInstanceServiceProxy {
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
     /**
-     * 导出数据库实例数据(Excel)
-     */
-    public static final String EXPORT_EXCEL = API_PREFIX + "export-excel";
-
-    /**
-     * 下载数据库实例导入模版(Excel)
-     */
-    public static final String EXPORT_EXCEL_TEMPLATE = API_PREFIX + "export-excel-template";
-
-    /**
-     * 导入数据库实例数据(Excel)
-     */
-    public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
-
-    /**
      * 添加数据库实例
      */
     @RequestMapping(DbInstanceServiceProxy.INSERT)
@@ -134,7 +121,7 @@ public interface DbInstanceServiceProxy {
     Result<DbInstance> getById(@RequestParam(name = "id") String id);
 
     /**
-     * 批量删除数据库实例
+     * 获取多个数据库实例
      */
     @RequestMapping(DbInstanceServiceProxy.GET_BY_IDS)
     Result<List<DbInstance>> getByIds(@RequestParam(name = "ids") List<String> ids);

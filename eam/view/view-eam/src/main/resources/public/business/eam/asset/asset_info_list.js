@@ -153,6 +153,7 @@ function ListPage() {
 	 * 刷新表格数据
 	 */
 	function refreshTableData(sortField,sortType,reset) {
+		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 
 		var value = {};
 
@@ -177,6 +178,10 @@ function ListPage() {
 		value.assetNotes={ inputType:"button",value: $("#assetNotes").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
 		value.maintainerId={ inputType:"select_box", value: xmSelect.get("#maintainerId",true).getValue("value") ,fillBy:["maintnainer"]  ,label:xmSelect.get("#maintainerId",true).getValue("nameStr") };
 
+		value.equipmentIp={ inputType:"button",value: $("#equipmentIp").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.manageIp={ inputType:"button",value: $("#manageIp").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.equipmentLabel={ inputType:"button",value: $("#equipmentLabel").val()};
+		value.equipmentEnvironmentCode={ inputType:"select_box", value: getSelectedValue("#equipmentEnvironmentCode","value") ,fillBy:["equipmentEnvironment"]  , label:getSelectedValue("#equipmentEnvironmentCode","nameStr") };
 
 
 
@@ -350,6 +355,29 @@ function ListPage() {
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
 					opts.push({name:data[i].name,value:data[i].id});
+				}
+				return opts;
+			}
+		});
+		//渲染 equipmentEnvironmentCode 下拉字段
+		fox.renderSelectBox({
+			el: "equipmentEnvironmentCode",
+			radio: true,
+			size: "small",
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("equipmentEnvironmentCode",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].label,value:data[i].code});
 				}
 				return opts;
 			}

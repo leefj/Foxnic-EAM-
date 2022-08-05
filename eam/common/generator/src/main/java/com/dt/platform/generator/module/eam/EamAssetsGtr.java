@@ -139,6 +139,13 @@ public class EamAssetsGtr extends BaseCodeGenerator {
                         EAMTables.EAM_ASSET.MANUFACTURER_ID,
                         EAMTables.EAM_ASSET.MAINTAINER_ID,
                         EAMTables.EAM_ASSET.PURCHASE_DATE,
+                },
+                new Object[]{
+                        EAMTables.EAM_ASSET.EQUIPMENT_ENVIRONMENT_CODE,
+                        EAMTables.EAM_ASSET.MANAGE_IP,
+                        EAMTables.EAM_ASSET.EQUIPMENT_IP,
+                        EAMTables.EAM_ASSET.EQUIPMENT_LABEL,
+
                 }
 
         );

@@ -1,12 +1,12 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-19 14:05:55
+ * @since 2022-08-04 21:07:59
  */
 
 function FormPage() {
 
-	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup;
+	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
 	const moduleURL="/service-eam/eam-asset";
 	// 表单执行操作类型：view，create，edit
 	var action=null;
@@ -20,7 +20,7 @@ function FormPage() {
       * 入口函数，初始化
       */
 	this.init=function(layui) {
-     	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload;
+     	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload,dropdown=layui.dropdown;
 		laydate = layui.laydate,table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect;
 
 		action=admin.getTempData('eam-asset-form-data-form-action');
@@ -49,7 +49,12 @@ function FormPage() {
 		//绑定提交事件
 		bindButtonEvent();
 
+
+
 	}
+
+
+
 
 
 	/**
@@ -966,22 +971,22 @@ function FormPage() {
 		}, {delayLoading:1000,elms:[$("#submit-button")]});
 	}
 
+	function verifyAndSaveForm(data) {
+		if(!data) data={};
+		//debugger;
+		data.field = getFormData();
+		//校验表单
+		if(!verifyForm(data.field)) return;
+		saveForm(data.field);
+		return false;
+	}
+
 	/**
       * 保存数据，表单提交事件
       */
     function bindButtonEvent() {
 
-	    form.on('submit(submit-button)', function (data) {
-	    	//debugger;
-			data.field = getFormData();
-
-
-			//校验表单
-			if(!verifyForm(data.field)) return;
-
-			saveForm(data.field);
-	        return false;
-	    });
+	    form.on('submit(submit-button)', verifyAndSaveForm);
 
 		// 请选择公司对话框
 		$("#ownCompanyId-button").click(function(){
@@ -1057,6 +1062,7 @@ function FormPage() {
 		getFormData: getFormData,
 		verifyForm: verifyForm,
 		saveForm: saveForm,
+		verifyAndSaveForm:verifyAndSaveForm,
 		fillFormData: fillFormData,
 		fillFormDataByIds:fillFormDataByIds,
 		processFormData4Bpm:processFormData4Bpm,
@@ -1071,7 +1077,7 @@ function FormPage() {
 
 }
 
-layui.use(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','foxnicUpload','laydate'],function() {
+layui.use(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','foxnicUpload','laydate','dropdown'],function() {
 	var task=setInterval(function (){
 		if(!window["pageExt"]) return;
 		clearInterval(task);
