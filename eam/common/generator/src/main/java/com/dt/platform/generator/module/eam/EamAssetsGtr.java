@@ -65,6 +65,7 @@ public class EamAssetsGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"equipmentEnvironment","设备运行环境","设备运行环境");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"safetyLevel","安全等级","安全等级");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"assetMaintenanceStatus","维保状态","维保状态");
+        cfg.getPoClassFile().addSimpleProperty(AssetStatus.class,"assetCycleStatus","assetCycleStatus","assetCycleStatus");
         cfg.getPoClassFile().addSimpleProperty(Rack.class,"rack","机柜","机柜");
         cfg.getPoClassFile().addSimpleProperty(ChangeInstance.class,"changeInstance","变更实例","变更实例");
         cfg.getPoClassFile().addSimpleProperty(GoodsStock.class,"goodsStock","库存物品","库存物品");
@@ -161,6 +162,13 @@ public class EamAssetsGtr extends BaseCodeGenerator {
                 textField(MaintainerMeta.MAINTAINER_NAME).
                 fillWith(AssetMeta.MAINTNAINER).muliti(false);
 
+        cfg.view().field(EAMTables.EAM_ASSET.ASSET_STATUS)
+                .form().selectBox().queryApi(AssetStatusServiceProxy.QUERY_LIST)
+                .paging(false).filter(true).toolbar(false)
+                .valueField(AssetStatusMeta.CODE).
+                textField(AssetStatusMeta.NAME).
+                fillWith(AssetMeta.ASSET_CYCLE_STATUS).muliti(false);
+
 
         cfg.view().field(EAMTables.EAM_ASSET.SOURCE_ID)
                 .basic().label("来源")
@@ -208,8 +216,8 @@ public class EamAssetsGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET.STATUS).form()
                 .label("办理状态").selectBox().enumType(AssetHandleStatusEnum.class);
 
-        cfg.view().field(EAMTables.EAM_ASSET.ASSET_STATUS).form().
-                label("资产状态").selectBox().enumType(AssetStatusEnum.class).defaultValue("idle");
+//        cfg.view().field(EAMTables.EAM_ASSET.ASSET_STATUS).form().
+//                label("资产状态").selectBox().enumType(AssetStatusEnum.class).defaultValue("idle");
 
         cfg.view().field(EAMTables.EAM_ASSET.EQUIPMENT_STATUS).form().
                 label("设备状态").selectBox().enumType(AssetEquipmentStatusEnum.class);

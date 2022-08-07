@@ -108,16 +108,19 @@ function ListPage() {
 
 
     function getSearchCondition(){
+        function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
+
         var value = {};
 
 
 
         value.businessCode={ inputType:"button",value: $("#businessCode").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
-
         //value.businessCode={ inputType:"button",value: $("#businessCode").val()};
         value.status={ inputType:"select_box", value:"complete", label:"完成"};
         value.assetCode={ inputType:"button",value: $("#assetCode").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
-        value.assetStatus={ inputType:"select_box", value: xmSelect.get("#assetStatus",true).getValue("value"), label:xmSelect.get("#assetStatus",true).getValue("nameStr")};
+       // value.assetStatus={ inputType:"select_box", value: xmSelect.get("#assetStatus",true).getValue("value"), label:xmSelect.get("#assetStatus",true).getValue("nameStr")};
+        value.assetStatus={ inputType:"select_box", value: getSelectedValue("#assetStatus","value") ,fillBy:["assetCycleStatus"]  , label:getSelectedValue("#assetStatus","nameStr") };
+
         value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
         value.manufacturerId={ inputType:"select_box", value: xmSelect.get("#manufacturerId",true).getValue("value") ,fillBy:["manufacturer"]  ,label:xmSelect.get("#manufacturerId",true).getValue("nameStr") };
         value.model={ inputType:"button",value: $("#model").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
@@ -257,16 +260,24 @@ function ListPage() {
         //渲染 assetStatus 下拉字段
         fox.renderSelectBox({
             el: "assetStatus",
-            radio: false,
+            radio: true,
             size: "small",
-            filterable: false,
+            filterable: true,
+            on: function(data){
+                setTimeout(function () {
+                    window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("assetStatus",data.arr,data.change,data.isAdd);
+                },1);
+            },
             //转换数据
-            transform:function(data) {
+            searchField: "name", //请自行调整用于搜索的字段名称
+            extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+            transform: function(data) {
                 //要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
                 var opts=[];
                 if(!data) return opts;
                 for (var i = 0; i < data.length; i++) {
-                    opts.push({name:data[i].text,value:data[i].code});
+                    if(!data[i]) continue;
+                    opts.push({data:data[i],name:data[i].name,value:data[i].code});
                 }
                 return opts;
             }

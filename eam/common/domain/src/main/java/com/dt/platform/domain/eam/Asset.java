@@ -29,8 +29,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 资产
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-04 21:07:56
- * @sign EFA6C749220AEBACBAB0A0A2B1916196
+ * @since 2022-08-06 09:53:50
+ * @sign E72E896CE18C2F5B45C1498B539869B0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -805,6 +805,12 @@ public class Asset extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="维保状态" , notes = "维保状态")
 	private DictItem assetMaintenanceStatus;
+	
+	/**
+	 * assetCycleStatus：assetCycleStatus
+	*/
+	@ApiModelProperty(required = false,value="assetCycleStatus" , notes = "assetCycleStatus")
+	private AssetStatus assetCycleStatus;
 	
 	/**
 	 * 机柜：机柜
@@ -3287,6 +3293,25 @@ public class Asset extends Entity {
 	*/
 	public Asset setAssetMaintenanceStatus(DictItem assetMaintenanceStatus) {
 		this.assetMaintenanceStatus=assetMaintenanceStatus;
+		return this;
+	}
+	
+	/**
+	 * 获得 assetCycleStatus<br>
+	 * assetCycleStatus
+	 * @return assetCycleStatus
+	*/
+	public AssetStatus getAssetCycleStatus() {
+		return assetCycleStatus;
+	}
+	
+	/**
+	 * 设置 assetCycleStatus
+	 * @param assetCycleStatus assetCycleStatus
+	 * @return 当前对象
+	*/
+	public Asset setAssetCycleStatus(AssetStatus assetCycleStatus) {
+		this.assetCycleStatus=assetCycleStatus;
 		return this;
 	}
 	

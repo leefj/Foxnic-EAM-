@@ -19,9 +19,4 @@ cd $cur_dir
 sh backupAppDB.sh eam
 sh runSql.sh $app_dir/backup/db/db.sql eam_demo
 
-cd $app_dir/app/app
-rm -rf lib*
-rm -rf *.jar
-cp /tmp/app.tar .
-tar xvf app.tar
 exit 0

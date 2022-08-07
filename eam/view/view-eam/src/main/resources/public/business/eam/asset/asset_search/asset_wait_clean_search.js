@@ -112,6 +112,7 @@ function ListPage() {
         var value = {};
 
 
+        function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 
         value.businessCode={ inputType:"button",value: $("#businessCode").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
 
@@ -119,6 +120,7 @@ function ListPage() {
         value.status={ inputType:"select_box", value:"complete", label:"完成"};
         value.assetCode={ inputType:"button",value: $("#assetCode").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
         value.assetStatus={ inputType:"select_box", value: "scrap", label:"待报废"};
+
         value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
         value.manufacturerId={ inputType:"select_box", value: xmSelect.get("#manufacturerId",true).getValue("value") ,fillBy:["manufacturer"]  ,label:xmSelect.get("#manufacturerId",true).getValue("nameStr") };
         value.model={ inputType:"button",value: $("#model").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };

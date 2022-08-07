@@ -480,6 +480,7 @@ public class AssetController extends SuperController {
 				.with(AssetMeta.MANAGER)
 				.with(AssetMeta.USE_USER)
 				.with(AssetMeta.ORIGINATOR)
+				.with(AssetMeta.ASSET_CYCLE_STATUS)
 				.with(AssetMeta.RACK)
 				.with(AssetMeta.SOURCE)
 				.with(AssetMeta.SAFETY_LEVEL)

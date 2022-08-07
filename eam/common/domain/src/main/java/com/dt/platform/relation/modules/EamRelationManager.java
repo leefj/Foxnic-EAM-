@@ -109,6 +109,15 @@ public class EamRelationManager extends RelationManager {
         this.setupEmployeeHandover();
 
         this.setupSupplier();
+        this.setupAssetStatusRuleV();
+
+
+    }
+
+    public void setupAssetStatusRuleV() {
+
+        this.property(AssetStatusRuleVMeta.ASSET_CYCLE_STATUS_PROP)
+                .using(EAMTables.EAM_ASSET_STATUS_RULE_V.STATUS_CODE).join(EAMTables.EAM_ASSET_STATUS.CODE);
     }
 
     public void setupSupplier() {
@@ -1578,6 +1587,9 @@ public class EamRelationManager extends RelationManager {
         this.property(AssetMeta.SUPPLIER_PROP)
                 .using(EAMTables.EAM_ASSET.SUPPLIER_ID).join(EAMTables.EAM_SUPPLIER.ID);
 
+        // 资产状态
+        this.property(AssetMeta.ASSET_CYCLE_STATUS_PROP)
+                .using(EAMTables.EAM_ASSET.ASSET_STATUS).join(EAMTables.EAM_ASSET_STATUS.CODE);
 
         // 关联生产厂商
         this.property(AssetMeta.MANUFACTURER_PROP)

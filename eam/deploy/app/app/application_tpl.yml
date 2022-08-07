@@ -188,6 +188,10 @@ foxnic:
             is-accurate: true
             cache-empty-result: true
             properties: dictCode
+          query-code:
+            is-accurate: true
+            cache-empty-result: true
+            properties: dictCode,code
       "org.github.foxnic.web.domain.system.DbCache":
         #mode: local
         local-limit: 10240

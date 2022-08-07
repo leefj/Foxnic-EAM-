@@ -100,7 +100,11 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 	@Autowired
 	private IAssetItemService assetItemService;
 
+	@Autowired
+	private IAssetStatusRuleService assetStatusRuleService;
 
+	@Autowired
+	private IAssetStatusRuleVService assetStatusRuleVService;
 	@Autowired
 	private IAssetProcessRecordService assetProcessRecordService;
 
@@ -416,6 +420,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				.with(AssetMeta.RACK)
 				.with(AssetMeta.SOURCE)
 				.with(AssetMeta.SAFETY_LEVEL)
+				.with(AssetMeta.ASSET_CYCLE_STATUS)
 				.with(AssetMeta.EQUIPMENT_ENVIRONMENT)
 				.with(AssetMeta.ASSET_MAINTENANCE_STATUS)
 				.execute();
@@ -450,6 +455,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				.with(AssetMeta.USE_USER)
 				.with(AssetMeta.ORIGINATOR)
 				.with(AssetMeta.RACK)
+				.with(AssetMeta.ASSET_CYCLE_STATUS)
 				.with(AssetMeta.SOURCE)
 				.with(AssetMeta.SAFETY_LEVEL)
 				.with(AssetMeta.EQUIPMENT_ENVIRONMENT)
@@ -1164,44 +1170,21 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		//PagedList<Asset> pagedList=this.dao().queryPagedEntities(Asset.class,pageSize,pageIndex,select);
 		return queryPagedList(sample, expr, pageSize, pageIndex);
 		//return pagedList;
-
-
 	}
 
 	public Result conditionAssetBusinessType(String businessType,ConditionExpr queryCondition){
-
-		//过滤资产状态
-		if(AssetOperateEnum.EAM_ASSET_BORROW.code().equals(businessType)){
-			//借用
-			queryCondition.andIn("asset_status",AssetStatusEnum.USING.code(),AssetStatusEnum.IDLE.code());
-		}else if(AssetOperateEnum.EAM_ASSET_COLLECTION.code().equals(businessType)){
-			//领用
-			queryCondition.andIn("asset_status",AssetStatusEnum.IDLE.code());
-		}else if(AssetOperateEnum.EAM_ASSET_COLLECTION_RETURN.code().equals(businessType)){
-			//退库
-			queryCondition.andIn("asset_status",AssetStatusEnum.USING.code());
-		}else if(AssetOperateEnum.EAM_ASSET_REPAIR_ORDER.code().equals(businessType)||AssetOperateEnum.EAM_ASSET_REPAIR.code().equals(businessType)||AssetOperateEnum.EAM_EQUIPMENT_FAILURE_REGISTRATION.code().equals(businessType)){
-			//报修
-			queryCondition.andIn("asset_status",AssetStatusEnum.USING.code(),AssetStatusEnum.IDLE.code());
-		}else if(AssetOperateEnum.EAM_ASSET_SCRAP.code().equals(businessType)){
-			//报废
-			queryCondition.andIn("asset_status",AssetStatusEnum.USING.code(),AssetStatusEnum.IDLE.code());
-		}else if(AssetOperateEnum.EAM_ASSET_ALLOCATE.code().equals(businessType)){
-			//调拨
-			queryCondition.andIn("asset_status",AssetStatusEnum.USING.code(),AssetStatusEnum.IDLE.code());
-		}else if(AssetOperateEnum.EAM_ASSET_TRANFER.code().equals(businessType)){
-			//转移
-			queryCondition.andIn("asset_status",AssetStatusEnum.USING.code(),AssetStatusEnum.IDLE.code());
-		}else if(AssetOperateEnum.EAM_ASSET_CHANGE_BASE_INFO.code().equals(businessType)
-				||AssetOperateEnum.EAM_ASSET_CHANGE_FINANCIAL.code().equals(businessType)
-				||AssetOperateEnum.EAM_ASSET_CHANGE_MAINTENANCE.code().equals(businessType)){
-			//
-		}else if(AssetOperateEnum.EAM_ASSET_MAINTAIN_PLAN.code().equals(businessType)){
-			//保养
-		}else{
-			queryCondition.andIn("asset_status","unknow");
-			return ErrorDesc.failure().message("不支持当前业务类型操作");
+		AssetStatusRule assetStatusRule=assetStatusRuleService.queryEntity(AssetStatusRule.create().setOperCode(businessType));
+		if(assetStatusRule!=null){
+			String condition=assetStatusRule.getOperCondition();
+			String tenantId=SessionUser.getCurrent().getActivatedTenantId();
+			if(AssetStatusRuleConditionEnum.NOT_IN.code().equals(condition)){
+				queryCondition.and("asset_status not in (select status_code from eam_asset_status_rule_v where status='enable' and deleted=0 and tenant_id=? and oper_code=?)",tenantId,businessType);
+			}else if (AssetStatusRuleConditionEnum.IN.code().equals(condition)){
+				queryCondition.and("asset_status in (select status_code from eam_asset_status_rule_v where status='enable' and deleted=0 and tenant_id=? and oper_code=?)",tenantId,businessType);
+			}
 		}
+		Logger.info("conditionAssetBusinessType|oper:"+businessType+",conditionExpr:"+queryCondition.getSQL());
+
 		return ErrorDesc.success().data(queryCondition);
 	}
 
@@ -1636,6 +1619,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				.with(AssetMeta.ORIGINATOR)
 				.with(AssetMeta.RACK)
 				.with(AssetMeta.SOURCE)
+				.with(AssetMeta.ASSET_CYCLE_STATUS)
 				.with(AssetMeta.SAFETY_LEVEL)
 				.with(AssetMeta.EQUIPMENT_ENVIRONMENT)
 				.with(AssetMeta.ASSET_MAINTENANCE_STATUS)

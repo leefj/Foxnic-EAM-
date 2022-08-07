@@ -1,4 +1,5 @@
 #!/bin/sh
+modify_date="20220806_1"
 ####################################################################################
 # run:
 #   sh appInstallFull.sh
@@ -18,10 +19,11 @@
 #   ps -ef|grep mysql |grep -v grep |awk '{print $2}'|xargs kill -9
 #
 #
-#                                                                 modify at 20220801
+#                                                                 modify at $modify_date
 #                                                                 by lank
 ####################################################################################
 ################################################################  config
+echo "script version:%modify_date"
 app_version="last"
 if [[ -n $1 ]];then
 	app_version=$1

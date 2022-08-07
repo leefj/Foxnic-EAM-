@@ -68,6 +68,9 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
     private IPositionService positionService;
 
     @Autowired
+    private IAssetStatusService assetStatusService;
+
+    @Autowired
     private IWarehouseService warehouseService;
 
     @Autowired
@@ -593,7 +596,6 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
     public HashMap<String,String> queryAssetCategoryNodes(String type){
         //所有分类转换成  id + 全路径名称
         HashMap<String,String> map=new HashMap<>();
-
         CatalogVO voGId=new CatalogVO();
         voGId.setCode("asset");
         Result<List<Catalog>> vgGidRes=CatalogServiceProxy.api().queryList(voGId);
@@ -606,18 +608,11 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         }
         String rootId= vgGidList.get(0).getId();
         System.out.println("asset category root id:"+rootId);
-//        CatalogVO vo=new CatalogVO();
-//        vo.setTenantId(SessionUser.getCurrent().getActivatedTenantId());
-//      //  vo.setRoot(rootId);
-//        vo.setParentId(rootId);
-//        vo.setIsLoadAllDescendants(1);
-        //queryNodesFlatten
         PcmCatalogDelegate delegate=new PcmCatalogDelegate(rootId);
         Result r = delegate.queryNodesFlatten(true,true);
         if(r.isSuccess()){
             List<ZTreeNode> list= (List<ZTreeNode> )r.getData();
             for( ZTreeNode node:list){
-                System.out.println("##"+node.getId()+","+node.getHierarchy());
                 String path="";
                 for(int j=0;j<node.getNamePathArray().size();j++){
                     if(j==0){
@@ -765,19 +760,6 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         }
 
 
-        //枚举类型
-        //资产状态
-        String assetStatus=BeanNameUtil.instance().depart(AssetMeta.ASSET_STATUS);
-        String valueAssetStatus=rcd.getString(assetStatus);
-        if(!StringUtil.isBlank(valueAssetStatus)){
-            String value=EnumUtil.parseByText(AssetStatusEnum.class,valueAssetStatus)==null
-                    ?AssetStatusEnum.IDLE.code()
-                    :EnumUtil.parseByText(AssetStatusEnum.class,valueAssetStatus).code();
-            rcd.setValue(assetStatus,value);
-        } else{
-            rcd.setValue(assetStatus,AssetStatusEnum.IDLE.code());
-        }
-
 
         //设备状态
         String equipStatus=BeanNameUtil.instance().depart(AssetMeta.EQUIPMENT_STATUS);
@@ -803,6 +785,8 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                 return ErrorDesc.failureMessage("组织节点未匹配到:"+valueUseOrganization);
             }
         }
+
+
 
 
         String companyId=BeanNameUtil.instance().depart(AssetMeta.OWN_COMPANY_ID);
@@ -895,6 +879,32 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                 rcd.setValue(positionId,position.getId());
             }
         }
+
+
+
+//        String assetStatus=BeanNameUtil.instance().depart(AssetMeta.ASSET_STATUS);
+//        String valueAssetStatus=rcd.getString(assetStatus);
+//        if(!StringUtil.isBlank(valueAssetStatus)){
+//            String value=EnumUtil.parseByText(AssetStatusEnum.class,valueAssetStatus)==null
+//                    ?AssetStatusEnum.IDLE.code()
+//                    :EnumUtil.parseByText(AssetStatusEnum.class,valueAssetStatus).code();
+//            rcd.setValue(assetStatus,value);
+//        } else{
+//            rcd.setValue(assetStatus,AssetStatusEnum.IDLE.code());
+//        }
+        String assetStatusId=BeanNameUtil.instance().depart(AssetMeta.ASSET_STATUS);
+        String valueAssetStatus=rcd.getString(assetStatusId);
+        if(!StringUtil.isBlank(valueAssetStatus)){
+            AssetStatus assetStatus= assetStatusService.queryEntity(AssetStatus.create().setName(valueAssetStatus));
+            if(assetStatus==null){
+                return ErrorDesc.failureMessage("当前资产状态设置不正确,值:"+valueAssetStatus);
+            }else{
+                rcd.setValue(assetStatusId,assetStatus.getCode());
+            }
+        }else{
+            rcd.setValue(assetStatusId,AssetStatusEnum.IDLE.code());
+        }
+
 
         //仓库 fill
         String wareHouseId=BeanNameUtil.instance().depart(AssetMeta.WAREHOUSE_ID);
@@ -1006,8 +1016,9 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
             }
 
             //资产状态
-            CodeTextEnum vAssetStatus=EnumUtil.parseByCode(AssetStatusEnum.class,assetItem.getAssetStatus()) ;
-            assetMap.put(AssetDataExportColumnEnum.ASSET_STATUS_NAME.code(), vAssetStatus==null?"":vAssetStatus.text());
+            if(assetItem.getAssetCycleStatus()!=null){
+                assetMap.put(AssetDataExportColumnEnum.ASSET_STATUS_NAME.code(),assetItem.getAssetCycleStatus().getName());
+            }
 
             //办理状态
             CodeTextEnum vStatus= EnumUtil.parseByCode(AssetHandleStatusEnum.class,assetItem.getStatus());

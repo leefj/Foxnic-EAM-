@@ -2,7 +2,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-04 21:07:58
+ * @since 2022-08-06 09:53:51
  */
  -->
  <!DOCTYPE html>
@@ -114,7 +114,7 @@
                     <div class="layui-form-item" >
                         <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('资产状态')}">资产状态</div></div>
                         <div class="layui-input-block layui-input-block-c1">
-                            <div id="assetStatus" input-type="select" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.AssetStatusEnum')}" extraParam="{}"></div>
+                            <div id="assetStatus" input-type="select" th:data="${'/service-eam/eam-asset-status/query-list'}" extraParam="{}"></div>
                         </div>
                     </div>
 
@@ -857,7 +857,6 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetHandleStatusEnum')}]];
-    var SELECT_ASSETSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetStatusEnum')}]];
     var SELECT_EQUIPMENTSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetEquipmentStatusEnum')}]];
     var VALIDATE_CONFIG={"purchaseDate":{"date":true,"labelInForm":"购置日期","inputType":"date_input"},"maintenanceEndDate":{"date":true,"labelInForm":"结束时间","inputType":"date_input"},"entryTime":{"date":true,"labelInForm":"入账时间","inputType":"date_input"},"maintenanceStartDate":{"date":true,"labelInForm":"开始时间","inputType":"date_input"}};
     var AUTH_PREFIX="eam_asset";

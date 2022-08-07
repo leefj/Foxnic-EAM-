@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-04 21:07:59
+ * @since 2022-08-06 09:53:52
  */
 
 function FormPage() {
@@ -166,24 +166,27 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "assetStatus",
 			radio: true,
-			filterable: false,
+			filterable: true,
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("assetStatus",data.arr,data.change,data.isAdd);
 				},1);
 			},
 			//转换数据
-			transform:function(data) {
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
 				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
 				var defaultValues=[],defaultIndexs=[];
 				if(action=="create") {
-					defaultValues = "idle".split(",");
+					defaultValues = "".split(",");
 					defaultIndexs = "".split(",");
 				}
 				var opts=[];
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
-					opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].name,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
 				}
 				return opts;
 			}
@@ -808,7 +811,7 @@ function FormPage() {
 			//设置  办理状态 设置下拉框勾选
 			fox.setSelectValue4Enum("#status",formData.status,SELECT_STATUS_DATA);
 			//设置  资产状态 设置下拉框勾选
-			fox.setSelectValue4Enum("#assetStatus",formData.assetStatus,SELECT_ASSETSTATUS_DATA);
+			fox.setSelectValue4QueryApi("#assetStatus",formData.assetCycleStatus);
 			//设置  物品档案 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#goodsId",formData.goods);
 			//设置  厂商 设置下拉框勾选

@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-04 21:07:58
+ * @since 2022-08-06 09:53:51
  */
 
 
@@ -85,7 +85,7 @@ function ListPage() {
 					,{ field: 'batchCode', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('批次编码') , templet: function (d) { return templet('batchCode',d.batchCode,d);}  }
 					,{ field: 'ownerCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('归属') , templet: function (d) { return templet('ownerCode',d.ownerCode,d);}  }
 					,{ field: 'assetCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('资产编号') , templet: function (d) { return templet('assetCode',d.assetCode,d);}  }
-					,{ field: 'assetStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('资产状态'), templet:function (d){ return templet('assetStatus',fox.getEnumText(SELECT_ASSETSTATUS_DATA,d.assetStatus,'','assetStatus'),d);}}
+					,{ field: 'assetStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('资产状态'), templet: function (d) { return templet('assetStatus' ,fox.joinLabel(d.assetCycleStatus,"name",',','','assetStatus'),d);}}
 					,{ field: 'goodsId', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('物品档案'), templet: function (d) { return templet('goodsId' ,fox.joinLabel(d.goods,"name",',','','goodsId'),d);}}
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'manufacturerId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('厂商'), templet: function (d) { return templet('manufacturerId' ,fox.joinLabel(d.manufacturer,"manufacturerName",',','','manufacturerId'),d);}}
@@ -221,7 +221,7 @@ function ListPage() {
 		value.businessCode={ inputType:"button",value: $("#businessCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.status={ inputType:"select_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.assetCode={ inputType:"button",value: $("#assetCode").val()};
-		value.assetStatus={ inputType:"select_box", value: getSelectedValue("#assetStatus","value"), label:getSelectedValue("#assetStatus","nameStr") };
+		value.assetStatus={ inputType:"select_box", value: getSelectedValue("#assetStatus","value") ,fillBy:["assetCycleStatus"]  , label:getSelectedValue("#assetStatus","nameStr") };
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.manufacturerId={ inputType:"select_box", value: getSelectedValue("#manufacturerId","value") ,fillBy:["manufacturer"]  , label:getSelectedValue("#manufacturerId","nameStr") };
 		value.model={ inputType:"button",value: $("#model").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
@@ -239,8 +239,6 @@ function ListPage() {
 		value.manageIp={ inputType:"button",value: $("#manageIp").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.equipmentLabel={ inputType:"button",value: $("#equipmentLabel").val()};
 		value.equipmentEnvironmentCode={ inputType:"select_box", value: getSelectedValue("#equipmentEnvironmentCode","value") ,fillBy:["equipmentEnvironment"]  , label:getSelectedValue("#equipmentEnvironmentCode","nameStr") };
-
-
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -315,19 +313,22 @@ function ListPage() {
 			el: "assetStatus",
 			radio: true,
 			size: "small",
-			filterable: false,
+			filterable: true,
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("assetStatus",data.arr,data.change,data.isAdd);
 				},1);
 			},
 			//转换数据
-			transform:function(data) {
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
 				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
 				var opts=[];
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
-					opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].name,value:data[i].code});
 				}
 				return opts;
 			}

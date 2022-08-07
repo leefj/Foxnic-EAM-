@@ -35,9 +35,11 @@
             <div class="search-input-rows" style="opacity: 0">
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
+
+
                     <div class="search-unit">
                         <div class="search-label-div" style=""><span th:text="${lang.translate('资产状态')}" class="search-label assetStatus-label">资产状态</span><span class="search-colon">:</span></div>
-                        <div id="assetStatus" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.AssetStatusEnum')}" style="width:140px"></div>
+                        <div id="assetStatus" th:data="${'/service-eam/eam-asset-status/query-list'}"  style="width:140px" extraParam="{}" ></div>
                     </div>
 
                     <div class="search-unit">

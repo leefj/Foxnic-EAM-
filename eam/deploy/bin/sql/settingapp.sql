@@ -46,9 +46,11 @@ update sys_menu set hidden=1 where id='562317041218879488';
 update sys_menu set hidden=1 where id='592108832759488512';
 update sys_menu set hidden=1 where id='592348823129427968';
 
--- 财务
+-- 财务管理
 update sys_menu set hidden=1 where id='475955437510852608';
 
-
--- 财务
+-- 盘点
 update sys_menu set hidden=1 where id='471985681850171393';
+
+-- 版本切换
+update sys_menu set hidden=1 where id='578624635919138816';
