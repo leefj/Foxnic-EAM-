@@ -67,6 +67,17 @@ public interface AssetDataServiceProxy {
      * 导入资产
      */
     public static final String PRINT_PDF = API_PREFIX + "print-pdf";
+
+
+    /**
+     *   获取PCM编码ID
+     */
+    public static final String QUERY_PCM_ID_BY_CODE = API_PREFIX + "query-pcm-id-by-code";
+
+    @RequestMapping(AssetDataServiceProxy.QUERY_PCM_ID_BY_CODE)
+    public String queryPcmIdByCode(String code);
+
+
     /**
      * 配置数据
      */
@@ -84,6 +95,10 @@ public interface AssetDataServiceProxy {
      */
     @RequestMapping(AssetDataServiceProxy.EXPORT_ASSET_BY_IDS)
     Result exportAssetByIds(@RequestParam(name = "ids") List<String> ids);
+
+
+
+
 
     /**
      * 控制器类名

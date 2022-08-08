@@ -39,6 +39,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 对话框回调，表单域以及按钮 会自动改变为选中的值，此处处理额外的逻辑即可
          * */
         afterDialog:function (param,result) {
+
             console.log('dialog',param,result);
             // debugger;
             window.module.refreshTableData();
@@ -63,6 +64,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param location 调用的代码位置
          * */
         beforeQuery:function (conditions,param,location) {
+            param.categoryId=CATEGORY_ID;
             console.log('beforeQuery',conditions,param,location);
             return true;
         },

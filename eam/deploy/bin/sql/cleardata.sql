@@ -131,8 +131,6 @@ delete from vehicle_m_select_item where 1=1;
 delete from vehicle_maintenance where 1=1;
 delete from vehicle_select_item where 1=1;
 
-
-
 -- BPM
 delete from bpm_demo_leave;
 delete from bpm_demo_common;

@@ -37,6 +37,8 @@ import java.util.Map;
 public interface IAssetDataService extends ISuperService<Asset> {
 
 
+	String queryPcmIdByCode(String code);
+
 	Result importAssetByLuckySheet(String ownerCode,String content,String selectedCode);
 
 	Result<JSONObject> queryAssetLuckySheet(String oper,int row,String handleId);
@@ -59,6 +61,8 @@ public interface IAssetDataService extends ISuperService<Asset> {
 
 
 	List<Asset> queryAssetList(List<String> ids, AssetVO asset) ;
+
+
 
 	/**
 	 * 插入实体

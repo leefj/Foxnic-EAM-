@@ -250,9 +250,15 @@ public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn
 			ownerCode=AssetStockGoodsOwnerEnum.REAL_PART.code();
 		}
 		List<GoodsStock> goods=bill.getGoodsList();
+
 		if(goods!=null&&goods.size()>0){
 			for(int i=0;i<goods.size();i++){
 				String goodsId=goods.get(i).getGoodsId();
+//				String categoryId="";
+//				Rcd goodsRs=dao.queryRecord("select * from eam_goods_stock where id=?",goodsId);
+//				if(goodsRs!=null){
+//					categoryId=goodsRs.getString("category_id");
+//				}
 				String stockInNumber=goods.get(i).getStockInNumber()+"";
 				String warehouseId=goods.get(i).getWarehouseId();
 				if(StringUtil.isBlank(goodsId)||StringUtil.isBlank(warehouseId)){
@@ -270,6 +276,7 @@ public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn
 						ins.set("tenant_id",tenantId);
 						ins.set("warehouse_id",warehouseId);
 						ins.set("goods_id",goodsId);
+					//	ins.set("category_id",categoryId);
 						this.dao.execute(ins);
 					}else{
 						String gid=rs.getString("id");

@@ -72,6 +72,9 @@ function ListPage() {
             ps.assetSelectedCode=ASSET_SELECTED_CODE;
             ps.assetBusinessType=billdata.assetBusinessType;
             ps.assetOwnerId=billdata.assetOwnerId;
+            if(CATEGORY_ID){
+                ps.categoryId=CATEGORY_ID;
+            }
             ps.ownerCode=OWNER_CODE;
             var templet=window.pageExt.list.templet;
             if(templet==null) {

@@ -1,8 +1,7 @@
 package com.dt.platform.eam.page;
 
-import com.dt.platform.constants.enums.eam.AssetCategoryCodeEnum;
-import com.dt.platform.constants.enums.eam.AssetCategoryTypeEnum;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
+import com.dt.platform.constants.enums.eam.AssetPcmCodeEnum;
 import com.dt.platform.proxy.eam.OperateServiceProxy;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.lang.StringUtil;
@@ -14,7 +13,6 @@ import org.github.foxnic.web.misc.ztree.ZTreeNode;
 import org.github.foxnic.web.proxy.pcm.CatalogServiceProxy;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import com.dt.platform.proxy.eam.AssetSoftwareServiceProxy;
 import javax.servlet.http.HttpServletRequest;
@@ -128,7 +126,7 @@ public class AssetSoftwarePageController extends ViewController {
 
 		//设置资产分类
 		CatalogVO catalog=new CatalogVO();
-		String categoryCode= AssetCategoryTypeEnum.ASSET_SOFTWARE.code();
+		String categoryCode= AssetPcmCodeEnum.ASSET_SOFTWARE.code();
 		catalog.setCode(categoryCode);
 		Result<List<Catalog>> catalogListResult= CatalogServiceProxy.api().queryList(catalog);
 		String categoryId="";

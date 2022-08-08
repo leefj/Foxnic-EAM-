@@ -3,6 +3,7 @@ package com.dt.platform.eam.page;
 import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.eam.AssetAttributeDimensionEnum;
 import com.dt.platform.constants.enums.eam.AssetAttributeItemOwnerEnum;
+import com.dt.platform.constants.enums.eam.AssetPcmCodeEnum;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
 import com.dt.platform.domain.eam.AssetAttributeItem;
 import com.dt.platform.domain.eam.AssetAttributeItemVO;
@@ -20,7 +21,6 @@ import org.github.foxnic.web.proxy.pcm.CatalogServiceProxy;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import com.dt.platform.proxy.eam.AssetDataChangeServiceProxy;
 import javax.servlet.http.HttpServletRequest;
@@ -98,7 +98,7 @@ public class AssetDataChangePageController extends ViewController {
 		}
 
 		CatalogVO catalog=new CatalogVO();
-		catalog.setCode("asset");
+		catalog.setCode(AssetPcmCodeEnum.ASSET.code());
 		Result<List<Catalog>> catalogListResult= CatalogServiceProxy.api().queryList(catalog);
 		if(catalogListResult.isSuccess()){
 			List<Catalog> catalogList=catalogListResult.getData();
@@ -178,7 +178,7 @@ public class AssetDataChangePageController extends ViewController {
 		model.addAttribute("attributeRequiredData",attributeItemRequiredObject);
 
 		CatalogVO catalog=new CatalogVO();
-		catalog.setCode("asset");
+		catalog.setCode(AssetPcmCodeEnum.ASSET.code());
 		Result<List<Catalog>> catalogListResult=CatalogServiceProxy.api().queryList(catalog);
 		if(catalogListResult.isSuccess()){
 			List<Catalog> catalogList=catalogListResult.getData();

@@ -1,27 +1,16 @@
 package com.dt.platform.eam.page;
 
-import com.dt.platform.constants.enums.eam.AssetAttributeItemOwnerEnum;
-import com.dt.platform.constants.enums.eam.AssetCategoryCodeEnum;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
-import com.dt.platform.constants.enums.eam.AssetOwnerCodeEnum;
-import com.dt.platform.domain.eam.AssetAttributeItem;
-import com.dt.platform.proxy.eam.AssetAttributeItemServiceProxy;
 import com.dt.platform.proxy.eam.OperateServiceProxy;
 import com.github.foxnic.api.transter.Result;
-import org.github.foxnic.web.domain.hrm.Organization;
-import org.github.foxnic.web.domain.hrm.OrganizationVO;
 import org.github.foxnic.web.framework.view.controller.ViewController;
 
-import org.github.foxnic.web.proxy.hrm.OrganizationServiceProxy;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import com.dt.platform.proxy.eam.AssetStockDeliverServiceProxy;
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * <p>

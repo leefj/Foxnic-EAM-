@@ -71,6 +71,17 @@ public class AssetDataController extends SuperController {
     private IAssetService assetService;
 
     /**
+     * 获取PCM编码ID
+     */
+    @ApiOperation(value = "获取PCM编码ID")
+    @ApiOperationSupport(order=1)
+    @SentinelResource(value = AssetDataServiceProxy.QUERY_PCM_ID_BY_CODE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+    @PostMapping(AssetDataServiceProxy.QUERY_PCM_ID_BY_CODE)
+    public String queryPcmIdByCode(String code) {
+       return assetDataService.queryPcmIdByCode(code);
+    }
+
+    /**
      * 导入资产数据
      */
     @ApiOperation(value = "导入资产数据")

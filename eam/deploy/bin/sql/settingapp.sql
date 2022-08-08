@@ -1,16 +1,20 @@
--- login config
-update sys_config set value=0 where code='system.login.captcha.any';
+-- foxnic config
+update sys_config set value='2.1.0' where code='system.version.code';
+update sys_config set value='PROD' where code='system.version.name';
+update sys_config set value='PROD' where code='system.version.type';
+-- update sys_config set value='DEV' where code='system.version.name';
+-- update sys_config set value='DEV' where code='system.version.type';
 update sys_config set value='{account:"",password:"",captcha:""}'  where code='system.login.default';
+update sys_config set value=0 where code='system.login.captcha.any';
+update sys_config set value='FoxnicT001' where value='system.password.default';
+update sys_config set value=0 where code='eam.assetDataPermissions';
+update sys_config set value=1 where code='eam.assetDirectUpdateMode';
+update sys_config set value=0 where code='eam.assetImportAssetCodeKeep';
+update sys_config set value=0 where code='eam.assetImportDataReplenish';
+update sys_config set value=0 where code='eam.assetSerialNumberIsUnique';
+update sys_config set value=0 where code='eam.assetStatusColumnDisable';
+update sys_config set value=0 where code='eam.assetDataPermissions';
 
-
-
-update sys_config set value=0 where value='eam.assetDataPermissions';
-update sys_config set value=1 where value='eam.assetDirectUpdateMode';
-update sys_config set value=0 where value='eam.assetImportAssetCodeKeep';
-update sys_config set value=0 where value='eam.assetImportDataReplenish';
-update sys_config set value=0 where value='eam.assetSerialNumberIsUnique';
-update sys_config set value=0 where value='eam.assetStatusColumnDisable';
-update sys_config set value=0 where value='eam.assetDataPermissions';
 
 -- 功能演示
 update sys_menu set hidden=1 where id='495201409763901440';

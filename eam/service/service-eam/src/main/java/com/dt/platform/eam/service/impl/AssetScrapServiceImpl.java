@@ -107,10 +107,9 @@ public class AssetScrapServiceImpl extends SuperService<AssetScrap> implements I
 
 	@Override
 	public Result cleanOut(String id) {
-
 		AssetScrap billData=getById(id);
 		if(AssetHandleStatusEnum.COMPLETE.code().equals(billData.getStatus())){
-			String sql="update eam_asset set asset_status='"+AssetStatusEnum.HANDLED+"',owner_code=? where id in (select asset_id from eam_asset_item where handle_id=? and crd in ('r','c') and deleted=0)";
+			String sql="update eam_asset set asset_status='"+AssetStatusEnum.SCRAPPED.code()+"',owner_code=? where id in (select asset_id from eam_asset_item where handle_id=? and crd in ('r','c') and deleted=0)";
 			dao.execute(sql, AssetOwnerCodeEnum.ASSET_CLEAN_OUT.code(),id);
 			AssetScrap bill=new AssetScrap();
 			bill.setId(id);
@@ -119,7 +118,6 @@ public class AssetScrapServiceImpl extends SuperService<AssetScrap> implements I
 		}else{
 			return ErrorDesc.failureMessage("当前单据状态，不能对资产进行清理。");
 		}
-
 	}
 
 	@Override

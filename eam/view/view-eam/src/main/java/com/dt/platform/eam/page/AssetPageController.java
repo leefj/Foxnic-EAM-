@@ -1,14 +1,11 @@
 package com.dt.platform.eam.page;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.dt.platform.constants.enums.eam.*;
-import com.dt.platform.domain.eam.AssetAttribute;
 import com.dt.platform.domain.eam.AssetAttributeItem;
 import com.dt.platform.domain.eam.AssetAttributeItemVO;
-import com.dt.platform.domain.eam.meta.AssetAttributeItemMeta;
 import com.dt.platform.proxy.eam.*;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.bean.BeanNameUtil;
@@ -26,7 +23,6 @@ import org.github.foxnic.web.proxy.pcm.CatalogServiceProxy;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpServletRequest;
@@ -94,6 +90,7 @@ public class AssetPageController extends ViewController {
 			List<AssetAttributeItem> list=data.get("attributeListData");
 			model.addAttribute("attributeListData",list);
 		}
+		model.addAttribute("categoryId",AssetDataServiceProxy.api().queryPcmIdByCode(AssetPcmCodeEnum.ASSET.code()));
 		model.addAttribute("assetSelectedCode",assetSelectedCode);
 		return prefix+"/asset_select_basic_list";
 	}
@@ -124,7 +121,7 @@ public class AssetPageController extends ViewController {
 	@RequestMapping("/asset_select_list.html")
 	public String selectLlist(Model model,HttpServletRequest request,String assetSelectedCode,String ownerCode) {
 
-		Result idResult=AssetCategoryServiceProxy.api().queryNodesByCode(AssetCategoryCodeEnum.ASSET.code());
+		Result idResult=AssetCategoryServiceProxy.api().queryNodesByCode(AssetPcmCodeEnum.ASSET.code());
 		model.addAttribute("categoryParentId",idResult.getData());
 		model.addAttribute("assetSelectedCode",assetSelectedCode);
 		model.addAttribute("ownerCode",StringUtil.isBlank(ownerCode)?AssetOwnerCodeEnum.ASSET:ownerCode);
@@ -231,7 +228,7 @@ public class AssetPageController extends ViewController {
 		}
 
 
-		Result idResult=AssetCategoryServiceProxy.api().queryNodesByCode(AssetCategoryCodeEnum.ASSET.code());
+		Result idResult=AssetCategoryServiceProxy.api().queryNodesByCode(AssetPcmCodeEnum.ASSET.code());
 		model.addAttribute("categoryParentId",idResult.getData());
 		return prefix+"/asset_search/category_tree";
 	}
@@ -447,7 +444,7 @@ public class AssetPageController extends ViewController {
 		//设置资产分类
 		CatalogVO catalog=new CatalogVO();
 		if(StringUtil.isBlank(categoryCode)){
-			catalog.setCode(AssetCategoryCodeEnum.ASSET.code());
+			catalog.setCode(AssetPcmCodeEnum.ASSET.code());
 		}else{
 			catalog.setCode(categoryCode);
 		}
@@ -528,7 +525,7 @@ public class AssetPageController extends ViewController {
 		//设置资产分类
 		CatalogVO catalog=new CatalogVO();
 		if(StringUtil.isBlank(categoryCode)||"null".equals(categoryCode.toLowerCase())){
-			catalog.setCode(AssetCategoryCodeEnum.ASSET.code());
+			catalog.setCode(AssetPcmCodeEnum.ASSET.code());
 		}else{
 			catalog.setCode(categoryCode);
 		}
@@ -642,7 +639,7 @@ public class AssetPageController extends ViewController {
 		//设置资产分类
 		CatalogVO catalog=new CatalogVO();
 		if(StringUtil.isBlank(categoryCode)||"null".equals(categoryCode.toLowerCase())){
-			catalog.setCode(AssetCategoryCodeEnum.ASSET.code());
+			catalog.setCode(AssetPcmCodeEnum.ASSET.code());
 		}else{
 			catalog.setCode(categoryCode);
 		}

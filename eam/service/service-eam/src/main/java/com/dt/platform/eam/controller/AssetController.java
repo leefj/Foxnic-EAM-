@@ -802,8 +802,10 @@ public class AssetController extends SuperController {
 	@PostMapping(AssetServiceProxy.QUERY_PAGED_LIST_BY_SELECT)
 	public Result<PagedList<Asset>> queryPagedListBySelect(AssetVO sample,String assetBusinessType,String assetOwnerId,String assetSelectedCode,String assetSearchContent) {
 
-
 		Result<PagedList<Asset>> result=new Result<>();
+//		if(StringUtil.isBlank(sample.getCategoryId())){
+//			sample.setCategoryId(assetDataService.queryPcmIdByCode(PcmCodeEnum.ASSET.code()));
+//		}
 		PagedList<Asset> list=assetService.queryPagedListBySelect(sample,assetBusinessType,assetOwnerId,assetSelectedCode,assetSearchContent);
 		assetService.joinData(list.getList());
 

@@ -104,13 +104,30 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
 
 
     @Override
+    public String queryPcmIdByCode(String code){
+        String res="";
+        CatalogVO voGId=new CatalogVO();
+        voGId.setCode(code);
+        Result<List<Catalog>> vgGidRes=CatalogServiceProxy.api().queryList(voGId);
+        if(vgGidRes.isSuccess()){
+            List<Catalog> vgGidList=vgGidRes.getData();
+            if(vgGidList.size()>0){
+                res=vgGidList.get(0).getId();
+            }
+        }
+        Logger.info("queryPcmIdByCode|result:"+res);
+        return res;
+    }
+
+
+    @Override
     public PagedList<Asset> queryAssetPagedList(List<String> ids, AssetVO asset) {
         if(StringUtil.isBlank(asset.getOwnerCode())){
             asset.setOwnerCode(AssetOwnerCodeEnum.ASSET.code());
         }
         return assetService.queryPagedList(asset,asset.getPageSize(),asset.getPageIndex());
-
     }
+
 
     @Override
     public List<Asset> queryAssetList(List<String> ids, AssetVO asset) {
@@ -476,7 +493,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         File tempFile = new File(path +File.separator+ IDGenerator.getSnowflakeIdString()+".xls");
         try {
             wb = new HSSFWorkbook();
-            Sheet sheet = wb.createSheet("asset");
+            Sheet sheet = wb.createSheet("数据");
             sheet.setColumnWidth(0, 18 * 256);
             sheet.setColumnWidth(1, 18 * 256);
 //            Row r = sheet.createRow(0);
@@ -597,7 +614,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         //所有分类转换成  id + 全路径名称
         HashMap<String,String> map=new HashMap<>();
         CatalogVO voGId=new CatalogVO();
-        voGId.setCode("asset");
+        voGId.setCode(AssetPcmCodeEnum.ASSET.code());
         Result<List<Catalog>> vgGidRes=CatalogServiceProxy.api().queryList(voGId);
         if(!vgGidRes.isSuccess()){
             return map;

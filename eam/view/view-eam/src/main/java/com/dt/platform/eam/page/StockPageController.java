@@ -1,27 +1,19 @@
 package com.dt.platform.eam.page;
 
-import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.eam.*;
 import com.dt.platform.domain.eam.AssetAttributeItem;
-import com.dt.platform.domain.eam.AssetAttributeItemVO;
 import com.dt.platform.proxy.eam.*;
 import com.github.foxnic.api.transter.Result;
-import com.github.foxnic.commons.bean.BeanNameUtil;
 import com.github.foxnic.commons.lang.StringUtil;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.hrm.OrganizationVO;
-import org.github.foxnic.web.domain.pcm.Catalog;
-import org.github.foxnic.web.domain.pcm.CatalogVO;
 import org.github.foxnic.web.framework.view.aspect.PageHelper;
 import org.github.foxnic.web.framework.view.controller.ViewController;
 
-import org.github.foxnic.web.misc.ztree.ZTreeNode;
 import org.github.foxnic.web.proxy.hrm.OrganizationServiceProxy;
-import org.github.foxnic.web.proxy.pcm.CatalogServiceProxy;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpServletRequest;
@@ -65,13 +57,13 @@ public class StockPageController extends ViewController {
 		String itemOwner= "";
 		String categoryCode="";
 		if(AssetOwnerCodeEnum.ASSET_CONSUMABLES.code().equals(ownerCode)){
-			categoryCode=AssetCategoryCodeEnum.ASSET_CONSUMABLES.code();
+			categoryCode= AssetPcmCodeEnum.ASSET_CONSUMABLES.code();
 			itemOwner=AssetAttributeItemOwnerEnum.ASSET_CONSUMABLES_BILL.code();
 		}else if(AssetOwnerCodeEnum.ASSET_STOCK.code().equals(ownerCode)){
-			categoryCode=AssetCategoryCodeEnum.ASSET.code();
+			categoryCode= AssetPcmCodeEnum.ASSET.code();
 			itemOwner=AssetAttributeItemOwnerEnum.ASSET_STOCK_BILL.code();
 		}else if(AssetOwnerCodeEnum.ASSET_PURCHASE_APPLY.code().equals(ownerCode)){
-			categoryCode=AssetCategoryCodeEnum.ASSET.code();
+			categoryCode= AssetPcmCodeEnum.ASSET.code();
 			itemOwner=AssetAttributeItemOwnerEnum.ASSET_STOCK_BILL.code();
 		}
 
@@ -236,10 +228,10 @@ public class StockPageController extends ViewController {
 		String authPrefix="eam_"+ownerCode;
 		if(AssetOwnerCodeEnum.ASSET_CONSUMABLES.code().equals(ownerCode)){
 			itemOwner=AssetAttributeItemOwnerEnum.ASSET_CONSUMABLES_SHOW.code();
-			categoryCode=AssetCategoryCodeEnum.ASSET_CONSUMABLES.code();
+			categoryCode= AssetPcmCodeEnum.ASSET_CONSUMABLES.code();
 		}else if(AssetOwnerCodeEnum.ASSET_STOCK.code().equals(ownerCode)){
 			itemOwner=AssetAttributeItemOwnerEnum.ASSET_STOCK_SHOW.code();
-			categoryCode=AssetCategoryCodeEnum.ASSET.code();
+			categoryCode= AssetPcmCodeEnum.ASSET.code();
 		}
 		Result idResult= AssetCategoryServiceProxy.api().queryNodesByCode(categoryCode);
 		model.addAttribute("categoryParentId",idResult.getData());
@@ -280,6 +272,7 @@ public class StockPageController extends ViewController {
 
 		model.addAttribute("assetSelectedCode",assetSelectedCode);
 		model.addAttribute("ownerCode", ownerCode);
+		model.addAttribute("categoryId",AssetDataServiceProxy.api().queryPcmIdByCode(AssetPcmCodeEnum.ASSET_CONSUMABLES.code()));
 		return prefix+"/asset_stock_basic_list";
 
 	}

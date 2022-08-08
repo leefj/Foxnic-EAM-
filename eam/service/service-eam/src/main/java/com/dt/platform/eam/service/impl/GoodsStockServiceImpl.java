@@ -11,6 +11,7 @@ import com.dt.platform.constants.enums.eam.AssetStockGoodsTypeEnum;
 import com.dt.platform.domain.eam.meta.GoodsMeta;
 import com.dt.platform.domain.eam.meta.GoodsStockMeta;
 import com.github.foxnic.commons.collection.CollectorUtil;
+import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.dao.data.RcdSet;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Person;
@@ -252,9 +253,13 @@ public class GoodsStockServiceImpl extends SuperService<GoodsStock> implements I
 		if(StringUtil.isBlank(ownerId)){
 			sample.setOwnerId(null);
 		}
-
 		if(!StringUtil.isBlank(sample.getCategoryId())) {
-			queryCondition.and("category_id in (select id from pcm_catalog where deleted=0 and (concat('/',hierarchy) like '%/"+sample.getCategoryId()+"/%' or id=?))",sample.getCategoryId());
+			Logger.info("ownerCode="+sample.getOwnerCode());
+			if("goods".equals(sample.getOwnerCode())){
+				queryCondition.and("category_id in (select id from pcm_catalog where deleted=0 and (concat('/',hierarchy) like '%/"+sample.getCategoryId()+"/%' or id=?))",sample.getCategoryId());
+			}else{
+				queryCondition.and("goods_id in (select id from eam_goods_stock where category_id in (select id from pcm_catalog where deleted=0 and (concat('/',hierarchy) like '%"+sample.getCategoryId()+"%' or id=?)))",sample.getCategoryId());
+			}
 			sample.setCategoryId(null);
 		}
 

@@ -1,13 +1,12 @@
 package com.dt.platform.eam.page;
 
-import com.dt.platform.constants.enums.eam.AssetCategoryCodeEnum;
+import com.dt.platform.constants.enums.eam.AssetPcmCodeEnum;
 import com.dt.platform.proxy.eam.AssetCategoryServiceProxy;
 import com.github.foxnic.api.transter.Result;
 import org.github.foxnic.web.framework.view.controller.ViewController;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import com.dt.platform.proxy.eam.AssetStockGoodsServiceProxy;
 import javax.servlet.http.HttpServletRequest;
@@ -64,7 +63,7 @@ public class AssetStockGoodsPageController extends ViewController {
 	public String assetStockGoodsSelectTree(Model model,HttpServletRequest request,String assetSelectedCode,String ownerCode,String ownerType) {
 
 
-		Result idResult= AssetCategoryServiceProxy.api().queryNodesByCode(AssetCategoryCodeEnum.ASSET.code());
+		Result idResult= AssetCategoryServiceProxy.api().queryNodesByCode(AssetPcmCodeEnum.ASSET.code());
 		model.addAttribute("categoryParentId",idResult.getData());
 		model.addAttribute("assetSelectedCode",assetSelectedCode);
 		model.addAttribute("ownerCode",ownerCode);

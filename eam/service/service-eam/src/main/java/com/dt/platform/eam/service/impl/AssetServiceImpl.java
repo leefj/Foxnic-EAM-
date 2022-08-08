@@ -10,6 +10,7 @@ import com.deepoove.poi.data.PictureType;
 import com.deepoove.poi.data.Pictures;
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.common.CodeModuleEnum;
+import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.eam.*;
 import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.AssetMeta;
@@ -26,7 +27,6 @@ import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.commons.reflect.EnumUtil;
 import com.github.foxnic.dao.data.*;
-import com.github.foxnic.dao.entity.Entity;
 import com.github.foxnic.dao.excel.*;
 import com.github.foxnic.dao.meta.DBTableMeta;
 import com.github.foxnic.dao.sql.SQLBuilder;
@@ -104,8 +104,6 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 	private IAssetStatusRuleService assetStatusRuleService;
 
 	@Autowired
-	private IAssetStatusRuleVService assetStatusRuleVService;
-	@Autowired
 	private IAssetProcessRecordService assetProcessRecordService;
 
 
@@ -124,7 +122,8 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 	public String applyAssetDataPermissions(Asset asset,ConditionExpr expr){
 		String dp="";
 		Logger.info("dataPermissions|applyAssetDataPermissions,ownerCode:"+AssetOwnerCodeEnum.ASSET.code());
-		if(AssetOwnerCodeEnum.ASSET.code().equals(asset.getOwnerCode())){
+		if(!StringUtil.isBlank(AssetOwnerCodeEnum.ASSET.code())){
+			if(AssetOwnerCodeEnum.ASSET.code().equals(asset.getOwnerCode())){
 				Logger.info("dataPermissions|queryAssetDataPermissions ");
 				if(operateService.queryAssetDataPermissions()){
 					Logger.info("dataPermissions|assetDataPermissions parameter enable");
@@ -132,27 +131,13 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				}else{
 					Logger.info("dataPermissions|assetDataPermissions parameter disabled");
 				}
-		//	}else{
-		//		Logger.info("assetDataPermissions disabled!,asset handle status:"+asset.getStatus());
-		//	}
-		}else{
-			Logger.info("dataPermissions|assetCode not matched.");
+			}else{
+				Logger.info("dataPermissions|assetCode not matched.");
+			}
 		}
-
 		Logger.info("dataPermissions|apply asset data permission finish,dp match result:"+dp);
 		return dp;
 	}
-
-//	public boolean applyAssetDataPermissions(Asset asset,ConditionExpr expr,boolean enable ){
-//		Logger.info("start to match applyAssetDataPermissions!");
-//		if(!enable){
-//			return true;
-//		}
-//		if(AssetOwnerCodeEnum.ASSET.code().equals(asset.getOwnerCode())){
-//			Logger.info("apply asset data permission,ownerCode:"+AssetOwnerCodeEnum.ASSET.code());
-//		}
-//		return true;
-//	}
 
 	@Override
 	public Object generateId(Field field) {
@@ -1136,55 +1121,51 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 	@Override
 	public PagedList<Asset> queryPagedList(Asset sample, int pageSize, int pageIndex) {
 
-		Expr select=new Expr("select * from "+table()+" t ");
+//		Expr select=new Expr("select * from "+table()+" t ");
+//		if(sample instanceof AssetVO) {
+//			AssetVO vo=(AssetVO) sample;
+//			if(!StringUtil.isBlank(vo.getUseOrganizationId())) {
+//				expr.and("use_organization_id in (select id from hrm_organization where deleted=0 and type in ('com','dept') and (concat('/',hierarchy) like '%/"+vo.getUseOrganizationId()+"/%' or id=?))",vo.getUseOrganizationId());
+//				vo.setUseOrganizationId(null);
+//			}
+//			if(!StringUtil.isBlank(vo.getCategoryId())) {
+//				expr.and("category_id in (select id from pcm_catalog where deleted=0 and (concat('/',hierarchy) like '%/"+vo.getCategoryId()+"/%' or id=?))",vo.getCategoryId());
+//				vo.setCategoryId(null);
+//			}
+//			if(!StringUtil.isBlank(vo.getCategoryFinance())) {
+//				expr.and("category_id in (select id from eam_category_finance where deleted=0 and (concat('/',hierarchy) like '%/"+vo.getCategoryFinance()+"/%' or id=?))",vo.getCategoryFinance());
+//				vo.setFinancialCategoryId(null);
+//			}
+//			if(!StringUtil.isBlank(vo.getOwnCompanyId())) {
+//				expr.and("own_company_id in (select id from hrm_organization where deleted=0 and type in ('com','dept') and (concat('/',hierarchy) like '%/"+vo.getOwnCompanyId()+"/%' or id=?))",vo.getOwnCompanyId());
+//				vo.setOwnCompanyId(null);
+//			}
+//		}
+
 		ConditionExpr expr=new ConditionExpr();
-		if(sample instanceof AssetVO) {
-			AssetVO vo=(AssetVO) sample;
-			if(!StringUtil.isBlank(vo.getUseOrganizationId())) {
-				expr.and("use_organization_id in (select id from hrm_organization where deleted=0 and type in ('com','dept') and (concat('/',hierarchy) like '%/"+vo.getUseOrganizationId()+"/%' or id=?))",vo.getUseOrganizationId());
-				vo.setUseOrganizationId(null);
-			}
-			if(!StringUtil.isBlank(vo.getCategoryId())) {
-				expr.and("category_id in (select id from pcm_catalog where deleted=0 and (concat('/',hierarchy) like '%/"+vo.getCategoryId()+"/%' or id=?))",vo.getCategoryId());
-				vo.setCategoryId(null);
-			}
-			if(!StringUtil.isBlank(vo.getCategoryFinance())) {
-				expr.and("category_id in (select id from eam_category_finance where deleted=0 and (concat('/',hierarchy) like '%/"+vo.getCategoryFinance()+"/%' or id=?))",vo.getCategoryFinance());
-				vo.setFinancialCategoryId(null);
-			}
-			if(!StringUtil.isBlank(vo.getOwnCompanyId())) {
-				expr.and("own_company_id in (select id from hrm_organization where deleted=0 and type in ('com','dept') and (concat('/',hierarchy) like '%/"+vo.getOwnCompanyId()+"/%' or id=?))",vo.getOwnCompanyId());
-				vo.setOwnCompanyId(null);
-			}
-		}
-
 		if(StringUtil.isBlank(sample.getOwnerCode())){
-			expr.and("owner_code=?",AssetOwnerCodeEnum.ASSET.code());
+			sample.setOwnerCode(AssetOwnerCodeEnum.ASSET.code());
 		}
-
-
-		ConditionExpr base=this.buildQueryCondition(sample,"t");
-		expr.and(base);
-		select.append(expr.startWithWhere()+" order by create_time desc");
-
-		//PagedList<Asset> pagedList=this.dao().queryPagedEntities(Asset.class,pageSize,pageIndex,select);
+//		if(StringUtil.isBlank(sample.getCategoryId())){
+//			if(AssetOwnerCodeEnum.ASSET.code().equals(sample.getOwnerCode())){
+//				sample.setCategoryId(assetDataService.queryPcmIdByCode(AssetPcmCodeEnum.ASSET.code()));
+//			}
+//		}
 		return queryPagedList(sample, expr, pageSize, pageIndex);
-		//return pagedList;
 	}
 
 	public Result conditionAssetBusinessType(String businessType,ConditionExpr queryCondition){
-		AssetStatusRule assetStatusRule=assetStatusRuleService.queryEntity(AssetStatusRule.create().setOperCode(businessType));
+		AssetStatusRule assetStatusRule=assetStatusRuleService.queryEntity(AssetStatusRule.create().setOperCode(businessType).setStatus(StatusEnableEnum.ENABLE.code()));
 		if(assetStatusRule!=null){
 			String condition=assetStatusRule.getOperCondition();
 			String tenantId=SessionUser.getCurrent().getActivatedTenantId();
 			if(AssetStatusRuleConditionEnum.NOT_IN.code().equals(condition)){
-				queryCondition.and("asset_status not in (select status_code from eam_asset_status_rule_v where status='enable' and deleted=0 and tenant_id=? and oper_code=?)",tenantId,businessType);
+				queryCondition.and("asset_status not in (select status_code from eam_asset_status_rule_v where deleted=0 and tenant_id=? and oper_code=?)",tenantId,businessType);
 			}else if (AssetStatusRuleConditionEnum.IN.code().equals(condition)){
-				queryCondition.and("asset_status in (select status_code from eam_asset_status_rule_v where status='enable' and deleted=0 and tenant_id=? and oper_code=?)",tenantId,businessType);
+				queryCondition.and("asset_status in (select status_code from eam_asset_status_rule_v where  deleted=0 and tenant_id=? and oper_code=?)",tenantId,businessType);
 			}
 		}
 		Logger.info("conditionAssetBusinessType|oper:"+businessType+",conditionExpr:"+queryCondition.getSQL());
-
 		return ErrorDesc.success().data(queryCondition);
 	}
 
@@ -1200,11 +1181,50 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 	 * */
 	@Override
 	public PagedList<Asset> queryPagedList(Asset sample, ConditionExpr condition, int pageSize, int pageIndex) {
+
+		if(StringUtil.isBlank(sample.getCategoryId())){
+			if(AssetOwnerCodeEnum.ASSET.code().equals(sample.getOwnerCode())){
+				sample.setCategoryId(assetDataService.queryPcmIdByCode(AssetPcmCodeEnum.ASSET.code()));
+			}
+		}
+
+		if(!StringUtil.isBlank(sample.getCategoryId())) {
+			condition.and("category_id in (select id from pcm_catalog where deleted=0 and (concat('/',hierarchy) like '%/"+sample.getCategoryId()+"/%' or id=?))",sample.getCategoryId());
+			sample.setCategoryId(null);
+		}
+
+		if(!StringUtil.isBlank(sample.getUseOrganizationId())) {
+			condition.and("use_organization_id in (select id from hrm_organization where deleted=0 and type in ('com','dept') and (concat('/',hierarchy) like '%/"+sample.getUseOrganizationId()+"/%' or id=?))",sample.getUseOrganizationId());
+			sample.setUseOrganizationId(null);
+		}
+
+		if(!StringUtil.isBlank(sample.getOwnCompanyId())) {
+			condition.and("own_company_id in (select id from hrm_organization where deleted=0 and type in ('com','dept') and (concat('/',hierarchy) like '%/"+sample.getOwnCompanyId()+"/%' or id=?))",sample.getOwnCompanyId());
+			sample.setOwnCompanyId(null);
+		}
+
+		if(!StringUtil.isBlank(sample.getCategoryFinance())) {
+			condition.and("category_id in (select id from eam_category_finance where deleted=0 and (concat('/',hierarchy) like '%/"+sample.getCategoryFinance()+"/%' or id=?))",sample.getCategoryFinance());
+			sample.setFinancialCategoryId(null);
+		}
+
+
 		String dp=applyAssetDataPermissions(sample,condition);
+
+//		ConditionExpr base=this.buildQueryCondition(sample,"t");
+//		expr.and(base);
+//		select.append(expr.startWithWhere()+" order by create_time desc");
+//		PagedList<Asset> pagedList=this.dao().queryPagedEntities(Asset.class,pageSize,pageIndex,select);
+		//修正默认排序
+		AssetVO vo=(AssetVO) sample;
+		if(StringUtil.isBlank(vo.getSortField()) ){
+			vo.setSortField("createTime");
+			vo.setSortType("desc");
+		}
 		if(StringUtil.isBlank(dp)){
-			return super.queryPagedList(sample, condition, pageSize, pageIndex);
+			return super.queryPagedList(vo, condition, pageSize, pageIndex);
 		}else{
-			return super.queryPagedList(sample, condition, pageSize, pageIndex,dp);
+			return super.queryPagedList(vo, condition, pageSize, pageIndex,dp);
 		}
 	}
 
@@ -1214,6 +1234,16 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 
 		ConditionExpr queryCondition=new ConditionExpr();
 
+		if(StringUtil.isBlank(sample.getOwnerCode())){
+			sample.setOwnerCode(AssetOwnerCodeEnum.ASSET.code());
+		}
+
+//		if(StringUtil.isBlank(sample.getCategoryId())){
+//			if(AssetOwnerCodeEnum.ASSET.code().equals(sample.getOwnerCode())){
+//				sample.setCategoryId(assetDataService.queryPcmIdByCode(AssetPcmCodeEnum.ASSET.code()));
+//			}
+//		}
+
 		//过滤资产已选数据
 		if(!StringUtil.isBlank(assetOwnerId)) {
 			queryCondition.andIf("id not in (select asset_id from eam_asset_item where deleted=0 and handle_id=?)" ,assetOwnerId);
@@ -1221,26 +1251,6 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			if(!StringUtil.isBlank(assetSelectData)) {
 				queryCondition.andIf("id not in (select asset_id from eam_asset_selected_data where deleted=0 and asset_selected_code=?)" ,assetSelectData);
 			}
-		}
-
-		if(!StringUtil.isBlank(sample.getCategoryId())) {
-			queryCondition.and("category_id in (select id from pcm_catalog where deleted=0 and (concat('/',hierarchy) like '%/"+sample.getCategoryId()+"/%' or id=?))",sample.getCategoryId());
-			sample.setCategoryId(null);
-		}
-
-		if(!StringUtil.isBlank(sample.getUseOrganizationId())) {
-			queryCondition.and("use_organization_id in (select id from hrm_organization where deleted=0 and type in ('com','dept') and (concat('/',hierarchy) like '%/"+sample.getUseOrganizationId()+"/%' or id=?))",sample.getUseOrganizationId());
-			sample.setUseOrganizationId(null);
-		}
-
-
-		if(!StringUtil.isBlank(sample.getOwnCompanyId())) {
-			queryCondition.and("own_company_id in (select id from hrm_organization where deleted=0 and type in ('com','dept') and (concat('/',hierarchy) like '%/"+sample.getOwnCompanyId()+"/%' or id=?))",sample.getOwnCompanyId());
-			sample.setOwnCompanyId(null);
-		}
-
-		if(StringUtil.isBlank(sample.getOwnerCode())){
-			queryCondition.and("owner_code=?",AssetOwnerCodeEnum.ASSET.code());
 		}
 
 		if(AssetOwnerCodeEnum.ASSET_CONSUMABLES.code().equals(sample.getOwnerCode())){
@@ -1252,7 +1262,6 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				r.getData();
 			}
 		}
-
 		PagedList<Asset> list= queryPagedList(sample,queryCondition,sample.getPageSize(),sample.getPageIndex());
 		return list;
 	}

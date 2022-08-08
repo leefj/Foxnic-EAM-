@@ -12,7 +12,7 @@ function ListPage() {
     const moduleURL="/service-eam/eam-goods-stock";
     var dataTable=null;
 
-    var CATEGORY_ID="";
+
     var multiple=true;
     var sort=null;
     /**
@@ -72,6 +72,9 @@ function ListPage() {
                 ps.ownerTplId=OWNER_TMP_ID;
             }
 
+            if(CATEGORY_ID){
+                ps.categoryId=CATEGORY_ID;
+            }
             var templet=window.pageExt.list.templet;
             if(templet==null) {
                 templet=function(field,value,row) {

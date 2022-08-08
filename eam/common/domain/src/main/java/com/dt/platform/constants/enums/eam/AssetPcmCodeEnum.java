@@ -11,7 +11,7 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 */
 
 
-public enum AssetCategoryCodeEnum implements CodeTextEnum {
+public enum AssetPcmCodeEnum implements CodeTextEnum {
 
 	ASSET("asset" , "资产"),
 	ASSET_SOFTWARE("asset_software" , "软件资产"),
@@ -22,7 +22,7 @@ public enum AssetCategoryCodeEnum implements CodeTextEnum {
 	;
 	private String code;
 	private String text;
-	private AssetCategoryCodeEnum(String code, String text)  {
+	private AssetPcmCodeEnum(String code, String text)  {
 		this.code=code;
 		this.text=text;
 	}

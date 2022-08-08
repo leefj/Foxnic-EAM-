@@ -18,9 +18,10 @@ public enum AssetStatusEnum implements CodeTextEnum {
 	BORROW("borrow" , "借用中"),
 	REPAIR("repair" , "维修中"),
 	ALLOCATING("allocate" , "调拨中"),
+	SCRAPPED("scrapped" , "已报废"),
 	SCRAP("scrap" , "待报废"),
-	HANDLED("handled" , "已处置")
-	;
+	HANDLED("handled" , "已处置");
+
 	private String code;
 	private String text;
 	private AssetStatusEnum(String code, String text)  {
@@ -31,7 +32,6 @@ public enum AssetStatusEnum implements CodeTextEnum {
 	public String code() {
 		return code;
 	}
-	
 	public String text() {
 		return text;
 	}

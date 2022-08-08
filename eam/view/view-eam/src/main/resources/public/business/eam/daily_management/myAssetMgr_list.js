@@ -60,6 +60,7 @@ function ListPage() {
                 ps = {searchField: "$composite", searchValue: JSON.stringify(contitions)};
             }
             ps.managerId=EMPLOYEE_ID;
+            ps.categoryId="486917609841758209"
             var templet=window.pageExt.list.templet;
             if(templet==null) {
                 templet=function(field,value,row) {

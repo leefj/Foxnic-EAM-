@@ -1,6 +1,6 @@
 package com.dt.platform.eam.page;
 
-import com.dt.platform.constants.enums.eam.AssetCategoryCodeEnum;
+import com.dt.platform.constants.enums.eam.AssetPcmCodeEnum;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.lang.StringUtil;
 import org.github.foxnic.web.domain.pcm.Catalog;
@@ -11,7 +11,6 @@ import org.github.foxnic.web.misc.ztree.ZTreeNode;
 import org.github.foxnic.web.proxy.pcm.CatalogServiceProxy;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import com.dt.platform.proxy.eam.InventoryServiceProxy;
 import javax.servlet.http.HttpServletRequest;
@@ -66,7 +65,7 @@ public class InventoryPageController extends ViewController {
 		//设置资产分类
 		CatalogVO catalog=new CatalogVO();
 		if(StringUtil.isBlank(categoryCode)||"null".equals(categoryCode.toLowerCase())){
-			catalog.setCode(AssetCategoryCodeEnum.ASSET.code());
+			catalog.setCode(AssetPcmCodeEnum.ASSET.code());
 		}else{
 			catalog.setCode(categoryCode);
 		}

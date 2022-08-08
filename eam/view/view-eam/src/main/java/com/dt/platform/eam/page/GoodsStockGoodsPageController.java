@@ -1,6 +1,6 @@
 package com.dt.platform.eam.page;
 
-import com.dt.platform.constants.enums.eam.AssetCategoryCodeEnum;
+import com.dt.platform.constants.enums.eam.AssetPcmCodeEnum;
 import com.dt.platform.proxy.eam.GoodsStockServiceProxy;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.lang.StringUtil;
@@ -73,7 +73,7 @@ public class GoodsStockGoodsPageController extends ViewController {
 		//设置资产分类
 		CatalogVO catalog=new CatalogVO();
 		if(StringUtil.isBlank(categoryCode)){
-			catalog.setCode(AssetCategoryCodeEnum.ASSET.code());
+			catalog.setCode(AssetPcmCodeEnum.ASSET.code());
 		}else{
 			catalog.setCode(categoryCode);
 		}

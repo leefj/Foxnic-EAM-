@@ -1,8 +1,10 @@
 package com.dt.platform.eam.page;
 
 import com.dt.platform.constants.enums.eam.AssetAttributeItemOwnerEnum;
+import com.dt.platform.constants.enums.eam.AssetPcmCodeEnum;
 import com.dt.platform.domain.eam.AssetAttributeItem;
 import com.dt.platform.proxy.eam.AssetAttributeItemServiceProxy;
+import com.dt.platform.proxy.eam.AssetDataServiceProxy;
 import com.dt.platform.proxy.eam.BrandServiceProxy;
 import com.github.foxnic.api.transter.Result;
 import org.github.foxnic.web.framework.view.controller.ViewController;
@@ -45,6 +47,9 @@ public class DailyManagementPageController extends ViewController {
 
 		String employeeId= SessionUser.getCurrent().getActivatedEmployeeId();
 		model.addAttribute("employeeId",employeeId);
+		//资产
+		model.addAttribute("categoryId", AssetDataServiceProxy.api().queryPcmIdByCode(AssetPcmCodeEnum.ASSET.code()));
+
 		return prefix+"/myAsset_list";
 	}
 
@@ -63,6 +68,8 @@ public class DailyManagementPageController extends ViewController {
 
 		String employeeId= SessionUser.getCurrent().getActivatedEmployeeId();
 		model.addAttribute("employeeId",employeeId);
+		//资产
+		model.addAttribute("categoryId", AssetDataServiceProxy.api().queryPcmIdByCode(AssetPcmCodeEnum.ASSET.code()));
 
 		return prefix+"/myAssetMgr_list";
 	}

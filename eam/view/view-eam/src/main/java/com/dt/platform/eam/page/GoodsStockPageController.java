@@ -1,11 +1,9 @@
 package com.dt.platform.eam.page;
 
 import com.dt.platform.constants.enums.eam.*;
-import com.dt.platform.domain.eam.AssetAttributeItem;
-import com.dt.platform.proxy.eam.AssetAttributeItemServiceProxy;
 import com.dt.platform.proxy.eam.AssetCategoryServiceProxy;
+import com.dt.platform.proxy.eam.AssetDataServiceProxy;
 import com.github.foxnic.api.transter.Result;
-import com.github.foxnic.commons.lang.StringUtil;
 import org.github.foxnic.web.framework.view.aspect.PageHelper;
 
 import org.github.foxnic.web.framework.view.controller.ViewController;
@@ -13,12 +11,9 @@ import org.github.foxnic.web.framework.view.controller.ViewController;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import com.dt.platform.proxy.eam.GoodsStockServiceProxy;
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * <p>
@@ -183,6 +178,7 @@ public class GoodsStockPageController extends ViewController {
 			}
 		}
 
+
 		return ownerCode;
 	}
 
@@ -193,7 +189,7 @@ public class GoodsStockPageController extends ViewController {
 	@RequestMapping("/goods_stock_select_tree.html")
 	public String selectTree(Model model,HttpServletRequest request,String ownerTmpId,String operType,String pageType,String ownerType,String selectedCode) {
 
-		Result idResult= AssetCategoryServiceProxy.api().queryNodesByCode(AssetCategoryCodeEnum.ASSET_STOCK_GOODS.code());
+		Result idResult= AssetCategoryServiceProxy.api().queryNodesByCode(AssetPcmCodeEnum.ASSET_STOCK_GOODS.code());
 		model.addAttribute("categoryParentId",idResult.getData());
 		model.addAttribute("ownerCode",getOwnerCodeByOperType(operType,ownerType,PAGE_ACTION_SELECT));
 		model.addAttribute("ownerTmpId",ownerTmpId);
@@ -224,6 +220,10 @@ public class GoodsStockPageController extends ViewController {
 		model.addAttribute("ownerType",ownerType);
 		model.addAttribute("pageType",pageType);
 		model.addAttribute("selectedCode",selectedCode);
+
+		//物品档案
+		model.addAttribute("categoryId", AssetDataServiceProxy.api().queryPcmIdByCode(AssetPcmCodeEnum.ASSET_STOCK_GOODS.code()));
+
 
 		//model.addAttribute("multiple",multiple);
 		return prefix + "/goods_stock_select_list";
