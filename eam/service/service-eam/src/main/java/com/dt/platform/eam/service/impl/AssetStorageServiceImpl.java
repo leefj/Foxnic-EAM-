@@ -6,12 +6,18 @@ import javax.annotation.Resource;
 import com.dt.platform.constants.enums.common.CodeModuleEnum;
 import com.dt.platform.constants.enums.eam.*;
 import com.dt.platform.domain.eam.*;
+import com.dt.platform.domain.eam.meta.AssetScrapMeta;
 import com.dt.platform.domain.eam.meta.AssetStorageMeta;
 import com.dt.platform.eam.service.*;
 import com.dt.platform.eam.service.bpm.AssetRepairBpmEventAdaptor;
 import com.dt.platform.eam.service.bpm.AssetStorageBpmEventAdaptor;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
+import com.dt.platform.proxy.eam.AssetScrapServiceProxy;
+import com.dt.platform.proxy.eam.AssetStorageServiceProxy;
+import com.github.foxnic.api.constant.CodeTextEnum;
+import com.github.foxnic.commons.bean.BeanUtil;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.reflect.EnumUtil;
 import com.github.foxnic.dao.data.Rcd;
 import com.github.foxnic.dao.data.RcdSet;
 import org.github.foxnic.web.domain.bpm.BpmActionResult;
@@ -19,6 +25,7 @@ import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.domain.changes.ProcessStartVO;
 import org.github.foxnic.web.framework.bpm.BpmAssistant;
+import org.github.foxnic.web.framework.pcm.PcmCatalogDelegate;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -181,8 +188,18 @@ public class AssetStorageServiceImpl extends SuperService<AssetStorage> implemen
 
 	@Override
 	public Map<String, Object> getBill(String id) {
-		return null;
+
+		AssetStorage data= AssetStorageServiceProxy.api().getById(id).getData();
+		join(data, AssetStorageMeta.ASSET_LIST);
+		Map<String, Object> map= BeanUtil.toMap(data);
+		if(data.getStatus()!=null){
+			CodeTextEnum en= EnumUtil.parseByCode(AssetHandleStatusEnum.class,data.getStatus());
+			map.put("statusName", en==null?data.getStatus():en.text());
+		}
+		return map;
 	}
+
+
 
 	/**
 	 * 操作
@@ -211,7 +228,6 @@ public class AssetStorageServiceImpl extends SuperService<AssetStorage> implemen
 						asset.setAssetCode(codeResult.getData().toString());
 					}
 					assetService.update(asset,SaveMode.NOT_NULL_FIELDS,false);
-
 					//资产明细
 					AssetProcessRecord record=new AssetProcessRecord();
 					record.setAssetId(asset.getId());

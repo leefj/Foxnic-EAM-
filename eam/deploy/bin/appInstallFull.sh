@@ -55,6 +55,8 @@ MYSQL_ROOT_PWD="root_pwd"
 yum -y install unzip zip telnet net-tools wget java numactl
 yum -y install libaio
 yum -y install glibc-*
+#strings command need it
+yum -y install binutils*base*x86_64
 #centos 8.0
 yum -y install libncurses*
 cd $soft_base_dir

@@ -9,6 +9,8 @@
         <relativePath>../../pom.xml</relativePath>
         <!-- lookup parent from repository -->
     </parent>
+
+
     <artifactId>service-job</artifactId>
     <name>service-job</name>
     <description>Job Service</description>
@@ -25,6 +27,7 @@
             <artifactId>framework</artifactId>
             <version>${platform.version}</version>
         </dependency>
+
 
         <dependency>
             <groupId>com.dt.platform</groupId>
