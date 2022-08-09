@@ -116,7 +116,7 @@ public class NetworkStrategyApplyController extends SuperController implements B
 		// 引用校验
 		Boolean hasRefer = networkStrategyApplyService.hasRefers(id);
 		// 判断是否可以删除
-		this.validator().asserts(hasRefer).mustInList("不允许删除当前记录",false);
+		this.validator().asserts(hasRefer).requireInList("不允许删除当前记录",false);
 		if(this.validator().failure()) {
 			return this.validator().getFirstResult();
 		}
@@ -133,7 +133,7 @@ public class NetworkStrategyApplyController extends SuperController implements B
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.IDS , value = "主键清单" , required = true , dataTypeClass=List.class , example = "[1,3,4]")
 	})
-	@ApiOperationSupport(order=3) 
+	@ApiOperationSupport(order=3)
 	@NotNull(name = NetworkStrategyApplyVOMeta.IDS)
 	@SentinelResource(value = NetworkStrategyApplyServiceProxy.DELETE_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(NetworkStrategyApplyServiceProxy.DELETE_BY_IDS)
@@ -266,7 +266,7 @@ public class NetworkStrategyApplyController extends SuperController implements B
 		@ApiImplicitParams({
 				@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.IDS , value = "主键清单" , required = true , dataTypeClass=List.class , example = "[1,3,4]")
 		})
-		@ApiOperationSupport(order=3) 
+		@ApiOperationSupport(order=3)
 		@NotNull(name = NetworkStrategyApplyVOMeta.IDS)
 		@SentinelResource(value = NetworkStrategyApplyServiceProxy.GET_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(NetworkStrategyApplyServiceProxy.GET_BY_IDS)

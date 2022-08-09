@@ -56,6 +56,11 @@ function ListPage() {
 		function renderTableInternal() {
 
 			var ps={searchField: "$composite"};
+		    #if(tableSortField!=null)
+			ps.sortField="#(tableSortField)";
+			ps.sortType="#(tableSortType)";
+			sort={ field : ps.sortField,type : ps.sortType} ;
+			#end
 			var contitions={};
 
 			if(window.pageExt.list.beforeQuery){
@@ -247,7 +252,12 @@ function ListPage() {
 			if(sort) {
 				ps.sortField=sort.field;
 				ps.sortType=sort.type;
+			} #if(tableSortField!=null)else {
+				ps.sortField="#(tableSortField)";
+				ps.sortType="#(tableSortType)";
+				sort={ field : sortField,type : sortType} ;
 			}
+			#end
 		}
 		#if(isTree)
 		// 树形结构锁定上级ID

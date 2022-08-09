@@ -100,7 +100,7 @@ public class ManufacturerController extends SuperController {
 		// 引用校验
 		Boolean hasRefer = manufacturerService.hasRefers(id);
 		// 判断是否可以删除
-		this.validator().asserts(hasRefer).mustInList("不允许删除当前记录",false);
+		this.validator().asserts(hasRefer).requireInList("不允许删除当前记录",false);
 		if(this.validator().failure()) {
 			return this.validator().getFirstResult();
 		}

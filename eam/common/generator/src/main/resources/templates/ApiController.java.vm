@@ -96,7 +96,7 @@ public class #(simpleName) extends SuperController #if(bpm)implements BpmCallbac
 		// 引用校验
 		Boolean hasRefer = #(serviceVarName).hasRefers(#(controllerMethodParameterPassIn4DeleteById));
 		// 判断是否可以删除
-		this.validator().asserts(hasRefer).mustInList("不允许删除当前记录",false);
+		this.validator().asserts(hasRefer).requireEqual("不允许删除当前记录",false);
 		if(this.validator().failure()) {
 			return this.validator().getFirstResult();
 		}

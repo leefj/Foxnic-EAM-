@@ -4,6 +4,7 @@ import com.github.foxnic.generator.builder.business.option.ServiceOptions;
 import com.github.foxnic.generator.builder.model.PoClassFile;
 import com.github.foxnic.generator.builder.model.VoClassFile;
 import com.github.foxnic.generator.builder.view.option.FormOptions;
+import com.github.foxnic.generator.builder.view.option.FormWindowOptions;
 import com.github.foxnic.generator.builder.view.option.ListOptions;
 import com.github.foxnic.generator.builder.view.option.ViewOptions;
 import com.github.foxnic.generator.config.WriteMode;
@@ -30,11 +31,11 @@ public class CmsCategoryGtr extends CodeStarter.BaseCodeConfig<CMS_CATEGORY> {
     }
 
     @Override
-    public void configForm(ViewOptions view, FormOptions form) {
+    public void configForm(ViewOptions view, FormOptions form , FormWindowOptions formWindow) {
 
         form.labelWidth(80);
 
-        super.configForm(view, form);
+        super.configForm(view, form,view.formWindow());
         //分成分组布局
         view.formWindow().width("600px");
         form.addGroup("label_1","",
