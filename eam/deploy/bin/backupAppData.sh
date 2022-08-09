@@ -1,6 +1,6 @@
 #!/bin/sh
 #cron:
-#   12 12 * * * sh /app/app/bin/backupAppDATA.sh
+#   12 12 * * * sh /app/app/bin/backupAppData.sh
 ########################################
 cur_dir=$(cd `dirname $0`; pwd)
 app_conf="${cur_dir}/app.conf"

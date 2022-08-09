@@ -425,6 +425,11 @@ function stopFirewalld(){
 ##########################################################################################
 ################################# Install Main Run Start #################################
 #################################################################### download mysql start
+total_mem=`free -m|grep Mem|awk '{print $2}'`
+if [[ $total_mem -lt 4096 ]];then
+  echo "your system memory:${total_mem}m,too lower!"
+  exit 1
+fi
 cd $soft_base_dir
 # java_soft_md5=913c45332b22860b096217d9952c2ea4
 # mysql_soft_md5=423915249cc67bbfa75223d9753cde77
