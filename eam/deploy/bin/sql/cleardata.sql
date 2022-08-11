@@ -145,7 +145,26 @@ delete from bpm_process_definition_deploy;
 delete from bpm_process_definition_node_assignee where node_id not in (select id from bpm_process_definition_node where process_definition_file_id in (select id from bpm_process_definition_file where activated=1));
 delete from bpm_process_definition_node where process_definition_file_id in (select id from bpm_process_definition_file where activated=0);
 delete from bpm_process_definition_file where activated=0;
+
+-- PCM
+delete from pcm_catalog where id='484764974338543617';
+delete from pcm_catalog where id='484764976855126017';
+
+-- HRM
+delete from hrm_employee  where deleted=1;
+delete from hrm_person  where deleted=1;
+delete from hrm_company  where deleted=1;
+delete from hrm_organization  where deleted=1;
+delete from hrm_position  where deleted=1;
+delete from hrm_employee_position  where deleted=1;
+delete from hrm_favourite_group  where deleted=1;
+delete from hrm_favourite_group_item  where deleted=1;
+
+update hrm_person set deleted=2 where id in ( select t.person_id from hrm_employee t WHERE t.company_id= '002' AND exists(select 1 from hrm_position p,hrm_employee_position ep,hrm_organization org where org.id=p.org_id and p.id=ep.position_id and ep.employee_id=t.id and ep.deleted=0 and p.deleted=0 and (org.hierarchy like '586963971924295680/%' or p.org_id= '586963971924295680' )) AND ( ( t.deleted= 0 AND t.tenant_id= 'T001' )));
+delete from sys_user  where id in( select c.user_id from sys_user_tenant c where c.employee_id in (select h.id from hrm_employee h where h.person_id in (select cc.id from hrm_person cc  where cc.deleted=2)));
+delete from sys_user_tenant where employee_id in (select id from hrm_employee where person_id in (select id from hrm_person where deleted=2));
+delete from hrm_employee where person_id in (select id from hrm_person where deleted=2);
+delete from hrm_person where deleted=2;
+delete from hrm_organization where id='586963971924295680';
+
 commit;
-
-
-

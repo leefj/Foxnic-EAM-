@@ -151,4 +151,3 @@ echo "###start to check mysql connect from yml file"
 #fi
 exit 0
 
-mysql -uroot -pP@sswOracle123456 eam

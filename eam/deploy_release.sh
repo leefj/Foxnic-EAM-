@@ -28,16 +28,11 @@ cp -r $jar_dir/lib/* $release_dir/app/app/lib/
 cp $jar_dir/wrapper-all-0.0.2.RELEASE.jar  $release_dir/app/app/app.jar
 
 #cp -r $jar_dir/lib/* $release_dir/app/bpm/lib/
-cp  $bpm_jar_dir/wrapper-camunda-0.0.2.RELEASE.jar $release_dir/app/bpm/bpm.jar
+cp $bpm_jar_dir/wrapper-camunda-0.0.2.RELEASE.jar $release_dir/app/bpm/bpm.jar
 
 tar -zcvf app_release_last.tar.gz ./*
 open .
 exit 0
-
-
-
-
-
 
 
 

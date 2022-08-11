@@ -53,8 +53,16 @@ update sys_menu set hidden=1 where id='592348823129427968';
 -- 财务管理
 update sys_menu set hidden=1 where id='475955437510852608';
 
+-- 采购管理
+update sys_menu set hidden=1 where id='566986193363795968';
+
 -- 盘点
 update sys_menu set hidden=1 where id='471985681850171393';
+
+
+-- 资产字段配置，开发人员使用
+update sys_menu set hidden=1 where id='487568362436558848';
+update sys_menu set hidden=1 where id='487559533120454656';
 
 -- 版本切换
 update sys_menu set hidden=1 where id='578624635919138816';
