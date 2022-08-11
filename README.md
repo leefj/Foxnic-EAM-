@@ -1,3 +1,5 @@
+![foxnic](eam/view/view-console/src/main/resources/static/assets/images/foxnic-250.jpg)
+
 # EAM管理系统介绍
 - 实现企业对资产的基本管理,包含对资产的登记、维修、调拨、转移等基本功能的支持，并提供对资产的耗材、库存进行管理，有完善的组织架构，非常适合中小企业的需求
 - EAM系统整体覆盖了基本的资产管理、合同管理、运维服务、运维服务、数据中心设备管理等多个模块。
