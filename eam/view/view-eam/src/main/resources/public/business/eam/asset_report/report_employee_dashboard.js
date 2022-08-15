@@ -62,7 +62,7 @@ function ListPage() {
                 priority:"normal", // priority 的可选值 urgency，normal
                 displayTitle:true,
                 displayPriority:false,
-                displayDraftComment:true,
+                displayDraftComment:false,
                 displayApprovalComment:true,
             }
 
@@ -76,7 +76,7 @@ function ListPage() {
                 priority:"normal", // priority 的可选值 urgency，normal
                 displayTitle:true,
                 displayPriority:false,
-                displayDraftComment:true,
+                displayDraftComment:false,
                 displayApprovalComment:true,
             }
             admin.putTempData('eam-asset-employee-handover-form-data', {});
@@ -92,7 +92,7 @@ function ListPage() {
                 priority:"normal", // priority 的可选值 urgency，normal
                 displayTitle:true,
                 displayPriority:false,
-                displayDraftComment:true,
+                displayDraftComment:false,
                 displayApprovalComment:true,
             }
             admin.putTempData('eam-asset-employee-loss-form-data', {});
@@ -107,7 +107,7 @@ function ListPage() {
                 priority:"normal", // priority 的可选值 urgency，normal
                 displayTitle:true,
                 displayPriority:false,
-                displayDraftComment:true,
+                displayDraftComment:false,
                 displayApprovalComment:true,
             }
             admin.putTempData('eam-asset-employee-repair-form-data', {});

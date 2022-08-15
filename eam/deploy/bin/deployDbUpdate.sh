@@ -6,7 +6,6 @@ t=`date +%Y%m%d%H%M%S`
 cacheSql="/tmp/cache.sql"
 updateSql="/tmp/update.sql"
 
-
 #########app cache key
 echo "########### execute update sql list #########"
 if [[ -f $updateSql ]];then
@@ -19,7 +18,6 @@ fi
 echo ""
 echo ""
 
-
 #########app cache key
 echo "########### execute cache sql list #########"
 cat $cacheSql
@@ -27,7 +25,6 @@ echo "update sys_config set value='$t' where code='system.cachekey';">$cacheSql
 sh $app_dir/bin/runSql.sh $cacheSql eam
 echo ""
 echo ""
-
 
 echo "########### update finish #########"
 echo ""
