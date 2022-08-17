@@ -764,6 +764,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		ProcessApproveVO processApproveVO=new ProcessApproveVO();
 		ConditionExpr expr2=new ConditionExpr();
 		expr2.andIn("id",ids);
+		expr.setParent(null);
 		List<String> instances =this.queryValues(EAMTables.EAM_ASSET.CHANGE_INSTANCE_ID,String.class,expr);
 		processApproveVO.setOpinion("提交流程");
 		processApproveVO.setInstanceIds(instances);
