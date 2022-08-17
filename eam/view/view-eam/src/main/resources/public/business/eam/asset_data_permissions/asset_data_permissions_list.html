@@ -2,10 +2,10 @@
 /**
  * 资产数据权限 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2021-12-17 11:24:21
+ * @since 2022-08-17 08:50:08
  */
  -->
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -19,7 +19,8 @@
     <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
     <link rel="stylesheet" href="/assets/libs/toast/css/toast.css" type="text/css" th:href="'/assets/libs/toast/css/toast.css?'+${cacheKey}">
     <link rel="stylesheet" href="/assets/css/foxnic-web.css" th:href="'/assets/css/foxnic-web.css?'+${cacheKey}">
-    <link href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css" th:href="@{/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="/assets/libs/material-design-webfont/css/material-design-icons-min.css" rel="stylesheet">
     <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>
     <style>
     </style>
@@ -43,18 +44,27 @@
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('名称')}" class="search-label name-label">名称</span><span class="search-colon">:</span></div>
                         <input id="name" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
+                    <!-- 权限状态 , status ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 归属 , ownerCode ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 所属权限状态 , ownOrgAuthorityEnable ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 所在所属状态 , ownOrgLocalEnable ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 所属联动状态 , ownOrgCascadeEnable ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 备注 , ownOrgNotes ,typeName=text_input, isHideInSearch=true -->
                     <!-- 组织权限状态 , orgAuthorityEnable ,typeName=radio_box, isHideInSearch=true -->
-                    <!-- 本组织激活 , orgLocalEnable ,typeName=radio_box, isHideInSearch=true -->
-                    <!-- 组织级联状态 , orgCascadeEnable ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 所在组织状态 , orgLocalEnable ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 组织联动状态 , orgCascadeEnable ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 备注 , orgNotes ,typeName=text_input, isHideInSearch=true -->
                     <!-- 分类权限状态 , catalogAuthorityEnable ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 分类级联状态 , catalogCascadeEnable ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 备注 , catalogNotes ,typeName=text_input, isHideInSearch=true -->
                     <!-- 位置权限状态 , positionAuthorityEnable ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 备注 , positionNotes ,typeName=text_input, isHideInSearch=true -->
                     <!-- 优先级 , priority ,typeName=number_input, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
                     <!-- 存放位置 , positionIds ,typeName=select_box, isHideInSearch=true -->
                     <!-- 资产分类 , categoryIds ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 组织架构 , organizationIds ,typeName=button, isHideInSearch=true -->
+                    <!-- 使用组织 , organizationIds ,typeName=button, isHideInSearch=true -->
+                    <!-- 所属组织 , ownOrganizationIds ,typeName=button, isHideInSearch=true -->
                     <!-- 权限编码 , code ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('权限编码')}" class="search-label code-label">权限编码</span><span class="search-colon">:</span></div>
@@ -72,12 +82,12 @@
 
 
             <!-- 按钮区域 -->
-            <div class="layui-form toolbar search-buttons" style="opacity: 0">
+            <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">
                 <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索')}">搜索</span></button>
             </div>
         </div>
 
-        <div style="margin-top: 42px ">
+        <div id="table-area" style="margin-top: 42px ">
             <table class="layui-table" id="data-table" lay-filter="data-table"></table>
         </div>
 
@@ -89,7 +99,6 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
-
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
@@ -101,11 +110,11 @@
 <!-- 表格操作列 -->
 <script type="text/html" id="tableOperationTemplate">
 
-    <button th:if="${perm.checkAuth('eam_asset_data_permissions:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view" th:text="${lang.translate('查看')}" data-id="{{d.id}}">查看</button>
-    <button th:if="${perm.checkAnyAuth('eam_asset_data_permissions:update','eam_asset_data_permissions:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit" th:text="${lang.translate('修改')}" data-id="{{d.id}}">修改</button>
+    <button th:if="${perm.checkAuth('eam_asset_data_permissions:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看')}">查看</span></button>
+    <button th:if="${perm.checkAnyAuth('eam_asset_data_permissions:update','eam_asset_data_permissions:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('修改')}">修改</span></button>
 
 
-    <button th:if="${perm.checkAuth('eam_asset_data_permissions:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" th:text="${lang.translate('删除')}" data-id="{{d.id}}">删除</button>
+    <button th:if="${perm.checkAuth('eam_asset_data_permissions:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除')}">删除</span></button>
 
 
 </script>
@@ -113,7 +122,11 @@
 
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
+    var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
     var SELECT_OWNERCODE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetOwnerCodeEnum')}]];
+    var RADIO_OWNORGAUTHORITYENABLE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_OWNORGLOCALENABLE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_OWNORGCASCADEENABLE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
     var RADIO_ORGAUTHORITYENABLE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
     var RADIO_ORGLOCALENABLE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
     var RADIO_ORGCASCADEENABLE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
@@ -122,9 +135,6 @@
     var RADIO_POSITIONAUTHORITYENABLE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
     var AUTH_PREFIX="eam_asset_data_permissions";
 
-    var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
-
-    
     // 资产分类数据
     var CATEGORY_CODE = [[${categoryCode}]] ;
 

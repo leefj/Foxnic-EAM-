@@ -14,6 +14,7 @@ import com.dt.platform.domain.ops.meta.ServiceInfoMeta;
 import com.dt.platform.eam.page.AssetDataPermissionsPageController;
 import com.dt.platform.eam.service.impl.AssetDataPermissionsCatalogServiceImpl;
 
+import com.dt.platform.eam.service.impl.AssetDataPermissionsOOrgServiceImpl;
 import com.dt.platform.eam.service.impl.AssetDataPermissionsOrgServiceImpl;
 
 import com.dt.platform.eam.service.impl.AssetDataPermissionsPositionServiceImpl;
@@ -50,6 +51,9 @@ public class EamAssetDataPermGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addListProperty(Organization.class,"organization","组织节点","组织节点");
         cfg.getPoClassFile().addListProperty(String.class,"organizationIds","组织节点","组织节点");
 
+        cfg.getPoClassFile().addListProperty(Organization.class,"ownOrganization","所属组织节点","所属组织节点");
+        cfg.getPoClassFile().addListProperty(String.class,"ownOrganizationIds","所属组织节点","所属组织节点");
+
         cfg.getPoClassFile().addListProperty(Position.class,"position","存放位置","存放位置");
         cfg.getPoClassFile().addListProperty(String.class,"positionIds","存放位置","存放位置");
 
@@ -71,6 +75,13 @@ public class EamAssetDataPermGtr extends BaseCodeGenerator{
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
+
+
+        cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.CATALOG_NOTES).table().disable();
+        cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.ORG_NOTES).table().disable();
+        cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.OWN_ORG_NOTES).table().disable();
+
+
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.NAME).form().validate().required();
 
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.OWNER_CODE).form()
@@ -100,10 +111,14 @@ public class EamAssetDataPermGtr extends BaseCodeGenerator{
                 .fillWith(AssetDataPermissionsMeta.CATEGORY).muliti(true);
 
 
-        cfg.view().field(AssetDataPermissionsMeta.ORGANIZATION_IDS).basic().label("组织架构")
+        cfg.view().field(AssetDataPermissionsMeta.ORGANIZATION_IDS).basic().label("使用组织")
                 .form().button().chooseOrganization(false);
-
         cfg.view().field(AssetDataPermissionsMeta.ORGANIZATION_IDS).table().fillBy("organization","fullName");
+
+
+        cfg.view().field(AssetDataPermissionsMeta.OWN_ORGANIZATION_IDS).basic().label("所属组织")
+                .form().button().chooseCompany(false);
+        cfg.view().field(AssetDataPermissionsMeta.OWN_ORGANIZATION_IDS).table().fillBy("ownOrganization","fullName");
 
 
         cfg.view().form().addJsVariable("ASSET_CATEGORY_DATA","[[${assetCategoryData}]]","资产分类数据");
@@ -113,91 +128,99 @@ public class EamAssetDataPermGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.ORG_AUTHORITY_ENABLE).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class);
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.ORG_CASCADE_ENABLE).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class);
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.ORG_LOCAL_ENABLE).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class);
+
+        cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.OWN_ORG_AUTHORITY_ENABLE).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class);
+        cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.OWN_ORG_CASCADE_ENABLE).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class);
+        cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.OWN_ORG_LOCAL_ENABLE).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class);
+
+
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.CATALOG_AUTHORITY_ENABLE).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class);
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.CATALOG_CASCADE_ENABLE).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class);
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.POSITION_AUTHORITY_ENABLE).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class);
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.STATUS).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class);
-
-
-        cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.PRIORITY).form().numberInput().integer().defaultValue(100);
+        cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.PRIORITY).form().validate().required().form().numberInput().integer().defaultValue(100);
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.NOTES).form().textArea().height(Config.textAreaHeight);
 
 
         cfg.service().addRelationSaveAction(AssetDataPermissionsPositionServiceImpl.class,AssetDataPermissionsMeta.POSITION_IDS);
         cfg.service().addRelationSaveAction(AssetDataPermissionsCatalogServiceImpl.class,AssetDataPermissionsMeta.CATEGORY_IDS);
         cfg.service().addRelationSaveAction(AssetDataPermissionsOrgServiceImpl.class,AssetDataPermissionsMeta.ORGANIZATION_IDS);
-
+        cfg.service().addRelationSaveAction(AssetDataPermissionsOOrgServiceImpl.class,AssetDataPermissionsMeta.OWN_ORGANIZATION_IDS);
 
         cfg.view().formWindow().bottomSpace(20);
-        cfg.view().formWindow().width("98%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_DATA_PERMISSIONS.NAME,
-                        EAMTables.EAM_ASSET_DATA_PERMISSIONS.STATUS,
+                        EAMTables.EAM_ASSET_DATA_PERMISSIONS.CODE
+
 
                 }, new Object[] {
+                        EAMTables.EAM_ASSET_DATA_PERMISSIONS.STATUS,
+                        EAMTables.EAM_ASSET_DATA_PERMISSIONS.PRIORITY,
+                },
+                new Object[] {
                         EAMTables.EAM_ASSET_DATA_PERMISSIONS.OWNER_CODE,
                         EAMTables.EAM_ASSET_DATA_PERMISSIONS.ROLE_CODE
-                },
-                new Object[] {
-                        EAMTables.EAM_ASSET_DATA_PERMISSIONS.PRIORITY,
-                        EAMTables.EAM_ASSET_DATA_PERMISSIONS.CODE
                 }
         );
-
-        cfg.view().form().addGroup("分类权限配置",
-                new Object[] {
-                        AssetDataPermissionsMeta.CATEGORY_IDS
-                },
-                new Object[] {
-                        EAMTables.EAM_ASSET_DATA_PERMISSIONS.CATALOG_AUTHORITY_ENABLE,
-                },
-                new Object[] {
-                        EAMTables.EAM_ASSET_DATA_PERMISSIONS.CATALOG_CASCADE_ENABLE,
-                }
-
-        );
-
-
-        cfg.view().form().addGroup("组织权限配置",
-                new Object[] {
-                        EAMTables.EAM_ASSET_DATA_PERMISSIONS.ORG_AUTHORITY_ENABLE,
-                        AssetDataPermissionsMeta.ORGANIZATION_IDS
-                },
-                new Object[] {
-                        EAMTables.EAM_ASSET_DATA_PERMISSIONS.ORG_CASCADE_ENABLE,
-                },
-                new Object[] {
-                        EAMTables.EAM_ASSET_DATA_PERMISSIONS.ORG_LOCAL_ENABLE
-                }
-        );
-
-
-
-        cfg.view().form().addGroup("位置权限配置",
-                 new Object[] {
-                        AssetDataPermissionsMeta.POSITION_IDS
-                },
-                new Object[] {
-                        EAMTables.EAM_ASSET_DATA_PERMISSIONS.POSITION_AUTHORITY_ENABLE,
-
-                }
-
-        );
-
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_DATA_PERMISSIONS.NOTES,
                 }
         );
 
+        cfg.view().form().addGroup("分类权限配置",
+                new Object[] {
+                        EAMTables.EAM_ASSET_DATA_PERMISSIONS.CATALOG_AUTHORITY_ENABLE,
+                        EAMTables.EAM_ASSET_DATA_PERMISSIONS.CATALOG_CASCADE_ENABLE,
+                        AssetDataPermissionsMeta.CATEGORY_IDS,
+                        EAMTables.EAM_ASSET_DATA_PERMISSIONS.CATALOG_NOTES,
+                }
+        );
+
+
+        cfg.view().form().addGroup("所属组织权限配置",
+                new Object[] {
+                        EAMTables.EAM_ASSET_DATA_PERMISSIONS.OWN_ORG_AUTHORITY_ENABLE,
+                        EAMTables.EAM_ASSET_DATA_PERMISSIONS.OWN_ORG_LOCAL_ENABLE,
+                        EAMTables.EAM_ASSET_DATA_PERMISSIONS.OWN_ORG_CASCADE_ENABLE,
+                        AssetDataPermissionsMeta.OWN_ORGANIZATION_IDS,
+                        EAMTables.EAM_ASSET_DATA_PERMISSIONS.OWN_ORG_NOTES
+                }
+
+        );
+
+        cfg.view().form().addGroup("使用组织权限配置",
+                new Object[] {
+                        EAMTables.EAM_ASSET_DATA_PERMISSIONS.ORG_AUTHORITY_ENABLE,
+                        EAMTables.EAM_ASSET_DATA_PERMISSIONS.ORG_LOCAL_ENABLE,
+                        EAMTables.EAM_ASSET_DATA_PERMISSIONS.ORG_CASCADE_ENABLE,
+                        AssetDataPermissionsMeta.ORGANIZATION_IDS,
+                        EAMTables.EAM_ASSET_DATA_PERMISSIONS.ORG_NOTES,
+                }
+
+        );
+
+
+
+        cfg.view().form().addGroup("位置权限配置",
+                 new Object[] {
+                         EAMTables.EAM_ASSET_DATA_PERMISSIONS.POSITION_AUTHORITY_ENABLE,
+                         AssetDataPermissionsMeta.POSITION_IDS,
+                         AssetDataPermissionsMeta.POSITION_NOTES,
+                 }
+        );
+
+
+
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口
                 .setControllerAndAgent(WriteMode.COVER_EXISTS_FILE) //Rest
                 .setPageController(WriteMode.IGNORE) //页面控制器
-                .setFormPage(WriteMode.IGNORE) //表单HTML页
-                .setListPage(WriteMode.IGNORE)//列表HTML页
+                .setFormPage(WriteMode.WRITE_TEMP_FILE) //表单HTML页
+                .setListPage(WriteMode.WRITE_TEMP_FILE)//列表HTML页
                 .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         cfg.buildAll();
     }

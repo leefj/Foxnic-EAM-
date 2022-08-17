@@ -7,12 +7,14 @@ import com.dt.platform.constants.db.EAMTables.EAM_ASSET_DATA_PERMISSIONS;
 import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
+import javax.persistence.Transient;
 import org.github.foxnic.web.domain.system.BusiRole;
 import org.github.foxnic.web.domain.pcm.Catalog;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Organization;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
-import javax.persistence.Transient;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 
@@ -21,8 +23,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 资产数据权限
  * @author 金杰 , maillank@qq.com
- * @since 2021-12-18 08:47:42
- * @sign 5FEFD8D535EF42E03531B3CCD34F6D10
+ * @since 2022-08-17 08:50:07
+ * @sign 896DA421C99A64195CD3DC55BF654DB6
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -71,22 +73,52 @@ public class AssetDataPermissions extends Entity {
 	private String roleCode;
 	
 	/**
+	 * 所属权限状态：所属权限状态
+	*/
+	@ApiModelProperty(required = false,value="所属权限状态" , notes = "所属权限状态")
+	private String ownOrgAuthorityEnable;
+	
+	/**
+	 * 所在所属状态：所在所属状态
+	*/
+	@ApiModelProperty(required = false,value="所在所属状态" , notes = "所在所属状态")
+	private String ownOrgLocalEnable;
+	
+	/**
+	 * 所属联动状态：所属联动状态
+	*/
+	@ApiModelProperty(required = false,value="所属联动状态" , notes = "所属联动状态")
+	private String ownOrgCascadeEnable;
+	
+	/**
+	 * 备注：备注
+	*/
+	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	private String ownOrgNotes;
+	
+	/**
 	 * 组织权限状态：组织权限状态
 	*/
 	@ApiModelProperty(required = false,value="组织权限状态" , notes = "组织权限状态")
 	private String orgAuthorityEnable;
 	
 	/**
-	 * 本组织激活：本组织激活
+	 * 所在组织状态：所在组织状态
 	*/
-	@ApiModelProperty(required = false,value="本组织激活" , notes = "本组织激活")
+	@ApiModelProperty(required = false,value="所在组织状态" , notes = "所在组织状态")
 	private String orgLocalEnable;
 	
 	/**
-	 * 组织级联状态：组织级联状态
+	 * 组织联动状态：组织联动状态
 	*/
-	@ApiModelProperty(required = false,value="组织级联状态" , notes = "组织级联状态")
+	@ApiModelProperty(required = false,value="组织联动状态" , notes = "组织联动状态")
 	private String orgCascadeEnable;
+	
+	/**
+	 * 备注：备注
+	*/
+	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	private String orgNotes;
 	
 	/**
 	 * 分类权限状态：分类权限状态
@@ -101,10 +133,22 @@ public class AssetDataPermissions extends Entity {
 	private String catalogCascadeEnable;
 	
 	/**
+	 * 备注：备注
+	*/
+	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	private String catalogNotes;
+	
+	/**
 	 * 位置权限状态：位置权限状态
 	*/
 	@ApiModelProperty(required = false,value="位置权限状态" , notes = "位置权限状态")
 	private String positionAuthorityEnable;
+	
+	/**
+	 * 备注：备注
+	*/
+	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	private String positionNotes;
 	
 	/**
 	 * 优先级：优先级
@@ -147,6 +191,8 @@ public class AssetDataPermissions extends Entity {
 	*/
 	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
+	@Transient
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -201,6 +247,18 @@ public class AssetDataPermissions extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="组织节点" , notes = "组织节点")
 	private List<String> organizationIds;
+	
+	/**
+	 * 所属组织节点：所属组织节点
+	*/
+	@ApiModelProperty(required = false,value="所属组织节点" , notes = "所属组织节点")
+	private List<Organization> ownOrganization;
+	
+	/**
+	 * 所属组织节点：所属组织节点
+	*/
+	@ApiModelProperty(required = false,value="所属组织节点" , notes = "所属组织节点")
+	private List<String> ownOrganizationIds;
 	
 	/**
 	 * 存放位置：存放位置
@@ -329,6 +387,82 @@ public class AssetDataPermissions extends Entity {
 	}
 	
 	/**
+	 * 获得 所属权限状态<br>
+	 * 所属权限状态
+	 * @return 所属权限状态
+	*/
+	public String getOwnOrgAuthorityEnable() {
+		return ownOrgAuthorityEnable;
+	}
+	
+	/**
+	 * 设置 所属权限状态
+	 * @param ownOrgAuthorityEnable 所属权限状态
+	 * @return 当前对象
+	*/
+	public AssetDataPermissions setOwnOrgAuthorityEnable(String ownOrgAuthorityEnable) {
+		this.ownOrgAuthorityEnable=ownOrgAuthorityEnable;
+		return this;
+	}
+	
+	/**
+	 * 获得 所在所属状态<br>
+	 * 所在所属状态
+	 * @return 所在所属状态
+	*/
+	public String getOwnOrgLocalEnable() {
+		return ownOrgLocalEnable;
+	}
+	
+	/**
+	 * 设置 所在所属状态
+	 * @param ownOrgLocalEnable 所在所属状态
+	 * @return 当前对象
+	*/
+	public AssetDataPermissions setOwnOrgLocalEnable(String ownOrgLocalEnable) {
+		this.ownOrgLocalEnable=ownOrgLocalEnable;
+		return this;
+	}
+	
+	/**
+	 * 获得 所属联动状态<br>
+	 * 所属联动状态
+	 * @return 所属联动状态
+	*/
+	public String getOwnOrgCascadeEnable() {
+		return ownOrgCascadeEnable;
+	}
+	
+	/**
+	 * 设置 所属联动状态
+	 * @param ownOrgCascadeEnable 所属联动状态
+	 * @return 当前对象
+	*/
+	public AssetDataPermissions setOwnOrgCascadeEnable(String ownOrgCascadeEnable) {
+		this.ownOrgCascadeEnable=ownOrgCascadeEnable;
+		return this;
+	}
+	
+	/**
+	 * 获得 备注<br>
+	 * 备注
+	 * @return 备注
+	*/
+	public String getOwnOrgNotes() {
+		return ownOrgNotes;
+	}
+	
+	/**
+	 * 设置 备注
+	 * @param ownOrgNotes 备注
+	 * @return 当前对象
+	*/
+	public AssetDataPermissions setOwnOrgNotes(String ownOrgNotes) {
+		this.ownOrgNotes=ownOrgNotes;
+		return this;
+	}
+	
+	/**
 	 * 获得 组织权限状态<br>
 	 * 组织权限状态
 	 * @return 组织权限状态
@@ -348,17 +482,17 @@ public class AssetDataPermissions extends Entity {
 	}
 	
 	/**
-	 * 获得 本组织激活<br>
-	 * 本组织激活
-	 * @return 本组织激活
+	 * 获得 所在组织状态<br>
+	 * 所在组织状态
+	 * @return 所在组织状态
 	*/
 	public String getOrgLocalEnable() {
 		return orgLocalEnable;
 	}
 	
 	/**
-	 * 设置 本组织激活
-	 * @param orgLocalEnable 本组织激活
+	 * 设置 所在组织状态
+	 * @param orgLocalEnable 所在组织状态
 	 * @return 当前对象
 	*/
 	public AssetDataPermissions setOrgLocalEnable(String orgLocalEnable) {
@@ -367,21 +501,40 @@ public class AssetDataPermissions extends Entity {
 	}
 	
 	/**
-	 * 获得 组织级联状态<br>
-	 * 组织级联状态
-	 * @return 组织级联状态
+	 * 获得 组织联动状态<br>
+	 * 组织联动状态
+	 * @return 组织联动状态
 	*/
 	public String getOrgCascadeEnable() {
 		return orgCascadeEnable;
 	}
 	
 	/**
-	 * 设置 组织级联状态
-	 * @param orgCascadeEnable 组织级联状态
+	 * 设置 组织联动状态
+	 * @param orgCascadeEnable 组织联动状态
 	 * @return 当前对象
 	*/
 	public AssetDataPermissions setOrgCascadeEnable(String orgCascadeEnable) {
 		this.orgCascadeEnable=orgCascadeEnable;
+		return this;
+	}
+	
+	/**
+	 * 获得 备注<br>
+	 * 备注
+	 * @return 备注
+	*/
+	public String getOrgNotes() {
+		return orgNotes;
+	}
+	
+	/**
+	 * 设置 备注
+	 * @param orgNotes 备注
+	 * @return 当前对象
+	*/
+	public AssetDataPermissions setOrgNotes(String orgNotes) {
+		this.orgNotes=orgNotes;
 		return this;
 	}
 	
@@ -424,6 +577,25 @@ public class AssetDataPermissions extends Entity {
 	}
 	
 	/**
+	 * 获得 备注<br>
+	 * 备注
+	 * @return 备注
+	*/
+	public String getCatalogNotes() {
+		return catalogNotes;
+	}
+	
+	/**
+	 * 设置 备注
+	 * @param catalogNotes 备注
+	 * @return 当前对象
+	*/
+	public AssetDataPermissions setCatalogNotes(String catalogNotes) {
+		this.catalogNotes=catalogNotes;
+		return this;
+	}
+	
+	/**
 	 * 获得 位置权限状态<br>
 	 * 位置权限状态
 	 * @return 位置权限状态
@@ -439,6 +611,25 @@ public class AssetDataPermissions extends Entity {
 	*/
 	public AssetDataPermissions setPositionAuthorityEnable(String positionAuthorityEnable) {
 		this.positionAuthorityEnable=positionAuthorityEnable;
+		return this;
+	}
+	
+	/**
+	 * 获得 备注<br>
+	 * 备注
+	 * @return 备注
+	*/
+	public String getPositionNotes() {
+		return positionNotes;
+	}
+	
+	/**
+	 * 设置 备注
+	 * @param positionNotes 备注
+	 * @return 当前对象
+	*/
+	public AssetDataPermissions setPositionNotes(String positionNotes) {
+		this.positionNotes=positionNotes;
 		return this;
 	}
 	
@@ -566,12 +757,42 @@ public class AssetDataPermissions extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
 	public AssetDataPermissions setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public AssetDataPermissions setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -694,9 +915,9 @@ public class AssetDataPermissions extends Entity {
 	 * @param entity 资产分类
 	 * @return 当前对象
 	*/
-	public AssetDataPermissions addCategory(Catalog entity) {
+	public AssetDataPermissions addCategory(Catalog... entity) {
 		if(this.category==null) category=new ArrayList<>();
-		this.category.add(entity);
+		this.category.addAll(Arrays.asList(entity));
 		return this;
 	}
 	
@@ -724,9 +945,9 @@ public class AssetDataPermissions extends Entity {
 	 * @param categoryId 资产分类
 	 * @return 当前对象
 	*/
-	public AssetDataPermissions addCategoryId(String categoryId) {
+	public AssetDataPermissions addCategoryId(String... categoryId) {
 		if(this.categoryIds==null) categoryIds=new ArrayList<>();
-		this.categoryIds.add(categoryId);
+		this.categoryIds.addAll(Arrays.asList(categoryId));
 		return this;
 	}
 	
@@ -754,9 +975,9 @@ public class AssetDataPermissions extends Entity {
 	 * @param entity 组织节点
 	 * @return 当前对象
 	*/
-	public AssetDataPermissions addOrganization(Organization entity) {
+	public AssetDataPermissions addOrganization(Organization... entity) {
 		if(this.organization==null) organization=new ArrayList<>();
-		this.organization.add(entity);
+		this.organization.addAll(Arrays.asList(entity));
 		return this;
 	}
 	
@@ -784,9 +1005,69 @@ public class AssetDataPermissions extends Entity {
 	 * @param organizationId 组织节点
 	 * @return 当前对象
 	*/
-	public AssetDataPermissions addOrganizationId(String organizationId) {
+	public AssetDataPermissions addOrganizationId(String... organizationId) {
 		if(this.organizationIds==null) organizationIds=new ArrayList<>();
-		this.organizationIds.add(organizationId);
+		this.organizationIds.addAll(Arrays.asList(organizationId));
+		return this;
+	}
+	
+	/**
+	 * 获得 所属组织节点<br>
+	 * 所属组织节点
+	 * @return 所属组织节点
+	*/
+	public List<Organization> getOwnOrganization() {
+		return ownOrganization;
+	}
+	
+	/**
+	 * 设置 所属组织节点
+	 * @param ownOrganization 所属组织节点
+	 * @return 当前对象
+	*/
+	public AssetDataPermissions setOwnOrganization(List<Organization> ownOrganization) {
+		this.ownOrganization=ownOrganization;
+		return this;
+	}
+	
+	/**
+	 * 添加 所属组织节点
+	 * @param entity 所属组织节点
+	 * @return 当前对象
+	*/
+	public AssetDataPermissions addOwnOrganization(Organization... entity) {
+		if(this.ownOrganization==null) ownOrganization=new ArrayList<>();
+		this.ownOrganization.addAll(Arrays.asList(entity));
+		return this;
+	}
+	
+	/**
+	 * 获得 所属组织节点<br>
+	 * 所属组织节点
+	 * @return 所属组织节点
+	*/
+	public List<String> getOwnOrganizationIds() {
+		return ownOrganizationIds;
+	}
+	
+	/**
+	 * 设置 所属组织节点
+	 * @param ownOrganizationIds 所属组织节点
+	 * @return 当前对象
+	*/
+	public AssetDataPermissions setOwnOrganizationIds(List<String> ownOrganizationIds) {
+		this.ownOrganizationIds=ownOrganizationIds;
+		return this;
+	}
+	
+	/**
+	 * 添加 所属组织节点
+	 * @param ownOrganizationId 所属组织节点
+	 * @return 当前对象
+	*/
+	public AssetDataPermissions addOwnOrganizationId(String... ownOrganizationId) {
+		if(this.ownOrganizationIds==null) ownOrganizationIds=new ArrayList<>();
+		this.ownOrganizationIds.addAll(Arrays.asList(ownOrganizationId));
 		return this;
 	}
 	
@@ -814,9 +1095,9 @@ public class AssetDataPermissions extends Entity {
 	 * @param entity 存放位置
 	 * @return 当前对象
 	*/
-	public AssetDataPermissions addPosition(Position entity) {
+	public AssetDataPermissions addPosition(Position... entity) {
 		if(this.position==null) position=new ArrayList<>();
-		this.position.add(entity);
+		this.position.addAll(Arrays.asList(entity));
 		return this;
 	}
 	
@@ -844,9 +1125,9 @@ public class AssetDataPermissions extends Entity {
 	 * @param positionId 存放位置
 	 * @return 当前对象
 	*/
-	public AssetDataPermissions addPositionId(String positionId) {
+	public AssetDataPermissions addPositionId(String... positionId) {
 		if(this.positionIds==null) positionIds=new ArrayList<>();
-		this.positionIds.add(positionId);
+		this.positionIds.addAll(Arrays.asList(positionId));
 		return this;
 	}
 

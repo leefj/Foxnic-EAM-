@@ -1030,6 +1030,21 @@ public class EamRelationManager extends RelationManager {
             return org;
         });
 
+        this.property(AssetDataPermissionsMeta.OWN_ORGANIZATION_PROP)
+                .using(EAMTables.EAM_ASSET_DATA_PERMISSIONS.ID).join(EAMTables.EAM_ASSET_DATA_PERMISSIONS_O_ORG.PERMISSION_ID)
+                .using(EAMTables.EAM_ASSET_DATA_PERMISSIONS_O_ORG.VALUE).join(FoxnicWeb.HRM_ORGANIZATION.ID)
+                .after((tag,dp,org,m)->{
+                    if(dp.getOwnOrganizationIds()==null){
+                        dp.setOwnOrganizationIds(new ArrayList<>());
+                    }
+                    if(dp.getOwnOrganizationIds().size()==0&&org.size()>0){
+                        for(int i=0;i<org.size();i++){
+                            dp.getOwnOrganizationIds().add(org.get(i).getId());
+                        }
+                    }
+                    return org;
+                });
+
 
     }
 

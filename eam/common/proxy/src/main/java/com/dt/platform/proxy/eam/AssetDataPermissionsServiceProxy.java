@@ -3,6 +3,9 @@ package com.dt.platform.proxy.eam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import com.dt.platform.domain.eam.AssetDataPermissions;
 import com.dt.platform.domain.eam.AssetDataPermissionsVO;
@@ -10,14 +13,13 @@ import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
 import com.dt.platform.proxy.ServiceNames;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * <p>
  * 资产数据权限  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-12-18 08:47:50
+ * @since 2022-08-17 08:50:08
  */
 @FeignClient(value = ServiceNames.EAM, contextId = AssetDataPermissionsServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AssetDataPermissionsServiceProxy {
@@ -81,21 +83,6 @@ public interface AssetDataPermissionsServiceProxy {
      * 分页查询资产数据权限
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
-
-    /**
-     * 导出资产数据权限数据(Excel)
-     */
-    public static final String EXPORT_EXCEL = API_PREFIX + "export-excel";
-
-    /**
-     * 下载资产数据权限导入模版(Excel)
-     */
-    public static final String EXPORT_EXCEL_TEMPLATE = API_PREFIX + "export-excel-template";
-
-    /**
-     * 导入资产数据权限数据(Excel)
-     */
-    public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
 
     /**
      * 添加资产数据权限

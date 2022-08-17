@@ -4,8 +4,8 @@ import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
-import com.dt.platform.domain.eam.AssetDataPermissions;
-import com.dt.platform.domain.eam.AssetDataPermissionsVO;
+import com.dt.platform.domain.eam.AssetDataPermissionsOOrg;
+import com.dt.platform.domain.eam.AssetDataPermissionsOOrgVO;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -17,45 +17,46 @@ import com.github.foxnic.dao.excel.ExcelStructure;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.data.SaveMode;
 import java.util.Map;
+import com.dt.platform.constants.db.EAMTables.*;
 
 /**
  * <p>
- * 资产数据权限 服务接口
+ * 所属 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-17 08:50:07
+ * @since 2022-08-17 06:31:21
 */
 
-public interface IAssetDataPermissionsService extends  ISimpleIdService<AssetDataPermissions,String> {
+public interface IAssetDataPermissionsOOrgService extends  ISimpleIdService<AssetDataPermissionsOOrg,String> {
 
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
-	 * @param assetDataPermissions 数据对象
+	 * @param assetDataPermissionsOOrg 数据对象
 	 * @return 插入是否成功
 	 * */
-	Result insert(AssetDataPermissions assetDataPermissions);
+	Result insert(AssetDataPermissionsOOrg assetDataPermissionsOOrg);
 
 	/**
 	 * 添加，根据 throwsException 参数抛出异常或返回 Result 对象
 	 *
-	 * @param assetDataPermissions  数据对象
+	 * @param assetDataPermissionsOOrg  数据对象
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 结果 , 如果失败返回 false，成功返回 true
 	 */
-	Result insert(AssetDataPermissions assetDataPermissions,boolean throwsException);
+	Result insert(AssetDataPermissionsOOrg assetDataPermissionsOOrg,boolean throwsException);
 
 	/**
 	 * 批量插入实体，事务内
-	 * @param assetDataPermissionsList 实体数据清单
+	 * @param assetDataPermissionsOOrgList 实体数据清单
 	 * @return 插入是否成功
 	 * */
-	Result insertList(List<AssetDataPermissions> assetDataPermissionsList);
+	Result insertList(List<AssetDataPermissionsOOrg> assetDataPermissionsOOrgList);
 
 
 		
 	/**
-	 * 按主键删除 资产数据权限
+	 * 按主键删除 所属
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -63,7 +64,7 @@ public interface IAssetDataPermissionsService extends  ISimpleIdService<AssetDat
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 资产数据权限
+	 * 按主键删除 所属
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -86,7 +87,7 @@ public interface IAssetDataPermissionsService extends  ISimpleIdService<AssetDat
 
 		
 	/**
-	 * 按主键更新字段 资产数据权限
+	 * 按主键更新字段 所属
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -95,73 +96,73 @@ public interface IAssetDataPermissionsService extends  ISimpleIdService<AssetDat
 
 	/**
 	 * 更新，如果执行错误，则抛出异常
-	 * @param assetDataPermissions 数据对象
+	 * @param assetDataPermissionsOOrg 数据对象
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
-	Result update(AssetDataPermissions assetDataPermissions , SaveMode mode);
+	Result update(AssetDataPermissionsOOrg assetDataPermissionsOOrg , SaveMode mode);
 
 
 	/**
 	 * 更新，根据 throwsException 参数抛出异常或返回 Result 对象
 	 *
-	 * @param assetDataPermissions 数据对象
+	 * @param assetDataPermissionsOOrg 数据对象
 	 * @param mode SaveMode,数据更新的模式
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 结果
 	 */
-	Result update(AssetDataPermissions assetDataPermissions , SaveMode mode,boolean throwsException);
+	Result update(AssetDataPermissionsOOrg assetDataPermissionsOOrg , SaveMode mode,boolean throwsException);
 
 
 	/**
 	 * 更新实体集，事务内
-	 * @param assetDataPermissionsList 数据对象列表
+	 * @param assetDataPermissionsOOrgList 数据对象列表
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
-	Result updateList(List<AssetDataPermissions> assetDataPermissionsList, SaveMode mode);
+	Result updateList(List<AssetDataPermissionsOOrg> assetDataPermissionsOOrgList, SaveMode mode);
 
 	/**
 	 * 保存实体，根据 throwsException 参数抛出异常或返回 Result 对象
-	 * @param assetDataPermissions 实体数据
+	 * @param assetDataPermissionsOOrg 实体数据
 	 * @param mode 保存模式
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 保存是否成功
 	 * */
-	Result save(AssetDataPermissions assetDataPermissions , SaveMode mode,boolean throwsException);
+	Result save(AssetDataPermissionsOOrg assetDataPermissionsOOrg , SaveMode mode,boolean throwsException);
 
 	/**
 	 * 保存实体，如果语句错误，则抛出异常
-	 * @param assetDataPermissions 实体数据
+	 * @param assetDataPermissionsOOrg 实体数据
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
-	Result save(AssetDataPermissions assetDataPermissions , SaveMode mode);
+	Result save(AssetDataPermissionsOOrg assetDataPermissionsOOrg , SaveMode mode);
 
 	/**
 	 * 保存实体，如果主键值不为null，则更新，否则插入
-	 * @param assetDataPermissionsList 实体数据清单
+	 * @param assetDataPermissionsOOrgList 实体数据清单
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
-	Result saveList(List<AssetDataPermissions> assetDataPermissionsList , SaveMode mode);
+	Result saveList(List<AssetDataPermissionsOOrg> assetDataPermissionsOOrgList , SaveMode mode);
 
 	/**
 	 * 检查实体中的数据字段是否已经存在 . 判断 主键值不同，但指定字段的值相同的记录是否存在
-	 * @param assetDataPermissions  实体对象
+	 * @param assetDataPermissionsOOrg  实体对象
 	 * @param field  字段清单，至少指定一个
 	 * @return 是否已经存在
 	 * */
-	boolean checkExists(AssetDataPermissions assetDataPermissions,DBField... field);
+	boolean checkExists(AssetDataPermissionsOOrg assetDataPermissionsOOrg,DBField... field);
 
 		
 	/**
-	 * 按主键获取 资产数据权限
+	 * 按主键获取 所属
 	 *
 	 * @param id 主键
-	 * @return AssetDataPermissions 数据对象
+	 * @return AssetDataPermissionsOOrg 数据对象
 	 */
-	AssetDataPermissions getById(String id);
+	AssetDataPermissionsOOrg getById(String id);
 
 	/**
 	 * 检查引用
@@ -180,30 +181,30 @@ public interface IAssetDataPermissionsService extends  ISimpleIdService<AssetDat
 	 * @param ids  主键清单
 	 * @return 实体集
 	 * */
-	List<AssetDataPermissions> queryListByIds(List<String> ids);
+	List<AssetDataPermissionsOOrg> queryListByIds(List<String> ids);
 
 	/**
 	 * 按 id 列表查询 Map
 	 * @param ids  主键清单
 	 * */
-	Map<String, AssetDataPermissions> queryMapByIds(List<String> ids);
+	Map<String, AssetDataPermissionsOOrg> queryMapByIds(List<String> ids);
 
 
 
 	/**
 	 * 检查 实体 是否已经存在 , 判断 主键值不同，但指定字段的值相同的记录是否存在
 	 *
-	 * @param assetDataPermissions 数据对象
+	 * @param assetDataPermissionsOOrg 数据对象
 	 * @return 判断结果
 	 */
-	Boolean checkExists(AssetDataPermissions assetDataPermissions);
+	Boolean checkExists(AssetDataPermissionsOOrg assetDataPermissionsOOrg);
 
 	/**
 	 * 根据实体数构建默认的条件表达式, 不支持 Join 其它表
 	 * @param sample 数据样例
 	 * @return ConditionExpr 条件表达式
 	 * */
-	ConditionExpr buildQueryCondition(AssetDataPermissions sample);
+	ConditionExpr buildQueryCondition(AssetDataPermissionsOOrg sample);
 
 	/**
 	 * 根据实体数构建默认的条件表达式, 不支持 Join 其它表
@@ -211,14 +212,14 @@ public interface IAssetDataPermissionsService extends  ISimpleIdService<AssetDat
 	 * @param tableAliase 数据表别名
 	 * 	@return ConditionExpr 条件表达式
 	 * */
-	ConditionExpr buildQueryCondition(AssetDataPermissions sample,String tableAliase);
+	ConditionExpr buildQueryCondition(AssetDataPermissionsOOrg sample,String tableAliase);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
-	List<AssetDataPermissions> queryList(AssetDataPermissionsVO sample);
+	List<AssetDataPermissionsOOrg> queryList(AssetDataPermissionsOOrgVO sample);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -227,7 +228,7 @@ public interface IAssetDataPermissionsService extends  ISimpleIdService<AssetDat
 	 * @param orderBy  排序
 	 * @return 查询结果
 	 * */
-	List<AssetDataPermissions> queryList(AssetDataPermissions sample,ConditionExpr condition,OrderBy orderBy);
+	List<AssetDataPermissionsOOrg> queryList(AssetDataPermissionsOOrg sample,ConditionExpr condition,OrderBy orderBy);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -235,7 +236,7 @@ public interface IAssetDataPermissionsService extends  ISimpleIdService<AssetDat
 	 * @param orderBy  排序
 	 * @return 查询结果
 	 * */
-	List<AssetDataPermissions> queryList(AssetDataPermissions sample,OrderBy orderBy);
+	List<AssetDataPermissionsOOrg> queryList(AssetDataPermissionsOOrg sample,OrderBy orderBy);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -243,14 +244,14 @@ public interface IAssetDataPermissionsService extends  ISimpleIdService<AssetDat
 	 * @param condition  其它条件
 	 * @return 查询结果
 	 * */
-	List<AssetDataPermissions> queryList(AssetDataPermissions sample,ConditionExpr condition);
+	List<AssetDataPermissionsOOrg> queryList(AssetDataPermissionsOOrg sample,ConditionExpr condition);
 
 	/**
 	 * 查询单个实体
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
-	AssetDataPermissions queryEntity(AssetDataPermissions sample);
+	AssetDataPermissionsOOrg queryEntity(AssetDataPermissionsOOrg sample);
 
 	/**
 	 * 分页查询实体集
@@ -259,7 +260,7 @@ public interface IAssetDataPermissionsService extends  ISimpleIdService<AssetDat
 	 * @param pageIndex 页码
 	 * @return 查询结果
 	 * */
-	PagedList<AssetDataPermissions> queryPagedList(AssetDataPermissionsVO sample,int pageSize,int pageIndex);
+	PagedList<AssetDataPermissionsOOrg> queryPagedList(AssetDataPermissionsOOrgVO sample,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -270,7 +271,7 @@ public interface IAssetDataPermissionsService extends  ISimpleIdService<AssetDat
 	 * @param orderBy  排序
 	 * @return 查询结果
 	 * */
-	PagedList<AssetDataPermissions> queryPagedList(AssetDataPermissions sample,ConditionExpr condition,OrderBy orderBy,int pageSize,int pageIndex);
+	PagedList<AssetDataPermissionsOOrg> queryPagedList(AssetDataPermissionsOOrg sample,ConditionExpr condition,OrderBy orderBy,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -280,7 +281,7 @@ public interface IAssetDataPermissionsService extends  ISimpleIdService<AssetDat
 	 * @param condition  其它条件
 	 * @return 查询结果
 	 * */
-	PagedList<AssetDataPermissions> queryPagedList(AssetDataPermissions sample,ConditionExpr condition,int pageSize,int pageIndex);
+	PagedList<AssetDataPermissionsOOrg> queryPagedList(AssetDataPermissionsOOrg sample,ConditionExpr condition,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -290,7 +291,7 @@ public interface IAssetDataPermissionsService extends  ISimpleIdService<AssetDat
 	 * @param orderBy  排序
 	 * @return 查询结果
 	 * */
-	PagedList<AssetDataPermissions> queryPagedList(AssetDataPermissions sample,OrderBy orderBy,int pageSize,int pageIndex);
+	PagedList<AssetDataPermissionsOOrg> queryPagedList(AssetDataPermissionsOOrg sample,OrderBy orderBy,int pageSize,int pageIndex);
 
  	/**
 	 * 查询指定字段的数据清单
@@ -315,6 +316,12 @@ public interface IAssetDataPermissionsService extends  ISimpleIdService<AssetDat
 
 
 
+	/**
+	 * 保存关系
+	 * @param permissionId 权限
+	 * @param values 值清单
+	 */
+	void saveRelation(String permissionId,List<String> values);
 
 
 }

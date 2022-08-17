@@ -13,8 +13,8 @@ import com.dt.platform.domain.eam.Position;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2021-12-18 08:47:42
- * @sign 5FEFD8D535EF42E03531B3CCD34F6D10
+ * @since 2022-08-17 08:50:07
+ * @sign 896DA421C99A64195CD3DC55BF654DB6
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -81,6 +81,46 @@ public class AssetDataPermissionsMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissions,java.lang.String> ROLE_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissions.class ,ROLE_CODE, java.lang.String.class, "业务角色", "业务角色", java.lang.String.class, null);
 	
 	/**
+	 * 所属权限状态 , 类型: java.lang.String
+	*/
+	public static final String OWN_ORG_AUTHORITY_ENABLE="ownOrgAuthorityEnable";
+	
+	/**
+	 * 所属权限状态 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissions,java.lang.String> OWN_ORG_AUTHORITY_ENABLE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissions.class ,OWN_ORG_AUTHORITY_ENABLE, java.lang.String.class, "所属权限状态", "所属权限状态", java.lang.String.class, null);
+	
+	/**
+	 * 所在所属状态 , 类型: java.lang.String
+	*/
+	public static final String OWN_ORG_LOCAL_ENABLE="ownOrgLocalEnable";
+	
+	/**
+	 * 所在所属状态 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissions,java.lang.String> OWN_ORG_LOCAL_ENABLE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissions.class ,OWN_ORG_LOCAL_ENABLE, java.lang.String.class, "所在所属状态", "所在所属状态", java.lang.String.class, null);
+	
+	/**
+	 * 所属联动状态 , 类型: java.lang.String
+	*/
+	public static final String OWN_ORG_CASCADE_ENABLE="ownOrgCascadeEnable";
+	
+	/**
+	 * 所属联动状态 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissions,java.lang.String> OWN_ORG_CASCADE_ENABLE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissions.class ,OWN_ORG_CASCADE_ENABLE, java.lang.String.class, "所属联动状态", "所属联动状态", java.lang.String.class, null);
+	
+	/**
+	 * 备注 , 类型: java.lang.String
+	*/
+	public static final String OWN_ORG_NOTES="ownOrgNotes";
+	
+	/**
+	 * 备注 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissions,java.lang.String> OWN_ORG_NOTES_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissions.class ,OWN_ORG_NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
+	
+	/**
 	 * 组织权限状态 , 类型: java.lang.String
 	*/
 	public static final String ORG_AUTHORITY_ENABLE="orgAuthorityEnable";
@@ -91,24 +131,34 @@ public class AssetDataPermissionsMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissions,java.lang.String> ORG_AUTHORITY_ENABLE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissions.class ,ORG_AUTHORITY_ENABLE, java.lang.String.class, "组织权限状态", "组织权限状态", java.lang.String.class, null);
 	
 	/**
-	 * 本组织激活 , 类型: java.lang.String
+	 * 所在组织状态 , 类型: java.lang.String
 	*/
 	public static final String ORG_LOCAL_ENABLE="orgLocalEnable";
 	
 	/**
-	 * 本组织激活 , 类型: java.lang.String
+	 * 所在组织状态 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissions,java.lang.String> ORG_LOCAL_ENABLE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissions.class ,ORG_LOCAL_ENABLE, java.lang.String.class, "本组织激活", "本组织激活", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissions,java.lang.String> ORG_LOCAL_ENABLE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissions.class ,ORG_LOCAL_ENABLE, java.lang.String.class, "所在组织状态", "所在组织状态", java.lang.String.class, null);
 	
 	/**
-	 * 组织级联状态 , 类型: java.lang.String
+	 * 组织联动状态 , 类型: java.lang.String
 	*/
 	public static final String ORG_CASCADE_ENABLE="orgCascadeEnable";
 	
 	/**
-	 * 组织级联状态 , 类型: java.lang.String
+	 * 组织联动状态 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissions,java.lang.String> ORG_CASCADE_ENABLE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissions.class ,ORG_CASCADE_ENABLE, java.lang.String.class, "组织级联状态", "组织级联状态", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissions,java.lang.String> ORG_CASCADE_ENABLE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissions.class ,ORG_CASCADE_ENABLE, java.lang.String.class, "组织联动状态", "组织联动状态", java.lang.String.class, null);
+	
+	/**
+	 * 备注 , 类型: java.lang.String
+	*/
+	public static final String ORG_NOTES="orgNotes";
+	
+	/**
+	 * 备注 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissions,java.lang.String> ORG_NOTES_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissions.class ,ORG_NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
 	
 	/**
 	 * 分类权限状态 , 类型: java.lang.String
@@ -131,6 +181,16 @@ public class AssetDataPermissionsMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissions,java.lang.String> CATALOG_CASCADE_ENABLE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissions.class ,CATALOG_CASCADE_ENABLE, java.lang.String.class, "分类级联状态", "分类级联状态", java.lang.String.class, null);
 	
 	/**
+	 * 备注 , 类型: java.lang.String
+	*/
+	public static final String CATALOG_NOTES="catalogNotes";
+	
+	/**
+	 * 备注 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissions,java.lang.String> CATALOG_NOTES_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissions.class ,CATALOG_NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
+	
+	/**
 	 * 位置权限状态 , 类型: java.lang.String
 	*/
 	public static final String POSITION_AUTHORITY_ENABLE="positionAuthorityEnable";
@@ -139,6 +199,16 @@ public class AssetDataPermissionsMeta {
 	 * 位置权限状态 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissions,java.lang.String> POSITION_AUTHORITY_ENABLE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissions.class ,POSITION_AUTHORITY_ENABLE, java.lang.String.class, "位置权限状态", "位置权限状态", java.lang.String.class, null);
+	
+	/**
+	 * 备注 , 类型: java.lang.String
+	*/
+	public static final String POSITION_NOTES="positionNotes";
+	
+	/**
+	 * 备注 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissions,java.lang.String> POSITION_NOTES_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissions.class ,POSITION_NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
 	
 	/**
 	 * 优先级 , 类型: java.lang.Integer
@@ -301,6 +371,26 @@ public class AssetDataPermissionsMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissions,java.lang.String> ORGANIZATION_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissions.class ,ORGANIZATION_IDS, java.util.List.class, "组织节点", "组织节点", java.lang.String.class, null);
 	
 	/**
+	 * 所属组织节点 , 集合类型: LIST , 类型: org.github.foxnic.web.domain.hrm.Organization
+	*/
+	public static final String OWN_ORGANIZATION="ownOrganization";
+	
+	/**
+	 * 所属组织节点 , 集合类型: LIST , 类型: org.github.foxnic.web.domain.hrm.Organization
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissions,org.github.foxnic.web.domain.hrm.Organization> OWN_ORGANIZATION_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissions.class ,OWN_ORGANIZATION, java.util.List.class, "所属组织节点", "所属组织节点", org.github.foxnic.web.domain.hrm.Organization.class, null);
+	
+	/**
+	 * 所属组织节点 , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String OWN_ORGANIZATION_IDS="ownOrganizationIds";
+	
+	/**
+	 * 所属组织节点 , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissions,java.lang.String> OWN_ORGANIZATION_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissions.class ,OWN_ORGANIZATION_IDS, java.util.List.class, "所属组织节点", "所属组织节点", java.lang.String.class, null);
+	
+	/**
 	 * 存放位置 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Position
 	*/
 	public static final String POSITION="position";
@@ -323,7 +413,7 @@ public class AssetDataPermissionsMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NAME , STATUS , OWNER_CODE , CODE , ROLE_CODE , ORG_AUTHORITY_ENABLE , ORG_LOCAL_ENABLE , ORG_CASCADE_ENABLE , CATALOG_AUTHORITY_ENABLE , CATALOG_CASCADE_ENABLE , POSITION_AUTHORITY_ENABLE , PRIORITY , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , BUSI_ROLE , CATEGORY , CATEGORY_IDS , ORGANIZATION , ORGANIZATION_IDS , POSITION , POSITION_IDS };
+	public static final String[] $PROPS={ ID , NAME , STATUS , OWNER_CODE , CODE , ROLE_CODE , OWN_ORG_AUTHORITY_ENABLE , OWN_ORG_LOCAL_ENABLE , OWN_ORG_CASCADE_ENABLE , OWN_ORG_NOTES , ORG_AUTHORITY_ENABLE , ORG_LOCAL_ENABLE , ORG_CASCADE_ENABLE , ORG_NOTES , CATALOG_AUTHORITY_ENABLE , CATALOG_CASCADE_ENABLE , CATALOG_NOTES , POSITION_AUTHORITY_ENABLE , POSITION_NOTES , PRIORITY , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , BUSI_ROLE , CATEGORY , CATEGORY_IDS , ORGANIZATION , ORGANIZATION_IDS , OWN_ORGANIZATION , OWN_ORGANIZATION_IDS , POSITION , POSITION_IDS };
 	
 	/**
 	 * 代理类
@@ -400,6 +490,50 @@ public class AssetDataPermissionsMeta {
 		}
 		
 		/**
+		 * 设置 所属权限状态
+		 * @param ownOrgAuthorityEnable 所属权限状态
+		 * @return 当前对象
+		*/
+		public AssetDataPermissions setOwnOrgAuthorityEnable(String ownOrgAuthorityEnable) {
+			super.change(OWN_ORG_AUTHORITY_ENABLE,super.getOwnOrgAuthorityEnable(),ownOrgAuthorityEnable);
+			super.setOwnOrgAuthorityEnable(ownOrgAuthorityEnable);
+			return this;
+		}
+		
+		/**
+		 * 设置 所在所属状态
+		 * @param ownOrgLocalEnable 所在所属状态
+		 * @return 当前对象
+		*/
+		public AssetDataPermissions setOwnOrgLocalEnable(String ownOrgLocalEnable) {
+			super.change(OWN_ORG_LOCAL_ENABLE,super.getOwnOrgLocalEnable(),ownOrgLocalEnable);
+			super.setOwnOrgLocalEnable(ownOrgLocalEnable);
+			return this;
+		}
+		
+		/**
+		 * 设置 所属联动状态
+		 * @param ownOrgCascadeEnable 所属联动状态
+		 * @return 当前对象
+		*/
+		public AssetDataPermissions setOwnOrgCascadeEnable(String ownOrgCascadeEnable) {
+			super.change(OWN_ORG_CASCADE_ENABLE,super.getOwnOrgCascadeEnable(),ownOrgCascadeEnable);
+			super.setOwnOrgCascadeEnable(ownOrgCascadeEnable);
+			return this;
+		}
+		
+		/**
+		 * 设置 备注
+		 * @param ownOrgNotes 备注
+		 * @return 当前对象
+		*/
+		public AssetDataPermissions setOwnOrgNotes(String ownOrgNotes) {
+			super.change(OWN_ORG_NOTES,super.getOwnOrgNotes(),ownOrgNotes);
+			super.setOwnOrgNotes(ownOrgNotes);
+			return this;
+		}
+		
+		/**
 		 * 设置 组织权限状态
 		 * @param orgAuthorityEnable 组织权限状态
 		 * @return 当前对象
@@ -411,8 +545,8 @@ public class AssetDataPermissionsMeta {
 		}
 		
 		/**
-		 * 设置 本组织激活
-		 * @param orgLocalEnable 本组织激活
+		 * 设置 所在组织状态
+		 * @param orgLocalEnable 所在组织状态
 		 * @return 当前对象
 		*/
 		public AssetDataPermissions setOrgLocalEnable(String orgLocalEnable) {
@@ -422,13 +556,24 @@ public class AssetDataPermissionsMeta {
 		}
 		
 		/**
-		 * 设置 组织级联状态
-		 * @param orgCascadeEnable 组织级联状态
+		 * 设置 组织联动状态
+		 * @param orgCascadeEnable 组织联动状态
 		 * @return 当前对象
 		*/
 		public AssetDataPermissions setOrgCascadeEnable(String orgCascadeEnable) {
 			super.change(ORG_CASCADE_ENABLE,super.getOrgCascadeEnable(),orgCascadeEnable);
 			super.setOrgCascadeEnable(orgCascadeEnable);
+			return this;
+		}
+		
+		/**
+		 * 设置 备注
+		 * @param orgNotes 备注
+		 * @return 当前对象
+		*/
+		public AssetDataPermissions setOrgNotes(String orgNotes) {
+			super.change(ORG_NOTES,super.getOrgNotes(),orgNotes);
+			super.setOrgNotes(orgNotes);
 			return this;
 		}
 		
@@ -455,6 +600,17 @@ public class AssetDataPermissionsMeta {
 		}
 		
 		/**
+		 * 设置 备注
+		 * @param catalogNotes 备注
+		 * @return 当前对象
+		*/
+		public AssetDataPermissions setCatalogNotes(String catalogNotes) {
+			super.change(CATALOG_NOTES,super.getCatalogNotes(),catalogNotes);
+			super.setCatalogNotes(catalogNotes);
+			return this;
+		}
+		
+		/**
 		 * 设置 位置权限状态
 		 * @param positionAuthorityEnable 位置权限状态
 		 * @return 当前对象
@@ -462,6 +618,17 @@ public class AssetDataPermissionsMeta {
 		public AssetDataPermissions setPositionAuthorityEnable(String positionAuthorityEnable) {
 			super.change(POSITION_AUTHORITY_ENABLE,super.getPositionAuthorityEnable(),positionAuthorityEnable);
 			super.setPositionAuthorityEnable(positionAuthorityEnable);
+			return this;
+		}
+		
+		/**
+		 * 设置 备注
+		 * @param positionNotes 备注
+		 * @return 当前对象
+		*/
+		public AssetDataPermissions setPositionNotes(String positionNotes) {
+			super.change(POSITION_NOTES,super.getPositionNotes(),positionNotes);
+			super.setPositionNotes(positionNotes);
 			return this;
 		}
 		
@@ -638,6 +805,28 @@ public class AssetDataPermissionsMeta {
 		public AssetDataPermissions setOrganizationIds(List<String> organizationIds) {
 			super.change(ORGANIZATION_IDS,super.getOrganizationIds(),organizationIds);
 			super.setOrganizationIds(organizationIds);
+			return this;
+		}
+		
+		/**
+		 * 设置 所属组织节点
+		 * @param ownOrganization 所属组织节点
+		 * @return 当前对象
+		*/
+		public AssetDataPermissions setOwnOrganization(List<Organization> ownOrganization) {
+			super.change(OWN_ORGANIZATION,super.getOwnOrganization(),ownOrganization);
+			super.setOwnOrganization(ownOrganization);
+			return this;
+		}
+		
+		/**
+		 * 设置 所属组织节点
+		 * @param ownOrganizationIds 所属组织节点
+		 * @return 当前对象
+		*/
+		public AssetDataPermissions setOwnOrganizationIds(List<String> ownOrganizationIds) {
+			super.change(OWN_ORGANIZATION_IDS,super.getOwnOrganizationIds(),ownOrganizationIds);
+			super.setOwnOrganizationIds(ownOrganizationIds);
 			return this;
 		}
 		

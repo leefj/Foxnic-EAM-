@@ -11,14 +11,14 @@ import com.github.foxnic.commons.bean.BeanUtil;
 
 
 /**
- * 资产数据权限
+ * 所属
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-17 08:50:07
- * @sign FA25BE1EDB78ED10E0D294F6B0761C9B
+ * @since 2022-08-17 06:31:21
+ * @sign CF5D7C9A994CE92768975EAC9B989E37
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
-public class AssetDataPermissionsVO extends AssetDataPermissions {
+public class AssetDataPermissionsOOrgVO extends AssetDataPermissionsOOrg {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -89,7 +89,7 @@ public class AssetDataPermissionsVO extends AssetDataPermissions {
 	 * @param pageIndex 页码
 	 * @return 当前对象
 	*/
-	public AssetDataPermissionsVO setPageIndex(Integer pageIndex) {
+	public AssetDataPermissionsOOrgVO setPageIndex(Integer pageIndex) {
 		this.pageIndex=pageIndex;
 		return this;
 	}
@@ -107,7 +107,7 @@ public class AssetDataPermissionsVO extends AssetDataPermissions {
 	 * @param pageSize 分页大小
 	 * @return 当前对象
 	*/
-	public AssetDataPermissionsVO setPageSize(Integer pageSize) {
+	public AssetDataPermissionsOOrgVO setPageSize(Integer pageSize) {
 		this.pageSize=pageSize;
 		return this;
 	}
@@ -125,7 +125,7 @@ public class AssetDataPermissionsVO extends AssetDataPermissions {
 	 * @param searchField 搜索字段
 	 * @return 当前对象
 	*/
-	public AssetDataPermissionsVO setSearchField(String searchField) {
+	public AssetDataPermissionsOOrgVO setSearchField(String searchField) {
 		this.searchField=searchField;
 		return this;
 	}
@@ -143,7 +143,7 @@ public class AssetDataPermissionsVO extends AssetDataPermissions {
 	 * @param fuzzyField 模糊搜索字段
 	 * @return 当前对象
 	*/
-	public AssetDataPermissionsVO setFuzzyField(String fuzzyField) {
+	public AssetDataPermissionsOOrgVO setFuzzyField(String fuzzyField) {
 		this.fuzzyField=fuzzyField;
 		return this;
 	}
@@ -161,7 +161,7 @@ public class AssetDataPermissionsVO extends AssetDataPermissions {
 	 * @param searchValue 搜索的值
 	 * @return 当前对象
 	*/
-	public AssetDataPermissionsVO setSearchValue(String searchValue) {
+	public AssetDataPermissionsOOrgVO setSearchValue(String searchValue) {
 		this.searchValue=searchValue;
 		return this;
 	}
@@ -179,7 +179,7 @@ public class AssetDataPermissionsVO extends AssetDataPermissions {
 	 * @param dirtyFields 已修改字段
 	 * @return 当前对象
 	*/
-	public AssetDataPermissionsVO setDirtyFields(List<String> dirtyFields) {
+	public AssetDataPermissionsOOrgVO setDirtyFields(List<String> dirtyFields) {
 		this.dirtyFields=dirtyFields;
 		return this;
 	}
@@ -189,7 +189,7 @@ public class AssetDataPermissionsVO extends AssetDataPermissions {
 	 * @param dirtyField 已修改字段
 	 * @return 当前对象
 	*/
-	public AssetDataPermissionsVO addDirtyField(String... dirtyField) {
+	public AssetDataPermissionsOOrgVO addDirtyField(String... dirtyField) {
 		if(this.dirtyFields==null) dirtyFields=new ArrayList<>();
 		this.dirtyFields.addAll(Arrays.asList(dirtyField));
 		return this;
@@ -208,7 +208,7 @@ public class AssetDataPermissionsVO extends AssetDataPermissions {
 	 * @param sortField 排序字段
 	 * @return 当前对象
 	*/
-	public AssetDataPermissionsVO setSortField(String sortField) {
+	public AssetDataPermissionsOOrgVO setSortField(String sortField) {
 		this.sortField=sortField;
 		return this;
 	}
@@ -226,7 +226,7 @@ public class AssetDataPermissionsVO extends AssetDataPermissions {
 	 * @param sortType 排序方式
 	 * @return 当前对象
 	*/
-	public AssetDataPermissionsVO setSortType(String sortType) {
+	public AssetDataPermissionsOOrgVO setSortType(String sortType) {
 		this.sortType=sortType;
 		return this;
 	}
@@ -245,7 +245,7 @@ public class AssetDataPermissionsVO extends AssetDataPermissions {
 	 * @param ids 主键清单
 	 * @return 当前对象
 	*/
-	public AssetDataPermissionsVO setIds(List<String> ids) {
+	public AssetDataPermissionsOOrgVO setIds(List<String> ids) {
 		this.ids=ids;
 		return this;
 	}
@@ -255,7 +255,7 @@ public class AssetDataPermissionsVO extends AssetDataPermissions {
 	 * @param id 主键清单
 	 * @return 当前对象
 	*/
-	public AssetDataPermissionsVO addId(String... id) {
+	public AssetDataPermissionsOOrgVO addId(String... id) {
 		if(this.ids==null) ids=new ArrayList<>();
 		this.ids.addAll(Arrays.asList(id));
 		return this;

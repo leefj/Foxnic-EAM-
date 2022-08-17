@@ -26,7 +26,7 @@ function ListPage() {
             layer.closeAll('loading');
             if(data.success){
                 var assetData=data.data;
-                $("#assetOriginalUnitPrice").html(assetData.assetData.assetOriginalUnitPrice);
+                $("#assetNavPrice").html(assetData.assetData.assetNavPrice);
                 $("#assetCnt").html(assetData.assetData.assetCnt);
                 $("#assetCleanCnt").html(assetData.assetData.assetCleanCnt);
                 $("#assetRepairCnt").html(assetData.assetData.assetRepairCnt);
@@ -40,7 +40,7 @@ function ListPage() {
                     html=html+" <tr>\n" +
                         "    <td>"+assetData.assetStatusData[i].name+"</td>\n" +
                         "    <td>"+assetData.assetStatusData[i].cnt+"</td>\n" +
-                        "    <td>"+assetData.assetStatusData[i].assetOriginalUnitPrice+"</td>\n" +
+                        "    <td>"+assetData.assetStatusData[i].assetNavPrice+"</td>\n" +
                         "  </tr>"
                 }
                 $("#assetStatus").html(html);

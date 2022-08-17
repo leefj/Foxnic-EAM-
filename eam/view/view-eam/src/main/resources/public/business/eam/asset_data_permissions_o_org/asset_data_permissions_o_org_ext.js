@@ -1,7 +1,7 @@
 /**
- * 资产数据权限 列表页 JS 脚本
+ * 所属 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2021-12-17 09:20:41
+ * @since 2022-08-17 06:31:21
  */
 
 layui.config({
@@ -18,7 +18,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload;
 
     //模块基础路径
-    const moduleURL="/service-eam/eam-asset-data-permissions";
+    const moduleURL="/service-eam/eam-asset-data-permissions-o-org";
+
 
     //列表页的扩展
     var list={
@@ -48,7 +49,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 对话框打开之前调用，如果返回 null 则不打开对话框
          * */
         beforeDialog:function (param){
-            param.title="覆盖对话框标题";
+            //param.title="覆盖对话框标题";
             return param;
         },
         /**
@@ -91,6 +92,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         templet:function (field,value,r) {
             if(value==null) return "";
             return value;
+        },
+        /**
+         * 表单页面打开时，追加更多的参数信息
+         * */
+        makeFormQueryString:function(data,queryString,action) {
+            return queryString;
         },
         /**
          * 在新建或编辑窗口打开前调用，若返回 false 则不继续执行后续操作
@@ -174,46 +181,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单数据填充前
          * */
         beforeDataFill:function (data) {
-            if(data&&data.organization){
-                var organizationIds="";
-                if(data.organization.length>0){
-                    for(var i=0;i<data.organization.length;i++){
-                        if(i==0){
-                            organizationIds=data.organization[i].id;
-                        }else{
-                            organizationIds=organizationIds+","+data.organization[i].id;
-                        }
-                    }
-                    data.organizationIds=organizationIds;
-                }
-            }
-
-            if(data&&data.ownOrganization){
-                var ownOrganizationIds="";
-                if(data.ownOrganization.length>0){
-                    for(var i=0;i<data.ownOrganization.length;i++){
-                        if(i==0){
-                            ownOrganizationIds=data.ownOrganization[i].id;
-                        }else{
-                            ownOrganizationIds=ownOrganizationIds+","+data.ownOrganization[i].id;
-                        }
-                    }
-                    data.ownOrganizationIds=ownOrganizationIds;
-                }
-            }
-            if(data&&data.category){
-                var categoryIds="";
-                if(data.category.length>0){
-                    for(var i=0;i<data.category.length;i++){
-                        if(i==0){
-                            categoryIds=data.category[i].id;
-                        }else{
-                            categoryIds=categoryIds+","+data.category[i].id;
-                        }
-                    }
-                    data.categoryIds=categoryIds;
-                }
-            }
             console.log('beforeDataFill',data);
         },
         /**
@@ -247,6 +214,22 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         onDatePickerChanged:function(id,value, date, endDate) {
             console.log('onDatePickerChanged',id,value, date, endDate);
         },
+        onRadioBoxChanged:function(id,data,checked) {
+            console.log('onRadioChanged',id,data,checked);
+        },
+        onCheckBoxChanged:function(id,data,checked) {
+            console.log('onCheckBoxChanged',id,data,checked);
+        },
+
+        /**
+         * 在流程提交前处理表单数据
+         * */
+        processFormData4Bpm:function(processInstanceId,param,callback) {
+            // 设置流程变量，并通过回调返回
+            var variables={};
+            // 此回调是必须的，否则流程提交会被中断
+            callback(variables);
+        },
         /**
          * 数据提交前，如果返回 false，停止后续步骤的执行
          * */
@@ -268,6 +251,17 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log("afterSubmitt",param,result);
         },
 
+        /**
+         * 文件上传组件回调
+         *  event 类型包括：
+         *  afterPreview ：文件选择后，未上传前触发；
+         *  afterUpload ：文件上传后触发
+         *  beforeRemove ：文件删除前触发
+         *  afterRemove ：文件删除后触发
+         * */
+        onUploadEvent: function(e) {
+            console.log("onUploadEvent",e);
+        },
         /**
          * 末尾执行
          */

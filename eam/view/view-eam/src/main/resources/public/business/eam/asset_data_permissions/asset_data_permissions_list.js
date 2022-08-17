@@ -1,7 +1,7 @@
 /**
  * 资产数据权限 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2021-12-17 11:24:23
+ * @since 2022-08-17 08:50:08
  */
 
 
@@ -13,18 +13,18 @@ function ListPage() {
 	var dataTable=null;
 	var sort=null;
 	/**
-      * 入口函数，初始化
-      */
+	 * 入口函数，初始化
+	 */
 	this.init=function(layui) {
 
-     	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate;
+		admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate;
 		table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,dropdown=layui.dropdown;;
 
 		if(window.pageExt.list.beforeInit) {
 			window.pageExt.list.beforeInit();
 		}
-     	//渲染表格
-     	renderTable();
+		//渲染表格
+		renderTable();
 		//初始化搜索输入框组件
 		initSearchFields();
 		//绑定搜索框事件
@@ -32,18 +32,21 @@ function ListPage() {
 		//绑定按钮事件
 		bindButtonEvent();
 		//绑定行操作按钮事件
-    	bindRowOperationEvent();
-     }
+		bindRowOperationEvent();
+	}
 
 
-     /**
-      * 渲染表格
-      */
-    function renderTable() {
+	/**
+	 * 渲染表格
+	 */
+	function renderTable() {
 		$(window).resize(function() {
 			fox.adjustSearchElement();
 		});
 		fox.adjustSearchElement();
+		//
+		var marginTop=$(".search-bar").height()+$(".search-bar").css("padding-top")+$(".search-bar").css("padding-bottom")
+		$("#table-area").css("margin-top",marginTop+"px");
 		//
 		function renderTableInternal() {
 
@@ -74,63 +77,83 @@ function ListPage() {
 				cols: [[
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
-					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true, title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('权限状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status),d);}}
-					,{ field: 'priority', align:"right",fixed:false,  hide:false, sort: true, title: fox.translate('优先级') , templet: function (d) { return templet('priority',d.priority,d);}  }
-					,{ field: 'ownerCode', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('归属'), templet:function (d){ return templet('ownerCode',fox.getEnumText(SELECT_OWNERCODE_DATA,d.ownerCode),d);}}
-					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('权限编码') , templet: function (d) { return templet('code',d.code,d);}  }
-					,{ field: 'roleCode', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('业务角色'), templet: function (d) { return templet('roleCode' ,fox.joinLabel(d.busiRole,"name"),d);}}
-					,{ field: 'orgAuthorityEnable', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('组织权限状态'), templet:function (d){ return templet('orgAuthorityEnable',fox.getEnumText(RADIO_ORGAUTHORITYENABLE_DATA,d.orgAuthorityEnable),d);}}
-					,{ field: 'orgLocalEnable', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('本组织激活'), templet:function (d){ return templet('orgLocalEnable',fox.getEnumText(RADIO_ORGLOCALENABLE_DATA,d.orgLocalEnable),d);}}
-					,{ field: 'orgCascadeEnable', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('组织级联状态'), templet:function (d){ return templet('orgCascadeEnable',fox.getEnumText(RADIO_ORGCASCADEENABLE_DATA,d.orgCascadeEnable),d);}}
-					,{ field: 'catalogAuthorityEnable', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('分类权限状态'), templet:function (d){ return templet('catalogAuthorityEnable',fox.getEnumText(RADIO_CATALOGAUTHORITYENABLE_DATA,d.catalogAuthorityEnable),d);}}
-					,{ field: 'catalogCascadeEnable', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('分类级联状态'), templet:function (d){ return templet('catalogCascadeEnable',fox.getEnumText(RADIO_CATALOGCASCADEENABLE_DATA,d.catalogCascadeEnable),d);}}
-					,{ field: 'positionAuthorityEnable', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('位置权限状态'), templet:function (d){ return templet('positionAuthorityEnable',fox.getEnumText(RADIO_POSITIONAUTHORITYENABLE_DATA,d.positionAuthorityEnable),d);}}
-					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
-					,{ field: 'createTime', align:"right", fixed:false, hide:true, sort: true, title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'positionIds', align:"",fixed:false,  hide:false, sort: false, title: fox.translate('存放位置'), templet: function (d) { return templet('positionIds' ,fox.joinLabel(d.position,"name"),d);}}
-					,{ field: 'categoryIds', align:"",fixed:false,  hide:false, sort: true, title: fox.translate('资产分类'), templet: function (d) { return templet('categoryIds' ,fox.joinLabel(d.category,"name"),d);}}
-					,{ field: 'organizationIds', align:"",fixed:false,  hide:false, sort: true, title: fox.translate('组织架构') , templet: function (d) { return templet('organizationIds',fox.getProperty(d,["organization","fullName"]),d);} }
+					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
+					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
+					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('权限状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
+					,{ field: 'ownerCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('归属'), templet:function (d){ return templet('ownerCode',fox.getEnumText(SELECT_OWNERCODE_DATA,d.ownerCode,'','ownerCode'),d);}}
+					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('权限编码') , templet: function (d) { return templet('code',d.code,d);}  }
+					,{ field: 'roleCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务角色'), templet: function (d) { return templet('roleCode' ,fox.joinLabel(d.busiRole,"name",',','','roleCode'),d);}}
+					,{ field: 'ownOrgAuthorityEnable', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('所属权限状态'), templet:function (d){ return templet('ownOrgAuthorityEnable',fox.getEnumText(RADIO_OWNORGAUTHORITYENABLE_DATA,d.ownOrgAuthorityEnable,'','ownOrgAuthorityEnable'),d);}}
+					,{ field: 'ownOrgLocalEnable', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('所在所属状态'), templet:function (d){ return templet('ownOrgLocalEnable',fox.getEnumText(RADIO_OWNORGLOCALENABLE_DATA,d.ownOrgLocalEnable,'','ownOrgLocalEnable'),d);}}
+					,{ field: 'ownOrgCascadeEnable', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('所属联动状态'), templet:function (d){ return templet('ownOrgCascadeEnable',fox.getEnumText(RADIO_OWNORGCASCADEENABLE_DATA,d.ownOrgCascadeEnable,'','ownOrgCascadeEnable'),d);}}
+				//	,{ field: 'ownOrgNotes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('ownOrgNotes',d.ownOrgNotes,d);}  }
+					,{ field: 'orgAuthorityEnable', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('组织权限状态'), templet:function (d){ return templet('orgAuthorityEnable',fox.getEnumText(RADIO_ORGAUTHORITYENABLE_DATA,d.orgAuthorityEnable,'','orgAuthorityEnable'),d);}}
+					,{ field: 'orgLocalEnable', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('所在组织状态'), templet:function (d){ return templet('orgLocalEnable',fox.getEnumText(RADIO_ORGLOCALENABLE_DATA,d.orgLocalEnable,'','orgLocalEnable'),d);}}
+					,{ field: 'orgCascadeEnable', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('组织联动状态'), templet:function (d){ return templet('orgCascadeEnable',fox.getEnumText(RADIO_ORGCASCADEENABLE_DATA,d.orgCascadeEnable,'','orgCascadeEnable'),d);}}
+				//	,{ field: 'orgNotes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('orgNotes',d.orgNotes,d);}  }
+					,{ field: 'catalogAuthorityEnable', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('分类权限状态'), templet:function (d){ return templet('catalogAuthorityEnable',fox.getEnumText(RADIO_CATALOGAUTHORITYENABLE_DATA,d.catalogAuthorityEnable,'','catalogAuthorityEnable'),d);}}
+					,{ field: 'catalogCascadeEnable', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('分类级联状态'), templet:function (d){ return templet('catalogCascadeEnable',fox.getEnumText(RADIO_CATALOGCASCADEENABLE_DATA,d.catalogCascadeEnable,'','catalogCascadeEnable'),d);}}
+				//	,{ field: 'catalogNotes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('catalogNotes',d.catalogNotes,d);}  }
+					,{ field: 'positionAuthorityEnable', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置权限状态'), templet:function (d){ return templet('positionAuthorityEnable',fox.getEnumText(RADIO_POSITIONAUTHORITYENABLE_DATA,d.positionAuthorityEnable,'','positionAuthorityEnable'),d);}}
+				//	,{ field: 'positionNotes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('positionNotes',d.positionNotes,d);}  }
+					,{ field: 'priority', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('优先级') , templet: function (d) { return templet('priority',d.priority,d);}  }
+					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
+					,{ field: 'createTime', align:"right", fixed:false, hide:true, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'positionIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('存放位置'), templet: function (d) { return templet('positionIds' ,fox.joinLabel(d.position,"name",',','','positionIds'),d);}}
+					,{ field: 'categoryIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('资产分类'), templet: function (d) { return templet('categoryIds' ,fox.joinLabel(d.category,"name",',','','categoryIds'),d);}}
+					,{ field: 'organizationIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('使用组织') , templet: function (d) { return templet('organizationIds',fox.getProperty(d,["organization","fullName"],0,'','organizationIds'),d);} }
+					,{ field: 'ownOrganizationIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('所属组织') , templet: function (d) { return templet('ownOrganizationIds',fox.getProperty(d,["ownOrganization","fullName"],0,'','ownOrganizationIds'),d);} }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
-					exportExcel : admin.checkAuth(AUTH_PREFIX+":export"),
-					importExcel : admin.checkAuth(AUTH_PREFIX+":import")?{
-						params : {} ,
-						callback : function(r) {
-							if(r.success) {
-								layer.msg(fox.translate('数据导入成功')+"!");
-							} else {
-								layer.msg(fox.translate('数据导入失败')+"!");
-							}
-							// 是否执行后续逻辑：错误提示
-							return false;
-						}
-					}:false
+					exportExcel : false ,
+					importExcel : false
 				}
 			};
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
 			dataTable=fox.renderTable(tableConfig);
 			//绑定排序事件
 			table.on('sort(data-table)', function(obj){
-			  refreshTableData(obj.field,obj.type);
+				refreshTableData(obj.sortField,obj.type);
 			});
 			window.pageExt.list.afterTableRender && window.pageExt.list.afterTableRender();
 		}
 		setTimeout(renderTableInternal,1);
-    };
+	};
 
 	/**
-      * 刷新表格数据
-      */
+	 * 刷新单号数据
+	 * */
+	function refreshRowData(data,remote) {
+		var context=dataTable.getDataRowContext( { id : data.id } );
+		if(context==null) return;
+		if(remote) {
+			admin.post(moduleURL+"/get-by-id", { id : data.id }, function (r) {
+				if (r.success) {
+					data = r.data;
+					context.update(data);
+					fox.renderFormInputs(form);
+				} else {
+					fox.showMessage(data);
+				}
+			});
+		} else {
+			context.update(data);
+			fox.renderFormInputs(form);
+		}
+	}
+
+	/**
+	 * 刷新表格数据
+	 */
 	function refreshTableData(sortField,sortType,reset) {
+		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
-		value.code={ inputType:"button",value: $("#code").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
-		value.roleCode={ inputType:"select_box", value: xmSelect.get("#roleCode",true).getValue("value") ,fillBy:["busiRole"]  , label:xmSelect.get("#roleCode",true).getValue("nameStr") };
+		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.code={ inputType:"button",value: $("#code").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.roleCode={ inputType:"select_box", value: getSelectedValue("#roleCode","value") ,fillBy:["busiRole"]  , label:getSelectedValue("#roleCode","nameStr") };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -144,8 +167,7 @@ function ListPage() {
 			if(sort) {
 				ps.sortField=sort.field;
 				ps.sortType=sort.type;
-			}
-		}
+			} 		}
 		if(reset) {
 			table.reload('data-table', { where : ps , page:{ curr:1 } });
 		} else {
@@ -155,8 +177,8 @@ function ListPage() {
 
 
 	/**
-	  * 获得已经选中行的数据,不传入 field 时，返回所有选中的记录，指定 field 时 返回指定的字段集合
-	  */
+	 * 获得已经选中行的数据,不传入 field 时，返回所有选中的记录，指定 field 时 返回指定的字段集合
+	 */
 	function getCheckedList(field) {
 		var checkStatus = table.checkStatus('data-table');
 		var data = checkStatus.data;
@@ -181,7 +203,7 @@ function ListPage() {
 		//渲染 roleCode 下拉字段
 		fox.renderSelectBox({
 			el: "roleCode",
-			radio: false,
+			radio: true,
 			size: "small",
 			filterable: true,
 			on: function(data){
@@ -214,15 +236,15 @@ function ListPage() {
 	 */
 	function bindSearchEvent() {
 		//回车键查询
-        $(".search-input").keydown(function(event) {
+		$(".search-input").keydown(function(event) {
 			if(event.keyCode !=13) return;
-		  	refreshTableData(null,null,true);
-        });
-
-        // 搜索按钮点击事件
-        $('#search-button').click(function () {
 			refreshTableData(null,null,true);
-        });
+		});
+
+		// 搜索按钮点击事件
+		$('#search-button').click(function () {
+			refreshTableData(null,null,true);
+		});
 
 		// 搜索按钮点击事件
 		$('#search-button-advance').click(function () {
@@ -239,7 +261,7 @@ function ListPage() {
 
 	/**
 	 * 绑定按钮事件
-	  */
+	 */
 	function bindButtonEvent() {
 
 		//头工具栏事件
@@ -252,6 +274,7 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
+					admin.putTempData('eam-asset-data-permissions-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
@@ -267,48 +290,49 @@ function ListPage() {
 
 
 		//添加按钮点击事件
-        function openCreateFrom() {
-        	//设置新增是初始化数据
-        	var data={};
+		function openCreateFrom() {
+			//设置新增是初始化数据
+			var data={};
 			admin.putTempData('eam-asset-data-permissions-form-data-form-action', "create",true);
-            showEditForm(data);
-        };
+			showEditForm(data);
+		};
 
-        //批量删除按钮点击事件
-        function batchDelete(selected) {
+		//批量删除按钮点击事件
+		function batchDelete(selected) {
 
-        	if(window.pageExt.list.beforeBatchDelete) {
+			if(window.pageExt.list.beforeBatchDelete) {
 				var doNext=window.pageExt.list.beforeBatchDelete(selected);
 				if(!doNext) return;
 			}
 
 			var ids=getCheckedList("id");
-            if(ids.length==0) {
+			if(ids.length==0) {
 				top.layer.msg(fox.translate('请选择需要删除的')+fox.translate('资产数据权限')+"!");
-            	return;
-            }
-            //调用批量删除接口
+				return;
+			}
+			//调用批量删除接口
 			top.layer.confirm(fox.translate('确定删除已选中的')+fox.translate('资产数据权限')+fox.translate('吗？'), function (i) {
-                admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
-                    if (data.success) {
+				top.layer.close(i);
+				admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
+					if (data.success) {
 						if(window.pageExt.list.afterBatchDelete) {
 							var doNext=window.pageExt.list.afterBatchDelete(data);
 							if(!doNext) return;
 						}
-                    	top.layer.msg(data.message, {icon: 1, time: 500});
-                        refreshTableData();
-                    } else {
-						top.layer.msg(data.message, {icon: 2, time: 1500});
-                    }
-                });
+						fox.showMessage(data);
+						refreshTableData();
+					} else {
+						fox.showMessage(data);
+					}
+				},{delayLoading:200,elms:[$("#delete-button")]});
 			});
-        }
+		}
 	}
 
-    /**
-     * 绑定行操作按钮事件
-     */
-    function bindRowOperationEvent() {
+	/**
+	 * 绑定行操作按钮事件
+	 */
+	function bindRowOperationEvent() {
 		// 工具条点击事件
 		table.on('tool(data-table)', function (obj) {
 			var data = obj.data;
@@ -326,7 +350,7 @@ function ListPage() {
 						admin.putTempData('eam-asset-data-permissions-form-data-form-action', "edit",true);
 						showEditForm(data.data);
 					} else {
-						 top.layer.msg(data.message, {icon: 1, time: 1500});
+						fox.showMessage(data);
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
@@ -335,7 +359,7 @@ function ListPage() {
 						admin.putTempData('eam-asset-data-permissions-form-data-form-action', "view",true);
 						showEditForm(data.data);
 					} else {
-						top.layer.msg(data.message, {icon: 1, time: 1500});
+						fox.showMessage(data);
 					}
 				});
 			}
@@ -345,41 +369,43 @@ function ListPage() {
 					var doNext=window.pageExt.list.beforeSingleDelete(data);
 					if(!doNext) return;
 				}
+
 				top.layer.confirm(fox.translate('确定删除此')+fox.translate('资产数据权限')+fox.translate('吗？'), function (i) {
 					top.layer.close(i);
-
-					top.layer.load(2);
-					admin.request(moduleURL+"/delete", { id : data.id }, function (data) {
+					admin.post(moduleURL+"/delete", { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
 						if (data.success) {
 							if(window.pageExt.list.afterSingleDelete) {
 								var doNext=window.pageExt.list.afterSingleDelete(data);
 								if(!doNext) return;
 							}
-							top.layer.msg(data.message, {icon: 1, time: 500});
+							fox.showMessage(data);
 							refreshTableData();
 						} else {
-							top.layer.msg(data.message, {icon: 2, time: 1500});
+							fox.showMessage(data);
 						}
-					});
+					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
 			}
-			
+
 		});
 
-    };
+	};
 
-    /**
-     * 打开编辑窗口
-     */
+	/**
+	 * 打开编辑窗口
+	 */
 	function showEditForm(data) {
 		if(window.pageExt.list.beforeEdit) {
 			var doNext=window.pageExt.list.beforeEdit(data);
 			if(!doNext) return;
 		}
 		var action=admin.getTempData('eam-asset-data-permissions-form-data-form-action');
-		var queryString="?categoryCode="+CATEGORY_CODE;
-		if(data && data.id) queryString=queryString + '&id=' + data.id;
+		var queryString="";
+		if(data && data.id) queryString='id=' + data.id;
+		if(window.pageExt.list.makeFormQueryString) {
+			queryString=window.pageExt.list.makeFormQueryString(data,queryString,action);
+		}
 		admin.putTempData('eam-asset-data-permissions-form-data', data);
 		var area=admin.getTempData('eam-asset-data-permissions-form-area');
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
@@ -396,16 +422,23 @@ function ListPage() {
 			area: ["80%",height+"px"],
 			type: 2,
 			id:"eam-asset-data-permissions-form-data-win",
-			content: '/business/eam/asset_data_permissions/asset_data_permissions_form.html' + queryString,
+			content: '/business/eam/asset_data_permissions/asset_data_permissions_form.html' + (queryString?("?"+queryString):""),
 			finish: function () {
-				refreshTableData();
+				if(action=="create") {
+					refreshTableData();
+				}
+				if(action=="edit") {
+					false?refreshTableData():refreshRowData(data,true);
+				}
 			}
 		});
 	};
 
 	window.module={
 		refreshTableData: refreshTableData,
-		getCheckedList: getCheckedList
+		refreshRowData: refreshRowData,
+		getCheckedList: getCheckedList,
+		showEditForm: showEditForm
 	};
 
 	window.pageExt.list.ending && window.pageExt.list.ending();

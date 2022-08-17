@@ -117,7 +117,7 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
 
     private JSONArray queryAssetStatusData(){
         //获取资产分类数据
-        String sql="select asset_status,count(1) cnt, IFNULL(sum(original_unit_price),0) asset_original_unit_price from eam_asset where owner_code='asset' and deleted=0  and status='complete' group by asset_status order by 2 desc";
+        String sql="select asset_status,count(1) cnt, IFNULL(sum(nav_price),0) asset_nav_price, IFNULL(sum(original_unit_price),0) asset_original_unit_price from eam_asset where owner_code='asset' and deleted=0  and status='complete' group by asset_status order by 2 desc";
         RcdSet rs=dao.query(sql);
         return rs.toJSONArrayWithJSONObject();
     }
@@ -129,7 +129,7 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
         JSONObject result=new JSONObject();
 
         //获取资产分类数据
-        String sql="select asset_status,count(1) cnt, IFNULL(sum(original_unit_price),0) asset_original_unit_price from eam_asset where owner_code='asset' and deleted=0  and status='complete' group by asset_status order by 2 desc";
+        String sql="select asset_status,count(1) cnt, IFNULL(sum(nav_price),0) asset_nav_price,  IFNULL(sum(original_unit_price),0) asset_original_unit_price from eam_asset where owner_code='asset' and deleted=0  and status='complete' group by asset_status order by 2 desc";
         RcdSet rs=dao.query(sql);
         JSONArray assetStatusArr=new JSONArray();
         JSONArray assetStatusPieData=new JSONArray();
@@ -152,7 +152,7 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
         //资产位置
         String posSql="select t.*,\n" +
                 "(select name from eam_position where id=t.position_id) label from (\n" +
-                "select position_id,count(1) cnt, IFNULL(sum(original_unit_price),0) asset_original_unit_price from eam_asset where owner_code='asset' and deleted=0  and status='complete' group by position_id order by 2 desc\n" +
+                "select position_id,count(1) cnt, IFNULL(sum(nav_price),0) asset_nav_price, IFNULL(sum(original_unit_price),0) asset_original_unit_price from eam_asset where owner_code='asset' and deleted=0  and status='complete' group by position_id order by 2 desc\n" +
                 ")t";
         RcdSet posRs=dao.query(posSql);
         JSONArray posAssetArr=new JSONArray();
@@ -175,7 +175,7 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
         //所属组织
         String ownerSql="select t.*,\n" +
                 "(select full_name from hrm_organization where id=t.own_company_id) label from (\n" +
-                "select own_company_id,count(1) cnt, IFNULL(sum(original_unit_price),0) asset_original_unit_price from eam_asset where owner_code='asset' and deleted=0  and status='complete' group by own_company_id order by 2 desc\n" +
+                "select own_company_id,count(1) cnt,IFNULL(sum(nav_price),0) asset_nav_price,  IFNULL(sum(original_unit_price),0) asset_original_unit_price from eam_asset where owner_code='asset' and deleted=0  and status='complete' group by own_company_id order by 2 desc\n" +
                 ")t\n";
         RcdSet ownerRs=dao.query(ownerSql);
         JSONArray ownerAssetArr=new JSONArray();
@@ -213,6 +213,7 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
                 "(select count(1) maintenance_end_cnt from eam_asset a where a.owner_code='asset' and a.deleted=0 and a.status='complete' and maintenance_end_date>date_sub(curdate(),interval 30 day) )maintenance_end_cnt,\n"+
                 "(select count(1) asset_cnt from eam_asset a where a.owner_code='asset' and a.deleted=0  and a.status='complete') asset_cnt,\n" +
                 "(select IFNULL(sum(original_unit_price),0) asset_original_unit_price from eam_asset a where a.owner_code='asset' and a.deleted=0  and a.status='complete') asset_original_unit_price,\n" +
+                "(select IFNULL(sum(nav_price),0) asset_nav_price from eam_asset a where a.owner_code='asset' and a.deleted=0  and a.status='complete') asset_nav_price,\n" +
                 "(select count(1) asset_clean_cnt from eam_asset a where a.owner_code='asset_clean_out' and a.deleted=0  and a.status='complete') asset_clean_cnt,\n" +
                 "(select count(1) asset_repair_cnt from eam_asset a where a.owner_code='asset' and a.deleted=0  and a.status='complete' and a.asset_status='repair') asset_repair_cnt\n";
 
