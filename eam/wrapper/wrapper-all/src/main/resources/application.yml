@@ -1,11 +1,12 @@
 server:
   session:
+    # session超时间时间
     timeout: 12000s
   servlet:
     session:
       # 会话超时时间，如 30s , 20m 等
       timeout: 12000s
-  #应用web访问端口,可按照实际情况进行修改
+  # 应用web访问端口,可按照实际情况进行修改
   port: 8089
 
 spring:
@@ -24,8 +25,8 @@ spring:
       url-prefix: druid
       username: root
       password: root
-      #allow: 192.168.33.108,127.0.0.1
-      #deny: 192.168.1.73
+      # allow: 192.168.33.108,127.0.0.1
+      # deny: 192.168.1.73
       resetEnable: true
     druid:
       primary:
@@ -106,6 +107,7 @@ spring:
       timeout: 30000
     # 单节配置
     port: 6379
+    # redis地址
     host: 192.168.80.63
     password: asdf@123
     database: 13
@@ -219,11 +221,11 @@ foxnic:
       service-hrm:
         enable: true
         # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
-        end-points: http://127.0.0.1:8089,1 | http://127.0.0.1:8089,2
+        end-points: http://127.0.0.1:8089,1 | http://127.0.0.1:8089,1
       service-oauth:
         enable: true
         # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
-        end-points: http://127.0.0.1:8089,1 | http://127.0.0.1:8089,2
+        end-points: http://127.0.0.1:8089,1 | http://127.0.0.1:8089,1
 
 #禁止自动扫描API
 springfox:

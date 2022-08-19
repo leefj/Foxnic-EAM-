@@ -478,6 +478,7 @@ public class AssetController extends SuperController {
 				.with(AssetMeta.OWNER_COMPANY)
 				.with(AssetMeta.USE_ORGANIZATION)
 				.with(AssetMeta.MANAGER)
+				.with(AssetMeta.REGION)
 				.with(AssetMeta.USE_USER)
 				.with(AssetMeta.ORIGINATOR)
 				.with(AssetMeta.ASSET_CYCLE_STATUS)

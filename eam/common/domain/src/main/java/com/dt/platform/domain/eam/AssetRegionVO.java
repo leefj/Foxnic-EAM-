@@ -11,14 +11,14 @@ import com.github.foxnic.commons.bean.BeanUtil;
 
 
 /**
- * 资产
+ * 存放区域
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-19 08:51:02
- * @sign C05127D02CE5B4FBBB8CDA17B7C59FAA
+ * @since 2022-08-19 09:10:04
+ * @sign 33A14763A7577401C32B15FB22C22655
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
-public class AssetVO extends Asset {
+public class AssetRegionVO extends AssetRegion {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -89,7 +89,7 @@ public class AssetVO extends Asset {
 	 * @param pageIndex 页码
 	 * @return 当前对象
 	*/
-	public AssetVO setPageIndex(Integer pageIndex) {
+	public AssetRegionVO setPageIndex(Integer pageIndex) {
 		this.pageIndex=pageIndex;
 		return this;
 	}
@@ -107,7 +107,7 @@ public class AssetVO extends Asset {
 	 * @param pageSize 分页大小
 	 * @return 当前对象
 	*/
-	public AssetVO setPageSize(Integer pageSize) {
+	public AssetRegionVO setPageSize(Integer pageSize) {
 		this.pageSize=pageSize;
 		return this;
 	}
@@ -125,7 +125,7 @@ public class AssetVO extends Asset {
 	 * @param searchField 搜索字段
 	 * @return 当前对象
 	*/
-	public AssetVO setSearchField(String searchField) {
+	public AssetRegionVO setSearchField(String searchField) {
 		this.searchField=searchField;
 		return this;
 	}
@@ -143,7 +143,7 @@ public class AssetVO extends Asset {
 	 * @param fuzzyField 模糊搜索字段
 	 * @return 当前对象
 	*/
-	public AssetVO setFuzzyField(String fuzzyField) {
+	public AssetRegionVO setFuzzyField(String fuzzyField) {
 		this.fuzzyField=fuzzyField;
 		return this;
 	}
@@ -161,7 +161,7 @@ public class AssetVO extends Asset {
 	 * @param searchValue 搜索的值
 	 * @return 当前对象
 	*/
-	public AssetVO setSearchValue(String searchValue) {
+	public AssetRegionVO setSearchValue(String searchValue) {
 		this.searchValue=searchValue;
 		return this;
 	}
@@ -179,7 +179,7 @@ public class AssetVO extends Asset {
 	 * @param dirtyFields 已修改字段
 	 * @return 当前对象
 	*/
-	public AssetVO setDirtyFields(List<String> dirtyFields) {
+	public AssetRegionVO setDirtyFields(List<String> dirtyFields) {
 		this.dirtyFields=dirtyFields;
 		return this;
 	}
@@ -189,7 +189,7 @@ public class AssetVO extends Asset {
 	 * @param dirtyField 已修改字段
 	 * @return 当前对象
 	*/
-	public AssetVO addDirtyField(String... dirtyField) {
+	public AssetRegionVO addDirtyField(String... dirtyField) {
 		if(this.dirtyFields==null) dirtyFields=new ArrayList<>();
 		this.dirtyFields.addAll(Arrays.asList(dirtyField));
 		return this;
@@ -208,7 +208,7 @@ public class AssetVO extends Asset {
 	 * @param sortField 排序字段
 	 * @return 当前对象
 	*/
-	public AssetVO setSortField(String sortField) {
+	public AssetRegionVO setSortField(String sortField) {
 		this.sortField=sortField;
 		return this;
 	}
@@ -226,7 +226,7 @@ public class AssetVO extends Asset {
 	 * @param sortType 排序方式
 	 * @return 当前对象
 	*/
-	public AssetVO setSortType(String sortType) {
+	public AssetRegionVO setSortType(String sortType) {
 		this.sortType=sortType;
 		return this;
 	}
@@ -245,7 +245,7 @@ public class AssetVO extends Asset {
 	 * @param ids 主键清单
 	 * @return 当前对象
 	*/
-	public AssetVO setIds(List<String> ids) {
+	public AssetRegionVO setIds(List<String> ids) {
 		this.ids=ids;
 		return this;
 	}
@@ -255,7 +255,7 @@ public class AssetVO extends Asset {
 	 * @param id 主键清单
 	 * @return 当前对象
 	*/
-	public AssetVO addId(String... id) {
+	public AssetRegionVO addId(String... id) {
 		if(this.ids==null) ids=new ArrayList<>();
 		this.ids.addAll(Arrays.asList(id));
 		return this;

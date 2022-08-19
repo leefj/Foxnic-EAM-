@@ -15,10 +15,14 @@ public enum AssetDataExportColumnEnum implements CodeTextEnum {
     ASSET_WAREHOUSE_NAME("assetWarehouseName","warehouse_id" ),
     ASSET_MAINTAINER_NAME("assetMaintainerName","maintainer_id" ),
     ASSET_CATEGORY_FINANCE_NAME("assetCategoryFinanceName","financial_category_id" ),
+
+    ASSET_REGION_NAME("assetRegionName","region_id" ),
+
     ASSET_SUPPLIER_NAME( "assetSupplierName","supplier_id" ),
     ASSET_SOURCE_NAME("assetSourceName","source_id" ),
     SAFETY_LEVEL_NAME( "safetyLevelName","safety_level_code" ),
     MAINTENANCE_STATUS( "maintenanceStatusName","maintenance_status" ),
+
 
     RACK_NAME( "rackName","rack_id" ),
 
@@ -30,14 +34,13 @@ public enum AssetDataExportColumnEnum implements CodeTextEnum {
     MANAGER_BADGE( "managerBadge","manager_id" ),
     MANAGER_NAME_BADGE( "managerNameBadge","manager_name_badge" ),
 
-
-
     USE_USER_NAME("useUserName","use_user_id"  ),
     USE_USER_BADGE( "useUserBadge","use_user_id" ),
     USE_USER_NAME_BADGE( "useUserNameBadge","use_user_name_badge" ),
 
     EQUIPMENT_STATUS_NAME( "equipmentStatusName","equipment_status" ),
     EQUIPMENT_ENVIRONMENT_NAME( "equipmentEnvironmentName","equipment_environment_code" ),
+
 
 
 

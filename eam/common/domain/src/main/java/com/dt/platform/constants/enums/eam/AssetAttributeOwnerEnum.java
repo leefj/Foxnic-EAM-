@@ -13,8 +13,7 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 public enum AssetAttributeOwnerEnum implements CodeTextEnum {
 
-	ASSET("asset" , "资产"),
-	;
+	ASSET("asset" , "资产");
 
 	private String code;
 	private String text;

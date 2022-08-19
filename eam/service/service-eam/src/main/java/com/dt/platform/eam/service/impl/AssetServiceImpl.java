@@ -397,6 +397,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				.with(AssetMeta.POSITION)
 				.with(AssetMeta.MAINTNAINER)
 				.with(AssetMeta.SUPPLIER)
+				.with(AssetMeta.REGION)
 				.with(AssetMeta.OWNER_COMPANY)
 				.with(AssetMeta.USE_ORGANIZATION)
 				.with(AssetMeta.MANAGER)
@@ -438,6 +439,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				.with(AssetMeta.USE_ORGANIZATION)
 				.with(AssetMeta.MANAGER)
 				.with(AssetMeta.USE_USER)
+				.with(AssetMeta.REGION)
 				.with(AssetMeta.ORIGINATOR)
 				.with(AssetMeta.RACK)
 				.with(AssetMeta.ASSET_CYCLE_STATUS)
@@ -763,8 +765,9 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		//步骤二进入提交阶段
 		ProcessApproveVO processApproveVO=new ProcessApproveVO();
 		ConditionExpr expr2=new ConditionExpr();
+		expr2.and("status=?",AssetHandleStatusEnum.INCOMPLETE.code());
 		expr2.andIn("id",ids);
-		expr.setParent(null);
+	//	expr.setParent(null);
 		List<String> instances =this.queryValues(EAMTables.EAM_ASSET.CHANGE_INSTANCE_ID,String.class,expr);
 		processApproveVO.setOpinion("提交流程");
 		processApproveVO.setInstanceIds(instances);
@@ -1629,6 +1632,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				.with(AssetMeta.ORIGINATOR)
 				.with(AssetMeta.RACK)
 				.with(AssetMeta.SOURCE)
+				.with(AssetMeta.REGION)
 				.with(AssetMeta.ASSET_CYCLE_STATUS)
 				.with(AssetMeta.SAFETY_LEVEL)
 				.with(AssetMeta.EQUIPMENT_ENVIRONMENT)

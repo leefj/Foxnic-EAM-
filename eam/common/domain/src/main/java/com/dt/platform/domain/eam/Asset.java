@@ -29,8 +29,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 资产
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-06 09:53:50
- * @sign E72E896CE18C2F5B45C1498B539869B0
+ * @since 2022-08-19 08:51:02
+ * @sign 52C9D70D091630DA95954FFDC0484B5B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -191,6 +191,12 @@ public class Asset extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="使用人员" , notes = "使用人员")
 	private String useUserId;
+	
+	/**
+	 * 存放区域：存放区域
+	*/
+	@ApiModelProperty(required = false,value="存放区域" , notes = "存放区域")
+	private String regionId;
 	
 	/**
 	 * 存放位置：存放位置
@@ -831,6 +837,12 @@ public class Asset extends Entity {
 	private GoodsStock goodsStock;
 	
 	/**
+	 * 存放区域：存放区域
+	*/
+	@ApiModelProperty(required = false,value="存放区域" , notes = "存放区域")
+	private AssetRegion region;
+	
+	/**
 	 * 获得 主键<br>
 	 * 主键
 	 * @return 主键
@@ -1302,6 +1314,25 @@ public class Asset extends Entity {
 	*/
 	public Asset setUseUserId(String useUserId) {
 		this.useUserId=useUserId;
+		return this;
+	}
+	
+	/**
+	 * 获得 存放区域<br>
+	 * 存放区域
+	 * @return 存放区域
+	*/
+	public String getRegionId() {
+		return regionId;
+	}
+	
+	/**
+	 * 设置 存放区域
+	 * @param regionId 存放区域
+	 * @return 当前对象
+	*/
+	public Asset setRegionId(String regionId) {
+		this.regionId=regionId;
 		return this;
 	}
 	
@@ -3369,6 +3400,25 @@ public class Asset extends Entity {
 	*/
 	public Asset setGoodsStock(GoodsStock goodsStock) {
 		this.goodsStock=goodsStock;
+		return this;
+	}
+	
+	/**
+	 * 获得 存放区域<br>
+	 * 存放区域
+	 * @return 存放区域
+	*/
+	public AssetRegion getRegion() {
+		return region;
+	}
+	
+	/**
+	 * 设置 存放区域
+	 * @param region 存放区域
+	 * @return 当前对象
+	*/
+	public Asset setRegion(AssetRegion region) {
+		this.region=region;
 		return this;
 	}
 

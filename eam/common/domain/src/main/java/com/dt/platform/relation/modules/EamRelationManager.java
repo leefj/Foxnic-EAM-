@@ -1573,6 +1573,7 @@ public class EamRelationManager extends RelationManager {
           .condition("dict_code='eam_source'");
 
 
+
         // 关联安全等级
         this.property(AssetMeta.SAFETY_LEVEL_PROP)
                 .using(EAMTables.EAM_ASSET.SAFETY_LEVEL_CODE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
@@ -1620,6 +1621,10 @@ public class EamRelationManager extends RelationManager {
         this.property(AssetMeta.CATEGORY_FINANCE_PROP)
                 .using(EAMTables.EAM_ASSET.FINANCIAL_CATEGORY_ID).join(EAMTables.EAM_CATEGORY_FINANCE.ID);
 
+
+        // 关联存放区域
+        this.property(AssetMeta.REGION_PROP)
+                .using(EAMTables.EAM_ASSET.REGION_ID).join(EAMTables.EAM_ASSET_REGION.ID);
 
         // 关联资产分类
         this.property(AssetMeta.CATEGORY_PROP)

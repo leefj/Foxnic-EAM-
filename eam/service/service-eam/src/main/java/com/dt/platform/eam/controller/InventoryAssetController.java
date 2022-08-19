@@ -202,6 +202,7 @@ public class InventoryAssetController extends SuperController {
 				.with(AssetMeta.MANUFACTURER)
 				.with(AssetMeta.POSITION)
 				.with(AssetMeta.MAINTNAINER)
+				.with(AssetMeta.REGION)
 				.with(AssetMeta.SUPPLIER)
 				.with(AssetMeta.OWNER_COMPANY)
 				.with(AssetMeta.USE_ORGANIZATION)
