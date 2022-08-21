@@ -37,8 +37,10 @@ public class AssetDepreciationCategoryGtr extends BaseCodeGenerator {
         cfg.setRelationField(AssetDepreciation.class,EAMTables.EAM_ASSET_DEPRECIATION_CATEGORY.DEPRECIATION_ID, Catalog.class,EAMTables.EAM_ASSET_DEPRECIATION_CATEGORY.CATEGORY_ID,true);
 
         cfg.view().search().inputWidth(Config.searchInputWidth);
-        //文件生成覆盖模式
-        cfg.overrides()
+        //文
+        // 件生成覆盖模式
+        cfg
+                .overrides()
                 .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口
                 .setControllerAndAgent(WriteMode.COVER_EXISTS_FILE) //Rest
                 .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器

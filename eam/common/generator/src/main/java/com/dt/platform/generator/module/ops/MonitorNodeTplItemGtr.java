@@ -24,6 +24,7 @@ public class MonitorNodeTplItemGtr extends BaseCodeGenerator{
         //cfg.setRelationField(Host.class,OpsTables.OPS_HOST_MID.HOST_ID, ServiceInfo.class, OpsTables.OPS_HOST_MID.SERVICE_INFO_ID,true);
 
 
+
         cfg.view().search().inputLayout(
                 new Object[]{
                         OpsTables.OPS_MONITOR_NODE_TPL_ITEM.ID,
