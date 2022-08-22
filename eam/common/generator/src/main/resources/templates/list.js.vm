@@ -203,7 +203,7 @@ function ListPage() {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
 		#for(f : fields)
-		#if(!f.isHideInSearch)
+		#if(f.isHideInSearch==null || (f.isHideInSearch!=null && !f.isHideInSearch))
 		#if(f.typeName.equals("logic_switch"))
 		value.#(f.varName)={ inputType:"logic_switch",value: getSelectedValue("##(f.varName)","value"), label:getSelectedValue("##(f.varName)","nameStr") #if(f.searchField!=null),field:"#(f.searchField)"#end #if(f.listFillByPropertyNames) ,fillBy:#(f.listFillByPropertyNames) #end };
 		#else if(f.typeName.equals("radio_box"))
@@ -432,9 +432,7 @@ function ListPage() {
 			done: function(value, date, endDate) {
 				setTimeout(function () {
 					#if(f.search.triggerOnSelect)
-					if(data.change && data.change.length>0) {
 						refreshTableData();
-					}
 					#end
 					window.pageExt.list.onDatePickerChanged && window.pageExt.list.onDatePickerChanged("#(f.varName)",value, date, endDate);
 				},1);
