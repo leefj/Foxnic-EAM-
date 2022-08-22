@@ -20,6 +20,13 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding> 
     </properties>  
     <dependencies>
+
+        <dependency>
+            <groupId>org.jvnet.hudson</groupId>
+            <artifactId>ganymed-ssh-2</artifactId>
+            <version>build260</version>
+        </dependency>
+
         <dependency>
             <groupId>com.dt.platform</groupId>
             <artifactId>framework</artifactId>

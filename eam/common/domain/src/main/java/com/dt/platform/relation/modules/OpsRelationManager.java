@@ -9,10 +9,7 @@ import com.dt.platform.domain.eam.meta.AssetCollectionReturnMeta;
 import com.dt.platform.domain.eam.meta.AssetMeta;
 import com.dt.platform.domain.eam.meta.MaintainTaskMeta;
 import com.dt.platform.domain.eam.meta.TplFileMeta;
-import com.dt.platform.domain.ops.IpAddressRange;
-import com.dt.platform.domain.ops.MonitorObject;
-import com.dt.platform.domain.ops.Voucher;
-import com.dt.platform.domain.ops.VoucherPriv;
+import com.dt.platform.domain.ops.*;
 import com.dt.platform.domain.ops.meta.*;
 import com.github.foxnic.dao.relation.RelationManager;
 import org.github.foxnic.web.constants.db.FoxnicWeb;
@@ -43,6 +40,73 @@ public class OpsRelationManager extends RelationManager {
         this.setupMonitorModel();
         this.setupIpAddressRange();
         this.setupSystemConsoleInfo();
+
+        this.setupAutoNode();
+        this.setupAutoAction();
+        this.setupAutoTaskMlog();
+        this.setupAutoTasklog();
+        this.setupAutoTask();
+
+    }
+
+    public void setupAutoTask() {
+        this.property(AutoTaskMeta.ACTION_PROP)
+                .using(OpsTables.OPS_AUTO_TASK.ACTION_ID).join(OpsTables.OPS_AUTO_ACTION.ID);
+
+        this.property(AutoTaskMeta.GROUP_PROP)
+                .using(OpsTables.OPS_AUTO_TASK.GROUP_ID).join(OpsTables.OPS_AUTO_GROUP.ID);
+
+        this.property(AutoTaskMeta.BATCH_PROP)
+                .using(OpsTables.OPS_AUTO_TASK.BATCH_ID).join(OpsTables.OPS_AUTO_BATCH.ID);
+
+    }
+
+    public void setupAutoTaskMlog() {
+        this.property(AutoTaskMLogMeta.TASK_PROP)
+                .using(OpsTables.OPS_AUTO_TASK_M_LOG.TASK_ID).join(OpsTables.OPS_AUTO_TASK.ID);
+
+
+        this.property(AutoTaskMLogMeta.ACTION_PROP)
+                .using(OpsTables.OPS_AUTO_TASK_M_LOG.ACTION_ID).join(OpsTables.OPS_AUTO_ACTION.ID);
+
+    }
+    public void setupAutoTasklog() {
+
+        this.property(AutoTaskLogMeta.TASK_PROP)
+                .using(OpsTables.OPS_AUTO_TASK_LOG.TASK_ID).join(OpsTables.OPS_AUTO_TASK.ID);
+
+
+        this.property(AutoTaskLogMeta.ACTION_PROP)
+                .using(OpsTables.OPS_AUTO_TASK_LOG.ACTION_ID).join(OpsTables.OPS_AUTO_ACTION.ID);
+
+        this.property(AutoTaskLogMeta.NODE_PROP)
+                .using(OpsTables.OPS_AUTO_TASK_LOG.NODE_ID).join(OpsTables.OPS_AUTO_NODE.ID);
+
+        this.property(AutoTaskLogMeta.M_LOG_PROP)
+                .using(OpsTables.OPS_AUTO_TASK_LOG.M_LOG_ID).join(OpsTables.OPS_AUTO_TASK_M_LOG.ID);
+    }
+
+    public void setupAutoAction() {
+        this.property(AutoActionMeta.AUTO_ACTION_FILE_LIST_PROP)
+                .using(OpsTables.OPS_AUTO_ACTION.ID).join(OpsTables.OPS_AUTO_ACTION_S_FILE.OWNER_ID)
+                .using(OpsTables.OPS_AUTO_ACTION_S_FILE.FILE_ID).join(OpsTables.OPS_AUTO_ACTION_FILE.ID);
+
+        this.property(AutoActionMeta.AUTO_ACTION_SCRIPT_LIST_PROP)
+                .using(OpsTables.OPS_AUTO_ACTION.ID).join(OpsTables.OPS_AUTO_ACTION_S_SCRIPT.OWNER_ID)
+                .using(OpsTables.OPS_AUTO_ACTION_S_SCRIPT.SCRIPT_ID).join(OpsTables.OPS_AUTO_ACTION_SCRIPT.ID);
+    }
+
+
+    public void setupAutoNode() {
+        this.property(AutoNodeMeta.TYPE_DICT_PROP)
+                .using(OpsTables.OPS_AUTO_NODE.TYPE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='ops_auto_node_type'");
+
+        this.property(AutoNodeMeta.GROUP_PROP)
+                .using(OpsTables.OPS_AUTO_NODE.GROUP_ID).join(OpsTables.OPS_AUTO_GROUP.ID);
+
+        this.property(AutoNodeMeta.VOUCHER_PROP)
+                .using(OpsTables.OPS_AUTO_NODE.VOUCHER_ID).join(OpsTables.OPS_AUTO_VOUCHER.ID);
 
     }
 
