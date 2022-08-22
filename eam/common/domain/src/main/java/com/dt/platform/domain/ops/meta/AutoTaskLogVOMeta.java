@@ -14,7 +14,7 @@ import com.dt.platform.domain.ops.AutoTaskMLog;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 16:47:41
+ * @since 2022-08-22 08:59:51
  * @sign 1448E4913B5547D6098115CF03DF9C65
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -192,14 +192,24 @@ public class AutoTaskLogVOMeta extends AutoTaskLogMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskLogVO,java.util.Date> ETIME_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskLogVO.class ,ETIME, java.util.Date.class, "结束时间", "结束时间", java.util.Date.class, null);
 	
 	/**
-	 * 内容 , 类型: java.lang.String
+	 * 记录结果 , 类型: java.lang.String
 	*/
 	public static final String RECORD_CONTENT="recordContent";
 	
 	/**
-	 * 内容 , 类型: java.lang.String
+	 * 记录结果 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskLogVO,java.lang.String> RECORD_CONTENT_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskLogVO.class ,RECORD_CONTENT, java.lang.String.class, "内容", "内容", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskLogVO,java.lang.String> RECORD_CONTENT_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskLogVO.class ,RECORD_CONTENT, java.lang.String.class, "记录结果", "记录结果", java.lang.String.class, null);
+	
+	/**
+	 * 内容明细 , 类型: java.lang.String
+	*/
+	public static final String CONTENT_DETAIL="contentDetail";
+	
+	/**
+	 * 内容明细 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskLogVO,java.lang.String> CONTENT_DETAIL_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskLogVO.class ,CONTENT_DETAIL, java.lang.String.class, "内容明细", "内容明细", java.lang.String.class, null);
 	
 	/**
 	 * 记录时间 , 类型: java.util.Date
@@ -334,7 +344,7 @@ public class AutoTaskLogVOMeta extends AutoTaskLogMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , TASK_ID , M_LOG_ID , ACTION_ID , NODE_ID , STATUS , STIME , ETIME , RECORD_CONTENT , RECORD_TIME , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , TASK , ACTION , NODE , M_LOG };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , TASK_ID , M_LOG_ID , ACTION_ID , NODE_ID , STATUS , STIME , ETIME , RECORD_CONTENT , CONTENT_DETAIL , RECORD_TIME , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , TASK , ACTION , NODE , M_LOG };
 	
 	/**
 	 * 代理类
@@ -532,13 +542,24 @@ public class AutoTaskLogVOMeta extends AutoTaskLogMeta {
 		}
 		
 		/**
-		 * 设置 内容
-		 * @param recordContent 内容
+		 * 设置 记录结果
+		 * @param recordContent 记录结果
 		 * @return 当前对象
 		*/
 		public AutoTaskLog setRecordContent(String recordContent) {
 			super.change(RECORD_CONTENT,super.getRecordContent(),recordContent);
 			super.setRecordContent(recordContent);
+			return this;
+		}
+		
+		/**
+		 * 设置 内容明细
+		 * @param contentDetail 内容明细
+		 * @return 当前对象
+		*/
+		public AutoTaskLog setContentDetail(String contentDetail) {
+			super.change(CONTENT_DETAIL,super.getContentDetail(),contentDetail);
+			super.setContentDetail(contentDetail);
 			return this;
 		}
 		

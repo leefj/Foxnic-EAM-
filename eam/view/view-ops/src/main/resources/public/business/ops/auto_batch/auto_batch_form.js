@@ -1,13 +1,13 @@
 /**
- * 分组节点 列表页 JS 脚本
+ * 节点批次 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 09:09:26
+ * @since 2022-08-22 10:55:05
  */
 
 function FormPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
-	const moduleURL="/service-ops/ops-auto-group-node";
+	const moduleURL="/service-ops/ops-auto-batch";
 	// 表单执行操作类型：view，create，edit
 	var action=null;
 	var disableCreateNew=false;
@@ -23,7 +23,7 @@ function FormPage() {
      	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload,dropdown=layui.dropdown;
 		laydate = layui.laydate,table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect;
 
-		action=admin.getTempData('ops-auto-group-node-form-data-form-action');
+		action=admin.getTempData('ops-auto-batch-form-data-form-action');
 		//如果没有修改和保存权限
 		if( !admin.checkAuth(AUTH_PREFIX+":update") && !admin.checkAuth(AUTH_PREFIX+":save")) {
 			disableModify=true;
@@ -37,7 +37,7 @@ function FormPage() {
 		}
 
 		if(window.pageExt.form.beforeInit) {
-			window.pageExt.form.beforeInit(action,admin.getTempData('ops-auto-group-node-form-data'));
+			window.pageExt.form.beforeInit(action,admin.getTempData('ops-auto-batch-form-data'));
 		}
 
 		//渲染表单组件
@@ -89,9 +89,9 @@ function FormPage() {
 				prevBodyHeight = bodyHeight;
 				return;
 			}
-			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'ops-auto-group-node-form-data-win');
+			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'ops-auto-batch-form-data-win');
 			if(area==null) return;
-			admin.putTempData('ops-auto-group-node-form-area', area);
+			admin.putTempData('ops-auto-batch-form-area', area);
 			window.adjustPopup=adjustPopup;
 			if(area.tooHeigh) {
 				var windowHeight=area.iframeHeight;
@@ -111,6 +111,13 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
+		form.on('radio(status)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=status]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("status",data,checked);
+		});
 	}
 
 	/**
@@ -142,7 +149,7 @@ function FormPage() {
       */
 	function fillFormData(formData) {
 		if(!formData) {
-			formData = admin.getTempData('ops-auto-group-node-form-data');
+			formData = admin.getTempData('ops-auto-batch-form-data');
 		}
 
 		window.pageExt.form.beforeDataFill && window.pageExt.form.beforeDataFill(formData);
@@ -250,7 +257,7 @@ function FormPage() {
 				}
 
 				if(doNext) {
-					admin.finishPopupCenterById('ops-auto-group-node-form-data-win');
+					admin.finishPopupCenterById('ops-auto-batch-form-data-win');
 				}
 
 				// 调整状态为编辑
@@ -282,7 +289,7 @@ function FormPage() {
 
 
 	    //关闭窗口
-	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('ops-auto-group-node-form-data-win',this); });
+	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('ops-auto-batch-form-data-win',this); });
 
     }
 

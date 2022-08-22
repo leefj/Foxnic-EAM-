@@ -17,8 +17,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 批次作业
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 16:09:08
- * @sign E510BC4BF5180225C68B8EE9F1FD9C91
+ * @since 2022-08-22 10:56:01
+ * @sign 2815434CDAAB066645A378D1536B996C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -47,6 +47,12 @@ public class AutoTask extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="分组" , notes = "分组")
 	private String groupId;
+	
+	/**
+	 * 批次：批次
+	*/
+	@ApiModelProperty(required = false,value="批次" , notes = "批次")
+	private String batchId;
 	
 	/**
 	 * 动作：动作
@@ -117,6 +123,12 @@ public class AutoTask extends Entity {
 	private AutoGroup group;
 	
 	/**
+	 * batch：batch
+	*/
+	@ApiModelProperty(required = false,value="batch" , notes = "batch")
+	private AutoGroup batch;
+	
+	/**
 	 * action：action
 	*/
 	@ApiModelProperty(required = false,value="action" , notes = "action")
@@ -176,6 +188,25 @@ public class AutoTask extends Entity {
 	*/
 	public AutoTask setGroupId(String groupId) {
 		this.groupId=groupId;
+		return this;
+	}
+	
+	/**
+	 * 获得 批次<br>
+	 * 批次
+	 * @return 批次
+	*/
+	public String getBatchId() {
+		return batchId;
+	}
+	
+	/**
+	 * 设置 批次
+	 * @param batchId 批次
+	 * @return 当前对象
+	*/
+	public AutoTask setBatchId(String batchId) {
+		this.batchId=batchId;
 		return this;
 	}
 	
@@ -415,6 +446,25 @@ public class AutoTask extends Entity {
 	*/
 	public AutoTask setGroup(AutoGroup group) {
 		this.group=group;
+		return this;
+	}
+	
+	/**
+	 * 获得 batch<br>
+	 * batch
+	 * @return batch
+	*/
+	public AutoGroup getBatch() {
+		return batch;
+	}
+	
+	/**
+	 * 设置 batch
+	 * @param batch batch
+	 * @return 当前对象
+	*/
+	public AutoTask setBatch(AutoGroup batch) {
+		this.batch=batch;
 		return this;
 	}
 	

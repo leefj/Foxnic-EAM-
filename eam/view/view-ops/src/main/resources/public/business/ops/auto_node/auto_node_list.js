@@ -1,7 +1,7 @@
 /**
  * 节点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 15:48:40
+ * @since 2022-08-22 09:07:08
  */
 
 
@@ -78,11 +78,13 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
+					,{ field: 'ownerId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('归属') , templet: function (d) { return templet('ownerId',d.ownerId,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'groupId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('分组'), templet: function (d) { return templet('groupId' ,fox.joinLabel(d.group,"name",',','','groupId'),d);}}
 					,{ field: 'type', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('节点类型'), templet: function (d) { return templet('type' ,fox.joinLabel(d.typeDict,"label",',','','type'),d);}}
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'ip', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('IP') , templet: function (d) { return templet('ip',d.ip,d);}  }
+					,{ field: 'port', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('端口') , templet: function (d) { return templet('port',d.port,d);}  }
 					,{ field: 'voucherId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('凭证'), templet: function (d) { return templet('voucherId' ,fox.joinLabel(d.voucher,"name",',','','voucherId'),d);}}
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}

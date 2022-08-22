@@ -23,7 +23,7 @@ import java.util.Map;
  * 节点 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 15:48:38
+ * @since 2022-08-22 09:07:07
 */
 
 public interface IAutoNodeService extends  ISimpleIdService<AutoNode,String> {

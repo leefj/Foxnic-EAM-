@@ -2,7 +2,7 @@
 /**
  * 批次作业 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 16:09:10
+ * @since 2022-08-22 10:56:03
  */
  -->
  <!DOCTYPE html>
@@ -38,7 +38,7 @@
 
 
 
-        <div class="layui-row form-row" id="random-3140-content">
+        <div class="layui-row form-row" id="random-6318-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -68,9 +68,9 @@
 
 
                     <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('分组')}">分组</div></div>
+                        <div class="layui-form-label "><div th:text="${lang.translate('批次')}">批次</div></div>
                         <div class="layui-input-block ">
-                            <div id="groupId" input-type="select" th:data="${'/service-ops/ops-auto-group/query-paged-list'}" extraParam="{}"></div>
+                            <div id="batchId" input-type="select" th:data="${'/service-ops/ops-auto-batch/query-paged-list'}" extraParam="{}"></div>
                         </div>
                     </div>
 
@@ -92,7 +92,7 @@
 
 
 
-        <div class="layui-row form-row" id="random-3509-content">
+        <div class="layui-row form-row" id="random-7699-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->

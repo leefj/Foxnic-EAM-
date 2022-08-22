@@ -13,7 +13,7 @@ import com.dt.platform.domain.ops.AutoVoucher;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 15:48:38
+ * @since 2022-08-22 09:07:07
  * @sign 1BF0833ED01505E6D1141402C3E7C9F7
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -121,6 +121,16 @@ public class AutoNodeVOMeta extends AutoNodeMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoNodeVO,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoNodeVO.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
 	
 	/**
+	 * 归属 , 类型: java.lang.String
+	*/
+	public static final String OWNER_ID="ownerId";
+	
+	/**
+	 * 归属 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoNodeVO,java.lang.String> OWNER_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoNodeVO.class ,OWNER_ID, java.lang.String.class, "归属", "归属", java.lang.String.class, null);
+	
+	/**
 	 * 名称 , 类型: java.lang.String
 	*/
 	public static final String NAME="name";
@@ -169,6 +179,16 @@ public class AutoNodeVOMeta extends AutoNodeMeta {
 	 * IP , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoNodeVO,java.lang.String> IP_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoNodeVO.class ,IP, java.lang.String.class, "IP", "IP", java.lang.String.class, null);
+	
+	/**
+	 * 端口 , 类型: java.lang.Integer
+	*/
+	public static final String PORT="port";
+	
+	/**
+	 * 端口 , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoNodeVO,java.lang.Integer> PORT_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoNodeVO.class ,PORT, java.lang.Integer.class, "端口", "端口", java.lang.Integer.class, null);
 	
 	/**
 	 * 凭证 , 类型: java.lang.String
@@ -293,7 +313,7 @@ public class AutoNodeVOMeta extends AutoNodeMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , NAME , GROUP_ID , TYPE , STATUS , IP , VOUCHER_ID , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , TYPE_DICT , GROUP , VOUCHER };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , OWNER_ID , NAME , GROUP_ID , TYPE , STATUS , IP , PORT , VOUCHER_ID , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , TYPE_DICT , GROUP , VOUCHER };
 	
 	/**
 	 * 代理类
@@ -414,6 +434,17 @@ public class AutoNodeVOMeta extends AutoNodeMeta {
 		}
 		
 		/**
+		 * 设置 归属
+		 * @param ownerId 归属
+		 * @return 当前对象
+		*/
+		public AutoNode setOwnerId(String ownerId) {
+			super.change(OWNER_ID,super.getOwnerId(),ownerId);
+			super.setOwnerId(ownerId);
+			return this;
+		}
+		
+		/**
 		 * 设置 名称
 		 * @param name 名称
 		 * @return 当前对象
@@ -465,6 +496,17 @@ public class AutoNodeVOMeta extends AutoNodeMeta {
 		public AutoNode setIp(String ip) {
 			super.change(IP,super.getIp(),ip);
 			super.setIp(ip);
+			return this;
+		}
+		
+		/**
+		 * 设置 端口
+		 * @param port 端口
+		 * @return 当前对象
+		*/
+		public AutoNode setPort(Integer port) {
+			super.change(PORT,super.getPort(),port);
+			super.setPort(port);
 			return this;
 		}
 		

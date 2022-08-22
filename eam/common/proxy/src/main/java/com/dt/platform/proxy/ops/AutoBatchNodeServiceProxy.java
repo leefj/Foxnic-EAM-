@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.cloud.openfeign.FeignClient;
-import com.dt.platform.domain.ops.AutoGroupNode;
-import com.dt.platform.domain.ops.AutoGroupNodeVO;
+import com.dt.platform.domain.ops.AutoBatchNode;
+import com.dt.platform.domain.ops.AutoBatchNodeVO;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -19,10 +19,10 @@ import com.dt.platform.proxy.ServiceNames;
  * 分组节点  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 09:09:25
+ * @since 2022-08-22 10:20:37
  */
-@FeignClient(value = ServiceNames.OPS, contextId = AutoGroupNodeServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
-public interface AutoGroupNodeServiceProxy {
+@FeignClient(value = ServiceNames.OPS, contextId = AutoBatchNodeServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
+public interface AutoBatchNodeServiceProxy {
 
     /**
      * 基础路径 , service-ops
@@ -30,9 +30,9 @@ public interface AutoGroupNodeServiceProxy {
     public static final String API_BASIC_PATH = "service-ops";
 
     /**
-     * API 上下文路径 , ops-auto-group-node
+     * API 上下文路径 , ops-auto-batch-node
      */
-    public static final String API_CONTEXT_PATH = "ops-auto-group-node";
+    public static final String API_CONTEXT_PATH = "ops-auto-batch-node";
 
     /**
      * API 基础路径 , 由 API_BASIC_PATH 和 API_CONTEXT_PATH 两部分组成
@@ -87,66 +87,66 @@ public interface AutoGroupNodeServiceProxy {
     /**
      * 添加分组节点
      */
-    @RequestMapping(AutoGroupNodeServiceProxy.INSERT)
-    Result insert(@RequestParam(name = "autoGroupNodeVO") AutoGroupNodeVO autoGroupNodeVO);
+    @RequestMapping(AutoBatchNodeServiceProxy.INSERT)
+    Result insert(@RequestParam(name = "autoBatchNodeVO") AutoBatchNodeVO autoBatchNodeVO);
 
     /**
      * 删除分组节点
      */
-    @RequestMapping(AutoGroupNodeServiceProxy.DELETE)
+    @RequestMapping(AutoBatchNodeServiceProxy.DELETE)
     Result deleteById(@RequestParam(name = "id") String id);
 
     /**
      * 批量删除分组节点
      */
-    @RequestMapping(AutoGroupNodeServiceProxy.DELETE_BY_IDS)
+    @RequestMapping(AutoBatchNodeServiceProxy.DELETE_BY_IDS)
     Result deleteByIds(@RequestParam(name = "ids") List<String> ids);
 
     /**
      * 更新分组节点
      */
-    @RequestMapping(AutoGroupNodeServiceProxy.UPDATE)
-    Result update(@RequestParam(name = "autoGroupNodeVO") AutoGroupNodeVO autoGroupNodeVO);
+    @RequestMapping(AutoBatchNodeServiceProxy.UPDATE)
+    Result update(@RequestParam(name = "autoBatchNodeVO") AutoBatchNodeVO autoBatchNodeVO);
 
     /**
      * 更新分组节点
      */
-    @RequestMapping(AutoGroupNodeServiceProxy.SAVE)
-    Result save(@RequestParam(name = "autoGroupNodeVO") AutoGroupNodeVO autoGroupNodeVO);
+    @RequestMapping(AutoBatchNodeServiceProxy.SAVE)
+    Result save(@RequestParam(name = "autoBatchNodeVO") AutoBatchNodeVO autoBatchNodeVO);
 
     /**
      * 获取分组节点
      */
-    @RequestMapping(AutoGroupNodeServiceProxy.GET_BY_ID)
-    Result<AutoGroupNode> getById(@RequestParam(name = "id") String id);
+    @RequestMapping(AutoBatchNodeServiceProxy.GET_BY_ID)
+    Result<AutoBatchNode> getById(@RequestParam(name = "id") String id);
 
     /**
      * 获取多个分组节点
      */
-    @RequestMapping(AutoGroupNodeServiceProxy.GET_BY_IDS)
-    Result<List<AutoGroupNode>> getByIds(@RequestParam(name = "ids") List<String> ids);
+    @RequestMapping(AutoBatchNodeServiceProxy.GET_BY_IDS)
+    Result<List<AutoBatchNode>> getByIds(@RequestParam(name = "ids") List<String> ids);
 
     /**
      * 查询分组节点
      */
-    @RequestMapping(AutoGroupNodeServiceProxy.QUERY_LIST)
-    Result<List<AutoGroupNode>> queryList(@RequestParam(name = "sample") AutoGroupNodeVO sample);
+    @RequestMapping(AutoBatchNodeServiceProxy.QUERY_LIST)
+    Result<List<AutoBatchNode>> queryList(@RequestParam(name = "sample") AutoBatchNodeVO sample);
 
     /**
      * 分页查询分组节点
      */
-    @RequestMapping(AutoGroupNodeServiceProxy.QUERY_PAGED_LIST)
-    Result<PagedList<AutoGroupNode>> queryPagedList(@RequestParam(name = "sample") AutoGroupNodeVO sample);
+    @RequestMapping(AutoBatchNodeServiceProxy.QUERY_PAGED_LIST)
+    Result<PagedList<AutoBatchNode>> queryPagedList(@RequestParam(name = "sample") AutoBatchNodeVO sample);
 
     /**
      * 控制器类名
      */
-    public static final String CONTROLLER_CLASS_NAME = "com.dt.platform.ops.controller.AutoGroupNodeController";
+    public static final String CONTROLLER_CLASS_NAME = "com.dt.platform.ops.controller.AutoBatchNodeController";
 
     /**
      * 统一的调用接口，实现在单体应用和微服务应用下的无差异调用
      */
-    public static AutoGroupNodeServiceProxy api() {
-        return APIProxy.get(AutoGroupNodeServiceProxy.class, CONTROLLER_CLASS_NAME);
+    public static AutoBatchNodeServiceProxy api() {
+        return APIProxy.get(AutoBatchNodeServiceProxy.class, CONTROLLER_CLASS_NAME);
     }
 }

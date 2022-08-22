@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-08-21 16:21:04
+ * @since 2022-08-22 10:53:04
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -371,7 +371,147 @@ public class OpsTables {
 	}
 	
 	/**
-	 * 自动化分组
+	 * 节点批次
+	*/
+	public static class OPS_AUTO_BATCH extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "ops_auto_batch";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OPS_AUTO_BATCH() {
+			this.init($NAME,"节点批次" , ID , NAME , STATUS , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final OPS_AUTO_BATCH $TABLE=new OPS_AUTO_BATCH();
+	}
+	
+	/**
+	 * 分组节点
+	*/
+	public static class OPS_AUTO_BATCH_NODE extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "ops_auto_batch_node";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 分组
+		*/
+		public static final DBField GROUP_ID = new DBField(DBDataType.STRING , "group_id","groupId","分组","分组",false,false,true);
+		
+		/**
+		 * 节点
+		*/
+		public static final DBField NODE_ID = new DBField(DBDataType.STRING , "node_id","nodeId","节点","节点",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OPS_AUTO_BATCH_NODE() {
+			this.init($NAME,"分组节点" , ID , GROUP_ID , NODE_ID , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final OPS_AUTO_BATCH_NODE $TABLE=new OPS_AUTO_BATCH_NODE();
+	}
+	
+	/**
+	 * 节点分组
 	*/
 	public static class OPS_AUTO_GROUP extends DBTable {
 		
@@ -435,79 +575,9 @@ public class OpsTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public OPS_AUTO_GROUP() {
-			this.init($NAME,"自动化分组" , ID , NAME , STATUS , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"节点分组" , ID , NAME , STATUS , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final OPS_AUTO_GROUP $TABLE=new OPS_AUTO_GROUP();
-	}
-	
-	/**
-	 * 分组节点
-	*/
-	public static class OPS_AUTO_GROUP_NODE extends DBTable {
-		
-		/**
-		 * 表名
-		*/
-		public static final String $NAME = "ops_auto_group_node";
-		
-		/**
-		 * 主键
-		*/
-		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
-		
-		/**
-		 * 分组
-		*/
-		public static final DBField GROUP_ID = new DBField(DBDataType.STRING , "group_id","groupId","分组","分组",false,false,true);
-		
-		/**
-		 * 节点
-		*/
-		public static final DBField NODE_ID = new DBField(DBDataType.STRING , "node_id","nodeId","节点","节点",false,false,true);
-		
-		/**
-		 * 备注
-		*/
-		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
-		
-		/**
-		 * 修改人ID
-		*/
-		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
-		
-		/**
-		 * 修改时间
-		*/
-		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
-		
-		/**
-		 * 是否已删除
-		*/
-		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
-		
-		/**
-		 * 删除人ID
-		*/
-		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
-		
-		/**
-		 * 删除时间
-		*/
-		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
-		
-		/**
-		*/
-		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
-		
-		/**
-		 * 租户
-		*/
-		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
-		
-		public OPS_AUTO_GROUP_NODE() {
-			this.init($NAME,"分组节点" , ID , GROUP_ID , NODE_ID , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
-		}
-		public static final OPS_AUTO_GROUP_NODE $TABLE=new OPS_AUTO_GROUP_NODE();
 	}
 	
 	/**
@@ -524,6 +594,11 @@ public class OpsTables {
 		 * 主键
 		*/
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 归属
+		*/
+		public static final DBField OWNER_ID = new DBField(DBDataType.STRING , "owner_id","ownerId","归属","归属",false,false,true);
 		
 		/**
 		 * 名称
@@ -549,6 +624,11 @@ public class OpsTables {
 		 * IP
 		*/
 		public static final DBField IP = new DBField(DBDataType.STRING , "ip","ip","IP","IP",false,false,true);
+		
+		/**
+		 * 端口
+		*/
+		public static final DBField PORT = new DBField(DBDataType.INTEGER , "port","port","端口","端口",false,false,true);
 		
 		/**
 		 * 凭证
@@ -595,7 +675,7 @@ public class OpsTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public OPS_AUTO_NODE() {
-			this.init($NAME,"节点" , ID , NAME , GROUP_ID , TYPE , STATUS , IP , VOUCHER_ID , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"节点" , ID , OWNER_ID , NAME , GROUP_ID , TYPE , STATUS , IP , PORT , VOUCHER_ID , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final OPS_AUTO_NODE $TABLE=new OPS_AUTO_NODE();
 	}
@@ -624,6 +704,11 @@ public class OpsTables {
 		 * 分组
 		*/
 		public static final DBField GROUP_ID = new DBField(DBDataType.STRING , "group_id","groupId","分组","分组",false,false,true);
+		
+		/**
+		 * 批次
+		*/
+		public static final DBField BATCH_ID = new DBField(DBDataType.STRING , "batch_id","batchId","批次","批次",false,false,true);
 		
 		/**
 		 * 动作
@@ -675,7 +760,7 @@ public class OpsTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public OPS_AUTO_TASK() {
-			this.init($NAME,"批次作业" , ID , NAME , GROUP_ID , ACTION_ID , STATUS , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"批次作业" , ID , NAME , GROUP_ID , BATCH_ID , ACTION_ID , STATUS , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final OPS_AUTO_TASK $TABLE=new OPS_AUTO_TASK();
 	}
@@ -731,9 +816,14 @@ public class OpsTables {
 		public static final DBField ETIME = new DBField(DBDataType.DATE , "etime","etime","结束时间","结束时间",false,false,true);
 		
 		/**
-		 * 内容
+		 * 记录结果
 		*/
-		public static final DBField RECORD_CONTENT = new DBField(DBDataType.STRING , "record_content","recordContent","内容","内容",false,false,true);
+		public static final DBField RECORD_CONTENT = new DBField(DBDataType.STRING , "record_content","recordContent","记录结果","记录结果",false,false,true);
+		
+		/**
+		 * 内容明细
+		*/
+		public static final DBField CONTENT_DETAIL = new DBField(DBDataType.STRING , "content_detail","contentDetail","内容明细","内容明细",false,false,true);
 		
 		/**
 		 * 记录时间
@@ -780,7 +870,7 @@ public class OpsTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public OPS_AUTO_TASK_LOG() {
-			this.init($NAME,"明细日志" , ID , TASK_ID , M_LOG_ID , ACTION_ID , NODE_ID , STATUS , STIME , ETIME , RECORD_CONTENT , RECORD_TIME , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"明细日志" , ID , TASK_ID , M_LOG_ID , ACTION_ID , NODE_ID , STATUS , STIME , ETIME , RECORD_CONTENT , CONTENT_DETAIL , RECORD_TIME , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final OPS_AUTO_TASK_LOG $TABLE=new OPS_AUTO_TASK_LOG();
 	}

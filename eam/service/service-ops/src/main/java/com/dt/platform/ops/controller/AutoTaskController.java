@@ -113,6 +113,7 @@ public class AutoTaskController extends SuperController {
 	}
 
 
+
 	/**
 	 * 批量删除批次作业 <br>
 	 * 联合主键时，请自行调整实现
@@ -225,6 +226,7 @@ public class AutoTaskController extends SuperController {
 		// join 关联的对象
 		autoTaskService.dao().fill(autoTask)
 			.with(AutoTaskMeta.ACTION)
+				.with(AutoTaskMeta.BATCH)
 			.with(AutoTaskMeta.GROUP)
 			.execute();
 		result.success(true).data(autoTask);
@@ -250,6 +252,8 @@ public class AutoTaskController extends SuperController {
 		result.success(true).data(list);
 		return result;
 	}
+
+
 
 
 	/**
@@ -296,10 +300,32 @@ public class AutoTaskController extends SuperController {
 		// join 关联的对象
 		autoTaskService.dao().fill(list)
 			.with(AutoTaskMeta.ACTION)
+				.with(AutoTaskMeta.BATCH)
 			.with(AutoTaskMeta.GROUP)
 			.execute();
 		result.success(true).data(list);
 		return result;
+	}
+
+
+
+	/**
+	 * 执行作业
+	 */
+	@ApiOperation(value = "执行作业")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = AutoTaskVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "613764113549492224")
+	})
+	@ApiOperationSupport(order=9)
+	@NotNull(name = AutoTaskVOMeta.ID)
+	@SentinelResource(value = AutoTaskServiceProxy.EXECUTE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(AutoTaskServiceProxy.EXECUTE)
+	public Result execute(String id,String method) {
+		Result result=autoTaskService.execute(id,method);
+		Result r=new Result();
+		r.success();
+		r.message("已提交至后台执行,请在日志中查看执行结果");
+		return r;
 	}
 
 

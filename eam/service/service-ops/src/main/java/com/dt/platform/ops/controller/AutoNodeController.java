@@ -52,7 +52,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 节点 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 15:48:39
+ * @since 2022-08-22 09:07:07
 */
 
 @Api(tags = "节点")
@@ -70,12 +70,14 @@ public class AutoNodeController extends SuperController {
 	@ApiOperation(value = "添加节点")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = AutoNodeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "613661580453740544"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.OWNER_ID , value = "归属" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoNodeVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "节点1"),
 		@ApiImplicitParam(name = AutoNodeVOMeta.GROUP_ID , value = "分组" , required = false , dataTypeClass=String.class , example = "613661086134042624"),
 		@ApiImplicitParam(name = AutoNodeVOMeta.TYPE , value = "节点类型" , required = false , dataTypeClass=String.class , example = "host"),
 		@ApiImplicitParam(name = AutoNodeVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
 		@ApiImplicitParam(name = AutoNodeVOMeta.IP , value = "IP" , required = false , dataTypeClass=String.class , example = "127.0.0.1"),
-		@ApiImplicitParam(name = AutoNodeVOMeta.VOUCHER_ID , value = "凭证" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AutoNodeVOMeta.PORT , value = "端口" , required = false , dataTypeClass=Integer.class , example = "22"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.VOUCHER_ID , value = "凭证" , required = false , dataTypeClass=String.class , example = "1"),
 		@ApiImplicitParam(name = AutoNodeVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=1)
@@ -174,12 +176,14 @@ public class AutoNodeController extends SuperController {
 	@ApiOperation(value = "更新节点")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = AutoNodeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "613661580453740544"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.OWNER_ID , value = "归属" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoNodeVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "节点1"),
 		@ApiImplicitParam(name = AutoNodeVOMeta.GROUP_ID , value = "分组" , required = false , dataTypeClass=String.class , example = "613661086134042624"),
 		@ApiImplicitParam(name = AutoNodeVOMeta.TYPE , value = "节点类型" , required = false , dataTypeClass=String.class , example = "host"),
 		@ApiImplicitParam(name = AutoNodeVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
 		@ApiImplicitParam(name = AutoNodeVOMeta.IP , value = "IP" , required = false , dataTypeClass=String.class , example = "127.0.0.1"),
-		@ApiImplicitParam(name = AutoNodeVOMeta.VOUCHER_ID , value = "凭证" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AutoNodeVOMeta.PORT , value = "端口" , required = false , dataTypeClass=Integer.class , example = "22"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.VOUCHER_ID , value = "凭证" , required = false , dataTypeClass=String.class , example = "1"),
 		@ApiImplicitParam(name = AutoNodeVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport( order=4 , ignoreParameters = { AutoNodeVOMeta.PAGE_INDEX , AutoNodeVOMeta.PAGE_SIZE , AutoNodeVOMeta.SEARCH_FIELD , AutoNodeVOMeta.FUZZY_FIELD , AutoNodeVOMeta.SEARCH_VALUE , AutoNodeVOMeta.DIRTY_FIELDS , AutoNodeVOMeta.SORT_FIELD , AutoNodeVOMeta.SORT_TYPE , AutoNodeVOMeta.IDS } )
@@ -197,12 +201,14 @@ public class AutoNodeController extends SuperController {
 	@ApiOperation(value = "保存节点")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = AutoNodeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "613661580453740544"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.OWNER_ID , value = "归属" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoNodeVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "节点1"),
 		@ApiImplicitParam(name = AutoNodeVOMeta.GROUP_ID , value = "分组" , required = false , dataTypeClass=String.class , example = "613661086134042624"),
 		@ApiImplicitParam(name = AutoNodeVOMeta.TYPE , value = "节点类型" , required = false , dataTypeClass=String.class , example = "host"),
 		@ApiImplicitParam(name = AutoNodeVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
 		@ApiImplicitParam(name = AutoNodeVOMeta.IP , value = "IP" , required = false , dataTypeClass=String.class , example = "127.0.0.1"),
-		@ApiImplicitParam(name = AutoNodeVOMeta.VOUCHER_ID , value = "凭证" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AutoNodeVOMeta.PORT , value = "端口" , required = false , dataTypeClass=Integer.class , example = "22"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.VOUCHER_ID , value = "凭证" , required = false , dataTypeClass=String.class , example = "1"),
 		@ApiImplicitParam(name = AutoNodeVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { AutoNodeVOMeta.PAGE_INDEX , AutoNodeVOMeta.PAGE_SIZE , AutoNodeVOMeta.SEARCH_FIELD , AutoNodeVOMeta.FUZZY_FIELD , AutoNodeVOMeta.SEARCH_VALUE , AutoNodeVOMeta.DIRTY_FIELDS , AutoNodeVOMeta.SORT_FIELD , AutoNodeVOMeta.SORT_TYPE , AutoNodeVOMeta.IDS } )
@@ -266,12 +272,14 @@ public class AutoNodeController extends SuperController {
 	@ApiOperation(value = "查询节点")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = AutoNodeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "613661580453740544"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.OWNER_ID , value = "归属" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoNodeVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "节点1"),
 		@ApiImplicitParam(name = AutoNodeVOMeta.GROUP_ID , value = "分组" , required = false , dataTypeClass=String.class , example = "613661086134042624"),
 		@ApiImplicitParam(name = AutoNodeVOMeta.TYPE , value = "节点类型" , required = false , dataTypeClass=String.class , example = "host"),
 		@ApiImplicitParam(name = AutoNodeVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
 		@ApiImplicitParam(name = AutoNodeVOMeta.IP , value = "IP" , required = false , dataTypeClass=String.class , example = "127.0.0.1"),
-		@ApiImplicitParam(name = AutoNodeVOMeta.VOUCHER_ID , value = "凭证" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AutoNodeVOMeta.PORT , value = "端口" , required = false , dataTypeClass=Integer.class , example = "22"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.VOUCHER_ID , value = "凭证" , required = false , dataTypeClass=String.class , example = "1"),
 		@ApiImplicitParam(name = AutoNodeVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { AutoNodeVOMeta.PAGE_INDEX , AutoNodeVOMeta.PAGE_SIZE } )
@@ -291,12 +299,14 @@ public class AutoNodeController extends SuperController {
 	@ApiOperation(value = "分页查询节点")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = AutoNodeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "613661580453740544"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.OWNER_ID , value = "归属" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoNodeVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "节点1"),
 		@ApiImplicitParam(name = AutoNodeVOMeta.GROUP_ID , value = "分组" , required = false , dataTypeClass=String.class , example = "613661086134042624"),
 		@ApiImplicitParam(name = AutoNodeVOMeta.TYPE , value = "节点类型" , required = false , dataTypeClass=String.class , example = "host"),
 		@ApiImplicitParam(name = AutoNodeVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
 		@ApiImplicitParam(name = AutoNodeVOMeta.IP , value = "IP" , required = false , dataTypeClass=String.class , example = "127.0.0.1"),
-		@ApiImplicitParam(name = AutoNodeVOMeta.VOUCHER_ID , value = "凭证" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AutoNodeVOMeta.PORT , value = "端口" , required = false , dataTypeClass=Integer.class , example = "22"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.VOUCHER_ID , value = "凭证" , required = false , dataTypeClass=String.class , example = "1"),
 		@ApiImplicitParam(name = AutoNodeVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=8)

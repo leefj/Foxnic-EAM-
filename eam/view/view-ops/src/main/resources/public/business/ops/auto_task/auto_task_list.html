@@ -2,7 +2,7 @@
 /**
  * 批次作业 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 16:09:09
+ * @since 2022-08-22 10:56:02
  */
  -->
  <!DOCTYPE html>
@@ -39,6 +39,7 @@
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 批次 , batchId ,typeName=select_box, isHideInSearch=true -->
                     <!-- 状态 , status ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style=""><span th:text="${lang.translate('状态')}" class="search-label status-label">状态</span><span class="search-colon">:</span></div>
@@ -114,8 +115,8 @@
 
     <button th:if="${perm.checkAuth('ops_auto_task:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除')}">删除</span></button>
 
-    <button th:if="${perm.checkAuth('ops_auto_task:check')}"class="layui-btn layui-btn-xs " lay-event="auto-task-check" data-id="{{d.id}}"><span th:text="${lang.translate('连通检查')}">连通检查</span></button>
-    <button th:if="${perm.checkAuth('ops_auto_task:execute')}"class="layui-btn layui-btn-xs " lay-event="auto-task-execute" data-id="{{d.id}}"><span th:text="${lang.translate('执行')}">执行</span></button>
+    <button th:if="${perm.checkAuth('ops_auto_task:check')}"class="layui-btn layui-btn-xs  auto-task-check " lay-event="auto-task-check" data-id="{{d.id}}"><span th:text="${lang.translate('连通检查')}">连通检查</span></button>
+    <button th:if="${perm.checkAuth('ops_auto_task:execute')}"class="layui-btn layui-btn-xs  auto-task-execute " lay-event="auto-task-execute" data-id="{{d.id}}"><span th:text="${lang.translate('执行')}">执行</span></button>
     <button th:if="${perm.checkAuth('ops_auto_task:log')}"class="layui-btn layui-btn-xs " lay-event="auto-task-log" data-id="{{d.id}}"><span th:text="${lang.translate('日志')}">日志</span></button>
 
 </script>

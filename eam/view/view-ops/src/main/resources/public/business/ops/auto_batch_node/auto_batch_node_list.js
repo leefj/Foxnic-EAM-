@@ -1,7 +1,7 @@
 /**
  * 分组节点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 09:09:26
+ * @since 2022-08-22 10:20:38
  */
 
 
@@ -9,7 +9,7 @@ function ListPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect;
 	//模块基础路径
-	const moduleURL="/service-ops/ops-auto-group-node";
+	const moduleURL="/service-ops/ops-auto-batch-node";
 	var dataTable=null;
 	var sort=null;
 	/**
@@ -80,7 +80,6 @@ function ListPage() {
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'groupId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('分组') , templet: function (d) { return templet('groupId',d.groupId,d);}  }
 					,{ field: 'nodeId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('节点') , templet: function (d) { return templet('nodeId',d.nodeId,d);}  }
-					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态') , templet: function (d) { return templet('status',d.status,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
@@ -224,7 +223,7 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
-					admin.putTempData('ops-auto-group-node-form-data', {});
+					admin.putTempData('ops-auto-batch-node-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
@@ -243,7 +242,7 @@ function ListPage() {
         function openCreateFrom() {
         	//设置新增是初始化数据
         	var data={};
-			admin.putTempData('ops-auto-group-node-form-data-form-action', "create",true);
+			admin.putTempData('ops-auto-batch-node-form-data-form-action', "create",true);
             showEditForm(data);
         };
 
@@ -293,11 +292,11 @@ function ListPage() {
 				if(!doNext) return;
 			}
 
-			admin.putTempData('ops-auto-group-node-form-data-form-action', "",true);
+			admin.putTempData('ops-auto-batch-node-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
 				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
 					if(data.success) {
-						admin.putTempData('ops-auto-group-node-form-data-form-action', "edit",true);
+						admin.putTempData('ops-auto-batch-node-form-data-form-action', "edit",true);
 						showEditForm(data.data);
 					} else {
 						 fox.showMessage(data);
@@ -306,7 +305,7 @@ function ListPage() {
 			} else if (layEvent === 'view') { // 查看
 				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
 					if(data.success) {
-						admin.putTempData('ops-auto-group-node-form-data-form-action', "view",true);
+						admin.putTempData('ops-auto-batch-node-form-data-form-action', "view",true);
 						showEditForm(data.data);
 					} else {
 						fox.showMessage(data);
@@ -350,14 +349,14 @@ function ListPage() {
 			var doNext=window.pageExt.list.beforeEdit(data);
 			if(!doNext) return;
 		}
-		var action=admin.getTempData('ops-auto-group-node-form-data-form-action');
+		var action=admin.getTempData('ops-auto-batch-node-form-data-form-action');
 		var queryString="";
 		if(data && data.id) queryString='id=' + data.id;
 		if(window.pageExt.list.makeFormQueryString) {
 			queryString=window.pageExt.list.makeFormQueryString(data,queryString,action);
 		}
-		admin.putTempData('ops-auto-group-node-form-data', data);
-		var area=admin.getTempData('ops-auto-group-node-form-area');
+		admin.putTempData('ops-auto-batch-node-form-data', data);
+		var area=admin.getTempData('ops-auto-batch-node-form-area');
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
 		var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
 		var title = fox.translate('分组节点');
@@ -371,8 +370,8 @@ function ListPage() {
 			offset: [top,null],
 			area: ["80%",height+"px"],
 			type: 2,
-			id:"ops-auto-group-node-form-data-win",
-			content: '/business/ops/auto_group_node/auto_group_node_form.html' + (queryString?("?"+queryString):""),
+			id:"ops-auto-batch-node-form-data-win",
+			content: '/business/ops/auto_batch_node/auto_batch_node_form.html' + (queryString?("?"+queryString):""),
 			finish: function () {
 				if(action=="create") {
 					refreshTableData();

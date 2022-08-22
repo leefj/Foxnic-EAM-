@@ -1,33 +1,32 @@
 package com.dt.platform.generator.module.ops;
 
 import com.dt.platform.constants.db.OpsTables;
-import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.generator.config.Config;
 import com.github.foxnic.generator.config.WriteMode;
 
-public class AutoGroupNodeGtr extends BaseCodeGenerator{
+public class AutoBatchNodeGtr extends BaseCodeGenerator{
 
 
-    public AutoGroupNodeGtr() {
-        super(OpsTables.OPS_AUTO_GROUP_NODE.$TABLE,"613652361268690944");
+    public AutoBatchNodeGtr() {
+        super(OpsTables.OPS_AUTO_BATCH_NODE.$TABLE,"613652361268690944");
     }
 
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
-        cfg.view().field(OpsTables.OPS_AUTO_GROUP_NODE.NOTES).search().fuzzySearch();
+        cfg.view().field(OpsTables.OPS_AUTO_BATCH_NODE.NOTES).search().fuzzySearch();
 
         cfg.view().search().inputLayout(
                 new Object[]{
-                        OpsTables.OPS_AUTO_GROUP_NODE.NOTES,
+                        OpsTables.OPS_AUTO_BATCH_NODE.NOTES,
                 }
         );
-        cfg.view().field(OpsTables.OPS_AUTO_GROUP_NODE.ID).basic().hidden(true);
+        cfg.view().field(OpsTables.OPS_AUTO_BATCH_NODE.ID).basic().hidden(true);
 
         cfg.view().formWindow().bottomSpace(80);
         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().form().addGroup(null,
                 new Object[] {
-                        OpsTables.OPS_AUTO_GROUP_NODE.NOTES,
+                        OpsTables.OPS_AUTO_BATCH_NODE.NOTES,
                 }
         );
 
@@ -44,7 +43,7 @@ public class AutoGroupNodeGtr extends BaseCodeGenerator{
     }
 
     public static void main(String[] args) throws Exception {
-        AutoGroupNodeGtr g=new AutoGroupNodeGtr();
+        AutoBatchNodeGtr g=new AutoBatchNodeGtr();
         //生成代码
         g.generateCode();
       //  g.generateMenu(AutoGroupServiceProxy.class, AutoGroupPageController.class);

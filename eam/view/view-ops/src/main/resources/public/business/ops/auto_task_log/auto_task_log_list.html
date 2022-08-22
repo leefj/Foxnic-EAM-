@@ -2,7 +2,7 @@
 /**
  * 明细日志 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 16:47:42
+ * @since 2022-08-22 08:59:52
  */
  -->
  <!DOCTYPE html>
@@ -48,6 +48,7 @@
                     </div>
                     <!-- 开始时间 , stime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 结束时间 , etime ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 内容明细 , contentDetail ,typeName=text_area, isHideInSearch=true -->
                     <!-- 作业 , taskId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style=""><span th:text="${lang.translate('作业')}" class="search-label taskId-label">作业</span><span class="search-colon">:</span></div>
@@ -58,9 +59,9 @@
                         <div class="search-label-div" style=""><span th:text="${lang.translate('节点')}" class="search-label nodeId-label">节点</span><span class="search-colon">:</span></div>
                         <div id="nodeId" th:data="${'/service-ops/ops-auto-node/query-paged-list'}" style="width:140px" extraParam="{}"></div>
                     </div>
-                    <!-- 内容 , recordContent ,typeName=text_area, isHideInSearch=false -->
+                    <!-- 记录结果 , recordContent ,typeName=text_area, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('内容')}" class="search-label recordContent-label">内容</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('记录结果')}" class="search-label recordContent-label">记录结果</span><span class="search-colon">:</span></div>
                         <input id="recordContent" class="layui-input search-input" style="width: 140px" type="text" />
                     </div>
 

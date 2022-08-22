@@ -69,7 +69,7 @@ public class AutoNodeGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_AUTO_NODE.VOUCHER_ID)
                 .basic().label("凭证").form().validate().form()
-                .form().selectBox().queryApi(MonitorVoucherServiceProxy.QUERY_PAGED_LIST)
+                .form().selectBox().queryApi(AutoVoucherServiceProxy.QUERY_PAGED_LIST)
                 .paging(true).filter(true).toolbar(false)
                 .valueField(AutoVoucherMeta.ID).
                 textField(AutoVoucherMeta.NAME).
@@ -86,6 +86,7 @@ public class AutoNodeGtr extends BaseCodeGenerator{
                         OpsTables.OPS_AUTO_NODE.STATUS,
                         OpsTables.OPS_AUTO_NODE.TYPE,
                         OpsTables.OPS_AUTO_NODE.IP,
+                        OpsTables.OPS_AUTO_NODE.PORT,
                         OpsTables.OPS_AUTO_NODE.VOUCHER_ID,
                         OpsTables.OPS_AUTO_NODE.NOTES,
                 }

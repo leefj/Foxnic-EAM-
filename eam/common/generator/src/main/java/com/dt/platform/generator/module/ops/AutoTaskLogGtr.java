@@ -67,7 +67,7 @@ public class AutoTaskLogGtr extends BaseCodeGenerator{
                 .paging(true).filter(false).toolbar(false)
                 .valueField(AutoNodeMeta.ID).
                 textField(AutoNodeMeta.NAME).
-                fillWith(AutoTaskLogMeta.NOTES).muliti(false);
+                fillWith(AutoTaskLogMeta.NODE).muliti(false);
 
         cfg.view().field(OpsTables.OPS_AUTO_TASK_LOG.TASK_ID)
                 .form().selectBox().queryApi(AutoTaskServiceProxy.QUERY_PAGED_LIST)
@@ -87,21 +87,27 @@ public class AutoTaskLogGtr extends BaseCodeGenerator{
         cfg.view().search().rowsDisplay(1);
         cfg.view().field(OpsTables.OPS_AUTO_TASK_LOG.ID).basic().hidden(true);
         cfg.view().field(OpsTables.OPS_AUTO_TASK_LOG.M_LOG_ID).basic().table().disable(true);
-        cfg.view().field(OpsTables.OPS_AUTO_TASK_LOG.RECORD_CONTENT).basic().table().disable(true);
+
         cfg.view().field(OpsTables.OPS_AUTO_TASK_LOG.RECORD_CONTENT).form().textArea().height(Config.textAreaHeight);
+
+        cfg.view().field(OpsTables.OPS_AUTO_TASK_LOG.CONTENT_DETAIL).basic().table().disable(true);
+        cfg.view().field(OpsTables.OPS_AUTO_TASK_LOG.CONTENT_DETAIL).form().textArea().height(Config.textAreaHeight*2);
         cfg.view().formWindow().bottomSpace(80);
         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().form().addGroup(null,
                 new Object[] {
+                        OpsTables.OPS_AUTO_TASK_LOG.STATUS,
                         OpsTables.OPS_AUTO_TASK_LOG.TASK_ID,
                         OpsTables.OPS_AUTO_TASK_LOG.NODE_ID,
+                        OpsTables.OPS_AUTO_TASK_LOG.RECORD_TIME,
+                        OpsTables.OPS_AUTO_TASK_LOG.STIME,
+                        OpsTables.OPS_AUTO_TASK_LOG.ETIME,
+                        OpsTables.OPS_AUTO_TASK_LOG.RECORD_CONTENT,
+                        OpsTables.OPS_AUTO_TASK_LOG.CONTENT_DETAIL,
                         OpsTables.OPS_AUTO_TASK_LOG.NOTES,
 
-                },
-                new Object[] {
-                        OpsTables.OPS_AUTO_TASK_LOG.RECORD_TIME,
-
                 }
+
 
         );
 

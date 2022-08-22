@@ -1,16 +1,19 @@
 package com.dt.platform.ops.service.impl;
 
 import javax.annotation.Resource;
+
+import com.dt.platform.ops.service.IAutoNodeService;
+import com.dt.platform.ops.service.IAutoTaskToolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.foxnic.commons.collection.MapUtil;
-import java.util.Arrays;
+
+import java.util.*;
 
 
 import com.dt.platform.domain.ops.AutoTask;
 import com.dt.platform.domain.ops.AutoTaskVO;
-import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.entity.SuperService;
@@ -19,19 +22,10 @@ import java.lang.reflect.Field;
 import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.api.error.ErrorDesc;
-import com.github.foxnic.dao.excel.ExcelWriter;
-import com.github.foxnic.dao.excel.ValidateResult;
-import com.github.foxnic.dao.excel.ExcelStructure;
-import java.io.InputStream;
 import com.github.foxnic.sql.meta.DBField;
 import com.github.foxnic.dao.data.SaveMode;
-import com.github.foxnic.dao.meta.DBColumnMeta;
-import com.github.foxnic.sql.expr.Select;
-import java.util.ArrayList;
 import com.dt.platform.ops.service.IAutoTaskService;
 import org.github.foxnic.web.framework.dao.DBConfigs;
-import java.util.Date;
-import java.util.Map;
 
 /**
  * <p>
@@ -50,6 +44,15 @@ public class AutoTaskServiceImpl extends SuperService<AutoTask> implements IAuto
 	 * */
 	@Resource(name=DBConfigs.PRIMARY_DAO) 
 	private DAO dao=null;
+
+
+
+	@Autowired
+	private IAutoTaskToolService autoTaskToolService;
+
+
+	@Autowired
+	private IAutoNodeService autoNodeService;
 
 	/**
 	 * 获得 DAO 对象
@@ -74,6 +77,12 @@ public class AutoTaskServiceImpl extends SuperService<AutoTask> implements IAuto
 	public Result insert(AutoTask autoTask,boolean throwsException) {
 		Result r=super.insert(autoTask,throwsException);
 		return r;
+	}
+
+
+	@Override
+	public Result execute(String id, String method) {
+		return autoTaskToolService.executeByTaskId(id,method);
 	}
 
 	/**

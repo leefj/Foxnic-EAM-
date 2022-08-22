@@ -152,10 +152,40 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log('moreAction',menu,data,it);
         },
         autoTaskCheck:function (data){
-            console.log('autoTaskCheck',data);
+            var ps={};
+            ps.id=data.id;
+            ps.method="check";
+            var btnClass="auto-task-check";
+            var btn=$('.'+btnClass).filter("[data-id='" +ps.id + "']");
+            var api=moduleURL+"/execute";
+            top.layer.confirm(fox.translate('确定进行该操作吗？'), function (i) {
+                top.layer.close(i);
+                admin.post(api, ps, function (r) {
+                    if (r.success) {
+                        fox.showMessage(r);
+                    } else {
+
+                    }
+                }, {delayLoading: 1000, elms: [btn]});
+            });
         },
         autoTaskExecute:function (data){
-            console.log('autoTaskExecute',data);
+            var ps={};
+            ps.id=data.id;
+            ps.method="execute";
+            var btnClass="auto-task-execute";
+            var btn=$('.'+btnClass).filter("[data-id='" +ps.id + "']");
+            var api=moduleURL+"/execute";
+            top.layer.confirm(fox.translate('确定进行该操作吗？'), function (i) {
+                top.layer.close(i);
+                admin.post(api, ps, function (r) {
+                    if (r.success) {
+                        fox.showMessage(r);
+                    } else {
+
+                    }
+                }, {delayLoading: 1000, elms: [btn]});
+            });
         },
         autoTaskLog:function (data){
             var queryString="?taskId="+data.id;

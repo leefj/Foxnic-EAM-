@@ -66,7 +66,6 @@ public class AutoTaskMLogGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_AUTO_TASK_M_LOG.STATUS).table().form().selectBox().enumType(OpsAutoTaskResultStatusEnum.class).defaultIndex(0);
 
         cfg.view().field(OpsTables.OPS_AUTO_TASK_M_LOG.ID).basic().hidden(true);
-        cfg.view().field(OpsTables.OPS_AUTO_TASK_M_LOG.CONTENT).basic().table().disable(true);
 
         cfg.view().field(OpsTables.OPS_AUTO_TASK_M_LOG.CONTENT).form().textArea().height(Config.textAreaHeight);
         cfg.view().formWindow().bottomSpace(80);

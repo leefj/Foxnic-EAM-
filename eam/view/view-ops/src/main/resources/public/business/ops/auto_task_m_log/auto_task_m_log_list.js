@@ -1,7 +1,7 @@
 /**
  * 执行日志 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 16:47:56
+ * @since 2022-08-22 08:16:57
  */
 
 
@@ -81,6 +81,7 @@ function ListPage() {
 					,{ field: 'taskId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('作业'), templet: function (d) { return templet('taskId' ,fox.joinLabel(d.task,"name",',','','taskId'),d);}}
 					,{ field: 'actionId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('动作'), templet: function (d) { return templet('actionId' ,fox.joinLabel(d.action,"name",',','','actionId'),d);}}
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status,'','status'),d);}}
+					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('内容') , templet: function (d) { return templet('content',d.content,d);}  }
 					,{ field: 'stime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('开始时间') ,templet: function (d) { return templet('stime',fox.dateFormat(d.stime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'etime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('结束时间') ,templet: function (d) { return templet('etime',fox.dateFormat(d.etime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}

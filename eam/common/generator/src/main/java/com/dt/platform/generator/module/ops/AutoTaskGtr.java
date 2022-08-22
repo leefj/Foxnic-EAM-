@@ -5,13 +5,11 @@ import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.domain.ops.AutoAction;
 import com.dt.platform.domain.ops.AutoGroup;
 import com.dt.platform.domain.ops.AutoTask;
-import com.dt.platform.domain.ops.meta.AutoActionMeta;
-import com.dt.platform.domain.ops.meta.AutoGroupMeta;
-import com.dt.platform.domain.ops.meta.AutoTaskLogMeta;
-import com.dt.platform.domain.ops.meta.AutoTaskMeta;
+import com.dt.platform.domain.ops.meta.*;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.ops.page.AutoTaskPageController;
 import com.dt.platform.proxy.ops.AutoActionServiceProxy;
+import com.dt.platform.proxy.ops.AutoBatchServiceProxy;
 import com.dt.platform.proxy.ops.AutoGroupServiceProxy;
 import com.dt.platform.proxy.ops.AutoTaskServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
@@ -29,6 +27,7 @@ public class AutoTaskGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_AUTO_TASK.NOTES).search().fuzzySearch();
 
         cfg.getPoClassFile().addSimpleProperty(AutoGroup.class,"group","group","group");
+        cfg.getPoClassFile().addSimpleProperty(AutoGroup.class,"batch","batch","batch");
         cfg.getPoClassFile().addSimpleProperty(AutoAction.class,"action","action","action");
 
         cfg.view().search().inputLayout(
@@ -52,8 +51,10 @@ public class AutoTaskGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_AUTO_TASK.NAME).table().form().validate().required();
         cfg.view().field(OpsTables.OPS_AUTO_TASK.NOTES).table().form().textArea().height(Config.textAreaHeight);
 
-        cfg.view().list().operationColumn().addActionButton("连通检查","autoTaskCheck",null,"ops_auto_task:check");
-        cfg.view().list().operationColumn().addActionButton("执行","autoTaskExecute",null,"ops_auto_task:execute");
+        cfg.view().field(OpsTables.OPS_AUTO_TASK.GROUP_ID).table().disable(true);
+
+        cfg.view().list().operationColumn().addActionButton("连通检查","autoTaskCheck","auto-task-check","ops_auto_task:check");
+        cfg.view().list().operationColumn().addActionButton("执行","autoTaskExecute","auto-task-execute","ops_auto_task:execute");
         cfg.view().list().operationColumn().addActionButton("日志","autoTaskLog",null,"ops_auto_task:log");
         cfg.view().list().operationColumn().width(250);
         cfg.view().field(OpsTables.OPS_AUTO_TASK.ACTION_ID)
@@ -71,6 +72,12 @@ public class AutoTaskGtr extends BaseCodeGenerator{
                 textField(AutoGroupMeta.NAME).
                 fillWith(AutoTaskMeta.GROUP).muliti(false);
 
+        cfg.view().field(OpsTables.OPS_AUTO_TASK.BATCH_ID)
+                .form().selectBox().queryApi(AutoBatchServiceProxy.QUERY_PAGED_LIST)
+                .paging(true).filter(false).toolbar(false)
+                .valueField(AutoBatchMeta.ID).
+                textField(AutoBatchMeta.NAME).
+                fillWith(AutoTaskMeta.BATCH).muliti(false);
 
         cfg.view().formWindow().bottomSpace(80);
         cfg.view().formWindow().width(Config.baseFormWidth);;
@@ -80,8 +87,8 @@ public class AutoTaskGtr extends BaseCodeGenerator{
                         OpsTables.OPS_AUTO_TASK.STATUS,
                 },
                 new Object[] {
-                        OpsTables.OPS_AUTO_TASK.GROUP_ID,
                         OpsTables.OPS_AUTO_TASK.ACTION_ID,
+                        OpsTables.OPS_AUTO_TASK.BATCH_ID,
                 }
         );
 
@@ -97,8 +104,8 @@ public class AutoTaskGtr extends BaseCodeGenerator{
 
         //文件生成覆盖模式
         cfg.overrides()
-                .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口
-                .setControllerAndAgent(WriteMode.COVER_EXISTS_FILE) //Rest
+                .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
+                .setControllerAndAgent(WriteMode.IGNORE) //Rest
                 .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页

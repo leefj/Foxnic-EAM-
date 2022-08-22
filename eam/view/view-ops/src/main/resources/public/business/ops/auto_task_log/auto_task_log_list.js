@@ -1,7 +1,7 @@
 /**
  * 明细日志 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 16:47:42
+ * @since 2022-08-22 08:59:52
  */
 
 
@@ -80,10 +80,11 @@ function ListPage() {
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'taskId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('作业'), templet: function (d) { return templet('taskId' ,fox.joinLabel(d.task,"name",',','','taskId'),d);}}
 					,{ field: 'actionId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('动作'), templet: function (d) { return templet('actionId' ,fox.joinLabel(d.action,"name",',','','actionId'),d);}}
-					,{ field: 'nodeId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('节点'), templet: function (d) { return templet('nodeId' ,fox.joinLabel(d.notes,"name",',','','nodeId'),d);}}
+					,{ field: 'nodeId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('节点'), templet: function (d) { return templet('nodeId' ,fox.joinLabel(d.node,"name",',','','nodeId'),d);}}
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'stime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('开始时间') ,templet: function (d) { return templet('stime',fox.dateFormat(d.stime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'etime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('结束时间') ,templet: function (d) { return templet('etime',fox.dateFormat(d.etime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'recordContent', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('记录结果') , templet: function (d) { return templet('recordContent',d.recordContent,d);}  }
 					,{ field: 'recordTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('记录时间') ,templet: function (d) { return templet('recordTime',fox.dateFormat(d.recordTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
@@ -135,7 +136,7 @@ function ListPage() {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
 		value.taskId={ inputType:"select_box", value: getSelectedValue("#taskId","value") ,fillBy:["task"]  , label:getSelectedValue("#taskId","nameStr") };
-		value.nodeId={ inputType:"select_box", value: getSelectedValue("#nodeId","value") ,fillBy:["notes"]  , label:getSelectedValue("#nodeId","nameStr") };
+		value.nodeId={ inputType:"select_box", value: getSelectedValue("#nodeId","value") ,fillBy:["node"]  , label:getSelectedValue("#nodeId","nameStr") };
 		value.status={ inputType:"select_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.recordContent={ inputType:"button",value: $("#recordContent").val()};
 		value.recordTime={ inputType:"date_input", begin: $("#recordTime-begin").val(), end: $("#recordTime-end").val() ,matchType:"auto" };

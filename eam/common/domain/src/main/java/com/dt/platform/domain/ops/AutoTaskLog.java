@@ -17,8 +17,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 明细日志
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 16:47:41
- * @sign B8063F392D5A67A494FEB0FEE593E8FE
+ * @since 2022-08-22 08:59:51
+ * @sign 8D7C6AE555D3BB790D428D1B57DC1C80
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -79,10 +79,16 @@ public class AutoTaskLog extends Entity {
 	private Date etime;
 	
 	/**
-	 * 内容：内容
+	 * 记录结果：记录结果
 	*/
-	@ApiModelProperty(required = false,value="内容" , notes = "内容")
+	@ApiModelProperty(required = false,value="记录结果" , notes = "记录结果")
 	private String recordContent;
+	
+	/**
+	 * 内容明细：内容明细
+	*/
+	@ApiModelProperty(required = false,value="内容明细" , notes = "内容明细")
+	private String contentDetail;
 	
 	/**
 	 * 记录时间：记录时间
@@ -317,21 +323,40 @@ public class AutoTaskLog extends Entity {
 	}
 	
 	/**
-	 * 获得 内容<br>
-	 * 内容
-	 * @return 内容
+	 * 获得 记录结果<br>
+	 * 记录结果
+	 * @return 记录结果
 	*/
 	public String getRecordContent() {
 		return recordContent;
 	}
 	
 	/**
-	 * 设置 内容
-	 * @param recordContent 内容
+	 * 设置 记录结果
+	 * @param recordContent 记录结果
 	 * @return 当前对象
 	*/
 	public AutoTaskLog setRecordContent(String recordContent) {
 		this.recordContent=recordContent;
+		return this;
+	}
+	
+	/**
+	 * 获得 内容明细<br>
+	 * 内容明细
+	 * @return 内容明细
+	*/
+	public String getContentDetail() {
+		return contentDetail;
+	}
+	
+	/**
+	 * 设置 内容明细
+	 * @param contentDetail 内容明细
+	 * @return 当前对象
+	*/
+	public AutoTaskLog setContentDetail(String contentDetail) {
+		this.contentDetail=contentDetail;
 		return this;
 	}
 	

@@ -1,7 +1,7 @@
 /**
  * 批次作业 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 16:09:10
+ * @since 2022-08-22 10:56:03
  */
 
 function FormPage() {
@@ -140,6 +140,35 @@ function FormPage() {
 				return opts;
 			}
 		});
+		//渲染 batchId 下拉字段
+		fox.renderSelectBox({
+			el: "batchId",
+			radio: true,
+			filterable: false,
+			paging: true,
+			pageRemote: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("batchId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
 		//渲染 actionId 下拉字段
 		fox.renderSelectBox({
 			el: "actionId",
@@ -230,8 +259,8 @@ function FormPage() {
 
 
 
-			//设置  分组 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#groupId",formData.group);
+			//设置  批次 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#batchId",formData.batch);
 			//设置  动作 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#actionId",formData.action);
 
@@ -285,8 +314,8 @@ function FormPage() {
 
 
 
-		//获取 分组 下拉框的值
-		data["groupId"]=fox.getSelectedValue("groupId",false);
+		//获取 批次 下拉框的值
+		data["batchId"]=fox.getSelectedValue("batchId",false);
 		//获取 动作 下拉框的值
 		data["actionId"]=fox.getSelectedValue("actionId",false);
 

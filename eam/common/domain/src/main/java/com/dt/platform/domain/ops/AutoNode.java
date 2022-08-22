@@ -18,8 +18,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 节点
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 15:48:38
- * @sign CE6595BBC420173D1FDDDE8EC5D50D7A
+ * @since 2022-08-22 09:07:07
+ * @sign 291272A08A9F26A5AD72226F643A02FE
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -36,6 +36,12 @@ public class AutoNode extends Entity {
 	@Id
 	@ApiModelProperty(required = true,value="主键" , notes = "主键")
 	private String id;
+	
+	/**
+	 * 归属：归属
+	*/
+	@ApiModelProperty(required = false,value="归属" , notes = "归属")
+	private String ownerId;
 	
 	/**
 	 * 名称：名称
@@ -66,6 +72,12 @@ public class AutoNode extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="IP" , notes = "IP")
 	private String ip;
+	
+	/**
+	 * 端口：端口
+	*/
+	@ApiModelProperty(required = false,value="端口" , notes = "端口")
+	private Integer port;
 	
 	/**
 	 * 凭证：凭证
@@ -161,6 +173,25 @@ public class AutoNode extends Entity {
 	}
 	
 	/**
+	 * 获得 归属<br>
+	 * 归属
+	 * @return 归属
+	*/
+	public String getOwnerId() {
+		return ownerId;
+	}
+	
+	/**
+	 * 设置 归属
+	 * @param ownerId 归属
+	 * @return 当前对象
+	*/
+	public AutoNode setOwnerId(String ownerId) {
+		this.ownerId=ownerId;
+		return this;
+	}
+	
+	/**
 	 * 获得 名称<br>
 	 * 名称
 	 * @return 名称
@@ -252,6 +283,25 @@ public class AutoNode extends Entity {
 	*/
 	public AutoNode setIp(String ip) {
 		this.ip=ip;
+		return this;
+	}
+	
+	/**
+	 * 获得 端口<br>
+	 * 端口
+	 * @return 端口
+	*/
+	public Integer getPort() {
+		return port;
+	}
+	
+	/**
+	 * 设置 端口
+	 * @param port 端口
+	 * @return 当前对象
+	*/
+	public AutoNode setPort(Integer port) {
+		this.port=port;
 		return this;
 	}
 	

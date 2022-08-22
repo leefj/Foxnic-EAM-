@@ -10,8 +10,8 @@ import com.dt.platform.domain.ops.AutoAction;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 16:09:08
- * @sign E510BC4BF5180225C68B8EE9F1FD9C91
+ * @since 2022-08-22 10:56:01
+ * @sign 2815434CDAAB066645A378D1536B996C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -46,6 +46,16 @@ public class AutoTaskMeta {
 	 * 分组 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,java.lang.String> GROUP_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,GROUP_ID, java.lang.String.class, "分组", "分组", java.lang.String.class, null);
+	
+	/**
+	 * 批次 , 类型: java.lang.String
+	*/
+	public static final String BATCH_ID="batchId";
+	
+	/**
+	 * 批次 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,java.lang.String> BATCH_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,BATCH_ID, java.lang.String.class, "批次", "批次", java.lang.String.class, null);
 	
 	/**
 	 * 动作 , 类型: java.lang.String
@@ -158,6 +168,16 @@ public class AutoTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,com.dt.platform.domain.ops.AutoGroup> GROUP_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,GROUP, com.dt.platform.domain.ops.AutoGroup.class, "group", "group", com.dt.platform.domain.ops.AutoGroup.class, null);
 	
 	/**
+	 * batch , 类型: com.dt.platform.domain.ops.AutoGroup
+	*/
+	public static final String BATCH="batch";
+	
+	/**
+	 * batch , 类型: com.dt.platform.domain.ops.AutoGroup
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,com.dt.platform.domain.ops.AutoGroup> BATCH_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,BATCH, com.dt.platform.domain.ops.AutoGroup.class, "batch", "batch", com.dt.platform.domain.ops.AutoGroup.class, null);
+	
+	/**
 	 * action , 类型: com.dt.platform.domain.ops.AutoAction
 	*/
 	public static final String ACTION="action";
@@ -170,7 +190,7 @@ public class AutoTaskMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NAME , GROUP_ID , ACTION_ID , STATUS , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , GROUP , ACTION };
+	public static final String[] $PROPS={ ID , NAME , GROUP_ID , BATCH_ID , ACTION_ID , STATUS , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , GROUP , BATCH , ACTION };
 	
 	/**
 	 * 代理类
@@ -210,6 +230,17 @@ public class AutoTaskMeta {
 		public AutoTask setGroupId(String groupId) {
 			super.change(GROUP_ID,super.getGroupId(),groupId);
 			super.setGroupId(groupId);
+			return this;
+		}
+		
+		/**
+		 * 设置 批次
+		 * @param batchId 批次
+		 * @return 当前对象
+		*/
+		public AutoTask setBatchId(String batchId) {
+			super.change(BATCH_ID,super.getBatchId(),batchId);
+			super.setBatchId(batchId);
 			return this;
 		}
 		
@@ -331,6 +362,17 @@ public class AutoTaskMeta {
 		public AutoTask setGroup(AutoGroup group) {
 			super.change(GROUP,super.getGroup(),group);
 			super.setGroup(group);
+			return this;
+		}
+		
+		/**
+		 * 设置 batch
+		 * @param batch batch
+		 * @return 当前对象
+		*/
+		public AutoTask setBatch(AutoGroup batch) {
+			super.change(BATCH,super.getBatch(),batch);
+			super.setBatch(batch);
 			return this;
 		}
 		

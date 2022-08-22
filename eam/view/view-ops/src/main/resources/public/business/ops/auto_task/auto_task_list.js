@@ -1,7 +1,7 @@
 /**
  * 批次作业 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 16:09:09
+ * @since 2022-08-22 10:56:02
  */
 
 
@@ -79,7 +79,7 @@ function ListPage() {
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'groupId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('分组'), templet: function (d) { return templet('groupId' ,fox.joinLabel(d.group,"name",',','','groupId'),d);}}
+					,{ field: 'batchId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('批次'), templet: function (d) { return templet('batchId' ,fox.joinLabel(d.batch,"name",',','','batchId'),d);}}
 					,{ field: 'actionId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('动作'), templet: function (d) { return templet('actionId' ,fox.joinLabel(d.action,"name",',','','actionId'),d);}}
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }

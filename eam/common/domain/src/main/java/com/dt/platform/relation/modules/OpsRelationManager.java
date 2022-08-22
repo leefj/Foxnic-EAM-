@@ -56,6 +56,9 @@ public class OpsRelationManager extends RelationManager {
         this.property(AutoTaskMeta.GROUP_PROP)
                 .using(OpsTables.OPS_AUTO_TASK.GROUP_ID).join(OpsTables.OPS_AUTO_GROUP.ID);
 
+        this.property(AutoTaskMeta.BATCH_PROP)
+                .using(OpsTables.OPS_AUTO_TASK.BATCH_ID).join(OpsTables.OPS_AUTO_BATCH.ID);
+
     }
 
     public void setupAutoTaskMlog() {

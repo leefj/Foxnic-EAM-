@@ -2,7 +2,7 @@
 /**
  * 分组节点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 09:09:26
+ * @since 2022-08-22 10:20:38
  */
  -->
  <!DOCTYPE html>
@@ -38,7 +38,7 @@
 
 
 
-        <div class="layui-row form-row" id="random-2309-content">
+        <div class="layui-row form-row" id="random-8658-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -68,7 +68,7 @@
 </div>
 <div class="model-form-footer">
     <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消')}" >取消</button>
-    <button th:if="${perm.checkAnyAuth('ops_auto_group_node:create','ops_auto_group_node:update','ops_auto_group_node:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存')}">保存</button>
+    <button th:if="${perm.checkAnyAuth('ops_auto_batch_node:create','ops_auto_batch_node:update','ops_auto_batch_node:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存')}">保存</button>
 </div>
 
 <script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
@@ -79,15 +79,15 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var VALIDATE_CONFIG={};
-    var AUTH_PREFIX="ops_auto_group_node";
+    var AUTH_PREFIX="ops_auto_batch_node";
 
 
 </script>
 
 
 
-<script th:src="'/business/ops/auto_group_node/auto_group_node_ext.js?'+${cacheKey}"></script>
-<script th:src="'/business/ops/auto_group_node/auto_group_node_form.js?'+${cacheKey}"></script>
+<script th:src="'/business/ops/auto_batch_node/auto_batch_node_ext.js?'+${cacheKey}"></script>
+<script th:src="'/business/ops/auto_batch_node/auto_batch_node_form.js?'+${cacheKey}"></script>
 
 </body>
 </html>

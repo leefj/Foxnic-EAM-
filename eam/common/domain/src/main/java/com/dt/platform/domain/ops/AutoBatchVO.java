@@ -11,14 +11,14 @@ import com.github.foxnic.commons.bean.BeanUtil;
 
 
 /**
- * 分组节点
+ * 节点批次
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 09:09:25
- * @sign 6BACCA74C5292066CB43E0FF12F1F90A
+ * @since 2022-08-22 10:55:04
+ * @sign 83450849ED43006E34D70B8AF2FCFD30
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
-public class AutoGroupNodeVO extends AutoGroupNode {
+public class AutoBatchVO extends AutoBatch {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -89,7 +89,7 @@ public class AutoGroupNodeVO extends AutoGroupNode {
 	 * @param pageIndex 页码
 	 * @return 当前对象
 	*/
-	public AutoGroupNodeVO setPageIndex(Integer pageIndex) {
+	public AutoBatchVO setPageIndex(Integer pageIndex) {
 		this.pageIndex=pageIndex;
 		return this;
 	}
@@ -107,7 +107,7 @@ public class AutoGroupNodeVO extends AutoGroupNode {
 	 * @param pageSize 分页大小
 	 * @return 当前对象
 	*/
-	public AutoGroupNodeVO setPageSize(Integer pageSize) {
+	public AutoBatchVO setPageSize(Integer pageSize) {
 		this.pageSize=pageSize;
 		return this;
 	}
@@ -125,7 +125,7 @@ public class AutoGroupNodeVO extends AutoGroupNode {
 	 * @param searchField 搜索字段
 	 * @return 当前对象
 	*/
-	public AutoGroupNodeVO setSearchField(String searchField) {
+	public AutoBatchVO setSearchField(String searchField) {
 		this.searchField=searchField;
 		return this;
 	}
@@ -143,7 +143,7 @@ public class AutoGroupNodeVO extends AutoGroupNode {
 	 * @param fuzzyField 模糊搜索字段
 	 * @return 当前对象
 	*/
-	public AutoGroupNodeVO setFuzzyField(String fuzzyField) {
+	public AutoBatchVO setFuzzyField(String fuzzyField) {
 		this.fuzzyField=fuzzyField;
 		return this;
 	}
@@ -161,7 +161,7 @@ public class AutoGroupNodeVO extends AutoGroupNode {
 	 * @param searchValue 搜索的值
 	 * @return 当前对象
 	*/
-	public AutoGroupNodeVO setSearchValue(String searchValue) {
+	public AutoBatchVO setSearchValue(String searchValue) {
 		this.searchValue=searchValue;
 		return this;
 	}
@@ -179,7 +179,7 @@ public class AutoGroupNodeVO extends AutoGroupNode {
 	 * @param dirtyFields 已修改字段
 	 * @return 当前对象
 	*/
-	public AutoGroupNodeVO setDirtyFields(List<String> dirtyFields) {
+	public AutoBatchVO setDirtyFields(List<String> dirtyFields) {
 		this.dirtyFields=dirtyFields;
 		return this;
 	}
@@ -189,7 +189,7 @@ public class AutoGroupNodeVO extends AutoGroupNode {
 	 * @param dirtyField 已修改字段
 	 * @return 当前对象
 	*/
-	public AutoGroupNodeVO addDirtyField(String... dirtyField) {
+	public AutoBatchVO addDirtyField(String... dirtyField) {
 		if(this.dirtyFields==null) dirtyFields=new ArrayList<>();
 		this.dirtyFields.addAll(Arrays.asList(dirtyField));
 		return this;
@@ -208,7 +208,7 @@ public class AutoGroupNodeVO extends AutoGroupNode {
 	 * @param sortField 排序字段
 	 * @return 当前对象
 	*/
-	public AutoGroupNodeVO setSortField(String sortField) {
+	public AutoBatchVO setSortField(String sortField) {
 		this.sortField=sortField;
 		return this;
 	}
@@ -226,7 +226,7 @@ public class AutoGroupNodeVO extends AutoGroupNode {
 	 * @param sortType 排序方式
 	 * @return 当前对象
 	*/
-	public AutoGroupNodeVO setSortType(String sortType) {
+	public AutoBatchVO setSortType(String sortType) {
 		this.sortType=sortType;
 		return this;
 	}
@@ -245,7 +245,7 @@ public class AutoGroupNodeVO extends AutoGroupNode {
 	 * @param ids 主键清单
 	 * @return 当前对象
 	*/
-	public AutoGroupNodeVO setIds(List<String> ids) {
+	public AutoBatchVO setIds(List<String> ids) {
 		this.ids=ids;
 		return this;
 	}
@@ -255,7 +255,7 @@ public class AutoGroupNodeVO extends AutoGroupNode {
 	 * @param id 主键清单
 	 * @return 当前对象
 	*/
-	public AutoGroupNodeVO addId(String... id) {
+	public AutoBatchVO addId(String... id) {
 		if(this.ids==null) ids=new ArrayList<>();
 		this.ids.addAll(Arrays.asList(id));
 		return this;

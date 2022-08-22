@@ -3,7 +3,7 @@ package com.dt.platform.domain.ops;
 import com.github.foxnic.dao.entity.Entity;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
-import com.dt.platform.constants.db.OpsTables.OPS_AUTO_GROUP_NODE;
+import com.dt.platform.constants.db.OpsTables.OPS_AUTO_BATCH_NODE;
 import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
@@ -17,17 +17,17 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 分组节点
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 09:09:25
- * @sign B5C98A47F232B732A1477BA9E7543512
+ * @since 2022-08-22 10:20:37
+ * @sign 34B69D85C6B784F5530B9C244E6E3673
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
-@Table(name = "ops_auto_group_node")
-public class AutoGroupNode extends Entity {
+@Table(name = "ops_auto_batch_node")
+public class AutoBatchNode extends Entity {
 
 	private static final long serialVersionUID = 1L;
 
-	public static final DBTable TABLE =OPS_AUTO_GROUP_NODE.$TABLE;
+	public static final DBTable TABLE =OPS_AUTO_BATCH_NODE.$TABLE;
 	
 	/**
 	 * 主键：主键
@@ -47,12 +47,6 @@ public class AutoGroupNode extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="节点" , notes = "节点")
 	private String nodeId;
-	
-	/**
-	 * 状态：状态
-	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
-	private String status;
 	
 	/**
 	 * 备注：备注
@@ -118,7 +112,7 @@ public class AutoGroupNode extends Entity {
 	 * @param id 主键
 	 * @return 当前对象
 	*/
-	public AutoGroupNode setId(String id) {
+	public AutoBatchNode setId(String id) {
 		this.id=id;
 		return this;
 	}
@@ -137,7 +131,7 @@ public class AutoGroupNode extends Entity {
 	 * @param groupId 分组
 	 * @return 当前对象
 	*/
-	public AutoGroupNode setGroupId(String groupId) {
+	public AutoBatchNode setGroupId(String groupId) {
 		this.groupId=groupId;
 		return this;
 	}
@@ -156,27 +150,8 @@ public class AutoGroupNode extends Entity {
 	 * @param nodeId 节点
 	 * @return 当前对象
 	*/
-	public AutoGroupNode setNodeId(String nodeId) {
+	public AutoBatchNode setNodeId(String nodeId) {
 		this.nodeId=nodeId;
-		return this;
-	}
-	
-	/**
-	 * 获得 状态<br>
-	 * 状态
-	 * @return 状态
-	*/
-	public String getStatus() {
-		return status;
-	}
-	
-	/**
-	 * 设置 状态
-	 * @param status 状态
-	 * @return 当前对象
-	*/
-	public AutoGroupNode setStatus(String status) {
-		this.status=status;
 		return this;
 	}
 	
@@ -194,7 +169,7 @@ public class AutoGroupNode extends Entity {
 	 * @param notes 备注
 	 * @return 当前对象
 	*/
-	public AutoGroupNode setNotes(String notes) {
+	public AutoBatchNode setNotes(String notes) {
 		this.notes=notes;
 		return this;
 	}
@@ -213,7 +188,7 @@ public class AutoGroupNode extends Entity {
 	 * @param updateBy 修改人ID
 	 * @return 当前对象
 	*/
-	public AutoGroupNode setUpdateBy(String updateBy) {
+	public AutoBatchNode setUpdateBy(String updateBy) {
 		this.updateBy=updateBy;
 		return this;
 	}
@@ -232,7 +207,7 @@ public class AutoGroupNode extends Entity {
 	 * @param updateTime 修改时间
 	 * @return 当前对象
 	*/
-	public AutoGroupNode setUpdateTime(Date updateTime) {
+	public AutoBatchNode setUpdateTime(Date updateTime) {
 		this.updateTime=updateTime;
 		return this;
 	}
@@ -264,7 +239,7 @@ public class AutoGroupNode extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
-	public AutoGroupNode setDeleted(Integer deleted) {
+	public AutoBatchNode setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
 		return this;
@@ -276,7 +251,7 @@ public class AutoGroupNode extends Entity {
 	 * @return 当前对象
 	*/
 	@Transient
-	public AutoGroupNode setDeleted(Boolean deletedBool) {
+	public AutoBatchNode setDeleted(Boolean deletedBool) {
 		if(deletedBool==null) {
 			this.deleted=null;
 		} else {
@@ -300,7 +275,7 @@ public class AutoGroupNode extends Entity {
 	 * @param deleteBy 删除人ID
 	 * @return 当前对象
 	*/
-	public AutoGroupNode setDeleteBy(String deleteBy) {
+	public AutoBatchNode setDeleteBy(String deleteBy) {
 		this.deleteBy=deleteBy;
 		return this;
 	}
@@ -319,7 +294,7 @@ public class AutoGroupNode extends Entity {
 	 * @param deleteTime 删除时间
 	 * @return 当前对象
 	*/
-	public AutoGroupNode setDeleteTime(Date deleteTime) {
+	public AutoBatchNode setDeleteTime(Date deleteTime) {
 		this.deleteTime=deleteTime;
 		return this;
 	}
@@ -338,7 +313,7 @@ public class AutoGroupNode extends Entity {
 	 * @param version version
 	 * @return 当前对象
 	*/
-	public AutoGroupNode setVersion(Integer version) {
+	public AutoBatchNode setVersion(Integer version) {
 		this.version=version;
 		return this;
 	}
@@ -357,7 +332,7 @@ public class AutoGroupNode extends Entity {
 	 * @param tenantId 租户
 	 * @return 当前对象
 	*/
-	public AutoGroupNode setTenantId(String tenantId) {
+	public AutoBatchNode setTenantId(String tenantId) {
 		this.tenantId=tenantId;
 		return this;
 	}
@@ -365,7 +340,7 @@ public class AutoGroupNode extends Entity {
 	/**
 	 * 将自己转换成指定类型的PO
 	 * @param poType  PO类型
-	 * @return AutoGroupNode , 转换好的 AutoGroupNode 对象
+	 * @return AutoBatchNode , 转换好的 AutoBatchNode 对象
 	*/
 	@Transient
 	public <T extends Entity> T toPO(Class<T> poType) {
@@ -375,7 +350,7 @@ public class AutoGroupNode extends Entity {
 	/**
 	 * 将自己转换成任意指定类型
 	 * @param pojoType  Pojo类型
-	 * @return AutoGroupNode , 转换好的 PoJo 对象
+	 * @return AutoBatchNode , 转换好的 PoJo 对象
 	*/
 	@Transient
 	public <T> T toPojo(Class<T> pojoType) {
@@ -392,35 +367,35 @@ public class AutoGroupNode extends Entity {
 	}
 
 	/**
-	 * 将 Map 转换成 AutoGroupNode
-	 * @param autoGroupNodeMap 包含实体信息的 Map 对象
-	 * @return AutoGroupNode , 转换好的的 AutoGroupNode 对象
+	 * 将 Map 转换成 AutoBatchNode
+	 * @param autoBatchNodeMap 包含实体信息的 Map 对象
+	 * @return AutoBatchNode , 转换好的的 AutoBatchNode 对象
 	*/
 	@Transient
-	public static AutoGroupNode createFrom(Map<String,Object> autoGroupNodeMap) {
-		if(autoGroupNodeMap==null) return null;
-		AutoGroupNode po = EntityContext.create(AutoGroupNode.class, autoGroupNodeMap);
+	public static AutoBatchNode createFrom(Map<String,Object> autoBatchNodeMap) {
+		if(autoBatchNodeMap==null) return null;
+		AutoBatchNode po = EntityContext.create(AutoBatchNode.class, autoBatchNodeMap);
 		return po;
 	}
 
 	/**
-	 * 将 Pojo 转换成 AutoGroupNode
+	 * 将 Pojo 转换成 AutoBatchNode
 	 * @param pojo 包含实体信息的 Pojo 对象
-	 * @return AutoGroupNode , 转换好的的 AutoGroupNode 对象
+	 * @return AutoBatchNode , 转换好的的 AutoBatchNode 对象
 	*/
 	@Transient
-	public static AutoGroupNode createFrom(Object pojo) {
+	public static AutoBatchNode createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AutoGroupNode po = EntityContext.create(AutoGroupNode.class,pojo);
+		AutoBatchNode po = EntityContext.create(AutoBatchNode.class,pojo);
 		return po;
 	}
 
 	/**
-	 * 创建一个 AutoGroupNode，等同于 new
-	 * @return AutoGroupNode 对象
+	 * 创建一个 AutoBatchNode，等同于 new
+	 * @return AutoBatchNode 对象
 	*/
 	@Transient
-	public static AutoGroupNode create() {
-		return EntityContext.create(AutoGroupNode.class);
+	public static AutoBatchNode create() {
+		return EntityContext.create(AutoBatchNode.class);
 	}
 }

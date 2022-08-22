@@ -1,7 +1,7 @@
 /**
  * 明细日志 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 16:47:42
+ * @since 2022-08-22 08:59:52
  */
 
 function FormPage() {
@@ -327,6 +327,14 @@ function FormPage() {
 
 
 
+			//设置 开始时间 显示复选框勾选
+			if(formData["stime"]) {
+				$("#stime").val(fox.dateFormat(formData["stime"],"yyyy-MM-dd HH:mm:ss"));
+			}
+			//设置 结束时间 显示复选框勾选
+			if(formData["etime"]) {
+				$("#etime").val(fox.dateFormat(formData["etime"],"yyyy-MM-dd HH:mm:ss"));
+			}
 			//设置 记录时间 显示复选框勾选
 			if(formData["recordTime"]) {
 				$("#recordTime").val(fox.dateFormat(formData["recordTime"],"yyyy-MM-dd HH:mm:ss"));
@@ -336,7 +344,9 @@ function FormPage() {
 			//设置  作业 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#taskId",formData.task);
 			//设置  节点 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#nodeId",formData.notes);
+			fox.setSelectValue4QueryApi("#nodeId",formData.node);
+			//设置  状态 设置下拉框勾选
+			fox.setSelectValue4Enum("#status",formData.status,SELECT_STATUS_DATA);
 
 			//处理fillBy
 
@@ -392,6 +402,8 @@ function FormPage() {
 		data["taskId"]=fox.getSelectedValue("taskId",false);
 		//获取 节点 下拉框的值
 		data["nodeId"]=fox.getSelectedValue("nodeId",false);
+		//获取 状态 下拉框的值
+		data["status"]=fox.getSelectedValue("status",false);
 
 		return data;
 	}

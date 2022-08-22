@@ -28,6 +28,15 @@ import java.util.Map;
 
 public interface IAutoTaskService extends  ISimpleIdService<AutoTask,String> {
 
+	/**
+	 * 按主键执行 批次作业
+	 *
+	 * @param id 主键
+	 * @param method 方式
+	 * @return 删除是否成功
+	 */
+	Result execute(String id,String method);
+
 
 	/**
 	 * 添加，如果语句错误，则抛出异常

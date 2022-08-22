@@ -24,6 +24,7 @@ import com.dt.platform.proxy.ServiceNames;
 @FeignClient(value = ServiceNames.OPS, contextId = AutoTaskServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AutoTaskServiceProxy {
 
+
     /**
      * 基础路径 , service-ops
      */
@@ -83,6 +84,14 @@ public interface AutoTaskServiceProxy {
      * 分页查询批次作业
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
+
+
+    /**
+     * 执行作业
+     */
+    public static final String EXECUTE = API_PREFIX + "execute";
+
+
 
     /**
      * 添加批次作业
