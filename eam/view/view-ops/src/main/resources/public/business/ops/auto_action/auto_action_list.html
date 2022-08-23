@@ -2,7 +2,7 @@
 /**
  * 执行任务 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 16:26:56
+ * @since 2022-08-23 15:52:11
  */
  -->
  <!DOCTYPE html>
@@ -47,7 +47,12 @@
                         <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" style="width:140px"></div>
 
                     </div>
+                    <!-- 模版版本 , tplVersion ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 场景 , support ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 说明 , info ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 介质状态 , fileStatus ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 配置内容 , confContent ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 配置例子 , exampleConfContent ,typeName=text_area, isHideInSearch=true -->
                     <!-- 执行内容 , executeContent ,typeName=text_area, isHideInSearch=true -->
                     <!-- 脚本 , autoActionScriptIds ,typeName=select_box, isHideInSearch=true -->
                     <!-- 介质 , autoActionFileIds ,typeName=select_box, isHideInSearch=true -->
@@ -132,6 +137,7 @@
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
     var RADIO_TYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.OpsAutoActionTypeEnum')}]];
+    var RADIO_FILESTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
     var RADIO_EXECUTETOOL_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.OpsAutoExecuteTypeEnum')}]];
     var AUTH_PREFIX="ops_auto_action";
 

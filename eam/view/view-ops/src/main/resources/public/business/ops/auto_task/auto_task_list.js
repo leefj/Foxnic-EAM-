@@ -1,7 +1,7 @@
 /**
  * 批次作业 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 10:56:02
+ * @since 2022-08-23 15:56:21
  */
 
 
@@ -79,9 +79,10 @@ function ListPage() {
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'batchId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('批次'), templet: function (d) { return templet('batchId' ,fox.joinLabel(d.batch,"name",',','','batchId'),d);}}
-					,{ field: 'actionId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('动作'), templet: function (d) { return templet('actionId' ,fox.joinLabel(d.action,"name",',','','actionId'),d);}}
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
+					,{ field: 'runStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('运行状态'), templet:function (d){ return templet('runStatus',fox.getEnumText(RADIO_RUNSTATUS_DATA,d.runStatus,'','runStatus'),d);}}
+					,{ field: 'batchId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('批次'), templet: function (d) { return templet('batchId' ,fox.joinLabel(d.batch,"name",',','','batchId'),d);}}
+					,{ field: 'actionId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('部署模版'), templet: function (d) { return templet('actionId' ,fox.joinLabel(d.action,"name",',','','actionId'),d);}}
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 250 }
@@ -132,9 +133,9 @@ function ListPage() {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
 		value.name={ inputType:"button",value: $("#name").val()};
+		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.groupId={ inputType:"select_box", value: getSelectedValue("#groupId","value") ,fillBy:["group"]  , label:getSelectedValue("#groupId","nameStr") };
 		value.actionId={ inputType:"select_box", value: getSelectedValue("#actionId","value") ,fillBy:["action"]  , label:getSelectedValue("#actionId","nameStr") };
-		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
@@ -182,6 +183,27 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
+		//渲染 status 搜索框
+		fox.renderSelectBox({
+			el: "status",
+			size: "small",
+			radio: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					opts.push({data:data[i],name:data[i].text,value:data[i].code});
+				}
+				return opts;
+			}
+		});
 		//渲染 groupId 下拉字段
 		fox.renderSelectBox({
 			el: "groupId",
@@ -228,27 +250,6 @@ function ListPage() {
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
 					opts.push({data:data[i],name:data[i].name,value:data[i].id});
-				}
-				return opts;
-			}
-		});
-		//渲染 status 搜索框
-		fox.renderSelectBox({
-			el: "status",
-			size: "small",
-			radio: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
-			transform:function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					opts.push({data:data[i],name:data[i].text,value:data[i].code});
 				}
 				return opts;
 			}
@@ -454,7 +455,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["80%",height+"px"],
+			area: ["95%",height+"px"],
 			type: 2,
 			id:"ops-auto-task-form-data-win",
 			content: '/business/ops/auto_task/auto_task_form.html' + (queryString?("?"+queryString):""),

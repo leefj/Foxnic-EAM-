@@ -49,7 +49,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 执行脚本 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 13:59:00
+ * @since 2022-08-22 12:51:30
 */
 
 @Api(tags = "执行脚本")
@@ -68,6 +68,7 @@ public class AutoActionScriptController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = AutoActionScriptVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "613733471919013888"),
 		@ApiImplicitParam(name = AutoActionScriptVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = AutoActionScriptVOMeta.FILE_NAME , value = "文件名称" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoActionScriptVOMeta.FILE_ID , value = "文件" , required = false , dataTypeClass=String.class , example = "613733462595076097"),
 		@ApiImplicitParam(name = AutoActionScriptVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
@@ -168,6 +169,7 @@ public class AutoActionScriptController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = AutoActionScriptVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "613733471919013888"),
 		@ApiImplicitParam(name = AutoActionScriptVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = AutoActionScriptVOMeta.FILE_NAME , value = "文件名称" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoActionScriptVOMeta.FILE_ID , value = "文件" , required = false , dataTypeClass=String.class , example = "613733462595076097"),
 		@ApiImplicitParam(name = AutoActionScriptVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
@@ -187,6 +189,7 @@ public class AutoActionScriptController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = AutoActionScriptVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "613733471919013888"),
 		@ApiImplicitParam(name = AutoActionScriptVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = AutoActionScriptVOMeta.FILE_NAME , value = "文件名称" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoActionScriptVOMeta.FILE_ID , value = "文件" , required = false , dataTypeClass=String.class , example = "613733462595076097"),
 		@ApiImplicitParam(name = AutoActionScriptVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
@@ -246,6 +249,7 @@ public class AutoActionScriptController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = AutoActionScriptVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "613733471919013888"),
 		@ApiImplicitParam(name = AutoActionScriptVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = AutoActionScriptVOMeta.FILE_NAME , value = "文件名称" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoActionScriptVOMeta.FILE_ID , value = "文件" , required = false , dataTypeClass=String.class , example = "613733462595076097"),
 		@ApiImplicitParam(name = AutoActionScriptVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
@@ -267,6 +271,7 @@ public class AutoActionScriptController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = AutoActionScriptVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "613733471919013888"),
 		@ApiImplicitParam(name = AutoActionScriptVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = AutoActionScriptVOMeta.FILE_NAME , value = "文件名称" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoActionScriptVOMeta.FILE_ID , value = "文件" , required = false , dataTypeClass=String.class , example = "613733462595076097"),
 		@ApiImplicitParam(name = AutoActionScriptVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})

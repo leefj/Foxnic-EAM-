@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 节点  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 09:07:07
+ * @since 2022-08-22 13:57:10
  */
 @FeignClient(value = ServiceNames.OPS, contextId = AutoNodeServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AutoNodeServiceProxy {
@@ -84,6 +84,24 @@ public interface AutoNodeServiceProxy {
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
+    /**
+     */
+    public static final String QUERY_PAGED_LIST_BY_SELECTED = API_PREFIX + "query-paged-list-by-selected";
+
+    /**
+     */
+    public static final String QUERY_PAGED_LIST_BY_SELECT = API_PREFIX + "query-paged-list-by-select";
+
+
+    /**
+     * 分页查询节点选择
+     */
+    public static final String SAVE_SELECTED_NODE = API_PREFIX + "save-selected-node";
+
+    /**
+     * 分页查询节点选择
+     */
+    public static final String REMOVE_SELECTED_NODE = API_PREFIX + "remove-selected-node";
     /**
      * 添加节点
      */

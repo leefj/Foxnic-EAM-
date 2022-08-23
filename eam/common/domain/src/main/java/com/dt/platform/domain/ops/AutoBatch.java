@@ -8,7 +8,10 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import java.util.List;
 import com.github.foxnic.commons.lang.DataParser;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 
@@ -17,8 +20,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 节点批次
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 10:55:04
- * @sign BF55C673A48EB6197DA8B9282A5FBA95
+ * @since 2022-08-23 10:28:37
+ * @sign 43D1CBDA67D6FD2AE67205D54C67EAB2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -53,6 +56,12 @@ public class AutoBatch extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="备注" , notes = "备注")
 	private String notes;
+	
+	/**
+	 * 选择：选择
+	*/
+	@ApiModelProperty(required = false,value="选择" , notes = "选择")
+	private String selectedCode;
 	
 	/**
 	 * 修改人ID：修改人ID
@@ -97,6 +106,18 @@ public class AutoBatch extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="租户" , notes = "租户")
 	private String tenantId;
+	
+	/**
+	 * nodeList：nodeList
+	*/
+	@ApiModelProperty(required = false,value="nodeList" , notes = "nodeList")
+	private List<AutoNode> nodeList;
+	
+	/**
+	 * nodeIds：nodeIds
+	*/
+	@ApiModelProperty(required = false,value="nodeIds" , notes = "nodeIds")
+	private List<String> nodeIds;
 	
 	/**
 	 * 获得 主键<br>
@@ -171,6 +192,25 @@ public class AutoBatch extends Entity {
 	*/
 	public AutoBatch setNotes(String notes) {
 		this.notes=notes;
+		return this;
+	}
+	
+	/**
+	 * 获得 选择<br>
+	 * 选择
+	 * @return 选择
+	*/
+	public String getSelectedCode() {
+		return selectedCode;
+	}
+	
+	/**
+	 * 设置 选择
+	 * @param selectedCode 选择
+	 * @return 当前对象
+	*/
+	public AutoBatch setSelectedCode(String selectedCode) {
+		this.selectedCode=selectedCode;
 		return this;
 	}
 	
@@ -336,6 +376,66 @@ public class AutoBatch extends Entity {
 		this.tenantId=tenantId;
 		return this;
 	}
+	
+	/**
+	 * 获得 nodeList<br>
+	 * nodeList
+	 * @return nodeList
+	*/
+	public List<AutoNode> getNodeList() {
+		return nodeList;
+	}
+	
+	/**
+	 * 设置 nodeList
+	 * @param nodeList nodeList
+	 * @return 当前对象
+	*/
+	public AutoBatch setNodeList(List<AutoNode> nodeList) {
+		this.nodeList=nodeList;
+		return this;
+	}
+	
+	/**
+	 * 添加 nodeList
+	 * @param node nodeList
+	 * @return 当前对象
+	*/
+	public AutoBatch addNode(AutoNode... node) {
+		if(this.nodeList==null) nodeList=new ArrayList<>();
+		this.nodeList.addAll(Arrays.asList(node));
+		return this;
+	}
+	
+	/**
+	 * 获得 nodeIds<br>
+	 * nodeIds
+	 * @return nodeIds
+	*/
+	public List<String> getNodeIds() {
+		return nodeIds;
+	}
+	
+	/**
+	 * 设置 nodeIds
+	 * @param nodeIds nodeIds
+	 * @return 当前对象
+	*/
+	public AutoBatch setNodeIds(List<String> nodeIds) {
+		this.nodeIds=nodeIds;
+		return this;
+	}
+	
+	/**
+	 * 添加 nodeIds
+	 * @param nodeId nodeIds
+	 * @return 当前对象
+	*/
+	public AutoBatch addNodeId(String... nodeId) {
+		if(this.nodeIds==null) nodeIds=new ArrayList<>();
+		this.nodeIds.addAll(Arrays.asList(nodeId));
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -364,6 +464,22 @@ public class AutoBatch extends Entity {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AutoBatch clone() {
+		return EntityContext.clone(AutoBatch.class,this);
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AutoBatch clone(boolean deep) {
+		return EntityContext.clone(AutoBatch.class,this,deep);
 	}
 
 	/**

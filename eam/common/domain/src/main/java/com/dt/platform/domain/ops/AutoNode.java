@@ -18,8 +18,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 节点
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 09:07:07
- * @sign 291272A08A9F26A5AD72226F643A02FE
+ * @since 2022-08-23 12:49:27
+ * @sign 74E387C482F2748EBDAC9F33F1BE0C90
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -41,7 +41,7 @@ public class AutoNode extends Entity {
 	 * 归属：归属
 	*/
 	@ApiModelProperty(required = false,value="归属" , notes = "归属")
-	private String ownerId;
+	private String ownerCode;
 	
 	/**
 	 * 名称：名称
@@ -80,10 +80,34 @@ public class AutoNode extends Entity {
 	private Integer port;
 	
 	/**
+	 * 认证方式：认证方式
+	*/
+	@ApiModelProperty(required = false,value="认证方式" , notes = "认证方式")
+	private String authenticationMethod;
+	
+	/**
 	 * 凭证：凭证
 	*/
 	@ApiModelProperty(required = false,value="凭证" , notes = "凭证")
 	private String voucherId;
+	
+	/**
+	 * 账户：账户
+	*/
+	@ApiModelProperty(required = false,value="账户" , notes = "账户")
+	private String userName;
+	
+	/**
+	 * 密码：密码
+	*/
+	@ApiModelProperty(required = false,value="密码" , notes = "密码")
+	private String password;
+	
+	/**
+	 * 公钥：公钥
+	*/
+	@ApiModelProperty(required = false,value="公钥" , notes = "公钥")
+	private String pubKey;
 	
 	/**
 	 * 备注：备注
@@ -177,17 +201,17 @@ public class AutoNode extends Entity {
 	 * 归属
 	 * @return 归属
 	*/
-	public String getOwnerId() {
-		return ownerId;
+	public String getOwnerCode() {
+		return ownerCode;
 	}
 	
 	/**
 	 * 设置 归属
-	 * @param ownerId 归属
+	 * @param ownerCode 归属
 	 * @return 当前对象
 	*/
-	public AutoNode setOwnerId(String ownerId) {
-		this.ownerId=ownerId;
+	public AutoNode setOwnerCode(String ownerCode) {
+		this.ownerCode=ownerCode;
 		return this;
 	}
 	
@@ -306,6 +330,25 @@ public class AutoNode extends Entity {
 	}
 	
 	/**
+	 * 获得 认证方式<br>
+	 * 认证方式
+	 * @return 认证方式
+	*/
+	public String getAuthenticationMethod() {
+		return authenticationMethod;
+	}
+	
+	/**
+	 * 设置 认证方式
+	 * @param authenticationMethod 认证方式
+	 * @return 当前对象
+	*/
+	public AutoNode setAuthenticationMethod(String authenticationMethod) {
+		this.authenticationMethod=authenticationMethod;
+		return this;
+	}
+	
+	/**
 	 * 获得 凭证<br>
 	 * 凭证
 	 * @return 凭证
@@ -321,6 +364,63 @@ public class AutoNode extends Entity {
 	*/
 	public AutoNode setVoucherId(String voucherId) {
 		this.voucherId=voucherId;
+		return this;
+	}
+	
+	/**
+	 * 获得 账户<br>
+	 * 账户
+	 * @return 账户
+	*/
+	public String getUserName() {
+		return userName;
+	}
+	
+	/**
+	 * 设置 账户
+	 * @param userName 账户
+	 * @return 当前对象
+	*/
+	public AutoNode setUserName(String userName) {
+		this.userName=userName;
+		return this;
+	}
+	
+	/**
+	 * 获得 密码<br>
+	 * 密码
+	 * @return 密码
+	*/
+	public String getPassword() {
+		return password;
+	}
+	
+	/**
+	 * 设置 密码
+	 * @param password 密码
+	 * @return 当前对象
+	*/
+	public AutoNode setPassword(String password) {
+		this.password=password;
+		return this;
+	}
+	
+	/**
+	 * 获得 公钥<br>
+	 * 公钥
+	 * @return 公钥
+	*/
+	public String getPubKey() {
+		return pubKey;
+	}
+	
+	/**
+	 * 设置 公钥
+	 * @param pubKey 公钥
+	 * @return 当前对象
+	*/
+	public AutoNode setPubKey(String pubKey) {
+		this.pubKey=pubKey;
 		return this;
 	}
 	
@@ -590,6 +690,22 @@ public class AutoNode extends Entity {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AutoNode clone() {
+		return EntityContext.clone(AutoNode.class,this);
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AutoNode clone(boolean deep) {
+		return EntityContext.clone(AutoNode.class,this,deep);
 	}
 
 	/**

@@ -17,13 +17,14 @@ import com.github.foxnic.dao.excel.ExcelStructure;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.data.SaveMode;
 import java.util.Map;
+import com.dt.platform.constants.db.OpsTables.*;
 
 /**
  * <p>
  * 执行脚本 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 13:59:00
+ * @since 2022-08-22 12:51:29
 */
 
 public interface IAutoActionScriptService extends  ISimpleIdService<AutoActionScript,String> {
@@ -315,6 +316,12 @@ public interface IAutoActionScriptService extends  ISimpleIdService<AutoActionSc
 
 
 
+	/**
+	 * 保存关系
+	 * @param nodeId 节点
+	 * @param tplCodes 模版清单
+	 */
+	void saveRelation(String nodeId,List<String> tplCodes);
 
 
 }

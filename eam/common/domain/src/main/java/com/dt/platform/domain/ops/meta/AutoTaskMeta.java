@@ -4,14 +4,17 @@ import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.ops.AutoTask;
 import java.util.Date;
 import com.dt.platform.domain.ops.AutoGroup;
+import com.dt.platform.domain.ops.AutoBatch;
 import com.dt.platform.domain.ops.AutoAction;
+import com.dt.platform.domain.ops.AutoNode;
+import java.util.List;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 10:56:01
- * @sign 2815434CDAAB066645A378D1536B996C
+ * @since 2022-08-23 15:56:20
+ * @sign 745B806E84F583D6E8F43E9FD7103CE9
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -28,6 +31,16 @@ public class AutoTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
 	
 	/**
+	 * 所属 , 类型: java.lang.String
+	*/
+	public static final String OWNER_ID="ownerId";
+	
+	/**
+	 * 所属 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,java.lang.String> OWNER_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,OWNER_ID, java.lang.String.class, "所属", "所属", java.lang.String.class, null);
+	
+	/**
 	 * 名称 , 类型: java.lang.String
 	*/
 	public static final String NAME="name";
@@ -36,6 +49,26 @@ public class AutoTaskMeta {
 	 * 名称 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
+	
+	/**
+	 * 状态 , 类型: java.lang.String
+	*/
+	public static final String STATUS="status";
+	
+	/**
+	 * 状态 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
+	
+	/**
+	 * 运行状态 , 类型: java.lang.String
+	*/
+	public static final String RUN_STATUS="runStatus";
+	
+	/**
+	 * 运行状态 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,java.lang.String> RUN_STATUS_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,RUN_STATUS, java.lang.String.class, "运行状态", "运行状态", java.lang.String.class, null);
 	
 	/**
 	 * 分组 , 类型: java.lang.String
@@ -58,24 +91,24 @@ public class AutoTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,java.lang.String> BATCH_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,BATCH_ID, java.lang.String.class, "批次", "批次", java.lang.String.class, null);
 	
 	/**
-	 * 动作 , 类型: java.lang.String
+	 * 部署模版 , 类型: java.lang.String
 	*/
 	public static final String ACTION_ID="actionId";
 	
 	/**
-	 * 动作 , 类型: java.lang.String
+	 * 部署模版 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,java.lang.String> ACTION_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,ACTION_ID, java.lang.String.class, "动作", "动作", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,java.lang.String> ACTION_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,ACTION_ID, java.lang.String.class, "部署模版", "部署模版", java.lang.String.class, null);
 	
 	/**
-	 * 状态 , 类型: java.lang.String
+	 * 动作配置 , 类型: java.lang.String
 	*/
-	public static final String STATUS="status";
+	public static final String CONF_CONTENT="confContent";
 	
 	/**
-	 * 状态 , 类型: java.lang.String
+	 * 动作配置 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,java.lang.String> CONF_CONTENT_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,CONF_CONTENT, java.lang.String.class, "动作配置", "动作配置", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -86,6 +119,16 @@ public class AutoTaskMeta {
 	 * 备注 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
+	
+	/**
+	 * 选择 , 类型: java.lang.String
+	*/
+	public static final String SELECTED_CODE="selectedCode";
+	
+	/**
+	 * 选择 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,SELECTED_CODE, java.lang.String.class, "选择", "选择", java.lang.String.class, null);
 	
 	/**
 	 * 修改人ID , 类型: java.lang.String
@@ -168,14 +211,14 @@ public class AutoTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,com.dt.platform.domain.ops.AutoGroup> GROUP_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,GROUP, com.dt.platform.domain.ops.AutoGroup.class, "group", "group", com.dt.platform.domain.ops.AutoGroup.class, null);
 	
 	/**
-	 * batch , 类型: com.dt.platform.domain.ops.AutoGroup
+	 * batch , 类型: com.dt.platform.domain.ops.AutoBatch
 	*/
 	public static final String BATCH="batch";
 	
 	/**
-	 * batch , 类型: com.dt.platform.domain.ops.AutoGroup
+	 * batch , 类型: com.dt.platform.domain.ops.AutoBatch
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,com.dt.platform.domain.ops.AutoGroup> BATCH_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,BATCH, com.dt.platform.domain.ops.AutoGroup.class, "batch", "batch", com.dt.platform.domain.ops.AutoGroup.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,com.dt.platform.domain.ops.AutoBatch> BATCH_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,BATCH, com.dt.platform.domain.ops.AutoBatch.class, "batch", "batch", com.dt.platform.domain.ops.AutoBatch.class, null);
 	
 	/**
 	 * action , 类型: com.dt.platform.domain.ops.AutoAction
@@ -188,9 +231,49 @@ public class AutoTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,com.dt.platform.domain.ops.AutoAction> ACTION_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,ACTION, com.dt.platform.domain.ops.AutoAction.class, "action", "action", com.dt.platform.domain.ops.AutoAction.class, null);
 	
 	/**
+	 * actionConfContent , 类型: java.lang.String
+	*/
+	public static final String ACTION_CONF_CONTENT="actionConfContent";
+	
+	/**
+	 * actionConfContent , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,java.lang.String> ACTION_CONF_CONTENT_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,ACTION_CONF_CONTENT, java.lang.String.class, "actionConfContent", "actionConfContent", java.lang.String.class, null);
+	
+	/**
+	 * actionExecuteContent , 类型: java.lang.String
+	*/
+	public static final String ACTION_EXECUTE_CONTENT="actionExecuteContent";
+	
+	/**
+	 * actionExecuteContent , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,java.lang.String> ACTION_EXECUTE_CONTENT_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,ACTION_EXECUTE_CONTENT, java.lang.String.class, "actionExecuteContent", "actionExecuteContent", java.lang.String.class, null);
+	
+	/**
+	 * nodeList , 集合类型: LIST , 类型: com.dt.platform.domain.ops.AutoNode
+	*/
+	public static final String NODE_LIST="nodeList";
+	
+	/**
+	 * nodeList , 集合类型: LIST , 类型: com.dt.platform.domain.ops.AutoNode
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,com.dt.platform.domain.ops.AutoNode> NODE_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,NODE_LIST, java.util.List.class, "nodeList", "nodeList", com.dt.platform.domain.ops.AutoNode.class, null);
+	
+	/**
+	 * nodeIds , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String NODE_IDS="nodeIds";
+	
+	/**
+	 * nodeIds , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTask,java.lang.String> NODE_IDS_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTask.class ,NODE_IDS, java.util.List.class, "nodeIds", "nodeIds", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NAME , GROUP_ID , BATCH_ID , ACTION_ID , STATUS , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , GROUP , BATCH , ACTION };
+	public static final String[] $PROPS={ ID , OWNER_ID , NAME , STATUS , RUN_STATUS , GROUP_ID , BATCH_ID , ACTION_ID , CONF_CONTENT , NOTES , SELECTED_CODE , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , GROUP , BATCH , ACTION , ACTION_CONF_CONTENT , ACTION_EXECUTE_CONTENT , NODE_LIST , NODE_IDS };
 	
 	/**
 	 * 代理类
@@ -212,6 +295,17 @@ public class AutoTaskMeta {
 		}
 		
 		/**
+		 * 设置 所属
+		 * @param ownerId 所属
+		 * @return 当前对象
+		*/
+		public AutoTask setOwnerId(String ownerId) {
+			super.change(OWNER_ID,super.getOwnerId(),ownerId);
+			super.setOwnerId(ownerId);
+			return this;
+		}
+		
+		/**
 		 * 设置 名称
 		 * @param name 名称
 		 * @return 当前对象
@@ -219,6 +313,28 @@ public class AutoTaskMeta {
 		public AutoTask setName(String name) {
 			super.change(NAME,super.getName(),name);
 			super.setName(name);
+			return this;
+		}
+		
+		/**
+		 * 设置 状态
+		 * @param status 状态
+		 * @return 当前对象
+		*/
+		public AutoTask setStatus(String status) {
+			super.change(STATUS,super.getStatus(),status);
+			super.setStatus(status);
+			return this;
+		}
+		
+		/**
+		 * 设置 运行状态
+		 * @param runStatus 运行状态
+		 * @return 当前对象
+		*/
+		public AutoTask setRunStatus(String runStatus) {
+			super.change(RUN_STATUS,super.getRunStatus(),runStatus);
+			super.setRunStatus(runStatus);
 			return this;
 		}
 		
@@ -245,8 +361,8 @@ public class AutoTaskMeta {
 		}
 		
 		/**
-		 * 设置 动作
-		 * @param actionId 动作
+		 * 设置 部署模版
+		 * @param actionId 部署模版
 		 * @return 当前对象
 		*/
 		public AutoTask setActionId(String actionId) {
@@ -256,13 +372,13 @@ public class AutoTaskMeta {
 		}
 		
 		/**
-		 * 设置 状态
-		 * @param status 状态
+		 * 设置 动作配置
+		 * @param confContent 动作配置
 		 * @return 当前对象
 		*/
-		public AutoTask setStatus(String status) {
-			super.change(STATUS,super.getStatus(),status);
-			super.setStatus(status);
+		public AutoTask setConfContent(String confContent) {
+			super.change(CONF_CONTENT,super.getConfContent(),confContent);
+			super.setConfContent(confContent);
 			return this;
 		}
 		
@@ -274,6 +390,17 @@ public class AutoTaskMeta {
 		public AutoTask setNotes(String notes) {
 			super.change(NOTES,super.getNotes(),notes);
 			super.setNotes(notes);
+			return this;
+		}
+		
+		/**
+		 * 设置 选择
+		 * @param selectedCode 选择
+		 * @return 当前对象
+		*/
+		public AutoTask setSelectedCode(String selectedCode) {
+			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
+			super.setSelectedCode(selectedCode);
 			return this;
 		}
 		
@@ -370,7 +497,7 @@ public class AutoTaskMeta {
 		 * @param batch batch
 		 * @return 当前对象
 		*/
-		public AutoTask setBatch(AutoGroup batch) {
+		public AutoTask setBatch(AutoBatch batch) {
 			super.change(BATCH,super.getBatch(),batch);
 			super.setBatch(batch);
 			return this;
@@ -384,6 +511,50 @@ public class AutoTaskMeta {
 		public AutoTask setAction(AutoAction action) {
 			super.change(ACTION,super.getAction(),action);
 			super.setAction(action);
+			return this;
+		}
+		
+		/**
+		 * 设置 actionConfContent
+		 * @param actionConfContent actionConfContent
+		 * @return 当前对象
+		*/
+		public AutoTask setActionConfContent(String actionConfContent) {
+			super.change(ACTION_CONF_CONTENT,super.getActionConfContent(),actionConfContent);
+			super.setActionConfContent(actionConfContent);
+			return this;
+		}
+		
+		/**
+		 * 设置 actionExecuteContent
+		 * @param actionExecuteContent actionExecuteContent
+		 * @return 当前对象
+		*/
+		public AutoTask setActionExecuteContent(String actionExecuteContent) {
+			super.change(ACTION_EXECUTE_CONTENT,super.getActionExecuteContent(),actionExecuteContent);
+			super.setActionExecuteContent(actionExecuteContent);
+			return this;
+		}
+		
+		/**
+		 * 设置 nodeList
+		 * @param nodeList nodeList
+		 * @return 当前对象
+		*/
+		public AutoTask setNodeList(List<AutoNode> nodeList) {
+			super.change(NODE_LIST,super.getNodeList(),nodeList);
+			super.setNodeList(nodeList);
+			return this;
+		}
+		
+		/**
+		 * 设置 nodeIds
+		 * @param nodeIds nodeIds
+		 * @return 当前对象
+		*/
+		public AutoTask setNodeIds(List<String> nodeIds) {
+			super.change(NODE_IDS,super.getNodeIds(),nodeIds);
+			super.setNodeIds(nodeIds);
 			return this;
 		}
 	}

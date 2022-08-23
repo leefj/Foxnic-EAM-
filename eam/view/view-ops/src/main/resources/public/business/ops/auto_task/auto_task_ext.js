@@ -211,6 +211,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         }
     }
 
+
+
+    var timestamp = Date.parse(new Date());
+    var formAction=admin.getTempData('ops-auto-task-form-data-form-action');
+
+
     //表单页的扩展
     var form={
         /**
@@ -240,6 +246,15 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         afterDataFill:function (data) {
             console.log('afterDataFill',data);
+            if(data&&data.id&&data.action&&data.action.exampleConfContent){
+                $("#actionConfContent").val(data.action.exampleConfContent)
+            }else{
+            }
+
+            if(data&&data.id&&data.action&&data.action.executeContent){
+                $("#actionExecuteContent").val(data.action.executeContent);
+            }else{
+            }
         },
         /**
          * 对话框打开之前调用，如果返回 null 则不打开对话框
@@ -286,6 +301,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 数据提交前，如果返回 false，停止后续步骤的执行
          * */
         beforeSubmit:function (data) {
+            data.selectedCode=timestamp;
             console.log("beforeSubmit",data);
             return true;
         },
@@ -302,7 +318,23 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         afterSubmit:function (param,result) {
             console.log("afterSubmitt",param,result);
         },
+        nodeListSelect:function (ifr,win,data) {
+            // debugger
+            console.log("nodeListSelect",ifr,data);
+            //设置 iframe 高度
+            ifr.height("450px");
+            //设置地址
 
+            var q="";
+            if(data.id){
+                q="&ownerId="+data.id
+            }
+            win.location="/business/ops/auto_node/auto_node_selected_list.html?selectedCode="+timestamp+"&pageType="+formAction+q;
+            //设置 iframe 高度
+            ifr.height("400px");
+            //设置地址
+
+        },
         /**
          * 文件上传组件回调
          *  event 类型包括：

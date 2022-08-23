@@ -62,16 +62,24 @@ public class AutoActionGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_AUTO_ACTION.EXECUTE_CONTENT).table().disable(true);
         cfg.view().field(OpsTables.OPS_AUTO_ACTION.CONF_CONTENT).table().disable(true);
+        cfg.view().field(OpsTables.OPS_AUTO_ACTION.EXAMPLE_CONF_CONTENT).table().disable(true);
+        cfg.view().field(OpsTables.OPS_AUTO_ACTION.INFO).table().disable(true);
+
 
         cfg.view().field(OpsTables.OPS_AUTO_ACTION.STATUS).table().form().validate().required().form().radioBox().enumType(StatusEnableEnum.class).defaultIndex(0);
         cfg.view().field(OpsTables.OPS_AUTO_ACTION.NAME).table().form().validate().required();
         cfg.view().field(OpsTables.OPS_AUTO_ACTION.NOTES).table().form().textArea().height(Config.textAreaHeight);
         cfg.view().field(OpsTables.OPS_AUTO_ACTION.EXECUTE_TOOL).table().form().validate().required().form().radioBox().enumType(OpsAutoExecuteTypeEnum.class).defaultIndex(0);
         cfg.view().field(OpsTables.OPS_AUTO_ACTION.CONF_CONTENT).table().form().validate().required().form().textArea().height(Config.textAreaHeight*2);
-        cfg.view().field(OpsTables.OPS_AUTO_ACTION.EXECUTE_CONTENT).table().form().validate().required().form().textArea().height(Config.textAreaHeight*2);
+        cfg.view().field(OpsTables.OPS_AUTO_ACTION.EXAMPLE_CONF_CONTENT).table().form().validate().required().form().textArea().height(Config.textAreaHeight*2);
+
+        cfg.view().field(OpsTables.OPS_AUTO_ACTION.EXECUTE_CONTENT).table().form().validate().required().form().textArea().height(Config.textAreaHeight*5);
 
 
         cfg.view().field(OpsTables.OPS_AUTO_ACTION.TYPE).table().form().validate().required().form().radioBox().enumType(OpsAutoActionTypeEnum.class).defaultIndex(0);
+
+        cfg.view().field(OpsTables.OPS_AUTO_ACTION.FILE_STATUS).table().form().validate().required().form().radioBox().enumType(StatusEnableEnum.class).defaultIndex(0);
+
 
         cfg.service().addRelationSaveAction(AutoActionSScriptServiceImpl.class, AutoActionVOMeta.AUTO_ACTION_SCRIPT_IDS);
         cfg.service().addRelationSaveAction(AutoActionSFileServiceImpl.class,AutoActionVOMeta.AUTO_ACTION_FILE_IDS);
@@ -94,21 +102,34 @@ public class AutoActionGtr extends BaseCodeGenerator{
 
 
 
-        cfg.view().formWindow().bottomSpace(80);
-        cfg.view().formWindow().width(Config.baseFormWidth);;
+        cfg.view().formWindow().bottomSpace(100);
+        cfg.view().formWindow().width(Config.baseFormWidth_95);;
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_AUTO_ACTION.NAME,
                         OpsTables.OPS_AUTO_ACTION.STATUS,
-                        AutoActionMeta.AUTO_ACTION_SCRIPT_IDS,
+                        OpsTables.OPS_AUTO_ACTION.TYPE,
+                        OpsTables.OPS_AUTO_ACTION.INFO,
+
                 },
                 new Object[] {
-                        OpsTables.OPS_AUTO_ACTION.TYPE,
+                        OpsTables.OPS_AUTO_ACTION.TPL_VERSION,
+                        OpsTables.OPS_AUTO_ACTION.SUPPORT,
                         OpsTables.OPS_AUTO_ACTION.EXECUTE_TOOL,
-                        AutoActionMeta.AUTO_ACTION_FILE_IDS
+                        OpsTables.OPS_AUTO_ACTION.FILE_STATUS,
+
+
                 }
         );
 
+        cfg.view().form().addGroup(null,
+                new Object[] {
+                        AutoActionMeta.AUTO_ACTION_SCRIPT_IDS,
+                },
+                new Object[] {
+                        AutoActionMeta.AUTO_ACTION_FILE_IDS
+                }
+        );
 //        cfg.view().form().addGroup(null,
 //                new Object[] {
 //
@@ -118,19 +139,16 @@ public class AutoActionGtr extends BaseCodeGenerator{
 //                }
 //        );
 
-
         cfg.view().form().addGroup(null,
                 new Object[] {
+                        OpsTables.OPS_AUTO_ACTION.NOTES,
                         OpsTables.OPS_AUTO_ACTION.CONF_CONTENT,
+                        OpsTables.OPS_AUTO_ACTION.EXAMPLE_CONF_CONTENT,
                         OpsTables.OPS_AUTO_ACTION.EXECUTE_CONTENT,
                 }
         );
 
-        cfg.view().form().addGroup(null,
-                new Object[] {
-                        OpsTables.OPS_AUTO_ACTION.NOTES,
-                }
-        );
+
 
         //文件生成覆盖模式
         cfg.overrides()

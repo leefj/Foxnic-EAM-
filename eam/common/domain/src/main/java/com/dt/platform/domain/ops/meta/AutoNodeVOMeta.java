@@ -13,7 +13,7 @@ import com.dt.platform.domain.ops.AutoVoucher;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 09:07:07
+ * @since 2022-08-23 12:49:28
  * @sign 1BF0833ED01505E6D1141402C3E7C9F7
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -123,12 +123,12 @@ public class AutoNodeVOMeta extends AutoNodeMeta {
 	/**
 	 * 归属 , 类型: java.lang.String
 	*/
-	public static final String OWNER_ID="ownerId";
+	public static final String OWNER_CODE="ownerCode";
 	
 	/**
 	 * 归属 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.AutoNodeVO,java.lang.String> OWNER_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoNodeVO.class ,OWNER_ID, java.lang.String.class, "归属", "归属", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoNodeVO,java.lang.String> OWNER_CODE_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoNodeVO.class ,OWNER_CODE, java.lang.String.class, "归属", "归属", java.lang.String.class, null);
 	
 	/**
 	 * 名称 , 类型: java.lang.String
@@ -191,6 +191,16 @@ public class AutoNodeVOMeta extends AutoNodeMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoNodeVO,java.lang.Integer> PORT_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoNodeVO.class ,PORT, java.lang.Integer.class, "端口", "端口", java.lang.Integer.class, null);
 	
 	/**
+	 * 认证方式 , 类型: java.lang.String
+	*/
+	public static final String AUTHENTICATION_METHOD="authenticationMethod";
+	
+	/**
+	 * 认证方式 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoNodeVO,java.lang.String> AUTHENTICATION_METHOD_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoNodeVO.class ,AUTHENTICATION_METHOD, java.lang.String.class, "认证方式", "认证方式", java.lang.String.class, null);
+	
+	/**
 	 * 凭证 , 类型: java.lang.String
 	*/
 	public static final String VOUCHER_ID="voucherId";
@@ -199,6 +209,36 @@ public class AutoNodeVOMeta extends AutoNodeMeta {
 	 * 凭证 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoNodeVO,java.lang.String> VOUCHER_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoNodeVO.class ,VOUCHER_ID, java.lang.String.class, "凭证", "凭证", java.lang.String.class, null);
+	
+	/**
+	 * 账户 , 类型: java.lang.String
+	*/
+	public static final String USER_NAME="userName";
+	
+	/**
+	 * 账户 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoNodeVO,java.lang.String> USER_NAME_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoNodeVO.class ,USER_NAME, java.lang.String.class, "账户", "账户", java.lang.String.class, null);
+	
+	/**
+	 * 密码 , 类型: java.lang.String
+	*/
+	public static final String PASSWORD="password";
+	
+	/**
+	 * 密码 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoNodeVO,java.lang.String> PASSWORD_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoNodeVO.class ,PASSWORD, java.lang.String.class, "密码", "密码", java.lang.String.class, null);
+	
+	/**
+	 * 公钥 , 类型: java.lang.String
+	*/
+	public static final String PUB_KEY="pubKey";
+	
+	/**
+	 * 公钥 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoNodeVO,java.lang.String> PUB_KEY_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoNodeVO.class ,PUB_KEY, java.lang.String.class, "公钥", "公钥", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -313,7 +353,7 @@ public class AutoNodeVOMeta extends AutoNodeMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , OWNER_ID , NAME , GROUP_ID , TYPE , STATUS , IP , PORT , VOUCHER_ID , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , TYPE_DICT , GROUP , VOUCHER };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , OWNER_CODE , NAME , GROUP_ID , TYPE , STATUS , IP , PORT , AUTHENTICATION_METHOD , VOUCHER_ID , USER_NAME , PASSWORD , PUB_KEY , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , TYPE_DICT , GROUP , VOUCHER };
 	
 	/**
 	 * 代理类
@@ -435,12 +475,12 @@ public class AutoNodeVOMeta extends AutoNodeMeta {
 		
 		/**
 		 * 设置 归属
-		 * @param ownerId 归属
+		 * @param ownerCode 归属
 		 * @return 当前对象
 		*/
-		public AutoNode setOwnerId(String ownerId) {
-			super.change(OWNER_ID,super.getOwnerId(),ownerId);
-			super.setOwnerId(ownerId);
+		public AutoNode setOwnerCode(String ownerCode) {
+			super.change(OWNER_CODE,super.getOwnerCode(),ownerCode);
+			super.setOwnerCode(ownerCode);
 			return this;
 		}
 		
@@ -511,6 +551,17 @@ public class AutoNodeVOMeta extends AutoNodeMeta {
 		}
 		
 		/**
+		 * 设置 认证方式
+		 * @param authenticationMethod 认证方式
+		 * @return 当前对象
+		*/
+		public AutoNode setAuthenticationMethod(String authenticationMethod) {
+			super.change(AUTHENTICATION_METHOD,super.getAuthenticationMethod(),authenticationMethod);
+			super.setAuthenticationMethod(authenticationMethod);
+			return this;
+		}
+		
+		/**
 		 * 设置 凭证
 		 * @param voucherId 凭证
 		 * @return 当前对象
@@ -518,6 +569,39 @@ public class AutoNodeVOMeta extends AutoNodeMeta {
 		public AutoNode setVoucherId(String voucherId) {
 			super.change(VOUCHER_ID,super.getVoucherId(),voucherId);
 			super.setVoucherId(voucherId);
+			return this;
+		}
+		
+		/**
+		 * 设置 账户
+		 * @param userName 账户
+		 * @return 当前对象
+		*/
+		public AutoNode setUserName(String userName) {
+			super.change(USER_NAME,super.getUserName(),userName);
+			super.setUserName(userName);
+			return this;
+		}
+		
+		/**
+		 * 设置 密码
+		 * @param password 密码
+		 * @return 当前对象
+		*/
+		public AutoNode setPassword(String password) {
+			super.change(PASSWORD,super.getPassword(),password);
+			super.setPassword(password);
+			return this;
+		}
+		
+		/**
+		 * 设置 公钥
+		 * @param pubKey 公钥
+		 * @return 当前对象
+		*/
+		public AutoNode setPubKey(String pubKey) {
+			super.change(PUB_KEY,super.getPubKey(),pubKey);
+			super.setPubKey(pubKey);
 			return this;
 		}
 		

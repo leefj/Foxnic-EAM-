@@ -2,9 +2,8 @@ package com.dt.platform.generator.module.ops;
 
 import com.dt.platform.constants.db.OpsTables;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
-import com.dt.platform.domain.ops.AutoAction;
-import com.dt.platform.domain.ops.AutoGroup;
-import com.dt.platform.domain.ops.AutoTask;
+import com.dt.platform.constants.enums.ops.OpsAutoTaskRunStatusEnum;
+import com.dt.platform.domain.ops.*;
 import com.dt.platform.domain.ops.meta.*;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.ops.page.AutoTaskPageController;
@@ -27,8 +26,15 @@ public class AutoTaskGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_AUTO_TASK.NOTES).search().fuzzySearch();
 
         cfg.getPoClassFile().addSimpleProperty(AutoGroup.class,"group","group","group");
-        cfg.getPoClassFile().addSimpleProperty(AutoGroup.class,"batch","batch","batch");
+        cfg.getPoClassFile().addSimpleProperty(AutoBatch.class,"batch","batch","batch");
         cfg.getPoClassFile().addSimpleProperty(AutoAction.class,"action","action","action");
+
+        cfg.getPoClassFile().addSimpleProperty(String.class,"actionConfContent","actionConfContent","actionConfContent");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"actionExecuteContent","actionExecuteContent","actionExecuteContent");
+
+        cfg.getPoClassFile().addListProperty(AutoNode.class,"nodeList","nodeList","nodeList");
+        cfg.getPoClassFile().addListProperty(String.class,"nodeIds","nodeIds","nodeIds");
+
 
         cfg.view().search().inputLayout(
                 new Object[]{
@@ -44,19 +50,31 @@ public class AutoTaskGtr extends BaseCodeGenerator{
         cfg.view().search().rowsDisplay(1);
         cfg.view().field(OpsTables.OPS_AUTO_TASK.ID).basic().hidden(true);
 
-
+        cfg.view().field(OpsTables.OPS_AUTO_TASK.RUN_STATUS).table().form().radioBox().enumType(OpsAutoTaskRunStatusEnum.class).defaultIndex(0);
 
         cfg.view().field(OpsTables.OPS_AUTO_TASK.STATUS).table().form().validate().required().form().radioBox().enumType(StatusEnableEnum.class).defaultIndex(0);
-
+        cfg.view().field(OpsTables.OPS_AUTO_TASK.OWNER_ID).table().disable(true);
         cfg.view().field(OpsTables.OPS_AUTO_TASK.NAME).table().form().validate().required();
         cfg.view().field(OpsTables.OPS_AUTO_TASK.NOTES).table().form().textArea().height(Config.textAreaHeight);
-
+        cfg.view().field(OpsTables.OPS_AUTO_TASK.CONF_CONTENT).table().form().textArea().height(Config.textAreaHeight*2);
         cfg.view().field(OpsTables.OPS_AUTO_TASK.GROUP_ID).table().disable(true);
+        cfg.view().field(OpsTables.OPS_AUTO_TASK.SELECTED_CODE).table().disable(true);
+
+        cfg.view().field(AutoTaskMeta.ACTION_CONF_CONTENT).table().disable(true);
+        cfg.view().field(AutoTaskMeta.ACTION_EXECUTE_CONTENT).table().disable(true);
+
+        cfg.view().field(OpsTables.OPS_AUTO_TASK.OWNER_ID).table().disable(true);
+        cfg.view().field(OpsTables.OPS_AUTO_TASK.CONF_CONTENT).table().disable(true);
+
 
         cfg.view().list().operationColumn().addActionButton("连通检查","autoTaskCheck","auto-task-check","ops_auto_task:check");
         cfg.view().list().operationColumn().addActionButton("执行","autoTaskExecute","auto-task-execute","ops_auto_task:execute");
         cfg.view().list().operationColumn().addActionButton("日志","autoTaskLog",null,"ops_auto_task:log");
         cfg.view().list().operationColumn().width(250);
+
+        cfg.view().field(AutoTaskMeta.ACTION_CONF_CONTENT).basic().label("模版配置").form().readOnly().textArea().height(Config.textAreaHeight*2);
+        cfg.view().field(AutoTaskMeta.ACTION_EXECUTE_CONTENT).basic().label("模版执行内容").form().readOnly().textArea().height(Config.textAreaHeight*2);
+
         cfg.view().field(OpsTables.OPS_AUTO_TASK.ACTION_ID)
                 .form().validate().required().form().selectBox().queryApi(AutoActionServiceProxy.QUERY_PAGED_LIST)
                 .paging(true).filter(false).toolbar(false)
@@ -80,26 +98,37 @@ public class AutoTaskGtr extends BaseCodeGenerator{
                 fillWith(AutoTaskMeta.BATCH).muliti(false);
 
         cfg.view().formWindow().bottomSpace(80);
-        cfg.view().formWindow().width(Config.baseFormWidth);;
+        cfg.view().formWindow().width(Config.baseFormWidth_95);;
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_AUTO_TASK.NAME,
-                        OpsTables.OPS_AUTO_TASK.STATUS,
+
                 },
                 new Object[] {
-                        OpsTables.OPS_AUTO_TASK.ACTION_ID,
-                        OpsTables.OPS_AUTO_TASK.BATCH_ID,
+                        OpsTables.OPS_AUTO_TASK.STATUS,
+
                 }
         );
-
-
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_AUTO_TASK.NOTES,
                 }
         );
+        cfg.view().form().addGroup(null,
+                new Object[] {
+                        OpsTables.OPS_AUTO_TASK.ACTION_ID,
+                        AutoTaskMeta.ACTION_CONF_CONTENT,
+                        AutoTaskMeta.ACTION_EXECUTE_CONTENT,
+                        OpsTables.OPS_AUTO_TASK.CONF_CONTENT,
+                }
+        );
 
-
+        cfg.view().form().addGroup("节点批次",
+                new Object[] {
+                        OpsTables.OPS_AUTO_TASK.BATCH_ID,
+                }
+        );
+        cfg.view().form().addPage("节点列表","nodeListSelect");
 
 
         //文件生成覆盖模式

@@ -17,8 +17,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 执行脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 13:59:00
- * @sign F20DFE97FD2E189B04B2DFE1BB21054D
+ * @since 2022-08-22 12:51:29
+ * @sign 645723D685E8CBCC6C32E4A730EFBE1A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -41,6 +41,12 @@ public class AutoActionScript extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="名称" , notes = "名称")
 	private String name;
+	
+	/**
+	 * 文件名称：文件名称
+	*/
+	@ApiModelProperty(required = false,value="文件名称" , notes = "文件名称")
+	private String fileName;
 	
 	/**
 	 * 文件：文件
@@ -133,6 +139,25 @@ public class AutoActionScript extends Entity {
 	*/
 	public AutoActionScript setName(String name) {
 		this.name=name;
+		return this;
+	}
+	
+	/**
+	 * 获得 文件名称<br>
+	 * 文件名称
+	 * @return 文件名称
+	*/
+	public String getFileName() {
+		return fileName;
+	}
+	
+	/**
+	 * 设置 文件名称
+	 * @param fileName 文件名称
+	 * @return 当前对象
+	*/
+	public AutoActionScript setFileName(String fileName) {
+		this.fileName=fileName;
 		return this;
 	}
 	

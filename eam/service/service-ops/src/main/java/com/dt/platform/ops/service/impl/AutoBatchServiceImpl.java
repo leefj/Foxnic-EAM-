@@ -1,6 +1,10 @@
 package com.dt.platform.ops.service.impl;
 
 import javax.annotation.Resource;
+
+import com.dt.platform.constants.db.EAMTables;
+import com.dt.platform.constants.db.OpsTables;
+import com.dt.platform.ops.service.IAutoNodeSelectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +42,7 @@ import java.util.Map;
  * 节点批次 服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 10:55:04
+ * @since 2022-08-22 14:26:33
 */
 
 
@@ -57,6 +61,8 @@ public class AutoBatchServiceImpl extends SuperService<AutoBatch> implements IAu
 	public DAO dao() { return dao; }
 
 
+	@Autowired
+	IAutoNodeSelectService autoNodeSelectService;
 
 	@Override
 	public Object generateId(Field field) {
@@ -72,7 +78,23 @@ public class AutoBatchServiceImpl extends SuperService<AutoBatch> implements IAu
 	 */
 	@Override
 	public Result insert(AutoBatch autoBatch,boolean throwsException) {
+
+		String selectedCode=autoBatch.getSelectedCode();
+		if(autoBatch!=null||autoBatch.getNodeIds().size()==0){
+			ConditionExpr condition=new ConditionExpr();
+			condition.andIn("selected_code",selectedCode==null?"":selectedCode);
+			List<String> list=autoNodeSelectService.queryValues(OpsTables.OPS_AUTO_NODE_SELECT.NODE_ID,String.class,condition);
+			autoBatch.setNodeIds(list);
+		}
+
+		if(autoBatch.getNodeIds().size()==0){
+			return ErrorDesc.failureMessage("请选择数据");
+		}
+
 		Result r=super.insert(autoBatch,throwsException);
+		if(r.isSuccess()){
+			dao.execute("update ops_auto_node_select set owner_id=? where selected_code=?",autoBatch.getId(),selectedCode);
+		}
 		return r;
 	}
 

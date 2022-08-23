@@ -3,13 +3,15 @@ package com.dt.platform.domain.ops.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.ops.AutoBatch;
 import java.util.Date;
+import com.dt.platform.domain.ops.AutoNode;
+import java.util.List;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 10:55:04
- * @sign BF55C673A48EB6197DA8B9282A5FBA95
+ * @since 2022-08-23 10:28:37
+ * @sign 43D1CBDA67D6FD2AE67205D54C67EAB2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -54,6 +56,16 @@ public class AutoBatchMeta {
 	 * 备注 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoBatch,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoBatch.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
+	
+	/**
+	 * 选择 , 类型: java.lang.String
+	*/
+	public static final String SELECTED_CODE="selectedCode";
+	
+	/**
+	 * 选择 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoBatch,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoBatch.class ,SELECTED_CODE, java.lang.String.class, "选择", "选择", java.lang.String.class, null);
 	
 	/**
 	 * 修改人ID , 类型: java.lang.String
@@ -126,9 +138,29 @@ public class AutoBatchMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoBatch,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoBatch.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * nodeList , 集合类型: LIST , 类型: com.dt.platform.domain.ops.AutoNode
+	*/
+	public static final String NODE_LIST="nodeList";
+	
+	/**
+	 * nodeList , 集合类型: LIST , 类型: com.dt.platform.domain.ops.AutoNode
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoBatch,com.dt.platform.domain.ops.AutoNode> NODE_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoBatch.class ,NODE_LIST, java.util.List.class, "nodeList", "nodeList", com.dt.platform.domain.ops.AutoNode.class, null);
+	
+	/**
+	 * nodeIds , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String NODE_IDS="nodeIds";
+	
+	/**
+	 * nodeIds , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoBatch,java.lang.String> NODE_IDS_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoBatch.class ,NODE_IDS, java.util.List.class, "nodeIds", "nodeIds", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NAME , STATUS , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ ID , NAME , STATUS , NOTES , SELECTED_CODE , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , NODE_LIST , NODE_IDS };
 	
 	/**
 	 * 代理类
@@ -179,6 +211,17 @@ public class AutoBatchMeta {
 		public AutoBatch setNotes(String notes) {
 			super.change(NOTES,super.getNotes(),notes);
 			super.setNotes(notes);
+			return this;
+		}
+		
+		/**
+		 * 设置 选择
+		 * @param selectedCode 选择
+		 * @return 当前对象
+		*/
+		public AutoBatch setSelectedCode(String selectedCode) {
+			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
+			super.setSelectedCode(selectedCode);
 			return this;
 		}
 		
@@ -256,6 +299,28 @@ public class AutoBatchMeta {
 		public AutoBatch setTenantId(String tenantId) {
 			super.change(TENANT_ID,super.getTenantId(),tenantId);
 			super.setTenantId(tenantId);
+			return this;
+		}
+		
+		/**
+		 * 设置 nodeList
+		 * @param nodeList nodeList
+		 * @return 当前对象
+		*/
+		public AutoBatch setNodeList(List<AutoNode> nodeList) {
+			super.change(NODE_LIST,super.getNodeList(),nodeList);
+			super.setNodeList(nodeList);
+			return this;
+		}
+		
+		/**
+		 * 设置 nodeIds
+		 * @param nodeIds nodeIds
+		 * @return 当前对象
+		*/
+		public AutoBatch setNodeIds(List<String> nodeIds) {
+			super.change(NODE_IDS,super.getNodeIds(),nodeIds);
+			super.setNodeIds(nodeIds);
 			return this;
 		}
 	}

@@ -46,9 +46,15 @@ public class OpsRelationManager extends RelationManager {
         this.setupAutoTaskMlog();
         this.setupAutoTasklog();
         this.setupAutoTask();
+        this.setupAutoBatch();
 
     }
+    public void setupAutoBatch() {
+        this.property(AutoBatchMeta.NODE_LIST_PROP)
+                .using(OpsTables.OPS_AUTO_BATCH.ID).join(OpsTables.OPS_AUTO_NODE_SELECT.OWNER_ID)
+                .using(OpsTables.OPS_AUTO_NODE_SELECT.NODE_ID).join(OpsTables.OPS_AUTO_NODE.ID);
 
+    }
     public void setupAutoTask() {
         this.property(AutoTaskMeta.ACTION_PROP)
                 .using(OpsTables.OPS_AUTO_TASK.ACTION_ID).join(OpsTables.OPS_AUTO_ACTION.ID);
@@ -58,6 +64,10 @@ public class OpsRelationManager extends RelationManager {
 
         this.property(AutoTaskMeta.BATCH_PROP)
                 .using(OpsTables.OPS_AUTO_TASK.BATCH_ID).join(OpsTables.OPS_AUTO_BATCH.ID);
+
+        this.property(AutoTaskMeta.NODE_LIST_PROP)
+                .using(OpsTables.OPS_AUTO_TASK.ID).join(OpsTables.OPS_AUTO_NODE_SELECT.OWNER_ID)
+               .using(OpsTables.OPS_AUTO_NODE_SELECT.NODE_ID).join(OpsTables.OPS_AUTO_NODE.ID);
 
     }
 

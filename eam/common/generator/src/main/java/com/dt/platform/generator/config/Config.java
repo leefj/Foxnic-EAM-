@@ -6,4 +6,5 @@ public class Config {
 
     public static int textAreaHeight=120;
     public static String baseFormWidth="80%";
+    public static String baseFormWidth_95="95%";
 }

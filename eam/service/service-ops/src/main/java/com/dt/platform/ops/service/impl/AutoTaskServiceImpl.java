@@ -2,6 +2,8 @@ package com.dt.platform.ops.service.impl;
 
 import javax.annotation.Resource;
 
+import com.dt.platform.constants.db.OpsTables;
+import com.dt.platform.ops.service.IAutoNodeSelectService;
 import com.dt.platform.ops.service.IAutoNodeService;
 import com.dt.platform.ops.service.IAutoTaskToolService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +56,10 @@ public class AutoTaskServiceImpl extends SuperService<AutoTask> implements IAuto
 	@Autowired
 	private IAutoNodeService autoNodeService;
 
+
+	@Autowired
+	IAutoNodeSelectService autoNodeSelectService;
+
 	/**
 	 * 获得 DAO 对象
 	 * */
@@ -75,7 +81,22 @@ public class AutoTaskServiceImpl extends SuperService<AutoTask> implements IAuto
 	 */
 	@Override
 	public Result insert(AutoTask autoTask,boolean throwsException) {
+		String selectedCode=autoTask.getSelectedCode();
+		if(autoTask!=null||autoTask.getNodeIds().size()==0){
+			ConditionExpr condition=new ConditionExpr();
+			condition.andIn("selected_code",selectedCode==null?"":selectedCode);
+			List<String> list=autoNodeSelectService.queryValues(OpsTables.OPS_AUTO_NODE_SELECT.NODE_ID,String.class,condition);
+			autoTask.setNodeIds(list);
+		}
+
+		if(autoTask.getNodeIds().size()==0){
+			return ErrorDesc.failureMessage("请选择数据");
+		}
+
 		Result r=super.insert(autoTask,throwsException);
+		if(r.isSuccess()){
+			dao.execute("update ops_auto_node_select set owner_id=? where selected_code=?",autoTask.getId(),selectedCode);
+		}
 		return r;
 	}
 

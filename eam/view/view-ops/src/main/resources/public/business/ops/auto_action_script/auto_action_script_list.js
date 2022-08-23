@@ -1,7 +1,7 @@
 /**
  * 执行脚本 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 13:59:01
+ * @since 2022-08-22 12:51:30
  */
 
 
@@ -79,6 +79,7 @@ function ListPage() {
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
+					,{ field: 'fileName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('文件名称') , templet: function (d) { return templet('fileName',d.fileName,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }

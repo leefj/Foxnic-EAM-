@@ -1,7 +1,7 @@
 /**
  * 节点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 09:07:08
+ * @since 2022-08-23 12:49:29
  */
 
 function FormPage() {
@@ -116,6 +116,8 @@ function FormPage() {
 			el: "groupId",
 			radio: true,
 			filterable: false,
+			layVerify: 'required',
+			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("groupId",data.arr,data.change,data.isAdd);
@@ -143,6 +145,8 @@ function FormPage() {
 			el: "type",
 			radio: true,
 			filterable: false,
+			layVerify: 'required',
+			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("type",data.arr,data.change,data.isAdd);
@@ -154,7 +158,7 @@ function FormPage() {
 				var defaultValues=[],defaultIndexs=[];
 				if(action=="create") {
 					defaultValues = "".split(",");
-					defaultIndexs = "".split(",");
+					defaultIndexs = "0".split(",");
 				}
 				var opts=[];
 				if(!data) return opts;
@@ -171,6 +175,13 @@ function FormPage() {
 				checked.push($(this).val());
 			});
 			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("status",data,checked);
+		});
+		form.on('radio(authenticationMethod)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=authenticationMethod]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("authenticationMethod",data,checked);
 		});
 		//渲染 voucherId 下拉字段
 		fox.renderSelectBox({

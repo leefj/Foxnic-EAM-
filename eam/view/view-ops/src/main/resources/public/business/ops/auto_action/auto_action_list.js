@@ -1,7 +1,7 @@
 /**
  * 执行任务 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 16:26:56
+ * @since 2022-08-23 15:52:12
  */
 
 
@@ -81,6 +81,9 @@ function ListPage() {
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'type', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('类型'), templet:function (d){ return templet('type',fox.getEnumText(RADIO_TYPE_DATA,d.type,'','type'),d);}}
+					,{ field: 'tplVersion', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('模版版本') , templet: function (d) { return templet('tplVersion',d.tplVersion,d);}  }
+					,{ field: 'support', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('场景') , templet: function (d) { return templet('support',d.support,d);}  }
+					,{ field: 'fileStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('介质状态'), templet:function (d){ return templet('fileStatus',fox.getEnumText(RADIO_FILESTATUS_DATA,d.fileStatus,'','fileStatus'),d);}}
 					,{ field: 'executeTool', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('执行工具'), templet:function (d){ return templet('executeTool',fox.getEnumText(RADIO_EXECUTETOOL_DATA,d.executeTool,'','executeTool'),d);}}
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'autoActionScriptIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('脚本'), templet: function (d) { return templet('autoActionScriptIds' ,fox.joinLabel(d.autoActionScriptList,"name",',','','autoActionScriptIds'),d);}}
@@ -439,7 +442,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["80%",height+"px"],
+			area: ["95%",height+"px"],
 			type: 2,
 			id:"ops-auto-action-form-data-win",
 			content: '/business/ops/auto_action/auto_action_form.html' + (queryString?("?"+queryString):""),

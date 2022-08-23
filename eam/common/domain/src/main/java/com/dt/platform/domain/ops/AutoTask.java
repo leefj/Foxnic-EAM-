@@ -8,7 +8,10 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import java.util.List;
 import com.github.foxnic.commons.lang.DataParser;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 
@@ -17,8 +20,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 批次作业
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 10:56:01
- * @sign 2815434CDAAB066645A378D1536B996C
+ * @since 2022-08-23 15:56:20
+ * @sign 745B806E84F583D6E8F43E9FD7103CE9
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -37,10 +40,28 @@ public class AutoTask extends Entity {
 	private String id;
 	
 	/**
+	 * 所属：所属
+	*/
+	@ApiModelProperty(required = false,value="所属" , notes = "所属")
+	private String ownerId;
+	
+	/**
 	 * 名称：名称
 	*/
 	@ApiModelProperty(required = false,value="名称" , notes = "名称")
 	private String name;
+	
+	/**
+	 * 状态：状态
+	*/
+	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	private String status;
+	
+	/**
+	 * 运行状态：运行状态
+	*/
+	@ApiModelProperty(required = false,value="运行状态" , notes = "运行状态")
+	private String runStatus;
 	
 	/**
 	 * 分组：分组
@@ -55,22 +76,28 @@ public class AutoTask extends Entity {
 	private String batchId;
 	
 	/**
-	 * 动作：动作
+	 * 部署模版：部署模版
 	*/
-	@ApiModelProperty(required = false,value="动作" , notes = "动作")
+	@ApiModelProperty(required = false,value="部署模版" , notes = "部署模版")
 	private String actionId;
 	
 	/**
-	 * 状态：状态
+	 * 动作配置：动作配置
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
-	private String status;
+	@ApiModelProperty(required = false,value="动作配置" , notes = "动作配置")
+	private String confContent;
 	
 	/**
 	 * 备注：备注
 	*/
 	@ApiModelProperty(required = false,value="备注" , notes = "备注")
 	private String notes;
+	
+	/**
+	 * 选择：选择
+	*/
+	@ApiModelProperty(required = false,value="选择" , notes = "选择")
+	private String selectedCode;
 	
 	/**
 	 * 修改人ID：修改人ID
@@ -126,13 +153,37 @@ public class AutoTask extends Entity {
 	 * batch：batch
 	*/
 	@ApiModelProperty(required = false,value="batch" , notes = "batch")
-	private AutoGroup batch;
+	private AutoBatch batch;
 	
 	/**
 	 * action：action
 	*/
 	@ApiModelProperty(required = false,value="action" , notes = "action")
 	private AutoAction action;
+	
+	/**
+	 * actionConfContent：actionConfContent
+	*/
+	@ApiModelProperty(required = false,value="actionConfContent" , notes = "actionConfContent")
+	private String actionConfContent;
+	
+	/**
+	 * actionExecuteContent：actionExecuteContent
+	*/
+	@ApiModelProperty(required = false,value="actionExecuteContent" , notes = "actionExecuteContent")
+	private String actionExecuteContent;
+	
+	/**
+	 * nodeList：nodeList
+	*/
+	@ApiModelProperty(required = false,value="nodeList" , notes = "nodeList")
+	private List<AutoNode> nodeList;
+	
+	/**
+	 * nodeIds：nodeIds
+	*/
+	@ApiModelProperty(required = false,value="nodeIds" , notes = "nodeIds")
+	private List<String> nodeIds;
 	
 	/**
 	 * 获得 主键<br>
@@ -154,6 +205,25 @@ public class AutoTask extends Entity {
 	}
 	
 	/**
+	 * 获得 所属<br>
+	 * 所属
+	 * @return 所属
+	*/
+	public String getOwnerId() {
+		return ownerId;
+	}
+	
+	/**
+	 * 设置 所属
+	 * @param ownerId 所属
+	 * @return 当前对象
+	*/
+	public AutoTask setOwnerId(String ownerId) {
+		this.ownerId=ownerId;
+		return this;
+	}
+	
+	/**
 	 * 获得 名称<br>
 	 * 名称
 	 * @return 名称
@@ -169,6 +239,44 @@ public class AutoTask extends Entity {
 	*/
 	public AutoTask setName(String name) {
 		this.name=name;
+		return this;
+	}
+	
+	/**
+	 * 获得 状态<br>
+	 * 状态
+	 * @return 状态
+	*/
+	public String getStatus() {
+		return status;
+	}
+	
+	/**
+	 * 设置 状态
+	 * @param status 状态
+	 * @return 当前对象
+	*/
+	public AutoTask setStatus(String status) {
+		this.status=status;
+		return this;
+	}
+	
+	/**
+	 * 获得 运行状态<br>
+	 * 运行状态
+	 * @return 运行状态
+	*/
+	public String getRunStatus() {
+		return runStatus;
+	}
+	
+	/**
+	 * 设置 运行状态
+	 * @param runStatus 运行状态
+	 * @return 当前对象
+	*/
+	public AutoTask setRunStatus(String runStatus) {
+		this.runStatus=runStatus;
 		return this;
 	}
 	
@@ -211,17 +319,17 @@ public class AutoTask extends Entity {
 	}
 	
 	/**
-	 * 获得 动作<br>
-	 * 动作
-	 * @return 动作
+	 * 获得 部署模版<br>
+	 * 部署模版
+	 * @return 部署模版
 	*/
 	public String getActionId() {
 		return actionId;
 	}
 	
 	/**
-	 * 设置 动作
-	 * @param actionId 动作
+	 * 设置 部署模版
+	 * @param actionId 部署模版
 	 * @return 当前对象
 	*/
 	public AutoTask setActionId(String actionId) {
@@ -230,21 +338,21 @@ public class AutoTask extends Entity {
 	}
 	
 	/**
-	 * 获得 状态<br>
-	 * 状态
-	 * @return 状态
+	 * 获得 动作配置<br>
+	 * 动作配置
+	 * @return 动作配置
 	*/
-	public String getStatus() {
-		return status;
+	public String getConfContent() {
+		return confContent;
 	}
 	
 	/**
-	 * 设置 状态
-	 * @param status 状态
+	 * 设置 动作配置
+	 * @param confContent 动作配置
 	 * @return 当前对象
 	*/
-	public AutoTask setStatus(String status) {
-		this.status=status;
+	public AutoTask setConfContent(String confContent) {
+		this.confContent=confContent;
 		return this;
 	}
 	
@@ -264,6 +372,25 @@ public class AutoTask extends Entity {
 	*/
 	public AutoTask setNotes(String notes) {
 		this.notes=notes;
+		return this;
+	}
+	
+	/**
+	 * 获得 选择<br>
+	 * 选择
+	 * @return 选择
+	*/
+	public String getSelectedCode() {
+		return selectedCode;
+	}
+	
+	/**
+	 * 设置 选择
+	 * @param selectedCode 选择
+	 * @return 当前对象
+	*/
+	public AutoTask setSelectedCode(String selectedCode) {
+		this.selectedCode=selectedCode;
 		return this;
 	}
 	
@@ -454,7 +581,7 @@ public class AutoTask extends Entity {
 	 * batch
 	 * @return batch
 	*/
-	public AutoGroup getBatch() {
+	public AutoBatch getBatch() {
 		return batch;
 	}
 	
@@ -463,7 +590,7 @@ public class AutoTask extends Entity {
 	 * @param batch batch
 	 * @return 当前对象
 	*/
-	public AutoTask setBatch(AutoGroup batch) {
+	public AutoTask setBatch(AutoBatch batch) {
 		this.batch=batch;
 		return this;
 	}
@@ -484,6 +611,104 @@ public class AutoTask extends Entity {
 	*/
 	public AutoTask setAction(AutoAction action) {
 		this.action=action;
+		return this;
+	}
+	
+	/**
+	 * 获得 actionConfContent<br>
+	 * actionConfContent
+	 * @return actionConfContent
+	*/
+	public String getActionConfContent() {
+		return actionConfContent;
+	}
+	
+	/**
+	 * 设置 actionConfContent
+	 * @param actionConfContent actionConfContent
+	 * @return 当前对象
+	*/
+	public AutoTask setActionConfContent(String actionConfContent) {
+		this.actionConfContent=actionConfContent;
+		return this;
+	}
+	
+	/**
+	 * 获得 actionExecuteContent<br>
+	 * actionExecuteContent
+	 * @return actionExecuteContent
+	*/
+	public String getActionExecuteContent() {
+		return actionExecuteContent;
+	}
+	
+	/**
+	 * 设置 actionExecuteContent
+	 * @param actionExecuteContent actionExecuteContent
+	 * @return 当前对象
+	*/
+	public AutoTask setActionExecuteContent(String actionExecuteContent) {
+		this.actionExecuteContent=actionExecuteContent;
+		return this;
+	}
+	
+	/**
+	 * 获得 nodeList<br>
+	 * nodeList
+	 * @return nodeList
+	*/
+	public List<AutoNode> getNodeList() {
+		return nodeList;
+	}
+	
+	/**
+	 * 设置 nodeList
+	 * @param nodeList nodeList
+	 * @return 当前对象
+	*/
+	public AutoTask setNodeList(List<AutoNode> nodeList) {
+		this.nodeList=nodeList;
+		return this;
+	}
+	
+	/**
+	 * 添加 nodeList
+	 * @param node nodeList
+	 * @return 当前对象
+	*/
+	public AutoTask addNode(AutoNode... node) {
+		if(this.nodeList==null) nodeList=new ArrayList<>();
+		this.nodeList.addAll(Arrays.asList(node));
+		return this;
+	}
+	
+	/**
+	 * 获得 nodeIds<br>
+	 * nodeIds
+	 * @return nodeIds
+	*/
+	public List<String> getNodeIds() {
+		return nodeIds;
+	}
+	
+	/**
+	 * 设置 nodeIds
+	 * @param nodeIds nodeIds
+	 * @return 当前对象
+	*/
+	public AutoTask setNodeIds(List<String> nodeIds) {
+		this.nodeIds=nodeIds;
+		return this;
+	}
+	
+	/**
+	 * 添加 nodeIds
+	 * @param nodeId nodeIds
+	 * @return 当前对象
+	*/
+	public AutoTask addNodeId(String... nodeId) {
+		if(this.nodeIds==null) nodeIds=new ArrayList<>();
+		this.nodeIds.addAll(Arrays.asList(nodeId));
 		return this;
 	}
 
@@ -514,6 +739,22 @@ public class AutoTask extends Entity {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AutoTask clone() {
+		return EntityContext.clone(AutoTask.class,this);
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AutoTask clone(boolean deep) {
+		return EntityContext.clone(AutoTask.class,this,deep);
 	}
 
 	/**

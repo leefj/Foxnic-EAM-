@@ -4,6 +4,7 @@ import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.db.OpsTables;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.ops.CertificateStatusEnum;
+import com.dt.platform.constants.enums.ops.OpsAutoAuthMethodEnum;
 import com.dt.platform.domain.eam.meta.AssetMeta;
 import com.dt.platform.domain.ops.*;
 import com.dt.platform.domain.ops.meta.*;
@@ -37,9 +38,9 @@ public class AutoNodeGtr extends BaseCodeGenerator{
         cfg.view().search().inputLayout(
                 new Object[]{
                         OpsTables.OPS_AUTO_NODE.STATUS,
+                        OpsTables.OPS_AUTO_NODE.GROUP_ID,
                         OpsTables.OPS_AUTO_NODE.NAME,
                         OpsTables.OPS_AUTO_NODE.IP,
-                        OpsTables.OPS_AUTO_NODE.NOTES,
                 }
         );
 
@@ -47,19 +48,30 @@ public class AutoNodeGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_AUTO_NODE.ID).basic().hidden(true);
         cfg.view().field(OpsTables.OPS_AUTO_NODE.STATUS).table().form().validate().required().form().radioBox().enumType(StatusEnableEnum.class).defaultIndex(0);
         cfg.view().field(OpsTables.OPS_AUTO_NODE.NAME).table().form().validate().required();
+        cfg.view().field(OpsTables.OPS_AUTO_NODE.OWNER_CODE).table().disable(true);
         cfg.view().field(OpsTables.OPS_AUTO_NODE.NOTES).table().form().textArea().height(Config.textAreaHeight);
 
 
+        cfg.view().field(OpsTables.OPS_AUTO_NODE.AUTHENTICATION_METHOD).table().disable(true);
+        cfg.view().field(OpsTables.OPS_AUTO_NODE.PUB_KEY).table().disable(true);
+        cfg.view().field(OpsTables.OPS_AUTO_NODE.USER_NAME).table().disable(true);
+        cfg.view().field(OpsTables.OPS_AUTO_NODE.PASSWORD).table().disable(true);
+
+
+        cfg.view().field(OpsTables.OPS_AUTO_NODE.AUTHENTICATION_METHOD).table().form().validate().required().form().radioBox().enumType(OpsAutoAuthMethodEnum.class).defaultIndex(0);
+
+
+
         cfg.view().field(OpsTables.OPS_AUTO_NODE.TYPE)
-                .form().validate().form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=ops_auto_node_type")
+                .form().validate().required().form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=ops_auto_node_type")
                 .paging(false).filter(false).toolbar(false)
                 .valueField(DictItemMeta.CODE).
                 textField(DictItemMeta.LABEL).
-                fillWith(AutoNodeMeta.TYPE_DICT).muliti(false);
+                fillWith(AutoNodeMeta.TYPE_DICT).muliti(false).defaultIndex(0);
 
 
         cfg.view().field(OpsTables.OPS_AUTO_NODE.GROUP_ID)
-                .form().selectBox().queryApi(AutoGroupServiceProxy.QUERY_LIST)
+                .form().validate().required().form().selectBox().queryApi(AutoGroupServiceProxy.QUERY_LIST)
                 .paging(false).filter(false).toolbar(false)
                 .valueField(AutoGroupMeta.ID).
                 textField(AutoGroupMeta.NAME).
@@ -85,21 +97,30 @@ public class AutoNodeGtr extends BaseCodeGenerator{
                         OpsTables.OPS_AUTO_NODE.GROUP_ID,
                         OpsTables.OPS_AUTO_NODE.STATUS,
                         OpsTables.OPS_AUTO_NODE.TYPE,
+                },
+                new Object[] {
+                        OpsTables.OPS_AUTO_NODE.AUTHENTICATION_METHOD,
+                        OpsTables.OPS_AUTO_NODE.VOUCHER_ID,
                         OpsTables.OPS_AUTO_NODE.IP,
                         OpsTables.OPS_AUTO_NODE.PORT,
-                        OpsTables.OPS_AUTO_NODE.VOUCHER_ID,
+
+                }
+        );
+
+        cfg.view().form().addGroup(null,
+                new Object[] {
                         OpsTables.OPS_AUTO_NODE.NOTES,
                 }
         );
 
         //文件生成覆盖模式
         cfg.overrides()
-                .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口
-                .setControllerAndAgent(WriteMode.COVER_EXISTS_FILE) //Rest
-                .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
+                .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
+                .setControllerAndAgent(WriteMode.IGNORE) //Rest
+                .setPageController(WriteMode.IGNORE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
-                .setExtendJsFile(WriteMode.COVER_EXISTS_FILE); //列表HTML页
+                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         //生成代码
         cfg.buildAll();
     }

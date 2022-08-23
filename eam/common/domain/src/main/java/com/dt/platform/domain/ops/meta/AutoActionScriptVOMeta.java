@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 13:59:00
+ * @since 2022-08-22 12:51:29
  * @sign E774AB842F245960961C07D4287FBD75
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -128,6 +128,16 @@ public class AutoActionScriptVOMeta extends AutoActionScriptMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoActionScriptVO,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoActionScriptVO.class ,NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
 	
 	/**
+	 * 文件名称 , 类型: java.lang.String
+	*/
+	public static final String FILE_NAME="fileName";
+	
+	/**
+	 * 文件名称 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoActionScriptVO,java.lang.String> FILE_NAME_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoActionScriptVO.class ,FILE_NAME, java.lang.String.class, "文件名称", "文件名称", java.lang.String.class, null);
+	
+	/**
 	 * 文件 , 类型: java.lang.String
 	*/
 	public static final String FILE_ID="fileId";
@@ -220,7 +230,7 @@ public class AutoActionScriptVOMeta extends AutoActionScriptMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , NAME , FILE_ID , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , NAME , FILE_NAME , FILE_ID , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
 	
 	/**
 	 * 代理类
@@ -348,6 +358,17 @@ public class AutoActionScriptVOMeta extends AutoActionScriptMeta {
 		public AutoActionScript setName(String name) {
 			super.change(NAME,super.getName(),name);
 			super.setName(name);
+			return this;
+		}
+		
+		/**
+		 * 设置 文件名称
+		 * @param fileName 文件名称
+		 * @return 当前对象
+		*/
+		public AutoActionScript setFileName(String fileName) {
+			super.change(FILE_NAME,super.getFileName(),fileName);
+			super.setFileName(fileName);
 			return this;
 		}
 		

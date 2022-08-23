@@ -1,5 +1,7 @@
 package com.dt.platform.ops.service;
 
+import com.dt.platform.domain.eam.Asset;
+import com.dt.platform.domain.eam.AssetVO;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -23,12 +25,15 @@ import java.util.Map;
  * 节点 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 09:07:07
+ * @since 2022-08-22 13:57:10
 */
 
 public interface IAutoNodeService extends  ISimpleIdService<AutoNode,String> {
 
 
+	Result saveSelectedNode(String ownerId,String selectedCode,List<String> nodeIds);
+
+	Result removeSelectedNode(String ownerId,String selectedCode,String nodeId);
 	/**
 	 * 添加，如果语句错误，则抛出异常
 	 * @param autoNode 数据对象
@@ -272,6 +277,8 @@ public interface IAutoNodeService extends  ISimpleIdService<AutoNode,String> {
 	 * */
 	PagedList<AutoNode> queryPagedList(AutoNode sample,ConditionExpr condition,OrderBy orderBy,int pageSize,int pageIndex);
 
+
+
 	/**
 	 * 分页查询实体集
 	 * @param sample  查询条件
@@ -292,7 +299,13 @@ public interface IAutoNodeService extends  ISimpleIdService<AutoNode,String> {
 	 * */
 	PagedList<AutoNode> queryPagedList(AutoNode sample,OrderBy orderBy,int pageSize,int pageIndex);
 
- 	/**
+	PagedList<AutoNode> queryPagedListBySelected(AutoNodeVO sample, String ownerId,String ownerSelectedCode);
+
+	PagedList<AutoNode> queryPagedListBySelect(AutoNodeVO sample, String ownerId,String ownerSelectedCode);
+
+
+
+	/**
 	 * 查询指定字段的数据清单
 	 * @param <T> 元素类型
 	 * @param field 字段

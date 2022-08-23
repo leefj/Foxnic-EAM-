@@ -34,6 +34,7 @@ import java.util.Map;
 import com.github.foxnic.dao.excel.ValidateResult;
 import java.io.InputStream;
 import com.dt.platform.domain.ops.meta.AutoBatchMeta;
+import com.dt.platform.domain.ops.AutoNode;
 import io.swagger.annotations.Api;
 import com.github.xiaoymin.knife4j.annotations.ApiSort;
 import io.swagger.annotations.ApiOperation;
@@ -49,7 +50,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 节点批次 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 10:55:04
+ * @since 2022-08-22 14:26:33
 */
 
 @Api(tags = "节点批次")
@@ -66,10 +67,11 @@ public class AutoBatchController extends SuperController {
 	*/
 	@ApiOperation(value = "添加节点批次")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = AutoBatchVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AutoBatchVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AutoBatchVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AutoBatchVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AutoBatchVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "614051736079826944"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "批次2"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=1)
 	@SentinelResource(value = AutoBatchServiceProxy.INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -86,7 +88,7 @@ public class AutoBatchController extends SuperController {
 	*/
 	@ApiOperation(value = "删除节点批次")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = AutoBatchVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class)
+		@ApiImplicitParam(name = AutoBatchVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "614051736079826944")
 	})
 	@ApiOperationSupport(order=2)
 	@NotNull(name = AutoBatchVOMeta.ID)
@@ -166,10 +168,11 @@ public class AutoBatchController extends SuperController {
 	*/
 	@ApiOperation(value = "更新节点批次")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = AutoBatchVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AutoBatchVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AutoBatchVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AutoBatchVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AutoBatchVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "614051736079826944"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "批次2"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport( order=4 , ignoreParameters = { AutoBatchVOMeta.PAGE_INDEX , AutoBatchVOMeta.PAGE_SIZE , AutoBatchVOMeta.SEARCH_FIELD , AutoBatchVOMeta.FUZZY_FIELD , AutoBatchVOMeta.SEARCH_VALUE , AutoBatchVOMeta.DIRTY_FIELDS , AutoBatchVOMeta.SORT_FIELD , AutoBatchVOMeta.SORT_TYPE , AutoBatchVOMeta.IDS } )
 	@SentinelResource(value = AutoBatchServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -185,10 +188,11 @@ public class AutoBatchController extends SuperController {
 	*/
 	@ApiOperation(value = "保存节点批次")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = AutoBatchVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AutoBatchVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AutoBatchVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AutoBatchVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AutoBatchVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "614051736079826944"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "批次2"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { AutoBatchVOMeta.PAGE_INDEX , AutoBatchVOMeta.PAGE_SIZE , AutoBatchVOMeta.SEARCH_FIELD , AutoBatchVOMeta.FUZZY_FIELD , AutoBatchVOMeta.SEARCH_VALUE , AutoBatchVOMeta.DIRTY_FIELDS , AutoBatchVOMeta.SORT_FIELD , AutoBatchVOMeta.SORT_TYPE , AutoBatchVOMeta.IDS } )
 	@NotNull(name = AutoBatchVOMeta.ID)
@@ -244,10 +248,11 @@ public class AutoBatchController extends SuperController {
 	*/
 	@ApiOperation(value = "查询节点批次")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = AutoBatchVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AutoBatchVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AutoBatchVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AutoBatchVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AutoBatchVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "614051736079826944"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "批次2"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { AutoBatchVOMeta.PAGE_INDEX , AutoBatchVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = AutoBatchServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -265,10 +270,11 @@ public class AutoBatchController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询节点批次")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = AutoBatchVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AutoBatchVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AutoBatchVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AutoBatchVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AutoBatchVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "614051736079826944"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "批次2"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.SELECTED_CODE , value = "选择" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=8)
 	@SentinelResource(value = AutoBatchServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )

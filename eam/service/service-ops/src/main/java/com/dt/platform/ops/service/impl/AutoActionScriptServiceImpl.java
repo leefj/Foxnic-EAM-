@@ -32,13 +32,16 @@ import com.dt.platform.ops.service.IAutoActionScriptService;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import java.util.Date;
 import java.util.Map;
+import com.dt.platform.constants.db.OpsTables.*;
+import com.dt.platform.domain.ops.MonitorNode;
+import com.dt.platform.domain.ops.MonitorTpl;
 
 /**
  * <p>
  * 执行脚本 服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 13:59:00
+ * @since 2022-08-22 12:51:30
 */
 
 
@@ -304,6 +307,14 @@ public class AutoActionScriptServiceImpl extends SuperService<AutoActionScript> 
 
 
 
+	/**
+     * 保存关系
+     * @param nodeId 节点
+     * @param tplCodes 模版清单
+     */
+	public void saveRelation(String nodeId,List<String> tplCodes) {
+		super.saveRelation(MonitorNode.class,OPS_MONITOR_NODE_TPL_ITEM.NODE_ID,nodeId,MonitorTpl.class,OPS_MONITOR_NODE_TPL_ITEM.TPL_CODE,tplCodes,true);
+	}
 
 
 }

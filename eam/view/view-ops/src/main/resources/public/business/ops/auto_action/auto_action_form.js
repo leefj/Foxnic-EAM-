@@ -1,7 +1,7 @@
 /**
  * 执行任务 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 16:26:56
+ * @since 2022-08-23 15:52:12
  */
 
 function FormPage() {
@@ -124,6 +124,13 @@ function FormPage() {
 				checked.push($(this).val());
 			});
 			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("type",data,checked);
+		});
+		form.on('radio(fileStatus)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=fileStatus]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("fileStatus",data,checked);
 		});
 		form.on('radio(executeTool)', function(data){
 			var checked=[];

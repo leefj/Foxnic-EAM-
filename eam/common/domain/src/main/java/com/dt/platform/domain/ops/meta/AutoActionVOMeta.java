@@ -13,7 +13,7 @@ import org.github.foxnic.web.domain.system.DictItem;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 16:26:54
+ * @since 2022-08-23 15:52:10
  * @sign 199E2F5FFC5B041CA1813FEC8B62FDF2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -151,6 +151,46 @@ public class AutoActionVOMeta extends AutoActionMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoActionVO,java.lang.String> TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoActionVO.class ,TYPE, java.lang.String.class, "类型", "类型", java.lang.String.class, null);
 	
 	/**
+	 * 模版版本 , 类型: java.lang.String
+	*/
+	public static final String TPL_VERSION="tplVersion";
+	
+	/**
+	 * 模版版本 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoActionVO,java.lang.String> TPL_VERSION_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoActionVO.class ,TPL_VERSION, java.lang.String.class, "模版版本", "模版版本", java.lang.String.class, null);
+	
+	/**
+	 * 场景 , 类型: java.lang.String
+	*/
+	public static final String SUPPORT="support";
+	
+	/**
+	 * 场景 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoActionVO,java.lang.String> SUPPORT_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoActionVO.class ,SUPPORT, java.lang.String.class, "场景", "场景", java.lang.String.class, null);
+	
+	/**
+	 * 说明 , 类型: java.lang.String
+	*/
+	public static final String INFO="info";
+	
+	/**
+	 * 说明 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoActionVO,java.lang.String> INFO_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoActionVO.class ,INFO, java.lang.String.class, "说明", "说明", java.lang.String.class, null);
+	
+	/**
+	 * 介质状态 , 类型: java.lang.String
+	*/
+	public static final String FILE_STATUS="fileStatus";
+	
+	/**
+	 * 介质状态 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoActionVO,java.lang.String> FILE_STATUS_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoActionVO.class ,FILE_STATUS, java.lang.String.class, "介质状态", "介质状态", java.lang.String.class, null);
+	
+	/**
 	 * 配置内容 , 类型: java.lang.String
 	*/
 	public static final String CONF_CONTENT="confContent";
@@ -159,6 +199,16 @@ public class AutoActionVOMeta extends AutoActionMeta {
 	 * 配置内容 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoActionVO,java.lang.String> CONF_CONTENT_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoActionVO.class ,CONF_CONTENT, java.lang.String.class, "配置内容", "配置内容", java.lang.String.class, null);
+	
+	/**
+	 * 配置例子 , 类型: java.lang.String
+	*/
+	public static final String EXAMPLE_CONF_CONTENT="exampleConfContent";
+	
+	/**
+	 * 配置例子 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoActionVO,java.lang.String> EXAMPLE_CONF_CONTENT_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoActionVO.class ,EXAMPLE_CONF_CONTENT, java.lang.String.class, "配置例子", "配置例子", java.lang.String.class, null);
 	
 	/**
 	 * 执行内容 , 类型: java.lang.String
@@ -313,7 +363,7 @@ public class AutoActionVOMeta extends AutoActionMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , NAME , STATUS , TYPE , CONF_CONTENT , EXECUTE_CONTENT , EXECUTE_TOOL , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , AUTO_ACTION_SCRIPT_LIST , AUTO_ACTION_SCRIPT_IDS , AUTO_ACTION_FILE_LIST , AUTO_ACTION_FILE_IDS , TYPE_DICT };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , NAME , STATUS , TYPE , TPL_VERSION , SUPPORT , INFO , FILE_STATUS , CONF_CONTENT , EXAMPLE_CONF_CONTENT , EXECUTE_CONTENT , EXECUTE_TOOL , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , AUTO_ACTION_SCRIPT_LIST , AUTO_ACTION_SCRIPT_IDS , AUTO_ACTION_FILE_LIST , AUTO_ACTION_FILE_IDS , TYPE_DICT };
 	
 	/**
 	 * 代理类
@@ -467,6 +517,50 @@ public class AutoActionVOMeta extends AutoActionMeta {
 		}
 		
 		/**
+		 * 设置 模版版本
+		 * @param tplVersion 模版版本
+		 * @return 当前对象
+		*/
+		public AutoAction setTplVersion(String tplVersion) {
+			super.change(TPL_VERSION,super.getTplVersion(),tplVersion);
+			super.setTplVersion(tplVersion);
+			return this;
+		}
+		
+		/**
+		 * 设置 场景
+		 * @param support 场景
+		 * @return 当前对象
+		*/
+		public AutoAction setSupport(String support) {
+			super.change(SUPPORT,super.getSupport(),support);
+			super.setSupport(support);
+			return this;
+		}
+		
+		/**
+		 * 设置 说明
+		 * @param info 说明
+		 * @return 当前对象
+		*/
+		public AutoAction setInfo(String info) {
+			super.change(INFO,super.getInfo(),info);
+			super.setInfo(info);
+			return this;
+		}
+		
+		/**
+		 * 设置 介质状态
+		 * @param fileStatus 介质状态
+		 * @return 当前对象
+		*/
+		public AutoAction setFileStatus(String fileStatus) {
+			super.change(FILE_STATUS,super.getFileStatus(),fileStatus);
+			super.setFileStatus(fileStatus);
+			return this;
+		}
+		
+		/**
 		 * 设置 配置内容
 		 * @param confContent 配置内容
 		 * @return 当前对象
@@ -474,6 +568,17 @@ public class AutoActionVOMeta extends AutoActionMeta {
 		public AutoAction setConfContent(String confContent) {
 			super.change(CONF_CONTENT,super.getConfContent(),confContent);
 			super.setConfContent(confContent);
+			return this;
+		}
+		
+		/**
+		 * 设置 配置例子
+		 * @param exampleConfContent 配置例子
+		 * @return 当前对象
+		*/
+		public AutoAction setExampleConfContent(String exampleConfContent) {
+			super.change(EXAMPLE_CONF_CONTENT,super.getExampleConfContent(),exampleConfContent);
+			super.setExampleConfContent(exampleConfContent);
 			return this;
 		}
 		

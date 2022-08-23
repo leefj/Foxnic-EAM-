@@ -21,8 +21,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 执行任务
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-21 16:26:54
- * @sign 441097E33B7BBF80F66F2CBC401E9895
+ * @since 2022-08-23 15:52:10
+ * @sign 78564080566E3CE25715B947FAB8665D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -59,10 +59,40 @@ public class AutoAction extends Entity {
 	private String type;
 	
 	/**
+	 * 模版版本：模版版本
+	*/
+	@ApiModelProperty(required = false,value="模版版本" , notes = "模版版本")
+	private String tplVersion;
+	
+	/**
+	 * 场景：场景
+	*/
+	@ApiModelProperty(required = false,value="场景" , notes = "场景")
+	private String support;
+	
+	/**
+	 * 说明：说明
+	*/
+	@ApiModelProperty(required = false,value="说明" , notes = "说明")
+	private String info;
+	
+	/**
+	 * 介质状态：介质状态
+	*/
+	@ApiModelProperty(required = false,value="介质状态" , notes = "介质状态")
+	private String fileStatus;
+	
+	/**
 	 * 配置内容：配置内容
 	*/
 	@ApiModelProperty(required = false,value="配置内容" , notes = "配置内容")
 	private String confContent;
+	
+	/**
+	 * 配置例子：配置例子
+	*/
+	@ApiModelProperty(required = false,value="配置例子" , notes = "配置例子")
+	private String exampleConfContent;
 	
 	/**
 	 * 执行内容：执行内容
@@ -233,6 +263,82 @@ public class AutoAction extends Entity {
 	}
 	
 	/**
+	 * 获得 模版版本<br>
+	 * 模版版本
+	 * @return 模版版本
+	*/
+	public String getTplVersion() {
+		return tplVersion;
+	}
+	
+	/**
+	 * 设置 模版版本
+	 * @param tplVersion 模版版本
+	 * @return 当前对象
+	*/
+	public AutoAction setTplVersion(String tplVersion) {
+		this.tplVersion=tplVersion;
+		return this;
+	}
+	
+	/**
+	 * 获得 场景<br>
+	 * 场景
+	 * @return 场景
+	*/
+	public String getSupport() {
+		return support;
+	}
+	
+	/**
+	 * 设置 场景
+	 * @param support 场景
+	 * @return 当前对象
+	*/
+	public AutoAction setSupport(String support) {
+		this.support=support;
+		return this;
+	}
+	
+	/**
+	 * 获得 说明<br>
+	 * 说明
+	 * @return 说明
+	*/
+	public String getInfo() {
+		return info;
+	}
+	
+	/**
+	 * 设置 说明
+	 * @param info 说明
+	 * @return 当前对象
+	*/
+	public AutoAction setInfo(String info) {
+		this.info=info;
+		return this;
+	}
+	
+	/**
+	 * 获得 介质状态<br>
+	 * 介质状态
+	 * @return 介质状态
+	*/
+	public String getFileStatus() {
+		return fileStatus;
+	}
+	
+	/**
+	 * 设置 介质状态
+	 * @param fileStatus 介质状态
+	 * @return 当前对象
+	*/
+	public AutoAction setFileStatus(String fileStatus) {
+		this.fileStatus=fileStatus;
+		return this;
+	}
+	
+	/**
 	 * 获得 配置内容<br>
 	 * 配置内容
 	 * @return 配置内容
@@ -248,6 +354,25 @@ public class AutoAction extends Entity {
 	*/
 	public AutoAction setConfContent(String confContent) {
 		this.confContent=confContent;
+		return this;
+	}
+	
+	/**
+	 * 获得 配置例子<br>
+	 * 配置例子
+	 * @return 配置例子
+	*/
+	public String getExampleConfContent() {
+		return exampleConfContent;
+	}
+	
+	/**
+	 * 设置 配置例子
+	 * @param exampleConfContent 配置例子
+	 * @return 当前对象
+	*/
+	public AutoAction setExampleConfContent(String exampleConfContent) {
+		this.exampleConfContent=exampleConfContent;
 		return this;
 	}
 	
@@ -637,6 +762,22 @@ public class AutoAction extends Entity {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AutoAction clone() {
+		return EntityContext.clone(AutoAction.class,this);
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AutoAction clone(boolean deep) {
+		return EntityContext.clone(AutoAction.class,this,deep);
 	}
 
 	/**

@@ -2,7 +2,7 @@
 /**
  * 批次作业 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 10:56:02
+ * @since 2022-08-23 15:56:20
  */
  -->
  <!DOCTYPE html>
@@ -39,7 +39,7 @@
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 批次 , batchId ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 所属 , ownerId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 状态 , status ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style=""><span th:text="${lang.translate('状态')}" class="search-label status-label">状态</span><span class="search-colon">:</span></div>
@@ -48,14 +48,20 @@
                         <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" style="width:140px"></div>
 
                     </div>
+                    <!-- 运行状态 , runStatus ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 批次 , batchId ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 动作配置 , confContent ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 选择 , selectedCode ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 模版配置 , actionConfContent ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 模版执行内容 , actionExecuteContent ,typeName=text_area, isHideInSearch=true -->
                     <!-- 分组 , groupId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style=""><span th:text="${lang.translate('分组')}" class="search-label groupId-label">分组</span><span class="search-colon">:</span></div>
                         <div id="groupId" th:data="${'/service-ops/ops-auto-group/query-paged-list'}" style="width:140px" extraParam="{}"></div>
                     </div>
-                    <!-- 动作 , actionId ,typeName=select_box, isHideInSearch=false -->
+                    <!-- 部署模版 , actionId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('动作')}" class="search-label actionId-label">动作</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('部署模版')}" class="search-label actionId-label">部署模版</span><span class="search-colon">:</span></div>
                         <div id="actionId" th:data="${'/service-ops/ops-auto-action/query-paged-list'}" style="width:140px" extraParam="{}"></div>
                     </div>
                     <!-- 名称 , name ,typeName=text_input, isHideInSearch=false -->
@@ -125,6 +131,7 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_RUNSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.OpsAutoTaskRunStatusEnum')}]];
     var AUTH_PREFIX="ops_auto_task";
 
 

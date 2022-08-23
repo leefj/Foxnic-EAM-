@@ -2,7 +2,7 @@
 /**
  * 节点批次 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 10:55:05
+ * @since 2022-08-23 10:28:38
  */
  -->
  <!DOCTYPE html>
@@ -47,6 +47,7 @@
                         <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" style="width:140px"></div>
 
                     </div>
+                    <!-- 选择 , selectedCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 名称 , name ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style=""><span th:text="${lang.translate('名称')}" class="search-label name-label">名称</span><span class="search-colon">:</span></div>

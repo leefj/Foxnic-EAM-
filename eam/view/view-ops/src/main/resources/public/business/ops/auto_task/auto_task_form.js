@@ -1,7 +1,7 @@
 /**
  * 批次作业 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 10:56:03
+ * @since 2022-08-23 15:56:21
  */
 
 function FormPage() {
@@ -111,6 +111,20 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
+		form.on('radio(status)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=status]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("status",data,checked);
+		});
+		form.on('radio(runStatus)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=runStatus]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("runStatus",data,checked);
+		});
 		//渲染 groupId 下拉字段
 		fox.renderSelectBox({
 			el: "groupId",
@@ -200,13 +214,6 @@ function FormPage() {
 				return opts;
 			}
 		});
-		form.on('radio(status)', function(data){
-			var checked=[];
-			$('input[type=radio][lay-filter=status]:checked').each(function() {
-				checked.push($(this).val());
-			});
-			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("status",data,checked);
-		});
 	}
 
 	/**
@@ -261,7 +268,7 @@ function FormPage() {
 
 			//设置  批次 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#batchId",formData.batch);
-			//设置  动作 设置下拉框勾选
+			//设置  部署模版 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#actionId",formData.action);
 
 			//处理fillBy
@@ -316,7 +323,7 @@ function FormPage() {
 
 		//获取 批次 下拉框的值
 		data["batchId"]=fox.getSelectedValue("batchId",false);
-		//获取 动作 下拉框的值
+		//获取 部署模版 下拉框的值
 		data["actionId"]=fox.getSelectedValue("actionId",false);
 
 		return data;

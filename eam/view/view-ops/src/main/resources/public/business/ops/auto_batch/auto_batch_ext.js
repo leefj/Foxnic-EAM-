@@ -1,7 +1,7 @@
 /**
  * 节点批次 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 10:55:04
+ * @since 2022-08-22 13:01:48
  */
 
 layui.config({
@@ -16,6 +16,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
     var admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate,dropdown=layui.dropdown;
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload;
+
 
     //模块基础路径
     const moduleURL="/service-ops/ops-auto-batch";
@@ -159,6 +160,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         }
     }
 
+    var timestamp = Date.parse(new Date());
+    var formAction=admin.getTempData('ops-auto-batch-form-data-form-action');
+
     //表单页的扩展
     var form={
         /**
@@ -234,6 +238,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 数据提交前，如果返回 false，停止后续步骤的执行
          * */
         beforeSubmit:function (data) {
+            data.selectedCode=timestamp;
             console.log("beforeSubmit",data);
             return true;
         },
@@ -251,6 +256,26 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log("afterSubmitt",param,result);
         },
 
+        /**
+         *  加载 节点
+         */
+        nodeListSelect:function (ifr,win,data) {
+            // debugger
+            console.log("nodeListSelect",ifr,data);
+            //设置 iframe 高度
+            ifr.height("450px");
+            //设置地址
+
+            var q="";
+            if(data.id){
+                q="&ownerId="+data.id
+            }
+            win.location="/business/ops/auto_node/auto_node_selected_list.html?selectedCode="+timestamp+"&pageType="+formAction+q;
+            //设置 iframe 高度
+            ifr.height("400px");
+            //设置地址
+
+        },
         /**
          * 文件上传组件回调
          *  event 类型包括：

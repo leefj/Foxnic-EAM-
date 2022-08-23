@@ -23,7 +23,7 @@ import java.util.Map;
  * 节点批次 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 10:55:04
+ * @since 2022-08-22 14:26:33
 */
 
 public interface IAutoBatchService extends  ISimpleIdService<AutoBatch,String> {

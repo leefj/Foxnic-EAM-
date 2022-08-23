@@ -37,7 +37,7 @@ public class AutoActionScriptGtr extends BaseCodeGenerator{
         cfg.view().search().rowsDisplay(1);
         cfg.view().field(OpsTables.OPS_AUTO_ACTION_SCRIPT.ID).basic().hidden(true);
         cfg.view().field(OpsTables.OPS_AUTO_ACTION_SCRIPT.NAME).form().validate().required();
-
+        cfg.view().field(OpsTables.OPS_AUTO_ACTION_SCRIPT.FILE_NAME).form().validate().required();
         cfg.view().field(OpsTables.OPS_AUTO_ACTION_SCRIPT.FILE_ID).table().disable(true);
         cfg.view().field(OpsTables.OPS_AUTO_ACTION_SCRIPT.FILE_ID).table().form().validate().required().form().upload().acceptSingleFile().maxFileCount(1).acceptAllType();
         cfg.view().field(OpsTables.OPS_AUTO_ACTION_SCRIPT.NOTES).table().form().textArea().height(Config.textAreaHeight);
@@ -47,6 +47,7 @@ public class AutoActionScriptGtr extends BaseCodeGenerator{
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_AUTO_ACTION_SCRIPT.NAME,
+                        OpsTables.OPS_AUTO_ACTION_SCRIPT.FILE_NAME,
                         OpsTables.OPS_AUTO_ACTION_SCRIPT.FILE_ID,
                         OpsTables.OPS_AUTO_ACTION_SCRIPT.NOTES,
                 }

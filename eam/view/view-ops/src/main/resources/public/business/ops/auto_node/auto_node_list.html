@@ -2,7 +2,7 @@
 /**
  * 节点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 09:07:08
+ * @since 2022-08-23 12:49:28
  */
  -->
  <!DOCTYPE html>
@@ -39,8 +39,7 @@
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 归属 , ownerId ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 分组 , groupId ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 归属 , ownerCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 节点类型 , type ,typeName=select_box, isHideInSearch=true -->
                     <!-- 状态 , status ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
@@ -51,7 +50,17 @@
 
                     </div>
                     <!-- 端口 , port ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 认证方式 , authenticationMethod ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 凭证 , voucherId ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 账户 , userName ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 密码 , password ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 公钥 , pubKey ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 分组 , groupId ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('分组')}" class="search-label groupId-label">分组</span><span class="search-colon">:</span></div>
+                        <div id="groupId" th:data="${'/service-ops/ops-auto-group/query-list'}" style="width:140px" extraParam="{}"></div>
+                    </div>
                     <!-- 名称 , name ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style=""><span th:text="${lang.translate('名称')}" class="search-label name-label">名称</span><span class="search-colon">:</span></div>
@@ -61,11 +70,6 @@
                     <div class="search-unit">
                         <div class="search-label-div" style=""><span th:text="${lang.translate('IP')}" class="search-label ip-label">IP</span><span class="search-colon">:</span></div>
                         <input id="ip" class="layui-input search-input" style="width: 140px" type="text" />
-                    </div>
-                    <!-- 备注 , notes ,typeName=text_area, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('备注')}" class="search-label notes-label">备注</span><span class="search-colon">:</span></div>
-                        <input id="notes" class="layui-input search-input" style="width: 140px" type="text" />
                     </div>
 
 
@@ -115,6 +119,7 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_AUTHENTICATIONMETHOD_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.OpsAutoAuthMethodEnum')}]];
     var AUTH_PREFIX="ops_auto_node";
 
 

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * 节点 模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 09:07:08
+ * @since 2022-08-22 13:57:10
 */
 
 @Controller("OpsAutoNodePageController")
@@ -40,10 +40,35 @@ public class AutoNodePageController extends ViewController {
 	/**
 	 * 节点 功能主页面
 	 */
+	@RequestMapping("/auto_node_selected_list.html")
+	public String selectedList(Model model,HttpServletRequest request,String ownerId,String pageType,String selectedCode) {
+		model.addAttribute("ownerId",ownerId);
+		model.addAttribute("pageType",pageType);
+		model.addAttribute("selectedCode",selectedCode);
+		return prefix+"/auto_node_selected_list";
+	}
+
+	/**
+	 * 节点 功能主页面
+	 */
+	@RequestMapping("/auto_node_select_list.html")
+	public String selectList(Model model,HttpServletRequest request,String ownerId,String selectedCode) {
+
+		model.addAttribute("ownerId",ownerId);
+		model.addAttribute("selectedCode",selectedCode);
+		return prefix+"/auto_node_select_list";
+	}
+
+
+	/**
+	 * 节点 功能主页面
+	 */
 	@RequestMapping("/auto_node_list.html")
 	public String list(Model model,HttpServletRequest request) {
 		return prefix+"/auto_node_list";
 	}
+
+
 
 	/**
 	 * 节点 表单页面

@@ -1,34 +1,59 @@
 package com.dt.platform.ops.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.ops.OpsAutoTaskResultStatusEnum;
+import com.dt.platform.constants.enums.ops.OpsAutoTaskRunStatusEnum;
 import com.dt.platform.domain.ops.*;
 import com.dt.platform.domain.ops.meta.AutoNodeMeta;
 import com.dt.platform.domain.ops.meta.AutoTaskMeta;
 import com.dt.platform.ops.service.*;
+import com.dt.platform.ops.service.impl.ops.Machine;
+import com.dt.platform.ops.service.impl.ops.SftpClient;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.commons.log.Logger;
+import com.github.foxnic.commons.environment.OSType;
+import com.github.foxnic.dao.data.Rcd;
+import com.github.foxnic.dao.data.RcdSet;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.spec.DAO;
-import com.github.foxnic.springboot.AU;
+import com.github.foxnic.sql.expr.ConditionExpr;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.IdGenerator;
 import org.yaml.snakeyaml.events.Event;
 
 import javax.annotation.Resource;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+
+
+/*
+[#IP#]
+
+* */
 
 @Service("AutoTaskBaseToolService")
 public class AutoTaskBaseToolService implements IAutoTaskToolService{
 
+    @Value("${foxnic.storage.disk.location.windows}")
+    private String windowsDir="";
+
+    @Value("${foxnic.storage.disk.location.mac}")
+    private String macDir="";
+
+    @Value("${foxnic.storage.disk.location.linux}")
+    private String linuxDir="";
 
     public static String METHOD_VIEW="view";
 
@@ -36,6 +61,14 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
 
     public static String METHOD_EXECUTE="execute";
 
+    private String getStorageDir() {
+        if(OSType.isWindows()) return windowsDir;
+        else if(OSType.isLinux()) return linuxDir;
+        else if(OSType.isMac()) return macDir;
+        else {
+            throw new RuntimeException("不支持的操作系统");
+        }
+    }
 
     @Autowired
     private IAutoTaskMLogService autoTaskMLogService;
@@ -65,47 +98,347 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
 
 
 
+
+//    public static void writeCTOut(ArrayList<Node> hosts) {
+//        File fout = new File("out.txt");
+//        FileOutputStream fos = null;
+//        BufferedWriter bw = null;
+//        try {
+//            fos = new FileOutputStream(fout);
+//            bw = new BufferedWriter(new OutputStreamWriter(fos, "UTF-8"));
+//            for (int i = 0; i < hosts.size(); i++) {
+//                String h="";
+//                if(hosts.get(i).getHostname()!=null){
+//                    h=hosts.get(i).getHostname();
+//                }
+//                String ct="";
+//                if(hosts.get(i).getCt()!=null){
+//                    ct=hosts.get(i).getCt().trim();
+//                }else{
+//                    ct="ct is null";
+//                }
+//                bw.write("###########" + h + "###########\n" +ct );
+//                bw.newLine();
+//            }
+//
+//        } catch (FileNotFoundException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        } catch (UnsupportedEncodingException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        } finally {
+//            if (bw != null)
+//                try {
+//                    bw.close();
+//                } catch (IOException e) {
+//                    // TODO Auto-generated catch block
+//                    e.printStackTrace();
+//                }
+//            if (fos != null)
+//                try {
+//                    fos.close();
+//                } catch (IOException e) {
+//                    // TODO Auto-generated catch block
+//                    e.printStackTrace();
+//                }
+//        }
+//    }
+
+    public Result recordFailed(AutoTaskLog log,String message){
+        log.setStatus(OpsAutoTaskResultStatusEnum.FAILED.code());
+        log.setRecordContent(message);
+        log.setEtime(new Date());
+        autoTaskLogService.update(log,SaveMode.NOT_NULL_FIELDS);
+        return ErrorDesc.success();
+    }
+
+
     @Override
     public Result executeNode(AutoNode node, AutoAction action,String taskId, String mLogId,String method) {
+
         AutoTaskLog log=new AutoTaskLog();
         log.setActionId(action.getId());
         log.setStatus(OpsAutoTaskResultStatusEnum.ACTING.code());
         log.setStime(new Date());
         log.setTaskId(taskId);
         log.setMLogId(mLogId);
+        log.setRecordContent("操作完成");
         log.setNodeId(node.getId());
         log.setRecordTime(new Date());
         autoTaskLogService.insert(log);
 
+        //检查动作
+        Result checkActionResult= checkAction(action);
+        if(!checkActionResult.isSuccess()){
+            recordFailed(log,checkActionResult.getMessage());
+            return ErrorDesc.failureMessage(checkActionResult.getMessage());
+        }
+
         //检查Node
         Result checkNodeResult=checkNode(node);
         if(!checkNodeResult.isSuccess()){
-            log.setStatus(OpsAutoTaskResultStatusEnum.FAILED.code());
-            log.setRecordContent(checkNodeResult.getMessage());
-            log.setEtime(new Date());
-            autoTaskLogService.update(log,SaveMode.NOT_NULL_FIELDS);
+            recordFailed(log,checkNodeResult.getMessage());
             return ErrorDesc.failureMessage(checkNodeResult.getMessage());
         }
 
-        //检查动作
-        Result checkActionResult=checkAction(action);
-        if(!checkActionResult.isSuccess()){
-            log.setStatus(OpsAutoTaskResultStatusEnum.FAILED.code());
-            log.setRecordContent(checkActionResult.getMessage());
-            log.setEtime(new Date());
-            autoTaskLogService.update(log,SaveMode.NOT_NULL_FIELDS);
-            return ErrorDesc.failureMessage(checkActionResult.getMessage());
+
+        //检查配置变量
+        String actionConfContent=action.getConfContent();
+        JSONObject actionConfContentObj=null;
+        try{
+            actionConfContentObj=JSONObject.parseObject(actionConfContent);
+        }catch (com.alibaba.fastjson.JSONException eee) {
+            recordFailed(log,"动作配置内容解析失败");
+            return ErrorDesc.failureMessage("动作配置内容解析失败");
         }
+
+        HashMap<String,Object> vars=new HashMap<>();
+        if(actionConfContentObj.containsKey("vars")){
+            JSONArray varsArr=actionConfContentObj.getJSONArray("vars");
+            if(varsArr!=null&&varsArr.size()>0){
+                for(int i=0;i<varsArr.size();i++){
+                    vars.put(varsArr.getJSONObject(i).getString("key"),varsArr.getJSONObject(i));
+                }
+            }
+        }
+
+
+        //获取当前配置
+        HashMap<String,String> currentNodeVars=new HashMap<>();
+        AutoTask task=autoTaskService.getById(taskId);
+        String taskConfContent=task.getConfContent();
+        JSONArray taskConfContentArr=null;
+        try{
+            taskConfContentArr=JSONArray.parseArray(taskConfContent);
+        }catch (com.alibaba.fastjson.JSONException eee) {
+            recordFailed(log,"批次作业配置内容解析失败");
+            return ErrorDesc.failureMessage("批次作业配置内容解析失败");
+        }
+
+        if(taskConfContentArr!=null&&taskConfContentArr.size()>0){
+            for(int i=0;i<taskConfContentArr.size();i++){
+                JSONObject nodeConfObj=taskConfContentArr.getJSONObject(i);
+                if(nodeConfObj.containsKey("ip")){
+                    String nodeIp=nodeConfObj.getString("ip");
+                    if(nodeConfObj.containsKey("vars")){
+                       JSONArray nodeVarsArr= nodeConfObj.getJSONArray("vars");
+                       for(int j=0;j<nodeVarsArr.size();j++){
+                           JSONObject kv=nodeVarsArr.getJSONObject(j);
+                           currentNodeVars.put(kv.getString("key"),kv.getString("value"));
+                       }
+                    }
+                    if(nodeIp.equals(node.getIp())){
+                        break;
+                    }
+                }
+            }
+        }
+
+
 
         //连接测试
         Result checkConnectNodeResult=checkConnectNode(action);
         if(!checkConnectNodeResult.isSuccess()){
-            log.setStatus(OpsAutoTaskResultStatusEnum.FAILED.code());
-            log.setRecordContent(checkConnectNodeResult.getMessage());
-            log.setEtime(new Date());
-            autoTaskLogService.update(log,SaveMode.NOT_NULL_FIELDS);
+            recordFailed(log,checkConnectNodeResult.getMessage());
             return ErrorDesc.failureMessage(checkConnectNodeResult.getMessage());
         }
+
+
+
+        System.out.println("###########Action Start,ip:"+node.getIp()+" #########");
+        System.out.println("method:"+method);
+        System.out.println("taskId:"+taskId);
+        System.out.println("mLogId:"+mLogId);
+        System.out.println("nodeName:"+node.getName());
+        System.out.println("nodeIp:"+node.getIp());
+        //替换变量参数
+        System.out.println("globalVars:\n"+vars);
+        System.out.println("currentNodeVars:\n"+currentNodeVars);
+        String ct=action.getExecuteContent();
+        for (String key : vars.keySet()) {
+            JSONObject keyObject= (JSONObject) vars.get(key);
+            System.out.println("keyObject:"+keyObject);
+            String gValue=keyObject.getString("value");
+            String value=currentNodeVars.getOrDefault(key,gValue);
+            System.out.println("replace var,key:"+key+",value:"+value+",gvalue:"+gValue);
+            String t=ct.replaceAll("<##"+key+"##>",value);
+            ct=t;
+        }
+
+        String t= ct.replaceAll("<##ip##>",node.getIp());
+        ct=t;
+        System.out.println("replace var,key:ip,value:"+node.getIp());
+        System.out.println("execute Content:\n"+ct);
+        if(METHOD_EXECUTE.equals(method)){
+            //#############create exe file #############
+            String execFileName="ops_"+mLogId+"_"+node.getId();
+            String execFileNameWithSuffix=execFileName+".sh";
+            String execFileFullName="";
+            File executeTmpFile=null;
+            BufferedReader bufferedReader = null;
+            BufferedWriter bufferedWriter = null;
+            try {
+                System.out.println("create temp main execute file,file:"+execFileNameWithSuffix);
+                executeTmpFile = File.createTempFile(execFileName, ".sh");
+                execFileFullName=executeTmpFile.getAbsolutePath();
+                bufferedReader = new BufferedReader(new StringReader(ct));
+                bufferedWriter = new BufferedWriter(new FileWriter(executeTmpFile));
+                char buf[] = new char[1024]; //字符缓冲区
+                int len;
+                while ((len = bufferedReader.read(buf)) != -1) {
+                    bufferedWriter.write(buf, 0, len);
+                }
+                bufferedWriter.flush();
+                bufferedReader.close();
+                bufferedWriter.close();
+                System.out.println("create temp main execute file success,file:"+execFileFullName);
+            } catch (IOException e) {
+                String msg="create temp main execute file failed,file:"+execFileFullName;
+                System.out.println(msg);
+                e.printStackTrace();
+                recordFailed(log,msg);
+                return ErrorDesc.failureMessage(msg);
+            }
+            //#############upload exe file #############
+            Machine m=new Machine();
+            m.setHostname(node.getIp());
+            m.setPort(node.getPort());
+            m.setUsername(node.getVoucher().getAccount());
+            m.setPassword(node.getVoucher().getVoucher());
+            SftpClient sftp = new SftpClient(m);
+            sftp.connect();
+            if(!sftp.isConnected()){
+                String msg="Connect to host by sftp error!";
+                recordFailed(log,msg);
+                return ErrorDesc.failureMessage(msg);
+            }
+            sftp.changeDirectory("/tmp");
+            try {
+                if("/tmp".equals(sftp.getCurrentCatalog())){
+                    sftp.deleteFile(execFileNameWithSuffix);
+                }
+            } catch (IOException ee) {
+                System.out.println("delete temp execute file error,detail:"+ee.getMessage());
+            }
+            //#############upload script file #############
+            sftp.uploadFile(executeTmpFile, execFileNameWithSuffix, null);
+            String scriptSql="select\n" +
+                    "a.script_id,\n" +
+                    "c.file_name,\n" +
+                    "d.location\n" +
+                    "from \n" +
+                    "ops_auto_action_s_script a,\n" +
+                    "ops_auto_action b,\n" +
+                    "ops_auto_action_script c,\n" +
+                    "sys_file d\n" +
+                    "where a.owner_id=b.id \n" +
+                    "and c.id=a.script_id\n" +
+                    "and d.id=c.file_id\n" +
+                    "and a.deleted=0 \n" +
+                    "and b.deleted=0\n" +
+                    "and c.deleted=0\n"+
+                    "and b.id=?";
+            RcdSet scriptRS=dao.query(scriptSql,action.getId());
+            for(Rcd rcd:scriptRS){
+                String f=this.getStorageDir()+rcd.getString("location");
+                String fn=rcd.getString("file_name");
+                if(StringUtil.isBlank(fn)){
+                    recordFailed(log,"文件名不能为空");
+                    return ErrorDesc.failureMessage("文件名不能为空");
+                }
+                File file=new File(f);
+                if(!file.exists()){
+                    String msg="script:"+f+" not exist";
+                    recordFailed(log,msg);
+                    return ErrorDesc.failureMessage(msg);
+                }
+                try {
+                    if("/tmp".equals(sftp.getCurrentCatalog())){
+                        sftp.deleteFile(fn);
+                        sftp.uploadFile(file, fn, null);
+                    }
+                } catch (IOException ee) {
+                    System.out.println("delete script file error,detail:"+ee.getMessage());
+                }
+
+            }
+
+            //#############upload file #############
+            String fileSql="select\n" +
+                    "a.file_id,\n" +
+                    "c.file_name,\n" +
+                    "d.location\n" +
+                    "from \n" +
+                    "ops_auto_action_s_file a,\n" +
+                    "ops_auto_action b,\n" +
+                    "ops_auto_action_file c,\n" +
+                    "sys_file d\n" +
+                    "where a.owner_id=b.id \n" +
+                    "and c.id=a.file_id\n" +
+                    "and d.id=c.file_id\n" +
+                    "and a.deleted=0 \n" +
+                    "and b.deleted=0\n" +
+                    "and c.deleted=0\n"+
+                    "and b.id=?";
+            if(StatusEnableEnum.ENABLE.code().equals(action.getFileStatus())){
+                RcdSet fileRS=dao.query(fileSql,action.getId());
+                for(Rcd rcd:fileRS){
+                    String f=this.getStorageDir()+rcd.getString("location");
+                    String fn=rcd.getString("file_name");
+                    if(StringUtil.isBlank(fn)){
+                        recordFailed(log,"文件名不能为空");
+                        return ErrorDesc.failureMessage("文件名不能为空");
+                    }
+                    File file=new File(f);
+                    if(!file.exists()){
+                        String msg="file:"+f+" not exist";
+                        recordFailed(log,msg);
+                        return ErrorDesc.failureMessage(msg);
+                    }
+                    try {
+                        if("/tmp".equals(sftp.getCurrentCatalog())){
+                            sftp.deleteFile(fn);
+                            sftp.uploadFile(file, fn, null);
+                        }
+                    } catch (IOException ee) {
+                        System.out.println("delete file error,detail:"+ee.getMessage());
+                    }
+                }
+            }else{
+                System.out.println("file upload status:"+ action.getFileStatus());
+            }
+            //#############execute #############
+            RemoteShellExecutor executor = new RemoteShellExecutor(node.getIp(),node.getVoucher().getAccount(),
+                    node.getVoucher().getVoucher(), node.getPort());
+
+            ArrayList<String> exeCommands = new ArrayList<String>();
+            exeCommands.add("sed -i \"s/^M//\" /tmp/"+execFileNameWithSuffix);
+            exeCommands.add("sh /tmp/"+execFileNameWithSuffix);
+            RemoteShellResult r2 = executor.exec(exeCommands);
+            r2.print();
+            if(r2.result.length()>=10000){
+                log.setContentDetail(r2.result.substring(0,10000));
+            }else{
+                log.setContentDetail(r2.result);
+            }
+        }else if (METHOD_CHECK.equals(method)){
+            RemoteShellExecutor executor = new RemoteShellExecutor(node.getIp(),node.getVoucher().getAccount(),
+                    node.getVoucher().getVoucher(), node.getPort());
+            String cmds = "echo 'success!';hostname";
+            RemoteShellResult r2 = executor.exec(cmds);
+            r2.print();
+            log.setContentDetail(r2.result);
+            executor.close();
+        }else if (METHOD_VIEW.equals(method)){
+
+        }
+        System.out.println("###########Action Finish,ip:"+node.getIp()+" #########");
+
+
 
 
         //执行
@@ -119,26 +452,31 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
     public Result executeByTaskId(String taskId, String method){
         AutoTask task=autoTaskService.getById(taskId);
         autoTaskService.dao().fill(task)
-                .with(AutoTaskMeta.GROUP)
+                .with(AutoTaskMeta.BATCH)
                 .execute();
 
-        AutoGroup group=task.getGroup();
+        AutoBatch batch=task.getBatch();
         List<AutoNode> nodeList= new ArrayList<>();
+        String sql="select b.node_id from ops_auto_task a,ops_auto_node_select b where a.id=b.owner_id and a.deleted=0 and b.deleted=0 and a.status='enable' and a.id='"+taskId+"'";
+        String nodeSql="";
         //填充节点
-        if(group!=null){
-            AutoNode nodeQuery=new AutoNode();
-            nodeQuery.setStatus(StatusEnableEnum.ENABLE.code());
-            nodeQuery.setGroupId(group.getId());
-            nodeList=autoNodeService.queryList(nodeQuery);
+        if(StringUtil.isBlank(task.getBatchId())){
+            nodeSql=sql;
+        }else{
+            String sql2="select b.node_id from ops_auto_batch a,ops_auto_node_select b where a.id=b.owner_id and a.deleted=0 and b.deleted=0 and a.status='enable' and a.id='"+task.getBatchId()+"'";
+            nodeSql=sql+" union all "+sql2;
         }
-
+        AutoNode node=new AutoNode();
+        node.setStatus(StatusEnableEnum.ENABLE.code());
+        ConditionExpr expr=new ConditionExpr();
+        expr.and("id in ("+nodeSql+")");
+        nodeList=autoNodeService.queryList(node,expr);
         //获取凭证数据
         if(nodeList!=null){
             autoNodeService.dao().fill(nodeList)
                     .with(AutoNodeMeta.VOUCHER)
                     .execute();
         }
-
         //获取动作数据
         autoTaskService.dao().fill(task)
                 .with(AutoTaskMeta.ACTION)
@@ -195,6 +533,10 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
 
         autoTaskMLogService.insert(taskMainLog);
 
+        AutoTask updateTask=new AutoTask();
+        updateTask.setId((task.getId()));
+        updateTask.setRunStatus(OpsAutoTaskRunStatusEnum.RUNNING.code());
+        autoTaskService.update(updateTask,SaveMode.NOT_NULL_FIELDS);
         for(AutoNode node:nodeList){
             Logger.info("task:"+task.getName()+",node:"+node.getName()+",action:"+action.getName());
             Result eRes=executeNode(node,action,task.getId(),id,method);
@@ -203,6 +545,9 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
         taskMainLog.setStatus(OpsAutoTaskResultStatusEnum.SUCCESS.code());
         taskMainLog.setContent("操作完成");
         autoTaskMLogService.update(taskMainLog, SaveMode.NOT_NULL_FIELDS);
+
+        updateTask.setRunStatus(OpsAutoTaskRunStatusEnum.FINISH.code());
+        autoTaskService.update(updateTask,SaveMode.NOT_NULL_FIELDS);
         return ErrorDesc.success();
     }
 
@@ -210,8 +555,6 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
 
 
     public Result checkConnectNode(AutoAction node){
-
-
         ErrorDesc.failureMessage("与节点连接失败");
         return ErrorDesc.success();
     }
@@ -224,14 +567,15 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
             return ErrorDesc.failureMessage("执行配置内容为空");
         }
 
-        JSONObject confObject= JSONObject.parseObject(conf);
-        if(confObject==null){
-            return ErrorDesc.failureMessage("执行配置内容为空");
-        }
+//        JSONObject confObject= JSONObject.parseObject(conf);
+//        if(confObject==null){
+//            return ErrorDesc.failureMessage("执行配置内容为空");
+//        }
 
         if(StringUtil.isBlank(content)){
             return ErrorDesc.failureMessage("执行内容为空");
         }
+
         return ErrorDesc.success();
     }
 
