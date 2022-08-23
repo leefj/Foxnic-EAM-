@@ -101,7 +101,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 //如果审批中或审批通过的不允许编辑
                 console.log(data[i]);
                 if(data[i].status=="complete") {
-                    fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
+                   // fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
                   //  fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.for-approval-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
