@@ -267,6 +267,31 @@ function ListPage() {
 				if(!doNext) return;
 			}
 			switch(obj.event){
+				case 'select-node':
+					var ps={};
+					var ids=getCheckedList("id");
+					if(ids.length==0) {
+						top.layer.msg(fox.translate('请选择')+fox.translate('数据')+"!");
+						return;
+					}
+					ps.selectedCode=SELECTED_CODE;
+					if(OWNER_ID){
+						ps.ownerId=OWNER_ID;
+					}
+					ps.nodeIds=ids;
+					top.layer.confirm(fox.translate('确定选择已选中的')+fox.translate('数据')+fox.translate('吗？'), function (i) {
+						top.layer.close(i);
+						admin.post(moduleURL+"/save-selected-node",ps, function (data) {
+							if (data.success) {
+								var index=admin.getTempData('ops-auto-node-select-data-popup-index');
+								admin.finishPopupCenter(index);
+
+							} else {
+								fox.showMessage(data);
+							}
+						});
+					});
+					break;
 				case 'create':
 					admin.putTempData('ops-auto-node-form-data', {});
 					openCreateFrom();
@@ -285,35 +310,9 @@ function ListPage() {
 
 		//添加按钮点击事件
         function openCreateFrom() {
-        	//设置新增是初始化数据
-			//调用批量删除接口
-			var ps={};
-			var ids=getCheckedList("id");
-			if(ids.length==0) {
-				top.layer.msg(fox.translate('请选择')+fox.translate('数据')+"!");
-				return;
-			}
-			ps.selectedCode=SELECTED_CODE;
-			if(OWNER_ID){
-				ps.ownerId=OWNER_ID;
-			}
-			ps.nodeIds=ids;
-			top.layer.confirm(fox.translate('确定选择已选中的')+fox.translate('数据')+fox.translate('吗？'), function (i) {
-				top.layer.close(i);
-				admin.post(moduleURL+"/save-selected-node",ps, function (data) {
-					if (data.success) {
-						var index=admin.getTempData('ops-auto-node-select-data-popup-index');
-						admin.finishPopupCenter(index);
-
-					} else {
-						fox.showMessage(data);
-					}
-				});
-			});
-
-        	// var data={};
-			// admin.putTempData('ops-auto-node-form-data-form-action', "create",true);
-            // showEditForm(data);
+        	var data={};
+			admin.putTempData('ops-auto-node-form-data-form-action', "create",true);
+            showEditForm(data);
         };
 
         //批量删除按钮点击事件

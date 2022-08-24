@@ -3,6 +3,7 @@ package com.dt.platform.ops.service.impl;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
+import com.dt.platform.constants.enums.ops.OpsAutoActionNodeNumberTypeEnum;
 import com.dt.platform.constants.enums.ops.OpsAutoTaskResultStatusEnum;
 import com.dt.platform.constants.enums.ops.OpsAutoTaskRunStatusEnum;
 import com.dt.platform.domain.ops.*;
@@ -96,58 +97,6 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
      * */
     public DAO dao() { return dao; }
 
-
-
-
-//    public static void writeCTOut(ArrayList<Node> hosts) {
-//        File fout = new File("out.txt");
-//        FileOutputStream fos = null;
-//        BufferedWriter bw = null;
-//        try {
-//            fos = new FileOutputStream(fout);
-//            bw = new BufferedWriter(new OutputStreamWriter(fos, "UTF-8"));
-//            for (int i = 0; i < hosts.size(); i++) {
-//                String h="";
-//                if(hosts.get(i).getHostname()!=null){
-//                    h=hosts.get(i).getHostname();
-//                }
-//                String ct="";
-//                if(hosts.get(i).getCt()!=null){
-//                    ct=hosts.get(i).getCt().trim();
-//                }else{
-//                    ct="ct is null";
-//                }
-//                bw.write("###########" + h + "###########\n" +ct );
-//                bw.newLine();
-//            }
-//
-//        } catch (FileNotFoundException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        } catch (UnsupportedEncodingException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        } finally {
-//            if (bw != null)
-//                try {
-//                    bw.close();
-//                } catch (IOException e) {
-//                    // TODO Auto-generated catch block
-//                    e.printStackTrace();
-//                }
-//            if (fos != null)
-//                try {
-//                    fos.close();
-//                } catch (IOException e) {
-//                    // TODO Auto-generated catch block
-//                    e.printStackTrace();
-//                }
-//        }
-//    }
-
     public Result recordFailed(AutoTaskLog log,String message){
         log.setStatus(OpsAutoTaskResultStatusEnum.FAILED.code());
         log.setRecordContent(message);
@@ -184,7 +133,6 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
             recordFailed(log,checkNodeResult.getMessage());
             return ErrorDesc.failureMessage(checkNodeResult.getMessage());
         }
-
 
         //检查配置变量
         String actionConfContent=action.getConfContent();
@@ -324,8 +272,12 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
             } catch (IOException ee) {
                 System.out.println("delete temp execute file error,detail:"+ee.getMessage());
             }
+            Result uploadExeFileR= sftp.uploadFile(executeTmpFile, execFileNameWithSuffix, null);
+            if(!uploadExeFileR.success()){
+                recordFailed(log,uploadExeFileR.message());
+                return ErrorDesc.failureMessage(uploadExeFileR.message());
+            }
             //#############upload script file #############
-            sftp.uploadFile(executeTmpFile, execFileNameWithSuffix, null);
             String scriptSql="select\n" +
                     "a.script_id,\n" +
                     "c.file_name,\n" +
@@ -359,10 +311,15 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
                 try {
                     if("/tmp".equals(sftp.getCurrentCatalog())){
                         sftp.deleteFile(fn);
-                        sftp.uploadFile(file, fn, null);
                     }
                 } catch (IOException ee) {
                     System.out.println("delete script file error,detail:"+ee.getMessage());
+                }
+
+                Result uploadScritR=sftp.uploadFile(file, fn, null);
+                if(!uploadScritR.isSuccess()){
+                    recordFailed(log,uploadScritR.message());
+                    return ErrorDesc.failureMessage(uploadScritR.message());
                 }
 
             }
@@ -402,11 +359,16 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
                     try {
                         if("/tmp".equals(sftp.getCurrentCatalog())){
                             sftp.deleteFile(fn);
-                            sftp.uploadFile(file, fn, null);
                         }
                     } catch (IOException ee) {
                         System.out.println("delete file error,detail:"+ee.getMessage());
                     }
+                    Result uploadFileR=sftp.uploadFile(file, fn, null);
+                    if(!uploadFileR.isSuccess()){
+                        recordFailed(log,uploadFileR.message());
+                        return ErrorDesc.failureMessage(uploadFileR.message());
+                    }
+
                 }
             }else{
                 System.out.println("file upload status:"+ action.getFileStatus());
@@ -521,7 +483,7 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
             return ErrorDesc.failureMessage(msg);
         }
 
-
+        //检查节点数量
         if(nodeList==null|| nodeList.size()==0){
             String msg="执行节点数量为空";
             taskMainLog.setStatus(OpsAutoTaskResultStatusEnum.FAILED.code());
@@ -531,8 +493,26 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
         }
 
 
-        autoTaskMLogService.insert(taskMainLog);
+        //检查节点数量是否符合模版
+        if(OpsAutoActionNodeNumberTypeEnum.TWO.code().equals(action.getNodeNumberType())){
+            if(nodeList.size()!=2){
+                String msg="当前部署模版,只能选择2个节点";
+                taskMainLog.setStatus(OpsAutoTaskResultStatusEnum.FAILED.code());
+                taskMainLog.setContent(msg);
+                autoTaskMLogService.insert(taskMainLog);
+                return ErrorDesc.failureMessage(msg);
+            }
+        }else if (OpsAutoActionNodeNumberTypeEnum.THREE.code().equals(action.getNodeNumberType())){
+            if(nodeList.size()!=3){
+                String msg="当前部署模版,只能选择3个节点";
+                taskMainLog.setStatus(OpsAutoTaskResultStatusEnum.FAILED.code());
+                taskMainLog.setContent(msg);
+                autoTaskMLogService.insert(taskMainLog);
+                return ErrorDesc.failureMessage(msg);
+            }
+        }
 
+        autoTaskMLogService.insert(taskMainLog);
         AutoTask updateTask=new AutoTask();
         updateTask.setId((task.getId()));
         updateTask.setRunStatus(OpsAutoTaskRunStatusEnum.RUNNING.code());

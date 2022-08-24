@@ -249,12 +249,27 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             if(data&&data.id&&data.action&&data.action.exampleConfContent){
                 $("#actionConfContent").val(data.action.exampleConfContent)
             }else{
+                $("#actionConfContent").val(" ")
             }
 
             if(data&&data.id&&data.action&&data.action.executeContent){
                 $("#actionExecuteContent").val(data.action.executeContent);
             }else{
+                $("#actionConfContent").val(" ")
             }
+
+            if(data&&data.id&&data.action&&data.action.info){
+                $("#actionInfo").val(data.action.info);
+            }else{
+                $("#actionInfo").val(" ")
+            }
+
+            if(data&&data.id&&data.action&&data.action.support){
+                $("#actionSupport").val(data.action.support);
+            }else{
+                $("#actionSupport").val(" ")
+            }
+
         },
         /**
          * 对话框打开之前调用，如果返回 null 则不打开对话框

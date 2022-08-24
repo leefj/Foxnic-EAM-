@@ -54,28 +54,29 @@ public class AutoNodeGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_AUTO_NODE.AUTHENTICATION_METHOD).table().disable(true);
         cfg.view().field(OpsTables.OPS_AUTO_NODE.PUB_KEY).table().disable(true);
-        cfg.view().field(OpsTables.OPS_AUTO_NODE.USER_NAME).table().disable(true);
         cfg.view().field(OpsTables.OPS_AUTO_NODE.PASSWORD).table().disable(true);
+
+        cfg.view().field(OpsTables.OPS_AUTO_NODE.IP).table().form().validate().required();
 
 
         cfg.view().field(OpsTables.OPS_AUTO_NODE.AUTHENTICATION_METHOD).table().form().validate().required().form().radioBox().enumType(OpsAutoAuthMethodEnum.class).defaultIndex(0);
-
+        cfg.view().field(OpsTables.OPS_AUTO_NODE.PORT).table().form().validate().required().form().numberInput().defaultValue(22);
 
 
         cfg.view().field(OpsTables.OPS_AUTO_NODE.TYPE)
-                .form().validate().required().form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=ops_auto_node_type")
-                .paging(false).filter(false).toolbar(false)
+                .form().validate().required().form().selectBox().queryApi(DictItemServiceProxy.QUERY_PAGED_LIST+"?dictCode=ops_auto_node_type")
+                .paging(true).filter(false).toolbar(false)
                 .valueField(DictItemMeta.CODE).
                 textField(DictItemMeta.LABEL).
                 fillWith(AutoNodeMeta.TYPE_DICT).muliti(false).defaultIndex(0);
 
 
         cfg.view().field(OpsTables.OPS_AUTO_NODE.GROUP_ID)
-                .form().validate().required().form().selectBox().queryApi(AutoGroupServiceProxy.QUERY_LIST)
-                .paging(false).filter(false).toolbar(false)
+                .form().validate().required().form().selectBox().queryApi(AutoGroupServiceProxy.QUERY_PAGED_LIST)
+                .paging(true).filter(false).toolbar(false)
                 .valueField(AutoGroupMeta.ID).
                 textField(AutoGroupMeta.NAME).
-                fillWith(AutoNodeMeta.GROUP).muliti(false);
+                fillWith(AutoNodeMeta.GROUP).muliti(false).defaultIndex(0);
 
 
 
@@ -94,18 +95,28 @@ public class AutoNodeGtr extends BaseCodeGenerator{
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_AUTO_NODE.NAME,
-                        OpsTables.OPS_AUTO_NODE.GROUP_ID,
-                        OpsTables.OPS_AUTO_NODE.STATUS,
-                        OpsTables.OPS_AUTO_NODE.TYPE,
+                        OpsTables.OPS_AUTO_NODE.IP,
+                        OpsTables.OPS_AUTO_NODE.PORT,
                 },
+                new Object[] {
+                        OpsTables.OPS_AUTO_NODE.STATUS,
+                        OpsTables.OPS_AUTO_NODE.GROUP_ID,
+                        OpsTables.OPS_AUTO_NODE.TYPE,
+                }
+        );
+
+
+        cfg.view().form().addGroup("凭证",
                 new Object[] {
                         OpsTables.OPS_AUTO_NODE.AUTHENTICATION_METHOD,
                         OpsTables.OPS_AUTO_NODE.VOUCHER_ID,
-                        OpsTables.OPS_AUTO_NODE.IP,
-                        OpsTables.OPS_AUTO_NODE.PORT,
-
+                },
+                new Object[] {
+                        OpsTables.OPS_AUTO_NODE.USER_NAME,
+                        OpsTables.OPS_AUTO_NODE.PASSWORD,
                 }
         );
+
 
         cfg.view().form().addGroup(null,
                 new Object[] {

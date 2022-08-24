@@ -14,7 +14,7 @@ import com.dt.platform.domain.ops.AutoNode;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-23 15:56:20
+ * @since 2022-08-24 06:37:35
  * @sign B1CE662BECAE3FCFFFE43FD667718D21
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -342,6 +342,26 @@ public class AutoTaskVOMeta extends AutoTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskVO,java.lang.String> ACTION_EXECUTE_CONTENT_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskVO.class ,ACTION_EXECUTE_CONTENT, java.lang.String.class, "actionExecuteContent", "actionExecuteContent", java.lang.String.class, null);
 	
 	/**
+	 * actionInfo , 类型: java.lang.String
+	*/
+	public static final String ACTION_INFO="actionInfo";
+	
+	/**
+	 * actionInfo , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskVO,java.lang.String> ACTION_INFO_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskVO.class ,ACTION_INFO, java.lang.String.class, "actionInfo", "actionInfo", java.lang.String.class, null);
+	
+	/**
+	 * actionSupport , 类型: java.lang.String
+	*/
+	public static final String ACTION_SUPPORT="actionSupport";
+	
+	/**
+	 * actionSupport , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskVO,java.lang.String> ACTION_SUPPORT_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskVO.class ,ACTION_SUPPORT, java.lang.String.class, "actionSupport", "actionSupport", java.lang.String.class, null);
+	
+	/**
 	 * nodeList , 集合类型: LIST , 类型: com.dt.platform.domain.ops.AutoNode
 	*/
 	public static final String NODE_LIST="nodeList";
@@ -364,7 +384,7 @@ public class AutoTaskVOMeta extends AutoTaskMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , OWNER_ID , NAME , STATUS , RUN_STATUS , GROUP_ID , BATCH_ID , ACTION_ID , CONF_CONTENT , NOTES , SELECTED_CODE , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , GROUP , BATCH , ACTION , ACTION_CONF_CONTENT , ACTION_EXECUTE_CONTENT , NODE_LIST , NODE_IDS };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , OWNER_ID , NAME , STATUS , RUN_STATUS , GROUP_ID , BATCH_ID , ACTION_ID , CONF_CONTENT , NOTES , SELECTED_CODE , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , GROUP , BATCH , ACTION , ACTION_CONF_CONTENT , ACTION_EXECUTE_CONTENT , ACTION_INFO , ACTION_SUPPORT , NODE_LIST , NODE_IDS };
 	
 	/**
 	 * 代理类
@@ -723,6 +743,28 @@ public class AutoTaskVOMeta extends AutoTaskMeta {
 		public AutoTask setActionExecuteContent(String actionExecuteContent) {
 			super.change(ACTION_EXECUTE_CONTENT,super.getActionExecuteContent(),actionExecuteContent);
 			super.setActionExecuteContent(actionExecuteContent);
+			return this;
+		}
+		
+		/**
+		 * 设置 actionInfo
+		 * @param actionInfo actionInfo
+		 * @return 当前对象
+		*/
+		public AutoTask setActionInfo(String actionInfo) {
+			super.change(ACTION_INFO,super.getActionInfo(),actionInfo);
+			super.setActionInfo(actionInfo);
+			return this;
+		}
+		
+		/**
+		 * 设置 actionSupport
+		 * @param actionSupport actionSupport
+		 * @return 当前对象
+		*/
+		public AutoTask setActionSupport(String actionSupport) {
+			super.change(ACTION_SUPPORT,super.getActionSupport(),actionSupport);
+			super.setActionSupport(actionSupport);
 			return this;
 		}
 		

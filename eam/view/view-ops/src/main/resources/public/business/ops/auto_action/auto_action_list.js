@@ -1,7 +1,7 @@
 /**
  * 执行任务 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-23 15:52:12
+ * @since 2022-08-23 19:33:18
  */
 
 
@@ -84,6 +84,7 @@ function ListPage() {
 					,{ field: 'tplVersion', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('模版版本') , templet: function (d) { return templet('tplVersion',d.tplVersion,d);}  }
 					,{ field: 'support', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('场景') , templet: function (d) { return templet('support',d.support,d);}  }
 					,{ field: 'fileStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('介质状态'), templet:function (d){ return templet('fileStatus',fox.getEnumText(RADIO_FILESTATUS_DATA,d.fileStatus,'','fileStatus'),d);}}
+					,{ field: 'nodeNumberType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('节点数量'), templet:function (d){ return templet('nodeNumberType',fox.getEnumText(RADIO_NODENUMBERTYPE_DATA,d.nodeNumberType,'','nodeNumberType'),d);}}
 					,{ field: 'executeTool', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('执行工具'), templet:function (d){ return templet('executeTool',fox.getEnumText(RADIO_EXECUTETOOL_DATA,d.executeTool,'','executeTool'),d);}}
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'autoActionScriptIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('脚本'), templet: function (d) { return templet('autoActionScriptIds' ,fox.joinLabel(d.autoActionScriptList,"name",',','','autoActionScriptIds'),d);}}

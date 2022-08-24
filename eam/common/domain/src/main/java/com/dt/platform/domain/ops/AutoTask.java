@@ -20,8 +20,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 批次作业
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-23 15:56:20
- * @sign 745B806E84F583D6E8F43E9FD7103CE9
+ * @since 2022-08-24 06:37:35
+ * @sign CF2B48F6F748B6D396E564431E7F1082
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -172,6 +172,18 @@ public class AutoTask extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="actionExecuteContent" , notes = "actionExecuteContent")
 	private String actionExecuteContent;
+	
+	/**
+	 * actionInfo：actionInfo
+	*/
+	@ApiModelProperty(required = false,value="actionInfo" , notes = "actionInfo")
+	private String actionInfo;
+	
+	/**
+	 * actionSupport：actionSupport
+	*/
+	@ApiModelProperty(required = false,value="actionSupport" , notes = "actionSupport")
+	private String actionSupport;
 	
 	/**
 	 * nodeList：nodeList
@@ -649,6 +661,44 @@ public class AutoTask extends Entity {
 	*/
 	public AutoTask setActionExecuteContent(String actionExecuteContent) {
 		this.actionExecuteContent=actionExecuteContent;
+		return this;
+	}
+	
+	/**
+	 * 获得 actionInfo<br>
+	 * actionInfo
+	 * @return actionInfo
+	*/
+	public String getActionInfo() {
+		return actionInfo;
+	}
+	
+	/**
+	 * 设置 actionInfo
+	 * @param actionInfo actionInfo
+	 * @return 当前对象
+	*/
+	public AutoTask setActionInfo(String actionInfo) {
+		this.actionInfo=actionInfo;
+		return this;
+	}
+	
+	/**
+	 * 获得 actionSupport<br>
+	 * actionSupport
+	 * @return actionSupport
+	*/
+	public String getActionSupport() {
+		return actionSupport;
+	}
+	
+	/**
+	 * 设置 actionSupport
+	 * @param actionSupport actionSupport
+	 * @return 当前对象
+	*/
+	public AutoTask setActionSupport(String actionSupport) {
+		this.actionSupport=actionSupport;
 		return this;
 	}
 	

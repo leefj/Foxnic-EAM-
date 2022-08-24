@@ -1,7 +1,7 @@
 /**
  * 节点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-23 12:49:29
+ * @since 2022-08-23 19:42:31
  */
 
 function FormPage() {
@@ -116,6 +116,8 @@ function FormPage() {
 			el: "groupId",
 			radio: true,
 			filterable: false,
+			paging: true,
+			pageRemote: true,
 			layVerify: 'required',
 			layVerType: 'msg',
 			on: function(data){
@@ -129,7 +131,7 @@ function FormPage() {
 				var defaultValues=[],defaultIndexs=[];
 				if(action=="create") {
 					defaultValues = "".split(",");
-					defaultIndexs = "".split(",");
+					defaultIndexs = "0".split(",");
 				}
 				var opts=[];
 				if(!data) return opts;
@@ -145,6 +147,8 @@ function FormPage() {
 			el: "type",
 			radio: true,
 			filterable: false,
+			paging: true,
+			pageRemote: true,
 			layVerify: 'required',
 			layVerType: 'msg',
 			on: function(data){

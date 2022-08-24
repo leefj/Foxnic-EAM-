@@ -1,6 +1,8 @@
 package com.dt.platform.ops.service.impl.ops;
 
 import ch.ethz.ssh2.*;
+import com.github.foxnic.api.error.ErrorDesc;
+import com.github.foxnic.api.transter.Result;
 
 
 import java.io.*;
@@ -238,11 +240,13 @@ public class SftpClient {
 		}
 	}
 
-	public void uploadFile(File file, String fileName, Map<String, Object> session) {
+	public Result uploadFile(File file, String fileName, Map<String, Object> session) {
 
+		boolean uploadFlag=true;
+		String msg="上传失败";
 		System.out.println("start to upload file,file:"+file.getAbsolutePath()+",fileName:"+fileName);
 		if (file == null)
-			return;
+			return ErrorDesc.failureMessage("文件为空");
 		FileInputStream fis = null;
 		SFTPv3FileHandle handle = null;
 		try {
@@ -251,11 +255,8 @@ public class SftpClient {
 			long totalSize = file.length();
 			byte[] b = new byte[1024 * 8];
 			long count = 0;
-
-
 			handle = client.createFile(getCurrentCatalog() + "/" + fileName);
 			DecimalFormat df = new DecimalFormat("#.00");
-
 			while (true) {
 				int len = fis.read(b);
 				if (len == -1)
@@ -269,12 +270,13 @@ public class SftpClient {
 							+ "%\",\"num\":\"" + (int) ((double) count / totalSize) + "\"}");
 				}
 			}
-
 		}
 		catch (IOException e) {
+			msg=e.getMessage();
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}  catch (NullPointerException e) {
+			msg=e.getMessage();
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
@@ -289,7 +291,6 @@ public class SftpClient {
 				}
 			}
 			if (fis != null) {
-
 				try {
 					fis.close();
 				} catch (IOException e) {
@@ -298,6 +299,12 @@ public class SftpClient {
 				}
 			}
 		}
+		if(uploadFlag){
+			return ErrorDesc.success();
+		}else{
+			return ErrorDesc.failureMessage("file:"+file.getAbsolutePath()+" upload failed,message:"+msg);
+		}
+
 	}
 
 	// download file from current catalog

@@ -2,6 +2,7 @@ package com.dt.platform.generator.module.ops;
 
 import com.dt.platform.constants.db.OpsTables;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
+import com.dt.platform.constants.enums.ops.OpsAutoActionNodeNumberTypeEnum;
 import com.dt.platform.constants.enums.ops.OpsAutoActionTypeEnum;
 import com.dt.platform.constants.enums.ops.OpsAutoExecuteTypeEnum;
 import com.dt.platform.domain.ops.*;
@@ -80,6 +81,9 @@ public class AutoActionGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_AUTO_ACTION.FILE_STATUS).table().form().validate().required().form().radioBox().enumType(StatusEnableEnum.class).defaultIndex(0);
 
+        cfg.view().field(OpsTables.OPS_AUTO_ACTION.NODE_NUMBER_TYPE).table().form().validate().required().form().radioBox().enumType(OpsAutoActionNodeNumberTypeEnum.class).defaultIndex(0);
+
+
 
         cfg.service().addRelationSaveAction(AutoActionSScriptServiceImpl.class, AutoActionVOMeta.AUTO_ACTION_SCRIPT_IDS);
         cfg.service().addRelationSaveAction(AutoActionSFileServiceImpl.class,AutoActionVOMeta.AUTO_ACTION_FILE_IDS);
@@ -110,11 +114,12 @@ public class AutoActionGtr extends BaseCodeGenerator{
                         OpsTables.OPS_AUTO_ACTION.STATUS,
                         OpsTables.OPS_AUTO_ACTION.TYPE,
                         OpsTables.OPS_AUTO_ACTION.INFO,
+                        OpsTables.OPS_AUTO_ACTION.SUPPORT,
 
                 },
                 new Object[] {
                         OpsTables.OPS_AUTO_ACTION.TPL_VERSION,
-                        OpsTables.OPS_AUTO_ACTION.SUPPORT,
+                        OpsTables.OPS_AUTO_ACTION.NODE_NUMBER_TYPE,
                         OpsTables.OPS_AUTO_ACTION.EXECUTE_TOOL,
                         OpsTables.OPS_AUTO_ACTION.FILE_STATUS,
 

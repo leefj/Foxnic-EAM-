@@ -52,7 +52,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 执行任务 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-23 15:52:11
+ * @since 2022-08-23 19:33:17
 */
 
 @Api(tags = "执行任务")
@@ -77,6 +77,7 @@ public class AutoActionController extends SuperController {
 		@ApiImplicitParam(name = AutoActionVOMeta.SUPPORT , value = "场景" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoActionVOMeta.INFO , value = "说明" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoActionVOMeta.FILE_STATUS , value = "介质状态" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.NODE_NUMBER_TYPE , value = "节点数量" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoActionVOMeta.CONF_CONTENT , value = "配置内容" , required = false , dataTypeClass=String.class , example = "12"),
 		@ApiImplicitParam(name = AutoActionVOMeta.EXAMPLE_CONF_CONTENT , value = "配置例子" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoActionVOMeta.EXECUTE_CONTENT , value = "执行内容" , required = false , dataTypeClass=String.class , example = "12"),
@@ -186,6 +187,7 @@ public class AutoActionController extends SuperController {
 		@ApiImplicitParam(name = AutoActionVOMeta.SUPPORT , value = "场景" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoActionVOMeta.INFO , value = "说明" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoActionVOMeta.FILE_STATUS , value = "介质状态" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.NODE_NUMBER_TYPE , value = "节点数量" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoActionVOMeta.CONF_CONTENT , value = "配置内容" , required = false , dataTypeClass=String.class , example = "12"),
 		@ApiImplicitParam(name = AutoActionVOMeta.EXAMPLE_CONF_CONTENT , value = "配置例子" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoActionVOMeta.EXECUTE_CONTENT , value = "执行内容" , required = false , dataTypeClass=String.class , example = "12"),
@@ -214,6 +216,7 @@ public class AutoActionController extends SuperController {
 		@ApiImplicitParam(name = AutoActionVOMeta.SUPPORT , value = "场景" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoActionVOMeta.INFO , value = "说明" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoActionVOMeta.FILE_STATUS , value = "介质状态" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.NODE_NUMBER_TYPE , value = "节点数量" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoActionVOMeta.CONF_CONTENT , value = "配置内容" , required = false , dataTypeClass=String.class , example = "12"),
 		@ApiImplicitParam(name = AutoActionVOMeta.EXAMPLE_CONF_CONTENT , value = "配置例子" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoActionVOMeta.EXECUTE_CONTENT , value = "执行内容" , required = false , dataTypeClass=String.class , example = "12"),
@@ -287,6 +290,7 @@ public class AutoActionController extends SuperController {
 		@ApiImplicitParam(name = AutoActionVOMeta.SUPPORT , value = "场景" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoActionVOMeta.INFO , value = "说明" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoActionVOMeta.FILE_STATUS , value = "介质状态" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.NODE_NUMBER_TYPE , value = "节点数量" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoActionVOMeta.CONF_CONTENT , value = "配置内容" , required = false , dataTypeClass=String.class , example = "12"),
 		@ApiImplicitParam(name = AutoActionVOMeta.EXAMPLE_CONF_CONTENT , value = "配置例子" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoActionVOMeta.EXECUTE_CONTENT , value = "执行内容" , required = false , dataTypeClass=String.class , example = "12"),
@@ -317,6 +321,7 @@ public class AutoActionController extends SuperController {
 		@ApiImplicitParam(name = AutoActionVOMeta.SUPPORT , value = "场景" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoActionVOMeta.INFO , value = "说明" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoActionVOMeta.FILE_STATUS , value = "介质状态" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.NODE_NUMBER_TYPE , value = "节点数量" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoActionVOMeta.CONF_CONTENT , value = "配置内容" , required = false , dataTypeClass=String.class , example = "12"),
 		@ApiImplicitParam(name = AutoActionVOMeta.EXAMPLE_CONF_CONTENT , value = "配置例子" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AutoActionVOMeta.EXECUTE_CONTENT , value = "执行内容" , required = false , dataTypeClass=String.class , example = "12"),

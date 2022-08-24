@@ -1,7 +1,7 @@
 /**
  * 节点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-23 12:49:29
+ * @since 2022-08-23 19:42:30
  */
 
 
@@ -85,6 +85,7 @@ function ListPage() {
 					,{ field: 'ip', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('IP') , templet: function (d) { return templet('ip',d.ip,d);}  }
 					,{ field: 'port', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('端口') , templet: function (d) { return templet('port',d.port,d);}  }
 					,{ field: 'voucherId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('凭证'), templet: function (d) { return templet('voucherId' ,fox.joinLabel(d.voucher,"name",',','','voucherId'),d);}}
+					,{ field: 'userName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('账户') , templet: function (d) { return templet('userName',d.userName,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
@@ -195,6 +196,8 @@ function ListPage() {
 					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("groupId",data.arr,data.change,data.isAdd);
 				},1);
 			},
+			paging: true,
+			pageRemote: true,
 			//转换数据
 			transform: function(data) {
 				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]

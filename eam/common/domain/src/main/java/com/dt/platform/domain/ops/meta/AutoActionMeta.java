@@ -12,8 +12,8 @@ import org.github.foxnic.web.domain.system.DictItem;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-23 15:52:10
- * @sign 78564080566E3CE25715B947FAB8665D
+ * @since 2022-08-23 19:33:16
+ * @sign F873CE44468D248A2C2B446782913CC3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -98,6 +98,16 @@ public class AutoActionMeta {
 	 * 介质状态 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoAction,java.lang.String> FILE_STATUS_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoAction.class ,FILE_STATUS, java.lang.String.class, "介质状态", "介质状态", java.lang.String.class, null);
+	
+	/**
+	 * 节点数量 , 类型: java.lang.String
+	*/
+	public static final String NODE_NUMBER_TYPE="nodeNumberType";
+	
+	/**
+	 * 节点数量 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoAction,java.lang.String> NODE_NUMBER_TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoAction.class ,NODE_NUMBER_TYPE, java.lang.String.class, "节点数量", "节点数量", java.lang.String.class, null);
 	
 	/**
 	 * 配置内容 , 类型: java.lang.String
@@ -272,7 +282,7 @@ public class AutoActionMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NAME , STATUS , TYPE , TPL_VERSION , SUPPORT , INFO , FILE_STATUS , CONF_CONTENT , EXAMPLE_CONF_CONTENT , EXECUTE_CONTENT , EXECUTE_TOOL , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , AUTO_ACTION_SCRIPT_LIST , AUTO_ACTION_SCRIPT_IDS , AUTO_ACTION_FILE_LIST , AUTO_ACTION_FILE_IDS , TYPE_DICT };
+	public static final String[] $PROPS={ ID , NAME , STATUS , TYPE , TPL_VERSION , SUPPORT , INFO , FILE_STATUS , NODE_NUMBER_TYPE , CONF_CONTENT , EXAMPLE_CONF_CONTENT , EXECUTE_CONTENT , EXECUTE_TOOL , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , AUTO_ACTION_SCRIPT_LIST , AUTO_ACTION_SCRIPT_IDS , AUTO_ACTION_FILE_LIST , AUTO_ACTION_FILE_IDS , TYPE_DICT };
 	
 	/**
 	 * 代理类
@@ -367,6 +377,17 @@ public class AutoActionMeta {
 		public AutoAction setFileStatus(String fileStatus) {
 			super.change(FILE_STATUS,super.getFileStatus(),fileStatus);
 			super.setFileStatus(fileStatus);
+			return this;
+		}
+		
+		/**
+		 * 设置 节点数量
+		 * @param nodeNumberType 节点数量
+		 * @return 当前对象
+		*/
+		public AutoAction setNodeNumberType(String nodeNumberType) {
+			super.change(NODE_NUMBER_TYPE,super.getNodeNumberType(),nodeNumberType);
+			super.setNodeNumberType(nodeNumberType);
 			return this;
 		}
 		

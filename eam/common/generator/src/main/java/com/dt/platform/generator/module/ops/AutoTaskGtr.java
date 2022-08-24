@@ -31,6 +31,8 @@ public class AutoTaskGtr extends BaseCodeGenerator{
 
         cfg.getPoClassFile().addSimpleProperty(String.class,"actionConfContent","actionConfContent","actionConfContent");
         cfg.getPoClassFile().addSimpleProperty(String.class,"actionExecuteContent","actionExecuteContent","actionExecuteContent");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"actionInfo","actionInfo","actionInfo");
+        cfg.getPoClassFile().addSimpleProperty(String.class,"actionSupport","actionSupport","actionSupport");
 
         cfg.getPoClassFile().addListProperty(AutoNode.class,"nodeList","nodeList","nodeList");
         cfg.getPoClassFile().addListProperty(String.class,"nodeIds","nodeIds","nodeIds");
@@ -55,13 +57,15 @@ public class AutoTaskGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_AUTO_TASK.STATUS).table().form().validate().required().form().radioBox().enumType(StatusEnableEnum.class).defaultIndex(0);
         cfg.view().field(OpsTables.OPS_AUTO_TASK.OWNER_ID).table().disable(true);
         cfg.view().field(OpsTables.OPS_AUTO_TASK.NAME).table().form().validate().required();
-        cfg.view().field(OpsTables.OPS_AUTO_TASK.NOTES).table().form().textArea().height(Config.textAreaHeight);
+        cfg.view().field(OpsTables.OPS_AUTO_TASK.NOTES).table().form().textInput();
         cfg.view().field(OpsTables.OPS_AUTO_TASK.CONF_CONTENT).table().form().textArea().height(Config.textAreaHeight*2);
         cfg.view().field(OpsTables.OPS_AUTO_TASK.GROUP_ID).table().disable(true);
         cfg.view().field(OpsTables.OPS_AUTO_TASK.SELECTED_CODE).table().disable(true);
 
         cfg.view().field(AutoTaskMeta.ACTION_CONF_CONTENT).table().disable(true);
         cfg.view().field(AutoTaskMeta.ACTION_EXECUTE_CONTENT).table().disable(true);
+        cfg.view().field(AutoTaskMeta.ACTION_INFO).table().disable(true);
+        cfg.view().field(AutoTaskMeta.ACTION_SUPPORT).table().disable(true);
 
         cfg.view().field(OpsTables.OPS_AUTO_TASK.OWNER_ID).table().disable(true);
         cfg.view().field(OpsTables.OPS_AUTO_TASK.CONF_CONTENT).table().disable(true);
@@ -74,6 +78,9 @@ public class AutoTaskGtr extends BaseCodeGenerator{
 
         cfg.view().field(AutoTaskMeta.ACTION_CONF_CONTENT).basic().label("模版配置").form().readOnly().textArea().height(Config.textAreaHeight*2);
         cfg.view().field(AutoTaskMeta.ACTION_EXECUTE_CONTENT).basic().label("模版执行内容").form().readOnly().textArea().height(Config.textAreaHeight*2);
+        cfg.view().field(AutoTaskMeta.ACTION_INFO).basic().label("模版说明").form().readOnly().textInput();
+        cfg.view().field(AutoTaskMeta.ACTION_SUPPORT).basic().label("模版场景").form().readOnly().textInput();
+
 
         cfg.view().field(OpsTables.OPS_AUTO_TASK.ACTION_ID)
                 .form().validate().required().form().selectBox().queryApi(AutoActionServiceProxy.QUERY_PAGED_LIST)
@@ -114,14 +121,24 @@ public class AutoTaskGtr extends BaseCodeGenerator{
                         OpsTables.OPS_AUTO_TASK.NOTES,
                 }
         );
-        cfg.view().form().addGroup(null,
+        cfg.view().form().addGroup("部署信息",
                 new Object[] {
                         OpsTables.OPS_AUTO_TASK.ACTION_ID,
-                        AutoTaskMeta.ACTION_CONF_CONTENT,
-                        AutoTaskMeta.ACTION_EXECUTE_CONTENT,
-                        OpsTables.OPS_AUTO_TASK.CONF_CONTENT,
+                        AutoTaskMeta.ACTION_INFO,
+                        AutoTaskMeta.ACTION_SUPPORT,
                 }
         );
+
+        cfg.view().form().addGroup(null,
+                new Object[] {
+                        AutoTaskMeta.ACTION_CONF_CONTENT,
+                        OpsTables.OPS_AUTO_TASK.CONF_CONTENT,
+                },
+                new Object[] {
+                        AutoTaskMeta.ACTION_EXECUTE_CONTENT,
+                }
+        );
+
 
         cfg.view().form().addGroup("节点批次",
                 new Object[] {
@@ -129,7 +146,6 @@ public class AutoTaskGtr extends BaseCodeGenerator{
                 }
         );
         cfg.view().form().addPage("节点列表","nodeListSelect");
-
 
         //文件生成覆盖模式
         cfg.overrides()

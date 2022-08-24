@@ -2,7 +2,7 @@
 /**
  * 执行任务 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-23 15:52:11
+ * @since 2022-08-23 19:33:17
  */
  -->
  <!DOCTYPE html>
@@ -51,6 +51,7 @@
                     <!-- 场景 , support ,typeName=text_input, isHideInSearch=true -->
                     <!-- 说明 , info ,typeName=text_input, isHideInSearch=true -->
                     <!-- 介质状态 , fileStatus ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 节点数量 , nodeNumberType ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 配置内容 , confContent ,typeName=text_area, isHideInSearch=true -->
                     <!-- 配置例子 , exampleConfContent ,typeName=text_area, isHideInSearch=true -->
                     <!-- 执行内容 , executeContent ,typeName=text_area, isHideInSearch=true -->
@@ -138,6 +139,7 @@
     var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
     var RADIO_TYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.OpsAutoActionTypeEnum')}]];
     var RADIO_FILESTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_NODENUMBERTYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.OpsAutoActionNodeNumberTypeEnum')}]];
     var RADIO_EXECUTETOOL_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.OpsAutoExecuteTypeEnum')}]];
     var AUTH_PREFIX="ops_auto_action";
 

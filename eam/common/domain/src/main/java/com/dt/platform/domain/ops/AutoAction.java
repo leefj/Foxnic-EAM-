@@ -21,8 +21,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 执行任务
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-23 15:52:10
- * @sign 78564080566E3CE25715B947FAB8665D
+ * @since 2022-08-23 19:33:16
+ * @sign F873CE44468D248A2C2B446782913CC3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -81,6 +81,12 @@ public class AutoAction extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="介质状态" , notes = "介质状态")
 	private String fileStatus;
+	
+	/**
+	 * 节点数量：节点数量
+	*/
+	@ApiModelProperty(required = false,value="节点数量" , notes = "节点数量")
+	private String nodeNumberType;
 	
 	/**
 	 * 配置内容：配置内容
@@ -335,6 +341,25 @@ public class AutoAction extends Entity {
 	*/
 	public AutoAction setFileStatus(String fileStatus) {
 		this.fileStatus=fileStatus;
+		return this;
+	}
+	
+	/**
+	 * 获得 节点数量<br>
+	 * 节点数量
+	 * @return 节点数量
+	*/
+	public String getNodeNumberType() {
+		return nodeNumberType;
+	}
+	
+	/**
+	 * 设置 节点数量
+	 * @param nodeNumberType 节点数量
+	 * @return 当前对象
+	*/
+	public AutoAction setNodeNumberType(String nodeNumberType) {
+		this.nodeNumberType=nodeNumberType;
 		return this;
 	}
 	

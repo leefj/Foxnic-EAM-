@@ -2,7 +2,7 @@
 /**
  * 批次作业 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-23 15:56:20
+ * @since 2022-08-24 06:37:36
  */
  -->
  <!DOCTYPE html>
@@ -54,6 +54,8 @@
                     <!-- 选择 , selectedCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 模版配置 , actionConfContent ,typeName=text_area, isHideInSearch=true -->
                     <!-- 模版执行内容 , actionExecuteContent ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 模版说明 , actionInfo ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 模版场景 , actionSupport ,typeName=text_input, isHideInSearch=true -->
                     <!-- 分组 , groupId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style=""><span th:text="${lang.translate('分组')}" class="search-label groupId-label">分组</span><span class="search-colon">:</span></div>
@@ -74,7 +76,7 @@
                 </div>
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
-                    <!-- 备注 , notes ,typeName=text_area, isHideInSearch=false -->
+                    <!-- 备注 , notes ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style=""><span th:text="${lang.translate('备注')}" class="search-label notes-label">备注</span><span class="search-colon">:</span></div>
                         <input id="notes" class="layui-input search-input" style="width: 140px" type="text" />

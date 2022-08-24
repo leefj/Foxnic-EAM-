@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-08-23 15:50:38
+ * @since 2022-08-23 19:30:40
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -64,6 +64,11 @@ public class OpsTables {
 		 * 介质状态
 		*/
 		public static final DBField FILE_STATUS = new DBField(DBDataType.STRING , "file_status","fileStatus","介质状态","介质状态",false,false,true);
+		
+		/**
+		 * 节点数量
+		*/
+		public static final DBField NODE_NUMBER_TYPE = new DBField(DBDataType.STRING , "node_number_type","nodeNumberType","节点数量","节点数量",false,false,true);
 		
 		/**
 		 * 配置内容
@@ -125,7 +130,7 @@ public class OpsTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public OPS_AUTO_ACTION() {
-			this.init($NAME,"执行任务" , ID , NAME , STATUS , TYPE , TPL_VERSION , SUPPORT , INFO , FILE_STATUS , CONF_CONTENT , EXAMPLE_CONF_CONTENT , EXECUTE_CONTENT , EXECUTE_TOOL , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"执行任务" , ID , NAME , STATUS , TYPE , TPL_VERSION , SUPPORT , INFO , FILE_STATUS , NODE_NUMBER_TYPE , CONF_CONTENT , EXAMPLE_CONF_CONTENT , EXECUTE_CONTENT , EXECUTE_TOOL , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final OPS_AUTO_ACTION $TABLE=new OPS_AUTO_ACTION();
 	}
