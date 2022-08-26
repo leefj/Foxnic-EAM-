@@ -150,7 +150,7 @@ public class #(simpleName) extends SuperService<#(poSimpleName)> implements #(in
 	 * 等价于 queryListByIds
 	 * */
 	@Override
-	public List<#(poSimpleName)> getByIds(List<String> ids) {
+	public List<#(poSimpleName)> getByIds(List<#(idPropertyType)> ids) {
 		return this.queryListByIds(ids);
 	}
 
@@ -226,7 +226,7 @@ public class #(simpleName) extends SuperService<#(poSimpleName)> implements #(in
 	 * @param #(idPropertyName)  检查ID是否又被外部表引用
 	 * */
 	@Override
-	public Boolean hasRefers(String #(idPropertyName)) {
+	public Boolean hasRefers(#(idPropertyType) #(idPropertyName)) {
 		Map<#(idPropertyType), Boolean> map=this.hasRefers(Arrays.asList(#(idPropertyName)));
 		Boolean ex=map.get(#(idPropertyName));
 		if(ex==null) return false;

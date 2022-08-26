@@ -131,10 +131,10 @@ public class #(simpleName) extends SuperController #if(bpm)implements BpmCallbac
 		}
 
 		// 查询引用
-		Map<String, Boolean> hasRefersMap = #(serviceVarName).hasRefers(#(idsPropertyName));
+		Map<#(idsPropertyType), Boolean> hasRefersMap = #(serviceVarName).hasRefers(#(idsPropertyName));
 		// 收集可以删除的ID值
-		List<String> canDeleteIds = new ArrayList<>();
-		for (Map.Entry<String, Boolean> e : hasRefersMap.entrySet()) {
+		List<#(idsPropertyType)> canDeleteIds = new ArrayList<>();
+		for (Map.Entry<#(idsPropertyType), Boolean> e : hasRefersMap.entrySet()) {
 			if (!e.getValue()) {
 				canDeleteIds.add(e.getKey());
 			}

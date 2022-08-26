@@ -151,7 +151,7 @@ public interface #(simpleName) extends #if(isSimplePK) ISimpleIdService<#(poSimp
 	 * 按 id 列表查询 Map
 	 * @param #(idPropertyName)s  主键清单
 	 * */
-	Map<String, #(poSimpleName)> queryMapByIds(List<#(idPropertyType)> #(idPropertyName)s);
+	Map<#(idPropertyType), #(poSimpleName)> queryMapByIds(List<#(idPropertyType)> #(idPropertyName)s);
 
 	#end
 
