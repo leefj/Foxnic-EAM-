@@ -85,6 +85,12 @@ public interface AutoTaskMLogServiceProxy {
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
     /**
+     * 日志下载
+     */
+    public static final String LOG_DOWNLOAD = API_PREFIX + "log-download";
+
+
+    /**
      * 添加执行日志
      */
     @RequestMapping(AutoTaskMLogServiceProxy.INSERT)

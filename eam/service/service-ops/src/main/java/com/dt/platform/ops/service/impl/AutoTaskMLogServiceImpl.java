@@ -1,6 +1,8 @@
 package com.dt.platform.ops.service.impl;
 
 import javax.annotation.Resource;
+
+import com.dt.platform.domain.ops.meta.AutoTaskMLogMeta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -63,6 +65,10 @@ public class AutoTaskMLogServiceImpl extends SuperService<AutoTaskMLog> implemen
 		return IDGenerator.getSnowflakeIdString();
 	}
 
+
+
+
+
 	/**
 	 * 添加，根据 throwsException 参数抛出异常或返回 Result 对象
 	 *
@@ -74,6 +80,19 @@ public class AutoTaskMLogServiceImpl extends SuperService<AutoTaskMLog> implemen
 	public Result insert(AutoTaskMLog autoTaskMLog,boolean throwsException) {
 		Result r=super.insert(autoTaskMLog,throwsException);
 		return r;
+	}
+
+
+
+	@Override
+	public AutoTaskMLog logDownload(String id) {
+		AutoTaskMLog mlog=this.getById(id);
+		dao().fill(mlog)
+				.with(AutoTaskMLogMeta.TASK)
+				.with(AutoTaskMLogMeta.ACTION)
+				.with(AutoTaskMLogMeta.LOG_LIST)
+				.execute();
+		return mlog;
 	}
 
 	/**

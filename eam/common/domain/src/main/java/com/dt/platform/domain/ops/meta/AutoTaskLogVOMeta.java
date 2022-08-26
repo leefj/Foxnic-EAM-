@@ -14,7 +14,7 @@ import com.dt.platform.domain.ops.AutoTaskMLog;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 08:59:51
+ * @since 2022-08-24 13:48:40
  * @sign 1448E4913B5547D6098115CF03DF9C65
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -150,6 +150,16 @@ public class AutoTaskLogVOMeta extends AutoTaskLogMeta {
 	 * 动作 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskLogVO,java.lang.String> ACTION_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskLogVO.class ,ACTION_ID, java.lang.String.class, "动作", "动作", java.lang.String.class, null);
+	
+	/**
+	 * IP , 类型: java.lang.String
+	*/
+	public static final String NODE_IP="nodeIp";
+	
+	/**
+	 * IP , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskLogVO,java.lang.String> NODE_IP_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskLogVO.class ,NODE_IP, java.lang.String.class, "IP", "IP", java.lang.String.class, null);
 	
 	/**
 	 * 节点 , 类型: java.lang.String
@@ -344,7 +354,7 @@ public class AutoTaskLogVOMeta extends AutoTaskLogMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , TASK_ID , M_LOG_ID , ACTION_ID , NODE_ID , STATUS , STIME , ETIME , RECORD_CONTENT , CONTENT_DETAIL , RECORD_TIME , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , TASK , ACTION , NODE , M_LOG };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , TASK_ID , M_LOG_ID , ACTION_ID , NODE_IP , NODE_ID , STATUS , STIME , ETIME , RECORD_CONTENT , CONTENT_DETAIL , RECORD_TIME , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , TASK , ACTION , NODE , M_LOG };
 	
 	/**
 	 * 代理类
@@ -494,6 +504,17 @@ public class AutoTaskLogVOMeta extends AutoTaskLogMeta {
 		public AutoTaskLog setActionId(String actionId) {
 			super.change(ACTION_ID,super.getActionId(),actionId);
 			super.setActionId(actionId);
+			return this;
+		}
+		
+		/**
+		 * 设置 IP
+		 * @param nodeIp IP
+		 * @return 当前对象
+		*/
+		public AutoTaskLog setNodeIp(String nodeIp) {
+			super.change(NODE_IP,super.getNodeIp(),nodeIp);
+			super.setNodeIp(nodeIp);
 			return this;
 		}
 		

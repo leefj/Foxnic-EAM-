@@ -14,14 +14,11 @@ import java.util.List;
 
 public interface IAutoTaskToolService  {
 
-	/**
-	 * @return 执行成功
-	 * */
+
 	Result executeNode(AutoNode node, AutoAction action,String taskId,String mLogId,String method);
 
-	Result batchExecuteNode(List<AutoNode> nodeList, AutoTask task, String method);
-
 	Result executeByTaskId(String taskId,String method);
+
 
 
 }

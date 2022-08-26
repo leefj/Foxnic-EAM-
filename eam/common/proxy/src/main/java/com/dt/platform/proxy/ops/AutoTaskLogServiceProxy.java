@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 明细日志  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 08:59:51
+ * @since 2022-08-24 13:48:41
  */
 @FeignClient(value = ServiceNames.OPS, contextId = AutoTaskLogServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AutoTaskLogServiceProxy {

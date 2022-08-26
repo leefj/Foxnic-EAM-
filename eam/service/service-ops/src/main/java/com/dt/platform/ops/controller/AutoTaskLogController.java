@@ -53,7 +53,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 明细日志 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 08:59:51
+ * @since 2022-08-24 13:48:41
 */
 
 @Api(tags = "明细日志")
@@ -70,17 +70,18 @@ public class AutoTaskLogController extends SuperController {
 	*/
 	@ApiOperation(value = "添加明细日志")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "614011869505519616"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.TASK_ID , value = "作业" , required = false , dataTypeClass=String.class , example = "614011869291610112"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.M_LOG_ID , value = "日志" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.ACTION_ID , value = "动作" , required = false , dataTypeClass=String.class , example = "613970863284289536"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_ID , value = "节点" , required = false , dataTypeClass=String.class , example = "613661580453740544"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "614532689201987584"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.TASK_ID , value = "作业" , required = false , dataTypeClass=String.class , example = "614532481739128832"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.M_LOG_ID , value = "日志" , required = false , dataTypeClass=String.class , example = "614532688249880576"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ACTION_ID , value = "动作" , required = false , dataTypeClass=String.class , example = "614531850873864192"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_IP , value = "IP" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_ID , value = "节点" , required = false , dataTypeClass=String.class , example = "614532378768965632"),
 		@ApiImplicitParam(name = AutoTaskLogVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "failed"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.STIME , value = "开始时间" , required = false , dataTypeClass=Date.class , example = "2022-08-22 08:23:57"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.ETIME , value = "结束时间" , required = false , dataTypeClass=Date.class , example = "2022-08-22 08:23:58"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_CONTENT , value = "记录结果" , required = false , dataTypeClass=String.class , example = "凭证不能为空"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.STIME , value = "开始时间" , required = false , dataTypeClass=Date.class , example = "2022-08-23 06:53:31"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ETIME , value = "结束时间" , required = false , dataTypeClass=Date.class , example = "2022-08-23 06:58:31"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_CONTENT , value = "记录结果" , required = false , dataTypeClass=String.class , example = "Connect to host by sftp error!"),
 		@ApiImplicitParam(name = AutoTaskLogVOMeta.CONTENT_DETAIL , value = "内容明细" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_TIME , value = "记录时间" , required = false , dataTypeClass=Date.class , example = "2022-08-22 08:23:57"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_TIME , value = "记录时间" , required = false , dataTypeClass=Date.class , example = "2022-08-23 06:53:31"),
 		@ApiImplicitParam(name = AutoTaskLogVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=1)
@@ -98,7 +99,7 @@ public class AutoTaskLogController extends SuperController {
 	*/
 	@ApiOperation(value = "删除明细日志")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "614011869505519616")
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "614532689201987584")
 	})
 	@ApiOperationSupport(order=2)
 	@NotNull(name = AutoTaskLogVOMeta.ID)
@@ -178,17 +179,18 @@ public class AutoTaskLogController extends SuperController {
 	*/
 	@ApiOperation(value = "更新明细日志")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "614011869505519616"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.TASK_ID , value = "作业" , required = false , dataTypeClass=String.class , example = "614011869291610112"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.M_LOG_ID , value = "日志" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.ACTION_ID , value = "动作" , required = false , dataTypeClass=String.class , example = "613970863284289536"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_ID , value = "节点" , required = false , dataTypeClass=String.class , example = "613661580453740544"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "614532689201987584"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.TASK_ID , value = "作业" , required = false , dataTypeClass=String.class , example = "614532481739128832"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.M_LOG_ID , value = "日志" , required = false , dataTypeClass=String.class , example = "614532688249880576"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ACTION_ID , value = "动作" , required = false , dataTypeClass=String.class , example = "614531850873864192"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_IP , value = "IP" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_ID , value = "节点" , required = false , dataTypeClass=String.class , example = "614532378768965632"),
 		@ApiImplicitParam(name = AutoTaskLogVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "failed"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.STIME , value = "开始时间" , required = false , dataTypeClass=Date.class , example = "2022-08-22 08:23:57"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.ETIME , value = "结束时间" , required = false , dataTypeClass=Date.class , example = "2022-08-22 08:23:58"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_CONTENT , value = "记录结果" , required = false , dataTypeClass=String.class , example = "凭证不能为空"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.STIME , value = "开始时间" , required = false , dataTypeClass=Date.class , example = "2022-08-23 06:53:31"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ETIME , value = "结束时间" , required = false , dataTypeClass=Date.class , example = "2022-08-23 06:58:31"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_CONTENT , value = "记录结果" , required = false , dataTypeClass=String.class , example = "Connect to host by sftp error!"),
 		@ApiImplicitParam(name = AutoTaskLogVOMeta.CONTENT_DETAIL , value = "内容明细" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_TIME , value = "记录时间" , required = false , dataTypeClass=Date.class , example = "2022-08-22 08:23:57"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_TIME , value = "记录时间" , required = false , dataTypeClass=Date.class , example = "2022-08-23 06:53:31"),
 		@ApiImplicitParam(name = AutoTaskLogVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport( order=4 , ignoreParameters = { AutoTaskLogVOMeta.PAGE_INDEX , AutoTaskLogVOMeta.PAGE_SIZE , AutoTaskLogVOMeta.SEARCH_FIELD , AutoTaskLogVOMeta.FUZZY_FIELD , AutoTaskLogVOMeta.SEARCH_VALUE , AutoTaskLogVOMeta.DIRTY_FIELDS , AutoTaskLogVOMeta.SORT_FIELD , AutoTaskLogVOMeta.SORT_TYPE , AutoTaskLogVOMeta.IDS } )
@@ -205,17 +207,18 @@ public class AutoTaskLogController extends SuperController {
 	*/
 	@ApiOperation(value = "保存明细日志")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "614011869505519616"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.TASK_ID , value = "作业" , required = false , dataTypeClass=String.class , example = "614011869291610112"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.M_LOG_ID , value = "日志" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.ACTION_ID , value = "动作" , required = false , dataTypeClass=String.class , example = "613970863284289536"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_ID , value = "节点" , required = false , dataTypeClass=String.class , example = "613661580453740544"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "614532689201987584"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.TASK_ID , value = "作业" , required = false , dataTypeClass=String.class , example = "614532481739128832"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.M_LOG_ID , value = "日志" , required = false , dataTypeClass=String.class , example = "614532688249880576"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ACTION_ID , value = "动作" , required = false , dataTypeClass=String.class , example = "614531850873864192"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_IP , value = "IP" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_ID , value = "节点" , required = false , dataTypeClass=String.class , example = "614532378768965632"),
 		@ApiImplicitParam(name = AutoTaskLogVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "failed"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.STIME , value = "开始时间" , required = false , dataTypeClass=Date.class , example = "2022-08-22 08:23:57"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.ETIME , value = "结束时间" , required = false , dataTypeClass=Date.class , example = "2022-08-22 08:23:58"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_CONTENT , value = "记录结果" , required = false , dataTypeClass=String.class , example = "凭证不能为空"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.STIME , value = "开始时间" , required = false , dataTypeClass=Date.class , example = "2022-08-23 06:53:31"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ETIME , value = "结束时间" , required = false , dataTypeClass=Date.class , example = "2022-08-23 06:58:31"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_CONTENT , value = "记录结果" , required = false , dataTypeClass=String.class , example = "Connect to host by sftp error!"),
 		@ApiImplicitParam(name = AutoTaskLogVOMeta.CONTENT_DETAIL , value = "内容明细" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_TIME , value = "记录时间" , required = false , dataTypeClass=Date.class , example = "2022-08-22 08:23:57"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_TIME , value = "记录时间" , required = false , dataTypeClass=Date.class , example = "2022-08-23 06:53:31"),
 		@ApiImplicitParam(name = AutoTaskLogVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { AutoTaskLogVOMeta.PAGE_INDEX , AutoTaskLogVOMeta.PAGE_SIZE , AutoTaskLogVOMeta.SEARCH_FIELD , AutoTaskLogVOMeta.FUZZY_FIELD , AutoTaskLogVOMeta.SEARCH_VALUE , AutoTaskLogVOMeta.DIRTY_FIELDS , AutoTaskLogVOMeta.SORT_FIELD , AutoTaskLogVOMeta.SORT_TYPE , AutoTaskLogVOMeta.IDS } )
@@ -279,17 +282,18 @@ public class AutoTaskLogController extends SuperController {
 	*/
 	@ApiOperation(value = "查询明细日志")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "614011869505519616"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.TASK_ID , value = "作业" , required = false , dataTypeClass=String.class , example = "614011869291610112"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.M_LOG_ID , value = "日志" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.ACTION_ID , value = "动作" , required = false , dataTypeClass=String.class , example = "613970863284289536"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_ID , value = "节点" , required = false , dataTypeClass=String.class , example = "613661580453740544"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "614532689201987584"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.TASK_ID , value = "作业" , required = false , dataTypeClass=String.class , example = "614532481739128832"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.M_LOG_ID , value = "日志" , required = false , dataTypeClass=String.class , example = "614532688249880576"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ACTION_ID , value = "动作" , required = false , dataTypeClass=String.class , example = "614531850873864192"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_IP , value = "IP" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_ID , value = "节点" , required = false , dataTypeClass=String.class , example = "614532378768965632"),
 		@ApiImplicitParam(name = AutoTaskLogVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "failed"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.STIME , value = "开始时间" , required = false , dataTypeClass=Date.class , example = "2022-08-22 08:23:57"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.ETIME , value = "结束时间" , required = false , dataTypeClass=Date.class , example = "2022-08-22 08:23:58"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_CONTENT , value = "记录结果" , required = false , dataTypeClass=String.class , example = "凭证不能为空"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.STIME , value = "开始时间" , required = false , dataTypeClass=Date.class , example = "2022-08-23 06:53:31"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ETIME , value = "结束时间" , required = false , dataTypeClass=Date.class , example = "2022-08-23 06:58:31"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_CONTENT , value = "记录结果" , required = false , dataTypeClass=String.class , example = "Connect to host by sftp error!"),
 		@ApiImplicitParam(name = AutoTaskLogVOMeta.CONTENT_DETAIL , value = "内容明细" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_TIME , value = "记录时间" , required = false , dataTypeClass=Date.class , example = "2022-08-22 08:23:57"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_TIME , value = "记录时间" , required = false , dataTypeClass=Date.class , example = "2022-08-23 06:53:31"),
 		@ApiImplicitParam(name = AutoTaskLogVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { AutoTaskLogVOMeta.PAGE_INDEX , AutoTaskLogVOMeta.PAGE_SIZE } )
@@ -308,17 +312,18 @@ public class AutoTaskLogController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询明细日志")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "614011869505519616"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.TASK_ID , value = "作业" , required = false , dataTypeClass=String.class , example = "614011869291610112"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.M_LOG_ID , value = "日志" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.ACTION_ID , value = "动作" , required = false , dataTypeClass=String.class , example = "613970863284289536"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_ID , value = "节点" , required = false , dataTypeClass=String.class , example = "613661580453740544"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "614532689201987584"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.TASK_ID , value = "作业" , required = false , dataTypeClass=String.class , example = "614532481739128832"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.M_LOG_ID , value = "日志" , required = false , dataTypeClass=String.class , example = "614532688249880576"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ACTION_ID , value = "动作" , required = false , dataTypeClass=String.class , example = "614531850873864192"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_IP , value = "IP" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_ID , value = "节点" , required = false , dataTypeClass=String.class , example = "614532378768965632"),
 		@ApiImplicitParam(name = AutoTaskLogVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "failed"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.STIME , value = "开始时间" , required = false , dataTypeClass=Date.class , example = "2022-08-22 08:23:57"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.ETIME , value = "结束时间" , required = false , dataTypeClass=Date.class , example = "2022-08-22 08:23:58"),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_CONTENT , value = "记录结果" , required = false , dataTypeClass=String.class , example = "凭证不能为空"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.STIME , value = "开始时间" , required = false , dataTypeClass=Date.class , example = "2022-08-23 06:53:31"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ETIME , value = "结束时间" , required = false , dataTypeClass=Date.class , example = "2022-08-23 06:58:31"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_CONTENT , value = "记录结果" , required = false , dataTypeClass=String.class , example = "Connect to host by sftp error!"),
 		@ApiImplicitParam(name = AutoTaskLogVOMeta.CONTENT_DETAIL , value = "内容明细" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_TIME , value = "记录时间" , required = false , dataTypeClass=Date.class , example = "2022-08-22 08:23:57"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_TIME , value = "记录时间" , required = false , dataTypeClass=Date.class , example = "2022-08-23 06:53:31"),
 		@ApiImplicitParam(name = AutoTaskLogVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=8)

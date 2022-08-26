@@ -1,7 +1,7 @@
 /**
  * 执行日志 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 08:16:57
+ * @since 2022-08-24 13:10:24
  */
 
 
@@ -409,6 +409,9 @@ function ListPage() {
 			}
 			else if (layEvent === 'auto-task-m-log') { // 日志
 				window.pageExt.list.autoTaskMLog(data,this);
+			}
+			else if (layEvent === 'log-download') { // 日志下载
+				window.pageExt.list.logDownload(data,this);
 			}
 			
 		});

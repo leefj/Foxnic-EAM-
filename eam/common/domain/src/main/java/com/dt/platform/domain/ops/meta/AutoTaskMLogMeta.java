@@ -5,13 +5,15 @@ import com.dt.platform.domain.ops.AutoTaskMLog;
 import java.util.Date;
 import com.dt.platform.domain.ops.AutoTask;
 import com.dt.platform.domain.ops.AutoAction;
+import com.dt.platform.domain.ops.AutoTaskLog;
+import java.util.List;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 08:16:56
- * @sign 39365550DCA32FB879427186B944B700
+ * @since 2022-08-24 13:10:23
+ * @sign 133281E9FDAFECEFA0479DDD24900BC6
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -178,9 +180,19 @@ public class AutoTaskMLogMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskMLog,com.dt.platform.domain.ops.AutoAction> ACTION_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskMLog.class ,ACTION, com.dt.platform.domain.ops.AutoAction.class, "action", "action", com.dt.platform.domain.ops.AutoAction.class, null);
 	
 	/**
+	 * logList , 集合类型: LIST , 类型: com.dt.platform.domain.ops.AutoTaskLog
+	*/
+	public static final String LOG_LIST="logList";
+	
+	/**
+	 * logList , 集合类型: LIST , 类型: com.dt.platform.domain.ops.AutoTaskLog
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskMLog,com.dt.platform.domain.ops.AutoTaskLog> LOG_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskMLog.class ,LOG_LIST, java.util.List.class, "logList", "logList", com.dt.platform.domain.ops.AutoTaskLog.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , TASK_ID , ACTION_ID , STATUS , CONTENT , STIME , ETIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , TASK , ACTION };
+	public static final String[] $PROPS={ ID , TASK_ID , ACTION_ID , STATUS , CONTENT , STIME , ETIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , TASK , ACTION , LOG_LIST };
 	
 	/**
 	 * 代理类
@@ -363,6 +375,17 @@ public class AutoTaskMLogMeta {
 		public AutoTaskMLog setAction(AutoAction action) {
 			super.change(ACTION,super.getAction(),action);
 			super.setAction(action);
+			return this;
+		}
+		
+		/**
+		 * 设置 logList
+		 * @param logList logList
+		 * @return 当前对象
+		*/
+		public AutoTaskMLog setLogList(List<AutoTaskLog> logList) {
+			super.change(LOG_LIST,super.getLogList(),logList);
+			super.setLogList(logList);
 			return this;
 		}
 	}

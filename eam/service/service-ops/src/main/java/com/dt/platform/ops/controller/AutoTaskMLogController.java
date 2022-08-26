@@ -1,9 +1,18 @@
 package com.dt.platform.ops.controller;
 
 
+import java.io.*;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.dt.platform.constants.enums.eam.AssetOperateEnum;
+import com.dt.platform.domain.eam.Asset;
+import com.dt.platform.domain.ops.*;
+import com.github.foxnic.commons.busi.id.IDGenerator;
+import com.github.foxnic.sql.expr.ConditionExpr;
+import org.apache.commons.io.IOUtils;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +20,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.github.foxnic.web.framework.web.SuperController;
 import org.github.foxnic.web.framework.sentinel.SentinelExceptionUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -19,8 +30,6 @@ import com.alibaba.csp.sentinel.annotation.SentinelResource;
 
 import com.dt.platform.proxy.ops.AutoTaskMLogServiceProxy;
 import com.dt.platform.domain.ops.meta.AutoTaskMLogVOMeta;
-import com.dt.platform.domain.ops.AutoTaskMLog;
-import com.dt.platform.domain.ops.AutoTaskMLogVO;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.excel.ExcelWriter;
@@ -32,10 +41,7 @@ import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.commons.io.StreamUtil;
 import java.util.Map;
 import com.github.foxnic.dao.excel.ValidateResult;
-import java.io.InputStream;
 import com.dt.platform.domain.ops.meta.AutoTaskMLogMeta;
-import com.dt.platform.domain.ops.AutoTask;
-import com.dt.platform.domain.ops.AutoAction;
 import io.swagger.annotations.Api;
 import com.github.xiaoymin.knife4j.annotations.ApiSort;
 import io.swagger.annotations.ApiOperation;
@@ -307,9 +313,57 @@ public class AutoTaskMLogController extends SuperController {
 		return result;
 	}
 
+	/**
+	 * 下载日志
+	 */
+	@ApiOperation(value = "下载日志")
+	@ApiImplicitParams({
+	})
+	@ApiOperationSupport(order=9)
+	@SentinelResource(value = AutoTaskMLogServiceProxy.LOG_DOWNLOAD , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(AutoTaskMLogServiceProxy.LOG_DOWNLOAD)
+	public void queryPagedList(HttpServletRequest request, HttpServletResponse response,String id) {
 
-
-
-
+		AutoTaskMLog log=autoTaskMLogService.logDownload(id);
+		if(log!=null){
+			StringBuffer logTxt=new StringBuffer();
+			logTxt.append("---------任务批次:"+log.getTaskId()+"----------\n");
+			logTxt.append("任务状态:"+log.getStatus()+"\n");
+			logTxt.append("开始时间:"+log.getStime()+"\n");
+			logTxt.append("结束时间:"+log.getEtime()+"\n");
+			logTxt.append(log.getContent()+"\n");
+			logTxt.append("\n\n");
+			logTxt.append("---------开始打印节点日志----------\n");
+			List<AutoTaskLog> listLog=log.getLogList();
+			if(listLog!=null){
+				for(int i=0;i<listLog.size();i++){
+					logTxt.append("---------节点日志开始----------\n");
+					logTxt.append("节点Ip:"+listLog.get(i).getNodeIp() +"\n");
+					logTxt.append("节点状态:"+listLog.get(i).getStatus()+"\n");
+					logTxt.append("节点日志:\n"+listLog.get(i).getContentDetail()+"\n");
+					logTxt.append("\n\n");
+					logTxt.append("---------节点日志结束----------");
+					logTxt.append("\n\n\n");
+				}
+			}
+			logTxt.append("---------任务批次结束----------");
+			logTxt.append("\n\n\n\n");
+			try{
+				InputStream inputstream= IOUtils.toInputStream(logTxt.toString(), StandardCharsets.UTF_8.name());
+				response.setCharacterEncoding("UTF-8");
+				response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("日志.txt", "UTF-8"))));
+				response.setContentType("application/octet-stream");
+				OutputStream out = response.getOutputStream();
+				IOUtils.copy(inputstream,out);
+				out.flush();
+			} catch (Exception e) {
+				try {
+					DownloadUtil.writeDownloadError(response,e);
+				} catch (Exception exception) {
+					exception.printStackTrace();
+				}
+			}
+		}
+	}
 
 }

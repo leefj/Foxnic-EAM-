@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.ops.OpsAutoActionNodeNumberTypeEnum;
+import com.dt.platform.constants.enums.ops.OpsAutoExecuteTypeEnum;
 import com.dt.platform.constants.enums.ops.OpsAutoTaskResultStatusEnum;
 import com.dt.platform.constants.enums.ops.OpsAutoTaskRunStatusEnum;
 import com.dt.platform.domain.ops.*;
@@ -27,16 +28,9 @@ import org.github.foxnic.web.framework.dao.DBConfigs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.util.IdGenerator;
-import org.yaml.snakeyaml.events.Event;
-
 import javax.annotation.Resource;
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 
 /*
@@ -97,7 +91,7 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
      * */
     public DAO dao() { return dao; }
 
-    public Result recordFailed(AutoTaskLog log,String message){
+    public Result recordTaskLogFailed(AutoTaskLog log, String message){
         log.setStatus(OpsAutoTaskResultStatusEnum.FAILED.code());
         log.setRecordContent(message);
         log.setEtime(new Date());
@@ -105,9 +99,19 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
         return ErrorDesc.success();
     }
 
+    public Result recordTaskMLogFailed(AutoTaskMLog log, String message){
+
+        log.setStatus(OpsAutoTaskResultStatusEnum.FAILED.code());
+        log.setContent(message);
+        log.setEtime(new Date());
+        autoTaskMLogService.update(log,SaveMode.NOT_NULL_FIELDS);
+        return ErrorDesc.success();
+    }
+
 
     @Override
     public Result executeNode(AutoNode node, AutoAction action,String taskId, String mLogId,String method) {
+
 
         AutoTaskLog log=new AutoTaskLog();
         log.setActionId(action.getId());
@@ -115,22 +119,34 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
         log.setStime(new Date());
         log.setTaskId(taskId);
         log.setMLogId(mLogId);
+        log.setNodeIp(node.getIp());
         log.setRecordContent("操作完成");
+        log.setContentDetail("");
         log.setNodeId(node.getId());
         log.setRecordTime(new Date());
         autoTaskLogService.insert(log);
 
+
+        if(OpsAutoExecuteTypeEnum.OPS_TOOLS.code().equals(action.getExecuteTool())){
+            Logger.info("执行方式:"+OpsAutoExecuteTypeEnum.OPS_TOOLS.text());
+        }else{
+            String msg="当前执行工具为:"+action.getExecuteTool()+",未实现";
+            recordTaskLogFailed(log,msg);
+            return ErrorDesc.failureMessage(msg);
+        }
+
+
         //检查动作
         Result checkActionResult= checkAction(action);
         if(!checkActionResult.isSuccess()){
-            recordFailed(log,checkActionResult.getMessage());
+            recordTaskLogFailed(log,checkActionResult.getMessage());
             return ErrorDesc.failureMessage(checkActionResult.getMessage());
         }
 
         //检查Node
         Result checkNodeResult=checkNode(node);
         if(!checkNodeResult.isSuccess()){
-            recordFailed(log,checkNodeResult.getMessage());
+            recordTaskLogFailed(log,checkNodeResult.getMessage());
             return ErrorDesc.failureMessage(checkNodeResult.getMessage());
         }
 
@@ -140,7 +156,7 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
         try{
             actionConfContentObj=JSONObject.parseObject(actionConfContent);
         }catch (com.alibaba.fastjson.JSONException eee) {
-            recordFailed(log,"动作配置内容解析失败");
+            recordTaskLogFailed(log,"动作配置内容解析失败");
             return ErrorDesc.failureMessage("动作配置内容解析失败");
         }
 
@@ -154,16 +170,19 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
             }
         }
 
-
         //获取当前配置
         HashMap<String,String> currentNodeVars=new HashMap<>();
         AutoTask task=autoTaskService.getById(taskId);
+
         String taskConfContent=task.getConfContent();
         JSONArray taskConfContentArr=null;
         try{
+            if(StringUtil.isBlank(taskConfContent)){
+                taskConfContent="[]";
+            }
             taskConfContentArr=JSONArray.parseArray(taskConfContent);
         }catch (com.alibaba.fastjson.JSONException eee) {
-            recordFailed(log,"批次作业配置内容解析失败");
+            recordTaskLogFailed(log,"批次作业配置内容解析失败");
             return ErrorDesc.failureMessage("批次作业配置内容解析失败");
         }
 
@@ -191,7 +210,7 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
         //连接测试
         Result checkConnectNodeResult=checkConnectNode(action);
         if(!checkConnectNodeResult.isSuccess()){
-            recordFailed(log,checkConnectNodeResult.getMessage());
+            recordTaskLogFailed(log,checkConnectNodeResult.getMessage());
             return ErrorDesc.failureMessage(checkConnectNodeResult.getMessage());
         }
 
@@ -248,20 +267,20 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
                 String msg="create temp main execute file failed,file:"+execFileFullName;
                 System.out.println(msg);
                 e.printStackTrace();
-                recordFailed(log,msg);
+                recordTaskLogFailed(log,msg);
                 return ErrorDesc.failureMessage(msg);
             }
             //#############upload exe file #############
             Machine m=new Machine();
             m.setHostname(node.getIp());
             m.setPort(node.getPort());
-            m.setUsername(node.getVoucher().getAccount());
-            m.setPassword(node.getVoucher().getVoucher());
+            m.setUsername(node.getUserName());
+            m.setPassword(node.getPassword());
             SftpClient sftp = new SftpClient(m);
             sftp.connect();
             if(!sftp.isConnected()){
                 String msg="Connect to host by sftp error!";
-                recordFailed(log,msg);
+                recordTaskLogFailed(log,msg);
                 return ErrorDesc.failureMessage(msg);
             }
             sftp.changeDirectory("/tmp");
@@ -274,7 +293,7 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
             }
             Result uploadExeFileR= sftp.uploadFile(executeTmpFile, execFileNameWithSuffix, null);
             if(!uploadExeFileR.success()){
-                recordFailed(log,uploadExeFileR.message());
+                recordTaskLogFailed(log,uploadExeFileR.message());
                 return ErrorDesc.failureMessage(uploadExeFileR.message());
             }
             //#############upload script file #############
@@ -299,13 +318,13 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
                 String f=this.getStorageDir()+rcd.getString("location");
                 String fn=rcd.getString("file_name");
                 if(StringUtil.isBlank(fn)){
-                    recordFailed(log,"文件名不能为空");
+                    recordTaskLogFailed(log,"文件名不能为空");
                     return ErrorDesc.failureMessage("文件名不能为空");
                 }
                 File file=new File(f);
                 if(!file.exists()){
                     String msg="script:"+f+" not exist";
-                    recordFailed(log,msg);
+                    recordTaskLogFailed(log,msg);
                     return ErrorDesc.failureMessage(msg);
                 }
                 try {
@@ -318,7 +337,7 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
 
                 Result uploadScritR=sftp.uploadFile(file, fn, null);
                 if(!uploadScritR.isSuccess()){
-                    recordFailed(log,uploadScritR.message());
+                    recordTaskLogFailed(log,uploadScritR.message());
                     return ErrorDesc.failureMessage(uploadScritR.message());
                 }
 
@@ -347,13 +366,13 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
                     String f=this.getStorageDir()+rcd.getString("location");
                     String fn=rcd.getString("file_name");
                     if(StringUtil.isBlank(fn)){
-                        recordFailed(log,"文件名不能为空");
+                        recordTaskLogFailed(log,"文件名不能为空");
                         return ErrorDesc.failureMessage("文件名不能为空");
                     }
                     File file=new File(f);
                     if(!file.exists()){
                         String msg="file:"+f+" not exist";
-                        recordFailed(log,msg);
+                        recordTaskLogFailed(log,msg);
                         return ErrorDesc.failureMessage(msg);
                     }
                     try {
@@ -365,7 +384,7 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
                     }
                     Result uploadFileR=sftp.uploadFile(file, fn, null);
                     if(!uploadFileR.isSuccess()){
-                        recordFailed(log,uploadFileR.message());
+                        recordTaskLogFailed(log,uploadFileR.message());
                         return ErrorDesc.failureMessage(uploadFileR.message());
                     }
 
@@ -374,8 +393,8 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
                 System.out.println("file upload status:"+ action.getFileStatus());
             }
             //#############execute #############
-            RemoteShellExecutor executor = new RemoteShellExecutor(node.getIp(),node.getVoucher().getAccount(),
-                    node.getVoucher().getVoucher(), node.getPort());
+            RemoteShellExecutor executor = new RemoteShellExecutor(node.getIp(),node.getUserName(),
+                    node.getPassword(), node.getPort());
 
             ArrayList<String> exeCommands = new ArrayList<String>();
             exeCommands.add("sed -i \"s/^M//\" /tmp/"+execFileNameWithSuffix);
@@ -388,9 +407,9 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
                 log.setContentDetail(r2.result);
             }
         }else if (METHOD_CHECK.equals(method)){
-            RemoteShellExecutor executor = new RemoteShellExecutor(node.getIp(),node.getVoucher().getAccount(),
-                    node.getVoucher().getVoucher(), node.getPort());
-            String cmds = "echo 'success!';hostname";
+            RemoteShellExecutor executor = new RemoteShellExecutor(node.getIp(),node.getUserName(),
+                    node.getPassword(), node.getPort());
+            String cmds = "echo 'success!';date";
             RemoteShellResult r2 = executor.exec(cmds);
             r2.print();
             log.setContentDetail(r2.result);
@@ -401,8 +420,6 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
         System.out.println("###########Action Finish,ip:"+node.getIp()+" #########");
 
 
-
-
         //执行
         log.setStatus(OpsAutoTaskResultStatusEnum.SUCCESS.code());
         log.setRecordContent("操作完成");
@@ -411,13 +428,38 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
         return ErrorDesc.success();
     }
 
+    @Override
     public Result executeByTaskId(String taskId, String method){
+
         AutoTask task=autoTaskService.getById(taskId);
         autoTaskService.dao().fill(task)
                 .with(AutoTaskMeta.BATCH)
+                .with(AutoTaskMeta.ACTION)
                 .execute();
 
-        AutoBatch batch=task.getBatch();
+
+        //修改作业状态
+        AutoTask updateTask=new AutoTask();
+        updateTask.setId((task.getId()));
+        updateTask.setRunStatus(OpsAutoTaskRunStatusEnum.RUNNING.code());
+        autoTaskService.update(updateTask,SaveMode.NOT_NULL_FIELDS);
+
+
+        //插入主日志
+        AutoTaskMLog taskMainLog=new AutoTaskMLog();
+        String id= IDGenerator.getSnowflakeIdString();
+        taskMainLog.setId(id);
+        taskMainLog.setTaskId(taskId);
+        taskMainLog.setStime(new Date());
+        taskMainLog.setStatus(OpsAutoTaskResultStatusEnum.ACTING.code());
+        if(task.getAction()!=null){
+            taskMainLog.setActionId(task.getAction().getId());
+        }
+        autoTaskMLogService.insert(taskMainLog);
+
+
+
+        //获取nodeList
         List<AutoNode> nodeList= new ArrayList<>();
         String sql="select b.node_id from ops_auto_task a,ops_auto_node_select b where a.id=b.owner_id and a.deleted=0 and b.deleted=0 and a.status='enable' and a.id='"+taskId+"'";
         String nodeSql="";
@@ -428,67 +470,42 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
             String sql2="select b.node_id from ops_auto_batch a,ops_auto_node_select b where a.id=b.owner_id and a.deleted=0 and b.deleted=0 and a.status='enable' and a.id='"+task.getBatchId()+"'";
             nodeSql=sql+" union all "+sql2;
         }
-        AutoNode node=new AutoNode();
-        node.setStatus(StatusEnableEnum.ENABLE.code());
+
+        AutoNode nodeQuery=new AutoNode();
+        nodeQuery.setStatus(StatusEnableEnum.ENABLE.code());
         ConditionExpr expr=new ConditionExpr();
         expr.and("id in ("+nodeSql+")");
-        nodeList=autoNodeService.queryList(node,expr);
+        nodeList=autoNodeService.queryList(nodeQuery,expr);
+
         //获取凭证数据
         if(nodeList!=null){
             autoNodeService.dao().fill(nodeList)
                     .with(AutoNodeMeta.VOUCHER)
                     .execute();
         }
-        //获取动作数据
-        autoTaskService.dao().fill(task)
-                .with(AutoTaskMeta.ACTION)
-                .execute();
-
-        return this.batchExecuteNode(nodeList,task,method);
-    }
-
-    /**
-     * @return 执行成功
-     * */
-    @Override
-    public Result batchExecuteNode(List<AutoNode> nodeList, AutoTask task, String method){
-
-        AutoTaskMLog taskMainLog=new AutoTaskMLog();
-        String id= IDGenerator.getSnowflakeIdString();
-        taskMainLog.setId(id);
-        taskMainLog.setTaskId(task.getId());
-        taskMainLog.setStime(new Date());
-        taskMainLog.setStatus(OpsAutoTaskResultStatusEnum.ACTING.code());
-        AutoAction action=task.getAction();
 
         //检查action
-        if(action==null){
-            String msg="执行动作为空";
-            taskMainLog.setStatus(OpsAutoTaskResultStatusEnum.FAILED.code());
-            taskMainLog.setContent(msg);
-            autoTaskMLogService.insert(taskMainLog);
-            return ErrorDesc.failureMessage(msg);
-        }else{
-            taskMainLog.setActionId(action.getId());
+        AutoAction action=task.getAction();
+        Result checkActionResult=checkAction(action);
+        if(!checkActionResult.success()){
+            recordTaskMLogFailed(taskMainLog,checkActionResult.getMessage());
+            return ErrorDesc.failureMessage(checkActionResult.getMessage());
         }
+
 
         //检查method
         if(method.equals(METHOD_EXECUTE) || method.equals(METHOD_VIEW)||method.equals(METHOD_CHECK)){
             System.out.println("success");
         }else{
             String msg="检查参数不符合要求";
-            taskMainLog.setStatus(OpsAutoTaskResultStatusEnum.FAILED.code());
-            taskMainLog.setContent(msg);
-            autoTaskMLogService.insert(taskMainLog);
+            recordTaskMLogFailed(taskMainLog,msg);
             return ErrorDesc.failureMessage(msg);
         }
 
         //检查节点数量
         if(nodeList==null|| nodeList.size()==0){
             String msg="执行节点数量为空";
-            taskMainLog.setStatus(OpsAutoTaskResultStatusEnum.FAILED.code());
-            taskMainLog.setContent(msg);
-            autoTaskMLogService.insert(taskMainLog);
+            recordTaskMLogFailed(taskMainLog,msg);
             return ErrorDesc.failureMessage(msg);
         }
 
@@ -497,35 +514,43 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
         if(OpsAutoActionNodeNumberTypeEnum.TWO.code().equals(action.getNodeNumberType())){
             if(nodeList.size()!=2){
                 String msg="当前部署模版,只能选择2个节点";
-                taskMainLog.setStatus(OpsAutoTaskResultStatusEnum.FAILED.code());
-                taskMainLog.setContent(msg);
-                autoTaskMLogService.insert(taskMainLog);
+                recordTaskMLogFailed(taskMainLog,msg);
                 return ErrorDesc.failureMessage(msg);
             }
         }else if (OpsAutoActionNodeNumberTypeEnum.THREE.code().equals(action.getNodeNumberType())){
             if(nodeList.size()!=3){
                 String msg="当前部署模版,只能选择3个节点";
-                taskMainLog.setStatus(OpsAutoTaskResultStatusEnum.FAILED.code());
-                taskMainLog.setContent(msg);
-                autoTaskMLogService.insert(taskMainLog);
+                recordTaskMLogFailed(taskMainLog,msg);
                 return ErrorDesc.failureMessage(msg);
             }
         }
 
-        autoTaskMLogService.insert(taskMainLog);
-        AutoTask updateTask=new AutoTask();
-        updateTask.setId((task.getId()));
-        updateTask.setRunStatus(OpsAutoTaskRunStatusEnum.RUNNING.code());
-        autoTaskService.update(updateTask,SaveMode.NOT_NULL_FIELDS);
-        for(AutoNode node:nodeList){
-            Logger.info("task:"+task.getName()+",node:"+node.getName()+",action:"+action.getName());
-            Result eRes=executeNode(node,action,task.getId(),id,method);
+
+        StringBuilder nodeResult=new StringBuilder();
+        nodeResult.append("节点数量:"+nodeList.size()+"\n");
+        Map<AutoNode,String> nodeMap=new HashMap<AutoNode, String>();
+        for(AutoNode n:nodeList){
+            Logger.info("task:"+task.getName()+",node:"+n.getName()+",action:"+action.getName());
+            Result eRes=executeNode(n,action,task.getId(),id,method);
+            if(!eRes.isSuccess()){
+                nodeMap.put(n,eRes.getMessage());
+            }
+        }
+        nodeResult.append("失败节点数量:"+nodeMap.size()+"\n");
+        Iterator<Map.Entry<AutoNode,String>> iterator=nodeMap.entrySet().iterator();
+        while(iterator.hasNext()){
+            Map.Entry<AutoNode,String> entry=   iterator.next();
+            AutoNode node=entry.getKey();
+            String msg=entry.getValue();
+            nodeResult.append("节点:"+node.getIp()+"\n");
+            nodeResult.append("执行结果:"+msg+"\n");
+            nodeResult.append("\n\n\n");
         }
         taskMainLog.setEtime(new Date());
         taskMainLog.setStatus(OpsAutoTaskResultStatusEnum.SUCCESS.code());
-        taskMainLog.setContent("操作完成");
-        autoTaskMLogService.update(taskMainLog, SaveMode.NOT_NULL_FIELDS);
-
+        taskMainLog.setContent(nodeResult.toString());
+        autoTaskMLogService.update(taskMainLog,SaveMode.NOT_NULL_FIELDS);
+        //修改作业状态
         updateTask.setRunStatus(OpsAutoTaskRunStatusEnum.FINISH.code());
         autoTaskService.update(updateTask,SaveMode.NOT_NULL_FIELDS);
         return ErrorDesc.success();
@@ -534,14 +559,25 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
 
 
 
+
+
     public Result checkConnectNode(AutoAction node){
-        ErrorDesc.failureMessage("与节点连接失败");
         return ErrorDesc.success();
     }
 
     public Result checkAction(AutoAction action){
+
+        if(action==null){
+            return ErrorDesc.failureMessage("当前模版为空");
+        }
+
+        if(!StatusEnableEnum.ENABLE.code().equals(action.getStatus())){
+            return ErrorDesc.failureMessage("当前模版禁用状态，不可执行");
+        }
+
         String conf=action.getConfContent();
         String content=action.getExecuteContent();
+
 
         if(StringUtil.isBlank(conf)){
             return ErrorDesc.failureMessage("执行配置内容为空");
@@ -563,24 +599,42 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
 
         String ip=node.getIp();
         int port=node.getPort();
+
+        //检查IP
         if(StringUtil.isBlank(ip)){
             return ErrorDesc.failureMessage("地址不能为空");
         }
+
+        //检查端口
         if(port<=0||port>=65536){
             return ErrorDesc.failureMessage("端口不正确");
         }
+
+
+        //连接信息
         AutoVoucher voucher = node.getVoucher();
         if(voucher==null){
-            return ErrorDesc.failureMessage("凭证不能为空");
+            //凭证为空则使用账户密码
+            if(StringUtil.isBlank(node.getUserName())){
+                return ErrorDesc.failureMessage("节点账户不能为空");
+            }
+            if(StringUtil.isBlank(node.getPassword())){
+                return ErrorDesc.failureMessage("节点数据不能为空");
+            }
+
+        }else{
+            String accountStr=voucher.getAccount();
+            String voucherStr=voucher.getVoucher();
+            if(StringUtil.isBlank(accountStr)){
+                return ErrorDesc.failureMessage("凭证账户不能为空");
+            }
+            if(StringUtil.isBlank(voucherStr)){
+                return ErrorDesc.failureMessage("凭证数据不能为空");
+            }
+            node.setUserName(accountStr);
+            node.setPassword(voucherStr);
         }
-        String accountStr=voucher.getAccount();
-        String voucherStr=voucher.getVoucher();
-        if(StringUtil.isBlank(accountStr)){
-            return ErrorDesc.failureMessage("凭证账户不能为空");
-        }
-        if(StringUtil.isBlank(voucherStr)){
-            return ErrorDesc.failureMessage("凭证数据不能为空");
-        }
+
 
         return ErrorDesc.success();
     }

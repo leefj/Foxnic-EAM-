@@ -768,7 +768,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		expr2.and("status=?",AssetHandleStatusEnum.INCOMPLETE.code());
 		expr2.andIn("id",ids);
 	//	expr.setParent(null);
-		List<String> instances =this.queryValues(EAMTables.EAM_ASSET.CHANGE_INSTANCE_ID,String.class,expr);
+		List<String> instances =this.queryValues(EAMTables.EAM_ASSET.CHANGE_INSTANCE_ID,String.class,expr2);
 		processApproveVO.setOpinion("提交流程");
 		processApproveVO.setInstanceIds(instances);
 		processApproveVO.setAction(ApprovalAction.submit.code());
@@ -1412,7 +1412,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		int i=0;
 		for (Rcd r:rs.getRcdList()) {
 			i++;
-			System.out.println("before:"+r);
+			System.out.println("before asset data:"+r);
 			//判断数据是插入或更新
 			if(StringUtil.isBlank(r.getString(AssetDataExportColumnEnum.ASSET_ID.text()))){
 				actionType="insert";
@@ -1471,13 +1471,13 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 
 			//汇总更新数据
 			String sql="";
+
+
+
 			if("insert".equals(actionType)){
-				Insert insert = SQLBuilder.buildInsert(r,this.table(),this.dao(), true);
-				insert.setIf("asset_selected_data",selectedCode);
-				//资产编号
 				String codeRule="";
-				String approvalRule="";
 				boolean codeGen=true;
+				String approvalRule="";
 				if(AssetOwnerCodeEnum.ASSET.code().equals(assetOwner)){
 					//如果初始化模式开始
 					codeRule=CodeModuleEnum.EAM_ASSET_CODE.code();
@@ -1499,19 +1499,33 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 					errors.add(new ValidateResult(null,(i+1),"资产ownerCode设置错误"));
 				}
 
-
 				if(codeGen){
+					//自动生产自动编号
 					Result codeResult= CodeModuleServiceProxy.api().generateCode(codeRule);
 					if(!codeResult.isSuccess()){
 						//返回报错
 						errors.add(new ValidateResult(null,(i+1),codeResult.getMessage()));
 						break;
 					}else{
-						insert.set("asset_code",codeResult.getData().toString());
+						r.set("asset_code",codeResult.getData().toString());
 					}
-
+				}else{
+					//导入新增保持原资产编号，不生成自动编号,但是如果编号为空，则自动生成
+					if(StringUtil.isBlank(r.getString("asset_code"))){
+						Result codeResult= CodeModuleServiceProxy.api().generateCode(codeRule);
+						if(!codeResult.isSuccess()){
+							//返回报错
+							errors.add(new ValidateResult(null,(i+1),codeResult.getMessage()));
+							break;
+						}else{
+							r.set("asset_code",codeResult.getData().toString());
+						}
+					}
 				}
 
+				//转换Rcd 到Insert
+				Insert insert = SQLBuilder.buildInsert(r,this.table(),this.dao(), true);
+				insert.setIf("asset_selected_data",selectedCode);
 
 				//办理情况,新增不管是否需要审批，默认为未完成状态
 //				if(operateService.approvalRequired(approvalRule) ){
@@ -1541,6 +1555,8 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				//制单人
 				insert.set("originator_id",SessionUser.getCurrent().getUser().getActivatedEmployeeId());
 
+
+
 				//设置创建时间
 				if(tm.getColumn(dbTreaty.getCreateTimeField())!=null) {
 					insert.set(dbTreaty.getCreateTimeField(),new Date());
@@ -1558,6 +1574,8 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				}
 				sql=insert.getSQL();
 			}else{
+
+
 				//办理情况
 				if(r.getOwnerSet().hasColumn(AssetDataExportColumnEnum.STATUS_NAME.text())){
 //                  //r.getOwnerSet().removeColumn(AssetDataExportColumnEnum.STATUS_NAME.text());
@@ -1567,8 +1585,12 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 					//r.getOwnerSet().removeColumn(AssetDataExportColumnEnum.ASSET_CODE.text());
 				}
 
+				//不允许更新资产编号
+
+
 				Update update=SQLBuilder.buildUpdate(r,SaveMode.ALL_FIELDS,this.table(),this.dao());
 				update.setIf("asset_selected_data",selectedCode);
+
 				//设置创建时间
 				if(tm.getColumn(dbTreaty.getUpdateTimeField())!=null) {
 					update.set(dbTreaty.getUpdateTimeField(),new Date());
@@ -1634,6 +1656,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				.with(AssetMeta.SOURCE)
 				.with(AssetMeta.REGION)
 				.with(AssetMeta.ASSET_CYCLE_STATUS)
+				.with(AssetMeta.CATEGORY_FINANCE)
 				.with(AssetMeta.SAFETY_LEVEL)
 				.with(AssetMeta.EQUIPMENT_ENVIRONMENT)
 				.with(AssetMeta.ASSET_MAINTENANCE_STATUS)
@@ -1848,12 +1871,16 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 							||AssetDataExportColumnEnum.STATUS_NAME.code().equals(asset_column)){
 						continue;
 					}
+
 					rAssetColumn=EnumUtil.parseByCode(AssetDataExportColumnEnum.class,asset_column)==null?
 							BeanNameUtil.instance().depart(asset_column):
 							EnumUtil.parseByCode(AssetDataExportColumnEnum.class,asset_column).text();
 
+
+					System.out.println("asset_column:"+asset_column+",rAssetColumn:"+rAssetColumn);
 					charIndex=ExcelUtil.toExcel26(i);
-					System.out.println(charIndex+","+secondRow.getCell(i)  +","+ firstRow.getCell(i)+","+asset_column+","+rAssetColumn);
+					System.out.println("cell:"+charIndex+","+secondRow.getCell(i)  +","+ firstRow.getCell(i)+","+asset_column+","+rAssetColumn);
+					System.out.println("addColumn:"+rAssetColumn+","+firstRow.getCell(i).toString()+ ","+ExcelColumn.STRING_CELL_READER);
 					es.addColumn(charIndex,rAssetColumn,firstRow.getCell(i).toString(), ExcelColumn.STRING_CELL_READER);
 				}
 				//追加自定义属性部分

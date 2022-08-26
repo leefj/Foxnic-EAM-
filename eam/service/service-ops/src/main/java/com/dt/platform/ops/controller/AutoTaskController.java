@@ -4,6 +4,8 @@ package com.dt.platform.ops.controller;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.github.foxnic.commons.concurrent.task.SimpleTaskManager;
+import net.bytebuddy.asm.MemberSubstitution;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -321,6 +323,13 @@ public class AutoTaskController extends SuperController {
 	@SentinelResource(value = AutoTaskServiceProxy.EXECUTE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AutoTaskServiceProxy.EXECUTE)
 	public Result execute(String id,String method) {
+		SimpleTaskManager tm=new SimpleTaskManager();
+//		tm.doDelayTask(new Runnable() {
+//			@Override
+//			public void run() {
+//				Result result=autoTaskService.execute(id,method);
+//			}
+//		}, 10);
 		Result result=autoTaskService.execute(id,method);
 		Result r=new Result();
 		r.success();

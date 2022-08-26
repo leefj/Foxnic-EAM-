@@ -14,7 +14,7 @@ import com.dt.platform.domain.ops.AutoNode;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-24 06:37:35
+ * @since 2022-08-24 08:44:56
  * @sign B1CE662BECAE3FCFFFE43FD667718D21
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

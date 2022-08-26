@@ -8,7 +8,10 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import java.util.List;
 import com.github.foxnic.commons.lang.DataParser;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 
@@ -17,8 +20,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 执行日志
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 08:16:56
- * @sign 39365550DCA32FB879427186B944B700
+ * @since 2022-08-24 13:10:23
+ * @sign 133281E9FDAFECEFA0479DDD24900BC6
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -127,6 +130,12 @@ public class AutoTaskMLog extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="action" , notes = "action")
 	private AutoAction action;
+	
+	/**
+	 * logList：logList
+	*/
+	@ApiModelProperty(required = false,value="logList" , notes = "logList")
+	private List<AutoTaskLog> logList;
 	
 	/**
 	 * 获得 主键<br>
@@ -461,6 +470,36 @@ public class AutoTaskMLog extends Entity {
 		this.action=action;
 		return this;
 	}
+	
+	/**
+	 * 获得 logList<br>
+	 * logList
+	 * @return logList
+	*/
+	public List<AutoTaskLog> getLogList() {
+		return logList;
+	}
+	
+	/**
+	 * 设置 logList
+	 * @param logList logList
+	 * @return 当前对象
+	*/
+	public AutoTaskMLog setLogList(List<AutoTaskLog> logList) {
+		this.logList=logList;
+		return this;
+	}
+	
+	/**
+	 * 添加 logList
+	 * @param log logList
+	 * @return 当前对象
+	*/
+	public AutoTaskMLog addLog(AutoTaskLog... log) {
+		if(this.logList==null) logList=new ArrayList<>();
+		this.logList.addAll(Arrays.asList(log));
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -489,6 +528,22 @@ public class AutoTaskMLog extends Entity {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AutoTaskMLog clone() {
+		return EntityContext.clone(AutoTaskMLog.class,this);
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AutoTaskMLog clone(boolean deep) {
+		return EntityContext.clone(AutoTaskMLog.class,this,deep);
 	}
 
 	/**

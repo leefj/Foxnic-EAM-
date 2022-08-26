@@ -84,7 +84,7 @@ public class AutoTaskGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_AUTO_TASK.ACTION_ID)
                 .form().validate().required().form().selectBox().queryApi(AutoActionServiceProxy.QUERY_PAGED_LIST)
-                .paging(true).filter(false).toolbar(false)
+                .paging(true).filter(true).toolbar(false)
                 .valueField(AutoActionMeta.ID).
                 textField(AutoActionMeta.NAME).
                 fillWith(AutoTaskMeta.ACTION).muliti(false);

@@ -70,6 +70,7 @@ if [[ $tpl_update -eq 1 ]];then
      exit 1
   fi
 fi
+
 #restart
 echo "######## restart app ##############"
 cd $prod_app_dir

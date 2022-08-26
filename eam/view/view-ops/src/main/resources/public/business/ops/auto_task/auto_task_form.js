@@ -1,7 +1,7 @@
 /**
  * 批次作业 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-24 06:37:36
+ * @since 2022-08-24 08:44:58
  */
 
 function FormPage() {
@@ -187,7 +187,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "actionId",
 			radio: true,
-			filterable: false,
+			filterable: true,
 			paging: true,
 			pageRemote: true,
 			layVerify: 'required',
@@ -198,6 +198,8 @@ function FormPage() {
 				},1);
 			},
 			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
 			transform: function(data) {
 				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
 				var defaultValues=[],defaultIndexs=[];

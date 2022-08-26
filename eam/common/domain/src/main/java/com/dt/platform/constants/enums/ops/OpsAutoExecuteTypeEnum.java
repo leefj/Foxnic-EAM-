@@ -14,7 +14,7 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 public enum OpsAutoExecuteTypeEnum implements CodeTextEnum {
 
 
-    OPS_TOOLS("ops_tool" , "OpsTool工具"),
+    OPS_TOOLS("ops_tool" , "内置工具"),
     ANSIBLE("ansible" , "Ansible"),
     NONE("none" , "无"),
     ;

@@ -72,6 +72,10 @@ public class OpsRelationManager extends RelationManager {
     }
 
     public void setupAutoTaskMlog() {
+        this.property(AutoTaskMLogMeta.LOG_LIST_PROP)
+                .using(OpsTables.OPS_AUTO_TASK_M_LOG.ID).join(OpsTables.OPS_AUTO_TASK_LOG.M_LOG_ID);
+
+
         this.property(AutoTaskMLogMeta.TASK_PROP)
                 .using(OpsTables.OPS_AUTO_TASK_M_LOG.TASK_ID).join(OpsTables.OPS_AUTO_TASK.ID);
 
@@ -337,7 +341,6 @@ public class OpsRelationManager extends RelationManager {
         this.property(VoucherPrivMeta.EMPLOYEE_PROP)
                 .using(OpsTables.OPS_VOUCHER_PRIV.EMPL_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 //                .using(FoxnicWeb.HRM_EMPLOYEE.PERSON_ID).join(FoxnicWeb.HRM_PERSON.ID);
-
 
     }
 

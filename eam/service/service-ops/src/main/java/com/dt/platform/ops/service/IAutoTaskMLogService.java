@@ -29,6 +29,8 @@ import java.util.Map;
 public interface IAutoTaskMLogService extends  ISimpleIdService<AutoTaskMLog,String> {
 
 
+	AutoTaskMLog logDownload(String id);
+
 	/**
 	 * 添加，如果语句错误，则抛出异常
 	 * @param autoTaskMLog 数据对象

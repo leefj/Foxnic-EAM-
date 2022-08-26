@@ -102,6 +102,7 @@
 
 <!-- 表格操作列 -->
 <script type="text/html" id="tableOperationTemplate">
+    <button th:if="${perm.checkAnyAuth('ops_auto_node:update','ops_auto_node:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('修改')}">修改</span></button>
     <button th:if="${perm.checkAuth('ops_auto_node:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看')}">查看</span></button>
 </script>
 

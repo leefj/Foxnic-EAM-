@@ -169,6 +169,10 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             });
             console.log('autoTaskMLog',data);
         },
+        logDownload:function (data){
+            var downloadUrl=moduleURL+"/log-download";
+            fox.submit(downloadUrl,{id:data.id});
+        },
         /**
          * 末尾执行
          */

@@ -2,7 +2,7 @@
 /**
  * 执行日志 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 08:16:56
+ * @since 2022-08-24 13:10:24
  */
  -->
  <!DOCTYPE html>
@@ -106,6 +106,7 @@
 
 
     <button th:if="${perm.checkAuth('ops_auto_task_m_log:log')}"class="layui-btn layui-btn-xs " lay-event="auto-task-m-log" data-id="{{d.id}}"><span th:text="${lang.translate('日志')}">日志</span></button>
+    <button th:if="${perm.checkAuth('ops_auto_task_m_log:log-download')}"class="layui-btn layui-btn-xs " lay-event="log-download" data-id="{{d.id}}"><span th:text="${lang.translate('日志下载')}">日志下载</span></button>
 
 </script>
 

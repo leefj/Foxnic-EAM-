@@ -80,6 +80,9 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
     private IManufacturerService manufacturerService;
 
     @Autowired
+    private ISupplierService supplierService;
+
+    @Autowired
     private IGoodsService goodsService;
 
     @Autowired
@@ -644,7 +647,6 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                 }
             }
         }
-
         return map;
     }
 
@@ -659,6 +661,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         if(result.isSuccess()){
             List<DictItem> list=result.getData();
             for(int i=0;i<list.size();i++){
+                System.out.println(dictCode+" put data:"+list.get(i).getCode()+","+list.get(i).getLabel());
                 map.put(list.get(i).getCode(),list.get(i).getLabel());
             }
         }else{
@@ -695,6 +698,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
 
         HashMap<String,String> orgMap=matchMap.get("organizationMap");
         HashMap<String,String> categoryMap=matchMap.get("categoryMap");
+        HashMap<String,String> financialMap=matchMap.get("financialMap");
 
         String category=BeanNameUtil.instance().depart(AssetMeta.CATEGORY_ID);
         String valueCategory=rcd.getString(category);
@@ -720,7 +724,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         dictColumns.put(AssetMeta.SOURCE_ID,"eam_source,资产来源");
         dictColumns.put(AssetMeta.SAFETY_LEVEL_CODE,"eam_safety_level,安全等级");
         dictColumns.put(AssetMeta.EQUIPMENT_ENVIRONMENT_CODE,"eam_equipment_environment,设备运行状态");
-        dictColumns.put(AssetMeta.ASSET_MAINTENANCE_STATUS,"eam_maintenance_status,维保状态");
+        dictColumns.put(AssetMeta.MAINTENANCE_STATUS,"eam_maintenance_status,维保状态");
         for(String key:dictColumns.keySet()){
             String keyValue=dictColumns.get(key);
             String[] keyValueArr=keyValue.split(",");
@@ -802,8 +806,6 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                 return ErrorDesc.failureMessage("组织节点未匹配到:"+valueUseOrganization);
             }
         }
-
-
 
 
         String companyId=BeanNameUtil.instance().depart(AssetMeta.OWN_COMPANY_ID);
@@ -941,6 +943,29 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                 rcd.setValue(wareHouseId,warehouse.getId());
             }
         }
+
+
+        //供应商
+        String supplierId=BeanNameUtil.instance().depart(AssetMeta.SUPPLIER_ID);
+        String valueSupplier=rcd.getString(supplierId);
+        if(!StringUtil.isBlank(valueSupplier)){
+            Supplier manufacturer = supplierService.queryEntity(Supplier.create().setSupplierName(valueSupplier));
+            if(manufacturer==null){
+                if(filldata){
+                    Supplier supplier=new Supplier();
+                    supplier.setSupplierName(valueSupplier);
+                    supplierService.insert(supplier);
+                    rcd.setValue(supplierId,manufacturer.getId());
+                }else{
+                    //返回报错
+                    return ErrorDesc.failureMessage("供应商不存在:"+valueSupplier);
+                }
+            }else{
+                rcd.setValue(supplierId,manufacturer.getId());
+            }
+        }
+
+
 
         //厂商 fill
         String manufacturerId=BeanNameUtil.instance().depart(AssetMeta.MANUFACTURER_ID);

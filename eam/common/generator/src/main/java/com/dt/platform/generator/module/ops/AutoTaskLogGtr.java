@@ -96,6 +96,7 @@ public class AutoTaskLogGtr extends BaseCodeGenerator{
         cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().form().addGroup(null,
                 new Object[] {
+                        OpsTables.OPS_AUTO_TASK_LOG.NODE_IP,
                         OpsTables.OPS_AUTO_TASK_LOG.STATUS,
                         OpsTables.OPS_AUTO_TASK_LOG.TASK_ID,
                         OpsTables.OPS_AUTO_TASK_LOG.NODE_ID,
@@ -105,14 +106,10 @@ public class AutoTaskLogGtr extends BaseCodeGenerator{
                         OpsTables.OPS_AUTO_TASK_LOG.RECORD_CONTENT,
                         OpsTables.OPS_AUTO_TASK_LOG.CONTENT_DETAIL,
                         OpsTables.OPS_AUTO_TASK_LOG.NOTES,
-
                 }
-
-
         );
 
         cfg.view().list().addJsVariable("M_LOG_ID","[[${mLogId}]]","mLogId");
-
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口

@@ -12,8 +12,8 @@ import com.dt.platform.domain.ops.AutoTaskMLog;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 08:59:51
- * @sign 8D7C6AE555D3BB790D428D1B57DC1C80
+ * @since 2022-08-24 13:48:40
+ * @sign 486391774254B3AC4571B783E11CDCEA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -58,6 +58,16 @@ public class AutoTaskLogMeta {
 	 * 动作 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskLog,java.lang.String> ACTION_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskLog.class ,ACTION_ID, java.lang.String.class, "动作", "动作", java.lang.String.class, null);
+	
+	/**
+	 * IP , 类型: java.lang.String
+	*/
+	public static final String NODE_IP="nodeIp";
+	
+	/**
+	 * IP , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.AutoTaskLog,java.lang.String> NODE_IP_PROP = new BeanProperty(com.dt.platform.domain.ops.AutoTaskLog.class ,NODE_IP, java.lang.String.class, "IP", "IP", java.lang.String.class, null);
 	
 	/**
 	 * 节点 , 类型: java.lang.String
@@ -252,7 +262,7 @@ public class AutoTaskLogMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , TASK_ID , M_LOG_ID , ACTION_ID , NODE_ID , STATUS , STIME , ETIME , RECORD_CONTENT , CONTENT_DETAIL , RECORD_TIME , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , TASK , ACTION , NODE , M_LOG };
+	public static final String[] $PROPS={ ID , TASK_ID , M_LOG_ID , ACTION_ID , NODE_IP , NODE_ID , STATUS , STIME , ETIME , RECORD_CONTENT , CONTENT_DETAIL , RECORD_TIME , NOTES , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , TASK , ACTION , NODE , M_LOG };
 	
 	/**
 	 * 代理类
@@ -303,6 +313,17 @@ public class AutoTaskLogMeta {
 		public AutoTaskLog setActionId(String actionId) {
 			super.change(ACTION_ID,super.getActionId(),actionId);
 			super.setActionId(actionId);
+			return this;
+		}
+		
+		/**
+		 * 设置 IP
+		 * @param nodeIp IP
+		 * @return 当前对象
+		*/
+		public AutoTaskLog setNodeIp(String nodeIp) {
+			super.change(NODE_IP,super.getNodeIp(),nodeIp);
+			super.setNodeIp(nodeIp);
 			return this;
 		}
 		

@@ -17,8 +17,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 明细日志
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-22 08:59:51
- * @sign 8D7C6AE555D3BB790D428D1B57DC1C80
+ * @since 2022-08-24 13:48:40
+ * @sign 486391774254B3AC4571B783E11CDCEA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -53,6 +53,12 @@ public class AutoTaskLog extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="动作" , notes = "动作")
 	private String actionId;
+	
+	/**
+	 * IP：IP
+	*/
+	@ApiModelProperty(required = false,value="IP" , notes = "IP")
+	private String nodeIp;
 	
 	/**
 	 * 节点：节点
@@ -243,6 +249,25 @@ public class AutoTaskLog extends Entity {
 	*/
 	public AutoTaskLog setActionId(String actionId) {
 		this.actionId=actionId;
+		return this;
+	}
+	
+	/**
+	 * 获得 IP<br>
+	 * IP
+	 * @return IP
+	*/
+	public String getNodeIp() {
+		return nodeIp;
+	}
+	
+	/**
+	 * 设置 IP
+	 * @param nodeIp IP
+	 * @return 当前对象
+	*/
+	public AutoTaskLog setNodeIp(String nodeIp) {
+		this.nodeIp=nodeIp;
 		return this;
 	}
 	
@@ -664,6 +689,22 @@ public class AutoTaskLog extends Entity {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AutoTaskLog clone() {
+		return EntityContext.clone(AutoTaskLog.class,this);
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AutoTaskLog clone(boolean deep) {
+		return EntityContext.clone(AutoTaskLog.class,this,deep);
 	}
 
 	/**
