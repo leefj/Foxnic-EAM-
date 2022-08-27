@@ -10,8 +10,8 @@ import java.util.Date;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-13 07:23:22
- * @sign 388DE2BDFCFC39F239D0F1D264C5EC8A
+ * @since 2022-08-27 20:42:28
+ * @sign 1B84DFB74DDE61BC70E516260AE3A059
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -118,6 +118,16 @@ public class PositionVOMeta extends PositionMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.PositionVO,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.eam.PositionVO.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
 	
 	/**
+	 * 编码 , 类型: java.lang.String
+	*/
+	public static final String CODE="code";
+	
+	/**
+	 * 编码 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.PositionVO,java.lang.String> CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.PositionVO.class ,CODE, java.lang.String.class, "编码", "编码", java.lang.String.class, null);
+	
+	/**
 	 * 名称 , 类型: java.lang.String
 	*/
 	public static final String NAME="name";
@@ -126,6 +136,46 @@ public class PositionVOMeta extends PositionMeta {
 	 * 名称 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.PositionVO,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.PositionVO.class ,NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
+	
+	/**
+	 * 父节点 , 类型: java.lang.String
+	*/
+	public static final String PARENT_ID="parentId";
+	
+	/**
+	 * 父节点 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.PositionVO,java.lang.String> PARENT_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.PositionVO.class ,PARENT_ID, java.lang.String.class, "父节点", "父节点", java.lang.String.class, null);
+	
+	/**
+	 * 节点路径 , 类型: java.lang.String
+	*/
+	public static final String HIERARCHY="hierarchy";
+	
+	/**
+	 * 节点路径 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.PositionVO,java.lang.String> HIERARCHY_PROP = new BeanProperty(com.dt.platform.domain.eam.PositionVO.class ,HIERARCHY, java.lang.String.class, "节点路径", "节点路径", java.lang.String.class, null);
+	
+	/**
+	 * 节点路径名称 , 类型: java.lang.String
+	*/
+	public static final String HIERARCHY_NAME="hierarchyName";
+	
+	/**
+	 * 节点路径名称 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.PositionVO,java.lang.String> HIERARCHY_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.PositionVO.class ,HIERARCHY_NAME, java.lang.String.class, "节点路径名称", "节点路径名称", java.lang.String.class, null);
+	
+	/**
+	 * 排序 , 类型: java.lang.Integer
+	*/
+	public static final String SORT="sort";
+	
+	/**
+	 * 排序 , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.PositionVO,java.lang.Integer> SORT_PROP = new BeanProperty(com.dt.platform.domain.eam.PositionVO.class ,SORT, java.lang.Integer.class, "排序", "排序", java.lang.Integer.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -230,7 +280,7 @@ public class PositionVOMeta extends PositionMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , NAME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , CODE , NAME , PARENT_ID , HIERARCHY , HIERARCHY_NAME , SORT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
 	
 	/**
 	 * 代理类
@@ -351,6 +401,17 @@ public class PositionVOMeta extends PositionMeta {
 		}
 		
 		/**
+		 * 设置 编码
+		 * @param code 编码
+		 * @return 当前对象
+		*/
+		public Position setCode(String code) {
+			super.change(CODE,super.getCode(),code);
+			super.setCode(code);
+			return this;
+		}
+		
+		/**
 		 * 设置 名称
 		 * @param name 名称
 		 * @return 当前对象
@@ -358,6 +419,50 @@ public class PositionVOMeta extends PositionMeta {
 		public Position setName(String name) {
 			super.change(NAME,super.getName(),name);
 			super.setName(name);
+			return this;
+		}
+		
+		/**
+		 * 设置 父节点
+		 * @param parentId 父节点
+		 * @return 当前对象
+		*/
+		public Position setParentId(String parentId) {
+			super.change(PARENT_ID,super.getParentId(),parentId);
+			super.setParentId(parentId);
+			return this;
+		}
+		
+		/**
+		 * 设置 节点路径
+		 * @param hierarchy 节点路径
+		 * @return 当前对象
+		*/
+		public Position setHierarchy(String hierarchy) {
+			super.change(HIERARCHY,super.getHierarchy(),hierarchy);
+			super.setHierarchy(hierarchy);
+			return this;
+		}
+		
+		/**
+		 * 设置 节点路径名称
+		 * @param hierarchyName 节点路径名称
+		 * @return 当前对象
+		*/
+		public Position setHierarchyName(String hierarchyName) {
+			super.change(HIERARCHY_NAME,super.getHierarchyName(),hierarchyName);
+			super.setHierarchyName(hierarchyName);
+			return this;
+		}
+		
+		/**
+		 * 设置 排序
+		 * @param sort 排序
+		 * @return 当前对象
+		*/
+		public Position setSort(Integer sort) {
+			super.change(SORT,super.getSort(),sort);
+			super.setSort(sort);
 			return this;
 		}
 		

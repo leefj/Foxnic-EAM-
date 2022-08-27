@@ -13,8 +13,8 @@ import com.github.foxnic.commons.bean.BeanUtil;
 /**
  * 资产入库
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-15 20:36:06
- * @sign 1A0905D818F4B74AC4900C5B81620709
+ * @since 2022-08-27 23:04:28
+ * @sign 9D8042057B9479E16002A2838D622A3D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -261,7 +261,7 @@ public class AssetStorageVO extends AssetStorage {
 		return this;
 	}
 	@Transient
-	private CompositeParameter $compositeParameter;
+	private transient CompositeParameter $compositeParameter;
 	/**
 	 * 获得解析后的复合查询参数
 	 */

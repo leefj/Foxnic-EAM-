@@ -13,8 +13,8 @@ import com.github.foxnic.commons.bean.BeanUtil;
 /**
  * 资产转移
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-15 20:36:25
- * @sign 56BF00CE367C5EEF8F4AD77BC5644823
+ * @since 2022-08-27 21:24:28
+ * @sign 11DB129531F71609F7771E966B0801A9
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -261,7 +261,7 @@ public class AssetTranferVO extends AssetTranfer {
 		return this;
 	}
 	@Transient
-	private CompositeParameter $compositeParameter;
+	private transient CompositeParameter $compositeParameter;
 	/**
 	 * 获得解析后的复合查询参数
 	 */

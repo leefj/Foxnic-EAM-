@@ -1,6 +1,10 @@
 package com.dt.platform.eam.service.impl;
 
 import javax.annotation.Resource;
+
+import com.dt.platform.domain.eam.CategoryFinance;
+import com.github.foxnic.api.error.CommonError;
+import com.github.foxnic.sql.expr.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +42,7 @@ import java.util.Map;
  * 存放位置 服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-13 07:23:23
+ * @since 2022-08-27 20:42:28
 */
 
 
@@ -73,6 +77,31 @@ public class PositionServiceImpl extends SuperService<Position> implements IPosi
 	@Override
 	public Result insert(Position position,boolean throwsException) {
 		Result r=super.insert(position,throwsException);
+		return r;
+	}
+
+	@Override
+	public Result updateHierarchy(String id) {
+		Position category= getById(id);
+		String hierarchy=category.getHierarchy();
+		String split="/";
+		String afterHierarchyName="";
+		String[] ids = hierarchy.split(split);
+		for (int i = 0; i < ids.length;i++) {
+			afterHierarchyName = afterHierarchyName + split+ getById(ids[i]).getName();
+		}
+		afterHierarchyName = afterHierarchyName.replaceFirst(split, "");
+		Update ups = new Update("eam_position");
+		ups.set("hierarchy_name", afterHierarchyName);
+		ups.where().and("id=?", id);
+		dao.execute(ups);
+		List<Position> positionList=queryList(Position.create().setParentId(id));
+		for (int j = 0; j < positionList.size(); j++) {
+			updateHierarchy(positionList.get(j).getId());
+		}
+		Result r=new Result();
+		r.success(true);
+		r.message(CommonError.SUCCESS_TEXT);
 		return r;
 	}
 

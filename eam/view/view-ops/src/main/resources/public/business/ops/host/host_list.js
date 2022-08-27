@@ -307,7 +307,7 @@ function ListPage() {
 				},1);
 			},
 			//转换数据
-			searchField: "name", //请自行调整用于搜索的字段名称
+			searchField: "hierarchyName", //请自行调整用于搜索的字段名称
 			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
 			transform: function(data) {
 				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
@@ -315,7 +315,7 @@ function ListPage() {
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
-					opts.push({data:data[i],name:data[i].name,value:data[i].id});
+					opts.push({data:data[i],name:data[i].hierarchyName,value:data[i].id});
 				}
 				return opts;
 			}

@@ -23,11 +23,17 @@ import java.util.Map;
  * 存放位置 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-13 07:23:22
+ * @since 2022-08-27 20:42:28
 */
 
 public interface IPositionService extends  ISimpleIdService<Position,String> {
 
+	/**
+	 * 更新分类路径及名称
+	 * @param id 主键
+	 * @return 插入是否成功
+	 * */
+	Result updateHierarchy(String id);
 
 	/**
 	 * 添加，如果语句错误，则抛出异常

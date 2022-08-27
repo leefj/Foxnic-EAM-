@@ -4,6 +4,8 @@ package com.dt.platform.eam.controller;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.dt.platform.domain.eam.CategoryFinance;
+import com.github.foxnic.commons.lang.StringUtil;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,7 +51,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 存放位置 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-13 07:23:23
+ * @since 2022-08-27 20:42:29
 */
 
 @Api(tags = "存放位置")
@@ -66,15 +68,42 @@ public class PositionController extends SuperController {
 	*/
 	@ApiOperation(value = "添加存放位置")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = PositionVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-		@ApiImplicitParam(name = PositionVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "2"),
+		@ApiImplicitParam(name = PositionVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.PARENT_ID , value = "父节点" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.HIERARCHY , value = "节点路径" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.HIERARCHY_NAME , value = "节点路径名称" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.SORT , value = "排序" , required = false , dataTypeClass=Integer.class),
 		@ApiImplicitParam(name = PositionVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=1)
 	@SentinelResource(value = PositionServiceProxy.INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(PositionServiceProxy.INSERT)
 	public Result insert(PositionVO positionVO) {
+
+
+		positionVO.setSort(9999);
+		if(StringUtil.isBlank(positionVO.getParentId())) {
+			positionVO.setParentId("0");
+		}
 		Result result=positionService.insert(positionVO,false);
+		if(result.success()) {
+			Position currentPosition=new Position();
+			currentPosition.setId(positionVO.getId());
+			if("0".equals(positionVO.getParentId())){
+				currentPosition.setHierarchy(positionVO.getId());
+				currentPosition.setHierarchyName(positionVO.getName());
+			}else{
+				Position parentPosition=positionService.getById(positionVO.getParentId());
+				currentPosition.setHierarchy(parentPosition.getHierarchy()+"/"+positionVO.getId());
+				currentPosition.setHierarchyName(parentPosition.getHierarchyName()+"/"+positionVO.getName());
+			}
+			positionService.update(currentPosition,SaveMode.NOT_NULL_FIELDS);
+			positionVO.setHierarchy(currentPosition.getHierarchy());
+			positionVO.setHierarchyName(currentPosition.getHierarchyName());
+			result.data(positionVO);
+		}
 		return result;
 	}
 
@@ -85,13 +114,21 @@ public class PositionController extends SuperController {
 	*/
 	@ApiOperation(value = "删除存放位置")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = PositionVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1")
+		@ApiImplicitParam(name = PositionVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class)
 	})
 	@ApiOperationSupport(order=2)
 	@NotNull(name = PositionVOMeta.ID)
 	@SentinelResource(value = PositionServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(PositionServiceProxy.DELETE)
 	public Result deleteById(String id) {
+
+		List<Position> list=positionService.queryList(Position.create().setParentId(id));
+		if(list.size()>0){
+			Result< Position> result=new Result<>();
+			result.success(false).message("请先删除下级节点");
+			return result;
+		}
+
 		this.validator().asserts(id).require("缺少id值");
 		if(this.validator().failure()) {
 			return this.validator().getFirstResult();
@@ -99,7 +136,7 @@ public class PositionController extends SuperController {
 		// 引用校验
 		Boolean hasRefer = positionService.hasRefers(id);
 		// 判断是否可以删除
-		this.validator().asserts(hasRefer).requireInList("不允许删除当前记录",false);
+		this.validator().asserts(hasRefer).requireEqual("不允许删除当前记录",false);
 		if(this.validator().failure()) {
 			return this.validator().getFirstResult();
 		}
@@ -165,16 +202,24 @@ public class PositionController extends SuperController {
 	*/
 	@ApiOperation(value = "更新存放位置")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = PositionVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-		@ApiImplicitParam(name = PositionVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "2"),
+		@ApiImplicitParam(name = PositionVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.PARENT_ID , value = "父节点" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.HIERARCHY , value = "节点路径" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.HIERARCHY_NAME , value = "节点路径名称" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.SORT , value = "排序" , required = false , dataTypeClass=Integer.class),
 		@ApiImplicitParam(name = PositionVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport( order=4 , ignoreParameters = { PositionVOMeta.PAGE_INDEX , PositionVOMeta.PAGE_SIZE , PositionVOMeta.SEARCH_FIELD , PositionVOMeta.FUZZY_FIELD , PositionVOMeta.SEARCH_VALUE , PositionVOMeta.DIRTY_FIELDS , PositionVOMeta.SORT_FIELD , PositionVOMeta.SORT_TYPE , PositionVOMeta.IDS } )
-	@NotNull(name = PositionVOMeta.ID)
 	@SentinelResource(value = PositionServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(PositionServiceProxy.UPDATE)
 	public Result update(PositionVO positionVO) {
 		Result result=positionService.update(positionVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
+		if(result.isSuccess()){
+			//更新分类名称
+			return positionService.updateHierarchy(positionVO.getId());
+		}
 		return result;
 	}
 
@@ -184,8 +229,13 @@ public class PositionController extends SuperController {
 	*/
 	@ApiOperation(value = "保存存放位置")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = PositionVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-		@ApiImplicitParam(name = PositionVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "2"),
+		@ApiImplicitParam(name = PositionVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.PARENT_ID , value = "父节点" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.HIERARCHY , value = "节点路径" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.HIERARCHY_NAME , value = "节点路径名称" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.SORT , value = "排序" , required = false , dataTypeClass=Integer.class),
 		@ApiImplicitParam(name = PositionVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { PositionVOMeta.PAGE_INDEX , PositionVOMeta.PAGE_SIZE , PositionVOMeta.SEARCH_FIELD , PositionVOMeta.FUZZY_FIELD , PositionVOMeta.SEARCH_VALUE , PositionVOMeta.DIRTY_FIELDS , PositionVOMeta.SORT_FIELD , PositionVOMeta.SORT_TYPE , PositionVOMeta.IDS } )
@@ -194,6 +244,10 @@ public class PositionController extends SuperController {
 	@PostMapping(PositionServiceProxy.SAVE)
 	public Result save(PositionVO positionVO) {
 		Result result=positionService.save(positionVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
+		if(result.isSuccess()){
+			//更新分类名称
+			return positionService.updateHierarchy(positionVO.getId());
+		}
 		return result;
 	}
 
@@ -242,8 +296,13 @@ public class PositionController extends SuperController {
 	*/
 	@ApiOperation(value = "查询存放位置")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = PositionVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-		@ApiImplicitParam(name = PositionVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "2"),
+		@ApiImplicitParam(name = PositionVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.PARENT_ID , value = "父节点" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.HIERARCHY , value = "节点路径" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.HIERARCHY_NAME , value = "节点路径名称" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.SORT , value = "排序" , required = false , dataTypeClass=Integer.class),
 		@ApiImplicitParam(name = PositionVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { PositionVOMeta.PAGE_INDEX , PositionVOMeta.PAGE_SIZE } )
@@ -262,8 +321,13 @@ public class PositionController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询存放位置")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = PositionVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-		@ApiImplicitParam(name = PositionVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "2"),
+		@ApiImplicitParam(name = PositionVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.PARENT_ID , value = "父节点" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.HIERARCHY , value = "节点路径" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.HIERARCHY_NAME , value = "节点路径名称" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = PositionVOMeta.SORT , value = "排序" , required = false , dataTypeClass=Integer.class),
 		@ApiImplicitParam(name = PositionVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=8)

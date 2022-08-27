@@ -15,7 +15,6 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication(exclude = {FeignAutoConfiguration.class})
 @EnableProcessApplication
 public class WrapperCamundaApp {
-
 	public static void main(String[] args) {
 		BootApplication.run(WrapperCamundaApp.class, args);
 	}

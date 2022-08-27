@@ -625,7 +625,7 @@
 <div  th:fragment="rack_id" class="layui-form-item" >
     <div class="layui-form-label layui-form-label-c1"><div th:text="${item.attribute.label}"></div><div th:if="${item.required} == 1" class="layui-required">*</div></div>
     <div class="layui-input-block layui-input-block-c1">
-        <div id="rackId" input-type="select" th:data="${'/service-datacenter/dc-rack/query-paged-list'}"></div>
+        <div id="rackId" input-type="select" th:data="${'/service-eam/eam-asset-rack/query-paged-list?type=rack'}"></div>
     </div>
 </div>
 

@@ -13,8 +13,8 @@ import com.github.foxnic.commons.bean.BeanUtil;
 /**
  * 资产领用
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-15 20:35:14
- * @sign 0094305D2528FACC4E3B88E7A570827F
+ * @since 2022-08-27 21:22:36
+ * @sign 51281062D0178464BF1E096C340F1737
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -261,7 +261,7 @@ public class AssetCollectionVO extends AssetCollection {
 		return this;
 	}
 	@Transient
-	private CompositeParameter $compositeParameter;
+	private transient CompositeParameter $compositeParameter;
 	/**
 	 * 获得解析后的复合查询参数
 	 */

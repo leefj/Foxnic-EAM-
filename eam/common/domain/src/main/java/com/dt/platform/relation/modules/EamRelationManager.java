@@ -1,25 +1,15 @@
 package com.dt.platform.relation.modules;
 
-
 import com.dt.platform.constants.db.DataCenterTables;
 import com.dt.platform.constants.db.EAMTables;
-
 import com.dt.platform.constants.enums.eam.AssetInventoryDetailStatusEnum;
-import com.dt.platform.domain.common.meta.CodeAllocationMeta;
+
 import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.*;
-import com.dt.platform.domain.ops.Voucher;
-import com.dt.platform.domain.ops.meta.HostMeta;
-import com.dt.platform.domain.ops.meta.InformationSystemMeta;
-import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.dao.relation.RelationManager;
 import org.github.foxnic.web.constants.db.FoxnicWeb;
-import org.github.foxnic.web.domain.hrm.meta.PersonMeta;
-
-import javax.naming.NoInitialContextException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 public class EamRelationManager extends RelationManager {
@@ -112,7 +102,39 @@ public class EamRelationManager extends RelationManager {
         this.setupAssetStatusRuleV();
 
 
+        this.setupAssetRack2();
+        this.setupAssetRackInfo();
     }
+
+
+
+
+    public void setupAssetRackInfo(){
+
+
+        this.property(AssetRackInfoMeta.TYPE_DICT_PROP)
+                .using(EAMTables.EAM_ASSET_RACK_INFO.RACK_TYPE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='ops_dc_rack_type'");
+
+
+        this.property(AssetRackInfoMeta.STATUS_DICT_PROP)
+                .using(EAMTables.EAM_ASSET_RACK_INFO.STATUS).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='ops_dc_rack_status'");
+
+        this.property(AssetRackInfoMeta.USED_TYPE_DICT_PROP)
+                .using(EAMTables.EAM_ASSET_RACK_INFO.RACK_USED_TYPE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='ops_dc_rack_used_type'");
+
+        this.property(AssetRackInfoMeta.ENVIRONMENT_DICT_PROP)
+                .using(EAMTables.EAM_ASSET_RACK_INFO.ENVIRONMENT).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='ops_dc_rack_environment'");
+    }
+    public void setupAssetRack2() {
+
+        this.property(AssetRackMeta.RACK_INFO_PROP)
+                .using(EAMTables.EAM_ASSET_RACK.RACK_ID).join(EAMTables.EAM_ASSET_RACK_INFO.ID);
+    }
+
 
     public void setupAssetStatusRuleV() {
 
@@ -129,6 +151,8 @@ public class EamRelationManager extends RelationManager {
 
 
     }
+
+
 
     public void setupEmployeeApply() {
         this.property(AssetEmployeeApplyMeta.ORIGINATOR_PROP)
@@ -1591,7 +1615,7 @@ public class EamRelationManager extends RelationManager {
 
         // 关联机柜
         this.property(AssetMeta.RACK_PROP)
-                .using(EAMTables.EAM_ASSET.RACK_ID).join(DataCenterTables.DC_RACK.ID);
+                .using(EAMTables.EAM_ASSET.RACK_ID).join(EAMTables.EAM_ASSET_RACK.ID);
 
 
         // 关联物品档案

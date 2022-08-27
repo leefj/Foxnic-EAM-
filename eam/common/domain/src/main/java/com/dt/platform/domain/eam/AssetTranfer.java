@@ -22,8 +22,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 资产转移
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-15 20:36:25
- * @sign E6154F4F709E3981A0EED9E90FB063CB
+ * @since 2022-08-27 21:24:28
+ * @sign 238835EA8099AD28D66DA4AE44E4D615
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -966,6 +966,22 @@ public class AssetTranfer extends Entity {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetTranfer clone() {
+		return EntityContext.clone(AssetTranfer.class,this);
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetTranfer clone(boolean deep) {
+		return EntityContext.clone(AssetTranfer.class,this,deep);
 	}
 
 	/**

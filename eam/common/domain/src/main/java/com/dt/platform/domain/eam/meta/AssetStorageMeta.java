@@ -13,8 +13,8 @@ import com.dt.platform.domain.eam.Supplier;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-15 20:36:06
- * @sign F38E48F5E41957225F82C37181173201
+ * @since 2022-08-27 23:04:28
+ * @sign 7FB08675CC4466CA4FC88B5516E96A12
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 

@@ -36,6 +36,7 @@ public class EamMaintainerGtr extends BaseCodeGenerator {
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_MAINTAINER.MAINTAINER_NAME,
+                        EAMTables.EAM_MAINTAINER.CODE,
                         EAMTables.EAM_MAINTAINER.UNIT_CODE,
                 },
                 new Object[] {

@@ -87,7 +87,7 @@ function FormPage() {
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
-					opts.push({name:data[i].name,value:data[i].id});
+					opts.push({name:data[i].hierarchyName,value:data[i].id});
 				}
 				return opts;
 			}

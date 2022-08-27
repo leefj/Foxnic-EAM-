@@ -152,7 +152,7 @@ public class EamInventoryGtr extends BaseCodeGenerator{
         cfg.view().field(InventoryMeta.POSITION_IDS)
                 .basic().label("位置")
                 .form().selectBox().queryApi(PositionServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
-                .valueField(PositionMeta.ID).textField( PositionMeta.NAME).fillWith(InventoryMeta.POSITION).muliti(true);
+                .valueField(PositionMeta.ID).textField( PositionMeta.HIERARCHY_NAME).fillWith(InventoryMeta.POSITION).muliti(true);
 
 
         cfg.view().field(InventoryMeta.CATEGORY_IDS)

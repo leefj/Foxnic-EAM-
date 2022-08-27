@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 
@@ -16,8 +17,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 维保厂商
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-12 06:33:05
- * @sign BE475E8518678522324F652F63572308
+ * @since 2022-08-27 20:14:29
+ * @sign F979A22347B0E80734C5898B0642A719
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -40,6 +41,12 @@ public class Maintainer extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="名称" , notes = "名称")
 	private String maintainerName;
+	
+	/**
+	 * 编码：编码
+	*/
+	@ApiModelProperty(required = false,value="编码" , notes = "编码")
+	private String code;
 	
 	/**
 	 * 商务联系人：商务联系人
@@ -112,6 +119,8 @@ public class Maintainer extends Entity {
 	*/
 	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
+	@Transient
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -172,6 +181,25 @@ public class Maintainer extends Entity {
 	*/
 	public Maintainer setMaintainerName(String maintainerName) {
 		this.maintainerName=maintainerName;
+		return this;
+	}
+	
+	/**
+	 * 获得 编码<br>
+	 * 编码
+	 * @return 编码
+	*/
+	public String getCode() {
+		return code;
+	}
+	
+	/**
+	 * 设置 编码
+	 * @param code 编码
+	 * @return 当前对象
+	*/
+	public Maintainer setCode(String code) {
+		this.code=code;
 		return this;
 	}
 	
@@ -394,12 +422,42 @@ public class Maintainer extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
 	public Maintainer setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public Maintainer setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -506,6 +564,22 @@ public class Maintainer extends Entity {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public Maintainer clone() {
+		return EntityContext.clone(Maintainer.class,this);
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public Maintainer clone(boolean deep) {
+		return EntityContext.clone(Maintainer.class,this,deep);
 	}
 
 	/**

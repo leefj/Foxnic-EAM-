@@ -17,8 +17,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 存放位置
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-13 07:23:22
- * @sign 04BBB5CECF6C403D6E5A2658CDD32DD5
+ * @since 2022-08-27 20:42:28
+ * @sign BB07F34C65D94CC972F8CBBE1D609A87
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -37,10 +37,40 @@ public class Position extends Entity {
 	private String id;
 	
 	/**
+	 * 编码：编码
+	*/
+	@ApiModelProperty(required = false,value="编码" , notes = "编码")
+	private String code;
+	
+	/**
 	 * 名称：名称
 	*/
 	@ApiModelProperty(required = false,value="名称" , notes = "名称")
 	private String name;
+	
+	/**
+	 * 父节点：父节点
+	*/
+	@ApiModelProperty(required = false,value="父节点" , notes = "父节点")
+	private String parentId;
+	
+	/**
+	 * 节点路径：节点路径
+	*/
+	@ApiModelProperty(required = false,value="节点路径" , notes = "节点路径")
+	private String hierarchy;
+	
+	/**
+	 * 节点路径名称：节点路径名称
+	*/
+	@ApiModelProperty(required = false,value="节点路径名称" , notes = "节点路径名称")
+	private String hierarchyName;
+	
+	/**
+	 * 排序：排序
+	*/
+	@ApiModelProperty(required = false,value="排序" , notes = "排序")
+	private Integer sort;
 	
 	/**
 	 * 备注：备注
@@ -124,6 +154,25 @@ public class Position extends Entity {
 	}
 	
 	/**
+	 * 获得 编码<br>
+	 * 编码
+	 * @return 编码
+	*/
+	public String getCode() {
+		return code;
+	}
+	
+	/**
+	 * 设置 编码
+	 * @param code 编码
+	 * @return 当前对象
+	*/
+	public Position setCode(String code) {
+		this.code=code;
+		return this;
+	}
+	
+	/**
 	 * 获得 名称<br>
 	 * 名称
 	 * @return 名称
@@ -139,6 +188,82 @@ public class Position extends Entity {
 	*/
 	public Position setName(String name) {
 		this.name=name;
+		return this;
+	}
+	
+	/**
+	 * 获得 父节点<br>
+	 * 父节点
+	 * @return 父节点
+	*/
+	public String getParentId() {
+		return parentId;
+	}
+	
+	/**
+	 * 设置 父节点
+	 * @param parentId 父节点
+	 * @return 当前对象
+	*/
+	public Position setParentId(String parentId) {
+		this.parentId=parentId;
+		return this;
+	}
+	
+	/**
+	 * 获得 节点路径<br>
+	 * 节点路径
+	 * @return 节点路径
+	*/
+	public String getHierarchy() {
+		return hierarchy;
+	}
+	
+	/**
+	 * 设置 节点路径
+	 * @param hierarchy 节点路径
+	 * @return 当前对象
+	*/
+	public Position setHierarchy(String hierarchy) {
+		this.hierarchy=hierarchy;
+		return this;
+	}
+	
+	/**
+	 * 获得 节点路径名称<br>
+	 * 节点路径名称
+	 * @return 节点路径名称
+	*/
+	public String getHierarchyName() {
+		return hierarchyName;
+	}
+	
+	/**
+	 * 设置 节点路径名称
+	 * @param hierarchyName 节点路径名称
+	 * @return 当前对象
+	*/
+	public Position setHierarchyName(String hierarchyName) {
+		this.hierarchyName=hierarchyName;
+		return this;
+	}
+	
+	/**
+	 * 获得 排序<br>
+	 * 排序
+	 * @return 排序
+	*/
+	public Integer getSort() {
+		return sort;
+	}
+	
+	/**
+	 * 设置 排序
+	 * @param sort 排序
+	 * @return 当前对象
+	*/
+	public Position setSort(Integer sort) {
+		this.sort=sort;
 		return this;
 	}
 	
@@ -389,6 +514,22 @@ public class Position extends Entity {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public Position clone() {
+		return EntityContext.clone(Position.class,this);
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public Position clone(boolean deep) {
+		return EntityContext.clone(Position.class,this,deep);
 	}
 
 	/**

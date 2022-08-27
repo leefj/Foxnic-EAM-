@@ -16,7 +16,6 @@ import org.github.foxnic.web.domain.pcm.Catalog;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.system.DictItem;
-import com.dt.platform.domain.datacenter.Rack;
 import org.github.foxnic.web.domain.changes.ChangeInstance;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.HashMap;
@@ -29,8 +28,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 资产
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-19 08:51:02
- * @sign 52C9D70D091630DA95954FFDC0484B5B
+ * @since 2022-08-27 23:31:29
+ * @sign F7BF93B5D20D236DC39B368B6D550731
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -822,7 +821,7 @@ public class Asset extends Entity {
 	 * 机柜：机柜
 	*/
 	@ApiModelProperty(required = false,value="机柜" , notes = "机柜")
-	private Rack rack;
+	private AssetRack rack;
 	
 	/**
 	 * 变更实例：变更实例
@@ -3351,7 +3350,7 @@ public class Asset extends Entity {
 	 * 机柜
 	 * @return 机柜
 	*/
-	public Rack getRack() {
+	public AssetRack getRack() {
 		return rack;
 	}
 	
@@ -3360,7 +3359,7 @@ public class Asset extends Entity {
 	 * @param rack 机柜
 	 * @return 当前对象
 	*/
-	public Asset setRack(Rack rack) {
+	public Asset setRack(AssetRack rack) {
 		this.rack=rack;
 		return this;
 	}
@@ -3449,6 +3448,22 @@ public class Asset extends Entity {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public Asset clone() {
+		return EntityContext.clone(Asset.class,this);
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public Asset clone(boolean deep) {
+		return EntityContext.clone(Asset.class,this,deep);
 	}
 
 	/**

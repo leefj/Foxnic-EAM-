@@ -105,7 +105,7 @@ public class EamAssetStockCollectionGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_ASSET_STOCK_COLLECTION.POSITION_ID)
                 .basic().label("存放位置")
                 .form().selectBox().queryApi(PositionServiceProxy.QUERY_LIST).paging(false).filter(true).toolbar(false)
-                .valueField(PositionMeta.ID).textField(PositionMeta.NAME).fillWith(AssetCollectionMeta.POSITION).muliti(false);
+                .valueField(PositionMeta.ID).textField(PositionMeta.HIERARCHY_NAME).fillWith(AssetCollectionMeta.POSITION).muliti(false);
 
 
      //   cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_stock_collection:for-approval");

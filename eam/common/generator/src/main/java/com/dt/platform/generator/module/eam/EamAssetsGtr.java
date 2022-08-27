@@ -66,7 +66,8 @@ public class EamAssetsGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"safetyLevel","安全等级","安全等级");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"assetMaintenanceStatus","维保状态","维保状态");
         cfg.getPoClassFile().addSimpleProperty(AssetStatus.class,"assetCycleStatus","assetCycleStatus","assetCycleStatus");
-        cfg.getPoClassFile().addSimpleProperty(Rack.class,"rack","机柜","机柜");
+       // cfg.getPoClassFile().addSimpleProperty(Rack.class,"rack","机柜","机柜");
+        cfg.getPoClassFile().addSimpleProperty(AssetRack.class,"rack","机柜","机柜");
         cfg.getPoClassFile().addSimpleProperty(ChangeInstance.class,"changeInstance","变更实例","变更实例");
         cfg.getPoClassFile().addSimpleProperty(GoodsStock.class,"goodsStock","库存物品","库存物品");
         cfg.getPoClassFile().addSimpleProperty(AssetRegion.class,"region","存放区域","存放区域");
@@ -208,10 +209,10 @@ public class EamAssetsGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_ASSET.RACK_ID)
                 .basic().label("机柜")
-                .form().selectBox().queryApi(RackServiceProxy.QUERY_PAGED_LIST)
+                .form().selectBox().queryApi(AssetRackServiceProxy.QUERY_PAGED_LIST)
                 .paging(true).filter(true).toolbar(false)
-                .valueField(RackMeta.ID).
-                textField(RackMeta.RACK_NAME).
+                .valueField(AssetRackMeta.ID).
+                textField(AssetRackMeta.NAME).
                 fillWith(AssetMeta.RACK).muliti(false);
 
         cfg.view().field(EAMTables.EAM_ASSET.STATUS).form()
@@ -260,7 +261,7 @@ public class EamAssetsGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET.POSITION_ID)
                 .basic().label("位置")
                 .form().selectBox().queryApi(PositionServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
-                .valueField(PositionMeta.ID).textField( PositionMeta.NAME).fillWith(AssetMeta.POSITION).muliti(false);
+                .valueField(PositionMeta.ID).textField( PositionMeta.HIERARCHY_NAME).fillWith(AssetMeta.POSITION).muliti(false);
 
         cfg.view().field(EAMTables.EAM_ASSET.GOODS_STOCK_ID)
                 .basic().label("库存物品")

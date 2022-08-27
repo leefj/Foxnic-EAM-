@@ -41,6 +41,7 @@ public class EamManufacturerGtr extends BaseCodeGenerator{
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_MANUFACTURER.MANUFACTURER_NAME,
+                        EAMTables.EAM_MANUFACTURER.CODE,
                         EAMTables.EAM_MANUFACTURER.LOCATION,
                         EAMTables.EAM_MANUFACTURER.MANUFACTURER_NOTES,
                 }

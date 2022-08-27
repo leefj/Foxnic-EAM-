@@ -13,8 +13,8 @@ import com.github.foxnic.commons.bean.BeanUtil;
 /**
  * 存放位置
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-13 07:23:22
- * @sign 388DE2BDFCFC39F239D0F1D264C5EC8A
+ * @since 2022-08-27 20:42:28
+ * @sign 1B84DFB74DDE61BC70E516260AE3A059
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -261,7 +261,7 @@ public class PositionVO extends Position {
 		return this;
 	}
 	@Transient
-	private CompositeParameter $compositeParameter;
+	private transient CompositeParameter $compositeParameter;
 	/**
 	 * 获得解析后的复合查询参数
 	 */

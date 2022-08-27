@@ -13,6 +13,7 @@ import com.dt.platform.eam.service.*;
 
 import com.dt.platform.proxy.common.TplFileServiceProxy;
 import com.dt.platform.proxy.datacenter.RackServiceProxy;
+import com.dt.platform.proxy.eam.AssetRackServiceProxy;
 import com.dt.platform.proxy.eam.OperateServiceProxy;
 import com.github.foxnic.api.constant.CodeTextEnum;
 import com.github.foxnic.api.error.ErrorDesc;
@@ -390,7 +391,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                     }else if("assetPositionName".equals(secondAssetColumn)){
                         dataVer.put("prohibitInput",true);
                         dataVer.put("type","dropdown");
-                        List<String> value=this.dao.query("select name from eam_position where deleted=0" ).getValueList("name",String.class);
+                        List<String> value=this.dao.query("select hierarchy_name from eam_position where deleted=0" ).getValueList("hierarchy_name",String.class);
                         dataVer.put("value1",  String.join(",", value));
                         dataVerification=dataVer;
                     }else if("assetSupplierName".equals(secondAssetColumn)){
@@ -698,7 +699,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
 
         HashMap<String,String> orgMap=matchMap.get("organizationMap");
         HashMap<String,String> categoryMap=matchMap.get("categoryMap");
-        HashMap<String,String> financialMap=matchMap.get("financialMap");
+
 
         String category=BeanNameUtil.instance().depart(AssetMeta.CATEGORY_ID);
         String valueCategory=rcd.getString(category);
@@ -884,16 +885,9 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         String positionId=BeanNameUtil.instance().depart(AssetMeta.POSITION_ID);
         String valuePosition=rcd.getString(positionId);
         if(!StringUtil.isBlank(valuePosition)){
-            Position position = positionService.queryEntity(Position.create().setName(valuePosition));
+            Position position = positionService.queryEntity(Position.create().setHierarchyName(valuePosition));
             if(position==null){
-                if(filldata){
-                    position=new Position();
-                    position.setName(valuePosition);
-                    positionService.insert(position);
-                    rcd.setValue(positionId,position.getId());
-                }else{
-                    return ErrorDesc.failureMessage("资产位置不存在:"+valuePosition);
-                }
+                return ErrorDesc.failureMessage("资产位置不存在:"+valuePosition);
             }else{
                 rcd.setValue(positionId,position.getId());
             }
@@ -992,21 +986,16 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         String rackId=BeanNameUtil.instance().depart(AssetMeta.RACK_ID);
         String valueRack=rcd.getString(rackId);
         if(!StringUtil.isBlank(valueRack)){
-            RackVO vo=new RackVO();
-            vo.setRackName(valueRack);
-            Result<List<Rack>> rackResult=RackServiceProxy.api().queryList(vo);
+            AssetRackVO vo=new AssetRackVO();
+            vo.setHierarchyName(valueRack);
+            vo.setType(AssetRackTreeTypeEnum.RACK.code());
+            Result<List<AssetRack>> rackResult= AssetRackServiceProxy.api().queryList(vo);
             if(!rackResult.isSuccess()){
                 return rackResult;
             }
             String matchRackId="";
             if (rackResult.getData().size()==0){
-                if(filldata){
-                    matchRackId=IDGenerator.getSnowflakeIdString();
-                    vo.setId(matchRackId);
-                    RackServiceProxy.api().insert(vo);
-                }else{
-                    return ErrorDesc.failureMessage("机柜不存在:"+valueRack);
-                }
+                return ErrorDesc.failureMessage("机柜不存在:"+valueRack);
             }else{
                 matchRackId=rackResult.getData().get(0).getId();
             }
@@ -1088,13 +1077,9 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
 
             if(assetItem.getPosition()!=null){
                 // 关联出 存放位置 数据
-                assetMap.put(AssetDataExportColumnEnum.ASSET_POSITION_NAME.code(),assetItem.getPosition().getName());
+                assetMap.put(AssetDataExportColumnEnum.ASSET_POSITION_NAME.code(),assetItem.getPosition().getHierarchyName());
             }
-//            if(assetItem.getCategory()!=null){
-//                //关联出 分类 数据
-//                String name=categoryMap.get(assetItem.getCategoryId());
-//                assetMap.put(AssetDataExportColumnEnum.ASSET_CATEGORY_NAME.code(),name);
-//            }
+
             if(assetItem.getGoods()!=null){
                 //关联出 物品档案 数据
                 assetMap.put(AssetDataExportColumnEnum.ASSET_GOOD_NAME.code(),assetItem.getGoods().getName());
@@ -1102,8 +1087,8 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
 
             if(assetItem.getRack()!=null){
                 //关联出 机柜 数据
-                assetMap.put(AssetDataExportColumnEnum.RACK_NAME.code(),assetItem.getRack().getRackName());
-                assetMap.put("rackCode",assetItem.getRack().getRackCode());
+                assetMap.put(AssetDataExportColumnEnum.RACK_NAME.code(),assetItem.getRack().getHierarchyName());
+                assetMap.put("rackCode",assetItem.getRack().getCode());
             }
 
             if(assetItem.getManufacturer()!=null){

@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-19 08:51:04
+ * @since 2022-08-27 23:31:30
  */
 
 
@@ -99,7 +99,7 @@ function ListPage() {
 					,{ field: 'useOrganizationId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('使用公司/部门') , templet: function (d) { return templet('useOrganizationId',fox.getProperty(d,["useOrganization","fullName"],0,'','useOrganizationId'),d);} }
 					,{ field: 'useUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('使用人员') , templet: function (d) { return templet('useUserId',fox.getProperty(d,["useUser","name"],0,'','useUserId'),d);} }
 					,{ field: 'regionId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('存放区域') , templet: function (d) { return templet('regionId',d.regionId,d);}  }
-					,{ field: 'positionId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置'), templet: function (d) { return templet('positionId' ,fox.joinLabel(d.position,"name",',','','positionId'),d);}}
+					,{ field: 'positionId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置'), templet: function (d) { return templet('positionId' ,fox.joinLabel(d.position,"hierarchyName",',','','positionId'),d);}}
 					,{ field: 'positionDetail', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('详细位置') , templet: function (d) { return templet('positionDetail',d.positionDetail,d);}  }
 					,{ field: 'warehouseId', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('仓库'), templet: function (d) { return templet('warehouseId' ,fox.joinLabel(d.warehouse,"warehouseName",',','','warehouseId'),d);}}
 					,{ field: 'goodsStockId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('库存物品'), templet: function (d) { return templet('goodsStockId' ,fox.joinLabel(d.goodsStock,"name",',','','goodsStockId'),d);}}
@@ -374,7 +374,7 @@ function ListPage() {
 			paging: true,
 			pageRemote: true,
 			//转换数据
-			searchField: "name", //请自行调整用于搜索的字段名称
+			searchField: "hierarchyName", //请自行调整用于搜索的字段名称
 			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
 			transform: function(data) {
 				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
@@ -382,7 +382,7 @@ function ListPage() {
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
-					opts.push({data:data[i],name:data[i].name,value:data[i].id});
+					opts.push({data:data[i],name:data[i].hierarchyName,value:data[i].id});
 				}
 				return opts;
 			}

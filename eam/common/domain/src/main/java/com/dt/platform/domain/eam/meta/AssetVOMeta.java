@@ -21,7 +21,7 @@ import com.dt.platform.domain.eam.Maintainer;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.system.DictItem;
 import com.dt.platform.domain.eam.AssetStatus;
-import com.dt.platform.domain.datacenter.Rack;
+import com.dt.platform.domain.eam.AssetRack;
 import org.github.foxnic.web.domain.changes.ChangeInstance;
 import com.dt.platform.domain.eam.GoodsStock;
 import com.dt.platform.domain.eam.AssetRegion;
@@ -30,7 +30,7 @@ import com.dt.platform.domain.eam.AssetRegion;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-19 08:51:02
+ * @since 2022-08-27 23:31:29
  * @sign C05127D02CE5B4FBBB8CDA17B7C59FAA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -1418,14 +1418,14 @@ public class AssetVOMeta extends AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,com.dt.platform.domain.eam.AssetStatus> ASSET_CYCLE_STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,ASSET_CYCLE_STATUS, com.dt.platform.domain.eam.AssetStatus.class, "assetCycleStatus", "assetCycleStatus", com.dt.platform.domain.eam.AssetStatus.class, null);
 	
 	/**
-	 * 机柜 , 类型: com.dt.platform.domain.datacenter.Rack
+	 * 机柜 , 类型: com.dt.platform.domain.eam.AssetRack
 	*/
 	public static final String RACK="rack";
 	
 	/**
-	 * 机柜 , 类型: com.dt.platform.domain.datacenter.Rack
+	 * 机柜 , 类型: com.dt.platform.domain.eam.AssetRack
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,com.dt.platform.domain.datacenter.Rack> RACK_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,RACK, com.dt.platform.domain.datacenter.Rack.class, "机柜", "机柜", com.dt.platform.domain.datacenter.Rack.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,com.dt.platform.domain.eam.AssetRack> RACK_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,RACK, com.dt.platform.domain.eam.AssetRack.class, "机柜", "机柜", com.dt.platform.domain.eam.AssetRack.class, null);
 	
 	/**
 	 * 变更实例 , 类型: org.github.foxnic.web.domain.changes.ChangeInstance
@@ -2993,7 +2993,7 @@ public class AssetVOMeta extends AssetMeta {
 		 * @param rack 机柜
 		 * @return 当前对象
 		*/
-		public Asset setRack(Rack rack) {
+		public Asset setRack(AssetRack rack) {
 			super.change(RACK,super.getRack(),rack);
 			super.setRack(rack);
 			return this;

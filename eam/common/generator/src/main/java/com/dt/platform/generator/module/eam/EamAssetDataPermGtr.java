@@ -98,7 +98,7 @@ public class EamAssetDataPermGtr extends BaseCodeGenerator{
                 .basic().label("存放位置")
                 .table().sort(false)
                 .form().selectBox().queryApi(PositionServiceProxy.QUERY_PAGED_LIST)
-                .valueField(PositionMeta.ID).textField(PositionMeta.NAME)
+                .valueField(PositionMeta.ID).textField(PositionMeta.HIERARCHY_NAME)
                 .toolbar(false).paging(true).filter(true)
                 .fillWith(AssetDataPermissionsMeta.POSITION).muliti(true);
 
