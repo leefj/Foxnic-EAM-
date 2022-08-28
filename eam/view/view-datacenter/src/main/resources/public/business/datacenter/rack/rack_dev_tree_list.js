@@ -62,12 +62,19 @@ function ListPage() {
 			}
 		};
 
-		admin.request(moduleURL+"/query-tree-list",{},function(r) {
+		admin.request("/service-eam/eam-asset-rack/query-list",{},function(r) {
 			if(r.success) {
 				menuTree=$.fn.zTree.init($("#menu-tree"), cfgs,r.data);
 				var  tmp_nodes = menuTree.getNodes();
 				for  ( var  i = 0; i < tmp_nodes.length; i++) {  //设置节点展开
+					 console.log("##",tmp_nodes[i]);
 					 menuTree.expandNode(tmp_nodes[i],  true ,  false ,  true );
+					 var children=tmp_nodes[i].children;
+					 if(children&&children.length>0){
+						 for  ( var  j = 0; j< children.length; j++) {  //设置节点展开
+							 menuTree.expandNode(children[j],  true ,  false ,  true );
+						 }
+					 }
 				}
 			} else {
 				admin.toast().error("获取数据失败",{time:1000,position:"right-bottom"});

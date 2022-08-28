@@ -2,7 +2,7 @@
 /**
  * 资产报废 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-27 15:41:31
+ * @since 2022-08-28 07:59:36
  */
  -->
  <!DOCTYPE html>
@@ -61,6 +61,11 @@
                     <!-- 下一个审批节点审批人姓名 , nextApproverNames ,typeName=text_input, isHideInSearch=true -->
                     <!-- 审批意见 , approvalOpinion ,typeName=text_input, isHideInSearch=true -->
                     <!-- originatorUserName , originatorUserName ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 报废方式 , method ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('报废方式')}" class="search-label method-label">报废方式</span><span class="search-colon">:</span></div>
+                        <div id="method" th:data="${'/service-system/sys-dict-item/query-list?dictCode=eam_scrap_method'}" style="width:150px" extraParam="{}"></div>
+                    </div>
                     <!-- 业务编号 , businessCode ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('业务编号')}" class="search-label businessCode-label">业务编号</span><span class="search-colon">:</span></div>
@@ -71,16 +76,16 @@
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('业务名称')}" class="search-label name-label">业务名称</span><span class="search-colon">:</span></div>
                         <input id="name" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
-                    <!-- 报废说明 , content ,typeName=text_area, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('报废说明')}" class="search-label content-label">报废说明</span><span class="search-colon">:</span></div>
-                        <input id="content" class="layui-input search-input" style="width: 150px" type="text" />
-                    </div>
 
 
                 </div>
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
+                    <!-- 报废说明 , content ,typeName=text_area, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('报废说明')}" class="search-label content-label">报废说明</span><span class="search-colon">:</span></div>
+                        <input id="content" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
                     <!-- 报废时间 , scrapDate ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('报废时间')}" class="search-label scrapDate-label">报废时间</span><span class="search-colon">:</span></div>

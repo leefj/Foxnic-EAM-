@@ -1073,6 +1073,9 @@ public class EamRelationManager extends RelationManager {
     }
 
     public void setupScrap(){
+        this.property(AssetScrapMeta.METHOD_DICT_PROP)
+                .using(EAMTables.EAM_ASSET_SCRAP.METHOD).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='eam_scrap_method'");
 
         this.property(AssetScrapMeta.CHANGE_INSTANCE_PROP)
                 .using(EAMTables.EAM_ASSET_SCRAP.CHANGE_INSTANCE_ID )

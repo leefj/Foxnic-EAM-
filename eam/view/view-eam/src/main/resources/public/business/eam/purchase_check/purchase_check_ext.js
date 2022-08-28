@@ -30,6 +30,10 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 var toolbarHtml=document.getElementById("toolbarTemplate").innerHTML;
                 toolbarHtml=toolbarHtml.replace(/lay-event="create"/i, "style=\"display:none\"");
                 document.getElementById("toolbarTemplate").innerHTML=toolbarHtml;
+
+                var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+                operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
+                document.getElementById("tableOperationTemplate").innerHTML=operHtml;
             }
             console.log("list:beforeInit");
         },
@@ -91,7 +95,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             if(PAGE_TYPE&&PAGE_TYPE=="view"){
                 for (var i = 0; i < data.length; i++) {
                     fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
+                //    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
                   //  fox.disableButton($('.ops-view-button').filter("[data-id='" + data[i].id + "']"), true);
                 }
             }

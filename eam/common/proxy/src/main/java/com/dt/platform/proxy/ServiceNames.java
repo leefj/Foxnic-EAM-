@@ -64,8 +64,15 @@ public class ServiceNames {
 	public static final String CMS="service-cms";
 
 	/**
-	 * 数据中心相关的服务 <br>
+	 * 移动端 <br>
 	 * 对应 bootstrap.yml 中 spring.application.name 属性
 	 * */
 	public static final String MOBILE="service-mobile";
+
+
+	/**
+	 * 协同办公 <br>
+	 * 对应 bootstrap.yml 中 spring.application.name 属性
+	 * */
+	public static final String OA="service-oa";
 }

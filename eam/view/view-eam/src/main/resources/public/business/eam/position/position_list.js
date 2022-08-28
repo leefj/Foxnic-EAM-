@@ -65,6 +65,12 @@ function ListPage() {
 				var  tmp_nodes = menuTree.getNodes();
 				for  ( var  i = 0; i < tmp_nodes.length; i++) {  //设置节点展开
 					menuTree.expandNode(tmp_nodes[i],  true ,  false ,  true );
+					var children=tmp_nodes[i].children;
+					if(children&&children.length>0){
+						for  ( var  j = 0; j< children.length; j++) {  //设置节点展开
+							menuTree.expandNode(children[j],  true ,  false ,  true );
+						}
+					}
 				}
 			} else {
 				admin.toast().error("获取数据失败",{time:1000,position:"right-bottom"});

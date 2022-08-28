@@ -1,7 +1,7 @@
 /**
  * 资产报废 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-27 15:41:32
+ * @since 2022-08-28 07:59:36
  */
 
 
@@ -80,6 +80,7 @@ function ListPage() {
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'businessCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务编号') , templet: function (d) { return templet('businessCode',d.businessCode,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('办理状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status,'','status'),d);}}
+					,{ field: 'method', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('报废方式'), templet: function (d) { return templet('method' ,fox.joinLabel(d.methodDict,"label",',','','method'),d);}}
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'scrapDate', align:"left", fixed:false, hide:false, sort: true   ,title: fox.translate('报废时间') ,templet: function (d) { return templet('scrapDate',fox.dateFormat(d.scrapDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('报废说明') , templet: function (d) { return templet('content',d.content,d);}  }
@@ -136,6 +137,7 @@ function ListPage() {
 		var value = {};
 		value.businessCode={ inputType:"button",value: $("#businessCode").val()};
 		value.status={ inputType:"select_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
+		value.method={ inputType:"select_box", value: getSelectedValue("#method","value") ,fillBy:["methodDict"]  , label:getSelectedValue("#method","nameStr") };
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.scrapDate={ inputType:"date_input", begin: $("#scrapDate-begin").val(), end: $("#scrapDate-end").val() ,matchType:"auto" };
 		value.content={ inputType:"button",value: $("#content").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
@@ -152,8 +154,7 @@ function ListPage() {
 			if(sort) {
 				ps.sortField=sort.field;
 				ps.sortType=sort.type;
-			}
-		}
+			} 		}
 		if(reset) {
 			table.reload('data-table', { where : ps , page:{ curr:1 } });
 		} else {
@@ -204,6 +205,31 @@ function ListPage() {
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					opts.push({data:data[i],name:data[i].text,value:data[i].code});
+				}
+				return opts;
+			}
+		});
+		//渲染 method 下拉字段
+		fox.renderSelectBox({
+			el: "method",
+			radio: true,
+			size: "small",
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("method",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "label", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].label,value:data[i].code});
 				}
 				return opts;
 			}

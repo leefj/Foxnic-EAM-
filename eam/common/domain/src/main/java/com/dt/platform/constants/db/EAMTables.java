@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-08-27 23:46:13
+ * @since 2022-08-28 07:59:19
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -5087,6 +5087,10 @@ public class EAMTables {
 		public static final DBField CLEAN_STATUS = new DBField(DBDataType.STRING , "clean_status","cleanStatus","清理状态","清理状态",false,false,true);
 		
 		/**
+		*/
+		public static final DBField METHOD = new DBField(DBDataType.STRING , "method","method","method","method",false,false,true);
+		
+		/**
 		 * 业务名称
 		*/
 		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","业务名称","业务名称",false,false,true);
@@ -5216,7 +5220,7 @@ public class EAMTables {
 		public static final DBField APPROVAL_OPINION = new DBField(DBDataType.STRING , "approval_opinion","approvalOpinion","审批意见","审批意见",false,false,true);
 		
 		public EAM_ASSET_SCRAP() {
-			this.init($NAME,"资产报废" , ID , BUSINESS_CODE , PROC_ID , STATUS , CLEAN_STATUS , NAME , SCRAP_DATE , CONTENT , ORIGINATOR_ID , BUSINESS_DATE , ATTACH , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION);
+			this.init($NAME,"资产报废" , ID , BUSINESS_CODE , PROC_ID , STATUS , CLEAN_STATUS , METHOD , NAME , SCRAP_DATE , CONTENT , ORIGINATOR_ID , BUSINESS_DATE , ATTACH , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION);
 		}
 		public static final EAM_ASSET_SCRAP $TABLE=new EAM_ASSET_SCRAP();
 	}

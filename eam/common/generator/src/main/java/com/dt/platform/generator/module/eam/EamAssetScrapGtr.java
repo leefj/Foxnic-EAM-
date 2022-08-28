@@ -14,6 +14,9 @@ import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.changes.ChangeInstance;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Person;
+import org.github.foxnic.web.domain.system.DictItem;
+import org.github.foxnic.web.domain.system.meta.DictItemMeta;
+import org.github.foxnic.web.proxy.system.DictItemServiceProxy;
 
 public class EamAssetScrapGtr extends BaseCodeGenerator {
 
@@ -27,6 +30,7 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
         cfg.bpm().form("eam_asset_scrap");
 
         cfg.getPoClassFile().addListProperty(Asset.class,"assetList","资产","资产");
+        cfg.getPoClassFile().addListProperty(DictItem.class,"methodDict","methodDict","methodDict");
         cfg.getPoClassFile().addListProperty(String.class,"assetIds","资产列表","资产列表");
         cfg.getPoClassFile().addSimpleProperty(String.class,"originatorUserName","申请人","申请人");
 //
@@ -83,11 +87,13 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
         cfg.view().search().inputLayout(
                 new Object[]{
                         EAMTables.EAM_ASSET_SCRAP.STATUS,
+                        EAMTables.EAM_ASSET_SCRAP.METHOD,
                         EAMTables.EAM_ASSET_SCRAP.BUSINESS_CODE,
                         EAMTables.EAM_ASSET_SCRAP.NAME,
-                        EAMTables.EAM_ASSET_SCRAP.CONTENT
+
                 },
                 new Object[]{
+                        EAMTables.EAM_ASSET_SCRAP.CONTENT,
                         EAMTables.EAM_ASSET_SCRAP.SCRAP_DATE
 
                 }
@@ -116,6 +122,13 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
 //        cfg.view().list().operationColumn().addActionButton("单据","downloadBill",null);
 
 
+        cfg.view().field(EAMTables.EAM_ASSET_SCRAP.METHOD).basic().label("报废方式")
+                .form().validate().required().form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=eam_scrap_method")
+                .paging(false).filter(true).toolbar(false)
+                .valueField(DictItemMeta.CODE).
+                textField(DictItemMeta.LABEL).
+                fillWith(AssetScrapMeta.METHOD_DICT).muliti(false).defaultIndex(0);
+
      //   cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_scrap:for-approval");
         cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_scrap:confirm");
 //        cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_scrap:revoke");
@@ -132,6 +145,7 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_ASSET_SCRAP.NAME,
+                        EAMTables.EAM_ASSET_SCRAP.METHOD
                 },
                 new Object[] {
                         AssetScrapMeta.ORIGINATOR_USER_NAME,

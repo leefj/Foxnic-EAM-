@@ -20,6 +20,7 @@ public class PlatformRelationManager extends RelationManager {
 				new JobRelationManager(),
 				//
 				new HrmRelationManager(),
+				new OaRelationManager(),
 				new KnRelationManager(),
 				new EamRelationManager(),
 				new VehicleRelationManager(),

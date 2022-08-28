@@ -31,6 +31,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
                 toolHtml=toolHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
                 document.getElementById("toolbarTemplate").innerHTML=toolHtml;
+
+
+                var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+                operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
+                document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+
             }
             console.log("list:beforeInit");
         },
@@ -97,7 +103,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         afterQuery : function (data) {
             for (var i = 0; i < data.length; i++) {
                 if (PAGE_TYPE && PAGE_TYPE == "view") {
-                    fox.disableButton($('.ops-view-button').filter("[data-id='" + data[i].id + "']"), true);
+                 //   fox.disableButton($('.ops-view-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
                 }

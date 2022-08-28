@@ -94,7 +94,10 @@ public class PlatformMeta {
 	public static final String MOBILE_PACKAGE=BASE_PACKAGE+".mobile";
 
 
-
+	/**
+	 * 协调办公
+	 * */
+	public static final String OA_PACKAGE=BASE_PACKAGE+".oa";
 
 
 

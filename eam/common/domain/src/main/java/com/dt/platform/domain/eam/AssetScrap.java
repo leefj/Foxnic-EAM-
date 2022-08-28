@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
 import java.util.List;
+import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.changes.ChangeInstance;
 import com.github.foxnic.commons.lang.DataParser;
@@ -22,8 +23,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 资产报废
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-27 15:41:30
- * @sign C56FC3B7CE7766E2F28B5063EA3616CE
+ * @since 2022-08-28 07:59:35
+ * @sign F7DEEDCA22D5FE65158604A3C582E3C3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -64,6 +65,12 @@ public class AssetScrap extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="清理状态" , notes = "清理状态")
 	private String cleanStatus;
+	
+	/**
+	 * method：method
+	*/
+	@ApiModelProperty(required = false,value="method" , notes = "method")
+	private String method;
 	
 	/**
 	 * 业务名称：业务名称
@@ -230,6 +237,12 @@ public class AssetScrap extends Entity {
 	private List<Asset> assetList;
 	
 	/**
+	 * methodDict：methodDict
+	*/
+	@ApiModelProperty(required = false,value="methodDict" , notes = "methodDict")
+	private List<DictItem> methodDict;
+	
+	/**
 	 * 资产列表：资产列表
 	*/
 	@ApiModelProperty(required = false,value="资产列表" , notes = "资产列表")
@@ -345,6 +358,25 @@ public class AssetScrap extends Entity {
 	*/
 	public AssetScrap setCleanStatus(String cleanStatus) {
 		this.cleanStatus=cleanStatus;
+		return this;
+	}
+	
+	/**
+	 * 获得 method<br>
+	 * method
+	 * @return method
+	*/
+	public String getMethod() {
+		return method;
+	}
+	
+	/**
+	 * 设置 method
+	 * @param method method
+	 * @return 当前对象
+	*/
+	public AssetScrap setMethod(String method) {
+		this.method=method;
 		return this;
 	}
 	
@@ -903,6 +935,36 @@ public class AssetScrap extends Entity {
 	}
 	
 	/**
+	 * 获得 methodDict<br>
+	 * methodDict
+	 * @return methodDict
+	*/
+	public List<DictItem> getMethodDict() {
+		return methodDict;
+	}
+	
+	/**
+	 * 设置 methodDict
+	 * @param methodDict methodDict
+	 * @return 当前对象
+	*/
+	public AssetScrap setMethodDict(List<DictItem> methodDict) {
+		this.methodDict=methodDict;
+		return this;
+	}
+	
+	/**
+	 * 添加 methodDict
+	 * @param entity methodDict
+	 * @return 当前对象
+	*/
+	public AssetScrap addMethodDict(DictItem... entity) {
+		if(this.methodDict==null) methodDict=new ArrayList<>();
+		this.methodDict.addAll(Arrays.asList(entity));
+		return this;
+	}
+	
+	/**
 	 * 获得 资产列表<br>
 	 * 资产列表
 	 * @return 资产列表
@@ -1016,6 +1078,22 @@ public class AssetScrap extends Entity {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetScrap clone() {
+		return EntityContext.clone(AssetScrap.class,this);
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetScrap clone(boolean deep) {
+		return EntityContext.clone(AssetScrap.class,this,deep);
 	}
 
 	/**

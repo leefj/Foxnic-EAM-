@@ -163,6 +163,14 @@ function ListPage() {
         }
 
 
+        if(searchContent_positionId){
+            if(value.positionId){
+                delete value.positionId ;
+            }
+            ps.positionId=searchContent_positionId;
+        }
+
+
         if(searchContent_categoryId){
             if(value.categoryId){
                 delete value.categoryId ;
@@ -170,9 +178,9 @@ function ListPage() {
             ps.categoryId=searchContent_categoryId;
         }
 
-        if(searchContent_positionId){
-            value.positionId={value:searchContent_positionId, fillBy:"position", label:xmSelect.get("#positionId",true).getValue("nameStr") };
-        }
+        // if(searchContent_positionId){
+        //     value.positionId={value:searchContent_positionId, fillBy:"position", label:xmSelect.get("#positionId",true).getValue("nameStr") };
+        // }
 
         ps.searchValue=JSON.stringify(value);
         if(sortField) {

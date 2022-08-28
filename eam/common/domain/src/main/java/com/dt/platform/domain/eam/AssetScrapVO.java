@@ -13,8 +13,8 @@ import com.github.foxnic.commons.bean.BeanUtil;
 /**
  * 资产报废
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-27 15:41:30
- * @sign 9DCC86EFB2D2AE33EB52A72BBF23E8C9
+ * @since 2022-08-28 07:59:35
+ * @sign D1CC760B76F49AD8A0DEB3936B7A82A5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -261,7 +261,7 @@ public class AssetScrapVO extends AssetScrap {
 		return this;
 	}
 	@Transient
-	private CompositeParameter $compositeParameter;
+	private transient CompositeParameter $compositeParameter;
 	/**
 	 * 获得解析后的复合查询参数
 	 */

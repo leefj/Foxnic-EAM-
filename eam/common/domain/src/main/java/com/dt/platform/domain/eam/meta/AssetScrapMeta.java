@@ -5,6 +5,7 @@ import com.dt.platform.domain.eam.AssetScrap;
 import java.util.Date;
 import com.dt.platform.domain.eam.Asset;
 import java.util.List;
+import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.changes.ChangeInstance;
 
@@ -12,8 +13,8 @@ import org.github.foxnic.web.domain.changes.ChangeInstance;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-27 15:41:30
- * @sign C56FC3B7CE7766E2F28B5063EA3616CE
+ * @since 2022-08-28 07:59:35
+ * @sign F7DEEDCA22D5FE65158604A3C582E3C3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -68,6 +69,16 @@ public class AssetScrapMeta {
 	 * 清理状态 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetScrap,java.lang.String> CLEAN_STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetScrap.class ,CLEAN_STATUS, java.lang.String.class, "清理状态", "清理状态", java.lang.String.class, null);
+	
+	/**
+	 * method , 类型: java.lang.String
+	*/
+	public static final String METHOD="method";
+	
+	/**
+	 * method , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetScrap,java.lang.String> METHOD_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetScrap.class ,METHOD, java.lang.String.class, "method", "method", java.lang.String.class, null);
 	
 	/**
 	 * 业务名称 , 类型: java.lang.String
@@ -340,6 +351,16 @@ public class AssetScrapMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetScrap,com.dt.platform.domain.eam.Asset> ASSET_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetScrap.class ,ASSET_LIST, java.util.List.class, "资产", "资产", com.dt.platform.domain.eam.Asset.class, null);
 	
 	/**
+	 * methodDict , 集合类型: LIST , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final String METHOD_DICT="methodDict";
+	
+	/**
+	 * methodDict , 集合类型: LIST , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetScrap,org.github.foxnic.web.domain.system.DictItem> METHOD_DICT_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetScrap.class ,METHOD_DICT, java.util.List.class, "methodDict", "methodDict", org.github.foxnic.web.domain.system.DictItem.class, null);
+	
+	/**
 	 * 资产列表 , 集合类型: LIST , 类型: java.lang.String
 	*/
 	public static final String ASSET_IDS="assetIds";
@@ -382,7 +403,7 @@ public class AssetScrapMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , BUSINESS_CODE , PROC_ID , STATUS , CLEAN_STATUS , NAME , SCRAP_DATE , CONTENT , ORIGINATOR_ID , BUSINESS_DATE , ATTACH , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_LIST , ASSET_IDS , ORIGINATOR_USER_NAME , ORIGINATOR , CHANGE_INSTANCE };
+	public static final String[] $PROPS={ ID , BUSINESS_CODE , PROC_ID , STATUS , CLEAN_STATUS , METHOD , NAME , SCRAP_DATE , CONTENT , ORIGINATOR_ID , BUSINESS_DATE , ATTACH , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_LIST , METHOD_DICT , ASSET_IDS , ORIGINATOR_USER_NAME , ORIGINATOR , CHANGE_INSTANCE };
 	
 	/**
 	 * 代理类
@@ -444,6 +465,17 @@ public class AssetScrapMeta {
 		public AssetScrap setCleanStatus(String cleanStatus) {
 			super.change(CLEAN_STATUS,super.getCleanStatus(),cleanStatus);
 			super.setCleanStatus(cleanStatus);
+			return this;
+		}
+		
+		/**
+		 * 设置 method
+		 * @param method method
+		 * @return 当前对象
+		*/
+		public AssetScrap setMethod(String method) {
+			super.change(METHOD,super.getMethod(),method);
+			super.setMethod(method);
 			return this;
 		}
 		
@@ -741,6 +773,17 @@ public class AssetScrapMeta {
 		public AssetScrap setAssetList(List<Asset> assetList) {
 			super.change(ASSET_LIST,super.getAssetList(),assetList);
 			super.setAssetList(assetList);
+			return this;
+		}
+		
+		/**
+		 * 设置 methodDict
+		 * @param methodDict methodDict
+		 * @return 当前对象
+		*/
+		public AssetScrap setMethodDict(List<DictItem> methodDict) {
+			super.change(METHOD_DICT,super.getMethodDict(),methodDict);
+			super.setMethodDict(methodDict);
 			return this;
 		}
 		

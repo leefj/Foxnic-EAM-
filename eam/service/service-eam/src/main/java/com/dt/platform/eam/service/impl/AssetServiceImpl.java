@@ -1211,6 +1211,11 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			condition.and("category_id in (select id from eam_category_finance where deleted=0 and (concat('/',hierarchy) like '%/"+sample.getCategoryFinance()+"/%' or id=?))",sample.getCategoryFinance());
 			sample.setFinancialCategoryId(null);
 		}
+		if(!StringUtil.isBlank(sample.getPositionId())) {
+			condition.and("position_id in (select id from eam_position where deleted=0 and (concat('/',hierarchy) like '%/"+sample.getPositionId()+"/%' or id=?))",sample.getCategoryFinance());
+			sample.setPositionId(null);
+		}
+
 
 
 		String dp=applyAssetDataPermissions(sample,condition);

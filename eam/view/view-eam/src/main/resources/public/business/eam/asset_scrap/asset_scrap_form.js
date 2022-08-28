@@ -1,7 +1,7 @@
 /**
  * 资产报废 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-27 15:41:33
+ * @since 2022-08-28 07:59:37
  */
 
 function FormPage() {
@@ -161,6 +161,37 @@ function FormPage() {
 				return opts;
 			}
 		});
+		//渲染 method 下拉字段
+		fox.renderSelectBox({
+			el: "method",
+			radio: true,
+			filterable: true,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("method",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "label", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "0".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
 		laydate.render({
 			elem: '#scrapDate',
 			format:"yyyy-MM-dd",
@@ -265,6 +296,8 @@ function FormPage() {
 			}
 
 
+			//设置  报废方式 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#method",formData.methodDict);
 
 			//处理fillBy
 			$("#originatorUserName").val(fox.getProperty(formData,["originator","name"]));
@@ -317,6 +350,8 @@ function FormPage() {
 
 
 
+		//获取 报废方式 下拉框的值
+		data["method"]=fox.getSelectedValue("method",false);
 
 		return data;
 	}

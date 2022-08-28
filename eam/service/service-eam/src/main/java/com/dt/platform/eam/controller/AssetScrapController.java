@@ -282,6 +282,7 @@ public class AssetScrapController extends SuperController implements BpmCallback
 		Result<AssetScrap> result=new Result<>();
 		AssetScrap assetScrap=assetScrapService.getById(id);
 		assetScrapService.join(assetScrap, AssetScrapMeta.ORIGINATOR);
+		assetScrapService.join(assetScrap, AssetScrapMeta.METHOD_DICT);
 		assetScrapService.dao().join(assetScrap.getOriginator(),Person.class);
 		result.success(true).data(assetScrap);
 		return result;
@@ -410,7 +411,7 @@ public class AssetScrapController extends SuperController implements BpmCallback
 		PagedList<AssetScrap> list=assetScrapService.queryPagedList(sample,sample.getPageSize(),sample.getPageIndex(),dp);
 
 		assetScrapService.join(list, AssetScrapMeta.ORIGINATOR);
-
+		assetScrapService.join(list, AssetScrapMeta.METHOD_DICT);
 		List<Employee> employees= CollectorUtil.collectList(list,AssetScrap::getOriginator);
 		assetScrapService.dao().join(employees, Person.class);
 		result.success(true).data(list);

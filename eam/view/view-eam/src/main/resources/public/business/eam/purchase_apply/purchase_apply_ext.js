@@ -57,8 +57,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 // document.getElementById("tableOperationTemplate").innerHTML=operHtml;
             }else{
                 operHtml=operHtml.replace(/lay-event="download-bill"/i, "style=\"display:none\"")
-
-
                 operHtml=operHtml.replace(/lay-event="revoke-data"/i, "style=\"display:none\"")
                 operHtml=operHtml.replace(/lay-event="for-approval"/i, "style=\"display:none\"")
                 // operHtml=operHtml.replace(/lay-event="revoke-data"/i, "style=\"display:none\"")
@@ -472,8 +470,15 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             var actionType=admin.getTempData('eam-purchase-apply-form-data-form-action');
             if(actionType=="view"){
                 pageType="view"
-            }else{
+            }else {
                 pageType="edit"
+            }
+
+            if(data.id){
+                if(data.status=="incomplete"){
+                }else{
+                    pageType="view"
+                }
             }
             //设置 iframe 高度
             ifr.height("400px");

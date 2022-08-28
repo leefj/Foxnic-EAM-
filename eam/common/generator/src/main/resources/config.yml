@@ -160,3 +160,15 @@ applications:
     viewProjectPath: /view/view-mobile
     viewPrefixPath: public/business/mobile
     wrapperProjectPath: /wrapper/wrapper-all
+  #OA
+  service-oa:
+    nacosGroup: service
+    nacosDataId: service-oa.yml
+    serviceProjectPath: /service/service-oa
+    packageName: com.dt.platform.oa
+    primaryDatasourceConfigKey: spring.datasource.druid.primary
+    microServiceNameConst: OA
+    viewProjectPath: /view/view-oa
+    viewPrefixPath: public/business/oa
+    wrapperProjectPath: /wrapper/wrapper-all
+

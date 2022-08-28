@@ -110,6 +110,17 @@
             <version>${platform.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>service-oa</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>view-oa</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>com.dt.platform</groupId>
