@@ -54,6 +54,21 @@ fi
 echo ""
 echo ""
 
+#sh file
+echo "######## start to update script file ##############"
+cd $app_dir/bin/
+scriptFileList=`ls -rtl |grep ".sh"|awk '{print $NF}'`
+for scriptFile in $scriptFileList
+do
+  echo "script:$scriptFile"
+  if [[ -f "$prod_app_dir/bin/$scriptFile" ]];then
+    rm -rf $prod_app_dir/bin/$scriptFile
+    cp $scriptFile $prod_app_dir/bin/
+  fi
+done
+chmod +x $prod_app_dir/bin/*.sh
+ls -rtl $prod_app_dir/bin/*.sh
+
 #Tpl File
 echo "######## start to update tpl file ##############"
 tpl_update=1
@@ -71,8 +86,9 @@ if [[ $tpl_update -eq 1 ]];then
   fi
 fi
 
+
 #restart
 echo "######## restart app ##############"
 cd $prod_app_dir
-sh restartApp.sh
+#sh restartApp.sh
 exit 0

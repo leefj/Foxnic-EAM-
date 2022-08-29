@@ -55,11 +55,11 @@ function ListPage() {
         var cfgs = {
             edit: {
                 drag: {
-                    autoExpandTrigger: false,
+                    // autoExpandTrigger: false,
                     isCopy: false,
                     isMove: false
                 },
-                enable: true,
+                enable: false,
                 showRenameBtn: false
             },
             async: {
@@ -108,7 +108,8 @@ function ListPage() {
 
 
         setTimeout(function(){
-            var toolbarHeight=$("#toolbar")[0].clientHeight;
+            // var toolbarHeight=$("#toolbar")[0].clientHeight;
+            var toolbarHeight=1;
             var fullHeight=$(window).height();
             var fullWidth=$(window).width();
             var treeHeight=fullHeight-toolbarHeight-1;

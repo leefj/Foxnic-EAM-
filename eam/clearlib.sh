@@ -19,6 +19,9 @@ if [[ -d "$maven_dir/com/github/foxnic" ]];then
   rm -rf par*
 fi
 
+cd $maven_dir
+rm -rf org/springframework/beans/cangariza
+
 if [[ -d "/Users/lank/IdeaProjectsnew/eam/logs" ]];then
   cd /Users/lank/IdeaProjectsnew/eam/logs
   rm -rf *

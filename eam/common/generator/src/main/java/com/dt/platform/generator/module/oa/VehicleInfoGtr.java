@@ -14,7 +14,7 @@ public class VehicleInfoGtr extends BaseCodeGenerator {
 
 
     public VehicleInfoGtr() {
-        super(OaTables.OA_VEHICLE_INFO.$TABLE,BASIC_MGR_MENU_ID);
+        super(OaTables.OA_VEHICLE_INFO.$TABLE,CAR_ID);
     }
 
     public void generateCode() throws Exception {
