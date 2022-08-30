@@ -17,6 +17,7 @@ if [[ -d "$maven_dir/com/github/foxnic" ]];then
   rm -rf foxnic*
   rm -rf web*
   rm -rf par*
+  rm -rf cangaroo*
 fi
 
 cd $maven_dir
