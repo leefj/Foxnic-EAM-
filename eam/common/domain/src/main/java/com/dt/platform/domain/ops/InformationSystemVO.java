@@ -13,8 +13,8 @@ import com.github.foxnic.commons.bean.BeanUtil;
 /**
  * 信息系统
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-12 21:59:08
- * @sign 5779E1B5668F849B0A233528B78470E0
+ * @since 2022-08-30 20:34:49
+ * @sign 9A07BB1EC54D9E024ED04B3758D4A398
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -261,7 +261,7 @@ public class InformationSystemVO extends InformationSystem {
 		return this;
 	}
 	@Transient
-	private CompositeParameter $compositeParameter;
+	private transient CompositeParameter $compositeParameter;
 	/**
 	 * 获得解析后的复合查询参数
 	 */

@@ -1,7 +1,7 @@
 /**
  * 信息系统 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-12 21:59:10
+ * @since 2022-08-30 20:34:50
  */
 
 
@@ -81,19 +81,20 @@ function ListPage() {
 					,{ field: 'pid', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('父节点') , templet: function (d) { return templet('pid',d.pid,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'profile', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('介绍') , templet: function (d) { return templet('profile',d.profile,d);}  }
-					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet: function (d) { return templet('status' ,fox.joinLabel(d.infoSystemStatus,"label"),d);}}
-					,{ field: 'opsMethod', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('运维模式'), templet: function (d) { return templet('opsMethod' ,fox.joinLabel(d.infoSystemOpsMethod,"label"),d);}}
-					,{ field: 'devMethod', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('开发模式'), templet: function (d) { return templet('devMethod' ,fox.joinLabel(d.infoSystemDevMethod,"label"),d);}}
+					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet: function (d) { return templet('status' ,fox.joinLabel(d.infoSystemStatus,"label",',','','status'),d);}}
+					,{ field: 'address', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('访问地址') , templet: function (d) { return templet('address',d.address,d);}  }
+					,{ field: 'opsMethod', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('运维模式'), templet: function (d) { return templet('opsMethod' ,fox.joinLabel(d.infoSystemOpsMethod,"label",',','','opsMethod'),d);}}
+					,{ field: 'devMethod', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('开发模式'), templet: function (d) { return templet('devMethod' ,fox.joinLabel(d.infoSystemDevMethod,"label",',','','devMethod'),d);}}
 					,{ field: 'technicalContact', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('技术联系人') , templet: function (d) { return templet('technicalContact',d.technicalContact,d);}  }
 					,{ field: 'businessContact', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务联系人') , templet: function (d) { return templet('businessContact',d.businessContact,d);}  }
-					,{ field: 'belongOrgId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('所属公司/部门') , templet: function (d) { return templet('belongOrgId',fox.getProperty(d,["belongOrganization","fullName"]),d);} }
+					,{ field: 'belongOrgId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('所属公司/部门') , templet: function (d) { return templet('belongOrgId',fox.getProperty(d,["belongOrganization","fullName"],0,'','belongOrgId'),d);} }
 					,{ field: 'lastdrillDate', align:"right", fixed:false, hide:true, sort: true   ,title: fox.translate('演练时间') ,templet: function (d) { return templet('lastdrillDate',fox.dateFormat(d.lastdrillDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'onlineDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('上线时间') ,templet: function (d) { return templet('onlineDate',fox.dateFormat(d.onlineDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'offlineDate', align:"right", fixed:false, hide:true, sort: true   ,title: fox.translate('下线时间') ,templet: function (d) { return templet('offlineDate',fox.dateFormat(d.offlineDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'osInfo', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('操作系统') , templet: function (d) { return templet('osInfo',d.osInfo,d);}  }
 					,{ field: 'dbInfo', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('数据库') , templet: function (d) { return templet('dbInfo',d.dbInfo,d);}  }
 					,{ field: 'appInfo', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('应用') , templet: function (d) { return templet('appInfo',d.appInfo,d);}  }
-					,{ field: 'grade', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('系统分级'), templet: function (d) { return templet('grade' ,fox.joinLabel(d.infoSystemGrade,"label"),d);}}
+					,{ field: 'grade', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('系统分级'), templet: function (d) { return templet('grade' ,fox.joinLabel(d.infoSystemGrade,"label",',','','grade'),d);}}
 					,{ field: 'rto', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('RTO') , templet: function (d) { return templet('rto',d.rto,d);}  }
 					,{ field: 'rpo', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('RPO') , templet: function (d) { return templet('rpo',d.rpo,d);}  }
 					,{ field: 'hardwareInfo', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('硬件信息') , templet: function (d) { return templet('hardwareInfo',d.hardwareInfo,d);}  }
@@ -103,7 +104,7 @@ function ListPage() {
 					,{ field: 'archMethod', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('归档模式') , templet: function (d) { return templet('archMethod',d.archMethod,d);}  }
 					,{ field: 'labels', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标签') , templet: function (d) { return templet('labels',d.labels,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
-					,{ field: 'voucherIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('用户凭证'), templet: function (d) { return templet('voucherIds' ,fox.joinLabel(d.voucherList,"voucher"),d);}}
+					,{ field: 'voucherIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('用户凭证'), templet: function (d) { return templet('voucherIds' ,fox.joinLabel(d.voucherList,"voucher",',','','voucherIds'),d);}}
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 290 }
 				]],
@@ -173,8 +174,7 @@ function ListPage() {
 			if(sort) {
 				ps.sortField=sort.field;
 				ps.sortType=sort.type;
-			}
-		}
+			} 		}
 		if(reset) {
 			table.reload('data-table', { where : ps , page:{ curr:1 } });
 		} else {
@@ -353,7 +353,8 @@ function ListPage() {
             }
             //调用批量删除接口
 			top.layer.confirm(fox.translate('确定删除已选中的')+fox.translate('信息系统')+fox.translate('吗？'), function (i) {
-                admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
+                top.layer.close(i);
+				admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
                     if (data.success) {
 						if(window.pageExt.list.afterBatchDelete) {
 							var doNext=window.pageExt.list.afterBatchDelete(data);
@@ -364,7 +365,7 @@ function ListPage() {
                     } else {
 						fox.showMessage(data);
                     }
-                });
+                },{delayLoading:200,elms:[$("#delete-button")]});
 			});
         }
 	}
@@ -412,9 +413,7 @@ function ListPage() {
 
 				top.layer.confirm(fox.translate('确定删除此')+fox.translate('信息系统')+fox.translate('吗？'), function (i) {
 					top.layer.close(i);
-
-					top.layer.load(2);
-					admin.request(moduleURL+"/delete", { id : data.id }, function (data) {
+					admin.post(moduleURL+"/delete", { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
 						if (data.success) {
 							if(window.pageExt.list.afterSingleDelete) {
@@ -426,7 +425,7 @@ function ListPage() {
 						} else {
 							fox.showMessage(data);
 						}
-					});
+					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
 			}
 			else if (layEvent === 'open-system-voucher-window') { // 凭证

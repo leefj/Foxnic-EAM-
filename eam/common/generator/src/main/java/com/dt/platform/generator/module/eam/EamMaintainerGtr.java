@@ -14,12 +14,13 @@ public class EamMaintainerGtr extends BaseCodeGenerator {
         System.out.println(this.getClass().getName());
         cfg.view().field(EAMTables.EAM_MAINTAINER.ID).basic().hidden(true);
         cfg.view().field(EAMTables.EAM_MAINTAINER.MAINTAINER_NOTES).search().fuzzySearch();
+        cfg.view().field(EAMTables.EAM_MAINTAINER.CODE).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_MAINTAINER.MAINTAINER_NAME).search().fuzzySearch();
         cfg.view().search().inputLayout(
                 new Object[]{
+                        EAMTables.EAM_MAINTAINER.CODE,
                         EAMTables.EAM_MAINTAINER.MAINTAINER_NAME,
-                        EAMTables.EAM_MAINTAINER.UNIT_CODE
-
+                        EAMTables.EAM_MAINTAINER.UNIT_CODE,
                 }
         );
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);

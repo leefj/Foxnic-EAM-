@@ -17,8 +17,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 维保厂商
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-27 20:14:29
- * @sign F979A22347B0E80734C5898B0642A719
+ * @since 2022-08-30 22:05:17
+ * @sign 1BBE6A4C8DA10A26842247FC3563DD4F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -37,16 +37,16 @@ public class Maintainer extends Entity {
 	private String id;
 	
 	/**
-	 * 名称：名称
-	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称")
-	private String maintainerName;
-	
-	/**
 	 * 编码：编码
 	*/
 	@ApiModelProperty(required = false,value="编码" , notes = "编码")
 	private String code;
+	
+	/**
+	 * 名称：名称
+	*/
+	@ApiModelProperty(required = false,value="名称" , notes = "名称")
+	private String maintainerName;
 	
 	/**
 	 * 商务联系人：商务联系人
@@ -166,25 +166,6 @@ public class Maintainer extends Entity {
 	}
 	
 	/**
-	 * 获得 名称<br>
-	 * 名称
-	 * @return 名称
-	*/
-	public String getMaintainerName() {
-		return maintainerName;
-	}
-	
-	/**
-	 * 设置 名称
-	 * @param maintainerName 名称
-	 * @return 当前对象
-	*/
-	public Maintainer setMaintainerName(String maintainerName) {
-		this.maintainerName=maintainerName;
-		return this;
-	}
-	
-	/**
 	 * 获得 编码<br>
 	 * 编码
 	 * @return 编码
@@ -200,6 +181,25 @@ public class Maintainer extends Entity {
 	*/
 	public Maintainer setCode(String code) {
 		this.code=code;
+		return this;
+	}
+	
+	/**
+	 * 获得 名称<br>
+	 * 名称
+	 * @return 名称
+	*/
+	public String getMaintainerName() {
+		return maintainerName;
+	}
+	
+	/**
+	 * 设置 名称
+	 * @param maintainerName 名称
+	 * @return 当前对象
+	*/
+	public Maintainer setMaintainerName(String maintainerName) {
+		this.maintainerName=maintainerName;
 		return this;
 	}
 	

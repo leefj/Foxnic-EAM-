@@ -1,7 +1,7 @@
 /**
  * 生产厂商 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-15 07:09:10
+ * @since 2022-08-30 22:05:31
  */
 
 
@@ -78,6 +78,7 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
+					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编码') , templet: function (d) { return templet('code',d.code,d);}  }
 					,{ field: 'manufacturerName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('manufacturerName',d.manufacturerName,d);}  }
 					,{ field: 'location', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('所在地') , templet: function (d) { return templet('location',d.location,d);}  }
 					,{ field: 'manufacturerNotes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('manufacturerNotes',d.manufacturerNotes,d);}  }
@@ -130,6 +131,7 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
+		value.code={ inputType:"button",value: $("#code").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.manufacturerName={ inputType:"button",value: $("#manufacturerName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.manufacturerNotes={ inputType:"button",value: $("#manufacturerNotes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		var ps={searchField:"$composite"};
@@ -145,8 +147,7 @@ function ListPage() {
 			if(sort) {
 				ps.sortField=sort.field;
 				ps.sortType=sort.type;
-			}
-		}
+			} 		}
 		if(reset) {
 			table.reload('data-table', { where : ps , page:{ curr:1 } });
 		} else {
@@ -264,7 +265,8 @@ function ListPage() {
             }
             //调用批量删除接口
 			top.layer.confirm(fox.translate('确定删除已选中的')+fox.translate('生产厂商')+fox.translate('吗？'), function (i) {
-                admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
+                top.layer.close(i);
+				admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
                     if (data.success) {
 						if(window.pageExt.list.afterBatchDelete) {
 							var doNext=window.pageExt.list.afterBatchDelete(data);
@@ -275,7 +277,7 @@ function ListPage() {
                     } else {
 						fox.showMessage(data);
                     }
-                });
+                },{delayLoading:200,elms:[$("#delete-button")]});
 			});
         }
 	}
@@ -323,9 +325,7 @@ function ListPage() {
 
 				top.layer.confirm(fox.translate('确定删除此')+fox.translate('生产厂商')+fox.translate('吗？'), function (i) {
 					top.layer.close(i);
-
-					top.layer.load(2);
-					admin.request(moduleURL+"/delete", { id : data.id }, function (data) {
+					admin.post(moduleURL+"/delete", { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
 						if (data.success) {
 							if(window.pageExt.list.afterSingleDelete) {
@@ -337,7 +337,7 @@ function ListPage() {
 						} else {
 							fox.showMessage(data);
 						}
-					});
+					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
 			}
 			

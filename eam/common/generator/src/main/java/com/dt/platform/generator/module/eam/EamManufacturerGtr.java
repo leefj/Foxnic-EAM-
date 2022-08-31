@@ -14,12 +14,14 @@ public class EamManufacturerGtr extends BaseCodeGenerator{
         System.out.println(this.getClass().getName());
         cfg.view().field(EAMTables.EAM_MANUFACTURER.ID).basic().hidden(true);
         cfg.view().field(EAMTables.EAM_MANUFACTURER.MANUFACTURER_NAME).search().fuzzySearch();
+        cfg.view().field(EAMTables.EAM_MANUFACTURER.CODE).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_MANUFACTURER.MANUFACTURER_NOTES).search().fuzzySearch();
 
         //eam_asset_change_data
 
         cfg.view().search().inputLayout(
                 new Object[]{
+                        EAMTables.EAM_MANUFACTURER.CODE,
                         EAMTables.EAM_MANUFACTURER.MANUFACTURER_NAME,
                         EAMTables.EAM_MANUFACTURER.MANUFACTURER_NOTES,
 

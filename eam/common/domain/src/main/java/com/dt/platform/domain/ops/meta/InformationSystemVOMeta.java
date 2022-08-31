@@ -13,8 +13,8 @@ import org.github.foxnic.web.domain.system.DictItem;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-12 21:59:08
- * @sign 5779E1B5668F849B0A233528B78470E0
+ * @since 2022-08-30 20:34:49
+ * @sign 9A07BB1EC54D9E024ED04B3758D4A398
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -159,6 +159,16 @@ public class InformationSystemVOMeta extends InformationSystemMeta {
 	 * 当前状态 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.InformationSystemVO,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.ops.InformationSystemVO.class ,STATUS, java.lang.String.class, "当前状态", "当前状态", java.lang.String.class, null);
+	
+	/**
+	 * 访问地址 , 类型: java.lang.String
+	*/
+	public static final String ADDRESS="address";
+	
+	/**
+	 * 访问地址 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.InformationSystemVO,java.lang.String> ADDRESS_PROP = new BeanProperty(com.dt.platform.domain.ops.InformationSystemVO.class ,ADDRESS, java.lang.String.class, "访问地址", "访问地址", java.lang.String.class, null);
 	
 	/**
 	 * 运维模式 , 类型: java.lang.String
@@ -533,7 +543,7 @@ public class InformationSystemVOMeta extends InformationSystemMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , PID , NAME , PROFILE , STATUS , OPS_METHOD , DEV_METHOD , TECHNICAL_CONTACT , BUSINESS_CONTACT , BELONG_ORG_ID , LASTDRILL_DATE , ONLINE_DATE , OFFLINE_DATE , OS_INFO , DB_INFO , APP_INFO , GRADE , RTO , RPO , HARDWARE_INFO , BACKUP_INFO , SAMEPLACE_BACUP_INFO , DIFFPLACE_BACKUP_INFO , ARCH_METHOD , LABELS , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , VOUCHER_LIST , VOUCHER_IDS , BELONG_ORGANIZATION , INFO_SYSTEM_STATUS , INFO_SYSTEM_OPS_METHOD , INFO_SYSTEM_DEV_METHOD , INFO_SYSTEM_GRADE };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , PID , NAME , PROFILE , STATUS , ADDRESS , OPS_METHOD , DEV_METHOD , TECHNICAL_CONTACT , BUSINESS_CONTACT , BELONG_ORG_ID , LASTDRILL_DATE , ONLINE_DATE , OFFLINE_DATE , OS_INFO , DB_INFO , APP_INFO , GRADE , RTO , RPO , HARDWARE_INFO , BACKUP_INFO , SAMEPLACE_BACUP_INFO , DIFFPLACE_BACKUP_INFO , ARCH_METHOD , LABELS , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , VOUCHER_LIST , VOUCHER_IDS , BELONG_ORGANIZATION , INFO_SYSTEM_STATUS , INFO_SYSTEM_OPS_METHOD , INFO_SYSTEM_DEV_METHOD , INFO_SYSTEM_GRADE };
 	
 	/**
 	 * 代理类
@@ -694,6 +704,17 @@ public class InformationSystemVOMeta extends InformationSystemMeta {
 		public InformationSystem setStatus(String status) {
 			super.change(STATUS,super.getStatus(),status);
 			super.setStatus(status);
+			return this;
+		}
+		
+		/**
+		 * 设置 访问地址
+		 * @param address 访问地址
+		 * @return 当前对象
+		*/
+		public InformationSystem setAddress(String address) {
+			super.change(ADDRESS,super.getAddress(),address);
+			super.setAddress(address);
 			return this;
 		}
 		

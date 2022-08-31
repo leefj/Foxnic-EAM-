@@ -90,5 +90,5 @@ fi
 #restart
 echo "######## restart app ##############"
 cd $prod_app_dir
-#sh restartApp.sh
+sh restartApp.sh
 exit 0

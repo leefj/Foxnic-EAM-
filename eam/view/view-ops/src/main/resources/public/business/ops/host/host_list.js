@@ -1,7 +1,7 @@
 /**
  * 主机 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-04 21:16:06
+ * @since 2022-08-30 20:44:56
  */
 
 
@@ -84,6 +84,7 @@ function ListPage() {
 					,{ field: 'hostName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('hostName',d.hostName,d);}  }
 					,{ field: 'hostIp', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('物理IP') , templet: function (d) { return templet('hostIp',d.hostIp,d);}  }
 					,{ field: 'hostVip', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('虚拟VIP') , templet: function (d) { return templet('hostVip',d.hostVip,d);}  }
+					,{ field: 'hostIpv6', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('IPV6') , templet: function (d) { return templet('hostIpv6',d.hostIpv6,d);}  }
 					,{ field: 'environment', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('所在环境'), templet:function (d){ return templet('environment',fox.getDictText(SELECT_ENVIRONMENT_DATA,d.environment,'','environment'),d);}}
 					,{ field: 'positionId', align:"left",fixed:false,  hide:false, sort: false  , title: fox.translate('所在位置'), templet: function (d) { return templet('positionId' ,fox.joinLabel(d.position,"name",',','','positionId'),d);}}
 					,{ field: 'monitorStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('监控状态'), templet:function (d){ return templet('monitorStatus',fox.getEnumText(RADIO_MONITORSTATUS_DATA,d.monitorStatus,'','monitorStatus'),d);}}
@@ -193,8 +194,7 @@ function ListPage() {
 			if(sort) {
 				ps.sortField=sort.field;
 				ps.sortType=sort.type;
-			}
-		}
+			} 		}
 		if(reset) {
 			table.reload('data-table', { where : ps , page:{ curr:1 } });
 		} else {
@@ -307,7 +307,7 @@ function ListPage() {
 				},1);
 			},
 			//转换数据
-			searchField: "hierarchyName", //请自行调整用于搜索的字段名称
+			searchField: "name", //请自行调整用于搜索的字段名称
 			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
 			transform: function(data) {
 				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
@@ -315,7 +315,7 @@ function ListPage() {
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
-					opts.push({data:data[i],name:data[i].hierarchyName,value:data[i].id});
+					opts.push({data:data[i],name:data[i].name,value:data[i].id});
 				}
 				return opts;
 			}

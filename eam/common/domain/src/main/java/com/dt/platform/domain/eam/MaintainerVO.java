@@ -13,7 +13,7 @@ import com.github.foxnic.commons.bean.BeanUtil;
 /**
  * 维保厂商
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-27 20:14:29
+ * @since 2022-08-30 22:05:17
  * @sign 1F68A8E8FFA7432A34DA93E56818A13E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

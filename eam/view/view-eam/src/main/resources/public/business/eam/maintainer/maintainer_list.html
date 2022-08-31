@@ -2,7 +2,7 @@
 /**
  * 维保厂商 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-27 20:14:30
+ * @since 2022-08-30 22:05:18
  */
  -->
  <!DOCTYPE html>
@@ -39,21 +39,25 @@
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 名称 , maintainerName ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 编码 , code ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('名称')}" class="search-label maintainerName-label">名称</span><span class="search-colon">:</span></div>
-                        <input id="maintainerName" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('编码')}" class="search-label code-label">编码</span><span class="search-colon">:</span></div>
+                        <input id="code" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
-                    <!-- 编码 , code ,typeName=text_input, isHideInSearch=true -->
                     <!-- 商务联系人 , businessContacts ,typeName=text_input, isHideInSearch=true -->
                     <!-- 商务联系方式 , businessContactsInfo ,typeName=text_input, isHideInSearch=true -->
                     <!-- 售后联系人 , afterSalesContacts ,typeName=text_input, isHideInSearch=true -->
                     <!-- 售后联系方式 , afterSalesContactsInfo ,typeName=text_input, isHideInSearch=true -->
                     <!-- 地址 , address ,typeName=text_area, isHideInSearch=true -->
                     <!-- 备注 , maintainerNotes ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 名称 , maintainerName ,typeName=text_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:130px"><span th:text="${lang.translate('名称')}" class="search-label maintainerName-label">名称</span><span class="search-colon">:</span></div>
+                        <input id="maintainerName" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
                     <!-- 统一社会信用代码 , unitCode ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:130px"><span th:text="${lang.translate('统一社会信用代码')}" class="search-label unitCode-label">统一社会信用代码</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('统一社会信用代码')}" class="search-label unitCode-label">统一社会信用代码</span><span class="search-colon">:</span></div>
                         <input id="unitCode" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
 

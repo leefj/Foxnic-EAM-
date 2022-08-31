@@ -1,0 +1,17 @@
+
+Foxnic-EAN 资产管理账户
+eamadmin fx9090
+eamuser fx9090
+
+
+
+
+Foxnic-KN 知识库账户
+knadmin fx9090
+knuser fx9090
+
+
+
+Foxnic-OPS 运维账户
+opsadmin fx9090
+opsuser fx9090

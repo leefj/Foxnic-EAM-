@@ -22,8 +22,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 信息系统
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-12 21:59:08
- * @sign B6CFCCAE7AE68A00B67D5020B1DE50A2
+ * @since 2022-08-30 20:34:49
+ * @sign 2CDDB9AB8C1C930E074CD97490FD7AB1
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -64,6 +64,12 @@ public class InformationSystem extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="当前状态" , notes = "当前状态")
 	private String status;
+	
+	/**
+	 * 访问地址：访问地址
+	*/
+	@ApiModelProperty(required = false,value="访问地址" , notes = "访问地址")
+	private String address;
 	
 	/**
 	 * 运维模式：运维模式
@@ -381,6 +387,25 @@ public class InformationSystem extends Entity {
 	*/
 	public InformationSystem setStatus(String status) {
 		this.status=status;
+		return this;
+	}
+	
+	/**
+	 * 获得 访问地址<br>
+	 * 访问地址
+	 * @return 访问地址
+	*/
+	public String getAddress() {
+		return address;
+	}
+	
+	/**
+	 * 设置 访问地址
+	 * @param address 访问地址
+	 * @return 当前对象
+	*/
+	public InformationSystem setAddress(String address) {
+		this.address=address;
 		return this;
 	}
 	
@@ -1166,6 +1191,22 @@ public class InformationSystem extends Entity {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public InformationSystem clone() {
+		return EntityContext.clone(InformationSystem.class,this);
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public InformationSystem clone(boolean deep) {
+		return EntityContext.clone(InformationSystem.class,this,deep);
 	}
 
 	/**

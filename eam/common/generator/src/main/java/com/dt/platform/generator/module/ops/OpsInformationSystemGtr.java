@@ -160,6 +160,7 @@ public class OpsInformationSystemGtr extends BaseCodeGenerator{
                         OpsTables.OPS_INFORMATION_SYSTEM.STATUS,
                         OpsTables.OPS_INFORMATION_SYSTEM.NAME,
                         OpsTables.OPS_INFORMATION_SYSTEM.GRADE,
+                        OpsTables.OPS_INFORMATION_SYSTEM.ADDRESS,
                         OpsTables.OPS_INFORMATION_SYSTEM.PROFILE,
 
                 }, new Object[] {

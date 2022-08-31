@@ -126,6 +126,9 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
     @Override
     public Result<JSONObject>  dashboard() {
 
+        //assetNavPrice--总价值--数据库字段nav_price
+        //
+
         JSONObject result=new JSONObject();
 
         //获取资产分类数据
@@ -210,17 +213,14 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
         //资产总数
         String sql3="select \n" +
                 "(select count(1) from eam_asset_tranfer where deleted='0' and status='approval') wait_asset_tranfer_cnt,\n" +
-                "(select count(1) maintenance_end_cnt from eam_asset a where a.owner_code='asset' and a.deleted=0 and a.status='complete' and maintenance_end_date>date_sub(curdate(),interval 30 day) )maintenance_end_cnt,\n"+
+                "(select count(1) maintenance_end_cnt from eam_asset a where a.owner_code='asset' and a.deleted=0 and a.status='complete' and maintenance_end_date<date_add(curdate(),interval 30 day) )maintenance_end_cnt,\n"+
                 "(select count(1) asset_cnt from eam_asset a where a.owner_code='asset' and a.deleted=0  and a.status='complete') asset_cnt,\n" +
                 "(select IFNULL(sum(original_unit_price),0) asset_original_unit_price from eam_asset a where a.owner_code='asset' and a.deleted=0  and a.status='complete') asset_original_unit_price,\n" +
                 "(select IFNULL(sum(nav_price),0) asset_nav_price from eam_asset a where a.owner_code='asset' and a.deleted=0  and a.status='complete') asset_nav_price,\n" +
                 "(select count(1) asset_clean_cnt from eam_asset a where a.owner_code='asset_clean_out' and a.deleted=0  and a.status='complete') asset_clean_cnt,\n" +
                 "(select count(1) asset_repair_cnt from eam_asset a where a.owner_code='asset' and a.deleted=0  and a.status='complete' and a.asset_status='repair') asset_repair_cnt\n";
-
         Rcd rs3=dao.queryRecord(sql3);
         result.put("assetData",rs3.toJSONObject());
-
-
         //公司占比
 
 

@@ -22,8 +22,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 主机
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-04 21:16:04
- * @sign 7BFB8DA7DB392535EDBA80A158331784
+ * @since 2022-08-30 20:44:55
+ * @sign BFD357054C7D3CA664167A9FBF69E988
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -76,6 +76,12 @@ public class Host extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="虚拟VIP" , notes = "虚拟VIP")
 	private String hostVip;
+	
+	/**
+	 * IPV6：IPV6
+	*/
+	@ApiModelProperty(required = false,value="IPV6" , notes = "IPV6")
+	private String hostIpv6;
 	
 	/**
 	 * 运行环境：运行环境
@@ -455,6 +461,25 @@ public class Host extends Entity {
 	*/
 	public Host setHostVip(String hostVip) {
 		this.hostVip=hostVip;
+		return this;
+	}
+	
+	/**
+	 * 获得 IPV6<br>
+	 * IPV6
+	 * @return IPV6
+	*/
+	public String getHostIpv6() {
+		return hostIpv6;
+	}
+	
+	/**
+	 * 设置 IPV6
+	 * @param hostIpv6 IPV6
+	 * @return 当前对象
+	*/
+	public Host setHostIpv6(String hostIpv6) {
+		this.hostIpv6=hostIpv6;
 		return this;
 	}
 	
@@ -1382,6 +1407,22 @@ public class Host extends Entity {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public Host clone() {
+		return EntityContext.clone(Host.class,this);
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public Host clone(boolean deep) {
+		return EntityContext.clone(Host.class,this,deep);
 	}
 
 	/**

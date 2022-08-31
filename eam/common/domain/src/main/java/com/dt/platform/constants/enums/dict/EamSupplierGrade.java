@@ -11,22 +11,22 @@ import com.github.foxnic.api.constant.CodeTextEnum;
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
 */
 
-public enum EmployeeStatus implements CodeTextEnum {
+public enum EamSupplierGrade implements CodeTextEnum {
 	
 	/**
-	 * 在职
+	 * 一级
 	*/
-	ACTIVE("active" , "在职"),
+	ONE("one" , "一级"),
 	
 	/**
-	 * 离职
+	 * 二级
 	*/
-	LEAVE("leave" , "离职"),
+	TWO("two" , "二级"),
 	;
 	
 	private String code;
 	private String text;
-	private EmployeeStatus(String code,String text)  {
+	private EamSupplierGrade(String code,String text)  {
 		this.code=code;
 		this.text=text;
 	}
@@ -42,7 +42,7 @@ public enum EmployeeStatus implements CodeTextEnum {
 	/**
 	 * 从字符串转换成当前枚举类型
 	*/
-	public static EmployeeStatus parseByCode(String code) {
-		return (EmployeeStatus) EnumUtil.parseByCode(EmployeeStatus.values(),code);
+	public static EamSupplierGrade parseByCode(String code) {
+		return (EamSupplierGrade) EnumUtil.parseByCode(EamSupplierGrade.values(),code);
 	}
 }

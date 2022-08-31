@@ -16,8 +16,8 @@ import org.github.foxnic.web.domain.system.DictItem;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-04 21:16:04
- * @sign 629E3998B82DB807A53C16046B1EE004
+ * @since 2022-08-30 20:44:55
+ * @sign 4A61AD62FCD184D8234182AAF95C61FB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -182,6 +182,16 @@ public class HostVOMeta extends HostMeta {
 	 * 虚拟VIP , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.HostVO,java.lang.String> HOST_VIP_PROP = new BeanProperty(com.dt.platform.domain.ops.HostVO.class ,HOST_VIP, java.lang.String.class, "虚拟VIP", "虚拟VIP", java.lang.String.class, null);
+	
+	/**
+	 * IPV6 , 类型: java.lang.String
+	*/
+	public static final String HOST_IPV6="hostIpv6";
+	
+	/**
+	 * IPV6 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.HostVO,java.lang.String> HOST_IPV6_PROP = new BeanProperty(com.dt.platform.domain.ops.HostVO.class ,HOST_IPV6, java.lang.String.class, "IPV6", "IPV6", java.lang.String.class, null);
 	
 	/**
 	 * 运行环境 , 类型: java.lang.String
@@ -596,7 +606,7 @@ public class HostVOMeta extends HostMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , SYSTEM_ID , HOST_TYPE , STATUS , HOST_NAME , HOST_IP , HOST_VIP , ENVIRONMENT , POSITION_ID , MONITOR_STATUS , DIRECTOR_USERNAME , HOST_MEMORY , HOST_CPU , HOST_CONF , USER_OS_ADMIN , USER_DB_ADMIN , USER_DB_USED , USER_APP_USED , USER_OPS_OPER , USER_OTHER , PASSWORD_STRATEGY_ID , HOST_BACKUP_METHOD , HOST_BACKUP_INFO , OFFLINE_TIME , ONLINE_TIME , ARCH , LABELS , HOST_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , VOUCHER_LIST , VOUCHER_IDS , INFO_SYSTEM , POSITION , HOST_DB_LIST , HOST_DB_IDS , HOST_MIDDLEWARE_LIST , HOST_MIDDLEWARE_IDS , HOST_OS_LIST , HOST_OS_IDS , BACKUP_METHOD };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , SYSTEM_ID , HOST_TYPE , STATUS , HOST_NAME , HOST_IP , HOST_VIP , HOST_IPV6 , ENVIRONMENT , POSITION_ID , MONITOR_STATUS , DIRECTOR_USERNAME , HOST_MEMORY , HOST_CPU , HOST_CONF , USER_OS_ADMIN , USER_DB_ADMIN , USER_DB_USED , USER_APP_USED , USER_OPS_OPER , USER_OTHER , PASSWORD_STRATEGY_ID , HOST_BACKUP_METHOD , HOST_BACKUP_INFO , OFFLINE_TIME , ONLINE_TIME , ARCH , LABELS , HOST_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , VOUCHER_LIST , VOUCHER_IDS , INFO_SYSTEM , POSITION , HOST_DB_LIST , HOST_DB_IDS , HOST_MIDDLEWARE_LIST , HOST_MIDDLEWARE_IDS , HOST_OS_LIST , HOST_OS_IDS , BACKUP_METHOD };
 	
 	/**
 	 * 代理类
@@ -779,6 +789,17 @@ public class HostVOMeta extends HostMeta {
 		public Host setHostVip(String hostVip) {
 			super.change(HOST_VIP,super.getHostVip(),hostVip);
 			super.setHostVip(hostVip);
+			return this;
+		}
+		
+		/**
+		 * 设置 IPV6
+		 * @param hostIpv6 IPV6
+		 * @return 当前对象
+		*/
+		public Host setHostIpv6(String hostIpv6) {
+			super.change(HOST_IPV6,super.getHostIpv6(),hostIpv6);
+			super.setHostIpv6(hostIpv6);
 			return this;
 		}
 		

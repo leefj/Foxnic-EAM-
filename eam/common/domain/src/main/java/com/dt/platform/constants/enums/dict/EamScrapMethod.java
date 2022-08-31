@@ -11,22 +11,27 @@ import com.github.foxnic.api.constant.CodeTextEnum;
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
 */
 
-public enum EmployeeStatus implements CodeTextEnum {
+public enum EamScrapMethod implements CodeTextEnum {
 	
 	/**
-	 * 在职
+	 * 丢失
 	*/
-	ACTIVE("active" , "在职"),
+	LOSS("loss" , "丢失"),
 	
 	/**
-	 * 离职
+	 * 过期
 	*/
-	LEAVE("leave" , "离职"),
+	EXPIRE("expire" , "过期"),
+	
+	/**
+	 * 损坏
+	*/
+	DAMAGE("damage" , "损坏"),
 	;
 	
 	private String code;
 	private String text;
-	private EmployeeStatus(String code,String text)  {
+	private EamScrapMethod(String code,String text)  {
 		this.code=code;
 		this.text=text;
 	}
@@ -42,7 +47,7 @@ public enum EmployeeStatus implements CodeTextEnum {
 	/**
 	 * 从字符串转换成当前枚举类型
 	*/
-	public static EmployeeStatus parseByCode(String code) {
-		return (EmployeeStatus) EnumUtil.parseByCode(EmployeeStatus.values(),code);
+	public static EamScrapMethod parseByCode(String code) {
+		return (EamScrapMethod) EnumUtil.parseByCode(EamScrapMethod.values(),code);
 	}
 }

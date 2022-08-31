@@ -13,8 +13,8 @@ import com.github.foxnic.commons.bean.BeanUtil;
 /**
  * 生产厂商
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-15 07:09:09
- * @sign A199DD99DF751A644135F1ED18F4573C
+ * @since 2022-08-30 22:05:29
+ * @sign 3F714C24E487CE87A6662E637B08DD92
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -261,7 +261,7 @@ public class ManufacturerVO extends Manufacturer {
 		return this;
 	}
 	@Transient
-	private CompositeParameter $compositeParameter;
+	private transient CompositeParameter $compositeParameter;
 	/**
 	 * 获得解析后的复合查询参数
 	 */

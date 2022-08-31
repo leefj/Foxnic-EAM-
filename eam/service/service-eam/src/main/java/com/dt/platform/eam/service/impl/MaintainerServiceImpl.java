@@ -38,7 +38,7 @@ import java.util.Map;
  * 维保厂商 服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-27 20:14:29
+ * @since 2022-08-30 22:05:17
 */
 
 
@@ -75,7 +75,6 @@ public class MaintainerServiceImpl extends SuperService<Maintainer> implements I
 		Result r=super.insert(maintainer,throwsException);
 		return r;
 	}
-
 
 	/**
 	 * 添加，如果语句错误，则抛出异常

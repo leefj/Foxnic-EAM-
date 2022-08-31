@@ -49,7 +49,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 生产厂商 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-15 07:09:09
+ * @since 2022-08-30 22:05:30
 */
 
 @Api(tags = "生产厂商")
@@ -67,6 +67,7 @@ public class ManufacturerController extends SuperController {
 	@ApiOperation(value = "添加生产厂商")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ManufacturerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "471669992140570624"),
+		@ApiImplicitParam(name = ManufacturerVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "华为公司"),
 		@ApiImplicitParam(name = ManufacturerVOMeta.LOCATION , value = "所在地" , required = false , dataTypeClass=String.class , example = "中国"),
 		@ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NOTES , value = "备注" , required = false , dataTypeClass=String.class),
@@ -100,7 +101,7 @@ public class ManufacturerController extends SuperController {
 		// 引用校验
 		Boolean hasRefer = manufacturerService.hasRefers(id);
 		// 判断是否可以删除
-		this.validator().asserts(hasRefer).requireInList("不允许删除当前记录",false);
+		this.validator().asserts(hasRefer).requireEqual("不允许删除当前记录",false);
 		if(this.validator().failure()) {
 			return this.validator().getFirstResult();
 		}
@@ -167,12 +168,12 @@ public class ManufacturerController extends SuperController {
 	@ApiOperation(value = "更新生产厂商")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ManufacturerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "471669992140570624"),
+		@ApiImplicitParam(name = ManufacturerVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "华为公司"),
 		@ApiImplicitParam(name = ManufacturerVOMeta.LOCATION , value = "所在地" , required = false , dataTypeClass=String.class , example = "中国"),
 		@ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport( order=4 , ignoreParameters = { ManufacturerVOMeta.PAGE_INDEX , ManufacturerVOMeta.PAGE_SIZE , ManufacturerVOMeta.SEARCH_FIELD , ManufacturerVOMeta.FUZZY_FIELD , ManufacturerVOMeta.SEARCH_VALUE , ManufacturerVOMeta.DIRTY_FIELDS , ManufacturerVOMeta.SORT_FIELD , ManufacturerVOMeta.SORT_TYPE , ManufacturerVOMeta.IDS } )
-	@NotNull(name = ManufacturerVOMeta.ID)
 	@SentinelResource(value = ManufacturerServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(ManufacturerServiceProxy.UPDATE)
 	public Result update(ManufacturerVO manufacturerVO) {
@@ -187,6 +188,7 @@ public class ManufacturerController extends SuperController {
 	@ApiOperation(value = "保存生产厂商")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ManufacturerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "471669992140570624"),
+		@ApiImplicitParam(name = ManufacturerVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "华为公司"),
 		@ApiImplicitParam(name = ManufacturerVOMeta.LOCATION , value = "所在地" , required = false , dataTypeClass=String.class , example = "中国"),
 		@ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NOTES , value = "备注" , required = false , dataTypeClass=String.class),
@@ -246,6 +248,7 @@ public class ManufacturerController extends SuperController {
 	@ApiOperation(value = "查询生产厂商")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ManufacturerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "471669992140570624"),
+		@ApiImplicitParam(name = ManufacturerVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "华为公司"),
 		@ApiImplicitParam(name = ManufacturerVOMeta.LOCATION , value = "所在地" , required = false , dataTypeClass=String.class , example = "中国"),
 		@ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NOTES , value = "备注" , required = false , dataTypeClass=String.class),
@@ -267,6 +270,7 @@ public class ManufacturerController extends SuperController {
 	@ApiOperation(value = "分页查询生产厂商")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ManufacturerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "471669992140570624"),
+		@ApiImplicitParam(name = ManufacturerVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "华为公司"),
 		@ApiImplicitParam(name = ManufacturerVOMeta.LOCATION , value = "所在地" , required = false , dataTypeClass=String.class , example = "中国"),
 		@ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NOTES , value = "备注" , required = false , dataTypeClass=String.class),

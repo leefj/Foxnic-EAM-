@@ -300,6 +300,7 @@ public class OpsHostGtr extends BaseCodeGenerator{
             cfg.view().form().addGroup(null,
 
                     new Object[] {
+                            OpsTables.OPS_HOST.HOST_IPV6,
                             OpsTables.OPS_HOST.USER_OTHER,
 
                     }

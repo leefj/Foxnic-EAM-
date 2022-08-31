@@ -10,7 +10,7 @@ import java.util.Date;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-27 20:14:29
+ * @since 2022-08-30 22:05:17
  * @sign 1F68A8E8FFA7432A34DA93E56818A13E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -118,16 +118,6 @@ public class MaintainerVOMeta extends MaintainerMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainerVO,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainerVO.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
 	
 	/**
-	 * 名称 , 类型: java.lang.String
-	*/
-	public static final String MAINTAINER_NAME="maintainerName";
-	
-	/**
-	 * 名称 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainerVO,java.lang.String> MAINTAINER_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainerVO.class ,MAINTAINER_NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
-	
-	/**
 	 * 编码 , 类型: java.lang.String
 	*/
 	public static final String CODE="code";
@@ -136,6 +126,16 @@ public class MaintainerVOMeta extends MaintainerMeta {
 	 * 编码 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainerVO,java.lang.String> CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainerVO.class ,CODE, java.lang.String.class, "编码", "编码", java.lang.String.class, null);
+	
+	/**
+	 * 名称 , 类型: java.lang.String
+	*/
+	public static final String MAINTAINER_NAME="maintainerName";
+	
+	/**
+	 * 名称 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainerVO,java.lang.String> MAINTAINER_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainerVO.class ,MAINTAINER_NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
 	
 	/**
 	 * 商务联系人 , 类型: java.lang.String
@@ -300,7 +300,7 @@ public class MaintainerVOMeta extends MaintainerMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , MAINTAINER_NAME , CODE , BUSINESS_CONTACTS , BUSINESS_CONTACTS_INFO , AFTER_SALES_CONTACTS , AFTER_SALES_CONTACTS_INFO , UNIT_CODE , ADDRESS , MAINTAINER_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , CODE , MAINTAINER_NAME , BUSINESS_CONTACTS , BUSINESS_CONTACTS_INFO , AFTER_SALES_CONTACTS , AFTER_SALES_CONTACTS_INFO , UNIT_CODE , ADDRESS , MAINTAINER_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
 	
 	/**
 	 * 代理类
@@ -421,17 +421,6 @@ public class MaintainerVOMeta extends MaintainerMeta {
 		}
 		
 		/**
-		 * 设置 名称
-		 * @param maintainerName 名称
-		 * @return 当前对象
-		*/
-		public Maintainer setMaintainerName(String maintainerName) {
-			super.change(MAINTAINER_NAME,super.getMaintainerName(),maintainerName);
-			super.setMaintainerName(maintainerName);
-			return this;
-		}
-		
-		/**
 		 * 设置 编码
 		 * @param code 编码
 		 * @return 当前对象
@@ -439,6 +428,17 @@ public class MaintainerVOMeta extends MaintainerMeta {
 		public Maintainer setCode(String code) {
 			super.change(CODE,super.getCode(),code);
 			super.setCode(code);
+			return this;
+		}
+		
+		/**
+		 * 设置 名称
+		 * @param maintainerName 名称
+		 * @return 当前对象
+		*/
+		public Maintainer setMaintainerName(String maintainerName) {
+			super.change(MAINTAINER_NAME,super.getMaintainerName(),maintainerName);
+			super.setMaintainerName(maintainerName);
 			return this;
 		}
 		

@@ -80,6 +80,7 @@ public class ActionCrontabController extends SuperController {
 	@SentinelResource(value = ActionCrontabServiceProxy.INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(ActionCrontabServiceProxy.INSERT)
 	public Result insert(ActionCrontabVO actionCrontabVO) {
+
 		Result result=actionCrontabService.insert(actionCrontabVO,false);
 		return result;
 	}

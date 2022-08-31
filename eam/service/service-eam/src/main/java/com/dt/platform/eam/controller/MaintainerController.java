@@ -49,7 +49,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 维保厂商 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-27 20:14:29
+ * @since 2022-08-30 22:05:17
 */
 
 @Api(tags = "维保厂商")
@@ -67,8 +67,8 @@ public class MaintainerController extends SuperController {
 	@ApiOperation(value = "添加维保厂商")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = MaintainerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "471599404445335552"),
-		@ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "华为科技有限公司"),
 		@ApiImplicitParam(name = MaintainerVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "华为科技有限公司"),
 		@ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS , value = "商务联系人" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS_INFO , value = "商务联系方式" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = MaintainerVOMeta.AFTER_SALES_CONTACTS , value = "售后联系人" , required = false , dataTypeClass=String.class),
@@ -173,8 +173,8 @@ public class MaintainerController extends SuperController {
 	@ApiOperation(value = "更新维保厂商")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = MaintainerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "471599404445335552"),
-		@ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "华为科技有限公司"),
 		@ApiImplicitParam(name = MaintainerVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "华为科技有限公司"),
 		@ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS , value = "商务联系人" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS_INFO , value = "商务联系方式" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = MaintainerVOMeta.AFTER_SALES_CONTACTS , value = "售后联系人" , required = false , dataTypeClass=String.class),
@@ -198,8 +198,8 @@ public class MaintainerController extends SuperController {
 	@ApiOperation(value = "保存维保厂商")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = MaintainerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "471599404445335552"),
-		@ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "华为科技有限公司"),
 		@ApiImplicitParam(name = MaintainerVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "华为科技有限公司"),
 		@ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS , value = "商务联系人" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS_INFO , value = "商务联系方式" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = MaintainerVOMeta.AFTER_SALES_CONTACTS , value = "售后联系人" , required = false , dataTypeClass=String.class),
@@ -263,8 +263,8 @@ public class MaintainerController extends SuperController {
 	@ApiOperation(value = "查询维保厂商")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = MaintainerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "471599404445335552"),
-		@ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "华为科技有限公司"),
 		@ApiImplicitParam(name = MaintainerVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "华为科技有限公司"),
 		@ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS , value = "商务联系人" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS_INFO , value = "商务联系方式" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = MaintainerVOMeta.AFTER_SALES_CONTACTS , value = "售后联系人" , required = false , dataTypeClass=String.class),
@@ -290,8 +290,8 @@ public class MaintainerController extends SuperController {
 	@ApiOperation(value = "分页查询维保厂商")
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = MaintainerVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "471599404445335552"),
-		@ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "华为科技有限公司"),
 		@ApiImplicitParam(name = MaintainerVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "华为科技有限公司"),
 		@ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS , value = "商务联系人" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS_INFO , value = "商务联系方式" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = MaintainerVOMeta.AFTER_SALES_CONTACTS , value = "售后联系人" , required = false , dataTypeClass=String.class),

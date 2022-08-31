@@ -1,7 +1,7 @@
 /**
  * 维保厂商 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-27 20:14:30
+ * @since 2022-08-30 22:05:18
  */
 
 
@@ -78,8 +78,8 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'maintainerName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('maintainerName',d.maintainerName,d);}  }
 					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编码') , templet: function (d) { return templet('code',d.code,d);}  }
+					,{ field: 'maintainerName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('maintainerName',d.maintainerName,d);}  }
 					,{ field: 'businessContacts', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('商务联系人') , templet: function (d) { return templet('businessContacts',d.businessContacts,d);}  }
 					,{ field: 'businessContactsInfo', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('商务联系方式') , templet: function (d) { return templet('businessContactsInfo',d.businessContactsInfo,d);}  }
 					,{ field: 'afterSalesContacts', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('售后联系人') , templet: function (d) { return templet('afterSalesContacts',d.afterSalesContacts,d);}  }
@@ -136,6 +136,7 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
+		value.code={ inputType:"button",value: $("#code").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.maintainerName={ inputType:"button",value: $("#maintainerName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.unitCode={ inputType:"button",value: $("#unitCode").val()};
 		var ps={searchField:"$composite"};

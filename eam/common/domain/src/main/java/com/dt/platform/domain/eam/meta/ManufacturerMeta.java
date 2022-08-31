@@ -8,8 +8,8 @@ import java.util.Date;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-15 07:09:09
- * @sign FEDBE654E194613F298ADB77894300B4
+ * @since 2022-08-30 22:05:29
+ * @sign 876C84FAB120E6FA425749B36895DECB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -24,6 +24,16 @@ public class ManufacturerMeta {
 	 * 主键 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.Manufacturer,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.eam.Manufacturer.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
+	
+	/**
+	 * 编码 , 类型: java.lang.String
+	*/
+	public static final String CODE="code";
+	
+	/**
+	 * 编码 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Manufacturer,java.lang.String> CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.Manufacturer.class ,CODE, java.lang.String.class, "编码", "编码", java.lang.String.class, null);
 	
 	/**
 	 * 名称 , 类型: java.lang.String
@@ -148,7 +158,7 @@ public class ManufacturerMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , MANUFACTURER_NAME , LOCATION , MANUFACTURER_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ ID , CODE , MANUFACTURER_NAME , LOCATION , MANUFACTURER_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
 	
 	/**
 	 * 代理类
@@ -166,6 +176,17 @@ public class ManufacturerMeta {
 		public Manufacturer setId(String id) {
 			super.change(ID,super.getId(),id);
 			super.setId(id);
+			return this;
+		}
+		
+		/**
+		 * 设置 编码
+		 * @param code 编码
+		 * @return 当前对象
+		*/
+		public Manufacturer setCode(String code) {
+			super.change(CODE,super.getCode(),code);
+			super.setCode(code);
 			return this;
 		}
 		

@@ -6,17 +6,12 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 
 /**
- * @since 2022-06-07 06:51:48
+ * @since 2022-08-30 21:55:02
  * @author 金杰 , maillank@qq.com
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
 */
 
 public enum EamStockInType implements CodeTextEnum {
-	
-	/**
-	 * 盘赢入库
-	*/
-	PY("py" , "盘赢入库"),
 	
 	/**
 	 * 常规入库

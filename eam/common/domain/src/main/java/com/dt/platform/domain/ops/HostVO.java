@@ -13,8 +13,8 @@ import com.github.foxnic.commons.bean.BeanUtil;
 /**
  * 主机
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-04 21:16:04
- * @sign 629E3998B82DB807A53C16046B1EE004
+ * @since 2022-08-30 20:44:55
+ * @sign 4A61AD62FCD184D8234182AAF95C61FB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 

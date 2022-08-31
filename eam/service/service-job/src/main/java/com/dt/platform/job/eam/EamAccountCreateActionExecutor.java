@@ -1,20 +1,26 @@
 package com.dt.platform.job.eam;
 
 import com.alibaba.fastjson.JSONObject;
+import com.dt.platform.proxy.ops.MonitorDataProcessZabbixAgentServiceProxy;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
+import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.dao.data.Rcd;
 import com.github.foxnic.dao.data.RcdSet;
 import com.github.foxnic.dao.spec.DAO;
+import com.github.foxnic.sql.expr.Insert;
+import com.mysql.cj.log.Log;
 import org.github.foxnic.web.domain.job.Job;
 import org.github.foxnic.web.domain.job.JobExecutor;
+import org.github.foxnic.web.domain.oauth.RoleUserVO;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import org.quartz.JobExecutionContext;
 import org.springframework.stereotype.Component;
-
+import org.github.foxnic.web.proxy.oauth.RoleUserServiceProxy;
 import javax.annotation.Resource;
 import java.time.Instant;
+import java.util.Date;
 
 @Component
 public class EamAccountCreateActionExecutor implements JobExecutor {
@@ -32,30 +38,97 @@ public class EamAccountCreateActionExecutor implements JobExecutor {
 
     @Override
     public Result execute(Object context, Job job, JSONObject jsonObject) {
+
         Logger.info("用户新建后,相关赋权操作");
         JobExecutionContext ctx=(JobExecutionContext) context;
+
         Long pid=Instant.now().toEpochMilli();
-        //业务数据权限
-        Rcd busiRs=dao.queryRecord("select id from sys_busi_role where code='eam_data_perm_default'");
-        if(busiRs!=null){
-            long uid = Instant.now().toEpochMilli();
-            String id=busiRs.getString("id");
-            String sql="insert into eam_user_create_action_log (id,member_id,action,result,pid,uid,time_point)  \n" +
-                    "select uuid(),id,'data_perm_role','success','"+pid+"','"+uid+"',create_time from hrm_employee where create_time>(select ifnull(max(time_point),now()-100000000000) from eam_user_create_action_log where action='data_perm_role' and result='success' and deleted='0')\n" +
-                    "and id not in (select member_id from sys_busi_role_member a,sys_busi_role b where a.role_id=b.id and b.code='eam_data_perm_default')";
-            dao.execute(sql);
-            String sql2="insert into sys_busi_role_member(id,role_id,member_id,member_type)\n" +
-                    " select uuid_short() ,'"+id+"',member_id,'employee' from eam_user_create_action_log where deleted=0 and action='data_perm_role' and uid='"+uid+"'";
-            dao.execute(sql2);
-            Logger.info("新用户数据权限检查操作完毕");
+        Logger.info("####### 检查功能角色 #######");
+        autoGrantUserRole("eam_role");
+
+        Logger.info("####### 检查数据权限 #######");
+        autoGrantUserRole("eam_data_role");
+
+        Logger.info("新用户数据权限检查操作完毕");
+
+        return ErrorDesc.success();
+
+    }
+
+
+
+    public Result autoGrantUserRole(String id){
+
+        Rcd moduleRs=dao.queryRecord("select * from sys_auto_module_role where deleted=0 and id=?",id);
+        if(moduleRs==null){
+            Logger.info("未找到配置ID:"+id);
+            return ErrorDesc.failureMessage("未找到配置ID:"+id);
+        }
+        String status=moduleRs.getString("status");
+        String module=moduleRs.getString("module");
+        String type=moduleRs.getString("type");
+
+
+        if(!"enable".equals(status)){
+            Logger.info("配置ID:"+id+",状态:"+status);
+            return ErrorDesc.failureMessage("配置ID:"+id+",状态:"+status);
         }
 
-        //功能权限 eam_employee
-        Rcd roleRs=dao.queryRecord("select id from sys_role where code='eam_employee' and deleted='0'");
-        if(roleRs!=null){
-            long uid = Instant.now().toEpochMilli();
-            String id=roleRs.getString("id");
+        RcdSet roleRs=dao.query("select * from sys_auto_module_role_item where deleted=0 and module_role_id=?",id);
+        if(roleRs==null||roleRs.size()==0){
+            Logger.info("配置ID:"+id+",角色数量为0");
+            return ErrorDesc.failureMessage("配置ID:"+id+",角色数量为0");
         }
+
+
+        Logger.info("module:"+module+",type:"+type);
+        String sql="select c.id user_id,c.real_name, a.id employee_id,c.create_time \n" +
+                "from hrm_employee a,sys_user_tenant b,sys_user c \n" +
+                "where a.id=b.employee_id and c.id=b.user_id\n" +
+                "and a.deleted=0\n" +
+                "and b.deleted=0\n" +
+                "and c.deleted=0";
+
+
+        if("role".equals(type)){
+            //需要插入功能角色的用户
+            String userSql=sql+" and c.create_time>(select ifnull(max(create_time),str_to_date('19700101','%Y%m%d')) from sys_auto_role_grant_rcd where deleted=0 and module_role_id=?) ";
+            RcdSet userRs=dao.query(userSql,id);
+
+            if(userRs!=null&&userRs.size()>0){
+                for(int i=0;i<userRs.size();i++){
+                    String userId=userRs.getRcd(i).getString("user_id");
+                    for(int j=0;j<roleRs.size();j++){
+                        String roleId=roleRs.getRcd(j).getString("role_id");
+                        Logger.info("process user role,userId:"+userId+",roleId;"+roleId);
+                        if(dao.queryRecord("select 1 from sys_role_user where deleted=0 and user_id=? and role_id=?",userId,roleId)==null){
+                            //插入用户
+                            Insert ins=new Insert("sys_role_user");
+                            ins.set("id", IDGenerator.getSnowflakeIdString());
+                            ins.set("user_id",userId);
+                            ins.set("role_id",roleId);
+                            ins.set("create_time",new Date());
+                            dao.execute(ins.getSQL());
+
+                            Insert insRcd=new Insert("sys_auto_role_grant_rcd");
+                            insRcd.set("id", IDGenerator.getSnowflakeIdString());
+                            insRcd.set("module_role_id",id);
+                            insRcd.set("user_id",userId);
+                            insRcd.set("role_id",roleId);
+                            insRcd.set("create_time",new Date());
+                            dao.execute(insRcd.getSQL());
+                            Logger.info("process user role,userId:"+userId+",roleId;"+roleId+" insert success");
+                        }else{
+                            Logger.info("process user role,userId:"+userId+",roleId;"+roleId+" already exist");
+                        }
+                    }
+                    //用户处理结束
+                }
+            }
+
+        }
+
+
 
         return ErrorDesc.success();
     }

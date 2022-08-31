@@ -23,11 +23,10 @@ import java.util.Map;
  * 维保厂商 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-27 20:14:29
+ * @since 2022-08-30 22:05:17
 */
 
 public interface IMaintainerService extends  ISimpleIdService<Maintainer,String> {
-
 
 
 	/**

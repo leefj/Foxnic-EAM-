@@ -23,7 +23,7 @@ import java.util.Map;
  * 生产厂商 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-15 07:09:09
+ * @since 2022-08-30 22:05:29
 */
 
 public interface IManufacturerService extends  ISimpleIdService<Manufacturer,String> {
