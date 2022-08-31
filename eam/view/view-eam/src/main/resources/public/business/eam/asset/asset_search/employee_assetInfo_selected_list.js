@@ -48,7 +48,7 @@ function ListPage() {
             fox.adjustSearchElement();
         });
         fox.adjustSearchElement();
-        //
+
         function renderTableInternal() {
 
             var ps={};
@@ -90,7 +90,7 @@ function ListPage() {
                 defaultToolbar: ['filter', 'print',{title: '刷新数据',layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
               //  url: moduleURL +'/query-paged-list-by-employee-selected',
                 url: moduleURL +'/query-paged-list-by-employee-selected?selectedCode='+SELECTED_CODE+"&ownerId="+OWNER_ID+"&dataType="+dataType,
-                height: 'full-'+(120),
+                height: 'full-'+(40),
                 limit: 50,
                 where: ps,
                 cols: [COL_DATA],

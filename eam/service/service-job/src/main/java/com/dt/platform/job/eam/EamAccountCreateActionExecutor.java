@@ -1,6 +1,9 @@
 package com.dt.platform.job.eam;
 
 import com.alibaba.fastjson.JSONObject;
+import com.dt.platform.constants.enums.common.AutoModuleIDEnum;
+import com.dt.platform.constants.enums.common.AutoModuleRoleTypeEnum;
+import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.proxy.ops.MonitorDataProcessZabbixAgentServiceProxy;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
@@ -44,10 +47,10 @@ public class EamAccountCreateActionExecutor implements JobExecutor {
 
         Long pid=Instant.now().toEpochMilli();
         Logger.info("####### 检查功能角色 #######");
-        autoGrantUserRole("eam_role");
+        autoGrantUserRole(AutoModuleIDEnum.EAM_ROLE.code());
 
         Logger.info("####### 检查数据权限 #######");
-        autoGrantUserRole("eam_data_role");
+        autoGrantUserRole(AutoModuleIDEnum.EAM_DATA_ROLE.code());
 
         Logger.info("新用户数据权限检查操作完毕");
 
@@ -69,7 +72,7 @@ public class EamAccountCreateActionExecutor implements JobExecutor {
         String type=moduleRs.getString("type");
 
 
-        if(!"enable".equals(status)){
+        if(!StatusEnableEnum.ENABLE.code().equals(status)){
             Logger.info("配置ID:"+id+",状态:"+status);
             return ErrorDesc.failureMessage("配置ID:"+id+",状态:"+status);
         }
@@ -80,7 +83,6 @@ public class EamAccountCreateActionExecutor implements JobExecutor {
             return ErrorDesc.failureMessage("配置ID:"+id+",角色数量为0");
         }
 
-
         Logger.info("module:"+module+",type:"+type);
         String sql="select c.id user_id,c.real_name, a.id employee_id,c.create_time \n" +
                 "from hrm_employee a,sys_user_tenant b,sys_user c \n" +
@@ -90,46 +92,74 @@ public class EamAccountCreateActionExecutor implements JobExecutor {
                 "and c.deleted=0";
 
 
-        if("role".equals(type)){
-            //需要插入功能角色的用户
-            String userSql=sql+" and c.create_time>(select ifnull(max(create_time),str_to_date('19700101','%Y%m%d')) from sys_auto_role_grant_rcd where deleted=0 and module_role_id=?) ";
-            RcdSet userRs=dao.query(userSql,id);
-
-            if(userRs!=null&&userRs.size()>0){
-                for(int i=0;i<userRs.size();i++){
-                    String userId=userRs.getRcd(i).getString("user_id");
-                    for(int j=0;j<roleRs.size();j++){
-                        String roleId=roleRs.getRcd(j).getString("role_id");
-                        Logger.info("process user role,userId:"+userId+",roleId;"+roleId);
-                        if(dao.queryRecord("select 1 from sys_role_user where deleted=0 and user_id=? and role_id=?",userId,roleId)==null){
-                            //插入用户
-                            Insert ins=new Insert("sys_role_user");
-                            ins.set("id", IDGenerator.getSnowflakeIdString());
-                            ins.set("user_id",userId);
-                            ins.set("role_id",roleId);
-                            ins.set("create_time",new Date());
-                            dao.execute(ins.getSQL());
-
-                            Insert insRcd=new Insert("sys_auto_role_grant_rcd");
-                            insRcd.set("id", IDGenerator.getSnowflakeIdString());
-                            insRcd.set("module_role_id",id);
-                            insRcd.set("user_id",userId);
-                            insRcd.set("role_id",roleId);
-                            insRcd.set("create_time",new Date());
-                            dao.execute(insRcd.getSQL());
-                            Logger.info("process user role,userId:"+userId+",roleId;"+roleId+" insert success");
-                        }else{
-                            Logger.info("process user role,userId:"+userId+",roleId;"+roleId+" already exist");
-                        }
-                    }
-                    //用户处理结束
-                }
-            }
-
+        //sys_auto_role_grant_rcd 只要判断上次处理的时间进行比较即可
+        String userSql=sql+" and c.create_time>(select ifnull(max(create_time),str_to_date('19700101','%Y%m%d')) from sys_auto_role_grant_rcd where deleted=0 and module_role_id=?) ";
+        RcdSet userRs=dao.query(userSql,id);
+        if(userRs==null&&userRs.size()==0) {
+            return ErrorDesc.failureMessage("没有匹配的用户");
         }
 
+        if(AutoModuleRoleTypeEnum.ROLE.code().equals(type)){
+            //需要插入功能角色的用户
+            for(int i=0;i<userRs.size();i++) {
+                String userId = userRs.getRcd(i).getString("user_id");
+                for (int j = 0; j < roleRs.size(); j++) {
+                    String roleId = roleRs.getRcd(j).getString("role_id");
+                    Logger.info("process user role,userId:" + userId + ",roleId;" + roleId);
+                    if (dao.queryRecord("select 1 from sys_role_user where deleted=0 and user_id=? and role_id=?", userId, roleId) == null) {
 
+                        //插入用户,sys_role_user 有缓存
+                        Insert ins = new Insert("sys_role_user");
+                        ins.set("id", IDGenerator.getSnowflakeIdString());
+                        ins.set("user_id", userId);
+                        ins.set("role_id", roleId);
+                        ins.set("create_time", new Date());
+                        dao.execute(ins.getSQL());
 
+                        Insert insRcd = new Insert("sys_auto_role_grant_rcd");
+                        insRcd.set("id", IDGenerator.getSnowflakeIdString());
+                        insRcd.set("module_role_id", id);
+                        insRcd.set("user_id", userId);
+                        insRcd.set("role_id", roleId);
+                        insRcd.set("create_time", new Date());
+                        dao.execute(insRcd.getSQL());
+                        Logger.info("process user role,userId:" + userId + ",roleId;" + roleId + " insert success");
+                    } else {
+                        Logger.info("process user role,userId:" + userId + ",roleId;" + roleId + " already exist");
+                    }
+                }
+            }
+                    //用户处理结束
+        }else if(AutoModuleRoleTypeEnum.BUSI_ROLE.code().equals(type)) {
+            for(int i=0;i<userRs.size();i++) {
+                String employeeId = userRs.getRcd(i).getString("employee_id");
+                for (int j = 0; j < roleRs.size(); j++) {
+                    String roleId = roleRs.getRcd(j).getString("role_id");
+                    Logger.info("process user role,employeeId:" + employeeId + ",roleId;" + roleId);
+                    if (dao.queryRecord("select 1 from sys_busi_role_member where member_type='employee' and  member_id=? and role_id=?", employeeId, roleId) == null) {
+                        //插入用户
+                        Insert ins = new Insert("sys_busi_role_member");
+                        ins.set("id", IDGenerator.getSnowflakeIdString());
+                        ins.set("member_id", employeeId);
+                        ins.set("role_id", roleId);
+                        ins.set("member_type", "employee");
+                        ins.set("create_time", new Date());
+                        dao.execute(ins.getSQL());
+
+                        Insert insRcd = new Insert("sys_auto_role_grant_rcd");
+                        insRcd.set("id", IDGenerator.getSnowflakeIdString());
+                        insRcd.set("module_role_id", id);
+                        insRcd.set("user_id", employeeId);
+                        insRcd.set("role_id", roleId);
+                        insRcd.set("create_time", new Date());
+                        dao.execute(insRcd.getSQL());
+                        Logger.info("process user role,employeeId:" + employeeId + ",roleId;" + roleId + " insert success");
+                    } else {
+                        Logger.info("process user role,employeeId:" + employeeId + ",roleId;" + roleId + " already exist");
+                    }
+                }
+            }
+        }
         return ErrorDesc.success();
     }
 }

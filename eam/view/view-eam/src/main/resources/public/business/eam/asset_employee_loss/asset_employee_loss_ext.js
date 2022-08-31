@@ -241,7 +241,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             if(data&&data.id){
                 ownerId=data.id;
             }
-            $("#iframe").height("400px");
+
             if(data.status=="incomplete"){
                 formAction="modify";
             }else{
@@ -252,7 +252,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log("queryString",queryString);
             $(".form-iframe")[0].contentWindow.location="/business/eam/asset/asset_search/employee_assetInfo_selected_list.html"+queryString
 
-
+            $(".form-iframe")[0].height("400px");
         },
         /**
          * 对话框打开之前调用，如果返回 null 则不打开对话框

@@ -27,7 +27,7 @@ CREATE TABLE `eam_position` (
                                 `tenant_id` varchar(18) DEFAULT NULL COMMENT '租户',
                                 PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='存放位置';
-insert into eam_position(id,name,notes,tenant_id,parent_id,hierarchy,hierarchy_name) select id,name,notes,tenant_id,'0' parent_id,id,name from eam_position_bak_1 where deleted=0;
+insert into eam_position(id,name,notes,tenant_id,parent_id,hierarchy,hierarchy_name) select id,name,notes,tenant_id,'0' parent_id,id,name from eam_position_bak where deleted=0;
 
 -- eam_asset_rack,eam_asset_rack_info
 CREATE TABLE `eam_asset_rack` (
