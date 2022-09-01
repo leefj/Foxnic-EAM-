@@ -2,6 +2,9 @@
 update sys_config set value='2.1.0' where code='system.version.code';
 update sys_config set value='PROD' where code='system.version.name';
 update sys_config set value='PROD' where code='system.version.type';
+
+update sys_config set value='0' where code='system.index.portal.enable';
+
 -- update sys_config set value='DEV' where code='system.version.name';
 -- update sys_config set value='DEV' where code='system.version.type';
 update sys_config set value='{account:"",password:"",captcha:""}'  where code='system.login.default';
@@ -13,6 +16,7 @@ update sys_config set value=0 where code='eam.assetImportAssetCodeKeep';
 update sys_config set value=0 where code='eam.assetImportDataReplenish';
 update sys_config set value=0 where code='eam.assetSerialNumberIsUnique';
 update sys_config set value=0 where code='eam.assetStatusColumnDisable';
+
 update sys_config set value=0 where code='eam.assetDataPermissions';
 
 
@@ -22,11 +26,11 @@ update sys_menu set hidden=1 where id='610152549789466624';
 -- 回收站
 update sys_menu set hidden=1 where id='473612721665867776';
 -- 流程中心
-update sys_menu set hidden=1 where id='577783476611198976';
+--update sys_menu set hidden=1 where id='577783476611198976';
 -- 工单
 update sys_menu set hidden=1 where id='472358185009676289';
 -- 知识库
-update sys_menu set hidden=1 where id='472036810977968129';
+--update sys_menu set hidden=1 where id='472036810977968129';
 -- 合同管理
 update sys_menu set hidden=1 where id='474157822892834817';
 -- 运维
@@ -34,11 +38,11 @@ update sys_menu set hidden=1 where id='472036556115279872';
 -- 监控
 update sys_menu set hidden=1 where id='474155549546512385';
 -- 设备
-update sys_menu set hidden=1 where id='568076619713875968';
+-- update sys_menu set hidden=1 where id='568076619713875968';
 -- 车辆
 update sys_menu set hidden=1 where id='562317041218879488';
 -- 员工
-update sys_menu set hidden=1 where id='592108832759488512';
+-- update sys_menu set hidden=1 where id='592108832759488512';
 update sys_menu set hidden=1 where id='592348823129427968';
 -- 财务管理
 update sys_menu set hidden=1 where id='475955437510852608';
@@ -57,15 +61,15 @@ update sys_menu set hidden=1 where id='578624635919138816';
 delete from sys_menu where id='495201409763901440';
 delete from sys_menu where id='610152549789466624';
 delete from sys_menu where id='473612721665867776';
-delete from sys_menu where id='577783476611198976';
+-- delete from sys_menu where id='577783476611198976';
 delete from sys_menu where id='472358185009676289';
-delete from sys_menu where id='472036810977968129';
+-- delete from sys_menu where id='472036810977968129';
 delete from sys_menu where id='474157822892834817';
 delete from sys_menu where id='472036556115279872';
-delete from sys_menu where id='474155549546512385';
-delete from sys_menu where id='568076619713875968';
+-- delete from sys_menu where id='474155549546512385';
+-- delete from sys_menu where id='568076619713875968';
 delete from sys_menu where id='562317041218879488';
-delete from sys_menu where id='592108832759488512';
+-- delete from sys_menu where id='592108832759488512';
 delete from sys_menu where id='592348823129427968';
 delete from sys_menu where id='475955437510852608';
 delete from sys_menu where id='566986193363795968';

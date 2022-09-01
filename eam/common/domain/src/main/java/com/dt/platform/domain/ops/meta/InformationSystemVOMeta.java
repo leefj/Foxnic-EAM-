@@ -13,7 +13,7 @@ import org.github.foxnic.web.domain.system.DictItem;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-30 20:34:49
+ * @since 2022-09-02 07:36:05
  * @sign 9A07BB1EC54D9E024ED04B3758D4A398
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

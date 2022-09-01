@@ -85,7 +85,7 @@ public class EamAccountCreateActionExecutor implements JobExecutor {
         String sql="select c.id user_id,c.real_name, a.id employee_id,c.create_time \n" +
                 "from hrm_employee a,sys_user_tenant b,sys_user c \n" +
                 "where a.id=b.employee_id and c.id=b.user_id\n" +
-                "and c.account not in ('admin','opsadmin','opsuser','knadmin','knuser','eamadmin','eamuser') \n"+
+                "and c.account not in (select account from sys_auto_user_predefined where deleted=0) \n"+
                 "and a.deleted=0\n" +
                 "and b.deleted=0\n" +
                 "and c.deleted=0";

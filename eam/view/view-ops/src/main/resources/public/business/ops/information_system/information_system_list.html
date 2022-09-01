@@ -2,7 +2,7 @@
 /**
  * 信息系统 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-30 20:34:50
+ * @since 2022-09-02 07:36:06
  */
  -->
  <!DOCTYPE html>
@@ -145,8 +145,8 @@
 
     <button th:if="${perm.checkAuth('ops_information_system:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除')}">删除</span></button>
 
-    <button class="layui-btn layui-btn-xs  ops_information_system:voucher " lay-event="open-system-voucher-window" data-id="{{d.id}}"><span th:text="${lang.translate('凭证')}">凭证</span></button>
-    <button class="layui-btn layui-btn-xs  ops_information_system:host " lay-event="open-host-window" data-id="{{d.id}}"><span th:text="${lang.translate('主机')}">主机</span></button>
+    <button th:if="${perm.checkAuth('ops_information_system:voucher')}"class="layui-btn layui-btn-xs " lay-event="open-system-voucher-window" data-id="{{d.id}}"><span th:text="${lang.translate('凭证')}">凭证</span></button>
+    <button th:if="${perm.checkAuth('ops_information_system:host')}"class="layui-btn layui-btn-xs " lay-event="open-host-window" data-id="{{d.id}}"><span th:text="${lang.translate('主机')}">主机</span></button>
 
 </script>
 
