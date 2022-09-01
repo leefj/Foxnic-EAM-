@@ -71,7 +71,7 @@ ls -rtl $prod_app_dir/bin/*.sh
 
 #Tpl File
 echo "######## start to update tpl file ##############"
-tpl_update=1
+tpl_update=0
 if [[ $tpl_update -eq 1 ]];then
   if [[ -d "$prod_app_dir/app/app/upload/tpl/T001" ]];then
     t=`date +%Y%m%d_%H_%M_%S`

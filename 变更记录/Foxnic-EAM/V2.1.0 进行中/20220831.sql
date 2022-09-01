@@ -59,11 +59,13 @@ INSERT INTO `sys_auto_module_role_item` (`id`, `module_role_id`, `role_id`, `rol
 VALUES
 ('1', 'eam_role', '505736820663779328', '固定资产员工', NULL, NULL, NULL, 0, NULL, NULL, 1),
 ('2', 'eam_role', '617103797986000896', '基础通用角色', NULL, NULL, NULL, 0, NULL, NULL, 1),
-('3', 'eam_role', '586968144602464256', '流程基础角色', NULL, NULL, NULL, 0, NULL, NULL, 1),
+('3', 'eam_role', '617293164289458176', '流程使用角色', NULL, NULL, NULL, 0, NULL, NULL, 1),
 ('5', 'eam_data_role', '612283690805886976', '资产数据权限默认', NULL, NULL, NULL, 0, NULL, NULL, 1);
 
 
-
+INSERT INTO `sys_role` (`id`, `code`, `name`, `create_by`, `create_time`, `update_by`, `update_time`, `deleted`, `delete_by`, `delete_time`, `version`)
+VALUES
+('617293164289458176', 'bpm_user', '流程使用角色', '', '2022-08-31 09:42:39', '', NULL, 0, '', NULL, 1);
 
 
 

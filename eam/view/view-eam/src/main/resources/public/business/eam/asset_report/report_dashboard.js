@@ -38,7 +38,7 @@ function ListPage() {
                     "</tr>";
                 for(var i=0;i<assetData.assetStatusData.length;i++){
                     html=html+" <tr>\n" +
-                        "    <td>"+assetData.assetStatusData[i].name+"</td>\n" +
+                        "    <td>"+assetData.assetStatusData[i].assetStatusName+"</td>\n" +
                         "    <td>"+assetData.assetStatusData[i].cnt+"</td>\n" +
                         "    <td>"+assetData.assetStatusData[i].assetNavPrice+"</td>\n" +
                         "  </tr>"

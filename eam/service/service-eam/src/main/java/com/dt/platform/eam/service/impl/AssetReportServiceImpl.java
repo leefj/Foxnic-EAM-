@@ -117,7 +117,7 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
 
     private JSONArray queryAssetStatusData(){
         //获取资产分类数据
-        String sql="select asset_status,count(1) cnt, IFNULL(sum(nav_price),0) asset_nav_price, IFNULL(sum(original_unit_price),0) asset_original_unit_price from eam_asset where owner_code='asset' and deleted=0  and status='complete' group by asset_status order by 2 desc";
+        String sql="select (select name from eam_asset_status where code=asset_status and deleted=0) asset_status_name,asset_status,count(1) cnt, IFNULL(sum(nav_price),0) asset_nav_price, IFNULL(sum(original_unit_price),0) asset_original_unit_price from eam_asset where owner_code='asset' and deleted=0  and status='complete' group by asset_status order by 3 desc";
         RcdSet rs=dao.query(sql);
         return rs.toJSONArrayWithJSONObject();
     }
@@ -132,15 +132,16 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
         JSONObject result=new JSONObject();
 
         //获取资产分类数据
-        String sql="select asset_status,count(1) cnt, IFNULL(sum(nav_price),0) asset_nav_price,  IFNULL(sum(original_unit_price),0) asset_original_unit_price from eam_asset where owner_code='asset' and deleted=0  and status='complete' group by asset_status order by 2 desc";
+        String sql="select  (select name from eam_asset_status where code=asset_status and deleted=0) asset_status_name,asset_status,count(1) cnt, IFNULL(sum(nav_price),0) asset_nav_price,  IFNULL(sum(original_unit_price),0) asset_original_unit_price from eam_asset where owner_code='asset' and deleted=0  and status='complete' group by asset_status order by 3 desc";
         RcdSet rs=dao.query(sql);
         JSONArray assetStatusArr=new JSONArray();
         JSONArray assetStatusPieData=new JSONArray();
         for(int i=0;i<rs.size();i++){
             JSONObject r=rs.getRcd(i).toJSONObject();
             String assetStatus=rs.getRcd(i).getString("asset_status");
-            String value= EnumUtil.parseByCode(AssetStatusEnum.class,assetStatus)==null
-                    ?assetStatus:EnumUtil.parseByCode(AssetStatusEnum.class,assetStatus).text();
+//            String value= EnumUtil.parseByCode(AssetStatusEnum.class,assetStatus)==null
+//                    ?assetStatus:EnumUtil.parseByCode(AssetStatusEnum.class,assetStatus).text();
+            String value=rs.getRcd(i).getString("asset_status_name");
             r.put("name",value);
             assetStatusArr.add(r);
 
