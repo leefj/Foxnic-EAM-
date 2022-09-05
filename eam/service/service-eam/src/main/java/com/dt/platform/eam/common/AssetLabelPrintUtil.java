@@ -265,7 +265,7 @@ public class AssetLabelPrintUtil {
                             .setBorderTop(Border.NO_BORDER);
 
                     Cell imageLabelCell= new Cell(1,2)
-                            .add(new Paragraph(assetCode+"-"+i)
+                            .add(new Paragraph(assetCode)
                                     .setFont(valueFont).setFontSize(print.getFontSizeImageInfo()).setWidth(UnitValue.createPercentValue(100)).setTextAlignment(TextAlignment.CENTER));
                     imageLabelCell.setBorderBottom(Border.NO_BORDER)
                             .setBorderLeft(Border.NO_BORDER)
