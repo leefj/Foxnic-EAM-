@@ -19,7 +19,7 @@ insert into sys_resourze select * from eam_clone.sys_resourze;
 insert into sys_menu select * from eam_clone.sys_menu;
 insert into sys_menu_resource select * from eam_clone.sys_menu_resource;
 
---update
+-- update
 update sys_menu a set hidden=1 where a.id in (select id from sys_menu_bak1 where hidden=1);
 
 

@@ -1,5 +1,4 @@
-drop table sys_user_bak_1;
-create table sys_user_bak_1 as select * from sys_user;
+
 CREATE TABLE `sys_auto_user_predefined` (
                                             `id` varchar(18) NOT NULL COMMENT '主键',
                                             `account` varchar(50) DEFAULT NULL COMMENT '用户',
