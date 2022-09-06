@@ -9,7 +9,7 @@
 
 ### 系统DEMO
 - [Demo] 每天定时由阿里云效自动编译发布部署
-- [Demo] http://eam-demo.rainbooow.com:26788/index.html
+- [Demo] http://eam-demo.rainbooow.com:8089/index.html
 - [Demo] 超级管理员账户:admin 密码:123456  其它账户密码 为 fx9090
 - [Demo] 固定资产管理员(账户):eamadmin 密码:fx9090
 - [Demo] 固定资产普通员工(账户):eamuser 密码:fx9090
