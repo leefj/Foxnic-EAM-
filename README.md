@@ -114,7 +114,8 @@
 - 3、知乎视频资料集合 https://www.zhihu.com/people/leefj/zvideos
 - 4、知乎文档集合 https://www.zhihu.com/people/leefj/posts
 
-
+### 二次开发示例项目
+[Foxnic-Samples](https://gitee.com/LeeFJ/foxnic-samples)
 
 ## EAM系统安装部署
 ### 实施方案
