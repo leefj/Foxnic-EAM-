@@ -187,7 +187,10 @@ foxnic:
         enable: true
         # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
         end-points: http://127.0.0.1:8089,2 | http://127.0.0.1:8089,1
-
+      service-oa:
+        enable: true
+        # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
+        end-points: http://127.0.0.1:8089,2 | http://127.0.0.1:8089,1
 
 logging:
   config: classpath:logback-config.xml

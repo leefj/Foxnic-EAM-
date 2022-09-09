@@ -1,5 +1,6 @@
 server:
   session:
+    # session超时间时间
     timeout: 12000s
   servlet:
     session:
@@ -277,4 +278,4 @@ develop:
   deploy:
     enable: true
     # 可以使用以当前项目为基础的相对路径，指定静态资源自动部署的项目目录
-    projects: ../view/view-workorder,../view/view-cms,../view/view-vehicle,../view/view-customer,../view/view-contract,../view/view-knowledgebase, ../view/view-common, ../view/view-console, ../view/view-datacenter, ../view/view-eam, ../view/view-hrm, ../view/view-ops, ../view/view-mobile
+    projects: ../view/view-oa,../view/view-workorder,../view/view-cms,../view/view-vehicle,../view/view-customer,../view/view-contract,../view/view-knowledgebase, ../view/view-common, ../view/view-console, ../view/view-datacenter, ../view/view-eam, ../view/view-hrm, ../view/view-ops, ../view/view-mobile

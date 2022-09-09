@@ -43,9 +43,9 @@ spring:
         password: ODGx5F84xpWJgfRFnzAaYhViHJqrTO3uxxDZ2lRlZNk=
 #        url: jdbc:mysql://121.43.103.102:3306/eam?tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true
 #        username: root
-#        password: P@sswOracle1
+#        password: P@ssw
         # 启动程序时，在连接池中初始化多少个连接
-        initialSize: 16
+        initialSize: 10
         # 连接池中最多支持多少个活动会话
         maxActive: 128
         # 程序向连接池中请求连接时,超过maxWait的值后，认为本次请求失败，即连接池没有可用连接，单位毫秒，设置-1时表示无限等待
@@ -122,8 +122,7 @@ spring:
       # 是否启用集群模式的 redis
       enable: false
       nodes: 192.168.1.24:6389,192.168.1.24:6479,192.168.1.24:6579
-  #profiles:
-    #active: local
+
 
 foxnic:
   api:
@@ -140,7 +139,7 @@ foxnic:
     # 容许的最大作业延长时间，超出则认为 misfire 发生，单位毫秒
     misfire-threshold: 1000
     # 日志保留天数
-    log-keep-days: 7
+    log-keep-days: 30
   storage:
     mode: disk
     disk:
@@ -279,4 +278,4 @@ develop:
   deploy:
     enable: true
     # 可以使用以当前项目为基础的相对路径，指定静态资源自动部署的项目目录
-    projects: ../view/view-workorder,../view/view-cms,../view/view-vehicle,../view/view-customer,../view/view-contract,../view/view-knowledgebase, ../view/view-common, ../view/view-console, ../view/view-datacenter, ../view/view-eam, ../view/view-hrm, ../view/view-ops, ../view/view-mobile
+    projects: ../view/view-oa,../view/view-workorder,../view/view-cms,../view/view-vehicle,../view/view-customer,../view/view-contract,../view/view-knowledgebase, ../view/view-common, ../view/view-console, ../view/view-datacenter, ../view/view-eam, ../view/view-hrm, ../view/view-ops, ../view/view-mobile

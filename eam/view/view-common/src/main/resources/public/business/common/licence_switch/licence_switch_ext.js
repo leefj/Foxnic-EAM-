@@ -160,17 +160,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                         top.layer.msg(successMessage, {time: 1000});
                         window.module.refreshTableData();
                     } else {
-                        var errs = [];
-                        if (r.errors) {
-                            for (var i = 0; i < r.errors.length; i++) {
-                                if (errs.indexOf(r.errors[i].message) == -1) {
-                                    errs.push(r.errors[i].message);
-                                }
-                            }
-                            top.layer.msg(errs.join("<br>"), {time: 2000});
-                        } else {
-                            top.layer.msg(r.message, {time: 2000});
-                        }
+                        fox.showMessage(r);
                     }
                 }, {delayLoading: 1000, elms: [btn]});
             });
