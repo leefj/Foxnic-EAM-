@@ -35,7 +35,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
                 operHtml=operHtml.replace(/lay-event="revoke-data"/i, "style=\"display:none\"")
                 operHtml=operHtml.replace(/lay-event="for-approval"/i, "style=\"display:none\"")
-
                 //单据临时屏蔽
                 operHtml=operHtml.replace(/lay-event="download-bill"/i, "style=\"display:none\"")
                 document.getElementById("tableOperationTemplate").innerHTML=operHtml;
