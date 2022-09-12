@@ -4,13 +4,16 @@ import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.ops.ServiceCategory;
 import java.util.Date;
 import com.dt.platform.domain.ops.ServiceGroup;
+import org.github.foxnic.web.domain.system.DictItem;
+import java.util.List;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-12 22:05:27
- * @sign A40A00F4003A667E9E3DFA964449C20C
+ * @since 2022-09-11 06:46:18
+ * @sign F5650A086B441E738461391925B4E2B4
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -35,6 +38,16 @@ public class ServiceCategoryMeta {
 	 * 服务分组 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.ServiceCategory,java.lang.String> GROUP_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.ServiceCategory.class ,GROUP_ID, java.lang.String.class, "服务分组", "服务分组", java.lang.String.class, null);
+	
+	/**
+	 * 编码 , 类型: java.lang.String
+	*/
+	public static final String CODE="code";
+	
+	/**
+	 * 编码 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.ServiceCategory,java.lang.String> CODE_PROP = new BeanProperty(com.dt.platform.domain.ops.ServiceCategory.class ,CODE, java.lang.String.class, "编码", "编码", java.lang.String.class, null);
 	
 	/**
 	 * 名称 , 类型: java.lang.String
@@ -157,9 +170,29 @@ public class ServiceCategoryMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.ServiceCategory,com.dt.platform.domain.ops.ServiceGroup> GROUP_PROP = new BeanProperty(com.dt.platform.domain.ops.ServiceCategory.class ,GROUP, com.dt.platform.domain.ops.ServiceGroup.class, "服务分组", "服务分组", com.dt.platform.domain.ops.ServiceGroup.class, null);
 	
 	/**
+	 * labelList , 集合类型: LIST , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final String LABEL_LIST="labelList";
+	
+	/**
+	 * labelList , 集合类型: LIST , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.ServiceCategory,org.github.foxnic.web.domain.system.DictItem> LABEL_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.ServiceCategory.class ,LABEL_LIST, java.util.List.class, "labelList", "labelList", org.github.foxnic.web.domain.system.DictItem.class, null);
+	
+	/**
+	 * labelIds , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String LABEL_IDS="labelIds";
+	
+	/**
+	 * labelIds , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.ServiceCategory,java.lang.String> LABEL_IDS_PROP = new BeanProperty(com.dt.platform.domain.ops.ServiceCategory.class ,LABEL_IDS, java.util.List.class, "labelIds", "labelIds", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , GROUP_ID , NAME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , GROUP };
+	public static final String[] $PROPS={ ID , GROUP_ID , CODE , NAME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , GROUP , LABEL_LIST , LABEL_IDS };
 	
 	/**
 	 * 代理类
@@ -188,6 +221,17 @@ public class ServiceCategoryMeta {
 		public ServiceCategory setGroupId(String groupId) {
 			super.change(GROUP_ID,super.getGroupId(),groupId);
 			super.setGroupId(groupId);
+			return this;
+		}
+		
+		/**
+		 * 设置 编码
+		 * @param code 编码
+		 * @return 当前对象
+		*/
+		public ServiceCategory setCode(String code) {
+			super.change(CODE,super.getCode(),code);
+			super.setCode(code);
 			return this;
 		}
 		
@@ -322,5 +366,66 @@ public class ServiceCategoryMeta {
 			super.setGroup(group);
 			return this;
 		}
+		
+		/**
+		 * 设置 labelList
+		 * @param labelList labelList
+		 * @return 当前对象
+		*/
+		public ServiceCategory setLabelList(List<DictItem> labelList) {
+			super.change(LABEL_LIST,super.getLabelList(),labelList);
+			super.setLabelList(labelList);
+			return this;
+		}
+		
+		/**
+		 * 设置 labelIds
+		 * @param labelIds labelIds
+		 * @return 当前对象
+		*/
+		public ServiceCategory setLabelIds(List<String> labelIds) {
+			super.change(LABEL_IDS,super.getLabelIds(),labelIds);
+			super.setLabelIds(labelIds);
+			return this;
+		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public ServiceCategory clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public ServiceCategory duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setCode(this.getCode());
+			inst.setNotes(this.getNotes());
+			inst.setGroupId(this.getGroupId());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			if(all) {
+				inst.setLabelList(this.getLabelList());
+				inst.setLabelIds(this.getLabelIds());
+				inst.setGroup(this.getGroup());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

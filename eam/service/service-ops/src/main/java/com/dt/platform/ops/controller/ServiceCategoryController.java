@@ -35,6 +35,7 @@ import com.github.foxnic.dao.excel.ValidateResult;
 import java.io.InputStream;
 import com.dt.platform.domain.ops.meta.ServiceCategoryMeta;
 import com.dt.platform.domain.ops.ServiceGroup;
+import org.github.foxnic.web.domain.system.DictItem;
 import io.swagger.annotations.Api;
 import com.github.xiaoymin.knife4j.annotations.ApiSort;
 import io.swagger.annotations.ApiOperation;
@@ -50,7 +51,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 服务类型 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-12 22:05:27
+ * @since 2022-09-11 06:46:19
 */
 
 @Api(tags = "服务类型")
@@ -69,6 +70,7 @@ public class ServiceCategoryController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "473621482614816700"),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.GROUP_ID , value = "服务分组" , required = false , dataTypeClass=String.class , example = "db"),
+		@ApiImplicitParam(name = ServiceCategoryVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "Oracle"),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
@@ -101,7 +103,7 @@ public class ServiceCategoryController extends SuperController {
 		// 引用校验
 		Boolean hasRefer = serviceCategoryService.hasRefers(id);
 		// 判断是否可以删除
-		this.validator().asserts(hasRefer).requireInList("不允许删除当前记录",false);
+		this.validator().asserts(hasRefer).requireEqual("不允许删除当前记录",false);
 		if(this.validator().failure()) {
 			return this.validator().getFirstResult();
 		}
@@ -169,11 +171,11 @@ public class ServiceCategoryController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "473621482614816700"),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.GROUP_ID , value = "服务分组" , required = false , dataTypeClass=String.class , example = "db"),
+		@ApiImplicitParam(name = ServiceCategoryVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "Oracle"),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport( order=4 , ignoreParameters = { ServiceCategoryVOMeta.PAGE_INDEX , ServiceCategoryVOMeta.PAGE_SIZE , ServiceCategoryVOMeta.SEARCH_FIELD , ServiceCategoryVOMeta.FUZZY_FIELD , ServiceCategoryVOMeta.SEARCH_VALUE , ServiceCategoryVOMeta.DIRTY_FIELDS , ServiceCategoryVOMeta.SORT_FIELD , ServiceCategoryVOMeta.SORT_TYPE , ServiceCategoryVOMeta.IDS } )
-	@NotNull(name = ServiceCategoryVOMeta.ID)
 	@SentinelResource(value = ServiceCategoryServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(ServiceCategoryServiceProxy.UPDATE)
 	public Result update(ServiceCategoryVO serviceCategoryVO) {
@@ -189,6 +191,7 @@ public class ServiceCategoryController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "473621482614816700"),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.GROUP_ID , value = "服务分组" , required = false , dataTypeClass=String.class , example = "db"),
+		@ApiImplicitParam(name = ServiceCategoryVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "Oracle"),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
@@ -219,6 +222,7 @@ public class ServiceCategoryController extends SuperController {
 		// join 关联的对象
 		serviceCategoryService.dao().fill(serviceCategory)
 			.with(ServiceCategoryMeta.GROUP)
+			.with(ServiceCategoryMeta.LABEL_LIST)
 			.execute();
 		result.success(true).data(serviceCategory);
 		return result;
@@ -252,6 +256,7 @@ public class ServiceCategoryController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "473621482614816700"),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.GROUP_ID , value = "服务分组" , required = false , dataTypeClass=String.class , example = "db"),
+		@ApiImplicitParam(name = ServiceCategoryVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "Oracle"),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
@@ -273,6 +278,7 @@ public class ServiceCategoryController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "473621482614816700"),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.GROUP_ID , value = "服务分组" , required = false , dataTypeClass=String.class , example = "db"),
+		@ApiImplicitParam(name = ServiceCategoryVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "Oracle"),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
@@ -285,6 +291,7 @@ public class ServiceCategoryController extends SuperController {
 		// join 关联的对象
 		serviceCategoryService.dao().fill(list)
 			.with(ServiceCategoryMeta.GROUP)
+			.with(ServiceCategoryMeta.LABEL_LIST)
 			.execute();
 		result.success(true).data(list);
 		return result;

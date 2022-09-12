@@ -7,14 +7,17 @@ import java.util.Arrays;
 import com.github.foxnic.api.model.CompositeParameter;
 import javax.persistence.Transient;
 import com.github.foxnic.commons.bean.BeanUtil;
+import com.github.foxnic.dao.entity.EntityContext;
+import com.github.foxnic.dao.entity.Entity;
+import java.util.Map;
 
 
 
 /**
  * 服务类型
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-12 22:05:27
- * @sign 531F9B5FF70F6880B7166089FF659F49
+ * @since 2022-09-11 06:46:18
+ * @sign 40324B24626D03DC74B61D8288AC06BA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -261,7 +264,7 @@ public class ServiceCategoryVO extends ServiceCategory {
 		return this;
 	}
 	@Transient
-	private CompositeParameter $compositeParameter;
+	private transient CompositeParameter $compositeParameter;
 	/**
 	 * 获得解析后的复合查询参数
 	 */
@@ -270,5 +273,126 @@ public class ServiceCategoryVO extends ServiceCategory {
 		if($compositeParameter!=null) return  $compositeParameter;
 		$compositeParameter=new CompositeParameter(this.getSearchValue(),BeanUtil.toMap(this));
 		return  $compositeParameter;
+	}
+
+	/**
+	 * 将自己转换成指定类型的PO
+	 * @param poType  PO类型
+	 * @return ServiceCategoryVO , 转换好的 ServiceCategoryVO 对象
+	*/
+	@Transient
+	public <T extends Entity> T toPO(Class<T> poType) {
+		return EntityContext.create(poType, this);
+	}
+
+	/**
+	 * 将自己转换成任意指定类型
+	 * @param pojoType  Pojo类型
+	 * @return ServiceCategoryVO , 转换好的 PoJo 对象
+	*/
+	@Transient
+	public <T> T toPojo(Class<T> pojoType) {
+		if(Entity.class.isAssignableFrom(pojoType)) {
+			return (T)this.toPO((Class<Entity>)pojoType);
+		}
+		try {
+			T pojo=pojoType.newInstance();
+			EntityContext.copyProperties(pojo, this);
+			return pojo;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public ServiceCategoryVO clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public ServiceCategoryVO duplicate(boolean all) {
+		com.dt.platform.domain.ops.meta.ServiceCategoryVOMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.ServiceCategoryVOMeta.$$proxy$$();
+		inst.setCode(this.getCode());
+		inst.setNotes(this.getNotes());
+		inst.setGroupId(this.getGroupId());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		if(all) {
+			inst.setLabelList(this.getLabelList());
+			inst.setLabelIds(this.getLabelIds());
+			inst.setSearchField(this.getSearchField());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setDirtyFields(this.getDirtyFields());
+			inst.setSortField(this.getSortField());
+			inst.setPageSize(this.getPageSize());
+			inst.setIds(this.getIds());
+			inst.setSearchValue(this.getSearchValue());
+			inst.setGroup(this.getGroup());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public ServiceCategoryVO clone(boolean deep) {
+		return EntityContext.clone(ServiceCategoryVO.class,this,deep);
+	}
+
+	/**
+	 * 将 Map 转换成 ServiceCategoryVO
+	 * @param serviceCategoryMap 包含实体信息的 Map 对象
+	 * @return ServiceCategoryVO , 转换好的的 ServiceCategory 对象
+	*/
+	@Transient
+	public static ServiceCategoryVO createFrom(Map<String,Object> serviceCategoryMap) {
+		if(serviceCategoryMap==null) return null;
+		ServiceCategoryVO vo = create();
+		EntityContext.copyProperties(vo,serviceCategoryMap);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 将 Pojo 转换成 ServiceCategoryVO
+	 * @param pojo 包含实体信息的 Pojo 对象
+	 * @return ServiceCategoryVO , 转换好的的 ServiceCategory 对象
+	*/
+	@Transient
+	public static ServiceCategoryVO createFrom(Object pojo) {
+		if(pojo==null) return null;
+		ServiceCategoryVO vo = create();
+		EntityContext.copyProperties(vo,pojo);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 创建一个 ServiceCategoryVO，等同于 new
+	 * @return ServiceCategoryVO 对象
+	*/
+	@Transient
+	public static ServiceCategoryVO create() {
+		return new com.dt.platform.domain.ops.meta.ServiceCategoryVOMeta.$$proxy$$();
 	}
 }

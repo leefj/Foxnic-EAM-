@@ -11,6 +11,7 @@ import java.util.Date;
 import javax.persistence.Transient;
 import java.util.List;
 import org.github.foxnic.web.domain.system.DictItem;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,7 +23,7 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 主机
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-02 07:37:40
+ * @since 2022-09-11 20:19:45
  * @sign BFD357054C7D3CA664167A9FBF69E988
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -985,6 +986,7 @@ public class Host extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public Host setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -1414,7 +1416,69 @@ public class Host extends Entity {
 	*/
 	@Transient
 	public Host clone() {
-		return EntityContext.clone(Host.class,this);
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public Host duplicate(boolean all) {
+		com.dt.platform.domain.ops.meta.HostMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.HostMeta.$$proxy$$();
+		inst.setHostName(this.getHostName());
+		inst.setUserDbUsed(this.getUserDbUsed());
+		inst.setUserDbAdmin(this.getUserDbAdmin());
+		inst.setPasswordStrategyId(this.getPasswordStrategyId());
+		inst.setDirectorUsername(this.getDirectorUsername());
+		inst.setUserOsAdmin(this.getUserOsAdmin());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setHostType(this.getHostType());
+		inst.setOnlineTime(this.getOnlineTime());
+		inst.setOfflineTime(this.getOfflineTime());
+		inst.setId(this.getId());
+		inst.setHostCpu(this.getHostCpu());
+		inst.setUserAppUsed(this.getUserAppUsed());
+		inst.setUserOther(this.getUserOther());
+		inst.setHostBackupInfo(this.getHostBackupInfo());
+		inst.setSystemId(this.getSystemId());
+		inst.setHostConf(this.getHostConf());
+		inst.setHostBackupMethod(this.getHostBackupMethod());
+		inst.setHostIp(this.getHostIp());
+		inst.setHostVip(this.getHostVip());
+		inst.setHostMemory(this.getHostMemory());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setLabels(this.getLabels());
+		inst.setEnvironment(this.getEnvironment());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setPositionId(this.getPositionId());
+		inst.setHostNotes(this.getHostNotes());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setUserOpsOper(this.getUserOpsOper());
+		inst.setArch(this.getArch());
+		inst.setMonitorStatus(this.getMonitorStatus());
+		inst.setStatus(this.getStatus());
+		inst.setHostIpv6(this.getHostIpv6());
+		if(all) {
+			inst.setHostOsIds(this.getHostOsIds());
+			inst.setHostMiddlewareList(this.getHostMiddlewareList());
+			inst.setVoucherList(this.getVoucherList());
+			inst.setHostDbIds(this.getHostDbIds());
+			inst.setInfoSystem(this.getInfoSystem());
+			inst.setHostOsList(this.getHostOsList());
+			inst.setHostDbList(this.getHostDbList());
+			inst.setPosition(this.getPosition());
+			inst.setBackupMethod(this.getBackupMethod());
+			inst.setHostMiddlewareIds(this.getHostMiddlewareIds());
+			inst.setVoucherIds(this.getVoucherIds());
+		}
+		inst.clearModifies();
+		return inst;
 	}
 
 	/**
@@ -1433,7 +1497,9 @@ public class Host extends Entity {
 	@Transient
 	public static Host createFrom(Map<String,Object> hostMap) {
 		if(hostMap==null) return null;
-		Host po = EntityContext.create(Host.class, hostMap);
+		Host po = create();
+		EntityContext.copyProperties(po,hostMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -1445,7 +1511,9 @@ public class Host extends Entity {
 	@Transient
 	public static Host createFrom(Object pojo) {
 		if(pojo==null) return null;
-		Host po = EntityContext.create(Host.class,pojo);
+		Host po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -1455,6 +1523,6 @@ public class Host extends Entity {
 	*/
 	@Transient
 	public static Host create() {
-		return EntityContext.create(Host.class);
+		return new com.dt.platform.domain.ops.meta.HostMeta.$$proxy$$();
 	}
 }

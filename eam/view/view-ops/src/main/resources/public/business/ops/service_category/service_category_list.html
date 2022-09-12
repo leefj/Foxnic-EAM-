@@ -2,7 +2,7 @@
 /**
  * 服务类型 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-12 22:05:27
+ * @since 2022-09-11 06:46:19
  */
  -->
  <!DOCTYPE html>
@@ -44,6 +44,8 @@
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('服务分组')}" class="search-label groupId-label">服务分组</span><span class="search-colon">:</span></div>
                         <div id="groupId" th:data="${'/service-ops/ops-service-group/query-list'}" style="width:150px" extraParam="{}"></div>
                     </div>
+                    <!-- 编码 , code ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 标签 , labelIds ,typeName=select_box, isHideInSearch=true -->
                     <!-- 名称 , name ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('名称')}" class="search-label name-label">名称</span><span class="search-colon">:</span></div>
@@ -82,7 +84,6 @@
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
         <button th:if="${perm.checkAuth('ops_service_category:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建')}">新建</span></button>
-        <button th:if="${perm.checkAuth('ops_service_category:delete-by-ids')}" id="delete-button" class="layui-btn icon-btn layui-btn-danger layui-btn-sm batch-delete-button " lay-event="batch-del"><i class="layui-icon">&#xe67e;</i><span th:text="${lang.translate('删除')}">删除</span></button>
     </div>
 </script>
 

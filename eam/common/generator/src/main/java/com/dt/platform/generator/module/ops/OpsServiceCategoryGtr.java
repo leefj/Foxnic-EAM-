@@ -4,17 +4,20 @@ import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.ops.ServiceTypeEnum;
 import com.dt.platform.domain.ops.InformationSystem;
 import com.dt.platform.domain.ops.ServiceGroup;
-import com.dt.platform.domain.ops.meta.HostMeta;
-import com.dt.platform.domain.ops.meta.ServiceCategoryMeta;
-import com.dt.platform.domain.ops.meta.ServiceGroupMeta;
-import com.dt.platform.domain.ops.meta.ServiceInfoMeta;
+import com.dt.platform.domain.ops.meta.*;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.ops.page.ServiceCategoryPageController;
+import com.dt.platform.ops.service.impl.HostDbServiceImpl;
+import com.dt.platform.ops.service.impl.ServiceCategoryLabelServiceImpl;
 import com.dt.platform.proxy.ops.ServiceCategoryServiceProxy;
 import com.dt.platform.proxy.ops.ServiceGroupServiceProxy;
 import com.dt.platform.proxy.ops.ServiceInfoServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 import com.dt.platform.constants.db.OpsTables;
+import org.github.foxnic.web.domain.system.DictItem;
+import org.github.foxnic.web.domain.system.meta.DictItemMeta;
+import org.github.foxnic.web.proxy.system.DictItemServiceProxy;
+
 public class OpsServiceCategoryGtr extends BaseCodeGenerator{
 
 
@@ -26,6 +29,8 @@ public class OpsServiceCategoryGtr extends BaseCodeGenerator{
         System.out.println(this.getClass().getName());
 
         cfg.getPoClassFile().addSimpleProperty(ServiceGroup.class,"group","服务分组","服务分组");
+        cfg.getPoClassFile().addListProperty(DictItem.class,"labelList","labelList","labelList");
+        cfg.getPoClassFile().addListProperty(String.class,"labelIds","labelIds","labelIds");
 
         cfg.view().field(OpsTables.OPS_SERVICE_CATEGORY.ID).basic().hidden(true);
         cfg.view().field(OpsTables.OPS_SERVICE_CATEGORY.CREATE_TIME).table().hidden();
@@ -41,7 +46,19 @@ public class OpsServiceCategoryGtr extends BaseCodeGenerator{
                 .toolbar(false).filter(true).paging(false).defaultIndex(0)
                 .fillWith(ServiceCategoryMeta.GROUP).muliti(false);
 
+
+        cfg.view().field(ServiceCategoryMeta.LABEL_IDS)
+                .basic().label("标签")
+                .table().sort(false)
+                .form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=ops_service_category_label")
+                .valueField(DictItemMeta.CODE).textField(DictItemMeta.LABEL)
+                .toolbar(false).paging(false)
+                .fillWith(ServiceCategoryMeta.LABEL_LIST).muliti(true);
+
         cfg.view().field(OpsTables.OPS_SERVICE_CATEGORY.NAME)
+                .form().validate().required();
+
+        cfg.view().field(OpsTables.OPS_SERVICE_CATEGORY.CODE)
                 .form().validate().required();
 
         cfg.view().formWindow().bottomSpace(80);
@@ -59,6 +76,23 @@ public class OpsServiceCategoryGtr extends BaseCodeGenerator{
         cfg.view().search().labelWidth(3,Config.searchLabelWidth);
 
         cfg.view().search().inputWidth(Config.searchInputWidth);
+
+        cfg.service().addRelationSaveAction(ServiceCategoryLabelServiceImpl.class, ServiceCategoryVOMeta.LABEL_IDS);
+
+
+        cfg.view().formWindow().width(Config.baseFormWidth);
+        cfg.view().formWindow().bottomSpace(50);
+        cfg.view().list().disableBatchDelete();
+        cfg.view().form().addGroup(null,
+                new Object[] {
+                        OpsTables.OPS_SERVICE_CATEGORY.CODE,
+                        OpsTables.OPS_SERVICE_CATEGORY.NAME,
+                        OpsTables.OPS_SERVICE_CATEGORY.GROUP_ID,
+                        ServiceCategoryMeta.LABEL_IDS,
+                        OpsTables.OPS_SERVICE_CATEGORY.NOTES,
+
+                }
+        );
 
 
         //文件生成覆盖模式

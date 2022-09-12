@@ -1,5 +1,8 @@
 
 
+Foxnic-EAM 2.2.0版本
+1、
+
 
 Foxnic-EAM 2.1.0版本
 1、资产位置修改为树形结构
@@ -18,7 +21,7 @@ Foxnic-EAM 1.0.12版本
 
 
 
-Foxnic-EAM  版本
+Foxnic-EAM 1.0.11版本
 1、新增根据资产单据入库
 2、新增基于在线Web Excel方式入库
 3、新增资产标签模版在线设置

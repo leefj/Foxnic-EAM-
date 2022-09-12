@@ -8,7 +8,12 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import org.github.foxnic.web.domain.system.DictItem;
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 
@@ -17,8 +22,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 服务类型
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-12 22:05:27
- * @sign A40A00F4003A667E9E3DFA964449C20C
+ * @since 2022-09-11 06:46:18
+ * @sign F5650A086B441E738461391925B4E2B4
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -41,6 +46,12 @@ public class ServiceCategory extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="服务分组" , notes = "服务分组")
 	private String groupId;
+	
+	/**
+	 * 编码：编码
+	*/
+	@ApiModelProperty(required = false,value="编码" , notes = "编码")
+	private String code;
 	
 	/**
 	 * 名称：名称
@@ -117,6 +128,18 @@ public class ServiceCategory extends Entity {
 	private ServiceGroup group;
 	
 	/**
+	 * labelList：labelList
+	*/
+	@ApiModelProperty(required = false,value="labelList" , notes = "labelList")
+	private List<DictItem> labelList;
+	
+	/**
+	 * labelIds：labelIds
+	*/
+	@ApiModelProperty(required = false,value="labelIds" , notes = "labelIds")
+	private List<String> labelIds;
+	
+	/**
 	 * 获得 主键<br>
 	 * 主键
 	 * @return 主键
@@ -151,6 +174,25 @@ public class ServiceCategory extends Entity {
 	*/
 	public ServiceCategory setGroupId(String groupId) {
 		this.groupId=groupId;
+		return this;
+	}
+	
+	/**
+	 * 获得 编码<br>
+	 * 编码
+	 * @return 编码
+	*/
+	public String getCode() {
+		return code;
+	}
+	
+	/**
+	 * 设置 编码
+	 * @param code 编码
+	 * @return 当前对象
+	*/
+	public ServiceCategory setCode(String code) {
+		this.code=code;
 		return this;
 	}
 	
@@ -295,6 +337,7 @@ public class ServiceCategory extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public ServiceCategory setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -411,6 +454,66 @@ public class ServiceCategory extends Entity {
 		this.group=group;
 		return this;
 	}
+	
+	/**
+	 * 获得 labelList<br>
+	 * labelList
+	 * @return labelList
+	*/
+	public List<DictItem> getLabelList() {
+		return labelList;
+	}
+	
+	/**
+	 * 设置 labelList
+	 * @param labelList labelList
+	 * @return 当前对象
+	*/
+	public ServiceCategory setLabelList(List<DictItem> labelList) {
+		this.labelList=labelList;
+		return this;
+	}
+	
+	/**
+	 * 添加 labelList
+	 * @param label labelList
+	 * @return 当前对象
+	*/
+	public ServiceCategory addLabel(DictItem... label) {
+		if(this.labelList==null) labelList=new ArrayList<>();
+		this.labelList.addAll(Arrays.asList(label));
+		return this;
+	}
+	
+	/**
+	 * 获得 labelIds<br>
+	 * labelIds
+	 * @return labelIds
+	*/
+	public List<String> getLabelIds() {
+		return labelIds;
+	}
+	
+	/**
+	 * 设置 labelIds
+	 * @param labelIds labelIds
+	 * @return 当前对象
+	*/
+	public ServiceCategory setLabelIds(List<String> labelIds) {
+		this.labelIds=labelIds;
+		return this;
+	}
+	
+	/**
+	 * 添加 labelIds
+	 * @param labelId labelIds
+	 * @return 当前对象
+	*/
+	public ServiceCategory addLabelId(String... labelId) {
+		if(this.labelIds==null) labelIds=new ArrayList<>();
+		this.labelIds.addAll(Arrays.asList(labelId));
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -442,6 +545,52 @@ public class ServiceCategory extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public ServiceCategory clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public ServiceCategory duplicate(boolean all) {
+		com.dt.platform.domain.ops.meta.ServiceCategoryMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.ServiceCategoryMeta.$$proxy$$();
+		inst.setCode(this.getCode());
+		inst.setNotes(this.getNotes());
+		inst.setGroupId(this.getGroupId());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		if(all) {
+			inst.setLabelList(this.getLabelList());
+			inst.setLabelIds(this.getLabelIds());
+			inst.setGroup(this.getGroup());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public ServiceCategory clone(boolean deep) {
+		return EntityContext.clone(ServiceCategory.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 ServiceCategory
 	 * @param serviceCategoryMap 包含实体信息的 Map 对象
 	 * @return ServiceCategory , 转换好的的 ServiceCategory 对象
@@ -449,7 +598,9 @@ public class ServiceCategory extends Entity {
 	@Transient
 	public static ServiceCategory createFrom(Map<String,Object> serviceCategoryMap) {
 		if(serviceCategoryMap==null) return null;
-		ServiceCategory po = EntityContext.create(ServiceCategory.class, serviceCategoryMap);
+		ServiceCategory po = create();
+		EntityContext.copyProperties(po,serviceCategoryMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -461,7 +612,9 @@ public class ServiceCategory extends Entity {
 	@Transient
 	public static ServiceCategory createFrom(Object pojo) {
 		if(pojo==null) return null;
-		ServiceCategory po = EntityContext.create(ServiceCategory.class,pojo);
+		ServiceCategory po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -471,6 +624,6 @@ public class ServiceCategory extends Entity {
 	*/
 	@Transient
 	public static ServiceCategory create() {
-		return EntityContext.create(ServiceCategory.class);
+		return new com.dt.platform.domain.ops.meta.ServiceCategoryMeta.$$proxy$$();
 	}
 }

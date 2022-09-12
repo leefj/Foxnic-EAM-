@@ -266,7 +266,9 @@ public class OpsHostGtr extends BaseCodeGenerator{
                         OpsTables.OPS_HOST.HOST_VIP
                 },
                 new Object[] {
+                        OpsTables.OPS_HOST.HOST_IPV6,
                         OpsTables.OPS_HOST.HOST_CONF
+
                 }
         );
         cfg.view().form().addGroup("系统、数据库和中间件",
@@ -300,7 +302,7 @@ public class OpsHostGtr extends BaseCodeGenerator{
             cfg.view().form().addGroup(null,
 
                     new Object[] {
-                            OpsTables.OPS_HOST.HOST_IPV6,
+
                             OpsTables.OPS_HOST.USER_OTHER,
 
                     }

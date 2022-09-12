@@ -48,7 +48,66 @@ public class OpsRelationManager extends RelationManager {
         this.setupAutoTask();
         this.setupAutoBatch();
 
+        this.setupDbInfo();
+        this.setupDbBackupInfo();
+        this.setupDbHostExcude();
+
+        this.setupDbBackupRecord();
     }
+
+    public void setupDbBackupRecord() {
+
+        this.property(DbBackupRecordMeta.DB_PROP)
+                .using(OpsTables.OPS_DB_BACKUP_RECORD.DB_ID).join(OpsTables.OPS_DB_INFO.ID);
+
+
+        this.property(DbBackupRecordMeta.DB_TYPE_PROP)
+                .using(OpsTables.OPS_DB_BACKUP_RECORD.DB_ID).join(OpsTables.OPS_DB_INFO.ID)
+               .using(OpsTables.OPS_DB_INFO.TYPE_ID).join(OpsTables.OPS_SERVICE_INFO.ID);
+
+
+        this.property(DbBackupRecordMeta.HOST_PROP)
+                .using(OpsTables.OPS_DB_BACKUP_RECORD.DB_ID).join(OpsTables.OPS_DB_INFO.ID)
+                .using(OpsTables.OPS_DB_INFO.HOST_ID).join(OpsTables.OPS_HOST.ID);
+
+        this.property(DbBackupRecordMeta.BACKUP_INFO_PROP)
+                .using(OpsTables.OPS_DB_BACKUP_RECORD.DB_BK_ID).join(OpsTables.OPS_DB_BACKUP_INFO.ID);
+
+
+    }
+    public void setupDbHostExcude() {
+        this.property(HostExByDbMeta.HOST_PROP)
+                .using(OpsTables.OPS_HOST_EX_BY_DB.HOST_ID).join(OpsTables.OPS_HOST.ID);
+    }
+
+    public void setupDbInfo() {
+        this.property(DbInfoMeta.BACKUP_INFO_LIST_PROP)
+                .using(OpsTables.OPS_DB_INFO.ID).join(OpsTables.OPS_DB_BACKUP_INFO.DATABASE_ID);
+
+        this.property(DbInfoMeta.HOST_PROP)
+                .using(OpsTables.OPS_DB_INFO.HOST_ID).join(OpsTables.OPS_HOST.ID);
+
+        this.property(DbInfoMeta.TYPE_PROP)
+                .using(OpsTables.OPS_DB_INFO.TYPE_ID).join(OpsTables.OPS_SERVICE_INFO.ID);
+
+    }
+
+    public void setupDbBackupInfo() {
+
+        this.property(DbBackupInfoMeta.HOST_PROP)
+                .using(OpsTables.OPS_DB_BACKUP_INFO.DATABASE_ID).join(OpsTables.OPS_DB_INFO.ID)
+                .using(OpsTables.OPS_DB_INFO.HOST_ID).join(OpsTables.OPS_HOST.ID);
+
+        this.property(DbBackupInfoMeta.DB_PROP)
+                .using(OpsTables.OPS_DB_BACKUP_INFO.DATABASE_ID).join(OpsTables.OPS_DB_INFO.ID);
+
+        this.property(DbBackupInfoMeta.DB_TYPE_PROP)
+                .using(OpsTables.OPS_DB_BACKUP_INFO.DATABASE_ID).join(OpsTables.OPS_DB_INFO.ID)
+                .using(OpsTables.OPS_DB_INFO.TYPE_ID).join(OpsTables.OPS_SERVICE_INFO.ID);
+
+
+    }
+
     public void setupAutoBatch() {
         this.property(AutoBatchMeta.NODE_LIST_PROP)
                 .using(OpsTables.OPS_AUTO_BATCH.ID).join(OpsTables.OPS_AUTO_NODE_SELECT.OWNER_ID)
@@ -227,6 +286,10 @@ public class OpsRelationManager extends RelationManager {
         this.property(ServiceCategoryMeta.GROUP_PROP)
                 .using(OpsTables.OPS_SERVICE_CATEGORY.GROUP_ID).join(OpsTables.OPS_SERVICE_GROUP.CODE);
 
+        this.property(ServiceCategoryMeta.LABEL_LIST_PROP)
+                .using(OpsTables.OPS_SERVICE_CATEGORY.ID).join(OpsTables.OPS_SERVICE_CATEGORY_LABEL.CATEGORY_ID)
+                .using(OpsTables.OPS_SERVICE_CATEGORY_LABEL.LABEL_CODE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='ops_service_category_label'");
 
     }
 

@@ -36,7 +36,15 @@ public class HostPageController extends ViewController {
 		}
 		return proxy;
 	}
-	
+
+	/**
+	 * 主机 功能主页面
+	 */
+	@RequestMapping("/host_report_list.html")
+	public String reportList(Model model,HttpServletRequest request) {
+		return prefix+"/host_report_list";
+	}
+
 	/**
 	 * 主机 功能主页面
 	 */

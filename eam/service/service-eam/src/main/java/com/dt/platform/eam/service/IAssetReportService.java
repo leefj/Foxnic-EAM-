@@ -20,7 +20,9 @@ public interface IAssetReportService extends ISuperService<Asset> {
       JSONArray queryCategoryStatusData(Asset sample);
 
       Result<JSONObject> queryAssetDataByLabel(String label);
+
       Result<JSONObject> dashboard();
+
       Result<JSONObject> dashboardMro();
 
 }

@@ -28,7 +28,6 @@ public class OpsServiceGroupGtr extends BaseCodeGenerator{
         cfg.view().search().inputLayout(
                 new Object[]{
                         OpsTables.OPS_SERVICE_GROUP.NAME,
-
                 }
         );
 
@@ -44,6 +43,8 @@ public class OpsServiceGroupGtr extends BaseCodeGenerator{
                         OpsTables.OPS_SERVICE_GROUP.CODE,
                 }
         );
+
+
 
 
         //文件生成覆盖模式

@@ -59,7 +59,6 @@ public interface IAssetDataService extends ISuperService<Asset> {
 
 	PagedList<Asset> queryAssetPagedList(List<String> ids,AssetVO asset);
 
-
 	List<Asset> queryAssetList(List<String> ids, AssetVO asset) ;
 
 

@@ -1,7 +1,7 @@
 /**
  * 服务类型 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-12 22:05:27
+ * @since 2022-09-11 06:46:19
  */
 
 layui.config({

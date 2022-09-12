@@ -1,6 +1,9 @@
 package com.dt.platform.ops.service.impl;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.DictEnum;
 import com.dt.platform.constants.enums.eam.AssetDataExportColumnEnum;
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
@@ -98,7 +101,22 @@ public class OpsDataServiceImpl extends SuperService<Host> implements IOpsDataSe
 
 
 
-
+	//主机总数量
+	public static String HOST_COUNT="host_count";
+	//下线主机数量
+	public static String HOST_OFFLINE_COUNT="host_offline_count";
+	//数据库主机数量
+	public static String HOST_DATABASE_COUNT="host_database_count";
+	//主机业务分类
+	public static String HOST_TYPE="host_type";
+	//主机备份方式
+	public static String HOST_BACKUP_METHOD="host_backup_method";
+	//主机操作系统
+	public static String HOST_OS_TYPE="host_os_type";
+	//主机运行环境
+	public static String HOST_ENV="host_env";
+	//上线时间
+	public static String HOST_ONLINE_TIME="host_online_time";
 
 	@Override
 	public List<Host> queryHostList(HostVO host) {
@@ -425,6 +443,189 @@ public class OpsDataServiceImpl extends SuperService<Host> implements IOpsDataSe
 		}
 		return key;
 		//这个key肯定是最后一个满足该条件的key.
+	}
+
+
+
+
+	@Override
+	public Result<JSONObject> queryHostData(String codes) {
+		System.out.println("process codes:"+codes);
+		JSONObject result=new JSONObject();
+		String[] codeArr=codes.split(",");
+		for(int i=0;i<codeArr.length;i++){
+			System.out.println("process data:"+codeArr[i]);
+			result.put(codeArr[i],queryHostDataByCode(codeArr[i]));
+		}
+		System.out.println(result);
+		Result<JSONObject> r=new Result<>();
+		r.data(result);
+		r.success();
+		return r;
+	}
+
+	public String hostDefineInfoSql="select aa.id service_info_id2,aa.name service_name,bb.name category_name,bb.code category_code ,cc.name group_name,cc.code group_code from ops_service_info aa\n" +
+			"left join ops_service_category bb\n" +
+			"on aa.service_category_id=bb.id\n" +
+			"left join ops_service_group cc\n" +
+			"on aa.group_id= cc.code \n" +
+			"where aa.group_id='os'";
+
+
+	public String hostInfoDetail="select * from (\n" +
+			"select a.*,b.service_info_id from ops_host a,ops_host_os b\n" +
+			"where a.deleted=0 and a.arch='0' and a.environment='prod'\n" +
+			"and a.id=b.host_id\n" +
+			")T1 \n" +
+			"left join (\n" +
+			"select aa.id service_info_id2,aa.name service_name,bb.name category_name,bb.code category_code ,cc.name group_name,cc.code group_code \n" +
+			"from ops_service_info aa \n" +
+			"left join ops_service_category bb\n" +
+			"on aa.service_category_id=bb.id\t\t\n" +
+			"left join ops_service_group cc\n" +
+			"on aa.group_id= cc.code \n" +
+			"where aa.group_id='os'\n" +
+			")T2 \n" +
+			"on T1.service_info_id=T2.service_info_id2";
+
+	private JSONObject queryHostDataByCode(String code) {
+		JSONObject result=new JSONObject();
+		if(HOST_COUNT.equals(code)) {
+			result = queryHostDataByHostCount();
+		}else if(HOST_DATABASE_COUNT.equals(code)){
+			result = queryHostDataByHostDataBaseCount();
+		}else if(HOST_OFFLINE_COUNT.equals(code)){
+			result = queryHostDataByHostOfflineCount();
+		}else if(HOST_TYPE.equals(code)){
+			JSONArray data = queryHostDataByHostType();
+			result.put("data",data);
+			JSONArray labelList=new JSONArray();
+			JSONArray dataList=new JSONArray();
+			JSONArray pieData=new JSONArray();
+			for(int i=0;i<data.size();i++){
+				JSONObject pie=new JSONObject();
+				String name=data.getJSONObject(i).getString("hostTypeName");
+				if(StringUtil.isBlank(name)){
+					name="未设置";
+				}
+				pie.put("name",name);
+				pie.put("value",data.getJSONObject(i).getInteger("cnt"));
+				pieData.add(pie);
+				labelList.add(name);
+				dataList.add(data.getJSONObject(i).getInteger("cnt"));
+			}
+			result.put("labelList",labelList);
+			result.put("dataList",dataList);
+			result.put("pieData",pieData);
+
+		}else if(HOST_OS_TYPE.equals(code)){
+			JSONArray data = queryHostDataByHostOsType();
+			result.put("data",data);
+			JSONArray labelList=new JSONArray();
+			JSONArray dataList=new JSONArray();
+			JSONArray pieData=new JSONArray();
+			for(int i=0;i<data.size();i++){
+				JSONObject pie=new JSONObject();
+				String name=data.getJSONObject(i).getString("categoryCode");
+				if(StringUtil.isBlank(name)){
+					name="未设置";
+				}
+				pie.put("name",name);
+				pie.put("value",data.getJSONObject(i).getInteger("cnt"));
+				pieData.add(pie);
+				labelList.add(name);
+				dataList.add(data.getJSONObject(i).getInteger("cnt"));
+			}
+			result.put("labelList",labelList);
+			result.put("dataList",dataList);
+			result.put("pieData",pieData);
+		}else if(HOST_ONLINE_TIME.equals(code)){
+			result = queryHostDataByHostOnlineTime();
+		}else if(HOST_BACKUP_METHOD.equals(code)){
+			JSONArray data = queryHostDataByHostBackupMethod();
+			result.put("data",data);
+			JSONArray labelList=new JSONArray();
+			JSONArray dataList=new JSONArray();
+			JSONArray pieData=new JSONArray();
+			for(int i=0;i<data.size();i++){
+				JSONObject pie=new JSONObject();
+				String name=data.getJSONObject(i).getString("hostBackupMethodName");
+				if(StringUtil.isBlank(name)){
+					name="未设置";
+				}
+				pie.put("name",name);
+				pie.put("value",data.getJSONObject(i).getInteger("cnt"));
+				pieData.add(pie);
+				labelList.add(name);
+				dataList.add(data.getJSONObject(i).getInteger("cnt"));
+			}
+			result.put("labelList",labelList);
+			result.put("dataList",dataList);
+			result.put("pieData",pieData);
+
+		}
+		return result;
+	}
+
+	private JSONObject queryHostDataByHostCount(){
+		String sql="select count(1) cnt from ops_host where deleted=0 and arch='0' and environment='prod'";
+		JSONObject res=new JSONObject();
+		res.put("count",dao.queryRecord(sql).getInteger("cnt"));
+		return res;
+	}
+
+
+	private JSONObject queryHostDataByHostOfflineCount(){
+		String sql="select count(1) cnt from ops_host where deleted=0 and arch='0' and environment='prod' and status<>'1'";
+		JSONObject res=new JSONObject();
+		res.put("count",dao.queryRecord(sql).getInteger("cnt"));
+		return res;
+	}
+
+	/*统计在线的节点，生产环境，且非归档*/
+	private JSONObject queryHostDataByHostDataBaseCount(){
+		String sql="select count(1) cnt from ops_host a,ops_host_db b\n" +
+				"where a.deleted=0 and a.arch='0' and a.environment='prod'\n" +
+				"and a.id=b.host_id\n" +
+				"and b.deleted=0\n" +
+				"and b.service_info_id is not null\n" +
+				"and b.service_info_id <>''\n";
+		JSONObject res=new JSONObject();
+		res.put("count",dao.queryRecord(sql).getInteger("cnt"));
+		return res;
+	}
+
+	/*统计在线的节点，生产环境，且非归档*/
+	private JSONArray queryHostDataByHostType(){
+		String sql="\n" +
+				"select \n" +
+				"(select label from sys_dict_item dict where dict.dict_code='ops_host_type' and dict.code=tab.host_type) host_type_name,\n" +
+				"host_type ,count(1) cnt from ("+hostInfoDetail+") tab group by host_type order by 3 desc";
+		return dao.query(sql).toJSONArrayWithJSONObject();
+
+	}
+
+	/*统计在线的节点，生产环境，且非归档*/
+	private JSONArray queryHostDataByHostBackupMethod(){
+		String sql="\n" +
+				"select \n" +
+				"(select label from sys_dict_item dict where dict.dict_code='ops_host_backup_method' and dict.code=tab.host_backup_method) host_backup_method_name,\n" +
+				"host_backup_method ,count(1) cnt from ("+hostInfoDetail+") tab group by host_backup_method order by 3 desc";
+		return dao.query(sql).toJSONArrayWithJSONObject();
+
+	}
+
+
+	/*统计在线的节点，生产环境，且非归档*/
+	private JSONArray queryHostDataByHostOsType(){
+		String sql="select category_code,count(1) cnt from ("+hostInfoDetail+" ) tab group by category_code order by 2 desc\n";
+		return dao.query(sql).toJSONArrayWithJSONObject();
+	}
+
+	/*统计在线的节点，生产环境，且非归档*/
+	private JSONObject queryHostDataByHostOnlineTime(){
+
+		return null;
 	}
 
 

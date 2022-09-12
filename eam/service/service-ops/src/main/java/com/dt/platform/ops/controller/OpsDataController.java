@@ -3,6 +3,7 @@ package com.dt.platform.ops.controller;
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.fastjson.JSONObject;
 import com.deepoove.poi.util.PoitlIOUtils;
 import com.dt.platform.constants.enums.ops.OpsOperateEnum;
 import com.dt.platform.domain.ops.DbInstanceVO;
@@ -50,7 +51,7 @@ import java.util.Map;
 public class OpsDataController extends SuperController {
 
     @Autowired
-    IOpsDataService opsDatService;
+    IOpsDataService opsDataService;
 
     /**
      * 导出主机
@@ -93,9 +94,9 @@ public class OpsDataController extends SuperController {
             return  ErrorDesc.failure().message("获取模板文件失败");
         }
 
-        File f=opsDatService.saveTempFile(inputstream,"TMP_"+code+".xls");
+        File f=opsDataService.saveTempFile(inputstream,"TMP_"+code+".xls");
         System.out.println(f.getPath());
-        Map<String,Object> map= opsDatService.queryHostMap(opsDatService.queryHostList(sample));
+        Map<String,Object> map= opsDataService.queryHostMap(opsDataService.queryHostList(sample));
         TemplateExportParams templateExportParams = new TemplateExportParams(f.getPath());
         Workbook workbook = ExcelExportUtil.exportExcel(templateExportParams, map);
         response.setCharacterEncoding("UTF-8");
@@ -125,9 +126,9 @@ public class OpsDataController extends SuperController {
         if(inputstream==null){
             return  ErrorDesc.failure().message("获取模板文件失败");
         }
-        File f=opsDatService.saveTempFile(inputstream,"TMP_"+code+".xls");
+        File f=opsDataService.saveTempFile(inputstream,"TMP_"+code+".xls");
         System.out.println(f.getPath());
-        Map<String,Object> map= opsDatService.queryInformationSystemMap(opsDatService.queryInformationSystemList(sample));
+        Map<String,Object> map= opsDataService.queryInformationSystemMap(opsDataService.queryInformationSystemList(sample));
         TemplateExportParams templateExportParams = new TemplateExportParams(f.getPath());
         Workbook workbook = ExcelExportUtil.exportExcel(templateExportParams, map);
         response.setCharacterEncoding("UTF-8");
@@ -156,9 +157,9 @@ public class OpsDataController extends SuperController {
         if(inputstream==null){
             return  ErrorDesc.failure().message("获取模板文件失败");
         }
-        File f=opsDatService.saveTempFile(inputstream,"TMP_"+code+".xls");
+        File f=opsDataService.saveTempFile(inputstream,"TMP_"+code+".xls");
         System.out.println(f.getPath());
-        Map<String,Object> map= opsDatService.queryDatabaseInstanceMap(opsDatService.queryDatabaseInstanceList(sample));
+        Map<String,Object> map= opsDataService.queryDatabaseInstanceMap(opsDataService.queryDatabaseInstanceList(sample));
         TemplateExportParams templateExportParams = new TemplateExportParams(f.getPath());
         Workbook workbook = ExcelExportUtil.exportExcel(templateExportParams, map);
         response.setCharacterEncoding("UTF-8");
@@ -175,4 +176,15 @@ public class OpsDataController extends SuperController {
     }
 
 
+
+    /**
+     * 主机数据
+     */
+    @ApiOperation(value = "主机数据")
+    @ApiOperationSupport(order=4)
+    @SentinelResource(value = OpsDataServiceProxy.QUERY_HOST_DATA , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+    @PostMapping(OpsDataServiceProxy.QUERY_HOST_DATA)
+    public Result<JSONObject> queryHostData(String code) throws Exception {
+        return opsDataService.queryHostData(code);
+    }
 }

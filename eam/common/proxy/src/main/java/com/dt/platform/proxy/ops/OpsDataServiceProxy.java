@@ -50,6 +50,12 @@ public interface OpsDataServiceProxy {
 
 
 	/**
+	 *获取主机
+	 */
+	public static final String QUERY_HOST_DATA = API_PREFIX + "query-host-data";
+
+
+	/**
 	 * 控制器类名
 	 * */
 	public static final String CONTROLLER_CLASS_NAME="com.dt.platform.ops.controller.OpsDataController";

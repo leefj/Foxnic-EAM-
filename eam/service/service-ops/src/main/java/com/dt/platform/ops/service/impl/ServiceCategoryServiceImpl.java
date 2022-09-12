@@ -28,6 +28,8 @@ import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.meta.DBColumnMeta;
 import com.github.foxnic.sql.expr.Select;
 import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import com.dt.platform.ops.service.IServiceCategoryService;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import java.util.Date;
@@ -38,7 +40,7 @@ import java.util.Map;
  * 服务类型 服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-12 22:05:27
+ * @since 2022-09-11 06:46:18
 */
 
 
@@ -56,6 +58,8 @@ public class ServiceCategoryServiceImpl extends SuperService<ServiceCategory> im
 	 * */
 	public DAO dao() { return dao; }
 
+	@Autowired 
+	private ServiceCategoryLabelServiceImpl serviceCategoryLabelServiceImpl;
 
 
 	@Override
@@ -71,8 +75,13 @@ public class ServiceCategoryServiceImpl extends SuperService<ServiceCategory> im
 	 * @return 结果 , 如果失败返回 false，成功返回 true
 	 */
 	@Override
+	@Transactional
 	public Result insert(ServiceCategory serviceCategory,boolean throwsException) {
 		Result r=super.insert(serviceCategory,throwsException);
+		//保存关系
+		if(r.success()) {
+			serviceCategoryLabelServiceImpl.saveRelation(serviceCategory.getId(), serviceCategory.getLabelIds());
+		}
 		return r;
 	}
 
@@ -82,6 +91,7 @@ public class ServiceCategoryServiceImpl extends SuperService<ServiceCategory> im
 	 * @return 插入是否成功
 	 * */
 	@Override
+	@Transactional
 	public Result insert(ServiceCategory serviceCategory) {
 		return this.insert(serviceCategory,true);
 	}
@@ -149,6 +159,7 @@ public class ServiceCategoryServiceImpl extends SuperService<ServiceCategory> im
 	 * @return 保存是否成功
 	 * */
 	@Override
+	@Transactional
 	public Result update(ServiceCategory serviceCategory , SaveMode mode) {
 		return this.update(serviceCategory,mode,true);
 	}
@@ -161,8 +172,13 @@ public class ServiceCategoryServiceImpl extends SuperService<ServiceCategory> im
 	 * @return 保存是否成功
 	 * */
 	@Override
+	@Transactional
 	public Result update(ServiceCategory serviceCategory , SaveMode mode,boolean throwsException) {
 		Result r=super.update(serviceCategory , mode , throwsException);
+		//保存关系
+		if(r.success()) {
+			serviceCategoryLabelServiceImpl.saveRelation(serviceCategory.getId(), serviceCategory.getLabelIds());
+		}
 		return r;
 	}
 

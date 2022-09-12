@@ -61,7 +61,6 @@ public class OpsDbInstanceGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_DB_INSTANCE.NAME).form().validate().required();
 
 
-
         cfg.view().field(OpsTables.OPS_DB_INSTANCE.DATABASE_ID).basic().label("数据库")
                 .form().validate().required()
                 .form().selectBox().queryApi(ServiceInfoServiceProxy.QUERY_LIST)
@@ -76,7 +75,7 @@ public class OpsDbInstanceGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_DB_INSTANCE.BACKUP_STATUS).basic().label("备份状态")
                 .form().selectBox().dict(DictEnum.OPS_DB_BACKUP_STATUS).paging(false);
 
-        cfg.view().field(OpsTables.OPS_DB_INSTANCE.BACKUP_TYPE).basic().label("备份状态")
+        cfg.view().field(OpsTables.OPS_DB_INSTANCE.BACKUP_TYPE).basic().label("备份类型")
                     .form().selectBox().dict(DictEnum.OPS_DB_BACKUP_TYPE).paging(false);
 
         cfg.view().field(OpsTables.OPS_DB_INSTANCE.LOG_METHOD).basic().label("日志模式")

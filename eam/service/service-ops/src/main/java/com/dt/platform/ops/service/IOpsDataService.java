@@ -1,6 +1,7 @@
 package com.dt.platform.ops.service;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.AssetVO;
 import com.dt.platform.domain.ops.*;
@@ -36,14 +37,15 @@ import java.util.Map;
 public interface IOpsDataService extends ISuperService<Host> {
 
 
+
+	Result<JSONObject>  queryHostData(String codes);
+
 	HashMap<String,String> queryDictItemData(String code);
 
 	Result verifyISRecord(Rcd rcd, HashMap<String,HashMap<String,String>> matchMap, boolean filldata);
 
-
 	Result verifyHostRecord(Rcd rcd, HashMap<String,HashMap<String,String>> matchMap, boolean filldata);
 
-	
 	HashMap<String,String> queryDictItemDataByDictCode(String dictCode);
 
 	String getMapKey(HashMap<String,String> map, String value);
@@ -55,26 +57,15 @@ public interface IOpsDataService extends ISuperService<Host> {
 
 	Map<String, Object> queryHostMap(List<Host> list);
 
-
-
 	List<InformationSystem> queryInformationSystemList(InformationSystemVO sample);
 
 	Map<String, Object> queryInformationSystemMap(List<InformationSystem> list);
-
-
 
 	List<DbInstance> queryDatabaseInstanceList(DbInstanceVO sample);
 
 	Map<String, Object> queryDatabaseInstanceMap(List<DbInstance>  list);
 
 	File saveTempFile(InputStream is, String fileName);
-
-
-
-
-
-
-
 
 
 }
