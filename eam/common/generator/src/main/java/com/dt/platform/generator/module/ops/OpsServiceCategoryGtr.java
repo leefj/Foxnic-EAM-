@@ -77,7 +77,7 @@ public class OpsServiceCategoryGtr extends BaseCodeGenerator{
 
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
-        cfg.service().addRelationSaveAction(ServiceCategoryLabelServiceImpl.class, ServiceCategoryVOMeta.LABEL_IDS);
+       // cfg.service().addRelationSaveAction(ServiceCategoryLabelServiceImpl.class, ServiceCategoryVOMeta.LABEL_IDS);
 
 
         cfg.view().formWindow().width(Config.baseFormWidth);
@@ -88,7 +88,7 @@ public class OpsServiceCategoryGtr extends BaseCodeGenerator{
                         OpsTables.OPS_SERVICE_CATEGORY.CODE,
                         OpsTables.OPS_SERVICE_CATEGORY.NAME,
                         OpsTables.OPS_SERVICE_CATEGORY.GROUP_ID,
-                        ServiceCategoryMeta.LABEL_IDS,
+                      //  ServiceCategoryMeta.LABEL_IDS,
                         OpsTables.OPS_SERVICE_CATEGORY.NOTES,
 
                 }

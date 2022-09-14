@@ -1,7 +1,7 @@
 /**
  * 服务类型 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-11 06:46:20
+ * @since 2022-09-13 06:31:55
  */
 
 function FormPage() {
@@ -225,8 +225,6 @@ function FormPage() {
 
 			//设置  服务分组 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#groupId",formData.group);
-			//设置  标签 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#labelIds",formData.labelList);
 
 			//处理fillBy
 
@@ -280,8 +278,6 @@ function FormPage() {
 
 		//获取 服务分组 下拉框的值
 		data["groupId"]=fox.getSelectedValue("groupId",false);
-		//获取 标签 下拉框的值
-		data["labelIds"]=fox.getSelectedValue("labelIds",true);
 
 		return data;
 	}

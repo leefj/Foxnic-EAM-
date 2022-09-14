@@ -244,7 +244,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                         window.module.refreshTableData();
                     } else {
                         var errs = [];
-                        if (r.errors) {
+                        if(r.errors&&r.errors.length>0){
                             for (var i = 0; i < r.errors.length; i++) {
                                 if (errs.indexOf(r.errors[i].message) == -1) {
                                     errs.push(r.errors[i].message);
@@ -298,7 +298,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                         window.module.refreshTableData();
                     } else {
                         var errs = [];
-                        if (r.errors) {
+                        if(r.errors&&r.errors.length>0){
                             for (var i = 0; i < r.errors.length; i++) {
                                 if (errs.indexOf(r.errors[i].message) == -1) {
                                     errs.push(r.errors[i].message);
@@ -337,7 +337,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                         window.module.refreshTableData();
                     } else {
                         var errs = [];
-                        if (r.errors) {
+                        if(r.errors&&r.errors.length>0){
                             for (var i = 0; i < r.errors.length; i++) {
                                 if (errs.indexOf(r.errors[i].message) == -1) {
                                     errs.push(r.errors[i].message);

@@ -39,7 +39,7 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addListProperty(String.class,"backupInfoIds","backupInfoIds","backupInfoIds");
         cfg.getPoClassFile().addSimpleProperty(Host.class,"host","host","host");
         cfg.getPoClassFile().addSimpleProperty(ServiceInfo.class,"type","type","type");
-
+        cfg.getPoClassFile().addSimpleProperty(DictItem.class,"deployModeDict","deployModeDict","deployModeDict");
         cfg.view().field(OpsTables.OPS_DB_INFO.NAME).search().fuzzySearch();
         cfg.view().field(OpsTables.OPS_DB_INFO.NOTES).search().fuzzySearch();
         cfg.view().field(OpsTables.OPS_DB_INFO.ID).basic().hidden(true);
@@ -48,39 +48,50 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
                         OpsTables.OPS_DB_INFO.STATUS,
                         OpsTables.OPS_DB_INFO.BACKUP_STATUS,
                         OpsTables.OPS_DB_INFO.NAME,
+
                 }
         );
 
 
         cfg.view().field(OpsTables.OPS_DB_INFO.HOST_ID)
-                .basic().label("主机名")
+                .basic().label("主机名称")
                 .table().sort(false)
                 .form().validate().required().form().selectBox().queryApi(HostServiceProxy.QUERY_PAGED_LIST)
                 .valueField(HostMeta.ID).textField(HostMeta.HOST_NAME)
                 .toolbar(false).paging(true)
-                .fillWith(DbInfoMeta.HOST).muliti(false);
+                .fillWith(DbInfoMeta.HOST).muliti(false).defaultIndex(0);
 
         cfg.view().field(OpsTables.OPS_DB_INFO.TYPE_ID)
-                .basic().label("类型")
+                .basic().label("库类型")
                 .table().sort(false)
                 .form().validate().required().form().selectBox().queryApi(ServiceInfoServiceProxy.QUERY_PAGED_LIST+"?groupId=db")
                 .valueField(ServiceInfoMeta.ID).textField(ServiceInfoMeta.NAME)
                 .toolbar(false).paging(true)
-                .fillWith(DbInfoMeta.TYPE).muliti(false);
+                .fillWith(DbInfoMeta.TYPE).muliti(false).defaultIndex(0);
+
+
+        cfg.view().field(OpsTables.OPS_DB_INFO.DEPLOY_MODE)
+                .basic().label("部署模式")
+                .table().sort(false)
+                .form().validate().required().form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=ops_db_deploy_mode")
+                .valueField(DictItemMeta.CODE).textField(DictItemMeta.LABEL)
+                .toolbar(false).paging(false)
+                .fillWith(DbInfoMeta.DEPLOY_MODE_DICT).muliti(false).defaultValue("single");
 
         cfg.view().field(OpsTables.OPS_DB_INFO.SELECTED_CODE).table().disable(true);
         cfg.view().field(OpsTables.OPS_DB_INFO.BACKUP_STRATEGY).basic().label("备份策略");
-        cfg.view().field(OpsTables.OPS_DB_INFO.NOTES).form().textArea().height(Config.textAreaHeight);
+        cfg.view().field(OpsTables.OPS_DB_INFO.NOTES).form().textInput();
 
         cfg.view().field(OpsTables.OPS_DB_INFO.NAME).form().validate().required();
         cfg.view().field(OpsTables.OPS_DB_INFO.DB_SIZE).form().numberInput().defaultValue(0.0).integer();
         cfg.view().field(OpsTables.OPS_DB_INFO.STATUS).form().validate().required().form()
                  .radioBox().enumType(OpsDbStatusEnum.class).defaultIndex(0);
+
         cfg.view().field(OpsTables.OPS_DB_INFO.BACKUP_STATUS).form().validate().required().form()
                 .radioBox().enumType(OpsDbBackupStatusEnum.class).defaultIndex(0);
 
         cfg.view().field(OpsTables.OPS_DB_INSTANCE.LOG_METHOD).basic().label("日志模式")
-                .form().validate().required().form().selectBox().dict(DictEnum.OPS_DB_LOG_METHOD).paging(false);
+                .form().validate().required().form().radioBox().dict(DictEnum.OPS_DB_LOG_METHOD).defaultIndex(0);
 
         String resourceNameField="res_"+OpsTables.OPS_HOST.HOST_IP;
         cfg.view().field(resourceNameField)
@@ -96,16 +107,52 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_DB_INFO.HOST_ID,
+                        OpsTables.OPS_DB_INFO.STATUS,
                         OpsTables.OPS_DB_INFO.TYPE_ID,
                         OpsTables.OPS_DB_INFO.NAME,
-                        OpsTables.OPS_DB_INFO.STATUS,
-                        OpsTables.OPS_DB_INFO.BACKUP_STATUS,
+
+                },
+                new Object[] {
+                        OpsTables.OPS_DB_INFO.DEPLOY_MODE,
                         OpsTables.OPS_DB_INFO.LOG_METHOD,
-                        OpsTables.OPS_DB_INFO.BACKUP_STRATEGY,
+                        OpsTables.OPS_DB_INFO.DB_PORT,
                         OpsTables.OPS_DB_INFO.DB_SIZE,
+
+                }
+        );
+        cfg.view().form().addGroup(null,
+                new Object[] {
+
                         OpsTables.OPS_DB_INFO.NOTES,
                 }
         );
+        cfg.view().form().addGroup("备份信息",
+                new Object[]{
+                        OpsTables.OPS_DB_INFO.BACKUP_STATUS,
+                },
+                new Object[] {
+                        OpsTables.OPS_DB_INFO.BACKUP_STRATEGY,
+                }
+        );
+
+        cfg.view().form().addGroup("用户信息",
+                new Object[]{
+                        OpsTables.OPS_DB_INFO.ADMIN_USER_LIST,
+                        OpsTables.OPS_DB_INFO.OTHER_USER_LIST,
+                },
+                new Object[] {
+                        OpsTables.OPS_DB_INFO.APP_USER_LIST,
+
+                }
+        );
+        cfg.view().form().addGroup(null,
+                new Object[]{
+                        OpsTables.OPS_DB_INFO.VOUCHER_STR,
+                }
+        );
+
+
+
 
         cfg.view().list().operationColumn().addActionButton("备份记录","openBackupWindow",null,"ops_db_info:backup");
         cfg.view().form().addPage("备份情况","backInfoList");

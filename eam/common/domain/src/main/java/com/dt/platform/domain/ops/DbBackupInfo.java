@@ -19,8 +19,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 数据库备份
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-12 09:44:55
- * @sign A81294C0F97D9E92F015B0DB75B4D3DF
+ * @since 2022-09-13 20:38:56
+ * @sign 3B9D39BE6BFC255D0389F62AE85A4F86
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -51,9 +51,9 @@ public class DbBackupInfo extends Entity {
 	private String name;
 	
 	/**
-	 * 状态：状态
+	 * 备份状态：备份状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="备份状态" , notes = "备份状态")
 	private String status;
 	
 	/**
@@ -254,17 +254,17 @@ public class DbBackupInfo extends Entity {
 	}
 	
 	/**
-	 * 获得 状态<br>
-	 * 状态
-	 * @return 状态
+	 * 获得 备份状态<br>
+	 * 备份状态
+	 * @return 备份状态
 	*/
 	public String getStatus() {
 		return status;
 	}
 	
 	/**
-	 * 设置 状态
-	 * @param status 状态
+	 * 设置 备份状态
+	 * @param status 备份状态
 	 * @return 当前对象
 	*/
 	public DbBackupInfo setStatus(String status) {

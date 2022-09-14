@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-09-12 15:35:02
+ * @since 2022-09-13 20:37:27
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -2116,9 +2116,9 @@ public class OpsTables {
 		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
 		
 		/**
-		 * 状态
+		 * 备份状态
 		*/
-		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","备份状态","备份状态",false,false,true);
 		
 		/**
 		 * 备份策略
@@ -2226,7 +2226,6 @@ public class OpsTables {
 	}
 	
 	/**
-	 * 备份记录
 	*/
 	public static class OPS_DB_BACKUP_RECORD extends DBTable {
 		
@@ -2330,7 +2329,7 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public OPS_DB_BACKUP_RECORD() {
-			this.init($NAME,"备份记录" , ID , DB_ID , DB_BK_ID , DB_NAME , BACKUP_RESULT , BACKUP_SOURCE , BACKUP_RESULT_CT , BACKUP_STIME , BACKUP_ETIME , BACKUP_SIZE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"" , ID , DB_ID , DB_BK_ID , DB_NAME , BACKUP_RESULT , BACKUP_SOURCE , BACKUP_RESULT_CT , BACKUP_STIME , BACKUP_ETIME , BACKUP_SIZE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_DB_BACKUP_RECORD $TABLE=new OPS_DB_BACKUP_RECORD();
 	}
@@ -2361,19 +2360,24 @@ public class OpsTables {
 		public static final DBField TYPE_ID = new DBField(DBDataType.STRING , "type_id","typeId","数据库类型","数据库类型",false,false,true);
 		
 		/**
-		 * 数据库
+		 * 数据库名
 		*/
-		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","数据库","数据库",false,false,true);
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","数据库名","数据库名",false,false,true);
 		
 		/**
-		 * 状态
+		 * 数据库状态
 		*/
-		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","数据库状态","数据库状态",false,false,true);
 		
 		/**
 		 * 备份状态
 		*/
 		public static final DBField BACKUP_STATUS = new DBField(DBDataType.STRING , "backup_status","backupStatus","备份状态","备份状态",false,false,true);
+		
+		/**
+		 * 部署模式
+		*/
+		public static final DBField DEPLOY_MODE = new DBField(DBDataType.STRING , "deploy_mode","deployMode","部署模式","部署模式",false,false,true);
 		
 		/**
 		 * 备份策略
@@ -2389,6 +2393,31 @@ public class OpsTables {
 		 * 日志模式
 		*/
 		public static final DBField LOG_METHOD = new DBField(DBDataType.STRING , "log_method","logMethod","日志模式","日志模式",false,false,true);
+		
+		/**
+		 * 管理员账户
+		*/
+		public static final DBField ADMIN_USER_LIST = new DBField(DBDataType.STRING , "admin_user_list","adminUserList","管理员账户","管理员账户",false,false,true);
+		
+		/**
+		 * 应用账户
+		*/
+		public static final DBField APP_USER_LIST = new DBField(DBDataType.STRING , "app_user_list","appUserList","应用账户","应用账户",false,false,true);
+		
+		/**
+		 * 其他账户
+		*/
+		public static final DBField OTHER_USER_LIST = new DBField(DBDataType.STRING , "other_user_list","otherUserList","其他账户","其他账户",false,false,true);
+		
+		/**
+		 * 凭证信息
+		*/
+		public static final DBField VOUCHER_STR = new DBField(DBDataType.STRING , "voucher_str","voucherStr","凭证信息","凭证信息",false,false,true);
+		
+		/**
+		 * 连接端口
+		*/
+		public static final DBField DB_PORT = new DBField(DBDataType.STRING , "db_port","dbPort","连接端口","连接端口",false,false,true);
 		
 		/**
 		 * 备注
@@ -2440,7 +2469,7 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public OPS_DB_INFO() {
-			this.init($NAME,"数据库" , ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , BACKUP_STRATEGY , DB_SIZE , LOG_METHOD , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"数据库" , ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , BACKUP_STRATEGY , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OTHER_USER_LIST , VOUCHER_STR , DB_PORT , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_DB_INFO $TABLE=new OPS_DB_INFO();
 	}

@@ -13,8 +13,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-12 09:44:55
- * @sign A81294C0F97D9E92F015B0DB75B4D3DF
+ * @since 2022-09-13 20:38:56
+ * @sign 3B9D39BE6BFC255D0389F62AE85A4F86
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -51,14 +51,14 @@ public class DbBackupInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.DbBackupInfo,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.ops.DbBackupInfo.class ,NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
 	
 	/**
-	 * 状态 , 类型: java.lang.String
+	 * 备份状态 , 类型: java.lang.String
 	*/
 	public static final String STATUS="status";
 	
 	/**
-	 * 状态 , 类型: java.lang.String
+	 * 备份状态 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbBackupInfo,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.ops.DbBackupInfo.class ,STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.DbBackupInfo,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.ops.DbBackupInfo.class ,STATUS, java.lang.String.class, "备份状态", "备份状态", java.lang.String.class, null);
 	
 	/**
 	 * 备份策略 , 类型: java.lang.String
@@ -337,8 +337,8 @@ public class DbBackupInfoMeta {
 		}
 		
 		/**
-		 * 设置 状态
-		 * @param status 状态
+		 * 设置 备份状态
+		 * @param status 备份状态
 		 * @return 当前对象
 		*/
 		public DbBackupInfo setStatus(String status) {

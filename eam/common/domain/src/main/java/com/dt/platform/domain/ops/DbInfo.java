@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Transient;
 import java.util.List;
+import org.github.foxnic.web.domain.system.DictItem;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
@@ -22,8 +23,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 数据库
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-12 09:45:06
- * @sign 2FBCE5797EFC916F24D372A1B3267291
+ * @since 2022-09-13 20:38:43
+ * @sign 9CC3FE897AC246245F83B2B18261244B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -54,15 +55,15 @@ public class DbInfo extends Entity {
 	private String typeId;
 	
 	/**
-	 * 数据库：数据库
+	 * 数据库名：数据库名
 	*/
-	@ApiModelProperty(required = false,value="数据库" , notes = "数据库")
+	@ApiModelProperty(required = false,value="数据库名" , notes = "数据库名")
 	private String name;
 	
 	/**
-	 * 状态：状态
+	 * 数据库状态：数据库状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="数据库状态" , notes = "数据库状态")
 	private String status;
 	
 	/**
@@ -70,6 +71,12 @@ public class DbInfo extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="备份状态" , notes = "备份状态")
 	private String backupStatus;
+	
+	/**
+	 * 部署模式：部署模式
+	*/
+	@ApiModelProperty(required = false,value="部署模式" , notes = "部署模式")
+	private String deployMode;
 	
 	/**
 	 * 备份策略：备份策略
@@ -88,6 +95,36 @@ public class DbInfo extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="日志模式" , notes = "日志模式")
 	private String logMethod;
+	
+	/**
+	 * 管理员账户：管理员账户
+	*/
+	@ApiModelProperty(required = false,value="管理员账户" , notes = "管理员账户")
+	private String adminUserList;
+	
+	/**
+	 * 应用账户：应用账户
+	*/
+	@ApiModelProperty(required = false,value="应用账户" , notes = "应用账户")
+	private String appUserList;
+	
+	/**
+	 * 其他账户：其他账户
+	*/
+	@ApiModelProperty(required = false,value="其他账户" , notes = "其他账户")
+	private String otherUserList;
+	
+	/**
+	 * 凭证信息：凭证信息
+	*/
+	@ApiModelProperty(required = false,value="凭证信息" , notes = "凭证信息")
+	private String voucherStr;
+	
+	/**
+	 * 连接端口：连接端口
+	*/
+	@ApiModelProperty(required = false,value="连接端口" , notes = "连接端口")
+	private String dbPort;
 	
 	/**
 	 * 备注：备注
@@ -176,6 +213,12 @@ public class DbInfo extends Entity {
 	private ServiceInfo type;
 	
 	/**
+	 * deployModeDict：deployModeDict
+	*/
+	@ApiModelProperty(required = false,value="deployModeDict" , notes = "deployModeDict")
+	private DictItem deployModeDict;
+	
+	/**
 	 * 获得 主键<br>
 	 * 主键
 	 * @return 主键
@@ -233,17 +276,17 @@ public class DbInfo extends Entity {
 	}
 	
 	/**
-	 * 获得 数据库<br>
-	 * 数据库
-	 * @return 数据库
+	 * 获得 数据库名<br>
+	 * 数据库名
+	 * @return 数据库名
 	*/
 	public String getName() {
 		return name;
 	}
 	
 	/**
-	 * 设置 数据库
-	 * @param name 数据库
+	 * 设置 数据库名
+	 * @param name 数据库名
 	 * @return 当前对象
 	*/
 	public DbInfo setName(String name) {
@@ -252,17 +295,17 @@ public class DbInfo extends Entity {
 	}
 	
 	/**
-	 * 获得 状态<br>
-	 * 状态
-	 * @return 状态
+	 * 获得 数据库状态<br>
+	 * 数据库状态
+	 * @return 数据库状态
 	*/
 	public String getStatus() {
 		return status;
 	}
 	
 	/**
-	 * 设置 状态
-	 * @param status 状态
+	 * 设置 数据库状态
+	 * @param status 数据库状态
 	 * @return 当前对象
 	*/
 	public DbInfo setStatus(String status) {
@@ -286,6 +329,25 @@ public class DbInfo extends Entity {
 	*/
 	public DbInfo setBackupStatus(String backupStatus) {
 		this.backupStatus=backupStatus;
+		return this;
+	}
+	
+	/**
+	 * 获得 部署模式<br>
+	 * 部署模式
+	 * @return 部署模式
+	*/
+	public String getDeployMode() {
+		return deployMode;
+	}
+	
+	/**
+	 * 设置 部署模式
+	 * @param deployMode 部署模式
+	 * @return 当前对象
+	*/
+	public DbInfo setDeployMode(String deployMode) {
+		this.deployMode=deployMode;
 		return this;
 	}
 	
@@ -343,6 +405,101 @@ public class DbInfo extends Entity {
 	*/
 	public DbInfo setLogMethod(String logMethod) {
 		this.logMethod=logMethod;
+		return this;
+	}
+	
+	/**
+	 * 获得 管理员账户<br>
+	 * 管理员账户
+	 * @return 管理员账户
+	*/
+	public String getAdminUserList() {
+		return adminUserList;
+	}
+	
+	/**
+	 * 设置 管理员账户
+	 * @param adminUserList 管理员账户
+	 * @return 当前对象
+	*/
+	public DbInfo setAdminUserList(String adminUserList) {
+		this.adminUserList=adminUserList;
+		return this;
+	}
+	
+	/**
+	 * 获得 应用账户<br>
+	 * 应用账户
+	 * @return 应用账户
+	*/
+	public String getAppUserList() {
+		return appUserList;
+	}
+	
+	/**
+	 * 设置 应用账户
+	 * @param appUserList 应用账户
+	 * @return 当前对象
+	*/
+	public DbInfo setAppUserList(String appUserList) {
+		this.appUserList=appUserList;
+		return this;
+	}
+	
+	/**
+	 * 获得 其他账户<br>
+	 * 其他账户
+	 * @return 其他账户
+	*/
+	public String getOtherUserList() {
+		return otherUserList;
+	}
+	
+	/**
+	 * 设置 其他账户
+	 * @param otherUserList 其他账户
+	 * @return 当前对象
+	*/
+	public DbInfo setOtherUserList(String otherUserList) {
+		this.otherUserList=otherUserList;
+		return this;
+	}
+	
+	/**
+	 * 获得 凭证信息<br>
+	 * 凭证信息
+	 * @return 凭证信息
+	*/
+	public String getVoucherStr() {
+		return voucherStr;
+	}
+	
+	/**
+	 * 设置 凭证信息
+	 * @param voucherStr 凭证信息
+	 * @return 当前对象
+	*/
+	public DbInfo setVoucherStr(String voucherStr) {
+		this.voucherStr=voucherStr;
+		return this;
+	}
+	
+	/**
+	 * 获得 连接端口<br>
+	 * 连接端口
+	 * @return 连接端口
+	*/
+	public String getDbPort() {
+		return dbPort;
+	}
+	
+	/**
+	 * 设置 连接端口
+	 * @param dbPort 连接端口
+	 * @return 当前对象
+	*/
+	public DbInfo setDbPort(String dbPort) {
+		this.dbPort=dbPort;
 		return this;
 	}
 	
@@ -664,6 +821,25 @@ public class DbInfo extends Entity {
 		this.type=type;
 		return this;
 	}
+	
+	/**
+	 * 获得 deployModeDict<br>
+	 * deployModeDict
+	 * @return deployModeDict
+	*/
+	public DictItem getDeployModeDict() {
+		return deployModeDict;
+	}
+	
+	/**
+	 * 设置 deployModeDict
+	 * @param deployModeDict deployModeDict
+	 * @return 当前对象
+	*/
+	public DbInfo setDeployModeDict(DictItem deployModeDict) {
+		this.deployModeDict=deployModeDict;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -711,27 +887,34 @@ public class DbInfo extends Entity {
 		com.dt.platform.domain.ops.meta.DbInfoMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.DbInfoMeta.$$proxy$$();
 		inst.setNotes(this.getNotes());
 		inst.setLogMethod(this.getLogMethod());
-		inst.setHostId(this.getHostId());
-		inst.setUpdateTime(this.getUpdateTime());
 		inst.setSelectedCode(this.getSelectedCode());
-		inst.setVersion(this.getVersion());
-		inst.setDbSize(this.getDbSize());
-		inst.setCreateBy(this.getCreateBy());
-		inst.setDeleted(this.getDeleted());
 		inst.setBackupStatus(this.getBackupStatus());
 		inst.setBackupStrategy(this.getBackupStrategy());
-		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
+		inst.setVoucherStr(this.getVoucherStr());
+		inst.setId(this.getId());
+		inst.setAdminUserList(this.getAdminUserList());
+		inst.setAppUserList(this.getAppUserList());
+		inst.setDeployMode(this.getDeployMode());
+		inst.setOtherUserList(this.getOtherUserList());
+		inst.setHostId(this.getHostId());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setDbSize(this.getDbSize());
+		inst.setDbPort(this.getDbPort());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setName(this.getName());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setTypeId(this.getTypeId());
-		inst.setId(this.getId());
 		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setBackupInfoList(this.getBackupInfoList());
 			inst.setHost(this.getHost());
 			inst.setBackupInfoIds(this.getBackupInfoIds());
+			inst.setDeployModeDict(this.getDeployModeDict());
 			inst.setType(this.getType());
 		}
 		inst.clearModifies();

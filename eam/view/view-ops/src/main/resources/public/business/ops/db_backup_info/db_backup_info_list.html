@@ -2,7 +2,7 @@
 /**
  * 数据库备份 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-12 09:44:56
+ * @since 2022-09-13 20:38:57
  */
  -->
  <!DOCTYPE html>
@@ -41,9 +41,9 @@
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 数据库 , databaseId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 名称 , name ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 状态 , status ,typeName=radio_box, isHideInSearch=false -->
+                    <!-- 备份状态 , status ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('状态')}" class="search-label status-label">状态</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('备份状态')}" class="search-label status-label">备份状态</span><span class="search-colon">:</span></div>
 
 
                         <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.OpsDbStatusEnum')}" style="width:150px"></div>

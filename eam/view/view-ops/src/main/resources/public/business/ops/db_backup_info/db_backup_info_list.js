@@ -1,7 +1,7 @@
 /**
  * 数据库备份 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-12 09:44:56
+ * @since 2022-09-13 20:38:57
  */
 
 
@@ -79,7 +79,7 @@ function ListPage() {
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
+					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备份状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'backupStrategy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备份策略') , templet: function (d) { return templet('backupStrategy',d.backupStrategy,d);}  }
 					,{ field: 'backupType', align:"left", fixed:false, hide:false, sort: true  , title: fox.translate('备份类型'), templet:function (d){ return templet('backupType',fox.getDictText(RADIO_BACKUPTYPE_DATA,d.backupType,'','backupType'),d);}}
 					,{ field: 'backupMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备份方式'), templet:function (d){ return templet('backupMethod',fox.getDictText(SELECT_BACKUPMETHOD_DATA,d.backupMethod,'','backupMethod'),d);}}

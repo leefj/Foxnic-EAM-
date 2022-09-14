@@ -51,7 +51,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 服务类型 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-11 06:46:19
+ * @since 2022-09-13 06:31:54
 */
 
 @Api(tags = "服务类型")
@@ -70,7 +70,7 @@ public class ServiceCategoryController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "473621482614816700"),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.GROUP_ID , value = "服务分组" , required = false , dataTypeClass=String.class , example = "db"),
-		@ApiImplicitParam(name = ServiceCategoryVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = ServiceCategoryVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class , example = "Oracle"),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "Oracle"),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
@@ -171,7 +171,7 @@ public class ServiceCategoryController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "473621482614816700"),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.GROUP_ID , value = "服务分组" , required = false , dataTypeClass=String.class , example = "db"),
-		@ApiImplicitParam(name = ServiceCategoryVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = ServiceCategoryVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class , example = "Oracle"),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "Oracle"),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
@@ -191,7 +191,7 @@ public class ServiceCategoryController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "473621482614816700"),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.GROUP_ID , value = "服务分组" , required = false , dataTypeClass=String.class , example = "db"),
-		@ApiImplicitParam(name = ServiceCategoryVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = ServiceCategoryVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class , example = "Oracle"),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "Oracle"),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
@@ -256,7 +256,7 @@ public class ServiceCategoryController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "473621482614816700"),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.GROUP_ID , value = "服务分组" , required = false , dataTypeClass=String.class , example = "db"),
-		@ApiImplicitParam(name = ServiceCategoryVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = ServiceCategoryVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class , example = "Oracle"),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "Oracle"),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
@@ -278,7 +278,7 @@ public class ServiceCategoryController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "473621482614816700"),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.GROUP_ID , value = "服务分组" , required = false , dataTypeClass=String.class , example = "db"),
-		@ApiImplicitParam(name = ServiceCategoryVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = ServiceCategoryVOMeta.CODE , value = "编码" , required = false , dataTypeClass=String.class , example = "Oracle"),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "Oracle"),
 		@ApiImplicitParam(name = ServiceCategoryVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})

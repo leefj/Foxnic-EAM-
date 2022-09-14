@@ -56,7 +56,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 数据库备份 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-12 09:44:55
+ * @since 2022-09-13 20:38:56
 */
 
 @Api(tags = "数据库备份")
@@ -76,7 +76,7 @@ public class DbBackupInfoController extends SuperController {
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "621369753377701888"),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.DATABASE_ID , value = "数据库" , required = false , dataTypeClass=String.class , example = "621350881815691264"),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbBackupInfoVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "online"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.STATUS , value = "备份状态" , required = false , dataTypeClass=String.class , example = "online"),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_STRATEGY , value = "备份策略" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_TYPE , value = "备份类型" , required = false , dataTypeClass=String.class , example = "physical"),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_METHOD , value = "备份方式" , required = false , dataTypeClass=String.class , example = "full"),
@@ -188,7 +188,7 @@ public class DbBackupInfoController extends SuperController {
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "621369753377701888"),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.DATABASE_ID , value = "数据库" , required = false , dataTypeClass=String.class , example = "621350881815691264"),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbBackupInfoVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "online"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.STATUS , value = "备份状态" , required = false , dataTypeClass=String.class , example = "online"),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_STRATEGY , value = "备份策略" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_TYPE , value = "备份类型" , required = false , dataTypeClass=String.class , example = "physical"),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_METHOD , value = "备份方式" , required = false , dataTypeClass=String.class , example = "full"),
@@ -219,7 +219,7 @@ public class DbBackupInfoController extends SuperController {
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "621369753377701888"),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.DATABASE_ID , value = "数据库" , required = false , dataTypeClass=String.class , example = "621350881815691264"),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbBackupInfoVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "online"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.STATUS , value = "备份状态" , required = false , dataTypeClass=String.class , example = "online"),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_STRATEGY , value = "备份策略" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_TYPE , value = "备份类型" , required = false , dataTypeClass=String.class , example = "physical"),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_METHOD , value = "备份方式" , required = false , dataTypeClass=String.class , example = "full"),
@@ -296,7 +296,7 @@ public class DbBackupInfoController extends SuperController {
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "621369753377701888"),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.DATABASE_ID , value = "数据库" , required = false , dataTypeClass=String.class , example = "621350881815691264"),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbBackupInfoVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "online"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.STATUS , value = "备份状态" , required = false , dataTypeClass=String.class , example = "online"),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_STRATEGY , value = "备份策略" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_TYPE , value = "备份类型" , required = false , dataTypeClass=String.class , example = "physical"),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_METHOD , value = "备份方式" , required = false , dataTypeClass=String.class , example = "full"),
@@ -329,7 +329,7 @@ public class DbBackupInfoController extends SuperController {
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "621369753377701888"),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.DATABASE_ID , value = "数据库" , required = false , dataTypeClass=String.class , example = "621350881815691264"),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = DbBackupInfoVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "online"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.STATUS , value = "备份状态" , required = false , dataTypeClass=String.class , example = "online"),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_STRATEGY , value = "备份策略" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_TYPE , value = "备份类型" , required = false , dataTypeClass=String.class , example = "physical"),
 		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_METHOD , value = "备份方式" , required = false , dataTypeClass=String.class , example = "full"),

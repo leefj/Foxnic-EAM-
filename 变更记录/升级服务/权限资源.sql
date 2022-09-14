@@ -1,3 +1,11 @@
+delete from sys_licence_free_full;
+delete from sys_licence_free_sta;
+
+insert into sys_licence_free_full select * from sys_licence;
+insert into sys_licence_free_sta select * from sys_licence;
+
+
+
 
 -- backup sys_menu sys_menu_resource
 drop table sys_config_bak1;

@@ -2,7 +2,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-12 09:45:07
+ * @since 2022-09-13 20:38:44
  */
  -->
  <!DOCTYPE html>
@@ -39,20 +39,26 @@
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 主机名 , hostId ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 类型 , typeId ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 状态 , status ,typeName=radio_box, isHideInSearch=false -->
+                    <!-- 主机名称 , hostId ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 库类型 , typeId ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 数据库状态 , status ,typeName=radio_box, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('状态')}" class="search-label status-label">状态</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('数据库状态')}" class="search-label status-label">数据库状态</span><span class="search-colon">:</span></div>
 
 
                         <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.OpsDbStatusEnum')}" style="width:150px"></div>
 
                     </div>
+                    <!-- 部署模式 , deployMode ,typeName=select_box, isHideInSearch=true -->
                     <!-- 备份策略 , backupStrategy ,typeName=text_input, isHideInSearch=true -->
                     <!-- 大小(M) , dbSize ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 日志模式 , logMethod ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 日志模式 , logMethod ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 管理员账户 , adminUserList ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 应用账户 , appUserList ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 其他账户 , otherUserList ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 凭证信息 , voucherStr ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 连接端口 , dbPort ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 备注 , notes ,typeName=text_input, isHideInSearch=true -->
                     <!-- 选择 , selectedCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- IP , resHostIp ,typeName=text_input, isHideInSearch=true -->
                     <!-- 备份状态 , backupStatus ,typeName=radio_box, isHideInSearch=false -->
@@ -63,9 +69,9 @@
                         <div id="backupStatus" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.OpsDbBackupStatusEnum')}" style="width:150px"></div>
 
                     </div>
-                    <!-- 数据库 , name ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 数据库名 , name ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('数据库')}" class="search-label name-label">数据库</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('数据库名')}" class="search-label name-label">数据库名</span><span class="search-colon">:</span></div>
                         <input id="name" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
 
@@ -117,7 +123,7 @@
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.OpsDbStatusEnum')}]];
     var RADIO_BACKUPSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.OpsDbBackupStatusEnum')}]];
-    var SELECT_LOGMETHOD_DATA = [[${dict.toArray('ops_db_log_method')}]];
+    var RADIO_LOGMETHOD_DATA = [[${dict.toArray('ops_db_log_method')}]];
     var AUTH_PREFIX="ops_db_info";
 
 

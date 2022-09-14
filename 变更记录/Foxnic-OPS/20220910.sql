@@ -1,8 +1,29 @@
+
+INSERT INTO `sys_dict` (`id`, `is_tree`, `name`, `code`, `module`, `notes`, `create_by`, `create_time`, `update_by`, `update_time`, `deleted`, `delete_by`, `delete_time`, `version`)
+VALUES
+('620878341703991296', 0, '服务分类标签', 'ops_service_category_label', '472036556115279872', '', '110588348101165911', '2022-09-10 07:08:52', NULL, NULL, 0, NULL, NULL, 1);
+
+INSERT INTO `sys_dict` (`id`, `is_tree`, `name`, `code`, `module`, `notes`, `create_by`, `create_time`, `update_by`, `update_time`, `deleted`, `delete_by`, `delete_time`, `version`)
+VALUES
+('621812235370496000', 0, '数据库部署模式', 'ops_db_deploy_mode', '472036556115279872', '', '110588348101165911', '2022-09-12 20:59:50', NULL, NULL, 0, NULL, NULL, 1);
+
+
+
+
 alter table ops_service_category add column label_code varchar(50) after name;
 INSERT INTO `sys_dict` (`id`, `is_tree`, `name`, `code`, `module`, `notes`, `create_by`, `create_time`, `update_by`, `update_time`, `deleted`, `delete_by`, `delete_time`, `version`)
 VALUES
 ('620878341703991296', 0, '服务分类标签', 'ops_service_category_label', '472036556115279872', '', '110588348101165911', '2022-09-10 07:08:52', NULL, NULL, 0, NULL, NULL, 1);
 
+INSERT INTO `sys_dict_item` (`id`, `dict_id`, `dict_code`, `parent_id`, `code`, `label`, `sort`, `create_by`, `create_time`, `update_by`, `update_time`, `deleted`, `delete_by`, `delete_time`, `version`, `valid`)
+VALUES
+('621812335056519168', '621812235370496000', 'ops_db_deploy_mode', '', 'single', '单体部署', 1, '110588348101165911', '2022-09-12 21:00:13', '110588348101165911', '2022-09-12 21:02:32', 0, NULL, NULL, 3, 1),
+('621812388642947072', '621812235370496000', 'ops_db_deploy_mode', '', 'oracle_rac', 'Oracle RAC', 2, '110588348101165911', '2022-09-12 21:00:26', NULL, NULL, 0, NULL, NULL, 1, 1),
+('621812638724128768', '621812235370496000', 'ops_db_deploy_mode', '', 'master_slave_m', '主从架构(主节点)', 3, '110588348101165911', '2022-09-12 21:01:26', NULL, NULL, 0, NULL, NULL, 1, 1),
+('621812723415515136', '621812235370496000', 'ops_db_deploy_mode', '', 'master_slave_s', '主从架构_从节点', 2, '110588348101165911', '2022-09-12 21:01:46', NULL, NULL, 0, NULL, NULL, 1, 1),
+('621812864474152960', '621812235370496000', 'ops_db_deploy_mode', '', 'oracle_dataguard_s', 'Oracle DataGuard备节点', 3, '110588348101165911', '2022-09-12 21:02:20', NULL, NULL, 0, NULL, NULL, 1, 1),
+('621813045663891456', '621812235370496000', 'ops_db_deploy_mode', '', 'distributed', '分布式部署', 1, '110588348101165911', '2022-09-12 21:03:03', NULL, NULL, 0, NULL, NULL, 1, 1),
+('621813434706558976', '621812235370496000', 'ops_db_deploy_mode', '', 'backup_node', '备节点', 11, '110588348101165911', '2022-09-12 21:04:36', NULL, NULL, 0, NULL, NULL, 1, 1);
 
 
 
@@ -83,12 +104,18 @@ CREATE TABLE `ops_db_info` (
                                `id` varchar(50) NOT NULL COMMENT '主键',
                                `host_id` varchar(50) DEFAULT NULL COMMENT '主机',
                                `type_id` varchar(50) DEFAULT NULL COMMENT '数据库类型',
-                               `name` varchar(200) DEFAULT NULL COMMENT '数据库',
+                               `name` varchar(200) DEFAULT NULL COMMENT '数据库名',
                                `status` varchar(50) DEFAULT NULL COMMENT '状态',
                                `backup_status` varchar(50) DEFAULT NULL COMMENT '备份状态',
+                               `deploy_mode` varchar(50) DEFAULT NULL COMMENT '部署模式',
                                `backup_strategy` varchar(500) DEFAULT NULL COMMENT '备份策略',
                                `db_size` decimal(10,2) DEFAULT '0.00' COMMENT '大小(M)',
                                `log_method` varchar(50) DEFAULT NULL COMMENT '日志模式',
+                               `admin_user_list` varchar(500) DEFAULT NULL COMMENT '管理员账户',
+                               `app_user_list` varchar(500) DEFAULT NULL COMMENT '应用账户',
+                               `other_user_list` varchar(500) DEFAULT NULL COMMENT '其他账户',
+                               `voucher_str` varchar(500) DEFAULT NULL COMMENT '凭证信息',
+                               `db_port` varchar(50) DEFAULT NULL COMMENT '连接端口',
                                `notes` varchar(500) DEFAULT NULL COMMENT '备注',
                                `selected_code` varchar(50) DEFAULT NULL COMMENT '选择',
                                `create_by` varchar(18) DEFAULT NULL COMMENT '创建人ID',
@@ -152,7 +179,7 @@ CREATE TABLE `ops_db_backup_record` (
                                         `delete_time` datetime DEFAULT NULL COMMENT '删除时间',
                                         `version` int(11) NOT NULL DEFAULT '1',
                                         PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='备份记录';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 alter table ops_host alter column arch set default '0';

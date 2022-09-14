@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * 数据库
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-12 09:45:06
+ * @since 2022-09-13 20:38:43
  * @sign 34945B314FDD9C5B5C62D17AD6EFC0FD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -321,22 +321,28 @@ public class DbInfoVO extends DbInfo {
 		com.dt.platform.domain.ops.meta.DbInfoVOMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.DbInfoVOMeta.$$proxy$$();
 		inst.setNotes(this.getNotes());
 		inst.setLogMethod(this.getLogMethod());
-		inst.setHostId(this.getHostId());
-		inst.setUpdateTime(this.getUpdateTime());
 		inst.setSelectedCode(this.getSelectedCode());
-		inst.setVersion(this.getVersion());
-		inst.setDbSize(this.getDbSize());
-		inst.setCreateBy(this.getCreateBy());
-		inst.setDeleted(this.getDeleted());
 		inst.setBackupStatus(this.getBackupStatus());
 		inst.setBackupStrategy(this.getBackupStrategy());
-		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
+		inst.setVoucherStr(this.getVoucherStr());
+		inst.setId(this.getId());
+		inst.setAdminUserList(this.getAdminUserList());
+		inst.setAppUserList(this.getAppUserList());
+		inst.setDeployMode(this.getDeployMode());
+		inst.setOtherUserList(this.getOtherUserList());
+		inst.setHostId(this.getHostId());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setDbSize(this.getDbSize());
+		inst.setDbPort(this.getDbPort());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setName(this.getName());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setTypeId(this.getTypeId());
-		inst.setId(this.getId());
 		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
@@ -351,6 +357,7 @@ public class DbInfoVO extends DbInfo {
 			inst.setSortField(this.getSortField());
 			inst.setIds(this.getIds());
 			inst.setBackupInfoIds(this.getBackupInfoIds());
+			inst.setDeployModeDict(this.getDeployModeDict());
 			inst.setSearchValue(this.getSearchValue());
 		}
 		inst.clearModifies();

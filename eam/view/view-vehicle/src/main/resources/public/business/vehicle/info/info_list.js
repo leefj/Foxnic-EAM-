@@ -117,6 +117,7 @@ function ListPage() {
 								refreshTableData(null,null,true);
 							} else {
 								var errs = [];
+
 								if (r.data&&r.data.length>0) {
 									for (var i = 0; i < r.data.length; i++) {
 										if (errs.indexOf(r.data[i].message) == -1) {
@@ -127,6 +128,8 @@ function ListPage() {
 								} else {
 									top.layer.msg(r.message, {time: 2000});
 								}
+
+
 							}
 						}
 					}:false

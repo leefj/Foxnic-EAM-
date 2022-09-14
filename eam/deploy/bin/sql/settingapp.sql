@@ -58,6 +58,9 @@ update sys_menu set hidden=1 where id='578624635919138816';
 
 
 -- #########
+-- 授权管理
+delete from sys_menu where id='558628496125984768';
+
 delete from sys_menu where id='616256291005792256';
 delete from sys_menu where id='495201409763901440';
 delete from sys_menu where id='610152549789466624';

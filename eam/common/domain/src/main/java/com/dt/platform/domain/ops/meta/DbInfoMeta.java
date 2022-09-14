@@ -8,14 +8,15 @@ import com.dt.platform.domain.ops.DbBackupInfo;
 import java.util.List;
 import com.dt.platform.domain.ops.Host;
 import com.dt.platform.domain.ops.ServiceInfo;
+import org.github.foxnic.web.domain.system.DictItem;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-12 09:45:06
- * @sign 2FBCE5797EFC916F24D372A1B3267291
+ * @since 2022-09-13 20:38:43
+ * @sign 9CC3FE897AC246245F83B2B18261244B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -52,24 +53,24 @@ public class DbInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,java.lang.String> TYPE_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,TYPE_ID, java.lang.String.class, "数据库类型", "数据库类型", java.lang.String.class, null);
 	
 	/**
-	 * 数据库 , 类型: java.lang.String
+	 * 数据库名 , 类型: java.lang.String
 	*/
 	public static final String NAME="name";
 	
 	/**
-	 * 数据库 , 类型: java.lang.String
+	 * 数据库名 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,NAME, java.lang.String.class, "数据库", "数据库", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,NAME, java.lang.String.class, "数据库名", "数据库名", java.lang.String.class, null);
 	
 	/**
-	 * 状态 , 类型: java.lang.String
+	 * 数据库状态 , 类型: java.lang.String
 	*/
 	public static final String STATUS="status";
 	
 	/**
-	 * 状态 , 类型: java.lang.String
+	 * 数据库状态 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,STATUS, java.lang.String.class, "数据库状态", "数据库状态", java.lang.String.class, null);
 	
 	/**
 	 * 备份状态 , 类型: java.lang.String
@@ -80,6 +81,16 @@ public class DbInfoMeta {
 	 * 备份状态 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,java.lang.String> BACKUP_STATUS_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,BACKUP_STATUS, java.lang.String.class, "备份状态", "备份状态", java.lang.String.class, null);
+	
+	/**
+	 * 部署模式 , 类型: java.lang.String
+	*/
+	public static final String DEPLOY_MODE="deployMode";
+	
+	/**
+	 * 部署模式 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,java.lang.String> DEPLOY_MODE_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,DEPLOY_MODE, java.lang.String.class, "部署模式", "部署模式", java.lang.String.class, null);
 	
 	/**
 	 * 备份策略 , 类型: java.lang.String
@@ -110,6 +121,56 @@ public class DbInfoMeta {
 	 * 日志模式 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,java.lang.String> LOG_METHOD_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,LOG_METHOD, java.lang.String.class, "日志模式", "日志模式", java.lang.String.class, null);
+	
+	/**
+	 * 管理员账户 , 类型: java.lang.String
+	*/
+	public static final String ADMIN_USER_LIST="adminUserList";
+	
+	/**
+	 * 管理员账户 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,java.lang.String> ADMIN_USER_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,ADMIN_USER_LIST, java.lang.String.class, "管理员账户", "管理员账户", java.lang.String.class, null);
+	
+	/**
+	 * 应用账户 , 类型: java.lang.String
+	*/
+	public static final String APP_USER_LIST="appUserList";
+	
+	/**
+	 * 应用账户 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,java.lang.String> APP_USER_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,APP_USER_LIST, java.lang.String.class, "应用账户", "应用账户", java.lang.String.class, null);
+	
+	/**
+	 * 其他账户 , 类型: java.lang.String
+	*/
+	public static final String OTHER_USER_LIST="otherUserList";
+	
+	/**
+	 * 其他账户 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,java.lang.String> OTHER_USER_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,OTHER_USER_LIST, java.lang.String.class, "其他账户", "其他账户", java.lang.String.class, null);
+	
+	/**
+	 * 凭证信息 , 类型: java.lang.String
+	*/
+	public static final String VOUCHER_STR="voucherStr";
+	
+	/**
+	 * 凭证信息 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,java.lang.String> VOUCHER_STR_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,VOUCHER_STR, java.lang.String.class, "凭证信息", "凭证信息", java.lang.String.class, null);
+	
+	/**
+	 * 连接端口 , 类型: java.lang.String
+	*/
+	public static final String DB_PORT="dbPort";
+	
+	/**
+	 * 连接端口 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,java.lang.String> DB_PORT_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,DB_PORT, java.lang.String.class, "连接端口", "连接端口", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -252,9 +313,19 @@ public class DbInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,com.dt.platform.domain.ops.ServiceInfo> TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,TYPE, com.dt.platform.domain.ops.ServiceInfo.class, "type", "type", com.dt.platform.domain.ops.ServiceInfo.class, null);
 	
 	/**
+	 * deployModeDict , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final String DEPLOY_MODE_DICT="deployModeDict";
+	
+	/**
+	 * deployModeDict , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfo,org.github.foxnic.web.domain.system.DictItem> DEPLOY_MODE_DICT_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfo.class ,DEPLOY_MODE_DICT, org.github.foxnic.web.domain.system.DictItem.class, "deployModeDict", "deployModeDict", org.github.foxnic.web.domain.system.DictItem.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , BACKUP_STRATEGY , DB_SIZE , LOG_METHOD , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , BACKUP_INFO_LIST , BACKUP_INFO_IDS , HOST , TYPE };
+	public static final String[] $PROPS={ ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , BACKUP_STRATEGY , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OTHER_USER_LIST , VOUCHER_STR , DB_PORT , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , BACKUP_INFO_LIST , BACKUP_INFO_IDS , HOST , TYPE , DEPLOY_MODE_DICT };
 	
 	/**
 	 * 代理类
@@ -298,8 +369,8 @@ public class DbInfoMeta {
 		}
 		
 		/**
-		 * 设置 数据库
-		 * @param name 数据库
+		 * 设置 数据库名
+		 * @param name 数据库名
 		 * @return 当前对象
 		*/
 		public DbInfo setName(String name) {
@@ -309,8 +380,8 @@ public class DbInfoMeta {
 		}
 		
 		/**
-		 * 设置 状态
-		 * @param status 状态
+		 * 设置 数据库状态
+		 * @param status 数据库状态
 		 * @return 当前对象
 		*/
 		public DbInfo setStatus(String status) {
@@ -327,6 +398,17 @@ public class DbInfoMeta {
 		public DbInfo setBackupStatus(String backupStatus) {
 			super.change(BACKUP_STATUS,super.getBackupStatus(),backupStatus);
 			super.setBackupStatus(backupStatus);
+			return this;
+		}
+		
+		/**
+		 * 设置 部署模式
+		 * @param deployMode 部署模式
+		 * @return 当前对象
+		*/
+		public DbInfo setDeployMode(String deployMode) {
+			super.change(DEPLOY_MODE,super.getDeployMode(),deployMode);
+			super.setDeployMode(deployMode);
 			return this;
 		}
 		
@@ -360,6 +442,61 @@ public class DbInfoMeta {
 		public DbInfo setLogMethod(String logMethod) {
 			super.change(LOG_METHOD,super.getLogMethod(),logMethod);
 			super.setLogMethod(logMethod);
+			return this;
+		}
+		
+		/**
+		 * 设置 管理员账户
+		 * @param adminUserList 管理员账户
+		 * @return 当前对象
+		*/
+		public DbInfo setAdminUserList(String adminUserList) {
+			super.change(ADMIN_USER_LIST,super.getAdminUserList(),adminUserList);
+			super.setAdminUserList(adminUserList);
+			return this;
+		}
+		
+		/**
+		 * 设置 应用账户
+		 * @param appUserList 应用账户
+		 * @return 当前对象
+		*/
+		public DbInfo setAppUserList(String appUserList) {
+			super.change(APP_USER_LIST,super.getAppUserList(),appUserList);
+			super.setAppUserList(appUserList);
+			return this;
+		}
+		
+		/**
+		 * 设置 其他账户
+		 * @param otherUserList 其他账户
+		 * @return 当前对象
+		*/
+		public DbInfo setOtherUserList(String otherUserList) {
+			super.change(OTHER_USER_LIST,super.getOtherUserList(),otherUserList);
+			super.setOtherUserList(otherUserList);
+			return this;
+		}
+		
+		/**
+		 * 设置 凭证信息
+		 * @param voucherStr 凭证信息
+		 * @return 当前对象
+		*/
+		public DbInfo setVoucherStr(String voucherStr) {
+			super.change(VOUCHER_STR,super.getVoucherStr(),voucherStr);
+			super.setVoucherStr(voucherStr);
+			return this;
+		}
+		
+		/**
+		 * 设置 连接端口
+		 * @param dbPort 连接端口
+		 * @return 当前对象
+		*/
+		public DbInfo setDbPort(String dbPort) {
+			super.change(DB_PORT,super.getDbPort(),dbPort);
+			super.setDbPort(dbPort);
 			return this;
 		}
 		
@@ -516,6 +653,17 @@ public class DbInfoMeta {
 			super.setType(type);
 			return this;
 		}
+		
+		/**
+		 * 设置 deployModeDict
+		 * @param deployModeDict deployModeDict
+		 * @return 当前对象
+		*/
+		public DbInfo setDeployModeDict(DictItem deployModeDict) {
+			super.change(DEPLOY_MODE_DICT,super.getDeployModeDict(),deployModeDict);
+			super.setDeployModeDict(deployModeDict);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -534,27 +682,34 @@ public class DbInfoMeta {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setNotes(this.getNotes());
 			inst.setLogMethod(this.getLogMethod());
-			inst.setHostId(this.getHostId());
-			inst.setUpdateTime(this.getUpdateTime());
 			inst.setSelectedCode(this.getSelectedCode());
-			inst.setVersion(this.getVersion());
-			inst.setDbSize(this.getDbSize());
-			inst.setCreateBy(this.getCreateBy());
-			inst.setDeleted(this.getDeleted());
 			inst.setBackupStatus(this.getBackupStatus());
 			inst.setBackupStrategy(this.getBackupStrategy());
-			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());
+			inst.setVoucherStr(this.getVoucherStr());
+			inst.setId(this.getId());
+			inst.setAdminUserList(this.getAdminUserList());
+			inst.setAppUserList(this.getAppUserList());
+			inst.setDeployMode(this.getDeployMode());
+			inst.setOtherUserList(this.getOtherUserList());
+			inst.setHostId(this.getHostId());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setDbSize(this.getDbSize());
+			inst.setDbPort(this.getDbPort());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setName(this.getName());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setTypeId(this.getTypeId());
-			inst.setId(this.getId());
 			inst.setStatus(this.getStatus());
 			if(all) {
 				inst.setBackupInfoList(this.getBackupInfoList());
 				inst.setHost(this.getHost());
 				inst.setBackupInfoIds(this.getBackupInfoIds());
+				inst.setDeployModeDict(this.getDeployModeDict());
 				inst.setType(this.getType());
 			}
 			inst.clearModifies();

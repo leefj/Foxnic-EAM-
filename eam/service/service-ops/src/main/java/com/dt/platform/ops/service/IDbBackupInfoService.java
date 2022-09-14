@@ -23,7 +23,7 @@ import java.util.Map;
  * 数据库备份 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-12 09:44:55
+ * @since 2022-09-13 20:38:56
 */
 
 public interface IDbBackupInfoService extends  ISimpleIdService<DbBackupInfo,String> {

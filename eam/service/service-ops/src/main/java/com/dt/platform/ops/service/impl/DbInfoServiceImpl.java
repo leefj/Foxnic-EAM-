@@ -112,6 +112,9 @@ public class DbInfoServiceImpl extends SuperService<DbInfo> implements IDbInfoSe
 		dbInfo.setId(id);
 		try {
 			boolean suc = dao.deleteEntity(dbInfo);
+			if(suc){
+				dao.execute("update ops_db_backup_info set deleted=1 where database_id=?",id);
+			}
 			return suc?ErrorDesc.success():ErrorDesc.failure();
 		}
 		catch(Exception e) {
@@ -136,6 +139,9 @@ public class DbInfoServiceImpl extends SuperService<DbInfo> implements IDbInfoSe
 		dbInfo.setDeleteTime(new Date());
 		try {
 			boolean suc = dao.updateEntity(dbInfo,SaveMode.NOT_NULL_FIELDS);
+			if(suc){
+				dao.execute("update ops_db_backup_info set deleted=1 where database_id=?",id);
+			}
 			return suc?ErrorDesc.success():ErrorDesc.failure();
 		}
 		catch(Exception e) {

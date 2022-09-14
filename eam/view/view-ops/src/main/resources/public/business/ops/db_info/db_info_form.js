@@ -1,7 +1,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-12 09:45:07
+ * @since 2022-09-13 20:38:45
  */
 
 function FormPage() {
@@ -133,7 +133,7 @@ function FormPage() {
 				var defaultValues=[],defaultIndexs=[];
 				if(action=="create") {
 					defaultValues = "".split(",");
-					defaultIndexs = "".split(",");
+					defaultIndexs = "0".split(",");
 				}
 				var opts=[];
 				if(!data) return opts;
@@ -166,7 +166,7 @@ function FormPage() {
 				var defaultValues=[],defaultIndexs=[];
 				if(action=="create") {
 					defaultValues = "".split(",");
-					defaultIndexs = "".split(",");
+					defaultIndexs = "0".split(",");
 				}
 				var opts=[];
 				if(!data) return opts;
@@ -191,33 +191,43 @@ function FormPage() {
 			});
 			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("backupStatus",data,checked);
 		});
-		//渲染 logMethod 下拉字段
+		//渲染 deployMode 下拉字段
 		fox.renderSelectBox({
-			el: "logMethod",
+			el: "deployMode",
 			radio: true,
-			filterable: false,
+			filterable: true,
 			layVerify: 'required',
 			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("logMethod",data.arr,data.change,data.isAdd);
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("deployMode",data.arr,data.change,data.isAdd);
 				},1);
 			},
 			//转换数据
+			searchField: "label", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
 			transform: function(data) {
 				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
 				var defaultValues=[],defaultIndexs=[];
 				if(action=="create") {
-					defaultValues = "".split(",");
+					defaultValues = "single".split(",");
 					defaultIndexs = "".split(",");
 				}
 				var opts=[];
+				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
-					opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					opts.push({data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
 				}
 				return opts;
 			}
+		});
+		form.on('radio(logMethod)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=logMethod]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("logMethod",data,checked);
 		});
 	}
 
@@ -271,12 +281,12 @@ function FormPage() {
 
 
 
-			//设置  主机名 设置下拉框勾选
+			//设置  主机名称 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#hostId",formData.host);
-			//设置  类型 设置下拉框勾选
+			//设置  库类型 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#typeId",formData.type);
-			//设置  日志模式 设置下拉框勾选
-			fox.setSelectValue4Dict("#logMethod",formData.logMethod,SELECT_LOGMETHOD_DATA);
+			//设置  部署模式 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#deployMode",formData.deployModeDict);
 
 			//处理fillBy
 
@@ -328,12 +338,12 @@ function FormPage() {
 
 
 
-		//获取 主机名 下拉框的值
+		//获取 主机名称 下拉框的值
 		data["hostId"]=fox.getSelectedValue("hostId",false);
-		//获取 类型 下拉框的值
+		//获取 库类型 下拉框的值
 		data["typeId"]=fox.getSelectedValue("typeId",false);
-		//获取 日志模式 下拉框的值
-		data["logMethod"]=fox.getSelectedValue("logMethod",false);
+		//获取 部署模式 下拉框的值
+		data["deployMode"]=fox.getSelectedValue("deployMode",false);
 
 		return data;
 	}
