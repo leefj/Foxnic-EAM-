@@ -171,7 +171,7 @@ curl -L 'http://resource.rainbooow.com/appInstallFull.sh'|bash
 
 ### 方案三 应用直接部署
 - 详细部署方式查询git目录下的文档说明
-- https://gitee.com/lank/eam/tree/master/%E7%9B%B8%E5%85%B3%E6%96%87%E6%A1%A3
+- 百度网盘地址，地址同上
 
 
 
