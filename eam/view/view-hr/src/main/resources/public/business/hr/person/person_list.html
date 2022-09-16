@@ -2,7 +2,7 @@
 /**
  * 人员信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-16 19:42:02
+ * @since 2022-09-16 20:34:27
  */
  -->
  <!DOCTYPE html>
@@ -45,12 +45,13 @@
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('工号')}" class="search-label jobNumber-label">工号</span><span class="search-colon">:</span></div>
                         <input id="jobNumber" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
-                    <!-- 性别 , sex ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 性别 , sexCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 出生日期 , birthday ,typeName=date_input, isHideInSearch=true -->
                     <!-- 籍贯 , nativePlaceCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 民族 , nationCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 婚姻状况 , maritalStatus ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 身份证号 , identityCard ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 人员类型 , employeeTypeCode ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 身份证 , identityCard ,typeName=text_input, isHideInSearch=true -->
                     <!-- 联系方式 , contactInformation ,typeName=text_input, isHideInSearch=true -->
                     <!-- 电子邮件 , email ,typeName=text_input, isHideInSearch=true -->
                     <!-- 紧急联系人 , emergencyContact ,typeName=text_input, isHideInSearch=true -->
@@ -75,8 +76,8 @@
                     <!-- 初次日期 , firstEmploymentDate ,typeName=date_input, isHideInSearch=true -->
                     <!-- 参加工作时间 , firstWorkDate ,typeName=date_input, isHideInSearch=true -->
                     <!-- 员工部门 , orgId ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 员工岗位 , positionId ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 员工职称 , employeeTitleId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 员工岗位 , positionCode ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 员工职称 , employeeTitleCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 员工职级 , rankCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 员工工种 , workKindCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 离职日期 , leaveDate ,typeName=date_input, isHideInSearch=true -->

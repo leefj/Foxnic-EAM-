@@ -1,7 +1,7 @@
 /**
  * 人员信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-16 19:42:03
+ * @since 2022-09-16 20:34:28
  */
 
 function FormPage() {
@@ -225,6 +225,34 @@ function FormPage() {
 
 
 
+			//设置 出生日期 显示复选框勾选
+			if(formData["birthday"]) {
+				$("#birthday").val(fox.dateFormat(formData["birthday"],"yyyy-MM-dd HH:mm:ss"));
+			}
+			//设置 入党时间 显示复选框勾选
+			if(formData["joinPartDate"]) {
+				$("#joinPartDate").val(fox.dateFormat(formData["joinPartDate"],"yyyy-MM-dd HH:mm:ss"));
+			}
+			//设置 入职日期 显示复选框勾选
+			if(formData["employmentDate"]) {
+				$("#employmentDate").val(fox.dateFormat(formData["employmentDate"],"yyyy-MM-dd HH:mm:ss"));
+			}
+			//设置 转正日期 显示复选框勾选
+			if(formData["employmentConfirmDate"]) {
+				$("#employmentConfirmDate").val(fox.dateFormat(formData["employmentConfirmDate"],"yyyy-MM-dd HH:mm:ss"));
+			}
+			//设置 初次日期 显示复选框勾选
+			if(formData["firstEmploymentDate"]) {
+				$("#firstEmploymentDate").val(fox.dateFormat(formData["firstEmploymentDate"],"yyyy-MM-dd HH:mm:ss"));
+			}
+			//设置 参加工作时间 显示复选框勾选
+			if(formData["firstWorkDate"]) {
+				$("#firstWorkDate").val(fox.dateFormat(formData["firstWorkDate"],"yyyy-MM-dd HH:mm:ss"));
+			}
+			//设置 离职日期 显示复选框勾选
+			if(formData["leaveDate"]) {
+				$("#leaveDate").val(fox.dateFormat(formData["leaveDate"],"yyyy-MM-dd HH:mm:ss"));
+			}
 
 
 

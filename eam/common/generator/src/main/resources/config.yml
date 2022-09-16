@@ -39,7 +39,7 @@ applications:
     viewProjectPath: /view/view-eam
     viewPrefixPath: public/business/eam
     wrapperProjectPath:  /wrapper/wrapper-all
-  #HRM
+  #HR
   service-hr:
     nacosGroup: service
     nacosDataId: service-hr.yml

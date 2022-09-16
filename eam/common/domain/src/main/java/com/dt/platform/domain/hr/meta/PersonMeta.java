@@ -9,8 +9,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-16 19:42:01
- * @sign A77E9F682FD6B1D1BDAA0D3C4D254116
+ * @since 2022-09-16 20:34:26
+ * @sign 058736AB980AC9194929B4567EAFDDE4
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -59,12 +59,12 @@ public class PersonMeta {
 	/**
 	 * 性别 , 类型: java.lang.String
 	*/
-	public static final String SEX="sex";
+	public static final String SEX_CODE="sexCode";
 	
 	/**
 	 * 性别 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> SEX_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,SEX, java.lang.String.class, "性别", "性别", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> SEX_CODE_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,SEX_CODE, java.lang.String.class, "性别", "性别", java.lang.String.class, null);
 	
 	/**
 	 * 出生日期 , 类型: java.util.Date
@@ -117,14 +117,24 @@ public class PersonMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> EMPLOYEE_STATUS_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,EMPLOYEE_STATUS, java.lang.String.class, "员工状态", "员工状态", java.lang.String.class, null);
 	
 	/**
-	 * 身份证号 , 类型: java.lang.String
+	 * 人员类型 , 类型: java.lang.String
+	*/
+	public static final String EMPLOYEE_TYPE_CODE="employeeTypeCode";
+	
+	/**
+	 * 人员类型 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> EMPLOYEE_TYPE_CODE_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,EMPLOYEE_TYPE_CODE, java.lang.String.class, "人员类型", "人员类型", java.lang.String.class, null);
+	
+	/**
+	 * 身份证 , 类型: java.lang.String
 	*/
 	public static final String IDENTITY_CARD="identityCard";
 	
 	/**
-	 * 身份证号 , 类型: java.lang.String
+	 * 身份证 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> IDENTITY_CARD_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,IDENTITY_CARD, java.lang.String.class, "身份证号", "身份证号", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> IDENTITY_CARD_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,IDENTITY_CARD, java.lang.String.class, "身份证", "身份证", java.lang.String.class, null);
 	
 	/**
 	 * 联系方式 , 类型: java.lang.String
@@ -369,22 +379,22 @@ public class PersonMeta {
 	/**
 	 * 员工岗位 , 类型: java.lang.String
 	*/
-	public static final String POSITION_ID="positionId";
+	public static final String POSITION_CODE="positionCode";
 	
 	/**
 	 * 员工岗位 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> POSITION_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,POSITION_ID, java.lang.String.class, "员工岗位", "员工岗位", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> POSITION_CODE_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,POSITION_CODE, java.lang.String.class, "员工岗位", "员工岗位", java.lang.String.class, null);
 	
 	/**
 	 * 员工职称 , 类型: java.lang.String
 	*/
-	public static final String EMPLOYEE_TITLE_ID="employeeTitleId";
+	public static final String EMPLOYEE_TITLE_CODE="employeeTitleCode";
 	
 	/**
 	 * 员工职称 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> EMPLOYEE_TITLE_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,EMPLOYEE_TITLE_ID, java.lang.String.class, "员工职称", "员工职称", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> EMPLOYEE_TITLE_CODE_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,EMPLOYEE_TITLE_CODE, java.lang.String.class, "员工职称", "员工职称", java.lang.String.class, null);
 	
 	/**
 	 * 员工职级 , 类型: java.lang.String
@@ -569,7 +579,7 @@ public class PersonMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , EMPLOY_ID , JOB_NUMBER , NAME , SEX , BIRTHDAY , NATIVE_PLACE_CODE , NATION_CODE , MARITAL_STATUS , EMPLOYEE_STATUS , IDENTITY_CARD , CONTACT_INFORMATION , EMAIL , EMERGENCY_CONTACT , EMERGENCY_CONTACT_NO , HOME_ADDRESS , WEIXIN_ID , EDUCATION_CODE , GRADUATION_SCHOOL , MAJOR , GRADUATION_DATE , FOREIGN_LANGUAGE , FOREIGN_LANGUAGE_LEVEL , COMPUTER_ABILITY , COMPUTER_LEVEL , POLITIC_COUNTENANCE_CODE , JOIN_PART_DATE , BLOOD_TYPE , BODY_HEIGHT , BODY_WEIGHT , EMPLOYMENT_DATE , EMPLOYMENT_CONFIRM_DATE , FIRST_EMPLOYMENT_DATE , FIRST_WORK_DATE , ORG_ID , POSITION_ID , EMPLOYEE_TITLE_ID , RANK_CODE , WORK_KIND_CODE , LEAVE_DATE , LEAVE_RESON , PAYROLL_CARD_BANK_CODE , PAYROLL_CARD , PERSON_PICTURE_ID , FILE_ID , NOTE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ ID , EMPLOY_ID , JOB_NUMBER , NAME , SEX_CODE , BIRTHDAY , NATIVE_PLACE_CODE , NATION_CODE , MARITAL_STATUS , EMPLOYEE_STATUS , EMPLOYEE_TYPE_CODE , IDENTITY_CARD , CONTACT_INFORMATION , EMAIL , EMERGENCY_CONTACT , EMERGENCY_CONTACT_NO , HOME_ADDRESS , WEIXIN_ID , EDUCATION_CODE , GRADUATION_SCHOOL , MAJOR , GRADUATION_DATE , FOREIGN_LANGUAGE , FOREIGN_LANGUAGE_LEVEL , COMPUTER_ABILITY , COMPUTER_LEVEL , POLITIC_COUNTENANCE_CODE , JOIN_PART_DATE , BLOOD_TYPE , BODY_HEIGHT , BODY_WEIGHT , EMPLOYMENT_DATE , EMPLOYMENT_CONFIRM_DATE , FIRST_EMPLOYMENT_DATE , FIRST_WORK_DATE , ORG_ID , POSITION_CODE , EMPLOYEE_TITLE_CODE , RANK_CODE , WORK_KIND_CODE , LEAVE_DATE , LEAVE_RESON , PAYROLL_CARD_BANK_CODE , PAYROLL_CARD , PERSON_PICTURE_ID , FILE_ID , NOTE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
 	
 	/**
 	 * 代理类
@@ -625,12 +635,12 @@ public class PersonMeta {
 		
 		/**
 		 * 设置 性别
-		 * @param sex 性别
+		 * @param sexCode 性别
 		 * @return 当前对象
 		*/
-		public Person setSex(String sex) {
-			super.change(SEX,super.getSex(),sex);
-			super.setSex(sex);
+		public Person setSexCode(String sexCode) {
+			super.change(SEX_CODE,super.getSexCode(),sexCode);
+			super.setSexCode(sexCode);
 			return this;
 		}
 		
@@ -690,8 +700,19 @@ public class PersonMeta {
 		}
 		
 		/**
-		 * 设置 身份证号
-		 * @param identityCard 身份证号
+		 * 设置 人员类型
+		 * @param employeeTypeCode 人员类型
+		 * @return 当前对象
+		*/
+		public Person setEmployeeTypeCode(String employeeTypeCode) {
+			super.change(EMPLOYEE_TYPE_CODE,super.getEmployeeTypeCode(),employeeTypeCode);
+			super.setEmployeeTypeCode(employeeTypeCode);
+			return this;
+		}
+		
+		/**
+		 * 设置 身份证
+		 * @param identityCard 身份证
 		 * @return 当前对象
 		*/
 		public Person setIdentityCard(String identityCard) {
@@ -966,23 +987,23 @@ public class PersonMeta {
 		
 		/**
 		 * 设置 员工岗位
-		 * @param positionId 员工岗位
+		 * @param positionCode 员工岗位
 		 * @return 当前对象
 		*/
-		public Person setPositionId(String positionId) {
-			super.change(POSITION_ID,super.getPositionId(),positionId);
-			super.setPositionId(positionId);
+		public Person setPositionCode(String positionCode) {
+			super.change(POSITION_CODE,super.getPositionCode(),positionCode);
+			super.setPositionCode(positionCode);
 			return this;
 		}
 		
 		/**
 		 * 设置 员工职称
-		 * @param employeeTitleId 员工职称
+		 * @param employeeTitleCode 员工职称
 		 * @return 当前对象
 		*/
-		public Person setEmployeeTitleId(String employeeTitleId) {
-			super.change(EMPLOYEE_TITLE_ID,super.getEmployeeTitleId(),employeeTitleId);
-			super.setEmployeeTitleId(employeeTitleId);
+		public Person setEmployeeTitleCode(String employeeTitleCode) {
+			super.change(EMPLOYEE_TITLE_CODE,super.getEmployeeTitleCode(),employeeTitleCode);
+			super.setEmployeeTitleCode(employeeTitleCode);
 			return this;
 		}
 		
@@ -1209,6 +1230,7 @@ public class PersonMeta {
 			inst.setId(this.getId());
 			inst.setPayrollCardBankCode(this.getPayrollCardBankCode());
 			inst.setHomeAddress(this.getHomeAddress());
+			inst.setEmployeeTitleCode(this.getEmployeeTitleCode());
 			inst.setForeignLanguageLevel(this.getForeignLanguageLevel());
 			inst.setEmergencyContact(this.getEmergencyContact());
 			inst.setGraduationSchool(this.getGraduationSchool());
@@ -1226,11 +1248,11 @@ public class PersonMeta {
 			inst.setBirthday(this.getBirthday());
 			inst.setNote(this.getNote());
 			inst.setBodyHeight(this.getBodyHeight());
+			inst.setPositionCode(this.getPositionCode());
 			inst.setEducationCode(this.getEducationCode());
 			inst.setComputerAbility(this.getComputerAbility());
 			inst.setBloodType(this.getBloodType());
 			inst.setEmployeeStatus(this.getEmployeeStatus());
-			inst.setEmployeeTitleId(this.getEmployeeTitleId());
 			inst.setOrgId(this.getOrgId());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setPersonPictureId(this.getPersonPictureId());
@@ -1238,18 +1260,18 @@ public class PersonMeta {
 			inst.setNationCode(this.getNationCode());
 			inst.setFirstWorkDate(this.getFirstWorkDate());
 			inst.setPayrollCard(this.getPayrollCard());
-			inst.setSex(this.getSex());
 			inst.setWeixinId(this.getWeixinId());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setEmployId(this.getEmployId());
 			inst.setJoinPartDate(this.getJoinPartDate());
 			inst.setLeaveReson(this.getLeaveReson());
+			inst.setSexCode(this.getSexCode());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setContactInformation(this.getContactInformation());
 			inst.setDeleted(this.getDeleted());
 			inst.setGraduationDate(this.getGraduationDate());
-			inst.setPositionId(this.getPositionId());
 			inst.setCreateTime(this.getCreateTime());
+			inst.setEmployeeTypeCode(this.getEmployeeTypeCode());
 			inst.setLeaveDate(this.getLeaveDate());
 			inst.setTenantId(this.getTenantId());
 			inst.setPoliticCountenanceCode(this.getPoliticCountenanceCode());

@@ -18,8 +18,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 人员信息
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-16 19:42:01
- * @sign A77E9F682FD6B1D1BDAA0D3C4D254116
+ * @since 2022-09-16 20:34:26
+ * @sign 058736AB980AC9194929B4567EAFDDE4
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -59,7 +59,7 @@ public class Person extends Entity {
 	 * 性别：性别
 	*/
 	@ApiModelProperty(required = false,value="性别" , notes = "性别")
-	private String sex;
+	private String sexCode;
 	
 	/**
 	 * 出生日期：出生日期
@@ -92,9 +92,15 @@ public class Person extends Entity {
 	private String employeeStatus;
 	
 	/**
-	 * 身份证号：身份证号
+	 * 人员类型：人员类型
 	*/
-	@ApiModelProperty(required = false,value="身份证号" , notes = "身份证号")
+	@ApiModelProperty(required = false,value="人员类型" , notes = "人员类型")
+	private String employeeTypeCode;
+	
+	/**
+	 * 身份证：身份证
+	*/
+	@ApiModelProperty(required = false,value="身份证" , notes = "身份证")
 	private String identityCard;
 	
 	/**
@@ -245,13 +251,13 @@ public class Person extends Entity {
 	 * 员工岗位：员工岗位
 	*/
 	@ApiModelProperty(required = false,value="员工岗位" , notes = "员工岗位")
-	private String positionId;
+	private String positionCode;
 	
 	/**
 	 * 员工职称：员工职称
 	*/
 	@ApiModelProperty(required = false,value="员工职称" , notes = "员工职称")
-	private String employeeTitleId;
+	private String employeeTitleCode;
 	
 	/**
 	 * 员工职级：员工职级
@@ -444,17 +450,17 @@ public class Person extends Entity {
 	 * 性别
 	 * @return 性别
 	*/
-	public String getSex() {
-		return sex;
+	public String getSexCode() {
+		return sexCode;
 	}
 	
 	/**
 	 * 设置 性别
-	 * @param sex 性别
+	 * @param sexCode 性别
 	 * @return 当前对象
 	*/
-	public Person setSex(String sex) {
-		this.sex=sex;
+	public Person setSexCode(String sexCode) {
+		this.sexCode=sexCode;
 		return this;
 	}
 	
@@ -554,17 +560,36 @@ public class Person extends Entity {
 	}
 	
 	/**
-	 * 获得 身份证号<br>
-	 * 身份证号
-	 * @return 身份证号
+	 * 获得 人员类型<br>
+	 * 人员类型
+	 * @return 人员类型
+	*/
+	public String getEmployeeTypeCode() {
+		return employeeTypeCode;
+	}
+	
+	/**
+	 * 设置 人员类型
+	 * @param employeeTypeCode 人员类型
+	 * @return 当前对象
+	*/
+	public Person setEmployeeTypeCode(String employeeTypeCode) {
+		this.employeeTypeCode=employeeTypeCode;
+		return this;
+	}
+	
+	/**
+	 * 获得 身份证<br>
+	 * 身份证
+	 * @return 身份证
 	*/
 	public String getIdentityCard() {
 		return identityCard;
 	}
 	
 	/**
-	 * 设置 身份证号
-	 * @param identityCard 身份证号
+	 * 设置 身份证
+	 * @param identityCard 身份证
 	 * @return 当前对象
 	*/
 	public Person setIdentityCard(String identityCard) {
@@ -1033,17 +1058,17 @@ public class Person extends Entity {
 	 * 员工岗位
 	 * @return 员工岗位
 	*/
-	public String getPositionId() {
-		return positionId;
+	public String getPositionCode() {
+		return positionCode;
 	}
 	
 	/**
 	 * 设置 员工岗位
-	 * @param positionId 员工岗位
+	 * @param positionCode 员工岗位
 	 * @return 当前对象
 	*/
-	public Person setPositionId(String positionId) {
-		this.positionId=positionId;
+	public Person setPositionCode(String positionCode) {
+		this.positionCode=positionCode;
 		return this;
 	}
 	
@@ -1052,17 +1077,17 @@ public class Person extends Entity {
 	 * 员工职称
 	 * @return 员工职称
 	*/
-	public String getEmployeeTitleId() {
-		return employeeTitleId;
+	public String getEmployeeTitleCode() {
+		return employeeTitleCode;
 	}
 	
 	/**
 	 * 设置 员工职称
-	 * @param employeeTitleId 员工职称
+	 * @param employeeTitleCode 员工职称
 	 * @return 当前对象
 	*/
-	public Person setEmployeeTitleId(String employeeTitleId) {
-		this.employeeTitleId=employeeTitleId;
+	public Person setEmployeeTitleCode(String employeeTitleCode) {
+		this.employeeTitleCode=employeeTitleCode;
 		return this;
 	}
 	
@@ -1493,6 +1518,7 @@ public class Person extends Entity {
 		inst.setId(this.getId());
 		inst.setPayrollCardBankCode(this.getPayrollCardBankCode());
 		inst.setHomeAddress(this.getHomeAddress());
+		inst.setEmployeeTitleCode(this.getEmployeeTitleCode());
 		inst.setForeignLanguageLevel(this.getForeignLanguageLevel());
 		inst.setEmergencyContact(this.getEmergencyContact());
 		inst.setGraduationSchool(this.getGraduationSchool());
@@ -1510,11 +1536,11 @@ public class Person extends Entity {
 		inst.setBirthday(this.getBirthday());
 		inst.setNote(this.getNote());
 		inst.setBodyHeight(this.getBodyHeight());
+		inst.setPositionCode(this.getPositionCode());
 		inst.setEducationCode(this.getEducationCode());
 		inst.setComputerAbility(this.getComputerAbility());
 		inst.setBloodType(this.getBloodType());
 		inst.setEmployeeStatus(this.getEmployeeStatus());
-		inst.setEmployeeTitleId(this.getEmployeeTitleId());
 		inst.setOrgId(this.getOrgId());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setPersonPictureId(this.getPersonPictureId());
@@ -1522,18 +1548,18 @@ public class Person extends Entity {
 		inst.setNationCode(this.getNationCode());
 		inst.setFirstWorkDate(this.getFirstWorkDate());
 		inst.setPayrollCard(this.getPayrollCard());
-		inst.setSex(this.getSex());
 		inst.setWeixinId(this.getWeixinId());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setEmployId(this.getEmployId());
 		inst.setJoinPartDate(this.getJoinPartDate());
 		inst.setLeaveReson(this.getLeaveReson());
+		inst.setSexCode(this.getSexCode());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setContactInformation(this.getContactInformation());
 		inst.setDeleted(this.getDeleted());
 		inst.setGraduationDate(this.getGraduationDate());
-		inst.setPositionId(this.getPositionId());
 		inst.setCreateTime(this.getCreateTime());
+		inst.setEmployeeTypeCode(this.getEmployeeTypeCode());
 		inst.setLeaveDate(this.getLeaveDate());
 		inst.setTenantId(this.getTenantId());
 		inst.setPoliticCountenanceCode(this.getPoliticCountenanceCode());

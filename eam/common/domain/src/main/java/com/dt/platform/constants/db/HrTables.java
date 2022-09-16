@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-09-16 16:23:57
+ * @since 2022-09-16 20:08:40
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -48,7 +48,7 @@ public class HrTables {
 		/**
 		 * 性别
 		*/
-		public static final DBField SEX = new DBField(DBDataType.STRING , "sex","sex","性别","性别",false,false,true);
+		public static final DBField SEX_CODE = new DBField(DBDataType.STRING , "sex_code","sexCode","性别","性别",false,false,true);
 		
 		/**
 		 * 出生日期
@@ -76,9 +76,14 @@ public class HrTables {
 		public static final DBField EMPLOYEE_STATUS = new DBField(DBDataType.STRING , "employee_status","employeeStatus","员工状态","员工状态",false,false,true);
 		
 		/**
-		 * 身份证号
+		 * 人员类型
 		*/
-		public static final DBField IDENTITY_CARD = new DBField(DBDataType.STRING , "identity_card","identityCard","身份证号","身份证号",false,false,true);
+		public static final DBField EMPLOYEE_TYPE_CODE = new DBField(DBDataType.STRING , "employee_type_code","employeeTypeCode","人员类型","人员类型",false,false,true);
+		
+		/**
+		 * 身份证
+		*/
+		public static final DBField IDENTITY_CARD = new DBField(DBDataType.STRING , "identity_card","identityCard","身份证","身份证",false,false,true);
 		
 		/**
 		 * 联系方式
@@ -203,12 +208,12 @@ public class HrTables {
 		/**
 		 * 员工岗位
 		*/
-		public static final DBField POSITION_ID = new DBField(DBDataType.STRING , "position_id","positionId","员工岗位","员工岗位",false,false,true);
+		public static final DBField POSITION_CODE = new DBField(DBDataType.STRING , "position_code","positionCode","员工岗位","员工岗位",false,false,true);
 		
 		/**
 		 * 员工职称
 		*/
-		public static final DBField EMPLOYEE_TITLE_ID = new DBField(DBDataType.STRING , "employee_title_id","employeeTitleId","员工职称","员工职称",false,false,true);
+		public static final DBField EMPLOYEE_TITLE_CODE = new DBField(DBDataType.STRING , "employee_title_code","employeeTitleCode","员工职称","员工职称",false,false,true);
 		
 		/**
 		 * 员工职级
@@ -300,7 +305,7 @@ public class HrTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public HR_PERSON() {
-			this.init($NAME,"人员信息" , ID , EMPLOY_ID , JOB_NUMBER , NAME , SEX , BIRTHDAY , NATIVE_PLACE_CODE , NATION_CODE , MARITAL_STATUS , EMPLOYEE_STATUS , IDENTITY_CARD , CONTACT_INFORMATION , EMAIL , EMERGENCY_CONTACT , EMERGENCY_CONTACT_NO , HOME_ADDRESS , WEIXIN_ID , EDUCATION_CODE , GRADUATION_SCHOOL , MAJOR , GRADUATION_DATE , FOREIGN_LANGUAGE , FOREIGN_LANGUAGE_LEVEL , COMPUTER_ABILITY , COMPUTER_LEVEL , POLITIC_COUNTENANCE_CODE , JOIN_PART_DATE , BLOOD_TYPE , BODY_HEIGHT , BODY_WEIGHT , EMPLOYMENT_DATE , EMPLOYMENT_CONFIRM_DATE , FIRST_EMPLOYMENT_DATE , FIRST_WORK_DATE , ORG_ID , POSITION_ID , EMPLOYEE_TITLE_ID , RANK_CODE , WORK_KIND_CODE , LEAVE_DATE , LEAVE_RESON , PAYROLL_CARD_BANK_CODE , PAYROLL_CARD , PERSON_PICTURE_ID , FILE_ID , NOTE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"人员信息" , ID , EMPLOY_ID , JOB_NUMBER , NAME , SEX_CODE , BIRTHDAY , NATIVE_PLACE_CODE , NATION_CODE , MARITAL_STATUS , EMPLOYEE_STATUS , EMPLOYEE_TYPE_CODE , IDENTITY_CARD , CONTACT_INFORMATION , EMAIL , EMERGENCY_CONTACT , EMERGENCY_CONTACT_NO , HOME_ADDRESS , WEIXIN_ID , EDUCATION_CODE , GRADUATION_SCHOOL , MAJOR , GRADUATION_DATE , FOREIGN_LANGUAGE , FOREIGN_LANGUAGE_LEVEL , COMPUTER_ABILITY , COMPUTER_LEVEL , POLITIC_COUNTENANCE_CODE , JOIN_PART_DATE , BLOOD_TYPE , BODY_HEIGHT , BODY_WEIGHT , EMPLOYMENT_DATE , EMPLOYMENT_CONFIRM_DATE , FIRST_EMPLOYMENT_DATE , FIRST_WORK_DATE , ORG_ID , POSITION_CODE , EMPLOYEE_TITLE_CODE , RANK_CODE , WORK_KIND_CODE , LEAVE_DATE , LEAVE_RESON , PAYROLL_CARD_BANK_CODE , PAYROLL_CARD , PERSON_PICTURE_ID , FILE_ID , NOTE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final HR_PERSON $TABLE=new HR_PERSON();
 	}

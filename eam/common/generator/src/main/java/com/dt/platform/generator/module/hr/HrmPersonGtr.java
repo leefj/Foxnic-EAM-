@@ -37,14 +37,79 @@ public class HrmPersonGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
-        cfg.view().formWindow().width(Config.baseFormWidth);;
+        cfg.view().formWindow().width("65%");;
         cfg.view().formWindow().bottomSpace(20);
-        cfg.view().form().addGroup(null,
+        cfg.view().form().addGroup("基本信息",
                 new Object[] {
-                        HrTables.HR_PERSON.JOB_NUMBER
+                        HrTables.HR_PERSON.JOB_NUMBER,
+                        HrTables.HR_PERSON.NAME,
+                        HrTables.HR_PERSON.IDENTITY_CARD,
+                        HrTables.HR_PERSON.SEX_CODE,
+                        HrTables.HR_PERSON.MARITAL_STATUS,
+                },
+                new Object[] {
+                        HrTables.HR_PERSON.EMPLOYEE_TYPE_CODE,
+                        HrTables.HR_PERSON.BIRTHDAY,
+                        HrTables.HR_PERSON.NATION_CODE,
+                        HrTables.HR_PERSON.NATIVE_PLACE_CODE,
                 }
         );
 
+        cfg.view().form().addGroup("个人情况",
+                new Object[] {
+                        HrTables.HR_PERSON.CONTACT_INFORMATION,
+                        HrTables.HR_PERSON.EMERGENCY_CONTACT,
+                        HrTables.HR_PERSON.HOME_ADDRESS,
+                        HrTables.HR_PERSON.EDUCATION_CODE,
+                        HrTables.HR_PERSON.FOREIGN_LANGUAGE,
+                        HrTables.HR_PERSON.COMPUTER_ABILITY,
+                        HrTables.HR_PERSON.POLITIC_COUNTENANCE_CODE,
+                        HrTables.HR_PERSON.BLOOD_TYPE,
+                        HrTables.HR_PERSON.BODY_WEIGHT,
+                },
+                new Object[] {
+                        HrTables.HR_PERSON.EMAIL,
+                        HrTables.HR_PERSON.EMERGENCY_CONTACT_NO,
+                        HrTables.HR_PERSON.WEIXIN_ID,
+                        HrTables.HR_PERSON.GRADUATION_SCHOOL,
+                        HrTables.HR_PERSON.FOREIGN_LANGUAGE_LEVEL,
+                        HrTables.HR_PERSON.COMPUTER_LEVEL,
+                        HrTables.HR_PERSON.JOIN_PART_DATE,
+                        HrTables.HR_PERSON.BODY_HEIGHT,
+                }
+        );
+        cfg.view().form().addGroup("单位信息",
+                new Object[] {
+                        HrTables.HR_PERSON.EMPLOYMENT_DATE,
+                        HrTables.HR_PERSON.EMPLOYMENT_CONFIRM_DATE,
+                        HrTables.HR_PERSON.ORG_ID,
+                        HrTables.HR_PERSON.POSITION_CODE,
+                        HrTables.HR_PERSON.LEAVE_DATE
+                },
+                new Object[] {
+                        HrTables.HR_PERSON.FIRST_EMPLOYMENT_DATE,
+                        HrTables.HR_PERSON.FIRST_WORK_DATE,
+                        HrTables.HR_PERSON.EMPLOYEE_TITLE_CODE,
+                        HrTables.HR_PERSON.RANK_CODE,
+                        HrTables.HR_PERSON.LEAVE_RESON
+                }
+        );
+
+        cfg.view().form().addGroup("工资信息",
+                new Object[] {
+                        HrTables.HR_PERSON.PAYROLL_CARD_BANK_CODE
+                },
+                new Object[] {
+                        HrTables.HR_PERSON.PAYROLL_CARD
+                }
+        );
+        cfg.view().form().addGroup("其他信息",
+                new Object[] {
+                        HrTables.HR_PERSON.PERSON_PICTURE_ID,
+                        HrTables.HR_PERSON.FILE_ID,
+                        HrTables.HR_PERSON.NOTE
+                }
+        );
 
 
         //文件生成覆盖模式

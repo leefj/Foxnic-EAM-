@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * 人员信息
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-16 19:42:01
+ * @since 2022-09-16 20:34:26
  * @sign 0D48095740FD04B69DB3F28C0F155746
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -329,6 +329,7 @@ public class PersonVO extends Person {
 		inst.setId(this.getId());
 		inst.setPayrollCardBankCode(this.getPayrollCardBankCode());
 		inst.setHomeAddress(this.getHomeAddress());
+		inst.setEmployeeTitleCode(this.getEmployeeTitleCode());
 		inst.setForeignLanguageLevel(this.getForeignLanguageLevel());
 		inst.setEmergencyContact(this.getEmergencyContact());
 		inst.setGraduationSchool(this.getGraduationSchool());
@@ -346,11 +347,11 @@ public class PersonVO extends Person {
 		inst.setBirthday(this.getBirthday());
 		inst.setNote(this.getNote());
 		inst.setBodyHeight(this.getBodyHeight());
+		inst.setPositionCode(this.getPositionCode());
 		inst.setEducationCode(this.getEducationCode());
 		inst.setComputerAbility(this.getComputerAbility());
 		inst.setBloodType(this.getBloodType());
 		inst.setEmployeeStatus(this.getEmployeeStatus());
-		inst.setEmployeeTitleId(this.getEmployeeTitleId());
 		inst.setOrgId(this.getOrgId());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setPersonPictureId(this.getPersonPictureId());
@@ -358,18 +359,18 @@ public class PersonVO extends Person {
 		inst.setNationCode(this.getNationCode());
 		inst.setFirstWorkDate(this.getFirstWorkDate());
 		inst.setPayrollCard(this.getPayrollCard());
-		inst.setSex(this.getSex());
 		inst.setWeixinId(this.getWeixinId());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setEmployId(this.getEmployId());
 		inst.setJoinPartDate(this.getJoinPartDate());
 		inst.setLeaveReson(this.getLeaveReson());
+		inst.setSexCode(this.getSexCode());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setContactInformation(this.getContactInformation());
 		inst.setDeleted(this.getDeleted());
 		inst.setGraduationDate(this.getGraduationDate());
-		inst.setPositionId(this.getPositionId());
 		inst.setCreateTime(this.getCreateTime());
+		inst.setEmployeeTypeCode(this.getEmployeeTypeCode());
 		inst.setLeaveDate(this.getLeaveDate());
 		inst.setTenantId(this.getTenantId());
 		inst.setPoliticCountenanceCode(this.getPoliticCountenanceCode());

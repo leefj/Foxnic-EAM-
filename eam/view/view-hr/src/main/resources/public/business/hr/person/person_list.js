@@ -1,7 +1,7 @@
 /**
  * 人员信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-16 19:42:02
+ * @since 2022-09-16 20:34:27
  */
 
 
@@ -81,13 +81,14 @@ function ListPage() {
 					,{ field: 'employId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工') , templet: function (d) { return templet('employId',d.employId,d);}  }
 					,{ field: 'jobNumber', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('工号') , templet: function (d) { return templet('jobNumber',d.jobNumber,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('姓名') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'sex', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('性别') , templet: function (d) { return templet('sex',d.sex,d);}  }
+					,{ field: 'sexCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('性别') , templet: function (d) { return templet('sexCode',d.sexCode,d);}  }
 					,{ field: 'birthday', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('出生日期') ,templet: function (d) { return templet('birthday',fox.dateFormat(d.birthday,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'nativePlaceCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('籍贯') , templet: function (d) { return templet('nativePlaceCode',d.nativePlaceCode,d);}  }
 					,{ field: 'nationCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('民族') , templet: function (d) { return templet('nationCode',d.nationCode,d);}  }
 					,{ field: 'maritalStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('婚姻状况') , templet: function (d) { return templet('maritalStatus',d.maritalStatus,d);}  }
 					,{ field: 'employeeStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工状态') , templet: function (d) { return templet('employeeStatus',d.employeeStatus,d);}  }
-					,{ field: 'identityCard', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('身份证号') , templet: function (d) { return templet('identityCard',d.identityCard,d);}  }
+					,{ field: 'employeeTypeCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('人员类型') , templet: function (d) { return templet('employeeTypeCode',d.employeeTypeCode,d);}  }
+					,{ field: 'identityCard', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('身份证') , templet: function (d) { return templet('identityCard',d.identityCard,d);}  }
 					,{ field: 'contactInformation', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('联系方式') , templet: function (d) { return templet('contactInformation',d.contactInformation,d);}  }
 					,{ field: 'email', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('电子邮件') , templet: function (d) { return templet('email',d.email,d);}  }
 					,{ field: 'emergencyContact', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('紧急联系人') , templet: function (d) { return templet('emergencyContact',d.emergencyContact,d);}  }
@@ -112,8 +113,8 @@ function ListPage() {
 					,{ field: 'firstEmploymentDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('初次日期') ,templet: function (d) { return templet('firstEmploymentDate',fox.dateFormat(d.firstEmploymentDate,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'firstWorkDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('参加工作时间') ,templet: function (d) { return templet('firstWorkDate',fox.dateFormat(d.firstWorkDate,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'orgId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工部门') , templet: function (d) { return templet('orgId',d.orgId,d);}  }
-					,{ field: 'positionId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工岗位') , templet: function (d) { return templet('positionId',d.positionId,d);}  }
-					,{ field: 'employeeTitleId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工职称') , templet: function (d) { return templet('employeeTitleId',d.employeeTitleId,d);}  }
+					,{ field: 'positionCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工岗位') , templet: function (d) { return templet('positionCode',d.positionCode,d);}  }
+					,{ field: 'employeeTitleCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工职称') , templet: function (d) { return templet('employeeTitleCode',d.employeeTitleCode,d);}  }
 					,{ field: 'rankCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工职级') , templet: function (d) { return templet('rankCode',d.rankCode,d);}  }
 					,{ field: 'workKindCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('员工工种') , templet: function (d) { return templet('workKindCode',d.workKindCode,d);}  }
 					,{ field: 'leaveDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('离职日期') ,templet: function (d) { return templet('leaveDate',fox.dateFormat(d.leaveDate,"yyyy-MM-dd HH:mm:ss"),d); }  }
@@ -413,7 +414,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["80%",height+"px"],
+			area: ["65%",height+"px"],
 			type: 2,
 			id:"hr-person-form-data-win",
 			content: '/business/hr/person/person_form.html' + (queryString?("?"+queryString):""),
