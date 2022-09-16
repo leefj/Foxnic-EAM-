@@ -23,7 +23,7 @@ import java.util.Map;
  * 人员信息 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-16 20:34:26
+ * @since 2022-09-17 07:13:42
 */
 
 public interface IPersonService extends  ISimpleIdService<Person,String> {

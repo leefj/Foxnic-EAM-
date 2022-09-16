@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * 人员信息 模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-16 20:34:27
+ * @since 2022-09-17 07:13:42
 */
 
 @Controller("HrPersonPageController")
@@ -42,7 +42,6 @@ public class PersonPageController extends ViewController {
 	 */
 	@RequestMapping("/person_list.html")
 	public String list(Model model,HttpServletRequest request) {
-
 		return prefix+"/person_list";
 	}
 
