@@ -42,6 +42,7 @@ public class PersonPageController extends ViewController {
 	 */
 	@RequestMapping("/person_list.html")
 	public String list(Model model,HttpServletRequest request) {
+
 		return prefix+"/person_list";
 	}
 

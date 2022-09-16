@@ -19,7 +19,7 @@ import org.springframework.context.annotation.ComponentScan;
 		FoxnicWebMeta.SERVICE_JOB_PACKAGE,
 		PlatformMeta.FRAMEWORK_PACKAGE,
 		PlatformMeta.SERVICE_EAM_PACKAGE,
-		PlatformMeta.SERVICE_HRM_PACKAGE,
+		PlatformMeta.SERVICE_HR_PACKAGE,
 		PlatformMeta.DATACENTER_PACKAGE,
 		PlatformMeta.CMS_PACKAGE,
 		PlatformMeta.OPS_PACKAGE,

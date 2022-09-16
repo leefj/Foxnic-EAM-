@@ -34,7 +34,7 @@ public class PlatformMeta {
 	/**
 	 * 人事服务
 	 * */
-	public static final String SERVICE_HRM_PACKAGE=BASE_PACKAGE+".hrm";
+	public static final String SERVICE_HR_PACKAGE=BASE_PACKAGE+".hr";
 
 	/**
 	 * 数据中心服务
