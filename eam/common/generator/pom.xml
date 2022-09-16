@@ -67,7 +67,7 @@
 
         <dependency>
             <groupId>com.dt.platform</groupId>
-            <artifactId>service-hrm</artifactId>
+            <artifactId>service-hr</artifactId>
             <version>${platform.version}</version>
         </dependency>
 
@@ -128,13 +128,16 @@
             <version>${platform.version}</version>
         </dependency>
 
+
+
         <dependency>
-            <groupId>com.dt.platform</groupId>  
-            <artifactId>view-hrm</artifactId>
-            <version>${platform.version}</version> 
-        </dependency> 
-        
-		<dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>view-hr</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+
+        <dependency>
             <groupId>com.dt.platform</groupId>  
             <artifactId>view-eam</artifactId>
             <version>${platform.version}</version> 

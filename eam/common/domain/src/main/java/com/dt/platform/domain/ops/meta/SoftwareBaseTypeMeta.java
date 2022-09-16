@@ -3,13 +3,14 @@ package com.dt.platform.domain.ops.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.ops.SoftwareBaseType;
 import java.util.Date;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-12 21:52:02
- * @sign 3739EA762F2141DD278760889598FDA2
+ * @since 2022-09-16 08:29:27
+ * @sign C2EFCC6E8AE921770D91FBF57A41334B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -279,5 +280,37 @@ public class SoftwareBaseTypeMeta {
 			super.setTenantId(tenantId);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public SoftwareBaseType clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public SoftwareBaseType duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setCreateBy(this.getCreateBy());
+			inst.setNotes(this.getNotes());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setId(this.getId());
+			inst.setVersion(this.getVersion());
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

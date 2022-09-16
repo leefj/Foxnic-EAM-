@@ -5,13 +5,14 @@ import com.dt.platform.domain.ops.SoftwareBaseTypeVO;
 import java.util.List;
 import com.dt.platform.domain.ops.SoftwareBaseType;
 import java.util.Date;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-12 21:52:02
- * @sign A21BD62FABC6FA6AB9BCF4E3BFE105E0
+ * @since 2022-09-16 08:29:27
+ * @sign CCC205F271A4F41605190D2067DC855C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -470,5 +471,48 @@ public class SoftwareBaseTypeVOMeta extends SoftwareBaseTypeMeta {
 			super.setTenantId(tenantId);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public SoftwareBaseTypeVO clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public SoftwareBaseTypeVO duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setCreateBy(this.getCreateBy());
+			inst.setNotes(this.getNotes());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setId(this.getId());
+			inst.setVersion(this.getVersion());
+			if(all) {
+				inst.setSearchField(this.getSearchField());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setDirtyFields(this.getDirtyFields());
+				inst.setSortField(this.getSortField());
+				inst.setPageSize(this.getPageSize());
+				inst.setIds(this.getIds());
+				inst.setSearchValue(this.getSearchValue());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

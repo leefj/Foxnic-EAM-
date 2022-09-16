@@ -10,9 +10,9 @@
         <!-- lookup parent from repository -->
     </parent>
 
-    <artifactId>view-hrm</artifactId>
-    <name>view-hrm</name>  
-    <description>HRM View</description>  
+    <artifactId>view-hr</artifactId>
+    <name>view-hr</name>
+    <description>HR View</description>
 
     <dependencies>
         <dependency>

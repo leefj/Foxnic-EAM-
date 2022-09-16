@@ -74,7 +74,7 @@ public class SoftwareBaseLineGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_SOFTWARE_BASE_VERSION.FILE_ID).form().upload().acceptSingleFile().acceptAllType().maxFileCount(1);
         cfg.view().list().disableBatchDelete();
-        cfg.view().formWindow().width("65%");
+        cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().form().addGroup(null,
                 new Object[] {

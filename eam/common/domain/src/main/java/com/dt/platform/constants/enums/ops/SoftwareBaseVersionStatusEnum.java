@@ -14,6 +14,7 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 public enum SoftwareBaseVersionStatusEnum implements CodeTextEnum {
 
     EFFECT("effect" , "生效"),
+    NOT_EFFECT("not_effect" , "未生"),
     SUSPEND("suspend" , "暂停");
 
     private String code;

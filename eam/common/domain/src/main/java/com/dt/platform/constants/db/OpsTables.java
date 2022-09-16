@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-09-13 20:37:27
+ * @since 2022-09-16 08:27:42
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -7338,6 +7338,111 @@ public class OpsTables {
 			this.init($NAME,"人员清单" , ID , COMPANY_NAME , NAME , PERSON_TYPE , CONTACT_INFORMATION , LABEL , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final OPS_PERSON $TABLE=new OPS_PERSON();
+	}
+	
+	/**
+	 * 安全基线
+	*/
+	public static class OPS_SAFETY_BASELINE extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "ops_safety_baseline";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 类型
+		*/
+		public static final DBField BASE_TYPE_ID = new DBField(DBDataType.STRING , "base_type_id","baseTypeId","类型","类型",false,false,true);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField BASE_VERSION = new DBField(DBDataType.STRING , "base_version","baseVersion","版本","版本",false,false,true);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
+		
+		/**
+		 * 使用场景
+		*/
+		public static final DBField USAGE_SCENARIOS = new DBField(DBDataType.STRING , "usage_scenarios","usageScenarios","使用场景","使用场景",false,false,true);
+		
+		/**
+		 * 基线文件
+		*/
+		public static final DBField FILE_ID = new DBField(DBDataType.STRING , "file_id","fileId","基线文件","基线文件",false,false,true);
+		
+		/**
+		 * 检查文件
+		*/
+		public static final DBField CHECK_FILE_ID = new DBField(DBDataType.STRING , "check_file_id","checkFileId","检查文件","检查文件",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OPS_SAFETY_BASELINE() {
+			this.init($NAME,"安全基线" , ID , BASE_TYPE_ID , NAME , BASE_VERSION , STATUS , USAGE_SCENARIOS , FILE_ID , CHECK_FILE_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final OPS_SAFETY_BASELINE $TABLE=new OPS_SAFETY_BASELINE();
 	}
 	
 	/**

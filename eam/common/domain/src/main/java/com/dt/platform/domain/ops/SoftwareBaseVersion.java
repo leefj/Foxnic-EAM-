@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,8 +21,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 软件基线版本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-27 20:16:21
- * @sign D30A23C000A34EE3602A784FFF527907
+ * @since 2022-09-16 08:30:06
+ * @sign 9D86F981458060C20649FC34EF59DECD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -423,6 +424,7 @@ public class SoftwareBaseVersion extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public SoftwareBaseVersion setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -581,6 +583,54 @@ public class SoftwareBaseVersion extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public SoftwareBaseVersion clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public SoftwareBaseVersion duplicate(boolean all) {
+		com.dt.platform.domain.ops.meta.SoftwareBaseVersionMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.SoftwareBaseVersionMeta.$$proxy$$();
+		inst.setUsageScenarios(this.getUsageScenarios());
+		inst.setNotes(this.getNotes());
+		inst.setSoftwareTypeId(this.getSoftwareTypeId());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setPatchInfo(this.getPatchInfo());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setSoftwareVersion(this.getSoftwareVersion());
+		inst.setStatus(this.getStatus());
+		inst.setFileId(this.getFileId());
+		if(all) {
+			inst.setSoftwareBaseType(this.getSoftwareBaseType());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public SoftwareBaseVersion clone(boolean deep) {
+		return EntityContext.clone(SoftwareBaseVersion.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 SoftwareBaseVersion
 	 * @param softwareBaseVersionMap 包含实体信息的 Map 对象
 	 * @return SoftwareBaseVersion , 转换好的的 SoftwareBaseVersion 对象
@@ -588,7 +638,9 @@ public class SoftwareBaseVersion extends Entity {
 	@Transient
 	public static SoftwareBaseVersion createFrom(Map<String,Object> softwareBaseVersionMap) {
 		if(softwareBaseVersionMap==null) return null;
-		SoftwareBaseVersion po = EntityContext.create(SoftwareBaseVersion.class, softwareBaseVersionMap);
+		SoftwareBaseVersion po = create();
+		EntityContext.copyProperties(po,softwareBaseVersionMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -600,7 +652,9 @@ public class SoftwareBaseVersion extends Entity {
 	@Transient
 	public static SoftwareBaseVersion createFrom(Object pojo) {
 		if(pojo==null) return null;
-		SoftwareBaseVersion po = EntityContext.create(SoftwareBaseVersion.class,pojo);
+		SoftwareBaseVersion po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -610,6 +664,6 @@ public class SoftwareBaseVersion extends Entity {
 	*/
 	@Transient
 	public static SoftwareBaseVersion create() {
-		return EntityContext.create(SoftwareBaseVersion.class);
+		return new com.dt.platform.domain.ops.meta.SoftwareBaseVersionMeta.$$proxy$$();
 	}
 }

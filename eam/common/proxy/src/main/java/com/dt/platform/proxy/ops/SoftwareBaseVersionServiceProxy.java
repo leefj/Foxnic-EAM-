@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import com.dt.platform.domain.ops.SoftwareBaseVersion;
 import com.dt.platform.domain.ops.SoftwareBaseVersionVO;
@@ -17,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 软件基线版本  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-27 20:16:21
+ * @since 2022-09-16 08:30:07
  */
 @FeignClient(value = ServiceNames.OPS, contextId = SoftwareBaseVersionServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface SoftwareBaseVersionServiceProxy {
@@ -81,21 +83,6 @@ public interface SoftwareBaseVersionServiceProxy {
      * 分页查询软件基线版本
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
-
-    /**
-     * 导出软件基线版本数据(Excel)
-     */
-    public static final String EXPORT_EXCEL = API_PREFIX + "export-excel";
-
-    /**
-     * 下载软件基线版本导入模版(Excel)
-     */
-    public static final String EXPORT_EXCEL_TEMPLATE = API_PREFIX + "export-excel-template";
-
-    /**
-     * 导入软件基线版本数据(Excel)
-     */
-    public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
 
     /**
      * 添加软件基线版本

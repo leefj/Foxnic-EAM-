@@ -12,6 +12,7 @@ import com.dt.platform.domain.eam.meta.TplFileMeta;
 import com.dt.platform.domain.ops.*;
 import com.dt.platform.domain.ops.meta.*;
 import com.github.foxnic.dao.relation.RelationManager;
+import org.checkerframework.checker.guieffect.qual.SafeType;
 import org.github.foxnic.web.constants.db.FoxnicWeb;
 import org.github.foxnic.web.domain.system.UserTenant;
 
@@ -53,7 +54,16 @@ public class OpsRelationManager extends RelationManager {
         this.setupDbHostExcude();
 
         this.setupDbBackupRecord();
+
+        this.setupSafetyBaseLine();
     }
+
+    public void setupSafetyBaseLine() {
+        this.property(SafetyBaselineMeta.BASE_TYPE_PROP)
+                .using(OpsTables.OPS_SAFETY_BASELINE.BASE_TYPE_ID).join(OpsTables.OPS_SOFTWARE_BASE_TYPE.ID);
+
+    }
+
 
     public void setupDbBackupRecord() {
 

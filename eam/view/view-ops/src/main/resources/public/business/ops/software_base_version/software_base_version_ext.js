@@ -1,7 +1,7 @@
 /**
  * 软件基线版本 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-27 20:16:21
+ * @since 2022-09-16 08:30:07
  */
 
 layui.config({
@@ -19,6 +19,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
     //模块基础路径
     const moduleURL="/service-ops/ops-software-base-version";
+
 
     //列表页的扩展
     var list={

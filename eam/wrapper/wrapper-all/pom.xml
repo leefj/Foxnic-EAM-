@@ -98,7 +98,7 @@
 
 		<dependency>
 			<groupId>com.dt.platform</groupId>
-			<artifactId>service-hrm</artifactId>
+			<artifactId>service-hr</artifactId>
 			<version>${platform.version}</version>
 		</dependency>
 
@@ -220,7 +220,7 @@
 
 		<dependency>
 			<groupId>com.dt.platform</groupId>
-			<artifactId>view-hrm</artifactId>
+			<artifactId>view-hr</artifactId>
 			<version>${platform.version}</version>
 		</dependency>
 

@@ -49,7 +49,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 软件基线类型 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-12 21:52:03
+ * @since 2022-09-16 08:29:28
 */
 
 @Api(tags = "软件基线类型")
@@ -99,7 +99,7 @@ public class SoftwareBaseTypeController extends SuperController {
 		// 引用校验
 		Boolean hasRefer = softwareBaseTypeService.hasRefers(id);
 		// 判断是否可以删除
-		this.validator().asserts(hasRefer).requireInList("不允许删除当前记录",false);
+		this.validator().asserts(hasRefer).requireEqual("不允许删除当前记录",false);
 		if(this.validator().failure()) {
 			return this.validator().getFirstResult();
 		}
@@ -170,7 +170,6 @@ public class SoftwareBaseTypeController extends SuperController {
 		@ApiImplicitParam(name = SoftwareBaseTypeVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport( order=4 , ignoreParameters = { SoftwareBaseTypeVOMeta.PAGE_INDEX , SoftwareBaseTypeVOMeta.PAGE_SIZE , SoftwareBaseTypeVOMeta.SEARCH_FIELD , SoftwareBaseTypeVOMeta.FUZZY_FIELD , SoftwareBaseTypeVOMeta.SEARCH_VALUE , SoftwareBaseTypeVOMeta.DIRTY_FIELDS , SoftwareBaseTypeVOMeta.SORT_FIELD , SoftwareBaseTypeVOMeta.SORT_TYPE , SoftwareBaseTypeVOMeta.IDS } )
-	@NotNull(name = SoftwareBaseTypeVOMeta.ID)
 	@SentinelResource(value = SoftwareBaseTypeServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(SoftwareBaseTypeServiceProxy.UPDATE)
 	public Result update(SoftwareBaseTypeVO softwareBaseTypeVO) {

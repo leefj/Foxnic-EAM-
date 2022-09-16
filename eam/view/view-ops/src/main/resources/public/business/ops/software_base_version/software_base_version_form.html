@@ -2,7 +2,7 @@
 /**
  * 软件基线版本 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-27 20:16:22
+ * @since 2022-09-16 08:30:08
  */
  -->
  <!DOCTYPE html>
@@ -38,7 +38,7 @@
 
 
 
-        <div class="layui-row form-row" id="random-4044-content">
+        <div class="layui-row form-row" id="random-0958-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -97,7 +97,7 @@
 
 
 
-        <div class="layui-row form-row" id="random-8795-content">
+        <div class="layui-row form-row" id="random-2025-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -107,7 +107,7 @@
                     <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('使用场景')}">使用场景</div></div>
                     <div class="layui-input-block ">
-                        <textarea lay-filter="usageScenarios" id="usageScenarios" name="usageScenarios" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('使用场景') }" class="layui-textarea" style="height: 120px" ></textarea>
+                        <textarea lay-filter="usageScenarios" id="usageScenarios" name="usageScenarios" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('使用场景') }" class="layui-textarea" style="height: 50px" ></textarea>
                     </div>
                 </div>
 
@@ -116,7 +116,7 @@
                     <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
                     <div class="layui-input-block ">
-                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" class="layui-textarea" style="height: 120px" ></textarea>
+                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" class="layui-textarea" style="height: 50px" ></textarea>
                     </div>
                 </div>
 
@@ -156,7 +156,6 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
-
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.SoftwareBaseVersionStatusEnum')}]];

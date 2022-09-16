@@ -12,7 +12,7 @@ public class ServiceNames {
 	 * 人事系统相关的服务 <br>
 	 * 对应 bootstrap.yml 中 spring.application.name 属性
 	 * */
-	public static final String HRM="service-hrm";
+	public static final String HR ="service-hr";
 
 	/**
 	 * 数据中心相关的服务 <br>

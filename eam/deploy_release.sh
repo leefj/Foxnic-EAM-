@@ -8,6 +8,7 @@ jar_dir=`cat $conf_file|grep ${hostname}.jar_dir|awk -F "=" '{print $2}'`
 bpm_jar_dir=`cat $conf_file|grep ${hostname}.bpm_jar_dir|awk -F "=" '{print $2}'`
 deploy_dir=`cat $conf_file|grep ${hostname}.deploy_dir|awk -F "=" '{print $2}'`
 
+
 if [[ -d $release_dir ]];then
   rm -rf $release_dir
 fi

@@ -40,15 +40,15 @@ applications:
     viewPrefixPath: public/business/eam
     wrapperProjectPath:  /wrapper/wrapper-all
   #HRM
-  service-hrm:
+  service-hr:
     nacosGroup: service
-    nacosDataId: service-hrm.yml
-    serviceProjectPath:  /service/service-hrm
-    packageName: com.dt.platform.hrm
+    nacosDataId: service-hr.yml
+    serviceProjectPath:  /service/service-hr
+    packageName: com.dt.platform.hr
     primaryDatasourceConfigKey: spring.datasource.druid.primary
-    microServiceNameConst: HRM
-    viewProjectPath: /view/view-hrm
-    viewPrefixPath: public/business/hrm
+    microServiceNameConst: HR
+    viewProjectPath: /view/view-hr
+    viewPrefixPath: public/business/hr
     wrapperProjectPath:  /wrapper/wrapper-all
   #数据中心
   service-datacenter:

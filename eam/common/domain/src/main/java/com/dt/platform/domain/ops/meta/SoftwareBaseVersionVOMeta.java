@@ -6,13 +6,14 @@ import java.util.List;
 import com.dt.platform.domain.ops.SoftwareBaseVersion;
 import java.util.Date;
 import com.dt.platform.domain.ops.SoftwareBaseType;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-27 20:16:21
- * @sign 17605FEAC3DCDA167E3AC4285495C6FB
+ * @since 2022-09-16 08:30:06
+ * @sign 5D039DAA0D77855CB41E99CDA23AAB06
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -618,5 +619,55 @@ public class SoftwareBaseVersionVOMeta extends SoftwareBaseVersionMeta {
 			super.setSoftwareBaseType(softwareBaseType);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public SoftwareBaseVersionVO clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public SoftwareBaseVersionVO duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setUsageScenarios(this.getUsageScenarios());
+			inst.setNotes(this.getNotes());
+			inst.setSoftwareTypeId(this.getSoftwareTypeId());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setPatchInfo(this.getPatchInfo());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setSoftwareVersion(this.getSoftwareVersion());
+			inst.setStatus(this.getStatus());
+			inst.setFileId(this.getFileId());
+			if(all) {
+				inst.setSearchField(this.getSearchField());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setSoftwareBaseType(this.getSoftwareBaseType());
+				inst.setDirtyFields(this.getDirtyFields());
+				inst.setSortField(this.getSortField());
+				inst.setPageSize(this.getPageSize());
+				inst.setIds(this.getIds());
+				inst.setSearchValue(this.getSearchValue());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }
