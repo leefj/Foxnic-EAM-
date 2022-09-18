@@ -61,7 +61,7 @@
 - 1、QQ群:634770774
 - 2、微信号:myxyjm
 - 3、微信群：      
-  ![微信群](eam/view/view-console/src/main/resources/static/assets/images/wx.png)
+  ![微信群](platform/view/view-console/src/main/resources/static/assets/images/wx.png)
 
 ### 主要技术栈
 #### 后端技术栈
@@ -125,7 +125,7 @@
 
 ### 软件介质
 - 1、Docker部署:直接从docker拉镜像
-- 2、应用直接运行部署:应用JAR和SQL包来源:https://gitee.com/lank/eam/releases
+- 2、应用直接运行部署:应用JAR和SQL包来源:https://gitee.com/lank/platform/releases
 
 
 ### EAM系统部署的视频介绍
