@@ -105,8 +105,8 @@
 - 2、配置数据库 https://www.bilibili.com/video/BV1kR4y1P7Py?spm_id_from=333.999.0.0
 - 3、配置与启动应用 https://www.bilibili.com/video/BV1wu411r7xC?spm_id_from=333.999.0.0
 - 4、EAM部署 https://www.bilibili.com/video/BV1Q34y1a7LR?spm_id_from=333.999.0.0
-- 5、EAM MAVEN设置 https://www.bilibili.com/video/BV1x34y1j7Ff?share_source=copy_web
-
+- 5、EAM Maven设置 https://www.bilibili.com/video/BV1x34y1j7Ff?share_source=copy_web
+- 6、EAM Maven依赖管理 https://www.bilibili.com/video/BV12T411K7pz/
 
 ### 二次开发相关的视频与文档集合
 - 1、官网文档集合 http://foxnicweb.com/docs/doc.html
