@@ -245,7 +245,7 @@ MenuGenerator {
 	}
 
 	private String getTopMenuLabel() {
-		return getTopic()+"管理";
+		return getTopic()+"";
 	}
 
 
