@@ -238,4 +238,11 @@ delete from ops_auto_task_m_log  where  1=1;
 delete from ops_auto_task_node  where  1=1;
 delete from ops_auto_voucher  where 1=1;
 
+
+-- custom middle table
+delete from eam_c1_mapping where 1=1;
+delete from eam_c1_qh_fa_additions where 1=1;
+delete from eam_c1_sync_asset_record where 1=1;
+delete from eam_c1_sync_asset where 1=1;
+
 commit;

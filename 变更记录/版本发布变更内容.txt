@@ -1,7 +1,11 @@
 
+Foxnic-EAM 2.3.0版本
+1、功能优化
+
 
 Foxnic-EAM 2.2.0版本
-1、
+1、功能优化
+
 
 
 Foxnic-EAM 2.1.0版本

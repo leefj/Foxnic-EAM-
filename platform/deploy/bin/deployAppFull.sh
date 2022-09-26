@@ -455,7 +455,7 @@ javaUrl4=https://lank-public.oss-cn-hangzhou.aliyuncs.com/jdk-8u333-linux-x64.ta
 java_soft_remote=1
 which java
 javaR=$?
-###### éªŒè¯javaç‰ˆæœ¬æ˜¯å¦å¯¹
+######java
 if [[ $javaR -eq 0 ]];then
   javaVersion=`java -version 2>&1|grep 1.8 |wc -l`
   if [[ $javaVersion -gt 0 ]];then
