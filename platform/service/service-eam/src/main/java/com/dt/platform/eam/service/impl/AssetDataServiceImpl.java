@@ -828,8 +828,13 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         if(!StringUtil.isBlank(valueManager)){
             Result<Employee> resEmp=EmployeeServiceProxy.api().getByBadge(valueManager);
             if(resEmp.isSuccess()){
-                String empId=resEmp.getData().getId();
-                rcd.setValue(manager,empId);
+                if(resEmp.getData()!=null&&resEmp.getData().getId()!=null){
+                    String empId=resEmp.getData().getId();
+                    rcd.setValue(manager,empId);
+                }else{
+                    System.out.println("获取人员失败:"+resEmp.getMessage()+",info:"+resEmp.getData());
+                    return ErrorDesc.failureMessage("管理人员不存在:"+valueManager);
+                }
             }else{
                 System.out.println("获取人员失败:"+resEmp.getMessage());
                 return ErrorDesc.failureMessage("管理人员不存在:"+valueManager);
@@ -841,8 +846,13 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         if(!StringUtil.isBlank(valueUseUser)){
             Result<Employee> resEmp=EmployeeServiceProxy.api().getByBadge(valueUseUser);
             if(resEmp.isSuccess()){
-                String empId=resEmp.getData().getId();
-                rcd.setValue(useUser,empId);
+                if(resEmp.getData()!=null&&resEmp.getData().getId()!=null){
+                    String empId=resEmp.getData().getId();
+                    rcd.setValue(useUser,empId);
+                }else{
+                    System.out.println("获取人员失败:"+",info:"+resEmp.getData());
+                    return ErrorDesc.failureMessage("使用人员不存在:"+valueUseUser);
+                }
             }else{
                 System.out.println("获取人员失败:"+resEmp.getMessage());
                 return ErrorDesc.failureMessage("使用人员不存在:"+valueUseUser);

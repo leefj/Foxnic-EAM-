@@ -64,6 +64,7 @@
   ![微信群](platform/view/view-console/src/main/resources/static/assets/images/wx.png)
 
 ### 主要技术栈
+#### 全栈技术体系符合信创技术要求
 #### 后端技术栈
 - 安全框架:Spring Security 5.3.4
 - 开发框架:SpringBoot 2.3.3
@@ -83,7 +84,7 @@
 #### 开发环境
 - IDE:IntelliJ IDEA 2020.2以上
 - JDK:JDK 1.8.100 (小版本100以上,但仅支持1.8)
-- 数据库:Mysql 5.7.X、8.0
+- 数据库:Mysql 5.7.X，OceanBase数据库
 - Redis:5.1(可选)
 
 #### 系统架构图
