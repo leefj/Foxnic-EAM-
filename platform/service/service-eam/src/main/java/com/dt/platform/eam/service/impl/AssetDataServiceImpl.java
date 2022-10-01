@@ -161,9 +161,8 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
 
     @Override
     public Result<JSONObject> queryAssetLuckySheet(String oper,int row,String handleId) {
-
         if(row<10){
-            row=50;
+            row=60;
         }
         List<Map<String, Object>> mapList=null;
         if(!StringUtil.isBlank(handleId)){
@@ -196,7 +195,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         resData.put("frozen",frozen);
         resData.put("celldata",configObj.getJSONArray("celldata"));
         resData.put("dataVerification",dataVerification);
-        System.out.println("resData\n"+resData);
+        //System.out.println("resData\n"+resData);
         res.data(resData);
         return res;
     }
@@ -273,12 +272,10 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                      col.put("v",value);
                      cellData.add(col);
                  }
-
              }
         }
-
          res.put("celldata",cellData);
-         System.out.println("parseImportExcelDataConfig:\b"+res.toJSONString());
+       //  System.out.println("parseImportExcelDataConfig:\b"+res.toJSONString());
         return res;
     }
 

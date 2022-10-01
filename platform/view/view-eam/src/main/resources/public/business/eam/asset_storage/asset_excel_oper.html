@@ -70,7 +70,7 @@
             frozen:{ type: 'row'},
             row:10,
             enableAddBackTop:false,
-            defaultColWidth:150,
+            defaultColWidth:157,
             column:60,
             ch_width: 6000,
             cellRightClickConfig:{
@@ -94,7 +94,7 @@
                 image: false, // 插入图片
                 link: false, // 插入链接
                 data: false, // 数据验证
-               cellFormat: false // 设置单元格格式
+                cellFormat: false // 设置单元格格式
             },
             sheetRightClickConfig:{
                 delete: false, // 删除
@@ -141,6 +141,12 @@
                 findAndReplace: false, // '查找替换'
                 protection:false, // '工作表保护'
                 print:false, // '打印'
+            },
+            config:{
+                columnlen: {
+                    "1": 250,
+                    "2": 150,
+                }
             },
             data:[sheetConfig],
             sheetFormulaBar:false,

@@ -94,7 +94,7 @@ public class EamAssetStorageGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_ASSET_STORAGE.BUSINESS_DATE).form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
 
-        cfg.view().field(EAMTables.EAM_ASSET_STORAGE.CONTENT).form().textArea().height(Config.textAreaHeight).search().fuzzySearch();
+        cfg.view().field(EAMTables.EAM_ASSET_STORAGE.CONTENT).form().textArea().height(Config.textAreaHeight_Z).search().fuzzySearch();
 
         cfg.view().field(EAMTables.EAM_ASSET_STORAGE.OWN_COMPANY_ID)
                 .form().validate().required().form().button().chooseCompany(true);
@@ -117,6 +117,7 @@ public class EamAssetStorageGtr extends BaseCodeGenerator {
         //分成分组布局
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().formWindow().width("100%");
+
         cfg.view().form().labelWidth(70);
         cfg.view().form().addGroup(null,
                 new Object[] {

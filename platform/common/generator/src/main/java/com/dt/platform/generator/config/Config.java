@@ -5,6 +5,7 @@ public class Config {
     public static int  searchInputWidth=150;
 
     public static int textAreaHeight=120;
+    public static int textAreaHeight_Z=50;
     public static String baseFormWidth="80%";
     public static String baseFormWidth_95="95%";
 }

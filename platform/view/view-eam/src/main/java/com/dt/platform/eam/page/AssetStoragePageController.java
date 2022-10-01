@@ -52,7 +52,7 @@ public class AssetStoragePageController extends ViewController {
 		model.addAttribute("pageType",pageType);
 		model.addAttribute("selectedCode",selectedCode);
 
-		Result r= AssetDataServiceProxy.api().queryAssetLuckySheet("",50,id);
+		Result r= AssetDataServiceProxy.api().queryAssetLuckySheet("",60,id);
 		JSONObject conf= (JSONObject) r.getData();
 		 
 		model.addAttribute("sheetConfig", JSON.toJSONString(conf, SerializerFeature.DisableCircularReferenceDetect));

@@ -234,7 +234,7 @@ public class AssetLabelPrintUtil {
               //      table.setBackgroundColor(ColorConstants.RED);
                     //图像
                     BufferedImage buffImg=createAssetPic(imageType, assetCode);
-                    File imageFile = new File(path + assetId+".jpg");
+                    File imageFile = new File(path +File.separator+ assetId+".jpg");
 
                     /////////////////图像生成开始
                     ImageIO.write(buffImg,"jpg",imageFile);
