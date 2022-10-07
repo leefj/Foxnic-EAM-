@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-08-30 22:02:16
+ * @since 2022-10-02 08:34:33
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -13337,7 +13337,7 @@ public class EAMTables {
 	}
 	
 	/**
-	 * 采购订单
+	 * 采购清单
 	*/
 	public static class EAM_PURCHASE_ORDER extends DBTable {
 		
@@ -13357,14 +13357,14 @@ public class EAMTables {
 		public static final DBField BUSINESS_CODE = new DBField(DBDataType.STRING , "business_code","businessCode","业务编码","业务编码",false,false,true);
 		
 		/**
-		 * 订单编号
+		 * 清单编号
 		*/
-		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","订单编号","订单编号",false,false,true);
+		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","清单编号","清单编号",false,false,true);
 		
 		/**
-		 * 订单名称
+		 * 清单名称
 		*/
-		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","订单名称","订单名称",false,false,true);
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","清单名称","清单名称",false,false,true);
 		
 		/**
 		 * 采购申请单
@@ -13446,13 +13446,13 @@ public class EAMTables {
 		public static final DBField SELECTED_CODE = new DBField(DBDataType.STRING , "selected_code","selectedCode","选择数据","选择数据",false,false,true);
 		
 		public EAM_PURCHASE_ORDER() {
-			this.init($NAME,"采购订单" , ID , BUSINESS_CODE , CODE , NAME , APPLY_ID , CHECK_ID , GOODS_TYPE , STORAGE_TYPE , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE);
+			this.init($NAME,"采购清单" , ID , BUSINESS_CODE , CODE , NAME , APPLY_ID , CHECK_ID , GOODS_TYPE , STORAGE_TYPE , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE);
 		}
 		public static final EAM_PURCHASE_ORDER $TABLE=new EAM_PURCHASE_ORDER();
 	}
 	
 	/**
-	 * 订单明细
+	 * 清单明细
 	*/
 	public static class EAM_PURCHASE_ORDER_DETAIL extends DBTable {
 		
@@ -13467,9 +13467,9 @@ public class EAMTables {
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
 		
 		/**
-		 * 订单
+		 * 清单
 		*/
-		public static final DBField ORDER_ID = new DBField(DBDataType.STRING , "order_id","orderId","订单","订单",false,false,false);
+		public static final DBField ORDER_ID = new DBField(DBDataType.STRING , "order_id","orderId","清单","清单",false,false,false);
 		
 		/**
 		 * 资产
@@ -13521,7 +13521,7 @@ public class EAMTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public EAM_PURCHASE_ORDER_DETAIL() {
-			this.init($NAME,"订单明细" , ID , ORDER_ID , ASSET_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"清单明细" , ID , ORDER_ID , ASSET_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final EAM_PURCHASE_ORDER_DETAIL $TABLE=new EAM_PURCHASE_ORDER_DETAIL();
 	}

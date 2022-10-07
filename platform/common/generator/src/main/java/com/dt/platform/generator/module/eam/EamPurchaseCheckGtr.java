@@ -30,8 +30,8 @@ public class EamPurchaseCheckGtr extends BaseCodeGenerator {
 
 
         cfg.getPoClassFile().addSimpleProperty(PurchaseApply.class,"purchaseApply","领用申请","领用申请");
-        cfg.getPoClassFile().addListProperty(PurchaseOrder.class,"orderList","订单","订单");
-        cfg.getPoClassFile().addListProperty(String.class,"orderIds","订单列表","订单列表");
+        cfg.getPoClassFile().addListProperty(PurchaseOrder.class,"orderList","清单","清单");
+        cfg.getPoClassFile().addListProperty(String.class,"orderIds","清单列表","清单列表");
 
         cfg.view().field(EAMTables.EAM_PURCHASE_CHECK.CHECK_USER_NAME).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_PURCHASE_CHECK.CODE).search().fuzzySearch();

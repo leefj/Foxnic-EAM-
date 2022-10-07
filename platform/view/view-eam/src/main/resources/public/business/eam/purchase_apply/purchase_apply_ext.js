@@ -64,6 +64,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 // document.getElementById("tableOperationTemplate").innerHTML=operHtml;
             }
 
+
             // if(PAGE_TYPE&&PAGE_TYPE=="approval"){
             //     $("#status-search-unit").hide();
             //     toolbarHtml=toolbarHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
@@ -188,11 +189,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     // fox.disableButton($('.revoke-data-button').filter("[data-id='" + data[i].id + "']"), true);
                 }else if(data[i].status=="cancel"){
 
-                    // fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
-                    // fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
-                    // fox.disableButton($('.for-approval-button').filter("[data-id='" + data[i].id + "']"), true);
-                    // fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
-                    // fox.disableButton($('.revoke-data-button').filter("[data-id='" + data[i].id + "']"), true);
+                //    fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.for-approval-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.revoke-data-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.check-bill-button').filter("[data-id='" + data[i].id + "']"), true);
                 }
 
                 if(data[i].cleanStatus=="complete"){

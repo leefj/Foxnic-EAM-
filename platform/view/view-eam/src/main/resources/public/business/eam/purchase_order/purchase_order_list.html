@@ -11,7 +11,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
-    <title th:text="${lang.translate('采购订单')}">采购订单</title>
+    <title th:text="${lang.translate('采购清单')}">采购清单</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:if(theme.ico!="null") rel="icon" th:href="theme.ico" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -51,7 +51,7 @@
                     <!-- 选择数据 , selectedCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 订单名称 , name ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('订单名称')}" class="search-label name-label">订单名称</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('清单名称')}" class="search-label name-label">清单名称</span><span class="search-colon">:</span></div>
                         <input id="name" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
                     <!-- 物品类型 , goodsType ,typeName=select_box, isHideInSearch=false -->

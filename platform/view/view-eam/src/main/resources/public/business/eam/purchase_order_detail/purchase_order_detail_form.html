@@ -11,7 +11,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
-	<title th:text="${lang.translate('订单明细')}">订单明细</title>
+	<title th:text="${lang.translate('清单明细')}">清单明细</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:if(theme.ico!="null") rel="icon" th:href="theme.ico" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -76,7 +76,7 @@
 
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
-    var VALIDATE_CONFIG={"orderId":{"labelInForm":"订单","inputType":"text_input","required":true},"assetId":{"labelInForm":"资产","inputType":"text_input","required":true}};
+    var VALIDATE_CONFIG={"orderId":{"labelInForm":"清单","inputType":"text_input","required":true},"assetId":{"labelInForm":"资产","inputType":"text_input","required":true}};
     var AUTH_PREFIX="eam_purchase_order_detail";
 
 

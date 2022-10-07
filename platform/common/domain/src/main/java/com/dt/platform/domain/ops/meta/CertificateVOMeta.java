@@ -8,13 +8,14 @@ import java.util.Date;
 import org.github.foxnic.web.domain.hrm.Employee;
 import com.dt.platform.domain.ops.CertificateType;
 import com.dt.platform.domain.ops.CertificatePosition;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-15 09:42:34
- * @sign C2E31D4ED923FF44C1FF2D7E8C1E5DEE
+ * @since 2022-10-07 16:38:36
+ * @sign 2E4A8A2A5DAFA8261CD59101C31857B0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -662,5 +663,57 @@ public class CertificateVOMeta extends CertificateMeta {
 			super.setCertificatePosition(certificatePosition);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public CertificateVO clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public CertificateVO duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNotes(this.getNotes());
+			inst.setEndDate(this.getEndDate());
+			inst.setProject(this.getProject());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setType(this.getType());
+			inst.setVersion(this.getVersion());
+			inst.setContent(this.getContent());
+			inst.setDeleted(this.getDeleted());
+			inst.setPositionId(this.getPositionId());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setStartDate(this.getStartDate());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setSearchField(this.getSearchField());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setDirtyFields(this.getDirtyFields());
+				inst.setSortField(this.getSortField());
+				inst.setCertificatePosition(this.getCertificatePosition());
+				inst.setPageSize(this.getPageSize());
+				inst.setIds(this.getIds());
+				inst.setOriginator(this.getOriginator());
+				inst.setSearchValue(this.getSearchValue());
+				inst.setCertificateType(this.getCertificateType());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

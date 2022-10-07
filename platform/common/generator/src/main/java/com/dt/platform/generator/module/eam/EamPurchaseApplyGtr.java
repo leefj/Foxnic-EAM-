@@ -34,8 +34,8 @@ public class EamPurchaseApplyGtr extends BaseCodeGenerator {
 
         cfg.getPoClassFile().addSimpleProperty(ChangeInstance.class,"changeInstance","变更实例","变更实例");
 
-        cfg.getPoClassFile().addListProperty(PurchaseOrder.class,"orderList","订单","订单");
-        cfg.getPoClassFile().addListProperty(String.class,"orderIds","订单列表","订单列表");
+        cfg.getPoClassFile().addListProperty(PurchaseOrder.class,"orderList","采购清单","采购清单");
+        cfg.getPoClassFile().addListProperty(String.class,"orderIds","清单列表","清单列表");
 
         cfg.bpm().form("eam_asset_purchase_apply");
         cfg.bpm().integrate(IntegrateMode.FRONT);
@@ -158,8 +158,8 @@ public class EamPurchaseApplyGtr extends BaseCodeGenerator {
                 }
         );
 
-        //订单
-        cfg.view().form().addPage("订单列表","assetSelectOrderList");
+        //
+        cfg.view().form().addPage("清单列表","assetSelectOrderList");
 
 
         cfg.view().list().addJs("/extmodule/commonFunction/commonFunction.js");
