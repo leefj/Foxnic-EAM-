@@ -40,6 +40,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 displayPriority:false,
                 displayDraftComment:false,
                 displayApprovalComment:true,
+
+
             }
         },
 
