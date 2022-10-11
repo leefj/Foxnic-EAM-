@@ -196,9 +196,9 @@ delete from bpm_process_definition_deploy;
 delete from bpm_process_definition_node_assignee where node_id not in (select id from bpm_process_definition_node where process_definition_file_id in (select id from bpm_process_definition_file where activated=1));
 delete from bpm_process_definition_node where process_definition_file_id in (select id from bpm_process_definition_file where activated=0);
 delete from bpm_process_definition_file where activated=0;
-
-
 delete from bpm_form_definition where deleted=1;
+
+
 -- PCM
 delete from pcm_catalog where id='484764974338543617';
 delete from pcm_catalog where id='484764976855126017';
