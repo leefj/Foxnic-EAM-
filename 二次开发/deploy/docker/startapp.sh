@@ -37,7 +37,7 @@ EOF
   #modify password DOCKER_PASSWORD
   sed -i "s@DOCKER_PASSWORD@$MYSQL_ROOT_PASSWORD@g" /opt/app/application.yml
   YML_DB="app?useSSL"
-  sed -i "s@eam?useSSL@$YML_DB@g" /opt/app/application.yml
+  sed -i "s@foxnic?useSSL@$YML_DB@g" /opt/app/application.yml
 fi
 cd /opt/app
 datetime=`date "+%Y-%m-%d %H:%M:%S"`

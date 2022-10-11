@@ -11,7 +11,7 @@
     </parent>
     <artifactId>framework</artifactId>
     <name>framework</name>
-    <description>framework-eam</description>
+    <description>framework-platform</description>
     <packaging>jar</packaging>
     <dependencies>
         <dependency>

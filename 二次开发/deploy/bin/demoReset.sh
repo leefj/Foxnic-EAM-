@@ -5,9 +5,9 @@
 v=1.0.9
 port=26788
 ####停止
-docker stop eamapp;
-docker rm eamapp;
-docker run --name eamapp -it \
+docker stop app;
+docker rm app;
+docker run --name app -it \
     -e MYSQL_ROOT_PASSWORD="root_pwd" \
     -v /demo/mysql:/var/lib/mysql  \
     -p 33306:3306 \

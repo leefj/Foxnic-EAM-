@@ -42,6 +42,7 @@ if [[ -n $2 ]];then
 fi
 app_name=${app}.jar
 
+
 if [[ ! -f "$app_dir/app/$app/$app_name" ]];then
   echo "jar not exist,jar:$app_dir/app/$app/$app_name"
   exit 1

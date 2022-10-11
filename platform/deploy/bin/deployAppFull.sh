@@ -39,18 +39,24 @@ java_file=jdk-linux-x64.tar.gz
 java_soft=$soft_base_dir/$java_file
 java_soft_md5=913c45332b22860b096217d9952c2ea4
 java_soft_remote=1
-
 ## directory
 java_dir="/app/java"
 app_dir="/app/app"
 mysql_dir="/app/db"
 
-db_port=3306
-app_port=8089
+## command
 JAVA=$java_dir/java/bin/java
 MYSQL_HOME=$mysql_dir/mysql
 MYSQL=$mysql_dir/mysql/bin/mysql
-MYSQL_ROOT_PWD="root_pwd"
+
+## mysql
+app_port=8089
+db_port=3306
+db_user=root
+db_pwd=root_pwd
+db_name=foxnic
+db_host=127.0.0.1
+
 ################################################################ verify command,netstat
 yum -y install unzip zip telnet net-tools wget java numactl
 yum -y install libaio
@@ -267,8 +273,8 @@ EOF
 	su - mysql -c "nohup $mysql_dir/mysql/bin/mysqld_safe &"
 	sleep 10
 	echo "use mysql;">init.sql
-	echo "update mysql.user set authentication_string=password('$MYSQL_ROOT_PWD') where user='root' and Host = 'localhost';">>init.sql
-	echo "grant all privileges on *.* to 'root'@'%' identified by '$MYSQL_ROOT_PWD'  WITH GRANT OPTION; ">>init.sql
+	echo "update mysql.user set authentication_string=password('$db_pwd') where user='root' and Host = 'localhost';">>init.sql
+	echo "grant all privileges on *.* to 'root'@'%' identified by '$db_pwd'  WITH GRANT OPTION; ">>init.sql
 	echo "flush privileges;">>init.sql
 	$mysql_dir/mysql/bin/mysql -uroot <init.sql
 	rm -rf init.sql
@@ -315,11 +321,11 @@ function installApp(){
 	echo "MYSQL=$mysql_dir/mysql/bin/mysql"             >>$appConf
 	echo "MYSQL_DUMP=$mysql_dir/mysql/bin/mysqldump"    >>$appConf
 	echo "MYSQL_ADMIN=$mysql_dir/mysql/bin/mysqladmin"  >>$appConf
-	echo "DB_HOST=127.0.0.1"                            >>$appConf
+	echo "DB_HOST=$db_host"                             >>$appConf
 	echo "DB_PORT=$db_port"                             >>$appConf
-	echo "DB_NAME=eam"                                  >>$appConf
-	echo "DB_USER=root"                                 >>$appConf
-	echo "DB_PWD=$MYSQL_ROOT_PWD"                       >>$appConf
+	echo "DB_NAME=$db_name"                             >>$appConf
+	echo "DB_USER=$db_user"                             >>$appConf
+	echo "DB_PWD=$db_pwd"                               >>$appConf
 	db_create_db_file=$app_dir/bin/sql/createdb.sql
 	db_sql_file=$app_dir/bin/sql/db.sql
 	db_file_conf_file=$app_dir/bin/sql/confuploadfile.sql
@@ -344,13 +350,7 @@ function installApp(){
 	  echo "deploy failed!"
 	  exit 1
 	fi
-#  app_port=8089
-#	db_port=3306
 	app_upload_dir=$app_dir/app/app/upload
-	db_host=127.0.0.1
-	db_name=eam
-	db_user=root
-	db_pwd=$MYSQL_ROOT_PWD
 	MYSQL_DUMP=$mysql_dir/mysql/bin/mysqldump
 	MYSQL_ADMIN=$mysql_dir/mysql/bin/mysqladmin
 	echo "#########start to create database"
@@ -365,7 +365,7 @@ function installApp(){
 	tab_cnt=`$MYSQL -u$db_user -p$db_pwd $db_name -e 'show tables' 2>/dev/null |wc -l`
 	echo "create database success,table count:$tab_cnt"
 	echo "#########start to backup db"
-	$MYSQL_DUMP -u$db_user -p$db_pwd -h$db_host $db_name  > /tmp/db.sql  2>/dev/null
+	$MYSQL_DUMP -u$db_user -p$db_pwd -h$db_host $db_name  > /tmp/db_backup.sql  2>/dev/null
 	echo "#########start to load data"
 	$MYSQL -u$db_user -p$db_pwd -h$db_host $db_name < $db_sql_file  2>/dev/null
 	tab_cnt=`$MYSQL -u$db_user -p$db_pwd $db_name -e 'show tables' 2>/dev/null |wc -l`
@@ -605,23 +605,27 @@ if [[ $db_port_cnt -eq 0 ]];then
 	clearTips
 	exit 1
 else
-	echo "mysql install success,password:$MYSQL_ROOT_PWD"
+	echo "mysql install success,password:$db_pwd"
 fi
 ## install app
 installApp
 ## stop Firewalld
 stopFirewalld
+
+## start app
 cd $app_dir
-sh startALL.sh
+sh startAll.sh
+echo "Application is starting..."
+sleep 20
 echo "################## install result ###################"
 echo "Install Finish"
+echo "Application can be visited about 30 second later,website:http://ip:$app_port"
 echo "App Install directory List:$mysql_dir,$app_dir"
-echo "Mysql info:port=$db_port";
-echo "Mysql info:username=root";
-echo "Mysql info:password=$MYSQL_ROOT_PWD";
+echo "Mysql info Port=$db_port";
+echo "Mysql info UserName=$db_user";
+echo "Mysql info Password=$db_pwd";
 echo "Login Info User:admin"
-echo "Login Info Pwd:123456"
-echo "System can be visited about 1 minute later,website:http://ip:$app_port"
+echo "Login Info Password:123456"
 
 #################################################################### install finish
 exit 0

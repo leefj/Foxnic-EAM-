@@ -37,7 +37,7 @@ fi
 file=${dbname}_backup_$TODAY.tar.gz
 echo "start to backup,dbname:$dbname,file:$backup_dir/$file"
 cd $backup_dir
-$MYSQL_DUMP -u$DB_USER -p$DB_PWD -h$DB_HOST $dbname  > db.sql
+$MYSQL_DUMP -R -u$DB_USER -p$DB_PWD -h$DB_HOST $dbname  > db.sql
 tar zcvf $file  ./db.sql
 echo "backup finish"
 echo "$backup_dir/db.sql"

@@ -7,7 +7,7 @@ spring:
     druid:
       primary:
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://39.105.191.22:3306/eam?useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true
+        url: jdbc:mysql://39.105.191.22:3306/foxnic?useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true
         username: root
         password: root_pwd
         min-idle: 1

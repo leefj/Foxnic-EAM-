@@ -15,7 +15,7 @@
 	<version>0.0.2.RELEASE</version>
 	<packaging>pom</packaging>
 	<name>parent</name>
-	<description>eam-parent</description>
+	<description>platform-parent</description>
 
 	<properties>
 		<skipTests>true</skipTests>

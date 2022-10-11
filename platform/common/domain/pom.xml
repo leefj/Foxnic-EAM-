@@ -10,8 +10,8 @@
         <!-- lookup parent from repository --> 
     </parent>  
     <artifactId>domain</artifactId>  
-    <name>domain-eam</name>
-    <description>domain-eam</description>
+    <name>domain-platform</name>
+    <description>domain-platform</description>
     <packaging>jar</packaging>  
     <dependencies>
         <dependency>

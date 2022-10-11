@@ -3,9 +3,9 @@
 v=1.0.9
 
 ###install app
-docker stop eamapp_0001;
-docker rm eamapp_0001;
-docker run --name eamapp_0001 -it \
+docker stop app_0001;
+docker rm app_0001;
+docker run --name app_0001 -it \
     -e MYSQL_ROOT_PASSWORD="root_pwd" \
     -v /data/mysql:/var/lib/mysql  \
     -p 13306:3306 \
