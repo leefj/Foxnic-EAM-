@@ -1,5 +1,5 @@
 #!/bin/sh
-modify_date="20220806_1"
+modify_date="20221011_1"
 ####################################################################################
 # run:
 #   sh appInstallFull.sh
@@ -23,7 +23,7 @@ modify_date="20220806_1"
 #                                                                 by lank
 ####################################################################################
 ################################################################  config
-echo "script version:%modify_date"
+echo "script version:$modify_date"
 app_version="last"
 if [[ -n $1 ]];then
 	app_version=$1
@@ -416,7 +416,9 @@ function stopFirewalld(){
     echo "firewalld don't stop it"
     return 1
   fi
-  systemctl disable firewalld.service;systemctl stop firewalld.service
+  systemctl disable firewalld.service
+  systemctl stop firewalld.service
+
 }
 ##########################################################################################
 ##########################################################################################
@@ -617,9 +619,10 @@ echo "App Install directory List:$mysql_dir,$app_dir"
 echo "Mysql info:port=$db_port";
 echo "Mysql info:username=root";
 echo "Mysql info:password=$MYSQL_ROOT_PWD";
-echo "Access Address:http://ip:$app_port"
-echo "Login username:admin"
-echo "Login password:123456"
+echo "Login Info User:admin"
+echo "Login Info Pwd:123456"
+echo "System can be visited about 1 minute later,website:http://ip:$app_port"
+
 #################################################################### install finish
 exit 0
 ##########################################################################################

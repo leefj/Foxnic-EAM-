@@ -6,6 +6,11 @@
 
 ### 官方网站
 - http://web.foxnicweb.com/
+- 1、QQ群:634770774
+- 2、微信号:myxyjm
+- 企业或个人相关技术开发合作，请进群联系我们！
+- 微信群：      
+  ![微信群](platform/view/view-console/src/main/resources/static/assets/images/wx.png)
 
 ### 系统DEMO
 - [Demo] 每天定时由阿里云效自动编译发布部署
@@ -56,12 +61,6 @@
 #### 最新EAM编译后的包下载(为开发同步版本，并非发布版本)
 - 1、存储过程:[下载SQL](http://foxnicweb.com/docs/chapters/base/1.1/NextVal.zip)
 - 2、SQL文件:(每日更新):http://eam-demo.rainbooow.com/upload/sql.tar.gz
-
-### 联系方式
-- 1、QQ群:634770774
-- 2、微信号:myxyjm
-- 3、微信群：      
-  ![微信群](platform/view/view-console/src/main/resources/static/assets/images/wx.png)
 
 ### 主要技术栈
 #### 全栈技术体系符合信创技术要求
