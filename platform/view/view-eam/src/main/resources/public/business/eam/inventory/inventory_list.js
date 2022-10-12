@@ -92,7 +92,7 @@ function ListPage() {
 					,{ field: 'inventoryAssetCountByNotCounted', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('待盘点'), templet:function (d){ return pdCount(d,"inventoryAssetCountByNotCounted");}}
 					,{ field: 'inventoryAssetCountByCounted', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('已盘点'), templet:function (d){ return pdCount(d,"inventoryAssetCountByCounted");}}
 					,{ field: 'inventoryAssetCountByLoss', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('盘亏'), templet:function (d){ return pdCount(d,"inventoryAssetCountByLoss");}}
-					,{ field: 'inventoryAssetCountBySurplus', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('盘赢'), templet:function (d){ return pdCount(d,"inventoryAssetCountBySurplus");}}
+					,{ field: 'inventoryAssetCountBySurplus', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('盘盈'), templet:function (d){ return pdCount(d,"inventoryAssetCountBySurplus");}}
 
 					,{ field: 'dataStatus', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('数据状态'), templet:function (d){ return templet('dataStatus',fox.getEnumText(SELECT_DATASTATUS_DATA,d.dataStatus),d);}}
 					,{ field: 'allEmployee', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('全员盘点'), templet:function (d){ return templet('allEmployee',fox.getEnumText(SELECT_ALLEMPLOYEE_DATA,d.allEmployee),d);}}
