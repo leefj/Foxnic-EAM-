@@ -61,6 +61,7 @@ db_host=127.0.0.1
 yum -y install unzip zip telnet net-tools wget java numactl
 yum -y install libaio
 yum -y install glibc-*
+yum -y nc
 #strings command need it
 yum -y install binutils*base*x86_64
 #centos 8.0

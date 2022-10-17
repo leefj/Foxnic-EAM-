@@ -121,6 +121,8 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 
 	public String applyAssetDataPermissions(Asset asset,ConditionExpr expr){
 		String dp="";
+
+
 		Logger.info("dataPermissions|applyAssetDataPermissions,ownerCode:"+AssetOwnerCodeEnum.ASSET.code());
 		if(!StringUtil.isBlank(AssetOwnerCodeEnum.ASSET.code())){
 			if(AssetOwnerCodeEnum.ASSET.code().equals(asset.getOwnerCode())){
@@ -1046,6 +1048,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			}
 		}
 
+		System.out.println("##############set save :"+asset.getOwnCompanyId());
 
 		Result r=super.update(asset , mode);
 		return r;

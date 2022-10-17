@@ -273,7 +273,7 @@ knife4j:
 
 
 develop:
-  language: defaults
+  #language: defaults
   start-relation-monitor: true
   deploy:
     enable: true
