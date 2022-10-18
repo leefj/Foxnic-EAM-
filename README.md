@@ -60,7 +60,7 @@
 
 #### 最新EAM编译后的包下载(为开发同步版本，并非发布版本)
 - 1、存储过程:[下载SQL](http://foxnicweb.com/docs/chapters/base/1.1/NextVal.zip)
-- 2、SQL文件:(每日更新):http://eam-demo.rainbooow.com/upload/sql.tar.gz
+- 2、SQL文件:(每日更新):http://eam-demo.rainbooow.com/upload/sql.tar.gz   ( **必须使用 source 命令导入！！！** )
 
 ### 主要技术栈
 #### 全栈技术体系符合信创技术要求
