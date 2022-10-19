@@ -77,7 +77,6 @@ public class OpsCiphertextBoxConfGtr extends BaseCodeGenerator{
                         OpsTables.OPS_CIPHERTEXT_CONF.USER_ID,
                         OpsTables.OPS_CIPHERTEXT_CONF.DECRYPTION_PERM_STATUS,
                         OpsTables.OPS_CIPHERTEXT_CONF.NOTES,
-
                 }
         );
 
