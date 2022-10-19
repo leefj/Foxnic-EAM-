@@ -56,11 +56,24 @@ public class OpsRelationManager extends RelationManager {
         this.setupDbBackupRecord();
 
         this.setupSafetyBaseLine();
+
+        this.setupCiphertextConf();
+
+    }
+
+    public void setupCiphertextConf() {
+        this.property(CiphertextConfMeta.USER_PROP)
+                .using(OpsTables.OPS_CIPHERTEXT_CONF.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+        this.property(CiphertextConfMeta.BOX_PROP)
+                .using(OpsTables.OPS_CIPHERTEXT_CONF.BOX_ID).join(OpsTables.OPS_CIPHERTEXT_BOX.ID);
+
     }
 
     public void setupSafetyBaseLine() {
         this.property(SafetyBaselineMeta.BASE_TYPE_PROP)
                 .using(OpsTables.OPS_SAFETY_BASELINE.BASE_TYPE_ID).join(OpsTables.OPS_SOFTWARE_BASE_TYPE.ID);
+
 
     }
 

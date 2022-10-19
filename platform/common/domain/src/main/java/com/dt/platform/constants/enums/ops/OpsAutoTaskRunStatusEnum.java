@@ -14,7 +14,7 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 public enum OpsAutoTaskRunStatusEnum implements CodeTextEnum {
 
 
-    RUNNING("running" , " 运行中"),
+    RUNNING("running" , "运行中"),
     FINISH("finish" , "执行完成"),
     NOT_START("not_start" , "未开始")
     ;

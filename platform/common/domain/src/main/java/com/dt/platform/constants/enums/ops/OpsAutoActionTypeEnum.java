@@ -14,7 +14,7 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 public enum OpsAutoActionTypeEnum implements CodeTextEnum {
 
 
-    HOST("host" , " 主机"),
+    HOST("host" , "主机"),
     NETWORK("network" , "网络"),
     NONE("none" , "无"),
     ;

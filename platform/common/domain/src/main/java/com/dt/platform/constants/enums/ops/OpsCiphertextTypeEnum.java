@@ -11,15 +11,19 @@ import com.github.foxnic.api.constant.CodeTextEnum;
  */
 
 
-public enum OpsAutoAuthMethodEnum implements CodeTextEnum {
+public enum OpsCiphertextTypeEnum implements CodeTextEnum {
 
 
-    VOUCHER("voucher" , "凭证"),
-    PUB_KEY("pub_key" , "钥匙");
+    DATABASE("database" , "数据库"),
+    OPERATING_SYSTEM("operating_system" , "操作系统"),
+    INFORMATION_SYSTEM("information system" , "信息系统")
+    ;
+
+
 
     private String code;
     private String text;
-    private OpsAutoAuthMethodEnum(String code, String text)  {
+    private OpsCiphertextTypeEnum(String code, String text)  {
         this.code=code;
         this.text=text;
     }

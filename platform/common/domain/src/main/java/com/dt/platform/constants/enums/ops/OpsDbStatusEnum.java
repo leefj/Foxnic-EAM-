@@ -14,7 +14,7 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 public enum OpsDbStatusEnum implements CodeTextEnum {
 
 
-    ONLINE("online" , " 在线"),
+    ONLINE("online" , "在线"),
     OFFLINE("offline" , "下线"),
     STOP("stop" , "停用")
     ;
