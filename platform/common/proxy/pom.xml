@@ -3,29 +3,29 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">  
     <modelVersion>4.0.0</modelVersion>  
     <parent> 
-    	<groupId>com.dt.platform</groupId>  
-    	<artifactId>parent</artifactId> 
-        <version>0.0.2.RELEASE</version>  
-        <relativePath>../../pom.xml</relativePath>
+        <groupId>com.dt.platform</groupId>  
+        <artifactId>parent</artifactId>  
+        <version>1.1.0.RELEASE</version>  
+        <relativePath>../../pom.xml</relativePath>  
         <!-- lookup parent from repository --> 
     </parent>  
     <artifactId>proxy</artifactId>  
-    <name>proxy-platform</name>
-    <description>proxy</description>
+    <name>proxy-platform</name>  
+    <description>proxy</description>  
     <packaging>jar</packaging>  
     <dependencies> 
-        <dependency>
-            <groupId>com.github.foxnic</groupId>
-            <artifactId>foxnic-sql</artifactId>
-            <version>${foxnic.version}</version>
-        </dependency>
+        <dependency> 
+            <groupId>com.github.foxnic</groupId>  
+            <artifactId>foxnic-sql</artifactId>  
+            <version>${foxnic.version}</version> 
+        </dependency>  
         <dependency> 
             <groupId>com.github.foxnic.web</groupId>  
-            <artifactId>proxy</artifactId>
+            <artifactId>proxy</artifactId>  
             <version>${foxnic-web.version}</version> 
-        </dependency>
+        </dependency>  
         <dependency> 
-            <groupId>com.dt.platform</groupId>
+            <groupId>com.dt.platform</groupId>  
             <artifactId>domain</artifactId>  
             <version>${platform.version}</version> 
         </dependency>  

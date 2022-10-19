@@ -35,9 +35,9 @@ public class AssetCommonError extends ErrorDefinition {
     public void init() {
         try {
 
-            new ErrorDesc(SUCCESS, SUCCESS_TEXT);
-            new ErrorDesc(FALIURE, FALIURE_TEXT);
-            new ErrorDesc(ASSET_DATA_NOT_SELECT, ASSET_DATA_NOT_SELECT_TXT);
+            new ErrorDesc(this,SUCCESS, SUCCESS_TEXT);
+            new ErrorDesc(this,FALIURE, FALIURE_TEXT);
+            new ErrorDesc(this,ASSET_DATA_NOT_SELECT, ASSET_DATA_NOT_SELECT_TXT);
 
         } catch (Exception e) {
             e.printStackTrace();
