@@ -30,9 +30,9 @@ public class AssetCommonError extends ErrorDefinition {
     public void init() {
         try {
 
-            new ErrorDesc(SUCCESS, SUCCESS_TEXT);
-            new ErrorDesc(FALIURE, FALIURE_TEXT);
-            new ErrorDesc(ASSSET_DATA_NO_SELECT, "未选择资产");
+            new ErrorDesc(this,SUCCESS, SUCCESS_TEXT);
+            new ErrorDesc(this,FALIURE, FALIURE_TEXT);
+            new ErrorDesc(this,ASSSET_DATA_NO_SELECT, "未选择资产");
 
         } catch (Exception e) {
             e.printStackTrace();

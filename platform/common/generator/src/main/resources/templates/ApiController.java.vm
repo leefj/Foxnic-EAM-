@@ -4,16 +4,20 @@ package #(package);
 import java.util.List;
 import java.util.ArrayList;
 
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-
+#if(inDoc)
+import com.github.foxnic.api.swagger.InDoc;
+#end
 import org.github.foxnic.web.framework.web.SuperController;
 import org.github.foxnic.web.framework.sentinel.SentinelExceptionUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import com.github.foxnic.api.swagger.ApiParamSupport;
 #if(isEnableMicroService)
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 #end
@@ -29,8 +33,8 @@ import org.github.foxnic.web.domain.bpm.BpmEvent;
 #(classJavaDoc)
 
 #if(isEnableSwagger)
-@Api(tags = "#(topic)")
-@ApiSort(#(apiSort))
+#if(inDoc)@InDoc#end
+@Api(tags = "#(restApiTagDir)#(topic)")
 #end
 @RestController("#(beanName)")
 public class #(simpleName) extends SuperController #if(bpm)implements BpmCallbackController#end {
@@ -43,10 +47,10 @@ public class #(simpleName) extends SuperController #if(bpm)implements BpmCallbac
 	 * 添加#(topic)
 	*/
 	#if(isEnableSwagger)
-	#(swager4Insert)
-	@ApiOperationSupport(order=1)
+	#(swagger4Insert)
+	@ApiParamSupport(ignoreDBTreatyProperties = true,ignoreDefaultVoProperties = true)
+	@ApiOperationSupport(order=1 , author="#(author)")
 	#end
-	#(validation4Insert)
 	#if(isEnableMicroService)
 	@SentinelResource(value = #(agentSimpleName).INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	#end
@@ -61,8 +65,8 @@ public class #(simpleName) extends SuperController #if(bpm)implements BpmCallbac
 	 * 批量添加#(topic)
 	*/
 	#if(isEnableSwagger)
-	#(swager4Insert)
-	@ApiOperationSupport(order=1)
+	#(swagger4Insert)
+	@ApiOperationSupport(order=1 , author="#(author)")
 	#end
 	#if(isEnableMicroService)
 	@SentinelResource(value = #(agentSimpleName).INSERTS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -79,10 +83,9 @@ public class #(simpleName) extends SuperController #if(bpm)implements BpmCallbac
 	 * 删除#(topic)
 	*/
 	#if(isEnableSwagger)
-	#(swager4DeleteById)
-	@ApiOperationSupport(order=2)
+	#(swagger4DeleteById)
+	@ApiOperationSupport(order=2 , author="#(author)")
 	#end
-	#(validation4DeleteById)
 	#if(isEnableMicroService)
 	@SentinelResource(value = #(agentSimpleName).DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	#end
@@ -116,8 +119,7 @@ public class #(simpleName) extends SuperController #if(bpm)implements BpmCallbac
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = #(voMetaSimpleName).#(idsPropertyConst) , value = "主键清单" , required = true , dataTypeClass=List.class , example = "[1,3,4]")
 	})
-	@ApiOperationSupport(order=3) #end
-	@NotNull(name = #(voMetaSimpleName).#(idsPropertyConst))
+	@ApiOperationSupport(order=3 , author="#(author)") #end
 	#if(isEnableMicroService)
 	@SentinelResource(value = #(agentSimpleName).DELETE_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	#end
@@ -167,10 +169,10 @@ public class #(simpleName) extends SuperController #if(bpm)implements BpmCallbac
 	 * 更新#(topic)
 	*/
 	#if(isEnableSwagger)
-	#(swager4Update)
-	@ApiOperationSupport( order=4 , ignoreParameters = { #(ignoreParameters4Update) } )
+	#(swagger4Update)
+	@ApiParamSupport(ignoreDBTreatyProperties = true,ignoreDefaultVoProperties = true)
+	@ApiOperationSupport( order=4 , author="#(author)" ,  ignoreParameters = { #(ignoreParameters4Update) } )
 	#end
-	#(validation4Update)
 	#if(isEnableMicroService)
 	@SentinelResource(value = #(agentSimpleName).UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	#end
@@ -185,10 +187,10 @@ public class #(simpleName) extends SuperController #if(bpm)implements BpmCallbac
 	 * 保存#(topic)
 	*/
 	#if(isEnableSwagger)
-	#(swager4Save)
+	#(swagger4Save)
+	@ApiParamSupport(ignoreDBTreatyProperties = true,ignoreDefaultVoProperties = true)
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { #(ignoreParameters4Update) } )
 	#end
-	#(validation4Save)
 	#if(isEnableMicroService)
 	@SentinelResource(value = #(agentSimpleName).SAVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	#end
@@ -209,10 +211,9 @@ public class #(simpleName) extends SuperController #if(bpm)implements BpmCallbac
 		@ApiImplicitParam(name = #(voMetaSimpleName).#(pk.idPropertyConst) , value = "主键" , required = true , dataTypeClass=#(pk.idPropertyType).class , example = "1"),
 		#end
 	})
-	@ApiOperationSupport(order=6)
+	@ApiOperationSupport(order=6 , author="#(author)")
 	#end
 	#for(pk : pks)
-	@NotNull(name = #(voMetaSimpleName).#(pk.idPropertyConst))
 	#end
 	#if(isEnableMicroService)
 	@SentinelResource(value = #(agentSimpleName).GET_BY_ID , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -248,8 +249,7 @@ public class #(simpleName) extends SuperController #if(bpm)implements BpmCallbac
 		@ApiImplicitParams({
 				@ApiImplicitParam(name = #(voMetaSimpleName).#(idsPropertyConst) , value = "主键清单" , required = true , dataTypeClass=List.class , example = "[1,3,4]")
 		})
-		@ApiOperationSupport(order=3) #end
-		@NotNull(name = #(voMetaSimpleName).#(idsPropertyConst))
+		@ApiOperationSupport(order=3 , author="#(author)") #end
 		#if(isEnableMicroService)
 		@SentinelResource(value = #(agentSimpleName).GET_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 		#end
@@ -275,8 +275,8 @@ public class #(simpleName) extends SuperController #if(bpm)implements BpmCallbac
 	 * 查询#(topic)
 	*/
 	#if(isEnableSwagger)
-	#(swager4QueryList)
-	@ApiOperationSupport(order=5 ,  ignoreParameters = { #(voMetaSimpleName).PAGE_INDEX , #(voMetaSimpleName).PAGE_SIZE } )
+	#(swagger4QueryList)
+	@ApiOperationSupport(order=5 , author="#(author)" ,  ignoreParameters = { #(voMetaSimpleName).PAGE_INDEX , #(voMetaSimpleName).PAGE_SIZE } )
 	#end
 	#if(isEnableMicroService)
 	@SentinelResource(value = #(agentSimpleName).QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -302,8 +302,8 @@ public class #(simpleName) extends SuperController #if(bpm)implements BpmCallbac
 	 * 分页查询#(topic)
 	*/
 	#if(isEnableSwagger)
-	#(swager4QueryPagedList)
-	@ApiOperationSupport(order=8)
+	#(swagger4QueryPagedList)
+	@ApiOperationSupport(order=8 , author="#(author)")
 	#end
 	#if(isEnableMicroService)
 	@SentinelResource(value = #(agentSimpleName).QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -359,7 +359,7 @@ public class #(simpleName) extends SuperController #if(bpm)implements BpmCallbac
 	#if(isEnableMicroService)
 	@SentinelResource(value = #(agentSimpleName).EXPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	#end
-	@RequestMapping(#(agentSimpleName).EXPORT_EXCEL)
+	@GetMapping(#(agentSimpleName).EXPORT_EXCEL)
 	public void exportExcel(#(voSimpleName)  sample,HttpServletResponse response) throws Exception {
 		try{
 			//生成 Excel 数据
@@ -379,7 +379,7 @@ public class #(simpleName) extends SuperController #if(bpm)implements BpmCallbac
 	#if(isEnableMicroService)
 	@SentinelResource(value = #(agentSimpleName).EXPORT_EXCEL_TEMPLATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	#end
-	@RequestMapping(#(agentSimpleName).EXPORT_EXCEL_TEMPLATE)
+	@GetMapping(#(agentSimpleName).EXPORT_EXCEL_TEMPLATE)
 	public void exportExcelTemplate(HttpServletResponse response) throws Exception {
 		try{
 			//生成 Excel 模版
@@ -391,12 +391,10 @@ public class #(simpleName) extends SuperController #if(bpm)implements BpmCallbac
 		}
 	}
 
-
-
 	#if(isEnableMicroService)
 	@SentinelResource(value = #(agentSimpleName).IMPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	#end
-	@RequestMapping(#(agentSimpleName).IMPORT_EXCEL)
+	@PostMapping(#(agentSimpleName).IMPORT_EXCEL)
 	public Result importExcel(MultipartHttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		//获得上传的文件
@@ -418,6 +416,29 @@ public class #(simpleName) extends SuperController #if(bpm)implements BpmCallbac
 			return ErrorDesc.failure().message("导入失败").data(errors);
 		}
 	}
+	#end
+	#for(api:restAPIList)
+	/**
+	  * #(api.title)
+	  * #if(api.comment!=null)<p>#(api.comment)</p>#end
+      #(api.javaDocParameterList)
+      * @return  Result#(api.htmlGenericResultCode) #(api.resultDesc)
+	  */
+	#if(isEnableSwagger)
+	@ApiOperation(value = "#(api.title)",notes = "#(api.comment)")
+	#(api.swaggerParameterList)
+	@ApiOperationSupport(order=16,author="#(author)")
+	#end
+	#if(isEnableMicroService)
+	@SentinelResource(value = #(agentSimpleName).#(api.constName) , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	#end
+	@#(api.mappingTypeName)(#(agentSimpleName).#(api.constName))
+	public Result#(api.genericResultCode) #(api.name)(#(api.parameterListString)) {
+		Result#(api.genericResultCode) result = new Result#(api.genericResultCode4New)();
+		// TODO 实现 #(api.comment) 逻辑
+		return result;
+	}
+
 	#end
 
 }
