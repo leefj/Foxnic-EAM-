@@ -15,8 +15,12 @@ public enum OpsCiphertextTypeEnum implements CodeTextEnum {
 
 
     DATABASE("database" , "数据库"),
+    DATABASE_INSTANCE("database_instance" , "数据库实例"),
     OPERATING_SYSTEM("operating_system" , "操作系统"),
-    INFORMATION_SYSTEM("information system" , "信息系统")
+    INFORMATION_SYSTEM("information_system" , "信息系统"),
+    ASSET("asset" , "资产"),
+    EQUIPMENT("equipment" , "设备"),
+    OHTER("other" , "其他")
     ;
 
 

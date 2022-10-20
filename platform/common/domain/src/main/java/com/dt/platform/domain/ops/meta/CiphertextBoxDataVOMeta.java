@@ -11,7 +11,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 10:24:04
+ * @since 2022-10-20 09:12:29
  * @sign BE72785A0C6EA5A862359ED46CE4C637
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -127,6 +127,26 @@ public class CiphertextBoxDataVOMeta extends CiphertextBoxDataMeta {
 	 * 来源 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.CiphertextBoxDataVO,java.lang.String> SOURCE_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.CiphertextBoxDataVO.class ,SOURCE_ID, java.lang.String.class, "来源", "来源", java.lang.String.class, null);
+	
+	/**
+	 * 密文箱 , 类型: java.lang.String
+	*/
+	public static final String BOX_ID="boxId";
+	
+	/**
+	 * 密文箱 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.CiphertextBoxDataVO,java.lang.String> BOX_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.CiphertextBoxDataVO.class ,BOX_ID, java.lang.String.class, "密文箱", "密文箱", java.lang.String.class, null);
+	
+	/**
+	 * 密文类型 , 类型: java.lang.String
+	*/
+	public static final String BOX_TYPE="boxType";
+	
+	/**
+	 * 密文类型 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.CiphertextBoxDataVO,java.lang.String> BOX_TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.CiphertextBoxDataVO.class ,BOX_TYPE, java.lang.String.class, "密文类型", "密文类型", java.lang.String.class, null);
 	
 	/**
 	 * 名称 , 类型: java.lang.String
@@ -261,7 +281,7 @@ public class CiphertextBoxDataVOMeta extends CiphertextBoxDataMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , SOURCE_ID , NAME , CONTENT , PLAINTEXT , CIPHERTEXT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , SOURCE_ID , BOX_ID , BOX_TYPE , NAME , CONTENT , PLAINTEXT , CIPHERTEXT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
 	
 	/**
 	 * 代理类
@@ -389,6 +409,28 @@ public class CiphertextBoxDataVOMeta extends CiphertextBoxDataMeta {
 		public CiphertextBoxData setSourceId(String sourceId) {
 			super.change(SOURCE_ID,super.getSourceId(),sourceId);
 			super.setSourceId(sourceId);
+			return this;
+		}
+		
+		/**
+		 * 设置 密文箱
+		 * @param boxId 密文箱
+		 * @return 当前对象
+		*/
+		public CiphertextBoxData setBoxId(String boxId) {
+			super.change(BOX_ID,super.getBoxId(),boxId);
+			super.setBoxId(boxId);
+			return this;
+		}
+		
+		/**
+		 * 设置 密文类型
+		 * @param boxType 密文类型
+		 * @return 当前对象
+		*/
+		public CiphertextBoxData setBoxType(String boxType) {
+			super.change(BOX_TYPE,super.getBoxType(),boxType);
+			super.setBoxType(boxType);
 			return this;
 		}
 		
@@ -553,6 +595,7 @@ public class CiphertextBoxDataVOMeta extends CiphertextBoxDataMeta {
 			inst.setSourceId(this.getSourceId());
 			inst.setCiphertext(this.getCiphertext());
 			inst.setNotes(this.getNotes());
+			inst.setBoxType(this.getBoxType());
 			inst.setPlaintext(this.getPlaintext());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setVersion(this.getVersion());
@@ -565,6 +608,7 @@ public class CiphertextBoxDataVOMeta extends CiphertextBoxDataMeta {
 			inst.setName(this.getName());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
+			inst.setBoxId(this.getBoxId());
 			if(all) {
 				inst.setSearchField(this.getSearchField());
 				inst.setPageIndex(this.getPageIndex());

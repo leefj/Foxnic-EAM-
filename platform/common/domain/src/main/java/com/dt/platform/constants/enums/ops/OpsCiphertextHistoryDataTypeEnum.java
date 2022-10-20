@@ -13,8 +13,9 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 public enum OpsCiphertextHistoryDataTypeEnum implements CodeTextEnum {
 
-
-    ciphertext_box_conf("ciphertext_box_conf" , " 密码箱配置");
+    CIPHERTEXT_BOX("ciphertext_box" , " 密文箱配置"),
+    CIPHERTEXT_BOX_CONF("ciphertext_box_conf" , " 密文箱"),
+    CIPHERTEXT_BOX_DATA("ciphertext_box_data" , " 密文");
 
     private String code;
     private String text;

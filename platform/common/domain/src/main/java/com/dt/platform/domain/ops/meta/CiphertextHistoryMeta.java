@@ -9,8 +9,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 09:59:16
- * @sign 88C01E64155B19F388789A2A7C1BEE13
+ * @since 2022-10-19 14:16:45
+ * @sign 4C8E99230F8B93AB9E44AF2623C2C755
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -35,6 +35,26 @@ public class CiphertextHistoryMeta {
 	 * 类型 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.CiphertextHistory,java.lang.String> TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.CiphertextHistory.class ,TYPE, java.lang.String.class, "类型", "类型", java.lang.String.class, null);
+	
+	/**
+	 * 密文箱类型 , 类型: java.lang.String
+	*/
+	public static final String BOX_TYPE="boxType";
+	
+	/**
+	 * 密文箱类型 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.CiphertextHistory,java.lang.String> BOX_TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.CiphertextHistory.class ,BOX_TYPE, java.lang.String.class, "密文箱类型", "密文箱类型", java.lang.String.class, null);
+	
+	/**
+	 * 来源 , 类型: java.lang.String
+	*/
+	public static final String SOURCE_VALUE="sourceValue";
+	
+	/**
+	 * 来源 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.CiphertextHistory,java.lang.String> SOURCE_VALUE_PROP = new BeanProperty(com.dt.platform.domain.ops.CiphertextHistory.class ,SOURCE_VALUE, java.lang.String.class, "来源", "来源", java.lang.String.class, null);
 	
 	/**
 	 * 内容 , 类型: java.lang.String
@@ -129,7 +149,7 @@ public class CiphertextHistoryMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , TYPE , CONTENT , ENCRYPTION_CONTENT , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
+	public static final String[] $PROPS={ ID , TYPE , BOX_TYPE , SOURCE_VALUE , CONTENT , ENCRYPTION_CONTENT , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
 	
 	/**
 	 * 代理类
@@ -158,6 +178,28 @@ public class CiphertextHistoryMeta {
 		public CiphertextHistory setType(String type) {
 			super.change(TYPE,super.getType(),type);
 			super.setType(type);
+			return this;
+		}
+		
+		/**
+		 * 设置 密文箱类型
+		 * @param boxType 密文箱类型
+		 * @return 当前对象
+		*/
+		public CiphertextHistory setBoxType(String boxType) {
+			super.change(BOX_TYPE,super.getBoxType(),boxType);
+			super.setBoxType(boxType);
+			return this;
+		}
+		
+		/**
+		 * 设置 来源
+		 * @param sourceValue 来源
+		 * @return 当前对象
+		*/
+		public CiphertextHistory setSourceValue(String sourceValue) {
+			super.change(SOURCE_VALUE,super.getSourceValue(),sourceValue);
+			super.setSourceValue(sourceValue);
 			return this;
 		}
 		
@@ -275,17 +317,19 @@ public class CiphertextHistoryMeta {
 		@Transient
 		public CiphertextHistory duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
-			inst.setDeleted(this.getDeleted());
 			inst.setEncryptionContent(this.getEncryptionContent());
+			inst.setBoxType(this.getBoxType());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setType(this.getType());
+			inst.setVersion(this.getVersion());
+			inst.setContent(this.getContent());
+			inst.setDeleted(this.getDeleted());
 			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setDeleteBy(this.getDeleteBy());
-			inst.setUpdateTime(this.getUpdateTime());
 			inst.setId(this.getId());
-			inst.setType(this.getType());
-			inst.setVersion(this.getVersion());
-			inst.setContent(this.getContent());
+			inst.setSourceValue(this.getSourceValue());
 			inst.clearModifies();
 			return inst;
 		}

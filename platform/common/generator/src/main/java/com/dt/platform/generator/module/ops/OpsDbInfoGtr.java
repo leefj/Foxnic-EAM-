@@ -155,6 +155,9 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
 
 
         cfg.view().list().operationColumn().addActionButton("备份记录","openBackupWindow",null,"ops_db_info:backup");
+        cfg.view().list().operationColumn().addActionButton("密文箱","boxWindow",null,"ops_db_info:box");
+
+
         cfg.view().form().addPage("备份情况","backInfoList");
 
 

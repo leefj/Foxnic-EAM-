@@ -2,6 +2,7 @@ package com.dt.platform.generator.module.ops;
 
 import com.dt.platform.constants.db.OpsTables;
 import com.dt.platform.constants.enums.ops.OpsCiphertextHistoryDataTypeEnum;
+import com.dt.platform.constants.enums.ops.OpsCiphertextTypeEnum;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.ops.page.CiphertextHistoryPageController;
 import com.dt.platform.proxy.ops.CiphertextHistoryServiceProxy;
@@ -17,8 +18,6 @@ public class OpsCiphertextHistoryBoxGtr extends BaseCodeGenerator{
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
 
-
-
         cfg.view().search().inputLayout(
                 new Object[]{
                         OpsTables.OPS_CIPHERTEXT_HISTORY.TYPE,
@@ -32,6 +31,9 @@ public class OpsCiphertextHistoryBoxGtr extends BaseCodeGenerator{
 
         cfg.view().field(OpsTables.OPS_CIPHERTEXT_HISTORY.ID).basic().hidden(true);
         cfg.view().field(OpsTables.OPS_CIPHERTEXT_HISTORY.TYPE).form().selectBox().enumType(OpsCiphertextHistoryDataTypeEnum.class);
+
+        cfg.view().field(OpsTables.OPS_CIPHERTEXT_HISTORY.BOX_TYPE).form().selectBox().enumType(OpsCiphertextTypeEnum.class);
+
         cfg.view().field(OpsTables.OPS_CIPHERTEXT_HISTORY.CONTENT).form().textArea().height(300);
         cfg.view().field(OpsTables.OPS_CIPHERTEXT_HISTORY.ENCRYPTION_CONTENT).form().textArea().height(300);
 

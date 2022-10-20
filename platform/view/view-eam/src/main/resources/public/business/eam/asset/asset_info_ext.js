@@ -422,6 +422,80 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 }, {delayLoading: 1000, elms: [$("#batchRevoke-button")]});
             });
         },
+
+        showEditBoxForm:function(data,sourceId,boxType) {
+            console.log("#######showEditBoxForm#########")
+            console.log(data)
+            console.log(sourceId)
+            console.log(boxType)
+            var action="view";
+            var queryString="?boxType="+boxType+"&sourceId="+sourceId;
+            if(data&&data.id) {
+                queryString=queryString+'&id=' + data.id;
+                action="edit";
+            }else{
+                action="create";
+            }
+            admin.putTempData('ops-ciphertext-box-data-form-data', data);
+            var area=admin.getTempData('ops-ciphertext-box-data-form-area');
+            var height= (area && area.height) ? area.height : ($(window).height()*0.6);
+            var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
+            var title = fox.translate('密文数据');
+            if(action=="create") title=fox.translate('添加')+title;
+            else if(action=="edit") title=fox.translate('修改')+title;
+            else if(action=="view") title=fox.translate('查看')+title;
+
+            console.log("action"+action)
+            admin.popupCenter({
+                title: title,
+                resize: false,
+                offset: [top,null],
+                area: ["80%",height+"px"],
+                type: 2,
+                id:"ops-ciphertext-box-data-form-data-win",
+                content: '/business/ops/ciphertext_box_data/ciphertext_box_data_form.html' + queryString,
+                finish: function () {
+                }
+            });
+        },
+        boxWindow:function (data, it){
+            console.log("boxWindow",data.id);
+            var ps={};
+            ps.sourceId=data.id;
+            var boxType="asset";
+            admin.post("/service-ops/ops-ciphertext-box/user-en-de-perm-by-boxtype", {boxType:boxType}, function (rrr) {
+                if (rrr.success) {
+                    if(rrr.data=="false"){
+                        layer.msg("用户无加解密权限，请先配置用户权限", {icon: 2, time: 1000});
+                    }else{
+                        admin.post("/service-ops/ops-ciphertext-box-data/query-list", ps, function (rr) {
+                            if (rr.success) {
+                                var boxdata = rr.data;
+                                console.log("/service-ops/ops-ciphertext-box-data/query-list",data)
+                                if(boxdata.length==0){
+                                    var td={}
+                                    list.showEditBoxForm(td,data.id,boxType);
+                                }else if (boxdata.length==1){
+                                    admin.post("/service-ops/ops-ciphertext-box-data/get-by-id", {id:boxdata[0].id}, function (r2) {
+                                        if (r2.success) {
+                                            list.showEditBoxForm(r2.data,data.id,boxType);
+                                        } else {
+                                            layer.msg("请求异常", {icon: 2, time: 1000});
+                                        }
+                                    });
+                                }else{
+                                    layer.msg("数据异常", {icon: 2, time: 1000});
+                                }
+                            } else {
+                                layer.msg( "请求异常", {icon: 2, time: 1000});
+                            }
+                        });
+                    }
+                } else {
+                    layer.msg("请求异常", {icon: 2, time: 1000});
+                }
+            });
+        },
         /**
          * 末尾执行
          */
@@ -557,7 +631,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         afterSubmit:function (param,result) {
             console.log("afterSubmitt",param,result);
         },
-
         /**
          * 末尾执行
          */

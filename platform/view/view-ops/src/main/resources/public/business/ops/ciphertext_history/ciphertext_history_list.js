@@ -1,7 +1,7 @@
 /**
  * 历史记录 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 09:59:17
+ * @since 2022-10-19 14:16:46
  */
 
 
@@ -79,6 +79,8 @@ function ListPage() {
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'type', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('类型'), templet:function (d){ return templet('type',fox.getEnumText(SELECT_TYPE_DATA,d.type,'','type'),d);}}
+					,{ field: 'boxType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('密文箱类型'), templet:function (d){ return templet('boxType',fox.getEnumText(SELECT_BOXTYPE_DATA,d.boxType,'','boxType'),d);}}
+					,{ field: 'sourceValue', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('来源') , templet: function (d) { return templet('sourceValue',d.sourceValue,d);}  }
 					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('内容') , templet: function (d) { return templet('content',d.content,d);}  }
 					,{ field: 'encryptionContent', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('加密内容') , templet: function (d) { return templet('encryptionContent',d.encryptionContent,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }

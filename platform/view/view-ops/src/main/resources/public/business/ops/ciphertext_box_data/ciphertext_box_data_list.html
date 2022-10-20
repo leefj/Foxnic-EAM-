@@ -2,7 +2,7 @@
 /**
  * 密文数据 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 10:24:05
+ * @since 2022-10-20 09:12:30
  */
  -->
  <!DOCTYPE html>
@@ -40,6 +40,8 @@
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 来源 , sourceId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 密文箱 , boxId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 密文类型 , boxType ,typeName=select_box, isHideInSearch=true -->
                     <!-- 内容 , content ,typeName=text_area, isHideInSearch=true -->
                     <!-- 加密 , plaintext ,typeName=text_area, isHideInSearch=true -->
                     <!-- 密文 , ciphertext ,typeName=text_area, isHideInSearch=true -->
@@ -76,7 +78,6 @@
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
-        <button th:if="${perm.checkAuth('ops_ciphertext_box_data:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建')}">新建</span></button>
     </div>
 </script>
 
@@ -94,10 +95,13 @@
 
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
+    var SELECT_BOXTYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.OpsCiphertextTypeEnum')}]];
     var AUTH_PREFIX="ops_ciphertext_box_data";
 
     // sourceId
     var SOURCE_ID = [[${sourceId}]] ;
+    // boxType
+    var BOX_TYPE = [[${boxType}]] ;
 
 </script>
 

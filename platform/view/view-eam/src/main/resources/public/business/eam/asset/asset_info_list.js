@@ -746,6 +746,9 @@ function ListPage() {
 			else if (layEvent === 'asset-voucher') { // 变更
 				window.pageExt.list.assetVoucher(data);
 			}
+			else if (layEvent === 'asset-box') { // 变更
+				window.pageExt.list.boxWindow(data);
+			}
 
 		});
 

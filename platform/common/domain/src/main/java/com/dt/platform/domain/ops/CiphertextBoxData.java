@@ -18,8 +18,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 密文数据
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 10:24:04
- * @sign 4BACADF731BD28E27887BB7537BAEAF6
+ * @since 2022-10-20 09:12:29
+ * @sign C7AEFC0615F0BF8CC26CFD4F5CA8E2CC
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -42,6 +42,18 @@ public class CiphertextBoxData extends Entity {
 	*/
 	@ApiModelProperty(required = true,value="来源" , notes = "来源")
 	private String sourceId;
+	
+	/**
+	 * 密文箱：密文箱
+	*/
+	@ApiModelProperty(required = false,value="密文箱" , notes = "密文箱")
+	private String boxId;
+	
+	/**
+	 * 密文类型：密文类型
+	*/
+	@ApiModelProperty(required = false,value="密文类型" , notes = "密文类型")
+	private String boxType;
 	
 	/**
 	 * 名称：名称
@@ -158,6 +170,44 @@ public class CiphertextBoxData extends Entity {
 	*/
 	public CiphertextBoxData setSourceId(String sourceId) {
 		this.sourceId=sourceId;
+		return this;
+	}
+	
+	/**
+	 * 获得 密文箱<br>
+	 * 密文箱
+	 * @return 密文箱
+	*/
+	public String getBoxId() {
+		return boxId;
+	}
+	
+	/**
+	 * 设置 密文箱
+	 * @param boxId 密文箱
+	 * @return 当前对象
+	*/
+	public CiphertextBoxData setBoxId(String boxId) {
+		this.boxId=boxId;
+		return this;
+	}
+	
+	/**
+	 * 获得 密文类型<br>
+	 * 密文类型
+	 * @return 密文类型
+	*/
+	public String getBoxType() {
+		return boxType;
+	}
+	
+	/**
+	 * 设置 密文类型
+	 * @param boxType 密文类型
+	 * @return 当前对象
+	*/
+	public CiphertextBoxData setBoxType(String boxType) {
+		this.boxType=boxType;
 		return this;
 	}
 	
@@ -486,6 +536,7 @@ public class CiphertextBoxData extends Entity {
 		inst.setSourceId(this.getSourceId());
 		inst.setCiphertext(this.getCiphertext());
 		inst.setNotes(this.getNotes());
+		inst.setBoxType(this.getBoxType());
 		inst.setPlaintext(this.getPlaintext());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setVersion(this.getVersion());
@@ -498,6 +549,7 @@ public class CiphertextBoxData extends Entity {
 		inst.setName(this.getName());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
+		inst.setBoxId(this.getBoxId());
 		inst.clearModifies();
 		return inst;
 	}

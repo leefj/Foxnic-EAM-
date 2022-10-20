@@ -29,6 +29,8 @@ import java.util.Map;
 public interface ICiphertextBoxService extends  ISimpleIdService<CiphertextBox,String> {
 
 
+
+	boolean userEnDePermByBoxType(String boxType);
 	/**
 	 * 添加，如果语句错误，则抛出异常
 	 * @param ciphertextBox 数据对象

@@ -1,6 +1,14 @@
 package com.dt.platform.ops.service.impl;
 
 import javax.annotation.Resource;
+
+import ch.qos.logback.core.db.dialect.DBUtil;
+import com.dt.platform.constants.enums.ops.OpsCiphertextHistoryDataTypeEnum;
+import com.dt.platform.domain.ops.CiphertextHistory;
+import com.dt.platform.ops.service.ICiphertextHistoryService;
+import com.github.foxnic.dao.data.RcdSet;
+import org.apache.commons.lang3.StringUtils;
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +53,9 @@ import java.util.Map;
 @Service("OpsCiphertextBoxService")
 public class CiphertextBoxServiceImpl extends SuperService<CiphertextBox> implements ICiphertextBoxService {
 
+
+	@Autowired
+	private ICiphertextHistoryService ciphertextHistoryService;
 	/**
 	 * 注入DAO对象
 	 * */
@@ -72,8 +83,31 @@ public class CiphertextBoxServiceImpl extends SuperService<CiphertextBox> implem
 	 */
 	@Override
 	public Result insert(CiphertextBox ciphertextBox,boolean throwsException) {
+		if(StringUtils.isBlank(ciphertextBox.getEncryptionKey())){
+			ciphertextBox.setEncryptionKey(IDGenerator.getSnowflakeIdString());
+		}
+
+		CiphertextBox queryBox=new CiphertextBox();
+		queryBox.setType(ciphertextBox.getType());
+		if(this.queryList(queryBox).size()>0){
+			return ErrorDesc.failureMessage("密文类型重复");
+		}
 		Result r=super.insert(ciphertextBox,throwsException);
 		return r;
+	}
+
+	@Override
+	public boolean userEnDePermByBoxType(String boxType) {
+		if(StringUtils.isBlank(boxType)){
+			return false;
+		}
+		String userId= SessionUser.getCurrent().getUser().getActivatedEmployeeId();
+		String sql="select 1 from ops_ciphertext_conf a,ops_ciphertext_box b where a.box_id=b.id and a.deleted=0 and b.deleted=0 and b.type=? and a.decryption_perm_status='enable' and user_id=?";
+		RcdSet rs=dao.query(sql,boxType,userId);
+		if(rs.size()>0){
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -83,6 +117,8 @@ public class CiphertextBoxServiceImpl extends SuperService<CiphertextBox> implem
 	 * */
 	@Override
 	public Result insert(CiphertextBox ciphertextBox) {
+
+
 		return this.insert(ciphertextBox,true);
 	}
 
@@ -104,6 +140,14 @@ public class CiphertextBoxServiceImpl extends SuperService<CiphertextBox> implem
 	 * @return 删除是否成功
 	 */
 	public Result deleteByIdPhysical(String id) {
+		CiphertextBox box=this.getById(id);
+		CiphertextHistory history=new CiphertextHistory();
+		history.setBoxType(box.getType());
+		history.setSourceValue(box.getId());
+		history.setContent("key="+box.getEncryptionKey());
+		history.setType(OpsCiphertextHistoryDataTypeEnum.CIPHERTEXT_BOX.code());
+		ciphertextHistoryService.insert(history,false);
+
 		CiphertextBox ciphertextBox = new CiphertextBox();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		ciphertextBox.setId(id);
@@ -125,6 +169,16 @@ public class CiphertextBoxServiceImpl extends SuperService<CiphertextBox> implem
 	 * @return 删除是否成功
 	 */
 	public Result deleteByIdLogical(String id) {
+
+
+		CiphertextBox box=this.getById(id);
+		CiphertextHistory history=new CiphertextHistory();
+		history.setBoxType(box.getType());
+		history.setSourceValue(box.getId());
+		history.setContent("key="+box.getEncryptionKey());
+		history.setType(OpsCiphertextHistoryDataTypeEnum.CIPHERTEXT_BOX.code());
+		ciphertextHistoryService.insert(history,false);
+
 		CiphertextBox ciphertextBox = new CiphertextBox();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		ciphertextBox.setId(id);
@@ -162,6 +216,8 @@ public class CiphertextBoxServiceImpl extends SuperService<CiphertextBox> implem
 	 * */
 	@Override
 	public Result update(CiphertextBox ciphertextBox , SaveMode mode,boolean throwsException) {
+		ciphertextBox.setEncryptionKey(null);
+		//ciphertextBox.setType(null);
 		Result r=super.update(ciphertextBox , mode , throwsException);
 		return r;
 	}

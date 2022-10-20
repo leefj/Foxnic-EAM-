@@ -11,7 +11,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 09:59:16
+ * @since 2022-10-19 14:16:45
  * @sign 21F8227A7F79B5F3BF54613E62F1F4F4
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -129,6 +129,26 @@ public class CiphertextHistoryVOMeta extends CiphertextHistoryMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.CiphertextHistoryVO,java.lang.String> TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.CiphertextHistoryVO.class ,TYPE, java.lang.String.class, "类型", "类型", java.lang.String.class, null);
 	
 	/**
+	 * 密文箱类型 , 类型: java.lang.String
+	*/
+	public static final String BOX_TYPE="boxType";
+	
+	/**
+	 * 密文箱类型 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.CiphertextHistoryVO,java.lang.String> BOX_TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.CiphertextHistoryVO.class ,BOX_TYPE, java.lang.String.class, "密文箱类型", "密文箱类型", java.lang.String.class, null);
+	
+	/**
+	 * 来源 , 类型: java.lang.String
+	*/
+	public static final String SOURCE_VALUE="sourceValue";
+	
+	/**
+	 * 来源 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.CiphertextHistoryVO,java.lang.String> SOURCE_VALUE_PROP = new BeanProperty(com.dt.platform.domain.ops.CiphertextHistoryVO.class ,SOURCE_VALUE, java.lang.String.class, "来源", "来源", java.lang.String.class, null);
+	
+	/**
 	 * 内容 , 类型: java.lang.String
 	*/
 	public static final String CONTENT="content";
@@ -221,7 +241,7 @@ public class CiphertextHistoryVOMeta extends CiphertextHistoryMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , TYPE , CONTENT , ENCRYPTION_CONTENT , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , TYPE , BOX_TYPE , SOURCE_VALUE , CONTENT , ENCRYPTION_CONTENT , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
 	
 	/**
 	 * 代理类
@@ -353,6 +373,28 @@ public class CiphertextHistoryVOMeta extends CiphertextHistoryMeta {
 		}
 		
 		/**
+		 * 设置 密文箱类型
+		 * @param boxType 密文箱类型
+		 * @return 当前对象
+		*/
+		public CiphertextHistory setBoxType(String boxType) {
+			super.change(BOX_TYPE,super.getBoxType(),boxType);
+			super.setBoxType(boxType);
+			return this;
+		}
+		
+		/**
+		 * 设置 来源
+		 * @param sourceValue 来源
+		 * @return 当前对象
+		*/
+		public CiphertextHistory setSourceValue(String sourceValue) {
+			super.change(SOURCE_VALUE,super.getSourceValue(),sourceValue);
+			super.setSourceValue(sourceValue);
+			return this;
+		}
+		
+		/**
 		 * 设置 内容
 		 * @param content 内容
 		 * @return 当前对象
@@ -466,17 +508,19 @@ public class CiphertextHistoryVOMeta extends CiphertextHistoryMeta {
 		@Transient
 		public CiphertextHistoryVO duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
-			inst.setDeleted(this.getDeleted());
 			inst.setEncryptionContent(this.getEncryptionContent());
+			inst.setBoxType(this.getBoxType());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setType(this.getType());
+			inst.setVersion(this.getVersion());
+			inst.setContent(this.getContent());
+			inst.setDeleted(this.getDeleted());
 			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setDeleteBy(this.getDeleteBy());
-			inst.setUpdateTime(this.getUpdateTime());
 			inst.setId(this.getId());
-			inst.setType(this.getType());
-			inst.setVersion(this.getVersion());
-			inst.setContent(this.getContent());
+			inst.setSourceValue(this.getSourceValue());
 			if(all) {
 				inst.setSearchField(this.getSearchField());
 				inst.setPageIndex(this.getPageIndex());

@@ -49,7 +49,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 历史记录 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 09:59:16
+ * @since 2022-10-19 14:16:45
 */
 
 @Api(tags = "历史记录")
@@ -68,6 +68,8 @@ public class CiphertextHistoryController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = CiphertextHistoryVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "635053950277517312"),
 		@ApiImplicitParam(name = CiphertextHistoryVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "ciphertext_box_conf"),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.BOX_TYPE , value = "密文箱类型" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.SOURCE_VALUE , value = "来源" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = CiphertextHistoryVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class , example = "1"),
 		@ApiImplicitParam(name = CiphertextHistoryVOMeta.ENCRYPTION_CONTENT , value = "加密内容" , required = false , dataTypeClass=String.class , example = "121212dsf"),
 	})
@@ -168,6 +170,8 @@ public class CiphertextHistoryController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = CiphertextHistoryVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "635053950277517312"),
 		@ApiImplicitParam(name = CiphertextHistoryVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "ciphertext_box_conf"),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.BOX_TYPE , value = "密文箱类型" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.SOURCE_VALUE , value = "来源" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = CiphertextHistoryVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class , example = "1"),
 		@ApiImplicitParam(name = CiphertextHistoryVOMeta.ENCRYPTION_CONTENT , value = "加密内容" , required = false , dataTypeClass=String.class , example = "121212dsf"),
 	})
@@ -187,6 +191,8 @@ public class CiphertextHistoryController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = CiphertextHistoryVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "635053950277517312"),
 		@ApiImplicitParam(name = CiphertextHistoryVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "ciphertext_box_conf"),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.BOX_TYPE , value = "密文箱类型" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.SOURCE_VALUE , value = "来源" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = CiphertextHistoryVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class , example = "1"),
 		@ApiImplicitParam(name = CiphertextHistoryVOMeta.ENCRYPTION_CONTENT , value = "加密内容" , required = false , dataTypeClass=String.class , example = "121212dsf"),
 	})
@@ -246,6 +252,8 @@ public class CiphertextHistoryController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = CiphertextHistoryVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "635053950277517312"),
 		@ApiImplicitParam(name = CiphertextHistoryVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "ciphertext_box_conf"),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.BOX_TYPE , value = "密文箱类型" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.SOURCE_VALUE , value = "来源" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = CiphertextHistoryVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class , example = "1"),
 		@ApiImplicitParam(name = CiphertextHistoryVOMeta.ENCRYPTION_CONTENT , value = "加密内容" , required = false , dataTypeClass=String.class , example = "121212dsf"),
 	})
@@ -267,6 +275,8 @@ public class CiphertextHistoryController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = CiphertextHistoryVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "635053950277517312"),
 		@ApiImplicitParam(name = CiphertextHistoryVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "ciphertext_box_conf"),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.BOX_TYPE , value = "密文箱类型" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.SOURCE_VALUE , value = "来源" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = CiphertextHistoryVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class , example = "1"),
 		@ApiImplicitParam(name = CiphertextHistoryVOMeta.ENCRYPTION_CONTENT , value = "加密内容" , required = false , dataTypeClass=String.class , example = "121212dsf"),
 	})

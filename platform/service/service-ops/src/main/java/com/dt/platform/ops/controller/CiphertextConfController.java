@@ -4,6 +4,10 @@ package com.dt.platform.ops.controller;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.dt.platform.domain.eam.AssetScrap;
+import com.dt.platform.domain.eam.meta.AssetScrapMeta;
+import com.github.foxnic.commons.collection.CollectorUtil;
+import org.github.foxnic.web.domain.hrm.Person;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,7 +55,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 权限配置 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 10:21:45
+ * @since 2022-10-19 10:33:43
 */
 
 @Api(tags = "权限配置")
@@ -222,6 +226,7 @@ public class CiphertextConfController extends SuperController {
 		// join 关联的对象
 		ciphertextConfService.dao().fill(ciphertextConf)
 			.with("user")
+			.with(CiphertextConfMeta.BOX)
 			.execute();
 		result.success(true).data(ciphertextConf);
 		return result;
@@ -290,8 +295,17 @@ public class CiphertextConfController extends SuperController {
 		// join 关联的对象
 		ciphertextConfService.dao().fill(list)
 			.with("user")
+			.with(CiphertextConfMeta.BOX)
 			.execute();
+
+		List<Employee> employees= CollectorUtil.collectList(list, CiphertextConf::getUser);
+		ciphertextConfService.dao().join(employees, Person.class);
+
+
 		result.success(true).data(list);
+
+
+
 		return result;
 	}
 

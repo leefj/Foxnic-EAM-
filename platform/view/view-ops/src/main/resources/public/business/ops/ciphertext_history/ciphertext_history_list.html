@@ -2,7 +2,7 @@
 /**
  * 历史记录 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 09:59:17
+ * @since 2022-10-19 14:16:46
  */
  -->
  <!DOCTYPE html>
@@ -44,6 +44,8 @@
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('类型')}" class="search-label type-label">类型</span><span class="search-colon">:</span></div>
                         <div id="type" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.OpsCiphertextHistoryDataTypeEnum')}" style="width:150px" extraParam="{}"></div>
                     </div>
+                    <!-- 密文箱类型 , boxType ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 来源 , sourceValue ,typeName=text_input, isHideInSearch=true -->
                     <!-- 内容 , content ,typeName=text_area, isHideInSearch=true -->
                     <!-- 加密内容 , encryptionContent ,typeName=text_area, isHideInSearch=true -->
 
@@ -90,6 +92,7 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var SELECT_TYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.OpsCiphertextHistoryDataTypeEnum')}]];
+    var SELECT_BOXTYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.OpsCiphertextTypeEnum')}]];
     var AUTH_PREFIX="ops_ciphertext_history";
 
 

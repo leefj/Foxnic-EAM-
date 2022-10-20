@@ -1,7 +1,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-13 20:38:45
+ * @since 2022-10-19 14:57:16
  */
 
 
@@ -69,9 +69,7 @@ function ListPage() {
 			var tableConfig={
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
-			//	defaultToolbar: ['filter', 'print',{title: '刷新数据',layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
-				defaultToolbar: ['filter', 'print','exports',{title: '刷新数据',layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
-
+				defaultToolbar: ['filter', 'print',{title: '刷新数据',layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
 				url: moduleURL +'/query-paged-list',
 				height: 'full-'+(h+28),
 				limit: 50,
@@ -398,6 +396,9 @@ function ListPage() {
 			}
 			else if (layEvent === 'open-backup-window') { // 备份记录
 				window.pageExt.list.openBackupWindow(data,this);
+			}
+			else if (layEvent === 'box-window') { // 密文箱
+				window.pageExt.list.boxWindow(data,this);
 			}
 			
 		});

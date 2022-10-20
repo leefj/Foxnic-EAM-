@@ -1,7 +1,7 @@
 /**
  * 权限配置 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 10:21:46
+ * @since 2022-10-19 10:33:45
  */
 
 
@@ -78,7 +78,7 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'boxId', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('类型') , templet: function (d) { return templet('boxId',d.boxId,d);}  }
+					,{ field: 'boxId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('类型'), templet: function (d) { return templet('boxId' ,fox.joinLabel(d.box,"name",',','','boxId'),d);}}
 					,{ field: 'userId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('人员') , templet: function (d) { return templet('userId',fox.getProperty(d,["user","name"],0,'','userId'),d);} }
 					,{ field: 'decryptionPermStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('解密权限'), templet:function (d){ return templet('decryptionPermStatus',fox.getEnumText(RADIO_DECRYPTIONPERMSTATUS_DATA,d.decryptionPermStatus,'','decryptionPermStatus'),d);}}
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
@@ -131,6 +131,7 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
+		value.boxId={ inputType:"select_box", value: getSelectedValue("#boxId","value") ,fillBy:["box"]  , label:getSelectedValue("#boxId","nameStr") };
 		value.userId={ inputType:"button",value: $("#userId").val(),fillBy:["user","name"] ,label:$("#userId-button").text() };
 		value.notes={ inputType:"button",value: $("#notes").val()};
 		var ps={searchField:"$composite"};
@@ -179,6 +180,33 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
+		//渲染 boxId 下拉字段
+		fox.renderSelectBox({
+			el: "boxId",
+			radio: true,
+			size: "small",
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("boxId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			paging: true,
+			pageRemote: true,
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].name,value:data[i].id});
+				}
+				return opts;
+			}
+		});
 		fox.renderSearchInputs();
 		window.pageExt.list.afterSearchInputReady && window.pageExt.list.afterSearchInputReady();
 	}

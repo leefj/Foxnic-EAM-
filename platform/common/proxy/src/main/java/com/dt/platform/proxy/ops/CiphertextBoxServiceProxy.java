@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 密文箱  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 09:38:02
+ * @since 2022-10-19 14:45:36
  */
 @FeignClient(value = ServiceNames.OPS, contextId = CiphertextBoxServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface CiphertextBoxServiceProxy {
@@ -84,6 +84,12 @@ public interface CiphertextBoxServiceProxy {
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
+
+    /**
+     * 判断用户是否有加解密权限
+     */
+    public static final String USER_EN_DE_PERM_BY_BOXTYPE = API_PREFIX + "user-en-de-perm-by-boxtype";
+
     /**
      * 添加密文箱
      */
@@ -137,6 +143,8 @@ public interface CiphertextBoxServiceProxy {
      */
     @RequestMapping(CiphertextBoxServiceProxy.QUERY_PAGED_LIST)
     Result<PagedList<CiphertextBox>> queryPagedList(@RequestParam(name = "sample") CiphertextBoxVO sample);
+
+
 
     /**
      * 控制器类名

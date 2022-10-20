@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * 密文数据 模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 10:24:05
+ * @since 2022-10-19 14:40:39
 */
 
 @Controller("OpsCiphertextBoxDataPageController")
@@ -49,7 +49,9 @@ public class CiphertextBoxDataPageController extends ViewController {
 	 * 密文数据 表单页面
 	 */
 	@RequestMapping("/ciphertext_box_data_form.html")
-	public String form(Model model,HttpServletRequest request , String id) {
+	public String form(Model model,HttpServletRequest request , String id,String sourceId,String boxType) {
+		model.addAttribute("sourceId",sourceId);
+		model.addAttribute("boxType",boxType);
 		return prefix+"/ciphertext_box_data_form";
 	}
 }

@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 历史记录  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 09:59:16
+ * @since 2022-10-19 14:16:45
  */
 @FeignClient(value = ServiceNames.OPS, contextId = CiphertextHistoryServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface CiphertextHistoryServiceProxy {

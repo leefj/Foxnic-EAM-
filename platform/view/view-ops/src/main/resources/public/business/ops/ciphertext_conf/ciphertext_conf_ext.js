@@ -1,7 +1,8 @@
+
 /**
  * 权限配置 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 10:21:45
+ * @since 2022-10-19 10:33:44
  */
 
 layui.config({
@@ -169,6 +170,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //var companyId=admin.getTempData("companyId");
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
             console.log("form:beforeInit")
+
+
         },
         /**
          * 窗口调节前
@@ -188,6 +191,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         afterDataFill:function (data) {
             console.log('afterDataFill',data);
+
+
         },
         /**
          * 对话框打开之前调用，如果返回 null 则不打开对话框

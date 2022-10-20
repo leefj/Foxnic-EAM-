@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-10-19 10:03:58
+ * @since 2022-10-20 09:12:03
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -2186,6 +2186,16 @@ public class OpsTables {
 		public static final DBField SOURCE_ID = new DBField(DBDataType.STRING , "source_id","sourceId","来源","来源",false,false,false);
 		
 		/**
+		 * 密文箱
+		*/
+		public static final DBField BOX_ID = new DBField(DBDataType.STRING , "box_id","boxId","密文箱","密文箱",false,false,true);
+		
+		/**
+		 * 密文类型
+		*/
+		public static final DBField BOX_TYPE = new DBField(DBDataType.STRING , "box_type","boxType","密文类型","密文类型",false,false,true);
+		
+		/**
 		 * 名称
 		*/
 		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
@@ -2250,7 +2260,7 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public OPS_CIPHERTEXT_BOX_DATA() {
-			this.init($NAME,"密文数据" , ID , SOURCE_ID , NAME , CONTENT , PLAINTEXT , CIPHERTEXT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"密文数据" , ID , SOURCE_ID , BOX_ID , BOX_TYPE , NAME , CONTENT , PLAINTEXT , CIPHERTEXT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_CIPHERTEXT_BOX_DATA $TABLE=new OPS_CIPHERTEXT_BOX_DATA();
 	}
@@ -2351,6 +2361,16 @@ public class OpsTables {
 		public static final DBField TYPE = new DBField(DBDataType.STRING , "type","type","类型","类型",false,false,true);
 		
 		/**
+		 * 密文箱类型
+		*/
+		public static final DBField BOX_TYPE = new DBField(DBDataType.STRING , "box_type","boxType","密文箱类型","密文箱类型",false,false,true);
+		
+		/**
+		 * 来源
+		*/
+		public static final DBField SOURCE_VALUE = new DBField(DBDataType.STRING , "source_value","sourceValue","来源","来源",false,false,true);
+		
+		/**
 		 * 内容
 		*/
 		public static final DBField CONTENT = new DBField(DBDataType.STRING , "content","content","内容","内容",false,false,true);
@@ -2395,7 +2415,7 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public OPS_CIPHERTEXT_HISTORY() {
-			this.init($NAME,"历史记录" , ID , TYPE , CONTENT , ENCRYPTION_CONTENT , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"历史记录" , ID , TYPE , BOX_TYPE , SOURCE_VALUE , CONTENT , ENCRYPTION_CONTENT , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_CIPHERTEXT_HISTORY $TABLE=new OPS_CIPHERTEXT_HISTORY();
 	}

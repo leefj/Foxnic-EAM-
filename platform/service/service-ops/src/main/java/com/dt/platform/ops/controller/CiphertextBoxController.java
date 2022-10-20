@@ -49,7 +49,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 密文箱 接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 09:38:02
+ * @since 2022-10-19 14:45:36
 */
 
 @Api(tags = "密文箱")
@@ -66,10 +66,10 @@ public class CiphertextBoxController extends SuperController {
 	*/
 	@ApiOperation(value = "添加密文箱")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = CiphertextBoxVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CiphertextBoxVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CiphertextBoxVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CiphertextBoxVOMeta.ENCRYPTION_KEY , value = "KEY" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CiphertextBoxVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "635054036994752512"),
+		@ApiImplicitParam(name = CiphertextBoxVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "数据库"),
+		@ApiImplicitParam(name = CiphertextBoxVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "database"),
+		@ApiImplicitParam(name = CiphertextBoxVOMeta.ENCRYPTION_KEY , value = "KEY" , required = false , dataTypeClass=String.class , example = "box"),
 		@ApiImplicitParam(name = CiphertextBoxVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=1)
@@ -87,7 +87,7 @@ public class CiphertextBoxController extends SuperController {
 	*/
 	@ApiOperation(value = "删除密文箱")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = CiphertextBoxVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class)
+		@ApiImplicitParam(name = CiphertextBoxVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "635054036994752512")
 	})
 	@ApiOperationSupport(order=2)
 	@NotNull(name = CiphertextBoxVOMeta.ID)
@@ -167,10 +167,10 @@ public class CiphertextBoxController extends SuperController {
 	*/
 	@ApiOperation(value = "更新密文箱")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = CiphertextBoxVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CiphertextBoxVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CiphertextBoxVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CiphertextBoxVOMeta.ENCRYPTION_KEY , value = "KEY" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CiphertextBoxVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "635054036994752512"),
+		@ApiImplicitParam(name = CiphertextBoxVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "数据库"),
+		@ApiImplicitParam(name = CiphertextBoxVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "database"),
+		@ApiImplicitParam(name = CiphertextBoxVOMeta.ENCRYPTION_KEY , value = "KEY" , required = false , dataTypeClass=String.class , example = "box"),
 		@ApiImplicitParam(name = CiphertextBoxVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport( order=4 , ignoreParameters = { CiphertextBoxVOMeta.PAGE_INDEX , CiphertextBoxVOMeta.PAGE_SIZE , CiphertextBoxVOMeta.SEARCH_FIELD , CiphertextBoxVOMeta.FUZZY_FIELD , CiphertextBoxVOMeta.SEARCH_VALUE , CiphertextBoxVOMeta.DIRTY_FIELDS , CiphertextBoxVOMeta.SORT_FIELD , CiphertextBoxVOMeta.SORT_TYPE , CiphertextBoxVOMeta.IDS } )
@@ -187,10 +187,10 @@ public class CiphertextBoxController extends SuperController {
 	*/
 	@ApiOperation(value = "保存密文箱")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = CiphertextBoxVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CiphertextBoxVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CiphertextBoxVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CiphertextBoxVOMeta.ENCRYPTION_KEY , value = "KEY" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CiphertextBoxVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "635054036994752512"),
+		@ApiImplicitParam(name = CiphertextBoxVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "数据库"),
+		@ApiImplicitParam(name = CiphertextBoxVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "database"),
+		@ApiImplicitParam(name = CiphertextBoxVOMeta.ENCRYPTION_KEY , value = "KEY" , required = false , dataTypeClass=String.class , example = "box"),
 		@ApiImplicitParam(name = CiphertextBoxVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { CiphertextBoxVOMeta.PAGE_INDEX , CiphertextBoxVOMeta.PAGE_SIZE , CiphertextBoxVOMeta.SEARCH_FIELD , CiphertextBoxVOMeta.FUZZY_FIELD , CiphertextBoxVOMeta.SEARCH_VALUE , CiphertextBoxVOMeta.DIRTY_FIELDS , CiphertextBoxVOMeta.SORT_FIELD , CiphertextBoxVOMeta.SORT_TYPE , CiphertextBoxVOMeta.IDS } )
@@ -247,10 +247,10 @@ public class CiphertextBoxController extends SuperController {
 	*/
 	@ApiOperation(value = "查询密文箱")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = CiphertextBoxVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CiphertextBoxVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CiphertextBoxVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CiphertextBoxVOMeta.ENCRYPTION_KEY , value = "KEY" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CiphertextBoxVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "635054036994752512"),
+		@ApiImplicitParam(name = CiphertextBoxVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "数据库"),
+		@ApiImplicitParam(name = CiphertextBoxVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "database"),
+		@ApiImplicitParam(name = CiphertextBoxVOMeta.ENCRYPTION_KEY , value = "KEY" , required = false , dataTypeClass=String.class , example = "box"),
 		@ApiImplicitParam(name = CiphertextBoxVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { CiphertextBoxVOMeta.PAGE_INDEX , CiphertextBoxVOMeta.PAGE_SIZE } )
@@ -269,10 +269,10 @@ public class CiphertextBoxController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询密文箱")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = CiphertextBoxVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CiphertextBoxVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CiphertextBoxVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CiphertextBoxVOMeta.ENCRYPTION_KEY , value = "KEY" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CiphertextBoxVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "635054036994752512"),
+		@ApiImplicitParam(name = CiphertextBoxVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "数据库"),
+		@ApiImplicitParam(name = CiphertextBoxVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "database"),
+		@ApiImplicitParam(name = CiphertextBoxVOMeta.ENCRYPTION_KEY , value = "KEY" , required = false , dataTypeClass=String.class , example = "box"),
 		@ApiImplicitParam(name = CiphertextBoxVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=8)
@@ -283,6 +283,27 @@ public class CiphertextBoxController extends SuperController {
 		PagedList<CiphertextBox> list=ciphertextBoxService.queryPagedList(sample,sample.getPageSize(),sample.getPageIndex());
 		result.success(true).data(list);
 		return result;
+	}
+
+	/**
+	 * 分页查询密文箱
+	 */
+	@ApiOperation(value = "")
+	@ApiImplicitParams({
+	})
+	@ApiOperationSupport(order=8)
+	@SentinelResource(value = CiphertextBoxServiceProxy.USER_EN_DE_PERM_BY_BOXTYPE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(CiphertextBoxServiceProxy.USER_EN_DE_PERM_BY_BOXTYPE)
+	public Result<String> queryPagedList(String boxType) {
+
+		Result<String> res=new Result<String>();
+		String flag="false";
+		if(ciphertextBoxService.userEnDePermByBoxType(boxType)){
+			flag="true";
+		}
+		res.success();
+		res.data(flag);
+		return res;
 	}
 
 

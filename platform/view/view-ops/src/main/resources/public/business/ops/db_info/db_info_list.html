@@ -2,7 +2,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-13 20:38:44
+ * @since 2022-10-19 14:57:16
  */
  -->
  <!DOCTYPE html>
@@ -114,7 +114,9 @@
 
     <button th:if="${perm.checkAuth('ops_db_info:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除')}">删除</span></button>
 
-    <button th:if="${perm.checkAuth('ops_db_info:backup')}"class="layui-btn layui-btn-xs " lay-event="open-backup-window" data-id="{{d.id}}"><span th:text="${lang.translate('备份记录')}">备份记录</span></button>
+    <button th:if="${perm.checkAuth('ops_db_info:backup')}" class="layui-btn layui-btn-xs " lay-event="open-backup-window" data-id="{{d.id}}"><span th:text="${lang.translate('备份记录')}">备份记录</span></button>
+
+    <button th:if="${perm.checkAuth('ops_db_info:box')}" class="layui-btn layui-btn-xs " lay-event="box-window" data-id="{{d.id}}"><span th:text="${lang.translate('密文箱')}">密文箱</span></button>
 
 </script>
 

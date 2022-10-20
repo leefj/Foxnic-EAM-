@@ -1,7 +1,7 @@
 /**
  * 密文箱 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 09:38:03
+ * @since 2022-10-20 08:57:23
  */
 
 function FormPage() {
@@ -116,6 +116,8 @@ function FormPage() {
 			el: "type",
 			radio: true,
 			filterable: false,
+			layVerify: 'required',
+			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("type",data.arr,data.change,data.isAdd);

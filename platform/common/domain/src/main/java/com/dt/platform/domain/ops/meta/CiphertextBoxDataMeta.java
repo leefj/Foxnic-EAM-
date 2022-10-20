@@ -9,8 +9,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 10:24:04
- * @sign 4BACADF731BD28E27887BB7537BAEAF6
+ * @since 2022-10-20 09:12:29
+ * @sign C7AEFC0615F0BF8CC26CFD4F5CA8E2CC
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -35,6 +35,26 @@ public class CiphertextBoxDataMeta {
 	 * 来源 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.CiphertextBoxData,java.lang.String> SOURCE_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.CiphertextBoxData.class ,SOURCE_ID, java.lang.String.class, "来源", "来源", java.lang.String.class, null);
+	
+	/**
+	 * 密文箱 , 类型: java.lang.String
+	*/
+	public static final String BOX_ID="boxId";
+	
+	/**
+	 * 密文箱 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.CiphertextBoxData,java.lang.String> BOX_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.CiphertextBoxData.class ,BOX_ID, java.lang.String.class, "密文箱", "密文箱", java.lang.String.class, null);
+	
+	/**
+	 * 密文类型 , 类型: java.lang.String
+	*/
+	public static final String BOX_TYPE="boxType";
+	
+	/**
+	 * 密文类型 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.CiphertextBoxData,java.lang.String> BOX_TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.CiphertextBoxData.class ,BOX_TYPE, java.lang.String.class, "密文类型", "密文类型", java.lang.String.class, null);
 	
 	/**
 	 * 名称 , 类型: java.lang.String
@@ -169,7 +189,7 @@ public class CiphertextBoxDataMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , SOURCE_ID , NAME , CONTENT , PLAINTEXT , CIPHERTEXT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
+	public static final String[] $PROPS={ ID , SOURCE_ID , BOX_ID , BOX_TYPE , NAME , CONTENT , PLAINTEXT , CIPHERTEXT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
 	
 	/**
 	 * 代理类
@@ -198,6 +218,28 @@ public class CiphertextBoxDataMeta {
 		public CiphertextBoxData setSourceId(String sourceId) {
 			super.change(SOURCE_ID,super.getSourceId(),sourceId);
 			super.setSourceId(sourceId);
+			return this;
+		}
+		
+		/**
+		 * 设置 密文箱
+		 * @param boxId 密文箱
+		 * @return 当前对象
+		*/
+		public CiphertextBoxData setBoxId(String boxId) {
+			super.change(BOX_ID,super.getBoxId(),boxId);
+			super.setBoxId(boxId);
+			return this;
+		}
+		
+		/**
+		 * 设置 密文类型
+		 * @param boxType 密文类型
+		 * @return 当前对象
+		*/
+		public CiphertextBoxData setBoxType(String boxType) {
+			super.change(BOX_TYPE,super.getBoxType(),boxType);
+			super.setBoxType(boxType);
 			return this;
 		}
 		
@@ -362,6 +404,7 @@ public class CiphertextBoxDataMeta {
 			inst.setSourceId(this.getSourceId());
 			inst.setCiphertext(this.getCiphertext());
 			inst.setNotes(this.getNotes());
+			inst.setBoxType(this.getBoxType());
 			inst.setPlaintext(this.getPlaintext());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setVersion(this.getVersion());
@@ -374,6 +417,7 @@ public class CiphertextBoxDataMeta {
 			inst.setName(this.getName());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
+			inst.setBoxId(this.getBoxId());
 			inst.clearModifies();
 			return inst;
 		}

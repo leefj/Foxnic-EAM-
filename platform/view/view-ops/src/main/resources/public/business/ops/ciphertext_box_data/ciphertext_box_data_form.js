@@ -1,7 +1,7 @@
 /**
  * 密文数据 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 10:24:06
+ * @since 2022-10-20 09:12:30
  */
 
 function FormPage() {
@@ -10,7 +10,7 @@ function FormPage() {
 	const moduleURL="/service-ops/ops-ciphertext-box-data";
 	// 表单执行操作类型：view，create，edit
 	var action=null;
-	var disableCreateNew=false;
+	var disableCreateNew=true;
 	var disableModify=false;
 	var dataBeforeEdit=null;
 	const bpmIntegrateMode="none";
@@ -111,6 +111,34 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
+		//渲染 boxType 下拉字段
+		fox.renderSelectBox({
+			el: "boxType",
+			radio: true,
+			filterable: false,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("boxType",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
 	}
 
 	/**

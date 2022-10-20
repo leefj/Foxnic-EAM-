@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * 密文数据
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 10:24:04
+ * @since 2022-10-20 09:12:29
  * @sign BE72785A0C6EA5A862359ED46CE4C637
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -322,6 +322,7 @@ public class CiphertextBoxDataVO extends CiphertextBoxData {
 		inst.setSourceId(this.getSourceId());
 		inst.setCiphertext(this.getCiphertext());
 		inst.setNotes(this.getNotes());
+		inst.setBoxType(this.getBoxType());
 		inst.setPlaintext(this.getPlaintext());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setVersion(this.getVersion());
@@ -334,6 +335,7 @@ public class CiphertextBoxDataVO extends CiphertextBoxData {
 		inst.setName(this.getName());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
+		inst.setBoxId(this.getBoxId());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
 			inst.setPageIndex(this.getPageIndex());

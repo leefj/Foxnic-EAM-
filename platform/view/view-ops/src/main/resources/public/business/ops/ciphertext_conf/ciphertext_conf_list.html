@@ -2,7 +2,7 @@
 /**
  * 权限配置 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 10:21:45
+ * @since 2022-10-19 10:33:45
  */
  -->
  <!DOCTYPE html>
@@ -39,7 +39,11 @@
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 类型 , boxId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 类型 , boxId ,typeName=select_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('类型')}" class="search-label boxId-label">类型</span><span class="search-colon">:</span></div>
+                        <div id="boxId" th:data="${'/service-ops/ops-ciphertext-box/query-paged-list'}" style="width:150px" extraParam="{}"></div>
+                    </div>
                     <!-- 解密权限 , decryptionPermStatus ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 人员 , userId ,typeName=button, isHideInSearch=false -->
                     <div class="search-unit">

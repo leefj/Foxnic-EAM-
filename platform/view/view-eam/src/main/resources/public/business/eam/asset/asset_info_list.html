@@ -236,6 +236,7 @@
     <button th:if="${changeQueryBtn}"  class="layui-btn layui-btn-xs change-query-button"                              lay-event="asset-data-change" th:text="${lang.translate('操作明细')}" data-id="{{d.id}}">操作明细</button>
     <button th:if="${perm.checkAuth('eam_asset:asset-voucher')}" class="layui-btn layui-btn-xs asset-voucher-button"                            lay-event="asset-voucher" th:text="${lang.translate('凭证')}" data-id="{{d.id}}">凭证</button>
 
+    <button th:if="${perm.checkAuth('eam_asset:box')}" class="layui-btn layui-btn-xs asset-box-button"    lay-event="asset-box" th:text="${lang.translate('密文箱')}" data-id="{{d.id}}">密文箱</button>
 
 </script>
 

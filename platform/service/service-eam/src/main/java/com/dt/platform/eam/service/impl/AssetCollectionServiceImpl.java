@@ -135,7 +135,6 @@ public class AssetCollectionServiceImpl extends SuperService<AssetCollection> im
 
 		AssetCollection data= AssetCollectionServiceProxy.api().getById(id).getData();
 		join(data, AssetCollectionMeta.ASSET_LIST);
-
 		Map<String, Object> map= BeanUtil.toMap(data);
 		if(data.getStatus()!=null){
 			CodeTextEnum en= EnumUtil.parseByCode(AssetHandleStatusEnum.class,data.getStatus());

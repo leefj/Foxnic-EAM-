@@ -23,7 +23,7 @@ import java.util.Map;
  * 密文数据 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 10:24:04
+ * @since 2022-10-19 10:30:20
 */
 
 public interface ICiphertextBoxDataService extends  ISimpleIdService<CiphertextBoxData,String> {

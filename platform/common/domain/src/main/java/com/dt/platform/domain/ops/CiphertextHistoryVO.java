@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * 历史记录
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 09:59:16
+ * @since 2022-10-19 14:16:45
  * @sign 21F8227A7F79B5F3BF54613E62F1F4F4
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -319,17 +319,19 @@ public class CiphertextHistoryVO extends CiphertextHistory {
 	@Transient
 	public CiphertextHistoryVO duplicate(boolean all) {
 		com.dt.platform.domain.ops.meta.CiphertextHistoryVOMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.CiphertextHistoryVOMeta.$$proxy$$();
-		inst.setDeleted(this.getDeleted());
 		inst.setEncryptionContent(this.getEncryptionContent());
+		inst.setBoxType(this.getBoxType());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setType(this.getType());
+		inst.setVersion(this.getVersion());
+		inst.setContent(this.getContent());
+		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setDeleteBy(this.getDeleteBy());
-		inst.setUpdateTime(this.getUpdateTime());
 		inst.setId(this.getId());
-		inst.setType(this.getType());
-		inst.setVersion(this.getVersion());
-		inst.setContent(this.getContent());
+		inst.setSourceValue(this.getSourceValue());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
 			inst.setPageIndex(this.getPageIndex());

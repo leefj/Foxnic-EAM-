@@ -1,7 +1,7 @@
 /**
  * 权限配置 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 10:21:46
+ * @since 2022-10-19 10:33:46
  */
 
 function FormPage() {
@@ -111,6 +111,39 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
+		//渲染 boxId 下拉字段
+		fox.renderSelectBox({
+			el: "boxId",
+			radio: true,
+			filterable: true,
+			paging: true,
+			pageRemote: true,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("boxId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "0".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
 		form.on('radio(decryptionPermStatus)', function(data){
 			var checked=[];
 			$('input[type=radio][lay-filter=decryptionPermStatus]:checked').each(function() {
@@ -170,6 +203,8 @@ function FormPage() {
 
 
 
+			//设置  类型 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#boxId",formData.box);
 
 			//处理fillBy
 
@@ -221,6 +256,8 @@ function FormPage() {
 
 
 
+		//获取 类型 下拉框的值
+		data["boxId"]=fox.getSelectedValue("boxId",false);
 
 		return data;
 	}

@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 权限配置  控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 10:21:45
+ * @since 2022-10-19 10:33:43
  */
 @FeignClient(value = ServiceNames.OPS, contextId = CiphertextConfServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface CiphertextConfServiceProxy {

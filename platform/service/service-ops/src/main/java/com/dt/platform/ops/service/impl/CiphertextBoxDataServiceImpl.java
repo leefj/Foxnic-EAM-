@@ -1,6 +1,17 @@
 package com.dt.platform.ops.service.impl;
 
 import javax.annotation.Resource;
+
+import com.dt.platform.constants.enums.ops.OpsCiphertextHistoryDataTypeEnum;
+import com.dt.platform.constants.enums.ops.OpsCiphertextTypeEnum;
+import com.dt.platform.domain.ops.CiphertextBox;
+import com.dt.platform.domain.ops.CiphertextHistory;
+import com.dt.platform.ops.service.ICiphertextBoxService;
+import com.dt.platform.ops.service.ICiphertextHistoryService;
+import com.github.foxnic.commons.encrypt.AESUtil;
+import com.github.foxnic.dao.data.RcdSet;
+import org.apache.commons.lang3.StringUtils;
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +49,7 @@ import java.util.Map;
  * 密文数据 服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 10:24:04
+ * @since 2022-10-19 10:30:20
 */
 
 
@@ -51,6 +62,11 @@ public class CiphertextBoxDataServiceImpl extends SuperService<CiphertextBoxData
 	@Resource(name=DBConfigs.PRIMARY_DAO) 
 	private DAO dao=null;
 
+	@Autowired
+	private ICiphertextHistoryService ciphertextHistoryService;
+
+	@Autowired
+	private ICiphertextBoxService ciphertextBoxService;
 	/**
 	 * 获得 DAO 对象
 	 * */
@@ -58,10 +74,14 @@ public class CiphertextBoxDataServiceImpl extends SuperService<CiphertextBoxData
 
 
 
+
+
 	@Override
 	public Object generateId(Field field) {
 		return IDGenerator.getSnowflakeIdString();
 	}
+
+
 
 	/**
 	 * 添加，根据 throwsException 参数抛出异常或返回 Result 对象
@@ -72,9 +92,46 @@ public class CiphertextBoxDataServiceImpl extends SuperService<CiphertextBoxData
 	 */
 	@Override
 	public Result insert(CiphertextBoxData ciphertextBoxData,boolean throwsException) {
+		if(StringUtils.isBlank(ciphertextBoxData.getSourceId())){
+			return ErrorDesc.failureMessage("来源为空");
+		}
+		if(StringUtils.isBlank(ciphertextBoxData.getBoxType())){
+			return ErrorDesc.failureMessage("密文箱类型不能为空");
+		}
+
+		//######################密文箱
+		CiphertextBox boxQuery=new CiphertextBox();
+		boxQuery.setType(ciphertextBoxData.getBoxType());
+		List<CiphertextBox> boxList=ciphertextBoxService.queryList(boxQuery);
+		if(boxList==null||boxList.size()==0){
+			return ErrorDesc.failureMessage("未找到密文箱配置");
+		}
+		if(boxList==null||boxList.size()>1){
+			return ErrorDesc.failureMessage("存在多个密文箱配置");
+		}
+		CiphertextBox box=boxList.get(0);
+		//######################密文箱
+
+		String plaintext=ciphertextBoxData.getPlaintext();
+		if(plaintext==null){
+			plaintext="";
+		}
+		AESUtil aes=new AESUtil(box.getEncryptionKey());
+		String encryptData=aes.encryptData(plaintext);
+		ciphertextBoxData.setCiphertext(encryptData);
+		ciphertextBoxData.setPlaintext("");
+		ciphertextBoxData.setBoxId(box.getId());
+
+		if(!ciphertextBoxService.userEnDePermByBoxType(ciphertextBoxData.getBoxType())){
+			return ErrorDesc.failureMessage("当前用户没有密文箱加解密权限");
+		}
+		//######################
 		Result r=super.insert(ciphertextBoxData,throwsException);
 		return r;
 	}
+
+
+
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
@@ -162,6 +219,49 @@ public class CiphertextBoxDataServiceImpl extends SuperService<CiphertextBoxData
 	 * */
 	@Override
 	public Result update(CiphertextBoxData ciphertextBoxData , SaveMode mode,boolean throwsException) {
+
+		ciphertextBoxData.setSourceId(null);
+		ciphertextBoxData.setBoxId(null);
+		ciphertextBoxData.setBoxType(null);
+
+		CiphertextBoxData sourceBoxData=this.getById(ciphertextBoxData.getId());
+		String ciphertext=sourceBoxData.getCiphertext();
+		//######################密文箱
+		CiphertextBox boxQuery=new CiphertextBox();
+		boxQuery.setType(ciphertextBoxData.getBoxType());
+		boxQuery.setId(sourceBoxData.getBoxId());
+		List<CiphertextBox> boxList=ciphertextBoxService.queryList(boxQuery);
+		if(boxList==null||boxList.size()==0){
+			return ErrorDesc.failureMessage("未找到密文箱配置");
+		}
+		if(boxList==null||boxList.size()>1){
+			return ErrorDesc.failureMessage("存在多个密文箱配置");
+		}
+		CiphertextBox box=boxList.get(0);
+		//######################密文箱
+
+		String plaintext=ciphertextBoxData.getPlaintext();
+		if(plaintext==null){
+			plaintext="";
+		}
+		AESUtil aes=new AESUtil(box.getEncryptionKey());
+		String encryptData=aes.encryptData(plaintext);
+		ciphertextBoxData.setCiphertext(encryptData);
+		ciphertextBoxData.setPlaintext("");
+
+		
+		if(!ciphertextBoxService.userEnDePermByBoxType(sourceBoxData.getBoxType())){
+			sourceBoxData.setPlaintext("当前用户没有密文箱加解密权限");
+			return ErrorDesc.failureMessage("当前用户没有密文箱加解密权限");
+		}
+
+		//保存历史
+		CiphertextHistory saveData=new CiphertextHistory();
+		saveData.setEncryptionContent(ciphertext);
+		saveData.setSourceValue(sourceBoxData.getId());
+		saveData.setBoxType(OpsCiphertextTypeEnum.DATABASE.code());
+		saveData.setType(OpsCiphertextHistoryDataTypeEnum.CIPHERTEXT_BOX_DATA.code());
+		ciphertextHistoryService.insert(saveData);
 		Result r=super.update(ciphertextBoxData , mode , throwsException);
 		return r;
 	}
@@ -202,7 +302,36 @@ public class CiphertextBoxDataServiceImpl extends SuperService<CiphertextBoxData
 		CiphertextBoxData sample = new CiphertextBoxData();
 		if(id==null) throw new IllegalArgumentException("id 不允许为 null ");
 		sample.setId(id);
-		return dao.queryEntity(sample);
+
+		CiphertextBoxData data=dao.queryEntity(sample);
+		if(data==null){
+			return data;
+		}
+		//######################密文箱
+		CiphertextBox boxQuery=new CiphertextBox();
+		boxQuery.setType(data.getBoxType());
+		List<CiphertextBox> boxList=ciphertextBoxService.queryList(boxQuery);
+		if(boxList==null||boxList.size()==0){
+			data.setPlaintext("未找到密文箱配置");
+			return data;
+		}
+		if(boxList==null||boxList.size()>1){
+			data.setPlaintext("存在多个密文箱配置");
+			return data;
+		}
+		CiphertextBox box=boxList.get(0);
+		//######################密文箱
+
+		AESUtil aes=new AESUtil(box.getEncryptionKey());
+		String plaintext=aes.decryptData(data.getCiphertext());
+
+		data.setPlaintext(plaintext);
+
+		if(!ciphertextBoxService.userEnDePermByBoxType(data.getBoxType())){
+			data.setPlaintext("当前用户没有密文箱加解密权限");
+
+		}
+		return data;
 	}
 
 	/**

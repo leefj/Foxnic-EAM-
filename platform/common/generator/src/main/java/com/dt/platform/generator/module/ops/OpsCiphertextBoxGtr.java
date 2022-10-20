@@ -39,9 +39,9 @@ public class OpsCiphertextBoxGtr extends BaseCodeGenerator{
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
 
-        cfg.view().field(OpsTables.OPS_CIPHERTEXT_BOX.TYPE).form().selectBox().enumType(OpsCiphertextTypeEnum.class);
+        cfg.view().field(OpsTables.OPS_CIPHERTEXT_BOX.TYPE).form().validate().required().form().selectBox().enumType(OpsCiphertextTypeEnum.class);
         cfg.view().field(OpsTables.OPS_CIPHERTEXT_BOX.NAME).form().validate().required().search().fuzzySearch();
-
+        cfg.view().field(OpsTables.OPS_CIPHERTEXT_BOX.NOTES).form().textArea().height(Config.textAreaHeight);
         cfg.view().list().disableBatchDelete();
 
         cfg.view().formWindow().bottomSpace(120);
@@ -50,13 +50,14 @@ public class OpsCiphertextBoxGtr extends BaseCodeGenerator{
                 new Object[] {
                         OpsTables.OPS_CIPHERTEXT_BOX.NAME,
                         OpsTables.OPS_CIPHERTEXT_BOX.TYPE,
+                        OpsTables.OPS_CIPHERTEXT_BOX.NOTES,
                 }
         );
 
         //文件生成覆盖模式
         cfg.overrides()
-                .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口
-                .setControllerAndAgent(WriteMode.COVER_EXISTS_FILE) //Rest
+                .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
+                .setControllerAndAgent(WriteMode.IGNORE) //Rest
                 .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页

@@ -23,7 +23,7 @@ import java.util.Map;
  * 历史记录 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 09:59:16
+ * @since 2022-10-19 14:16:45
 */
 
 public interface ICiphertextHistoryService extends  ISimpleIdService<CiphertextHistory,String> {

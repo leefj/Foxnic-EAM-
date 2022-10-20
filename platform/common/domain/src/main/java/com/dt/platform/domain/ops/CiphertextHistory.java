@@ -18,8 +18,8 @@ import com.github.foxnic.dao.entity.EntityContext;
 /**
  * 历史记录
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 09:59:16
- * @sign 88C01E64155B19F388789A2A7C1BEE13
+ * @since 2022-10-19 14:16:45
+ * @sign 4C8E99230F8B93AB9E44AF2623C2C755
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -42,6 +42,18 @@ public class CiphertextHistory extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="类型" , notes = "类型")
 	private String type;
+	
+	/**
+	 * 密文箱类型：密文箱类型
+	*/
+	@ApiModelProperty(required = false,value="密文箱类型" , notes = "密文箱类型")
+	private String boxType;
+	
+	/**
+	 * 来源：来源
+	*/
+	@ApiModelProperty(required = false,value="来源" , notes = "来源")
+	private String sourceValue;
 	
 	/**
 	 * 内容：内容
@@ -134,6 +146,44 @@ public class CiphertextHistory extends Entity {
 	*/
 	public CiphertextHistory setType(String type) {
 		this.type=type;
+		return this;
+	}
+	
+	/**
+	 * 获得 密文箱类型<br>
+	 * 密文箱类型
+	 * @return 密文箱类型
+	*/
+	public String getBoxType() {
+		return boxType;
+	}
+	
+	/**
+	 * 设置 密文箱类型
+	 * @param boxType 密文箱类型
+	 * @return 当前对象
+	*/
+	public CiphertextHistory setBoxType(String boxType) {
+		this.boxType=boxType;
+		return this;
+	}
+	
+	/**
+	 * 获得 来源<br>
+	 * 来源
+	 * @return 来源
+	*/
+	public String getSourceValue() {
+		return sourceValue;
+	}
+	
+	/**
+	 * 设置 来源
+	 * @param sourceValue 来源
+	 * @return 当前对象
+	*/
+	public CiphertextHistory setSourceValue(String sourceValue) {
+		this.sourceValue=sourceValue;
 		return this;
 	}
 	
@@ -383,17 +433,19 @@ public class CiphertextHistory extends Entity {
 	@Transient
 	public CiphertextHistory duplicate(boolean all) {
 		com.dt.platform.domain.ops.meta.CiphertextHistoryMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.CiphertextHistoryMeta.$$proxy$$();
-		inst.setDeleted(this.getDeleted());
 		inst.setEncryptionContent(this.getEncryptionContent());
+		inst.setBoxType(this.getBoxType());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setType(this.getType());
+		inst.setVersion(this.getVersion());
+		inst.setContent(this.getContent());
+		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setDeleteBy(this.getDeleteBy());
-		inst.setUpdateTime(this.getUpdateTime());
 		inst.setId(this.getId());
-		inst.setType(this.getType());
-		inst.setVersion(this.getVersion());
-		inst.setContent(this.getContent());
+		inst.setSourceValue(this.getSourceValue());
 		inst.clearModifies();
 		return inst;
 	}

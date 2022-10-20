@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * 权限配置
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 10:21:44
+ * @since 2022-10-19 10:33:43
  * @sign EFA60A2D87E047A5064E06C0DECEA34B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
