@@ -1,11 +1,17 @@
 
+Foxnic-EAM 2.4.0版本
+
+
+
 Foxnic-EAM 2.3.0版本
-1、功能优化
+1、完善界面
+2、修复bug
+3、新增密文箱功能
+
 
 
 Foxnic-EAM 2.2.0版本
 1、功能优化
-
 
 
 Foxnic-EAM 2.1.0版本
