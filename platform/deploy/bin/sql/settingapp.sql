@@ -1,5 +1,5 @@
 -- foxnic config
-update sys_config set value='2.2.0' where code='system.version.code';
+update sys_config set value='2.3.0' where code='system.version.code';
 update sys_config set value='PROD' where code='system.version.name';
 update sys_config set value='PROD' where code='system.version.type';
 
