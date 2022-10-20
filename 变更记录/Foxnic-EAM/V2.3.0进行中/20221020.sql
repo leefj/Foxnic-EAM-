@@ -74,3 +74,19 @@ CREATE TABLE `ops_ciphertext_history` (
                                           `version` int(11) NOT NULL DEFAULT '1',
                                           PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='历史记录';
+
+INSERT INTO `ops_ciphertext_box` (`id`, `name`, `type`, `encryption_key`, `notes`, `create_time`, `update_by`, `update_time`, `deleted`, `delete_by`, `delete_time`, `version`)
+VALUES
+('635126109893033985', '数据库', 'database', '635126109893033984', NULL, '2022-10-19 14:44:25', NULL, NULL, 0, NULL, NULL, 1),
+('635126186522968065', '操作系统', 'operating_system', '635126186522968064', NULL, '2022-10-19 14:44:43', '110588348101165911', '2022-10-19 22:33:56', 0, NULL, NULL, 4),
+('635126280857059329', '信息系统', 'information system', '635126280857059328', NULL, '2022-10-19 14:45:05', '110588348101165911', '2022-10-19 22:34:01', 0, NULL, NULL, 7),
+('635394284450742272', '数据库实例', 'database_instance', '635394284228444160', NULL, '2022-10-20 08:30:02', NULL, NULL, 0, NULL, NULL, 1),
+('635402909449715712', '资产', 'asset', '635402909349052416', '资产', '2022-10-20 09:04:19', NULL, NULL, 0, NULL, NULL, 1);
+
+
+INSERT INTO `ops_ciphertext_conf` (`id`, `box_id`, `user_id`, `decryption_perm_status`, `notes`, `create_time`, `update_by`, `update_time`, `deleted`, `delete_by`, `delete_time`, `version`)
+VALUES
+('635126829329416192', '635126109893033985', 'E001', 'enable', '', '2022-10-19 14:47:16', NULL, NULL, 0, NULL, NULL, 1),
+('635401491317784576', '635394284450742272', 'E001', 'enable', '', '2022-10-20 08:58:41', NULL, NULL, 0, NULL, NULL, 1),
+('635403136386727936', '635402909449715712', 'E001', 'enable', '', '2022-10-20 09:05:13', NULL, NULL, 0, NULL, NULL, 1);
+
