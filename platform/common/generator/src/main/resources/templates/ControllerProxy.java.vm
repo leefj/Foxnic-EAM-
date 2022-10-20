@@ -118,6 +118,14 @@ public interface #(simpleName)  #if(bpm)extends BpmCallbackController#end  {
 	public static final String BPM_CALLBACK = API_PREFIX + "bpm-callback";
 	#end
 
+	#for(api:restAPIList)
+	/**
+	 * #(api.title)
+	 * #if(api.comment!=null)<p>#(api.comment)</p>#end
+	  */
+	public static final String #(api.constName) = API_PREFIX + "#(api.path)";
+	#end
+
 	/**
 	 * 添加#(topic)
 	 */
@@ -203,6 +211,17 @@ public interface #(simpleName)  #if(bpm)extends BpmCallbackController#end  {
 	 */
 	@RequestMapping(#(agentSimpleName).BPM_CALLBACK)
 	BpmActionResult onProcessCallback(BpmEvent event);
+	#end
+	#for(api:restAPIList)
+	/**
+	  * #(api.title)
+	 * #if(api.comment!=null)<p>#(api.comment)</p>#end
+	  #(api.javaDocParameterList)
+	  * @return  Result#(api.htmlGenericResultCode) #(api.resultDesc)
+	  */
+	@RequestMapping(#(api.constName))
+	Result#(api.genericResultCode) #(api.name)(#(api.parameterListString));
+
 	#end
 
 
