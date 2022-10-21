@@ -1,6 +1,7 @@
 package com.dt.platform.domain.contract;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.ContractTables.CONT_CONTRACT;
@@ -12,8 +13,10 @@ import java.math.BigDecimal;
 import com.dt.platform.constants.enums.contract.ContractStatus;
 import java.util.Date;
 import org.github.foxnic.web.domain.hrm.Organization;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.reflect.EnumUtil;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 
@@ -21,13 +24,15 @@ import com.github.foxnic.dao.entity.EntityContext;
 
 /**
  * 合同
+ * <p>合同 , 数据表 cont_contract 的PO类型</p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2021-12-28 14:16:12
- * @sign FBA14368FFA32BC1456A2C0BD5BFA8FA
+ * @since 2022-10-21 15:39:24
+ * @sign D83EBD615830713E7B698B0A280B8FDF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "cont_contract")
+@ApiModel(description = "合同 ; 合同 , 数据表 cont_contract 的PO类型")
 public class Contract extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -182,6 +187,8 @@ public class Contract extends Entity {
 	*/
 	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
+	@Transient
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -253,6 +260,7 @@ public class Contract extends Entity {
 	 * @param type 合同类型
 	 * @return 当前对象
 	*/
+	@JsonProperty("type")
 	public Contract setType(String type) {
 		this.type=type;
 		this.typeEnum= (ContractType) EnumUtil.parseByCode(ContractType.values(),type) ;
@@ -419,6 +427,7 @@ public class Contract extends Entity {
 	 * @param contractStatus 合同状态
 	 * @return 当前对象
 	*/
+	@JsonProperty("contractStatus")
 	public Contract setContractStatus(String contractStatus) {
 		this.contractStatus=contractStatus;
 		this.contractStatusEnum= (ContractStatus) EnumUtil.parseByCode(ContractStatus.values(),contractStatus) ;
@@ -720,12 +729,43 @@ public class Contract extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public Contract setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public Contract setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -835,6 +875,63 @@ public class Contract extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public Contract clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public Contract duplicate(boolean all) {
+		com.dt.platform.domain.contract.meta.ContractMeta.$$proxy$$ inst = new com.dt.platform.domain.contract.meta.ContractMeta.$$proxy$$();
+		inst.setEndDate(this.getEndDate());
+		inst.setContractNo(this.getContractNo());
+		inst.setSigningDate(this.getSigningDate());
+		inst.setDepartmentId(this.getDepartmentId());
+		inst.setCatalogCode(this.getCatalogCode());
+		inst.setType(this.getType());
+		inst.setTitle(this.getTitle());
+		inst.setDeliverables(this.getDeliverables());
+		inst.setFundingStatus(this.getFundingStatus());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setId(this.getId());
+		inst.setExpirationDate(this.getExpirationDate());
+		inst.setSummary(this.getSummary());
+		inst.setAmount(this.getAmount());
+		inst.setContractStatus(this.getContractStatus());
+		inst.setFundingDirection(this.getFundingDirection());
+		inst.setDeliveryLocation(this.getDeliveryLocation());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setParentId(this.getParentId());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setEffectiveDate(this.getEffectiveDate());
+		if(all) {
+			inst.setDepartment(this.getDepartment());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public Contract clone(boolean deep) {
+		return EntityContext.clone(Contract.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 Contract
 	 * @param contractMap 包含实体信息的 Map 对象
 	 * @return Contract , 转换好的的 Contract 对象
@@ -842,7 +939,9 @@ public class Contract extends Entity {
 	@Transient
 	public static Contract createFrom(Map<String,Object> contractMap) {
 		if(contractMap==null) return null;
-		Contract po = EntityContext.create(Contract.class, contractMap);
+		Contract po = create();
+		EntityContext.copyProperties(po,contractMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -854,7 +953,9 @@ public class Contract extends Entity {
 	@Transient
 	public static Contract createFrom(Object pojo) {
 		if(pojo==null) return null;
-		Contract po = EntityContext.create(Contract.class,pojo);
+		Contract po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -864,6 +965,6 @@ public class Contract extends Entity {
 	*/
 	@Transient
 	public static Contract create() {
-		return EntityContext.create(Contract.class);
+		return new com.dt.platform.domain.contract.meta.ContractMeta.$$proxy$$();
 	}
 }

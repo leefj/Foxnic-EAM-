@@ -3,6 +3,9 @@ package com.dt.platform.proxy.contract;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import com.dt.platform.domain.contract.ContractSigner;
 import com.dt.platform.domain.contract.ContractSignerVO;
@@ -10,14 +13,13 @@ import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
 import com.dt.platform.proxy.ServiceNames;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * <p>
- * 合同签订方  控制器服务代理
+ * 合同签订方 控制器服务代理
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2021-12-20 16:55:10
+ * @since 2022-10-21 15:39:33
  */
 @FeignClient(value = ServiceNames.CONTRACT, contextId = ContractSignerServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface ContractSignerServiceProxy {
@@ -81,21 +83,6 @@ public interface ContractSignerServiceProxy {
      * 分页查询合同签订方
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
-
-    /**
-     * 导出合同签订方数据(Excel)
-     */
-    public static final String EXPORT_EXCEL = API_PREFIX + "export-excel";
-
-    /**
-     * 下载合同签订方导入模版(Excel)
-     */
-    public static final String EXPORT_EXCEL_TEMPLATE = API_PREFIX + "export-excel-template";
-
-    /**
-     * 导入合同签订方数据(Excel)
-     */
-    public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
 
     /**
      * 添加合同签订方

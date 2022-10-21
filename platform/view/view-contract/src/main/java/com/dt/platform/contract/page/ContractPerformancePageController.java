@@ -10,10 +10,10 @@ import com.dt.platform.proxy.contract.ContractPerformanceServiceProxy;
 import javax.servlet.http.HttpServletRequest;
 /**
  * <p>
- * 合同履行情况表 模版页面控制器
+ * 合同履行情况模版页面控制器
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2021-12-28 14:20:20
+ * @since 2022-10-21 15:39:35
 */
 
 @Controller("ContContractPerformancePageController")

@@ -1,6 +1,7 @@
 package com.dt.platform.domain.contract;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.ContractTables.CONT_CONTRACT_SIGNER;
@@ -10,8 +11,10 @@ import com.dt.platform.constants.enums.contract.SignerAlias;
 import javax.persistence.Transient;
 import com.dt.platform.constants.enums.contract.SignerType;
 import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.reflect.EnumUtil;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 
@@ -19,13 +22,15 @@ import com.github.foxnic.dao.entity.EntityContext;
 
 /**
  * 合同签订方
+ * <p>合同签订方 , 数据表 cont_contract_signer 的PO类型</p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2021-12-20 16:55:10
- * @sign 23466F001A200B42C1DA3BF1CB8F35B1
+ * @since 2022-10-21 15:39:33
+ * @sign D57424CFE5BB7A4FEA9320E3A7D67D9B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "cont_contract_signer")
+@ApiModel(description = "合同签订方 ; 合同签订方 , 数据表 cont_contract_signer 的PO类型")
 public class ContractSigner extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -150,6 +155,8 @@ public class ContractSigner extends Entity {
 	*/
 	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
+	@Transient
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -253,6 +260,7 @@ public class ContractSigner extends Entity {
 	 * @param alias 别名
 	 * @return 当前对象
 	*/
+	@JsonProperty("alias")
 	public ContractSigner setAlias(String alias) {
 		this.alias=alias;
 		this.aliasEnum= (SignerAlias) EnumUtil.parseByCode(SignerAlias.values(),alias) ;
@@ -305,6 +313,7 @@ public class ContractSigner extends Entity {
 	 * @param type 签订方类型
 	 * @return 当前对象
 	*/
+	@JsonProperty("type")
 	public ContractSigner setType(String type) {
 		this.type=type;
 		this.typeEnum= (SignerType) EnumUtil.parseByCode(SignerType.values(),type) ;
@@ -587,12 +596,43 @@ public class ContractSigner extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public ContractSigner setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public ContractSigner setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -683,6 +723,55 @@ public class ContractSigner extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public ContractSigner clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public ContractSigner duplicate(boolean all) {
+		com.dt.platform.domain.contract.meta.ContractSignerMeta.$$proxy$$ inst = new com.dt.platform.domain.contract.meta.ContractSignerMeta.$$proxy$$();
+		inst.setAddress(this.getAddress());
+		inst.setNotes(this.getNotes());
+		inst.setContactPerson(this.getContactPerson());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setSort(this.getSort());
+		inst.setLandlineNumber(this.getLandlineNumber());
+		inst.setType(this.getType());
+		inst.setVersion(this.getVersion());
+		inst.setIdentityCdoe(this.getIdentityCdoe());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setContractId(this.getContractId());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setAlias(this.getAlias());
+		inst.setFaxNumber(this.getFaxNumber());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setContactPhone(this.getContactPhone());
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public ContractSigner clone(boolean deep) {
+		return EntityContext.clone(ContractSigner.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 ContractSigner
 	 * @param contractSignerMap 包含实体信息的 Map 对象
 	 * @return ContractSigner , 转换好的的 ContractSigner 对象
@@ -690,7 +779,9 @@ public class ContractSigner extends Entity {
 	@Transient
 	public static ContractSigner createFrom(Map<String,Object> contractSignerMap) {
 		if(contractSignerMap==null) return null;
-		ContractSigner po = EntityContext.create(ContractSigner.class, contractSignerMap);
+		ContractSigner po = create();
+		EntityContext.copyProperties(po,contractSignerMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -702,7 +793,9 @@ public class ContractSigner extends Entity {
 	@Transient
 	public static ContractSigner createFrom(Object pojo) {
 		if(pojo==null) return null;
-		ContractSigner po = EntityContext.create(ContractSigner.class,pojo);
+		ContractSigner po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -712,6 +805,6 @@ public class ContractSigner extends Entity {
 	*/
 	@Transient
 	public static ContractSigner create() {
-		return EntityContext.create(ContractSigner.class);
+		return new com.dt.platform.domain.contract.meta.ContractSignerMeta.$$proxy$$();
 	}
 }

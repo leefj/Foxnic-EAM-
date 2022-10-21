@@ -22,6 +22,7 @@ import com.github.foxnic.dao.data.SaveMode;
  * </p>
  * @author 李方捷 , leefangjie@qq.com
  * @since 2021-12-28 14:16:12
+ * @version
 */
 
 public interface IContractService extends ISuperService<Contract> {
@@ -50,7 +51,7 @@ public interface IContractService extends ISuperService<Contract> {
 	Result insertList(List<Contract> contractList);
 
 
-		
+
 	/**
 	 * 按主键删除 合同
 	 *
@@ -58,7 +59,7 @@ public interface IContractService extends ISuperService<Contract> {
 	 * @return 删除是否成功
 	 */
 	Result deleteByIdPhysical(String id);
-	
+
 	/**
 	 * 按主键删除 合同
 	 *
@@ -81,7 +82,7 @@ public interface IContractService extends ISuperService<Contract> {
 	 * */
 	<T> Result deleteByIdsLogical(List<T> ids);
 
-		
+
 	/**
 	 * 按主键更新字段 合同
 	 *
@@ -151,7 +152,7 @@ public interface IContractService extends ISuperService<Contract> {
 	 * */
 	boolean checkExists(Contract contract,DBField... field);
 
-		
+
 	/**
 	 * 按主键获取 合同
 	 *

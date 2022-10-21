@@ -48,7 +48,7 @@ public class #(simpleName) extends SuperController #if(bpm)implements BpmCallbac
 	*/
 	#if(isEnableSwagger)
 	#(swagger4Insert)
-	@ApiParamSupport(ignoreDBTreatyProperties = true,ignoreDefaultVoProperties = true)
+	@ApiParamSupport(ignoreDBTreatyProperties = true,ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
 	@ApiOperationSupport(order=1 , author="#(author)")
 	#end
 	#if(isEnableMicroService)
