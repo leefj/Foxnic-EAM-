@@ -3,13 +3,14 @@ package com.dt.platform.domain.contract.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.contract.ContractSigner;
 import java.util.Date;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 李方捷 , leefangjie@qq.com
- * @since 2021-12-20 16:55:10
- * @sign 23466F001A200B42C1DA3BF1CB8F35B1
+ * @since 2022-10-21 15:39:33
+ * @sign D57424CFE5BB7A4FEA9320E3A7D67D9B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -489,5 +490,47 @@ public class ContractSignerMeta {
 			super.setVersion(version);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public ContractSigner clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public ContractSigner duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setAddress(this.getAddress());
+			inst.setNotes(this.getNotes());
+			inst.setContactPerson(this.getContactPerson());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setSort(this.getSort());
+			inst.setLandlineNumber(this.getLandlineNumber());
+			inst.setType(this.getType());
+			inst.setVersion(this.getVersion());
+			inst.setIdentityCdoe(this.getIdentityCdoe());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setContractId(this.getContractId());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setAlias(this.getAlias());
+			inst.setFaxNumber(this.getFaxNumber());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setContactPhone(this.getContactPhone());
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

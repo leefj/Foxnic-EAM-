@@ -2,7 +2,7 @@
 /**
  * 合同履行情况 列表页 JS 脚本
  * @author 李方捷 , leefangjie@qq.com
- * @since 2021-12-28 14:20:20
+ * @since 2022-10-21 15:39:35
  */
  -->
  <!DOCTYPE html>
@@ -38,9 +38,10 @@
 
 
 
-        <div class="layui-row form-row" id="random-4344-content">
+        <div class="layui-row form-row" id="random-9798-content">
 
-             <!--开始：group 循环-->
+             <!--开始：column 循环-->
+            <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs12 form-column" >
 
                     <div class="layui-form-item" >
@@ -78,7 +79,7 @@
         </fieldset>
         <div class="layui-row form-row" style="text-align: center;" id="attachment-content">
             <div style="display: inline-block;padding-right: 8px;padding-left: 8px" class="layui-col-xs12">
-            <iframe js-fn="loadAttachmentFrame" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
+            <iframe id="attachment-iframe" js-fn="loadAttachmentFrame" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
             </div>
         </div>
         <!--结束：group循环-->
@@ -99,7 +100,6 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
-
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var VALIDATE_CONFIG={"performanceTime":{"date":true,"labelInForm":"履约日期","inputType":"date_input"}};

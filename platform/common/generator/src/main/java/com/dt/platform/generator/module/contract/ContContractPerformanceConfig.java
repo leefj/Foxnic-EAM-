@@ -2,6 +2,7 @@ package com.dt.platform.generator.module.contract;
 
 import com.dt.platform.constants.db.ContractTables.CONT_CONTRACT_PERFORMANCE;
 import com.dt.platform.generator.module.CodeStarter;
+import com.github.foxnic.generator.builder.business.option.ControllerOptions;
 import com.github.foxnic.generator.builder.business.option.ServiceOptions;
 import com.github.foxnic.generator.builder.model.PoClassFile;
 import com.github.foxnic.generator.builder.model.VoClassFile;
@@ -90,6 +91,12 @@ public class ContContractPerformanceConfig extends CodeStarter.BaseCodeConfig<CO
         view.list().disableMargin();
         list.columnLayout(CONT_CONTRACT_PERFORMANCE.PERFORMANCE_TIME,CONT_CONTRACT_PERFORMANCE.TITLE,CONT_CONTRACT_PERFORMANCE.DETAIL,CONT_CONTRACT_PERFORMANCE.CREATE_TIME);
     }
+
+    @Override
+    public void configController(ControllerOptions controller) {
+        controller.restApiTagDir("合同管理");
+    }
+
 
     @Override
     public void configOverrides() {

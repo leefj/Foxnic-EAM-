@@ -1,22 +1,29 @@
 package com.dt.platform.domain.contract;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import com.github.foxnic.api.model.CompositeParameter;
 import javax.persistence.Transient;
 import com.github.foxnic.commons.bean.BeanUtil;
+import com.github.foxnic.dao.entity.EntityContext;
+import com.github.foxnic.dao.entity.Entity;
+import java.util.Map;
 
 
 
 /**
- * 合同
+ * 合同VO类型
+ * <p>合同 , 数据表 cont_contract 的通用VO类型</p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2021-12-28 14:16:12
- * @sign 64C302ACE5E20B9C8B88FE6A2052BE36
+ * @since 2022-10-21 15:39:24
+ * @sign 30316EED5E1994FE8CEBF3ED0B458264
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
+@ApiModel(description = "合同VO类型 ; 合同 , 数据表 cont_contract 的通用VO类型" , parent = Contract.class)
 public class ContractVO extends Contract {
 
 	private static final long serialVersionUID = 1L;
@@ -188,9 +195,9 @@ public class ContractVO extends Contract {
 	 * @param dirtyField 已修改字段
 	 * @return 当前对象
 	*/
-	public ContractVO addDirtyField(String dirtyField) {
+	public ContractVO addDirtyField(String... dirtyField) {
 		if(this.dirtyFields==null) dirtyFields=new ArrayList<>();
-		this.dirtyFields.add(dirtyField);
+		this.dirtyFields.addAll(Arrays.asList(dirtyField));
 		return this;
 	}
 	
@@ -254,13 +261,13 @@ public class ContractVO extends Contract {
 	 * @param id 主键清单
 	 * @return 当前对象
 	*/
-	public ContractVO addId(String id) {
+	public ContractVO addId(String... id) {
 		if(this.ids==null) ids=new ArrayList<>();
-		this.ids.add(id);
+		this.ids.addAll(Arrays.asList(id));
 		return this;
 	}
 	@Transient
-	private CompositeParameter $compositeParameter;
+	private transient CompositeParameter $compositeParameter;
 	/**
 	 * 获得解析后的复合查询参数
 	 */
@@ -269,5 +276,137 @@ public class ContractVO extends Contract {
 		if($compositeParameter!=null) return  $compositeParameter;
 		$compositeParameter=new CompositeParameter(this.getSearchValue(),BeanUtil.toMap(this));
 		return  $compositeParameter;
+	}
+
+	/**
+	 * 将自己转换成指定类型的PO
+	 * @param poType  PO类型
+	 * @return ContractVO , 转换好的 ContractVO 对象
+	*/
+	@Transient
+	public <T extends Entity> T toPO(Class<T> poType) {
+		return EntityContext.create(poType, this);
+	}
+
+	/**
+	 * 将自己转换成任意指定类型
+	 * @param pojoType  Pojo类型
+	 * @return ContractVO , 转换好的 PoJo 对象
+	*/
+	@Transient
+	public <T> T toPojo(Class<T> pojoType) {
+		if(Entity.class.isAssignableFrom(pojoType)) {
+			return (T)this.toPO((Class<Entity>)pojoType);
+		}
+		try {
+			T pojo=pojoType.newInstance();
+			EntityContext.copyProperties(pojo, this);
+			return pojo;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public ContractVO clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public ContractVO duplicate(boolean all) {
+		com.dt.platform.domain.contract.meta.ContractVOMeta.$$proxy$$ inst = new com.dt.platform.domain.contract.meta.ContractVOMeta.$$proxy$$();
+		inst.setEndDate(this.getEndDate());
+		inst.setContractNo(this.getContractNo());
+		inst.setSigningDate(this.getSigningDate());
+		inst.setDepartmentId(this.getDepartmentId());
+		inst.setCatalogCode(this.getCatalogCode());
+		inst.setType(this.getType());
+		inst.setTitle(this.getTitle());
+		inst.setDeliverables(this.getDeliverables());
+		inst.setFundingStatus(this.getFundingStatus());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setId(this.getId());
+		inst.setExpirationDate(this.getExpirationDate());
+		inst.setSummary(this.getSummary());
+		inst.setAmount(this.getAmount());
+		inst.setContractStatus(this.getContractStatus());
+		inst.setFundingDirection(this.getFundingDirection());
+		inst.setDeliveryLocation(this.getDeliveryLocation());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setParentId(this.getParentId());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setEffectiveDate(this.getEffectiveDate());
+		if(all) {
+			inst.setSearchField(this.getSearchField());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setDirtyFields(this.getDirtyFields());
+			inst.setSortField(this.getSortField());
+			inst.setPageSize(this.getPageSize());
+			inst.setIds(this.getIds());
+			inst.setDepartment(this.getDepartment());
+			inst.setSearchValue(this.getSearchValue());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public ContractVO clone(boolean deep) {
+		return EntityContext.clone(ContractVO.class,this,deep);
+	}
+
+	/**
+	 * 将 Map 转换成 ContractVO
+	 * @param contractMap 包含实体信息的 Map 对象
+	 * @return ContractVO , 转换好的的 Contract 对象
+	*/
+	@Transient
+	public static ContractVO createFrom(Map<String,Object> contractMap) {
+		if(contractMap==null) return null;
+		ContractVO vo = create();
+		EntityContext.copyProperties(vo,contractMap);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 将 Pojo 转换成 ContractVO
+	 * @param pojo 包含实体信息的 Pojo 对象
+	 * @return ContractVO , 转换好的的 Contract 对象
+	*/
+	@Transient
+	public static ContractVO createFrom(Object pojo) {
+		if(pojo==null) return null;
+		ContractVO vo = create();
+		EntityContext.copyProperties(vo,pojo);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 创建一个 ContractVO，等同于 new
+	 * @return ContractVO 对象
+	*/
+	@Transient
+	public static ContractVO create() {
+		return new com.dt.platform.domain.contract.meta.ContractVOMeta.$$proxy$$();
 	}
 }

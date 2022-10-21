@@ -3,13 +3,14 @@ package com.dt.platform.domain.contract.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.contract.ContractPerformance;
 import java.util.Date;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 李方捷 , leefangjie@qq.com
- * @since 2021-12-28 14:20:20
- * @sign 61DCAE93D76DB8089960045411D71F6B
+ * @since 2022-10-21 15:39:35
+ * @sign E35B63BE951DE1ACEAEB68A7EE3F221F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -321,5 +322,39 @@ public class ContractPerformanceMeta {
 			super.setPerformanceTime(performanceTime);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public ContractPerformance clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public ContractPerformance duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setTitle(this.getTitle());
+			inst.setVersion(this.getVersion());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setContractId(this.getContractId());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setPerformanceTime(this.getPerformanceTime());
+			inst.setId(this.getId());
+			inst.setDetail(this.getDetail());
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

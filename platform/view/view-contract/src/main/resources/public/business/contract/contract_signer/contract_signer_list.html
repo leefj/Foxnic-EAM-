@@ -2,7 +2,7 @@
 /**
  * 合同签订方 列表页 JS 脚本
  * @author 李方捷 , leefangjie@qq.com
- * @since 2021-12-20 16:55:11
+ * @since 2022-10-21 15:39:33
  */
  -->
  <!DOCTYPE html>
@@ -108,12 +108,12 @@
 
 
             <!-- 按钮区域 -->
-            <div class="layui-form toolbar search-buttons" style="opacity: 0">
+            <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">
                 <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索')}">搜索</span></button>
             </div>
         </div>
 
-        <div style="margin-top: 0px ">
+        <div id="table-area" style="margin-top: 0px ">
             <table class="layui-table" id="data-table" lay-filter="data-table"></table>
         </div>
 
@@ -125,7 +125,6 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
-
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
@@ -137,11 +136,11 @@
 <!-- 表格操作列 -->
 <script type="text/html" id="tableOperationTemplate">
 
-    <button th:if="${perm.checkAuth('cont_contract_signer:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view" th:text="${lang.translate('查看')}" data-id="{{d.id}}">查看</button>
-    <button th:if="${perm.checkAnyAuth('cont_contract_signer:update','cont_contract_signer:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit" th:text="${lang.translate('修改')}" data-id="{{d.id}}">修改</button>
+    <button th:if="${perm.checkAuth('cont_contract_signer:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看')}">查看</span></button>
+    <button th:if="${perm.checkAnyAuth('cont_contract_signer:update','cont_contract_signer:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('修改')}">修改</span></button>
 
 
-    <button th:if="${perm.checkAuth('cont_contract_signer:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" th:text="${lang.translate('删除')}" data-id="{{d.id}}">删除</button>
+    <button th:if="${perm.checkAuth('cont_contract_signer:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除')}">删除</span></button>
 
 
 </script>

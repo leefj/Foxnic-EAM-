@@ -1,9 +1,11 @@
 package com.dt.platform.contract.service.impl;
 
-
 import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.github.foxnic.commons.collection.MapUtil;
+import java.util.Arrays;
 
 
 import com.dt.platform.domain.contract.ContractAttachment;
@@ -29,13 +31,14 @@ import java.util.ArrayList;
 import com.dt.platform.contract.service.IContractAttachmentService;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * <p>
- * 合同附件 服务实现
+ * 合同附件服务实现
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2021-12-28 15:44:51
+ * @since 2022-10-21 15:39:34
 */
 
 
@@ -45,7 +48,7 @@ public class ContractAttachmentServiceImpl extends SuperService<ContractAttachme
 	/**
 	 * 注入DAO对象
 	 * */
-	@Resource(name=DBConfigs.PRIMARY_DAO)
+	@Resource(name=DBConfigs.PRIMARY_DAO) 
 	private DAO dao=null;
 
 	/**
@@ -93,9 +96,9 @@ public class ContractAttachmentServiceImpl extends SuperService<ContractAttachme
 		return super.insertList(contractAttachmentList);
 	}
 
-
+	
 	/**
-	 * 按主键删除 合同附件
+	 * 按主键删除合同附件
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -114,9 +117,9 @@ public class ContractAttachmentServiceImpl extends SuperService<ContractAttachme
 			return r;
 		}
 	}
-
+	
 	/**
-	 * 按主键删除 合同附件
+	 * 按主键删除合同附件
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -125,7 +128,7 @@ public class ContractAttachmentServiceImpl extends SuperService<ContractAttachme
 		ContractAttachment contractAttachment = new ContractAttachment();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		contractAttachment.setId(id);
-		contractAttachment.setDeleted(dao.getDBTreaty().getTrueValue());
+		contractAttachment.setDeleted(true);
 		contractAttachment.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		contractAttachment.setDeleteTime(new Date());
 		try {
@@ -174,9 +177,9 @@ public class ContractAttachmentServiceImpl extends SuperService<ContractAttachme
 		return super.updateList(contractAttachmentList , mode);
 	}
 
-
+	
 	/**
-	 * 按主键更新字段 合同附件
+	 * 按主键更新合同附件
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -188,9 +191,9 @@ public class ContractAttachmentServiceImpl extends SuperService<ContractAttachme
 		return suc>0;
 	}
 
-
+	
 	/**
-	 * 按主键获取 合同附件
+	 * 按主键获取合同附件
 	 *
 	 * @param id 主键
 	 * @return ContractAttachment 数据对象
@@ -202,9 +205,22 @@ public class ContractAttachmentServiceImpl extends SuperService<ContractAttachme
 		return dao.queryEntity(sample);
 	}
 
+	/**
+	 * 等价于 queryListByIds
+	 * */
 	@Override
 	public List<ContractAttachment> getByIds(List<String> ids) {
+		return this.queryListByIds(ids);
+	}
+
+	@Override
+	public List<ContractAttachment> queryListByIds(List<String> ids) {
 		return super.queryListByUKeys("id",ids);
+	}
+
+	@Override
+	public Map<String, ContractAttachment> queryMapByIds(List<String> ids) {
+		return super.queryMapByUKeys("id",ids, ContractAttachment::getId);
 	}
 
 
@@ -216,7 +232,7 @@ public class ContractAttachmentServiceImpl extends SuperService<ContractAttachme
 	 * @return 查询结果
 	 * */
 	@Override
-	public List<ContractAttachment> queryList(ContractAttachment sample) {
+	public List<ContractAttachment> queryList(ContractAttachmentVO sample) {
 		return super.queryList(sample);
 	}
 
@@ -230,7 +246,7 @@ public class ContractAttachmentServiceImpl extends SuperService<ContractAttachme
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<ContractAttachment> queryPagedList(ContractAttachment sample, int pageSize, int pageIndex) {
+	public PagedList<ContractAttachment> queryPagedList(ContractAttachmentVO sample, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, pageSize, pageIndex);
 	}
 
@@ -261,25 +277,33 @@ public class ContractAttachmentServiceImpl extends SuperService<ContractAttachme
 		return false;
 	}
 
+
+	/**
+	 * 检查引用
+	 * @param id  检查ID是否又被外部表引用
+	 * */
 	@Override
-	public ExcelWriter exportExcel(ContractAttachment sample) {
-		return super.exportExcel(sample);
+	public Boolean hasRefers(String id) {
+		Map<String, Boolean> map=this.hasRefers(Arrays.asList(id));
+		Boolean ex=map.get(id);
+		if(ex==null) return false;
+		return ex;
 	}
 
+	/**
+	 * 批量检查引用
+	 * @param ids  检查这些ID是否又被外部表引用
+	 * */
 	@Override
-	public ExcelWriter exportExcelTemplate() {
-		return super.exportExcelTemplate();
+	public Map<String, Boolean> hasRefers(List<String> ids) {
+		// 默认无业务逻辑，返回此行；有业务逻辑需要校验时，请修改并使用已注释的行代码！！！
+		return MapUtil.asMap(ids,false);
+		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
 	}
 
-	@Override
-	public List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch) {
-		return super.importExcel(input,sheetIndex,batch);
-	}
 
-	@Override
-	public ExcelStructure buildExcelStructure(boolean isForExport) {
-		return super.buildExcelStructure(isForExport);
-	}
+
+
 
 
 }

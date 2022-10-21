@@ -226,10 +226,7 @@ foxnic:
         # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
         end-points: http://127.0.0.1:8089,1 | http://127.0.0.1:8089,1
 
-#禁止自动扫描API
-springfox:
-  documentation:
-    auto-startup: false
+
 
 
 security:
@@ -264,11 +261,19 @@ management:
       exposure:
         include: "*"
 
+#自动扫描API
+springfox:
+  documentation:
+    auto-startup: true
+
 knife4j:
   enable: true
   title: ${spring.application.name}
   description: ${spring.application.description}
   version: 1.0
+  setting:
+    enableSwaggerModels: true
+    swaggerModelName: EamModel
 
 
 

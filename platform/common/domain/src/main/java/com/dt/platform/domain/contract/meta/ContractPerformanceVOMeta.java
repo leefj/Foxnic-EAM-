@@ -5,13 +5,14 @@ import com.dt.platform.domain.contract.ContractPerformanceVO;
 import java.util.List;
 import com.dt.platform.domain.contract.ContractPerformance;
 import java.util.Date;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 李方捷 , leefangjie@qq.com
- * @since 2021-12-28 14:20:20
- * @sign 28ADCDFD4EB78782EA4DE24A3AD9BC33
+ * @since 2022-10-21 15:39:35
+ * @sign 389C42F0320DD7B0D34CB01E8174788D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -512,5 +513,50 @@ public class ContractPerformanceVOMeta extends ContractPerformanceMeta {
 			super.setPerformanceTime(performanceTime);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public ContractPerformanceVO clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public ContractPerformanceVO duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setTitle(this.getTitle());
+			inst.setVersion(this.getVersion());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setContractId(this.getContractId());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setPerformanceTime(this.getPerformanceTime());
+			inst.setId(this.getId());
+			inst.setDetail(this.getDetail());
+			if(all) {
+				inst.setSearchField(this.getSearchField());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setDirtyFields(this.getDirtyFields());
+				inst.setSortField(this.getSortField());
+				inst.setPageSize(this.getPageSize());
+				inst.setIds(this.getIds());
+				inst.setSearchValue(this.getSearchValue());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

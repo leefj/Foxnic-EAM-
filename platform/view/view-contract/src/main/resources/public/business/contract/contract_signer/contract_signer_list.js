@@ -1,7 +1,7 @@
 /**
  * 合同签订方 列表页 JS 脚本
  * @author 李方捷 , leefangjie@qq.com
- * @since 2021-12-20 16:55:10
+ * @since 2022-10-21 15:39:34
  */
 
 
@@ -45,6 +45,9 @@ function ListPage() {
 		});
 		fox.adjustSearchElement();
 		//
+		 var marginTop=$(".search-bar").height()+$(".search-bar").css("padding-top")+$(".search-bar").css("padding-bottom")
+		 $("#table-area").css("margin-top",marginTop+"px");
+		//
 		function renderTableInternal() {
 
 			var ps={searchField: "$composite"};
@@ -74,45 +77,34 @@ function ListPage() {
 				cols: [[
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
-					,{ field: 'alias', align:"left",fixed:false,  hide:false, sort: false, title: fox.translate('签订方'), templet:function (d){ return templet('alias',fox.getEnumText(SELECT_ALIAS_DATA,d.alias),d);}}
-					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: false, title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true, title: fox.translate('id') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'contractId', align:"left",fixed:false,  hide:true, sort: true, title: fox.translate('合同ID') , templet: function (d) { return templet('contractId',d.contractId,d);}  }
-					,{ field: 'sort', align:"right",fixed:false,  hide:true, sort: true, title: fox.translate('显示顺序') , templet: function (d) { return templet('sort',d.sort,d);}  }
-					,{ field: 'type', align:"left",fixed:false,  hide:true, sort: false, title: fox.translate('类型'), templet:function (d){ return templet('type',fox.getEnumText(RADIO_TYPE_DATA,d.type),d);}}
-					,{ field: 'identityCdoe', align:"left",fixed:false,  hide:true, sort: true, title: fox.translate('唯一代码') , templet: function (d) { return templet('identityCdoe',d.identityCdoe,d);}  }
-					,{ field: 'landlineNumber', align:"left",fixed:false,  hide:true, sort: true, title: fox.translate('座机号码') , templet: function (d) { return templet('landlineNumber',d.landlineNumber,d);}  }
-					,{ field: 'faxNumber', align:"left",fixed:false,  hide:true, sort: true, title: fox.translate('传真号码') , templet: function (d) { return templet('faxNumber',d.faxNumber,d);}  }
-					,{ field: 'address', align:"left",fixed:false,  hide:true, sort: true, title: fox.translate('地址') , templet: function (d) { return templet('address',d.address,d);}  }
-					,{ field: 'contactPerson', align:"left",fixed:false,  hide:true, sort: true, title: fox.translate('联系人姓名') , templet: function (d) { return templet('contactPerson',d.contactPerson,d);}  }
-					,{ field: 'contactPhone', align:"left",fixed:false,  hide:true, sort: true, title: fox.translate('联系人手机') , templet: function (d) { return templet('contactPhone',d.contactPhone,d);}  }
-					,{ field: 'notes', align:"left",fixed:false,  hide:true, sort: true, title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
-					,{ field: 'createTime', align:"right", fixed:false, hide:true, sort: true, title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'alias', align:"left",fixed:false,  hide:false, sort: false  , title: fox.translate('签订方'), templet:function (d){ return templet('alias',fox.getEnumText(SELECT_ALIAS_DATA,d.alias,'','alias'),d);}}
+					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: false  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
+					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('id') , templet: function (d) { return templet('id',d.id,d);}  }
+					,{ field: 'contractId', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('合同ID') , templet: function (d) { return templet('contractId',d.contractId,d);}  }
+					,{ field: 'sort', align:"right",fixed:false,  hide:true, sort: true  , title: fox.translate('显示顺序') , templet: function (d) { return templet('sort',d.sort,d);}  }
+					,{ field: 'type', align:"left",fixed:false,  hide:true, sort: false  , title: fox.translate('类型'), templet:function (d){ return templet('type',fox.getEnumText(RADIO_TYPE_DATA,d.type,'','type'),d);}}
+					,{ field: 'identityCdoe', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('唯一代码') , templet: function (d) { return templet('identityCdoe',d.identityCdoe,d);}  }
+					,{ field: 'landlineNumber', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('座机号码') , templet: function (d) { return templet('landlineNumber',d.landlineNumber,d);}  }
+					,{ field: 'faxNumber', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('传真号码') , templet: function (d) { return templet('faxNumber',d.faxNumber,d);}  }
+					,{ field: 'address', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('地址') , templet: function (d) { return templet('address',d.address,d);}  }
+					,{ field: 'contactPerson', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('联系人姓名') , templet: function (d) { return templet('contactPerson',d.contactPerson,d);}  }
+					,{ field: 'contactPhone', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('联系人手机') , templet: function (d) { return templet('contactPhone',d.contactPhone,d);}  }
+					,{ field: 'notes', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
+					,{ field: 'createTime', align:"right", fixed:false, hide:true, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
-					exportExcel : admin.checkAuth(AUTH_PREFIX+":export"),
-					importExcel : admin.checkAuth(AUTH_PREFIX+":import")?{
-						params : {} ,
-						callback : function(r) {
-							if(r.success) {
-								layer.msg(fox.translate('数据导入成功')+"!");
-							} else {
-								layer.msg(fox.translate('数据导入失败')+"!");
-							}
-							// 是否执行后续逻辑：错误提示
-							return false;
-						}
-					}:false
+					exportExcel : false ,
+					importExcel : false 
 				}
 			};
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
 			dataTable=fox.renderTable(tableConfig);
 			//绑定排序事件
 			table.on('sort(data-table)', function(obj){
-			  refreshTableData(obj.field,obj.type);
+			  refreshTableData(obj.sortField,obj.type);
 			});
 			window.pageExt.list.afterTableRender && window.pageExt.list.afterTableRender();
 		}
@@ -120,21 +112,45 @@ function ListPage() {
     };
 
 	/**
+	 * 刷新单号数据
+	 * */
+	function refreshRowData(data,remote) {
+		var context=dataTable.getDataRowContext( { id : data.id } );
+		if(context==null) return;
+		if(remote) {
+			admin.post(moduleURL+"/get-by-id", { id : data.id }, function (r) {
+				if (r.success) {
+					data = r.data;
+					context.update(data);
+					fox.renderFormInputs(form);
+				} else {
+					fox.showMessage(data);
+				}
+			});
+		} else {
+			context.update(data);
+			fox.renderFormInputs(form);
+		}
+	}
+
+	/**
       * 刷新表格数据
       */
 	function refreshTableData(sortField,sortType,reset) {
+		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.sort={ inputType:"number_input", value: $("#sort").val() };
-		value.alias={ inputType:"select_box", value: xmSelect.get("#alias",true).getValue("value"), label:xmSelect.get("#alias",true).getValue("nameStr") };
-		value.type={ inputType:"radio_box", value: xmSelect.get("#type",true).getValue("value"), label:xmSelect.get("#type",true).getValue("nameStr") };
-		value.identityCdoe={ inputType:"button",value: $("#identityCdoe").val()};
+		value.alias={ inputType:"select_box", value: getSelectedValue("#alias","value"), label:getSelectedValue("#alias","nameStr") };
 		value.name={ inputType:"button",value: $("#name").val()};
+		value.sort={ inputType:"number_input", value: $("#sort").val() };
+		value.type={ inputType:"radio_box", value: getSelectedValue("#type","value"), label:getSelectedValue("#type","nameStr") };
+		value.identityCdoe={ inputType:"button",value: $("#identityCdoe").val()};
 		value.landlineNumber={ inputType:"button",value: $("#landlineNumber").val()};
 		value.faxNumber={ inputType:"button",value: $("#faxNumber").val()};
 		value.address={ inputType:"button",value: $("#address").val()};
 		value.contactPerson={ inputType:"button",value: $("#contactPerson").val()};
 		value.contactPhone={ inputType:"button",value: $("#contactPhone").val()};
 		value.notes={ inputType:"button",value: $("#notes").val()};
+		value.createTime={ inputType:"date_input", value: $("#createTime").val() ,matchType:"auto"};
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -148,8 +164,7 @@ function ListPage() {
 			if(sort) {
 				ps.sortField=sort.field;
 				ps.sortType=sort.type;
-			}
-		}
+			} 		}
 		if(reset) {
 			table.reload('data-table', { where : ps , page:{ curr:1 } });
 		} else {
@@ -185,7 +200,7 @@ function ListPage() {
 		//渲染 alias 下拉字段
 		fox.renderSelectBox({
 			el: "alias",
-			radio: false,
+			radio: true,
 			size: "small",
 			filterable: false,
 			on: function(data){
@@ -208,7 +223,7 @@ function ListPage() {
 		fox.renderSelectBox({
 			el: "type",
 			size: "small",
-			radio: false,
+			radio: true,
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("type",data.arr,data.change,data.isAdd);
@@ -272,6 +287,7 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
+					admin.putTempData('cont-contract-signer-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
@@ -309,18 +325,19 @@ function ListPage() {
             }
             //调用批量删除接口
 			top.layer.confirm(fox.translate('确定删除已选中的')+fox.translate('合同签订方')+fox.translate('吗？'), function (i) {
-                admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
+                top.layer.close(i);
+				admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
                     if (data.success) {
 						if(window.pageExt.list.afterBatchDelete) {
 							var doNext=window.pageExt.list.afterBatchDelete(data);
 							if(!doNext) return;
 						}
-                    	top.layer.msg(data.message, {icon: 1, time: 500});
+						fox.showMessage(data);
                         refreshTableData();
                     } else {
-						top.layer.msg(data.message, {icon: 2, time: 1500});
+						fox.showMessage(data);
                     }
-                });
+                },{delayLoading:200,elms:[$("#delete-button")]});
 			});
         }
 	}
@@ -346,7 +363,7 @@ function ListPage() {
 						admin.putTempData('cont-contract-signer-form-data-form-action', "edit",true);
 						showEditForm(data.data);
 					} else {
-						 top.layer.msg(data.message, {icon: 1, time: 1500});
+						 fox.showMessage(data);
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
@@ -355,7 +372,7 @@ function ListPage() {
 						admin.putTempData('cont-contract-signer-form-data-form-action', "view",true);
 						showEditForm(data.data);
 					} else {
-						top.layer.msg(data.message, {icon: 1, time: 1500});
+						fox.showMessage(data);
 					}
 				});
 			}
@@ -365,23 +382,22 @@ function ListPage() {
 					var doNext=window.pageExt.list.beforeSingleDelete(data);
 					if(!doNext) return;
 				}
+
 				top.layer.confirm(fox.translate('确定删除此')+fox.translate('合同签订方')+fox.translate('吗？'), function (i) {
 					top.layer.close(i);
-
-					top.layer.load(2);
-					admin.request(moduleURL+"/delete", { id : data.id }, function (data) {
+					admin.post(moduleURL+"/delete", { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
 						if (data.success) {
 							if(window.pageExt.list.afterSingleDelete) {
 								var doNext=window.pageExt.list.afterSingleDelete(data);
 								if(!doNext) return;
 							}
-							top.layer.msg(data.message, {icon: 1, time: 500});
+							fox.showMessage(data);
 							refreshTableData();
 						} else {
-							top.layer.msg(data.message, {icon: 2, time: 1500});
+							fox.showMessage(data);
 						}
-					});
+					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
 			}
 			
@@ -399,7 +415,10 @@ function ListPage() {
 		}
 		var action=admin.getTempData('cont-contract-signer-form-data-form-action');
 		var queryString="";
-		if(data && data.id) queryString="?" + 'id=' + data.id;
+		if(data && data.id) queryString='id=' + data.id;
+		if(window.pageExt.list.makeFormQueryString) {
+			queryString=window.pageExt.list.makeFormQueryString(data,queryString,action);
+		}
 		admin.putTempData('cont-contract-signer-form-data', data);
 		var area=admin.getTempData('cont-contract-signer-form-area');
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
@@ -413,19 +432,26 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["80%",height+"px"],
+			area: ["600px",height+"px"],
 			type: 2,
 			id:"cont-contract-signer-form-data-win",
-			content: '/business/contract/contract_signer/contract_signer_form.html' + queryString,
+			content: '/business/contract/contract_signer/contract_signer_form.html' + (queryString?("?"+queryString):""),
 			finish: function () {
-				refreshTableData();
+				if(action=="create") {
+					refreshTableData();
+				}
+				if(action=="edit") {
+					false?refreshTableData():refreshRowData(data,true);
+				}
 			}
 		});
 	};
 
 	window.module={
 		refreshTableData: refreshTableData,
-		getCheckedList: getCheckedList
+		refreshRowData: refreshRowData,
+		getCheckedList: getCheckedList,
+		showEditForm: showEditForm
 	};
 
 	window.pageExt.list.ending && window.pageExt.list.ending();

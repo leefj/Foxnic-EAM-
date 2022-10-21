@@ -83,6 +83,7 @@ public class CodeStarter extends ModuleCodeGenerator {
             super(table,tablePrefix);
             this.apiSort=apiSort;
             this.configs=new PlatformConfigs(appConfigPrefix);
+            this.init();
         }
 
         @Override

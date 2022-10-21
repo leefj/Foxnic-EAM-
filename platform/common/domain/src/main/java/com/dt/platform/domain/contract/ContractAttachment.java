@@ -1,6 +1,7 @@
 package com.dt.platform.domain.contract;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.ContractTables.CONT_CONTRACT_ATTACHMENT;
@@ -10,8 +11,10 @@ import com.dt.platform.constants.enums.contract.AttachmentOwnerType;
 import javax.persistence.Transient;
 import com.dt.platform.constants.enums.contract.AttachmentType;
 import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.reflect.EnumUtil;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 
@@ -19,13 +22,15 @@ import com.github.foxnic.dao.entity.EntityContext;
 
 /**
  * 合同附件
+ * <p>合同附件 , 数据表 cont_contract_attachment 的PO类型</p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2021-12-28 15:44:51
- * @sign D7980ADFFB36F414E1B1E453AEB83D1B
+ * @since 2022-10-21 15:39:34
+ * @sign E9969DDCF101A43FEF3E977A9FB2C288
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "cont_contract_attachment")
+@ApiModel(description = "合同附件 ; 合同附件 , 数据表 cont_contract_attachment 的PO类型")
 public class ContractAttachment extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -114,6 +119,8 @@ public class ContractAttachment extends Entity {
 	*/
 	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
+	@Transient
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -198,6 +205,7 @@ public class ContractAttachment extends Entity {
 	 * @param ownerType 所有者类型
 	 * @return 当前对象
 	*/
+	@JsonProperty("ownerType")
 	public ContractAttachment setOwnerType(String ownerType) {
 		this.ownerType=ownerType;
 		this.ownerTypeEnum= (AttachmentOwnerType) EnumUtil.parseByCode(AttachmentOwnerType.values(),ownerType) ;
@@ -250,6 +258,7 @@ public class ContractAttachment extends Entity {
 	 * @param type 附件类型
 	 * @return 当前对象
 	*/
+	@JsonProperty("type")
 	public ContractAttachment setType(String type) {
 		this.type=type;
 		this.typeEnum= (AttachmentType) EnumUtil.parseByCode(AttachmentType.values(),type) ;
@@ -437,12 +446,43 @@ public class ContractAttachment extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public ContractAttachment setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public ContractAttachment setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -533,6 +573,49 @@ public class ContractAttachment extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public ContractAttachment clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public ContractAttachment duplicate(boolean all) {
+		com.dt.platform.domain.contract.meta.ContractAttachmentMeta.$$proxy$$ inst = new com.dt.platform.domain.contract.meta.ContractAttachmentMeta.$$proxy$$();
+		inst.setOwnerType(this.getOwnerType());
+		inst.setNotes(this.getNotes());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setOwnerId(this.getOwnerId());
+		inst.setType(this.getType());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setFileId(this.getFileId());
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public ContractAttachment clone(boolean deep) {
+		return EntityContext.clone(ContractAttachment.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 ContractAttachment
 	 * @param contractAttachmentMap 包含实体信息的 Map 对象
 	 * @return ContractAttachment , 转换好的的 ContractAttachment 对象
@@ -540,7 +623,9 @@ public class ContractAttachment extends Entity {
 	@Transient
 	public static ContractAttachment createFrom(Map<String,Object> contractAttachmentMap) {
 		if(contractAttachmentMap==null) return null;
-		ContractAttachment po = EntityContext.create(ContractAttachment.class, contractAttachmentMap);
+		ContractAttachment po = create();
+		EntityContext.copyProperties(po,contractAttachmentMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -552,7 +637,9 @@ public class ContractAttachment extends Entity {
 	@Transient
 	public static ContractAttachment createFrom(Object pojo) {
 		if(pojo==null) return null;
-		ContractAttachment po = EntityContext.create(ContractAttachment.class,pojo);
+		ContractAttachment po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -562,6 +649,6 @@ public class ContractAttachment extends Entity {
 	*/
 	@Transient
 	public static ContractAttachment create() {
-		return EntityContext.create(ContractAttachment.class);
+		return new com.dt.platform.domain.contract.meta.ContractAttachmentMeta.$$proxy$$();
 	}
 }
