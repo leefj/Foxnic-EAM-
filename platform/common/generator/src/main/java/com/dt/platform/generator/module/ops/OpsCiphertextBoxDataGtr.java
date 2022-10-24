@@ -54,19 +54,16 @@ public class OpsCiphertextBoxDataGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_CIPHERTEXT_BOX_DATA.CIPHERTEXT).form().textArea().height(200);
         cfg.view().field(OpsTables.OPS_CIPHERTEXT_BOX_DATA.NOTES).form().textArea().height(Config.textAreaHeight);
         cfg.view().field(OpsTables.OPS_CIPHERTEXT_BOX_DATA.PLAINTEXT).table().disable(true);
-
-
-        cfg.view().field(OpsTables.OPS_CIPHERTEXT_BOX_DATA.BOX_TYPE).form().validate().required().form().selectBox().enumType(OpsCiphertextTypeEnum.class);
+        cfg.view().field(OpsTables.OPS_CIPHERTEXT_BOX_DATA.BOX_TYPE).form().selectBox().enumType(OpsCiphertextTypeEnum.class);
 
         cfg.view().list().disableBatchDelete();
         cfg.view().list().disableSingleDelete();
-        cfg.view().list().disableCreateNew();
+
         cfg.view().formWindow().bottomSpace(120);
         cfg.view().formWindow().width(Config.baseFormWidth);
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_CIPHERTEXT_BOX_DATA.NAME,
-//                      OpsTables.OPS_CIPHERTEXT_BOX_DATA.CONTENT,
                         OpsTables.OPS_CIPHERTEXT_BOX_DATA.PLAINTEXT,
                         OpsTables.OPS_CIPHERTEXT_BOX_DATA.NOTES
                 }
@@ -89,7 +86,7 @@ public class OpsCiphertextBoxDataGtr extends BaseCodeGenerator{
                 .setPageController(WriteMode.IGNORE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
-                .setExtendJsFile(WriteMode.COVER_EXISTS_FILE); //列表HTML页
+                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         //生成代码
         cfg.buildAll();
     }

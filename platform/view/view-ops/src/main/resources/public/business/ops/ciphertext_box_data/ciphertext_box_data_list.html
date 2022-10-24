@@ -2,7 +2,7 @@
 /**
  * 密文数据 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-20 09:12:30
+ * @since 2022-10-23 20:34:33
  */
  -->
  <!DOCTYPE html>
@@ -78,6 +78,7 @@
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
+        <button th:if="${perm.checkAuth('ops_ciphertext_box_data:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建')}">新建</span></button>
     </div>
 </script>
 

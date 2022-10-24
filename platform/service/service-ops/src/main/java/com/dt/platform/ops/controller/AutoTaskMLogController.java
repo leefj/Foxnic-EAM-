@@ -69,6 +69,7 @@ public class AutoTaskMLogController extends SuperController {
 	private IAutoTaskMLogService autoTaskMLogService;
 
 
+	
 	/**
 	 * 添加执行日志
 	*/

@@ -99,6 +99,7 @@ function ListPage() {
 					importExcel : false 
 				}
 			};
+
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
 			dataTable=fox.renderTable(tableConfig);
 			//绑定排序事件

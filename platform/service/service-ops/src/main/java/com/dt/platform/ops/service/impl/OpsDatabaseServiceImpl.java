@@ -96,6 +96,7 @@ public class OpsDatabaseServiceImpl extends SuperService<DbInfo> implements IOps
 
 	/*数据库软件基本数据*/
 	public String softwareDbBaseInfoSql="select \n" +
+			"(select count(1) from ops_db_info info where info.deleted=0 and info.host_id=a.id) db_info_count,\n"+
 			"a.*,b.service_info_id from ops_host a,ops_host_db b\n" +
 			"where a.deleted=0 and a.status=1 and a.environment='prod'\n" +
 			"and a.id=b.host_id \n" +

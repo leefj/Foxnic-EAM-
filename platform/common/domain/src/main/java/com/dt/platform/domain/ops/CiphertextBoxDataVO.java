@@ -1,5 +1,6 @@
 package com.dt.platform.domain.ops;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import java.util.ArrayList;
@@ -14,13 +15,15 @@ import java.util.Map;
 
 
 /**
- * 密文数据
+ * 密文数据VO类型
+ * <p>密文数据 , 数据表 ops_ciphertext_box_data 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-20 09:12:29
+ * @since 2022-10-23 20:34:32
  * @sign BE72785A0C6EA5A862359ED46CE4C637
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
+@ApiModel(description = "密文数据VO类型 ; 密文数据 , 数据表 ops_ciphertext_box_data 的通用VO类型" , parent = CiphertextBoxData.class)
 public class CiphertextBoxDataVO extends CiphertextBoxData {
 
 	private static final long serialVersionUID = 1L;

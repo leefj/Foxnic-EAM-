@@ -437,6 +437,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 action="create";
             }
             admin.putTempData('ops-ciphertext-box-data-form-data', data);
+            admin.putTempData('ops-ciphertext-box-data-form-data-form-action', action,true);
             var area=admin.getTempData('ops-ciphertext-box-data-form-area');
             var height= (area && area.height) ? area.height : ($(window).height()*0.6);
             var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
