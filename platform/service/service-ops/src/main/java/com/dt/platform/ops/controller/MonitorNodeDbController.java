@@ -58,7 +58,17 @@ public class MonitorNodeDbController extends SuperController {
      * 添加节点数据库
      */
     @ApiOperation(value = "添加节点数据库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeDbVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_NAME, value = "数据库名称", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_INSTANCE, value = "实例名称", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_VERION, value = "数据库版本", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.CONNECT_COUNT, value = "连接数", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_SIZE, value = "数据库大小", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_NAME, value = "数据库名称", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_INSTANCE, value = "实例名称", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_VERION, value = "数据库版本", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.CONNECT_COUNT, value = "连接数", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_SIZE, value = "数据库大小", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = MonitorNodeDbServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeDbServiceProxy.INSERT)
@@ -72,7 +82,9 @@ public class MonitorNodeDbController extends SuperController {
      * 删除节点数据库
      */
     @ApiOperation(value = "删除节点数据库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeDbVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = MonitorNodeDbServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeDbServiceProxy.DELETE)
@@ -86,7 +98,9 @@ public class MonitorNodeDbController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除节点数据库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeDbVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MonitorNodeDbServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeDbServiceProxy.DELETE_BY_IDS)
@@ -99,7 +113,17 @@ public class MonitorNodeDbController extends SuperController {
      * 更新节点数据库
      */
     @ApiOperation(value = "更新节点数据库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeDbVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_NAME, value = "数据库名称", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_INSTANCE, value = "实例名称", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_VERION, value = "数据库版本", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.CONNECT_COUNT, value = "连接数", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_SIZE, value = "数据库大小", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_NAME, value = "数据库名称", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_INSTANCE, value = "实例名称", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_VERION, value = "数据库版本", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.CONNECT_COUNT, value = "连接数", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_SIZE, value = "数据库大小", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { MonitorNodeDbVOMeta.PAGE_INDEX, MonitorNodeDbVOMeta.PAGE_SIZE, MonitorNodeDbVOMeta.SEARCH_FIELD, MonitorNodeDbVOMeta.FUZZY_FIELD, MonitorNodeDbVOMeta.SEARCH_VALUE, MonitorNodeDbVOMeta.DIRTY_FIELDS, MonitorNodeDbVOMeta.SORT_FIELD, MonitorNodeDbVOMeta.SORT_TYPE, MonitorNodeDbVOMeta.IDS })
     @SentinelResource(value = MonitorNodeDbServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeDbServiceProxy.UPDATE)
@@ -113,7 +137,17 @@ public class MonitorNodeDbController extends SuperController {
      * 保存节点数据库
      */
     @ApiOperation(value = "保存节点数据库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeDbVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_NAME, value = "数据库名称", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_INSTANCE, value = "实例名称", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_VERION, value = "数据库版本", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.CONNECT_COUNT, value = "连接数", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_SIZE, value = "数据库大小", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_NAME, value = "数据库名称", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_INSTANCE, value = "实例名称", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_VERION, value = "数据库版本", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.CONNECT_COUNT, value = "连接数", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_SIZE, value = "数据库大小", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MonitorNodeDbVOMeta.PAGE_INDEX, MonitorNodeDbVOMeta.PAGE_SIZE, MonitorNodeDbVOMeta.SEARCH_FIELD, MonitorNodeDbVOMeta.FUZZY_FIELD, MonitorNodeDbVOMeta.SEARCH_VALUE, MonitorNodeDbVOMeta.DIRTY_FIELDS, MonitorNodeDbVOMeta.SORT_FIELD, MonitorNodeDbVOMeta.SORT_TYPE, MonitorNodeDbVOMeta.IDS })
     @SentinelResource(value = MonitorNodeDbServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeDbServiceProxy.SAVE)
@@ -127,7 +161,9 @@ public class MonitorNodeDbController extends SuperController {
      * 获取节点数据库
      */
     @ApiOperation(value = "获取节点数据库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeDbVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = MonitorNodeDbServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeDbServiceProxy.GET_BY_ID)
@@ -143,7 +179,9 @@ public class MonitorNodeDbController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取节点数据库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeDbVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MonitorNodeDbServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeDbServiceProxy.GET_BY_IDS)
@@ -158,7 +196,17 @@ public class MonitorNodeDbController extends SuperController {
      * 查询节点数据库
      */
     @ApiOperation(value = "查询节点数据库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeDbVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_NAME, value = "数据库名称", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_INSTANCE, value = "实例名称", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_VERION, value = "数据库版本", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.CONNECT_COUNT, value = "连接数", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_SIZE, value = "数据库大小", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_NAME, value = "数据库名称", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_INSTANCE, value = "实例名称", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_VERION, value = "数据库版本", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.CONNECT_COUNT, value = "连接数", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_SIZE, value = "数据库大小", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MonitorNodeDbVOMeta.PAGE_INDEX, MonitorNodeDbVOMeta.PAGE_SIZE })
     @SentinelResource(value = MonitorNodeDbServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeDbServiceProxy.QUERY_LIST)
@@ -173,7 +221,17 @@ public class MonitorNodeDbController extends SuperController {
      * 分页查询节点数据库
      */
     @ApiOperation(value = "分页查询节点数据库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeDbVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_NAME, value = "数据库名称", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_INSTANCE, value = "实例名称", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_VERION, value = "数据库版本", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.CONNECT_COUNT, value = "连接数", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_SIZE, value = "数据库大小", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeDbVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_NAME, value = "数据库名称", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_INSTANCE, value = "实例名称", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_VERION, value = "数据库版本", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.CONNECT_COUNT, value = "连接数", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.DB_SIZE, value = "数据库大小", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeDbVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = MonitorNodeDbServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeDbServiceProxy.QUERY_PAGED_LIST)

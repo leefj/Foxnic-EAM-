@@ -65,7 +65,15 @@ public class AutoTaskMLogController extends SuperController {
      * 添加执行日志
      */
     @ApiOperation(value = "添加执行日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskMLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AutoTaskMLogVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskMLogVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskMLogVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskMLogVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskMLogVOMeta.STIME, value = "开始时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AutoTaskMLogVOMeta.ETIME, value = "结束时间", required = false, dataTypeClass = Date.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.STIME, value = "开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.ETIME, value = "结束时间", required = false, dataTypeClass = Date.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AutoTaskMLogServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskMLogServiceProxy.INSERT)
@@ -79,7 +87,9 @@ public class AutoTaskMLogController extends SuperController {
      * 删除执行日志
      */
     @ApiOperation(value = "删除执行日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskMLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "12") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "12")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AutoTaskMLogServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskMLogServiceProxy.DELETE)
@@ -104,7 +114,9 @@ public class AutoTaskMLogController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除执行日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskMLogVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoTaskMLogServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskMLogServiceProxy.DELETE_BY_IDS)
@@ -149,7 +161,15 @@ public class AutoTaskMLogController extends SuperController {
      * 更新执行日志
      */
     @ApiOperation(value = "更新执行日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskMLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AutoTaskMLogVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskMLogVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskMLogVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskMLogVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskMLogVOMeta.STIME, value = "开始时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AutoTaskMLogVOMeta.ETIME, value = "结束时间", required = false, dataTypeClass = Date.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.STIME, value = "开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.ETIME, value = "结束时间", required = false, dataTypeClass = Date.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AutoTaskMLogVOMeta.PAGE_INDEX, AutoTaskMLogVOMeta.PAGE_SIZE, AutoTaskMLogVOMeta.SEARCH_FIELD, AutoTaskMLogVOMeta.FUZZY_FIELD, AutoTaskMLogVOMeta.SEARCH_VALUE, AutoTaskMLogVOMeta.DIRTY_FIELDS, AutoTaskMLogVOMeta.SORT_FIELD, AutoTaskMLogVOMeta.SORT_TYPE, AutoTaskMLogVOMeta.IDS })
     @SentinelResource(value = AutoTaskMLogServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskMLogServiceProxy.UPDATE)
@@ -163,7 +183,15 @@ public class AutoTaskMLogController extends SuperController {
      * 保存执行日志
      */
     @ApiOperation(value = "保存执行日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskMLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AutoTaskMLogVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskMLogVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskMLogVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskMLogVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskMLogVOMeta.STIME, value = "开始时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AutoTaskMLogVOMeta.ETIME, value = "结束时间", required = false, dataTypeClass = Date.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.STIME, value = "开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.ETIME, value = "结束时间", required = false, dataTypeClass = Date.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoTaskMLogVOMeta.PAGE_INDEX, AutoTaskMLogVOMeta.PAGE_SIZE, AutoTaskMLogVOMeta.SEARCH_FIELD, AutoTaskMLogVOMeta.FUZZY_FIELD, AutoTaskMLogVOMeta.SEARCH_VALUE, AutoTaskMLogVOMeta.DIRTY_FIELDS, AutoTaskMLogVOMeta.SORT_FIELD, AutoTaskMLogVOMeta.SORT_TYPE, AutoTaskMLogVOMeta.IDS })
     @SentinelResource(value = AutoTaskMLogServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskMLogServiceProxy.SAVE)
@@ -177,7 +205,9 @@ public class AutoTaskMLogController extends SuperController {
      * 获取执行日志
      */
     @ApiOperation(value = "获取执行日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskMLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AutoTaskMLogServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskMLogServiceProxy.GET_BY_ID)
@@ -195,7 +225,9 @@ public class AutoTaskMLogController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取执行日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskMLogVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoTaskMLogServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskMLogServiceProxy.GET_BY_IDS)
@@ -210,7 +242,15 @@ public class AutoTaskMLogController extends SuperController {
      * 查询执行日志
      */
     @ApiOperation(value = "查询执行日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskMLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AutoTaskMLogVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskMLogVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskMLogVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskMLogVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskMLogVOMeta.STIME, value = "开始时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AutoTaskMLogVOMeta.ETIME, value = "结束时间", required = false, dataTypeClass = Date.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.STIME, value = "开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.ETIME, value = "结束时间", required = false, dataTypeClass = Date.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoTaskMLogVOMeta.PAGE_INDEX, AutoTaskMLogVOMeta.PAGE_SIZE })
     @SentinelResource(value = AutoTaskMLogServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskMLogServiceProxy.QUERY_LIST)
@@ -225,7 +265,15 @@ public class AutoTaskMLogController extends SuperController {
      * 分页查询执行日志
      */
     @ApiOperation(value = "分页查询执行日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskMLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AutoTaskMLogVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskMLogVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskMLogVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskMLogVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskMLogVOMeta.STIME, value = "开始时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AutoTaskMLogVOMeta.ETIME, value = "结束时间", required = false, dataTypeClass = Date.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.STIME, value = "开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AutoTaskMLogVOMeta.ETIME, value = "结束时间", required = false, dataTypeClass = Date.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AutoTaskMLogServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskMLogServiceProxy.QUERY_PAGED_LIST)

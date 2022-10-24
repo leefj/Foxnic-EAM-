@@ -58,7 +58,13 @@ public class ManufacturerController extends SuperController {
      * 添加生产厂商
      */
     @ApiOperation(value = "添加生产厂商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ManufacturerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471669992140570624"), @ApiImplicitParam(name = ManufacturerVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "华为公司"), @ApiImplicitParam(name = ManufacturerVOMeta.LOCATION, value = "所在地", required = false, dataTypeClass = String.class, example = "中国"), @ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ManufacturerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471669992140570624"),
+		@ApiImplicitParam(name = ManufacturerVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "华为公司"),
+		@ApiImplicitParam(name = ManufacturerVOMeta.LOCATION, value = "所在地", required = false, dataTypeClass = String.class, example = "中国"),
+		@ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = ManufacturerServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ManufacturerServiceProxy.INSERT)
@@ -72,7 +78,9 @@ public class ManufacturerController extends SuperController {
      * 删除生产厂商
      */
     @ApiOperation(value = "删除生产厂商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ManufacturerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471669992140570624") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ManufacturerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471669992140570624")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = ManufacturerServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ManufacturerServiceProxy.DELETE)
@@ -97,7 +105,9 @@ public class ManufacturerController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除生产厂商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ManufacturerVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ManufacturerVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ManufacturerServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ManufacturerServiceProxy.DELETE_BY_IDS)
@@ -142,7 +152,13 @@ public class ManufacturerController extends SuperController {
      * 更新生产厂商
      */
     @ApiOperation(value = "更新生产厂商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ManufacturerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471669992140570624"), @ApiImplicitParam(name = ManufacturerVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "华为公司"), @ApiImplicitParam(name = ManufacturerVOMeta.LOCATION, value = "所在地", required = false, dataTypeClass = String.class, example = "中国"), @ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ManufacturerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471669992140570624"),
+		@ApiImplicitParam(name = ManufacturerVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "华为公司"),
+		@ApiImplicitParam(name = ManufacturerVOMeta.LOCATION, value = "所在地", required = false, dataTypeClass = String.class, example = "中国"),
+		@ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { ManufacturerVOMeta.PAGE_INDEX, ManufacturerVOMeta.PAGE_SIZE, ManufacturerVOMeta.SEARCH_FIELD, ManufacturerVOMeta.FUZZY_FIELD, ManufacturerVOMeta.SEARCH_VALUE, ManufacturerVOMeta.DIRTY_FIELDS, ManufacturerVOMeta.SORT_FIELD, ManufacturerVOMeta.SORT_TYPE, ManufacturerVOMeta.IDS })
     @SentinelResource(value = ManufacturerServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ManufacturerServiceProxy.UPDATE)
@@ -156,7 +172,13 @@ public class ManufacturerController extends SuperController {
      * 保存生产厂商
      */
     @ApiOperation(value = "保存生产厂商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ManufacturerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471669992140570624"), @ApiImplicitParam(name = ManufacturerVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "华为公司"), @ApiImplicitParam(name = ManufacturerVOMeta.LOCATION, value = "所在地", required = false, dataTypeClass = String.class, example = "中国"), @ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ManufacturerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471669992140570624"),
+		@ApiImplicitParam(name = ManufacturerVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "华为公司"),
+		@ApiImplicitParam(name = ManufacturerVOMeta.LOCATION, value = "所在地", required = false, dataTypeClass = String.class, example = "中国"),
+		@ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ManufacturerVOMeta.PAGE_INDEX, ManufacturerVOMeta.PAGE_SIZE, ManufacturerVOMeta.SEARCH_FIELD, ManufacturerVOMeta.FUZZY_FIELD, ManufacturerVOMeta.SEARCH_VALUE, ManufacturerVOMeta.DIRTY_FIELDS, ManufacturerVOMeta.SORT_FIELD, ManufacturerVOMeta.SORT_TYPE, ManufacturerVOMeta.IDS })
     @SentinelResource(value = ManufacturerServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ManufacturerServiceProxy.SAVE)
@@ -170,7 +192,9 @@ public class ManufacturerController extends SuperController {
      * 获取生产厂商
      */
     @ApiOperation(value = "获取生产厂商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ManufacturerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ManufacturerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = ManufacturerServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ManufacturerServiceProxy.GET_BY_ID)
@@ -186,7 +210,9 @@ public class ManufacturerController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取生产厂商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ManufacturerVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ManufacturerVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ManufacturerServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ManufacturerServiceProxy.GET_BY_IDS)
@@ -201,7 +227,13 @@ public class ManufacturerController extends SuperController {
      * 查询生产厂商
      */
     @ApiOperation(value = "查询生产厂商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ManufacturerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471669992140570624"), @ApiImplicitParam(name = ManufacturerVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "华为公司"), @ApiImplicitParam(name = ManufacturerVOMeta.LOCATION, value = "所在地", required = false, dataTypeClass = String.class, example = "中国"), @ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ManufacturerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471669992140570624"),
+		@ApiImplicitParam(name = ManufacturerVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "华为公司"),
+		@ApiImplicitParam(name = ManufacturerVOMeta.LOCATION, value = "所在地", required = false, dataTypeClass = String.class, example = "中国"),
+		@ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ManufacturerVOMeta.PAGE_INDEX, ManufacturerVOMeta.PAGE_SIZE })
     @SentinelResource(value = ManufacturerServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ManufacturerServiceProxy.QUERY_LIST)
@@ -216,7 +248,13 @@ public class ManufacturerController extends SuperController {
      * 分页查询生产厂商
      */
     @ApiOperation(value = "分页查询生产厂商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ManufacturerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471669992140570624"), @ApiImplicitParam(name = ManufacturerVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "华为公司"), @ApiImplicitParam(name = ManufacturerVOMeta.LOCATION, value = "所在地", required = false, dataTypeClass = String.class, example = "中国"), @ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ManufacturerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471669992140570624"),
+		@ApiImplicitParam(name = ManufacturerVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "华为公司"),
+		@ApiImplicitParam(name = ManufacturerVOMeta.LOCATION, value = "所在地", required = false, dataTypeClass = String.class, example = "中国"),
+		@ApiImplicitParam(name = ManufacturerVOMeta.MANUFACTURER_NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = ManufacturerServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ManufacturerServiceProxy.QUERY_PAGED_LIST)

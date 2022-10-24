@@ -65,7 +65,23 @@ public class ServerApplyController extends SuperController implements BpmCallbac
      * 添加服务器资源申请
      */
     @ApiOperation(value = "添加服务器资源申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServerApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "596627925189525504"), @ApiImplicitParam(name = ServerApplyVOMeta.CODE, value = "编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = ServerApplyVOMeta.PROJECT_NAME, value = "项目名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = ServerApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class, example = "prod"), @ApiImplicitParam(name = ServerApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class, example = "permanent"), @ApiImplicitParam(name = ServerApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"), @ApiImplicitParam(name = ServerApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ServerApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"), @ApiImplicitParam(name = ServerApplyVOMeta.DOMAIN_NAME, value = "系统域名", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = ServerApplyVOMeta.CONTENT, value = "申请原因", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = ServerApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerApplyVOMeta.COMPLETION_DATE, value = "完成日期", required = false, dataTypeClass = Date.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServerApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "596627925189525504"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.CODE, value = "编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.PROJECT_NAME, value = "项目名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class, example = "prod"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class, example = "permanent"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ServerApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.DOMAIN_NAME, value = "系统域名", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.CONTENT, value = "申请原因", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerApplyVOMeta.COMPLETION_DATE, value = "完成日期", required = false, dataTypeClass = Date.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = ServerApplyServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServerApplyServiceProxy.INSERT)
@@ -79,7 +95,9 @@ public class ServerApplyController extends SuperController implements BpmCallbac
      * 删除服务器资源申请
      */
     @ApiOperation(value = "删除服务器资源申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServerApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "596627925189525504") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServerApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "596627925189525504")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = ServerApplyServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServerApplyServiceProxy.DELETE)
@@ -104,7 +122,9 @@ public class ServerApplyController extends SuperController implements BpmCallbac
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除服务器资源申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServerApplyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServerApplyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ServerApplyServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServerApplyServiceProxy.DELETE_BY_IDS)
@@ -149,7 +169,23 @@ public class ServerApplyController extends SuperController implements BpmCallbac
      * 更新服务器资源申请
      */
     @ApiOperation(value = "更新服务器资源申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServerApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "596627925189525504"), @ApiImplicitParam(name = ServerApplyVOMeta.CODE, value = "编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = ServerApplyVOMeta.PROJECT_NAME, value = "项目名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = ServerApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class, example = "prod"), @ApiImplicitParam(name = ServerApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class, example = "permanent"), @ApiImplicitParam(name = ServerApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"), @ApiImplicitParam(name = ServerApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ServerApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"), @ApiImplicitParam(name = ServerApplyVOMeta.DOMAIN_NAME, value = "系统域名", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = ServerApplyVOMeta.CONTENT, value = "申请原因", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = ServerApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerApplyVOMeta.COMPLETION_DATE, value = "完成日期", required = false, dataTypeClass = Date.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServerApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "596627925189525504"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.CODE, value = "编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.PROJECT_NAME, value = "项目名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class, example = "prod"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class, example = "permanent"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ServerApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.DOMAIN_NAME, value = "系统域名", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.CONTENT, value = "申请原因", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerApplyVOMeta.COMPLETION_DATE, value = "完成日期", required = false, dataTypeClass = Date.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { ServerApplyVOMeta.PAGE_INDEX, ServerApplyVOMeta.PAGE_SIZE, ServerApplyVOMeta.SEARCH_FIELD, ServerApplyVOMeta.FUZZY_FIELD, ServerApplyVOMeta.SEARCH_VALUE, ServerApplyVOMeta.DIRTY_FIELDS, ServerApplyVOMeta.SORT_FIELD, ServerApplyVOMeta.SORT_TYPE, ServerApplyVOMeta.IDS })
     @SentinelResource(value = ServerApplyServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServerApplyServiceProxy.UPDATE)
@@ -163,7 +199,23 @@ public class ServerApplyController extends SuperController implements BpmCallbac
      * 保存服务器资源申请
      */
     @ApiOperation(value = "保存服务器资源申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServerApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "596627925189525504"), @ApiImplicitParam(name = ServerApplyVOMeta.CODE, value = "编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = ServerApplyVOMeta.PROJECT_NAME, value = "项目名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = ServerApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class, example = "prod"), @ApiImplicitParam(name = ServerApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class, example = "permanent"), @ApiImplicitParam(name = ServerApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"), @ApiImplicitParam(name = ServerApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ServerApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"), @ApiImplicitParam(name = ServerApplyVOMeta.DOMAIN_NAME, value = "系统域名", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = ServerApplyVOMeta.CONTENT, value = "申请原因", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = ServerApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerApplyVOMeta.COMPLETION_DATE, value = "完成日期", required = false, dataTypeClass = Date.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServerApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "596627925189525504"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.CODE, value = "编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.PROJECT_NAME, value = "项目名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class, example = "prod"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class, example = "permanent"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ServerApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.DOMAIN_NAME, value = "系统域名", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.CONTENT, value = "申请原因", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerApplyVOMeta.COMPLETION_DATE, value = "完成日期", required = false, dataTypeClass = Date.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ServerApplyVOMeta.PAGE_INDEX, ServerApplyVOMeta.PAGE_SIZE, ServerApplyVOMeta.SEARCH_FIELD, ServerApplyVOMeta.FUZZY_FIELD, ServerApplyVOMeta.SEARCH_VALUE, ServerApplyVOMeta.DIRTY_FIELDS, ServerApplyVOMeta.SORT_FIELD, ServerApplyVOMeta.SORT_TYPE, ServerApplyVOMeta.IDS })
     @SentinelResource(value = ServerApplyServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServerApplyServiceProxy.SAVE)
@@ -177,7 +229,9 @@ public class ServerApplyController extends SuperController implements BpmCallbac
      * 获取服务器资源申请
      */
     @ApiOperation(value = "获取服务器资源申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServerApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServerApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = ServerApplyServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServerApplyServiceProxy.GET_BY_ID)
@@ -195,7 +249,9 @@ public class ServerApplyController extends SuperController implements BpmCallbac
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取服务器资源申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServerApplyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServerApplyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ServerApplyServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServerApplyServiceProxy.GET_BY_IDS)
@@ -210,7 +266,23 @@ public class ServerApplyController extends SuperController implements BpmCallbac
      * 查询服务器资源申请
      */
     @ApiOperation(value = "查询服务器资源申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServerApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "596627925189525504"), @ApiImplicitParam(name = ServerApplyVOMeta.CODE, value = "编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = ServerApplyVOMeta.PROJECT_NAME, value = "项目名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = ServerApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class, example = "prod"), @ApiImplicitParam(name = ServerApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class, example = "permanent"), @ApiImplicitParam(name = ServerApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"), @ApiImplicitParam(name = ServerApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ServerApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"), @ApiImplicitParam(name = ServerApplyVOMeta.DOMAIN_NAME, value = "系统域名", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = ServerApplyVOMeta.CONTENT, value = "申请原因", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = ServerApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerApplyVOMeta.COMPLETION_DATE, value = "完成日期", required = false, dataTypeClass = Date.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServerApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "596627925189525504"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.CODE, value = "编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.PROJECT_NAME, value = "项目名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class, example = "prod"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class, example = "permanent"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ServerApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.DOMAIN_NAME, value = "系统域名", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.CONTENT, value = "申请原因", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerApplyVOMeta.COMPLETION_DATE, value = "完成日期", required = false, dataTypeClass = Date.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ServerApplyVOMeta.PAGE_INDEX, ServerApplyVOMeta.PAGE_SIZE })
     @SentinelResource(value = ServerApplyServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServerApplyServiceProxy.QUERY_LIST)
@@ -225,7 +297,23 @@ public class ServerApplyController extends SuperController implements BpmCallbac
      * 分页查询服务器资源申请
      */
     @ApiOperation(value = "分页查询服务器资源申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServerApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "596627925189525504"), @ApiImplicitParam(name = ServerApplyVOMeta.CODE, value = "编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = ServerApplyVOMeta.PROJECT_NAME, value = "项目名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = ServerApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class, example = "prod"), @ApiImplicitParam(name = ServerApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class, example = "permanent"), @ApiImplicitParam(name = ServerApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"), @ApiImplicitParam(name = ServerApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ServerApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"), @ApiImplicitParam(name = ServerApplyVOMeta.DOMAIN_NAME, value = "系统域名", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = ServerApplyVOMeta.CONTENT, value = "申请原因", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = ServerApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerApplyVOMeta.COMPLETION_DATE, value = "完成日期", required = false, dataTypeClass = Date.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServerApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "596627925189525504"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.CODE, value = "编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.PROJECT_NAME, value = "项目名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class, example = "prod"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class, example = "permanent"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ServerApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.DOMAIN_NAME, value = "系统域名", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.CONTENT, value = "申请原因", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = ServerApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerApplyVOMeta.COMPLETION_DATE, value = "完成日期", required = false, dataTypeClass = Date.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = ServerApplyServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServerApplyServiceProxy.QUERY_PAGED_LIST)

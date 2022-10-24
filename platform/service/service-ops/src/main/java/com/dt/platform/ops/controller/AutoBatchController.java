@@ -59,7 +59,13 @@ public class AutoBatchController extends SuperController {
      * 添加节点批次
      */
     @ApiOperation(value = "添加节点批次")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoBatchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614051736079826944"), @ApiImplicitParam(name = AutoBatchVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "批次2"), @ApiImplicitParam(name = AutoBatchVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AutoBatchVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AutoBatchVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoBatchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614051736079826944"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "批次2"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AutoBatchServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoBatchServiceProxy.INSERT)
@@ -73,7 +79,9 @@ public class AutoBatchController extends SuperController {
      * 删除节点批次
      */
     @ApiOperation(value = "删除节点批次")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoBatchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614051736079826944") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoBatchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614051736079826944")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AutoBatchServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoBatchServiceProxy.DELETE)
@@ -98,7 +106,9 @@ public class AutoBatchController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除节点批次")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoBatchVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoBatchVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoBatchServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoBatchServiceProxy.DELETE_BY_IDS)
@@ -143,7 +153,13 @@ public class AutoBatchController extends SuperController {
      * 更新节点批次
      */
     @ApiOperation(value = "更新节点批次")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoBatchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614051736079826944"), @ApiImplicitParam(name = AutoBatchVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "批次2"), @ApiImplicitParam(name = AutoBatchVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AutoBatchVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AutoBatchVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoBatchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614051736079826944"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "批次2"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AutoBatchVOMeta.PAGE_INDEX, AutoBatchVOMeta.PAGE_SIZE, AutoBatchVOMeta.SEARCH_FIELD, AutoBatchVOMeta.FUZZY_FIELD, AutoBatchVOMeta.SEARCH_VALUE, AutoBatchVOMeta.DIRTY_FIELDS, AutoBatchVOMeta.SORT_FIELD, AutoBatchVOMeta.SORT_TYPE, AutoBatchVOMeta.IDS })
     @SentinelResource(value = AutoBatchServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoBatchServiceProxy.UPDATE)
@@ -157,7 +173,13 @@ public class AutoBatchController extends SuperController {
      * 保存节点批次
      */
     @ApiOperation(value = "保存节点批次")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoBatchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614051736079826944"), @ApiImplicitParam(name = AutoBatchVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "批次2"), @ApiImplicitParam(name = AutoBatchVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AutoBatchVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AutoBatchVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoBatchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614051736079826944"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "批次2"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoBatchVOMeta.PAGE_INDEX, AutoBatchVOMeta.PAGE_SIZE, AutoBatchVOMeta.SEARCH_FIELD, AutoBatchVOMeta.FUZZY_FIELD, AutoBatchVOMeta.SEARCH_VALUE, AutoBatchVOMeta.DIRTY_FIELDS, AutoBatchVOMeta.SORT_FIELD, AutoBatchVOMeta.SORT_TYPE, AutoBatchVOMeta.IDS })
     @SentinelResource(value = AutoBatchServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoBatchServiceProxy.SAVE)
@@ -171,7 +193,9 @@ public class AutoBatchController extends SuperController {
      * 获取节点批次
      */
     @ApiOperation(value = "获取节点批次")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoBatchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoBatchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AutoBatchServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoBatchServiceProxy.GET_BY_ID)
@@ -187,7 +211,9 @@ public class AutoBatchController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取节点批次")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoBatchVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoBatchVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoBatchServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoBatchServiceProxy.GET_BY_IDS)
@@ -202,7 +228,13 @@ public class AutoBatchController extends SuperController {
      * 查询节点批次
      */
     @ApiOperation(value = "查询节点批次")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoBatchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614051736079826944"), @ApiImplicitParam(name = AutoBatchVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "批次2"), @ApiImplicitParam(name = AutoBatchVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AutoBatchVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AutoBatchVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoBatchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614051736079826944"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "批次2"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoBatchVOMeta.PAGE_INDEX, AutoBatchVOMeta.PAGE_SIZE })
     @SentinelResource(value = AutoBatchServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoBatchServiceProxy.QUERY_LIST)
@@ -217,7 +249,13 @@ public class AutoBatchController extends SuperController {
      * 分页查询节点批次
      */
     @ApiOperation(value = "分页查询节点批次")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoBatchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614051736079826944"), @ApiImplicitParam(name = AutoBatchVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "批次2"), @ApiImplicitParam(name = AutoBatchVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AutoBatchVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AutoBatchVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoBatchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614051736079826944"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "批次2"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AutoBatchVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AutoBatchServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoBatchServiceProxy.QUERY_PAGED_LIST)

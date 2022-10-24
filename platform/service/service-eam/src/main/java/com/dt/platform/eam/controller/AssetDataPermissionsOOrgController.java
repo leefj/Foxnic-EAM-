@@ -58,7 +58,11 @@ public class AssetDataPermissionsOOrgController extends SuperController {
      * 添加所属
      */
     @ApiOperation(value = "添加所属")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetDataPermissionsOOrgServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsOOrgServiceProxy.INSERT)
@@ -72,7 +76,9 @@ public class AssetDataPermissionsOOrgController extends SuperController {
      * 删除所属
      */
     @ApiOperation(value = "删除所属")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetDataPermissionsOOrgServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsOOrgServiceProxy.DELETE)
@@ -97,7 +103,9 @@ public class AssetDataPermissionsOOrgController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除所属")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetDataPermissionsOOrgServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsOOrgServiceProxy.DELETE_BY_IDS)
@@ -142,7 +150,11 @@ public class AssetDataPermissionsOOrgController extends SuperController {
      * 更新所属
      */
     @ApiOperation(value = "更新所属")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetDataPermissionsOOrgVOMeta.PAGE_INDEX, AssetDataPermissionsOOrgVOMeta.PAGE_SIZE, AssetDataPermissionsOOrgVOMeta.SEARCH_FIELD, AssetDataPermissionsOOrgVOMeta.FUZZY_FIELD, AssetDataPermissionsOOrgVOMeta.SEARCH_VALUE, AssetDataPermissionsOOrgVOMeta.DIRTY_FIELDS, AssetDataPermissionsOOrgVOMeta.SORT_FIELD, AssetDataPermissionsOOrgVOMeta.SORT_TYPE, AssetDataPermissionsOOrgVOMeta.IDS })
     @SentinelResource(value = AssetDataPermissionsOOrgServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsOOrgServiceProxy.UPDATE)
@@ -156,7 +168,11 @@ public class AssetDataPermissionsOOrgController extends SuperController {
      * 保存所属
      */
     @ApiOperation(value = "保存所属")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetDataPermissionsOOrgVOMeta.PAGE_INDEX, AssetDataPermissionsOOrgVOMeta.PAGE_SIZE, AssetDataPermissionsOOrgVOMeta.SEARCH_FIELD, AssetDataPermissionsOOrgVOMeta.FUZZY_FIELD, AssetDataPermissionsOOrgVOMeta.SEARCH_VALUE, AssetDataPermissionsOOrgVOMeta.DIRTY_FIELDS, AssetDataPermissionsOOrgVOMeta.SORT_FIELD, AssetDataPermissionsOOrgVOMeta.SORT_TYPE, AssetDataPermissionsOOrgVOMeta.IDS })
     @SentinelResource(value = AssetDataPermissionsOOrgServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsOOrgServiceProxy.SAVE)
@@ -170,7 +186,9 @@ public class AssetDataPermissionsOOrgController extends SuperController {
      * 获取所属
      */
     @ApiOperation(value = "获取所属")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetDataPermissionsOOrgServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsOOrgServiceProxy.GET_BY_ID)
@@ -186,7 +204,9 @@ public class AssetDataPermissionsOOrgController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取所属")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetDataPermissionsOOrgServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsOOrgServiceProxy.GET_BY_IDS)
@@ -201,7 +221,11 @@ public class AssetDataPermissionsOOrgController extends SuperController {
      * 查询所属
      */
     @ApiOperation(value = "查询所属")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetDataPermissionsOOrgVOMeta.PAGE_INDEX, AssetDataPermissionsOOrgVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetDataPermissionsOOrgServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsOOrgServiceProxy.QUERY_LIST)
@@ -216,7 +240,11 @@ public class AssetDataPermissionsOOrgController extends SuperController {
      * 分页查询所属
      */
     @ApiOperation(value = "分页查询所属")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsOOrgVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetDataPermissionsOOrgServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsOOrgServiceProxy.QUERY_PAGED_LIST)

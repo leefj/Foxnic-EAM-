@@ -57,7 +57,12 @@ public class InspectionRouteController extends SuperController {
      * 添加巡检路径
      */
     @ApiOperation(value = "添加巡检路径")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionRouteVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584743523325050880"), @ApiImplicitParam(name = InspectionRouteVOMeta.NAME, value = "路径", required = false, dataTypeClass = String.class, example = "默认路线"), @ApiImplicitParam(name = InspectionRouteVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = InspectionRouteVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionRouteVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584743523325050880"),
+		@ApiImplicitParam(name = InspectionRouteVOMeta.NAME, value = "路径", required = false, dataTypeClass = String.class, example = "默认路线"),
+		@ApiImplicitParam(name = InspectionRouteVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = InspectionRouteVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = InspectionRouteServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionRouteServiceProxy.INSERT)
@@ -71,7 +76,9 @@ public class InspectionRouteController extends SuperController {
      * 删除巡检路径
      */
     @ApiOperation(value = "删除巡检路径")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionRouteVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584743523325050880") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionRouteVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584743523325050880")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = InspectionRouteServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionRouteServiceProxy.DELETE)
@@ -85,7 +92,9 @@ public class InspectionRouteController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除巡检路径")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionRouteVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionRouteVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = InspectionRouteServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionRouteServiceProxy.DELETE_BY_IDS)
@@ -98,7 +107,12 @@ public class InspectionRouteController extends SuperController {
      * 更新巡检路径
      */
     @ApiOperation(value = "更新巡检路径")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionRouteVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584743523325050880"), @ApiImplicitParam(name = InspectionRouteVOMeta.NAME, value = "路径", required = false, dataTypeClass = String.class, example = "默认路线"), @ApiImplicitParam(name = InspectionRouteVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = InspectionRouteVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionRouteVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584743523325050880"),
+		@ApiImplicitParam(name = InspectionRouteVOMeta.NAME, value = "路径", required = false, dataTypeClass = String.class, example = "默认路线"),
+		@ApiImplicitParam(name = InspectionRouteVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = InspectionRouteVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { InspectionRouteVOMeta.PAGE_INDEX, InspectionRouteVOMeta.PAGE_SIZE, InspectionRouteVOMeta.SEARCH_FIELD, InspectionRouteVOMeta.FUZZY_FIELD, InspectionRouteVOMeta.SEARCH_VALUE, InspectionRouteVOMeta.DIRTY_FIELDS, InspectionRouteVOMeta.SORT_FIELD, InspectionRouteVOMeta.SORT_TYPE, InspectionRouteVOMeta.IDS })
     @SentinelResource(value = InspectionRouteServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionRouteServiceProxy.UPDATE)
@@ -112,7 +126,12 @@ public class InspectionRouteController extends SuperController {
      * 保存巡检路径
      */
     @ApiOperation(value = "保存巡检路径")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionRouteVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584743523325050880"), @ApiImplicitParam(name = InspectionRouteVOMeta.NAME, value = "路径", required = false, dataTypeClass = String.class, example = "默认路线"), @ApiImplicitParam(name = InspectionRouteVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = InspectionRouteVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionRouteVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584743523325050880"),
+		@ApiImplicitParam(name = InspectionRouteVOMeta.NAME, value = "路径", required = false, dataTypeClass = String.class, example = "默认路线"),
+		@ApiImplicitParam(name = InspectionRouteVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = InspectionRouteVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InspectionRouteVOMeta.PAGE_INDEX, InspectionRouteVOMeta.PAGE_SIZE, InspectionRouteVOMeta.SEARCH_FIELD, InspectionRouteVOMeta.FUZZY_FIELD, InspectionRouteVOMeta.SEARCH_VALUE, InspectionRouteVOMeta.DIRTY_FIELDS, InspectionRouteVOMeta.SORT_FIELD, InspectionRouteVOMeta.SORT_TYPE, InspectionRouteVOMeta.IDS })
     @SentinelResource(value = InspectionRouteServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionRouteServiceProxy.SAVE)
@@ -126,7 +145,9 @@ public class InspectionRouteController extends SuperController {
      * 获取巡检路径
      */
     @ApiOperation(value = "获取巡检路径")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionRouteVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionRouteVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = InspectionRouteServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionRouteServiceProxy.GET_BY_ID)
@@ -142,7 +163,9 @@ public class InspectionRouteController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取巡检路径")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionRouteVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionRouteVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = InspectionRouteServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionRouteServiceProxy.GET_BY_IDS)
@@ -157,7 +180,12 @@ public class InspectionRouteController extends SuperController {
      * 查询巡检路径
      */
     @ApiOperation(value = "查询巡检路径")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionRouteVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584743523325050880"), @ApiImplicitParam(name = InspectionRouteVOMeta.NAME, value = "路径", required = false, dataTypeClass = String.class, example = "默认路线"), @ApiImplicitParam(name = InspectionRouteVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = InspectionRouteVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionRouteVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584743523325050880"),
+		@ApiImplicitParam(name = InspectionRouteVOMeta.NAME, value = "路径", required = false, dataTypeClass = String.class, example = "默认路线"),
+		@ApiImplicitParam(name = InspectionRouteVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = InspectionRouteVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InspectionRouteVOMeta.PAGE_INDEX, InspectionRouteVOMeta.PAGE_SIZE })
     @SentinelResource(value = InspectionRouteServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionRouteServiceProxy.QUERY_LIST)
@@ -172,7 +200,12 @@ public class InspectionRouteController extends SuperController {
      * 分页查询巡检路径
      */
     @ApiOperation(value = "分页查询巡检路径")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionRouteVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584743523325050880"), @ApiImplicitParam(name = InspectionRouteVOMeta.NAME, value = "路径", required = false, dataTypeClass = String.class, example = "默认路线"), @ApiImplicitParam(name = InspectionRouteVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = InspectionRouteVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionRouteVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "584743523325050880"),
+		@ApiImplicitParam(name = InspectionRouteVOMeta.NAME, value = "路径", required = false, dataTypeClass = String.class, example = "默认路线"),
+		@ApiImplicitParam(name = InspectionRouteVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = InspectionRouteVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = InspectionRouteServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionRouteServiceProxy.QUERY_PAGED_LIST)

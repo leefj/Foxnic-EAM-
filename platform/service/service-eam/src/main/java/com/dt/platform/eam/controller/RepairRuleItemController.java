@@ -57,7 +57,11 @@ public class RepairRuleItemController extends SuperController {
      * 添加规则单
      */
     @ApiOperation(value = "添加规则单")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairRuleItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = RepairRuleItemVOMeta.RULE_ID, value = "转发规则", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairRuleItemVOMeta.CATEGORY_TPL_ID, value = "故障内容", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairRuleItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairRuleItemVOMeta.RULE_ID, value = "转发规则", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairRuleItemVOMeta.CATEGORY_TPL_ID, value = "故障内容", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = RepairRuleItemServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairRuleItemServiceProxy.INSERT)
@@ -71,7 +75,9 @@ public class RepairRuleItemController extends SuperController {
      * 删除规则单
      */
     @ApiOperation(value = "删除规则单")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairRuleItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairRuleItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = RepairRuleItemServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairRuleItemServiceProxy.DELETE)
@@ -85,7 +91,9 @@ public class RepairRuleItemController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除规则单")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairRuleItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairRuleItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = RepairRuleItemServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairRuleItemServiceProxy.DELETE_BY_IDS)
@@ -98,7 +106,11 @@ public class RepairRuleItemController extends SuperController {
      * 更新规则单
      */
     @ApiOperation(value = "更新规则单")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairRuleItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = RepairRuleItemVOMeta.RULE_ID, value = "转发规则", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairRuleItemVOMeta.CATEGORY_TPL_ID, value = "故障内容", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairRuleItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairRuleItemVOMeta.RULE_ID, value = "转发规则", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairRuleItemVOMeta.CATEGORY_TPL_ID, value = "故障内容", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { RepairRuleItemVOMeta.PAGE_INDEX, RepairRuleItemVOMeta.PAGE_SIZE, RepairRuleItemVOMeta.SEARCH_FIELD, RepairRuleItemVOMeta.FUZZY_FIELD, RepairRuleItemVOMeta.SEARCH_VALUE, RepairRuleItemVOMeta.DIRTY_FIELDS, RepairRuleItemVOMeta.SORT_FIELD, RepairRuleItemVOMeta.SORT_TYPE, RepairRuleItemVOMeta.IDS })
     @SentinelResource(value = RepairRuleItemServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairRuleItemServiceProxy.UPDATE)
@@ -112,7 +124,11 @@ public class RepairRuleItemController extends SuperController {
      * 保存规则单
      */
     @ApiOperation(value = "保存规则单")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairRuleItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = RepairRuleItemVOMeta.RULE_ID, value = "转发规则", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairRuleItemVOMeta.CATEGORY_TPL_ID, value = "故障内容", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairRuleItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairRuleItemVOMeta.RULE_ID, value = "转发规则", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairRuleItemVOMeta.CATEGORY_TPL_ID, value = "故障内容", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { RepairRuleItemVOMeta.PAGE_INDEX, RepairRuleItemVOMeta.PAGE_SIZE, RepairRuleItemVOMeta.SEARCH_FIELD, RepairRuleItemVOMeta.FUZZY_FIELD, RepairRuleItemVOMeta.SEARCH_VALUE, RepairRuleItemVOMeta.DIRTY_FIELDS, RepairRuleItemVOMeta.SORT_FIELD, RepairRuleItemVOMeta.SORT_TYPE, RepairRuleItemVOMeta.IDS })
     @SentinelResource(value = RepairRuleItemServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairRuleItemServiceProxy.SAVE)
@@ -126,7 +142,9 @@ public class RepairRuleItemController extends SuperController {
      * 获取规则单
      */
     @ApiOperation(value = "获取规则单")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairRuleItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairRuleItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = RepairRuleItemServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairRuleItemServiceProxy.GET_BY_ID)
@@ -142,7 +160,9 @@ public class RepairRuleItemController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取规则单")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairRuleItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairRuleItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = RepairRuleItemServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairRuleItemServiceProxy.GET_BY_IDS)
@@ -157,7 +177,11 @@ public class RepairRuleItemController extends SuperController {
      * 查询规则单
      */
     @ApiOperation(value = "查询规则单")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairRuleItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = RepairRuleItemVOMeta.RULE_ID, value = "转发规则", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairRuleItemVOMeta.CATEGORY_TPL_ID, value = "故障内容", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairRuleItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairRuleItemVOMeta.RULE_ID, value = "转发规则", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairRuleItemVOMeta.CATEGORY_TPL_ID, value = "故障内容", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { RepairRuleItemVOMeta.PAGE_INDEX, RepairRuleItemVOMeta.PAGE_SIZE })
     @SentinelResource(value = RepairRuleItemServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairRuleItemServiceProxy.QUERY_LIST)
@@ -172,7 +196,11 @@ public class RepairRuleItemController extends SuperController {
      * 分页查询规则单
      */
     @ApiOperation(value = "分页查询规则单")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairRuleItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = RepairRuleItemVOMeta.RULE_ID, value = "转发规则", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairRuleItemVOMeta.CATEGORY_TPL_ID, value = "故障内容", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairRuleItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairRuleItemVOMeta.RULE_ID, value = "转发规则", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairRuleItemVOMeta.CATEGORY_TPL_ID, value = "故障内容", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = RepairRuleItemServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairRuleItemServiceProxy.QUERY_PAGED_LIST)

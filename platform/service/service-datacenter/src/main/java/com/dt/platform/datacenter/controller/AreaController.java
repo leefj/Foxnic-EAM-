@@ -58,7 +58,13 @@ public class AreaController extends SuperController {
      * 添加区域
      */
     @ApiOperation(value = "添加区域")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AreaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "565457749140312064"), @ApiImplicitParam(name = AreaVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "datacenter"), @ApiImplicitParam(name = AreaVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "数据中心A"), @ApiImplicitParam(name = AreaVOMeta.POSITION, value = "位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AreaVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AreaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "565457749140312064"),
+		@ApiImplicitParam(name = AreaVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "datacenter"),
+		@ApiImplicitParam(name = AreaVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "数据中心A"),
+		@ApiImplicitParam(name = AreaVOMeta.POSITION, value = "位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AreaVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AreaServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AreaServiceProxy.INSERT)
@@ -72,7 +78,9 @@ public class AreaController extends SuperController {
      * 删除区域
      */
     @ApiOperation(value = "删除区域")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AreaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "565457749140312064") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AreaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "565457749140312064")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AreaServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AreaServiceProxy.DELETE)
@@ -97,7 +105,9 @@ public class AreaController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除区域")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AreaVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AreaVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AreaServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AreaServiceProxy.DELETE_BY_IDS)
@@ -142,7 +152,13 @@ public class AreaController extends SuperController {
      * 更新区域
      */
     @ApiOperation(value = "更新区域")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AreaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "565457749140312064"), @ApiImplicitParam(name = AreaVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "datacenter"), @ApiImplicitParam(name = AreaVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "数据中心A"), @ApiImplicitParam(name = AreaVOMeta.POSITION, value = "位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AreaVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AreaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "565457749140312064"),
+		@ApiImplicitParam(name = AreaVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "datacenter"),
+		@ApiImplicitParam(name = AreaVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "数据中心A"),
+		@ApiImplicitParam(name = AreaVOMeta.POSITION, value = "位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AreaVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AreaVOMeta.PAGE_INDEX, AreaVOMeta.PAGE_SIZE, AreaVOMeta.SEARCH_FIELD, AreaVOMeta.FUZZY_FIELD, AreaVOMeta.SEARCH_VALUE, AreaVOMeta.DIRTY_FIELDS, AreaVOMeta.SORT_FIELD, AreaVOMeta.SORT_TYPE, AreaVOMeta.IDS })
     @SentinelResource(value = AreaServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AreaServiceProxy.UPDATE)
@@ -156,7 +172,13 @@ public class AreaController extends SuperController {
      * 保存区域
      */
     @ApiOperation(value = "保存区域")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AreaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "565457749140312064"), @ApiImplicitParam(name = AreaVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "datacenter"), @ApiImplicitParam(name = AreaVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "数据中心A"), @ApiImplicitParam(name = AreaVOMeta.POSITION, value = "位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AreaVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AreaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "565457749140312064"),
+		@ApiImplicitParam(name = AreaVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "datacenter"),
+		@ApiImplicitParam(name = AreaVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "数据中心A"),
+		@ApiImplicitParam(name = AreaVOMeta.POSITION, value = "位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AreaVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AreaVOMeta.PAGE_INDEX, AreaVOMeta.PAGE_SIZE, AreaVOMeta.SEARCH_FIELD, AreaVOMeta.FUZZY_FIELD, AreaVOMeta.SEARCH_VALUE, AreaVOMeta.DIRTY_FIELDS, AreaVOMeta.SORT_FIELD, AreaVOMeta.SORT_TYPE, AreaVOMeta.IDS })
     @SentinelResource(value = AreaServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AreaServiceProxy.SAVE)
@@ -170,7 +192,9 @@ public class AreaController extends SuperController {
      * 获取区域
      */
     @ApiOperation(value = "获取区域")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AreaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AreaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AreaServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AreaServiceProxy.GET_BY_ID)
@@ -186,7 +210,9 @@ public class AreaController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取区域")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AreaVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AreaVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AreaServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AreaServiceProxy.GET_BY_IDS)
@@ -201,7 +227,13 @@ public class AreaController extends SuperController {
      * 查询区域
      */
     @ApiOperation(value = "查询区域")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AreaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "565457749140312064"), @ApiImplicitParam(name = AreaVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "datacenter"), @ApiImplicitParam(name = AreaVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "数据中心A"), @ApiImplicitParam(name = AreaVOMeta.POSITION, value = "位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AreaVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AreaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "565457749140312064"),
+		@ApiImplicitParam(name = AreaVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "datacenter"),
+		@ApiImplicitParam(name = AreaVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "数据中心A"),
+		@ApiImplicitParam(name = AreaVOMeta.POSITION, value = "位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AreaVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AreaVOMeta.PAGE_INDEX, AreaVOMeta.PAGE_SIZE })
     @SentinelResource(value = AreaServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AreaServiceProxy.QUERY_LIST)
@@ -216,7 +248,13 @@ public class AreaController extends SuperController {
      * 分页查询区域
      */
     @ApiOperation(value = "分页查询区域")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AreaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "565457749140312064"), @ApiImplicitParam(name = AreaVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "datacenter"), @ApiImplicitParam(name = AreaVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "数据中心A"), @ApiImplicitParam(name = AreaVOMeta.POSITION, value = "位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AreaVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AreaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "565457749140312064"),
+		@ApiImplicitParam(name = AreaVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "datacenter"),
+		@ApiImplicitParam(name = AreaVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "数据中心A"),
+		@ApiImplicitParam(name = AreaVOMeta.POSITION, value = "位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AreaVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AreaServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AreaServiceProxy.QUERY_PAGED_LIST)

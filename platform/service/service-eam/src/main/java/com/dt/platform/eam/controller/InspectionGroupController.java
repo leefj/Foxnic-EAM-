@@ -62,7 +62,13 @@ public class InspectionGroupController extends SuperController {
      * 添加巡检班组
      */
     @ApiOperation(value = "添加巡检班组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "571667599155269632"), @ApiImplicitParam(name = InspectionGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "班组1"), @ApiImplicitParam(name = InspectionGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = InspectionGroupVOMeta.LEADER_ID, value = "负责人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "班组2") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "571667599155269632"),
+		@ApiImplicitParam(name = InspectionGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "班组1"),
+		@ApiImplicitParam(name = InspectionGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = InspectionGroupVOMeta.LEADER_ID, value = "负责人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "班组2")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = InspectionGroupServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionGroupServiceProxy.INSERT)
@@ -76,7 +82,9 @@ public class InspectionGroupController extends SuperController {
      * 删除巡检班组
      */
     @ApiOperation(value = "删除巡检班组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "571667599155269632") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "571667599155269632")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = InspectionGroupServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionGroupServiceProxy.DELETE)
@@ -90,7 +98,9 @@ public class InspectionGroupController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除巡检班组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionGroupVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionGroupVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = InspectionGroupServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionGroupServiceProxy.DELETE_BY_IDS)
@@ -103,7 +113,13 @@ public class InspectionGroupController extends SuperController {
      * 更新巡检班组
      */
     @ApiOperation(value = "更新巡检班组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "571667599155269632"), @ApiImplicitParam(name = InspectionGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "班组1"), @ApiImplicitParam(name = InspectionGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = InspectionGroupVOMeta.LEADER_ID, value = "负责人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "班组2") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "571667599155269632"),
+		@ApiImplicitParam(name = InspectionGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "班组1"),
+		@ApiImplicitParam(name = InspectionGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = InspectionGroupVOMeta.LEADER_ID, value = "负责人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "班组2")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { InspectionGroupVOMeta.PAGE_INDEX, InspectionGroupVOMeta.PAGE_SIZE, InspectionGroupVOMeta.SEARCH_FIELD, InspectionGroupVOMeta.FUZZY_FIELD, InspectionGroupVOMeta.SEARCH_VALUE, InspectionGroupVOMeta.DIRTY_FIELDS, InspectionGroupVOMeta.SORT_FIELD, InspectionGroupVOMeta.SORT_TYPE, InspectionGroupVOMeta.IDS })
     @SentinelResource(value = InspectionGroupServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionGroupServiceProxy.UPDATE)
@@ -117,7 +133,13 @@ public class InspectionGroupController extends SuperController {
      * 保存巡检班组
      */
     @ApiOperation(value = "保存巡检班组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "571667599155269632"), @ApiImplicitParam(name = InspectionGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "班组1"), @ApiImplicitParam(name = InspectionGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = InspectionGroupVOMeta.LEADER_ID, value = "负责人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "班组2") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "571667599155269632"),
+		@ApiImplicitParam(name = InspectionGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "班组1"),
+		@ApiImplicitParam(name = InspectionGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = InspectionGroupVOMeta.LEADER_ID, value = "负责人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "班组2")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InspectionGroupVOMeta.PAGE_INDEX, InspectionGroupVOMeta.PAGE_SIZE, InspectionGroupVOMeta.SEARCH_FIELD, InspectionGroupVOMeta.FUZZY_FIELD, InspectionGroupVOMeta.SEARCH_VALUE, InspectionGroupVOMeta.DIRTY_FIELDS, InspectionGroupVOMeta.SORT_FIELD, InspectionGroupVOMeta.SORT_TYPE, InspectionGroupVOMeta.IDS })
     @SentinelResource(value = InspectionGroupServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionGroupServiceProxy.SAVE)
@@ -131,7 +153,9 @@ public class InspectionGroupController extends SuperController {
      * 获取巡检班组
      */
     @ApiOperation(value = "获取巡检班组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = InspectionGroupServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionGroupServiceProxy.GET_BY_ID)
@@ -151,7 +175,9 @@ public class InspectionGroupController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取巡检班组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionGroupVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionGroupVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = InspectionGroupServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionGroupServiceProxy.GET_BY_IDS)
@@ -166,7 +192,13 @@ public class InspectionGroupController extends SuperController {
      * 查询巡检班组
      */
     @ApiOperation(value = "查询巡检班组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "571667599155269632"), @ApiImplicitParam(name = InspectionGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "班组1"), @ApiImplicitParam(name = InspectionGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = InspectionGroupVOMeta.LEADER_ID, value = "负责人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "班组2") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "571667599155269632"),
+		@ApiImplicitParam(name = InspectionGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "班组1"),
+		@ApiImplicitParam(name = InspectionGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = InspectionGroupVOMeta.LEADER_ID, value = "负责人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "班组2")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InspectionGroupVOMeta.PAGE_INDEX, InspectionGroupVOMeta.PAGE_SIZE })
     @SentinelResource(value = InspectionGroupServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionGroupServiceProxy.QUERY_LIST)
@@ -181,7 +213,13 @@ public class InspectionGroupController extends SuperController {
      * 分页查询巡检班组
      */
     @ApiOperation(value = "分页查询巡检班组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "571667599155269632"), @ApiImplicitParam(name = InspectionGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "班组1"), @ApiImplicitParam(name = InspectionGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = InspectionGroupVOMeta.LEADER_ID, value = "负责人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "班组2") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "571667599155269632"),
+		@ApiImplicitParam(name = InspectionGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "班组1"),
+		@ApiImplicitParam(name = InspectionGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = InspectionGroupVOMeta.LEADER_ID, value = "负责人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "班组2")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = InspectionGroupServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionGroupServiceProxy.QUERY_PAGED_LIST)

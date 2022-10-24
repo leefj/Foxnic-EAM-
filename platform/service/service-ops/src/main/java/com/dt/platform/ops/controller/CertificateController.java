@@ -61,7 +61,19 @@ public class CertificateController extends SuperController {
      * 添加证书
      */
     @ApiOperation(value = "添加证书")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.PROJECT, value = "项目", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.POSITION_ID, value = "位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.START_DATE, value = "开始时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CertificateVOMeta.END_DATE, value = "结束时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CertificateVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.PROJECT, value = "项目", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.POSITION_ID, value = "位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.START_DATE, value = "开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CertificateVOMeta.END_DATE, value = "结束时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CertificateVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = CertificateServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificateServiceProxy.INSERT)
@@ -75,7 +87,9 @@ public class CertificateController extends SuperController {
      * 删除证书
      */
     @ApiOperation(value = "删除证书")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = CertificateServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificateServiceProxy.DELETE)
@@ -89,7 +103,9 @@ public class CertificateController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除证书")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificateVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificateVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = CertificateServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificateServiceProxy.DELETE_BY_IDS)
@@ -102,7 +118,19 @@ public class CertificateController extends SuperController {
      * 更新证书
      */
     @ApiOperation(value = "更新证书")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.PROJECT, value = "项目", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.POSITION_ID, value = "位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.START_DATE, value = "开始时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CertificateVOMeta.END_DATE, value = "结束时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CertificateVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.PROJECT, value = "项目", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.POSITION_ID, value = "位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.START_DATE, value = "开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CertificateVOMeta.END_DATE, value = "结束时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CertificateVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { CertificateVOMeta.PAGE_INDEX, CertificateVOMeta.PAGE_SIZE, CertificateVOMeta.SEARCH_FIELD, CertificateVOMeta.FUZZY_FIELD, CertificateVOMeta.SEARCH_VALUE, CertificateVOMeta.DIRTY_FIELDS, CertificateVOMeta.SORT_FIELD, CertificateVOMeta.SORT_TYPE, CertificateVOMeta.IDS })
     @SentinelResource(value = CertificateServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificateServiceProxy.UPDATE)
@@ -116,7 +144,19 @@ public class CertificateController extends SuperController {
      * 保存证书
      */
     @ApiOperation(value = "保存证书")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.PROJECT, value = "项目", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.POSITION_ID, value = "位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.START_DATE, value = "开始时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CertificateVOMeta.END_DATE, value = "结束时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CertificateVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.PROJECT, value = "项目", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.POSITION_ID, value = "位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.START_DATE, value = "开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CertificateVOMeta.END_DATE, value = "结束时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CertificateVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { CertificateVOMeta.PAGE_INDEX, CertificateVOMeta.PAGE_SIZE, CertificateVOMeta.SEARCH_FIELD, CertificateVOMeta.FUZZY_FIELD, CertificateVOMeta.SEARCH_VALUE, CertificateVOMeta.DIRTY_FIELDS, CertificateVOMeta.SORT_FIELD, CertificateVOMeta.SORT_TYPE, CertificateVOMeta.IDS })
     @SentinelResource(value = CertificateServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificateServiceProxy.SAVE)
@@ -130,7 +170,9 @@ public class CertificateController extends SuperController {
      * 获取证书
      */
     @ApiOperation(value = "获取证书")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = CertificateServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificateServiceProxy.GET_BY_ID)
@@ -149,7 +191,9 @@ public class CertificateController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取证书")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificateVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificateVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = CertificateServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificateServiceProxy.GET_BY_IDS)
@@ -164,7 +208,19 @@ public class CertificateController extends SuperController {
      * 查询证书
      */
     @ApiOperation(value = "查询证书")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.PROJECT, value = "项目", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.POSITION_ID, value = "位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.START_DATE, value = "开始时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CertificateVOMeta.END_DATE, value = "结束时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CertificateVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.PROJECT, value = "项目", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.POSITION_ID, value = "位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.START_DATE, value = "开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CertificateVOMeta.END_DATE, value = "结束时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CertificateVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { CertificateVOMeta.PAGE_INDEX, CertificateVOMeta.PAGE_SIZE })
     @SentinelResource(value = CertificateServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificateServiceProxy.QUERY_LIST)
@@ -179,7 +235,19 @@ public class CertificateController extends SuperController {
      * 分页查询证书
      */
     @ApiOperation(value = "分页查询证书")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.PROJECT, value = "项目", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.POSITION_ID, value = "位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.START_DATE, value = "开始时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CertificateVOMeta.END_DATE, value = "结束时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CertificateVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.PROJECT, value = "项目", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.POSITION_ID, value = "位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.START_DATE, value = "开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CertificateVOMeta.END_DATE, value = "结束时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CertificateVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = CertificateServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificateServiceProxy.QUERY_PAGED_LIST)

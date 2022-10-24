@@ -57,7 +57,13 @@ public class ApproveConfigureController extends SuperController {
      * 添加资产审批配置
      */
     @ApiOperation(value = "添加资产审批配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ApproveConfigureVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = ApproveConfigureVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "资产借用"), @ApiImplicitParam(name = ApproveConfigureVOMeta.APPROVAL_TYPE, value = "审批类型", required = false, dataTypeClass = String.class, example = "borrow"), @ApiImplicitParam(name = ApproveConfigureVOMeta.APPROVAL_STATUS, value = "审批状态", required = false, dataTypeClass = String.class, example = "0"), @ApiImplicitParam(name = ApproveConfigureVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "资产借用"),
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.APPROVAL_TYPE, value = "审批类型", required = false, dataTypeClass = String.class, example = "borrow"),
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.APPROVAL_STATUS, value = "审批状态", required = false, dataTypeClass = String.class, example = "0"),
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = ApproveConfigureServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ApproveConfigureServiceProxy.INSERT)
@@ -71,7 +77,9 @@ public class ApproveConfigureController extends SuperController {
      * 删除资产审批配置
      */
     @ApiOperation(value = "删除资产审批配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ApproveConfigureVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = ApproveConfigureServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ApproveConfigureServiceProxy.DELETE)
@@ -85,7 +93,9 @@ public class ApproveConfigureController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产审批配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ApproveConfigureVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ApproveConfigureServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ApproveConfigureServiceProxy.DELETE_BY_IDS)
@@ -98,7 +108,13 @@ public class ApproveConfigureController extends SuperController {
      * 更新资产审批配置
      */
     @ApiOperation(value = "更新资产审批配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ApproveConfigureVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = ApproveConfigureVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "资产借用"), @ApiImplicitParam(name = ApproveConfigureVOMeta.APPROVAL_TYPE, value = "审批类型", required = false, dataTypeClass = String.class, example = "borrow"), @ApiImplicitParam(name = ApproveConfigureVOMeta.APPROVAL_STATUS, value = "审批状态", required = false, dataTypeClass = String.class, example = "0"), @ApiImplicitParam(name = ApproveConfigureVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "资产借用"),
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.APPROVAL_TYPE, value = "审批类型", required = false, dataTypeClass = String.class, example = "borrow"),
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.APPROVAL_STATUS, value = "审批状态", required = false, dataTypeClass = String.class, example = "0"),
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { ApproveConfigureVOMeta.PAGE_INDEX, ApproveConfigureVOMeta.PAGE_SIZE, ApproveConfigureVOMeta.SEARCH_FIELD, ApproveConfigureVOMeta.FUZZY_FIELD, ApproveConfigureVOMeta.SEARCH_VALUE, ApproveConfigureVOMeta.SORT_FIELD, ApproveConfigureVOMeta.SORT_TYPE, ApproveConfigureVOMeta.IDS })
     @SentinelResource(value = ApproveConfigureServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ApproveConfigureServiceProxy.UPDATE)
@@ -112,7 +128,13 @@ public class ApproveConfigureController extends SuperController {
      * 保存资产审批配置
      */
     @ApiOperation(value = "保存资产审批配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ApproveConfigureVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = ApproveConfigureVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "资产借用"), @ApiImplicitParam(name = ApproveConfigureVOMeta.APPROVAL_TYPE, value = "审批类型", required = false, dataTypeClass = String.class, example = "borrow"), @ApiImplicitParam(name = ApproveConfigureVOMeta.APPROVAL_STATUS, value = "审批状态", required = false, dataTypeClass = String.class, example = "0"), @ApiImplicitParam(name = ApproveConfigureVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "资产借用"),
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.APPROVAL_TYPE, value = "审批类型", required = false, dataTypeClass = String.class, example = "borrow"),
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.APPROVAL_STATUS, value = "审批状态", required = false, dataTypeClass = String.class, example = "0"),
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ApproveConfigureVOMeta.PAGE_INDEX, ApproveConfigureVOMeta.PAGE_SIZE, ApproveConfigureVOMeta.SEARCH_FIELD, ApproveConfigureVOMeta.FUZZY_FIELD, ApproveConfigureVOMeta.SEARCH_VALUE, ApproveConfigureVOMeta.SORT_FIELD, ApproveConfigureVOMeta.SORT_TYPE, ApproveConfigureVOMeta.IDS })
     @SentinelResource(value = ApproveConfigureServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ApproveConfigureServiceProxy.SAVE)
@@ -126,7 +148,9 @@ public class ApproveConfigureController extends SuperController {
      * 获取资产审批配置
      */
     @ApiOperation(value = "获取资产审批配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ApproveConfigureVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = ApproveConfigureServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ApproveConfigureServiceProxy.GET_BY_ID)
@@ -144,7 +168,9 @@ public class ApproveConfigureController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取资产审批配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ApproveConfigureVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ApproveConfigureServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ApproveConfigureServiceProxy.GET_BY_IDS)
@@ -159,7 +185,13 @@ public class ApproveConfigureController extends SuperController {
      * 查询资产审批配置
      */
     @ApiOperation(value = "查询资产审批配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ApproveConfigureVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = ApproveConfigureVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "资产借用"), @ApiImplicitParam(name = ApproveConfigureVOMeta.APPROVAL_TYPE, value = "审批类型", required = false, dataTypeClass = String.class, example = "borrow"), @ApiImplicitParam(name = ApproveConfigureVOMeta.APPROVAL_STATUS, value = "审批状态", required = false, dataTypeClass = String.class, example = "0"), @ApiImplicitParam(name = ApproveConfigureVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "资产借用"),
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.APPROVAL_TYPE, value = "审批类型", required = false, dataTypeClass = String.class, example = "borrow"),
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.APPROVAL_STATUS, value = "审批状态", required = false, dataTypeClass = String.class, example = "0"),
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ApproveConfigureVOMeta.PAGE_INDEX, ApproveConfigureVOMeta.PAGE_SIZE })
     @SentinelResource(value = ApproveConfigureServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ApproveConfigureServiceProxy.QUERY_LIST)
@@ -174,7 +206,13 @@ public class ApproveConfigureController extends SuperController {
      * 分页查询资产审批配置
      */
     @ApiOperation(value = "分页查询资产审批配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ApproveConfigureVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = ApproveConfigureVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "资产借用"), @ApiImplicitParam(name = ApproveConfigureVOMeta.APPROVAL_TYPE, value = "审批类型", required = false, dataTypeClass = String.class, example = "borrow"), @ApiImplicitParam(name = ApproveConfigureVOMeta.APPROVAL_STATUS, value = "审批状态", required = false, dataTypeClass = String.class, example = "0"), @ApiImplicitParam(name = ApproveConfigureVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "资产借用"),
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.APPROVAL_TYPE, value = "审批类型", required = false, dataTypeClass = String.class, example = "borrow"),
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.APPROVAL_STATUS, value = "审批状态", required = false, dataTypeClass = String.class, example = "0"),
+		@ApiImplicitParam(name = ApproveConfigureVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = ApproveConfigureServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ApproveConfigureServiceProxy.QUERY_PAGED_LIST)

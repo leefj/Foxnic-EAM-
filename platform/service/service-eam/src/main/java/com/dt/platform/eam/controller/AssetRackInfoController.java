@@ -61,7 +61,25 @@ public class AssetRackInfoController extends SuperController {
      * 添加机柜
      */
     @ApiOperation(value = "添加机柜")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRackInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.ENVIRONMENT, value = "环境", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_USED_TYPE, value = "使用分类", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_CAPTICAL, value = "容量", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.U_POSTION_NUMBER, value = "U位数量", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.PDU_NUMBER, value = "PDU数量", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.JUMPER_NUMBER, value = "跳线数", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.CONTRACT_POWER, value = "合同电力", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.EQUIPMENT_NUMBER, value = "设备数量", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.EXPIRE_DATE, value = "到期日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_LABEL1, value = "标签1", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_LABEL2, value = "标签2", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.ENVIRONMENT, value = "环境", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_USED_TYPE, value = "使用分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_CAPTICAL, value = "容量", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.U_POSTION_NUMBER, value = "U位数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.PDU_NUMBER, value = "PDU数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.JUMPER_NUMBER, value = "跳线数", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.CONTRACT_POWER, value = "合同电力", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.EQUIPMENT_NUMBER, value = "设备数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.EXPIRE_DATE, value = "到期日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_LABEL1, value = "标签1", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_LABEL2, value = "标签2", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetRackInfoServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRackInfoServiceProxy.INSERT)
@@ -75,7 +93,9 @@ public class AssetRackInfoController extends SuperController {
      * 删除机柜
      */
     @ApiOperation(value = "删除机柜")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRackInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetRackInfoServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRackInfoServiceProxy.DELETE)
@@ -100,7 +120,9 @@ public class AssetRackInfoController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除机柜")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRackInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetRackInfoServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRackInfoServiceProxy.DELETE_BY_IDS)
@@ -145,7 +167,25 @@ public class AssetRackInfoController extends SuperController {
      * 更新机柜
      */
     @ApiOperation(value = "更新机柜")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRackInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.ENVIRONMENT, value = "环境", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_USED_TYPE, value = "使用分类", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_CAPTICAL, value = "容量", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.U_POSTION_NUMBER, value = "U位数量", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.PDU_NUMBER, value = "PDU数量", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.JUMPER_NUMBER, value = "跳线数", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.CONTRACT_POWER, value = "合同电力", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.EQUIPMENT_NUMBER, value = "设备数量", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.EXPIRE_DATE, value = "到期日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_LABEL1, value = "标签1", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_LABEL2, value = "标签2", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.ENVIRONMENT, value = "环境", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_USED_TYPE, value = "使用分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_CAPTICAL, value = "容量", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.U_POSTION_NUMBER, value = "U位数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.PDU_NUMBER, value = "PDU数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.JUMPER_NUMBER, value = "跳线数", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.CONTRACT_POWER, value = "合同电力", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.EQUIPMENT_NUMBER, value = "设备数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.EXPIRE_DATE, value = "到期日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_LABEL1, value = "标签1", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_LABEL2, value = "标签2", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetRackInfoVOMeta.PAGE_INDEX, AssetRackInfoVOMeta.PAGE_SIZE, AssetRackInfoVOMeta.SEARCH_FIELD, AssetRackInfoVOMeta.FUZZY_FIELD, AssetRackInfoVOMeta.SEARCH_VALUE, AssetRackInfoVOMeta.DIRTY_FIELDS, AssetRackInfoVOMeta.SORT_FIELD, AssetRackInfoVOMeta.SORT_TYPE, AssetRackInfoVOMeta.IDS })
     @SentinelResource(value = AssetRackInfoServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRackInfoServiceProxy.UPDATE)
@@ -159,7 +199,25 @@ public class AssetRackInfoController extends SuperController {
      * 保存机柜
      */
     @ApiOperation(value = "保存机柜")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRackInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.ENVIRONMENT, value = "环境", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_USED_TYPE, value = "使用分类", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_CAPTICAL, value = "容量", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.U_POSTION_NUMBER, value = "U位数量", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.PDU_NUMBER, value = "PDU数量", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.JUMPER_NUMBER, value = "跳线数", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.CONTRACT_POWER, value = "合同电力", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.EQUIPMENT_NUMBER, value = "设备数量", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.EXPIRE_DATE, value = "到期日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_LABEL1, value = "标签1", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_LABEL2, value = "标签2", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.ENVIRONMENT, value = "环境", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_USED_TYPE, value = "使用分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_CAPTICAL, value = "容量", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.U_POSTION_NUMBER, value = "U位数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.PDU_NUMBER, value = "PDU数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.JUMPER_NUMBER, value = "跳线数", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.CONTRACT_POWER, value = "合同电力", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.EQUIPMENT_NUMBER, value = "设备数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.EXPIRE_DATE, value = "到期日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_LABEL1, value = "标签1", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_LABEL2, value = "标签2", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetRackInfoVOMeta.PAGE_INDEX, AssetRackInfoVOMeta.PAGE_SIZE, AssetRackInfoVOMeta.SEARCH_FIELD, AssetRackInfoVOMeta.FUZZY_FIELD, AssetRackInfoVOMeta.SEARCH_VALUE, AssetRackInfoVOMeta.DIRTY_FIELDS, AssetRackInfoVOMeta.SORT_FIELD, AssetRackInfoVOMeta.SORT_TYPE, AssetRackInfoVOMeta.IDS })
     @SentinelResource(value = AssetRackInfoServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRackInfoServiceProxy.SAVE)
@@ -173,7 +231,9 @@ public class AssetRackInfoController extends SuperController {
      * 获取机柜
      */
     @ApiOperation(value = "获取机柜")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRackInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetRackInfoServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRackInfoServiceProxy.GET_BY_ID)
@@ -191,7 +251,9 @@ public class AssetRackInfoController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取机柜")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRackInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetRackInfoServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRackInfoServiceProxy.GET_BY_IDS)
@@ -206,7 +268,25 @@ public class AssetRackInfoController extends SuperController {
      * 查询机柜
      */
     @ApiOperation(value = "查询机柜")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRackInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.ENVIRONMENT, value = "环境", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_USED_TYPE, value = "使用分类", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_CAPTICAL, value = "容量", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.U_POSTION_NUMBER, value = "U位数量", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.PDU_NUMBER, value = "PDU数量", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.JUMPER_NUMBER, value = "跳线数", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.CONTRACT_POWER, value = "合同电力", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.EQUIPMENT_NUMBER, value = "设备数量", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.EXPIRE_DATE, value = "到期日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_LABEL1, value = "标签1", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_LABEL2, value = "标签2", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.ENVIRONMENT, value = "环境", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_USED_TYPE, value = "使用分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_CAPTICAL, value = "容量", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.U_POSTION_NUMBER, value = "U位数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.PDU_NUMBER, value = "PDU数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.JUMPER_NUMBER, value = "跳线数", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.CONTRACT_POWER, value = "合同电力", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.EQUIPMENT_NUMBER, value = "设备数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.EXPIRE_DATE, value = "到期日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_LABEL1, value = "标签1", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_LABEL2, value = "标签2", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetRackInfoVOMeta.PAGE_INDEX, AssetRackInfoVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetRackInfoServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRackInfoServiceProxy.QUERY_LIST)
@@ -221,7 +301,25 @@ public class AssetRackInfoController extends SuperController {
      * 分页查询机柜
      */
     @ApiOperation(value = "分页查询机柜")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRackInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.ENVIRONMENT, value = "环境", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_USED_TYPE, value = "使用分类", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_CAPTICAL, value = "容量", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.U_POSTION_NUMBER, value = "U位数量", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.PDU_NUMBER, value = "PDU数量", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.JUMPER_NUMBER, value = "跳线数", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.CONTRACT_POWER, value = "合同电力", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.EQUIPMENT_NUMBER, value = "设备数量", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.EXPIRE_DATE, value = "到期日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_LABEL1, value = "标签1", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_LABEL2, value = "标签2", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.ENVIRONMENT, value = "环境", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_USED_TYPE, value = "使用分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_CAPTICAL, value = "容量", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.U_POSTION_NUMBER, value = "U位数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.PDU_NUMBER, value = "PDU数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.JUMPER_NUMBER, value = "跳线数", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.CONTRACT_POWER, value = "合同电力", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.EQUIPMENT_NUMBER, value = "设备数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.EXPIRE_DATE, value = "到期日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_LABEL1, value = "标签1", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_LABEL2, value = "标签2", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackInfoVOMeta.RACK_NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetRackInfoServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRackInfoServiceProxy.QUERY_PAGED_LIST)

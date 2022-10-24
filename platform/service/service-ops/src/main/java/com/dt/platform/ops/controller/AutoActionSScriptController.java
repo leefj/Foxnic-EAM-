@@ -58,7 +58,11 @@ public class AutoActionSScriptController extends SuperController {
      * 添加脚本选择
      */
     @ApiOperation(value = "添加脚本选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionSScriptVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionSScriptVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionSScriptVOMeta.SCRIPT_ID, value = "文件", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionSScriptVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionSScriptVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionSScriptVOMeta.SCRIPT_ID, value = "文件", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AutoActionSScriptServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionSScriptServiceProxy.INSERT)
@@ -72,7 +76,9 @@ public class AutoActionSScriptController extends SuperController {
      * 删除脚本选择
      */
     @ApiOperation(value = "删除脚本选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionSScriptVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionSScriptVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AutoActionSScriptServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionSScriptServiceProxy.DELETE)
@@ -97,7 +103,9 @@ public class AutoActionSScriptController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除脚本选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionSScriptVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionSScriptVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoActionSScriptServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionSScriptServiceProxy.DELETE_BY_IDS)
@@ -142,7 +150,11 @@ public class AutoActionSScriptController extends SuperController {
      * 更新脚本选择
      */
     @ApiOperation(value = "更新脚本选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionSScriptVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionSScriptVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionSScriptVOMeta.SCRIPT_ID, value = "文件", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionSScriptVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionSScriptVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionSScriptVOMeta.SCRIPT_ID, value = "文件", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AutoActionSScriptVOMeta.PAGE_INDEX, AutoActionSScriptVOMeta.PAGE_SIZE, AutoActionSScriptVOMeta.SEARCH_FIELD, AutoActionSScriptVOMeta.FUZZY_FIELD, AutoActionSScriptVOMeta.SEARCH_VALUE, AutoActionSScriptVOMeta.DIRTY_FIELDS, AutoActionSScriptVOMeta.SORT_FIELD, AutoActionSScriptVOMeta.SORT_TYPE, AutoActionSScriptVOMeta.IDS })
     @SentinelResource(value = AutoActionSScriptServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionSScriptServiceProxy.UPDATE)
@@ -156,7 +168,11 @@ public class AutoActionSScriptController extends SuperController {
      * 保存脚本选择
      */
     @ApiOperation(value = "保存脚本选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionSScriptVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionSScriptVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionSScriptVOMeta.SCRIPT_ID, value = "文件", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionSScriptVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionSScriptVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionSScriptVOMeta.SCRIPT_ID, value = "文件", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoActionSScriptVOMeta.PAGE_INDEX, AutoActionSScriptVOMeta.PAGE_SIZE, AutoActionSScriptVOMeta.SEARCH_FIELD, AutoActionSScriptVOMeta.FUZZY_FIELD, AutoActionSScriptVOMeta.SEARCH_VALUE, AutoActionSScriptVOMeta.DIRTY_FIELDS, AutoActionSScriptVOMeta.SORT_FIELD, AutoActionSScriptVOMeta.SORT_TYPE, AutoActionSScriptVOMeta.IDS })
     @SentinelResource(value = AutoActionSScriptServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionSScriptServiceProxy.SAVE)
@@ -170,7 +186,9 @@ public class AutoActionSScriptController extends SuperController {
      * 获取脚本选择
      */
     @ApiOperation(value = "获取脚本选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionSScriptVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionSScriptVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AutoActionSScriptServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionSScriptServiceProxy.GET_BY_ID)
@@ -186,7 +204,9 @@ public class AutoActionSScriptController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取脚本选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionSScriptVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionSScriptVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoActionSScriptServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionSScriptServiceProxy.GET_BY_IDS)
@@ -201,7 +221,11 @@ public class AutoActionSScriptController extends SuperController {
      * 查询脚本选择
      */
     @ApiOperation(value = "查询脚本选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionSScriptVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionSScriptVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionSScriptVOMeta.SCRIPT_ID, value = "文件", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionSScriptVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionSScriptVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionSScriptVOMeta.SCRIPT_ID, value = "文件", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoActionSScriptVOMeta.PAGE_INDEX, AutoActionSScriptVOMeta.PAGE_SIZE })
     @SentinelResource(value = AutoActionSScriptServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionSScriptServiceProxy.QUERY_LIST)
@@ -216,7 +240,11 @@ public class AutoActionSScriptController extends SuperController {
      * 分页查询脚本选择
      */
     @ApiOperation(value = "分页查询脚本选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionSScriptVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionSScriptVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionSScriptVOMeta.SCRIPT_ID, value = "文件", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionSScriptVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionSScriptVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionSScriptVOMeta.SCRIPT_ID, value = "文件", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AutoActionSScriptServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionSScriptServiceProxy.QUERY_PAGED_LIST)

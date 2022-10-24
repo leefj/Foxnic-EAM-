@@ -57,7 +57,12 @@ public class CategoryController extends SuperController {
      * 添加类型
      */
     @ApiOperation(value = "添加类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CategoryVOMeta.ID, value = "ID", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CategoryVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CategoryVOMeta.CODE, value = "代码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CategoryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CategoryVOMeta.ID, value = "ID", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CategoryVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CategoryVOMeta.CODE, value = "代码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CategoryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = CategoryServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CategoryServiceProxy.INSERT)
@@ -71,7 +76,9 @@ public class CategoryController extends SuperController {
      * 删除类型
      */
     @ApiOperation(value = "删除类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CategoryVOMeta.ID, value = "ID", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CategoryVOMeta.ID, value = "ID", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = CategoryServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CategoryServiceProxy.DELETE)
@@ -85,7 +92,9 @@ public class CategoryController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CategoryVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CategoryVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = CategoryServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CategoryServiceProxy.DELETE_BY_IDS)
@@ -98,7 +107,12 @@ public class CategoryController extends SuperController {
      * 更新类型
      */
     @ApiOperation(value = "更新类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CategoryVOMeta.ID, value = "ID", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CategoryVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CategoryVOMeta.CODE, value = "代码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CategoryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CategoryVOMeta.ID, value = "ID", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CategoryVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CategoryVOMeta.CODE, value = "代码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CategoryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { CategoryVOMeta.PAGE_INDEX, CategoryVOMeta.PAGE_SIZE, CategoryVOMeta.SEARCH_FIELD, CategoryVOMeta.FUZZY_FIELD, CategoryVOMeta.SEARCH_VALUE, CategoryVOMeta.DIRTY_FIELDS, CategoryVOMeta.SORT_FIELD, CategoryVOMeta.SORT_TYPE, CategoryVOMeta.IDS })
     @SentinelResource(value = CategoryServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CategoryServiceProxy.UPDATE)
@@ -112,7 +126,12 @@ public class CategoryController extends SuperController {
      * 保存类型
      */
     @ApiOperation(value = "保存类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CategoryVOMeta.ID, value = "ID", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CategoryVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CategoryVOMeta.CODE, value = "代码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CategoryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CategoryVOMeta.ID, value = "ID", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CategoryVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CategoryVOMeta.CODE, value = "代码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CategoryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { CategoryVOMeta.PAGE_INDEX, CategoryVOMeta.PAGE_SIZE, CategoryVOMeta.SEARCH_FIELD, CategoryVOMeta.FUZZY_FIELD, CategoryVOMeta.SEARCH_VALUE, CategoryVOMeta.DIRTY_FIELDS, CategoryVOMeta.SORT_FIELD, CategoryVOMeta.SORT_TYPE, CategoryVOMeta.IDS })
     @SentinelResource(value = CategoryServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CategoryServiceProxy.SAVE)
@@ -126,7 +145,9 @@ public class CategoryController extends SuperController {
      * 获取类型
      */
     @ApiOperation(value = "获取类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = CategoryServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CategoryServiceProxy.GET_BY_ID)
@@ -142,7 +163,9 @@ public class CategoryController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CategoryVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CategoryVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = CategoryServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CategoryServiceProxy.GET_BY_IDS)
@@ -157,7 +180,12 @@ public class CategoryController extends SuperController {
      * 查询类型
      */
     @ApiOperation(value = "查询类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CategoryVOMeta.ID, value = "ID", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CategoryVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CategoryVOMeta.CODE, value = "代码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CategoryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CategoryVOMeta.ID, value = "ID", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CategoryVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CategoryVOMeta.CODE, value = "代码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CategoryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { CategoryVOMeta.PAGE_INDEX, CategoryVOMeta.PAGE_SIZE })
     @SentinelResource(value = CategoryServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CategoryServiceProxy.QUERY_LIST)
@@ -172,7 +200,12 @@ public class CategoryController extends SuperController {
      * 分页查询类型
      */
     @ApiOperation(value = "分页查询类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CategoryVOMeta.ID, value = "ID", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CategoryVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CategoryVOMeta.CODE, value = "代码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CategoryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CategoryVOMeta.ID, value = "ID", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CategoryVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CategoryVOMeta.CODE, value = "代码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CategoryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = CategoryServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CategoryServiceProxy.QUERY_PAGED_LIST)

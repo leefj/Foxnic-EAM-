@@ -59,7 +59,13 @@ public class LayerController extends SuperController {
      * 添加层级
      */
     @ApiOperation(value = "添加层级")
-    @ApiImplicitParams({ @ApiImplicitParam(name = LayerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "565457784187916288"), @ApiImplicitParam(name = LayerVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "楼层1"), @ApiImplicitParam(name = LayerVOMeta.AREA_ID, value = "区域", required = false, dataTypeClass = String.class, example = "575433967289761792"), @ApiImplicitParam(name = LayerVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = LayerVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = LayerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "565457784187916288"),
+		@ApiImplicitParam(name = LayerVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "楼层1"),
+		@ApiImplicitParam(name = LayerVOMeta.AREA_ID, value = "区域", required = false, dataTypeClass = String.class, example = "575433967289761792"),
+		@ApiImplicitParam(name = LayerVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = LayerVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = LayerServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(LayerServiceProxy.INSERT)
@@ -73,7 +79,9 @@ public class LayerController extends SuperController {
      * 删除层级
      */
     @ApiOperation(value = "删除层级")
-    @ApiImplicitParams({ @ApiImplicitParam(name = LayerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "565457784187916288") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = LayerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "565457784187916288")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = LayerServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(LayerServiceProxy.DELETE)
@@ -98,7 +106,9 @@ public class LayerController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除层级")
-    @ApiImplicitParams({ @ApiImplicitParam(name = LayerVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = LayerVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = LayerServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(LayerServiceProxy.DELETE_BY_IDS)
@@ -143,7 +153,13 @@ public class LayerController extends SuperController {
      * 更新层级
      */
     @ApiOperation(value = "更新层级")
-    @ApiImplicitParams({ @ApiImplicitParam(name = LayerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "565457784187916288"), @ApiImplicitParam(name = LayerVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "楼层1"), @ApiImplicitParam(name = LayerVOMeta.AREA_ID, value = "区域", required = false, dataTypeClass = String.class, example = "575433967289761792"), @ApiImplicitParam(name = LayerVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = LayerVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = LayerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "565457784187916288"),
+		@ApiImplicitParam(name = LayerVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "楼层1"),
+		@ApiImplicitParam(name = LayerVOMeta.AREA_ID, value = "区域", required = false, dataTypeClass = String.class, example = "575433967289761792"),
+		@ApiImplicitParam(name = LayerVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = LayerVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { LayerVOMeta.PAGE_INDEX, LayerVOMeta.PAGE_SIZE, LayerVOMeta.SEARCH_FIELD, LayerVOMeta.FUZZY_FIELD, LayerVOMeta.SEARCH_VALUE, LayerVOMeta.DIRTY_FIELDS, LayerVOMeta.SORT_FIELD, LayerVOMeta.SORT_TYPE, LayerVOMeta.IDS })
     @SentinelResource(value = LayerServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(LayerServiceProxy.UPDATE)
@@ -157,7 +173,13 @@ public class LayerController extends SuperController {
      * 保存层级
      */
     @ApiOperation(value = "保存层级")
-    @ApiImplicitParams({ @ApiImplicitParam(name = LayerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "565457784187916288"), @ApiImplicitParam(name = LayerVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "楼层1"), @ApiImplicitParam(name = LayerVOMeta.AREA_ID, value = "区域", required = false, dataTypeClass = String.class, example = "575433967289761792"), @ApiImplicitParam(name = LayerVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = LayerVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = LayerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "565457784187916288"),
+		@ApiImplicitParam(name = LayerVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "楼层1"),
+		@ApiImplicitParam(name = LayerVOMeta.AREA_ID, value = "区域", required = false, dataTypeClass = String.class, example = "575433967289761792"),
+		@ApiImplicitParam(name = LayerVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = LayerVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { LayerVOMeta.PAGE_INDEX, LayerVOMeta.PAGE_SIZE, LayerVOMeta.SEARCH_FIELD, LayerVOMeta.FUZZY_FIELD, LayerVOMeta.SEARCH_VALUE, LayerVOMeta.DIRTY_FIELDS, LayerVOMeta.SORT_FIELD, LayerVOMeta.SORT_TYPE, LayerVOMeta.IDS })
     @SentinelResource(value = LayerServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(LayerServiceProxy.SAVE)
@@ -171,7 +193,9 @@ public class LayerController extends SuperController {
      * 获取层级
      */
     @ApiOperation(value = "获取层级")
-    @ApiImplicitParams({ @ApiImplicitParam(name = LayerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = LayerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = LayerServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(LayerServiceProxy.GET_BY_ID)
@@ -189,7 +213,9 @@ public class LayerController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取层级")
-    @ApiImplicitParams({ @ApiImplicitParam(name = LayerVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = LayerVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = LayerServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(LayerServiceProxy.GET_BY_IDS)
@@ -204,7 +230,13 @@ public class LayerController extends SuperController {
      * 查询层级
      */
     @ApiOperation(value = "查询层级")
-    @ApiImplicitParams({ @ApiImplicitParam(name = LayerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "565457784187916288"), @ApiImplicitParam(name = LayerVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "楼层1"), @ApiImplicitParam(name = LayerVOMeta.AREA_ID, value = "区域", required = false, dataTypeClass = String.class, example = "575433967289761792"), @ApiImplicitParam(name = LayerVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = LayerVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = LayerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "565457784187916288"),
+		@ApiImplicitParam(name = LayerVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "楼层1"),
+		@ApiImplicitParam(name = LayerVOMeta.AREA_ID, value = "区域", required = false, dataTypeClass = String.class, example = "575433967289761792"),
+		@ApiImplicitParam(name = LayerVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = LayerVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { LayerVOMeta.PAGE_INDEX, LayerVOMeta.PAGE_SIZE })
     @SentinelResource(value = LayerServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(LayerServiceProxy.QUERY_LIST)
@@ -219,7 +251,13 @@ public class LayerController extends SuperController {
      * 分页查询层级
      */
     @ApiOperation(value = "分页查询层级")
-    @ApiImplicitParams({ @ApiImplicitParam(name = LayerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "565457784187916288"), @ApiImplicitParam(name = LayerVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "楼层1"), @ApiImplicitParam(name = LayerVOMeta.AREA_ID, value = "区域", required = false, dataTypeClass = String.class, example = "575433967289761792"), @ApiImplicitParam(name = LayerVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = LayerVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = LayerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "565457784187916288"),
+		@ApiImplicitParam(name = LayerVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "楼层1"),
+		@ApiImplicitParam(name = LayerVOMeta.AREA_ID, value = "区域", required = false, dataTypeClass = String.class, example = "575433967289761792"),
+		@ApiImplicitParam(name = LayerVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = LayerVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = LayerServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(LayerServiceProxy.QUERY_PAGED_LIST)

@@ -60,7 +60,18 @@ public class CertificateItemController extends SuperController {
      * 添加证书
      */
     @ApiOperation(value = "添加证书项")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificateItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.CERTIFICATE_ID, value = "证书", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.START_DATE, value = "开始时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CertificateItemVOMeta.END_DATE, value = "到期时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CertificateItemVOMeta.PUBLIC_KEY, value = "公钥", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.PRIVATE_KEY, value = "私钥", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.OPER_USER_ID, value = "操作人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificateItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.CERTIFICATE_ID, value = "证书", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.START_DATE, value = "开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.END_DATE, value = "到期时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.PUBLIC_KEY, value = "公钥", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.PRIVATE_KEY, value = "私钥", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.OPER_USER_ID, value = "操作人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = CertificateItemServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificateItemServiceProxy.INSERT)
@@ -74,7 +85,9 @@ public class CertificateItemController extends SuperController {
      * 删除证书
      */
     @ApiOperation(value = "删除证书项")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificateItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificateItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = CertificateItemServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificateItemServiceProxy.DELETE)
@@ -88,7 +101,9 @@ public class CertificateItemController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除证书")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificateItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificateItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = CertificateItemServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificateItemServiceProxy.DELETE_BY_IDS)
@@ -101,7 +116,18 @@ public class CertificateItemController extends SuperController {
      * 更新证书
      */
     @ApiOperation(value = "更新证书项")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificateItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.CERTIFICATE_ID, value = "证书", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.START_DATE, value = "开始时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CertificateItemVOMeta.END_DATE, value = "到期时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CertificateItemVOMeta.PUBLIC_KEY, value = "公钥", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.PRIVATE_KEY, value = "私钥", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.OPER_USER_ID, value = "操作人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificateItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.CERTIFICATE_ID, value = "证书", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.START_DATE, value = "开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.END_DATE, value = "到期时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.PUBLIC_KEY, value = "公钥", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.PRIVATE_KEY, value = "私钥", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.OPER_USER_ID, value = "操作人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { CertificateItemVOMeta.PAGE_INDEX, CertificateItemVOMeta.PAGE_SIZE, CertificateItemVOMeta.SEARCH_FIELD, CertificateItemVOMeta.FUZZY_FIELD, CertificateItemVOMeta.SEARCH_VALUE, CertificateItemVOMeta.DIRTY_FIELDS, CertificateItemVOMeta.SORT_FIELD, CertificateItemVOMeta.SORT_TYPE, CertificateItemVOMeta.IDS })
     @SentinelResource(value = CertificateItemServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificateItemServiceProxy.UPDATE)
@@ -115,7 +141,18 @@ public class CertificateItemController extends SuperController {
      * 保存证书
      */
     @ApiOperation(value = "保存证书项")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificateItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.CERTIFICATE_ID, value = "证书", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.START_DATE, value = "开始时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CertificateItemVOMeta.END_DATE, value = "到期时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CertificateItemVOMeta.PUBLIC_KEY, value = "公钥", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.PRIVATE_KEY, value = "私钥", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.OPER_USER_ID, value = "操作人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificateItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.CERTIFICATE_ID, value = "证书", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.START_DATE, value = "开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.END_DATE, value = "到期时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.PUBLIC_KEY, value = "公钥", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.PRIVATE_KEY, value = "私钥", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.OPER_USER_ID, value = "操作人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { CertificateItemVOMeta.PAGE_INDEX, CertificateItemVOMeta.PAGE_SIZE, CertificateItemVOMeta.SEARCH_FIELD, CertificateItemVOMeta.FUZZY_FIELD, CertificateItemVOMeta.SEARCH_VALUE, CertificateItemVOMeta.DIRTY_FIELDS, CertificateItemVOMeta.SORT_FIELD, CertificateItemVOMeta.SORT_TYPE, CertificateItemVOMeta.IDS })
     @SentinelResource(value = CertificateItemServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificateItemServiceProxy.SAVE)
@@ -129,7 +166,9 @@ public class CertificateItemController extends SuperController {
      * 获取证书
      */
     @ApiOperation(value = "获取证书")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificateItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificateItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = CertificateItemServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificateItemServiceProxy.GET_BY_ID)
@@ -148,7 +187,9 @@ public class CertificateItemController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取证书")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificateItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificateItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = CertificateItemServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificateItemServiceProxy.GET_BY_IDS)
@@ -163,7 +204,18 @@ public class CertificateItemController extends SuperController {
      * 查询证书
      */
     @ApiOperation(value = "查询证书项")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificateItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.CERTIFICATE_ID, value = "证书", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.START_DATE, value = "开始时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CertificateItemVOMeta.END_DATE, value = "到期时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CertificateItemVOMeta.PUBLIC_KEY, value = "公钥", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.PRIVATE_KEY, value = "私钥", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.OPER_USER_ID, value = "操作人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificateItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.CERTIFICATE_ID, value = "证书", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.START_DATE, value = "开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.END_DATE, value = "到期时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.PUBLIC_KEY, value = "公钥", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.PRIVATE_KEY, value = "私钥", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.OPER_USER_ID, value = "操作人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { CertificateItemVOMeta.PAGE_INDEX, CertificateItemVOMeta.PAGE_SIZE })
     @SentinelResource(value = CertificateItemServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificateItemServiceProxy.QUERY_LIST)
@@ -178,7 +230,18 @@ public class CertificateItemController extends SuperController {
      * 分页查询证书
      */
     @ApiOperation(value = "分页查询证书项")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificateItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.CERTIFICATE_ID, value = "证书", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.START_DATE, value = "开始时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CertificateItemVOMeta.END_DATE, value = "到期时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CertificateItemVOMeta.PUBLIC_KEY, value = "公钥", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.PRIVATE_KEY, value = "私钥", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.OPER_USER_ID, value = "操作人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificateItemVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificateItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.CERTIFICATE_ID, value = "证书", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.START_DATE, value = "开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.END_DATE, value = "到期时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.PUBLIC_KEY, value = "公钥", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.PRIVATE_KEY, value = "私钥", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.OPER_USER_ID, value = "操作人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificateItemVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = CertificateItemServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificateItemServiceProxy.QUERY_PAGED_LIST)

@@ -57,7 +57,12 @@ public class ActionCrontabLogController extends SuperController {
      * 添加日志
      */
     @ApiOperation(value = "添加日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ActionCrontabLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ActionCrontabLogVOMeta.CRONTAB_ID, value = "crontab", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ActionCrontabLogVOMeta.EXECUTION_RESULT, value = "执行结果", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ActionCrontabLogVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ActionCrontabLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ActionCrontabLogVOMeta.CRONTAB_ID, value = "crontab", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ActionCrontabLogVOMeta.EXECUTION_RESULT, value = "执行结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ActionCrontabLogVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = ActionCrontabLogServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ActionCrontabLogServiceProxy.INSERT)
@@ -71,7 +76,9 @@ public class ActionCrontabLogController extends SuperController {
      * 删除日志
      */
     @ApiOperation(value = "删除日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ActionCrontabLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ActionCrontabLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = ActionCrontabLogServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ActionCrontabLogServiceProxy.DELETE)
@@ -85,7 +92,9 @@ public class ActionCrontabLogController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ActionCrontabLogVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ActionCrontabLogVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ActionCrontabLogServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ActionCrontabLogServiceProxy.DELETE_BY_IDS)
@@ -98,7 +107,12 @@ public class ActionCrontabLogController extends SuperController {
      * 更新日志
      */
     @ApiOperation(value = "更新日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ActionCrontabLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ActionCrontabLogVOMeta.CRONTAB_ID, value = "crontab", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ActionCrontabLogVOMeta.EXECUTION_RESULT, value = "执行结果", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ActionCrontabLogVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ActionCrontabLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ActionCrontabLogVOMeta.CRONTAB_ID, value = "crontab", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ActionCrontabLogVOMeta.EXECUTION_RESULT, value = "执行结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ActionCrontabLogVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { ActionCrontabLogVOMeta.PAGE_INDEX, ActionCrontabLogVOMeta.PAGE_SIZE, ActionCrontabLogVOMeta.SEARCH_FIELD, ActionCrontabLogVOMeta.FUZZY_FIELD, ActionCrontabLogVOMeta.SEARCH_VALUE, ActionCrontabLogVOMeta.DIRTY_FIELDS, ActionCrontabLogVOMeta.SORT_FIELD, ActionCrontabLogVOMeta.SORT_TYPE, ActionCrontabLogVOMeta.IDS })
     @SentinelResource(value = ActionCrontabLogServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ActionCrontabLogServiceProxy.UPDATE)
@@ -112,7 +126,12 @@ public class ActionCrontabLogController extends SuperController {
      * 保存日志
      */
     @ApiOperation(value = "保存日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ActionCrontabLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ActionCrontabLogVOMeta.CRONTAB_ID, value = "crontab", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ActionCrontabLogVOMeta.EXECUTION_RESULT, value = "执行结果", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ActionCrontabLogVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ActionCrontabLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ActionCrontabLogVOMeta.CRONTAB_ID, value = "crontab", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ActionCrontabLogVOMeta.EXECUTION_RESULT, value = "执行结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ActionCrontabLogVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ActionCrontabLogVOMeta.PAGE_INDEX, ActionCrontabLogVOMeta.PAGE_SIZE, ActionCrontabLogVOMeta.SEARCH_FIELD, ActionCrontabLogVOMeta.FUZZY_FIELD, ActionCrontabLogVOMeta.SEARCH_VALUE, ActionCrontabLogVOMeta.DIRTY_FIELDS, ActionCrontabLogVOMeta.SORT_FIELD, ActionCrontabLogVOMeta.SORT_TYPE, ActionCrontabLogVOMeta.IDS })
     @SentinelResource(value = ActionCrontabLogServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ActionCrontabLogServiceProxy.SAVE)
@@ -126,7 +145,9 @@ public class ActionCrontabLogController extends SuperController {
      * 获取日志
      */
     @ApiOperation(value = "获取日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ActionCrontabLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ActionCrontabLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = ActionCrontabLogServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ActionCrontabLogServiceProxy.GET_BY_ID)
@@ -142,7 +163,9 @@ public class ActionCrontabLogController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ActionCrontabLogVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ActionCrontabLogVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ActionCrontabLogServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ActionCrontabLogServiceProxy.GET_BY_IDS)
@@ -157,7 +180,12 @@ public class ActionCrontabLogController extends SuperController {
      * 查询日志
      */
     @ApiOperation(value = "查询日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ActionCrontabLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ActionCrontabLogVOMeta.CRONTAB_ID, value = "crontab", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ActionCrontabLogVOMeta.EXECUTION_RESULT, value = "执行结果", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ActionCrontabLogVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ActionCrontabLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ActionCrontabLogVOMeta.CRONTAB_ID, value = "crontab", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ActionCrontabLogVOMeta.EXECUTION_RESULT, value = "执行结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ActionCrontabLogVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ActionCrontabLogVOMeta.PAGE_INDEX, ActionCrontabLogVOMeta.PAGE_SIZE })
     @SentinelResource(value = ActionCrontabLogServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ActionCrontabLogServiceProxy.QUERY_LIST)
@@ -172,7 +200,12 @@ public class ActionCrontabLogController extends SuperController {
      * 分页查询日志
      */
     @ApiOperation(value = "分页查询日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ActionCrontabLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ActionCrontabLogVOMeta.CRONTAB_ID, value = "crontab", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ActionCrontabLogVOMeta.EXECUTION_RESULT, value = "执行结果", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ActionCrontabLogVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ActionCrontabLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ActionCrontabLogVOMeta.CRONTAB_ID, value = "crontab", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ActionCrontabLogVOMeta.EXECUTION_RESULT, value = "执行结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ActionCrontabLogVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = ActionCrontabLogServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ActionCrontabLogServiceProxy.QUERY_PAGED_LIST)

@@ -57,7 +57,11 @@ public class MSelectItemController extends SuperController {
      * 添加车辆数据
      */
     @ApiOperation(value = "添加车辆数据")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MSelectItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MSelectItemVOMeta.HANDLE_ID, value = "处理", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MSelectItemVOMeta.ASSET_ID, value = "车辆", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MSelectItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MSelectItemVOMeta.HANDLE_ID, value = "处理", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MSelectItemVOMeta.ASSET_ID, value = "车辆", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = MSelectItemServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MSelectItemServiceProxy.INSERT)
@@ -71,7 +75,9 @@ public class MSelectItemController extends SuperController {
      * 删除车辆数据
      */
     @ApiOperation(value = "删除车辆数据")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MSelectItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MSelectItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = MSelectItemServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MSelectItemServiceProxy.DELETE)
@@ -85,7 +91,9 @@ public class MSelectItemController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除车辆数据")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MSelectItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MSelectItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MSelectItemServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MSelectItemServiceProxy.DELETE_BY_IDS)
@@ -98,7 +106,11 @@ public class MSelectItemController extends SuperController {
      * 更新车辆数据
      */
     @ApiOperation(value = "更新车辆数据")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MSelectItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MSelectItemVOMeta.HANDLE_ID, value = "处理", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MSelectItemVOMeta.ASSET_ID, value = "车辆", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MSelectItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MSelectItemVOMeta.HANDLE_ID, value = "处理", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MSelectItemVOMeta.ASSET_ID, value = "车辆", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { MSelectItemVOMeta.PAGE_INDEX, MSelectItemVOMeta.PAGE_SIZE, MSelectItemVOMeta.SEARCH_FIELD, MSelectItemVOMeta.FUZZY_FIELD, MSelectItemVOMeta.SEARCH_VALUE, MSelectItemVOMeta.DIRTY_FIELDS, MSelectItemVOMeta.SORT_FIELD, MSelectItemVOMeta.SORT_TYPE, MSelectItemVOMeta.IDS })
     @SentinelResource(value = MSelectItemServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MSelectItemServiceProxy.UPDATE)
@@ -112,7 +124,11 @@ public class MSelectItemController extends SuperController {
      * 保存车辆数据
      */
     @ApiOperation(value = "保存车辆数据")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MSelectItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MSelectItemVOMeta.HANDLE_ID, value = "处理", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MSelectItemVOMeta.ASSET_ID, value = "车辆", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MSelectItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MSelectItemVOMeta.HANDLE_ID, value = "处理", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MSelectItemVOMeta.ASSET_ID, value = "车辆", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MSelectItemVOMeta.PAGE_INDEX, MSelectItemVOMeta.PAGE_SIZE, MSelectItemVOMeta.SEARCH_FIELD, MSelectItemVOMeta.FUZZY_FIELD, MSelectItemVOMeta.SEARCH_VALUE, MSelectItemVOMeta.DIRTY_FIELDS, MSelectItemVOMeta.SORT_FIELD, MSelectItemVOMeta.SORT_TYPE, MSelectItemVOMeta.IDS })
     @SentinelResource(value = MSelectItemServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MSelectItemServiceProxy.SAVE)
@@ -126,7 +142,9 @@ public class MSelectItemController extends SuperController {
      * 获取车辆数据
      */
     @ApiOperation(value = "获取车辆数据")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MSelectItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MSelectItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = MSelectItemServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MSelectItemServiceProxy.GET_BY_ID)
@@ -142,7 +160,9 @@ public class MSelectItemController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取车辆数据")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MSelectItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MSelectItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MSelectItemServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MSelectItemServiceProxy.GET_BY_IDS)
@@ -157,7 +177,11 @@ public class MSelectItemController extends SuperController {
      * 查询车辆数据
      */
     @ApiOperation(value = "查询车辆数据")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MSelectItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MSelectItemVOMeta.HANDLE_ID, value = "处理", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MSelectItemVOMeta.ASSET_ID, value = "车辆", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MSelectItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MSelectItemVOMeta.HANDLE_ID, value = "处理", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MSelectItemVOMeta.ASSET_ID, value = "车辆", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MSelectItemVOMeta.PAGE_INDEX, MSelectItemVOMeta.PAGE_SIZE })
     @SentinelResource(value = MSelectItemServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MSelectItemServiceProxy.QUERY_LIST)
@@ -172,7 +196,11 @@ public class MSelectItemController extends SuperController {
      * 分页查询车辆数据
      */
     @ApiOperation(value = "分页查询车辆数据")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MSelectItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MSelectItemVOMeta.HANDLE_ID, value = "处理", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MSelectItemVOMeta.ASSET_ID, value = "车辆", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MSelectItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MSelectItemVOMeta.HANDLE_ID, value = "处理", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MSelectItemVOMeta.ASSET_ID, value = "车辆", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = MSelectItemServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MSelectItemServiceProxy.QUERY_PAGED_LIST)

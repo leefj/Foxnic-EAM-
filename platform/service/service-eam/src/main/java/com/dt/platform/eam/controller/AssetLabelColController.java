@@ -57,7 +57,14 @@ public class AssetLabelColController extends SuperController {
      * 添加标签字段
      */
     @ApiOperation(value = "添加标签字段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelColVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetLabelColVOMeta.COL_VALUE, value = "字段", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetLabelColVOMeta.COL_NAME, value = "字段名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetLabelColVOMeta.IS_IMAGE, value = "是否图像", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetLabelColVOMeta.IMAGE_TYPE, value = "图像类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetLabelColVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelColVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelColVOMeta.COL_VALUE, value = "字段", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelColVOMeta.COL_NAME, value = "字段名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelColVOMeta.IS_IMAGE, value = "是否图像", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelColVOMeta.IMAGE_TYPE, value = "图像类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelColVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetLabelColServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelColServiceProxy.INSERT)
@@ -71,7 +78,9 @@ public class AssetLabelColController extends SuperController {
      * 删除标签字段
      */
     @ApiOperation(value = "删除标签字段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelColVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelColVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetLabelColServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelColServiceProxy.DELETE)
@@ -85,7 +94,9 @@ public class AssetLabelColController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除标签字段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelColVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelColVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetLabelColServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelColServiceProxy.DELETE_BY_IDS)
@@ -98,7 +109,14 @@ public class AssetLabelColController extends SuperController {
      * 更新标签字段
      */
     @ApiOperation(value = "更新标签字段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelColVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetLabelColVOMeta.COL_VALUE, value = "字段", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetLabelColVOMeta.COL_NAME, value = "字段名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetLabelColVOMeta.IS_IMAGE, value = "是否图像", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetLabelColVOMeta.IMAGE_TYPE, value = "图像类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetLabelColVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelColVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelColVOMeta.COL_VALUE, value = "字段", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelColVOMeta.COL_NAME, value = "字段名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelColVOMeta.IS_IMAGE, value = "是否图像", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelColVOMeta.IMAGE_TYPE, value = "图像类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelColVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetLabelColVOMeta.PAGE_INDEX, AssetLabelColVOMeta.PAGE_SIZE, AssetLabelColVOMeta.SEARCH_FIELD, AssetLabelColVOMeta.FUZZY_FIELD, AssetLabelColVOMeta.SEARCH_VALUE, AssetLabelColVOMeta.DIRTY_FIELDS, AssetLabelColVOMeta.SORT_FIELD, AssetLabelColVOMeta.SORT_TYPE, AssetLabelColVOMeta.IDS })
     @SentinelResource(value = AssetLabelColServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelColServiceProxy.UPDATE)
@@ -112,7 +130,14 @@ public class AssetLabelColController extends SuperController {
      * 保存标签字段
      */
     @ApiOperation(value = "保存标签字段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelColVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetLabelColVOMeta.COL_VALUE, value = "字段", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetLabelColVOMeta.COL_NAME, value = "字段名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetLabelColVOMeta.IS_IMAGE, value = "是否图像", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetLabelColVOMeta.IMAGE_TYPE, value = "图像类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetLabelColVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelColVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelColVOMeta.COL_VALUE, value = "字段", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelColVOMeta.COL_NAME, value = "字段名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelColVOMeta.IS_IMAGE, value = "是否图像", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelColVOMeta.IMAGE_TYPE, value = "图像类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelColVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetLabelColVOMeta.PAGE_INDEX, AssetLabelColVOMeta.PAGE_SIZE, AssetLabelColVOMeta.SEARCH_FIELD, AssetLabelColVOMeta.FUZZY_FIELD, AssetLabelColVOMeta.SEARCH_VALUE, AssetLabelColVOMeta.DIRTY_FIELDS, AssetLabelColVOMeta.SORT_FIELD, AssetLabelColVOMeta.SORT_TYPE, AssetLabelColVOMeta.IDS })
     @SentinelResource(value = AssetLabelColServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelColServiceProxy.SAVE)
@@ -126,7 +151,9 @@ public class AssetLabelColController extends SuperController {
      * 获取标签字段
      */
     @ApiOperation(value = "获取标签字段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelColVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelColVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetLabelColServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelColServiceProxy.GET_BY_ID)
@@ -142,7 +169,9 @@ public class AssetLabelColController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取标签字段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelColVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelColVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetLabelColServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelColServiceProxy.GET_BY_IDS)
@@ -157,7 +186,14 @@ public class AssetLabelColController extends SuperController {
      * 查询标签字段
      */
     @ApiOperation(value = "查询标签字段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelColVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetLabelColVOMeta.COL_VALUE, value = "字段", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetLabelColVOMeta.COL_NAME, value = "字段名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetLabelColVOMeta.IS_IMAGE, value = "是否图像", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetLabelColVOMeta.IMAGE_TYPE, value = "图像类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetLabelColVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelColVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelColVOMeta.COL_VALUE, value = "字段", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelColVOMeta.COL_NAME, value = "字段名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelColVOMeta.IS_IMAGE, value = "是否图像", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelColVOMeta.IMAGE_TYPE, value = "图像类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelColVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetLabelColVOMeta.PAGE_INDEX, AssetLabelColVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetLabelColServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelColServiceProxy.QUERY_LIST)
@@ -172,7 +208,14 @@ public class AssetLabelColController extends SuperController {
      * 分页查询标签字段
      */
     @ApiOperation(value = "分页查询标签字段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelColVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetLabelColVOMeta.COL_VALUE, value = "字段", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetLabelColVOMeta.COL_NAME, value = "字段名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetLabelColVOMeta.IS_IMAGE, value = "是否图像", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetLabelColVOMeta.IMAGE_TYPE, value = "图像类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetLabelColVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelColVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelColVOMeta.COL_VALUE, value = "字段", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelColVOMeta.COL_NAME, value = "字段名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelColVOMeta.IS_IMAGE, value = "是否图像", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelColVOMeta.IMAGE_TYPE, value = "图像类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelColVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetLabelColServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelColServiceProxy.QUERY_PAGED_LIST)

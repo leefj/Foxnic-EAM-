@@ -59,7 +59,20 @@ public class ServicePortalController extends SuperController {
      * 添加服务门户
      */
     @ApiOperation(value = "添加服务门户")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServicePortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.PERM, value = "权限", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.IMAGE, value = "图片", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.URL, value = "地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServicePortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.PERM, value = "权限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.IMAGE, value = "图片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.URL, value = "地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = ServicePortalServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServicePortalServiceProxy.INSERT)
@@ -73,7 +86,9 @@ public class ServicePortalController extends SuperController {
      * 删除服务门户
      */
     @ApiOperation(value = "删除服务门户")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServicePortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServicePortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = ServicePortalServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServicePortalServiceProxy.DELETE)
@@ -98,7 +113,9 @@ public class ServicePortalController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除服务门户")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServicePortalVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServicePortalVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ServicePortalServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServicePortalServiceProxy.DELETE_BY_IDS)
@@ -143,7 +160,20 @@ public class ServicePortalController extends SuperController {
      * 更新服务门户
      */
     @ApiOperation(value = "更新服务门户")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServicePortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.PERM, value = "权限", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.IMAGE, value = "图片", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.URL, value = "地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServicePortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.PERM, value = "权限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.IMAGE, value = "图片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.URL, value = "地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { ServicePortalVOMeta.PAGE_INDEX, ServicePortalVOMeta.PAGE_SIZE, ServicePortalVOMeta.SEARCH_FIELD, ServicePortalVOMeta.FUZZY_FIELD, ServicePortalVOMeta.SEARCH_VALUE, ServicePortalVOMeta.DIRTY_FIELDS, ServicePortalVOMeta.SORT_FIELD, ServicePortalVOMeta.SORT_TYPE, ServicePortalVOMeta.IDS })
     @SentinelResource(value = ServicePortalServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServicePortalServiceProxy.UPDATE)
@@ -157,7 +187,20 @@ public class ServicePortalController extends SuperController {
      * 保存服务门户
      */
     @ApiOperation(value = "保存服务门户")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServicePortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.PERM, value = "权限", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.IMAGE, value = "图片", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.URL, value = "地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServicePortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.PERM, value = "权限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.IMAGE, value = "图片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.URL, value = "地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ServicePortalVOMeta.PAGE_INDEX, ServicePortalVOMeta.PAGE_SIZE, ServicePortalVOMeta.SEARCH_FIELD, ServicePortalVOMeta.FUZZY_FIELD, ServicePortalVOMeta.SEARCH_VALUE, ServicePortalVOMeta.DIRTY_FIELDS, ServicePortalVOMeta.SORT_FIELD, ServicePortalVOMeta.SORT_TYPE, ServicePortalVOMeta.IDS })
     @SentinelResource(value = ServicePortalServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServicePortalServiceProxy.SAVE)
@@ -171,7 +214,9 @@ public class ServicePortalController extends SuperController {
      * 获取服务门户
      */
     @ApiOperation(value = "获取服务门户")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServicePortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServicePortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = ServicePortalServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServicePortalServiceProxy.GET_BY_ID)
@@ -189,7 +234,9 @@ public class ServicePortalController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取服务门户")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServicePortalVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServicePortalVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ServicePortalServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServicePortalServiceProxy.GET_BY_IDS)
@@ -204,7 +251,20 @@ public class ServicePortalController extends SuperController {
      * 查询服务门户
      */
     @ApiOperation(value = "查询服务门户")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServicePortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.PERM, value = "权限", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.IMAGE, value = "图片", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.URL, value = "地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServicePortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.PERM, value = "权限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.IMAGE, value = "图片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.URL, value = "地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ServicePortalVOMeta.PAGE_INDEX, ServicePortalVOMeta.PAGE_SIZE })
     @SentinelResource(value = ServicePortalServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServicePortalServiceProxy.QUERY_LIST)
@@ -219,7 +279,20 @@ public class ServicePortalController extends SuperController {
      * 分页查询服务门户
      */
     @ApiOperation(value = "分页查询服务门户")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServicePortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.PERM, value = "权限", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.IMAGE, value = "图片", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.URL, value = "地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServicePortalVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServicePortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.PERM, value = "权限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.IMAGE, value = "图片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.URL, value = "地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServicePortalVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = ServicePortalServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServicePortalServiceProxy.QUERY_PAGED_LIST)

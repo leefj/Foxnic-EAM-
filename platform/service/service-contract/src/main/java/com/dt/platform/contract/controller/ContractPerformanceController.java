@@ -55,7 +55,13 @@ public class ContractPerformanceController extends SuperController {
      * 添加合同履行情况
      */
     @ApiOperation(value = "添加合同履行情况")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContractPerformanceVOMeta.ID, value = "id", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ContractPerformanceVOMeta.CONTRACT_ID, value = "合同ID", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractPerformanceVOMeta.TITLE, value = "概述", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractPerformanceVOMeta.DETAIL, value = "履约细节", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractPerformanceVOMeta.PERFORMANCE_TIME, value = "履约时间", required = false, dataTypeClass = Date.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.ID, value = "id", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.CONTRACT_ID, value = "合同ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.TITLE, value = "概述", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.DETAIL, value = "履约细节", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.PERFORMANCE_TIME, value = "履约时间", required = false, dataTypeClass = Date.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = ContractPerformanceServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContractPerformanceServiceProxy.INSERT)
@@ -70,7 +76,9 @@ public class ContractPerformanceController extends SuperController {
      * 删除合同履行情况
      */
     @ApiOperation(value = "删除合同履行情况")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContractPerformanceVOMeta.ID, value = "id", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.ID, value = "id", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = ContractPerformanceServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContractPerformanceServiceProxy.DELETE)
@@ -84,7 +92,9 @@ public class ContractPerformanceController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除合同履行情况")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContractPerformanceVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ContractPerformanceServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContractPerformanceServiceProxy.DELETE_BY_IDS)
@@ -97,7 +107,13 @@ public class ContractPerformanceController extends SuperController {
      * 更新合同履行情况
      */
     @ApiOperation(value = "更新合同履行情况")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContractPerformanceVOMeta.ID, value = "id", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ContractPerformanceVOMeta.CONTRACT_ID, value = "合同ID", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractPerformanceVOMeta.TITLE, value = "概述", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractPerformanceVOMeta.DETAIL, value = "履约细节", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractPerformanceVOMeta.PERFORMANCE_TIME, value = "履约时间", required = false, dataTypeClass = Date.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.ID, value = "id", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.CONTRACT_ID, value = "合同ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.TITLE, value = "概述", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.DETAIL, value = "履约细节", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.PERFORMANCE_TIME, value = "履约时间", required = false, dataTypeClass = Date.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { ContractPerformanceVOMeta.PAGE_INDEX, ContractPerformanceVOMeta.PAGE_SIZE, ContractPerformanceVOMeta.SEARCH_FIELD, ContractPerformanceVOMeta.FUZZY_FIELD, ContractPerformanceVOMeta.SEARCH_VALUE, ContractPerformanceVOMeta.DIRTY_FIELDS, ContractPerformanceVOMeta.SORT_FIELD, ContractPerformanceVOMeta.SORT_TYPE, ContractPerformanceVOMeta.IDS })
     @SentinelResource(value = ContractPerformanceServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContractPerformanceServiceProxy.UPDATE)
@@ -111,7 +127,13 @@ public class ContractPerformanceController extends SuperController {
      * 保存合同履行情况
      */
     @ApiOperation(value = "保存合同履行情况")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContractPerformanceVOMeta.ID, value = "id", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ContractPerformanceVOMeta.CONTRACT_ID, value = "合同ID", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractPerformanceVOMeta.TITLE, value = "概述", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractPerformanceVOMeta.DETAIL, value = "履约细节", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractPerformanceVOMeta.PERFORMANCE_TIME, value = "履约时间", required = false, dataTypeClass = Date.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.ID, value = "id", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.CONTRACT_ID, value = "合同ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.TITLE, value = "概述", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.DETAIL, value = "履约细节", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.PERFORMANCE_TIME, value = "履约时间", required = false, dataTypeClass = Date.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ContractPerformanceVOMeta.PAGE_INDEX, ContractPerformanceVOMeta.PAGE_SIZE, ContractPerformanceVOMeta.SEARCH_FIELD, ContractPerformanceVOMeta.FUZZY_FIELD, ContractPerformanceVOMeta.SEARCH_VALUE, ContractPerformanceVOMeta.DIRTY_FIELDS, ContractPerformanceVOMeta.SORT_FIELD, ContractPerformanceVOMeta.SORT_TYPE, ContractPerformanceVOMeta.IDS })
     @SentinelResource(value = ContractPerformanceServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContractPerformanceServiceProxy.SAVE)
@@ -125,7 +147,9 @@ public class ContractPerformanceController extends SuperController {
      * 获取合同履行情况
      */
     @ApiOperation(value = "获取合同履行情况")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContractPerformanceVOMeta.ID, value = "id", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.ID, value = "id", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = ContractPerformanceServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContractPerformanceServiceProxy.GET_BY_ID)
@@ -141,7 +165,9 @@ public class ContractPerformanceController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取合同履行情况")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContractPerformanceVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ContractPerformanceServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContractPerformanceServiceProxy.GET_BY_IDS)
@@ -156,7 +182,13 @@ public class ContractPerformanceController extends SuperController {
      * 查询合同履行情况
      */
     @ApiOperation(value = "查询合同履行情况")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContractPerformanceVOMeta.ID, value = "id", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ContractPerformanceVOMeta.CONTRACT_ID, value = "合同ID", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractPerformanceVOMeta.TITLE, value = "概述", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractPerformanceVOMeta.DETAIL, value = "履约细节", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractPerformanceVOMeta.PERFORMANCE_TIME, value = "履约时间", required = false, dataTypeClass = Date.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.ID, value = "id", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.CONTRACT_ID, value = "合同ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.TITLE, value = "概述", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.DETAIL, value = "履约细节", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.PERFORMANCE_TIME, value = "履约时间", required = false, dataTypeClass = Date.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ContractPerformanceVOMeta.PAGE_INDEX, ContractPerformanceVOMeta.PAGE_SIZE })
     @SentinelResource(value = ContractPerformanceServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContractPerformanceServiceProxy.QUERY_LIST)
@@ -171,7 +203,13 @@ public class ContractPerformanceController extends SuperController {
      * 分页查询合同履行情况
      */
     @ApiOperation(value = "分页查询合同履行情况")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContractPerformanceVOMeta.ID, value = "id", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ContractPerformanceVOMeta.CONTRACT_ID, value = "合同ID", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractPerformanceVOMeta.TITLE, value = "概述", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractPerformanceVOMeta.DETAIL, value = "履约细节", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractPerformanceVOMeta.PERFORMANCE_TIME, value = "履约时间", required = false, dataTypeClass = Date.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.ID, value = "id", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.CONTRACT_ID, value = "合同ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.TITLE, value = "概述", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.DETAIL, value = "履约细节", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractPerformanceVOMeta.PERFORMANCE_TIME, value = "履约时间", required = false, dataTypeClass = Date.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = ContractPerformanceServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContractPerformanceServiceProxy.QUERY_PAGED_LIST)

@@ -60,7 +60,16 @@ public class RepairCategoryController extends SuperController {
      * 添加故障分类
      */
     @ApiOperation(value = "添加故障分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.REPAIR_NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.REPAIR_CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = RepairCategoryVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.REPAIR_NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.REPAIR_CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = RepairCategoryServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairCategoryServiceProxy.INSERT)
@@ -96,7 +105,9 @@ public class RepairCategoryController extends SuperController {
      * 删除故障分类
      */
     @ApiOperation(value = "删除故障分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = RepairCategoryServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairCategoryServiceProxy.DELETE)
@@ -116,7 +127,9 @@ public class RepairCategoryController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除故障分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairCategoryVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairCategoryVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = RepairCategoryServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairCategoryServiceProxy.DELETE_BY_IDS)
@@ -129,7 +142,16 @@ public class RepairCategoryController extends SuperController {
      * 更新故障分类
      */
     @ApiOperation(value = "更新故障分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.REPAIR_NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.REPAIR_CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = RepairCategoryVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.REPAIR_NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.REPAIR_CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { RepairCategoryVOMeta.PAGE_INDEX, RepairCategoryVOMeta.PAGE_SIZE, RepairCategoryVOMeta.SEARCH_FIELD, RepairCategoryVOMeta.FUZZY_FIELD, RepairCategoryVOMeta.SEARCH_VALUE, RepairCategoryVOMeta.DIRTY_FIELDS, RepairCategoryVOMeta.SORT_FIELD, RepairCategoryVOMeta.SORT_TYPE, RepairCategoryVOMeta.IDS })
     @SentinelResource(value = RepairCategoryServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairCategoryServiceProxy.UPDATE)
@@ -147,7 +169,16 @@ public class RepairCategoryController extends SuperController {
      * 保存故障分类
      */
     @ApiOperation(value = "保存故障分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.REPAIR_NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.REPAIR_CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = RepairCategoryVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.REPAIR_NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.REPAIR_CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { RepairCategoryVOMeta.PAGE_INDEX, RepairCategoryVOMeta.PAGE_SIZE, RepairCategoryVOMeta.SEARCH_FIELD, RepairCategoryVOMeta.FUZZY_FIELD, RepairCategoryVOMeta.SEARCH_VALUE, RepairCategoryVOMeta.DIRTY_FIELDS, RepairCategoryVOMeta.SORT_FIELD, RepairCategoryVOMeta.SORT_TYPE, RepairCategoryVOMeta.IDS })
     @SentinelResource(value = RepairCategoryServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairCategoryServiceProxy.SAVE)
@@ -165,7 +196,9 @@ public class RepairCategoryController extends SuperController {
      * 获取故障分类
      */
     @ApiOperation(value = "获取故障分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = RepairCategoryServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairCategoryServiceProxy.GET_BY_ID)
@@ -181,7 +214,9 @@ public class RepairCategoryController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取故障分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairCategoryVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairCategoryVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = RepairCategoryServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairCategoryServiceProxy.GET_BY_IDS)
@@ -196,7 +231,16 @@ public class RepairCategoryController extends SuperController {
      * 查询故障分类
      */
     @ApiOperation(value = "查询故障分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.REPAIR_NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.REPAIR_CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = RepairCategoryVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.REPAIR_NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.REPAIR_CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { RepairCategoryVOMeta.PAGE_INDEX, RepairCategoryVOMeta.PAGE_SIZE })
     @SentinelResource(value = RepairCategoryServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairCategoryServiceProxy.QUERY_LIST)
@@ -211,7 +255,16 @@ public class RepairCategoryController extends SuperController {
      * 分页查询故障分类
      */
     @ApiOperation(value = "分页查询故障分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.REPAIR_NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.REPAIR_CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = RepairCategoryVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairCategoryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.REPAIR_NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.REPAIR_CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairCategoryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = RepairCategoryServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairCategoryServiceProxy.QUERY_PAGED_LIST)

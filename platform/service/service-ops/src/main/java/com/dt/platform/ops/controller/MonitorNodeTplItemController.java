@@ -57,7 +57,11 @@ public class MonitorNodeTplItemController extends SuperController {
      * 添加节点监控模版
      */
     @ApiOperation(value = "添加节点监控模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeTplItemVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeTplItemVOMeta.TPL_CODE, value = "模版", required = false, dataTypeClass = String.class, example = "tpl_host_linux_script") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeTplItemVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeTplItemVOMeta.TPL_CODE, value = "模版", required = false, dataTypeClass = String.class, example = "tpl_host_linux_script")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = MonitorNodeTplItemServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeTplItemServiceProxy.INSERT)
@@ -71,7 +75,9 @@ public class MonitorNodeTplItemController extends SuperController {
      * 删除节点监控模版
      */
     @ApiOperation(value = "删除节点监控模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = MonitorNodeTplItemServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeTplItemServiceProxy.DELETE)
@@ -85,7 +91,9 @@ public class MonitorNodeTplItemController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除节点监控模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeTplItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeTplItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MonitorNodeTplItemServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeTplItemServiceProxy.DELETE_BY_IDS)
@@ -98,7 +106,11 @@ public class MonitorNodeTplItemController extends SuperController {
      * 更新节点监控模版
      */
     @ApiOperation(value = "更新节点监控模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeTplItemVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeTplItemVOMeta.TPL_CODE, value = "模版", required = false, dataTypeClass = String.class, example = "tpl_host_linux_script") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeTplItemVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeTplItemVOMeta.TPL_CODE, value = "模版", required = false, dataTypeClass = String.class, example = "tpl_host_linux_script")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { MonitorNodeTplItemVOMeta.PAGE_INDEX, MonitorNodeTplItemVOMeta.PAGE_SIZE, MonitorNodeTplItemVOMeta.SEARCH_FIELD, MonitorNodeTplItemVOMeta.FUZZY_FIELD, MonitorNodeTplItemVOMeta.SEARCH_VALUE, MonitorNodeTplItemVOMeta.DIRTY_FIELDS, MonitorNodeTplItemVOMeta.SORT_FIELD, MonitorNodeTplItemVOMeta.SORT_TYPE, MonitorNodeTplItemVOMeta.IDS })
     @SentinelResource(value = MonitorNodeTplItemServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeTplItemServiceProxy.UPDATE)
@@ -112,7 +124,11 @@ public class MonitorNodeTplItemController extends SuperController {
      * 保存节点监控模版
      */
     @ApiOperation(value = "保存节点监控模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeTplItemVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeTplItemVOMeta.TPL_CODE, value = "模版", required = false, dataTypeClass = String.class, example = "tpl_host_linux_script") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeTplItemVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeTplItemVOMeta.TPL_CODE, value = "模版", required = false, dataTypeClass = String.class, example = "tpl_host_linux_script")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MonitorNodeTplItemVOMeta.PAGE_INDEX, MonitorNodeTplItemVOMeta.PAGE_SIZE, MonitorNodeTplItemVOMeta.SEARCH_FIELD, MonitorNodeTplItemVOMeta.FUZZY_FIELD, MonitorNodeTplItemVOMeta.SEARCH_VALUE, MonitorNodeTplItemVOMeta.DIRTY_FIELDS, MonitorNodeTplItemVOMeta.SORT_FIELD, MonitorNodeTplItemVOMeta.SORT_TYPE, MonitorNodeTplItemVOMeta.IDS })
     @SentinelResource(value = MonitorNodeTplItemServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeTplItemServiceProxy.SAVE)
@@ -126,7 +142,9 @@ public class MonitorNodeTplItemController extends SuperController {
      * 获取节点监控模版
      */
     @ApiOperation(value = "获取节点监控模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = MonitorNodeTplItemServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeTplItemServiceProxy.GET_BY_ID)
@@ -142,7 +160,9 @@ public class MonitorNodeTplItemController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取节点监控模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeTplItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeTplItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MonitorNodeTplItemServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeTplItemServiceProxy.GET_BY_IDS)
@@ -157,7 +177,11 @@ public class MonitorNodeTplItemController extends SuperController {
      * 查询节点监控模版
      */
     @ApiOperation(value = "查询节点监控模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeTplItemVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeTplItemVOMeta.TPL_CODE, value = "模版", required = false, dataTypeClass = String.class, example = "tpl_host_linux_script") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeTplItemVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeTplItemVOMeta.TPL_CODE, value = "模版", required = false, dataTypeClass = String.class, example = "tpl_host_linux_script")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MonitorNodeTplItemVOMeta.PAGE_INDEX, MonitorNodeTplItemVOMeta.PAGE_SIZE })
     @SentinelResource(value = MonitorNodeTplItemServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeTplItemServiceProxy.QUERY_LIST)
@@ -172,7 +196,11 @@ public class MonitorNodeTplItemController extends SuperController {
      * 分页查询节点监控模版
      */
     @ApiOperation(value = "分页查询节点监控模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeTplItemVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeTplItemVOMeta.TPL_CODE, value = "模版", required = false, dataTypeClass = String.class, example = "tpl_host_linux_script") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeTplItemVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeTplItemVOMeta.TPL_CODE, value = "模版", required = false, dataTypeClass = String.class, example = "tpl_host_linux_script")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = MonitorNodeTplItemServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeTplItemServiceProxy.QUERY_PAGED_LIST)

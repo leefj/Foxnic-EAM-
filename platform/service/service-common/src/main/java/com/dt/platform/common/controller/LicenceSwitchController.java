@@ -57,7 +57,13 @@ public class LicenceSwitchController extends SuperController {
      * 添加版本切换
      */
     @ApiOperation(value = "添加版本切换")
-    @ApiImplicitParams({ @ApiImplicitParam(name = LicenceSwitchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = LicenceSwitchVOMeta.LICENCE_TAB, value = "许可版本", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = LicenceSwitchVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = LicenceSwitchVOMeta.ACTION_CONTENT, value = "动作", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = LicenceSwitchVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.LICENCE_TAB, value = "许可版本", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.ACTION_CONTENT, value = "动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = LicenceSwitchServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(LicenceSwitchServiceProxy.INSERT)
@@ -71,7 +77,9 @@ public class LicenceSwitchController extends SuperController {
      * 删除版本切换
      */
     @ApiOperation(value = "删除版本切换")
-    @ApiImplicitParams({ @ApiImplicitParam(name = LicenceSwitchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = LicenceSwitchServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(LicenceSwitchServiceProxy.DELETE)
@@ -85,7 +93,9 @@ public class LicenceSwitchController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除版本切换")
-    @ApiImplicitParams({ @ApiImplicitParam(name = LicenceSwitchVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = LicenceSwitchServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(LicenceSwitchServiceProxy.DELETE_BY_IDS)
@@ -98,7 +108,13 @@ public class LicenceSwitchController extends SuperController {
      * 更新版本切换
      */
     @ApiOperation(value = "更新版本切换")
-    @ApiImplicitParams({ @ApiImplicitParam(name = LicenceSwitchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = LicenceSwitchVOMeta.LICENCE_TAB, value = "许可版本", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = LicenceSwitchVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = LicenceSwitchVOMeta.ACTION_CONTENT, value = "动作", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = LicenceSwitchVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.LICENCE_TAB, value = "许可版本", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.ACTION_CONTENT, value = "动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { LicenceSwitchVOMeta.PAGE_INDEX, LicenceSwitchVOMeta.PAGE_SIZE, LicenceSwitchVOMeta.SEARCH_FIELD, LicenceSwitchVOMeta.FUZZY_FIELD, LicenceSwitchVOMeta.SEARCH_VALUE, LicenceSwitchVOMeta.DIRTY_FIELDS, LicenceSwitchVOMeta.SORT_FIELD, LicenceSwitchVOMeta.SORT_TYPE, LicenceSwitchVOMeta.IDS })
     @SentinelResource(value = LicenceSwitchServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(LicenceSwitchServiceProxy.UPDATE)
@@ -112,7 +128,13 @@ public class LicenceSwitchController extends SuperController {
      * 保存版本切换
      */
     @ApiOperation(value = "保存版本切换")
-    @ApiImplicitParams({ @ApiImplicitParam(name = LicenceSwitchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = LicenceSwitchVOMeta.LICENCE_TAB, value = "许可版本", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = LicenceSwitchVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = LicenceSwitchVOMeta.ACTION_CONTENT, value = "动作", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = LicenceSwitchVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.LICENCE_TAB, value = "许可版本", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.ACTION_CONTENT, value = "动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { LicenceSwitchVOMeta.PAGE_INDEX, LicenceSwitchVOMeta.PAGE_SIZE, LicenceSwitchVOMeta.SEARCH_FIELD, LicenceSwitchVOMeta.FUZZY_FIELD, LicenceSwitchVOMeta.SEARCH_VALUE, LicenceSwitchVOMeta.DIRTY_FIELDS, LicenceSwitchVOMeta.SORT_FIELD, LicenceSwitchVOMeta.SORT_TYPE, LicenceSwitchVOMeta.IDS })
     @SentinelResource(value = LicenceSwitchServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(LicenceSwitchServiceProxy.SAVE)
@@ -126,7 +148,9 @@ public class LicenceSwitchController extends SuperController {
      * 获取版本切换
      */
     @ApiOperation(value = "获取版本切换")
-    @ApiImplicitParams({ @ApiImplicitParam(name = LicenceSwitchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = LicenceSwitchServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(LicenceSwitchServiceProxy.GET_BY_ID)
@@ -142,7 +166,9 @@ public class LicenceSwitchController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取版本切换")
-    @ApiImplicitParams({ @ApiImplicitParam(name = LicenceSwitchVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = LicenceSwitchServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(LicenceSwitchServiceProxy.GET_BY_IDS)
@@ -157,7 +183,13 @@ public class LicenceSwitchController extends SuperController {
      * 查询版本切换
      */
     @ApiOperation(value = "查询版本切换")
-    @ApiImplicitParams({ @ApiImplicitParam(name = LicenceSwitchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = LicenceSwitchVOMeta.LICENCE_TAB, value = "许可版本", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = LicenceSwitchVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = LicenceSwitchVOMeta.ACTION_CONTENT, value = "动作", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = LicenceSwitchVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.LICENCE_TAB, value = "许可版本", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.ACTION_CONTENT, value = "动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { LicenceSwitchVOMeta.PAGE_INDEX, LicenceSwitchVOMeta.PAGE_SIZE })
     @SentinelResource(value = LicenceSwitchServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(LicenceSwitchServiceProxy.QUERY_LIST)
@@ -172,7 +204,13 @@ public class LicenceSwitchController extends SuperController {
      * 分页查询版本切换
      */
     @ApiOperation(value = "分页查询版本切换")
-    @ApiImplicitParams({ @ApiImplicitParam(name = LicenceSwitchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = LicenceSwitchVOMeta.LICENCE_TAB, value = "许可版本", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = LicenceSwitchVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = LicenceSwitchVOMeta.ACTION_CONTENT, value = "动作", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = LicenceSwitchVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.LICENCE_TAB, value = "许可版本", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.ACTION_CONTENT, value = "动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = LicenceSwitchServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(LicenceSwitchServiceProxy.QUERY_PAGED_LIST)
@@ -187,7 +225,9 @@ public class LicenceSwitchController extends SuperController {
      * 分页查询版本切换
      */
     @ApiOperation(value = "切换")
-    @ApiImplicitParams({ @ApiImplicitParam(name = LicenceSwitchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = LicenceSwitchVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 9)
     @SentinelResource(value = LicenceSwitchServiceProxy.SWITCH_ENABLE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(LicenceSwitchServiceProxy.SWITCH_ENABLE)

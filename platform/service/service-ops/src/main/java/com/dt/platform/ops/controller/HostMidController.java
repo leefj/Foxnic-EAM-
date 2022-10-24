@@ -57,7 +57,11 @@ public class HostMidController extends SuperController {
      * 添加中间件
      */
     @ApiOperation(value = "添加中间件")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostMidVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = HostMidVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = HostMidVOMeta.SERVICE_INFO_ID, value = "服务内容", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostMidVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = HostMidVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = HostMidVOMeta.SERVICE_INFO_ID, value = "服务内容", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = HostMidServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostMidServiceProxy.INSERT)
@@ -71,7 +75,9 @@ public class HostMidController extends SuperController {
      * 删除中间件
      */
     @ApiOperation(value = "删除中间件")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostMidVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostMidVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = HostMidServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostMidServiceProxy.DELETE)
@@ -85,7 +91,9 @@ public class HostMidController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除中间件")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostMidVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostMidVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = HostMidServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostMidServiceProxy.DELETE_BY_IDS)
@@ -98,7 +106,11 @@ public class HostMidController extends SuperController {
      * 更新中间件
      */
     @ApiOperation(value = "更新中间件")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostMidVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = HostMidVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = HostMidVOMeta.SERVICE_INFO_ID, value = "服务内容", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostMidVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = HostMidVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = HostMidVOMeta.SERVICE_INFO_ID, value = "服务内容", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { HostMidVOMeta.PAGE_INDEX, HostMidVOMeta.PAGE_SIZE, HostMidVOMeta.SEARCH_FIELD, HostMidVOMeta.FUZZY_FIELD, HostMidVOMeta.SEARCH_VALUE, HostMidVOMeta.DIRTY_FIELDS, HostMidVOMeta.SORT_FIELD, HostMidVOMeta.SORT_TYPE, HostMidVOMeta.IDS })
     @SentinelResource(value = HostMidServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostMidServiceProxy.UPDATE)
@@ -112,7 +124,11 @@ public class HostMidController extends SuperController {
      * 保存中间件
      */
     @ApiOperation(value = "保存中间件")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostMidVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = HostMidVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = HostMidVOMeta.SERVICE_INFO_ID, value = "服务内容", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostMidVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = HostMidVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = HostMidVOMeta.SERVICE_INFO_ID, value = "服务内容", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { HostMidVOMeta.PAGE_INDEX, HostMidVOMeta.PAGE_SIZE, HostMidVOMeta.SEARCH_FIELD, HostMidVOMeta.FUZZY_FIELD, HostMidVOMeta.SEARCH_VALUE, HostMidVOMeta.DIRTY_FIELDS, HostMidVOMeta.SORT_FIELD, HostMidVOMeta.SORT_TYPE, HostMidVOMeta.IDS })
     @SentinelResource(value = HostMidServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostMidServiceProxy.SAVE)
@@ -126,7 +142,9 @@ public class HostMidController extends SuperController {
      * 获取中间件
      */
     @ApiOperation(value = "获取中间件")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostMidVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostMidVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = HostMidServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostMidServiceProxy.GET_BY_ID)
@@ -142,7 +160,9 @@ public class HostMidController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取中间件")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostMidVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostMidVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = HostMidServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostMidServiceProxy.GET_BY_IDS)
@@ -157,7 +177,11 @@ public class HostMidController extends SuperController {
      * 查询中间件
      */
     @ApiOperation(value = "查询中间件")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostMidVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = HostMidVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = HostMidVOMeta.SERVICE_INFO_ID, value = "服务内容", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostMidVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = HostMidVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = HostMidVOMeta.SERVICE_INFO_ID, value = "服务内容", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { HostMidVOMeta.PAGE_INDEX, HostMidVOMeta.PAGE_SIZE })
     @SentinelResource(value = HostMidServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostMidServiceProxy.QUERY_LIST)
@@ -172,7 +196,11 @@ public class HostMidController extends SuperController {
      * 分页查询中间件
      */
     @ApiOperation(value = "分页查询中间件")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostMidVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = HostMidVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = HostMidVOMeta.SERVICE_INFO_ID, value = "服务内容", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostMidVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = HostMidVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = HostMidVOMeta.SERVICE_INFO_ID, value = "服务内容", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = HostMidServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostMidServiceProxy.QUERY_PAGED_LIST)

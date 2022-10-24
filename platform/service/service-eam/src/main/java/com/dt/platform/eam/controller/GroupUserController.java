@@ -58,7 +58,11 @@ public class GroupUserController extends SuperController {
      * 添加班组成员
      */
     @ApiOperation(value = "添加班组成员")
-    @ApiImplicitParams({ @ApiImplicitParam(name = GroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = GroupUserVOMeta.GROUP_ID, value = "班组", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GroupUserVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = GroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GroupUserVOMeta.GROUP_ID, value = "班组", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GroupUserVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = GroupUserServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(GroupUserServiceProxy.INSERT)
@@ -72,7 +76,9 @@ public class GroupUserController extends SuperController {
      * 删除班组成员
      */
     @ApiOperation(value = "删除班组成员")
-    @ApiImplicitParams({ @ApiImplicitParam(name = GroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = GroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = GroupUserServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(GroupUserServiceProxy.DELETE)
@@ -86,7 +92,9 @@ public class GroupUserController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除班组成员")
-    @ApiImplicitParams({ @ApiImplicitParam(name = GroupUserVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = GroupUserVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = GroupUserServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(GroupUserServiceProxy.DELETE_BY_IDS)
@@ -99,7 +107,11 @@ public class GroupUserController extends SuperController {
      * 更新班组成员
      */
     @ApiOperation(value = "更新班组成员")
-    @ApiImplicitParams({ @ApiImplicitParam(name = GroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = GroupUserVOMeta.GROUP_ID, value = "班组", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GroupUserVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = GroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GroupUserVOMeta.GROUP_ID, value = "班组", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GroupUserVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { GroupUserVOMeta.PAGE_INDEX, GroupUserVOMeta.PAGE_SIZE, GroupUserVOMeta.SEARCH_FIELD, GroupUserVOMeta.FUZZY_FIELD, GroupUserVOMeta.SEARCH_VALUE, GroupUserVOMeta.DIRTY_FIELDS, GroupUserVOMeta.SORT_FIELD, GroupUserVOMeta.SORT_TYPE, GroupUserVOMeta.IDS })
     @SentinelResource(value = GroupUserServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(GroupUserServiceProxy.UPDATE)
@@ -113,7 +125,11 @@ public class GroupUserController extends SuperController {
      * 保存班组成员
      */
     @ApiOperation(value = "保存班组成员")
-    @ApiImplicitParams({ @ApiImplicitParam(name = GroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = GroupUserVOMeta.GROUP_ID, value = "班组", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GroupUserVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = GroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GroupUserVOMeta.GROUP_ID, value = "班组", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GroupUserVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { GroupUserVOMeta.PAGE_INDEX, GroupUserVOMeta.PAGE_SIZE, GroupUserVOMeta.SEARCH_FIELD, GroupUserVOMeta.FUZZY_FIELD, GroupUserVOMeta.SEARCH_VALUE, GroupUserVOMeta.DIRTY_FIELDS, GroupUserVOMeta.SORT_FIELD, GroupUserVOMeta.SORT_TYPE, GroupUserVOMeta.IDS })
     @SentinelResource(value = GroupUserServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(GroupUserServiceProxy.SAVE)
@@ -127,7 +143,9 @@ public class GroupUserController extends SuperController {
      * 获取班组成员
      */
     @ApiOperation(value = "获取班组成员")
-    @ApiImplicitParams({ @ApiImplicitParam(name = GroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = GroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = GroupUserServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(GroupUserServiceProxy.GET_BY_ID)
@@ -143,7 +161,9 @@ public class GroupUserController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取班组成员")
-    @ApiImplicitParams({ @ApiImplicitParam(name = GroupUserVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = GroupUserVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = GroupUserServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(GroupUserServiceProxy.GET_BY_IDS)
@@ -158,7 +178,11 @@ public class GroupUserController extends SuperController {
      * 查询班组成员
      */
     @ApiOperation(value = "查询班组成员")
-    @ApiImplicitParams({ @ApiImplicitParam(name = GroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = GroupUserVOMeta.GROUP_ID, value = "班组", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GroupUserVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = GroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GroupUserVOMeta.GROUP_ID, value = "班组", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GroupUserVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { GroupUserVOMeta.PAGE_INDEX, GroupUserVOMeta.PAGE_SIZE })
     @SentinelResource(value = GroupUserServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(GroupUserServiceProxy.QUERY_LIST)
@@ -173,7 +197,11 @@ public class GroupUserController extends SuperController {
      * 分页查询班组成员
      */
     @ApiOperation(value = "分页查询班组成员")
-    @ApiImplicitParams({ @ApiImplicitParam(name = GroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = GroupUserVOMeta.GROUP_ID, value = "班组", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GroupUserVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = GroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GroupUserVOMeta.GROUP_ID, value = "班组", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GroupUserVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = GroupUserServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(GroupUserServiceProxy.QUERY_PAGED_LIST)

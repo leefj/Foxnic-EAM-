@@ -61,7 +61,23 @@ public class ContentController extends SuperController {
      * 添加知识库内容
      */
     @ApiOperation(value = "添加知识库内容")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContentVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1359871843053346816"), @ApiImplicitParam(name = ContentVOMeta.CATEGORY_ID, value = "分类", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.TITLE, value = "标题", required = false, dataTypeClass = String.class, example = "百度一下，你就知道"), @ApiImplicitParam(name = ContentVOMeta.PROFILE, value = "简介", required = false, dataTypeClass = String.class, example = "全球最大的中文搜索引擎、致力于让网民更便捷地获取信息，找到所求。百度超过千亿的中文网页数据库，可以瞬间找到相关的搜索结果"), @ApiImplicitParam(name = ContentVOMeta.KEY_WORDS, value = "关键字", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.CONTENT, value = "知识内容", required = false, dataTypeClass = String.class, example = "百度"), @ApiImplicitParam(name = ContentVOMeta.CONTENT_TYPE, value = "内容类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.REVIEW_COUNT, value = "阅读数", required = false, dataTypeClass = BigDecimal.class, example = "0"), @ApiImplicitParam(name = ContentVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.DISPLAY, value = "是否显示", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = ContentVOMeta.LINK_ADDRESS, value = "链接地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.GRADE_ID, value = "等级", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.EDITOR_ID, value = "编辑人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContentVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1359871843053346816"),
+		@ApiImplicitParam(name = ContentVOMeta.CATEGORY_ID, value = "分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.TITLE, value = "标题", required = false, dataTypeClass = String.class, example = "百度一下，你就知道"),
+		@ApiImplicitParam(name = ContentVOMeta.PROFILE, value = "简介", required = false, dataTypeClass = String.class, example = "全球最大的中文搜索引擎、致力于让网民更便捷地获取信息，找到所求。百度超过千亿的中文网页数据库，可以瞬间找到相关的搜索结果"),
+		@ApiImplicitParam(name = ContentVOMeta.KEY_WORDS, value = "关键字", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.CONTENT, value = "知识内容", required = false, dataTypeClass = String.class, example = "百度"),
+		@ApiImplicitParam(name = ContentVOMeta.CONTENT_TYPE, value = "内容类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.REVIEW_COUNT, value = "阅读数", required = false, dataTypeClass = BigDecimal.class, example = "0"),
+		@ApiImplicitParam(name = ContentVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.DISPLAY, value = "是否显示", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = ContentVOMeta.LINK_ADDRESS, value = "链接地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.GRADE_ID, value = "等级", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.EDITOR_ID, value = "编辑人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = ContentServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContentServiceProxy.INSERT)
@@ -75,7 +91,9 @@ public class ContentController extends SuperController {
      * 删除知识库内容
      */
     @ApiOperation(value = "删除知识库内容")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContentVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1359871843053346816") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContentVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1359871843053346816")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = ContentServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContentServiceProxy.DELETE)
@@ -89,7 +107,9 @@ public class ContentController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除知识库内容")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContentVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContentVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ContentServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContentServiceProxy.DELETE_BY_IDS)
@@ -102,7 +122,23 @@ public class ContentController extends SuperController {
      * 更新知识库内容
      */
     @ApiOperation(value = "更新知识库内容")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContentVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1359871843053346816"), @ApiImplicitParam(name = ContentVOMeta.CATEGORY_ID, value = "分类", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.TITLE, value = "标题", required = false, dataTypeClass = String.class, example = "百度一下，你就知道"), @ApiImplicitParam(name = ContentVOMeta.PROFILE, value = "简介", required = false, dataTypeClass = String.class, example = "全球最大的中文搜索引擎、致力于让网民更便捷地获取信息，找到所求。百度超过千亿的中文网页数据库，可以瞬间找到相关的搜索结果"), @ApiImplicitParam(name = ContentVOMeta.KEY_WORDS, value = "关键字", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.CONTENT, value = "知识内容", required = false, dataTypeClass = String.class, example = "百度"), @ApiImplicitParam(name = ContentVOMeta.CONTENT_TYPE, value = "内容类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.REVIEW_COUNT, value = "阅读数", required = false, dataTypeClass = BigDecimal.class, example = "0"), @ApiImplicitParam(name = ContentVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.DISPLAY, value = "是否显示", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = ContentVOMeta.LINK_ADDRESS, value = "链接地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.GRADE_ID, value = "等级", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.EDITOR_ID, value = "编辑人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContentVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1359871843053346816"),
+		@ApiImplicitParam(name = ContentVOMeta.CATEGORY_ID, value = "分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.TITLE, value = "标题", required = false, dataTypeClass = String.class, example = "百度一下，你就知道"),
+		@ApiImplicitParam(name = ContentVOMeta.PROFILE, value = "简介", required = false, dataTypeClass = String.class, example = "全球最大的中文搜索引擎、致力于让网民更便捷地获取信息，找到所求。百度超过千亿的中文网页数据库，可以瞬间找到相关的搜索结果"),
+		@ApiImplicitParam(name = ContentVOMeta.KEY_WORDS, value = "关键字", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.CONTENT, value = "知识内容", required = false, dataTypeClass = String.class, example = "百度"),
+		@ApiImplicitParam(name = ContentVOMeta.CONTENT_TYPE, value = "内容类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.REVIEW_COUNT, value = "阅读数", required = false, dataTypeClass = BigDecimal.class, example = "0"),
+		@ApiImplicitParam(name = ContentVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.DISPLAY, value = "是否显示", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = ContentVOMeta.LINK_ADDRESS, value = "链接地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.GRADE_ID, value = "等级", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.EDITOR_ID, value = "编辑人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { ContentVOMeta.PAGE_INDEX, ContentVOMeta.PAGE_SIZE, ContentVOMeta.SEARCH_FIELD, ContentVOMeta.FUZZY_FIELD, ContentVOMeta.SEARCH_VALUE, ContentVOMeta.SORT_FIELD, ContentVOMeta.SORT_TYPE, ContentVOMeta.IDS })
     @SentinelResource(value = ContentServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContentServiceProxy.UPDATE)
@@ -116,7 +152,23 @@ public class ContentController extends SuperController {
      * 保存知识库内容
      */
     @ApiOperation(value = "保存知识库内容")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContentVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1359871843053346816"), @ApiImplicitParam(name = ContentVOMeta.CATEGORY_ID, value = "分类", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.TITLE, value = "标题", required = false, dataTypeClass = String.class, example = "百度一下，你就知道"), @ApiImplicitParam(name = ContentVOMeta.PROFILE, value = "简介", required = false, dataTypeClass = String.class, example = "全球最大的中文搜索引擎、致力于让网民更便捷地获取信息，找到所求。百度超过千亿的中文网页数据库，可以瞬间找到相关的搜索结果"), @ApiImplicitParam(name = ContentVOMeta.KEY_WORDS, value = "关键字", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.CONTENT, value = "知识内容", required = false, dataTypeClass = String.class, example = "百度"), @ApiImplicitParam(name = ContentVOMeta.CONTENT_TYPE, value = "内容类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.REVIEW_COUNT, value = "阅读数", required = false, dataTypeClass = BigDecimal.class, example = "0"), @ApiImplicitParam(name = ContentVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.DISPLAY, value = "是否显示", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = ContentVOMeta.LINK_ADDRESS, value = "链接地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.GRADE_ID, value = "等级", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.EDITOR_ID, value = "编辑人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContentVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1359871843053346816"),
+		@ApiImplicitParam(name = ContentVOMeta.CATEGORY_ID, value = "分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.TITLE, value = "标题", required = false, dataTypeClass = String.class, example = "百度一下，你就知道"),
+		@ApiImplicitParam(name = ContentVOMeta.PROFILE, value = "简介", required = false, dataTypeClass = String.class, example = "全球最大的中文搜索引擎、致力于让网民更便捷地获取信息，找到所求。百度超过千亿的中文网页数据库，可以瞬间找到相关的搜索结果"),
+		@ApiImplicitParam(name = ContentVOMeta.KEY_WORDS, value = "关键字", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.CONTENT, value = "知识内容", required = false, dataTypeClass = String.class, example = "百度"),
+		@ApiImplicitParam(name = ContentVOMeta.CONTENT_TYPE, value = "内容类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.REVIEW_COUNT, value = "阅读数", required = false, dataTypeClass = BigDecimal.class, example = "0"),
+		@ApiImplicitParam(name = ContentVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.DISPLAY, value = "是否显示", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = ContentVOMeta.LINK_ADDRESS, value = "链接地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.GRADE_ID, value = "等级", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.EDITOR_ID, value = "编辑人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ContentVOMeta.PAGE_INDEX, ContentVOMeta.PAGE_SIZE, ContentVOMeta.SEARCH_FIELD, ContentVOMeta.FUZZY_FIELD, ContentVOMeta.SEARCH_VALUE, ContentVOMeta.SORT_FIELD, ContentVOMeta.SORT_TYPE, ContentVOMeta.IDS })
     @SentinelResource(value = ContentServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContentServiceProxy.SAVE)
@@ -130,7 +182,9 @@ public class ContentController extends SuperController {
      * 获取知识库内容
      */
     @ApiOperation(value = "获取知识库内容")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContentVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContentVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = ContentServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContentServiceProxy.GET_BY_ID)
@@ -150,7 +204,9 @@ public class ContentController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除知识库内容")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContentVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContentVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ContentServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContentServiceProxy.GET_BY_IDS)
@@ -165,7 +221,23 @@ public class ContentController extends SuperController {
      * 查询知识库内容
      */
     @ApiOperation(value = "查询知识库内容")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContentVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1359871843053346816"), @ApiImplicitParam(name = ContentVOMeta.CATEGORY_ID, value = "分类", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.TITLE, value = "标题", required = false, dataTypeClass = String.class, example = "百度一下，你就知道"), @ApiImplicitParam(name = ContentVOMeta.PROFILE, value = "简介", required = false, dataTypeClass = String.class, example = "全球最大的中文搜索引擎、致力于让网民更便捷地获取信息，找到所求。百度超过千亿的中文网页数据库，可以瞬间找到相关的搜索结果"), @ApiImplicitParam(name = ContentVOMeta.KEY_WORDS, value = "关键字", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.CONTENT, value = "知识内容", required = false, dataTypeClass = String.class, example = "百度"), @ApiImplicitParam(name = ContentVOMeta.CONTENT_TYPE, value = "内容类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.REVIEW_COUNT, value = "阅读数", required = false, dataTypeClass = BigDecimal.class, example = "0"), @ApiImplicitParam(name = ContentVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.DISPLAY, value = "是否显示", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = ContentVOMeta.LINK_ADDRESS, value = "链接地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.GRADE_ID, value = "等级", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.EDITOR_ID, value = "编辑人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContentVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1359871843053346816"),
+		@ApiImplicitParam(name = ContentVOMeta.CATEGORY_ID, value = "分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.TITLE, value = "标题", required = false, dataTypeClass = String.class, example = "百度一下，你就知道"),
+		@ApiImplicitParam(name = ContentVOMeta.PROFILE, value = "简介", required = false, dataTypeClass = String.class, example = "全球最大的中文搜索引擎、致力于让网民更便捷地获取信息，找到所求。百度超过千亿的中文网页数据库，可以瞬间找到相关的搜索结果"),
+		@ApiImplicitParam(name = ContentVOMeta.KEY_WORDS, value = "关键字", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.CONTENT, value = "知识内容", required = false, dataTypeClass = String.class, example = "百度"),
+		@ApiImplicitParam(name = ContentVOMeta.CONTENT_TYPE, value = "内容类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.REVIEW_COUNT, value = "阅读数", required = false, dataTypeClass = BigDecimal.class, example = "0"),
+		@ApiImplicitParam(name = ContentVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.DISPLAY, value = "是否显示", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = ContentVOMeta.LINK_ADDRESS, value = "链接地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.GRADE_ID, value = "等级", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.EDITOR_ID, value = "编辑人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ContentVOMeta.PAGE_INDEX, ContentVOMeta.PAGE_SIZE })
     @SentinelResource(value = ContentServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContentServiceProxy.QUERY_LIST)
@@ -180,7 +252,23 @@ public class ContentController extends SuperController {
      * 分页查询知识库内容
      */
     @ApiOperation(value = "分页查询知识库内容")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContentVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1359871843053346816"), @ApiImplicitParam(name = ContentVOMeta.CATEGORY_ID, value = "分类", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.TITLE, value = "标题", required = false, dataTypeClass = String.class, example = "百度一下，你就知道"), @ApiImplicitParam(name = ContentVOMeta.PROFILE, value = "简介", required = false, dataTypeClass = String.class, example = "全球最大的中文搜索引擎、致力于让网民更便捷地获取信息，找到所求。百度超过千亿的中文网页数据库，可以瞬间找到相关的搜索结果"), @ApiImplicitParam(name = ContentVOMeta.KEY_WORDS, value = "关键字", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.CONTENT, value = "知识内容", required = false, dataTypeClass = String.class, example = "百度"), @ApiImplicitParam(name = ContentVOMeta.CONTENT_TYPE, value = "内容类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.REVIEW_COUNT, value = "阅读数", required = false, dataTypeClass = BigDecimal.class, example = "0"), @ApiImplicitParam(name = ContentVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.DISPLAY, value = "是否显示", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = ContentVOMeta.LINK_ADDRESS, value = "链接地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.GRADE_ID, value = "等级", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.EDITOR_ID, value = "编辑人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContentVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContentVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1359871843053346816"),
+		@ApiImplicitParam(name = ContentVOMeta.CATEGORY_ID, value = "分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.TITLE, value = "标题", required = false, dataTypeClass = String.class, example = "百度一下，你就知道"),
+		@ApiImplicitParam(name = ContentVOMeta.PROFILE, value = "简介", required = false, dataTypeClass = String.class, example = "全球最大的中文搜索引擎、致力于让网民更便捷地获取信息，找到所求。百度超过千亿的中文网页数据库，可以瞬间找到相关的搜索结果"),
+		@ApiImplicitParam(name = ContentVOMeta.KEY_WORDS, value = "关键字", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.CONTENT, value = "知识内容", required = false, dataTypeClass = String.class, example = "百度"),
+		@ApiImplicitParam(name = ContentVOMeta.CONTENT_TYPE, value = "内容类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.REVIEW_COUNT, value = "阅读数", required = false, dataTypeClass = BigDecimal.class, example = "0"),
+		@ApiImplicitParam(name = ContentVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.DISPLAY, value = "是否显示", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = ContentVOMeta.LINK_ADDRESS, value = "链接地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.GRADE_ID, value = "等级", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.EDITOR_ID, value = "编辑人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContentVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = ContentServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContentServiceProxy.QUERY_PAGED_LIST)

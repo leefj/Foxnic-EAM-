@@ -61,7 +61,14 @@ public class MonitorTplController extends SuperController {
      * 添加监控模版
      */
     @ApiOperation(value = "添加监控模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorTplVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Linux监控zabbix模版"), @ApiImplicitParam(name = MonitorTplVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "tpl_host_linux_zabbix"), @ApiImplicitParam(name = MonitorTplVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = MonitorTplVOMeta.TYPE, value = "分类", required = false, dataTypeClass = String.class, example = "host"), @ApiImplicitParam(name = MonitorTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "Linux主机监控模版") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorTplVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Linux监控zabbix模版"),
+		@ApiImplicitParam(name = MonitorTplVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "tpl_host_linux_zabbix"),
+		@ApiImplicitParam(name = MonitorTplVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = MonitorTplVOMeta.TYPE, value = "分类", required = false, dataTypeClass = String.class, example = "host"),
+		@ApiImplicitParam(name = MonitorTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "Linux主机监控模版")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = MonitorTplServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorTplServiceProxy.INSERT)
@@ -75,7 +82,9 @@ public class MonitorTplController extends SuperController {
      * 删除监控模版
      */
     @ApiOperation(value = "删除监控模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = MonitorTplServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorTplServiceProxy.DELETE)
@@ -100,7 +109,9 @@ public class MonitorTplController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除监控模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorTplVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorTplVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MonitorTplServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorTplServiceProxy.DELETE_BY_IDS)
@@ -145,7 +156,14 @@ public class MonitorTplController extends SuperController {
      * 更新监控模版
      */
     @ApiOperation(value = "更新监控模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorTplVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Linux监控zabbix模版"), @ApiImplicitParam(name = MonitorTplVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "tpl_host_linux_zabbix"), @ApiImplicitParam(name = MonitorTplVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = MonitorTplVOMeta.TYPE, value = "分类", required = false, dataTypeClass = String.class, example = "host"), @ApiImplicitParam(name = MonitorTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "Linux主机监控模版") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorTplVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Linux监控zabbix模版"),
+		@ApiImplicitParam(name = MonitorTplVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "tpl_host_linux_zabbix"),
+		@ApiImplicitParam(name = MonitorTplVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = MonitorTplVOMeta.TYPE, value = "分类", required = false, dataTypeClass = String.class, example = "host"),
+		@ApiImplicitParam(name = MonitorTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "Linux主机监控模版")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { MonitorTplVOMeta.PAGE_INDEX, MonitorTplVOMeta.PAGE_SIZE, MonitorTplVOMeta.SEARCH_FIELD, MonitorTplVOMeta.FUZZY_FIELD, MonitorTplVOMeta.SEARCH_VALUE, MonitorTplVOMeta.DIRTY_FIELDS, MonitorTplVOMeta.SORT_FIELD, MonitorTplVOMeta.SORT_TYPE, MonitorTplVOMeta.IDS })
     @SentinelResource(value = MonitorTplServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorTplServiceProxy.UPDATE)
@@ -159,7 +177,14 @@ public class MonitorTplController extends SuperController {
      * 保存监控模版
      */
     @ApiOperation(value = "保存监控模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorTplVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Linux监控zabbix模版"), @ApiImplicitParam(name = MonitorTplVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "tpl_host_linux_zabbix"), @ApiImplicitParam(name = MonitorTplVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = MonitorTplVOMeta.TYPE, value = "分类", required = false, dataTypeClass = String.class, example = "host"), @ApiImplicitParam(name = MonitorTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "Linux主机监控模版") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorTplVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Linux监控zabbix模版"),
+		@ApiImplicitParam(name = MonitorTplVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "tpl_host_linux_zabbix"),
+		@ApiImplicitParam(name = MonitorTplVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = MonitorTplVOMeta.TYPE, value = "分类", required = false, dataTypeClass = String.class, example = "host"),
+		@ApiImplicitParam(name = MonitorTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "Linux主机监控模版")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MonitorTplVOMeta.PAGE_INDEX, MonitorTplVOMeta.PAGE_SIZE, MonitorTplVOMeta.SEARCH_FIELD, MonitorTplVOMeta.FUZZY_FIELD, MonitorTplVOMeta.SEARCH_VALUE, MonitorTplVOMeta.DIRTY_FIELDS, MonitorTplVOMeta.SORT_FIELD, MonitorTplVOMeta.SORT_TYPE, MonitorTplVOMeta.IDS })
     @SentinelResource(value = MonitorTplServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorTplServiceProxy.SAVE)
@@ -173,7 +198,9 @@ public class MonitorTplController extends SuperController {
      * 获取监控模版
      */
     @ApiOperation(value = "获取监控模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = MonitorTplServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorTplServiceProxy.GET_BY_ID)
@@ -191,7 +218,9 @@ public class MonitorTplController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取监控模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorTplVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorTplVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MonitorTplServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorTplServiceProxy.GET_BY_IDS)
@@ -206,7 +235,14 @@ public class MonitorTplController extends SuperController {
      * 查询监控模版
      */
     @ApiOperation(value = "查询监控模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorTplVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Linux监控zabbix模版"), @ApiImplicitParam(name = MonitorTplVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "tpl_host_linux_zabbix"), @ApiImplicitParam(name = MonitorTplVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = MonitorTplVOMeta.TYPE, value = "分类", required = false, dataTypeClass = String.class, example = "host"), @ApiImplicitParam(name = MonitorTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "Linux主机监控模版") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorTplVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Linux监控zabbix模版"),
+		@ApiImplicitParam(name = MonitorTplVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "tpl_host_linux_zabbix"),
+		@ApiImplicitParam(name = MonitorTplVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = MonitorTplVOMeta.TYPE, value = "分类", required = false, dataTypeClass = String.class, example = "host"),
+		@ApiImplicitParam(name = MonitorTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "Linux主机监控模版")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MonitorTplVOMeta.PAGE_INDEX, MonitorTplVOMeta.PAGE_SIZE })
     @SentinelResource(value = MonitorTplServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorTplServiceProxy.QUERY_LIST)
@@ -221,7 +257,14 @@ public class MonitorTplController extends SuperController {
      * 分页查询监控模版
      */
     @ApiOperation(value = "分页查询监控模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorTplVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Linux监控zabbix模版"), @ApiImplicitParam(name = MonitorTplVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "tpl_host_linux_zabbix"), @ApiImplicitParam(name = MonitorTplVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = MonitorTplVOMeta.TYPE, value = "分类", required = false, dataTypeClass = String.class, example = "host"), @ApiImplicitParam(name = MonitorTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "Linux主机监控模版") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorTplVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Linux监控zabbix模版"),
+		@ApiImplicitParam(name = MonitorTplVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "tpl_host_linux_zabbix"),
+		@ApiImplicitParam(name = MonitorTplVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = MonitorTplVOMeta.TYPE, value = "分类", required = false, dataTypeClass = String.class, example = "host"),
+		@ApiImplicitParam(name = MonitorTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "Linux主机监控模版")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = MonitorTplServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorTplServiceProxy.QUERY_PAGED_LIST)

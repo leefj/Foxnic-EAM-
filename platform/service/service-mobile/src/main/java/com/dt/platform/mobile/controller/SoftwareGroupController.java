@@ -58,7 +58,12 @@ public class SoftwareGroupController extends SuperController {
      * 添加软件组
      */
     @ApiOperation(value = "添加软件组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareGroupVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareGroupVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = SoftwareGroupServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareGroupServiceProxy.INSERT)
@@ -72,7 +77,9 @@ public class SoftwareGroupController extends SuperController {
      * 删除软件组
      */
     @ApiOperation(value = "删除软件组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = SoftwareGroupServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareGroupServiceProxy.DELETE)
@@ -86,7 +93,9 @@ public class SoftwareGroupController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除软件组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareGroupVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareGroupVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = SoftwareGroupServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareGroupServiceProxy.DELETE_BY_IDS)
@@ -99,7 +108,12 @@ public class SoftwareGroupController extends SuperController {
      * 更新软件组
      */
     @ApiOperation(value = "更新软件组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareGroupVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareGroupVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { SoftwareGroupVOMeta.PAGE_INDEX, SoftwareGroupVOMeta.PAGE_SIZE, SoftwareGroupVOMeta.SEARCH_FIELD, SoftwareGroupVOMeta.FUZZY_FIELD, SoftwareGroupVOMeta.SEARCH_VALUE, SoftwareGroupVOMeta.DIRTY_FIELDS, SoftwareGroupVOMeta.SORT_FIELD, SoftwareGroupVOMeta.SORT_TYPE, SoftwareGroupVOMeta.IDS })
     @SentinelResource(value = SoftwareGroupServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareGroupServiceProxy.UPDATE)
@@ -113,7 +127,12 @@ public class SoftwareGroupController extends SuperController {
      * 保存软件组
      */
     @ApiOperation(value = "保存软件组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareGroupVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareGroupVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { SoftwareGroupVOMeta.PAGE_INDEX, SoftwareGroupVOMeta.PAGE_SIZE, SoftwareGroupVOMeta.SEARCH_FIELD, SoftwareGroupVOMeta.FUZZY_FIELD, SoftwareGroupVOMeta.SEARCH_VALUE, SoftwareGroupVOMeta.DIRTY_FIELDS, SoftwareGroupVOMeta.SORT_FIELD, SoftwareGroupVOMeta.SORT_TYPE, SoftwareGroupVOMeta.IDS })
     @SentinelResource(value = SoftwareGroupServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareGroupServiceProxy.SAVE)
@@ -127,7 +146,9 @@ public class SoftwareGroupController extends SuperController {
      * 获取软件组
      */
     @ApiOperation(value = "获取软件组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = SoftwareGroupServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareGroupServiceProxy.GET_BY_ID)
@@ -143,7 +164,9 @@ public class SoftwareGroupController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取软件组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareGroupVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareGroupVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = SoftwareGroupServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareGroupServiceProxy.GET_BY_IDS)
@@ -158,7 +181,12 @@ public class SoftwareGroupController extends SuperController {
      * 查询软件组
      */
     @ApiOperation(value = "查询软件组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareGroupVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareGroupVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { SoftwareGroupVOMeta.PAGE_INDEX, SoftwareGroupVOMeta.PAGE_SIZE })
     @SentinelResource(value = SoftwareGroupServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareGroupServiceProxy.QUERY_LIST)
@@ -174,7 +202,12 @@ public class SoftwareGroupController extends SuperController {
      * 分页查询软件组
      */
     @ApiOperation(value = "分页查询软件组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareGroupVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareGroupVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = SoftwareGroupServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareGroupServiceProxy.QUERY_PAGED_LIST)

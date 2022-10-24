@@ -62,7 +62,19 @@ public class FailureRegistrationController extends SuperController {
      * 添加故障登记
      */
     @ApiOperation(value = "添加故障登记")
-    @ApiImplicitParams({ @ApiImplicitParam(name = FailureRegistrationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.TYPE, value = "故障类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.CONTENT, value = "故障说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.TYPE, value = "故障类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.CONTENT, value = "故障说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = FailureRegistrationServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(FailureRegistrationServiceProxy.INSERT)
@@ -76,7 +88,9 @@ public class FailureRegistrationController extends SuperController {
      * 删除故障登记
      */
     @ApiOperation(value = "删除故障登记")
-    @ApiImplicitParams({ @ApiImplicitParam(name = FailureRegistrationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = FailureRegistrationServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(FailureRegistrationServiceProxy.DELETE)
@@ -90,7 +104,9 @@ public class FailureRegistrationController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除故障登记")
-    @ApiImplicitParams({ @ApiImplicitParam(name = FailureRegistrationVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = FailureRegistrationServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(FailureRegistrationServiceProxy.DELETE_BY_IDS)
@@ -103,7 +119,19 @@ public class FailureRegistrationController extends SuperController {
      * 更新故障登记
      */
     @ApiOperation(value = "更新故障登记")
-    @ApiImplicitParams({ @ApiImplicitParam(name = FailureRegistrationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.TYPE, value = "故障类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.CONTENT, value = "故障说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.TYPE, value = "故障类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.CONTENT, value = "故障说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { FailureRegistrationVOMeta.PAGE_INDEX, FailureRegistrationVOMeta.PAGE_SIZE, FailureRegistrationVOMeta.SEARCH_FIELD, FailureRegistrationVOMeta.FUZZY_FIELD, FailureRegistrationVOMeta.SEARCH_VALUE, FailureRegistrationVOMeta.DIRTY_FIELDS, FailureRegistrationVOMeta.SORT_FIELD, FailureRegistrationVOMeta.SORT_TYPE, FailureRegistrationVOMeta.IDS })
     @SentinelResource(value = FailureRegistrationServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(FailureRegistrationServiceProxy.UPDATE)
@@ -117,7 +145,19 @@ public class FailureRegistrationController extends SuperController {
      * 保存故障登记
      */
     @ApiOperation(value = "保存故障登记")
-    @ApiImplicitParams({ @ApiImplicitParam(name = FailureRegistrationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.TYPE, value = "故障类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.CONTENT, value = "故障说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.TYPE, value = "故障类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.CONTENT, value = "故障说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { FailureRegistrationVOMeta.PAGE_INDEX, FailureRegistrationVOMeta.PAGE_SIZE, FailureRegistrationVOMeta.SEARCH_FIELD, FailureRegistrationVOMeta.FUZZY_FIELD, FailureRegistrationVOMeta.SEARCH_VALUE, FailureRegistrationVOMeta.DIRTY_FIELDS, FailureRegistrationVOMeta.SORT_FIELD, FailureRegistrationVOMeta.SORT_TYPE, FailureRegistrationVOMeta.IDS })
     @SentinelResource(value = FailureRegistrationServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(FailureRegistrationServiceProxy.SAVE)
@@ -131,7 +171,9 @@ public class FailureRegistrationController extends SuperController {
      * 获取故障登记
      */
     @ApiOperation(value = "获取故障登记")
-    @ApiImplicitParams({ @ApiImplicitParam(name = FailureRegistrationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = FailureRegistrationServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(FailureRegistrationServiceProxy.GET_BY_ID)
@@ -149,7 +191,9 @@ public class FailureRegistrationController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取故障登记")
-    @ApiImplicitParams({ @ApiImplicitParam(name = FailureRegistrationVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = FailureRegistrationServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(FailureRegistrationServiceProxy.GET_BY_IDS)
@@ -164,7 +208,19 @@ public class FailureRegistrationController extends SuperController {
      * 查询故障登记
      */
     @ApiOperation(value = "查询故障登记")
-    @ApiImplicitParams({ @ApiImplicitParam(name = FailureRegistrationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.TYPE, value = "故障类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.CONTENT, value = "故障说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.TYPE, value = "故障类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.CONTENT, value = "故障说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { FailureRegistrationVOMeta.PAGE_INDEX, FailureRegistrationVOMeta.PAGE_SIZE })
     @SentinelResource(value = FailureRegistrationServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(FailureRegistrationServiceProxy.QUERY_LIST)
@@ -179,7 +235,19 @@ public class FailureRegistrationController extends SuperController {
      * 分页查询故障登记
      */
     @ApiOperation(value = "分页查询故障登记")
-    @ApiImplicitParams({ @ApiImplicitParam(name = FailureRegistrationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.TYPE, value = "故障类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.CONTENT, value = "故障说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = FailureRegistrationVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.TYPE, value = "故障类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.CONTENT, value = "故障说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = FailureRegistrationServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(FailureRegistrationServiceProxy.QUERY_PAGED_LIST)
@@ -198,7 +266,9 @@ public class FailureRegistrationController extends SuperController {
      * 确认
      */
     @ApiOperation(value = "确认")
-    @ApiImplicitParams({ @ApiImplicitParam(name = FailureRegistrationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = FailureRegistrationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = FailureRegistrationServiceProxy.CONFIRM_OPERATION, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(FailureRegistrationServiceProxy.CONFIRM_OPERATION)

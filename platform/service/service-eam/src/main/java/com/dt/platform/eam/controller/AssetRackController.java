@@ -62,7 +62,18 @@ public class AssetRackController extends SuperController {
      * 添加设备机柜
      */
     @ApiOperation(value = "添加设备机柜")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRackVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.RACK_ID, value = "机柜", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRackVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.RACK_ID, value = "机柜", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetRackServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRackServiceProxy.INSERT)
@@ -96,7 +107,9 @@ public class AssetRackController extends SuperController {
      * 删除设备机柜
      */
     @ApiOperation(value = "删除设备机柜")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRackVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRackVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetRackServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRackServiceProxy.DELETE)
@@ -127,7 +140,9 @@ public class AssetRackController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除设备机柜")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRackVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRackVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetRackServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRackServiceProxy.DELETE_BY_IDS)
@@ -172,7 +187,18 @@ public class AssetRackController extends SuperController {
      * 更新设备机柜
      */
     @ApiOperation(value = "更新设备机柜")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRackVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.RACK_ID, value = "机柜", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRackVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.RACK_ID, value = "机柜", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetRackVOMeta.PAGE_INDEX, AssetRackVOMeta.PAGE_SIZE, AssetRackVOMeta.SEARCH_FIELD, AssetRackVOMeta.FUZZY_FIELD, AssetRackVOMeta.SEARCH_VALUE, AssetRackVOMeta.DIRTY_FIELDS, AssetRackVOMeta.SORT_FIELD, AssetRackVOMeta.SORT_TYPE, AssetRackVOMeta.IDS })
     @SentinelResource(value = AssetRackServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRackServiceProxy.UPDATE)
@@ -190,7 +216,18 @@ public class AssetRackController extends SuperController {
      * 保存设备机柜
      */
     @ApiOperation(value = "保存设备机柜")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRackVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.RACK_ID, value = "机柜", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRackVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.RACK_ID, value = "机柜", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetRackVOMeta.PAGE_INDEX, AssetRackVOMeta.PAGE_SIZE, AssetRackVOMeta.SEARCH_FIELD, AssetRackVOMeta.FUZZY_FIELD, AssetRackVOMeta.SEARCH_VALUE, AssetRackVOMeta.DIRTY_FIELDS, AssetRackVOMeta.SORT_FIELD, AssetRackVOMeta.SORT_TYPE, AssetRackVOMeta.IDS })
     @SentinelResource(value = AssetRackServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRackServiceProxy.SAVE)
@@ -208,7 +245,9 @@ public class AssetRackController extends SuperController {
      * 获取设备机柜
      */
     @ApiOperation(value = "获取设备机柜")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRackVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRackVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetRackServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRackServiceProxy.GET_BY_ID)
@@ -226,7 +265,9 @@ public class AssetRackController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取设备机柜")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRackVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRackVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetRackServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRackServiceProxy.GET_BY_IDS)
@@ -241,7 +282,18 @@ public class AssetRackController extends SuperController {
      * 查询设备机柜
      */
     @ApiOperation(value = "查询设备机柜")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRackVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.RACK_ID, value = "机柜", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRackVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.RACK_ID, value = "机柜", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetRackVOMeta.PAGE_INDEX, AssetRackVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetRackServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRackServiceProxy.QUERY_LIST)
@@ -256,7 +308,18 @@ public class AssetRackController extends SuperController {
      * 分页查询设备机柜
      */
     @ApiOperation(value = "分页查询设备机柜")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRackVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.RACK_ID, value = "机柜", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRackVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRackVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRackVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.RACK_ID, value = "机柜", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRackVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetRackServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRackServiceProxy.QUERY_PAGED_LIST)

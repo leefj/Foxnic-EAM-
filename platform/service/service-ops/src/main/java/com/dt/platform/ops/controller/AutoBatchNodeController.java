@@ -58,7 +58,12 @@ public class AutoBatchNodeController extends SuperController {
      * 添加分组节点
      */
     @ApiOperation(value = "添加分组节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoBatchNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoBatchNodeVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoBatchNodeVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoBatchNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoBatchNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoBatchNodeVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoBatchNodeVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoBatchNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AutoBatchNodeServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoBatchNodeServiceProxy.INSERT)
@@ -72,7 +77,9 @@ public class AutoBatchNodeController extends SuperController {
      * 删除分组节点
      */
     @ApiOperation(value = "删除分组节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoBatchNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoBatchNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AutoBatchNodeServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoBatchNodeServiceProxy.DELETE)
@@ -97,7 +104,9 @@ public class AutoBatchNodeController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除分组节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoBatchNodeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoBatchNodeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoBatchNodeServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoBatchNodeServiceProxy.DELETE_BY_IDS)
@@ -142,7 +151,12 @@ public class AutoBatchNodeController extends SuperController {
      * 更新分组节点
      */
     @ApiOperation(value = "更新分组节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoBatchNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoBatchNodeVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoBatchNodeVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoBatchNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoBatchNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoBatchNodeVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoBatchNodeVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoBatchNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AutoBatchNodeVOMeta.PAGE_INDEX, AutoBatchNodeVOMeta.PAGE_SIZE, AutoBatchNodeVOMeta.SEARCH_FIELD, AutoBatchNodeVOMeta.FUZZY_FIELD, AutoBatchNodeVOMeta.SEARCH_VALUE, AutoBatchNodeVOMeta.DIRTY_FIELDS, AutoBatchNodeVOMeta.SORT_FIELD, AutoBatchNodeVOMeta.SORT_TYPE, AutoBatchNodeVOMeta.IDS })
     @SentinelResource(value = AutoBatchNodeServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoBatchNodeServiceProxy.UPDATE)
@@ -156,7 +170,12 @@ public class AutoBatchNodeController extends SuperController {
      * 保存分组节点
      */
     @ApiOperation(value = "保存分组节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoBatchNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoBatchNodeVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoBatchNodeVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoBatchNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoBatchNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoBatchNodeVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoBatchNodeVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoBatchNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoBatchNodeVOMeta.PAGE_INDEX, AutoBatchNodeVOMeta.PAGE_SIZE, AutoBatchNodeVOMeta.SEARCH_FIELD, AutoBatchNodeVOMeta.FUZZY_FIELD, AutoBatchNodeVOMeta.SEARCH_VALUE, AutoBatchNodeVOMeta.DIRTY_FIELDS, AutoBatchNodeVOMeta.SORT_FIELD, AutoBatchNodeVOMeta.SORT_TYPE, AutoBatchNodeVOMeta.IDS })
     @SentinelResource(value = AutoBatchNodeServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoBatchNodeServiceProxy.SAVE)
@@ -170,7 +189,9 @@ public class AutoBatchNodeController extends SuperController {
      * 获取分组节点
      */
     @ApiOperation(value = "获取分组节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoBatchNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoBatchNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AutoBatchNodeServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoBatchNodeServiceProxy.GET_BY_ID)
@@ -186,7 +207,9 @@ public class AutoBatchNodeController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取分组节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoBatchNodeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoBatchNodeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoBatchNodeServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoBatchNodeServiceProxy.GET_BY_IDS)
@@ -201,7 +224,12 @@ public class AutoBatchNodeController extends SuperController {
      * 查询分组节点
      */
     @ApiOperation(value = "查询分组节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoBatchNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoBatchNodeVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoBatchNodeVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoBatchNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoBatchNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoBatchNodeVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoBatchNodeVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoBatchNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoBatchNodeVOMeta.PAGE_INDEX, AutoBatchNodeVOMeta.PAGE_SIZE })
     @SentinelResource(value = AutoBatchNodeServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoBatchNodeServiceProxy.QUERY_LIST)
@@ -216,7 +244,12 @@ public class AutoBatchNodeController extends SuperController {
      * 分页查询分组节点
      */
     @ApiOperation(value = "分页查询分组节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoBatchNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoBatchNodeVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoBatchNodeVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoBatchNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoBatchNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoBatchNodeVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoBatchNodeVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoBatchNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AutoBatchNodeServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoBatchNodeServiceProxy.QUERY_PAGED_LIST)

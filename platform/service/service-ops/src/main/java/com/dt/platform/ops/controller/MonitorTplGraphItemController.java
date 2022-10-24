@@ -57,7 +57,14 @@ public class MonitorTplGraphItemController extends SuperController {
      * 添加图形指标
      */
     @ApiOperation(value = "添加图形指标")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.GRAPH_ID, value = "图形", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.INDICATOR_CODE, value = "指标", required = false, dataTypeClass = String.class, example = "os.cpu"), @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "CPU使用率"), @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.ROUTE, value = "数据", required = false, dataTypeClass = String.class, example = "cpu_used") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.GRAPH_ID, value = "图形", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.INDICATOR_CODE, value = "指标", required = false, dataTypeClass = String.class, example = "os.cpu"),
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "CPU使用率"),
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.ROUTE, value = "数据", required = false, dataTypeClass = String.class, example = "cpu_used")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = MonitorTplGraphItemServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorTplGraphItemServiceProxy.INSERT)
@@ -71,7 +78,9 @@ public class MonitorTplGraphItemController extends SuperController {
      * 删除图形指标
      */
     @ApiOperation(value = "删除图形指标")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = MonitorTplGraphItemServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorTplGraphItemServiceProxy.DELETE)
@@ -85,7 +94,9 @@ public class MonitorTplGraphItemController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除图形指标")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MonitorTplGraphItemServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorTplGraphItemServiceProxy.DELETE_BY_IDS)
@@ -98,7 +109,14 @@ public class MonitorTplGraphItemController extends SuperController {
      * 更新图形指标
      */
     @ApiOperation(value = "更新图形指标")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.GRAPH_ID, value = "图形", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.INDICATOR_CODE, value = "指标", required = false, dataTypeClass = String.class, example = "os.cpu"), @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "CPU使用率"), @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.ROUTE, value = "数据", required = false, dataTypeClass = String.class, example = "cpu_used") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.GRAPH_ID, value = "图形", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.INDICATOR_CODE, value = "指标", required = false, dataTypeClass = String.class, example = "os.cpu"),
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "CPU使用率"),
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.ROUTE, value = "数据", required = false, dataTypeClass = String.class, example = "cpu_used")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { MonitorTplGraphItemVOMeta.PAGE_INDEX, MonitorTplGraphItemVOMeta.PAGE_SIZE, MonitorTplGraphItemVOMeta.SEARCH_FIELD, MonitorTplGraphItemVOMeta.FUZZY_FIELD, MonitorTplGraphItemVOMeta.SEARCH_VALUE, MonitorTplGraphItemVOMeta.DIRTY_FIELDS, MonitorTplGraphItemVOMeta.SORT_FIELD, MonitorTplGraphItemVOMeta.SORT_TYPE, MonitorTplGraphItemVOMeta.IDS })
     @SentinelResource(value = MonitorTplGraphItemServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorTplGraphItemServiceProxy.UPDATE)
@@ -112,7 +130,14 @@ public class MonitorTplGraphItemController extends SuperController {
      * 保存图形指标
      */
     @ApiOperation(value = "保存图形指标")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.GRAPH_ID, value = "图形", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.INDICATOR_CODE, value = "指标", required = false, dataTypeClass = String.class, example = "os.cpu"), @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "CPU使用率"), @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.ROUTE, value = "数据", required = false, dataTypeClass = String.class, example = "cpu_used") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.GRAPH_ID, value = "图形", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.INDICATOR_CODE, value = "指标", required = false, dataTypeClass = String.class, example = "os.cpu"),
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "CPU使用率"),
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.ROUTE, value = "数据", required = false, dataTypeClass = String.class, example = "cpu_used")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MonitorTplGraphItemVOMeta.PAGE_INDEX, MonitorTplGraphItemVOMeta.PAGE_SIZE, MonitorTplGraphItemVOMeta.SEARCH_FIELD, MonitorTplGraphItemVOMeta.FUZZY_FIELD, MonitorTplGraphItemVOMeta.SEARCH_VALUE, MonitorTplGraphItemVOMeta.DIRTY_FIELDS, MonitorTplGraphItemVOMeta.SORT_FIELD, MonitorTplGraphItemVOMeta.SORT_TYPE, MonitorTplGraphItemVOMeta.IDS })
     @SentinelResource(value = MonitorTplGraphItemServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorTplGraphItemServiceProxy.SAVE)
@@ -126,7 +151,9 @@ public class MonitorTplGraphItemController extends SuperController {
      * 获取图形指标
      */
     @ApiOperation(value = "获取图形指标")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = MonitorTplGraphItemServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorTplGraphItemServiceProxy.GET_BY_ID)
@@ -142,7 +169,9 @@ public class MonitorTplGraphItemController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取图形指标")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MonitorTplGraphItemServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorTplGraphItemServiceProxy.GET_BY_IDS)
@@ -157,7 +186,14 @@ public class MonitorTplGraphItemController extends SuperController {
      * 查询图形指标
      */
     @ApiOperation(value = "查询图形指标")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.GRAPH_ID, value = "图形", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.INDICATOR_CODE, value = "指标", required = false, dataTypeClass = String.class, example = "os.cpu"), @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "CPU使用率"), @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.ROUTE, value = "数据", required = false, dataTypeClass = String.class, example = "cpu_used") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.GRAPH_ID, value = "图形", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.INDICATOR_CODE, value = "指标", required = false, dataTypeClass = String.class, example = "os.cpu"),
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "CPU使用率"),
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.ROUTE, value = "数据", required = false, dataTypeClass = String.class, example = "cpu_used")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MonitorTplGraphItemVOMeta.PAGE_INDEX, MonitorTplGraphItemVOMeta.PAGE_SIZE })
     @SentinelResource(value = MonitorTplGraphItemServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorTplGraphItemServiceProxy.QUERY_LIST)
@@ -172,7 +208,14 @@ public class MonitorTplGraphItemController extends SuperController {
      * 分页查询图形指标
      */
     @ApiOperation(value = "分页查询图形指标")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.GRAPH_ID, value = "图形", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.INDICATOR_CODE, value = "指标", required = false, dataTypeClass = String.class, example = "os.cpu"), @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "CPU使用率"), @ApiImplicitParam(name = MonitorTplGraphItemVOMeta.ROUTE, value = "数据", required = false, dataTypeClass = String.class, example = "cpu_used") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.GRAPH_ID, value = "图形", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.INDICATOR_CODE, value = "指标", required = false, dataTypeClass = String.class, example = "os.cpu"),
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "CPU使用率"),
+		@ApiImplicitParam(name = MonitorTplGraphItemVOMeta.ROUTE, value = "数据", required = false, dataTypeClass = String.class, example = "cpu_used")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = MonitorTplGraphItemServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorTplGraphItemServiceProxy.QUERY_PAGED_LIST)

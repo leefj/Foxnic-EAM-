@@ -64,7 +64,26 @@ public class AssetSoftwareMaintenanceController extends SuperController {
      * 添加软件维保
      */
     @ApiOperation(value = "添加软件维保")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "574636732868198400"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.NAME, value = "维保名称", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTAINER_ID, value = "维保厂商", required = false, dataTypeClass = String.class, example = "472013393872551936"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.USE_ORG_ID, value = "负责部门", required = false, dataTypeClass = String.class, example = "2"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MANAGER_ID, value = "维保负责人", required = false, dataTypeClass = String.class, example = "558321538131034112"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTACTS, value = "维保联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTACT_INFO, value = "联系信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_COST, value = "维保费用", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_START_DATE, value = "维保开始时间", required = false, dataTypeClass = Date.class, example = "2022-05-05 12:00:00"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_END_DATE, value = "维保到期时间", required = false, dataTypeClass = Date.class, example = "2022-05-05 12:00:00"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTENT, value = "维保说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "574636732868198400"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.NAME, value = "维保名称", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTAINER_ID, value = "维保厂商", required = false, dataTypeClass = String.class, example = "472013393872551936"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.USE_ORG_ID, value = "负责部门", required = false, dataTypeClass = String.class, example = "2"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MANAGER_ID, value = "维保负责人", required = false, dataTypeClass = String.class, example = "558321538131034112"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTACTS, value = "维保联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTACT_INFO, value = "联系信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_COST, value = "维保费用", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_START_DATE, value = "维保开始时间", required = false, dataTypeClass = Date.class, example = "2022-05-05 12:00:00"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_END_DATE, value = "维保到期时间", required = false, dataTypeClass = Date.class, example = "2022-05-05 12:00:00"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTENT, value = "维保说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetSoftwareMaintenanceServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareMaintenanceServiceProxy.INSERT)
@@ -78,7 +97,9 @@ public class AssetSoftwareMaintenanceController extends SuperController {
      * 删除软件维保
      */
     @ApiOperation(value = "删除软件维保")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "574636732868198400") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "574636732868198400")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetSoftwareMaintenanceServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareMaintenanceServiceProxy.DELETE)
@@ -92,7 +113,9 @@ public class AssetSoftwareMaintenanceController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除软件维保")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetSoftwareMaintenanceServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareMaintenanceServiceProxy.DELETE_BY_IDS)
@@ -105,7 +128,26 @@ public class AssetSoftwareMaintenanceController extends SuperController {
      * 更新软件维保
      */
     @ApiOperation(value = "更新软件维保")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "574636732868198400"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.NAME, value = "维保名称", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTAINER_ID, value = "维保厂商", required = false, dataTypeClass = String.class, example = "472013393872551936"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.USE_ORG_ID, value = "负责部门", required = false, dataTypeClass = String.class, example = "2"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MANAGER_ID, value = "维保负责人", required = false, dataTypeClass = String.class, example = "558321538131034112"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTACTS, value = "维保联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTACT_INFO, value = "联系信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_COST, value = "维保费用", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_START_DATE, value = "维保开始时间", required = false, dataTypeClass = Date.class, example = "2022-05-05 12:00:00"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_END_DATE, value = "维保到期时间", required = false, dataTypeClass = Date.class, example = "2022-05-05 12:00:00"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTENT, value = "维保说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "574636732868198400"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.NAME, value = "维保名称", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTAINER_ID, value = "维保厂商", required = false, dataTypeClass = String.class, example = "472013393872551936"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.USE_ORG_ID, value = "负责部门", required = false, dataTypeClass = String.class, example = "2"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MANAGER_ID, value = "维保负责人", required = false, dataTypeClass = String.class, example = "558321538131034112"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTACTS, value = "维保联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTACT_INFO, value = "联系信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_COST, value = "维保费用", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_START_DATE, value = "维保开始时间", required = false, dataTypeClass = Date.class, example = "2022-05-05 12:00:00"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_END_DATE, value = "维保到期时间", required = false, dataTypeClass = Date.class, example = "2022-05-05 12:00:00"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTENT, value = "维保说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetSoftwareMaintenanceVOMeta.PAGE_INDEX, AssetSoftwareMaintenanceVOMeta.PAGE_SIZE, AssetSoftwareMaintenanceVOMeta.SEARCH_FIELD, AssetSoftwareMaintenanceVOMeta.FUZZY_FIELD, AssetSoftwareMaintenanceVOMeta.SEARCH_VALUE, AssetSoftwareMaintenanceVOMeta.DIRTY_FIELDS, AssetSoftwareMaintenanceVOMeta.SORT_FIELD, AssetSoftwareMaintenanceVOMeta.SORT_TYPE, AssetSoftwareMaintenanceVOMeta.IDS })
     @SentinelResource(value = AssetSoftwareMaintenanceServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareMaintenanceServiceProxy.UPDATE)
@@ -119,7 +161,26 @@ public class AssetSoftwareMaintenanceController extends SuperController {
      * 保存软件维保
      */
     @ApiOperation(value = "保存软件维保")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "574636732868198400"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.NAME, value = "维保名称", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTAINER_ID, value = "维保厂商", required = false, dataTypeClass = String.class, example = "472013393872551936"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.USE_ORG_ID, value = "负责部门", required = false, dataTypeClass = String.class, example = "2"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MANAGER_ID, value = "维保负责人", required = false, dataTypeClass = String.class, example = "558321538131034112"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTACTS, value = "维保联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTACT_INFO, value = "联系信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_COST, value = "维保费用", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_START_DATE, value = "维保开始时间", required = false, dataTypeClass = Date.class, example = "2022-05-05 12:00:00"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_END_DATE, value = "维保到期时间", required = false, dataTypeClass = Date.class, example = "2022-05-05 12:00:00"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTENT, value = "维保说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "574636732868198400"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.NAME, value = "维保名称", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTAINER_ID, value = "维保厂商", required = false, dataTypeClass = String.class, example = "472013393872551936"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.USE_ORG_ID, value = "负责部门", required = false, dataTypeClass = String.class, example = "2"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MANAGER_ID, value = "维保负责人", required = false, dataTypeClass = String.class, example = "558321538131034112"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTACTS, value = "维保联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTACT_INFO, value = "联系信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_COST, value = "维保费用", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_START_DATE, value = "维保开始时间", required = false, dataTypeClass = Date.class, example = "2022-05-05 12:00:00"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_END_DATE, value = "维保到期时间", required = false, dataTypeClass = Date.class, example = "2022-05-05 12:00:00"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTENT, value = "维保说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetSoftwareMaintenanceVOMeta.PAGE_INDEX, AssetSoftwareMaintenanceVOMeta.PAGE_SIZE, AssetSoftwareMaintenanceVOMeta.SEARCH_FIELD, AssetSoftwareMaintenanceVOMeta.FUZZY_FIELD, AssetSoftwareMaintenanceVOMeta.SEARCH_VALUE, AssetSoftwareMaintenanceVOMeta.DIRTY_FIELDS, AssetSoftwareMaintenanceVOMeta.SORT_FIELD, AssetSoftwareMaintenanceVOMeta.SORT_TYPE, AssetSoftwareMaintenanceVOMeta.IDS })
     @SentinelResource(value = AssetSoftwareMaintenanceServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareMaintenanceServiceProxy.SAVE)
@@ -133,7 +194,9 @@ public class AssetSoftwareMaintenanceController extends SuperController {
      * 获取软件维保
      */
     @ApiOperation(value = "获取软件维保")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetSoftwareMaintenanceServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareMaintenanceServiceProxy.GET_BY_ID)
@@ -151,7 +214,9 @@ public class AssetSoftwareMaintenanceController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取软件维保")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetSoftwareMaintenanceServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareMaintenanceServiceProxy.GET_BY_IDS)
@@ -166,7 +231,26 @@ public class AssetSoftwareMaintenanceController extends SuperController {
      * 查询软件维保
      */
     @ApiOperation(value = "查询软件维保")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "574636732868198400"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.NAME, value = "维保名称", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTAINER_ID, value = "维保厂商", required = false, dataTypeClass = String.class, example = "472013393872551936"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.USE_ORG_ID, value = "负责部门", required = false, dataTypeClass = String.class, example = "2"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MANAGER_ID, value = "维保负责人", required = false, dataTypeClass = String.class, example = "558321538131034112"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTACTS, value = "维保联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTACT_INFO, value = "联系信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_COST, value = "维保费用", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_START_DATE, value = "维保开始时间", required = false, dataTypeClass = Date.class, example = "2022-05-05 12:00:00"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_END_DATE, value = "维保到期时间", required = false, dataTypeClass = Date.class, example = "2022-05-05 12:00:00"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTENT, value = "维保说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "574636732868198400"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.NAME, value = "维保名称", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTAINER_ID, value = "维保厂商", required = false, dataTypeClass = String.class, example = "472013393872551936"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.USE_ORG_ID, value = "负责部门", required = false, dataTypeClass = String.class, example = "2"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MANAGER_ID, value = "维保负责人", required = false, dataTypeClass = String.class, example = "558321538131034112"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTACTS, value = "维保联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTACT_INFO, value = "联系信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_COST, value = "维保费用", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_START_DATE, value = "维保开始时间", required = false, dataTypeClass = Date.class, example = "2022-05-05 12:00:00"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_END_DATE, value = "维保到期时间", required = false, dataTypeClass = Date.class, example = "2022-05-05 12:00:00"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTENT, value = "维保说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetSoftwareMaintenanceVOMeta.PAGE_INDEX, AssetSoftwareMaintenanceVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetSoftwareMaintenanceServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareMaintenanceServiceProxy.QUERY_LIST)
@@ -181,7 +265,26 @@ public class AssetSoftwareMaintenanceController extends SuperController {
      * 分页查询软件维保
      */
     @ApiOperation(value = "分页查询软件维保")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "574636732868198400"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.NAME, value = "维保名称", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTAINER_ID, value = "维保厂商", required = false, dataTypeClass = String.class, example = "472013393872551936"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.USE_ORG_ID, value = "负责部门", required = false, dataTypeClass = String.class, example = "2"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MANAGER_ID, value = "维保负责人", required = false, dataTypeClass = String.class, example = "558321538131034112"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTACTS, value = "维保联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTACT_INFO, value = "联系信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_COST, value = "维保费用", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_START_DATE, value = "维保开始时间", required = false, dataTypeClass = Date.class, example = "2022-05-05 12:00:00"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_END_DATE, value = "维保到期时间", required = false, dataTypeClass = Date.class, example = "2022-05-05 12:00:00"), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTENT, value = "维保说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "574636732868198400"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.NAME, value = "维保名称", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTAINER_ID, value = "维保厂商", required = false, dataTypeClass = String.class, example = "472013393872551936"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.USE_ORG_ID, value = "负责部门", required = false, dataTypeClass = String.class, example = "2"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MANAGER_ID, value = "维保负责人", required = false, dataTypeClass = String.class, example = "558321538131034112"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTACTS, value = "维保联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTACT_INFO, value = "联系信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_COST, value = "维保费用", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_START_DATE, value = "维保开始时间", required = false, dataTypeClass = Date.class, example = "2022-05-05 12:00:00"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.MAINTENANCE_END_DATE, value = "维保到期时间", required = false, dataTypeClass = Date.class, example = "2022-05-05 12:00:00"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.CONTENT, value = "维保说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetSoftwareMaintenanceServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareMaintenanceServiceProxy.QUERY_PAGED_LIST)
@@ -202,7 +305,9 @@ public class AssetSoftwareMaintenanceController extends SuperController {
      * 确认
      */
     @ApiOperation(value = "确认")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 13)
     @SentinelResource(value = AssetSoftwareMaintenanceServiceProxy.CONFIRM_OPERATION, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @RequestMapping(AssetSoftwareMaintenanceServiceProxy.CONFIRM_OPERATION)

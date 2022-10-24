@@ -58,7 +58,35 @@ public class MonitorNodeHostController extends SuperController {
      * 添加节点主机
      */
     @ApiOperation(value = "添加节点主机")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeHostVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.HOSTNAME, value = "主机名称", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.BOOTTIME, value = "启动时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_VERION, value = "系统", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.ARCH, value = "架构", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU, value = "CPU数量", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_FRE, value = "CPU主频", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.MEMORY, value = "内存(M)", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_SYS, value = "cpuSys", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_USER, value = "cpuUser", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_WAIT, value = "cpuWait", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_IDLE, value = "CPU空闲旅", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_USED, value = "CPU使用率", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD, value = "系统负载", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD5, value = "系统负载5", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD15, value = "系统负载15", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.MEMORY_USED, value = "内存使用率", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.VMEMORY_USED, value = "虚拟内存使用率", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.NETWORK_FLOW_UP, value = "上行流量", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.NETWORK_FLOW_DOWN, value = "下流量", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.PROCESS_CNT, value = "连接数", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.P_MEMORY_USED, value = "内存", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.V_MEMORY_USED, value = "虚拟内存", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.INFO, value = "信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.HOSTNAME, value = "主机名称", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.BOOTTIME, value = "启动时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_VERION, value = "系统", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.ARCH, value = "架构", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU, value = "CPU数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_FRE, value = "CPU主频", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.MEMORY, value = "内存(M)", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_SYS, value = "cpuSys", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_USER, value = "cpuUser", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_WAIT, value = "cpuWait", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_IDLE, value = "CPU空闲旅", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_USED, value = "CPU使用率", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD, value = "系统负载", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD5, value = "系统负载5", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD15, value = "系统负载15", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.MEMORY_USED, value = "内存使用率", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.VMEMORY_USED, value = "虚拟内存使用率", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.NETWORK_FLOW_UP, value = "上行流量", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.NETWORK_FLOW_DOWN, value = "下流量", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.PROCESS_CNT, value = "连接数", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.P_MEMORY_USED, value = "内存", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.V_MEMORY_USED, value = "虚拟内存", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.INFO, value = "信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = MonitorNodeHostServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeHostServiceProxy.INSERT)
@@ -72,7 +100,9 @@ public class MonitorNodeHostController extends SuperController {
      * 删除节点主机
      */
     @ApiOperation(value = "删除节点主机")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeHostVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = MonitorNodeHostServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeHostServiceProxy.DELETE)
@@ -86,7 +116,9 @@ public class MonitorNodeHostController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除节点主机")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeHostVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MonitorNodeHostServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeHostServiceProxy.DELETE_BY_IDS)
@@ -99,7 +131,35 @@ public class MonitorNodeHostController extends SuperController {
      * 更新节点主机
      */
     @ApiOperation(value = "更新节点主机")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeHostVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.HOSTNAME, value = "主机名称", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.BOOTTIME, value = "启动时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_VERION, value = "系统", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.ARCH, value = "架构", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU, value = "CPU数量", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_FRE, value = "CPU主频", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.MEMORY, value = "内存(M)", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_SYS, value = "cpuSys", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_USER, value = "cpuUser", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_WAIT, value = "cpuWait", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_IDLE, value = "CPU空闲旅", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_USED, value = "CPU使用率", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD, value = "系统负载", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD5, value = "系统负载5", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD15, value = "系统负载15", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.MEMORY_USED, value = "内存使用率", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.VMEMORY_USED, value = "虚拟内存使用率", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.NETWORK_FLOW_UP, value = "上行流量", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.NETWORK_FLOW_DOWN, value = "下流量", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.PROCESS_CNT, value = "连接数", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.P_MEMORY_USED, value = "内存", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.V_MEMORY_USED, value = "虚拟内存", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.INFO, value = "信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.HOSTNAME, value = "主机名称", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.BOOTTIME, value = "启动时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_VERION, value = "系统", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.ARCH, value = "架构", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU, value = "CPU数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_FRE, value = "CPU主频", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.MEMORY, value = "内存(M)", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_SYS, value = "cpuSys", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_USER, value = "cpuUser", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_WAIT, value = "cpuWait", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_IDLE, value = "CPU空闲旅", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_USED, value = "CPU使用率", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD, value = "系统负载", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD5, value = "系统负载5", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD15, value = "系统负载15", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.MEMORY_USED, value = "内存使用率", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.VMEMORY_USED, value = "虚拟内存使用率", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.NETWORK_FLOW_UP, value = "上行流量", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.NETWORK_FLOW_DOWN, value = "下流量", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.PROCESS_CNT, value = "连接数", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.P_MEMORY_USED, value = "内存", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.V_MEMORY_USED, value = "虚拟内存", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.INFO, value = "信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { MonitorNodeHostVOMeta.PAGE_INDEX, MonitorNodeHostVOMeta.PAGE_SIZE, MonitorNodeHostVOMeta.SEARCH_FIELD, MonitorNodeHostVOMeta.FUZZY_FIELD, MonitorNodeHostVOMeta.SEARCH_VALUE, MonitorNodeHostVOMeta.DIRTY_FIELDS, MonitorNodeHostVOMeta.SORT_FIELD, MonitorNodeHostVOMeta.SORT_TYPE, MonitorNodeHostVOMeta.IDS })
     @SentinelResource(value = MonitorNodeHostServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeHostServiceProxy.UPDATE)
@@ -113,7 +173,35 @@ public class MonitorNodeHostController extends SuperController {
      * 保存节点主机
      */
     @ApiOperation(value = "保存节点主机")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeHostVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.HOSTNAME, value = "主机名称", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.BOOTTIME, value = "启动时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_VERION, value = "系统", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.ARCH, value = "架构", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU, value = "CPU数量", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_FRE, value = "CPU主频", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.MEMORY, value = "内存(M)", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_SYS, value = "cpuSys", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_USER, value = "cpuUser", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_WAIT, value = "cpuWait", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_IDLE, value = "CPU空闲旅", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_USED, value = "CPU使用率", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD, value = "系统负载", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD5, value = "系统负载5", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD15, value = "系统负载15", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.MEMORY_USED, value = "内存使用率", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.VMEMORY_USED, value = "虚拟内存使用率", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.NETWORK_FLOW_UP, value = "上行流量", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.NETWORK_FLOW_DOWN, value = "下流量", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.PROCESS_CNT, value = "连接数", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.P_MEMORY_USED, value = "内存", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.V_MEMORY_USED, value = "虚拟内存", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.INFO, value = "信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.HOSTNAME, value = "主机名称", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.BOOTTIME, value = "启动时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_VERION, value = "系统", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.ARCH, value = "架构", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU, value = "CPU数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_FRE, value = "CPU主频", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.MEMORY, value = "内存(M)", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_SYS, value = "cpuSys", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_USER, value = "cpuUser", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_WAIT, value = "cpuWait", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_IDLE, value = "CPU空闲旅", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_USED, value = "CPU使用率", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD, value = "系统负载", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD5, value = "系统负载5", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD15, value = "系统负载15", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.MEMORY_USED, value = "内存使用率", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.VMEMORY_USED, value = "虚拟内存使用率", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.NETWORK_FLOW_UP, value = "上行流量", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.NETWORK_FLOW_DOWN, value = "下流量", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.PROCESS_CNT, value = "连接数", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.P_MEMORY_USED, value = "内存", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.V_MEMORY_USED, value = "虚拟内存", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.INFO, value = "信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MonitorNodeHostVOMeta.PAGE_INDEX, MonitorNodeHostVOMeta.PAGE_SIZE, MonitorNodeHostVOMeta.SEARCH_FIELD, MonitorNodeHostVOMeta.FUZZY_FIELD, MonitorNodeHostVOMeta.SEARCH_VALUE, MonitorNodeHostVOMeta.DIRTY_FIELDS, MonitorNodeHostVOMeta.SORT_FIELD, MonitorNodeHostVOMeta.SORT_TYPE, MonitorNodeHostVOMeta.IDS })
     @SentinelResource(value = MonitorNodeHostServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeHostServiceProxy.SAVE)
@@ -127,7 +215,9 @@ public class MonitorNodeHostController extends SuperController {
      * 获取节点主机
      */
     @ApiOperation(value = "获取节点主机")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeHostVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = MonitorNodeHostServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeHostServiceProxy.GET_BY_ID)
@@ -143,7 +233,9 @@ public class MonitorNodeHostController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取节点主机")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeHostVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MonitorNodeHostServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeHostServiceProxy.GET_BY_IDS)
@@ -158,7 +250,35 @@ public class MonitorNodeHostController extends SuperController {
      * 查询节点主机
      */
     @ApiOperation(value = "查询节点主机")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeHostVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.HOSTNAME, value = "主机名称", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.BOOTTIME, value = "启动时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_VERION, value = "系统", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.ARCH, value = "架构", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU, value = "CPU数量", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_FRE, value = "CPU主频", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.MEMORY, value = "内存(M)", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_SYS, value = "cpuSys", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_USER, value = "cpuUser", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_WAIT, value = "cpuWait", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_IDLE, value = "CPU空闲旅", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_USED, value = "CPU使用率", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD, value = "系统负载", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD5, value = "系统负载5", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD15, value = "系统负载15", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.MEMORY_USED, value = "内存使用率", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.VMEMORY_USED, value = "虚拟内存使用率", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.NETWORK_FLOW_UP, value = "上行流量", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.NETWORK_FLOW_DOWN, value = "下流量", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.PROCESS_CNT, value = "连接数", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.P_MEMORY_USED, value = "内存", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.V_MEMORY_USED, value = "虚拟内存", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.INFO, value = "信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.HOSTNAME, value = "主机名称", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.BOOTTIME, value = "启动时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_VERION, value = "系统", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.ARCH, value = "架构", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU, value = "CPU数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_FRE, value = "CPU主频", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.MEMORY, value = "内存(M)", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_SYS, value = "cpuSys", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_USER, value = "cpuUser", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_WAIT, value = "cpuWait", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_IDLE, value = "CPU空闲旅", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_USED, value = "CPU使用率", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD, value = "系统负载", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD5, value = "系统负载5", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD15, value = "系统负载15", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.MEMORY_USED, value = "内存使用率", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.VMEMORY_USED, value = "虚拟内存使用率", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.NETWORK_FLOW_UP, value = "上行流量", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.NETWORK_FLOW_DOWN, value = "下流量", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.PROCESS_CNT, value = "连接数", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.P_MEMORY_USED, value = "内存", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.V_MEMORY_USED, value = "虚拟内存", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.INFO, value = "信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MonitorNodeHostVOMeta.PAGE_INDEX, MonitorNodeHostVOMeta.PAGE_SIZE })
     @SentinelResource(value = MonitorNodeHostServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeHostServiceProxy.QUERY_LIST)
@@ -173,7 +293,35 @@ public class MonitorNodeHostController extends SuperController {
      * 分页查询节点主机
      */
     @ApiOperation(value = "分页查询节点主机")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeHostVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.HOSTNAME, value = "主机名称", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.BOOTTIME, value = "启动时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_VERION, value = "系统", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.ARCH, value = "架构", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU, value = "CPU数量", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_FRE, value = "CPU主频", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.MEMORY, value = "内存(M)", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_SYS, value = "cpuSys", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_USER, value = "cpuUser", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_WAIT, value = "cpuWait", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_IDLE, value = "CPU空闲旅", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_USED, value = "CPU使用率", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD, value = "系统负载", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD5, value = "系统负载5", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD15, value = "系统负载15", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.MEMORY_USED, value = "内存使用率", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.VMEMORY_USED, value = "虚拟内存使用率", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.NETWORK_FLOW_UP, value = "上行流量", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.NETWORK_FLOW_DOWN, value = "下流量", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.PROCESS_CNT, value = "连接数", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.P_MEMORY_USED, value = "内存", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.V_MEMORY_USED, value = "虚拟内存", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.INFO, value = "信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = MonitorNodeHostVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.HOSTNAME, value = "主机名称", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.BOOTTIME, value = "启动时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_VERION, value = "系统", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.ARCH, value = "架构", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU, value = "CPU数量", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_FRE, value = "CPU主频", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.MEMORY, value = "内存(M)", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_SYS, value = "cpuSys", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_USER, value = "cpuUser", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_WAIT, value = "cpuWait", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_IDLE, value = "CPU空闲旅", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.CPU_USED, value = "CPU使用率", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD, value = "系统负载", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD5, value = "系统负载5", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.OS_LOAD15, value = "系统负载15", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.MEMORY_USED, value = "内存使用率", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.VMEMORY_USED, value = "虚拟内存使用率", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.NETWORK_FLOW_UP, value = "上行流量", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.NETWORK_FLOW_DOWN, value = "下流量", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.PROCESS_CNT, value = "连接数", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.P_MEMORY_USED, value = "内存", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.V_MEMORY_USED, value = "虚拟内存", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.INFO, value = "信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = MonitorNodeHostVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = MonitorNodeHostServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeHostServiceProxy.QUERY_PAGED_LIST)

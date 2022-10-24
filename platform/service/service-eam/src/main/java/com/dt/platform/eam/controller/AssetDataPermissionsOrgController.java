@@ -57,7 +57,11 @@ public class AssetDataPermissionsOrgController extends SuperController {
      * 添加组织
      */
     @ApiOperation(value = "添加组织")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetDataPermissionsOrgServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsOrgServiceProxy.INSERT)
@@ -71,7 +75,9 @@ public class AssetDataPermissionsOrgController extends SuperController {
      * 删除组织
      */
     @ApiOperation(value = "删除组织")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetDataPermissionsOrgServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsOrgServiceProxy.DELETE)
@@ -85,7 +91,9 @@ public class AssetDataPermissionsOrgController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除组织")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetDataPermissionsOrgServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsOrgServiceProxy.DELETE_BY_IDS)
@@ -98,7 +106,11 @@ public class AssetDataPermissionsOrgController extends SuperController {
      * 更新组织
      */
     @ApiOperation(value = "更新组织")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetDataPermissionsOrgVOMeta.PAGE_INDEX, AssetDataPermissionsOrgVOMeta.PAGE_SIZE, AssetDataPermissionsOrgVOMeta.SEARCH_FIELD, AssetDataPermissionsOrgVOMeta.FUZZY_FIELD, AssetDataPermissionsOrgVOMeta.SEARCH_VALUE, AssetDataPermissionsOrgVOMeta.DIRTY_FIELDS, AssetDataPermissionsOrgVOMeta.SORT_FIELD, AssetDataPermissionsOrgVOMeta.SORT_TYPE, AssetDataPermissionsOrgVOMeta.IDS })
     @SentinelResource(value = AssetDataPermissionsOrgServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsOrgServiceProxy.UPDATE)
@@ -112,7 +124,11 @@ public class AssetDataPermissionsOrgController extends SuperController {
      * 保存组织
      */
     @ApiOperation(value = "保存组织")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetDataPermissionsOrgVOMeta.PAGE_INDEX, AssetDataPermissionsOrgVOMeta.PAGE_SIZE, AssetDataPermissionsOrgVOMeta.SEARCH_FIELD, AssetDataPermissionsOrgVOMeta.FUZZY_FIELD, AssetDataPermissionsOrgVOMeta.SEARCH_VALUE, AssetDataPermissionsOrgVOMeta.DIRTY_FIELDS, AssetDataPermissionsOrgVOMeta.SORT_FIELD, AssetDataPermissionsOrgVOMeta.SORT_TYPE, AssetDataPermissionsOrgVOMeta.IDS })
     @SentinelResource(value = AssetDataPermissionsOrgServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsOrgServiceProxy.SAVE)
@@ -126,7 +142,9 @@ public class AssetDataPermissionsOrgController extends SuperController {
      * 获取组织
      */
     @ApiOperation(value = "获取组织")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetDataPermissionsOrgServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsOrgServiceProxy.GET_BY_ID)
@@ -142,7 +160,9 @@ public class AssetDataPermissionsOrgController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取组织")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetDataPermissionsOrgServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsOrgServiceProxy.GET_BY_IDS)
@@ -157,7 +177,11 @@ public class AssetDataPermissionsOrgController extends SuperController {
      * 查询组织
      */
     @ApiOperation(value = "查询组织")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetDataPermissionsOrgVOMeta.PAGE_INDEX, AssetDataPermissionsOrgVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetDataPermissionsOrgServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsOrgServiceProxy.QUERY_LIST)
@@ -172,7 +196,11 @@ public class AssetDataPermissionsOrgController extends SuperController {
      * 分页查询组织
      */
     @ApiOperation(value = "分页查询组织")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsOrgVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetDataPermissionsOrgServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsOrgServiceProxy.QUERY_PAGED_LIST)

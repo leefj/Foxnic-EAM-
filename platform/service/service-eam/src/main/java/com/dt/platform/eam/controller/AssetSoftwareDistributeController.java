@@ -66,7 +66,23 @@ public class AssetSoftwareDistributeController extends SuperController {
      * 添加软件分发
      */
     @ApiOperation(value = "添加软件分发")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "574323100137553920"), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.USE_ORG_ID, value = "领用公司", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.USE_USER_ID, value = "领用人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class, example = "2022-05-10 12:00:00"), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.CONTENT, value = "领用说明", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ASSET_ID, value = "关联资产", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ASSET_SOFTWARE_ID, value = "软件资产", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "574323100137553920"),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.USE_ORG_ID, value = "领用公司", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.USE_USER_ID, value = "领用人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class, example = "2022-05-10 12:00:00"),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.CONTENT, value = "领用说明", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ASSET_ID, value = "关联资产", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ASSET_SOFTWARE_ID, value = "软件资产", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetSoftwareDistributeServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareDistributeServiceProxy.INSERT)
@@ -80,7 +96,9 @@ public class AssetSoftwareDistributeController extends SuperController {
      * 删除软件分发
      */
     @ApiOperation(value = "删除软件分发")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "574323100137553920") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "574323100137553920")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetSoftwareDistributeServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareDistributeServiceProxy.DELETE)
@@ -94,7 +112,9 @@ public class AssetSoftwareDistributeController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除软件分发")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetSoftwareDistributeServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareDistributeServiceProxy.DELETE_BY_IDS)
@@ -107,7 +127,23 @@ public class AssetSoftwareDistributeController extends SuperController {
      * 更新软件分发
      */
     @ApiOperation(value = "更新软件分发")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "574323100137553920"), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.USE_ORG_ID, value = "领用公司", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.USE_USER_ID, value = "领用人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class, example = "2022-05-10 12:00:00"), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.CONTENT, value = "领用说明", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ASSET_ID, value = "关联资产", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ASSET_SOFTWARE_ID, value = "软件资产", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "574323100137553920"),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.USE_ORG_ID, value = "领用公司", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.USE_USER_ID, value = "领用人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class, example = "2022-05-10 12:00:00"),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.CONTENT, value = "领用说明", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ASSET_ID, value = "关联资产", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ASSET_SOFTWARE_ID, value = "软件资产", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetSoftwareDistributeVOMeta.PAGE_INDEX, AssetSoftwareDistributeVOMeta.PAGE_SIZE, AssetSoftwareDistributeVOMeta.SEARCH_FIELD, AssetSoftwareDistributeVOMeta.FUZZY_FIELD, AssetSoftwareDistributeVOMeta.SEARCH_VALUE, AssetSoftwareDistributeVOMeta.DIRTY_FIELDS, AssetSoftwareDistributeVOMeta.SORT_FIELD, AssetSoftwareDistributeVOMeta.SORT_TYPE, AssetSoftwareDistributeVOMeta.IDS })
     @SentinelResource(value = AssetSoftwareDistributeServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareDistributeServiceProxy.UPDATE)
@@ -121,7 +157,23 @@ public class AssetSoftwareDistributeController extends SuperController {
      * 保存软件分发
      */
     @ApiOperation(value = "保存软件分发")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "574323100137553920"), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.USE_ORG_ID, value = "领用公司", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.USE_USER_ID, value = "领用人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class, example = "2022-05-10 12:00:00"), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.CONTENT, value = "领用说明", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ASSET_ID, value = "关联资产", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ASSET_SOFTWARE_ID, value = "软件资产", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "574323100137553920"),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.USE_ORG_ID, value = "领用公司", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.USE_USER_ID, value = "领用人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class, example = "2022-05-10 12:00:00"),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.CONTENT, value = "领用说明", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ASSET_ID, value = "关联资产", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ASSET_SOFTWARE_ID, value = "软件资产", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetSoftwareDistributeVOMeta.PAGE_INDEX, AssetSoftwareDistributeVOMeta.PAGE_SIZE, AssetSoftwareDistributeVOMeta.SEARCH_FIELD, AssetSoftwareDistributeVOMeta.FUZZY_FIELD, AssetSoftwareDistributeVOMeta.SEARCH_VALUE, AssetSoftwareDistributeVOMeta.DIRTY_FIELDS, AssetSoftwareDistributeVOMeta.SORT_FIELD, AssetSoftwareDistributeVOMeta.SORT_TYPE, AssetSoftwareDistributeVOMeta.IDS })
     @SentinelResource(value = AssetSoftwareDistributeServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareDistributeServiceProxy.SAVE)
@@ -135,7 +187,9 @@ public class AssetSoftwareDistributeController extends SuperController {
      * 获取软件分发
      */
     @ApiOperation(value = "获取软件分发")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetSoftwareDistributeServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareDistributeServiceProxy.GET_BY_ID)
@@ -155,7 +209,9 @@ public class AssetSoftwareDistributeController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取软件分发")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetSoftwareDistributeServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareDistributeServiceProxy.GET_BY_IDS)
@@ -170,7 +226,23 @@ public class AssetSoftwareDistributeController extends SuperController {
      * 查询软件分发
      */
     @ApiOperation(value = "查询软件分发")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "574323100137553920"), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.USE_ORG_ID, value = "领用公司", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.USE_USER_ID, value = "领用人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class, example = "2022-05-10 12:00:00"), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.CONTENT, value = "领用说明", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ASSET_ID, value = "关联资产", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ASSET_SOFTWARE_ID, value = "软件资产", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "574323100137553920"),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.USE_ORG_ID, value = "领用公司", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.USE_USER_ID, value = "领用人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class, example = "2022-05-10 12:00:00"),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.CONTENT, value = "领用说明", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ASSET_ID, value = "关联资产", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ASSET_SOFTWARE_ID, value = "软件资产", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetSoftwareDistributeVOMeta.PAGE_INDEX, AssetSoftwareDistributeVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetSoftwareDistributeServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareDistributeServiceProxy.QUERY_LIST)
@@ -185,7 +257,23 @@ public class AssetSoftwareDistributeController extends SuperController {
      * 分页查询软件分发
      */
     @ApiOperation(value = "分页查询软件分发")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "574323100137553920"), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.USE_ORG_ID, value = "领用公司", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.USE_USER_ID, value = "领用人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class, example = "2022-05-10 12:00:00"), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.CONTENT, value = "领用说明", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ASSET_ID, value = "关联资产", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ASSET_SOFTWARE_ID, value = "软件资产", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "574323100137553920"),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.USE_ORG_ID, value = "领用公司", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.USE_USER_ID, value = "领用人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class, example = "2022-05-10 12:00:00"),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.CONTENT, value = "领用说明", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ASSET_ID, value = "关联资产", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ASSET_SOFTWARE_ID, value = "软件资产", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetSoftwareDistributeServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareDistributeServiceProxy.QUERY_PAGED_LIST)
@@ -206,7 +294,9 @@ public class AssetSoftwareDistributeController extends SuperController {
      * 确认
      */
     @ApiOperation(value = "确认")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareDistributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 13)
     @SentinelResource(value = AssetSoftwareDistributeServiceProxy.CONFIRM_OPERATION, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @RequestMapping(AssetSoftwareDistributeServiceProxy.CONFIRM_OPERATION)

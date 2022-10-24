@@ -59,7 +59,15 @@ public class InventoryPlanController extends SuperController {
      * 添加盘点计划
      */
     @ApiOperation(value = "添加盘点计划")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "529341603614035968"), @ApiImplicitParam(name = InventoryPlanVOMeta.NAME, value = "计划名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = InventoryPlanVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryPlanVOMeta.STATUS, value = "启用状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = InventoryPlanVOMeta.PLAN_TYPE, value = "计划类型", required = false, dataTypeClass = String.class, example = "normal"), @ApiImplicitParam(name = InventoryPlanVOMeta.TPL_ID, value = "模板", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryPlanVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "529341603614035968"),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.NAME, value = "计划名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.STATUS, value = "启用状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.PLAN_TYPE, value = "计划类型", required = false, dataTypeClass = String.class, example = "normal"),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.TPL_ID, value = "模板", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = InventoryPlanServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryPlanServiceProxy.INSERT)
@@ -73,7 +81,9 @@ public class InventoryPlanController extends SuperController {
      * 删除盘点计划
      */
     @ApiOperation(value = "删除盘点计划")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "529341603614035968") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "529341603614035968")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = InventoryPlanServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryPlanServiceProxy.DELETE)
@@ -87,7 +97,9 @@ public class InventoryPlanController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除盘点计划")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryPlanVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryPlanVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = InventoryPlanServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryPlanServiceProxy.DELETE_BY_IDS)
@@ -100,7 +112,15 @@ public class InventoryPlanController extends SuperController {
      * 更新盘点计划
      */
     @ApiOperation(value = "更新盘点计划")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "529341603614035968"), @ApiImplicitParam(name = InventoryPlanVOMeta.NAME, value = "计划名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = InventoryPlanVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryPlanVOMeta.STATUS, value = "启用状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = InventoryPlanVOMeta.PLAN_TYPE, value = "计划类型", required = false, dataTypeClass = String.class, example = "normal"), @ApiImplicitParam(name = InventoryPlanVOMeta.TPL_ID, value = "模板", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryPlanVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "529341603614035968"),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.NAME, value = "计划名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.STATUS, value = "启用状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.PLAN_TYPE, value = "计划类型", required = false, dataTypeClass = String.class, example = "normal"),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.TPL_ID, value = "模板", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { InventoryPlanVOMeta.PAGE_INDEX, InventoryPlanVOMeta.PAGE_SIZE, InventoryPlanVOMeta.SEARCH_FIELD, InventoryPlanVOMeta.FUZZY_FIELD, InventoryPlanVOMeta.SEARCH_VALUE, InventoryPlanVOMeta.DIRTY_FIELDS, InventoryPlanVOMeta.SORT_FIELD, InventoryPlanVOMeta.SORT_TYPE, InventoryPlanVOMeta.IDS })
     @SentinelResource(value = InventoryPlanServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryPlanServiceProxy.UPDATE)
@@ -114,7 +134,15 @@ public class InventoryPlanController extends SuperController {
      * 保存盘点计划
      */
     @ApiOperation(value = "保存盘点计划")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "529341603614035968"), @ApiImplicitParam(name = InventoryPlanVOMeta.NAME, value = "计划名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = InventoryPlanVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryPlanVOMeta.STATUS, value = "启用状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = InventoryPlanVOMeta.PLAN_TYPE, value = "计划类型", required = false, dataTypeClass = String.class, example = "normal"), @ApiImplicitParam(name = InventoryPlanVOMeta.TPL_ID, value = "模板", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryPlanVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "529341603614035968"),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.NAME, value = "计划名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.STATUS, value = "启用状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.PLAN_TYPE, value = "计划类型", required = false, dataTypeClass = String.class, example = "normal"),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.TPL_ID, value = "模板", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InventoryPlanVOMeta.PAGE_INDEX, InventoryPlanVOMeta.PAGE_SIZE, InventoryPlanVOMeta.SEARCH_FIELD, InventoryPlanVOMeta.FUZZY_FIELD, InventoryPlanVOMeta.SEARCH_VALUE, InventoryPlanVOMeta.DIRTY_FIELDS, InventoryPlanVOMeta.SORT_FIELD, InventoryPlanVOMeta.SORT_TYPE, InventoryPlanVOMeta.IDS })
     @SentinelResource(value = InventoryPlanServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryPlanServiceProxy.SAVE)
@@ -128,7 +156,9 @@ public class InventoryPlanController extends SuperController {
      * 获取盘点计划
      */
     @ApiOperation(value = "获取盘点计划")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = InventoryPlanServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryPlanServiceProxy.GET_BY_ID)
@@ -146,7 +176,9 @@ public class InventoryPlanController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取盘点计划")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryPlanVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryPlanVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = InventoryPlanServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryPlanServiceProxy.GET_BY_IDS)
@@ -161,7 +193,15 @@ public class InventoryPlanController extends SuperController {
      * 查询盘点计划
      */
     @ApiOperation(value = "查询盘点计划")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "529341603614035968"), @ApiImplicitParam(name = InventoryPlanVOMeta.NAME, value = "计划名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = InventoryPlanVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryPlanVOMeta.STATUS, value = "启用状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = InventoryPlanVOMeta.PLAN_TYPE, value = "计划类型", required = false, dataTypeClass = String.class, example = "normal"), @ApiImplicitParam(name = InventoryPlanVOMeta.TPL_ID, value = "模板", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryPlanVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "529341603614035968"),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.NAME, value = "计划名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.STATUS, value = "启用状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.PLAN_TYPE, value = "计划类型", required = false, dataTypeClass = String.class, example = "normal"),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.TPL_ID, value = "模板", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InventoryPlanVOMeta.PAGE_INDEX, InventoryPlanVOMeta.PAGE_SIZE })
     @SentinelResource(value = InventoryPlanServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryPlanServiceProxy.QUERY_LIST)
@@ -176,7 +216,15 @@ public class InventoryPlanController extends SuperController {
      * 分页查询盘点计划
      */
     @ApiOperation(value = "分页查询盘点计划")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "529341603614035968"), @ApiImplicitParam(name = InventoryPlanVOMeta.NAME, value = "计划名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = InventoryPlanVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryPlanVOMeta.STATUS, value = "启用状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = InventoryPlanVOMeta.PLAN_TYPE, value = "计划类型", required = false, dataTypeClass = String.class, example = "normal"), @ApiImplicitParam(name = InventoryPlanVOMeta.TPL_ID, value = "模板", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryPlanVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "529341603614035968"),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.NAME, value = "计划名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.STATUS, value = "启用状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.PLAN_TYPE, value = "计划类型", required = false, dataTypeClass = String.class, example = "normal"),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.TPL_ID, value = "模板", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryPlanVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = InventoryPlanServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryPlanServiceProxy.QUERY_PAGED_LIST)
@@ -193,7 +241,9 @@ public class InventoryPlanController extends SuperController {
      * 获取盘点计划
      */
     @ApiOperation(value = "应用模板")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 9)
     @SentinelResource(value = InventoryPlanServiceProxy.APPLY_TPL, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryPlanServiceProxy.APPLY_TPL)

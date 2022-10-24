@@ -64,7 +64,27 @@ public class AssetStockDeliverController extends SuperController {
      * 添加库存出库
      */
     @ApiOperation(value = "添加库存出库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStockDeliverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "568150166721265664"), @ApiImplicitParam(name = AssetStockDeliverVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_STATUS, value = "出库状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.OWNER_CODE, value = "库存所属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_TYPE, value = "出库类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_DATE, value = "出货日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVING_COMPANY_ID, value = "领用公司", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVING_ORG_ID, value = "领用部门", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVER_ID, value = "领用人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.SHIPPER_NAME, value = "出货人", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetStockDeliverVOMeta.POSITION_DETAIL, value = "详细位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.CONTENT, value = "出库说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "568150166721265664"),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_STATUS, value = "出库状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.OWNER_CODE, value = "库存所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_TYPE, value = "出库类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_DATE, value = "出货日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVING_COMPANY_ID, value = "领用公司", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVING_ORG_ID, value = "领用部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVER_ID, value = "领用人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.SHIPPER_NAME, value = "出货人", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.POSITION_DETAIL, value = "详细位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.CONTENT, value = "出库说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetStockDeliverServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStockDeliverServiceProxy.INSERT)
@@ -78,7 +98,9 @@ public class AssetStockDeliverController extends SuperController {
      * 删除库存出库
      */
     @ApiOperation(value = "删除库存出库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStockDeliverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "568150166721265664") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "568150166721265664")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetStockDeliverServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStockDeliverServiceProxy.DELETE)
@@ -92,7 +114,9 @@ public class AssetStockDeliverController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除库存出库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStockDeliverVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetStockDeliverServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStockDeliverServiceProxy.DELETE_BY_IDS)
@@ -105,7 +129,27 @@ public class AssetStockDeliverController extends SuperController {
      * 更新库存出库
      */
     @ApiOperation(value = "更新库存出库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStockDeliverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "568150166721265664"), @ApiImplicitParam(name = AssetStockDeliverVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_STATUS, value = "出库状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.OWNER_CODE, value = "库存所属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_TYPE, value = "出库类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_DATE, value = "出货日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVING_COMPANY_ID, value = "领用公司", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVING_ORG_ID, value = "领用部门", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVER_ID, value = "领用人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.SHIPPER_NAME, value = "出货人", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetStockDeliverVOMeta.POSITION_DETAIL, value = "详细位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.CONTENT, value = "出库说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "568150166721265664"),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_STATUS, value = "出库状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.OWNER_CODE, value = "库存所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_TYPE, value = "出库类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_DATE, value = "出货日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVING_COMPANY_ID, value = "领用公司", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVING_ORG_ID, value = "领用部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVER_ID, value = "领用人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.SHIPPER_NAME, value = "出货人", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.POSITION_DETAIL, value = "详细位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.CONTENT, value = "出库说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetStockDeliverVOMeta.PAGE_INDEX, AssetStockDeliverVOMeta.PAGE_SIZE, AssetStockDeliverVOMeta.SEARCH_FIELD, AssetStockDeliverVOMeta.FUZZY_FIELD, AssetStockDeliverVOMeta.SEARCH_VALUE, AssetStockDeliverVOMeta.DIRTY_FIELDS, AssetStockDeliverVOMeta.SORT_FIELD, AssetStockDeliverVOMeta.SORT_TYPE, AssetStockDeliverVOMeta.IDS })
     @SentinelResource(value = AssetStockDeliverServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStockDeliverServiceProxy.UPDATE)
@@ -119,7 +163,27 @@ public class AssetStockDeliverController extends SuperController {
      * 保存库存出库
      */
     @ApiOperation(value = "保存库存出库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStockDeliverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "568150166721265664"), @ApiImplicitParam(name = AssetStockDeliverVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_STATUS, value = "出库状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.OWNER_CODE, value = "库存所属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_TYPE, value = "出库类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_DATE, value = "出货日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVING_COMPANY_ID, value = "领用公司", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVING_ORG_ID, value = "领用部门", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVER_ID, value = "领用人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.SHIPPER_NAME, value = "出货人", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetStockDeliverVOMeta.POSITION_DETAIL, value = "详细位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.CONTENT, value = "出库说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "568150166721265664"),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_STATUS, value = "出库状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.OWNER_CODE, value = "库存所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_TYPE, value = "出库类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_DATE, value = "出货日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVING_COMPANY_ID, value = "领用公司", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVING_ORG_ID, value = "领用部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVER_ID, value = "领用人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.SHIPPER_NAME, value = "出货人", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.POSITION_DETAIL, value = "详细位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.CONTENT, value = "出库说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetStockDeliverVOMeta.PAGE_INDEX, AssetStockDeliverVOMeta.PAGE_SIZE, AssetStockDeliverVOMeta.SEARCH_FIELD, AssetStockDeliverVOMeta.FUZZY_FIELD, AssetStockDeliverVOMeta.SEARCH_VALUE, AssetStockDeliverVOMeta.DIRTY_FIELDS, AssetStockDeliverVOMeta.SORT_FIELD, AssetStockDeliverVOMeta.SORT_TYPE, AssetStockDeliverVOMeta.IDS })
     @SentinelResource(value = AssetStockDeliverServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStockDeliverServiceProxy.SAVE)
@@ -133,7 +197,9 @@ public class AssetStockDeliverController extends SuperController {
      * 获取库存出库
      */
     @ApiOperation(value = "获取库存出库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStockDeliverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetStockDeliverServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStockDeliverServiceProxy.GET_BY_ID)
@@ -151,7 +217,9 @@ public class AssetStockDeliverController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取库存出库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStockDeliverVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetStockDeliverServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStockDeliverServiceProxy.GET_BY_IDS)
@@ -166,7 +234,27 @@ public class AssetStockDeliverController extends SuperController {
      * 查询库存出库
      */
     @ApiOperation(value = "查询库存出库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStockDeliverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "568150166721265664"), @ApiImplicitParam(name = AssetStockDeliverVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_STATUS, value = "出库状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.OWNER_CODE, value = "库存所属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_TYPE, value = "出库类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_DATE, value = "出货日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVING_COMPANY_ID, value = "领用公司", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVING_ORG_ID, value = "领用部门", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVER_ID, value = "领用人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.SHIPPER_NAME, value = "出货人", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetStockDeliverVOMeta.POSITION_DETAIL, value = "详细位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.CONTENT, value = "出库说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "568150166721265664"),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_STATUS, value = "出库状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.OWNER_CODE, value = "库存所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_TYPE, value = "出库类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_DATE, value = "出货日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVING_COMPANY_ID, value = "领用公司", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVING_ORG_ID, value = "领用部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVER_ID, value = "领用人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.SHIPPER_NAME, value = "出货人", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.POSITION_DETAIL, value = "详细位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.CONTENT, value = "出库说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetStockDeliverVOMeta.PAGE_INDEX, AssetStockDeliverVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetStockDeliverServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStockDeliverServiceProxy.QUERY_LIST)
@@ -181,7 +269,27 @@ public class AssetStockDeliverController extends SuperController {
      * 分页查询库存出库
      */
     @ApiOperation(value = "分页查询库存出库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStockDeliverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "568150166721265664"), @ApiImplicitParam(name = AssetStockDeliverVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_STATUS, value = "出库状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.OWNER_CODE, value = "库存所属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_TYPE, value = "出库类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_DATE, value = "出货日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVING_COMPANY_ID, value = "领用公司", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVING_ORG_ID, value = "领用部门", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVER_ID, value = "领用人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.SHIPPER_NAME, value = "出货人", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetStockDeliverVOMeta.POSITION_DETAIL, value = "详细位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.CONTENT, value = "出库说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockDeliverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "568150166721265664"),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_STATUS, value = "出库状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.OWNER_CODE, value = "库存所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_TYPE, value = "出库类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.DELIVER_DATE, value = "出货日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVING_COMPANY_ID, value = "领用公司", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVING_ORG_ID, value = "领用部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.RECEIVER_ID, value = "领用人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.SHIPPER_NAME, value = "出货人", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.POSITION_DETAIL, value = "详细位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.CONTENT, value = "出库说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetStockDeliverServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStockDeliverServiceProxy.QUERY_PAGED_LIST)
@@ -198,7 +306,9 @@ public class AssetStockDeliverController extends SuperController {
      * 确认
      */
     @ApiOperation(value = "确认")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStockDeliverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStockDeliverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 13)
     @SentinelResource(value = AssetStockDeliverServiceProxy.CONFIRM_OPERATION, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @RequestMapping(AssetStockDeliverServiceProxy.CONFIRM_OPERATION)

@@ -69,7 +69,20 @@ public class AssetEmployeeHandoverController extends SuperController implements 
      * 添加资产交接
      */
     @ApiOperation(value = "添加资产交接")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECEIVE_ORG_ID, value = "交接部门", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECEIVE_USER_ID, value = "交接人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECEIVE_ORG_ID, value = "交接部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECEIVE_USER_ID, value = "交接人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetEmployeeHandoverServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetEmployeeHandoverServiceProxy.INSERT)
@@ -83,7 +96,9 @@ public class AssetEmployeeHandoverController extends SuperController implements 
      * 删除资产交接
      */
     @ApiOperation(value = "删除资产交接")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetEmployeeHandoverServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetEmployeeHandoverServiceProxy.DELETE)
@@ -108,7 +123,9 @@ public class AssetEmployeeHandoverController extends SuperController implements 
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产交接")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetEmployeeHandoverServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetEmployeeHandoverServiceProxy.DELETE_BY_IDS)
@@ -153,7 +170,20 @@ public class AssetEmployeeHandoverController extends SuperController implements 
      * 更新资产交接
      */
     @ApiOperation(value = "更新资产交接")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECEIVE_ORG_ID, value = "交接部门", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECEIVE_USER_ID, value = "交接人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECEIVE_ORG_ID, value = "交接部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECEIVE_USER_ID, value = "交接人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetEmployeeHandoverVOMeta.PAGE_INDEX, AssetEmployeeHandoverVOMeta.PAGE_SIZE, AssetEmployeeHandoverVOMeta.SEARCH_FIELD, AssetEmployeeHandoverVOMeta.FUZZY_FIELD, AssetEmployeeHandoverVOMeta.SEARCH_VALUE, AssetEmployeeHandoverVOMeta.DIRTY_FIELDS, AssetEmployeeHandoverVOMeta.SORT_FIELD, AssetEmployeeHandoverVOMeta.SORT_TYPE, AssetEmployeeHandoverVOMeta.IDS })
     @SentinelResource(value = AssetEmployeeHandoverServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetEmployeeHandoverServiceProxy.UPDATE)
@@ -167,7 +197,20 @@ public class AssetEmployeeHandoverController extends SuperController implements 
      * 保存资产交接
      */
     @ApiOperation(value = "保存资产交接")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECEIVE_ORG_ID, value = "交接部门", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECEIVE_USER_ID, value = "交接人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECEIVE_ORG_ID, value = "交接部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECEIVE_USER_ID, value = "交接人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetEmployeeHandoverVOMeta.PAGE_INDEX, AssetEmployeeHandoverVOMeta.PAGE_SIZE, AssetEmployeeHandoverVOMeta.SEARCH_FIELD, AssetEmployeeHandoverVOMeta.FUZZY_FIELD, AssetEmployeeHandoverVOMeta.SEARCH_VALUE, AssetEmployeeHandoverVOMeta.DIRTY_FIELDS, AssetEmployeeHandoverVOMeta.SORT_FIELD, AssetEmployeeHandoverVOMeta.SORT_TYPE, AssetEmployeeHandoverVOMeta.IDS })
     @SentinelResource(value = AssetEmployeeHandoverServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetEmployeeHandoverServiceProxy.SAVE)
@@ -181,7 +224,9 @@ public class AssetEmployeeHandoverController extends SuperController implements 
      * 获取资产交接
      */
     @ApiOperation(value = "获取资产交接")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetEmployeeHandoverServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetEmployeeHandoverServiceProxy.GET_BY_ID)
@@ -201,7 +246,9 @@ public class AssetEmployeeHandoverController extends SuperController implements 
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取资产交接")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetEmployeeHandoverServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetEmployeeHandoverServiceProxy.GET_BY_IDS)
@@ -216,7 +263,20 @@ public class AssetEmployeeHandoverController extends SuperController implements 
      * 查询资产交接
      */
     @ApiOperation(value = "查询资产交接")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECEIVE_ORG_ID, value = "交接部门", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECEIVE_USER_ID, value = "交接人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECEIVE_ORG_ID, value = "交接部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECEIVE_USER_ID, value = "交接人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetEmployeeHandoverVOMeta.PAGE_INDEX, AssetEmployeeHandoverVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetEmployeeHandoverServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetEmployeeHandoverServiceProxy.QUERY_LIST)
@@ -235,7 +295,20 @@ public class AssetEmployeeHandoverController extends SuperController implements 
      * 分页查询资产交接
      */
     @ApiOperation(value = "分页查询资产交接")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECEIVE_ORG_ID, value = "交接部门", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECEIVE_USER_ID, value = "交接人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECEIVE_ORG_ID, value = "交接部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECEIVE_USER_ID, value = "交接人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeHandoverVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetEmployeeHandoverServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetEmployeeHandoverServiceProxy.QUERY_PAGED_LIST)

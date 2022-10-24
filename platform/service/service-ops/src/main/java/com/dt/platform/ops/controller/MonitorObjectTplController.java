@@ -58,7 +58,12 @@ public class MonitorObjectTplController extends SuperController {
      * 添加对象模版
      */
     @ApiOperation(value = "添加对象模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTplVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTplVOMeta.MODEL_ID, value = "模型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTplVOMeta.SOURCE, value = "来源", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTplVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTplVOMeta.MODEL_ID, value = "模型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTplVOMeta.SOURCE, value = "来源", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = MonitorObjectTplServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectTplServiceProxy.INSERT)
@@ -72,7 +77,9 @@ public class MonitorObjectTplController extends SuperController {
      * 删除对象模版
      */
     @ApiOperation(value = "删除对象模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = MonitorObjectTplServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectTplServiceProxy.DELETE)
@@ -97,7 +104,9 @@ public class MonitorObjectTplController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除对象模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectTplVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectTplVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MonitorObjectTplServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectTplServiceProxy.DELETE_BY_IDS)
@@ -142,7 +151,12 @@ public class MonitorObjectTplController extends SuperController {
      * 更新对象模版
      */
     @ApiOperation(value = "更新对象模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTplVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTplVOMeta.MODEL_ID, value = "模型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTplVOMeta.SOURCE, value = "来源", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTplVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTplVOMeta.MODEL_ID, value = "模型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTplVOMeta.SOURCE, value = "来源", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { MonitorObjectTplVOMeta.PAGE_INDEX, MonitorObjectTplVOMeta.PAGE_SIZE, MonitorObjectTplVOMeta.SEARCH_FIELD, MonitorObjectTplVOMeta.FUZZY_FIELD, MonitorObjectTplVOMeta.SEARCH_VALUE, MonitorObjectTplVOMeta.DIRTY_FIELDS, MonitorObjectTplVOMeta.SORT_FIELD, MonitorObjectTplVOMeta.SORT_TYPE, MonitorObjectTplVOMeta.IDS })
     @SentinelResource(value = MonitorObjectTplServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectTplServiceProxy.UPDATE)
@@ -156,7 +170,12 @@ public class MonitorObjectTplController extends SuperController {
      * 保存对象模版
      */
     @ApiOperation(value = "保存对象模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTplVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTplVOMeta.MODEL_ID, value = "模型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTplVOMeta.SOURCE, value = "来源", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTplVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTplVOMeta.MODEL_ID, value = "模型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTplVOMeta.SOURCE, value = "来源", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MonitorObjectTplVOMeta.PAGE_INDEX, MonitorObjectTplVOMeta.PAGE_SIZE, MonitorObjectTplVOMeta.SEARCH_FIELD, MonitorObjectTplVOMeta.FUZZY_FIELD, MonitorObjectTplVOMeta.SEARCH_VALUE, MonitorObjectTplVOMeta.DIRTY_FIELDS, MonitorObjectTplVOMeta.SORT_FIELD, MonitorObjectTplVOMeta.SORT_TYPE, MonitorObjectTplVOMeta.IDS })
     @SentinelResource(value = MonitorObjectTplServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectTplServiceProxy.SAVE)
@@ -170,7 +189,9 @@ public class MonitorObjectTplController extends SuperController {
      * 获取对象模版
      */
     @ApiOperation(value = "获取对象模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = MonitorObjectTplServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectTplServiceProxy.GET_BY_ID)
@@ -186,7 +207,9 @@ public class MonitorObjectTplController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取对象模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectTplVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectTplVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MonitorObjectTplServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectTplServiceProxy.GET_BY_IDS)
@@ -201,7 +224,12 @@ public class MonitorObjectTplController extends SuperController {
      * 查询对象模版
      */
     @ApiOperation(value = "查询对象模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTplVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTplVOMeta.MODEL_ID, value = "模型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTplVOMeta.SOURCE, value = "来源", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTplVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTplVOMeta.MODEL_ID, value = "模型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTplVOMeta.SOURCE, value = "来源", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MonitorObjectTplVOMeta.PAGE_INDEX, MonitorObjectTplVOMeta.PAGE_SIZE })
     @SentinelResource(value = MonitorObjectTplServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectTplServiceProxy.QUERY_LIST)
@@ -216,7 +244,12 @@ public class MonitorObjectTplController extends SuperController {
      * 分页查询对象模版
      */
     @ApiOperation(value = "分页查询对象模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTplVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTplVOMeta.MODEL_ID, value = "模型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTplVOMeta.SOURCE, value = "来源", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTplVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTplVOMeta.MODEL_ID, value = "模型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTplVOMeta.SOURCE, value = "来源", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = MonitorObjectTplServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectTplServiceProxy.QUERY_PAGED_LIST)

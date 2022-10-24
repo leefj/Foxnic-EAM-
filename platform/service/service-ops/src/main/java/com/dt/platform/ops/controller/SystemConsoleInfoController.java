@@ -59,7 +59,15 @@ public class SystemConsoleInfoController extends SuperController {
      * 添加管理台台账
      */
     @ApiOperation(value = "添加管理台台账")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SystemConsoleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "607473993401769984"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "was_console"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.ENV, value = "环境", required = false, dataTypeClass = String.class, example = "test"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "607473993401769984"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "was_console"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.ENV, value = "环境", required = false, dataTypeClass = String.class, example = "test"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = SystemConsoleInfoServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SystemConsoleInfoServiceProxy.INSERT)
@@ -73,7 +81,9 @@ public class SystemConsoleInfoController extends SuperController {
      * 删除管理台台账
      */
     @ApiOperation(value = "删除管理台台账")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SystemConsoleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "607473993401769984") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "607473993401769984")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = SystemConsoleInfoServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SystemConsoleInfoServiceProxy.DELETE)
@@ -98,7 +108,9 @@ public class SystemConsoleInfoController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除管理台台账")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SystemConsoleInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = SystemConsoleInfoServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SystemConsoleInfoServiceProxy.DELETE_BY_IDS)
@@ -143,7 +155,15 @@ public class SystemConsoleInfoController extends SuperController {
      * 更新管理台台账
      */
     @ApiOperation(value = "更新管理台台账")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SystemConsoleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "607473993401769984"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "was_console"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.ENV, value = "环境", required = false, dataTypeClass = String.class, example = "test"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "607473993401769984"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "was_console"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.ENV, value = "环境", required = false, dataTypeClass = String.class, example = "test"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { SystemConsoleInfoVOMeta.PAGE_INDEX, SystemConsoleInfoVOMeta.PAGE_SIZE, SystemConsoleInfoVOMeta.SEARCH_FIELD, SystemConsoleInfoVOMeta.FUZZY_FIELD, SystemConsoleInfoVOMeta.SEARCH_VALUE, SystemConsoleInfoVOMeta.DIRTY_FIELDS, SystemConsoleInfoVOMeta.SORT_FIELD, SystemConsoleInfoVOMeta.SORT_TYPE, SystemConsoleInfoVOMeta.IDS })
     @SentinelResource(value = SystemConsoleInfoServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SystemConsoleInfoServiceProxy.UPDATE)
@@ -157,7 +177,15 @@ public class SystemConsoleInfoController extends SuperController {
      * 保存管理台台账
      */
     @ApiOperation(value = "保存管理台台账")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SystemConsoleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "607473993401769984"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "was_console"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.ENV, value = "环境", required = false, dataTypeClass = String.class, example = "test"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "607473993401769984"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "was_console"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.ENV, value = "环境", required = false, dataTypeClass = String.class, example = "test"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { SystemConsoleInfoVOMeta.PAGE_INDEX, SystemConsoleInfoVOMeta.PAGE_SIZE, SystemConsoleInfoVOMeta.SEARCH_FIELD, SystemConsoleInfoVOMeta.FUZZY_FIELD, SystemConsoleInfoVOMeta.SEARCH_VALUE, SystemConsoleInfoVOMeta.DIRTY_FIELDS, SystemConsoleInfoVOMeta.SORT_FIELD, SystemConsoleInfoVOMeta.SORT_TYPE, SystemConsoleInfoVOMeta.IDS })
     @SentinelResource(value = SystemConsoleInfoServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SystemConsoleInfoServiceProxy.SAVE)
@@ -171,7 +199,9 @@ public class SystemConsoleInfoController extends SuperController {
      * 获取管理台台账
      */
     @ApiOperation(value = "获取管理台台账")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SystemConsoleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = SystemConsoleInfoServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SystemConsoleInfoServiceProxy.GET_BY_ID)
@@ -189,7 +219,9 @@ public class SystemConsoleInfoController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取管理台台账")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SystemConsoleInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = SystemConsoleInfoServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SystemConsoleInfoServiceProxy.GET_BY_IDS)
@@ -204,7 +236,15 @@ public class SystemConsoleInfoController extends SuperController {
      * 查询管理台台账
      */
     @ApiOperation(value = "查询管理台台账")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SystemConsoleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "607473993401769984"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "was_console"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.ENV, value = "环境", required = false, dataTypeClass = String.class, example = "test"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "607473993401769984"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "was_console"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.ENV, value = "环境", required = false, dataTypeClass = String.class, example = "test"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { SystemConsoleInfoVOMeta.PAGE_INDEX, SystemConsoleInfoVOMeta.PAGE_SIZE })
     @SentinelResource(value = SystemConsoleInfoServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SystemConsoleInfoServiceProxy.QUERY_LIST)
@@ -219,7 +259,15 @@ public class SystemConsoleInfoController extends SuperController {
      * 分页查询管理台台账
      */
     @ApiOperation(value = "分页查询管理台台账")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SystemConsoleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "607473993401769984"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "was_console"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.ENV, value = "环境", required = false, dataTypeClass = String.class, example = "test"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = SystemConsoleInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "607473993401769984"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "was_console"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.ENV, value = "环境", required = false, dataTypeClass = String.class, example = "test"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = SystemConsoleInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = SystemConsoleInfoServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SystemConsoleInfoServiceProxy.QUERY_PAGED_LIST)

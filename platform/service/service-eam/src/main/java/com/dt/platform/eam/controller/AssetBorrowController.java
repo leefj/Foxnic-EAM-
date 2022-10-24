@@ -77,7 +77,23 @@ public class AssetBorrowController extends SuperController implements BpmCallbac
      * 添加资产借用
      */
     @ApiOperation(value = "添加资产借用")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetBorrowVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.BORROW_STATUS, value = "借用状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.BORROWER_ID, value = "借用人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.BORROW_TIME, value = "借出时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetBorrowVOMeta.PLAN_RETURN_DATE, value = "预计归还时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetBorrowVOMeta.RETURN_DATE, value = "归还时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetBorrowVOMeta.CONTENT, value = "借出说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetBorrowVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetBorrowVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.BORROW_STATUS, value = "借用状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.BORROWER_ID, value = "借用人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.BORROW_TIME, value = "借出时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.PLAN_RETURN_DATE, value = "预计归还时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.RETURN_DATE, value = "归还时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.CONTENT, value = "借出说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetBorrowServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetBorrowServiceProxy.INSERT)
@@ -90,7 +106,9 @@ public class AssetBorrowController extends SuperController implements BpmCallbac
      * 删除资产借用
      */
     @ApiOperation(value = "删除资产借用")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetBorrowVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetBorrowVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetBorrowServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetBorrowServiceProxy.DELETE)
@@ -109,7 +127,9 @@ public class AssetBorrowController extends SuperController implements BpmCallbac
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产借用")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetBorrowVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetBorrowVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetBorrowServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetBorrowServiceProxy.DELETE_BY_IDS)
@@ -122,7 +142,23 @@ public class AssetBorrowController extends SuperController implements BpmCallbac
      * 更新资产借用
      */
     @ApiOperation(value = "更新资产借用")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetBorrowVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.BORROW_STATUS, value = "借用状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.BORROWER_ID, value = "借用人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.BORROW_TIME, value = "借出时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetBorrowVOMeta.PLAN_RETURN_DATE, value = "预计归还时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetBorrowVOMeta.RETURN_DATE, value = "归还时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetBorrowVOMeta.CONTENT, value = "借出说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetBorrowVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetBorrowVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.BORROW_STATUS, value = "借用状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.BORROWER_ID, value = "借用人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.BORROW_TIME, value = "借出时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.PLAN_RETURN_DATE, value = "预计归还时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.RETURN_DATE, value = "归还时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.CONTENT, value = "借出说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetBorrowVOMeta.PAGE_INDEX, AssetBorrowVOMeta.PAGE_SIZE, AssetBorrowVOMeta.SEARCH_FIELD, AssetBorrowVOMeta.FUZZY_FIELD, AssetBorrowVOMeta.SEARCH_VALUE, AssetBorrowVOMeta.SORT_FIELD, AssetBorrowVOMeta.SORT_TYPE, AssetBorrowVOMeta.IDS })
     @SentinelResource(value = AssetBorrowServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetBorrowServiceProxy.UPDATE)
@@ -140,7 +176,23 @@ public class AssetBorrowController extends SuperController implements BpmCallbac
      * 保存资产借用
      */
     @ApiOperation(value = "保存资产借用")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetBorrowVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.BORROW_STATUS, value = "借用状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.BORROWER_ID, value = "借用人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.BORROW_TIME, value = "借出时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetBorrowVOMeta.PLAN_RETURN_DATE, value = "预计归还时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetBorrowVOMeta.RETURN_DATE, value = "归还时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetBorrowVOMeta.CONTENT, value = "借出说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetBorrowVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetBorrowVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.BORROW_STATUS, value = "借用状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.BORROWER_ID, value = "借用人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.BORROW_TIME, value = "借出时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.PLAN_RETURN_DATE, value = "预计归还时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.RETURN_DATE, value = "归还时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.CONTENT, value = "借出说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetBorrowVOMeta.PAGE_INDEX, AssetBorrowVOMeta.PAGE_SIZE, AssetBorrowVOMeta.SEARCH_FIELD, AssetBorrowVOMeta.FUZZY_FIELD, AssetBorrowVOMeta.SEARCH_VALUE, AssetBorrowVOMeta.SORT_FIELD, AssetBorrowVOMeta.SORT_TYPE, AssetBorrowVOMeta.IDS })
     @SentinelResource(value = AssetBorrowServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetBorrowServiceProxy.SAVE)
@@ -154,7 +206,9 @@ public class AssetBorrowController extends SuperController implements BpmCallbac
      * 获取资产借用
      */
     @ApiOperation(value = "获取资产借用")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetBorrowVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetBorrowVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetBorrowServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetBorrowServiceProxy.GET_BY_ID)
@@ -176,7 +230,9 @@ public class AssetBorrowController extends SuperController implements BpmCallbac
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产借用")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetBorrowVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetBorrowVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetBorrowServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetBorrowServiceProxy.GET_BY_IDS)
@@ -191,7 +247,23 @@ public class AssetBorrowController extends SuperController implements BpmCallbac
      * 查询资产借用
      */
     @ApiOperation(value = "查询资产借用")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetBorrowVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.BORROW_STATUS, value = "借用状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.BORROWER_ID, value = "借用人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.BORROW_TIME, value = "借出时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetBorrowVOMeta.PLAN_RETURN_DATE, value = "预计归还时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetBorrowVOMeta.RETURN_DATE, value = "归还时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetBorrowVOMeta.CONTENT, value = "借出说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetBorrowVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetBorrowVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.BORROW_STATUS, value = "借用状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.BORROWER_ID, value = "借用人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.BORROW_TIME, value = "借出时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.PLAN_RETURN_DATE, value = "预计归还时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.RETURN_DATE, value = "归还时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.CONTENT, value = "借出说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetBorrowVOMeta.PAGE_INDEX, AssetBorrowVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetBorrowServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetBorrowServiceProxy.QUERY_LIST)
@@ -206,7 +278,23 @@ public class AssetBorrowController extends SuperController implements BpmCallbac
      * 分页查询资产借用
      */
     @ApiOperation(value = "分页查询资产借用")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetBorrowVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.BORROW_STATUS, value = "借用状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.BORROWER_ID, value = "借用人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.BORROW_TIME, value = "借出时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetBorrowVOMeta.PLAN_RETURN_DATE, value = "预计归还时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetBorrowVOMeta.RETURN_DATE, value = "归还时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetBorrowVOMeta.CONTENT, value = "借出说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetBorrowVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetBorrowVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.BORROW_STATUS, value = "借用状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.BORROWER_ID, value = "借用人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.BORROW_TIME, value = "借出时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.PLAN_RETURN_DATE, value = "预计归还时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.RETURN_DATE, value = "归还时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.CONTENT, value = "借出说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetBorrowServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetBorrowServiceProxy.QUERY_PAGED_LIST)
@@ -229,7 +317,9 @@ public class AssetBorrowController extends SuperController implements BpmCallbac
      * 确认
      */
     @ApiOperation(value = "借用确认")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetBorrowVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetBorrowVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 13)
     @SentinelResource(value = AssetBorrowServiceProxy.CONFIRM_OPERATION, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @RequestMapping(AssetBorrowServiceProxy.CONFIRM_OPERATION)

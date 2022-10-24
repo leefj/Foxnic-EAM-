@@ -57,7 +57,11 @@ public class AssetDepreciationCategoryController extends SuperController {
      * 添加折旧分类
      */
     @ApiOperation(value = "添加折旧分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "573877824906072064"), @ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class, example = "573537666012807168"), @ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "486918386278731776") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "573877824906072064"),
+		@ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class, example = "573537666012807168"),
+		@ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "486918386278731776")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetDepreciationCategoryServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDepreciationCategoryServiceProxy.INSERT)
@@ -71,7 +75,9 @@ public class AssetDepreciationCategoryController extends SuperController {
      * 删除折旧分类
      */
     @ApiOperation(value = "删除折旧分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "573877824906072064") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "573877824906072064")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetDepreciationCategoryServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDepreciationCategoryServiceProxy.DELETE)
@@ -85,7 +91,9 @@ public class AssetDepreciationCategoryController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除折旧分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetDepreciationCategoryServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDepreciationCategoryServiceProxy.DELETE_BY_IDS)
@@ -98,7 +106,11 @@ public class AssetDepreciationCategoryController extends SuperController {
      * 更新折旧分类
      */
     @ApiOperation(value = "更新折旧分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "573877824906072064"), @ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class, example = "573537666012807168"), @ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "486918386278731776") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "573877824906072064"),
+		@ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class, example = "573537666012807168"),
+		@ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "486918386278731776")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetDepreciationCategoryVOMeta.PAGE_INDEX, AssetDepreciationCategoryVOMeta.PAGE_SIZE, AssetDepreciationCategoryVOMeta.SEARCH_FIELD, AssetDepreciationCategoryVOMeta.FUZZY_FIELD, AssetDepreciationCategoryVOMeta.SEARCH_VALUE, AssetDepreciationCategoryVOMeta.DIRTY_FIELDS, AssetDepreciationCategoryVOMeta.SORT_FIELD, AssetDepreciationCategoryVOMeta.SORT_TYPE, AssetDepreciationCategoryVOMeta.IDS })
     @SentinelResource(value = AssetDepreciationCategoryServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDepreciationCategoryServiceProxy.UPDATE)
@@ -112,7 +124,11 @@ public class AssetDepreciationCategoryController extends SuperController {
      * 保存折旧分类
      */
     @ApiOperation(value = "保存折旧分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "573877824906072064"), @ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class, example = "573537666012807168"), @ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "486918386278731776") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "573877824906072064"),
+		@ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class, example = "573537666012807168"),
+		@ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "486918386278731776")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetDepreciationCategoryVOMeta.PAGE_INDEX, AssetDepreciationCategoryVOMeta.PAGE_SIZE, AssetDepreciationCategoryVOMeta.SEARCH_FIELD, AssetDepreciationCategoryVOMeta.FUZZY_FIELD, AssetDepreciationCategoryVOMeta.SEARCH_VALUE, AssetDepreciationCategoryVOMeta.DIRTY_FIELDS, AssetDepreciationCategoryVOMeta.SORT_FIELD, AssetDepreciationCategoryVOMeta.SORT_TYPE, AssetDepreciationCategoryVOMeta.IDS })
     @SentinelResource(value = AssetDepreciationCategoryServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDepreciationCategoryServiceProxy.SAVE)
@@ -126,7 +142,9 @@ public class AssetDepreciationCategoryController extends SuperController {
      * 获取折旧分类
      */
     @ApiOperation(value = "获取折旧分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetDepreciationCategoryServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDepreciationCategoryServiceProxy.GET_BY_ID)
@@ -142,7 +160,9 @@ public class AssetDepreciationCategoryController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取折旧分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetDepreciationCategoryServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDepreciationCategoryServiceProxy.GET_BY_IDS)
@@ -157,7 +177,11 @@ public class AssetDepreciationCategoryController extends SuperController {
      * 查询折旧分类
      */
     @ApiOperation(value = "查询折旧分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "573877824906072064"), @ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class, example = "573537666012807168"), @ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "486918386278731776") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "573877824906072064"),
+		@ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class, example = "573537666012807168"),
+		@ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "486918386278731776")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetDepreciationCategoryVOMeta.PAGE_INDEX, AssetDepreciationCategoryVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetDepreciationCategoryServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDepreciationCategoryServiceProxy.QUERY_LIST)
@@ -172,7 +196,11 @@ public class AssetDepreciationCategoryController extends SuperController {
      * 分页查询折旧分类
      */
     @ApiOperation(value = "分页查询折旧分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "573877824906072064"), @ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class, example = "573537666012807168"), @ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "486918386278731776") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "573877824906072064"),
+		@ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class, example = "573537666012807168"),
+		@ApiImplicitParam(name = AssetDepreciationCategoryVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "486918386278731776")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetDepreciationCategoryServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDepreciationCategoryServiceProxy.QUERY_PAGED_LIST)

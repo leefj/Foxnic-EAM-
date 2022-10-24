@@ -59,7 +59,17 @@ public class SoftwareBaseVersionController extends SuperController {
      * 添加软件基线版本
      */
     @ApiOperation(value = "添加软件基线版本")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593892461445652480"), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.SOFTWARE_TYPE_ID, value = "类型", required = false, dataTypeClass = String.class, example = "593841519329288192"), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Linux"), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.SOFTWARE_VERSION, value = "版本", required = false, dataTypeClass = String.class, example = "7.9"), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.PATCH_INFO, value = "补丁", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "effect"), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.USAGE_SCENARIOS, value = "使用场景", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.FILE_ID, value = "软件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593892461445652480"),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.SOFTWARE_TYPE_ID, value = "类型", required = false, dataTypeClass = String.class, example = "593841519329288192"),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Linux"),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.SOFTWARE_VERSION, value = "版本", required = false, dataTypeClass = String.class, example = "7.9"),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.PATCH_INFO, value = "补丁", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "effect"),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.USAGE_SCENARIOS, value = "使用场景", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.FILE_ID, value = "软件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = SoftwareBaseVersionServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareBaseVersionServiceProxy.INSERT)
@@ -73,7 +83,9 @@ public class SoftwareBaseVersionController extends SuperController {
      * 删除软件基线版本
      */
     @ApiOperation(value = "删除软件基线版本")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593892461445652480") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593892461445652480")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = SoftwareBaseVersionServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareBaseVersionServiceProxy.DELETE)
@@ -98,7 +110,9 @@ public class SoftwareBaseVersionController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除软件基线版本")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = SoftwareBaseVersionServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareBaseVersionServiceProxy.DELETE_BY_IDS)
@@ -143,7 +157,17 @@ public class SoftwareBaseVersionController extends SuperController {
      * 更新软件基线版本
      */
     @ApiOperation(value = "更新软件基线版本")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593892461445652480"), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.SOFTWARE_TYPE_ID, value = "类型", required = false, dataTypeClass = String.class, example = "593841519329288192"), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Linux"), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.SOFTWARE_VERSION, value = "版本", required = false, dataTypeClass = String.class, example = "7.9"), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.PATCH_INFO, value = "补丁", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "effect"), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.USAGE_SCENARIOS, value = "使用场景", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.FILE_ID, value = "软件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593892461445652480"),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.SOFTWARE_TYPE_ID, value = "类型", required = false, dataTypeClass = String.class, example = "593841519329288192"),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Linux"),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.SOFTWARE_VERSION, value = "版本", required = false, dataTypeClass = String.class, example = "7.9"),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.PATCH_INFO, value = "补丁", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "effect"),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.USAGE_SCENARIOS, value = "使用场景", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.FILE_ID, value = "软件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { SoftwareBaseVersionVOMeta.PAGE_INDEX, SoftwareBaseVersionVOMeta.PAGE_SIZE, SoftwareBaseVersionVOMeta.SEARCH_FIELD, SoftwareBaseVersionVOMeta.FUZZY_FIELD, SoftwareBaseVersionVOMeta.SEARCH_VALUE, SoftwareBaseVersionVOMeta.DIRTY_FIELDS, SoftwareBaseVersionVOMeta.SORT_FIELD, SoftwareBaseVersionVOMeta.SORT_TYPE, SoftwareBaseVersionVOMeta.IDS })
     @SentinelResource(value = SoftwareBaseVersionServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareBaseVersionServiceProxy.UPDATE)
@@ -157,7 +181,17 @@ public class SoftwareBaseVersionController extends SuperController {
      * 保存软件基线版本
      */
     @ApiOperation(value = "保存软件基线版本")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593892461445652480"), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.SOFTWARE_TYPE_ID, value = "类型", required = false, dataTypeClass = String.class, example = "593841519329288192"), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Linux"), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.SOFTWARE_VERSION, value = "版本", required = false, dataTypeClass = String.class, example = "7.9"), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.PATCH_INFO, value = "补丁", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "effect"), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.USAGE_SCENARIOS, value = "使用场景", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.FILE_ID, value = "软件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593892461445652480"),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.SOFTWARE_TYPE_ID, value = "类型", required = false, dataTypeClass = String.class, example = "593841519329288192"),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Linux"),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.SOFTWARE_VERSION, value = "版本", required = false, dataTypeClass = String.class, example = "7.9"),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.PATCH_INFO, value = "补丁", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "effect"),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.USAGE_SCENARIOS, value = "使用场景", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.FILE_ID, value = "软件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { SoftwareBaseVersionVOMeta.PAGE_INDEX, SoftwareBaseVersionVOMeta.PAGE_SIZE, SoftwareBaseVersionVOMeta.SEARCH_FIELD, SoftwareBaseVersionVOMeta.FUZZY_FIELD, SoftwareBaseVersionVOMeta.SEARCH_VALUE, SoftwareBaseVersionVOMeta.DIRTY_FIELDS, SoftwareBaseVersionVOMeta.SORT_FIELD, SoftwareBaseVersionVOMeta.SORT_TYPE, SoftwareBaseVersionVOMeta.IDS })
     @SentinelResource(value = SoftwareBaseVersionServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareBaseVersionServiceProxy.SAVE)
@@ -171,7 +205,9 @@ public class SoftwareBaseVersionController extends SuperController {
      * 获取软件基线版本
      */
     @ApiOperation(value = "获取软件基线版本")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = SoftwareBaseVersionServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareBaseVersionServiceProxy.GET_BY_ID)
@@ -189,7 +225,9 @@ public class SoftwareBaseVersionController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取软件基线版本")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = SoftwareBaseVersionServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareBaseVersionServiceProxy.GET_BY_IDS)
@@ -204,7 +242,17 @@ public class SoftwareBaseVersionController extends SuperController {
      * 查询软件基线版本
      */
     @ApiOperation(value = "查询软件基线版本")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593892461445652480"), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.SOFTWARE_TYPE_ID, value = "类型", required = false, dataTypeClass = String.class, example = "593841519329288192"), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Linux"), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.SOFTWARE_VERSION, value = "版本", required = false, dataTypeClass = String.class, example = "7.9"), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.PATCH_INFO, value = "补丁", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "effect"), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.USAGE_SCENARIOS, value = "使用场景", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.FILE_ID, value = "软件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593892461445652480"),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.SOFTWARE_TYPE_ID, value = "类型", required = false, dataTypeClass = String.class, example = "593841519329288192"),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Linux"),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.SOFTWARE_VERSION, value = "版本", required = false, dataTypeClass = String.class, example = "7.9"),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.PATCH_INFO, value = "补丁", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "effect"),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.USAGE_SCENARIOS, value = "使用场景", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.FILE_ID, value = "软件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { SoftwareBaseVersionVOMeta.PAGE_INDEX, SoftwareBaseVersionVOMeta.PAGE_SIZE })
     @SentinelResource(value = SoftwareBaseVersionServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareBaseVersionServiceProxy.QUERY_LIST)
@@ -219,7 +267,17 @@ public class SoftwareBaseVersionController extends SuperController {
      * 分页查询软件基线版本
      */
     @ApiOperation(value = "分页查询软件基线版本")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593892461445652480"), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.SOFTWARE_TYPE_ID, value = "类型", required = false, dataTypeClass = String.class, example = "593841519329288192"), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Linux"), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.SOFTWARE_VERSION, value = "版本", required = false, dataTypeClass = String.class, example = "7.9"), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.PATCH_INFO, value = "补丁", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "effect"), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.USAGE_SCENARIOS, value = "使用场景", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.FILE_ID, value = "软件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareBaseVersionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593892461445652480"),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.SOFTWARE_TYPE_ID, value = "类型", required = false, dataTypeClass = String.class, example = "593841519329288192"),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Linux"),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.SOFTWARE_VERSION, value = "版本", required = false, dataTypeClass = String.class, example = "7.9"),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.PATCH_INFO, value = "补丁", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "effect"),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.USAGE_SCENARIOS, value = "使用场景", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.FILE_ID, value = "软件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareBaseVersionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = SoftwareBaseVersionServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareBaseVersionServiceProxy.QUERY_PAGED_LIST)

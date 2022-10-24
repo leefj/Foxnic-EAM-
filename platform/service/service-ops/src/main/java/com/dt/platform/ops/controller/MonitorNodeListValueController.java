@@ -58,7 +58,27 @@ public class MonitorNodeListValueController extends SuperController {
      * 添加节点列表数值
      */
     @ApiOperation(value = "添加节点列表数值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeListValueVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.INDICATOR_CODE, value = "指标", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.MONITOR_TPL_CODE, value = "监控模版", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_TYPE, value = "值类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL1, value = "标签1", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL2, value = "标签2", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL3, value = "标签3", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.CODE1, value = "编码1", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.CODE2, value = "编码2", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER1, value = "数值1", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER2, value = "数值2", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER3, value = "数值3", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR1, value = "字符串1", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR2, value = "字符串2", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR3, value = "字符串3", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.UID, value = "唯一标识", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.INFO, value = "信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.INDICATOR_CODE, value = "指标", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.MONITOR_TPL_CODE, value = "监控模版", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_TYPE, value = "值类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL1, value = "标签1", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL2, value = "标签2", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL3, value = "标签3", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.CODE1, value = "编码1", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.CODE2, value = "编码2", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER1, value = "数值1", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER2, value = "数值2", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER3, value = "数值3", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR1, value = "字符串1", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR2, value = "字符串2", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR3, value = "字符串3", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.UID, value = "唯一标识", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.INFO, value = "信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = MonitorNodeListValueServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeListValueServiceProxy.INSERT)
@@ -72,7 +92,9 @@ public class MonitorNodeListValueController extends SuperController {
      * 删除节点列表数值
      */
     @ApiOperation(value = "删除节点列表数值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeListValueVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = MonitorNodeListValueServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeListValueServiceProxy.DELETE)
@@ -86,7 +108,9 @@ public class MonitorNodeListValueController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除节点列表数值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeListValueVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MonitorNodeListValueServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeListValueServiceProxy.DELETE_BY_IDS)
@@ -99,7 +123,27 @@ public class MonitorNodeListValueController extends SuperController {
      * 更新节点列表数值
      */
     @ApiOperation(value = "更新节点列表数值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeListValueVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.INDICATOR_CODE, value = "指标", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.MONITOR_TPL_CODE, value = "监控模版", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_TYPE, value = "值类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL1, value = "标签1", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL2, value = "标签2", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL3, value = "标签3", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.CODE1, value = "编码1", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.CODE2, value = "编码2", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER1, value = "数值1", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER2, value = "数值2", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER3, value = "数值3", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR1, value = "字符串1", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR2, value = "字符串2", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR3, value = "字符串3", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.UID, value = "唯一标识", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.INFO, value = "信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.INDICATOR_CODE, value = "指标", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.MONITOR_TPL_CODE, value = "监控模版", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_TYPE, value = "值类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL1, value = "标签1", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL2, value = "标签2", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL3, value = "标签3", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.CODE1, value = "编码1", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.CODE2, value = "编码2", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER1, value = "数值1", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER2, value = "数值2", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER3, value = "数值3", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR1, value = "字符串1", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR2, value = "字符串2", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR3, value = "字符串3", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.UID, value = "唯一标识", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.INFO, value = "信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { MonitorNodeListValueVOMeta.PAGE_INDEX, MonitorNodeListValueVOMeta.PAGE_SIZE, MonitorNodeListValueVOMeta.SEARCH_FIELD, MonitorNodeListValueVOMeta.FUZZY_FIELD, MonitorNodeListValueVOMeta.SEARCH_VALUE, MonitorNodeListValueVOMeta.DIRTY_FIELDS, MonitorNodeListValueVOMeta.SORT_FIELD, MonitorNodeListValueVOMeta.SORT_TYPE, MonitorNodeListValueVOMeta.IDS })
     @SentinelResource(value = MonitorNodeListValueServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeListValueServiceProxy.UPDATE)
@@ -113,7 +157,27 @@ public class MonitorNodeListValueController extends SuperController {
      * 保存节点列表数值
      */
     @ApiOperation(value = "保存节点列表数值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeListValueVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.INDICATOR_CODE, value = "指标", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.MONITOR_TPL_CODE, value = "监控模版", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_TYPE, value = "值类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL1, value = "标签1", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL2, value = "标签2", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL3, value = "标签3", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.CODE1, value = "编码1", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.CODE2, value = "编码2", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER1, value = "数值1", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER2, value = "数值2", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER3, value = "数值3", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR1, value = "字符串1", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR2, value = "字符串2", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR3, value = "字符串3", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.UID, value = "唯一标识", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.INFO, value = "信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.INDICATOR_CODE, value = "指标", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.MONITOR_TPL_CODE, value = "监控模版", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_TYPE, value = "值类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL1, value = "标签1", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL2, value = "标签2", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL3, value = "标签3", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.CODE1, value = "编码1", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.CODE2, value = "编码2", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER1, value = "数值1", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER2, value = "数值2", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER3, value = "数值3", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR1, value = "字符串1", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR2, value = "字符串2", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR3, value = "字符串3", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.UID, value = "唯一标识", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.INFO, value = "信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MonitorNodeListValueVOMeta.PAGE_INDEX, MonitorNodeListValueVOMeta.PAGE_SIZE, MonitorNodeListValueVOMeta.SEARCH_FIELD, MonitorNodeListValueVOMeta.FUZZY_FIELD, MonitorNodeListValueVOMeta.SEARCH_VALUE, MonitorNodeListValueVOMeta.DIRTY_FIELDS, MonitorNodeListValueVOMeta.SORT_FIELD, MonitorNodeListValueVOMeta.SORT_TYPE, MonitorNodeListValueVOMeta.IDS })
     @SentinelResource(value = MonitorNodeListValueServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeListValueServiceProxy.SAVE)
@@ -127,7 +191,9 @@ public class MonitorNodeListValueController extends SuperController {
      * 获取节点列表数值
      */
     @ApiOperation(value = "获取节点列表数值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeListValueVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = MonitorNodeListValueServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeListValueServiceProxy.GET_BY_ID)
@@ -143,7 +209,9 @@ public class MonitorNodeListValueController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取节点列表数值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeListValueVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MonitorNodeListValueServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeListValueServiceProxy.GET_BY_IDS)
@@ -158,7 +226,27 @@ public class MonitorNodeListValueController extends SuperController {
      * 查询节点列表数值
      */
     @ApiOperation(value = "查询节点列表数值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeListValueVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.INDICATOR_CODE, value = "指标", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.MONITOR_TPL_CODE, value = "监控模版", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_TYPE, value = "值类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL1, value = "标签1", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL2, value = "标签2", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL3, value = "标签3", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.CODE1, value = "编码1", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.CODE2, value = "编码2", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER1, value = "数值1", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER2, value = "数值2", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER3, value = "数值3", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR1, value = "字符串1", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR2, value = "字符串2", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR3, value = "字符串3", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.UID, value = "唯一标识", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.INFO, value = "信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.INDICATOR_CODE, value = "指标", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.MONITOR_TPL_CODE, value = "监控模版", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_TYPE, value = "值类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL1, value = "标签1", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL2, value = "标签2", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL3, value = "标签3", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.CODE1, value = "编码1", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.CODE2, value = "编码2", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER1, value = "数值1", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER2, value = "数值2", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER3, value = "数值3", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR1, value = "字符串1", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR2, value = "字符串2", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR3, value = "字符串3", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.UID, value = "唯一标识", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.INFO, value = "信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MonitorNodeListValueVOMeta.PAGE_INDEX, MonitorNodeListValueVOMeta.PAGE_SIZE })
     @SentinelResource(value = MonitorNodeListValueServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeListValueServiceProxy.QUERY_LIST)
@@ -173,7 +261,27 @@ public class MonitorNodeListValueController extends SuperController {
      * 分页查询节点列表数值
      */
     @ApiOperation(value = "分页查询节点列表数值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeListValueVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.INDICATOR_CODE, value = "指标", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.MONITOR_TPL_CODE, value = "监控模版", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_TYPE, value = "值类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL1, value = "标签1", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL2, value = "标签2", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL3, value = "标签3", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.CODE1, value = "编码1", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.CODE2, value = "编码2", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER1, value = "数值1", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER2, value = "数值2", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER3, value = "数值3", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR1, value = "字符串1", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR2, value = "字符串2", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR3, value = "字符串3", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.UID, value = "唯一标识", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.INFO, value = "信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeListValueVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.INDICATOR_CODE, value = "指标", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.MONITOR_TPL_CODE, value = "监控模版", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_TYPE, value = "值类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL1, value = "标签1", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL2, value = "标签2", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.LABEL3, value = "标签3", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.CODE1, value = "编码1", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.CODE2, value = "编码2", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER1, value = "数值1", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER2, value = "数值2", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_NUMBER3, value = "数值3", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR1, value = "字符串1", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR2, value = "字符串2", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.VALUE_STR3, value = "字符串3", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.UID, value = "唯一标识", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.INFO, value = "信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeListValueVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = MonitorNodeListValueServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeListValueServiceProxy.QUERY_PAGED_LIST)

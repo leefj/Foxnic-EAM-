@@ -58,7 +58,26 @@ public class ContractController extends SuperController {
      * 添加合同
      */
     @ApiOperation(value = "添加合同")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContractVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "522790511983984640"), @ApiImplicitParam(name = ContractVOMeta.TYPE, value = "合同类型", required = false, dataTypeClass = String.class, example = "main"), @ApiImplicitParam(name = ContractVOMeta.PARENT_ID, value = "上级合同ID", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractVOMeta.CONTRACT_NO, value = "合同编号", required = false, dataTypeClass = String.class, example = "11"), @ApiImplicitParam(name = ContractVOMeta.TITLE, value = "合同抬头", required = false, dataTypeClass = String.class, example = "11"), @ApiImplicitParam(name = ContractVOMeta.DELIVERABLES, value = "交付物", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractVOMeta.DELIVERY_LOCATION, value = "交付地", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractVOMeta.AMOUNT, value = "合同金额", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = ContractVOMeta.CONTRACT_STATUS, value = "合同状态", required = false, dataTypeClass = String.class, example = "not_signed"), @ApiImplicitParam(name = ContractVOMeta.SUMMARY, value = "摘要信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractVOMeta.SIGNING_DATE, value = "签订日期", required = false, dataTypeClass = Date.class, example = "2021-12-08 12:00:00"), @ApiImplicitParam(name = ContractVOMeta.EFFECTIVE_DATE, value = "生效日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ContractVOMeta.END_DATE, value = "结束日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ContractVOMeta.EXPIRATION_DATE, value = "失效日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ContractVOMeta.DEPARTMENT_ID, value = "归属部门ID", required = false, dataTypeClass = String.class, example = "503504809626697728"), @ApiImplicitParam(name = ContractVOMeta.FUNDING_STATUS, value = "资金状态", required = false, dataTypeClass = String.class, example = "done"), @ApiImplicitParam(name = ContractVOMeta.FUNDING_DIRECTION, value = "资金流向", required = false, dataTypeClass = String.class, example = "none"), @ApiImplicitParam(name = ContractVOMeta.CATALOG_CODE, value = "合同分类代码", required = false, dataTypeClass = String.class, example = "purchase") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContractVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "522790511983984640"),
+		@ApiImplicitParam(name = ContractVOMeta.TYPE, value = "合同类型", required = false, dataTypeClass = String.class, example = "main"),
+		@ApiImplicitParam(name = ContractVOMeta.PARENT_ID, value = "上级合同ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractVOMeta.CONTRACT_NO, value = "合同编号", required = false, dataTypeClass = String.class, example = "11"),
+		@ApiImplicitParam(name = ContractVOMeta.TITLE, value = "合同抬头", required = false, dataTypeClass = String.class, example = "11"),
+		@ApiImplicitParam(name = ContractVOMeta.DELIVERABLES, value = "交付物", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractVOMeta.DELIVERY_LOCATION, value = "交付地", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractVOMeta.AMOUNT, value = "合同金额", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = ContractVOMeta.CONTRACT_STATUS, value = "合同状态", required = false, dataTypeClass = String.class, example = "not_signed"),
+		@ApiImplicitParam(name = ContractVOMeta.SUMMARY, value = "摘要信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractVOMeta.SIGNING_DATE, value = "签订日期", required = false, dataTypeClass = Date.class, example = "2021-12-08 12:00:00"),
+		@ApiImplicitParam(name = ContractVOMeta.EFFECTIVE_DATE, value = "生效日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ContractVOMeta.END_DATE, value = "结束日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ContractVOMeta.EXPIRATION_DATE, value = "失效日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ContractVOMeta.DEPARTMENT_ID, value = "归属部门ID", required = false, dataTypeClass = String.class, example = "503504809626697728"),
+		@ApiImplicitParam(name = ContractVOMeta.FUNDING_STATUS, value = "资金状态", required = false, dataTypeClass = String.class, example = "done"),
+		@ApiImplicitParam(name = ContractVOMeta.FUNDING_DIRECTION, value = "资金流向", required = false, dataTypeClass = String.class, example = "none"),
+		@ApiImplicitParam(name = ContractVOMeta.CATALOG_CODE, value = "合同分类代码", required = false, dataTypeClass = String.class, example = "purchase")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = ContractServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContractServiceProxy.INSERT)
@@ -72,7 +91,9 @@ public class ContractController extends SuperController {
      * 删除合同
      */
     @ApiOperation(value = "删除合同")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContractVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "522790511983984640") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContractVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "522790511983984640")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = ContractServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContractServiceProxy.DELETE)
@@ -86,7 +107,9 @@ public class ContractController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除合同")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContractVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContractVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ContractServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContractServiceProxy.DELETE_BY_IDS)
@@ -99,7 +122,26 @@ public class ContractController extends SuperController {
      * 更新合同
      */
     @ApiOperation(value = "更新合同")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContractVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "522790511983984640"), @ApiImplicitParam(name = ContractVOMeta.TYPE, value = "合同类型", required = false, dataTypeClass = String.class, example = "main"), @ApiImplicitParam(name = ContractVOMeta.PARENT_ID, value = "上级合同ID", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractVOMeta.CONTRACT_NO, value = "合同编号", required = false, dataTypeClass = String.class, example = "11"), @ApiImplicitParam(name = ContractVOMeta.TITLE, value = "合同抬头", required = false, dataTypeClass = String.class, example = "11"), @ApiImplicitParam(name = ContractVOMeta.DELIVERABLES, value = "交付物", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractVOMeta.DELIVERY_LOCATION, value = "交付地", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractVOMeta.AMOUNT, value = "合同金额", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = ContractVOMeta.CONTRACT_STATUS, value = "合同状态", required = false, dataTypeClass = String.class, example = "not_signed"), @ApiImplicitParam(name = ContractVOMeta.SUMMARY, value = "摘要信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractVOMeta.SIGNING_DATE, value = "签订日期", required = false, dataTypeClass = Date.class, example = "2021-12-08 12:00:00"), @ApiImplicitParam(name = ContractVOMeta.EFFECTIVE_DATE, value = "生效日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ContractVOMeta.END_DATE, value = "结束日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ContractVOMeta.EXPIRATION_DATE, value = "失效日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ContractVOMeta.DEPARTMENT_ID, value = "归属部门ID", required = false, dataTypeClass = String.class, example = "503504809626697728"), @ApiImplicitParam(name = ContractVOMeta.FUNDING_STATUS, value = "资金状态", required = false, dataTypeClass = String.class, example = "done"), @ApiImplicitParam(name = ContractVOMeta.FUNDING_DIRECTION, value = "资金流向", required = false, dataTypeClass = String.class, example = "none"), @ApiImplicitParam(name = ContractVOMeta.CATALOG_CODE, value = "合同分类代码", required = false, dataTypeClass = String.class, example = "purchase") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContractVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "522790511983984640"),
+		@ApiImplicitParam(name = ContractVOMeta.TYPE, value = "合同类型", required = false, dataTypeClass = String.class, example = "main"),
+		@ApiImplicitParam(name = ContractVOMeta.PARENT_ID, value = "上级合同ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractVOMeta.CONTRACT_NO, value = "合同编号", required = false, dataTypeClass = String.class, example = "11"),
+		@ApiImplicitParam(name = ContractVOMeta.TITLE, value = "合同抬头", required = false, dataTypeClass = String.class, example = "11"),
+		@ApiImplicitParam(name = ContractVOMeta.DELIVERABLES, value = "交付物", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractVOMeta.DELIVERY_LOCATION, value = "交付地", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractVOMeta.AMOUNT, value = "合同金额", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = ContractVOMeta.CONTRACT_STATUS, value = "合同状态", required = false, dataTypeClass = String.class, example = "not_signed"),
+		@ApiImplicitParam(name = ContractVOMeta.SUMMARY, value = "摘要信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractVOMeta.SIGNING_DATE, value = "签订日期", required = false, dataTypeClass = Date.class, example = "2021-12-08 12:00:00"),
+		@ApiImplicitParam(name = ContractVOMeta.EFFECTIVE_DATE, value = "生效日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ContractVOMeta.END_DATE, value = "结束日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ContractVOMeta.EXPIRATION_DATE, value = "失效日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ContractVOMeta.DEPARTMENT_ID, value = "归属部门ID", required = false, dataTypeClass = String.class, example = "503504809626697728"),
+		@ApiImplicitParam(name = ContractVOMeta.FUNDING_STATUS, value = "资金状态", required = false, dataTypeClass = String.class, example = "done"),
+		@ApiImplicitParam(name = ContractVOMeta.FUNDING_DIRECTION, value = "资金流向", required = false, dataTypeClass = String.class, example = "none"),
+		@ApiImplicitParam(name = ContractVOMeta.CATALOG_CODE, value = "合同分类代码", required = false, dataTypeClass = String.class, example = "purchase")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { ContractVOMeta.PAGE_INDEX, ContractVOMeta.PAGE_SIZE, ContractVOMeta.SEARCH_FIELD, ContractVOMeta.FUZZY_FIELD, ContractVOMeta.SEARCH_VALUE, ContractVOMeta.DIRTY_FIELDS, ContractVOMeta.SORT_FIELD, ContractVOMeta.SORT_TYPE, ContractVOMeta.IDS })
     @SentinelResource(value = ContractServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContractServiceProxy.UPDATE)
@@ -115,7 +157,26 @@ public class ContractController extends SuperController {
      * 保存合同
      */
     @ApiOperation(value = "保存合同")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContractVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "522790511983984640"), @ApiImplicitParam(name = ContractVOMeta.TYPE, value = "合同类型", required = false, dataTypeClass = String.class, example = "main"), @ApiImplicitParam(name = ContractVOMeta.PARENT_ID, value = "上级合同ID", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractVOMeta.CONTRACT_NO, value = "合同编号", required = false, dataTypeClass = String.class, example = "11"), @ApiImplicitParam(name = ContractVOMeta.TITLE, value = "合同抬头", required = false, dataTypeClass = String.class, example = "11"), @ApiImplicitParam(name = ContractVOMeta.DELIVERABLES, value = "交付物", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractVOMeta.DELIVERY_LOCATION, value = "交付地", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractVOMeta.AMOUNT, value = "合同金额", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = ContractVOMeta.CONTRACT_STATUS, value = "合同状态", required = false, dataTypeClass = String.class, example = "not_signed"), @ApiImplicitParam(name = ContractVOMeta.SUMMARY, value = "摘要信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractVOMeta.SIGNING_DATE, value = "签订日期", required = false, dataTypeClass = Date.class, example = "2021-12-08 12:00:00"), @ApiImplicitParam(name = ContractVOMeta.EFFECTIVE_DATE, value = "生效日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ContractVOMeta.END_DATE, value = "结束日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ContractVOMeta.EXPIRATION_DATE, value = "失效日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ContractVOMeta.DEPARTMENT_ID, value = "归属部门ID", required = false, dataTypeClass = String.class, example = "503504809626697728"), @ApiImplicitParam(name = ContractVOMeta.FUNDING_STATUS, value = "资金状态", required = false, dataTypeClass = String.class, example = "done"), @ApiImplicitParam(name = ContractVOMeta.FUNDING_DIRECTION, value = "资金流向", required = false, dataTypeClass = String.class, example = "none"), @ApiImplicitParam(name = ContractVOMeta.CATALOG_CODE, value = "合同分类代码", required = false, dataTypeClass = String.class, example = "purchase") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContractVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "522790511983984640"),
+		@ApiImplicitParam(name = ContractVOMeta.TYPE, value = "合同类型", required = false, dataTypeClass = String.class, example = "main"),
+		@ApiImplicitParam(name = ContractVOMeta.PARENT_ID, value = "上级合同ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractVOMeta.CONTRACT_NO, value = "合同编号", required = false, dataTypeClass = String.class, example = "11"),
+		@ApiImplicitParam(name = ContractVOMeta.TITLE, value = "合同抬头", required = false, dataTypeClass = String.class, example = "11"),
+		@ApiImplicitParam(name = ContractVOMeta.DELIVERABLES, value = "交付物", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractVOMeta.DELIVERY_LOCATION, value = "交付地", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractVOMeta.AMOUNT, value = "合同金额", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = ContractVOMeta.CONTRACT_STATUS, value = "合同状态", required = false, dataTypeClass = String.class, example = "not_signed"),
+		@ApiImplicitParam(name = ContractVOMeta.SUMMARY, value = "摘要信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractVOMeta.SIGNING_DATE, value = "签订日期", required = false, dataTypeClass = Date.class, example = "2021-12-08 12:00:00"),
+		@ApiImplicitParam(name = ContractVOMeta.EFFECTIVE_DATE, value = "生效日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ContractVOMeta.END_DATE, value = "结束日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ContractVOMeta.EXPIRATION_DATE, value = "失效日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ContractVOMeta.DEPARTMENT_ID, value = "归属部门ID", required = false, dataTypeClass = String.class, example = "503504809626697728"),
+		@ApiImplicitParam(name = ContractVOMeta.FUNDING_STATUS, value = "资金状态", required = false, dataTypeClass = String.class, example = "done"),
+		@ApiImplicitParam(name = ContractVOMeta.FUNDING_DIRECTION, value = "资金流向", required = false, dataTypeClass = String.class, example = "none"),
+		@ApiImplicitParam(name = ContractVOMeta.CATALOG_CODE, value = "合同分类代码", required = false, dataTypeClass = String.class, example = "purchase")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ContractVOMeta.PAGE_INDEX, ContractVOMeta.PAGE_SIZE, ContractVOMeta.SEARCH_FIELD, ContractVOMeta.FUZZY_FIELD, ContractVOMeta.SEARCH_VALUE, ContractVOMeta.DIRTY_FIELDS, ContractVOMeta.SORT_FIELD, ContractVOMeta.SORT_TYPE, ContractVOMeta.IDS })
     @SentinelResource(value = ContractServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContractServiceProxy.SAVE)
@@ -129,7 +190,9 @@ public class ContractController extends SuperController {
      * 获取合同
      */
     @ApiOperation(value = "获取合同")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContractVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContractVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = ContractServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContractServiceProxy.GET_BY_ID)
@@ -145,7 +208,9 @@ public class ContractController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取合同")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContractVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContractVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ContractServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContractServiceProxy.GET_BY_IDS)
@@ -160,7 +225,26 @@ public class ContractController extends SuperController {
      * 查询合同
      */
     @ApiOperation(value = "查询合同")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContractVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "522790511983984640"), @ApiImplicitParam(name = ContractVOMeta.TYPE, value = "合同类型", required = false, dataTypeClass = String.class, example = "main"), @ApiImplicitParam(name = ContractVOMeta.PARENT_ID, value = "上级合同ID", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractVOMeta.CONTRACT_NO, value = "合同编号", required = false, dataTypeClass = String.class, example = "11"), @ApiImplicitParam(name = ContractVOMeta.TITLE, value = "合同抬头", required = false, dataTypeClass = String.class, example = "11"), @ApiImplicitParam(name = ContractVOMeta.DELIVERABLES, value = "交付物", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractVOMeta.DELIVERY_LOCATION, value = "交付地", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractVOMeta.AMOUNT, value = "合同金额", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = ContractVOMeta.CONTRACT_STATUS, value = "合同状态", required = false, dataTypeClass = String.class, example = "not_signed"), @ApiImplicitParam(name = ContractVOMeta.SUMMARY, value = "摘要信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractVOMeta.SIGNING_DATE, value = "签订日期", required = false, dataTypeClass = Date.class, example = "2021-12-08 12:00:00"), @ApiImplicitParam(name = ContractVOMeta.EFFECTIVE_DATE, value = "生效日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ContractVOMeta.END_DATE, value = "结束日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ContractVOMeta.EXPIRATION_DATE, value = "失效日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ContractVOMeta.DEPARTMENT_ID, value = "归属部门ID", required = false, dataTypeClass = String.class, example = "503504809626697728"), @ApiImplicitParam(name = ContractVOMeta.FUNDING_STATUS, value = "资金状态", required = false, dataTypeClass = String.class, example = "done"), @ApiImplicitParam(name = ContractVOMeta.FUNDING_DIRECTION, value = "资金流向", required = false, dataTypeClass = String.class, example = "none"), @ApiImplicitParam(name = ContractVOMeta.CATALOG_CODE, value = "合同分类代码", required = false, dataTypeClass = String.class, example = "purchase") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContractVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "522790511983984640"),
+		@ApiImplicitParam(name = ContractVOMeta.TYPE, value = "合同类型", required = false, dataTypeClass = String.class, example = "main"),
+		@ApiImplicitParam(name = ContractVOMeta.PARENT_ID, value = "上级合同ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractVOMeta.CONTRACT_NO, value = "合同编号", required = false, dataTypeClass = String.class, example = "11"),
+		@ApiImplicitParam(name = ContractVOMeta.TITLE, value = "合同抬头", required = false, dataTypeClass = String.class, example = "11"),
+		@ApiImplicitParam(name = ContractVOMeta.DELIVERABLES, value = "交付物", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractVOMeta.DELIVERY_LOCATION, value = "交付地", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractVOMeta.AMOUNT, value = "合同金额", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = ContractVOMeta.CONTRACT_STATUS, value = "合同状态", required = false, dataTypeClass = String.class, example = "not_signed"),
+		@ApiImplicitParam(name = ContractVOMeta.SUMMARY, value = "摘要信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractVOMeta.SIGNING_DATE, value = "签订日期", required = false, dataTypeClass = Date.class, example = "2021-12-08 12:00:00"),
+		@ApiImplicitParam(name = ContractVOMeta.EFFECTIVE_DATE, value = "生效日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ContractVOMeta.END_DATE, value = "结束日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ContractVOMeta.EXPIRATION_DATE, value = "失效日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ContractVOMeta.DEPARTMENT_ID, value = "归属部门ID", required = false, dataTypeClass = String.class, example = "503504809626697728"),
+		@ApiImplicitParam(name = ContractVOMeta.FUNDING_STATUS, value = "资金状态", required = false, dataTypeClass = String.class, example = "done"),
+		@ApiImplicitParam(name = ContractVOMeta.FUNDING_DIRECTION, value = "资金流向", required = false, dataTypeClass = String.class, example = "none"),
+		@ApiImplicitParam(name = ContractVOMeta.CATALOG_CODE, value = "合同分类代码", required = false, dataTypeClass = String.class, example = "purchase")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ContractVOMeta.PAGE_INDEX, ContractVOMeta.PAGE_SIZE })
     @SentinelResource(value = ContractServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContractServiceProxy.QUERY_LIST)
@@ -175,7 +259,26 @@ public class ContractController extends SuperController {
      * 分页查询合同
      */
     @ApiOperation(value = "分页查询合同")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ContractVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "522790511983984640"), @ApiImplicitParam(name = ContractVOMeta.TYPE, value = "合同类型", required = false, dataTypeClass = String.class, example = "main"), @ApiImplicitParam(name = ContractVOMeta.PARENT_ID, value = "上级合同ID", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractVOMeta.CONTRACT_NO, value = "合同编号", required = false, dataTypeClass = String.class, example = "11"), @ApiImplicitParam(name = ContractVOMeta.TITLE, value = "合同抬头", required = false, dataTypeClass = String.class, example = "11"), @ApiImplicitParam(name = ContractVOMeta.DELIVERABLES, value = "交付物", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractVOMeta.DELIVERY_LOCATION, value = "交付地", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractVOMeta.AMOUNT, value = "合同金额", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = ContractVOMeta.CONTRACT_STATUS, value = "合同状态", required = false, dataTypeClass = String.class, example = "not_signed"), @ApiImplicitParam(name = ContractVOMeta.SUMMARY, value = "摘要信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ContractVOMeta.SIGNING_DATE, value = "签订日期", required = false, dataTypeClass = Date.class, example = "2021-12-08 12:00:00"), @ApiImplicitParam(name = ContractVOMeta.EFFECTIVE_DATE, value = "生效日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ContractVOMeta.END_DATE, value = "结束日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ContractVOMeta.EXPIRATION_DATE, value = "失效日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ContractVOMeta.DEPARTMENT_ID, value = "归属部门ID", required = false, dataTypeClass = String.class, example = "503504809626697728"), @ApiImplicitParam(name = ContractVOMeta.FUNDING_STATUS, value = "资金状态", required = false, dataTypeClass = String.class, example = "done"), @ApiImplicitParam(name = ContractVOMeta.FUNDING_DIRECTION, value = "资金流向", required = false, dataTypeClass = String.class, example = "none"), @ApiImplicitParam(name = ContractVOMeta.CATALOG_CODE, value = "合同分类代码", required = false, dataTypeClass = String.class, example = "purchase") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ContractVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "522790511983984640"),
+		@ApiImplicitParam(name = ContractVOMeta.TYPE, value = "合同类型", required = false, dataTypeClass = String.class, example = "main"),
+		@ApiImplicitParam(name = ContractVOMeta.PARENT_ID, value = "上级合同ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractVOMeta.CONTRACT_NO, value = "合同编号", required = false, dataTypeClass = String.class, example = "11"),
+		@ApiImplicitParam(name = ContractVOMeta.TITLE, value = "合同抬头", required = false, dataTypeClass = String.class, example = "11"),
+		@ApiImplicitParam(name = ContractVOMeta.DELIVERABLES, value = "交付物", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractVOMeta.DELIVERY_LOCATION, value = "交付地", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractVOMeta.AMOUNT, value = "合同金额", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = ContractVOMeta.CONTRACT_STATUS, value = "合同状态", required = false, dataTypeClass = String.class, example = "not_signed"),
+		@ApiImplicitParam(name = ContractVOMeta.SUMMARY, value = "摘要信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ContractVOMeta.SIGNING_DATE, value = "签订日期", required = false, dataTypeClass = Date.class, example = "2021-12-08 12:00:00"),
+		@ApiImplicitParam(name = ContractVOMeta.EFFECTIVE_DATE, value = "生效日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ContractVOMeta.END_DATE, value = "结束日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ContractVOMeta.EXPIRATION_DATE, value = "失效日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ContractVOMeta.DEPARTMENT_ID, value = "归属部门ID", required = false, dataTypeClass = String.class, example = "503504809626697728"),
+		@ApiImplicitParam(name = ContractVOMeta.FUNDING_STATUS, value = "资金状态", required = false, dataTypeClass = String.class, example = "done"),
+		@ApiImplicitParam(name = ContractVOMeta.FUNDING_DIRECTION, value = "资金流向", required = false, dataTypeClass = String.class, example = "none"),
+		@ApiImplicitParam(name = ContractVOMeta.CATALOG_CODE, value = "合同分类代码", required = false, dataTypeClass = String.class, example = "purchase")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = ContractServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ContractServiceProxy.QUERY_PAGED_LIST)

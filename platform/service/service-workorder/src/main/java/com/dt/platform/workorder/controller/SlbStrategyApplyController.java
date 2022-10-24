@@ -65,7 +65,22 @@ public class SlbStrategyApplyController extends SuperController implements BpmCa
      * 添加负载策略申请
      */
     @ApiOperation(value = "添加负载策略申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SlbStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.CODE, value = "编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.PROJECT_NAME, value = "项目名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.CODE, value = "编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.PROJECT_NAME, value = "项目名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = SlbStrategyApplyServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SlbStrategyApplyServiceProxy.INSERT)
@@ -79,7 +94,9 @@ public class SlbStrategyApplyController extends SuperController implements BpmCa
      * 删除负载策略申请
      */
     @ApiOperation(value = "删除负载策略申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SlbStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = SlbStrategyApplyServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SlbStrategyApplyServiceProxy.DELETE)
@@ -104,7 +121,9 @@ public class SlbStrategyApplyController extends SuperController implements BpmCa
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除负载策略申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SlbStrategyApplyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = SlbStrategyApplyServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SlbStrategyApplyServiceProxy.DELETE_BY_IDS)
@@ -149,7 +168,22 @@ public class SlbStrategyApplyController extends SuperController implements BpmCa
      * 更新负载策略申请
      */
     @ApiOperation(value = "更新负载策略申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SlbStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.CODE, value = "编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.PROJECT_NAME, value = "项目名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.CODE, value = "编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.PROJECT_NAME, value = "项目名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { SlbStrategyApplyVOMeta.PAGE_INDEX, SlbStrategyApplyVOMeta.PAGE_SIZE, SlbStrategyApplyVOMeta.SEARCH_FIELD, SlbStrategyApplyVOMeta.FUZZY_FIELD, SlbStrategyApplyVOMeta.SEARCH_VALUE, SlbStrategyApplyVOMeta.DIRTY_FIELDS, SlbStrategyApplyVOMeta.SORT_FIELD, SlbStrategyApplyVOMeta.SORT_TYPE, SlbStrategyApplyVOMeta.IDS })
     @SentinelResource(value = SlbStrategyApplyServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SlbStrategyApplyServiceProxy.UPDATE)
@@ -163,7 +197,22 @@ public class SlbStrategyApplyController extends SuperController implements BpmCa
      * 保存负载策略申请
      */
     @ApiOperation(value = "保存负载策略申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SlbStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.CODE, value = "编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.PROJECT_NAME, value = "项目名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.CODE, value = "编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.PROJECT_NAME, value = "项目名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { SlbStrategyApplyVOMeta.PAGE_INDEX, SlbStrategyApplyVOMeta.PAGE_SIZE, SlbStrategyApplyVOMeta.SEARCH_FIELD, SlbStrategyApplyVOMeta.FUZZY_FIELD, SlbStrategyApplyVOMeta.SEARCH_VALUE, SlbStrategyApplyVOMeta.DIRTY_FIELDS, SlbStrategyApplyVOMeta.SORT_FIELD, SlbStrategyApplyVOMeta.SORT_TYPE, SlbStrategyApplyVOMeta.IDS })
     @SentinelResource(value = SlbStrategyApplyServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SlbStrategyApplyServiceProxy.SAVE)
@@ -177,7 +226,9 @@ public class SlbStrategyApplyController extends SuperController implements BpmCa
      * 获取负载策略申请
      */
     @ApiOperation(value = "获取负载策略申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SlbStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = SlbStrategyApplyServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SlbStrategyApplyServiceProxy.GET_BY_ID)
@@ -195,7 +246,9 @@ public class SlbStrategyApplyController extends SuperController implements BpmCa
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取负载策略申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SlbStrategyApplyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = SlbStrategyApplyServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SlbStrategyApplyServiceProxy.GET_BY_IDS)
@@ -210,7 +263,22 @@ public class SlbStrategyApplyController extends SuperController implements BpmCa
      * 查询负载策略申请
      */
     @ApiOperation(value = "查询负载策略申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SlbStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.CODE, value = "编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.PROJECT_NAME, value = "项目名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.CODE, value = "编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.PROJECT_NAME, value = "项目名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { SlbStrategyApplyVOMeta.PAGE_INDEX, SlbStrategyApplyVOMeta.PAGE_SIZE })
     @SentinelResource(value = SlbStrategyApplyServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SlbStrategyApplyServiceProxy.QUERY_LIST)
@@ -225,7 +293,22 @@ public class SlbStrategyApplyController extends SuperController implements BpmCa
      * 分页查询负载策略申请
      */
     @ApiOperation(value = "分页查询负载策略申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SlbStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.CODE, value = "编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.PROJECT_NAME, value = "项目名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SlbStrategyApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.CODE, value = "编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.PROJECT_NAME, value = "项目名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SlbStrategyApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = SlbStrategyApplyServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SlbStrategyApplyServiceProxy.QUERY_PAGED_LIST)

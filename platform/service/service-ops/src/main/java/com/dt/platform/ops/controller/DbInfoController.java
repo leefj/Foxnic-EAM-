@@ -64,7 +64,25 @@ public class DbInfoController extends SuperController {
      * 添加数据库
      */
     @ApiOperation(value = "添加数据库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = DbInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "620984665599115264"), @ApiImplicitParam(name = DbInfoVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class, example = "607860248228663296"), @ApiImplicitParam(name = DbInfoVOMeta.TYPE_ID, value = "数据库类型", required = false, dataTypeClass = String.class, example = "495613594017202176"), @ApiImplicitParam(name = DbInfoVOMeta.NAME, value = "数据库名", required = false, dataTypeClass = String.class, example = "cw3"), @ApiImplicitParam(name = DbInfoVOMeta.STATUS, value = "数据库状态", required = false, dataTypeClass = String.class, example = "online"), @ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "backup"), @ApiImplicitParam(name = DbInfoVOMeta.DEPLOY_MODE, value = "部署模式", required = false, dataTypeClass = String.class, example = "single"), @ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STRATEGY, value = "备份策略", required = false, dataTypeClass = String.class, example = "无"), @ApiImplicitParam(name = DbInfoVOMeta.DB_SIZE, value = "大小(M)", required = false, dataTypeClass = BigDecimal.class, example = "10923.00"), @ApiImplicitParam(name = DbInfoVOMeta.LOG_METHOD, value = "日志模式", required = false, dataTypeClass = String.class, example = "no_arch"), @ApiImplicitParam(name = DbInfoVOMeta.ADMIN_USER_LIST, value = "管理员账户", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbInfoVOMeta.APP_USER_LIST, value = "应用账户", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbInfoVOMeta.OTHER_USER_LIST, value = "其他账户", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbInfoVOMeta.VOUCHER_STR, value = "凭证信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbInfoVOMeta.DB_PORT, value = "连接端口", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = DbInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1662883885000") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = DbInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "620984665599115264"),
+		@ApiImplicitParam(name = DbInfoVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class, example = "607860248228663296"),
+		@ApiImplicitParam(name = DbInfoVOMeta.TYPE_ID, value = "数据库类型", required = false, dataTypeClass = String.class, example = "495613594017202176"),
+		@ApiImplicitParam(name = DbInfoVOMeta.NAME, value = "数据库名", required = false, dataTypeClass = String.class, example = "cw3"),
+		@ApiImplicitParam(name = DbInfoVOMeta.STATUS, value = "数据库状态", required = false, dataTypeClass = String.class, example = "online"),
+		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "backup"),
+		@ApiImplicitParam(name = DbInfoVOMeta.DEPLOY_MODE, value = "部署模式", required = false, dataTypeClass = String.class, example = "single"),
+		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STRATEGY, value = "备份策略", required = false, dataTypeClass = String.class, example = "无"),
+		@ApiImplicitParam(name = DbInfoVOMeta.DB_SIZE, value = "大小(M)", required = false, dataTypeClass = BigDecimal.class, example = "10923.00"),
+		@ApiImplicitParam(name = DbInfoVOMeta.LOG_METHOD, value = "日志模式", required = false, dataTypeClass = String.class, example = "no_arch"),
+		@ApiImplicitParam(name = DbInfoVOMeta.ADMIN_USER_LIST, value = "管理员账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.APP_USER_LIST, value = "应用账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.OTHER_USER_LIST, value = "其他账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.VOUCHER_STR, value = "凭证信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.DB_PORT, value = "连接端口", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = DbInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1662883885000")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = DbInfoServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(DbInfoServiceProxy.INSERT)
@@ -78,7 +96,9 @@ public class DbInfoController extends SuperController {
      * 删除数据库
      */
     @ApiOperation(value = "删除数据库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = DbInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "620984665599115264") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = DbInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "620984665599115264")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = DbInfoServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(DbInfoServiceProxy.DELETE)
@@ -103,7 +123,9 @@ public class DbInfoController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除数据库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = DbInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = DbInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = DbInfoServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(DbInfoServiceProxy.DELETE_BY_IDS)
@@ -148,7 +170,25 @@ public class DbInfoController extends SuperController {
      * 更新数据库
      */
     @ApiOperation(value = "更新数据库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = DbInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "620984665599115264"), @ApiImplicitParam(name = DbInfoVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class, example = "607860248228663296"), @ApiImplicitParam(name = DbInfoVOMeta.TYPE_ID, value = "数据库类型", required = false, dataTypeClass = String.class, example = "495613594017202176"), @ApiImplicitParam(name = DbInfoVOMeta.NAME, value = "数据库名", required = false, dataTypeClass = String.class, example = "cw3"), @ApiImplicitParam(name = DbInfoVOMeta.STATUS, value = "数据库状态", required = false, dataTypeClass = String.class, example = "online"), @ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "backup"), @ApiImplicitParam(name = DbInfoVOMeta.DEPLOY_MODE, value = "部署模式", required = false, dataTypeClass = String.class, example = "single"), @ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STRATEGY, value = "备份策略", required = false, dataTypeClass = String.class, example = "无"), @ApiImplicitParam(name = DbInfoVOMeta.DB_SIZE, value = "大小(M)", required = false, dataTypeClass = BigDecimal.class, example = "10923.00"), @ApiImplicitParam(name = DbInfoVOMeta.LOG_METHOD, value = "日志模式", required = false, dataTypeClass = String.class, example = "no_arch"), @ApiImplicitParam(name = DbInfoVOMeta.ADMIN_USER_LIST, value = "管理员账户", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbInfoVOMeta.APP_USER_LIST, value = "应用账户", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbInfoVOMeta.OTHER_USER_LIST, value = "其他账户", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbInfoVOMeta.VOUCHER_STR, value = "凭证信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbInfoVOMeta.DB_PORT, value = "连接端口", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = DbInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1662883885000") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = DbInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "620984665599115264"),
+		@ApiImplicitParam(name = DbInfoVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class, example = "607860248228663296"),
+		@ApiImplicitParam(name = DbInfoVOMeta.TYPE_ID, value = "数据库类型", required = false, dataTypeClass = String.class, example = "495613594017202176"),
+		@ApiImplicitParam(name = DbInfoVOMeta.NAME, value = "数据库名", required = false, dataTypeClass = String.class, example = "cw3"),
+		@ApiImplicitParam(name = DbInfoVOMeta.STATUS, value = "数据库状态", required = false, dataTypeClass = String.class, example = "online"),
+		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "backup"),
+		@ApiImplicitParam(name = DbInfoVOMeta.DEPLOY_MODE, value = "部署模式", required = false, dataTypeClass = String.class, example = "single"),
+		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STRATEGY, value = "备份策略", required = false, dataTypeClass = String.class, example = "无"),
+		@ApiImplicitParam(name = DbInfoVOMeta.DB_SIZE, value = "大小(M)", required = false, dataTypeClass = BigDecimal.class, example = "10923.00"),
+		@ApiImplicitParam(name = DbInfoVOMeta.LOG_METHOD, value = "日志模式", required = false, dataTypeClass = String.class, example = "no_arch"),
+		@ApiImplicitParam(name = DbInfoVOMeta.ADMIN_USER_LIST, value = "管理员账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.APP_USER_LIST, value = "应用账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.OTHER_USER_LIST, value = "其他账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.VOUCHER_STR, value = "凭证信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.DB_PORT, value = "连接端口", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = DbInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1662883885000")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { DbInfoVOMeta.PAGE_INDEX, DbInfoVOMeta.PAGE_SIZE, DbInfoVOMeta.SEARCH_FIELD, DbInfoVOMeta.FUZZY_FIELD, DbInfoVOMeta.SEARCH_VALUE, DbInfoVOMeta.DIRTY_FIELDS, DbInfoVOMeta.SORT_FIELD, DbInfoVOMeta.SORT_TYPE, DbInfoVOMeta.IDS })
     @SentinelResource(value = DbInfoServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(DbInfoServiceProxy.UPDATE)
@@ -162,7 +202,25 @@ public class DbInfoController extends SuperController {
      * 保存数据库
      */
     @ApiOperation(value = "保存数据库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = DbInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "620984665599115264"), @ApiImplicitParam(name = DbInfoVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class, example = "607860248228663296"), @ApiImplicitParam(name = DbInfoVOMeta.TYPE_ID, value = "数据库类型", required = false, dataTypeClass = String.class, example = "495613594017202176"), @ApiImplicitParam(name = DbInfoVOMeta.NAME, value = "数据库名", required = false, dataTypeClass = String.class, example = "cw3"), @ApiImplicitParam(name = DbInfoVOMeta.STATUS, value = "数据库状态", required = false, dataTypeClass = String.class, example = "online"), @ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "backup"), @ApiImplicitParam(name = DbInfoVOMeta.DEPLOY_MODE, value = "部署模式", required = false, dataTypeClass = String.class, example = "single"), @ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STRATEGY, value = "备份策略", required = false, dataTypeClass = String.class, example = "无"), @ApiImplicitParam(name = DbInfoVOMeta.DB_SIZE, value = "大小(M)", required = false, dataTypeClass = BigDecimal.class, example = "10923.00"), @ApiImplicitParam(name = DbInfoVOMeta.LOG_METHOD, value = "日志模式", required = false, dataTypeClass = String.class, example = "no_arch"), @ApiImplicitParam(name = DbInfoVOMeta.ADMIN_USER_LIST, value = "管理员账户", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbInfoVOMeta.APP_USER_LIST, value = "应用账户", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbInfoVOMeta.OTHER_USER_LIST, value = "其他账户", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbInfoVOMeta.VOUCHER_STR, value = "凭证信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbInfoVOMeta.DB_PORT, value = "连接端口", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = DbInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1662883885000") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = DbInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "620984665599115264"),
+		@ApiImplicitParam(name = DbInfoVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class, example = "607860248228663296"),
+		@ApiImplicitParam(name = DbInfoVOMeta.TYPE_ID, value = "数据库类型", required = false, dataTypeClass = String.class, example = "495613594017202176"),
+		@ApiImplicitParam(name = DbInfoVOMeta.NAME, value = "数据库名", required = false, dataTypeClass = String.class, example = "cw3"),
+		@ApiImplicitParam(name = DbInfoVOMeta.STATUS, value = "数据库状态", required = false, dataTypeClass = String.class, example = "online"),
+		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "backup"),
+		@ApiImplicitParam(name = DbInfoVOMeta.DEPLOY_MODE, value = "部署模式", required = false, dataTypeClass = String.class, example = "single"),
+		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STRATEGY, value = "备份策略", required = false, dataTypeClass = String.class, example = "无"),
+		@ApiImplicitParam(name = DbInfoVOMeta.DB_SIZE, value = "大小(M)", required = false, dataTypeClass = BigDecimal.class, example = "10923.00"),
+		@ApiImplicitParam(name = DbInfoVOMeta.LOG_METHOD, value = "日志模式", required = false, dataTypeClass = String.class, example = "no_arch"),
+		@ApiImplicitParam(name = DbInfoVOMeta.ADMIN_USER_LIST, value = "管理员账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.APP_USER_LIST, value = "应用账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.OTHER_USER_LIST, value = "其他账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.VOUCHER_STR, value = "凭证信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.DB_PORT, value = "连接端口", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = DbInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1662883885000")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { DbInfoVOMeta.PAGE_INDEX, DbInfoVOMeta.PAGE_SIZE, DbInfoVOMeta.SEARCH_FIELD, DbInfoVOMeta.FUZZY_FIELD, DbInfoVOMeta.SEARCH_VALUE, DbInfoVOMeta.DIRTY_FIELDS, DbInfoVOMeta.SORT_FIELD, DbInfoVOMeta.SORT_TYPE, DbInfoVOMeta.IDS })
     @SentinelResource(value = DbInfoServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(DbInfoServiceProxy.SAVE)
@@ -176,7 +234,9 @@ public class DbInfoController extends SuperController {
      * 获取数据库
      */
     @ApiOperation(value = "获取数据库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = DbInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = DbInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = DbInfoServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(DbInfoServiceProxy.GET_BY_ID)
@@ -194,7 +254,9 @@ public class DbInfoController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取数据库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = DbInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = DbInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = DbInfoServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(DbInfoServiceProxy.GET_BY_IDS)
@@ -209,7 +271,25 @@ public class DbInfoController extends SuperController {
      * 查询数据库
      */
     @ApiOperation(value = "查询数据库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = DbInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "620984665599115264"), @ApiImplicitParam(name = DbInfoVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class, example = "607860248228663296"), @ApiImplicitParam(name = DbInfoVOMeta.TYPE_ID, value = "数据库类型", required = false, dataTypeClass = String.class, example = "495613594017202176"), @ApiImplicitParam(name = DbInfoVOMeta.NAME, value = "数据库名", required = false, dataTypeClass = String.class, example = "cw3"), @ApiImplicitParam(name = DbInfoVOMeta.STATUS, value = "数据库状态", required = false, dataTypeClass = String.class, example = "online"), @ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "backup"), @ApiImplicitParam(name = DbInfoVOMeta.DEPLOY_MODE, value = "部署模式", required = false, dataTypeClass = String.class, example = "single"), @ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STRATEGY, value = "备份策略", required = false, dataTypeClass = String.class, example = "无"), @ApiImplicitParam(name = DbInfoVOMeta.DB_SIZE, value = "大小(M)", required = false, dataTypeClass = BigDecimal.class, example = "10923.00"), @ApiImplicitParam(name = DbInfoVOMeta.LOG_METHOD, value = "日志模式", required = false, dataTypeClass = String.class, example = "no_arch"), @ApiImplicitParam(name = DbInfoVOMeta.ADMIN_USER_LIST, value = "管理员账户", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbInfoVOMeta.APP_USER_LIST, value = "应用账户", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbInfoVOMeta.OTHER_USER_LIST, value = "其他账户", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbInfoVOMeta.VOUCHER_STR, value = "凭证信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbInfoVOMeta.DB_PORT, value = "连接端口", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = DbInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1662883885000") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = DbInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "620984665599115264"),
+		@ApiImplicitParam(name = DbInfoVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class, example = "607860248228663296"),
+		@ApiImplicitParam(name = DbInfoVOMeta.TYPE_ID, value = "数据库类型", required = false, dataTypeClass = String.class, example = "495613594017202176"),
+		@ApiImplicitParam(name = DbInfoVOMeta.NAME, value = "数据库名", required = false, dataTypeClass = String.class, example = "cw3"),
+		@ApiImplicitParam(name = DbInfoVOMeta.STATUS, value = "数据库状态", required = false, dataTypeClass = String.class, example = "online"),
+		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "backup"),
+		@ApiImplicitParam(name = DbInfoVOMeta.DEPLOY_MODE, value = "部署模式", required = false, dataTypeClass = String.class, example = "single"),
+		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STRATEGY, value = "备份策略", required = false, dataTypeClass = String.class, example = "无"),
+		@ApiImplicitParam(name = DbInfoVOMeta.DB_SIZE, value = "大小(M)", required = false, dataTypeClass = BigDecimal.class, example = "10923.00"),
+		@ApiImplicitParam(name = DbInfoVOMeta.LOG_METHOD, value = "日志模式", required = false, dataTypeClass = String.class, example = "no_arch"),
+		@ApiImplicitParam(name = DbInfoVOMeta.ADMIN_USER_LIST, value = "管理员账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.APP_USER_LIST, value = "应用账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.OTHER_USER_LIST, value = "其他账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.VOUCHER_STR, value = "凭证信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.DB_PORT, value = "连接端口", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = DbInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1662883885000")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { DbInfoVOMeta.PAGE_INDEX, DbInfoVOMeta.PAGE_SIZE })
     @SentinelResource(value = DbInfoServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(DbInfoServiceProxy.QUERY_LIST)
@@ -224,7 +304,25 @@ public class DbInfoController extends SuperController {
      * 分页查询数据库
      */
     @ApiOperation(value = "分页查询数据库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = DbInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "620984665599115264"), @ApiImplicitParam(name = DbInfoVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class, example = "607860248228663296"), @ApiImplicitParam(name = DbInfoVOMeta.TYPE_ID, value = "数据库类型", required = false, dataTypeClass = String.class, example = "495613594017202176"), @ApiImplicitParam(name = DbInfoVOMeta.NAME, value = "数据库名", required = false, dataTypeClass = String.class, example = "cw3"), @ApiImplicitParam(name = DbInfoVOMeta.STATUS, value = "数据库状态", required = false, dataTypeClass = String.class, example = "online"), @ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "backup"), @ApiImplicitParam(name = DbInfoVOMeta.DEPLOY_MODE, value = "部署模式", required = false, dataTypeClass = String.class, example = "single"), @ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STRATEGY, value = "备份策略", required = false, dataTypeClass = String.class, example = "无"), @ApiImplicitParam(name = DbInfoVOMeta.DB_SIZE, value = "大小(M)", required = false, dataTypeClass = BigDecimal.class, example = "10923.00"), @ApiImplicitParam(name = DbInfoVOMeta.LOG_METHOD, value = "日志模式", required = false, dataTypeClass = String.class, example = "no_arch"), @ApiImplicitParam(name = DbInfoVOMeta.ADMIN_USER_LIST, value = "管理员账户", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbInfoVOMeta.APP_USER_LIST, value = "应用账户", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbInfoVOMeta.OTHER_USER_LIST, value = "其他账户", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbInfoVOMeta.VOUCHER_STR, value = "凭证信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbInfoVOMeta.DB_PORT, value = "连接端口", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = DbInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1662883885000") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = DbInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "620984665599115264"),
+		@ApiImplicitParam(name = DbInfoVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class, example = "607860248228663296"),
+		@ApiImplicitParam(name = DbInfoVOMeta.TYPE_ID, value = "数据库类型", required = false, dataTypeClass = String.class, example = "495613594017202176"),
+		@ApiImplicitParam(name = DbInfoVOMeta.NAME, value = "数据库名", required = false, dataTypeClass = String.class, example = "cw3"),
+		@ApiImplicitParam(name = DbInfoVOMeta.STATUS, value = "数据库状态", required = false, dataTypeClass = String.class, example = "online"),
+		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "backup"),
+		@ApiImplicitParam(name = DbInfoVOMeta.DEPLOY_MODE, value = "部署模式", required = false, dataTypeClass = String.class, example = "single"),
+		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STRATEGY, value = "备份策略", required = false, dataTypeClass = String.class, example = "无"),
+		@ApiImplicitParam(name = DbInfoVOMeta.DB_SIZE, value = "大小(M)", required = false, dataTypeClass = BigDecimal.class, example = "10923.00"),
+		@ApiImplicitParam(name = DbInfoVOMeta.LOG_METHOD, value = "日志模式", required = false, dataTypeClass = String.class, example = "no_arch"),
+		@ApiImplicitParam(name = DbInfoVOMeta.ADMIN_USER_LIST, value = "管理员账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.APP_USER_LIST, value = "应用账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.OTHER_USER_LIST, value = "其他账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.VOUCHER_STR, value = "凭证信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.DB_PORT, value = "连接端口", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = DbInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1662883885000")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = DbInfoServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(DbInfoServiceProxy.QUERY_PAGED_LIST)

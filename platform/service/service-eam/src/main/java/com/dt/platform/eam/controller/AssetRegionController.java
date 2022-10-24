@@ -58,7 +58,17 @@ public class AssetRegionController extends SuperController {
      * 添加存放区域
      */
     @ApiOperation(value = "添加存放区域")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRegionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.REGION_NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.REGIOND_CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRegionVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRegionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.REGION_NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.REGIOND_CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetRegionServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRegionServiceProxy.INSERT)
@@ -72,7 +82,9 @@ public class AssetRegionController extends SuperController {
      * 删除存放区域
      */
     @ApiOperation(value = "删除存放区域")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRegionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRegionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetRegionServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRegionServiceProxy.DELETE)
@@ -97,7 +109,9 @@ public class AssetRegionController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除存放区域")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRegionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRegionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetRegionServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRegionServiceProxy.DELETE_BY_IDS)
@@ -142,7 +156,17 @@ public class AssetRegionController extends SuperController {
      * 更新存放区域
      */
     @ApiOperation(value = "更新存放区域")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRegionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.REGION_NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.REGIOND_CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRegionVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRegionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.REGION_NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.REGIOND_CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetRegionVOMeta.PAGE_INDEX, AssetRegionVOMeta.PAGE_SIZE, AssetRegionVOMeta.SEARCH_FIELD, AssetRegionVOMeta.FUZZY_FIELD, AssetRegionVOMeta.SEARCH_VALUE, AssetRegionVOMeta.DIRTY_FIELDS, AssetRegionVOMeta.SORT_FIELD, AssetRegionVOMeta.SORT_TYPE, AssetRegionVOMeta.IDS })
     @SentinelResource(value = AssetRegionServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRegionServiceProxy.UPDATE)
@@ -156,7 +180,17 @@ public class AssetRegionController extends SuperController {
      * 保存存放区域
      */
     @ApiOperation(value = "保存存放区域")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRegionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.REGION_NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.REGIOND_CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRegionVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRegionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.REGION_NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.REGIOND_CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetRegionVOMeta.PAGE_INDEX, AssetRegionVOMeta.PAGE_SIZE, AssetRegionVOMeta.SEARCH_FIELD, AssetRegionVOMeta.FUZZY_FIELD, AssetRegionVOMeta.SEARCH_VALUE, AssetRegionVOMeta.DIRTY_FIELDS, AssetRegionVOMeta.SORT_FIELD, AssetRegionVOMeta.SORT_TYPE, AssetRegionVOMeta.IDS })
     @SentinelResource(value = AssetRegionServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRegionServiceProxy.SAVE)
@@ -170,7 +204,9 @@ public class AssetRegionController extends SuperController {
      * 获取存放区域
      */
     @ApiOperation(value = "获取存放区域")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRegionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRegionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetRegionServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRegionServiceProxy.GET_BY_ID)
@@ -186,7 +222,9 @@ public class AssetRegionController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取存放区域")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRegionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRegionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetRegionServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRegionServiceProxy.GET_BY_IDS)
@@ -201,7 +239,17 @@ public class AssetRegionController extends SuperController {
      * 查询存放区域
      */
     @ApiOperation(value = "查询存放区域")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRegionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.REGION_NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.REGIOND_CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRegionVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRegionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.REGION_NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.REGIOND_CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetRegionVOMeta.PAGE_INDEX, AssetRegionVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetRegionServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRegionServiceProxy.QUERY_LIST)
@@ -216,7 +264,17 @@ public class AssetRegionController extends SuperController {
      * 分页查询存放区域
      */
     @ApiOperation(value = "分页查询存放区域")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetRegionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.REGION_NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.REGIOND_CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetRegionVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetRegionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetRegionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.REGION_NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.REGIOND_CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetRegionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetRegionServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetRegionServiceProxy.QUERY_PAGED_LIST)

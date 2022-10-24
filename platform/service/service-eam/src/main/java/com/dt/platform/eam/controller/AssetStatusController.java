@@ -58,7 +58,14 @@ public class AssetStatusController extends SuperController {
      * 添加资产状态
      */
     @ApiOperation(value = "添加资产状态")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStatusVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStatusVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStatusVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStatusVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStatusVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetStatusVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStatusVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStatusVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStatusVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStatusVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStatusVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetStatusVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetStatusServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStatusServiceProxy.INSERT)
@@ -72,7 +79,9 @@ public class AssetStatusController extends SuperController {
      * 删除资产状态
      */
     @ApiOperation(value = "删除资产状态")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStatusVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStatusVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetStatusServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStatusServiceProxy.DELETE)
@@ -97,7 +106,9 @@ public class AssetStatusController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产状态")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStatusVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStatusVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetStatusServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStatusServiceProxy.DELETE_BY_IDS)
@@ -142,7 +153,14 @@ public class AssetStatusController extends SuperController {
      * 更新资产状态
      */
     @ApiOperation(value = "更新资产状态")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStatusVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStatusVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStatusVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStatusVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStatusVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetStatusVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStatusVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStatusVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStatusVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStatusVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStatusVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetStatusVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetStatusVOMeta.PAGE_INDEX, AssetStatusVOMeta.PAGE_SIZE, AssetStatusVOMeta.SEARCH_FIELD, AssetStatusVOMeta.FUZZY_FIELD, AssetStatusVOMeta.SEARCH_VALUE, AssetStatusVOMeta.DIRTY_FIELDS, AssetStatusVOMeta.SORT_FIELD, AssetStatusVOMeta.SORT_TYPE, AssetStatusVOMeta.IDS })
     @SentinelResource(value = AssetStatusServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStatusServiceProxy.UPDATE)
@@ -156,7 +174,14 @@ public class AssetStatusController extends SuperController {
      * 保存资产状态
      */
     @ApiOperation(value = "保存资产状态")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStatusVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStatusVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStatusVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStatusVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStatusVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetStatusVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStatusVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStatusVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStatusVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStatusVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStatusVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetStatusVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetStatusVOMeta.PAGE_INDEX, AssetStatusVOMeta.PAGE_SIZE, AssetStatusVOMeta.SEARCH_FIELD, AssetStatusVOMeta.FUZZY_FIELD, AssetStatusVOMeta.SEARCH_VALUE, AssetStatusVOMeta.DIRTY_FIELDS, AssetStatusVOMeta.SORT_FIELD, AssetStatusVOMeta.SORT_TYPE, AssetStatusVOMeta.IDS })
     @SentinelResource(value = AssetStatusServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStatusServiceProxy.SAVE)
@@ -170,7 +195,9 @@ public class AssetStatusController extends SuperController {
      * 获取资产状态
      */
     @ApiOperation(value = "获取资产状态")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStatusVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStatusVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetStatusServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStatusServiceProxy.GET_BY_ID)
@@ -186,7 +213,9 @@ public class AssetStatusController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取资产状态")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStatusVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStatusVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetStatusServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStatusServiceProxy.GET_BY_IDS)
@@ -201,7 +230,14 @@ public class AssetStatusController extends SuperController {
      * 查询资产状态
      */
     @ApiOperation(value = "查询资产状态")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStatusVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStatusVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStatusVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStatusVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStatusVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetStatusVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStatusVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStatusVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStatusVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStatusVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStatusVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetStatusVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetStatusVOMeta.PAGE_INDEX, AssetStatusVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetStatusServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStatusServiceProxy.QUERY_LIST)
@@ -216,7 +252,14 @@ public class AssetStatusController extends SuperController {
      * 分页查询资产状态
      */
     @ApiOperation(value = "分页查询资产状态")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStatusVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStatusVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStatusVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStatusVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStatusVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetStatusVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStatusVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStatusVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStatusVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStatusVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStatusVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetStatusVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetStatusServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStatusServiceProxy.QUERY_PAGED_LIST)

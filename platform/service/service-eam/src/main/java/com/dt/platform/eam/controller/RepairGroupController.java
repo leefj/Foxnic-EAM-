@@ -63,7 +63,13 @@ public class RepairGroupController extends SuperController {
      * 添加维修班组
      */
     @ApiOperation(value = "添加维修班组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "583572042100506624"), @ApiImplicitParam(name = RepairGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = RepairGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = RepairGroupVOMeta.LEADER_ID, value = "负责人", required = false, dataTypeClass = String.class, example = "558321538131034112"), @ApiImplicitParam(name = RepairGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "121212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "583572042100506624"),
+		@ApiImplicitParam(name = RepairGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = RepairGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = RepairGroupVOMeta.LEADER_ID, value = "负责人", required = false, dataTypeClass = String.class, example = "558321538131034112"),
+		@ApiImplicitParam(name = RepairGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "121212")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = RepairGroupServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairGroupServiceProxy.INSERT)
@@ -77,7 +83,9 @@ public class RepairGroupController extends SuperController {
      * 删除维修班组
      */
     @ApiOperation(value = "删除维修班组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "583572042100506624") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "583572042100506624")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = RepairGroupServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairGroupServiceProxy.DELETE)
@@ -91,7 +99,9 @@ public class RepairGroupController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除维修班组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairGroupVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairGroupVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = RepairGroupServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairGroupServiceProxy.DELETE_BY_IDS)
@@ -104,7 +114,13 @@ public class RepairGroupController extends SuperController {
      * 更新维修班组
      */
     @ApiOperation(value = "更新维修班组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "583572042100506624"), @ApiImplicitParam(name = RepairGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = RepairGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = RepairGroupVOMeta.LEADER_ID, value = "负责人", required = false, dataTypeClass = String.class, example = "558321538131034112"), @ApiImplicitParam(name = RepairGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "121212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "583572042100506624"),
+		@ApiImplicitParam(name = RepairGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = RepairGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = RepairGroupVOMeta.LEADER_ID, value = "负责人", required = false, dataTypeClass = String.class, example = "558321538131034112"),
+		@ApiImplicitParam(name = RepairGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "121212")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { RepairGroupVOMeta.PAGE_INDEX, RepairGroupVOMeta.PAGE_SIZE, RepairGroupVOMeta.SEARCH_FIELD, RepairGroupVOMeta.FUZZY_FIELD, RepairGroupVOMeta.SEARCH_VALUE, RepairGroupVOMeta.DIRTY_FIELDS, RepairGroupVOMeta.SORT_FIELD, RepairGroupVOMeta.SORT_TYPE, RepairGroupVOMeta.IDS })
     @SentinelResource(value = RepairGroupServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairGroupServiceProxy.UPDATE)
@@ -118,7 +134,13 @@ public class RepairGroupController extends SuperController {
      * 保存维修班组
      */
     @ApiOperation(value = "保存维修班组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "583572042100506624"), @ApiImplicitParam(name = RepairGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = RepairGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = RepairGroupVOMeta.LEADER_ID, value = "负责人", required = false, dataTypeClass = String.class, example = "558321538131034112"), @ApiImplicitParam(name = RepairGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "121212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "583572042100506624"),
+		@ApiImplicitParam(name = RepairGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = RepairGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = RepairGroupVOMeta.LEADER_ID, value = "负责人", required = false, dataTypeClass = String.class, example = "558321538131034112"),
+		@ApiImplicitParam(name = RepairGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "121212")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { RepairGroupVOMeta.PAGE_INDEX, RepairGroupVOMeta.PAGE_SIZE, RepairGroupVOMeta.SEARCH_FIELD, RepairGroupVOMeta.FUZZY_FIELD, RepairGroupVOMeta.SEARCH_VALUE, RepairGroupVOMeta.DIRTY_FIELDS, RepairGroupVOMeta.SORT_FIELD, RepairGroupVOMeta.SORT_TYPE, RepairGroupVOMeta.IDS })
     @SentinelResource(value = RepairGroupServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairGroupServiceProxy.SAVE)
@@ -132,7 +154,9 @@ public class RepairGroupController extends SuperController {
      * 获取维修班组
      */
     @ApiOperation(value = "获取维修班组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = RepairGroupServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairGroupServiceProxy.GET_BY_ID)
@@ -152,7 +176,9 @@ public class RepairGroupController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取维修班组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairGroupVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairGroupVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = RepairGroupServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairGroupServiceProxy.GET_BY_IDS)
@@ -167,7 +193,13 @@ public class RepairGroupController extends SuperController {
      * 查询维修班组
      */
     @ApiOperation(value = "查询维修班组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "583572042100506624"), @ApiImplicitParam(name = RepairGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = RepairGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = RepairGroupVOMeta.LEADER_ID, value = "负责人", required = false, dataTypeClass = String.class, example = "558321538131034112"), @ApiImplicitParam(name = RepairGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "121212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "583572042100506624"),
+		@ApiImplicitParam(name = RepairGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = RepairGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = RepairGroupVOMeta.LEADER_ID, value = "负责人", required = false, dataTypeClass = String.class, example = "558321538131034112"),
+		@ApiImplicitParam(name = RepairGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "121212")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { RepairGroupVOMeta.PAGE_INDEX, RepairGroupVOMeta.PAGE_SIZE })
     @SentinelResource(value = RepairGroupServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairGroupServiceProxy.QUERY_LIST)
@@ -182,7 +214,13 @@ public class RepairGroupController extends SuperController {
      * 分页查询维修班组
      */
     @ApiOperation(value = "分页查询维修班组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "583572042100506624"), @ApiImplicitParam(name = RepairGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = RepairGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = RepairGroupVOMeta.LEADER_ID, value = "负责人", required = false, dataTypeClass = String.class, example = "558321538131034112"), @ApiImplicitParam(name = RepairGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "121212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "583572042100506624"),
+		@ApiImplicitParam(name = RepairGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = RepairGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = RepairGroupVOMeta.LEADER_ID, value = "负责人", required = false, dataTypeClass = String.class, example = "558321538131034112"),
+		@ApiImplicitParam(name = RepairGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "121212")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = RepairGroupServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairGroupServiceProxy.QUERY_PAGED_LIST)

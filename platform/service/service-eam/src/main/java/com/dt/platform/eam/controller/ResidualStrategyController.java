@@ -58,7 +58,16 @@ public class ResidualStrategyController extends SuperController {
      * 添加折旧策略
      */
     @ApiOperation(value = "添加折旧策略")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ResidualStrategyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "477868649709830144"), @ApiImplicitParam(name = ResidualStrategyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "平均折旧"), @ApiImplicitParam(name = ResidualStrategyVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = ResidualStrategyVOMeta.STRATEGY_DESCRIBE, value = "策略描述", required = false, dataTypeClass = String.class, example = "平均折旧"), @ApiImplicitParam(name = ResidualStrategyVOMeta.RESIDUALVALUE_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class, example = "2.00"), @ApiImplicitParam(name = ResidualStrategyVOMeta.DEPRECIATION_RATE, value = "折旧率", required = false, dataTypeClass = BigDecimal.class, example = "2.00"), @ApiImplicitParam(name = ResidualStrategyVOMeta.VALUE, value = "设置值", required = false, dataTypeClass = String.class, example = "4"), @ApiImplicitParam(name = ResidualStrategyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "平均折旧") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "477868649709830144"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "平均折旧"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.STRATEGY_DESCRIBE, value = "策略描述", required = false, dataTypeClass = String.class, example = "平均折旧"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.RESIDUALVALUE_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class, example = "2.00"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.DEPRECIATION_RATE, value = "折旧率", required = false, dataTypeClass = BigDecimal.class, example = "2.00"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.VALUE, value = "设置值", required = false, dataTypeClass = String.class, example = "4"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "平均折旧")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = ResidualStrategyServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ResidualStrategyServiceProxy.INSERT)
@@ -72,7 +81,9 @@ public class ResidualStrategyController extends SuperController {
      * 删除折旧策略
      */
     @ApiOperation(value = "删除折旧策略")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ResidualStrategyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "477868649709830144") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "477868649709830144")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = ResidualStrategyServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ResidualStrategyServiceProxy.DELETE)
@@ -86,7 +97,9 @@ public class ResidualStrategyController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除折旧策略")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ResidualStrategyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ResidualStrategyServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ResidualStrategyServiceProxy.DELETE_BY_IDS)
@@ -99,7 +112,16 @@ public class ResidualStrategyController extends SuperController {
      * 更新折旧策略
      */
     @ApiOperation(value = "更新折旧策略")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ResidualStrategyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "477868649709830144"), @ApiImplicitParam(name = ResidualStrategyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "平均折旧"), @ApiImplicitParam(name = ResidualStrategyVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = ResidualStrategyVOMeta.STRATEGY_DESCRIBE, value = "策略描述", required = false, dataTypeClass = String.class, example = "平均折旧"), @ApiImplicitParam(name = ResidualStrategyVOMeta.RESIDUALVALUE_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class, example = "2.00"), @ApiImplicitParam(name = ResidualStrategyVOMeta.DEPRECIATION_RATE, value = "折旧率", required = false, dataTypeClass = BigDecimal.class, example = "2.00"), @ApiImplicitParam(name = ResidualStrategyVOMeta.VALUE, value = "设置值", required = false, dataTypeClass = String.class, example = "4"), @ApiImplicitParam(name = ResidualStrategyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "平均折旧") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "477868649709830144"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "平均折旧"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.STRATEGY_DESCRIBE, value = "策略描述", required = false, dataTypeClass = String.class, example = "平均折旧"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.RESIDUALVALUE_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class, example = "2.00"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.DEPRECIATION_RATE, value = "折旧率", required = false, dataTypeClass = BigDecimal.class, example = "2.00"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.VALUE, value = "设置值", required = false, dataTypeClass = String.class, example = "4"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "平均折旧")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { ResidualStrategyVOMeta.PAGE_INDEX, ResidualStrategyVOMeta.PAGE_SIZE, ResidualStrategyVOMeta.SEARCH_FIELD, ResidualStrategyVOMeta.FUZZY_FIELD, ResidualStrategyVOMeta.SEARCH_VALUE, ResidualStrategyVOMeta.SORT_FIELD, ResidualStrategyVOMeta.SORT_TYPE, ResidualStrategyVOMeta.IDS })
     @SentinelResource(value = ResidualStrategyServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ResidualStrategyServiceProxy.UPDATE)
@@ -113,7 +135,16 @@ public class ResidualStrategyController extends SuperController {
      * 保存折旧策略
      */
     @ApiOperation(value = "保存折旧策略")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ResidualStrategyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "477868649709830144"), @ApiImplicitParam(name = ResidualStrategyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "平均折旧"), @ApiImplicitParam(name = ResidualStrategyVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = ResidualStrategyVOMeta.STRATEGY_DESCRIBE, value = "策略描述", required = false, dataTypeClass = String.class, example = "平均折旧"), @ApiImplicitParam(name = ResidualStrategyVOMeta.RESIDUALVALUE_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class, example = "2.00"), @ApiImplicitParam(name = ResidualStrategyVOMeta.DEPRECIATION_RATE, value = "折旧率", required = false, dataTypeClass = BigDecimal.class, example = "2.00"), @ApiImplicitParam(name = ResidualStrategyVOMeta.VALUE, value = "设置值", required = false, dataTypeClass = String.class, example = "4"), @ApiImplicitParam(name = ResidualStrategyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "平均折旧") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "477868649709830144"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "平均折旧"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.STRATEGY_DESCRIBE, value = "策略描述", required = false, dataTypeClass = String.class, example = "平均折旧"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.RESIDUALVALUE_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class, example = "2.00"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.DEPRECIATION_RATE, value = "折旧率", required = false, dataTypeClass = BigDecimal.class, example = "2.00"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.VALUE, value = "设置值", required = false, dataTypeClass = String.class, example = "4"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "平均折旧")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ResidualStrategyVOMeta.PAGE_INDEX, ResidualStrategyVOMeta.PAGE_SIZE, ResidualStrategyVOMeta.SEARCH_FIELD, ResidualStrategyVOMeta.FUZZY_FIELD, ResidualStrategyVOMeta.SEARCH_VALUE, ResidualStrategyVOMeta.SORT_FIELD, ResidualStrategyVOMeta.SORT_TYPE, ResidualStrategyVOMeta.IDS })
     @SentinelResource(value = ResidualStrategyServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ResidualStrategyServiceProxy.SAVE)
@@ -127,7 +158,9 @@ public class ResidualStrategyController extends SuperController {
      * 获取折旧策略
      */
     @ApiOperation(value = "获取折旧策略")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ResidualStrategyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = ResidualStrategyServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ResidualStrategyServiceProxy.GET_BY_ID)
@@ -145,7 +178,9 @@ public class ResidualStrategyController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取折旧策略")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ResidualStrategyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ResidualStrategyServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ResidualStrategyServiceProxy.GET_BY_IDS)
@@ -160,7 +195,16 @@ public class ResidualStrategyController extends SuperController {
      * 查询折旧策略
      */
     @ApiOperation(value = "查询折旧策略")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ResidualStrategyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "477868649709830144"), @ApiImplicitParam(name = ResidualStrategyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "平均折旧"), @ApiImplicitParam(name = ResidualStrategyVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = ResidualStrategyVOMeta.STRATEGY_DESCRIBE, value = "策略描述", required = false, dataTypeClass = String.class, example = "平均折旧"), @ApiImplicitParam(name = ResidualStrategyVOMeta.RESIDUALVALUE_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class, example = "2.00"), @ApiImplicitParam(name = ResidualStrategyVOMeta.DEPRECIATION_RATE, value = "折旧率", required = false, dataTypeClass = BigDecimal.class, example = "2.00"), @ApiImplicitParam(name = ResidualStrategyVOMeta.VALUE, value = "设置值", required = false, dataTypeClass = String.class, example = "4"), @ApiImplicitParam(name = ResidualStrategyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "平均折旧") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "477868649709830144"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "平均折旧"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.STRATEGY_DESCRIBE, value = "策略描述", required = false, dataTypeClass = String.class, example = "平均折旧"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.RESIDUALVALUE_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class, example = "2.00"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.DEPRECIATION_RATE, value = "折旧率", required = false, dataTypeClass = BigDecimal.class, example = "2.00"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.VALUE, value = "设置值", required = false, dataTypeClass = String.class, example = "4"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "平均折旧")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ResidualStrategyVOMeta.PAGE_INDEX, ResidualStrategyVOMeta.PAGE_SIZE })
     @SentinelResource(value = ResidualStrategyServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ResidualStrategyServiceProxy.QUERY_LIST)
@@ -175,7 +219,16 @@ public class ResidualStrategyController extends SuperController {
      * 分页查询折旧策略
      */
     @ApiOperation(value = "分页查询折旧策略")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ResidualStrategyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "477868649709830144"), @ApiImplicitParam(name = ResidualStrategyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "平均折旧"), @ApiImplicitParam(name = ResidualStrategyVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = ResidualStrategyVOMeta.STRATEGY_DESCRIBE, value = "策略描述", required = false, dataTypeClass = String.class, example = "平均折旧"), @ApiImplicitParam(name = ResidualStrategyVOMeta.RESIDUALVALUE_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class, example = "2.00"), @ApiImplicitParam(name = ResidualStrategyVOMeta.DEPRECIATION_RATE, value = "折旧率", required = false, dataTypeClass = BigDecimal.class, example = "2.00"), @ApiImplicitParam(name = ResidualStrategyVOMeta.VALUE, value = "设置值", required = false, dataTypeClass = String.class, example = "4"), @ApiImplicitParam(name = ResidualStrategyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "平均折旧") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "477868649709830144"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "平均折旧"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.STRATEGY_DESCRIBE, value = "策略描述", required = false, dataTypeClass = String.class, example = "平均折旧"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.RESIDUALVALUE_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class, example = "2.00"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.DEPRECIATION_RATE, value = "折旧率", required = false, dataTypeClass = BigDecimal.class, example = "2.00"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.VALUE, value = "设置值", required = false, dataTypeClass = String.class, example = "4"),
+		@ApiImplicitParam(name = ResidualStrategyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "平均折旧")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = ResidualStrategyServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ResidualStrategyServiceProxy.QUERY_PAGED_LIST)

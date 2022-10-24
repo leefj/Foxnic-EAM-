@@ -57,7 +57,12 @@ public class AssetSoftwareMaintenanceDetailController extends SuperController {
      * 添加软件维保明细
      */
     @ApiOperation(value = "添加软件维保明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "575076211424763904"), @ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.MAINTENANCE_ID, value = "变更", required = false, dataTypeClass = String.class, example = "574704806673776640"), @ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.SOFTWARE_ID, value = "软件信息", required = false, dataTypeClass = String.class, example = "574828713917546496"), @ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "575076211424763904"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.MAINTENANCE_ID, value = "变更", required = false, dataTypeClass = String.class, example = "574704806673776640"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.SOFTWARE_ID, value = "软件信息", required = false, dataTypeClass = String.class, example = "574828713917546496"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetSoftwareMaintenanceDetailServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareMaintenanceDetailServiceProxy.INSERT)
@@ -71,7 +76,9 @@ public class AssetSoftwareMaintenanceDetailController extends SuperController {
      * 删除软件维保明细
      */
     @ApiOperation(value = "删除软件维保明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "575076211424763904") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "575076211424763904")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetSoftwareMaintenanceDetailServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareMaintenanceDetailServiceProxy.DELETE)
@@ -85,7 +92,9 @@ public class AssetSoftwareMaintenanceDetailController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除软件维保明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetSoftwareMaintenanceDetailServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareMaintenanceDetailServiceProxy.DELETE_BY_IDS)
@@ -98,7 +107,12 @@ public class AssetSoftwareMaintenanceDetailController extends SuperController {
      * 更新软件维保明细
      */
     @ApiOperation(value = "更新软件维保明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "575076211424763904"), @ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.MAINTENANCE_ID, value = "变更", required = false, dataTypeClass = String.class, example = "574704806673776640"), @ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.SOFTWARE_ID, value = "软件信息", required = false, dataTypeClass = String.class, example = "574828713917546496"), @ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "575076211424763904"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.MAINTENANCE_ID, value = "变更", required = false, dataTypeClass = String.class, example = "574704806673776640"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.SOFTWARE_ID, value = "软件信息", required = false, dataTypeClass = String.class, example = "574828713917546496"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetSoftwareMaintenanceDetailVOMeta.PAGE_INDEX, AssetSoftwareMaintenanceDetailVOMeta.PAGE_SIZE, AssetSoftwareMaintenanceDetailVOMeta.SEARCH_FIELD, AssetSoftwareMaintenanceDetailVOMeta.FUZZY_FIELD, AssetSoftwareMaintenanceDetailVOMeta.SEARCH_VALUE, AssetSoftwareMaintenanceDetailVOMeta.DIRTY_FIELDS, AssetSoftwareMaintenanceDetailVOMeta.SORT_FIELD, AssetSoftwareMaintenanceDetailVOMeta.SORT_TYPE, AssetSoftwareMaintenanceDetailVOMeta.IDS })
     @SentinelResource(value = AssetSoftwareMaintenanceDetailServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareMaintenanceDetailServiceProxy.UPDATE)
@@ -112,7 +126,12 @@ public class AssetSoftwareMaintenanceDetailController extends SuperController {
      * 保存软件维保明细
      */
     @ApiOperation(value = "保存软件维保明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "575076211424763904"), @ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.MAINTENANCE_ID, value = "变更", required = false, dataTypeClass = String.class, example = "574704806673776640"), @ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.SOFTWARE_ID, value = "软件信息", required = false, dataTypeClass = String.class, example = "574828713917546496"), @ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "575076211424763904"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.MAINTENANCE_ID, value = "变更", required = false, dataTypeClass = String.class, example = "574704806673776640"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.SOFTWARE_ID, value = "软件信息", required = false, dataTypeClass = String.class, example = "574828713917546496"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetSoftwareMaintenanceDetailVOMeta.PAGE_INDEX, AssetSoftwareMaintenanceDetailVOMeta.PAGE_SIZE, AssetSoftwareMaintenanceDetailVOMeta.SEARCH_FIELD, AssetSoftwareMaintenanceDetailVOMeta.FUZZY_FIELD, AssetSoftwareMaintenanceDetailVOMeta.SEARCH_VALUE, AssetSoftwareMaintenanceDetailVOMeta.DIRTY_FIELDS, AssetSoftwareMaintenanceDetailVOMeta.SORT_FIELD, AssetSoftwareMaintenanceDetailVOMeta.SORT_TYPE, AssetSoftwareMaintenanceDetailVOMeta.IDS })
     @SentinelResource(value = AssetSoftwareMaintenanceDetailServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareMaintenanceDetailServiceProxy.SAVE)
@@ -126,7 +145,9 @@ public class AssetSoftwareMaintenanceDetailController extends SuperController {
      * 获取软件维保明细
      */
     @ApiOperation(value = "获取软件维保明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetSoftwareMaintenanceDetailServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareMaintenanceDetailServiceProxy.GET_BY_ID)
@@ -142,7 +163,9 @@ public class AssetSoftwareMaintenanceDetailController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取软件维保明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetSoftwareMaintenanceDetailServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareMaintenanceDetailServiceProxy.GET_BY_IDS)
@@ -157,7 +180,12 @@ public class AssetSoftwareMaintenanceDetailController extends SuperController {
      * 查询软件维保明细
      */
     @ApiOperation(value = "查询软件维保明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "575076211424763904"), @ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.MAINTENANCE_ID, value = "变更", required = false, dataTypeClass = String.class, example = "574704806673776640"), @ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.SOFTWARE_ID, value = "软件信息", required = false, dataTypeClass = String.class, example = "574828713917546496"), @ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "575076211424763904"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.MAINTENANCE_ID, value = "变更", required = false, dataTypeClass = String.class, example = "574704806673776640"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.SOFTWARE_ID, value = "软件信息", required = false, dataTypeClass = String.class, example = "574828713917546496"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetSoftwareMaintenanceDetailVOMeta.PAGE_INDEX, AssetSoftwareMaintenanceDetailVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetSoftwareMaintenanceDetailServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareMaintenanceDetailServiceProxy.QUERY_LIST)
@@ -172,7 +200,12 @@ public class AssetSoftwareMaintenanceDetailController extends SuperController {
      * 分页查询软件维保明细
      */
     @ApiOperation(value = "分页查询软件维保明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "575076211424763904"), @ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.MAINTENANCE_ID, value = "变更", required = false, dataTypeClass = String.class, example = "574704806673776640"), @ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.SOFTWARE_ID, value = "软件信息", required = false, dataTypeClass = String.class, example = "574828713917546496"), @ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "575076211424763904"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.MAINTENANCE_ID, value = "变更", required = false, dataTypeClass = String.class, example = "574704806673776640"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.SOFTWARE_ID, value = "软件信息", required = false, dataTypeClass = String.class, example = "574828713917546496"),
+		@ApiImplicitParam(name = AssetSoftwareMaintenanceDetailVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetSoftwareMaintenanceDetailServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareMaintenanceDetailServiceProxy.QUERY_PAGED_LIST)

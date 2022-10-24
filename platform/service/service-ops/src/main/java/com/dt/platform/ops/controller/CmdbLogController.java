@@ -60,7 +60,16 @@ public class CmdbLogController extends SuperController {
      * 添加配置日志
      */
     @ApiOperation(value = "添加配置日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.MODEL_ID, value = "模型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.OBJ_ID, value = "对象", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.LOG_LEVEL, value = "日志级别", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.TRACE_ID, value = "TRACE", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.LOG_RECORD, value = "日志", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.RCD_TIME, value = "时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CmdbLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.MODEL_ID, value = "模型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.OBJ_ID, value = "对象", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.LOG_LEVEL, value = "日志级别", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.TRACE_ID, value = "TRACE", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.LOG_RECORD, value = "日志", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.RCD_TIME, value = "时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = CmdbLogServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -74,7 +83,9 @@ public class CmdbLogController extends SuperController {
      * 删除配置日志
      */
     @ApiOperation(value = "删除配置日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = CmdbLogServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CmdbLogServiceProxy.DELETE)
@@ -99,7 +110,9 @@ public class CmdbLogController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除配置日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbLogVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbLogVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = CmdbLogServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CmdbLogServiceProxy.DELETE_BY_IDS)
@@ -144,7 +157,16 @@ public class CmdbLogController extends SuperController {
      * 更新配置日志
      */
     @ApiOperation(value = "更新配置日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.MODEL_ID, value = "模型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.OBJ_ID, value = "对象", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.LOG_LEVEL, value = "日志级别", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.TRACE_ID, value = "TRACE", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.LOG_RECORD, value = "日志", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.RCD_TIME, value = "时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CmdbLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.MODEL_ID, value = "模型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.OBJ_ID, value = "对象", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.LOG_LEVEL, value = "日志级别", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.TRACE_ID, value = "TRACE", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.LOG_RECORD, value = "日志", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.RCD_TIME, value = "时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { CmdbLogVOMeta.PAGE_INDEX, CmdbLogVOMeta.PAGE_SIZE, CmdbLogVOMeta.SEARCH_FIELD, CmdbLogVOMeta.FUZZY_FIELD, CmdbLogVOMeta.SEARCH_VALUE, CmdbLogVOMeta.DIRTY_FIELDS, CmdbLogVOMeta.SORT_FIELD, CmdbLogVOMeta.SORT_TYPE, CmdbLogVOMeta.IDS })
     @SentinelResource(value = CmdbLogServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -158,7 +180,16 @@ public class CmdbLogController extends SuperController {
      * 保存配置日志
      */
     @ApiOperation(value = "保存配置日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.MODEL_ID, value = "模型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.OBJ_ID, value = "对象", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.LOG_LEVEL, value = "日志级别", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.TRACE_ID, value = "TRACE", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.LOG_RECORD, value = "日志", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.RCD_TIME, value = "时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CmdbLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.MODEL_ID, value = "模型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.OBJ_ID, value = "对象", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.LOG_LEVEL, value = "日志级别", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.TRACE_ID, value = "TRACE", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.LOG_RECORD, value = "日志", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.RCD_TIME, value = "时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { CmdbLogVOMeta.PAGE_INDEX, CmdbLogVOMeta.PAGE_SIZE, CmdbLogVOMeta.SEARCH_FIELD, CmdbLogVOMeta.FUZZY_FIELD, CmdbLogVOMeta.SEARCH_VALUE, CmdbLogVOMeta.DIRTY_FIELDS, CmdbLogVOMeta.SORT_FIELD, CmdbLogVOMeta.SORT_TYPE, CmdbLogVOMeta.IDS })
     @SentinelResource(value = CmdbLogServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -172,7 +203,9 @@ public class CmdbLogController extends SuperController {
      * 获取配置日志
      */
     @ApiOperation(value = "获取配置日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = CmdbLogServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CmdbLogServiceProxy.GET_BY_ID)
@@ -190,7 +223,9 @@ public class CmdbLogController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取配置日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbLogVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbLogVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = CmdbLogServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CmdbLogServiceProxy.GET_BY_IDS)
@@ -205,7 +240,16 @@ public class CmdbLogController extends SuperController {
      * 查询配置日志
      */
     @ApiOperation(value = "查询配置日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.MODEL_ID, value = "模型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.OBJ_ID, value = "对象", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.LOG_LEVEL, value = "日志级别", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.TRACE_ID, value = "TRACE", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.LOG_RECORD, value = "日志", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.RCD_TIME, value = "时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CmdbLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.MODEL_ID, value = "模型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.OBJ_ID, value = "对象", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.LOG_LEVEL, value = "日志级别", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.TRACE_ID, value = "TRACE", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.LOG_RECORD, value = "日志", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.RCD_TIME, value = "时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { CmdbLogVOMeta.PAGE_INDEX, CmdbLogVOMeta.PAGE_SIZE })
     @SentinelResource(value = CmdbLogServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CmdbLogServiceProxy.QUERY_LIST)
@@ -220,7 +264,16 @@ public class CmdbLogController extends SuperController {
      * 分页查询配置日志
      */
     @ApiOperation(value = "分页查询配置日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.MODEL_ID, value = "模型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.OBJ_ID, value = "对象", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.LOG_LEVEL, value = "日志级别", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.TRACE_ID, value = "TRACE", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.LOG_RECORD, value = "日志", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbLogVOMeta.RCD_TIME, value = "时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CmdbLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.MODEL_ID, value = "模型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.OBJ_ID, value = "对象", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.LOG_LEVEL, value = "日志级别", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.TRACE_ID, value = "TRACE", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.LOG_RECORD, value = "日志", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.RCD_TIME, value = "时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CmdbLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = CmdbLogServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CmdbLogServiceProxy.QUERY_PAGED_LIST)

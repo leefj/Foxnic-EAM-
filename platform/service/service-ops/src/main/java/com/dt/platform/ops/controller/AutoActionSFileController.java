@@ -58,7 +58,11 @@ public class AutoActionSFileController extends SuperController {
      * 添加介质选择
      */
     @ApiOperation(value = "添加介质选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionSFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionSFileVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionSFileVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionSFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionSFileVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionSFileVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AutoActionSFileServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionSFileServiceProxy.INSERT)
@@ -72,7 +76,9 @@ public class AutoActionSFileController extends SuperController {
      * 删除介质选择
      */
     @ApiOperation(value = "删除介质选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionSFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionSFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AutoActionSFileServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionSFileServiceProxy.DELETE)
@@ -97,7 +103,9 @@ public class AutoActionSFileController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除介质选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionSFileVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionSFileVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoActionSFileServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionSFileServiceProxy.DELETE_BY_IDS)
@@ -142,7 +150,11 @@ public class AutoActionSFileController extends SuperController {
      * 更新介质选择
      */
     @ApiOperation(value = "更新介质选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionSFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionSFileVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionSFileVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionSFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionSFileVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionSFileVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AutoActionSFileVOMeta.PAGE_INDEX, AutoActionSFileVOMeta.PAGE_SIZE, AutoActionSFileVOMeta.SEARCH_FIELD, AutoActionSFileVOMeta.FUZZY_FIELD, AutoActionSFileVOMeta.SEARCH_VALUE, AutoActionSFileVOMeta.DIRTY_FIELDS, AutoActionSFileVOMeta.SORT_FIELD, AutoActionSFileVOMeta.SORT_TYPE, AutoActionSFileVOMeta.IDS })
     @SentinelResource(value = AutoActionSFileServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionSFileServiceProxy.UPDATE)
@@ -156,7 +168,11 @@ public class AutoActionSFileController extends SuperController {
      * 保存介质选择
      */
     @ApiOperation(value = "保存介质选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionSFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionSFileVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionSFileVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionSFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionSFileVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionSFileVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoActionSFileVOMeta.PAGE_INDEX, AutoActionSFileVOMeta.PAGE_SIZE, AutoActionSFileVOMeta.SEARCH_FIELD, AutoActionSFileVOMeta.FUZZY_FIELD, AutoActionSFileVOMeta.SEARCH_VALUE, AutoActionSFileVOMeta.DIRTY_FIELDS, AutoActionSFileVOMeta.SORT_FIELD, AutoActionSFileVOMeta.SORT_TYPE, AutoActionSFileVOMeta.IDS })
     @SentinelResource(value = AutoActionSFileServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionSFileServiceProxy.SAVE)
@@ -170,7 +186,9 @@ public class AutoActionSFileController extends SuperController {
      * 获取介质选择
      */
     @ApiOperation(value = "获取介质选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionSFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionSFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AutoActionSFileServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionSFileServiceProxy.GET_BY_ID)
@@ -186,7 +204,9 @@ public class AutoActionSFileController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取介质选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionSFileVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionSFileVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoActionSFileServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionSFileServiceProxy.GET_BY_IDS)
@@ -201,7 +221,11 @@ public class AutoActionSFileController extends SuperController {
      * 查询介质选择
      */
     @ApiOperation(value = "查询介质选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionSFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionSFileVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionSFileVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionSFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionSFileVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionSFileVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoActionSFileVOMeta.PAGE_INDEX, AutoActionSFileVOMeta.PAGE_SIZE })
     @SentinelResource(value = AutoActionSFileServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionSFileServiceProxy.QUERY_LIST)
@@ -216,7 +240,11 @@ public class AutoActionSFileController extends SuperController {
      * 分页查询介质选择
      */
     @ApiOperation(value = "分页查询介质选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionSFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionSFileVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionSFileVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionSFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionSFileVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionSFileVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AutoActionSFileServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionSFileServiceProxy.QUERY_PAGED_LIST)

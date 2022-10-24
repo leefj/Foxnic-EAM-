@@ -59,7 +59,17 @@ public class ModuleInfoController extends SuperController {
      * 添加移动端模块
      */
     @ApiOperation(value = "添加移动端模块")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ModuleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = ModuleInfoVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "eam_mobile_asset_mgr_repair"), @ApiImplicitParam(name = ModuleInfoVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class, example = "简单报修"), @ApiImplicitParam(name = ModuleInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = ModuleInfoVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "2"), @ApiImplicitParam(name = ModuleInfoVOMeta.NAME, value = "图标", required = false, dataTypeClass = String.class, example = "/static/functionIcon/setting.png"), @ApiImplicitParam(name = ModuleInfoVOMeta.PATH, value = "路径", required = false, dataTypeClass = String.class, example = "/pages/index/repair/repair"), @ApiImplicitParam(name = ModuleInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ModuleInfoVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ModuleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "eam_mobile_asset_mgr_repair"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class, example = "简单报修"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "2"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.NAME, value = "图标", required = false, dataTypeClass = String.class, example = "/static/functionIcon/setting.png"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.PATH, value = "路径", required = false, dataTypeClass = String.class, example = "/pages/index/repair/repair"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = ModuleInfoServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ModuleInfoServiceProxy.INSERT)
@@ -73,7 +83,9 @@ public class ModuleInfoController extends SuperController {
      * 删除移动端模块
      */
     @ApiOperation(value = "删除移动端模块")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ModuleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ModuleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = ModuleInfoServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ModuleInfoServiceProxy.DELETE)
@@ -98,7 +110,9 @@ public class ModuleInfoController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除移动端模块")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ModuleInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ModuleInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ModuleInfoServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ModuleInfoServiceProxy.DELETE_BY_IDS)
@@ -143,7 +157,17 @@ public class ModuleInfoController extends SuperController {
      * 更新移动端模块
      */
     @ApiOperation(value = "更新移动端模块")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ModuleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = ModuleInfoVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "eam_mobile_asset_mgr_repair"), @ApiImplicitParam(name = ModuleInfoVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class, example = "简单报修"), @ApiImplicitParam(name = ModuleInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = ModuleInfoVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "2"), @ApiImplicitParam(name = ModuleInfoVOMeta.NAME, value = "图标", required = false, dataTypeClass = String.class, example = "/static/functionIcon/setting.png"), @ApiImplicitParam(name = ModuleInfoVOMeta.PATH, value = "路径", required = false, dataTypeClass = String.class, example = "/pages/index/repair/repair"), @ApiImplicitParam(name = ModuleInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ModuleInfoVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ModuleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "eam_mobile_asset_mgr_repair"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class, example = "简单报修"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "2"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.NAME, value = "图标", required = false, dataTypeClass = String.class, example = "/static/functionIcon/setting.png"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.PATH, value = "路径", required = false, dataTypeClass = String.class, example = "/pages/index/repair/repair"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { ModuleInfoVOMeta.PAGE_INDEX, ModuleInfoVOMeta.PAGE_SIZE, ModuleInfoVOMeta.SEARCH_FIELD, ModuleInfoVOMeta.FUZZY_FIELD, ModuleInfoVOMeta.SEARCH_VALUE, ModuleInfoVOMeta.DIRTY_FIELDS, ModuleInfoVOMeta.SORT_FIELD, ModuleInfoVOMeta.SORT_TYPE, ModuleInfoVOMeta.IDS })
     @SentinelResource(value = ModuleInfoServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ModuleInfoServiceProxy.UPDATE)
@@ -157,7 +181,17 @@ public class ModuleInfoController extends SuperController {
      * 保存移动端模块
      */
     @ApiOperation(value = "保存移动端模块")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ModuleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = ModuleInfoVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "eam_mobile_asset_mgr_repair"), @ApiImplicitParam(name = ModuleInfoVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class, example = "简单报修"), @ApiImplicitParam(name = ModuleInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = ModuleInfoVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "2"), @ApiImplicitParam(name = ModuleInfoVOMeta.NAME, value = "图标", required = false, dataTypeClass = String.class, example = "/static/functionIcon/setting.png"), @ApiImplicitParam(name = ModuleInfoVOMeta.PATH, value = "路径", required = false, dataTypeClass = String.class, example = "/pages/index/repair/repair"), @ApiImplicitParam(name = ModuleInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ModuleInfoVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ModuleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "eam_mobile_asset_mgr_repair"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class, example = "简单报修"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "2"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.NAME, value = "图标", required = false, dataTypeClass = String.class, example = "/static/functionIcon/setting.png"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.PATH, value = "路径", required = false, dataTypeClass = String.class, example = "/pages/index/repair/repair"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ModuleInfoVOMeta.PAGE_INDEX, ModuleInfoVOMeta.PAGE_SIZE, ModuleInfoVOMeta.SEARCH_FIELD, ModuleInfoVOMeta.FUZZY_FIELD, ModuleInfoVOMeta.SEARCH_VALUE, ModuleInfoVOMeta.DIRTY_FIELDS, ModuleInfoVOMeta.SORT_FIELD, ModuleInfoVOMeta.SORT_TYPE, ModuleInfoVOMeta.IDS })
     @SentinelResource(value = ModuleInfoServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ModuleInfoServiceProxy.SAVE)
@@ -171,7 +205,9 @@ public class ModuleInfoController extends SuperController {
      * 获取移动端模块
      */
     @ApiOperation(value = "获取移动端模块")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ModuleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ModuleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = ModuleInfoServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ModuleInfoServiceProxy.GET_BY_ID)
@@ -189,7 +225,9 @@ public class ModuleInfoController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取移动端模块")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ModuleInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ModuleInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ModuleInfoServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ModuleInfoServiceProxy.GET_BY_IDS)
@@ -204,7 +242,17 @@ public class ModuleInfoController extends SuperController {
      * 查询移动端模块
      */
     @ApiOperation(value = "查询移动端模块")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ModuleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = ModuleInfoVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "eam_mobile_asset_mgr_repair"), @ApiImplicitParam(name = ModuleInfoVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class, example = "简单报修"), @ApiImplicitParam(name = ModuleInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = ModuleInfoVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "2"), @ApiImplicitParam(name = ModuleInfoVOMeta.NAME, value = "图标", required = false, dataTypeClass = String.class, example = "/static/functionIcon/setting.png"), @ApiImplicitParam(name = ModuleInfoVOMeta.PATH, value = "路径", required = false, dataTypeClass = String.class, example = "/pages/index/repair/repair"), @ApiImplicitParam(name = ModuleInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ModuleInfoVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ModuleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "eam_mobile_asset_mgr_repair"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class, example = "简单报修"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "2"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.NAME, value = "图标", required = false, dataTypeClass = String.class, example = "/static/functionIcon/setting.png"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.PATH, value = "路径", required = false, dataTypeClass = String.class, example = "/pages/index/repair/repair"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ModuleInfoVOMeta.PAGE_INDEX, ModuleInfoVOMeta.PAGE_SIZE })
     @SentinelResource(value = ModuleInfoServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ModuleInfoServiceProxy.QUERY_LIST)
@@ -219,7 +267,17 @@ public class ModuleInfoController extends SuperController {
      * 分页查询移动端模块
      */
     @ApiOperation(value = "分页查询移动端模块")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ModuleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = ModuleInfoVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "eam_mobile_asset_mgr_repair"), @ApiImplicitParam(name = ModuleInfoVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class, example = "简单报修"), @ApiImplicitParam(name = ModuleInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = ModuleInfoVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "2"), @ApiImplicitParam(name = ModuleInfoVOMeta.NAME, value = "图标", required = false, dataTypeClass = String.class, example = "/static/functionIcon/setting.png"), @ApiImplicitParam(name = ModuleInfoVOMeta.PATH, value = "路径", required = false, dataTypeClass = String.class, example = "/pages/index/repair/repair"), @ApiImplicitParam(name = ModuleInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ModuleInfoVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ModuleInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "eam_mobile_asset_mgr_repair"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class, example = "简单报修"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "2"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.NAME, value = "图标", required = false, dataTypeClass = String.class, example = "/static/functionIcon/setting.png"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.PATH, value = "路径", required = false, dataTypeClass = String.class, example = "/pages/index/repair/repair"),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ModuleInfoVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = ModuleInfoServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ModuleInfoServiceProxy.QUERY_PAGED_LIST)

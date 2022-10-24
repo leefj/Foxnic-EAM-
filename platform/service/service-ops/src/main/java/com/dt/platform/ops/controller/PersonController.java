@@ -59,7 +59,15 @@ public class PersonController extends SuperController {
      * 添加人员清单
      */
     @ApiOperation(value = "添加人员清单")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "591581191656701952"), @ApiImplicitParam(name = PersonVOMeta.COMPANY_NAME, value = "组织名称", required = false, dataTypeClass = String.class, example = "深信服"), @ApiImplicitParam(name = PersonVOMeta.NAME, value = "姓名", required = false, dataTypeClass = String.class, example = "陈军"), @ApiImplicitParam(name = PersonVOMeta.PERSON_TYPE, value = "人员类型", required = false, dataTypeClass = String.class, example = "business"), @ApiImplicitParam(name = PersonVOMeta.CONTACT_INFORMATION, value = "联系方式", required = false, dataTypeClass = String.class, example = "13726588768"), @ApiImplicitParam(name = PersonVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "591581191656701952"),
+		@ApiImplicitParam(name = PersonVOMeta.COMPANY_NAME, value = "组织名称", required = false, dataTypeClass = String.class, example = "深信服"),
+		@ApiImplicitParam(name = PersonVOMeta.NAME, value = "姓名", required = false, dataTypeClass = String.class, example = "陈军"),
+		@ApiImplicitParam(name = PersonVOMeta.PERSON_TYPE, value = "人员类型", required = false, dataTypeClass = String.class, example = "business"),
+		@ApiImplicitParam(name = PersonVOMeta.CONTACT_INFORMATION, value = "联系方式", required = false, dataTypeClass = String.class, example = "13726588768"),
+		@ApiImplicitParam(name = PersonVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = PersonServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PersonServiceProxy.INSERT)
@@ -73,7 +81,9 @@ public class PersonController extends SuperController {
      * 删除人员清单
      */
     @ApiOperation(value = "删除人员清单")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "591581191656701952") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "591581191656701952")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = PersonServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PersonServiceProxy.DELETE)
@@ -98,7 +108,9 @@ public class PersonController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除人员清单")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PersonVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PersonVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = PersonServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PersonServiceProxy.DELETE_BY_IDS)
@@ -143,7 +155,15 @@ public class PersonController extends SuperController {
      * 更新人员清单
      */
     @ApiOperation(value = "更新人员清单")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "591581191656701952"), @ApiImplicitParam(name = PersonVOMeta.COMPANY_NAME, value = "组织名称", required = false, dataTypeClass = String.class, example = "深信服"), @ApiImplicitParam(name = PersonVOMeta.NAME, value = "姓名", required = false, dataTypeClass = String.class, example = "陈军"), @ApiImplicitParam(name = PersonVOMeta.PERSON_TYPE, value = "人员类型", required = false, dataTypeClass = String.class, example = "business"), @ApiImplicitParam(name = PersonVOMeta.CONTACT_INFORMATION, value = "联系方式", required = false, dataTypeClass = String.class, example = "13726588768"), @ApiImplicitParam(name = PersonVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "591581191656701952"),
+		@ApiImplicitParam(name = PersonVOMeta.COMPANY_NAME, value = "组织名称", required = false, dataTypeClass = String.class, example = "深信服"),
+		@ApiImplicitParam(name = PersonVOMeta.NAME, value = "姓名", required = false, dataTypeClass = String.class, example = "陈军"),
+		@ApiImplicitParam(name = PersonVOMeta.PERSON_TYPE, value = "人员类型", required = false, dataTypeClass = String.class, example = "business"),
+		@ApiImplicitParam(name = PersonVOMeta.CONTACT_INFORMATION, value = "联系方式", required = false, dataTypeClass = String.class, example = "13726588768"),
+		@ApiImplicitParam(name = PersonVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { PersonVOMeta.PAGE_INDEX, PersonVOMeta.PAGE_SIZE, PersonVOMeta.SEARCH_FIELD, PersonVOMeta.FUZZY_FIELD, PersonVOMeta.SEARCH_VALUE, PersonVOMeta.DIRTY_FIELDS, PersonVOMeta.SORT_FIELD, PersonVOMeta.SORT_TYPE, PersonVOMeta.IDS })
     @SentinelResource(value = PersonServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PersonServiceProxy.UPDATE)
@@ -157,7 +177,15 @@ public class PersonController extends SuperController {
      * 保存人员清单
      */
     @ApiOperation(value = "保存人员清单")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "591581191656701952"), @ApiImplicitParam(name = PersonVOMeta.COMPANY_NAME, value = "组织名称", required = false, dataTypeClass = String.class, example = "深信服"), @ApiImplicitParam(name = PersonVOMeta.NAME, value = "姓名", required = false, dataTypeClass = String.class, example = "陈军"), @ApiImplicitParam(name = PersonVOMeta.PERSON_TYPE, value = "人员类型", required = false, dataTypeClass = String.class, example = "business"), @ApiImplicitParam(name = PersonVOMeta.CONTACT_INFORMATION, value = "联系方式", required = false, dataTypeClass = String.class, example = "13726588768"), @ApiImplicitParam(name = PersonVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "591581191656701952"),
+		@ApiImplicitParam(name = PersonVOMeta.COMPANY_NAME, value = "组织名称", required = false, dataTypeClass = String.class, example = "深信服"),
+		@ApiImplicitParam(name = PersonVOMeta.NAME, value = "姓名", required = false, dataTypeClass = String.class, example = "陈军"),
+		@ApiImplicitParam(name = PersonVOMeta.PERSON_TYPE, value = "人员类型", required = false, dataTypeClass = String.class, example = "business"),
+		@ApiImplicitParam(name = PersonVOMeta.CONTACT_INFORMATION, value = "联系方式", required = false, dataTypeClass = String.class, example = "13726588768"),
+		@ApiImplicitParam(name = PersonVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { PersonVOMeta.PAGE_INDEX, PersonVOMeta.PAGE_SIZE, PersonVOMeta.SEARCH_FIELD, PersonVOMeta.FUZZY_FIELD, PersonVOMeta.SEARCH_VALUE, PersonVOMeta.DIRTY_FIELDS, PersonVOMeta.SORT_FIELD, PersonVOMeta.SORT_TYPE, PersonVOMeta.IDS })
     @SentinelResource(value = PersonServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PersonServiceProxy.SAVE)
@@ -171,7 +199,9 @@ public class PersonController extends SuperController {
      * 获取人员清单
      */
     @ApiOperation(value = "获取人员清单")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = PersonServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PersonServiceProxy.GET_BY_ID)
@@ -189,7 +219,9 @@ public class PersonController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取人员清单")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PersonVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PersonVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = PersonServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PersonServiceProxy.GET_BY_IDS)
@@ -204,7 +236,15 @@ public class PersonController extends SuperController {
      * 查询人员清单
      */
     @ApiOperation(value = "查询人员清单")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "591581191656701952"), @ApiImplicitParam(name = PersonVOMeta.COMPANY_NAME, value = "组织名称", required = false, dataTypeClass = String.class, example = "深信服"), @ApiImplicitParam(name = PersonVOMeta.NAME, value = "姓名", required = false, dataTypeClass = String.class, example = "陈军"), @ApiImplicitParam(name = PersonVOMeta.PERSON_TYPE, value = "人员类型", required = false, dataTypeClass = String.class, example = "business"), @ApiImplicitParam(name = PersonVOMeta.CONTACT_INFORMATION, value = "联系方式", required = false, dataTypeClass = String.class, example = "13726588768"), @ApiImplicitParam(name = PersonVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "591581191656701952"),
+		@ApiImplicitParam(name = PersonVOMeta.COMPANY_NAME, value = "组织名称", required = false, dataTypeClass = String.class, example = "深信服"),
+		@ApiImplicitParam(name = PersonVOMeta.NAME, value = "姓名", required = false, dataTypeClass = String.class, example = "陈军"),
+		@ApiImplicitParam(name = PersonVOMeta.PERSON_TYPE, value = "人员类型", required = false, dataTypeClass = String.class, example = "business"),
+		@ApiImplicitParam(name = PersonVOMeta.CONTACT_INFORMATION, value = "联系方式", required = false, dataTypeClass = String.class, example = "13726588768"),
+		@ApiImplicitParam(name = PersonVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { PersonVOMeta.PAGE_INDEX, PersonVOMeta.PAGE_SIZE })
     @SentinelResource(value = PersonServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PersonServiceProxy.QUERY_LIST)
@@ -219,7 +259,15 @@ public class PersonController extends SuperController {
      * 分页查询人员清单
      */
     @ApiOperation(value = "分页查询人员清单")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "591581191656701952"), @ApiImplicitParam(name = PersonVOMeta.COMPANY_NAME, value = "组织名称", required = false, dataTypeClass = String.class, example = "深信服"), @ApiImplicitParam(name = PersonVOMeta.NAME, value = "姓名", required = false, dataTypeClass = String.class, example = "陈军"), @ApiImplicitParam(name = PersonVOMeta.PERSON_TYPE, value = "人员类型", required = false, dataTypeClass = String.class, example = "business"), @ApiImplicitParam(name = PersonVOMeta.CONTACT_INFORMATION, value = "联系方式", required = false, dataTypeClass = String.class, example = "13726588768"), @ApiImplicitParam(name = PersonVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "591581191656701952"),
+		@ApiImplicitParam(name = PersonVOMeta.COMPANY_NAME, value = "组织名称", required = false, dataTypeClass = String.class, example = "深信服"),
+		@ApiImplicitParam(name = PersonVOMeta.NAME, value = "姓名", required = false, dataTypeClass = String.class, example = "陈军"),
+		@ApiImplicitParam(name = PersonVOMeta.PERSON_TYPE, value = "人员类型", required = false, dataTypeClass = String.class, example = "business"),
+		@ApiImplicitParam(name = PersonVOMeta.CONTACT_INFORMATION, value = "联系方式", required = false, dataTypeClass = String.class, example = "13726588768"),
+		@ApiImplicitParam(name = PersonVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = PersonServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PersonServiceProxy.QUERY_PAGED_LIST)
