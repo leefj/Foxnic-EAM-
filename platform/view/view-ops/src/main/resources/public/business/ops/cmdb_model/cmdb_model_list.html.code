@@ -2,7 +2,7 @@
 /**
  * 配置库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-23 20:59:20
+ * @since 2022-10-24 13:07:18
  */
  -->
  <!DOCTYPE html>
@@ -54,9 +54,7 @@
                     <!-- 数据来源 , sourceType ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 来源 , source ,typeName=text_area, isHideInSearch=true -->
                     <!-- 来源方式 , dataSource ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 关联方式 , associationType ,typeName=select_box, isHideInSearch=true -->
                     <!-- 存储方式 , storageType ,typeName=radio_box, isHideInSearch=true -->
-                    <!-- 关联编码 , relationCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 排序 , sort ,typeName=number_input, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
 
@@ -108,7 +106,6 @@
     var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
     var RADIO_SOURCETYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.OpsCmdbSourceTypeEnum')}]];
     var SELECT_DATASOURCE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.OpsCmdbDataFetchTypeEnum')}]];
-    var SELECT_ASSOCIATIONTYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.OpsCmdbAssociationTypeEnum')}]];
     var RADIO_STORAGETYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.OpsCmdbStorageTypeEnum')}]];
     var AUTH_PREFIX="ops_cmdb_model";
 

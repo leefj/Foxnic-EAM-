@@ -7,8 +7,7 @@ import com.dt.platform.domain.ops.CmdbModel;
 import com.dt.platform.domain.ops.CmdbModelV;
 import com.dt.platform.domain.ops.CmdbObjAttribute;
 import com.dt.platform.generator.config.Config;
-import com.dt.platform.ops.page.CmdbModelVPageController;
-import com.dt.platform.proxy.ops.CmdbModelVServiceProxy;
+
 import com.github.foxnic.generator.config.WriteMode;
 
 public class CmdbModelValueGtr extends BaseCodeGenerator{

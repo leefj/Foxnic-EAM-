@@ -1,7 +1,7 @@
 /**
  * 配置值 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-24 13:33:57
+ * @since 2022-10-24 13:34:06
  */
 
 
@@ -9,7 +9,7 @@ function ListPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect;
 	//模块基础路径
-	const moduleURL="/service-ops/ops-cmdb-model-v";
+	const moduleURL="/service-ops/ops-cmdb-model-v-h";
 	var dataTable=null;
 	var sort=null;
 	/**
@@ -274,7 +274,7 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
-					admin.putTempData('ops-cmdb-model-v-form-data', {});
+					admin.putTempData('ops-cmdb-model-v-h-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
@@ -293,7 +293,7 @@ function ListPage() {
         function openCreateFrom() {
         	//设置新增是初始化数据
         	var data={};
-			admin.putTempData('ops-cmdb-model-v-form-data-form-action', "create",true);
+			admin.putTempData('ops-cmdb-model-v-h-form-data-form-action', "create",true);
             showEditForm(data);
         };
 
@@ -343,11 +343,11 @@ function ListPage() {
 				if(!doNext) return;
 			}
 
-			admin.putTempData('ops-cmdb-model-v-form-data-form-action', "",true);
+			admin.putTempData('ops-cmdb-model-v-h-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
 				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
 					if(data.success) {
-						admin.putTempData('ops-cmdb-model-v-form-data-form-action', "edit",true);
+						admin.putTempData('ops-cmdb-model-v-h-form-data-form-action', "edit",true);
 						showEditForm(data.data);
 					} else {
 						 fox.showMessage(data);
@@ -356,7 +356,7 @@ function ListPage() {
 			} else if (layEvent === 'view') { // 查看
 				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
 					if(data.success) {
-						admin.putTempData('ops-cmdb-model-v-form-data-form-action', "view",true);
+						admin.putTempData('ops-cmdb-model-v-h-form-data-form-action', "view",true);
 						showEditForm(data.data);
 					} else {
 						fox.showMessage(data);
@@ -400,14 +400,14 @@ function ListPage() {
 			var doNext=window.pageExt.list.beforeEdit(data);
 			if(!doNext) return;
 		}
-		var action=admin.getTempData('ops-cmdb-model-v-form-data-form-action');
+		var action=admin.getTempData('ops-cmdb-model-v-h-form-data-form-action');
 		var queryString="";
 		if(data && data.id) queryString='id=' + data.id;
 		if(window.pageExt.list.makeFormQueryString) {
 			queryString=window.pageExt.list.makeFormQueryString(data,queryString,action);
 		}
-		admin.putTempData('ops-cmdb-model-v-form-data', data);
-		var area=admin.getTempData('ops-cmdb-model-v-form-area');
+		admin.putTempData('ops-cmdb-model-v-h-form-data', data);
+		var area=admin.getTempData('ops-cmdb-model-v-h-form-area');
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
 		var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
 		var title = fox.translate('配置值');
@@ -421,8 +421,8 @@ function ListPage() {
 			offset: [top,null],
 			area: ["80%",height+"px"],
 			type: 2,
-			id:"ops-cmdb-model-v-form-data-win",
-			content: '/business/ops/cmdb_model_v/cmdb_model_v_form.html' + (queryString?("?"+queryString):""),
+			id:"ops-cmdb-model-v-h-form-data-win",
+			content: '/business/ops/cmdb_model_vh/cmdb_model_vh_form.html' + (queryString?("?"+queryString):""),
 			finish: function () {
 				if(action=="create") {
 					refreshTableData();

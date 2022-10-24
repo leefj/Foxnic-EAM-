@@ -2,7 +2,7 @@
 /**
  * 配置值 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-24 13:33:57
+ * @since 2022-10-24 13:34:06
  */
  -->
  <!DOCTYPE html>
@@ -38,7 +38,7 @@
 
 
 
-        <div class="layui-row form-row" id="random-5569-content">
+        <div class="layui-row form-row" id="random-8204-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -73,11 +73,11 @@
          <!--开始：group 循环-->
 
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-0982-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-3444-fieldset">
             <legend>对象描述</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-0982-content">
+        <div class="layui-row form-row" id="random-3444-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -115,11 +115,11 @@
          <!--开始：group 循环-->
 
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-0741-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-8361-fieldset">
             <legend>对象数据</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-0741-content">
+        <div class="layui-row form-row" id="random-8361-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -479,7 +479,7 @@
 </div>
 <div class="model-form-footer">
     <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消')}" >取消</button>
-    <button th:if="${perm.checkAnyAuth('ops_cmdb_model_v:create','ops_cmdb_model_v:update','ops_cmdb_model_v:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存')}">保存</button>
+    <button th:if="${perm.checkAnyAuth('ops_cmdb_model_v_h:create','ops_cmdb_model_v_h:update','ops_cmdb_model_v_h:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存')}">保存</button>
 </div>
 
 <script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
@@ -491,7 +491,7 @@
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var RADIO_VSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
     var VALIDATE_CONFIG={"da2":{"date":true,"labelInForm":"内容","inputType":"date_input"},"da1":{"date":true,"labelInForm":"内容","inputType":"date_input"},"da3":{"date":true,"labelInForm":"内容","inputType":"date_input"},"name":{"labelInForm":"名称","inputType":"text_input","required":true},"vStatus":{"labelInForm":"状态","inputType":"radio_box","required":true}};
-    var AUTH_PREFIX="ops_cmdb_model_v";
+    var AUTH_PREFIX="ops_cmdb_model_v_h";
 
     // modelId
     var MODEL_ID = [[${modelId}]] ;
@@ -500,8 +500,8 @@
 
 
 
-<script th:src="'/business/ops/cmdb_model_v/cmdb_model_v_ext.js?'+${cacheKey}"></script>
-<script th:src="'/business/ops/cmdb_model_v/cmdb_model_v_form.js?'+${cacheKey}"></script>
+<script th:src="'/business/ops/cmdb_model_vh/cmdb_model_vh_ext.js?'+${cacheKey}"></script>
+<script th:src="'/business/ops/cmdb_model_vh/cmdb_model_vh_form.js?'+${cacheKey}"></script>
 
 </body>
 </html>

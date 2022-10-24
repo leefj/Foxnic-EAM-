@@ -303,7 +303,7 @@ function ListPage() {
             id:"eam-asset-form-data-win",
             content: '/business/eam/asset/asset_info_form.html' + queryString,
             finish: function () {
-                refreshTableData();templet
+                refreshTableData();
             }
         });
         admin.putTempData('eam-asset-form-data-popup-index', index);

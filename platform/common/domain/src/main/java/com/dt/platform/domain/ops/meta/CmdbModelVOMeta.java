@@ -13,7 +13,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-23 20:59:19
+ * @since 2022-10-24 13:07:17
  * @sign 7BCC7CA20332EF3F712D48A667B223C5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -231,16 +231,6 @@ public class CmdbModelVOMeta extends CmdbModelMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.CmdbModelVO,java.lang.String> DATA_SOURCE_PROP = new BeanProperty(com.dt.platform.domain.ops.CmdbModelVO.class ,DATA_SOURCE, java.lang.String.class, "来源方式", "来源方式", java.lang.String.class, null);
 	
 	/**
-	 * 关联方式 , 类型: java.lang.String
-	*/
-	public static final String ASSOCIATION_TYPE="associationType";
-	
-	/**
-	 * 关联方式 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.CmdbModelVO,java.lang.String> ASSOCIATION_TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.CmdbModelVO.class ,ASSOCIATION_TYPE, java.lang.String.class, "关联方式", "关联方式", java.lang.String.class, null);
-	
-	/**
 	 * 存储方式 , 类型: java.lang.String
 	*/
 	public static final String STORAGE_TYPE="storageType";
@@ -249,16 +239,6 @@ public class CmdbModelVOMeta extends CmdbModelMeta {
 	 * 存储方式 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.CmdbModelVO,java.lang.String> STORAGE_TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.CmdbModelVO.class ,STORAGE_TYPE, java.lang.String.class, "存储方式", "存储方式", java.lang.String.class, null);
-	
-	/**
-	 * 关联编码 , 类型: java.lang.String
-	*/
-	public static final String RELATION_CODE="relationCode";
-	
-	/**
-	 * 关联编码 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.CmdbModelVO,java.lang.String> RELATION_CODE_PROP = new BeanProperty(com.dt.platform.domain.ops.CmdbModelVO.class ,RELATION_CODE, java.lang.String.class, "关联编码", "关联编码", java.lang.String.class, null);
 	
 	/**
 	 * 排序 , 类型: java.lang.Integer
@@ -413,7 +393,7 @@ public class CmdbModelVOMeta extends CmdbModelMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , PARENT_ID , STATUS , HIERARCHY , HIERARCHY_NAME , NAME , FULL_NAME , CODE , MODEL_TYPE , SOURCE_TYPE , SOURCE , DATA_SOURCE , ASSOCIATION_TYPE , STORAGE_TYPE , RELATION_CODE , SORT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CMDB_OBJ_ATTRIBUTE_LIST , CMDB_MODEL_V_LIST , CMDB_OBJ_ATTRIBUTE_PARENT_LIST , CMDB_MODEL_PARENT };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , PARENT_ID , STATUS , HIERARCHY , HIERARCHY_NAME , NAME , FULL_NAME , CODE , MODEL_TYPE , SOURCE_TYPE , SOURCE , DATA_SOURCE , STORAGE_TYPE , SORT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CMDB_OBJ_ATTRIBUTE_LIST , CMDB_MODEL_V_LIST , CMDB_OBJ_ATTRIBUTE_PARENT_LIST , CMDB_MODEL_PARENT };
 	
 	/**
 	 * 代理类
@@ -655,17 +635,6 @@ public class CmdbModelVOMeta extends CmdbModelMeta {
 		}
 		
 		/**
-		 * 设置 关联方式
-		 * @param associationType 关联方式
-		 * @return 当前对象
-		*/
-		public CmdbModel setAssociationType(String associationType) {
-			super.change(ASSOCIATION_TYPE,super.getAssociationType(),associationType);
-			super.setAssociationType(associationType);
-			return this;
-		}
-		
-		/**
 		 * 设置 存储方式
 		 * @param storageType 存储方式
 		 * @return 当前对象
@@ -673,17 +642,6 @@ public class CmdbModelVOMeta extends CmdbModelMeta {
 		public CmdbModel setStorageType(String storageType) {
 			super.change(STORAGE_TYPE,super.getStorageType(),storageType);
 			super.setStorageType(storageType);
-			return this;
-		}
-		
-		/**
-		 * 设置 关联编码
-		 * @param relationCode 关联编码
-		 * @return 当前对象
-		*/
-		public CmdbModel setRelationCode(String relationCode) {
-			super.change(RELATION_CODE,super.getRelationCode(),relationCode);
-			super.setRelationCode(relationCode);
 			return this;
 		}
 		
@@ -869,16 +827,12 @@ public class CmdbModelVOMeta extends CmdbModelMeta {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setCode(this.getCode());
 			inst.setNotes(this.getNotes());
-			inst.setRelationCode(this.getRelationCode());
-			inst.setSource(this.getSource());
-			inst.setUpdateBy(this.getUpdateBy());
-			inst.setId(this.getId());
 			inst.setHierarchy(this.getHierarchy());
-			inst.setAssociationType(this.getAssociationType());
 			inst.setHierarchyName(this.getHierarchyName());
 			inst.setFullName(this.getFullName());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setModelType(this.getModelType());
+			inst.setSource(this.getSource());
 			inst.setSort(this.getSort());
 			inst.setVersion(this.getVersion());
 			inst.setParentId(this.getParentId());
@@ -886,11 +840,13 @@ public class CmdbModelVOMeta extends CmdbModelMeta {
 			inst.setDeleted(this.getDeleted());
 			inst.setSourceType(this.getSourceType());
 			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setName(this.getName());
 			inst.setTenantId(this.getTenantId());
 			inst.setStorageType(this.getStorageType());
 			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
 			inst.setDataSource(this.getDataSource());
 			inst.setStatus(this.getStatus());
 			if(all) {

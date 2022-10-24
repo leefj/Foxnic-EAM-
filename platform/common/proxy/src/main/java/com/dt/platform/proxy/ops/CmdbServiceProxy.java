@@ -1,6 +1,8 @@
 package com.dt.platform.proxy.ops;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.domain.ops.CmdbModel;
+import com.dt.platform.domain.ops.CmdbModelV;
 import com.dt.platform.domain.ops.CmdbModelVO;
 import com.dt.platform.proxy.ServiceNames;
 import com.github.foxnic.api.transter.Result;
@@ -43,6 +45,46 @@ public interface CmdbServiceProxy {
      */
     public static final String INSERT = API_PREFIX + "insert";
 
+
+    public static final String DELETE_BY_SOURCE_ID = API_PREFIX + "delete-by-source-id";
+
+    public static final String DELETE_BY_MODELVALUE_ID = API_PREFIX + "delete-by-modelvalue-id";
+
+    public static final String GET_MODELVALUE_ID_BY_SOURCE_ID = API_PREFIX + "get-modelvalue-id-by-source-id";
+
+    public static final String GET_BY_SOURCE_ID = API_PREFIX + "get-by-source-id";
+
+    public static final String GET_BY_MODELVALUE_ID = API_PREFIX + "get_by_modelvalue_id";
+
+    public static final String UPDATE_BY_MODELVALUE = API_PREFIX + "update-by-modelvalue";
+
+    public static final String UPDATE_BY_MODELV_JSONOBJECT = API_PREFIX + "update-by-modelv-jsonobject";
+
+    public static final String INSERT_MODELVALUE_OBJECT = API_PREFIX + "insert-modelvalue-object";
+
+    public static final String INSERT_MODELVALUE = API_PREFIX + "insert-modelvalue";
+
+    public static final String VERIFY_MODEL = API_PREFIX + "verify-model";
+
+//    Result deleteBySourceId(String sourceId);
+//
+//    Result deleteByModelValueId(String id);
+//
+//    Result<String> getModelValueIdBySourceId(String sourceId,String defaultFill);
+//
+//    Result<JSONObject> getBySourceId(String sourceId);
+//
+//    Result<JSONObject> getByModelValueId(String id);
+//
+//    Result updateByModelValue(CmdbModelV modelV);
+//
+//    Result updateByJSONObject(JSONObject obj);
+//
+//    Result insertModelValueObject(JSONObject modelV);
+//
+//    Result insertModelValue(JSONObject modelV);
+//
+//    Result verifyModel(CmdbModel model);
 
     /**
      * 控制器类名
