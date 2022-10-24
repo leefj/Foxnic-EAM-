@@ -1,15 +1,12 @@
 package com.dt.platform.eam.controller;
 
- 
 import java.util.List;
-
 import com.dt.platform.domain.eam.AssetAttributeItem;
 import com.dt.platform.domain.eam.meta.AssetAttributeItemVOMeta;
 import com.dt.platform.proxy.eam.AssetAttributeItemServiceProxy;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import org.github.foxnic.web.framework.web.SuperController;
 import org.github.foxnic.web.framework.sentinel.SentinelExceptionUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
-
-
 import com.dt.platform.proxy.eam.AssetAttributeServiceProxy;
 import com.dt.platform.domain.eam.meta.AssetAttributeVOMeta;
 import com.dt.platform.domain.eam.AssetAttribute;
@@ -44,7 +39,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.dt.platform.eam.service.IAssetAttributeService;
-import com.github.foxnic.api.validate.annotations.NotNull;
+import com.github.foxnic.api.swagger.ApiParamSupport;
 
 /**
  * <p>
@@ -52,316 +47,202 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * </p>
  * @author 金杰 , maillank@qq.com
  * @since 2021-09-12 21:51:26
-*/
-
+ */
 @Api(tags = "资产字段配置")
 @ApiSort(0)
 @RestController("EamAssetAttributeController")
 public class AssetAttributeController extends SuperController {
 
-	@Autowired
-	private IAssetAttributeService assetAttributeService;
+    @Autowired
+    private IAssetAttributeService assetAttributeService;
 
-	
-	/**
-	 * 添加资产字段配置
-	*/
-	@ApiOperation(value = "添加资产字段配置")
-	@ApiImplicitParams({
-		@ApiImplicitParam(name = AssetAttributeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.CODE , value = "字段编码" , required = false , dataTypeClass=String.class , example = "maintainer_name"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.LABEL , value = "字段名称" , required = false , dataTypeClass=String.class , example = "维保厂商"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_TYPE , value = "字段值类型" , required = false , dataTypeClass=String.class , example = "string"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_PATH , value = "取值路径" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.LABEL_NOTES , value = "标签备注" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.DIMENSION , value = "所属维度" , required = false , dataTypeClass=String.class , example = "maintainer"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "valid"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED , value = "是否必选" , required = false , dataTypeClass=String.class , example = "0"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED_MODIFY , value = "是否修改" , required = false , dataTypeClass=String.class , example = "1"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_TYPE , value = "组件类型" , required = false , dataTypeClass=String.class , example = "text_input"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_CONTENT , value = "组件内容" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.OWNER , value = "归属" , required = false , dataTypeClass=String.class , example = "asset"),
-	})
-	@ApiOperationSupport(order=1)
-	@NotNull(name = AssetAttributeVOMeta.ID)
-	@SentinelResource(value = AssetAttributeServiceProxy.INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@PostMapping(AssetAttributeServiceProxy.INSERT)
-	public Result insert(AssetAttributeVO assetAttributeVO) {
-		Result result=assetAttributeService.insert(assetAttributeVO);
-		return result;
-	}
+    /**
+     * 添加资产字段配置
+     */
+    @ApiOperation(value = "添加资产字段配置")
+    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"), @ApiImplicitParam(name = AssetAttributeVOMeta.CODE, value = "字段编码", required = false, dataTypeClass = String.class, example = "maintainer_name"), @ApiImplicitParam(name = AssetAttributeVOMeta.LABEL, value = "字段名称", required = false, dataTypeClass = String.class, example = "维保厂商"), @ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_TYPE, value = "字段值类型", required = false, dataTypeClass = String.class, example = "string"), @ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_PATH, value = "取值路径", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.LABEL_NOTES, value = "标签备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.DIMENSION, value = "所属维度", required = false, dataTypeClass = String.class, example = "maintainer"), @ApiImplicitParam(name = AssetAttributeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid"), @ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED, value = "是否必选", required = false, dataTypeClass = String.class, example = "0"), @ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED_MODIFY, value = "是否修改", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_TYPE, value = "组件类型", required = false, dataTypeClass = String.class, example = "text_input"), @ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_CONTENT, value = "组件内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.OWNER, value = "归属", required = false, dataTypeClass = String.class, example = "asset") })
+    @ApiOperationSupport(order = 1)
+    @SentinelResource(value = AssetAttributeServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(AssetAttributeServiceProxy.INSERT)
+    @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
+    public Result insert(AssetAttributeVO assetAttributeVO) {
+        Result result = assetAttributeService.insert(assetAttributeVO);
+        return result;
+    }
 
-	
-	/**
-	 * 删除资产字段配置
-	*/
-	@ApiOperation(value = "删除资产字段配置")
-	@ApiImplicitParams({
-		@ApiImplicitParam(name = AssetAttributeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"),
-	})
-	@ApiOperationSupport(order=2)
-	@NotNull(name = AssetAttributeVOMeta.ID)
-	@SentinelResource(value = AssetAttributeServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@PostMapping(AssetAttributeServiceProxy.DELETE)
-	public Result deleteById(String id) {
-		Result result=assetAttributeService.deleteByIdLogical(id);
-		return result;
-	}
+    /**
+     * 删除资产字段配置
+     */
+    @ApiOperation(value = "删除资产字段配置")
+    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36") })
+    @ApiOperationSupport(order = 2)
+    @SentinelResource(value = AssetAttributeServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(AssetAttributeServiceProxy.DELETE)
+    public Result deleteById(String id) {
+        Result result = assetAttributeService.deleteByIdLogical(id);
+        return result;
+    }
 
+    /**
+     * 查询资产字段配置项
+     */
+    @ApiOperation(value = "查询资产字段配置项")
+    @ApiImplicitParams({ @ApiImplicitParam(name = "owner", value = "归属", required = true, dataTypeClass = String.class, example = "asset"), @ApiImplicitParam(name = "itemOwner", value = "归属", required = true, dataTypeClass = String.class, example = "asset") })
+    @ApiOperationSupport(order = 5, ignoreParameters = { AssetAttributeItemVOMeta.PAGE_INDEX, AssetAttributeItemVOMeta.PAGE_SIZE })
+    @SentinelResource(value = AssetAttributeServiceProxy.QUERY_ATTRIBUTE_OWNER_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(AssetAttributeServiceProxy.QUERY_ATTRIBUTE_OWNER_LIST)
+    public Result<List<AssetAttribute>> queryAttributeOwnerList(String owner, String itemOwner) {
+        Result<List<AssetAttribute>> result = new Result<>();
+        List<AssetAttribute> list = assetAttributeService.queryAttributeOwnerList(owner, itemOwner);
+        result.success(true).data(list);
+        return result;
+    }
 
-	/**
-	 * 查询资产字段配置项
-	 */
-	@ApiOperation(value = "查询资产字段配置项")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "owner" , value = "归属" , required = true , dataTypeClass=String.class , example = "asset"),
-			@ApiImplicitParam(name = "itemOwner" , value = "归属" , required = true , dataTypeClass=String.class , example = "asset")
+    /**
+     * 批量删除资产字段配置 <br>
+     * 联合主键时，请自行调整实现
+     */
+    @ApiOperation(value = "批量删除资产字段配置")
+    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiOperationSupport(order = 3)
+    @SentinelResource(value = AssetAttributeServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(AssetAttributeServiceProxy.DELETE_BY_IDS)
+    public Result deleteByIds(List<String> ids) {
+        Result result = assetAttributeService.deleteByIdsLogical(ids);
+        return result;
+    }
 
-	})
-	@ApiOperationSupport(order=5 ,  ignoreParameters = { AssetAttributeItemVOMeta.PAGE_INDEX , AssetAttributeItemVOMeta.PAGE_SIZE } )
-	@SentinelResource(value = AssetAttributeServiceProxy.QUERY_ATTRIBUTE_OWNER_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@PostMapping(AssetAttributeServiceProxy.QUERY_ATTRIBUTE_OWNER_LIST)
-	public Result<List<AssetAttribute>> queryAttributeOwnerList(String owner,String itemOwner) {
-		Result<List<AssetAttribute>> result=new Result<>();
-		List<AssetAttribute> list=assetAttributeService.queryAttributeOwnerList(owner,itemOwner);
-		result.success(true).data(list);
-		return result;
-	}
+    /**
+     * 更新资产字段配置
+     */
+    @ApiOperation(value = "更新资产字段配置")
+    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"), @ApiImplicitParam(name = AssetAttributeVOMeta.CODE, value = "字段编码", required = false, dataTypeClass = String.class, example = "maintainer_name"), @ApiImplicitParam(name = AssetAttributeVOMeta.LABEL, value = "字段名称", required = false, dataTypeClass = String.class, example = "维保厂商"), @ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_TYPE, value = "字段值类型", required = false, dataTypeClass = String.class, example = "string"), @ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_PATH, value = "取值路径", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.LABEL_NOTES, value = "标签备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.DIMENSION, value = "所属维度", required = false, dataTypeClass = String.class, example = "maintainer"), @ApiImplicitParam(name = AssetAttributeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid"), @ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED, value = "是否必选", required = false, dataTypeClass = String.class, example = "0"), @ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED_MODIFY, value = "是否修改", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_TYPE, value = "组件类型", required = false, dataTypeClass = String.class, example = "text_input"), @ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_CONTENT, value = "组件内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.OWNER, value = "归属", required = false, dataTypeClass = String.class, example = "asset") })
+    @ApiOperationSupport(order = 4, ignoreParameters = { AssetAttributeVOMeta.PAGE_INDEX, AssetAttributeVOMeta.PAGE_SIZE, AssetAttributeVOMeta.SEARCH_FIELD, AssetAttributeVOMeta.FUZZY_FIELD, AssetAttributeVOMeta.SEARCH_VALUE, AssetAttributeVOMeta.SORT_FIELD, AssetAttributeVOMeta.SORT_TYPE, AssetAttributeVOMeta.IDS })
+    @SentinelResource(value = AssetAttributeServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(AssetAttributeServiceProxy.UPDATE)
+    @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
+    public Result update(AssetAttributeVO assetAttributeVO) {
+        Result result = assetAttributeService.update(assetAttributeVO, SaveMode.NOT_NULL_FIELDS);
+        return result;
+    }
 
+    /**
+     * 保存资产字段配置
+     */
+    @ApiOperation(value = "保存资产字段配置")
+    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"), @ApiImplicitParam(name = AssetAttributeVOMeta.CODE, value = "字段编码", required = false, dataTypeClass = String.class, example = "maintainer_name"), @ApiImplicitParam(name = AssetAttributeVOMeta.LABEL, value = "字段名称", required = false, dataTypeClass = String.class, example = "维保厂商"), @ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_TYPE, value = "字段值类型", required = false, dataTypeClass = String.class, example = "string"), @ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_PATH, value = "取值路径", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.LABEL_NOTES, value = "标签备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.DIMENSION, value = "所属维度", required = false, dataTypeClass = String.class, example = "maintainer"), @ApiImplicitParam(name = AssetAttributeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid"), @ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED, value = "是否必选", required = false, dataTypeClass = String.class, example = "0"), @ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED_MODIFY, value = "是否修改", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_TYPE, value = "组件类型", required = false, dataTypeClass = String.class, example = "text_input"), @ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_CONTENT, value = "组件内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.OWNER, value = "归属", required = false, dataTypeClass = String.class, example = "asset") })
+    @ApiOperationSupport(order = 5, ignoreParameters = { AssetAttributeVOMeta.PAGE_INDEX, AssetAttributeVOMeta.PAGE_SIZE, AssetAttributeVOMeta.SEARCH_FIELD, AssetAttributeVOMeta.FUZZY_FIELD, AssetAttributeVOMeta.SEARCH_VALUE, AssetAttributeVOMeta.SORT_FIELD, AssetAttributeVOMeta.SORT_TYPE, AssetAttributeVOMeta.IDS })
+    @SentinelResource(value = AssetAttributeServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(AssetAttributeServiceProxy.SAVE)
+    @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
+    public Result save(AssetAttributeVO assetAttributeVO) {
+        Result result = assetAttributeService.save(assetAttributeVO, SaveMode.NOT_NULL_FIELDS);
+        return result;
+    }
 
-	/**
-	 * 批量删除资产字段配置 <br>
-	 * 联合主键时，请自行调整实现
-	*/
-	@ApiOperation(value = "批量删除资产字段配置")
-	@ApiImplicitParams({
-		@ApiImplicitParam(name = AssetAttributeVOMeta.IDS , value = "主键清单" , required = true , dataTypeClass=List.class , example = "[1,3,4]")
-	})
-	@ApiOperationSupport(order=3) 
-	@NotNull(name = AssetAttributeVOMeta.IDS)
-	@SentinelResource(value = AssetAttributeServiceProxy.DELETE_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@PostMapping(AssetAttributeServiceProxy.DELETE_BY_IDS)
-	public Result deleteByIds(List<String> ids) {
-		Result result=assetAttributeService.deleteByIdsLogical(ids);
-		return result;
-	}
-	
-	/**
-	 * 更新资产字段配置
-	*/
-	@ApiOperation(value = "更新资产字段配置")
-	@ApiImplicitParams({
-		@ApiImplicitParam(name = AssetAttributeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.CODE , value = "字段编码" , required = false , dataTypeClass=String.class , example = "maintainer_name"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.LABEL , value = "字段名称" , required = false , dataTypeClass=String.class , example = "维保厂商"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_TYPE , value = "字段值类型" , required = false , dataTypeClass=String.class , example = "string"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_PATH , value = "取值路径" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.LABEL_NOTES , value = "标签备注" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.DIMENSION , value = "所属维度" , required = false , dataTypeClass=String.class , example = "maintainer"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "valid"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED , value = "是否必选" , required = false , dataTypeClass=String.class , example = "0"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED_MODIFY , value = "是否修改" , required = false , dataTypeClass=String.class , example = "1"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_TYPE , value = "组件类型" , required = false , dataTypeClass=String.class , example = "text_input"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_CONTENT , value = "组件内容" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.OWNER , value = "归属" , required = false , dataTypeClass=String.class , example = "asset"),
- 	})
-	@ApiOperationSupport( order=4 , ignoreParameters = { AssetAttributeVOMeta.PAGE_INDEX , AssetAttributeVOMeta.PAGE_SIZE , AssetAttributeVOMeta.SEARCH_FIELD , AssetAttributeVOMeta.FUZZY_FIELD , AssetAttributeVOMeta.SEARCH_VALUE , AssetAttributeVOMeta.SORT_FIELD , AssetAttributeVOMeta.SORT_TYPE , AssetAttributeVOMeta.IDS } ) 
-	@NotNull(name = AssetAttributeVOMeta.ID)
-	@SentinelResource(value = AssetAttributeServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@PostMapping(AssetAttributeServiceProxy.UPDATE)
-	public Result update(AssetAttributeVO assetAttributeVO) {
-		Result result=assetAttributeService.update(assetAttributeVO,SaveMode.NOT_NULL_FIELDS);
-		return result;
-	}
-	
-	
-	/**
-	 * 保存资产字段配置
-	*/
-	@ApiOperation(value = "保存资产字段配置")
-	@ApiImplicitParams({
-		@ApiImplicitParam(name = AssetAttributeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.CODE , value = "字段编码" , required = false , dataTypeClass=String.class , example = "maintainer_name"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.LABEL , value = "字段名称" , required = false , dataTypeClass=String.class , example = "维保厂商"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_TYPE , value = "字段值类型" , required = false , dataTypeClass=String.class , example = "string"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_PATH , value = "取值路径" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.LABEL_NOTES , value = "标签备注" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.DIMENSION , value = "所属维度" , required = false , dataTypeClass=String.class , example = "maintainer"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "valid"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED , value = "是否必选" , required = false , dataTypeClass=String.class , example = "0"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED_MODIFY , value = "是否修改" , required = false , dataTypeClass=String.class , example = "1"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_TYPE , value = "组件类型" , required = false , dataTypeClass=String.class , example = "text_input"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_CONTENT , value = "组件内容" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.OWNER , value = "归属" , required = false , dataTypeClass=String.class , example = "asset"),
- })
-	@ApiOperationSupport(order=5 ,  ignoreParameters = { AssetAttributeVOMeta.PAGE_INDEX , AssetAttributeVOMeta.PAGE_SIZE , AssetAttributeVOMeta.SEARCH_FIELD , AssetAttributeVOMeta.FUZZY_FIELD , AssetAttributeVOMeta.SEARCH_VALUE , AssetAttributeVOMeta.SORT_FIELD , AssetAttributeVOMeta.SORT_TYPE , AssetAttributeVOMeta.IDS } )
-	@NotNull(name = AssetAttributeVOMeta.ID)
-	@SentinelResource(value = AssetAttributeServiceProxy.SAVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@PostMapping(AssetAttributeServiceProxy.SAVE)
-	public Result save(AssetAttributeVO assetAttributeVO) {
-		Result result=assetAttributeService.save(assetAttributeVO,SaveMode.NOT_NULL_FIELDS);
-		return result;
-	}
+    /**
+     * 获取资产字段配置
+     */
+    @ApiOperation(value = "获取资产字段配置")
+    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiOperationSupport(order = 6)
+    @SentinelResource(value = AssetAttributeServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(AssetAttributeServiceProxy.GET_BY_ID)
+    public Result<AssetAttribute> getById(String id) {
+        Result<AssetAttribute> result = new Result<>();
+        AssetAttribute assetAttribute = assetAttributeService.getById(id);
+        result.success(true).data(assetAttribute);
+        return result;
+    }
 
-	
-	/**
-	 * 获取资产字段配置
-	*/
-	@ApiOperation(value = "获取资产字段配置")
-	@ApiImplicitParams({
-		@ApiImplicitParam(name = AssetAttributeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
-	})
-	@ApiOperationSupport(order=6)
-	@NotNull(name = AssetAttributeVOMeta.ID)
-	@SentinelResource(value = AssetAttributeServiceProxy.GET_BY_ID , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@PostMapping(AssetAttributeServiceProxy.GET_BY_ID)
-	public Result<AssetAttribute> getById(String id) {
-		Result<AssetAttribute> result=new Result<>();
-		AssetAttribute assetAttribute=assetAttributeService.getById(id);
+    /**
+     * 批量删除资产字段配置 <br>
+     * 联合主键时，请自行调整实现
+     */
+    @ApiOperation(value = "批量删除资产字段配置")
+    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiOperationSupport(order = 3)
+    @SentinelResource(value = AssetAttributeServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(AssetAttributeServiceProxy.GET_BY_IDS)
+    public Result<List<AssetAttribute>> getByIds(List<String> ids) {
+        Result<List<AssetAttribute>> result = new Result<>();
+        List<AssetAttribute> list = assetAttributeService.getByIds(ids);
+        result.success(true).data(list);
+        return result;
+    }
 
-		result.success(true).data(assetAttribute);
-		return result;
-	}
+    /**
+     * 查询资产字段配置
+     */
+    @ApiOperation(value = "查询资产字段配置")
+    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"), @ApiImplicitParam(name = AssetAttributeVOMeta.CODE, value = "字段编码", required = false, dataTypeClass = String.class, example = "maintainer_name"), @ApiImplicitParam(name = AssetAttributeVOMeta.LABEL, value = "字段名称", required = false, dataTypeClass = String.class, example = "维保厂商"), @ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_TYPE, value = "字段值类型", required = false, dataTypeClass = String.class, example = "string"), @ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_PATH, value = "取值路径", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.LABEL_NOTES, value = "标签备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.DIMENSION, value = "所属维度", required = false, dataTypeClass = String.class, example = "maintainer"), @ApiImplicitParam(name = AssetAttributeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid"), @ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED, value = "是否必选", required = false, dataTypeClass = String.class, example = "0"), @ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED_MODIFY, value = "是否修改", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_TYPE, value = "组件类型", required = false, dataTypeClass = String.class, example = "text_input"), @ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_CONTENT, value = "组件内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.OWNER, value = "归属", required = false, dataTypeClass = String.class, example = "asset") })
+    @ApiOperationSupport(order = 5, ignoreParameters = { AssetAttributeVOMeta.PAGE_INDEX, AssetAttributeVOMeta.PAGE_SIZE })
+    @SentinelResource(value = AssetAttributeServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(AssetAttributeServiceProxy.QUERY_LIST)
+    public Result<List<AssetAttribute>> queryList(AssetAttributeVO sample) {
+        Result<List<AssetAttribute>> result = new Result<>();
+        List<AssetAttribute> list = assetAttributeService.queryList(sample);
+        result.success(true).data(list);
+        return result;
+    }
 
+    /**
+     * 分页查询资产字段配置
+     */
+    @ApiOperation(value = "分页查询资产字段配置")
+    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"), @ApiImplicitParam(name = AssetAttributeVOMeta.CODE, value = "字段编码", required = false, dataTypeClass = String.class, example = "maintainer_name"), @ApiImplicitParam(name = AssetAttributeVOMeta.LABEL, value = "字段名称", required = false, dataTypeClass = String.class, example = "维保厂商"), @ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_TYPE, value = "字段值类型", required = false, dataTypeClass = String.class, example = "string"), @ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_PATH, value = "取值路径", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.LABEL_NOTES, value = "标签备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.DIMENSION, value = "所属维度", required = false, dataTypeClass = String.class, example = "maintainer"), @ApiImplicitParam(name = AssetAttributeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid"), @ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED, value = "是否必选", required = false, dataTypeClass = String.class, example = "0"), @ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED_MODIFY, value = "是否修改", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_TYPE, value = "组件类型", required = false, dataTypeClass = String.class, example = "text_input"), @ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_CONTENT, value = "组件内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.OWNER, value = "归属", required = false, dataTypeClass = String.class, example = "asset") })
+    @ApiOperationSupport(order = 8)
+    @SentinelResource(value = AssetAttributeServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(AssetAttributeServiceProxy.QUERY_PAGED_LIST)
+    public Result<PagedList<AssetAttribute>> queryPagedList(AssetAttributeVO sample) {
+        Result<PagedList<AssetAttribute>> result = new Result<>();
+        PagedList<AssetAttribute> list = assetAttributeService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
+        result.success(true).data(list);
+        return result;
+    }
 
-	/**
-	 * 批量删除资产字段配置 <br>
-	 * 联合主键时，请自行调整实现
-	*/
-		@ApiOperation(value = "批量删除资产字段配置")
-		@ApiImplicitParams({
-				@ApiImplicitParam(name = AssetAttributeVOMeta.IDS , value = "主键清单" , required = true , dataTypeClass=List.class , example = "[1,3,4]")
-		})
-		@ApiOperationSupport(order=3) 
-		@NotNull(name = AssetAttributeVOMeta.IDS)
-		@SentinelResource(value = AssetAttributeServiceProxy.GET_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@PostMapping(AssetAttributeServiceProxy.GET_BY_IDS)
-	public Result<List<AssetAttribute>> getByIds(List<String> ids) {
-		Result<List<AssetAttribute>> result=new Result<>();
-		List<AssetAttribute> list=assetAttributeService.getByIds(ids);
-		result.success(true).data(list);
-		return result;
-	}
+    /**
+     * 导出 Excel
+     */
+    @SentinelResource(value = AssetAttributeServiceProxy.EXPORT_EXCEL, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @RequestMapping(AssetAttributeServiceProxy.EXPORT_EXCEL)
+    public void exportExcel(AssetAttributeVO sample, HttpServletResponse response) throws Exception {
+        // 生成 Excel 数据
+        ExcelWriter ew = assetAttributeService.exportExcel(sample);
+        // 下载
+        DownloadUtil.writeToOutput(response, ew.getWorkBook(), ew.getWorkBookName());
+    }
 
-	
-	/**
-	 * 查询资产字段配置
-	*/
-	@ApiOperation(value = "查询资产字段配置")
-	@ApiImplicitParams({
-		@ApiImplicitParam(name = AssetAttributeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.CODE , value = "字段编码" , required = false , dataTypeClass=String.class , example = "maintainer_name"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.LABEL , value = "字段名称" , required = false , dataTypeClass=String.class , example = "维保厂商"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_TYPE , value = "字段值类型" , required = false , dataTypeClass=String.class , example = "string"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_PATH , value = "取值路径" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.LABEL_NOTES , value = "标签备注" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.DIMENSION , value = "所属维度" , required = false , dataTypeClass=String.class , example = "maintainer"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "valid"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED , value = "是否必选" , required = false , dataTypeClass=String.class , example = "0"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED_MODIFY , value = "是否修改" , required = false , dataTypeClass=String.class , example = "1"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_TYPE , value = "组件类型" , required = false , dataTypeClass=String.class , example = "text_input"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_CONTENT , value = "组件内容" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.OWNER , value = "归属" , required = false , dataTypeClass=String.class , example = "asset"),
- })
-	@ApiOperationSupport(order=5 ,  ignoreParameters = { AssetAttributeVOMeta.PAGE_INDEX , AssetAttributeVOMeta.PAGE_SIZE } )
-	@SentinelResource(value = AssetAttributeServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@PostMapping(AssetAttributeServiceProxy.QUERY_LIST)
-	public Result<List<AssetAttribute>> queryList(AssetAttributeVO sample) {
-		Result<List<AssetAttribute>> result=new Result<>();
-		List<AssetAttribute> list=assetAttributeService.queryList(sample);
-		result.success(true).data(list);
-		return result;
-	}
+    /**
+     * 导出 Excel 模板
+     */
+    @SentinelResource(value = AssetAttributeServiceProxy.EXPORT_EXCEL_TEMPLATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @RequestMapping(AssetAttributeServiceProxy.EXPORT_EXCEL_TEMPLATE)
+    public void exportExcelTemplate(HttpServletResponse response) throws Exception {
+        // 生成 Excel 模版
+        ExcelWriter ew = assetAttributeService.exportExcelTemplate();
+        // 下载
+        DownloadUtil.writeToOutput(response, ew.getWorkBook(), ew.getWorkBookName());
+    }
 
-	
-	/**
-	 * 分页查询资产字段配置
-	*/
-	@ApiOperation(value = "分页查询资产字段配置")
-	@ApiImplicitParams({
-		@ApiImplicitParam(name = AssetAttributeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.CODE , value = "字段编码" , required = false , dataTypeClass=String.class , example = "maintainer_name"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.LABEL , value = "字段名称" , required = false , dataTypeClass=String.class , example = "维保厂商"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_TYPE , value = "字段值类型" , required = false , dataTypeClass=String.class , example = "string"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_PATH , value = "取值路径" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.LABEL_NOTES , value = "标签备注" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.DIMENSION , value = "所属维度" , required = false , dataTypeClass=String.class , example = "maintainer"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "valid"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED , value = "是否必选" , required = false , dataTypeClass=String.class , example = "0"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED_MODIFY , value = "是否修改" , required = false , dataTypeClass=String.class , example = "1"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_TYPE , value = "组件类型" , required = false , dataTypeClass=String.class , example = "text_input"),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_CONTENT , value = "组件内容" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetAttributeVOMeta.OWNER , value = "归属" , required = false , dataTypeClass=String.class , example = "asset"),
-})
-	@ApiOperationSupport(order=8)
-	@SentinelResource(value = AssetAttributeServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@PostMapping(AssetAttributeServiceProxy.QUERY_PAGED_LIST)
-	public Result<PagedList<AssetAttribute>> queryPagedList(AssetAttributeVO sample) {
-		Result<PagedList<AssetAttribute>> result=new Result<>();
-		PagedList<AssetAttribute> list=assetAttributeService.queryPagedList(sample,sample.getPageSize(),sample.getPageIndex());
-
-		result.success(true).data(list);
-		return result;
-	}
-
-
-
-	/**
-	 * 导出 Excel
-	 * */
-	@SentinelResource(value = AssetAttributeServiceProxy.EXPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetAttributeServiceProxy.EXPORT_EXCEL)
-	public void exportExcel(AssetAttributeVO  sample,HttpServletResponse response) throws Exception {
-			//生成 Excel 数据
-			ExcelWriter ew=assetAttributeService.exportExcel(sample);
-			//下载
-			DownloadUtil.writeToOutput(response, ew.getWorkBook(), ew.getWorkBookName());
-	}
-
-
-	/**
-	 * 导出 Excel 模板
-	 * */
-	@SentinelResource(value = AssetAttributeServiceProxy.EXPORT_EXCEL_TEMPLATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetAttributeServiceProxy.EXPORT_EXCEL_TEMPLATE)
-	public void exportExcelTemplate(HttpServletResponse response) throws Exception {
-			//生成 Excel 模版
-			ExcelWriter ew=assetAttributeService.exportExcelTemplate();
-			//下载
-			DownloadUtil.writeToOutput(response, ew.getWorkBook(), ew.getWorkBookName());
-		}
-
-
-
-
-	@SentinelResource(value = AssetAttributeServiceProxy.IMPORT_EXCEL , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
-	@RequestMapping(AssetAttributeServiceProxy.IMPORT_EXCEL)
-	public Result importExcel(MultipartHttpServletRequest request, HttpServletResponse response) throws Exception {
-
-			//获得上传的文件
-			Map<String, MultipartFile> map = request.getFileMap();
-			InputStream input=null;
-			for (MultipartFile mf : map.values()) {
-				input=StreamUtil.bytes2input(mf.getBytes());
-				break;
-			}
-
-			if(input==null) {
-				return ErrorDesc.failure().message("缺少上传的文件");
-			}
-
-			List<ValidateResult> errors=assetAttributeService.importExcel(input,0,true);
-			if(errors==null || errors.isEmpty()) {
-				return ErrorDesc.success();
-			} else {
-				return ErrorDesc.failure().message("导入失败").data(errors);
-			}
-		}
-
-
+    @SentinelResource(value = AssetAttributeServiceProxy.IMPORT_EXCEL, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @RequestMapping(AssetAttributeServiceProxy.IMPORT_EXCEL)
+    public Result importExcel(MultipartHttpServletRequest request, HttpServletResponse response) throws Exception {
+        // 获得上传的文件
+        Map<String, MultipartFile> map = request.getFileMap();
+        InputStream input = null;
+        for (MultipartFile mf : map.values()) {
+            input = StreamUtil.bytes2input(mf.getBytes());
+            break;
+        }
+        if (input == null) {
+            return ErrorDesc.failure().message("缺少上传的文件");
+        }
+        List<ValidateResult> errors = assetAttributeService.importExcel(input, 0, true);
+        if (errors == null || errors.isEmpty()) {
+            return ErrorDesc.success();
+        } else {
+            return ErrorDesc.failure().message("导入失败").data(errors);
+        }
+    }
 }
