@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-10-23 22:48:44
+ * @since 2022-10-24 13:31:57
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -2675,19 +2675,9 @@ public class OpsTables {
 		public static final DBField DATA_SOURCE = new DBField(DBDataType.STRING , "data_source","dataSource","来源方式","来源方式",false,false,true);
 		
 		/**
-		 * 关联方式
-		*/
-		public static final DBField ASSOCIATION_TYPE = new DBField(DBDataType.STRING , "association_type","associationType","关联方式","关联方式",false,false,true);
-		
-		/**
 		 * 存储方式
 		*/
 		public static final DBField STORAGE_TYPE = new DBField(DBDataType.STRING , "storage_type","storageType","存储方式","存储方式",false,false,true);
-		
-		/**
-		 * 关联编码
-		*/
-		public static final DBField RELATION_CODE = new DBField(DBDataType.STRING , "relation_code","relationCode","关联编码","关联编码",false,false,true);
 		
 		/**
 		 * 排序
@@ -2744,7 +2734,7 @@ public class OpsTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public OPS_CMDB_MODEL() {
-			this.init($NAME,"配置库" , ID , PARENT_ID , STATUS , HIERARCHY , HIERARCHY_NAME , NAME , FULL_NAME , CODE , MODEL_TYPE , SOURCE_TYPE , SOURCE , DATA_SOURCE , ASSOCIATION_TYPE , STORAGE_TYPE , RELATION_CODE , SORT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"配置库" , ID , PARENT_ID , STATUS , HIERARCHY , HIERARCHY_NAME , NAME , FULL_NAME , CODE , MODEL_TYPE , SOURCE_TYPE , SOURCE , DATA_SOURCE , STORAGE_TYPE , SORT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final OPS_CMDB_MODEL $TABLE=new OPS_CMDB_MODEL();
 	}
@@ -2770,9 +2760,14 @@ public class OpsTables {
 		public static final DBField PID = new DBField(DBDataType.STRING , "pid","pid","父","父",false,false,true);
 		
 		/**
-		 * 当前模型
+		 * 模型
 		*/
-		public static final DBField MODEL_ID = new DBField(DBDataType.STRING , "model_id","modelId","当前模型","当前模型",false,false,true);
+		public static final DBField MODEL_ID = new DBField(DBDataType.STRING , "model_id","modelId","模型","模型",false,false,true);
+		
+		/**
+		 * 模型编码
+		*/
+		public static final DBField MODEL_CODE = new DBField(DBDataType.STRING , "model_code","modelCode","模型编码","模型编码",false,false,true);
 		
 		/**
 		 * 数据跟踪
@@ -2787,7 +2782,7 @@ public class OpsTables {
 		/**
 		 * 版本
 		*/
-		public static final DBField V_VERSION = new DBField(DBDataType.INTEGER , "v_version","vVersion","版本","版本",false,false,true);
+		public static final DBField V_VERSION = new DBField(DBDataType.STRING , "v_version","vVersion","版本","版本",false,false,true);
 		
 		/**
 		 * 对象
@@ -3064,9 +3059,334 @@ public class OpsTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public OPS_CMDB_MODEL_V() {
-			this.init($NAME,"配置值" , ID , PID , MODEL_ID , DATA_TRACE_CODE , V_STATUS , V_VERSION , OBJ_SOURCE_ID , NAME , DESC , S1 , S2 , S3 , S4 , S5 , S6 , S7 , S8 , M1 , M2 , M3 , M4 , M5 , M6 , M7 , M8 , M9 , M10 , BS1 , BS2 , BS3 , I1 , I2 , I3 , I4 , I5 , I6 , I7 , I8 , I9 , I10 , D1 , D2 , D3 , D4 , D5 , D6 , D7 , D8 , DA1 , DA2 , DA3 , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"配置值" , ID , PID , MODEL_ID , MODEL_CODE , DATA_TRACE_CODE , V_STATUS , V_VERSION , OBJ_SOURCE_ID , NAME , DESC , S1 , S2 , S3 , S4 , S5 , S6 , S7 , S8 , M1 , M2 , M3 , M4 , M5 , M6 , M7 , M8 , M9 , M10 , BS1 , BS2 , BS3 , I1 , I2 , I3 , I4 , I5 , I6 , I7 , I8 , I9 , I10 , D1 , D2 , D3 , D4 , D5 , D6 , D7 , D8 , DA1 , DA2 , DA3 , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final OPS_CMDB_MODEL_V $TABLE=new OPS_CMDB_MODEL_V();
+	}
+	
+	/**
+	 * 配置值
+	*/
+	public static class OPS_CMDB_MODEL_V_H extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "ops_cmdb_model_v_h";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 父
+		*/
+		public static final DBField PID = new DBField(DBDataType.STRING , "pid","pid","父","父",false,false,true);
+		
+		/**
+		 * 模型
+		*/
+		public static final DBField MODEL_ID = new DBField(DBDataType.STRING , "model_id","modelId","模型","模型",false,false,true);
+		
+		/**
+		 * 模型编码
+		*/
+		public static final DBField MODEL_CODE = new DBField(DBDataType.STRING , "model_code","modelCode","模型编码","模型编码",false,false,true);
+		
+		/**
+		 * 数据跟踪
+		*/
+		public static final DBField DATA_TRACE_CODE = new DBField(DBDataType.STRING , "data_trace_code","dataTraceCode","数据跟踪","数据跟踪",false,false,true);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField V_STATUS = new DBField(DBDataType.STRING , "v_status","vStatus","状态","状态",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField V_VERSION = new DBField(DBDataType.STRING , "v_version","vVersion","版本","版本",false,false,true);
+		
+		/**
+		 * 对象
+		*/
+		public static final DBField OBJ_SOURCE_ID = new DBField(DBDataType.STRING , "obj_source_id","objSourceId","对象","对象",false,false,true);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
+		
+		/**
+		 * 描述
+		*/
+		public static final DBField DESC = new DBField(DBDataType.STRING , "desc","desc","描述","描述",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField S1 = new DBField(DBDataType.STRING , "s1","s1","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField S2 = new DBField(DBDataType.STRING , "s2","s2","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField S3 = new DBField(DBDataType.STRING , "s3","s3","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField S4 = new DBField(DBDataType.STRING , "s4","s4","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField S5 = new DBField(DBDataType.STRING , "s5","s5","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField S6 = new DBField(DBDataType.STRING , "s6","s6","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField S7 = new DBField(DBDataType.STRING , "s7","s7","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField S8 = new DBField(DBDataType.STRING , "s8","s8","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField M1 = new DBField(DBDataType.STRING , "m1","m1","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField M2 = new DBField(DBDataType.STRING , "m2","m2","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField M3 = new DBField(DBDataType.STRING , "m3","m3","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField M4 = new DBField(DBDataType.STRING , "m4","m4","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField M5 = new DBField(DBDataType.STRING , "m5","m5","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField M6 = new DBField(DBDataType.STRING , "m6","m6","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField M7 = new DBField(DBDataType.STRING , "m7","m7","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField M8 = new DBField(DBDataType.STRING , "m8","m8","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField M9 = new DBField(DBDataType.STRING , "m9","m9","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField M10 = new DBField(DBDataType.STRING , "m10","m10","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField BS1 = new DBField(DBDataType.STRING , "bs1","bs1","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField BS2 = new DBField(DBDataType.STRING , "bs2","bs2","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField BS3 = new DBField(DBDataType.STRING , "bs3","bs3","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField I1 = new DBField(DBDataType.INTEGER , "i1","i1","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField I2 = new DBField(DBDataType.INTEGER , "i2","i2","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField I3 = new DBField(DBDataType.INTEGER , "i3","i3","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField I4 = new DBField(DBDataType.INTEGER , "i4","i4","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField I5 = new DBField(DBDataType.INTEGER , "i5","i5","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField I6 = new DBField(DBDataType.INTEGER , "i6","i6","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField I7 = new DBField(DBDataType.INTEGER , "i7","i7","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField I8 = new DBField(DBDataType.INTEGER , "i8","i8","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField I9 = new DBField(DBDataType.INTEGER , "i9","i9","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField I10 = new DBField(DBDataType.INTEGER , "i10","i10","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField D1 = new DBField(DBDataType.DECIMAL , "d1","d1","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField D2 = new DBField(DBDataType.DECIMAL , "d2","d2","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField D3 = new DBField(DBDataType.DECIMAL , "d3","d3","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField D4 = new DBField(DBDataType.DECIMAL , "d4","d4","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField D5 = new DBField(DBDataType.DECIMAL , "d5","d5","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField D6 = new DBField(DBDataType.DECIMAL , "d6","d6","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField D7 = new DBField(DBDataType.DECIMAL , "d7","d7","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField D8 = new DBField(DBDataType.DECIMAL , "d8","d8","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField DA1 = new DBField(DBDataType.DATE , "da1","da1","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField DA2 = new DBField(DBDataType.DATE , "da2","da2","内容","内容",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField DA3 = new DBField(DBDataType.DATE , "da3","da3","内容","内容",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,true);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OPS_CMDB_MODEL_V_H() {
+			this.init($NAME,"配置值" , ID , PID , MODEL_ID , MODEL_CODE , DATA_TRACE_CODE , V_STATUS , V_VERSION , OBJ_SOURCE_ID , NAME , DESC , S1 , S2 , S3 , S4 , S5 , S6 , S7 , S8 , M1 , M2 , M3 , M4 , M5 , M6 , M7 , M8 , M9 , M10 , BS1 , BS2 , BS3 , I1 , I2 , I3 , I4 , I5 , I6 , I7 , I8 , I9 , I10 , D1 , D2 , D3 , D4 , D5 , D6 , D7 , D8 , DA1 , DA2 , DA3 , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final OPS_CMDB_MODEL_V_H $TABLE=new OPS_CMDB_MODEL_V_H();
 	}
 	
 	/**

@@ -18,7 +18,7 @@ import java.util.Map;
  * 配置值VO类型
  * <p>配置值 , 数据表 ops_cmdb_model_v 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-23 21:50:01
+ * @since 2022-10-24 13:33:56
  * @sign B6BC71B269EF341F3CCE6704AC0594C4
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -328,6 +328,7 @@ public class CmdbModelVVO extends CmdbModelV {
 		inst.setNotes(this.getNotes());
 		inst.setModelId(this.getModelId());
 		inst.setPid(this.getPid());
+		inst.setModelCode(this.getModelCode());
 		inst.setId(this.getId());
 		inst.setS1(this.getS1());
 		inst.setS2(this.getS2());

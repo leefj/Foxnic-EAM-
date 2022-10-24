@@ -63,7 +63,7 @@ public class CmdbModelController extends SuperController {
      * 添加配置库
      */
     @ApiOperation(value = "添加配置库")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CmdbModelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
@@ -75,12 +75,18 @@ public class CmdbModelController extends SuperController {
 		@ApiImplicitParam(name = CmdbModelVOMeta.MODEL_TYPE, value = "模型类型", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.SOURCE_TYPE, value = "数据来源", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.DATA_SOURCE, value = "来源方式", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CmdbModelVOMeta.ASSOCIATION_TYPE, value = "关联方式", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CmdbModelVOMeta.RELATION_CODE, value = "关联编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.STORAGE_TYPE", value = "存储方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.STORAGE_TYPE", value = "存储方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.STORAGE_TYPE", value = "存储方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.STORAGE_TYPE", value = "存储方式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "CmdbModelVOMeta.STORAGE_TYPE", value = "存储方式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
@@ -127,7 +133,7 @@ public class CmdbModelController extends SuperController {
      * 删除配置库
      */
     @ApiOperation(value = "删除配置库")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CmdbModelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 2, author = "金杰 , maillank@qq.com")
@@ -160,7 +166,7 @@ public class CmdbModelController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除配置库")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CmdbModelVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3, author = "金杰 , maillank@qq.com")
@@ -207,7 +213,7 @@ public class CmdbModelController extends SuperController {
      * 更新配置库
      */
     @ApiOperation(value = "更新配置库")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CmdbModelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
@@ -219,12 +225,18 @@ public class CmdbModelController extends SuperController {
 		@ApiImplicitParam(name = CmdbModelVOMeta.MODEL_TYPE, value = "模型类型", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.SOURCE_TYPE, value = "数据来源", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.DATA_SOURCE, value = "来源方式", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CmdbModelVOMeta.ASSOCIATION_TYPE, value = "关联方式", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CmdbModelVOMeta.RELATION_CODE, value = "关联编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.STORAGE_TYPE", value = "存储方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.STORAGE_TYPE", value = "存储方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.STORAGE_TYPE", value = "存储方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.STORAGE_TYPE", value = "存储方式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "CmdbModelVOMeta.STORAGE_TYPE", value = "存储方式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
@@ -252,7 +264,7 @@ public class CmdbModelController extends SuperController {
      * 保存配置库
      */
     @ApiOperation(value = "保存配置库")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CmdbModelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
@@ -264,12 +276,18 @@ public class CmdbModelController extends SuperController {
 		@ApiImplicitParam(name = CmdbModelVOMeta.MODEL_TYPE, value = "模型类型", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.SOURCE_TYPE, value = "数据来源", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.DATA_SOURCE, value = "来源方式", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CmdbModelVOMeta.ASSOCIATION_TYPE, value = "关联方式", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CmdbModelVOMeta.RELATION_CODE, value = "关联编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.STORAGE_TYPE", value = "存储方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.STORAGE_TYPE", value = "存储方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.STORAGE_TYPE", value = "存储方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.STORAGE_TYPE", value = "存储方式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "CmdbModelVOMeta.STORAGE_TYPE", value = "存储方式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
@@ -297,7 +315,7 @@ public class CmdbModelController extends SuperController {
      * 获取配置库
      */
     @ApiOperation(value = "获取配置库")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CmdbModelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
@@ -315,7 +333,7 @@ public class CmdbModelController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取配置库")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CmdbModelVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3, author = "金杰 , maillank@qq.com")
@@ -332,7 +350,7 @@ public class CmdbModelController extends SuperController {
      * 查询配置库
      */
     @ApiOperation(value = "查询配置库")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CmdbModelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
@@ -344,12 +362,18 @@ public class CmdbModelController extends SuperController {
 		@ApiImplicitParam(name = CmdbModelVOMeta.MODEL_TYPE, value = "模型类型", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.SOURCE_TYPE, value = "数据来源", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.DATA_SOURCE, value = "来源方式", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CmdbModelVOMeta.ASSOCIATION_TYPE, value = "关联方式", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CmdbModelVOMeta.RELATION_CODE, value = "关联编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.STORAGE_TYPE", value = "存储方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.STORAGE_TYPE", value = "存储方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.STORAGE_TYPE", value = "存储方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.STORAGE_TYPE", value = "存储方式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "CmdbModelVOMeta.STORAGE_TYPE", value = "存储方式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
@@ -375,7 +399,7 @@ public class CmdbModelController extends SuperController {
      * 分页查询配置库
      */
     @ApiOperation(value = "分页查询配置库")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CmdbModelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.PARENT_ID, value = "父节点", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
@@ -387,12 +411,18 @@ public class CmdbModelController extends SuperController {
 		@ApiImplicitParam(name = CmdbModelVOMeta.MODEL_TYPE, value = "模型类型", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.SOURCE_TYPE, value = "数据来源", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.DATA_SOURCE, value = "来源方式", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CmdbModelVOMeta.ASSOCIATION_TYPE, value = "关联方式", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CmdbModelVOMeta.RELATION_CODE, value = "关联编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
 		@ApiImplicitParam(name = CmdbModelVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.STORAGE_TYPE", value = "存储方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.STORAGE_TYPE", value = "存储方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.STORAGE_TYPE", value = "存储方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CmdbModelVOMeta.STORAGE_TYPE", value = "存储方式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "CmdbModelVOMeta.STORAGE_TYPE", value = "存储方式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "CmdbModelVOMeta.SOURCE", value = "来源", required = false, dataTypeClass = String.class),

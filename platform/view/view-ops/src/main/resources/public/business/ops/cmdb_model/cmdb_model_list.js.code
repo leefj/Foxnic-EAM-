@@ -1,7 +1,7 @@
 /**
  * 配置库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-23 20:59:20
+ * @since 2022-10-24 13:07:18
  */
 
 
@@ -89,9 +89,7 @@ function ListPage() {
 					,{ field: 'sourceType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('数据来源'), templet:function (d){ return templet('sourceType',fox.getEnumText(RADIO_SOURCETYPE_DATA,d.sourceType,'','sourceType'),d);}}
 					,{ field: 'source', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('来源') , templet: function (d) { return templet('source',d.source,d);}  }
 					,{ field: 'dataSource', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('来源方式'), templet:function (d){ return templet('dataSource',fox.getEnumText(SELECT_DATASOURCE_DATA,d.dataSource,'','dataSource'),d);}}
-					,{ field: 'associationType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('关联方式'), templet:function (d){ return templet('associationType',fox.getEnumText(SELECT_ASSOCIATIONTYPE_DATA,d.associationType,'','associationType'),d);}}
 					,{ field: 'storageType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('存储方式'), templet:function (d){ return templet('storageType',fox.getEnumText(RADIO_STORAGETYPE_DATA,d.storageType,'','storageType'),d);}}
-					,{ field: 'relationCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('关联编码') , templet: function (d) { return templet('relationCode',d.relationCode,d);}  }
 					,{ field: 'sort', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('排序') , templet: function (d) { return templet('sort',d.sort,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }

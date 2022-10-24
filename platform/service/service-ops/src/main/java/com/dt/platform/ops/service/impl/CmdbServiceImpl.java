@@ -9,10 +9,7 @@ import com.dt.platform.domain.ops.*;
 import com.dt.platform.domain.ops.meta.CmdbLogMeta;
 import com.dt.platform.domain.ops.meta.CmdbModelMeta;
 import com.dt.platform.domain.ops.meta.CmdbModelVMeta;
-import com.dt.platform.ops.service.ICmdbLogService;
-import com.dt.platform.ops.service.ICmdbModelService;
-import com.dt.platform.ops.service.ICmdbModelVService;
-import com.dt.platform.ops.service.ICmdbService;
+import com.dt.platform.ops.service.*;
 import com.github.foxnic.api.error.CommonError;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
@@ -82,6 +79,9 @@ public class CmdbServiceImpl extends SuperService<CmdbModel> implements ICmdbSer
 	private ICmdbLogService cmdbLogService;
 
 
+	@Autowired
+	private ICmdbModelVHService cmdbModelVHService;
+
 
 
 	@Override
@@ -102,21 +102,22 @@ public class CmdbServiceImpl extends SuperService<CmdbModel> implements ICmdbSer
 
 
 
+
+	@Override
 	public Result deleteBySourceId(String sourceId){
 		Result queryResult=getModelValueIdBySourceId(sourceId,"__none__");
-
 		if(queryResult.isSuccess()){
-			return deleteByModelValue(queryResult.getData().toString());
-
+			return deleteByModelValueId(queryResult.getData().toString());
 		}else{
 			return queryResult;
 		}
 	}
-
-	public Result deleteByModelValue(String id){
+	@Override
+	public Result deleteByModelValueId(String id){
 		return cmdbModelVService.deleteByIdLogical(id);
 	}
 
+	@Override
 	public Result<String> getModelValueIdBySourceId(String sourceId,String defaultFill){
 		String id="";
 		Result<String> res=new Result<>();
@@ -141,12 +142,27 @@ public class CmdbServiceImpl extends SuperService<CmdbModel> implements ICmdbSer
 	}
 
 
+	@Override
+	public Result insertModelValue(CmdbModelV modelV){
+		return ErrorDesc.success();
+	}
+
+
+	@Override
+	public Result insertModelValueObject(JSONObject modelV){
+
+		return ErrorDesc.success();
+	}
+
+	@Override
 	public Result updateByModelValue(CmdbModelV modelV){
 
-		return null;
-
+		modelV.setVersion(0);
+		return cmdbModelVService.update(modelV,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,true);
 	}
-	public Result updateByJSONObject(JSONObject obj){
+
+	@Override
+	public Result updateByModelValueJSONObject(JSONObject obj){
 
 		String id=obj.getString("id");
 
@@ -172,7 +188,7 @@ public class CmdbServiceImpl extends SuperService<CmdbModel> implements ICmdbSer
 	}
 
 
-
+	@Override
 	public Result<JSONObject> getBySourceId(String sourceId){
 		Result<JSONObject> res=new Result<>();
 		res.success();
@@ -184,6 +200,7 @@ public class CmdbServiceImpl extends SuperService<CmdbModel> implements ICmdbSer
 		}
 	}
 
+	@Override
 	public Result<JSONObject> getByModelValueId(String id){
 		CmdbModelV value=cmdbModelVService.getById(id);
 		cmdbModelVService.dao().fill(value)
@@ -201,9 +218,7 @@ public class CmdbServiceImpl extends SuperService<CmdbModel> implements ICmdbSer
 
 
 	public Result<JSONArray> translateFast(CmdbModelV value, List<CmdbObjAttribute> attributeList){
-
 		return null;
-
 	}
 	/*
 	 *  直接进行转换，不对数据进行验证

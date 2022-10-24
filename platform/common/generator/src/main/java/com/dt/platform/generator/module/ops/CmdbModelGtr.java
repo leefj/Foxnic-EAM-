@@ -49,8 +49,8 @@ public class CmdbModelGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_CMDB_MODEL.DATA_SOURCE).form().validate().required().form().
                 selectBox().defaultIndex(0).enumType(OpsCmdbDataFetchTypeEnum.class);
 
-        cfg.view().field(OpsTables.OPS_CMDB_MODEL.ASSOCIATION_TYPE).form().validate().required().form().
-                selectBox().defaultIndex(0).enumType(OpsCmdbAssociationTypeEnum.class);
+//        cfg.view().field(OpsTables.OPS_CMDB_MODEL.ASSOCIATION_TYPE).form().validate().required().form().
+//                selectBox().defaultIndex(0).enumType(OpsCmdbAssociationTypeEnum.class);
 
 
         cfg.view().field(OpsTables.OPS_CMDB_MODEL.STORAGE_TYPE).form().validate().required().form().
@@ -72,13 +72,14 @@ public class CmdbModelGtr extends BaseCodeGenerator{
                         OpsTables.OPS_CMDB_MODEL.NAME,
                         OpsTables.OPS_CMDB_MODEL.FULL_NAME,
                         OpsTables.OPS_CMDB_MODEL.STATUS,
-                        OpsTables.OPS_CMDB_MODEL.STORAGE_TYPE,
                 },
                 new Object[] {
+
                         OpsTables.OPS_CMDB_MODEL.SOURCE_TYPE,
+                        OpsTables.OPS_CMDB_MODEL.STORAGE_TYPE,
                         OpsTables.OPS_CMDB_MODEL.DATA_SOURCE,
-                        OpsTables.OPS_CMDB_MODEL.ASSOCIATION_TYPE,
-                        OpsTables.OPS_CMDB_MODEL.RELATION_CODE,
+//                        OpsTables.OPS_CMDB_MODEL.ASSOCIATION_TYPE,
+//                        OpsTables.OPS_CMDB_MODEL.RELATION_CODE,
                 }
         );
         cfg.view().form().addGroup(null,
@@ -93,7 +94,7 @@ public class CmdbModelGtr extends BaseCodeGenerator{
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
                 .setControllerAndAgent(WriteMode.IGNORE) //Rest
                 .setPageController(WriteMode.IGNORE) //页面控制器
-                .setFormPage(WriteMode.WRITE_TEMP_FILE) //表单HTML页
+                .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.WRITE_TEMP_FILE)//列表HTML页
                 .setExtendJsFile(WriteMode.WRITE_TEMP_FILE); //列表HTML页
         //生成代码

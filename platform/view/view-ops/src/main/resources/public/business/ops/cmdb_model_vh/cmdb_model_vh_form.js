@@ -1,13 +1,13 @@
 /**
- * 配置库 列表页 JS 脚本
+ * 配置值 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-23 20:59:21
+ * @since 2022-10-24 13:34:06
  */
 
 function FormPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
-	const moduleURL="/service-ops/ops-cmdb-model";
+	const moduleURL="/service-ops/ops-cmdb-model-v-h";
 	// 表单执行操作类型：view，create，edit
 	var action=null;
 	var disableCreateNew=false;
@@ -23,7 +23,7 @@ function FormPage() {
      	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload,dropdown=layui.dropdown;
 		laydate = layui.laydate,table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect;
 
-		action=admin.getTempData('ops-cmdb-model-form-data-form-action');
+		action=admin.getTempData('ops-cmdb-model-v-h-form-data-form-action');
 		//如果没有修改和保存权限
 		if( !admin.checkAuth(AUTH_PREFIX+":update") && !admin.checkAuth(AUTH_PREFIX+":save")) {
 			disableModify=true;
@@ -37,7 +37,7 @@ function FormPage() {
 		}
 
 		if(window.pageExt.form.beforeInit) {
-			window.pageExt.form.beforeInit(action,admin.getTempData('ops-cmdb-model-form-data'));
+			window.pageExt.form.beforeInit(action,admin.getTempData('ops-cmdb-model-v-h-form-data'));
 		}
 
 		//渲染表单组件
@@ -89,9 +89,9 @@ function FormPage() {
 				prevBodyHeight = bodyHeight;
 				return;
 			}
-			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'ops-cmdb-model-form-data-win');
+			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'ops-cmdb-model-v-h-form-data-win');
 			if(area==null) return;
-			admin.putTempData('ops-cmdb-model-form-area', area);
+			admin.putTempData('ops-cmdb-model-v-h-form-area', area);
 			window.adjustPopup=adjustPopup;
 			if(area.tooHeigh) {
 				var windowHeight=area.iframeHeight;
@@ -111,82 +111,36 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
-		form.on('radio(status)', function(data){
+		form.on('radio(vStatus)', function(data){
 			var checked=[];
-			$('input[type=radio][lay-filter=status]:checked').each(function() {
+			$('input[type=radio][lay-filter=vStatus]:checked').each(function() {
 				checked.push($(this).val());
 			});
-			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("status",data,checked);
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("vStatus",data,checked);
 		});
-		form.on('radio(sourceType)', function(data){
-			var checked=[];
-			$('input[type=radio][lay-filter=sourceType]:checked').each(function() {
-				checked.push($(this).val());
-			});
-			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("sourceType",data,checked);
-		});
-		//渲染 dataSource 下拉字段
-		fox.renderSelectBox({
-			el: "dataSource",
-			radio: true,
-			filterable: false,
-			layVerify: 'required',
-			layVerType: 'msg',
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("dataSource",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			transform:function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var defaultValues=[],defaultIndexs=[];
-				if(action=="create") {
-					defaultValues = "".split(",");
-					defaultIndexs = "0".split(",");
-				}
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
-				}
-				return opts;
+		laydate.render({
+			elem: '#da1',
+			format:"yyyy-MM-dd",
+			trigger:"click",
+			done: function(value, date, endDate){
+				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("da1",value, date, endDate);
 			}
 		});
-		//渲染 associationType 下拉字段
-		fox.renderSelectBox({
-			el: "associationType",
-			radio: true,
-			filterable: false,
-			layVerify: 'required',
-			layVerType: 'msg',
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("associationType",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			transform:function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var defaultValues=[],defaultIndexs=[];
-				if(action=="create") {
-					defaultValues = "".split(",");
-					defaultIndexs = "0".split(",");
-				}
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
-				}
-				return opts;
+		laydate.render({
+			elem: '#da2',
+			format:"yyyy-MM-dd",
+			trigger:"click",
+			done: function(value, date, endDate){
+				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("da2",value, date, endDate);
 			}
 		});
-		form.on('radio(storageType)', function(data){
-			var checked=[];
-			$('input[type=radio][lay-filter=storageType]:checked').each(function() {
-				checked.push($(this).val());
-			});
-			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("storageType",data,checked);
+		laydate.render({
+			elem: '#da3',
+			format:"yyyy-MM-dd",
+			trigger:"click",
+			done: function(value, date, endDate){
+				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("da3",value, date, endDate);
+			}
 		});
 	}
 
@@ -219,7 +173,7 @@ function FormPage() {
       */
 	function fillFormData(formData) {
 		if(!formData) {
-			formData = admin.getTempData('ops-cmdb-model-form-data');
+			formData = admin.getTempData('ops-cmdb-model-v-h-form-data');
 		}
 
 		window.pageExt.form.beforeDataFill && window.pageExt.form.beforeDataFill(formData);
@@ -238,12 +192,20 @@ function FormPage() {
 
 
 
+			//设置 内容 显示复选框勾选
+			if(formData["da1"]) {
+				$("#da1").val(fox.dateFormat(formData["da1"],"yyyy-MM-dd"));
+			}
+			//设置 内容 显示复选框勾选
+			if(formData["da2"]) {
+				$("#da2").val(fox.dateFormat(formData["da2"],"yyyy-MM-dd"));
+			}
+			//设置 内容 显示复选框勾选
+			if(formData["da3"]) {
+				$("#da3").val(fox.dateFormat(formData["da3"],"yyyy-MM-dd"));
+			}
 
 
-			//设置  来源方式 设置下拉框勾选
-			fox.setSelectValue4Enum("#dataSource",formData.dataSource,SELECT_DATASOURCE_DATA);
-			//设置  关联方式 设置下拉框勾选
-			fox.setSelectValue4Enum("#associationType",formData.associationType,SELECT_ASSOCIATIONTYPE_DATA);
 
 			//处理fillBy
 
@@ -295,10 +257,6 @@ function FormPage() {
 
 
 
-		//获取 来源方式 下拉框的值
-		data["dataSource"]=fox.getSelectedValue("dataSource",false);
-		//获取 关联方式 下拉框的值
-		data["associationType"]=fox.getSelectedValue("associationType",false);
 
 		return data;
 	}
@@ -335,7 +293,7 @@ function FormPage() {
 				}
 
 				if(doNext) {
-					admin.finishPopupCenterById('ops-cmdb-model-form-data-win');
+					admin.finishPopupCenterById('ops-cmdb-model-v-h-form-data-win');
 				}
 
 				// 调整状态为编辑
@@ -367,7 +325,7 @@ function FormPage() {
 
 
 	    //关闭窗口
-	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('ops-cmdb-model-form-data-win',this); });
+	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('ops-cmdb-model-v-h-form-data-win',this); });
 
     }
 
