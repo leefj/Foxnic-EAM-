@@ -235,6 +235,15 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeSubmit:function (data) {
             console.log("beforeSubmit",data);
+            if(data.id){
+                console.log("this is update")
+            }else{
+                data.sourceId=SOURCE_ID;
+                data.boxType=BOX_TYPE;
+            }
+            console.log("beforeSubmit",data);
+            return true;
+
             return true;
         },
         /**

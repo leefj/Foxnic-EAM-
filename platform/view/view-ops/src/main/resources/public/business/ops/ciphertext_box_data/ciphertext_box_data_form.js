@@ -1,7 +1,7 @@
 /**
  * 密文数据 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-20 09:12:30
+ * @since 2022-10-23 20:34:34
  */
 
 function FormPage() {
@@ -10,7 +10,7 @@ function FormPage() {
 	const moduleURL="/service-ops/ops-ciphertext-box-data";
 	// 表单执行操作类型：view，create，edit
 	var action=null;
-	var disableCreateNew=true;
+	var disableCreateNew=false;
 	var disableModify=false;
 	var dataBeforeEdit=null;
 	const bpmIntegrateMode="none";
@@ -116,8 +116,6 @@ function FormPage() {
 			el: "boxType",
 			radio: true,
 			filterable: false,
-			layVerify: 'required',
-			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("boxType",data.arr,data.change,data.isAdd);

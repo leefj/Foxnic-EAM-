@@ -41,25 +41,84 @@ public class OpsRelationManager extends RelationManager {
         this.setupMonitorModel();
         this.setupIpAddressRange();
         this.setupSystemConsoleInfo();
-
         this.setupAutoNode();
         this.setupAutoAction();
         this.setupAutoTaskMlog();
         this.setupAutoTasklog();
         this.setupAutoTask();
         this.setupAutoBatch();
-
         this.setupDbInfo();
         this.setupDbBackupInfo();
         this.setupDbHostExcude();
-
         this.setupDbBackupRecord();
-
         this.setupSafetyBaseLine();
-
         this.setupCiphertextConf();
+        this.setupOpsCmdbLog();
+        this.setupOpsCmdbAttribute();
+        this.setupOpsCmdbModel();
+        this.setupOpsCmdbModelValue();
 
     }
+
+
+    public void setupOpsCmdbModel() {
+
+        this.property(CmdbModelMeta.CMDB_OBJ_ATTRIBUTE_LIST_PROP)
+                .using(OpsTables.OPS_CMDB_MODEL.ID).join(OpsTables.OPS_CMDB_OBJ_ATTRIBUTE.MODEL_ID);
+
+
+        this.property(CmdbModelMeta.CMDB_MODEL_V_LIST_PROP)
+                .using(OpsTables.OPS_CMDB_MODEL.ID).join(OpsTables.OPS_CMDB_MODEL_V.MODEL_ID);
+
+
+        this.property(CmdbModelMeta.CMDB_MODEL_PARENT_PROP)
+                .using(OpsTables.OPS_CMDB_MODEL.PARENT_ID).join(OpsTables.OPS_CMDB_MODEL.ID);
+
+        this.property(CmdbModelMeta.CMDB_OBJ_ATTRIBUTE_PARENT_LIST_PROP)
+                .using(OpsTables.OPS_CMDB_MODEL.PARENT_ID).join(OpsTables.OPS_CMDB_MODEL.ID)
+           .using(OpsTables.OPS_CMDB_MODEL.ID).join(OpsTables.OPS_CMDB_OBJ_ATTRIBUTE.MODEL_ID);
+
+
+
+    }
+
+
+
+
+    public void setupOpsCmdbModelValue() {
+
+        this.property(CmdbModelVMeta.CMDB_MODEL_PROP)
+                .using(OpsTables.OPS_CMDB_MODEL_V.MODEL_ID).join(OpsTables.OPS_CMDB_MODEL.ID);
+
+        this.property(CmdbModelVMeta.CMDB_OBJ_ATTRIBUTE_LIST_PROP)
+                .using(OpsTables.OPS_CMDB_MODEL_V.MODEL_ID).join(OpsTables.OPS_CMDB_MODEL.ID)
+              .using(OpsTables.OPS_CMDB_MODEL.ID).join(OpsTables.OPS_CMDB_OBJ_ATTRIBUTE.ID);
+
+        this.property(CmdbModelVMeta.CMDB_MODEL_V_PARENT_PROP)
+                .using(OpsTables.OPS_CMDB_MODEL_V.PID).join(OpsTables.OPS_CMDB_MODEL_V.ID);
+
+    }
+
+
+    public void setupOpsCmdbAttribute() {
+
+        this.property(CmdbObjAttributeMeta.CMDB_MODEL_PROP)
+                .using(OpsTables.OPS_CMDB_OBJ_ATTRIBUTE.MODEL_ID).join(OpsTables.OPS_CMDB_LOG.ID);
+
+        this.property(CmdbObjAttributeMeta.CMDB_ATTRIBUTE_C_PROP)
+                .using(OpsTables.OPS_CMDB_OBJ_ATTRIBUTE.ATTRIBUTE_COL_FILL).join(OpsTables.OPS_CMDB_ATTRIBUTE_C.CODE);
+
+    }
+
+
+    public void setupOpsCmdbLog() {
+        this.property(CmdbLogMeta.CMDB_MODEL_PROP)
+                .using(OpsTables.OPS_CMDB_LOG.ID).join(OpsTables.OPS_CMDB_MODEL.ID);
+
+        this.property(CmdbLogMeta.CMDB_MODEL_V_PROP)
+                .using(OpsTables.OPS_CMDB_LOG.ID).join(OpsTables.OPS_CMDB_MODEL_V.ID);
+    }
+
 
     public void setupCiphertextConf() {
         this.property(CiphertextConfMeta.USER_PROP)

@@ -74,7 +74,7 @@ function ListPage() {
 					,{ field: 'hostIp', align:"left",fixed:false,  hide:false, sort: false, title: fox.translate('Ip') , templet: function (d) { return templet('hostIp',d.hostIp,d);}  }
 					,{ field: 'serviceName', align:"left",fixed:false,  hide:false, sort: false, title: fox.translate('数据库') , templet: function (d) { return templet('serviceName',d.serviceName,d);}  }
 					,{ field: 'categoryCode', align:"left",fixed:false,  hide:false, sort: false, title: fox.translate('数据库分类') , templet: function (d) { return templet('categoryCode',d.categoryCode,d);}  }
-
+					,{ field: 'dbInfoCount', align:"left",fixed:false,  hide:false, sort: false, title: fox.translate('库数量') , templet: function (d) { return templet('dbInfoCount',d.dbInfoCount,d);}  }
 					//   ,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
 				]],
 				parseData:function(res){
@@ -88,8 +88,10 @@ function ListPage() {
 						"data":rData //解析数据列表
 					};
 				},
-				done: function (data) {
+				done: function (data,curr, count) {
 					console.log("done data",data)
+					console.log("curr",curr)
+					console.log("count",count)
 					window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
 

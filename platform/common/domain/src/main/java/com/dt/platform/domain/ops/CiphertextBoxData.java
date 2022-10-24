@@ -1,6 +1,7 @@
 package com.dt.platform.domain.ops;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.OpsTables.OPS_CIPHERTEXT_BOX_DATA;
@@ -17,13 +18,15 @@ import com.github.foxnic.dao.entity.EntityContext;
 
 /**
  * 密文数据
+ * <p>密文数据 , 数据表 ops_ciphertext_box_data 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-20 09:12:29
+ * @since 2022-10-23 20:34:32
  * @sign C7AEFC0615F0BF8CC26CFD4F5CA8E2CC
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "ops_ciphertext_box_data")
+@ApiModel(description = "密文数据 ; 密文数据 , 数据表 ops_ciphertext_box_data 的PO类型")
 public class CiphertextBoxData extends Entity {
 
 	private static final long serialVersionUID = 1L;

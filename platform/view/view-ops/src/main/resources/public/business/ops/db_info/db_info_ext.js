@@ -177,6 +177,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             }else{
                 action="create";
             }
+            admin.putTempData('ops-ciphertext-box-data-form-data-form-action', action,true);
             admin.putTempData('ops-ciphertext-box-data-form-data', data);
             var area=admin.getTempData('ops-ciphertext-box-data-form-area');
             var height= (area && area.height) ? area.height : ($(window).height()*0.6);

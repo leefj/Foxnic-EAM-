@@ -82,7 +82,6 @@ public class PositionController extends SuperController {
 	@PostMapping(PositionServiceProxy.INSERT)
 	public Result insert(PositionVO positionVO) {
 
-
 		positionVO.setSort(9999);
 		if(StringUtil.isBlank(positionVO.getParentId())) {
 			positionVO.setParentId("0");

@@ -4,16 +4,18 @@ package com.dt.platform.ops.controller;
 import java.util.List;
 import java.util.ArrayList;
 
+
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import com.github.foxnic.api.swagger.InDoc;
 import org.github.foxnic.web.framework.web.SuperController;
 import org.github.foxnic.web.framework.sentinel.SentinelExceptionUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import com.github.foxnic.api.swagger.ApiParamSupport;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 
 
@@ -35,7 +37,6 @@ import com.github.foxnic.dao.excel.ValidateResult;
 import java.io.InputStream;
 import com.dt.platform.domain.ops.meta.CiphertextBoxDataMeta;
 import io.swagger.annotations.Api;
-import com.github.xiaoymin.knife4j.annotations.ApiSort;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiImplicitParam;
@@ -46,14 +47,14 @@ import com.github.foxnic.api.validate.annotations.NotNull;
 
 /**
  * <p>
- * 密文数据 接口控制器
+ * 密文数据接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-20 09:12:29
+ * @since 2022-10-23 20:34:32
 */
 
-@Api(tags = "密文数据")
-@ApiSort(0)
+@InDoc
+@Api(tags = "null/密文数据")
 @RestController("OpsCiphertextBoxDataController")
 public class CiphertextBoxDataController extends SuperController {
 
@@ -66,17 +67,18 @@ public class CiphertextBoxDataController extends SuperController {
 	*/
 	@ApiOperation(value = "添加密文数据")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "635241819130560512"),
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "636661362889588736"),
 		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.SOURCE_ID , value = "来源" , required = true , dataTypeClass=String.class , example = "621815652788731904"),
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.BOX_ID , value = "密文箱" , required = false , dataTypeClass=String.class , example = "635126109893033985"),
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.BOX_TYPE , value = "密文类型" , required = false , dataTypeClass=String.class , example = "database"),
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.BOX_ID , value = "密文箱" , required = false , dataTypeClass=String.class , example = "635394284450742272"),
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.BOX_TYPE , value = "密文类型" , required = false , dataTypeClass=String.class , example = "database_instance"),
 		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "12"),
 		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.PLAINTEXT , value = "加密" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.CIPHERTEXT , value = "密文" , required = false , dataTypeClass=String.class , example = "MwddVVX/Ic6Bjzuutbg08OkcoSUdYouBXNXallAsp3c="),
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "algernon"),
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.CIPHERTEXT , value = "密文" , required = false , dataTypeClass=String.class , example = "ukAuwv2qysEywWJSm4XBYA=="),
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "1222"),
 	})
-	@ApiOperationSupport(order=1)
+	@ApiParamSupport(ignoreDBTreatyProperties = true,ignoreDefaultVoProperties = true)
+	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = CiphertextBoxDataServiceProxy.INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CiphertextBoxDataServiceProxy.INSERT)
 	public Result insert(CiphertextBoxDataVO ciphertextBoxDataVO) {
@@ -91,10 +93,9 @@ public class CiphertextBoxDataController extends SuperController {
 	*/
 	@ApiOperation(value = "删除密文数据")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "635241819130560512")
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "636661362889588736")
 	})
-	@ApiOperationSupport(order=2)
-	@NotNull(name = CiphertextBoxDataVOMeta.ID)
+	@ApiOperationSupport(order=2 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = CiphertextBoxDataServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CiphertextBoxDataServiceProxy.DELETE)
 	public Result deleteById(String id) {
@@ -122,8 +123,7 @@ public class CiphertextBoxDataController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.IDS , value = "主键清单" , required = true , dataTypeClass=List.class , example = "[1,3,4]")
 	})
-	@ApiOperationSupport(order=3) 
-	@NotNull(name = CiphertextBoxDataVOMeta.IDS)
+	@ApiOperationSupport(order=3 , author="金杰 , maillank@qq.com") 
 	@SentinelResource(value = CiphertextBoxDataServiceProxy.DELETE_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CiphertextBoxDataServiceProxy.DELETE_BY_IDS)
 	public Result deleteByIds(List<String> ids) {
@@ -171,17 +171,18 @@ public class CiphertextBoxDataController extends SuperController {
 	*/
 	@ApiOperation(value = "更新密文数据")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "635241819130560512"),
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "636661362889588736"),
 		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.SOURCE_ID , value = "来源" , required = true , dataTypeClass=String.class , example = "621815652788731904"),
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.BOX_ID , value = "密文箱" , required = false , dataTypeClass=String.class , example = "635126109893033985"),
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.BOX_TYPE , value = "密文类型" , required = false , dataTypeClass=String.class , example = "database"),
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.BOX_ID , value = "密文箱" , required = false , dataTypeClass=String.class , example = "635394284450742272"),
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.BOX_TYPE , value = "密文类型" , required = false , dataTypeClass=String.class , example = "database_instance"),
 		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "12"),
 		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.PLAINTEXT , value = "加密" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.CIPHERTEXT , value = "密文" , required = false , dataTypeClass=String.class , example = "MwddVVX/Ic6Bjzuutbg08OkcoSUdYouBXNXallAsp3c="),
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "algernon"),
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.CIPHERTEXT , value = "密文" , required = false , dataTypeClass=String.class , example = "ukAuwv2qysEywWJSm4XBYA=="),
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "1222"),
 	})
-	@ApiOperationSupport( order=4 , ignoreParameters = { CiphertextBoxDataVOMeta.PAGE_INDEX , CiphertextBoxDataVOMeta.PAGE_SIZE , CiphertextBoxDataVOMeta.SEARCH_FIELD , CiphertextBoxDataVOMeta.FUZZY_FIELD , CiphertextBoxDataVOMeta.SEARCH_VALUE , CiphertextBoxDataVOMeta.DIRTY_FIELDS , CiphertextBoxDataVOMeta.SORT_FIELD , CiphertextBoxDataVOMeta.SORT_TYPE , CiphertextBoxDataVOMeta.IDS } )
+	@ApiParamSupport(ignoreDBTreatyProperties = true,ignoreDefaultVoProperties = true)
+	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { CiphertextBoxDataVOMeta.PAGE_INDEX , CiphertextBoxDataVOMeta.PAGE_SIZE , CiphertextBoxDataVOMeta.SEARCH_FIELD , CiphertextBoxDataVOMeta.FUZZY_FIELD , CiphertextBoxDataVOMeta.SEARCH_VALUE , CiphertextBoxDataVOMeta.DIRTY_FIELDS , CiphertextBoxDataVOMeta.SORT_FIELD , CiphertextBoxDataVOMeta.SORT_TYPE , CiphertextBoxDataVOMeta.IDS } )
 	@SentinelResource(value = CiphertextBoxDataServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CiphertextBoxDataServiceProxy.UPDATE)
 	public Result update(CiphertextBoxDataVO ciphertextBoxDataVO) {
@@ -195,19 +196,18 @@ public class CiphertextBoxDataController extends SuperController {
 	*/
 	@ApiOperation(value = "保存密文数据")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "635241819130560512"),
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "636661362889588736"),
 		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.SOURCE_ID , value = "来源" , required = true , dataTypeClass=String.class , example = "621815652788731904"),
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.BOX_ID , value = "密文箱" , required = false , dataTypeClass=String.class , example = "635126109893033985"),
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.BOX_TYPE , value = "密文类型" , required = false , dataTypeClass=String.class , example = "database"),
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.BOX_ID , value = "密文箱" , required = false , dataTypeClass=String.class , example = "635394284450742272"),
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.BOX_TYPE , value = "密文类型" , required = false , dataTypeClass=String.class , example = "database_instance"),
 		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "12"),
 		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.PLAINTEXT , value = "加密" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.CIPHERTEXT , value = "密文" , required = false , dataTypeClass=String.class , example = "MwddVVX/Ic6Bjzuutbg08OkcoSUdYouBXNXallAsp3c="),
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "algernon"),
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.CIPHERTEXT , value = "密文" , required = false , dataTypeClass=String.class , example = "ukAuwv2qysEywWJSm4XBYA=="),
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "1222"),
 	})
+	@ApiParamSupport(ignoreDBTreatyProperties = true,ignoreDefaultVoProperties = true)
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { CiphertextBoxDataVOMeta.PAGE_INDEX , CiphertextBoxDataVOMeta.PAGE_SIZE , CiphertextBoxDataVOMeta.SEARCH_FIELD , CiphertextBoxDataVOMeta.FUZZY_FIELD , CiphertextBoxDataVOMeta.SEARCH_VALUE , CiphertextBoxDataVOMeta.DIRTY_FIELDS , CiphertextBoxDataVOMeta.SORT_FIELD , CiphertextBoxDataVOMeta.SORT_TYPE , CiphertextBoxDataVOMeta.IDS } )
-	@NotNull(name = CiphertextBoxDataVOMeta.ID)
-	@NotNull(name = CiphertextBoxDataVOMeta.SOURCE_ID)
 	@SentinelResource(value = CiphertextBoxDataServiceProxy.SAVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CiphertextBoxDataServiceProxy.SAVE)
 	public Result save(CiphertextBoxDataVO ciphertextBoxDataVO) {
@@ -223,8 +223,7 @@ public class CiphertextBoxDataController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
 	})
-	@ApiOperationSupport(order=6)
-	@NotNull(name = CiphertextBoxDataVOMeta.ID)
+	@ApiOperationSupport(order=6 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = CiphertextBoxDataServiceProxy.GET_BY_ID , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CiphertextBoxDataServiceProxy.GET_BY_ID)
 	public Result<CiphertextBoxData> getById(String id) {
@@ -243,8 +242,7 @@ public class CiphertextBoxDataController extends SuperController {
 		@ApiImplicitParams({
 				@ApiImplicitParam(name = CiphertextBoxDataVOMeta.IDS , value = "主键清单" , required = true , dataTypeClass=List.class , example = "[1,3,4]")
 		})
-		@ApiOperationSupport(order=3) 
-		@NotNull(name = CiphertextBoxDataVOMeta.IDS)
+		@ApiOperationSupport(order=3 , author="金杰 , maillank@qq.com") 
 		@SentinelResource(value = CiphertextBoxDataServiceProxy.GET_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CiphertextBoxDataServiceProxy.GET_BY_IDS)
 	public Result<List<CiphertextBoxData>> getByIds(List<String> ids) {
@@ -260,17 +258,17 @@ public class CiphertextBoxDataController extends SuperController {
 	*/
 	@ApiOperation(value = "查询密文数据")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "635241819130560512"),
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "636661362889588736"),
 		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.SOURCE_ID , value = "来源" , required = true , dataTypeClass=String.class , example = "621815652788731904"),
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.BOX_ID , value = "密文箱" , required = false , dataTypeClass=String.class , example = "635126109893033985"),
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.BOX_TYPE , value = "密文类型" , required = false , dataTypeClass=String.class , example = "database"),
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.BOX_ID , value = "密文箱" , required = false , dataTypeClass=String.class , example = "635394284450742272"),
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.BOX_TYPE , value = "密文类型" , required = false , dataTypeClass=String.class , example = "database_instance"),
 		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "12"),
 		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.PLAINTEXT , value = "加密" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.CIPHERTEXT , value = "密文" , required = false , dataTypeClass=String.class , example = "MwddVVX/Ic6Bjzuutbg08OkcoSUdYouBXNXallAsp3c="),
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "algernon"),
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.CIPHERTEXT , value = "密文" , required = false , dataTypeClass=String.class , example = "ukAuwv2qysEywWJSm4XBYA=="),
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "1222"),
 	})
-	@ApiOperationSupport(order=5 ,  ignoreParameters = { CiphertextBoxDataVOMeta.PAGE_INDEX , CiphertextBoxDataVOMeta.PAGE_SIZE } )
+	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { CiphertextBoxDataVOMeta.PAGE_INDEX , CiphertextBoxDataVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = CiphertextBoxDataServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CiphertextBoxDataServiceProxy.QUERY_LIST)
 	public Result<List<CiphertextBoxData>> queryList(CiphertextBoxDataVO sample) {
@@ -286,17 +284,17 @@ public class CiphertextBoxDataController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询密文数据")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "635241819130560512"),
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "636661362889588736"),
 		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.SOURCE_ID , value = "来源" , required = true , dataTypeClass=String.class , example = "621815652788731904"),
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.BOX_ID , value = "密文箱" , required = false , dataTypeClass=String.class , example = "635126109893033985"),
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.BOX_TYPE , value = "密文类型" , required = false , dataTypeClass=String.class , example = "database"),
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.BOX_ID , value = "密文箱" , required = false , dataTypeClass=String.class , example = "635394284450742272"),
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.BOX_TYPE , value = "密文类型" , required = false , dataTypeClass=String.class , example = "database_instance"),
 		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.NAME , value = "名称" , required = false , dataTypeClass=String.class , example = "12"),
 		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.PLAINTEXT , value = "加密" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.CIPHERTEXT , value = "密文" , required = false , dataTypeClass=String.class , example = "MwddVVX/Ic6Bjzuutbg08OkcoSUdYouBXNXallAsp3c="),
-		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "algernon"),
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.CIPHERTEXT , value = "密文" , required = false , dataTypeClass=String.class , example = "ukAuwv2qysEywWJSm4XBYA=="),
+		@ApiImplicitParam(name = CiphertextBoxDataVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "1222"),
 	})
-	@ApiOperationSupport(order=8)
+	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = CiphertextBoxDataServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CiphertextBoxDataServiceProxy.QUERY_PAGED_LIST)
 	public Result<PagedList<CiphertextBoxData>> queryPagedList(CiphertextBoxDataVO sample) {

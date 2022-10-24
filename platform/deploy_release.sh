@@ -25,11 +25,13 @@ cp -r $deploy_dir/* .
 echo "$release_dir/app/app/lib/"
 ls -rtl $jar_dir/lib/
 
+
+version=2.4.0
 cp -r $jar_dir/lib/* $release_dir/app/app/lib/
-cp $jar_dir/wrapper-all-0.0.2.RELEASE.jar  $release_dir/app/app/app.jar
+cp $jar_dir/wrapper-all-${version}.jar  $release_dir/app/app/app.jar
 
 #cp -r $jar_dir/lib/* $release_dir/app/bpm/lib/
-cp $bpm_jar_dir/wrapper-camunda-0.0.2.RELEASE.jar $release_dir/app/bpm/bpm.jar
+cp $bpm_jar_dir/wrapper-camunda-${version}.RELEASE.jar $release_dir/app/bpm/bpm.jar
 
 echo "start to ys"
 tar -zcvf app_release_last.tar.gz ./*
