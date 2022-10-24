@@ -60,7 +60,11 @@ public class AssetStatusRuleVController extends SuperController {
      * 添加状态规则值
      */
     @ApiOperation(value = "添加状态规则值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStatusRuleVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetStatusRuleVVOMeta.OPER_CODE, value = "操作编码", required = false, dataTypeClass = String.class, example = "eam_asset_borrow"), @ApiImplicitParam(name = AssetStatusRuleVVOMeta.STATUS_CODE, value = "状态编码", required = false, dataTypeClass = String.class, example = "borrow") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.OPER_CODE, value = "操作编码", required = false, dataTypeClass = String.class, example = "eam_asset_borrow"),
+		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.STATUS_CODE, value = "状态编码", required = false, dataTypeClass = String.class, example = "borrow")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetStatusRuleVServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStatusRuleVServiceProxy.INSERT)
@@ -74,7 +78,9 @@ public class AssetStatusRuleVController extends SuperController {
      * 删除状态规则值
      */
     @ApiOperation(value = "删除状态规则值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStatusRuleVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetStatusRuleVServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStatusRuleVServiceProxy.DELETE)
@@ -99,7 +105,9 @@ public class AssetStatusRuleVController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除状态规则值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStatusRuleVVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetStatusRuleVServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStatusRuleVServiceProxy.DELETE_BY_IDS)
@@ -144,7 +152,11 @@ public class AssetStatusRuleVController extends SuperController {
      * 更新状态规则值
      */
     @ApiOperation(value = "更新状态规则值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStatusRuleVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetStatusRuleVVOMeta.OPER_CODE, value = "操作编码", required = false, dataTypeClass = String.class, example = "eam_asset_borrow"), @ApiImplicitParam(name = AssetStatusRuleVVOMeta.STATUS_CODE, value = "状态编码", required = false, dataTypeClass = String.class, example = "borrow") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.OPER_CODE, value = "操作编码", required = false, dataTypeClass = String.class, example = "eam_asset_borrow"),
+		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.STATUS_CODE, value = "状态编码", required = false, dataTypeClass = String.class, example = "borrow")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetStatusRuleVVOMeta.PAGE_INDEX, AssetStatusRuleVVOMeta.PAGE_SIZE, AssetStatusRuleVVOMeta.SEARCH_FIELD, AssetStatusRuleVVOMeta.FUZZY_FIELD, AssetStatusRuleVVOMeta.SEARCH_VALUE, AssetStatusRuleVVOMeta.DIRTY_FIELDS, AssetStatusRuleVVOMeta.SORT_FIELD, AssetStatusRuleVVOMeta.SORT_TYPE, AssetStatusRuleVVOMeta.IDS })
     @SentinelResource(value = AssetStatusRuleVServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStatusRuleVServiceProxy.UPDATE)
@@ -158,7 +170,11 @@ public class AssetStatusRuleVController extends SuperController {
      * 保存状态规则值
      */
     @ApiOperation(value = "保存状态规则值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStatusRuleVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetStatusRuleVVOMeta.OPER_CODE, value = "操作编码", required = false, dataTypeClass = String.class, example = "eam_asset_borrow"), @ApiImplicitParam(name = AssetStatusRuleVVOMeta.STATUS_CODE, value = "状态编码", required = false, dataTypeClass = String.class, example = "borrow") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.OPER_CODE, value = "操作编码", required = false, dataTypeClass = String.class, example = "eam_asset_borrow"),
+		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.STATUS_CODE, value = "状态编码", required = false, dataTypeClass = String.class, example = "borrow")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetStatusRuleVVOMeta.PAGE_INDEX, AssetStatusRuleVVOMeta.PAGE_SIZE, AssetStatusRuleVVOMeta.SEARCH_FIELD, AssetStatusRuleVVOMeta.FUZZY_FIELD, AssetStatusRuleVVOMeta.SEARCH_VALUE, AssetStatusRuleVVOMeta.DIRTY_FIELDS, AssetStatusRuleVVOMeta.SORT_FIELD, AssetStatusRuleVVOMeta.SORT_TYPE, AssetStatusRuleVVOMeta.IDS })
     @SentinelResource(value = AssetStatusRuleVServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStatusRuleVServiceProxy.SAVE)
@@ -172,7 +188,9 @@ public class AssetStatusRuleVController extends SuperController {
      * 获取状态规则值
      */
     @ApiOperation(value = "获取状态规则值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStatusRuleVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetStatusRuleVServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStatusRuleVServiceProxy.GET_BY_ID)
@@ -190,7 +208,9 @@ public class AssetStatusRuleVController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取状态规则值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStatusRuleVVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetStatusRuleVServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStatusRuleVServiceProxy.GET_BY_IDS)
@@ -205,7 +225,11 @@ public class AssetStatusRuleVController extends SuperController {
      * 查询状态规则值
      */
     @ApiOperation(value = "查询状态规则值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStatusRuleVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetStatusRuleVVOMeta.OPER_CODE, value = "操作编码", required = false, dataTypeClass = String.class, example = "eam_asset_borrow"), @ApiImplicitParam(name = AssetStatusRuleVVOMeta.STATUS_CODE, value = "状态编码", required = false, dataTypeClass = String.class, example = "borrow") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.OPER_CODE, value = "操作编码", required = false, dataTypeClass = String.class, example = "eam_asset_borrow"),
+		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.STATUS_CODE, value = "状态编码", required = false, dataTypeClass = String.class, example = "borrow")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetStatusRuleVVOMeta.PAGE_INDEX, AssetStatusRuleVVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetStatusRuleVServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStatusRuleVServiceProxy.QUERY_LIST)
@@ -220,7 +244,11 @@ public class AssetStatusRuleVController extends SuperController {
      * 分页查询状态规则值
      */
     @ApiOperation(value = "分页查询状态规则值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStatusRuleVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetStatusRuleVVOMeta.OPER_CODE, value = "操作编码", required = false, dataTypeClass = String.class, example = "eam_asset_borrow"), @ApiImplicitParam(name = AssetStatusRuleVVOMeta.STATUS_CODE, value = "状态编码", required = false, dataTypeClass = String.class, example = "borrow") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.OPER_CODE, value = "操作编码", required = false, dataTypeClass = String.class, example = "eam_asset_borrow"),
+		@ApiImplicitParam(name = AssetStatusRuleVVOMeta.STATUS_CODE, value = "状态编码", required = false, dataTypeClass = String.class, example = "borrow")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetStatusRuleVServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStatusRuleVServiceProxy.QUERY_PAGED_LIST)

@@ -60,7 +60,18 @@ public class CmdbObjAttributeController extends SuperController {
      * 添加配置属性
      */
     @ApiOperation(value = "添加配置属性")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "636664521074671616"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.MODEL_ID, value = "模型对象", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_NAME, value = "属性名称", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_TYPE, value = "属性类型", required = false, dataTypeClass = String.class, example = "STRING"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_SOURCE, value = "字段来源", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_FILL, value = "字段填充", required = false, dataTypeClass = String.class, example = "desc"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_SHOW, value = "显示字段", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "636664521074671616"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.MODEL_ID, value = "模型对象", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_NAME, value = "属性名称", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_TYPE, value = "属性类型", required = false, dataTypeClass = String.class, example = "STRING"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_SOURCE, value = "字段来源", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_FILL, value = "字段填充", required = false, dataTypeClass = String.class, example = "desc"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_SHOW, value = "显示字段", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = CmdbObjAttributeServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -74,7 +85,9 @@ public class CmdbObjAttributeController extends SuperController {
      * 删除配置属性
      */
     @ApiOperation(value = "删除配置属性")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "636664521074671616") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "636664521074671616")
+	})
     @ApiOperationSupport(order = 2, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = CmdbObjAttributeServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CmdbObjAttributeServiceProxy.DELETE)
@@ -99,7 +112,9 @@ public class CmdbObjAttributeController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除配置属性")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbObjAttributeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = CmdbObjAttributeServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CmdbObjAttributeServiceProxy.DELETE_BY_IDS)
@@ -144,7 +159,18 @@ public class CmdbObjAttributeController extends SuperController {
      * 更新配置属性
      */
     @ApiOperation(value = "更新配置属性")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "636664521074671616"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.MODEL_ID, value = "模型对象", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_NAME, value = "属性名称", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_TYPE, value = "属性类型", required = false, dataTypeClass = String.class, example = "STRING"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_SOURCE, value = "字段来源", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_FILL, value = "字段填充", required = false, dataTypeClass = String.class, example = "desc"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_SHOW, value = "显示字段", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "636664521074671616"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.MODEL_ID, value = "模型对象", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_NAME, value = "属性名称", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_TYPE, value = "属性类型", required = false, dataTypeClass = String.class, example = "STRING"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_SOURCE, value = "字段来源", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_FILL, value = "字段填充", required = false, dataTypeClass = String.class, example = "desc"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_SHOW, value = "显示字段", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { CmdbObjAttributeVOMeta.PAGE_INDEX, CmdbObjAttributeVOMeta.PAGE_SIZE, CmdbObjAttributeVOMeta.SEARCH_FIELD, CmdbObjAttributeVOMeta.FUZZY_FIELD, CmdbObjAttributeVOMeta.SEARCH_VALUE, CmdbObjAttributeVOMeta.DIRTY_FIELDS, CmdbObjAttributeVOMeta.SORT_FIELD, CmdbObjAttributeVOMeta.SORT_TYPE, CmdbObjAttributeVOMeta.IDS })
     @SentinelResource(value = CmdbObjAttributeServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -158,7 +184,18 @@ public class CmdbObjAttributeController extends SuperController {
      * 保存配置属性
      */
     @ApiOperation(value = "保存配置属性")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "636664521074671616"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.MODEL_ID, value = "模型对象", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_NAME, value = "属性名称", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_TYPE, value = "属性类型", required = false, dataTypeClass = String.class, example = "STRING"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_SOURCE, value = "字段来源", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_FILL, value = "字段填充", required = false, dataTypeClass = String.class, example = "desc"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_SHOW, value = "显示字段", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "636664521074671616"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.MODEL_ID, value = "模型对象", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_NAME, value = "属性名称", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_TYPE, value = "属性类型", required = false, dataTypeClass = String.class, example = "STRING"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_SOURCE, value = "字段来源", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_FILL, value = "字段填充", required = false, dataTypeClass = String.class, example = "desc"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_SHOW, value = "显示字段", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { CmdbObjAttributeVOMeta.PAGE_INDEX, CmdbObjAttributeVOMeta.PAGE_SIZE, CmdbObjAttributeVOMeta.SEARCH_FIELD, CmdbObjAttributeVOMeta.FUZZY_FIELD, CmdbObjAttributeVOMeta.SEARCH_VALUE, CmdbObjAttributeVOMeta.DIRTY_FIELDS, CmdbObjAttributeVOMeta.SORT_FIELD, CmdbObjAttributeVOMeta.SORT_TYPE, CmdbObjAttributeVOMeta.IDS })
     @SentinelResource(value = CmdbObjAttributeServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -172,7 +209,9 @@ public class CmdbObjAttributeController extends SuperController {
      * 获取配置属性
      */
     @ApiOperation(value = "获取配置属性")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = CmdbObjAttributeServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CmdbObjAttributeServiceProxy.GET_BY_ID)
@@ -190,7 +229,9 @@ public class CmdbObjAttributeController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取配置属性")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbObjAttributeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = CmdbObjAttributeServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CmdbObjAttributeServiceProxy.GET_BY_IDS)
@@ -205,7 +246,18 @@ public class CmdbObjAttributeController extends SuperController {
      * 查询配置属性
      */
     @ApiOperation(value = "查询配置属性")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "636664521074671616"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.MODEL_ID, value = "模型对象", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_NAME, value = "属性名称", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_TYPE, value = "属性类型", required = false, dataTypeClass = String.class, example = "STRING"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_SOURCE, value = "字段来源", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_FILL, value = "字段填充", required = false, dataTypeClass = String.class, example = "desc"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_SHOW, value = "显示字段", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "636664521074671616"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.MODEL_ID, value = "模型对象", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_NAME, value = "属性名称", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_TYPE, value = "属性类型", required = false, dataTypeClass = String.class, example = "STRING"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_SOURCE, value = "字段来源", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_FILL, value = "字段填充", required = false, dataTypeClass = String.class, example = "desc"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_SHOW, value = "显示字段", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { CmdbObjAttributeVOMeta.PAGE_INDEX, CmdbObjAttributeVOMeta.PAGE_SIZE })
     @SentinelResource(value = CmdbObjAttributeServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CmdbObjAttributeServiceProxy.QUERY_LIST)
@@ -220,7 +272,18 @@ public class CmdbObjAttributeController extends SuperController {
      * 分页查询配置属性
      */
     @ApiOperation(value = "分页查询配置属性")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "636664521074671616"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.MODEL_ID, value = "模型对象", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_NAME, value = "属性名称", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_TYPE, value = "属性类型", required = false, dataTypeClass = String.class, example = "STRING"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_SOURCE, value = "字段来源", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_FILL, value = "字段填充", required = false, dataTypeClass = String.class, example = "desc"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_SHOW, value = "显示字段", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0"), @ApiImplicitParam(name = CmdbObjAttributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "636664521074671616"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.MODEL_ID, value = "模型对象", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_NAME, value = "属性名称", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_TYPE, value = "属性类型", required = false, dataTypeClass = String.class, example = "STRING"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_SOURCE, value = "字段来源", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_FILL, value = "字段填充", required = false, dataTypeClass = String.class, example = "desc"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.ATTRIBUTE_COL_SHOW, value = "显示字段", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0"),
+		@ApiImplicitParam(name = CmdbObjAttributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = CmdbObjAttributeServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CmdbObjAttributeServiceProxy.QUERY_PAGED_LIST)

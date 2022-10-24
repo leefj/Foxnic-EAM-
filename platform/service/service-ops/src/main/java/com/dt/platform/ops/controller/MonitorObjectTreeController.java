@@ -58,7 +58,12 @@ public class MonitorObjectTreeController extends SuperController {
      * 添加对象分组类型
      */
     @ApiOperation(value = "添加对象分组类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectTreeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTreeVOMeta.PID, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTreeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTreeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectTreeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTreeVOMeta.PID, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTreeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTreeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = MonitorObjectTreeServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectTreeServiceProxy.INSERT)
@@ -72,7 +77,9 @@ public class MonitorObjectTreeController extends SuperController {
      * 删除对象分组类型
      */
     @ApiOperation(value = "删除对象分组类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectTreeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectTreeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = MonitorObjectTreeServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectTreeServiceProxy.DELETE)
@@ -97,7 +104,9 @@ public class MonitorObjectTreeController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除对象分组类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectTreeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectTreeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MonitorObjectTreeServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectTreeServiceProxy.DELETE_BY_IDS)
@@ -142,7 +151,12 @@ public class MonitorObjectTreeController extends SuperController {
      * 更新对象分组类型
      */
     @ApiOperation(value = "更新对象分组类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectTreeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTreeVOMeta.PID, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTreeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTreeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectTreeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTreeVOMeta.PID, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTreeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTreeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { MonitorObjectTreeVOMeta.PAGE_INDEX, MonitorObjectTreeVOMeta.PAGE_SIZE, MonitorObjectTreeVOMeta.SEARCH_FIELD, MonitorObjectTreeVOMeta.FUZZY_FIELD, MonitorObjectTreeVOMeta.SEARCH_VALUE, MonitorObjectTreeVOMeta.DIRTY_FIELDS, MonitorObjectTreeVOMeta.SORT_FIELD, MonitorObjectTreeVOMeta.SORT_TYPE, MonitorObjectTreeVOMeta.IDS })
     @SentinelResource(value = MonitorObjectTreeServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectTreeServiceProxy.UPDATE)
@@ -156,7 +170,12 @@ public class MonitorObjectTreeController extends SuperController {
      * 保存对象分组类型
      */
     @ApiOperation(value = "保存对象分组类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectTreeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTreeVOMeta.PID, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTreeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTreeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectTreeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTreeVOMeta.PID, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTreeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTreeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MonitorObjectTreeVOMeta.PAGE_INDEX, MonitorObjectTreeVOMeta.PAGE_SIZE, MonitorObjectTreeVOMeta.SEARCH_FIELD, MonitorObjectTreeVOMeta.FUZZY_FIELD, MonitorObjectTreeVOMeta.SEARCH_VALUE, MonitorObjectTreeVOMeta.DIRTY_FIELDS, MonitorObjectTreeVOMeta.SORT_FIELD, MonitorObjectTreeVOMeta.SORT_TYPE, MonitorObjectTreeVOMeta.IDS })
     @SentinelResource(value = MonitorObjectTreeServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectTreeServiceProxy.SAVE)
@@ -170,7 +189,9 @@ public class MonitorObjectTreeController extends SuperController {
      * 获取对象分组类型
      */
     @ApiOperation(value = "获取对象分组类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectTreeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectTreeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = MonitorObjectTreeServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectTreeServiceProxy.GET_BY_ID)
@@ -186,7 +207,9 @@ public class MonitorObjectTreeController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取对象分组类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectTreeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectTreeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MonitorObjectTreeServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectTreeServiceProxy.GET_BY_IDS)
@@ -201,7 +224,12 @@ public class MonitorObjectTreeController extends SuperController {
      * 查询对象分组类型
      */
     @ApiOperation(value = "查询对象分组类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectTreeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTreeVOMeta.PID, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTreeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTreeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectTreeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTreeVOMeta.PID, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTreeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTreeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MonitorObjectTreeVOMeta.PAGE_INDEX, MonitorObjectTreeVOMeta.PAGE_SIZE })
     @SentinelResource(value = MonitorObjectTreeServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectTreeServiceProxy.QUERY_LIST)
@@ -216,7 +244,12 @@ public class MonitorObjectTreeController extends SuperController {
      * 分页查询对象分组类型
      */
     @ApiOperation(value = "分页查询对象分组类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectTreeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTreeVOMeta.PID, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTreeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectTreeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectTreeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTreeVOMeta.PID, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTreeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectTreeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = MonitorObjectTreeServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectTreeServiceProxy.QUERY_PAGED_LIST)

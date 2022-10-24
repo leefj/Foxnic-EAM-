@@ -58,7 +58,11 @@ public class SoftwareBaseTypeController extends SuperController {
      * 添加软件基线类型
      */
     @ApiOperation(value = "添加软件基线类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareBaseTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593841519329288192"), @ApiImplicitParam(name = SoftwareBaseTypeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "操作系统"), @ApiImplicitParam(name = SoftwareBaseTypeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareBaseTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593841519329288192"),
+		@ApiImplicitParam(name = SoftwareBaseTypeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "操作系统"),
+		@ApiImplicitParam(name = SoftwareBaseTypeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = SoftwareBaseTypeServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareBaseTypeServiceProxy.INSERT)
@@ -72,7 +76,9 @@ public class SoftwareBaseTypeController extends SuperController {
      * 删除软件基线类型
      */
     @ApiOperation(value = "删除软件基线类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareBaseTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593841519329288192") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareBaseTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593841519329288192")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = SoftwareBaseTypeServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareBaseTypeServiceProxy.DELETE)
@@ -97,7 +103,9 @@ public class SoftwareBaseTypeController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除软件基线类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareBaseTypeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareBaseTypeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = SoftwareBaseTypeServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareBaseTypeServiceProxy.DELETE_BY_IDS)
@@ -142,7 +150,11 @@ public class SoftwareBaseTypeController extends SuperController {
      * 更新软件基线类型
      */
     @ApiOperation(value = "更新软件基线类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareBaseTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593841519329288192"), @ApiImplicitParam(name = SoftwareBaseTypeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "操作系统"), @ApiImplicitParam(name = SoftwareBaseTypeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareBaseTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593841519329288192"),
+		@ApiImplicitParam(name = SoftwareBaseTypeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "操作系统"),
+		@ApiImplicitParam(name = SoftwareBaseTypeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { SoftwareBaseTypeVOMeta.PAGE_INDEX, SoftwareBaseTypeVOMeta.PAGE_SIZE, SoftwareBaseTypeVOMeta.SEARCH_FIELD, SoftwareBaseTypeVOMeta.FUZZY_FIELD, SoftwareBaseTypeVOMeta.SEARCH_VALUE, SoftwareBaseTypeVOMeta.DIRTY_FIELDS, SoftwareBaseTypeVOMeta.SORT_FIELD, SoftwareBaseTypeVOMeta.SORT_TYPE, SoftwareBaseTypeVOMeta.IDS })
     @SentinelResource(value = SoftwareBaseTypeServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareBaseTypeServiceProxy.UPDATE)
@@ -156,7 +168,11 @@ public class SoftwareBaseTypeController extends SuperController {
      * 保存软件基线类型
      */
     @ApiOperation(value = "保存软件基线类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareBaseTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593841519329288192"), @ApiImplicitParam(name = SoftwareBaseTypeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "操作系统"), @ApiImplicitParam(name = SoftwareBaseTypeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareBaseTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593841519329288192"),
+		@ApiImplicitParam(name = SoftwareBaseTypeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "操作系统"),
+		@ApiImplicitParam(name = SoftwareBaseTypeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { SoftwareBaseTypeVOMeta.PAGE_INDEX, SoftwareBaseTypeVOMeta.PAGE_SIZE, SoftwareBaseTypeVOMeta.SEARCH_FIELD, SoftwareBaseTypeVOMeta.FUZZY_FIELD, SoftwareBaseTypeVOMeta.SEARCH_VALUE, SoftwareBaseTypeVOMeta.DIRTY_FIELDS, SoftwareBaseTypeVOMeta.SORT_FIELD, SoftwareBaseTypeVOMeta.SORT_TYPE, SoftwareBaseTypeVOMeta.IDS })
     @SentinelResource(value = SoftwareBaseTypeServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareBaseTypeServiceProxy.SAVE)
@@ -170,7 +186,9 @@ public class SoftwareBaseTypeController extends SuperController {
      * 获取软件基线类型
      */
     @ApiOperation(value = "获取软件基线类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareBaseTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareBaseTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = SoftwareBaseTypeServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareBaseTypeServiceProxy.GET_BY_ID)
@@ -186,7 +204,9 @@ public class SoftwareBaseTypeController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取软件基线类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareBaseTypeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareBaseTypeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = SoftwareBaseTypeServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareBaseTypeServiceProxy.GET_BY_IDS)
@@ -201,7 +221,11 @@ public class SoftwareBaseTypeController extends SuperController {
      * 查询软件基线类型
      */
     @ApiOperation(value = "查询软件基线类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareBaseTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593841519329288192"), @ApiImplicitParam(name = SoftwareBaseTypeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "操作系统"), @ApiImplicitParam(name = SoftwareBaseTypeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareBaseTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593841519329288192"),
+		@ApiImplicitParam(name = SoftwareBaseTypeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "操作系统"),
+		@ApiImplicitParam(name = SoftwareBaseTypeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { SoftwareBaseTypeVOMeta.PAGE_INDEX, SoftwareBaseTypeVOMeta.PAGE_SIZE })
     @SentinelResource(value = SoftwareBaseTypeServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareBaseTypeServiceProxy.QUERY_LIST)
@@ -216,7 +240,11 @@ public class SoftwareBaseTypeController extends SuperController {
      * 分页查询软件基线类型
      */
     @ApiOperation(value = "分页查询软件基线类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareBaseTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593841519329288192"), @ApiImplicitParam(name = SoftwareBaseTypeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "操作系统"), @ApiImplicitParam(name = SoftwareBaseTypeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareBaseTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593841519329288192"),
+		@ApiImplicitParam(name = SoftwareBaseTypeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "操作系统"),
+		@ApiImplicitParam(name = SoftwareBaseTypeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = SoftwareBaseTypeServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareBaseTypeServiceProxy.QUERY_PAGED_LIST)

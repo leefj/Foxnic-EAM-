@@ -59,7 +59,24 @@ public class ServerInfoController extends SuperController {
      * 添加服务器资源
      */
     @ApiOperation(value = "添加服务器资源")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServerInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "602750624248893440"), @ApiImplicitParam(name = ServerInfoVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "测试服务器"), @ApiImplicitParam(name = ServerInfoVOMeta.SERVER_TYPE, value = "服务器类型", required = false, dataTypeClass = String.class, example = "virtual_machine"), @ApiImplicitParam(name = ServerInfoVOMeta.OS_VERSION, value = "系统版本", required = false, dataTypeClass = String.class, example = "599614904982306816"), @ApiImplicitParam(name = ServerInfoVOMeta.IP, value = "IP地址", required = false, dataTypeClass = String.class, example = "192,268,1,1"), @ApiImplicitParam(name = ServerInfoVOMeta.DATABASE_VERSION, value = "数据库", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerInfoVOMeta.MIDDLEWARE_VERSION, value = "中间件", required = false, dataTypeClass = String.class, example = "Tomcat"), @ApiImplicitParam(name = ServerInfoVOMeta.CPU, value = "CPU数", required = false, dataTypeClass = Integer.class, example = "2"), @ApiImplicitParam(name = ServerInfoVOMeta.MEMORY, value = "内存(G)", required = false, dataTypeClass = Integer.class, example = "4"), @ApiImplicitParam(name = ServerInfoVOMeta.SPACE_SIZE, value = "空间(G)", required = false, dataTypeClass = Integer.class, example = "100"), @ApiImplicitParam(name = ServerInfoVOMeta.SERVER_NUMBER, value = "数量", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = ServerInfoVOMeta.USERLIST, value = "用户列表", required = false, dataTypeClass = String.class, example = "root"), @ApiImplicitParam(name = ServerInfoVOMeta.PORTLIST, value = "端口列表", required = false, dataTypeClass = String.class, example = "8080"), @ApiImplicitParam(name = ServerInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServerInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "602750624248893440"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "测试服务器"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.SERVER_TYPE, value = "服务器类型", required = false, dataTypeClass = String.class, example = "virtual_machine"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.OS_VERSION, value = "系统版本", required = false, dataTypeClass = String.class, example = "599614904982306816"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.IP, value = "IP地址", required = false, dataTypeClass = String.class, example = "192,268,1,1"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.DATABASE_VERSION, value = "数据库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerInfoVOMeta.MIDDLEWARE_VERSION, value = "中间件", required = false, dataTypeClass = String.class, example = "Tomcat"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.CPU, value = "CPU数", required = false, dataTypeClass = Integer.class, example = "2"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.MEMORY, value = "内存(G)", required = false, dataTypeClass = Integer.class, example = "4"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.SPACE_SIZE, value = "空间(G)", required = false, dataTypeClass = Integer.class, example = "100"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.SERVER_NUMBER, value = "数量", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.USERLIST, value = "用户列表", required = false, dataTypeClass = String.class, example = "root"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.PORTLIST, value = "端口列表", required = false, dataTypeClass = String.class, example = "8080"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = ServerInfoServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServerInfoServiceProxy.INSERT)
@@ -73,7 +90,9 @@ public class ServerInfoController extends SuperController {
      * 删除服务器资源
      */
     @ApiOperation(value = "删除服务器资源")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServerInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "602750624248893440") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServerInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "602750624248893440")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = ServerInfoServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServerInfoServiceProxy.DELETE)
@@ -98,7 +117,9 @@ public class ServerInfoController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除服务器资源")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServerInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServerInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ServerInfoServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServerInfoServiceProxy.DELETE_BY_IDS)
@@ -143,7 +164,24 @@ public class ServerInfoController extends SuperController {
      * 更新服务器资源
      */
     @ApiOperation(value = "更新服务器资源")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServerInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "602750624248893440"), @ApiImplicitParam(name = ServerInfoVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "测试服务器"), @ApiImplicitParam(name = ServerInfoVOMeta.SERVER_TYPE, value = "服务器类型", required = false, dataTypeClass = String.class, example = "virtual_machine"), @ApiImplicitParam(name = ServerInfoVOMeta.OS_VERSION, value = "系统版本", required = false, dataTypeClass = String.class, example = "599614904982306816"), @ApiImplicitParam(name = ServerInfoVOMeta.IP, value = "IP地址", required = false, dataTypeClass = String.class, example = "192,268,1,1"), @ApiImplicitParam(name = ServerInfoVOMeta.DATABASE_VERSION, value = "数据库", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerInfoVOMeta.MIDDLEWARE_VERSION, value = "中间件", required = false, dataTypeClass = String.class, example = "Tomcat"), @ApiImplicitParam(name = ServerInfoVOMeta.CPU, value = "CPU数", required = false, dataTypeClass = Integer.class, example = "2"), @ApiImplicitParam(name = ServerInfoVOMeta.MEMORY, value = "内存(G)", required = false, dataTypeClass = Integer.class, example = "4"), @ApiImplicitParam(name = ServerInfoVOMeta.SPACE_SIZE, value = "空间(G)", required = false, dataTypeClass = Integer.class, example = "100"), @ApiImplicitParam(name = ServerInfoVOMeta.SERVER_NUMBER, value = "数量", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = ServerInfoVOMeta.USERLIST, value = "用户列表", required = false, dataTypeClass = String.class, example = "root"), @ApiImplicitParam(name = ServerInfoVOMeta.PORTLIST, value = "端口列表", required = false, dataTypeClass = String.class, example = "8080"), @ApiImplicitParam(name = ServerInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServerInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "602750624248893440"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "测试服务器"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.SERVER_TYPE, value = "服务器类型", required = false, dataTypeClass = String.class, example = "virtual_machine"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.OS_VERSION, value = "系统版本", required = false, dataTypeClass = String.class, example = "599614904982306816"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.IP, value = "IP地址", required = false, dataTypeClass = String.class, example = "192,268,1,1"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.DATABASE_VERSION, value = "数据库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerInfoVOMeta.MIDDLEWARE_VERSION, value = "中间件", required = false, dataTypeClass = String.class, example = "Tomcat"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.CPU, value = "CPU数", required = false, dataTypeClass = Integer.class, example = "2"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.MEMORY, value = "内存(G)", required = false, dataTypeClass = Integer.class, example = "4"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.SPACE_SIZE, value = "空间(G)", required = false, dataTypeClass = Integer.class, example = "100"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.SERVER_NUMBER, value = "数量", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.USERLIST, value = "用户列表", required = false, dataTypeClass = String.class, example = "root"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.PORTLIST, value = "端口列表", required = false, dataTypeClass = String.class, example = "8080"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { ServerInfoVOMeta.PAGE_INDEX, ServerInfoVOMeta.PAGE_SIZE, ServerInfoVOMeta.SEARCH_FIELD, ServerInfoVOMeta.FUZZY_FIELD, ServerInfoVOMeta.SEARCH_VALUE, ServerInfoVOMeta.DIRTY_FIELDS, ServerInfoVOMeta.SORT_FIELD, ServerInfoVOMeta.SORT_TYPE, ServerInfoVOMeta.IDS })
     @SentinelResource(value = ServerInfoServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServerInfoServiceProxy.UPDATE)
@@ -157,7 +195,24 @@ public class ServerInfoController extends SuperController {
      * 保存服务器资源
      */
     @ApiOperation(value = "保存服务器资源")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServerInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "602750624248893440"), @ApiImplicitParam(name = ServerInfoVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "测试服务器"), @ApiImplicitParam(name = ServerInfoVOMeta.SERVER_TYPE, value = "服务器类型", required = false, dataTypeClass = String.class, example = "virtual_machine"), @ApiImplicitParam(name = ServerInfoVOMeta.OS_VERSION, value = "系统版本", required = false, dataTypeClass = String.class, example = "599614904982306816"), @ApiImplicitParam(name = ServerInfoVOMeta.IP, value = "IP地址", required = false, dataTypeClass = String.class, example = "192,268,1,1"), @ApiImplicitParam(name = ServerInfoVOMeta.DATABASE_VERSION, value = "数据库", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerInfoVOMeta.MIDDLEWARE_VERSION, value = "中间件", required = false, dataTypeClass = String.class, example = "Tomcat"), @ApiImplicitParam(name = ServerInfoVOMeta.CPU, value = "CPU数", required = false, dataTypeClass = Integer.class, example = "2"), @ApiImplicitParam(name = ServerInfoVOMeta.MEMORY, value = "内存(G)", required = false, dataTypeClass = Integer.class, example = "4"), @ApiImplicitParam(name = ServerInfoVOMeta.SPACE_SIZE, value = "空间(G)", required = false, dataTypeClass = Integer.class, example = "100"), @ApiImplicitParam(name = ServerInfoVOMeta.SERVER_NUMBER, value = "数量", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = ServerInfoVOMeta.USERLIST, value = "用户列表", required = false, dataTypeClass = String.class, example = "root"), @ApiImplicitParam(name = ServerInfoVOMeta.PORTLIST, value = "端口列表", required = false, dataTypeClass = String.class, example = "8080"), @ApiImplicitParam(name = ServerInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServerInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "602750624248893440"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "测试服务器"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.SERVER_TYPE, value = "服务器类型", required = false, dataTypeClass = String.class, example = "virtual_machine"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.OS_VERSION, value = "系统版本", required = false, dataTypeClass = String.class, example = "599614904982306816"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.IP, value = "IP地址", required = false, dataTypeClass = String.class, example = "192,268,1,1"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.DATABASE_VERSION, value = "数据库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerInfoVOMeta.MIDDLEWARE_VERSION, value = "中间件", required = false, dataTypeClass = String.class, example = "Tomcat"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.CPU, value = "CPU数", required = false, dataTypeClass = Integer.class, example = "2"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.MEMORY, value = "内存(G)", required = false, dataTypeClass = Integer.class, example = "4"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.SPACE_SIZE, value = "空间(G)", required = false, dataTypeClass = Integer.class, example = "100"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.SERVER_NUMBER, value = "数量", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.USERLIST, value = "用户列表", required = false, dataTypeClass = String.class, example = "root"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.PORTLIST, value = "端口列表", required = false, dataTypeClass = String.class, example = "8080"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ServerInfoVOMeta.PAGE_INDEX, ServerInfoVOMeta.PAGE_SIZE, ServerInfoVOMeta.SEARCH_FIELD, ServerInfoVOMeta.FUZZY_FIELD, ServerInfoVOMeta.SEARCH_VALUE, ServerInfoVOMeta.DIRTY_FIELDS, ServerInfoVOMeta.SORT_FIELD, ServerInfoVOMeta.SORT_TYPE, ServerInfoVOMeta.IDS })
     @SentinelResource(value = ServerInfoServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServerInfoServiceProxy.SAVE)
@@ -171,7 +226,9 @@ public class ServerInfoController extends SuperController {
      * 获取服务器资源
      */
     @ApiOperation(value = "获取服务器资源")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServerInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServerInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = ServerInfoServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServerInfoServiceProxy.GET_BY_ID)
@@ -189,7 +246,9 @@ public class ServerInfoController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取服务器资源")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServerInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServerInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ServerInfoServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServerInfoServiceProxy.GET_BY_IDS)
@@ -204,7 +263,24 @@ public class ServerInfoController extends SuperController {
      * 查询服务器资源
      */
     @ApiOperation(value = "查询服务器资源")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServerInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "602750624248893440"), @ApiImplicitParam(name = ServerInfoVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "测试服务器"), @ApiImplicitParam(name = ServerInfoVOMeta.SERVER_TYPE, value = "服务器类型", required = false, dataTypeClass = String.class, example = "virtual_machine"), @ApiImplicitParam(name = ServerInfoVOMeta.OS_VERSION, value = "系统版本", required = false, dataTypeClass = String.class, example = "599614904982306816"), @ApiImplicitParam(name = ServerInfoVOMeta.IP, value = "IP地址", required = false, dataTypeClass = String.class, example = "192,268,1,1"), @ApiImplicitParam(name = ServerInfoVOMeta.DATABASE_VERSION, value = "数据库", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerInfoVOMeta.MIDDLEWARE_VERSION, value = "中间件", required = false, dataTypeClass = String.class, example = "Tomcat"), @ApiImplicitParam(name = ServerInfoVOMeta.CPU, value = "CPU数", required = false, dataTypeClass = Integer.class, example = "2"), @ApiImplicitParam(name = ServerInfoVOMeta.MEMORY, value = "内存(G)", required = false, dataTypeClass = Integer.class, example = "4"), @ApiImplicitParam(name = ServerInfoVOMeta.SPACE_SIZE, value = "空间(G)", required = false, dataTypeClass = Integer.class, example = "100"), @ApiImplicitParam(name = ServerInfoVOMeta.SERVER_NUMBER, value = "数量", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = ServerInfoVOMeta.USERLIST, value = "用户列表", required = false, dataTypeClass = String.class, example = "root"), @ApiImplicitParam(name = ServerInfoVOMeta.PORTLIST, value = "端口列表", required = false, dataTypeClass = String.class, example = "8080"), @ApiImplicitParam(name = ServerInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServerInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "602750624248893440"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "测试服务器"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.SERVER_TYPE, value = "服务器类型", required = false, dataTypeClass = String.class, example = "virtual_machine"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.OS_VERSION, value = "系统版本", required = false, dataTypeClass = String.class, example = "599614904982306816"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.IP, value = "IP地址", required = false, dataTypeClass = String.class, example = "192,268,1,1"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.DATABASE_VERSION, value = "数据库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerInfoVOMeta.MIDDLEWARE_VERSION, value = "中间件", required = false, dataTypeClass = String.class, example = "Tomcat"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.CPU, value = "CPU数", required = false, dataTypeClass = Integer.class, example = "2"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.MEMORY, value = "内存(G)", required = false, dataTypeClass = Integer.class, example = "4"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.SPACE_SIZE, value = "空间(G)", required = false, dataTypeClass = Integer.class, example = "100"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.SERVER_NUMBER, value = "数量", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.USERLIST, value = "用户列表", required = false, dataTypeClass = String.class, example = "root"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.PORTLIST, value = "端口列表", required = false, dataTypeClass = String.class, example = "8080"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ServerInfoVOMeta.PAGE_INDEX, ServerInfoVOMeta.PAGE_SIZE })
     @SentinelResource(value = ServerInfoServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServerInfoServiceProxy.QUERY_LIST)
@@ -219,7 +295,24 @@ public class ServerInfoController extends SuperController {
      * 分页查询服务器资源
      */
     @ApiOperation(value = "分页查询服务器资源")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServerInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "602750624248893440"), @ApiImplicitParam(name = ServerInfoVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "测试服务器"), @ApiImplicitParam(name = ServerInfoVOMeta.SERVER_TYPE, value = "服务器类型", required = false, dataTypeClass = String.class, example = "virtual_machine"), @ApiImplicitParam(name = ServerInfoVOMeta.OS_VERSION, value = "系统版本", required = false, dataTypeClass = String.class, example = "599614904982306816"), @ApiImplicitParam(name = ServerInfoVOMeta.IP, value = "IP地址", required = false, dataTypeClass = String.class, example = "192,268,1,1"), @ApiImplicitParam(name = ServerInfoVOMeta.DATABASE_VERSION, value = "数据库", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerInfoVOMeta.MIDDLEWARE_VERSION, value = "中间件", required = false, dataTypeClass = String.class, example = "Tomcat"), @ApiImplicitParam(name = ServerInfoVOMeta.CPU, value = "CPU数", required = false, dataTypeClass = Integer.class, example = "2"), @ApiImplicitParam(name = ServerInfoVOMeta.MEMORY, value = "内存(G)", required = false, dataTypeClass = Integer.class, example = "4"), @ApiImplicitParam(name = ServerInfoVOMeta.SPACE_SIZE, value = "空间(G)", required = false, dataTypeClass = Integer.class, example = "100"), @ApiImplicitParam(name = ServerInfoVOMeta.SERVER_NUMBER, value = "数量", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = ServerInfoVOMeta.USERLIST, value = "用户列表", required = false, dataTypeClass = String.class, example = "root"), @ApiImplicitParam(name = ServerInfoVOMeta.PORTLIST, value = "端口列表", required = false, dataTypeClass = String.class, example = "8080"), @ApiImplicitParam(name = ServerInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServerInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServerInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "602750624248893440"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "测试服务器"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.SERVER_TYPE, value = "服务器类型", required = false, dataTypeClass = String.class, example = "virtual_machine"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.OS_VERSION, value = "系统版本", required = false, dataTypeClass = String.class, example = "599614904982306816"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.IP, value = "IP地址", required = false, dataTypeClass = String.class, example = "192,268,1,1"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.DATABASE_VERSION, value = "数据库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerInfoVOMeta.MIDDLEWARE_VERSION, value = "中间件", required = false, dataTypeClass = String.class, example = "Tomcat"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.CPU, value = "CPU数", required = false, dataTypeClass = Integer.class, example = "2"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.MEMORY, value = "内存(G)", required = false, dataTypeClass = Integer.class, example = "4"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.SPACE_SIZE, value = "空间(G)", required = false, dataTypeClass = Integer.class, example = "100"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.SERVER_NUMBER, value = "数量", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.USERLIST, value = "用户列表", required = false, dataTypeClass = String.class, example = "root"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.PORTLIST, value = "端口列表", required = false, dataTypeClass = String.class, example = "8080"),
+		@ApiImplicitParam(name = ServerInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServerInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = ServerInfoServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServerInfoServiceProxy.QUERY_PAGED_LIST)

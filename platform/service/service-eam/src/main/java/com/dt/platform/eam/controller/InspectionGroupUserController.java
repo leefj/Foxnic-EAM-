@@ -57,7 +57,11 @@ public class InspectionGroupUserController extends SuperController {
      * 添加班组人员
      */
     @ApiOperation(value = "添加班组人员")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionGroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionGroupUserVOMeta.GROUP_ID, value = "班组", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionGroupUserVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionGroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionGroupUserVOMeta.GROUP_ID, value = "班组", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionGroupUserVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = InspectionGroupUserServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionGroupUserServiceProxy.INSERT)
@@ -71,7 +75,9 @@ public class InspectionGroupUserController extends SuperController {
      * 删除班组人员
      */
     @ApiOperation(value = "删除班组人员")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionGroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionGroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = InspectionGroupUserServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionGroupUserServiceProxy.DELETE)
@@ -85,7 +91,9 @@ public class InspectionGroupUserController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除班组人员")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionGroupUserVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionGroupUserVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = InspectionGroupUserServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionGroupUserServiceProxy.DELETE_BY_IDS)
@@ -98,7 +106,11 @@ public class InspectionGroupUserController extends SuperController {
      * 更新班组人员
      */
     @ApiOperation(value = "更新班组人员")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionGroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionGroupUserVOMeta.GROUP_ID, value = "班组", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionGroupUserVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionGroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionGroupUserVOMeta.GROUP_ID, value = "班组", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionGroupUserVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { InspectionGroupUserVOMeta.PAGE_INDEX, InspectionGroupUserVOMeta.PAGE_SIZE, InspectionGroupUserVOMeta.SEARCH_FIELD, InspectionGroupUserVOMeta.FUZZY_FIELD, InspectionGroupUserVOMeta.SEARCH_VALUE, InspectionGroupUserVOMeta.DIRTY_FIELDS, InspectionGroupUserVOMeta.SORT_FIELD, InspectionGroupUserVOMeta.SORT_TYPE, InspectionGroupUserVOMeta.IDS })
     @SentinelResource(value = InspectionGroupUserServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionGroupUserServiceProxy.UPDATE)
@@ -112,7 +124,11 @@ public class InspectionGroupUserController extends SuperController {
      * 保存班组人员
      */
     @ApiOperation(value = "保存班组人员")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionGroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionGroupUserVOMeta.GROUP_ID, value = "班组", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionGroupUserVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionGroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionGroupUserVOMeta.GROUP_ID, value = "班组", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionGroupUserVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InspectionGroupUserVOMeta.PAGE_INDEX, InspectionGroupUserVOMeta.PAGE_SIZE, InspectionGroupUserVOMeta.SEARCH_FIELD, InspectionGroupUserVOMeta.FUZZY_FIELD, InspectionGroupUserVOMeta.SEARCH_VALUE, InspectionGroupUserVOMeta.DIRTY_FIELDS, InspectionGroupUserVOMeta.SORT_FIELD, InspectionGroupUserVOMeta.SORT_TYPE, InspectionGroupUserVOMeta.IDS })
     @SentinelResource(value = InspectionGroupUserServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionGroupUserServiceProxy.SAVE)
@@ -126,7 +142,9 @@ public class InspectionGroupUserController extends SuperController {
      * 获取班组人员
      */
     @ApiOperation(value = "获取班组人员")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionGroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionGroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = InspectionGroupUserServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionGroupUserServiceProxy.GET_BY_ID)
@@ -142,7 +160,9 @@ public class InspectionGroupUserController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取班组人员")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionGroupUserVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionGroupUserVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = InspectionGroupUserServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionGroupUserServiceProxy.GET_BY_IDS)
@@ -157,7 +177,11 @@ public class InspectionGroupUserController extends SuperController {
      * 查询班组人员
      */
     @ApiOperation(value = "查询班组人员")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionGroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionGroupUserVOMeta.GROUP_ID, value = "班组", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionGroupUserVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionGroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionGroupUserVOMeta.GROUP_ID, value = "班组", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionGroupUserVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InspectionGroupUserVOMeta.PAGE_INDEX, InspectionGroupUserVOMeta.PAGE_SIZE })
     @SentinelResource(value = InspectionGroupUserServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionGroupUserServiceProxy.QUERY_LIST)
@@ -172,7 +196,11 @@ public class InspectionGroupUserController extends SuperController {
      * 分页查询班组人员
      */
     @ApiOperation(value = "分页查询班组人员")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionGroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionGroupUserVOMeta.GROUP_ID, value = "班组", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionGroupUserVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionGroupUserVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionGroupUserVOMeta.GROUP_ID, value = "班组", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionGroupUserVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = InspectionGroupUserServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionGroupUserServiceProxy.QUERY_PAGED_LIST)

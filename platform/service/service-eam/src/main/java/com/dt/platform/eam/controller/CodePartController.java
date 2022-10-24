@@ -57,7 +57,13 @@ public class CodePartController extends SuperController {
      * 添加编码字段
      */
     @ApiOperation(value = "添加编码字段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodePartVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = CodePartVOMeta.CODE, value = "字段", required = false, dataTypeClass = String.class, example = "${time,yyyy}"), @ApiImplicitParam(name = CodePartVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "年-(2021)"), @ApiImplicitParam(name = CodePartVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "time"), @ApiImplicitParam(name = CodePartVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class, example = "0") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodePartVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = CodePartVOMeta.CODE, value = "字段", required = false, dataTypeClass = String.class, example = "${time,yyyy}"),
+		@ApiImplicitParam(name = CodePartVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "年-(2021)"),
+		@ApiImplicitParam(name = CodePartVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "time"),
+		@ApiImplicitParam(name = CodePartVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class, example = "0")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = CodePartServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodePartServiceProxy.INSERT)
@@ -71,7 +77,9 @@ public class CodePartController extends SuperController {
      * 删除编码字段
      */
     @ApiOperation(value = "删除编码字段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodePartVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodePartVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = CodePartServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodePartServiceProxy.DELETE)
@@ -85,7 +93,9 @@ public class CodePartController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除编码字段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodePartVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodePartVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = CodePartServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodePartServiceProxy.DELETE_BY_IDS)
@@ -98,7 +108,13 @@ public class CodePartController extends SuperController {
      * 更新编码字段
      */
     @ApiOperation(value = "更新编码字段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodePartVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = CodePartVOMeta.CODE, value = "字段", required = false, dataTypeClass = String.class, example = "${time,yyyy}"), @ApiImplicitParam(name = CodePartVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "年-(2021)"), @ApiImplicitParam(name = CodePartVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "time"), @ApiImplicitParam(name = CodePartVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class, example = "0") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodePartVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = CodePartVOMeta.CODE, value = "字段", required = false, dataTypeClass = String.class, example = "${time,yyyy}"),
+		@ApiImplicitParam(name = CodePartVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "年-(2021)"),
+		@ApiImplicitParam(name = CodePartVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "time"),
+		@ApiImplicitParam(name = CodePartVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class, example = "0")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { CodePartVOMeta.PAGE_INDEX, CodePartVOMeta.PAGE_SIZE, CodePartVOMeta.SEARCH_FIELD, CodePartVOMeta.FUZZY_FIELD, CodePartVOMeta.SEARCH_VALUE, CodePartVOMeta.DIRTY_FIELDS, CodePartVOMeta.SORT_FIELD, CodePartVOMeta.SORT_TYPE, CodePartVOMeta.IDS })
     @SentinelResource(value = CodePartServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodePartServiceProxy.UPDATE)
@@ -112,7 +128,13 @@ public class CodePartController extends SuperController {
      * 保存编码字段
      */
     @ApiOperation(value = "保存编码字段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodePartVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = CodePartVOMeta.CODE, value = "字段", required = false, dataTypeClass = String.class, example = "${time,yyyy}"), @ApiImplicitParam(name = CodePartVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "年-(2021)"), @ApiImplicitParam(name = CodePartVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "time"), @ApiImplicitParam(name = CodePartVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class, example = "0") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodePartVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = CodePartVOMeta.CODE, value = "字段", required = false, dataTypeClass = String.class, example = "${time,yyyy}"),
+		@ApiImplicitParam(name = CodePartVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "年-(2021)"),
+		@ApiImplicitParam(name = CodePartVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "time"),
+		@ApiImplicitParam(name = CodePartVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class, example = "0")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { CodePartVOMeta.PAGE_INDEX, CodePartVOMeta.PAGE_SIZE, CodePartVOMeta.SEARCH_FIELD, CodePartVOMeta.FUZZY_FIELD, CodePartVOMeta.SEARCH_VALUE, CodePartVOMeta.DIRTY_FIELDS, CodePartVOMeta.SORT_FIELD, CodePartVOMeta.SORT_TYPE, CodePartVOMeta.IDS })
     @SentinelResource(value = CodePartServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodePartServiceProxy.SAVE)
@@ -126,7 +148,9 @@ public class CodePartController extends SuperController {
      * 获取编码字段
      */
     @ApiOperation(value = "获取编码字段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodePartVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodePartVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = CodePartServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodePartServiceProxy.GET_BY_ID)
@@ -142,7 +166,9 @@ public class CodePartController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取编码字段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodePartVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodePartVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = CodePartServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodePartServiceProxy.GET_BY_IDS)
@@ -157,7 +183,13 @@ public class CodePartController extends SuperController {
      * 查询编码字段
      */
     @ApiOperation(value = "查询编码字段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodePartVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = CodePartVOMeta.CODE, value = "字段", required = false, dataTypeClass = String.class, example = "${time,yyyy}"), @ApiImplicitParam(name = CodePartVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "年-(2021)"), @ApiImplicitParam(name = CodePartVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "time"), @ApiImplicitParam(name = CodePartVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class, example = "0") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodePartVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = CodePartVOMeta.CODE, value = "字段", required = false, dataTypeClass = String.class, example = "${time,yyyy}"),
+		@ApiImplicitParam(name = CodePartVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "年-(2021)"),
+		@ApiImplicitParam(name = CodePartVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "time"),
+		@ApiImplicitParam(name = CodePartVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class, example = "0")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { CodePartVOMeta.PAGE_INDEX, CodePartVOMeta.PAGE_SIZE })
     @SentinelResource(value = CodePartServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodePartServiceProxy.QUERY_LIST)
@@ -172,7 +204,13 @@ public class CodePartController extends SuperController {
      * 分页查询编码字段
      */
     @ApiOperation(value = "分页查询编码字段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodePartVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = CodePartVOMeta.CODE, value = "字段", required = false, dataTypeClass = String.class, example = "${time,yyyy}"), @ApiImplicitParam(name = CodePartVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "年-(2021)"), @ApiImplicitParam(name = CodePartVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "time"), @ApiImplicitParam(name = CodePartVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class, example = "0") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodePartVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = CodePartVOMeta.CODE, value = "字段", required = false, dataTypeClass = String.class, example = "${time,yyyy}"),
+		@ApiImplicitParam(name = CodePartVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "年-(2021)"),
+		@ApiImplicitParam(name = CodePartVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "time"),
+		@ApiImplicitParam(name = CodePartVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class, example = "0")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = CodePartServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodePartServiceProxy.QUERY_PAGED_LIST)

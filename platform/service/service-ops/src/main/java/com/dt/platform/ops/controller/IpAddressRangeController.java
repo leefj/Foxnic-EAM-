@@ -59,7 +59,17 @@ public class IpAddressRangeController extends SuperController {
      * 添加IP地址段
      */
     @ApiOperation(value = "添加IP地址段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = IpAddressRangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "605516543861719040"), @ApiImplicitParam(name = IpAddressRangeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = IpAddressRangeVOMeta.ADDRESS_SEGMENT, value = "地址段", required = false, dataTypeClass = String.class, example = "10.224.18.0/24"), @ApiImplicitParam(name = IpAddressRangeVOMeta.REGION_ID, value = "区域", required = false, dataTypeClass = String.class, example = "dc"), @ApiImplicitParam(name = IpAddressRangeVOMeta.CLASS_ID, value = "分类", required = false, dataTypeClass = String.class, example = "admin_network"), @ApiImplicitParam(name = IpAddressRangeVOMeta.PROD_ID, value = "环境", required = false, dataTypeClass = String.class, example = "prod"), @ApiImplicitParam(name = IpAddressRangeVOMeta.SCENE, value = "场景", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = IpAddressRangeVOMeta.VLAN, value = "VLAN", required = false, dataTypeClass = String.class, example = "100"), @ApiImplicitParam(name = IpAddressRangeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "605516543861719040"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.ADDRESS_SEGMENT, value = "地址段", required = false, dataTypeClass = String.class, example = "10.224.18.0/24"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.REGION_ID, value = "区域", required = false, dataTypeClass = String.class, example = "dc"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.CLASS_ID, value = "分类", required = false, dataTypeClass = String.class, example = "admin_network"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.PROD_ID, value = "环境", required = false, dataTypeClass = String.class, example = "prod"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.SCENE, value = "场景", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.VLAN, value = "VLAN", required = false, dataTypeClass = String.class, example = "100"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = IpAddressRangeServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(IpAddressRangeServiceProxy.INSERT)
@@ -73,7 +83,9 @@ public class IpAddressRangeController extends SuperController {
      * 删除IP地址段
      */
     @ApiOperation(value = "删除IP地址段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = IpAddressRangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "605516543861719040") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "605516543861719040")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = IpAddressRangeServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(IpAddressRangeServiceProxy.DELETE)
@@ -98,7 +110,9 @@ public class IpAddressRangeController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除IP地址段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = IpAddressRangeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = IpAddressRangeServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(IpAddressRangeServiceProxy.DELETE_BY_IDS)
@@ -143,7 +157,17 @@ public class IpAddressRangeController extends SuperController {
      * 更新IP地址段
      */
     @ApiOperation(value = "更新IP地址段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = IpAddressRangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "605516543861719040"), @ApiImplicitParam(name = IpAddressRangeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = IpAddressRangeVOMeta.ADDRESS_SEGMENT, value = "地址段", required = false, dataTypeClass = String.class, example = "10.224.18.0/24"), @ApiImplicitParam(name = IpAddressRangeVOMeta.REGION_ID, value = "区域", required = false, dataTypeClass = String.class, example = "dc"), @ApiImplicitParam(name = IpAddressRangeVOMeta.CLASS_ID, value = "分类", required = false, dataTypeClass = String.class, example = "admin_network"), @ApiImplicitParam(name = IpAddressRangeVOMeta.PROD_ID, value = "环境", required = false, dataTypeClass = String.class, example = "prod"), @ApiImplicitParam(name = IpAddressRangeVOMeta.SCENE, value = "场景", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = IpAddressRangeVOMeta.VLAN, value = "VLAN", required = false, dataTypeClass = String.class, example = "100"), @ApiImplicitParam(name = IpAddressRangeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "605516543861719040"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.ADDRESS_SEGMENT, value = "地址段", required = false, dataTypeClass = String.class, example = "10.224.18.0/24"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.REGION_ID, value = "区域", required = false, dataTypeClass = String.class, example = "dc"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.CLASS_ID, value = "分类", required = false, dataTypeClass = String.class, example = "admin_network"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.PROD_ID, value = "环境", required = false, dataTypeClass = String.class, example = "prod"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.SCENE, value = "场景", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.VLAN, value = "VLAN", required = false, dataTypeClass = String.class, example = "100"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { IpAddressRangeVOMeta.PAGE_INDEX, IpAddressRangeVOMeta.PAGE_SIZE, IpAddressRangeVOMeta.SEARCH_FIELD, IpAddressRangeVOMeta.FUZZY_FIELD, IpAddressRangeVOMeta.SEARCH_VALUE, IpAddressRangeVOMeta.DIRTY_FIELDS, IpAddressRangeVOMeta.SORT_FIELD, IpAddressRangeVOMeta.SORT_TYPE, IpAddressRangeVOMeta.IDS })
     @SentinelResource(value = IpAddressRangeServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(IpAddressRangeServiceProxy.UPDATE)
@@ -157,7 +181,17 @@ public class IpAddressRangeController extends SuperController {
      * 保存IP地址段
      */
     @ApiOperation(value = "保存IP地址段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = IpAddressRangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "605516543861719040"), @ApiImplicitParam(name = IpAddressRangeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = IpAddressRangeVOMeta.ADDRESS_SEGMENT, value = "地址段", required = false, dataTypeClass = String.class, example = "10.224.18.0/24"), @ApiImplicitParam(name = IpAddressRangeVOMeta.REGION_ID, value = "区域", required = false, dataTypeClass = String.class, example = "dc"), @ApiImplicitParam(name = IpAddressRangeVOMeta.CLASS_ID, value = "分类", required = false, dataTypeClass = String.class, example = "admin_network"), @ApiImplicitParam(name = IpAddressRangeVOMeta.PROD_ID, value = "环境", required = false, dataTypeClass = String.class, example = "prod"), @ApiImplicitParam(name = IpAddressRangeVOMeta.SCENE, value = "场景", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = IpAddressRangeVOMeta.VLAN, value = "VLAN", required = false, dataTypeClass = String.class, example = "100"), @ApiImplicitParam(name = IpAddressRangeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "605516543861719040"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.ADDRESS_SEGMENT, value = "地址段", required = false, dataTypeClass = String.class, example = "10.224.18.0/24"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.REGION_ID, value = "区域", required = false, dataTypeClass = String.class, example = "dc"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.CLASS_ID, value = "分类", required = false, dataTypeClass = String.class, example = "admin_network"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.PROD_ID, value = "环境", required = false, dataTypeClass = String.class, example = "prod"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.SCENE, value = "场景", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.VLAN, value = "VLAN", required = false, dataTypeClass = String.class, example = "100"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { IpAddressRangeVOMeta.PAGE_INDEX, IpAddressRangeVOMeta.PAGE_SIZE, IpAddressRangeVOMeta.SEARCH_FIELD, IpAddressRangeVOMeta.FUZZY_FIELD, IpAddressRangeVOMeta.SEARCH_VALUE, IpAddressRangeVOMeta.DIRTY_FIELDS, IpAddressRangeVOMeta.SORT_FIELD, IpAddressRangeVOMeta.SORT_TYPE, IpAddressRangeVOMeta.IDS })
     @SentinelResource(value = IpAddressRangeServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(IpAddressRangeServiceProxy.SAVE)
@@ -171,7 +205,9 @@ public class IpAddressRangeController extends SuperController {
      * 获取IP地址段
      */
     @ApiOperation(value = "获取IP地址段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = IpAddressRangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = IpAddressRangeServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(IpAddressRangeServiceProxy.GET_BY_ID)
@@ -189,7 +225,9 @@ public class IpAddressRangeController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取IP地址段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = IpAddressRangeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = IpAddressRangeServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(IpAddressRangeServiceProxy.GET_BY_IDS)
@@ -204,7 +242,17 @@ public class IpAddressRangeController extends SuperController {
      * 查询IP地址段
      */
     @ApiOperation(value = "查询IP地址段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = IpAddressRangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "605516543861719040"), @ApiImplicitParam(name = IpAddressRangeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = IpAddressRangeVOMeta.ADDRESS_SEGMENT, value = "地址段", required = false, dataTypeClass = String.class, example = "10.224.18.0/24"), @ApiImplicitParam(name = IpAddressRangeVOMeta.REGION_ID, value = "区域", required = false, dataTypeClass = String.class, example = "dc"), @ApiImplicitParam(name = IpAddressRangeVOMeta.CLASS_ID, value = "分类", required = false, dataTypeClass = String.class, example = "admin_network"), @ApiImplicitParam(name = IpAddressRangeVOMeta.PROD_ID, value = "环境", required = false, dataTypeClass = String.class, example = "prod"), @ApiImplicitParam(name = IpAddressRangeVOMeta.SCENE, value = "场景", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = IpAddressRangeVOMeta.VLAN, value = "VLAN", required = false, dataTypeClass = String.class, example = "100"), @ApiImplicitParam(name = IpAddressRangeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "605516543861719040"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.ADDRESS_SEGMENT, value = "地址段", required = false, dataTypeClass = String.class, example = "10.224.18.0/24"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.REGION_ID, value = "区域", required = false, dataTypeClass = String.class, example = "dc"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.CLASS_ID, value = "分类", required = false, dataTypeClass = String.class, example = "admin_network"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.PROD_ID, value = "环境", required = false, dataTypeClass = String.class, example = "prod"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.SCENE, value = "场景", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.VLAN, value = "VLAN", required = false, dataTypeClass = String.class, example = "100"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { IpAddressRangeVOMeta.PAGE_INDEX, IpAddressRangeVOMeta.PAGE_SIZE })
     @SentinelResource(value = IpAddressRangeServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(IpAddressRangeServiceProxy.QUERY_LIST)
@@ -219,7 +267,17 @@ public class IpAddressRangeController extends SuperController {
      * 分页查询IP地址段
      */
     @ApiOperation(value = "分页查询IP地址段")
-    @ApiImplicitParams({ @ApiImplicitParam(name = IpAddressRangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "605516543861719040"), @ApiImplicitParam(name = IpAddressRangeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = IpAddressRangeVOMeta.ADDRESS_SEGMENT, value = "地址段", required = false, dataTypeClass = String.class, example = "10.224.18.0/24"), @ApiImplicitParam(name = IpAddressRangeVOMeta.REGION_ID, value = "区域", required = false, dataTypeClass = String.class, example = "dc"), @ApiImplicitParam(name = IpAddressRangeVOMeta.CLASS_ID, value = "分类", required = false, dataTypeClass = String.class, example = "admin_network"), @ApiImplicitParam(name = IpAddressRangeVOMeta.PROD_ID, value = "环境", required = false, dataTypeClass = String.class, example = "prod"), @ApiImplicitParam(name = IpAddressRangeVOMeta.SCENE, value = "场景", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = IpAddressRangeVOMeta.VLAN, value = "VLAN", required = false, dataTypeClass = String.class, example = "100"), @ApiImplicitParam(name = IpAddressRangeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "605516543861719040"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.ADDRESS_SEGMENT, value = "地址段", required = false, dataTypeClass = String.class, example = "10.224.18.0/24"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.REGION_ID, value = "区域", required = false, dataTypeClass = String.class, example = "dc"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.CLASS_ID, value = "分类", required = false, dataTypeClass = String.class, example = "admin_network"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.PROD_ID, value = "环境", required = false, dataTypeClass = String.class, example = "prod"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.SCENE, value = "场景", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.VLAN, value = "VLAN", required = false, dataTypeClass = String.class, example = "100"),
+		@ApiImplicitParam(name = IpAddressRangeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = IpAddressRangeServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(IpAddressRangeServiceProxy.QUERY_PAGED_LIST)

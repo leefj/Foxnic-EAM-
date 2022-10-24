@@ -70,7 +70,23 @@ public class AssetStorageController extends SuperController implements BpmCallba
      * 添加资产入库
      */
     @ApiOperation(value = "添加资产入库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStorageVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.SUPPLIER_ID, value = "供应商", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.SUPPLIER_INFO, value = "供应商备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.OWN_COMPANY_ID, value = "归属公司", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.MANAGER_USER_ID, value = "管理人员", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.LOCATION_NAME, value = "位置信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.CONTENT, value = "入库说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetStorageVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.CUSTOM_DATA, value = "自定义数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStorageVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.SUPPLIER_ID, value = "供应商", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.SUPPLIER_INFO, value = "供应商备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.OWN_COMPANY_ID, value = "归属公司", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.MANAGER_USER_ID, value = "管理人员", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.LOCATION_NAME, value = "位置信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.CONTENT, value = "入库说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.CUSTOM_DATA, value = "自定义数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetStorageServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStorageServiceProxy.INSERT)
@@ -84,7 +100,9 @@ public class AssetStorageController extends SuperController implements BpmCallba
      * 删除资产入库
      */
     @ApiOperation(value = "删除资产入库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStorageVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStorageVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetStorageServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStorageServiceProxy.DELETE)
@@ -98,7 +116,9 @@ public class AssetStorageController extends SuperController implements BpmCallba
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产入库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStorageVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStorageVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetStorageServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStorageServiceProxy.DELETE_BY_IDS)
@@ -111,7 +131,23 @@ public class AssetStorageController extends SuperController implements BpmCallba
      * 更新资产入库
      */
     @ApiOperation(value = "更新资产入库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStorageVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.SUPPLIER_ID, value = "供应商", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.SUPPLIER_INFO, value = "供应商备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.OWN_COMPANY_ID, value = "归属公司", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.MANAGER_USER_ID, value = "管理人员", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.LOCATION_NAME, value = "位置信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.CONTENT, value = "入库说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetStorageVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.CUSTOM_DATA, value = "自定义数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStorageVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.SUPPLIER_ID, value = "供应商", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.SUPPLIER_INFO, value = "供应商备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.OWN_COMPANY_ID, value = "归属公司", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.MANAGER_USER_ID, value = "管理人员", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.LOCATION_NAME, value = "位置信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.CONTENT, value = "入库说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.CUSTOM_DATA, value = "自定义数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetStorageVOMeta.PAGE_INDEX, AssetStorageVOMeta.PAGE_SIZE, AssetStorageVOMeta.SEARCH_FIELD, AssetStorageVOMeta.FUZZY_FIELD, AssetStorageVOMeta.SEARCH_VALUE, AssetStorageVOMeta.DIRTY_FIELDS, AssetStorageVOMeta.SORT_FIELD, AssetStorageVOMeta.SORT_TYPE, AssetStorageVOMeta.IDS })
     @SentinelResource(value = AssetStorageServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStorageServiceProxy.UPDATE)
@@ -125,7 +161,23 @@ public class AssetStorageController extends SuperController implements BpmCallba
      * 保存资产入库
      */
     @ApiOperation(value = "保存资产入库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStorageVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.SUPPLIER_ID, value = "供应商", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.SUPPLIER_INFO, value = "供应商备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.OWN_COMPANY_ID, value = "归属公司", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.MANAGER_USER_ID, value = "管理人员", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.LOCATION_NAME, value = "位置信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.CONTENT, value = "入库说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetStorageVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.CUSTOM_DATA, value = "自定义数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStorageVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.SUPPLIER_ID, value = "供应商", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.SUPPLIER_INFO, value = "供应商备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.OWN_COMPANY_ID, value = "归属公司", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.MANAGER_USER_ID, value = "管理人员", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.LOCATION_NAME, value = "位置信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.CONTENT, value = "入库说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.CUSTOM_DATA, value = "自定义数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetStorageVOMeta.PAGE_INDEX, AssetStorageVOMeta.PAGE_SIZE, AssetStorageVOMeta.SEARCH_FIELD, AssetStorageVOMeta.FUZZY_FIELD, AssetStorageVOMeta.SEARCH_VALUE, AssetStorageVOMeta.DIRTY_FIELDS, AssetStorageVOMeta.SORT_FIELD, AssetStorageVOMeta.SORT_TYPE, AssetStorageVOMeta.IDS })
     @SentinelResource(value = AssetStorageServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStorageServiceProxy.SAVE)
@@ -139,7 +191,9 @@ public class AssetStorageController extends SuperController implements BpmCallba
      * 获取资产入库
      */
     @ApiOperation(value = "获取资产入库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStorageVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStorageVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetStorageServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStorageServiceProxy.GET_BY_ID)
@@ -159,7 +213,9 @@ public class AssetStorageController extends SuperController implements BpmCallba
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取资产入库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStorageVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStorageVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetStorageServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStorageServiceProxy.GET_BY_IDS)
@@ -174,7 +230,23 @@ public class AssetStorageController extends SuperController implements BpmCallba
      * 查询资产入库
      */
     @ApiOperation(value = "查询资产入库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStorageVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.SUPPLIER_ID, value = "供应商", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.SUPPLIER_INFO, value = "供应商备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.OWN_COMPANY_ID, value = "归属公司", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.MANAGER_USER_ID, value = "管理人员", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.LOCATION_NAME, value = "位置信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.CONTENT, value = "入库说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetStorageVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.CUSTOM_DATA, value = "自定义数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStorageVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.SUPPLIER_ID, value = "供应商", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.SUPPLIER_INFO, value = "供应商备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.OWN_COMPANY_ID, value = "归属公司", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.MANAGER_USER_ID, value = "管理人员", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.LOCATION_NAME, value = "位置信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.CONTENT, value = "入库说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.CUSTOM_DATA, value = "自定义数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetStorageVOMeta.PAGE_INDEX, AssetStorageVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetStorageServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStorageServiceProxy.QUERY_LIST)
@@ -189,7 +261,23 @@ public class AssetStorageController extends SuperController implements BpmCallba
      * 分页查询资产入库
      */
     @ApiOperation(value = "分页查询资产入库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStorageVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.SUPPLIER_ID, value = "供应商", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.SUPPLIER_INFO, value = "供应商备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.OWN_COMPANY_ID, value = "归属公司", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.MANAGER_USER_ID, value = "管理人员", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.LOCATION_NAME, value = "位置信息", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.CONTENT, value = "入库说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetStorageVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStorageVOMeta.CUSTOM_DATA, value = "自定义数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStorageVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.SUPPLIER_ID, value = "供应商", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.SUPPLIER_INFO, value = "供应商备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.OWN_COMPANY_ID, value = "归属公司", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.MANAGER_USER_ID, value = "管理人员", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.LOCATION_NAME, value = "位置信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.CONTENT, value = "入库说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStorageVOMeta.CUSTOM_DATA, value = "自定义数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetStorageServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStorageServiceProxy.QUERY_PAGED_LIST)
@@ -210,7 +298,9 @@ public class AssetStorageController extends SuperController implements BpmCallba
      * 确认
      */
     @ApiOperation(value = "确认")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStorageVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStorageVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 13)
     @SentinelResource(value = AssetStorageServiceProxy.CONFIRM_OPERATION, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @RequestMapping(AssetStorageServiceProxy.CONFIRM_OPERATION)

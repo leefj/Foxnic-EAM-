@@ -58,7 +58,14 @@ public class CiphertextHistoryController extends SuperController {
      * 添加历史记录
      */
     @ApiOperation(value = "添加历史记录")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CiphertextHistoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "635053950277517312"), @ApiImplicitParam(name = CiphertextHistoryVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "ciphertext_box_conf"), @ApiImplicitParam(name = CiphertextHistoryVOMeta.BOX_TYPE, value = "密文箱类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CiphertextHistoryVOMeta.SOURCE_VALUE, value = "来源", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CiphertextHistoryVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = CiphertextHistoryVOMeta.ENCRYPTION_CONTENT, value = "加密内容", required = false, dataTypeClass = String.class, example = "121212dsf") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "635053950277517312"),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "ciphertext_box_conf"),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.BOX_TYPE, value = "密文箱类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.SOURCE_VALUE, value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.ENCRYPTION_CONTENT, value = "加密内容", required = false, dataTypeClass = String.class, example = "121212dsf")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = CiphertextHistoryServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CiphertextHistoryServiceProxy.INSERT)
@@ -72,7 +79,9 @@ public class CiphertextHistoryController extends SuperController {
      * 删除历史记录
      */
     @ApiOperation(value = "删除历史记录")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CiphertextHistoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "635053950277517312") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "635053950277517312")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = CiphertextHistoryServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CiphertextHistoryServiceProxy.DELETE)
@@ -97,7 +106,9 @@ public class CiphertextHistoryController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除历史记录")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CiphertextHistoryVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = CiphertextHistoryServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CiphertextHistoryServiceProxy.DELETE_BY_IDS)
@@ -142,7 +153,14 @@ public class CiphertextHistoryController extends SuperController {
      * 更新历史记录
      */
     @ApiOperation(value = "更新历史记录")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CiphertextHistoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "635053950277517312"), @ApiImplicitParam(name = CiphertextHistoryVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "ciphertext_box_conf"), @ApiImplicitParam(name = CiphertextHistoryVOMeta.BOX_TYPE, value = "密文箱类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CiphertextHistoryVOMeta.SOURCE_VALUE, value = "来源", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CiphertextHistoryVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = CiphertextHistoryVOMeta.ENCRYPTION_CONTENT, value = "加密内容", required = false, dataTypeClass = String.class, example = "121212dsf") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "635053950277517312"),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "ciphertext_box_conf"),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.BOX_TYPE, value = "密文箱类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.SOURCE_VALUE, value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.ENCRYPTION_CONTENT, value = "加密内容", required = false, dataTypeClass = String.class, example = "121212dsf")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { CiphertextHistoryVOMeta.PAGE_INDEX, CiphertextHistoryVOMeta.PAGE_SIZE, CiphertextHistoryVOMeta.SEARCH_FIELD, CiphertextHistoryVOMeta.FUZZY_FIELD, CiphertextHistoryVOMeta.SEARCH_VALUE, CiphertextHistoryVOMeta.DIRTY_FIELDS, CiphertextHistoryVOMeta.SORT_FIELD, CiphertextHistoryVOMeta.SORT_TYPE, CiphertextHistoryVOMeta.IDS })
     @SentinelResource(value = CiphertextHistoryServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CiphertextHistoryServiceProxy.UPDATE)
@@ -156,7 +174,14 @@ public class CiphertextHistoryController extends SuperController {
      * 保存历史记录
      */
     @ApiOperation(value = "保存历史记录")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CiphertextHistoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "635053950277517312"), @ApiImplicitParam(name = CiphertextHistoryVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "ciphertext_box_conf"), @ApiImplicitParam(name = CiphertextHistoryVOMeta.BOX_TYPE, value = "密文箱类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CiphertextHistoryVOMeta.SOURCE_VALUE, value = "来源", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CiphertextHistoryVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = CiphertextHistoryVOMeta.ENCRYPTION_CONTENT, value = "加密内容", required = false, dataTypeClass = String.class, example = "121212dsf") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "635053950277517312"),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "ciphertext_box_conf"),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.BOX_TYPE, value = "密文箱类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.SOURCE_VALUE, value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.ENCRYPTION_CONTENT, value = "加密内容", required = false, dataTypeClass = String.class, example = "121212dsf")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { CiphertextHistoryVOMeta.PAGE_INDEX, CiphertextHistoryVOMeta.PAGE_SIZE, CiphertextHistoryVOMeta.SEARCH_FIELD, CiphertextHistoryVOMeta.FUZZY_FIELD, CiphertextHistoryVOMeta.SEARCH_VALUE, CiphertextHistoryVOMeta.DIRTY_FIELDS, CiphertextHistoryVOMeta.SORT_FIELD, CiphertextHistoryVOMeta.SORT_TYPE, CiphertextHistoryVOMeta.IDS })
     @SentinelResource(value = CiphertextHistoryServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CiphertextHistoryServiceProxy.SAVE)
@@ -170,7 +195,9 @@ public class CiphertextHistoryController extends SuperController {
      * 获取历史记录
      */
     @ApiOperation(value = "获取历史记录")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CiphertextHistoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = CiphertextHistoryServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CiphertextHistoryServiceProxy.GET_BY_ID)
@@ -186,7 +213,9 @@ public class CiphertextHistoryController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取历史记录")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CiphertextHistoryVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = CiphertextHistoryServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CiphertextHistoryServiceProxy.GET_BY_IDS)
@@ -201,7 +230,14 @@ public class CiphertextHistoryController extends SuperController {
      * 查询历史记录
      */
     @ApiOperation(value = "查询历史记录")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CiphertextHistoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "635053950277517312"), @ApiImplicitParam(name = CiphertextHistoryVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "ciphertext_box_conf"), @ApiImplicitParam(name = CiphertextHistoryVOMeta.BOX_TYPE, value = "密文箱类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CiphertextHistoryVOMeta.SOURCE_VALUE, value = "来源", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CiphertextHistoryVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = CiphertextHistoryVOMeta.ENCRYPTION_CONTENT, value = "加密内容", required = false, dataTypeClass = String.class, example = "121212dsf") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "635053950277517312"),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "ciphertext_box_conf"),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.BOX_TYPE, value = "密文箱类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.SOURCE_VALUE, value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.ENCRYPTION_CONTENT, value = "加密内容", required = false, dataTypeClass = String.class, example = "121212dsf")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { CiphertextHistoryVOMeta.PAGE_INDEX, CiphertextHistoryVOMeta.PAGE_SIZE })
     @SentinelResource(value = CiphertextHistoryServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CiphertextHistoryServiceProxy.QUERY_LIST)
@@ -216,7 +252,14 @@ public class CiphertextHistoryController extends SuperController {
      * 分页查询历史记录
      */
     @ApiOperation(value = "分页查询历史记录")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CiphertextHistoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "635053950277517312"), @ApiImplicitParam(name = CiphertextHistoryVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "ciphertext_box_conf"), @ApiImplicitParam(name = CiphertextHistoryVOMeta.BOX_TYPE, value = "密文箱类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CiphertextHistoryVOMeta.SOURCE_VALUE, value = "来源", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CiphertextHistoryVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = CiphertextHistoryVOMeta.ENCRYPTION_CONTENT, value = "加密内容", required = false, dataTypeClass = String.class, example = "121212dsf") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "635053950277517312"),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "ciphertext_box_conf"),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.BOX_TYPE, value = "密文箱类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.SOURCE_VALUE, value = "来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.CONTENT, value = "内容", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = CiphertextHistoryVOMeta.ENCRYPTION_CONTENT, value = "加密内容", required = false, dataTypeClass = String.class, example = "121212dsf")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = CiphertextHistoryServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CiphertextHistoryServiceProxy.QUERY_PAGED_LIST)

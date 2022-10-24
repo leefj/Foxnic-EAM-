@@ -58,7 +58,13 @@ public class AutoNodeSelectController extends SuperController {
      * 添加节点选择
      */
     @ApiOperation(value = "添加节点选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoNodeSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614202302030413824"), @ApiImplicitParam(name = AutoNodeSelectVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoNodeSelectVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "614080623438467072"), @ApiImplicitParam(name = AutoNodeSelectVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoNodeSelectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1661173235000") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614202302030413824"),
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "614080623438467072"),
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1661173235000")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AutoNodeSelectServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoNodeSelectServiceProxy.INSERT)
@@ -72,7 +78,9 @@ public class AutoNodeSelectController extends SuperController {
      * 删除节点选择
      */
     @ApiOperation(value = "删除节点选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoNodeSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614202302030413824") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614202302030413824")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AutoNodeSelectServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoNodeSelectServiceProxy.DELETE)
@@ -97,7 +105,9 @@ public class AutoNodeSelectController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除节点选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoNodeSelectVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoNodeSelectServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoNodeSelectServiceProxy.DELETE_BY_IDS)
@@ -142,7 +152,13 @@ public class AutoNodeSelectController extends SuperController {
      * 更新节点选择
      */
     @ApiOperation(value = "更新节点选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoNodeSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614202302030413824"), @ApiImplicitParam(name = AutoNodeSelectVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoNodeSelectVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "614080623438467072"), @ApiImplicitParam(name = AutoNodeSelectVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoNodeSelectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1661173235000") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614202302030413824"),
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "614080623438467072"),
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1661173235000")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AutoNodeSelectVOMeta.PAGE_INDEX, AutoNodeSelectVOMeta.PAGE_SIZE, AutoNodeSelectVOMeta.SEARCH_FIELD, AutoNodeSelectVOMeta.FUZZY_FIELD, AutoNodeSelectVOMeta.SEARCH_VALUE, AutoNodeSelectVOMeta.DIRTY_FIELDS, AutoNodeSelectVOMeta.SORT_FIELD, AutoNodeSelectVOMeta.SORT_TYPE, AutoNodeSelectVOMeta.IDS })
     @SentinelResource(value = AutoNodeSelectServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoNodeSelectServiceProxy.UPDATE)
@@ -156,7 +172,13 @@ public class AutoNodeSelectController extends SuperController {
      * 保存节点选择
      */
     @ApiOperation(value = "保存节点选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoNodeSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614202302030413824"), @ApiImplicitParam(name = AutoNodeSelectVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoNodeSelectVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "614080623438467072"), @ApiImplicitParam(name = AutoNodeSelectVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoNodeSelectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1661173235000") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614202302030413824"),
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "614080623438467072"),
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1661173235000")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoNodeSelectVOMeta.PAGE_INDEX, AutoNodeSelectVOMeta.PAGE_SIZE, AutoNodeSelectVOMeta.SEARCH_FIELD, AutoNodeSelectVOMeta.FUZZY_FIELD, AutoNodeSelectVOMeta.SEARCH_VALUE, AutoNodeSelectVOMeta.DIRTY_FIELDS, AutoNodeSelectVOMeta.SORT_FIELD, AutoNodeSelectVOMeta.SORT_TYPE, AutoNodeSelectVOMeta.IDS })
     @SentinelResource(value = AutoNodeSelectServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoNodeSelectServiceProxy.SAVE)
@@ -170,7 +192,9 @@ public class AutoNodeSelectController extends SuperController {
      * 获取节点选择
      */
     @ApiOperation(value = "获取节点选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoNodeSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AutoNodeSelectServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoNodeSelectServiceProxy.GET_BY_ID)
@@ -186,7 +210,9 @@ public class AutoNodeSelectController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取节点选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoNodeSelectVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoNodeSelectServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoNodeSelectServiceProxy.GET_BY_IDS)
@@ -201,7 +227,13 @@ public class AutoNodeSelectController extends SuperController {
      * 查询节点选择
      */
     @ApiOperation(value = "查询节点选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoNodeSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614202302030413824"), @ApiImplicitParam(name = AutoNodeSelectVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoNodeSelectVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "614080623438467072"), @ApiImplicitParam(name = AutoNodeSelectVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoNodeSelectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1661173235000") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614202302030413824"),
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "614080623438467072"),
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1661173235000")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoNodeSelectVOMeta.PAGE_INDEX, AutoNodeSelectVOMeta.PAGE_SIZE })
     @SentinelResource(value = AutoNodeSelectServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoNodeSelectServiceProxy.QUERY_LIST)
@@ -216,7 +248,13 @@ public class AutoNodeSelectController extends SuperController {
      * 分页查询节点选择
      */
     @ApiOperation(value = "分页查询节点选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoNodeSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614202302030413824"), @ApiImplicitParam(name = AutoNodeSelectVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoNodeSelectVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "614080623438467072"), @ApiImplicitParam(name = AutoNodeSelectVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoNodeSelectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1661173235000") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614202302030413824"),
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.OWNER_ID, value = "所属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "614080623438467072"),
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoNodeSelectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1661173235000")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AutoNodeSelectServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoNodeSelectServiceProxy.QUERY_PAGED_LIST)

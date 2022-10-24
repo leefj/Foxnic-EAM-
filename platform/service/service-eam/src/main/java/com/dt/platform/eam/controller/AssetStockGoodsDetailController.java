@@ -58,7 +58,16 @@ public class AssetStockGoodsDetailController extends SuperController {
      * 添加库存物品明细
      */
     @ApiOperation(value = "添加库存物品明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.GOODS_ID, value = "物品编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.STOCK_ID, value = "库存单", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.IN_NUMBER, value = "入库数量", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.CUR_NUMBER, value = "当前数量", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.UNIT_PRICE, value = "单价", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.AMOUNT, value = "金额", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.GOODS_ID, value = "物品编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.STOCK_ID, value = "库存单", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.IN_NUMBER, value = "入库数量", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.CUR_NUMBER, value = "当前数量", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.UNIT_PRICE, value = "单价", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.AMOUNT, value = "金额", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetStockGoodsDetailServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStockGoodsDetailServiceProxy.INSERT)
@@ -72,7 +81,9 @@ public class AssetStockGoodsDetailController extends SuperController {
      * 删除库存物品明细
      */
     @ApiOperation(value = "删除库存物品明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetStockGoodsDetailServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStockGoodsDetailServiceProxy.DELETE)
@@ -86,7 +97,9 @@ public class AssetStockGoodsDetailController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除库存物品明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetStockGoodsDetailServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStockGoodsDetailServiceProxy.DELETE_BY_IDS)
@@ -99,7 +112,16 @@ public class AssetStockGoodsDetailController extends SuperController {
      * 更新库存物品明细
      */
     @ApiOperation(value = "更新库存物品明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.GOODS_ID, value = "物品编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.STOCK_ID, value = "库存单", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.IN_NUMBER, value = "入库数量", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.CUR_NUMBER, value = "当前数量", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.UNIT_PRICE, value = "单价", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.AMOUNT, value = "金额", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.GOODS_ID, value = "物品编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.STOCK_ID, value = "库存单", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.IN_NUMBER, value = "入库数量", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.CUR_NUMBER, value = "当前数量", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.UNIT_PRICE, value = "单价", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.AMOUNT, value = "金额", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetStockGoodsDetailVOMeta.PAGE_INDEX, AssetStockGoodsDetailVOMeta.PAGE_SIZE, AssetStockGoodsDetailVOMeta.SEARCH_FIELD, AssetStockGoodsDetailVOMeta.FUZZY_FIELD, AssetStockGoodsDetailVOMeta.SEARCH_VALUE, AssetStockGoodsDetailVOMeta.DIRTY_FIELDS, AssetStockGoodsDetailVOMeta.SORT_FIELD, AssetStockGoodsDetailVOMeta.SORT_TYPE, AssetStockGoodsDetailVOMeta.IDS })
     @SentinelResource(value = AssetStockGoodsDetailServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStockGoodsDetailServiceProxy.UPDATE)
@@ -113,7 +135,16 @@ public class AssetStockGoodsDetailController extends SuperController {
      * 保存库存物品明细
      */
     @ApiOperation(value = "保存库存物品明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.GOODS_ID, value = "物品编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.STOCK_ID, value = "库存单", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.IN_NUMBER, value = "入库数量", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.CUR_NUMBER, value = "当前数量", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.UNIT_PRICE, value = "单价", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.AMOUNT, value = "金额", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.GOODS_ID, value = "物品编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.STOCK_ID, value = "库存单", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.IN_NUMBER, value = "入库数量", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.CUR_NUMBER, value = "当前数量", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.UNIT_PRICE, value = "单价", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.AMOUNT, value = "金额", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetStockGoodsDetailVOMeta.PAGE_INDEX, AssetStockGoodsDetailVOMeta.PAGE_SIZE, AssetStockGoodsDetailVOMeta.SEARCH_FIELD, AssetStockGoodsDetailVOMeta.FUZZY_FIELD, AssetStockGoodsDetailVOMeta.SEARCH_VALUE, AssetStockGoodsDetailVOMeta.DIRTY_FIELDS, AssetStockGoodsDetailVOMeta.SORT_FIELD, AssetStockGoodsDetailVOMeta.SORT_TYPE, AssetStockGoodsDetailVOMeta.IDS })
     @SentinelResource(value = AssetStockGoodsDetailServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStockGoodsDetailServiceProxy.SAVE)
@@ -127,7 +158,9 @@ public class AssetStockGoodsDetailController extends SuperController {
      * 获取库存物品明细
      */
     @ApiOperation(value = "获取库存物品明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetStockGoodsDetailServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStockGoodsDetailServiceProxy.GET_BY_ID)
@@ -143,7 +176,9 @@ public class AssetStockGoodsDetailController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取库存物品明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetStockGoodsDetailServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStockGoodsDetailServiceProxy.GET_BY_IDS)
@@ -158,7 +193,16 @@ public class AssetStockGoodsDetailController extends SuperController {
      * 查询库存物品明细
      */
     @ApiOperation(value = "查询库存物品明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.GOODS_ID, value = "物品编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.STOCK_ID, value = "库存单", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.IN_NUMBER, value = "入库数量", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.CUR_NUMBER, value = "当前数量", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.UNIT_PRICE, value = "单价", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.AMOUNT, value = "金额", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.GOODS_ID, value = "物品编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.STOCK_ID, value = "库存单", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.IN_NUMBER, value = "入库数量", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.CUR_NUMBER, value = "当前数量", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.UNIT_PRICE, value = "单价", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.AMOUNT, value = "金额", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetStockGoodsDetailVOMeta.PAGE_INDEX, AssetStockGoodsDetailVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetStockGoodsDetailServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStockGoodsDetailServiceProxy.QUERY_LIST)
@@ -173,7 +217,16 @@ public class AssetStockGoodsDetailController extends SuperController {
      * 分页查询库存物品明细
      */
     @ApiOperation(value = "分页查询库存物品明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.GOODS_ID, value = "物品编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.STOCK_ID, value = "库存单", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.IN_NUMBER, value = "入库数量", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.CUR_NUMBER, value = "当前数量", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.UNIT_PRICE, value = "单价", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.AMOUNT, value = "金额", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.GOODS_ID, value = "物品编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.STOCK_ID, value = "库存单", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.IN_NUMBER, value = "入库数量", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.CUR_NUMBER, value = "当前数量", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.UNIT_PRICE, value = "单价", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.AMOUNT, value = "金额", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetStockGoodsDetailVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetStockGoodsDetailServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetStockGoodsDetailServiceProxy.QUERY_PAGED_LIST)

@@ -57,7 +57,14 @@ public class CodeAttrController extends SuperController {
      * 添加编码属性
      */
     @ApiOperation(value = "添加编码属性")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeAttrVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CodeAttrVOMeta.NAME, value = "编码名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CodeAttrVOMeta.TYPE, value = "编码类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CodeAttrVOMeta.CODE, value = "占位符", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CodeAttrVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "9999"), @ApiImplicitParam(name = CodeAttrVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeAttrVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CodeAttrVOMeta.NAME, value = "编码名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CodeAttrVOMeta.TYPE, value = "编码类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CodeAttrVOMeta.CODE, value = "占位符", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CodeAttrVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "9999"),
+		@ApiImplicitParam(name = CodeAttrVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = CodeAttrServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeAttrServiceProxy.INSERT)
@@ -71,7 +78,9 @@ public class CodeAttrController extends SuperController {
      * 删除编码属性
      */
     @ApiOperation(value = "删除编码属性")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeAttrVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeAttrVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = CodeAttrServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeAttrServiceProxy.DELETE)
@@ -85,7 +94,9 @@ public class CodeAttrController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除编码属性")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeAttrVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeAttrVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = CodeAttrServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeAttrServiceProxy.DELETE_BY_IDS)
@@ -98,7 +109,14 @@ public class CodeAttrController extends SuperController {
      * 更新编码属性
      */
     @ApiOperation(value = "更新编码属性")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeAttrVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CodeAttrVOMeta.NAME, value = "编码名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CodeAttrVOMeta.TYPE, value = "编码类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CodeAttrVOMeta.CODE, value = "占位符", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CodeAttrVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "9999"), @ApiImplicitParam(name = CodeAttrVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeAttrVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CodeAttrVOMeta.NAME, value = "编码名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CodeAttrVOMeta.TYPE, value = "编码类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CodeAttrVOMeta.CODE, value = "占位符", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CodeAttrVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "9999"),
+		@ApiImplicitParam(name = CodeAttrVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { CodeAttrVOMeta.PAGE_INDEX, CodeAttrVOMeta.PAGE_SIZE, CodeAttrVOMeta.SEARCH_FIELD, CodeAttrVOMeta.FUZZY_FIELD, CodeAttrVOMeta.SEARCH_VALUE, CodeAttrVOMeta.SORT_FIELD, CodeAttrVOMeta.SORT_TYPE, CodeAttrVOMeta.IDS })
     @SentinelResource(value = CodeAttrServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeAttrServiceProxy.UPDATE)
@@ -112,7 +130,14 @@ public class CodeAttrController extends SuperController {
      * 保存编码属性
      */
     @ApiOperation(value = "保存编码属性")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeAttrVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CodeAttrVOMeta.NAME, value = "编码名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CodeAttrVOMeta.TYPE, value = "编码类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CodeAttrVOMeta.CODE, value = "占位符", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CodeAttrVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "9999"), @ApiImplicitParam(name = CodeAttrVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeAttrVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CodeAttrVOMeta.NAME, value = "编码名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CodeAttrVOMeta.TYPE, value = "编码类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CodeAttrVOMeta.CODE, value = "占位符", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CodeAttrVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "9999"),
+		@ApiImplicitParam(name = CodeAttrVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { CodeAttrVOMeta.PAGE_INDEX, CodeAttrVOMeta.PAGE_SIZE, CodeAttrVOMeta.SEARCH_FIELD, CodeAttrVOMeta.FUZZY_FIELD, CodeAttrVOMeta.SEARCH_VALUE, CodeAttrVOMeta.SORT_FIELD, CodeAttrVOMeta.SORT_TYPE, CodeAttrVOMeta.IDS })
     @SentinelResource(value = CodeAttrServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeAttrServiceProxy.SAVE)
@@ -126,7 +151,9 @@ public class CodeAttrController extends SuperController {
      * 获取编码属性
      */
     @ApiOperation(value = "获取编码属性")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeAttrVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeAttrVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = CodeAttrServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeAttrServiceProxy.GET_BY_ID)
@@ -144,7 +171,9 @@ public class CodeAttrController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取编码属性")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeAttrVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeAttrVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = CodeAttrServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeAttrServiceProxy.GET_BY_IDS)
@@ -159,7 +188,14 @@ public class CodeAttrController extends SuperController {
      * 查询编码属性
      */
     @ApiOperation(value = "查询编码属性")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeAttrVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CodeAttrVOMeta.NAME, value = "编码名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CodeAttrVOMeta.TYPE, value = "编码类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CodeAttrVOMeta.CODE, value = "占位符", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CodeAttrVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "9999"), @ApiImplicitParam(name = CodeAttrVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeAttrVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CodeAttrVOMeta.NAME, value = "编码名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CodeAttrVOMeta.TYPE, value = "编码类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CodeAttrVOMeta.CODE, value = "占位符", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CodeAttrVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "9999"),
+		@ApiImplicitParam(name = CodeAttrVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { CodeAttrVOMeta.PAGE_INDEX, CodeAttrVOMeta.PAGE_SIZE })
     @SentinelResource(value = CodeAttrServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeAttrServiceProxy.QUERY_LIST)
@@ -174,7 +210,14 @@ public class CodeAttrController extends SuperController {
      * 分页查询编码属性
      */
     @ApiOperation(value = "分页查询编码属性")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeAttrVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CodeAttrVOMeta.NAME, value = "编码名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CodeAttrVOMeta.TYPE, value = "编码类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CodeAttrVOMeta.CODE, value = "占位符", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CodeAttrVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "9999"), @ApiImplicitParam(name = CodeAttrVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeAttrVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CodeAttrVOMeta.NAME, value = "编码名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CodeAttrVOMeta.TYPE, value = "编码类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CodeAttrVOMeta.CODE, value = "占位符", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CodeAttrVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "9999"),
+		@ApiImplicitParam(name = CodeAttrVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = CodeAttrServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeAttrServiceProxy.QUERY_PAGED_LIST)

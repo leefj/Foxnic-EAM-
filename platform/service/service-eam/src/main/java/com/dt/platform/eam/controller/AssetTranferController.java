@@ -71,7 +71,24 @@ public class AssetTranferController extends SuperController implements BpmCallba
      * 添加资产转移
      */
     @ApiOperation(value = "添加资产转移")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetTranferVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480668065630007296"), @ApiImplicitParam(name = AssetTranferVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.OUT_USE_ORGANIZATION_ID, value = "调出使用公司/部门", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetTranferVOMeta.IN_USE_ORGANIZATION_ID, value = "调入使用公司/部门", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetTranferVOMeta.MANAGER_ID, value = "调入管理员", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetTranferVOMeta.USE_USER_ID, value = "使用人员", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.POSITION_ID, value = "位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.POSITION_DETAIL, value = "位置详情", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.CONTENT, value = "转移说明", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AssetTranferVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetTranferVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetTranferVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480668065630007296"),
+		@ApiImplicitParam(name = AssetTranferVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.OUT_USE_ORGANIZATION_ID, value = "调出使用公司/部门", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetTranferVOMeta.IN_USE_ORGANIZATION_ID, value = "调入使用公司/部门", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetTranferVOMeta.MANAGER_ID, value = "调入管理员", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetTranferVOMeta.USE_USER_ID, value = "使用人员", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.POSITION_ID, value = "位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.POSITION_DETAIL, value = "位置详情", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.CONTENT, value = "转移说明", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AssetTranferVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetTranferServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetTranferServiceProxy.INSERT)
@@ -84,7 +101,9 @@ public class AssetTranferController extends SuperController implements BpmCallba
      * 删除资产转移
      */
     @ApiOperation(value = "删除资产转移")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetTranferVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480668065630007296") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetTranferVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480668065630007296")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetTranferServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetTranferServiceProxy.DELETE)
@@ -103,7 +122,9 @@ public class AssetTranferController extends SuperController implements BpmCallba
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产转移")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetTranferVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetTranferVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetTranferServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetTranferServiceProxy.DELETE_BY_IDS)
@@ -116,7 +137,24 @@ public class AssetTranferController extends SuperController implements BpmCallba
      * 更新资产转移
      */
     @ApiOperation(value = "更新资产转移")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetTranferVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480668065630007296"), @ApiImplicitParam(name = AssetTranferVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.OUT_USE_ORGANIZATION_ID, value = "调出使用公司/部门", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetTranferVOMeta.IN_USE_ORGANIZATION_ID, value = "调入使用公司/部门", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetTranferVOMeta.MANAGER_ID, value = "调入管理员", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetTranferVOMeta.USE_USER_ID, value = "使用人员", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.POSITION_ID, value = "位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.POSITION_DETAIL, value = "位置详情", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.CONTENT, value = "转移说明", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AssetTranferVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetTranferVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetTranferVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480668065630007296"),
+		@ApiImplicitParam(name = AssetTranferVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.OUT_USE_ORGANIZATION_ID, value = "调出使用公司/部门", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetTranferVOMeta.IN_USE_ORGANIZATION_ID, value = "调入使用公司/部门", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetTranferVOMeta.MANAGER_ID, value = "调入管理员", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetTranferVOMeta.USE_USER_ID, value = "使用人员", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.POSITION_ID, value = "位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.POSITION_DETAIL, value = "位置详情", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.CONTENT, value = "转移说明", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AssetTranferVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetTranferVOMeta.PAGE_INDEX, AssetTranferVOMeta.PAGE_SIZE, AssetTranferVOMeta.SEARCH_FIELD, AssetTranferVOMeta.FUZZY_FIELD, AssetTranferVOMeta.SEARCH_VALUE, AssetTranferVOMeta.SORT_FIELD, AssetTranferVOMeta.SORT_TYPE, AssetTranferVOMeta.IDS })
     @SentinelResource(value = AssetTranferServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetTranferServiceProxy.UPDATE)
@@ -134,7 +172,24 @@ public class AssetTranferController extends SuperController implements BpmCallba
      * 保存资产转移
      */
     @ApiOperation(value = "保存资产转移")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetTranferVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480668065630007296"), @ApiImplicitParam(name = AssetTranferVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.OUT_USE_ORGANIZATION_ID, value = "调出使用公司/部门", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetTranferVOMeta.IN_USE_ORGANIZATION_ID, value = "调入使用公司/部门", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetTranferVOMeta.MANAGER_ID, value = "调入管理员", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetTranferVOMeta.USE_USER_ID, value = "使用人员", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.POSITION_ID, value = "位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.POSITION_DETAIL, value = "位置详情", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.CONTENT, value = "转移说明", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AssetTranferVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetTranferVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetTranferVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480668065630007296"),
+		@ApiImplicitParam(name = AssetTranferVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.OUT_USE_ORGANIZATION_ID, value = "调出使用公司/部门", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetTranferVOMeta.IN_USE_ORGANIZATION_ID, value = "调入使用公司/部门", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetTranferVOMeta.MANAGER_ID, value = "调入管理员", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetTranferVOMeta.USE_USER_ID, value = "使用人员", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.POSITION_ID, value = "位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.POSITION_DETAIL, value = "位置详情", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.CONTENT, value = "转移说明", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AssetTranferVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetTranferVOMeta.PAGE_INDEX, AssetTranferVOMeta.PAGE_SIZE, AssetTranferVOMeta.SEARCH_FIELD, AssetTranferVOMeta.FUZZY_FIELD, AssetTranferVOMeta.SEARCH_VALUE, AssetTranferVOMeta.SORT_FIELD, AssetTranferVOMeta.SORT_TYPE, AssetTranferVOMeta.IDS })
     @SentinelResource(value = AssetTranferServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetTranferServiceProxy.SAVE)
@@ -148,7 +203,9 @@ public class AssetTranferController extends SuperController implements BpmCallba
      * 获取资产转移
      */
     @ApiOperation(value = "获取资产转移")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetTranferVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetTranferVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetTranferServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetTranferServiceProxy.GET_BY_ID)
@@ -176,7 +233,9 @@ public class AssetTranferController extends SuperController implements BpmCallba
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产转移")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetTranferVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetTranferVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetTranferServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetTranferServiceProxy.GET_BY_IDS)
@@ -191,7 +250,24 @@ public class AssetTranferController extends SuperController implements BpmCallba
      * 查询资产转移
      */
     @ApiOperation(value = "查询资产转移")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetTranferVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480668065630007296"), @ApiImplicitParam(name = AssetTranferVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.OUT_USE_ORGANIZATION_ID, value = "调出使用公司/部门", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetTranferVOMeta.IN_USE_ORGANIZATION_ID, value = "调入使用公司/部门", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetTranferVOMeta.MANAGER_ID, value = "调入管理员", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetTranferVOMeta.USE_USER_ID, value = "使用人员", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.POSITION_ID, value = "位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.POSITION_DETAIL, value = "位置详情", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.CONTENT, value = "转移说明", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AssetTranferVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetTranferVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetTranferVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480668065630007296"),
+		@ApiImplicitParam(name = AssetTranferVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.OUT_USE_ORGANIZATION_ID, value = "调出使用公司/部门", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetTranferVOMeta.IN_USE_ORGANIZATION_ID, value = "调入使用公司/部门", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetTranferVOMeta.MANAGER_ID, value = "调入管理员", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetTranferVOMeta.USE_USER_ID, value = "使用人员", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.POSITION_ID, value = "位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.POSITION_DETAIL, value = "位置详情", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.CONTENT, value = "转移说明", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AssetTranferVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetTranferVOMeta.PAGE_INDEX, AssetTranferVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetTranferServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetTranferServiceProxy.QUERY_LIST)
@@ -206,7 +282,24 @@ public class AssetTranferController extends SuperController implements BpmCallba
      * 分页查询资产转移
      */
     @ApiOperation(value = "分页查询资产转移")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetTranferVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480668065630007296"), @ApiImplicitParam(name = AssetTranferVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.OUT_USE_ORGANIZATION_ID, value = "调出使用公司/部门", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetTranferVOMeta.IN_USE_ORGANIZATION_ID, value = "调入使用公司/部门", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetTranferVOMeta.MANAGER_ID, value = "调入管理员", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetTranferVOMeta.USE_USER_ID, value = "使用人员", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.POSITION_ID, value = "位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.POSITION_DETAIL, value = "位置详情", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.CONTENT, value = "转移说明", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AssetTranferVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetTranferVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetTranferVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetTranferVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480668065630007296"),
+		@ApiImplicitParam(name = AssetTranferVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.OUT_USE_ORGANIZATION_ID, value = "调出使用公司/部门", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetTranferVOMeta.IN_USE_ORGANIZATION_ID, value = "调入使用公司/部门", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetTranferVOMeta.MANAGER_ID, value = "调入管理员", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetTranferVOMeta.USE_USER_ID, value = "使用人员", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.POSITION_ID, value = "位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.POSITION_DETAIL, value = "位置详情", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.CONTENT, value = "转移说明", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AssetTranferVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetTranferVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetTranferServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetTranferServiceProxy.QUERY_PAGED_LIST)
@@ -236,7 +329,9 @@ public class AssetTranferController extends SuperController implements BpmCallba
      * 确认
      */
     @ApiOperation(value = "转移确认")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetTranferVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetTranferVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 13)
     @SentinelResource(value = AssetTranferServiceProxy.CONFIRM_OPERATION, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @RequestMapping(AssetTranferServiceProxy.CONFIRM_OPERATION)

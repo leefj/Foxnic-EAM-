@@ -64,7 +64,13 @@ public class CiphertextConfController extends SuperController {
      * 添加权限配置
      */
     @ApiOperation(value = "添加权限配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CiphertextConfVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "635056198374129664"), @ApiImplicitParam(name = CiphertextConfVOMeta.BOX_ID, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CiphertextConfVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class, example = "586965217661943808"), @ApiImplicitParam(name = CiphertextConfVOMeta.DECRYPTION_PERM_STATUS, value = "解密权限", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = CiphertextConfVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CiphertextConfVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "635056198374129664"),
+		@ApiImplicitParam(name = CiphertextConfVOMeta.BOX_ID, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CiphertextConfVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class, example = "586965217661943808"),
+		@ApiImplicitParam(name = CiphertextConfVOMeta.DECRYPTION_PERM_STATUS, value = "解密权限", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = CiphertextConfVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = CiphertextConfServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CiphertextConfServiceProxy.INSERT)
@@ -78,7 +84,9 @@ public class CiphertextConfController extends SuperController {
      * 删除权限配置
      */
     @ApiOperation(value = "删除权限配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CiphertextConfVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "635056198374129664") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CiphertextConfVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "635056198374129664")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = CiphertextConfServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CiphertextConfServiceProxy.DELETE)
@@ -103,7 +111,9 @@ public class CiphertextConfController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除权限配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CiphertextConfVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CiphertextConfVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = CiphertextConfServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CiphertextConfServiceProxy.DELETE_BY_IDS)
@@ -148,7 +158,13 @@ public class CiphertextConfController extends SuperController {
      * 更新权限配置
      */
     @ApiOperation(value = "更新权限配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CiphertextConfVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "635056198374129664"), @ApiImplicitParam(name = CiphertextConfVOMeta.BOX_ID, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CiphertextConfVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class, example = "586965217661943808"), @ApiImplicitParam(name = CiphertextConfVOMeta.DECRYPTION_PERM_STATUS, value = "解密权限", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = CiphertextConfVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CiphertextConfVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "635056198374129664"),
+		@ApiImplicitParam(name = CiphertextConfVOMeta.BOX_ID, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CiphertextConfVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class, example = "586965217661943808"),
+		@ApiImplicitParam(name = CiphertextConfVOMeta.DECRYPTION_PERM_STATUS, value = "解密权限", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = CiphertextConfVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { CiphertextConfVOMeta.PAGE_INDEX, CiphertextConfVOMeta.PAGE_SIZE, CiphertextConfVOMeta.SEARCH_FIELD, CiphertextConfVOMeta.FUZZY_FIELD, CiphertextConfVOMeta.SEARCH_VALUE, CiphertextConfVOMeta.DIRTY_FIELDS, CiphertextConfVOMeta.SORT_FIELD, CiphertextConfVOMeta.SORT_TYPE, CiphertextConfVOMeta.IDS })
     @SentinelResource(value = CiphertextConfServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CiphertextConfServiceProxy.UPDATE)
@@ -162,7 +178,13 @@ public class CiphertextConfController extends SuperController {
      * 保存权限配置
      */
     @ApiOperation(value = "保存权限配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CiphertextConfVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "635056198374129664"), @ApiImplicitParam(name = CiphertextConfVOMeta.BOX_ID, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CiphertextConfVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class, example = "586965217661943808"), @ApiImplicitParam(name = CiphertextConfVOMeta.DECRYPTION_PERM_STATUS, value = "解密权限", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = CiphertextConfVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CiphertextConfVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "635056198374129664"),
+		@ApiImplicitParam(name = CiphertextConfVOMeta.BOX_ID, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CiphertextConfVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class, example = "586965217661943808"),
+		@ApiImplicitParam(name = CiphertextConfVOMeta.DECRYPTION_PERM_STATUS, value = "解密权限", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = CiphertextConfVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { CiphertextConfVOMeta.PAGE_INDEX, CiphertextConfVOMeta.PAGE_SIZE, CiphertextConfVOMeta.SEARCH_FIELD, CiphertextConfVOMeta.FUZZY_FIELD, CiphertextConfVOMeta.SEARCH_VALUE, CiphertextConfVOMeta.DIRTY_FIELDS, CiphertextConfVOMeta.SORT_FIELD, CiphertextConfVOMeta.SORT_TYPE, CiphertextConfVOMeta.IDS })
     @SentinelResource(value = CiphertextConfServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CiphertextConfServiceProxy.SAVE)
@@ -176,7 +198,9 @@ public class CiphertextConfController extends SuperController {
      * 获取权限配置
      */
     @ApiOperation(value = "获取权限配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CiphertextConfVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CiphertextConfVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = CiphertextConfServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CiphertextConfServiceProxy.GET_BY_ID)
@@ -194,7 +218,9 @@ public class CiphertextConfController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取权限配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CiphertextConfVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CiphertextConfVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = CiphertextConfServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CiphertextConfServiceProxy.GET_BY_IDS)
@@ -209,7 +235,13 @@ public class CiphertextConfController extends SuperController {
      * 查询权限配置
      */
     @ApiOperation(value = "查询权限配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CiphertextConfVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "635056198374129664"), @ApiImplicitParam(name = CiphertextConfVOMeta.BOX_ID, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CiphertextConfVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class, example = "586965217661943808"), @ApiImplicitParam(name = CiphertextConfVOMeta.DECRYPTION_PERM_STATUS, value = "解密权限", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = CiphertextConfVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CiphertextConfVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "635056198374129664"),
+		@ApiImplicitParam(name = CiphertextConfVOMeta.BOX_ID, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CiphertextConfVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class, example = "586965217661943808"),
+		@ApiImplicitParam(name = CiphertextConfVOMeta.DECRYPTION_PERM_STATUS, value = "解密权限", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = CiphertextConfVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { CiphertextConfVOMeta.PAGE_INDEX, CiphertextConfVOMeta.PAGE_SIZE })
     @SentinelResource(value = CiphertextConfServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CiphertextConfServiceProxy.QUERY_LIST)
@@ -224,7 +256,13 @@ public class CiphertextConfController extends SuperController {
      * 分页查询权限配置
      */
     @ApiOperation(value = "分页查询权限配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CiphertextConfVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "635056198374129664"), @ApiImplicitParam(name = CiphertextConfVOMeta.BOX_ID, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CiphertextConfVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class, example = "586965217661943808"), @ApiImplicitParam(name = CiphertextConfVOMeta.DECRYPTION_PERM_STATUS, value = "解密权限", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = CiphertextConfVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CiphertextConfVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "635056198374129664"),
+		@ApiImplicitParam(name = CiphertextConfVOMeta.BOX_ID, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CiphertextConfVOMeta.USER_ID, value = "人员", required = false, dataTypeClass = String.class, example = "586965217661943808"),
+		@ApiImplicitParam(name = CiphertextConfVOMeta.DECRYPTION_PERM_STATUS, value = "解密权限", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = CiphertextConfVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = CiphertextConfServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CiphertextConfServiceProxy.QUERY_PAGED_LIST)

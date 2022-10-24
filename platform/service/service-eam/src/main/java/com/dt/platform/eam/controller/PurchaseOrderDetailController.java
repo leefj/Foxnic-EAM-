@@ -57,7 +57,11 @@ public class PurchaseOrderDetailController extends SuperController {
      * 添加订单明细
      */
     @ApiOperation(value = "添加订单明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ORDER_ID, value = "订单", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ASSET_ID, value = "资产", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ORDER_ID, value = "订单", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ASSET_ID, value = "资产", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = PurchaseOrderDetailServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PurchaseOrderDetailServiceProxy.INSERT)
@@ -71,7 +75,9 @@ public class PurchaseOrderDetailController extends SuperController {
      * 删除订单明细
      */
     @ApiOperation(value = "删除订单明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = PurchaseOrderDetailServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PurchaseOrderDetailServiceProxy.DELETE)
@@ -85,7 +91,9 @@ public class PurchaseOrderDetailController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除订单明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PurchaseOrderDetailVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PurchaseOrderDetailVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = PurchaseOrderDetailServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PurchaseOrderDetailServiceProxy.DELETE_BY_IDS)
@@ -98,7 +106,11 @@ public class PurchaseOrderDetailController extends SuperController {
      * 更新订单明细
      */
     @ApiOperation(value = "更新订单明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ORDER_ID, value = "订单", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ASSET_ID, value = "资产", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ORDER_ID, value = "订单", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ASSET_ID, value = "资产", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { PurchaseOrderDetailVOMeta.PAGE_INDEX, PurchaseOrderDetailVOMeta.PAGE_SIZE, PurchaseOrderDetailVOMeta.SEARCH_FIELD, PurchaseOrderDetailVOMeta.FUZZY_FIELD, PurchaseOrderDetailVOMeta.SEARCH_VALUE, PurchaseOrderDetailVOMeta.DIRTY_FIELDS, PurchaseOrderDetailVOMeta.SORT_FIELD, PurchaseOrderDetailVOMeta.SORT_TYPE, PurchaseOrderDetailVOMeta.IDS })
     @SentinelResource(value = PurchaseOrderDetailServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PurchaseOrderDetailServiceProxy.UPDATE)
@@ -112,7 +124,11 @@ public class PurchaseOrderDetailController extends SuperController {
      * 保存订单明细
      */
     @ApiOperation(value = "保存订单明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ORDER_ID, value = "订单", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ASSET_ID, value = "资产", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ORDER_ID, value = "订单", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ASSET_ID, value = "资产", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { PurchaseOrderDetailVOMeta.PAGE_INDEX, PurchaseOrderDetailVOMeta.PAGE_SIZE, PurchaseOrderDetailVOMeta.SEARCH_FIELD, PurchaseOrderDetailVOMeta.FUZZY_FIELD, PurchaseOrderDetailVOMeta.SEARCH_VALUE, PurchaseOrderDetailVOMeta.DIRTY_FIELDS, PurchaseOrderDetailVOMeta.SORT_FIELD, PurchaseOrderDetailVOMeta.SORT_TYPE, PurchaseOrderDetailVOMeta.IDS })
     @SentinelResource(value = PurchaseOrderDetailServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PurchaseOrderDetailServiceProxy.SAVE)
@@ -126,7 +142,9 @@ public class PurchaseOrderDetailController extends SuperController {
      * 获取订单明细
      */
     @ApiOperation(value = "获取订单明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = PurchaseOrderDetailServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PurchaseOrderDetailServiceProxy.GET_BY_ID)
@@ -142,7 +160,9 @@ public class PurchaseOrderDetailController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取订单明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PurchaseOrderDetailVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PurchaseOrderDetailVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = PurchaseOrderDetailServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PurchaseOrderDetailServiceProxy.GET_BY_IDS)
@@ -157,7 +177,11 @@ public class PurchaseOrderDetailController extends SuperController {
      * 查询订单明细
      */
     @ApiOperation(value = "查询订单明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ORDER_ID, value = "订单", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ASSET_ID, value = "资产", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ORDER_ID, value = "订单", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ASSET_ID, value = "资产", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { PurchaseOrderDetailVOMeta.PAGE_INDEX, PurchaseOrderDetailVOMeta.PAGE_SIZE })
     @SentinelResource(value = PurchaseOrderDetailServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PurchaseOrderDetailServiceProxy.QUERY_LIST)
@@ -172,7 +196,11 @@ public class PurchaseOrderDetailController extends SuperController {
      * 分页查询订单明细
      */
     @ApiOperation(value = "分页查询订单明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ORDER_ID, value = "订单", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ASSET_ID, value = "资产", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ORDER_ID, value = "订单", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PurchaseOrderDetailVOMeta.ASSET_ID, value = "资产", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = PurchaseOrderDetailServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PurchaseOrderDetailServiceProxy.QUERY_PAGED_LIST)

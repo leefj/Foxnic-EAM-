@@ -57,7 +57,11 @@ public class AssetDataPermissionsPositionController extends SuperController {
      * 添加位置
      */
     @ApiOperation(value = "添加位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "524147910955241472"), @ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class, example = "523894324979568640"), @ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class, example = "472024559755722753") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "524147910955241472"),
+		@ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class, example = "523894324979568640"),
+		@ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class, example = "472024559755722753")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetDataPermissionsPositionServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsPositionServiceProxy.INSERT)
@@ -71,7 +75,9 @@ public class AssetDataPermissionsPositionController extends SuperController {
      * 删除位置
      */
     @ApiOperation(value = "删除位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "524147910955241472") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "524147910955241472")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetDataPermissionsPositionServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsPositionServiceProxy.DELETE)
@@ -85,7 +91,9 @@ public class AssetDataPermissionsPositionController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetDataPermissionsPositionServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsPositionServiceProxy.DELETE_BY_IDS)
@@ -98,7 +106,11 @@ public class AssetDataPermissionsPositionController extends SuperController {
      * 更新位置
      */
     @ApiOperation(value = "更新位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "524147910955241472"), @ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class, example = "523894324979568640"), @ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class, example = "472024559755722753") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "524147910955241472"),
+		@ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class, example = "523894324979568640"),
+		@ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class, example = "472024559755722753")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetDataPermissionsPositionVOMeta.PAGE_INDEX, AssetDataPermissionsPositionVOMeta.PAGE_SIZE, AssetDataPermissionsPositionVOMeta.SEARCH_FIELD, AssetDataPermissionsPositionVOMeta.FUZZY_FIELD, AssetDataPermissionsPositionVOMeta.SEARCH_VALUE, AssetDataPermissionsPositionVOMeta.DIRTY_FIELDS, AssetDataPermissionsPositionVOMeta.SORT_FIELD, AssetDataPermissionsPositionVOMeta.SORT_TYPE, AssetDataPermissionsPositionVOMeta.IDS })
     @SentinelResource(value = AssetDataPermissionsPositionServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsPositionServiceProxy.UPDATE)
@@ -112,7 +124,11 @@ public class AssetDataPermissionsPositionController extends SuperController {
      * 保存位置
      */
     @ApiOperation(value = "保存位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "524147910955241472"), @ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class, example = "523894324979568640"), @ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class, example = "472024559755722753") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "524147910955241472"),
+		@ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class, example = "523894324979568640"),
+		@ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class, example = "472024559755722753")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetDataPermissionsPositionVOMeta.PAGE_INDEX, AssetDataPermissionsPositionVOMeta.PAGE_SIZE, AssetDataPermissionsPositionVOMeta.SEARCH_FIELD, AssetDataPermissionsPositionVOMeta.FUZZY_FIELD, AssetDataPermissionsPositionVOMeta.SEARCH_VALUE, AssetDataPermissionsPositionVOMeta.DIRTY_FIELDS, AssetDataPermissionsPositionVOMeta.SORT_FIELD, AssetDataPermissionsPositionVOMeta.SORT_TYPE, AssetDataPermissionsPositionVOMeta.IDS })
     @SentinelResource(value = AssetDataPermissionsPositionServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsPositionServiceProxy.SAVE)
@@ -126,7 +142,9 @@ public class AssetDataPermissionsPositionController extends SuperController {
      * 获取位置
      */
     @ApiOperation(value = "获取位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetDataPermissionsPositionServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsPositionServiceProxy.GET_BY_ID)
@@ -142,7 +160,9 @@ public class AssetDataPermissionsPositionController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetDataPermissionsPositionServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsPositionServiceProxy.GET_BY_IDS)
@@ -157,7 +177,11 @@ public class AssetDataPermissionsPositionController extends SuperController {
      * 查询位置
      */
     @ApiOperation(value = "查询位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "524147910955241472"), @ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class, example = "523894324979568640"), @ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class, example = "472024559755722753") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "524147910955241472"),
+		@ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class, example = "523894324979568640"),
+		@ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class, example = "472024559755722753")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetDataPermissionsPositionVOMeta.PAGE_INDEX, AssetDataPermissionsPositionVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetDataPermissionsPositionServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsPositionServiceProxy.QUERY_LIST)
@@ -172,7 +196,11 @@ public class AssetDataPermissionsPositionController extends SuperController {
      * 分页查询位置
      */
     @ApiOperation(value = "分页查询位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "524147910955241472"), @ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class, example = "523894324979568640"), @ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class, example = "472024559755722753") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "524147910955241472"),
+		@ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class, example = "523894324979568640"),
+		@ApiImplicitParam(name = AssetDataPermissionsPositionVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class, example = "472024559755722753")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetDataPermissionsPositionServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsPositionServiceProxy.QUERY_PAGED_LIST)

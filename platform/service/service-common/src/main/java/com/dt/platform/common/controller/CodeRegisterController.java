@@ -57,7 +57,13 @@ public class CodeRegisterController extends SuperController {
      * 添加业务编码
      */
     @ApiOperation(value = "添加业务编码")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeRegisterVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "499322169352781824"), @ApiImplicitParam(name = CodeRegisterVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class, example = "eam_asset_change_base_info"), @ApiImplicitParam(name = CodeRegisterVOMeta.TYPE, value = "编码类型", required = false, dataTypeClass = String.class, example = "eam"), @ApiImplicitParam(name = CodeRegisterVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "资产基本变更"), @ApiImplicitParam(name = CodeRegisterVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeRegisterVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "499322169352781824"),
+		@ApiImplicitParam(name = CodeRegisterVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class, example = "eam_asset_change_base_info"),
+		@ApiImplicitParam(name = CodeRegisterVOMeta.TYPE, value = "编码类型", required = false, dataTypeClass = String.class, example = "eam"),
+		@ApiImplicitParam(name = CodeRegisterVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "资产基本变更"),
+		@ApiImplicitParam(name = CodeRegisterVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = CodeRegisterServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeRegisterServiceProxy.INSERT)
@@ -71,7 +77,9 @@ public class CodeRegisterController extends SuperController {
      * 删除业务编码
      */
     @ApiOperation(value = "删除业务编码")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeRegisterVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "499322169352781824") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeRegisterVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "499322169352781824")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = CodeRegisterServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeRegisterServiceProxy.DELETE)
@@ -85,7 +93,9 @@ public class CodeRegisterController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除业务编码")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeRegisterVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeRegisterVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = CodeRegisterServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeRegisterServiceProxy.DELETE_BY_IDS)
@@ -98,7 +108,13 @@ public class CodeRegisterController extends SuperController {
      * 更新业务编码
      */
     @ApiOperation(value = "更新业务编码")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeRegisterVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "499322169352781824"), @ApiImplicitParam(name = CodeRegisterVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class, example = "eam_asset_change_base_info"), @ApiImplicitParam(name = CodeRegisterVOMeta.TYPE, value = "编码类型", required = false, dataTypeClass = String.class, example = "eam"), @ApiImplicitParam(name = CodeRegisterVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "资产基本变更"), @ApiImplicitParam(name = CodeRegisterVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeRegisterVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "499322169352781824"),
+		@ApiImplicitParam(name = CodeRegisterVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class, example = "eam_asset_change_base_info"),
+		@ApiImplicitParam(name = CodeRegisterVOMeta.TYPE, value = "编码类型", required = false, dataTypeClass = String.class, example = "eam"),
+		@ApiImplicitParam(name = CodeRegisterVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "资产基本变更"),
+		@ApiImplicitParam(name = CodeRegisterVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { CodeRegisterVOMeta.PAGE_INDEX, CodeRegisterVOMeta.PAGE_SIZE, CodeRegisterVOMeta.SEARCH_FIELD, CodeRegisterVOMeta.FUZZY_FIELD, CodeRegisterVOMeta.SEARCH_VALUE, CodeRegisterVOMeta.SORT_FIELD, CodeRegisterVOMeta.SORT_TYPE, CodeRegisterVOMeta.IDS })
     @SentinelResource(value = CodeRegisterServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeRegisterServiceProxy.UPDATE)
@@ -112,7 +128,13 @@ public class CodeRegisterController extends SuperController {
      * 保存业务编码
      */
     @ApiOperation(value = "保存业务编码")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeRegisterVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "499322169352781824"), @ApiImplicitParam(name = CodeRegisterVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class, example = "eam_asset_change_base_info"), @ApiImplicitParam(name = CodeRegisterVOMeta.TYPE, value = "编码类型", required = false, dataTypeClass = String.class, example = "eam"), @ApiImplicitParam(name = CodeRegisterVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "资产基本变更"), @ApiImplicitParam(name = CodeRegisterVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeRegisterVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "499322169352781824"),
+		@ApiImplicitParam(name = CodeRegisterVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class, example = "eam_asset_change_base_info"),
+		@ApiImplicitParam(name = CodeRegisterVOMeta.TYPE, value = "编码类型", required = false, dataTypeClass = String.class, example = "eam"),
+		@ApiImplicitParam(name = CodeRegisterVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "资产基本变更"),
+		@ApiImplicitParam(name = CodeRegisterVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { CodeRegisterVOMeta.PAGE_INDEX, CodeRegisterVOMeta.PAGE_SIZE, CodeRegisterVOMeta.SEARCH_FIELD, CodeRegisterVOMeta.FUZZY_FIELD, CodeRegisterVOMeta.SEARCH_VALUE, CodeRegisterVOMeta.SORT_FIELD, CodeRegisterVOMeta.SORT_TYPE, CodeRegisterVOMeta.IDS })
     @SentinelResource(value = CodeRegisterServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeRegisterServiceProxy.SAVE)
@@ -126,7 +148,9 @@ public class CodeRegisterController extends SuperController {
      * 获取业务编码
      */
     @ApiOperation(value = "获取业务编码")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeRegisterVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeRegisterVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = CodeRegisterServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeRegisterServiceProxy.GET_BY_ID)
@@ -144,7 +168,9 @@ public class CodeRegisterController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取业务编码")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeRegisterVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeRegisterVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = CodeRegisterServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeRegisterServiceProxy.GET_BY_IDS)
@@ -159,7 +185,13 @@ public class CodeRegisterController extends SuperController {
      * 查询业务编码
      */
     @ApiOperation(value = "查询业务编码")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeRegisterVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "499322169352781824"), @ApiImplicitParam(name = CodeRegisterVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class, example = "eam_asset_change_base_info"), @ApiImplicitParam(name = CodeRegisterVOMeta.TYPE, value = "编码类型", required = false, dataTypeClass = String.class, example = "eam"), @ApiImplicitParam(name = CodeRegisterVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "资产基本变更"), @ApiImplicitParam(name = CodeRegisterVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeRegisterVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "499322169352781824"),
+		@ApiImplicitParam(name = CodeRegisterVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class, example = "eam_asset_change_base_info"),
+		@ApiImplicitParam(name = CodeRegisterVOMeta.TYPE, value = "编码类型", required = false, dataTypeClass = String.class, example = "eam"),
+		@ApiImplicitParam(name = CodeRegisterVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "资产基本变更"),
+		@ApiImplicitParam(name = CodeRegisterVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { CodeRegisterVOMeta.PAGE_INDEX, CodeRegisterVOMeta.PAGE_SIZE })
     @SentinelResource(value = CodeRegisterServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeRegisterServiceProxy.QUERY_LIST)
@@ -174,7 +206,13 @@ public class CodeRegisterController extends SuperController {
      * 分页查询业务编码
      */
     @ApiOperation(value = "分页查询业务编码")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeRegisterVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "499322169352781824"), @ApiImplicitParam(name = CodeRegisterVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class, example = "eam_asset_change_base_info"), @ApiImplicitParam(name = CodeRegisterVOMeta.TYPE, value = "编码类型", required = false, dataTypeClass = String.class, example = "eam"), @ApiImplicitParam(name = CodeRegisterVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "资产基本变更"), @ApiImplicitParam(name = CodeRegisterVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeRegisterVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "499322169352781824"),
+		@ApiImplicitParam(name = CodeRegisterVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class, example = "eam_asset_change_base_info"),
+		@ApiImplicitParam(name = CodeRegisterVOMeta.TYPE, value = "编码类型", required = false, dataTypeClass = String.class, example = "eam"),
+		@ApiImplicitParam(name = CodeRegisterVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "资产基本变更"),
+		@ApiImplicitParam(name = CodeRegisterVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = CodeRegisterServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeRegisterServiceProxy.QUERY_PAGED_LIST)

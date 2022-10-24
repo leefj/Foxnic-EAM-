@@ -58,7 +58,15 @@ public class TplFileController extends SuperController {
      * 添加模板文件
      */
     @ApiOperation(value = "添加模板文件")
-    @ApiImplicitParams({ @ApiImplicitParam(name = TplFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.TYPE, value = "模板类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.TPL_FILE_TYPE, value = "模板文件类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = TplFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.TYPE, value = "模板类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.TPL_FILE_TYPE, value = "模板文件类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = TplFileServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(TplFileServiceProxy.INSERT)
@@ -72,7 +80,9 @@ public class TplFileController extends SuperController {
      * 删除模板文件
      */
     @ApiOperation(value = "删除模板文件")
-    @ApiImplicitParams({ @ApiImplicitParam(name = TplFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = TplFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = TplFileServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(TplFileServiceProxy.DELETE)
@@ -86,7 +96,9 @@ public class TplFileController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除模板文件")
-    @ApiImplicitParams({ @ApiImplicitParam(name = TplFileVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = TplFileVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = TplFileServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(TplFileServiceProxy.DELETE_BY_IDS)
@@ -99,7 +111,15 @@ public class TplFileController extends SuperController {
      * 更新模板文件
      */
     @ApiOperation(value = "更新模板文件")
-    @ApiImplicitParams({ @ApiImplicitParam(name = TplFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.TYPE, value = "模板类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.TPL_FILE_TYPE, value = "模板文件类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = TplFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.TYPE, value = "模板类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.TPL_FILE_TYPE, value = "模板文件类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { TplFileVOMeta.PAGE_INDEX, TplFileVOMeta.PAGE_SIZE, TplFileVOMeta.SEARCH_FIELD, TplFileVOMeta.FUZZY_FIELD, TplFileVOMeta.SEARCH_VALUE, TplFileVOMeta.SORT_FIELD, TplFileVOMeta.SORT_TYPE, TplFileVOMeta.IDS })
     @SentinelResource(value = TplFileServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(TplFileServiceProxy.UPDATE)
@@ -113,7 +133,15 @@ public class TplFileController extends SuperController {
      * 保存模板文件
      */
     @ApiOperation(value = "保存模板文件")
-    @ApiImplicitParams({ @ApiImplicitParam(name = TplFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.TYPE, value = "模板类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.TPL_FILE_TYPE, value = "模板文件类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = TplFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.TYPE, value = "模板类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.TPL_FILE_TYPE, value = "模板文件类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { TplFileVOMeta.PAGE_INDEX, TplFileVOMeta.PAGE_SIZE, TplFileVOMeta.SEARCH_FIELD, TplFileVOMeta.FUZZY_FIELD, TplFileVOMeta.SEARCH_VALUE, TplFileVOMeta.SORT_FIELD, TplFileVOMeta.SORT_TYPE, TplFileVOMeta.IDS })
     @SentinelResource(value = TplFileServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(TplFileServiceProxy.SAVE)
@@ -127,7 +155,9 @@ public class TplFileController extends SuperController {
      * 获取模板文件
      */
     @ApiOperation(value = "获取模板文件")
-    @ApiImplicitParams({ @ApiImplicitParam(name = TplFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = TplFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = TplFileServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(TplFileServiceProxy.GET_BY_ID)
@@ -145,7 +175,9 @@ public class TplFileController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除模板文件")
-    @ApiImplicitParams({ @ApiImplicitParam(name = TplFileVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = TplFileVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = TplFileServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(TplFileServiceProxy.GET_BY_IDS)
@@ -160,7 +192,15 @@ public class TplFileController extends SuperController {
      * 查询模板文件
      */
     @ApiOperation(value = "查询模板文件")
-    @ApiImplicitParams({ @ApiImplicitParam(name = TplFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.TYPE, value = "模板类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.TPL_FILE_TYPE, value = "模板文件类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = TplFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.TYPE, value = "模板类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.TPL_FILE_TYPE, value = "模板文件类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { TplFileVOMeta.PAGE_INDEX, TplFileVOMeta.PAGE_SIZE })
     @SentinelResource(value = TplFileServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(TplFileServiceProxy.QUERY_LIST)
@@ -175,7 +215,15 @@ public class TplFileController extends SuperController {
      * 分页查询模板文件
      */
     @ApiOperation(value = "分页查询模板文件")
-    @ApiImplicitParams({ @ApiImplicitParam(name = TplFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.TYPE, value = "模板类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.TPL_FILE_TYPE, value = "模板文件类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = TplFileVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = TplFileVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.TYPE, value = "模板类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.TPL_FILE_TYPE, value = "模板文件类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = TplFileVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = TplFileServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(TplFileServiceProxy.QUERY_PAGED_LIST)
@@ -192,7 +240,9 @@ public class TplFileController extends SuperController {
      * 删除模板文件
      */
     @ApiOperation(value = "获取文件流")
-    @ApiImplicitParams({ @ApiImplicitParam(name = TplFileVOMeta.CODE, value = "编码", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = TplFileVOMeta.CODE, value = "编码", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 9)
     @SentinelResource(value = TplFileServiceProxy.GET_TPL_FILE_STREAM_BY_CODE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(TplFileServiceProxy.GET_TPL_FILE_STREAM_BY_CODE)

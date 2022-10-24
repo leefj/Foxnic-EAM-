@@ -58,7 +58,55 @@ public class PersonController extends SuperController {
      * 添加人员信息
      */
     @ApiOperation(value = "添加人员信息")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOY_ID, value = "员工", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.JOB_NUMBER, value = "工号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.NAME, value = "姓名", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.SEX_CODE, value = "性别", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.BIRTHDAY, value = "出生日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.NATIVE_PLACE_CODE, value = "籍贯", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.NATION_CODE, value = "民族", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.MARITAL_STATUS, value = "婚姻状况", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_STATUS, value = "员工状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_TYPE_CODE, value = "人员类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.IDENTITY_CARD, value = "身份证", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.CONTACT_INFORMATION, value = "联系方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMAIL, value = "电子邮件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMERGENCY_CONTACT, value = "紧急联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMERGENCY_CONTACT_NO, value = "紧急人电话", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.HOME_ADDRESS, value = "家庭地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.WEIXIN_ID, value = "微信号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EDUCATION_CODE, value = "学历", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.GRADUATION_SCHOOL, value = "毕业院校", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.MAJOR, value = "所学专业", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.GRADUATION_DATE, value = "毕业时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.FOREIGN_LANGUAGE, value = "所学外语", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.FOREIGN_LANGUAGE_LEVEL, value = "外语证书", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.COMPUTER_ABILITY, value = "计算机能力", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.COMPUTER_LEVEL, value = "计算机等级", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.POLITIC_COUNTENANCE_CODE, value = "政治面貌", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.JOIN_PART_DATE, value = "入党时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.BLOOD_TYPE, value = "血型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.BODY_HEIGHT, value = "身高", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = PersonVOMeta.BODY_WEIGHT, value = "体重", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOYMENT_DATE, value = "入职日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOYMENT_CONFIRM_DATE, value = "转正日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.FIRST_EMPLOYMENT_DATE, value = "初次日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.FIRST_WORK_DATE, value = "参加工作时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.ORG_ID, value = "员工部门", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.POSITION_CODE, value = "员工岗位", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_TITLE_CODE, value = "员工职称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.RANK_CODE, value = "员工职级", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.WORK_KIND_CODE, value = "员工工种", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.LEAVE_DATE, value = "离职日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.LEAVE_RESON, value = "离职原因", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.PAYROLL_CARD_BANK_CODE, value = "工资卡开户行", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.PAYROLL_CARD, value = "工资卡帐号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.PERSON_PICTURE_ID, value = "照片", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.NOTE, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOY_ID, value = "员工", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.JOB_NUMBER, value = "工号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.NAME, value = "姓名", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.SEX_CODE, value = "性别", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.BIRTHDAY, value = "出生日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.NATIVE_PLACE_CODE, value = "籍贯", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.NATION_CODE, value = "民族", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.MARITAL_STATUS, value = "婚姻状况", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_STATUS, value = "员工状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_TYPE_CODE, value = "人员类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.IDENTITY_CARD, value = "身份证", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.CONTACT_INFORMATION, value = "联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMAIL, value = "电子邮件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMERGENCY_CONTACT, value = "紧急联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMERGENCY_CONTACT_NO, value = "紧急人电话", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.HOME_ADDRESS, value = "家庭地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.WEIXIN_ID, value = "微信号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EDUCATION_CODE, value = "学历", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.GRADUATION_SCHOOL, value = "毕业院校", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.MAJOR, value = "所学专业", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.GRADUATION_DATE, value = "毕业时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.FOREIGN_LANGUAGE, value = "所学外语", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.FOREIGN_LANGUAGE_LEVEL, value = "外语证书", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.COMPUTER_ABILITY, value = "计算机能力", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.COMPUTER_LEVEL, value = "计算机等级", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.POLITIC_COUNTENANCE_CODE, value = "政治面貌", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.JOIN_PART_DATE, value = "入党时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.BLOOD_TYPE, value = "血型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.BODY_HEIGHT, value = "身高", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = PersonVOMeta.BODY_WEIGHT, value = "体重", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYMENT_DATE, value = "入职日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYMENT_CONFIRM_DATE, value = "转正日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.FIRST_EMPLOYMENT_DATE, value = "初次日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.FIRST_WORK_DATE, value = "参加工作时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.ORG_ID, value = "员工部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.POSITION_CODE, value = "员工岗位", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_TITLE_CODE, value = "员工职称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.RANK_CODE, value = "员工职级", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.WORK_KIND_CODE, value = "员工工种", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.LEAVE_DATE, value = "离职日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.LEAVE_RESON, value = "离职原因", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.PAYROLL_CARD_BANK_CODE, value = "工资卡开户行", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.PAYROLL_CARD, value = "工资卡帐号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.PERSON_PICTURE_ID, value = "照片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.NOTE, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = PersonServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PersonServiceProxy.INSERT)
@@ -72,7 +120,9 @@ public class PersonController extends SuperController {
      * 删除人员信息
      */
     @ApiOperation(value = "删除人员信息")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = PersonServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PersonServiceProxy.DELETE)
@@ -97,7 +147,9 @@ public class PersonController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除人员信息")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PersonVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PersonVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = PersonServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PersonServiceProxy.DELETE_BY_IDS)
@@ -142,7 +194,55 @@ public class PersonController extends SuperController {
      * 更新人员信息
      */
     @ApiOperation(value = "更新人员信息")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOY_ID, value = "员工", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.JOB_NUMBER, value = "工号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.NAME, value = "姓名", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.SEX_CODE, value = "性别", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.BIRTHDAY, value = "出生日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.NATIVE_PLACE_CODE, value = "籍贯", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.NATION_CODE, value = "民族", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.MARITAL_STATUS, value = "婚姻状况", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_STATUS, value = "员工状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_TYPE_CODE, value = "人员类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.IDENTITY_CARD, value = "身份证", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.CONTACT_INFORMATION, value = "联系方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMAIL, value = "电子邮件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMERGENCY_CONTACT, value = "紧急联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMERGENCY_CONTACT_NO, value = "紧急人电话", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.HOME_ADDRESS, value = "家庭地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.WEIXIN_ID, value = "微信号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EDUCATION_CODE, value = "学历", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.GRADUATION_SCHOOL, value = "毕业院校", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.MAJOR, value = "所学专业", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.GRADUATION_DATE, value = "毕业时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.FOREIGN_LANGUAGE, value = "所学外语", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.FOREIGN_LANGUAGE_LEVEL, value = "外语证书", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.COMPUTER_ABILITY, value = "计算机能力", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.COMPUTER_LEVEL, value = "计算机等级", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.POLITIC_COUNTENANCE_CODE, value = "政治面貌", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.JOIN_PART_DATE, value = "入党时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.BLOOD_TYPE, value = "血型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.BODY_HEIGHT, value = "身高", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = PersonVOMeta.BODY_WEIGHT, value = "体重", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOYMENT_DATE, value = "入职日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOYMENT_CONFIRM_DATE, value = "转正日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.FIRST_EMPLOYMENT_DATE, value = "初次日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.FIRST_WORK_DATE, value = "参加工作时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.ORG_ID, value = "员工部门", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.POSITION_CODE, value = "员工岗位", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_TITLE_CODE, value = "员工职称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.RANK_CODE, value = "员工职级", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.WORK_KIND_CODE, value = "员工工种", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.LEAVE_DATE, value = "离职日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.LEAVE_RESON, value = "离职原因", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.PAYROLL_CARD_BANK_CODE, value = "工资卡开户行", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.PAYROLL_CARD, value = "工资卡帐号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.PERSON_PICTURE_ID, value = "照片", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.NOTE, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOY_ID, value = "员工", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.JOB_NUMBER, value = "工号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.NAME, value = "姓名", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.SEX_CODE, value = "性别", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.BIRTHDAY, value = "出生日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.NATIVE_PLACE_CODE, value = "籍贯", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.NATION_CODE, value = "民族", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.MARITAL_STATUS, value = "婚姻状况", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_STATUS, value = "员工状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_TYPE_CODE, value = "人员类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.IDENTITY_CARD, value = "身份证", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.CONTACT_INFORMATION, value = "联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMAIL, value = "电子邮件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMERGENCY_CONTACT, value = "紧急联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMERGENCY_CONTACT_NO, value = "紧急人电话", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.HOME_ADDRESS, value = "家庭地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.WEIXIN_ID, value = "微信号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EDUCATION_CODE, value = "学历", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.GRADUATION_SCHOOL, value = "毕业院校", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.MAJOR, value = "所学专业", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.GRADUATION_DATE, value = "毕业时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.FOREIGN_LANGUAGE, value = "所学外语", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.FOREIGN_LANGUAGE_LEVEL, value = "外语证书", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.COMPUTER_ABILITY, value = "计算机能力", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.COMPUTER_LEVEL, value = "计算机等级", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.POLITIC_COUNTENANCE_CODE, value = "政治面貌", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.JOIN_PART_DATE, value = "入党时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.BLOOD_TYPE, value = "血型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.BODY_HEIGHT, value = "身高", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = PersonVOMeta.BODY_WEIGHT, value = "体重", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYMENT_DATE, value = "入职日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYMENT_CONFIRM_DATE, value = "转正日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.FIRST_EMPLOYMENT_DATE, value = "初次日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.FIRST_WORK_DATE, value = "参加工作时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.ORG_ID, value = "员工部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.POSITION_CODE, value = "员工岗位", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_TITLE_CODE, value = "员工职称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.RANK_CODE, value = "员工职级", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.WORK_KIND_CODE, value = "员工工种", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.LEAVE_DATE, value = "离职日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.LEAVE_RESON, value = "离职原因", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.PAYROLL_CARD_BANK_CODE, value = "工资卡开户行", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.PAYROLL_CARD, value = "工资卡帐号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.PERSON_PICTURE_ID, value = "照片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.NOTE, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { PersonVOMeta.PAGE_INDEX, PersonVOMeta.PAGE_SIZE, PersonVOMeta.SEARCH_FIELD, PersonVOMeta.FUZZY_FIELD, PersonVOMeta.SEARCH_VALUE, PersonVOMeta.DIRTY_FIELDS, PersonVOMeta.SORT_FIELD, PersonVOMeta.SORT_TYPE, PersonVOMeta.IDS })
     @SentinelResource(value = PersonServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PersonServiceProxy.UPDATE)
@@ -156,7 +256,55 @@ public class PersonController extends SuperController {
      * 保存人员信息
      */
     @ApiOperation(value = "保存人员信息")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOY_ID, value = "员工", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.JOB_NUMBER, value = "工号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.NAME, value = "姓名", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.SEX_CODE, value = "性别", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.BIRTHDAY, value = "出生日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.NATIVE_PLACE_CODE, value = "籍贯", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.NATION_CODE, value = "民族", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.MARITAL_STATUS, value = "婚姻状况", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_STATUS, value = "员工状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_TYPE_CODE, value = "人员类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.IDENTITY_CARD, value = "身份证", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.CONTACT_INFORMATION, value = "联系方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMAIL, value = "电子邮件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMERGENCY_CONTACT, value = "紧急联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMERGENCY_CONTACT_NO, value = "紧急人电话", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.HOME_ADDRESS, value = "家庭地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.WEIXIN_ID, value = "微信号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EDUCATION_CODE, value = "学历", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.GRADUATION_SCHOOL, value = "毕业院校", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.MAJOR, value = "所学专业", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.GRADUATION_DATE, value = "毕业时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.FOREIGN_LANGUAGE, value = "所学外语", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.FOREIGN_LANGUAGE_LEVEL, value = "外语证书", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.COMPUTER_ABILITY, value = "计算机能力", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.COMPUTER_LEVEL, value = "计算机等级", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.POLITIC_COUNTENANCE_CODE, value = "政治面貌", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.JOIN_PART_DATE, value = "入党时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.BLOOD_TYPE, value = "血型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.BODY_HEIGHT, value = "身高", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = PersonVOMeta.BODY_WEIGHT, value = "体重", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOYMENT_DATE, value = "入职日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOYMENT_CONFIRM_DATE, value = "转正日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.FIRST_EMPLOYMENT_DATE, value = "初次日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.FIRST_WORK_DATE, value = "参加工作时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.ORG_ID, value = "员工部门", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.POSITION_CODE, value = "员工岗位", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_TITLE_CODE, value = "员工职称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.RANK_CODE, value = "员工职级", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.WORK_KIND_CODE, value = "员工工种", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.LEAVE_DATE, value = "离职日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.LEAVE_RESON, value = "离职原因", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.PAYROLL_CARD_BANK_CODE, value = "工资卡开户行", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.PAYROLL_CARD, value = "工资卡帐号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.PERSON_PICTURE_ID, value = "照片", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.NOTE, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOY_ID, value = "员工", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.JOB_NUMBER, value = "工号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.NAME, value = "姓名", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.SEX_CODE, value = "性别", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.BIRTHDAY, value = "出生日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.NATIVE_PLACE_CODE, value = "籍贯", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.NATION_CODE, value = "民族", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.MARITAL_STATUS, value = "婚姻状况", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_STATUS, value = "员工状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_TYPE_CODE, value = "人员类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.IDENTITY_CARD, value = "身份证", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.CONTACT_INFORMATION, value = "联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMAIL, value = "电子邮件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMERGENCY_CONTACT, value = "紧急联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMERGENCY_CONTACT_NO, value = "紧急人电话", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.HOME_ADDRESS, value = "家庭地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.WEIXIN_ID, value = "微信号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EDUCATION_CODE, value = "学历", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.GRADUATION_SCHOOL, value = "毕业院校", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.MAJOR, value = "所学专业", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.GRADUATION_DATE, value = "毕业时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.FOREIGN_LANGUAGE, value = "所学外语", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.FOREIGN_LANGUAGE_LEVEL, value = "外语证书", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.COMPUTER_ABILITY, value = "计算机能力", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.COMPUTER_LEVEL, value = "计算机等级", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.POLITIC_COUNTENANCE_CODE, value = "政治面貌", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.JOIN_PART_DATE, value = "入党时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.BLOOD_TYPE, value = "血型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.BODY_HEIGHT, value = "身高", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = PersonVOMeta.BODY_WEIGHT, value = "体重", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYMENT_DATE, value = "入职日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYMENT_CONFIRM_DATE, value = "转正日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.FIRST_EMPLOYMENT_DATE, value = "初次日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.FIRST_WORK_DATE, value = "参加工作时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.ORG_ID, value = "员工部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.POSITION_CODE, value = "员工岗位", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_TITLE_CODE, value = "员工职称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.RANK_CODE, value = "员工职级", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.WORK_KIND_CODE, value = "员工工种", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.LEAVE_DATE, value = "离职日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.LEAVE_RESON, value = "离职原因", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.PAYROLL_CARD_BANK_CODE, value = "工资卡开户行", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.PAYROLL_CARD, value = "工资卡帐号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.PERSON_PICTURE_ID, value = "照片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.NOTE, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { PersonVOMeta.PAGE_INDEX, PersonVOMeta.PAGE_SIZE, PersonVOMeta.SEARCH_FIELD, PersonVOMeta.FUZZY_FIELD, PersonVOMeta.SEARCH_VALUE, PersonVOMeta.DIRTY_FIELDS, PersonVOMeta.SORT_FIELD, PersonVOMeta.SORT_TYPE, PersonVOMeta.IDS })
     @SentinelResource(value = PersonServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PersonServiceProxy.SAVE)
@@ -170,7 +318,9 @@ public class PersonController extends SuperController {
      * 获取人员信息
      */
     @ApiOperation(value = "获取人员信息")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = PersonServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PersonServiceProxy.GET_BY_ID)
@@ -186,7 +336,9 @@ public class PersonController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取人员信息")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PersonVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PersonVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = PersonServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PersonServiceProxy.GET_BY_IDS)
@@ -201,7 +353,55 @@ public class PersonController extends SuperController {
      * 查询人员信息
      */
     @ApiOperation(value = "查询人员信息")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOY_ID, value = "员工", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.JOB_NUMBER, value = "工号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.NAME, value = "姓名", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.SEX_CODE, value = "性别", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.BIRTHDAY, value = "出生日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.NATIVE_PLACE_CODE, value = "籍贯", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.NATION_CODE, value = "民族", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.MARITAL_STATUS, value = "婚姻状况", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_STATUS, value = "员工状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_TYPE_CODE, value = "人员类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.IDENTITY_CARD, value = "身份证", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.CONTACT_INFORMATION, value = "联系方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMAIL, value = "电子邮件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMERGENCY_CONTACT, value = "紧急联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMERGENCY_CONTACT_NO, value = "紧急人电话", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.HOME_ADDRESS, value = "家庭地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.WEIXIN_ID, value = "微信号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EDUCATION_CODE, value = "学历", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.GRADUATION_SCHOOL, value = "毕业院校", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.MAJOR, value = "所学专业", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.GRADUATION_DATE, value = "毕业时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.FOREIGN_LANGUAGE, value = "所学外语", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.FOREIGN_LANGUAGE_LEVEL, value = "外语证书", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.COMPUTER_ABILITY, value = "计算机能力", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.COMPUTER_LEVEL, value = "计算机等级", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.POLITIC_COUNTENANCE_CODE, value = "政治面貌", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.JOIN_PART_DATE, value = "入党时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.BLOOD_TYPE, value = "血型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.BODY_HEIGHT, value = "身高", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = PersonVOMeta.BODY_WEIGHT, value = "体重", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOYMENT_DATE, value = "入职日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOYMENT_CONFIRM_DATE, value = "转正日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.FIRST_EMPLOYMENT_DATE, value = "初次日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.FIRST_WORK_DATE, value = "参加工作时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.ORG_ID, value = "员工部门", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.POSITION_CODE, value = "员工岗位", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_TITLE_CODE, value = "员工职称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.RANK_CODE, value = "员工职级", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.WORK_KIND_CODE, value = "员工工种", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.LEAVE_DATE, value = "离职日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.LEAVE_RESON, value = "离职原因", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.PAYROLL_CARD_BANK_CODE, value = "工资卡开户行", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.PAYROLL_CARD, value = "工资卡帐号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.PERSON_PICTURE_ID, value = "照片", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.NOTE, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOY_ID, value = "员工", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.JOB_NUMBER, value = "工号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.NAME, value = "姓名", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.SEX_CODE, value = "性别", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.BIRTHDAY, value = "出生日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.NATIVE_PLACE_CODE, value = "籍贯", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.NATION_CODE, value = "民族", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.MARITAL_STATUS, value = "婚姻状况", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_STATUS, value = "员工状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_TYPE_CODE, value = "人员类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.IDENTITY_CARD, value = "身份证", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.CONTACT_INFORMATION, value = "联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMAIL, value = "电子邮件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMERGENCY_CONTACT, value = "紧急联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMERGENCY_CONTACT_NO, value = "紧急人电话", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.HOME_ADDRESS, value = "家庭地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.WEIXIN_ID, value = "微信号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EDUCATION_CODE, value = "学历", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.GRADUATION_SCHOOL, value = "毕业院校", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.MAJOR, value = "所学专业", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.GRADUATION_DATE, value = "毕业时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.FOREIGN_LANGUAGE, value = "所学外语", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.FOREIGN_LANGUAGE_LEVEL, value = "外语证书", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.COMPUTER_ABILITY, value = "计算机能力", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.COMPUTER_LEVEL, value = "计算机等级", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.POLITIC_COUNTENANCE_CODE, value = "政治面貌", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.JOIN_PART_DATE, value = "入党时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.BLOOD_TYPE, value = "血型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.BODY_HEIGHT, value = "身高", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = PersonVOMeta.BODY_WEIGHT, value = "体重", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYMENT_DATE, value = "入职日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYMENT_CONFIRM_DATE, value = "转正日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.FIRST_EMPLOYMENT_DATE, value = "初次日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.FIRST_WORK_DATE, value = "参加工作时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.ORG_ID, value = "员工部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.POSITION_CODE, value = "员工岗位", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_TITLE_CODE, value = "员工职称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.RANK_CODE, value = "员工职级", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.WORK_KIND_CODE, value = "员工工种", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.LEAVE_DATE, value = "离职日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.LEAVE_RESON, value = "离职原因", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.PAYROLL_CARD_BANK_CODE, value = "工资卡开户行", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.PAYROLL_CARD, value = "工资卡帐号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.PERSON_PICTURE_ID, value = "照片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.NOTE, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { PersonVOMeta.PAGE_INDEX, PersonVOMeta.PAGE_SIZE })
     @SentinelResource(value = PersonServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PersonServiceProxy.QUERY_LIST)
@@ -216,7 +416,55 @@ public class PersonController extends SuperController {
      * 分页查询人员信息
      */
     @ApiOperation(value = "分页查询人员信息")
-    @ApiImplicitParams({ @ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOY_ID, value = "员工", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.JOB_NUMBER, value = "工号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.NAME, value = "姓名", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.SEX_CODE, value = "性别", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.BIRTHDAY, value = "出生日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.NATIVE_PLACE_CODE, value = "籍贯", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.NATION_CODE, value = "民族", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.MARITAL_STATUS, value = "婚姻状况", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_STATUS, value = "员工状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_TYPE_CODE, value = "人员类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.IDENTITY_CARD, value = "身份证", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.CONTACT_INFORMATION, value = "联系方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMAIL, value = "电子邮件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMERGENCY_CONTACT, value = "紧急联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMERGENCY_CONTACT_NO, value = "紧急人电话", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.HOME_ADDRESS, value = "家庭地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.WEIXIN_ID, value = "微信号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EDUCATION_CODE, value = "学历", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.GRADUATION_SCHOOL, value = "毕业院校", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.MAJOR, value = "所学专业", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.GRADUATION_DATE, value = "毕业时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.FOREIGN_LANGUAGE, value = "所学外语", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.FOREIGN_LANGUAGE_LEVEL, value = "外语证书", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.COMPUTER_ABILITY, value = "计算机能力", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.COMPUTER_LEVEL, value = "计算机等级", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.POLITIC_COUNTENANCE_CODE, value = "政治面貌", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.JOIN_PART_DATE, value = "入党时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.BLOOD_TYPE, value = "血型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.BODY_HEIGHT, value = "身高", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = PersonVOMeta.BODY_WEIGHT, value = "体重", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOYMENT_DATE, value = "入职日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOYMENT_CONFIRM_DATE, value = "转正日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.FIRST_EMPLOYMENT_DATE, value = "初次日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.FIRST_WORK_DATE, value = "参加工作时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.ORG_ID, value = "员工部门", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.POSITION_CODE, value = "员工岗位", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_TITLE_CODE, value = "员工职称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.RANK_CODE, value = "员工职级", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.WORK_KIND_CODE, value = "员工工种", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.LEAVE_DATE, value = "离职日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = PersonVOMeta.LEAVE_RESON, value = "离职原因", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.PAYROLL_CARD_BANK_CODE, value = "工资卡开户行", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.PAYROLL_CARD, value = "工资卡帐号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.PERSON_PICTURE_ID, value = "照片", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = PersonVOMeta.NOTE, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = PersonVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOY_ID, value = "员工", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.JOB_NUMBER, value = "工号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.NAME, value = "姓名", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.SEX_CODE, value = "性别", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.BIRTHDAY, value = "出生日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.NATIVE_PLACE_CODE, value = "籍贯", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.NATION_CODE, value = "民族", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.MARITAL_STATUS, value = "婚姻状况", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_STATUS, value = "员工状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_TYPE_CODE, value = "人员类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.IDENTITY_CARD, value = "身份证", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.CONTACT_INFORMATION, value = "联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMAIL, value = "电子邮件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMERGENCY_CONTACT, value = "紧急联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMERGENCY_CONTACT_NO, value = "紧急人电话", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.HOME_ADDRESS, value = "家庭地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.WEIXIN_ID, value = "微信号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EDUCATION_CODE, value = "学历", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.GRADUATION_SCHOOL, value = "毕业院校", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.MAJOR, value = "所学专业", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.GRADUATION_DATE, value = "毕业时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.FOREIGN_LANGUAGE, value = "所学外语", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.FOREIGN_LANGUAGE_LEVEL, value = "外语证书", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.COMPUTER_ABILITY, value = "计算机能力", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.COMPUTER_LEVEL, value = "计算机等级", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.POLITIC_COUNTENANCE_CODE, value = "政治面貌", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.JOIN_PART_DATE, value = "入党时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.BLOOD_TYPE, value = "血型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.BODY_HEIGHT, value = "身高", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = PersonVOMeta.BODY_WEIGHT, value = "体重", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYMENT_DATE, value = "入职日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYMENT_CONFIRM_DATE, value = "转正日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.FIRST_EMPLOYMENT_DATE, value = "初次日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.FIRST_WORK_DATE, value = "参加工作时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.ORG_ID, value = "员工部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.POSITION_CODE, value = "员工岗位", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.EMPLOYEE_TITLE_CODE, value = "员工职称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.RANK_CODE, value = "员工职级", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.WORK_KIND_CODE, value = "员工工种", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.LEAVE_DATE, value = "离职日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = PersonVOMeta.LEAVE_RESON, value = "离职原因", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.PAYROLL_CARD_BANK_CODE, value = "工资卡开户行", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.PAYROLL_CARD, value = "工资卡帐号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.PERSON_PICTURE_ID, value = "照片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = PersonVOMeta.NOTE, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = PersonServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(PersonServiceProxy.QUERY_PAGED_LIST)

@@ -66,7 +66,27 @@ public class InspectionTaskController extends SuperController {
      * 添加巡检任务
      */
     @ApiOperation(value = "添加巡检任务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_ID, value = "巡检计划", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.TASK_STATUS, value = "任务状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.TASK_CODE, value = "任务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_CODE, value = "巡检编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_NAME, value = "巡检名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_INSPECTION_METHOD, value = "巡检顺序", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_COMPLETION_TIME, value = "时间要求", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_NOTES, value = "巡检备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.GROUP_ID, value = "巡检班组", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.EXECUTOR_ID, value = "执行人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_START_TIME, value = "应开始时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = InspectionTaskVOMeta.ACT_START_TIME, value = "实际开始时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = InspectionTaskVOMeta.ACT_FINISH_TIME, value = "实际完成时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = InspectionTaskVOMeta.ACT_TOTAL_COST, value = "实际工时", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = InspectionTaskVOMeta.CONTENT, value = "任务反馈", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_ID, value = "巡检计划", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.TASK_STATUS, value = "任务状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.TASK_CODE, value = "任务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_CODE, value = "巡检编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_NAME, value = "巡检名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_INSPECTION_METHOD, value = "巡检顺序", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_COMPLETION_TIME, value = "时间要求", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_NOTES, value = "巡检备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.GROUP_ID, value = "巡检班组", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.EXECUTOR_ID, value = "执行人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_START_TIME, value = "应开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ACT_START_TIME, value = "实际开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ACT_FINISH_TIME, value = "实际完成时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ACT_TOTAL_COST, value = "实际工时", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.CONTENT, value = "任务反馈", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = InspectionTaskServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionTaskServiceProxy.INSERT)
@@ -80,7 +100,9 @@ public class InspectionTaskController extends SuperController {
      * 删除巡检任务
      */
     @ApiOperation(value = "删除巡检任务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = InspectionTaskServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionTaskServiceProxy.DELETE)
@@ -94,7 +116,9 @@ public class InspectionTaskController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除巡检任务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionTaskVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionTaskVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = InspectionTaskServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionTaskServiceProxy.DELETE_BY_IDS)
@@ -107,7 +131,27 @@ public class InspectionTaskController extends SuperController {
      * 更新巡检任务
      */
     @ApiOperation(value = "更新巡检任务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_ID, value = "巡检计划", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.TASK_STATUS, value = "任务状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.TASK_CODE, value = "任务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_CODE, value = "巡检编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_NAME, value = "巡检名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_INSPECTION_METHOD, value = "巡检顺序", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_COMPLETION_TIME, value = "时间要求", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_NOTES, value = "巡检备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.GROUP_ID, value = "巡检班组", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.EXECUTOR_ID, value = "执行人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_START_TIME, value = "应开始时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = InspectionTaskVOMeta.ACT_START_TIME, value = "实际开始时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = InspectionTaskVOMeta.ACT_FINISH_TIME, value = "实际完成时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = InspectionTaskVOMeta.ACT_TOTAL_COST, value = "实际工时", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = InspectionTaskVOMeta.CONTENT, value = "任务反馈", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_ID, value = "巡检计划", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.TASK_STATUS, value = "任务状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.TASK_CODE, value = "任务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_CODE, value = "巡检编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_NAME, value = "巡检名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_INSPECTION_METHOD, value = "巡检顺序", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_COMPLETION_TIME, value = "时间要求", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_NOTES, value = "巡检备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.GROUP_ID, value = "巡检班组", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.EXECUTOR_ID, value = "执行人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_START_TIME, value = "应开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ACT_START_TIME, value = "实际开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ACT_FINISH_TIME, value = "实际完成时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ACT_TOTAL_COST, value = "实际工时", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.CONTENT, value = "任务反馈", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { InspectionTaskVOMeta.PAGE_INDEX, InspectionTaskVOMeta.PAGE_SIZE, InspectionTaskVOMeta.SEARCH_FIELD, InspectionTaskVOMeta.FUZZY_FIELD, InspectionTaskVOMeta.SEARCH_VALUE, InspectionTaskVOMeta.DIRTY_FIELDS, InspectionTaskVOMeta.SORT_FIELD, InspectionTaskVOMeta.SORT_TYPE, InspectionTaskVOMeta.IDS })
     @SentinelResource(value = InspectionTaskServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionTaskServiceProxy.UPDATE)
@@ -121,7 +165,27 @@ public class InspectionTaskController extends SuperController {
      * 保存巡检任务
      */
     @ApiOperation(value = "保存巡检任务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_ID, value = "巡检计划", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.TASK_STATUS, value = "任务状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.TASK_CODE, value = "任务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_CODE, value = "巡检编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_NAME, value = "巡检名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_INSPECTION_METHOD, value = "巡检顺序", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_COMPLETION_TIME, value = "时间要求", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_NOTES, value = "巡检备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.GROUP_ID, value = "巡检班组", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.EXECUTOR_ID, value = "执行人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_START_TIME, value = "应开始时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = InspectionTaskVOMeta.ACT_START_TIME, value = "实际开始时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = InspectionTaskVOMeta.ACT_FINISH_TIME, value = "实际完成时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = InspectionTaskVOMeta.ACT_TOTAL_COST, value = "实际工时", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = InspectionTaskVOMeta.CONTENT, value = "任务反馈", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_ID, value = "巡检计划", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.TASK_STATUS, value = "任务状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.TASK_CODE, value = "任务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_CODE, value = "巡检编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_NAME, value = "巡检名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_INSPECTION_METHOD, value = "巡检顺序", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_COMPLETION_TIME, value = "时间要求", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_NOTES, value = "巡检备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.GROUP_ID, value = "巡检班组", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.EXECUTOR_ID, value = "执行人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_START_TIME, value = "应开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ACT_START_TIME, value = "实际开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ACT_FINISH_TIME, value = "实际完成时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ACT_TOTAL_COST, value = "实际工时", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.CONTENT, value = "任务反馈", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InspectionTaskVOMeta.PAGE_INDEX, InspectionTaskVOMeta.PAGE_SIZE, InspectionTaskVOMeta.SEARCH_FIELD, InspectionTaskVOMeta.FUZZY_FIELD, InspectionTaskVOMeta.SEARCH_VALUE, InspectionTaskVOMeta.DIRTY_FIELDS, InspectionTaskVOMeta.SORT_FIELD, InspectionTaskVOMeta.SORT_TYPE, InspectionTaskVOMeta.IDS })
     @SentinelResource(value = InspectionTaskServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionTaskServiceProxy.SAVE)
@@ -135,7 +199,9 @@ public class InspectionTaskController extends SuperController {
      * 获取巡检任务
      */
     @ApiOperation(value = "获取巡检任务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = InspectionTaskServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionTaskServiceProxy.GET_BY_ID)
@@ -153,7 +219,9 @@ public class InspectionTaskController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取巡检任务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionTaskVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionTaskVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = InspectionTaskServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionTaskServiceProxy.GET_BY_IDS)
@@ -168,7 +236,27 @@ public class InspectionTaskController extends SuperController {
      * 查询巡检任务
      */
     @ApiOperation(value = "查询巡检任务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_ID, value = "巡检计划", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.TASK_STATUS, value = "任务状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.TASK_CODE, value = "任务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_CODE, value = "巡检编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_NAME, value = "巡检名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_INSPECTION_METHOD, value = "巡检顺序", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_COMPLETION_TIME, value = "时间要求", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_NOTES, value = "巡检备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.GROUP_ID, value = "巡检班组", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.EXECUTOR_ID, value = "执行人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_START_TIME, value = "应开始时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = InspectionTaskVOMeta.ACT_START_TIME, value = "实际开始时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = InspectionTaskVOMeta.ACT_FINISH_TIME, value = "实际完成时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = InspectionTaskVOMeta.ACT_TOTAL_COST, value = "实际工时", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = InspectionTaskVOMeta.CONTENT, value = "任务反馈", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_ID, value = "巡检计划", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.TASK_STATUS, value = "任务状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.TASK_CODE, value = "任务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_CODE, value = "巡检编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_NAME, value = "巡检名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_INSPECTION_METHOD, value = "巡检顺序", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_COMPLETION_TIME, value = "时间要求", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_NOTES, value = "巡检备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.GROUP_ID, value = "巡检班组", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.EXECUTOR_ID, value = "执行人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_START_TIME, value = "应开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ACT_START_TIME, value = "实际开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ACT_FINISH_TIME, value = "实际完成时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ACT_TOTAL_COST, value = "实际工时", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.CONTENT, value = "任务反馈", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InspectionTaskVOMeta.PAGE_INDEX, InspectionTaskVOMeta.PAGE_SIZE })
     @SentinelResource(value = InspectionTaskServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionTaskServiceProxy.QUERY_LIST)
@@ -183,7 +271,27 @@ public class InspectionTaskController extends SuperController {
      * 分页查询巡检任务
      */
     @ApiOperation(value = "分页查询巡检任务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_ID, value = "巡检计划", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.TASK_STATUS, value = "任务状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.TASK_CODE, value = "任务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_CODE, value = "巡检编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_NAME, value = "巡检名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_INSPECTION_METHOD, value = "巡检顺序", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_COMPLETION_TIME, value = "时间要求", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_NOTES, value = "巡检备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.GROUP_ID, value = "巡检班组", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.EXECUTOR_ID, value = "执行人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_START_TIME, value = "应开始时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = InspectionTaskVOMeta.ACT_START_TIME, value = "实际开始时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = InspectionTaskVOMeta.ACT_FINISH_TIME, value = "实际完成时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = InspectionTaskVOMeta.ACT_TOTAL_COST, value = "实际工时", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = InspectionTaskVOMeta.CONTENT, value = "任务反馈", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_ID, value = "巡检计划", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.TASK_STATUS, value = "任务状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.TASK_CODE, value = "任务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_CODE, value = "巡检编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_NAME, value = "巡检名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_INSPECTION_METHOD, value = "巡检顺序", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_COMPLETION_TIME, value = "时间要求", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_NOTES, value = "巡检备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.GROUP_ID, value = "巡检班组", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.EXECUTOR_ID, value = "执行人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_START_TIME, value = "应开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ACT_START_TIME, value = "实际开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ACT_FINISH_TIME, value = "实际完成时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ACT_TOTAL_COST, value = "实际工时", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.CONTENT, value = "任务反馈", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = InspectionTaskServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionTaskServiceProxy.QUERY_PAGED_LIST)
@@ -197,7 +305,9 @@ public class InspectionTaskController extends SuperController {
     }
 
     @ApiOperation(value = "")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 9)
     @SentinelResource(value = InspectionTaskServiceProxy.CANCEL, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionTaskServiceProxy.CANCEL)
@@ -206,7 +316,9 @@ public class InspectionTaskController extends SuperController {
     }
 
     @ApiOperation(value = "")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 9)
     @SentinelResource(value = InspectionTaskServiceProxy.FINISH, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionTaskServiceProxy.FINISH)
@@ -217,7 +329,9 @@ public class InspectionTaskController extends SuperController {
     /**
      */
     @ApiOperation(value = "")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 10)
     @SentinelResource(value = InspectionTaskServiceProxy.EXECUTE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionTaskServiceProxy.EXECUTE)

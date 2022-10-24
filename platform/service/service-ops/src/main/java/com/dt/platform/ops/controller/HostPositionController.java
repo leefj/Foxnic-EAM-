@@ -58,7 +58,11 @@ public class HostPositionController extends SuperController {
      * 添加主机位置
      */
     @ApiOperation(value = "添加主机位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "478242968168304640"), @ApiImplicitParam(name = HostPositionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "位置1"), @ApiImplicitParam(name = HostPositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "478242968168304640"),
+		@ApiImplicitParam(name = HostPositionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "位置1"),
+		@ApiImplicitParam(name = HostPositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = HostPositionServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostPositionServiceProxy.INSERT)
@@ -72,7 +76,9 @@ public class HostPositionController extends SuperController {
      * 删除主机位置
      */
     @ApiOperation(value = "删除主机位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "478242968168304640") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "478242968168304640")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = HostPositionServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostPositionServiceProxy.DELETE)
@@ -97,7 +103,9 @@ public class HostPositionController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除主机位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostPositionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostPositionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = HostPositionServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostPositionServiceProxy.DELETE_BY_IDS)
@@ -142,7 +150,11 @@ public class HostPositionController extends SuperController {
      * 更新主机位置
      */
     @ApiOperation(value = "更新主机位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "478242968168304640"), @ApiImplicitParam(name = HostPositionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "位置1"), @ApiImplicitParam(name = HostPositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "478242968168304640"),
+		@ApiImplicitParam(name = HostPositionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "位置1"),
+		@ApiImplicitParam(name = HostPositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { HostPositionVOMeta.PAGE_INDEX, HostPositionVOMeta.PAGE_SIZE, HostPositionVOMeta.SEARCH_FIELD, HostPositionVOMeta.FUZZY_FIELD, HostPositionVOMeta.SEARCH_VALUE, HostPositionVOMeta.DIRTY_FIELDS, HostPositionVOMeta.SORT_FIELD, HostPositionVOMeta.SORT_TYPE, HostPositionVOMeta.IDS })
     @SentinelResource(value = HostPositionServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostPositionServiceProxy.UPDATE)
@@ -156,7 +168,11 @@ public class HostPositionController extends SuperController {
      * 保存主机位置
      */
     @ApiOperation(value = "保存主机位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "478242968168304640"), @ApiImplicitParam(name = HostPositionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "位置1"), @ApiImplicitParam(name = HostPositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "478242968168304640"),
+		@ApiImplicitParam(name = HostPositionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "位置1"),
+		@ApiImplicitParam(name = HostPositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { HostPositionVOMeta.PAGE_INDEX, HostPositionVOMeta.PAGE_SIZE, HostPositionVOMeta.SEARCH_FIELD, HostPositionVOMeta.FUZZY_FIELD, HostPositionVOMeta.SEARCH_VALUE, HostPositionVOMeta.DIRTY_FIELDS, HostPositionVOMeta.SORT_FIELD, HostPositionVOMeta.SORT_TYPE, HostPositionVOMeta.IDS })
     @SentinelResource(value = HostPositionServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostPositionServiceProxy.SAVE)
@@ -170,7 +186,9 @@ public class HostPositionController extends SuperController {
      * 获取主机位置
      */
     @ApiOperation(value = "获取主机位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = HostPositionServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostPositionServiceProxy.GET_BY_ID)
@@ -186,7 +204,9 @@ public class HostPositionController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取主机位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostPositionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostPositionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = HostPositionServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostPositionServiceProxy.GET_BY_IDS)
@@ -201,7 +221,11 @@ public class HostPositionController extends SuperController {
      * 查询主机位置
      */
     @ApiOperation(value = "查询主机位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "478242968168304640"), @ApiImplicitParam(name = HostPositionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "位置1"), @ApiImplicitParam(name = HostPositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "478242968168304640"),
+		@ApiImplicitParam(name = HostPositionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "位置1"),
+		@ApiImplicitParam(name = HostPositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { HostPositionVOMeta.PAGE_INDEX, HostPositionVOMeta.PAGE_SIZE })
     @SentinelResource(value = HostPositionServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostPositionServiceProxy.QUERY_LIST)
@@ -216,7 +240,11 @@ public class HostPositionController extends SuperController {
      * 分页查询主机位置
      */
     @ApiOperation(value = "分页查询主机位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "478242968168304640"), @ApiImplicitParam(name = HostPositionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "位置1"), @ApiImplicitParam(name = HostPositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "478242968168304640"),
+		@ApiImplicitParam(name = HostPositionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "位置1"),
+		@ApiImplicitParam(name = HostPositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = HostPositionServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostPositionServiceProxy.QUERY_PAGED_LIST)

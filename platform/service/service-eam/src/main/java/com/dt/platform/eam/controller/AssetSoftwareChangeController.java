@@ -61,7 +61,18 @@ public class AssetSoftwareChangeController extends SuperController {
      * 添加软件变更
      */
     @ApiOperation(value = "添加软件变更")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.NAME, value = "变更名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.CONTENT, value = "变更说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.NAME, value = "变更名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.CONTENT, value = "变更说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetSoftwareChangeServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareChangeServiceProxy.INSERT)
@@ -75,7 +86,9 @@ public class AssetSoftwareChangeController extends SuperController {
      * 删除软件变更
      */
     @ApiOperation(value = "删除软件变更")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetSoftwareChangeServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareChangeServiceProxy.DELETE)
@@ -89,7 +102,9 @@ public class AssetSoftwareChangeController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除软件变更")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetSoftwareChangeServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareChangeServiceProxy.DELETE_BY_IDS)
@@ -102,7 +117,18 @@ public class AssetSoftwareChangeController extends SuperController {
      * 更新软件变更
      */
     @ApiOperation(value = "更新软件变更")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.NAME, value = "变更名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.CONTENT, value = "变更说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.NAME, value = "变更名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.CONTENT, value = "变更说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetSoftwareChangeVOMeta.PAGE_INDEX, AssetSoftwareChangeVOMeta.PAGE_SIZE, AssetSoftwareChangeVOMeta.SEARCH_FIELD, AssetSoftwareChangeVOMeta.FUZZY_FIELD, AssetSoftwareChangeVOMeta.SEARCH_VALUE, AssetSoftwareChangeVOMeta.DIRTY_FIELDS, AssetSoftwareChangeVOMeta.SORT_FIELD, AssetSoftwareChangeVOMeta.SORT_TYPE, AssetSoftwareChangeVOMeta.IDS })
     @SentinelResource(value = AssetSoftwareChangeServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareChangeServiceProxy.UPDATE)
@@ -116,7 +142,18 @@ public class AssetSoftwareChangeController extends SuperController {
      * 保存软件变更
      */
     @ApiOperation(value = "保存软件变更")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.NAME, value = "变更名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.CONTENT, value = "变更说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.NAME, value = "变更名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.CONTENT, value = "变更说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetSoftwareChangeVOMeta.PAGE_INDEX, AssetSoftwareChangeVOMeta.PAGE_SIZE, AssetSoftwareChangeVOMeta.SEARCH_FIELD, AssetSoftwareChangeVOMeta.FUZZY_FIELD, AssetSoftwareChangeVOMeta.SEARCH_VALUE, AssetSoftwareChangeVOMeta.DIRTY_FIELDS, AssetSoftwareChangeVOMeta.SORT_FIELD, AssetSoftwareChangeVOMeta.SORT_TYPE, AssetSoftwareChangeVOMeta.IDS })
     @SentinelResource(value = AssetSoftwareChangeServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareChangeServiceProxy.SAVE)
@@ -130,7 +167,9 @@ public class AssetSoftwareChangeController extends SuperController {
      * 获取软件变更
      */
     @ApiOperation(value = "获取软件变更")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetSoftwareChangeServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareChangeServiceProxy.GET_BY_ID)
@@ -146,7 +185,9 @@ public class AssetSoftwareChangeController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取软件变更")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetSoftwareChangeServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareChangeServiceProxy.GET_BY_IDS)
@@ -161,7 +202,18 @@ public class AssetSoftwareChangeController extends SuperController {
      * 查询软件变更
      */
     @ApiOperation(value = "查询软件变更")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.NAME, value = "变更名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.CONTENT, value = "变更说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.NAME, value = "变更名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.CONTENT, value = "变更说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetSoftwareChangeVOMeta.PAGE_INDEX, AssetSoftwareChangeVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetSoftwareChangeServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareChangeServiceProxy.QUERY_LIST)
@@ -176,7 +228,18 @@ public class AssetSoftwareChangeController extends SuperController {
      * 分页查询软件变更
      */
     @ApiOperation(value = "分页查询软件变更")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.NAME, value = "变更名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.CONTENT, value = "变更说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.NAME, value = "变更名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.CONTENT, value = "变更说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ATTACH_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetSoftwareChangeServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSoftwareChangeServiceProxy.QUERY_PAGED_LIST)
@@ -191,7 +254,9 @@ public class AssetSoftwareChangeController extends SuperController {
      * 确认
      */
     @ApiOperation(value = "确认")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSoftwareChangeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 13)
     @SentinelResource(value = AssetSoftwareChangeServiceProxy.CONFIRM_OPERATION, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @RequestMapping(AssetSoftwareChangeServiceProxy.CONFIRM_OPERATION)

@@ -58,7 +58,21 @@ public class ServiceDeskController extends SuperController {
      * 添加服务台
      */
     @ApiOperation(value = "添加服务台")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceDeskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.PID, value = "父节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.PROCESS_CODE, value = "流程编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.PERM, value = "权限", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.IMAGE, value = "图片", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.PARAMETER, value = "参数", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceDeskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.PID, value = "父节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.PROCESS_CODE, value = "流程编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.PERM, value = "权限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.IMAGE, value = "图片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.PARAMETER, value = "参数", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = ServiceDeskServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceDeskServiceProxy.INSERT)
@@ -72,7 +86,9 @@ public class ServiceDeskController extends SuperController {
      * 删除服务台
      */
     @ApiOperation(value = "删除服务台")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceDeskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceDeskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = ServiceDeskServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceDeskServiceProxy.DELETE)
@@ -97,7 +113,9 @@ public class ServiceDeskController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除服务台")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceDeskVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceDeskVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ServiceDeskServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceDeskServiceProxy.DELETE_BY_IDS)
@@ -142,7 +160,21 @@ public class ServiceDeskController extends SuperController {
      * 更新服务台
      */
     @ApiOperation(value = "更新服务台")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceDeskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.PID, value = "父节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.PROCESS_CODE, value = "流程编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.PERM, value = "权限", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.IMAGE, value = "图片", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.PARAMETER, value = "参数", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceDeskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.PID, value = "父节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.PROCESS_CODE, value = "流程编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.PERM, value = "权限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.IMAGE, value = "图片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.PARAMETER, value = "参数", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { ServiceDeskVOMeta.PAGE_INDEX, ServiceDeskVOMeta.PAGE_SIZE, ServiceDeskVOMeta.SEARCH_FIELD, ServiceDeskVOMeta.FUZZY_FIELD, ServiceDeskVOMeta.SEARCH_VALUE, ServiceDeskVOMeta.DIRTY_FIELDS, ServiceDeskVOMeta.SORT_FIELD, ServiceDeskVOMeta.SORT_TYPE, ServiceDeskVOMeta.IDS })
     @SentinelResource(value = ServiceDeskServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceDeskServiceProxy.UPDATE)
@@ -156,7 +188,21 @@ public class ServiceDeskController extends SuperController {
      * 保存服务台
      */
     @ApiOperation(value = "保存服务台")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceDeskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.PID, value = "父节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.PROCESS_CODE, value = "流程编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.PERM, value = "权限", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.IMAGE, value = "图片", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.PARAMETER, value = "参数", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceDeskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.PID, value = "父节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.PROCESS_CODE, value = "流程编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.PERM, value = "权限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.IMAGE, value = "图片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.PARAMETER, value = "参数", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ServiceDeskVOMeta.PAGE_INDEX, ServiceDeskVOMeta.PAGE_SIZE, ServiceDeskVOMeta.SEARCH_FIELD, ServiceDeskVOMeta.FUZZY_FIELD, ServiceDeskVOMeta.SEARCH_VALUE, ServiceDeskVOMeta.DIRTY_FIELDS, ServiceDeskVOMeta.SORT_FIELD, ServiceDeskVOMeta.SORT_TYPE, ServiceDeskVOMeta.IDS })
     @SentinelResource(value = ServiceDeskServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceDeskServiceProxy.SAVE)
@@ -170,7 +216,9 @@ public class ServiceDeskController extends SuperController {
      * 获取服务台
      */
     @ApiOperation(value = "获取服务台")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceDeskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceDeskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = ServiceDeskServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceDeskServiceProxy.GET_BY_ID)
@@ -186,7 +234,9 @@ public class ServiceDeskController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取服务台")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceDeskVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceDeskVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ServiceDeskServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceDeskServiceProxy.GET_BY_IDS)
@@ -201,7 +251,21 @@ public class ServiceDeskController extends SuperController {
      * 查询服务台
      */
     @ApiOperation(value = "查询服务台")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceDeskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.PID, value = "父节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.PROCESS_CODE, value = "流程编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.PERM, value = "权限", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.IMAGE, value = "图片", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.PARAMETER, value = "参数", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceDeskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.PID, value = "父节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.PROCESS_CODE, value = "流程编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.PERM, value = "权限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.IMAGE, value = "图片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.PARAMETER, value = "参数", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ServiceDeskVOMeta.PAGE_INDEX, ServiceDeskVOMeta.PAGE_SIZE })
     @SentinelResource(value = ServiceDeskServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceDeskServiceProxy.QUERY_LIST)
@@ -216,7 +280,21 @@ public class ServiceDeskController extends SuperController {
      * 分页查询服务台
      */
     @ApiOperation(value = "分页查询服务台")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceDeskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.PID, value = "父节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.PROCESS_CODE, value = "流程编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.PERM, value = "权限", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.IMAGE, value = "图片", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.PARAMETER, value = "参数", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceDeskVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceDeskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.PID, value = "父节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.PROCESS_CODE, value = "流程编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.PERM, value = "权限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.IMAGE, value = "图片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.PARAMETER, value = "参数", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceDeskVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = ServiceDeskServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceDeskServiceProxy.QUERY_PAGED_LIST)

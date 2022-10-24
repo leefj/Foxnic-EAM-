@@ -57,7 +57,12 @@ public class InventoryPositionController extends SuperController {
      * 添加盘点位置
      */
     @ApiOperation(value = "添加盘点位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryPositionVOMeta.INVENTORY_ID, value = "盘点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryPositionVOMeta.VALUE, value = "位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryPositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryPositionVOMeta.INVENTORY_ID, value = "盘点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryPositionVOMeta.VALUE, value = "位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryPositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = InventoryPositionServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryPositionServiceProxy.INSERT)
@@ -71,7 +76,9 @@ public class InventoryPositionController extends SuperController {
      * 删除盘点位置
      */
     @ApiOperation(value = "删除盘点位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = InventoryPositionServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryPositionServiceProxy.DELETE)
@@ -85,7 +92,9 @@ public class InventoryPositionController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除盘点位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryPositionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryPositionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = InventoryPositionServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryPositionServiceProxy.DELETE_BY_IDS)
@@ -98,7 +107,12 @@ public class InventoryPositionController extends SuperController {
      * 更新盘点位置
      */
     @ApiOperation(value = "更新盘点位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryPositionVOMeta.INVENTORY_ID, value = "盘点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryPositionVOMeta.VALUE, value = "位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryPositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryPositionVOMeta.INVENTORY_ID, value = "盘点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryPositionVOMeta.VALUE, value = "位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryPositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { InventoryPositionVOMeta.PAGE_INDEX, InventoryPositionVOMeta.PAGE_SIZE, InventoryPositionVOMeta.SEARCH_FIELD, InventoryPositionVOMeta.FUZZY_FIELD, InventoryPositionVOMeta.SEARCH_VALUE, InventoryPositionVOMeta.DIRTY_FIELDS, InventoryPositionVOMeta.SORT_FIELD, InventoryPositionVOMeta.SORT_TYPE, InventoryPositionVOMeta.IDS })
     @SentinelResource(value = InventoryPositionServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryPositionServiceProxy.UPDATE)
@@ -112,7 +126,12 @@ public class InventoryPositionController extends SuperController {
      * 保存盘点位置
      */
     @ApiOperation(value = "保存盘点位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryPositionVOMeta.INVENTORY_ID, value = "盘点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryPositionVOMeta.VALUE, value = "位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryPositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryPositionVOMeta.INVENTORY_ID, value = "盘点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryPositionVOMeta.VALUE, value = "位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryPositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InventoryPositionVOMeta.PAGE_INDEX, InventoryPositionVOMeta.PAGE_SIZE, InventoryPositionVOMeta.SEARCH_FIELD, InventoryPositionVOMeta.FUZZY_FIELD, InventoryPositionVOMeta.SEARCH_VALUE, InventoryPositionVOMeta.DIRTY_FIELDS, InventoryPositionVOMeta.SORT_FIELD, InventoryPositionVOMeta.SORT_TYPE, InventoryPositionVOMeta.IDS })
     @SentinelResource(value = InventoryPositionServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryPositionServiceProxy.SAVE)
@@ -126,7 +145,9 @@ public class InventoryPositionController extends SuperController {
      * 获取盘点位置
      */
     @ApiOperation(value = "获取盘点位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = InventoryPositionServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryPositionServiceProxy.GET_BY_ID)
@@ -142,7 +163,9 @@ public class InventoryPositionController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取盘点位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryPositionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryPositionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = InventoryPositionServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryPositionServiceProxy.GET_BY_IDS)
@@ -157,7 +180,12 @@ public class InventoryPositionController extends SuperController {
      * 查询盘点位置
      */
     @ApiOperation(value = "查询盘点位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryPositionVOMeta.INVENTORY_ID, value = "盘点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryPositionVOMeta.VALUE, value = "位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryPositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryPositionVOMeta.INVENTORY_ID, value = "盘点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryPositionVOMeta.VALUE, value = "位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryPositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InventoryPositionVOMeta.PAGE_INDEX, InventoryPositionVOMeta.PAGE_SIZE })
     @SentinelResource(value = InventoryPositionServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryPositionServiceProxy.QUERY_LIST)
@@ -172,7 +200,12 @@ public class InventoryPositionController extends SuperController {
      * 分页查询盘点位置
      */
     @ApiOperation(value = "分页查询盘点位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryPositionVOMeta.INVENTORY_ID, value = "盘点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryPositionVOMeta.VALUE, value = "位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryPositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryPositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryPositionVOMeta.INVENTORY_ID, value = "盘点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryPositionVOMeta.VALUE, value = "位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryPositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = InventoryPositionServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryPositionServiceProxy.QUERY_PAGED_LIST)

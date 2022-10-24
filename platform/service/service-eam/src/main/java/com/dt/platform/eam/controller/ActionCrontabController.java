@@ -58,7 +58,17 @@ public class ActionCrontabController extends SuperController {
      * 添加执行动作
      */
     @ApiOperation(value = "添加执行动作")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ActionCrontabVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "585027341697155072"), @ApiImplicitParam(name = ActionCrontabVOMeta.OWNER_ID, value = "所属于", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ActionCrontabVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = ActionCrontabVOMeta.CRONTAB, value = "表达式", required = false, dataTypeClass = String.class, example = "0,2,11 * * * * ?"), @ApiImplicitParam(name = ActionCrontabVOMeta.START_EXECUTION_TIME, value = "开始时间", required = false, dataTypeClass = Date.class, example = "2022-06-08 12:00:00"), @ApiImplicitParam(name = ActionCrontabVOMeta.FINISH_EXECUTION_TIME, value = "结束时间", required = false, dataTypeClass = Date.class, example = "2022-06-25 12:00:00"), @ApiImplicitParam(name = ActionCrontabVOMeta.LAST_EXECUTION_TIME, value = "上次执行时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ActionCrontabVOMeta.NEXT_EXECUTION_TIME, value = "下次执行时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ActionCrontabVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ActionCrontabVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "585027341697155072"),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.OWNER_ID, value = "所属于", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.CRONTAB, value = "表达式", required = false, dataTypeClass = String.class, example = "0,2,11 * * * * ?"),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.START_EXECUTION_TIME, value = "开始时间", required = false, dataTypeClass = Date.class, example = "2022-06-08 12:00:00"),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.FINISH_EXECUTION_TIME, value = "结束时间", required = false, dataTypeClass = Date.class, example = "2022-06-25 12:00:00"),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.LAST_EXECUTION_TIME, value = "上次执行时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.NEXT_EXECUTION_TIME, value = "下次执行时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = ActionCrontabServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ActionCrontabServiceProxy.INSERT)
@@ -72,7 +82,9 @@ public class ActionCrontabController extends SuperController {
      * 删除执行动作
      */
     @ApiOperation(value = "删除执行动作")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ActionCrontabVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "585027341697155072") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ActionCrontabVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "585027341697155072")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = ActionCrontabServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ActionCrontabServiceProxy.DELETE)
@@ -86,7 +98,9 @@ public class ActionCrontabController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除执行动作")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ActionCrontabVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ActionCrontabVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ActionCrontabServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ActionCrontabServiceProxy.DELETE_BY_IDS)
@@ -99,7 +113,17 @@ public class ActionCrontabController extends SuperController {
      * 更新执行动作
      */
     @ApiOperation(value = "更新执行动作")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ActionCrontabVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "585027341697155072"), @ApiImplicitParam(name = ActionCrontabVOMeta.OWNER_ID, value = "所属于", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ActionCrontabVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = ActionCrontabVOMeta.CRONTAB, value = "表达式", required = false, dataTypeClass = String.class, example = "0,2,11 * * * * ?"), @ApiImplicitParam(name = ActionCrontabVOMeta.START_EXECUTION_TIME, value = "开始时间", required = false, dataTypeClass = Date.class, example = "2022-06-08 12:00:00"), @ApiImplicitParam(name = ActionCrontabVOMeta.FINISH_EXECUTION_TIME, value = "结束时间", required = false, dataTypeClass = Date.class, example = "2022-06-25 12:00:00"), @ApiImplicitParam(name = ActionCrontabVOMeta.LAST_EXECUTION_TIME, value = "上次执行时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ActionCrontabVOMeta.NEXT_EXECUTION_TIME, value = "下次执行时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ActionCrontabVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ActionCrontabVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "585027341697155072"),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.OWNER_ID, value = "所属于", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.CRONTAB, value = "表达式", required = false, dataTypeClass = String.class, example = "0,2,11 * * * * ?"),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.START_EXECUTION_TIME, value = "开始时间", required = false, dataTypeClass = Date.class, example = "2022-06-08 12:00:00"),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.FINISH_EXECUTION_TIME, value = "结束时间", required = false, dataTypeClass = Date.class, example = "2022-06-25 12:00:00"),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.LAST_EXECUTION_TIME, value = "上次执行时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.NEXT_EXECUTION_TIME, value = "下次执行时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { ActionCrontabVOMeta.PAGE_INDEX, ActionCrontabVOMeta.PAGE_SIZE, ActionCrontabVOMeta.SEARCH_FIELD, ActionCrontabVOMeta.FUZZY_FIELD, ActionCrontabVOMeta.SEARCH_VALUE, ActionCrontabVOMeta.DIRTY_FIELDS, ActionCrontabVOMeta.SORT_FIELD, ActionCrontabVOMeta.SORT_TYPE, ActionCrontabVOMeta.IDS })
     @SentinelResource(value = ActionCrontabServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ActionCrontabServiceProxy.UPDATE)
@@ -113,7 +137,17 @@ public class ActionCrontabController extends SuperController {
      * 保存执行动作
      */
     @ApiOperation(value = "保存执行动作")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ActionCrontabVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "585027341697155072"), @ApiImplicitParam(name = ActionCrontabVOMeta.OWNER_ID, value = "所属于", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ActionCrontabVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = ActionCrontabVOMeta.CRONTAB, value = "表达式", required = false, dataTypeClass = String.class, example = "0,2,11 * * * * ?"), @ApiImplicitParam(name = ActionCrontabVOMeta.START_EXECUTION_TIME, value = "开始时间", required = false, dataTypeClass = Date.class, example = "2022-06-08 12:00:00"), @ApiImplicitParam(name = ActionCrontabVOMeta.FINISH_EXECUTION_TIME, value = "结束时间", required = false, dataTypeClass = Date.class, example = "2022-06-25 12:00:00"), @ApiImplicitParam(name = ActionCrontabVOMeta.LAST_EXECUTION_TIME, value = "上次执行时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ActionCrontabVOMeta.NEXT_EXECUTION_TIME, value = "下次执行时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ActionCrontabVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ActionCrontabVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "585027341697155072"),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.OWNER_ID, value = "所属于", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.CRONTAB, value = "表达式", required = false, dataTypeClass = String.class, example = "0,2,11 * * * * ?"),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.START_EXECUTION_TIME, value = "开始时间", required = false, dataTypeClass = Date.class, example = "2022-06-08 12:00:00"),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.FINISH_EXECUTION_TIME, value = "结束时间", required = false, dataTypeClass = Date.class, example = "2022-06-25 12:00:00"),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.LAST_EXECUTION_TIME, value = "上次执行时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.NEXT_EXECUTION_TIME, value = "下次执行时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ActionCrontabVOMeta.PAGE_INDEX, ActionCrontabVOMeta.PAGE_SIZE, ActionCrontabVOMeta.SEARCH_FIELD, ActionCrontabVOMeta.FUZZY_FIELD, ActionCrontabVOMeta.SEARCH_VALUE, ActionCrontabVOMeta.DIRTY_FIELDS, ActionCrontabVOMeta.SORT_FIELD, ActionCrontabVOMeta.SORT_TYPE, ActionCrontabVOMeta.IDS })
     @SentinelResource(value = ActionCrontabServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ActionCrontabServiceProxy.SAVE)
@@ -127,7 +161,9 @@ public class ActionCrontabController extends SuperController {
      * 获取执行动作
      */
     @ApiOperation(value = "获取执行动作")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ActionCrontabVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ActionCrontabVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = ActionCrontabServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ActionCrontabServiceProxy.GET_BY_ID)
@@ -143,7 +179,9 @@ public class ActionCrontabController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取执行动作")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ActionCrontabVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ActionCrontabVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ActionCrontabServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ActionCrontabServiceProxy.GET_BY_IDS)
@@ -158,7 +196,17 @@ public class ActionCrontabController extends SuperController {
      * 查询执行动作
      */
     @ApiOperation(value = "查询执行动作")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ActionCrontabVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "585027341697155072"), @ApiImplicitParam(name = ActionCrontabVOMeta.OWNER_ID, value = "所属于", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ActionCrontabVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = ActionCrontabVOMeta.CRONTAB, value = "表达式", required = false, dataTypeClass = String.class, example = "0,2,11 * * * * ?"), @ApiImplicitParam(name = ActionCrontabVOMeta.START_EXECUTION_TIME, value = "开始时间", required = false, dataTypeClass = Date.class, example = "2022-06-08 12:00:00"), @ApiImplicitParam(name = ActionCrontabVOMeta.FINISH_EXECUTION_TIME, value = "结束时间", required = false, dataTypeClass = Date.class, example = "2022-06-25 12:00:00"), @ApiImplicitParam(name = ActionCrontabVOMeta.LAST_EXECUTION_TIME, value = "上次执行时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ActionCrontabVOMeta.NEXT_EXECUTION_TIME, value = "下次执行时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ActionCrontabVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ActionCrontabVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "585027341697155072"),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.OWNER_ID, value = "所属于", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.CRONTAB, value = "表达式", required = false, dataTypeClass = String.class, example = "0,2,11 * * * * ?"),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.START_EXECUTION_TIME, value = "开始时间", required = false, dataTypeClass = Date.class, example = "2022-06-08 12:00:00"),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.FINISH_EXECUTION_TIME, value = "结束时间", required = false, dataTypeClass = Date.class, example = "2022-06-25 12:00:00"),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.LAST_EXECUTION_TIME, value = "上次执行时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.NEXT_EXECUTION_TIME, value = "下次执行时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ActionCrontabVOMeta.PAGE_INDEX, ActionCrontabVOMeta.PAGE_SIZE })
     @SentinelResource(value = ActionCrontabServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ActionCrontabServiceProxy.QUERY_LIST)
@@ -173,7 +221,17 @@ public class ActionCrontabController extends SuperController {
      * 分页查询执行动作
      */
     @ApiOperation(value = "分页查询执行动作")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ActionCrontabVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "585027341697155072"), @ApiImplicitParam(name = ActionCrontabVOMeta.OWNER_ID, value = "所属于", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ActionCrontabVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = ActionCrontabVOMeta.CRONTAB, value = "表达式", required = false, dataTypeClass = String.class, example = "0,2,11 * * * * ?"), @ApiImplicitParam(name = ActionCrontabVOMeta.START_EXECUTION_TIME, value = "开始时间", required = false, dataTypeClass = Date.class, example = "2022-06-08 12:00:00"), @ApiImplicitParam(name = ActionCrontabVOMeta.FINISH_EXECUTION_TIME, value = "结束时间", required = false, dataTypeClass = Date.class, example = "2022-06-25 12:00:00"), @ApiImplicitParam(name = ActionCrontabVOMeta.LAST_EXECUTION_TIME, value = "上次执行时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ActionCrontabVOMeta.NEXT_EXECUTION_TIME, value = "下次执行时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = ActionCrontabVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ActionCrontabVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "585027341697155072"),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.OWNER_ID, value = "所属于", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.CRONTAB, value = "表达式", required = false, dataTypeClass = String.class, example = "0,2,11 * * * * ?"),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.START_EXECUTION_TIME, value = "开始时间", required = false, dataTypeClass = Date.class, example = "2022-06-08 12:00:00"),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.FINISH_EXECUTION_TIME, value = "结束时间", required = false, dataTypeClass = Date.class, example = "2022-06-25 12:00:00"),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.LAST_EXECUTION_TIME, value = "上次执行时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.NEXT_EXECUTION_TIME, value = "下次执行时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = ActionCrontabVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = ActionCrontabServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ActionCrontabServiceProxy.QUERY_PAGED_LIST)

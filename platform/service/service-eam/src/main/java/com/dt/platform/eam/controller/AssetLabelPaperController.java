@@ -57,7 +57,14 @@ public class AssetLabelPaperController extends SuperController {
      * 添加纸张类型
      */
     @ApiOperation(value = "添加纸张类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelPaperVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetLabelPaperVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "标签专用纸"), @ApiImplicitParam(name = AssetLabelPaperVOMeta.STATUS, value = "是否启用", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AssetLabelPaperVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "special"), @ApiImplicitParam(name = AssetLabelPaperVOMeta.COLUMN_NUMBER, value = "列数", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = AssetLabelPaperVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "标签专用纸"),
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.STATUS, value = "是否启用", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "special"),
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.COLUMN_NUMBER, value = "列数", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetLabelPaperServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelPaperServiceProxy.INSERT)
@@ -71,7 +78,9 @@ public class AssetLabelPaperController extends SuperController {
      * 删除纸张类型
      */
     @ApiOperation(value = "删除纸张类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelPaperVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetLabelPaperServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelPaperServiceProxy.DELETE)
@@ -85,7 +94,9 @@ public class AssetLabelPaperController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除纸张类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelPaperVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetLabelPaperServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelPaperServiceProxy.DELETE_BY_IDS)
@@ -98,7 +109,14 @@ public class AssetLabelPaperController extends SuperController {
      * 更新纸张类型
      */
     @ApiOperation(value = "更新纸张类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelPaperVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetLabelPaperVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "标签专用纸"), @ApiImplicitParam(name = AssetLabelPaperVOMeta.STATUS, value = "是否启用", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AssetLabelPaperVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "special"), @ApiImplicitParam(name = AssetLabelPaperVOMeta.COLUMN_NUMBER, value = "列数", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = AssetLabelPaperVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "标签专用纸"),
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.STATUS, value = "是否启用", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "special"),
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.COLUMN_NUMBER, value = "列数", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetLabelPaperVOMeta.PAGE_INDEX, AssetLabelPaperVOMeta.PAGE_SIZE, AssetLabelPaperVOMeta.SEARCH_FIELD, AssetLabelPaperVOMeta.FUZZY_FIELD, AssetLabelPaperVOMeta.SEARCH_VALUE, AssetLabelPaperVOMeta.DIRTY_FIELDS, AssetLabelPaperVOMeta.SORT_FIELD, AssetLabelPaperVOMeta.SORT_TYPE, AssetLabelPaperVOMeta.IDS })
     @SentinelResource(value = AssetLabelPaperServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelPaperServiceProxy.UPDATE)
@@ -112,7 +130,14 @@ public class AssetLabelPaperController extends SuperController {
      * 保存纸张类型
      */
     @ApiOperation(value = "保存纸张类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelPaperVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetLabelPaperVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "标签专用纸"), @ApiImplicitParam(name = AssetLabelPaperVOMeta.STATUS, value = "是否启用", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AssetLabelPaperVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "special"), @ApiImplicitParam(name = AssetLabelPaperVOMeta.COLUMN_NUMBER, value = "列数", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = AssetLabelPaperVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "标签专用纸"),
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.STATUS, value = "是否启用", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "special"),
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.COLUMN_NUMBER, value = "列数", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetLabelPaperVOMeta.PAGE_INDEX, AssetLabelPaperVOMeta.PAGE_SIZE, AssetLabelPaperVOMeta.SEARCH_FIELD, AssetLabelPaperVOMeta.FUZZY_FIELD, AssetLabelPaperVOMeta.SEARCH_VALUE, AssetLabelPaperVOMeta.DIRTY_FIELDS, AssetLabelPaperVOMeta.SORT_FIELD, AssetLabelPaperVOMeta.SORT_TYPE, AssetLabelPaperVOMeta.IDS })
     @SentinelResource(value = AssetLabelPaperServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelPaperServiceProxy.SAVE)
@@ -126,7 +151,9 @@ public class AssetLabelPaperController extends SuperController {
      * 获取纸张类型
      */
     @ApiOperation(value = "获取纸张类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelPaperVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetLabelPaperServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelPaperServiceProxy.GET_BY_ID)
@@ -142,7 +169,9 @@ public class AssetLabelPaperController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取纸张类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelPaperVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetLabelPaperServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelPaperServiceProxy.GET_BY_IDS)
@@ -157,7 +186,14 @@ public class AssetLabelPaperController extends SuperController {
      * 查询纸张类型
      */
     @ApiOperation(value = "查询纸张类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelPaperVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetLabelPaperVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "标签专用纸"), @ApiImplicitParam(name = AssetLabelPaperVOMeta.STATUS, value = "是否启用", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AssetLabelPaperVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "special"), @ApiImplicitParam(name = AssetLabelPaperVOMeta.COLUMN_NUMBER, value = "列数", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = AssetLabelPaperVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "标签专用纸"),
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.STATUS, value = "是否启用", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "special"),
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.COLUMN_NUMBER, value = "列数", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetLabelPaperVOMeta.PAGE_INDEX, AssetLabelPaperVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetLabelPaperServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelPaperServiceProxy.QUERY_LIST)
@@ -172,7 +208,14 @@ public class AssetLabelPaperController extends SuperController {
      * 分页查询纸张类型
      */
     @ApiOperation(value = "分页查询纸张类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelPaperVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetLabelPaperVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "标签专用纸"), @ApiImplicitParam(name = AssetLabelPaperVOMeta.STATUS, value = "是否启用", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AssetLabelPaperVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "special"), @ApiImplicitParam(name = AssetLabelPaperVOMeta.COLUMN_NUMBER, value = "列数", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = AssetLabelPaperVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "标签专用纸"),
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.STATUS, value = "是否启用", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "special"),
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.COLUMN_NUMBER, value = "列数", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelPaperVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetLabelPaperServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelPaperServiceProxy.QUERY_PAGED_LIST)

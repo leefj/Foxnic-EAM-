@@ -58,7 +58,26 @@ public class InspectionTaskPointController extends SuperController {
      * 添加巡检点
      */
     @ApiOperation(value = "添加巡检点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionTaskPointVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.TASK_ID, value = "任务", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_STATUS, value = "巡检状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.OPER_TIME, value = "操作时间", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.CONTENT, value = "巡检结果", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_CONTENT, value = "巡检内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ROUTE_ID, value = "巡检路线", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_RFID, value = "RFID", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS, value = "位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_LONGITUDE, value = "位置经度", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_LATITUDE, value = "位置纬度", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.TASK_ID, value = "任务", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_STATUS, value = "巡检状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.OPER_TIME, value = "操作时间", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.CONTENT, value = "巡检结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_CONTENT, value = "巡检内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ROUTE_ID, value = "巡检路线", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_RFID, value = "RFID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS, value = "位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_LONGITUDE, value = "位置经度", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_LATITUDE, value = "位置纬度", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = InspectionTaskPointServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionTaskPointServiceProxy.INSERT)
@@ -72,7 +91,9 @@ public class InspectionTaskPointController extends SuperController {
      * 删除巡检点
      */
     @ApiOperation(value = "删除巡检点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionTaskPointVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = InspectionTaskPointServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionTaskPointServiceProxy.DELETE)
@@ -86,7 +107,9 @@ public class InspectionTaskPointController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除巡检点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionTaskPointVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = InspectionTaskPointServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionTaskPointServiceProxy.DELETE_BY_IDS)
@@ -99,7 +122,26 @@ public class InspectionTaskPointController extends SuperController {
      * 更新巡检点
      */
     @ApiOperation(value = "更新巡检点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionTaskPointVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.TASK_ID, value = "任务", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_STATUS, value = "巡检状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.OPER_TIME, value = "操作时间", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.CONTENT, value = "巡检结果", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_CONTENT, value = "巡检内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ROUTE_ID, value = "巡检路线", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_RFID, value = "RFID", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS, value = "位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_LONGITUDE, value = "位置经度", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_LATITUDE, value = "位置纬度", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.TASK_ID, value = "任务", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_STATUS, value = "巡检状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.OPER_TIME, value = "操作时间", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.CONTENT, value = "巡检结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_CONTENT, value = "巡检内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ROUTE_ID, value = "巡检路线", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_RFID, value = "RFID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS, value = "位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_LONGITUDE, value = "位置经度", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_LATITUDE, value = "位置纬度", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { InspectionTaskPointVOMeta.PAGE_INDEX, InspectionTaskPointVOMeta.PAGE_SIZE, InspectionTaskPointVOMeta.SEARCH_FIELD, InspectionTaskPointVOMeta.FUZZY_FIELD, InspectionTaskPointVOMeta.SEARCH_VALUE, InspectionTaskPointVOMeta.DIRTY_FIELDS, InspectionTaskPointVOMeta.SORT_FIELD, InspectionTaskPointVOMeta.SORT_TYPE, InspectionTaskPointVOMeta.IDS })
     @SentinelResource(value = InspectionTaskPointServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionTaskPointServiceProxy.UPDATE)
@@ -113,7 +155,26 @@ public class InspectionTaskPointController extends SuperController {
      * 保存巡检点
      */
     @ApiOperation(value = "保存巡检点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionTaskPointVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.TASK_ID, value = "任务", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_STATUS, value = "巡检状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.OPER_TIME, value = "操作时间", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.CONTENT, value = "巡检结果", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_CONTENT, value = "巡检内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ROUTE_ID, value = "巡检路线", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_RFID, value = "RFID", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS, value = "位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_LONGITUDE, value = "位置经度", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_LATITUDE, value = "位置纬度", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.TASK_ID, value = "任务", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_STATUS, value = "巡检状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.OPER_TIME, value = "操作时间", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.CONTENT, value = "巡检结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_CONTENT, value = "巡检内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ROUTE_ID, value = "巡检路线", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_RFID, value = "RFID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS, value = "位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_LONGITUDE, value = "位置经度", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_LATITUDE, value = "位置纬度", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InspectionTaskPointVOMeta.PAGE_INDEX, InspectionTaskPointVOMeta.PAGE_SIZE, InspectionTaskPointVOMeta.SEARCH_FIELD, InspectionTaskPointVOMeta.FUZZY_FIELD, InspectionTaskPointVOMeta.SEARCH_VALUE, InspectionTaskPointVOMeta.DIRTY_FIELDS, InspectionTaskPointVOMeta.SORT_FIELD, InspectionTaskPointVOMeta.SORT_TYPE, InspectionTaskPointVOMeta.IDS })
     @SentinelResource(value = InspectionTaskPointServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionTaskPointServiceProxy.SAVE)
@@ -127,7 +188,9 @@ public class InspectionTaskPointController extends SuperController {
      * 获取巡检点
      */
     @ApiOperation(value = "获取巡检点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionTaskPointVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = InspectionTaskPointServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionTaskPointServiceProxy.GET_BY_ID)
@@ -145,7 +208,9 @@ public class InspectionTaskPointController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取巡检点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionTaskPointVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = InspectionTaskPointServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionTaskPointServiceProxy.GET_BY_IDS)
@@ -160,7 +225,26 @@ public class InspectionTaskPointController extends SuperController {
      * 查询巡检点
      */
     @ApiOperation(value = "查询巡检点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionTaskPointVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.TASK_ID, value = "任务", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_STATUS, value = "巡检状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.OPER_TIME, value = "操作时间", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.CONTENT, value = "巡检结果", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_CONTENT, value = "巡检内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ROUTE_ID, value = "巡检路线", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_RFID, value = "RFID", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS, value = "位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_LONGITUDE, value = "位置经度", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_LATITUDE, value = "位置纬度", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.TASK_ID, value = "任务", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_STATUS, value = "巡检状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.OPER_TIME, value = "操作时间", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.CONTENT, value = "巡检结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_CONTENT, value = "巡检内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ROUTE_ID, value = "巡检路线", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_RFID, value = "RFID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS, value = "位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_LONGITUDE, value = "位置经度", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_LATITUDE, value = "位置纬度", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InspectionTaskPointVOMeta.PAGE_INDEX, InspectionTaskPointVOMeta.PAGE_SIZE })
     @SentinelResource(value = InspectionTaskPointServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionTaskPointServiceProxy.QUERY_LIST)
@@ -175,7 +259,26 @@ public class InspectionTaskPointController extends SuperController {
      * 分页查询巡检点
      */
     @ApiOperation(value = "分页查询巡检点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionTaskPointVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.TASK_ID, value = "任务", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_STATUS, value = "巡检状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.OPER_TIME, value = "操作时间", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.CONTENT, value = "巡检结果", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_CONTENT, value = "巡检内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ROUTE_ID, value = "巡检路线", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_RFID, value = "RFID", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS, value = "位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_LONGITUDE, value = "位置经度", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_LATITUDE, value = "位置纬度", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionTaskPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.TASK_ID, value = "任务", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_STATUS, value = "巡检状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.OPER_TIME, value = "操作时间", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.CONTENT, value = "巡检结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_CONTENT, value = "巡检内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_ROUTE_ID, value = "巡检路线", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_RFID, value = "RFID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS, value = "位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_LONGITUDE, value = "位置经度", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_POS_LATITUDE, value = "位置纬度", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.POINT_NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskPointVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = InspectionTaskPointServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionTaskPointServiceProxy.QUERY_PAGED_LIST)

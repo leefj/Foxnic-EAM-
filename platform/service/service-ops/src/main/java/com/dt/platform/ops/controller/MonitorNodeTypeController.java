@@ -57,7 +57,12 @@ public class MonitorNodeTypeController extends SuperController {
      * 添加节点类型
      */
     @ApiOperation(value = "添加节点类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeTypeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "操作系统"), @ApiImplicitParam(name = MonitorNodeTypeVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "os"), @ApiImplicitParam(name = MonitorNodeTypeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeTypeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "操作系统"),
+		@ApiImplicitParam(name = MonitorNodeTypeVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "os"),
+		@ApiImplicitParam(name = MonitorNodeTypeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = MonitorNodeTypeServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeTypeServiceProxy.INSERT)
@@ -71,7 +76,9 @@ public class MonitorNodeTypeController extends SuperController {
      * 删除节点类型
      */
     @ApiOperation(value = "删除节点类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = MonitorNodeTypeServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeTypeServiceProxy.DELETE)
@@ -85,7 +92,9 @@ public class MonitorNodeTypeController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除节点类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeTypeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeTypeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MonitorNodeTypeServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeTypeServiceProxy.DELETE_BY_IDS)
@@ -98,7 +107,12 @@ public class MonitorNodeTypeController extends SuperController {
      * 更新节点类型
      */
     @ApiOperation(value = "更新节点类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeTypeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "操作系统"), @ApiImplicitParam(name = MonitorNodeTypeVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "os"), @ApiImplicitParam(name = MonitorNodeTypeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeTypeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "操作系统"),
+		@ApiImplicitParam(name = MonitorNodeTypeVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "os"),
+		@ApiImplicitParam(name = MonitorNodeTypeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { MonitorNodeTypeVOMeta.PAGE_INDEX, MonitorNodeTypeVOMeta.PAGE_SIZE, MonitorNodeTypeVOMeta.SEARCH_FIELD, MonitorNodeTypeVOMeta.FUZZY_FIELD, MonitorNodeTypeVOMeta.SEARCH_VALUE, MonitorNodeTypeVOMeta.DIRTY_FIELDS, MonitorNodeTypeVOMeta.SORT_FIELD, MonitorNodeTypeVOMeta.SORT_TYPE, MonitorNodeTypeVOMeta.IDS })
     @SentinelResource(value = MonitorNodeTypeServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeTypeServiceProxy.UPDATE)
@@ -112,7 +126,12 @@ public class MonitorNodeTypeController extends SuperController {
      * 保存节点类型
      */
     @ApiOperation(value = "保存节点类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeTypeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "操作系统"), @ApiImplicitParam(name = MonitorNodeTypeVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "os"), @ApiImplicitParam(name = MonitorNodeTypeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeTypeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "操作系统"),
+		@ApiImplicitParam(name = MonitorNodeTypeVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "os"),
+		@ApiImplicitParam(name = MonitorNodeTypeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MonitorNodeTypeVOMeta.PAGE_INDEX, MonitorNodeTypeVOMeta.PAGE_SIZE, MonitorNodeTypeVOMeta.SEARCH_FIELD, MonitorNodeTypeVOMeta.FUZZY_FIELD, MonitorNodeTypeVOMeta.SEARCH_VALUE, MonitorNodeTypeVOMeta.DIRTY_FIELDS, MonitorNodeTypeVOMeta.SORT_FIELD, MonitorNodeTypeVOMeta.SORT_TYPE, MonitorNodeTypeVOMeta.IDS })
     @SentinelResource(value = MonitorNodeTypeServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeTypeServiceProxy.SAVE)
@@ -126,7 +145,9 @@ public class MonitorNodeTypeController extends SuperController {
      * 获取节点类型
      */
     @ApiOperation(value = "获取节点类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = MonitorNodeTypeServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeTypeServiceProxy.GET_BY_ID)
@@ -142,7 +163,9 @@ public class MonitorNodeTypeController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取节点类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeTypeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeTypeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MonitorNodeTypeServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeTypeServiceProxy.GET_BY_IDS)
@@ -157,7 +180,12 @@ public class MonitorNodeTypeController extends SuperController {
      * 查询节点类型
      */
     @ApiOperation(value = "查询节点类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeTypeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "操作系统"), @ApiImplicitParam(name = MonitorNodeTypeVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "os"), @ApiImplicitParam(name = MonitorNodeTypeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeTypeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "操作系统"),
+		@ApiImplicitParam(name = MonitorNodeTypeVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "os"),
+		@ApiImplicitParam(name = MonitorNodeTypeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MonitorNodeTypeVOMeta.PAGE_INDEX, MonitorNodeTypeVOMeta.PAGE_SIZE })
     @SentinelResource(value = MonitorNodeTypeServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeTypeServiceProxy.QUERY_LIST)
@@ -172,7 +200,12 @@ public class MonitorNodeTypeController extends SuperController {
      * 分页查询节点类型
      */
     @ApiOperation(value = "分页查询节点类型")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeTypeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "操作系统"), @ApiImplicitParam(name = MonitorNodeTypeVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "os"), @ApiImplicitParam(name = MonitorNodeTypeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeTypeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeTypeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "操作系统"),
+		@ApiImplicitParam(name = MonitorNodeTypeVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "os"),
+		@ApiImplicitParam(name = MonitorNodeTypeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = MonitorNodeTypeServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeTypeServiceProxy.QUERY_PAGED_LIST)

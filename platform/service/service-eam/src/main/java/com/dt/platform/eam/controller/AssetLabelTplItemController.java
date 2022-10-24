@@ -58,7 +58,12 @@ public class AssetLabelTplItemController extends SuperController {
      * 添加标签模版
      */
     @ApiOperation(value = "添加标签模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetLabelTplItemVOMeta.TPL_ID, value = "模版", required = false, dataTypeClass = String.class, example = "t1"), @ApiImplicitParam(name = AssetLabelTplItemVOMeta.COL_ID, value = "字段ID", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetLabelTplItemVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelTplItemVOMeta.TPL_ID, value = "模版", required = false, dataTypeClass = String.class, example = "t1"),
+		@ApiImplicitParam(name = AssetLabelTplItemVOMeta.COL_ID, value = "字段ID", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelTplItemVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class, example = "1")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetLabelTplItemServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelTplItemServiceProxy.INSERT)
@@ -72,7 +77,9 @@ public class AssetLabelTplItemController extends SuperController {
      * 删除标签模版
      */
     @ApiOperation(value = "删除标签模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetLabelTplItemServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelTplItemServiceProxy.DELETE)
@@ -86,7 +93,9 @@ public class AssetLabelTplItemController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除标签模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelTplItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelTplItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetLabelTplItemServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelTplItemServiceProxy.DELETE_BY_IDS)
@@ -99,7 +108,12 @@ public class AssetLabelTplItemController extends SuperController {
      * 更新标签模版
      */
     @ApiOperation(value = "更新标签模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetLabelTplItemVOMeta.TPL_ID, value = "模版", required = false, dataTypeClass = String.class, example = "t1"), @ApiImplicitParam(name = AssetLabelTplItemVOMeta.COL_ID, value = "字段ID", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetLabelTplItemVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelTplItemVOMeta.TPL_ID, value = "模版", required = false, dataTypeClass = String.class, example = "t1"),
+		@ApiImplicitParam(name = AssetLabelTplItemVOMeta.COL_ID, value = "字段ID", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelTplItemVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class, example = "1")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetLabelTplItemVOMeta.PAGE_INDEX, AssetLabelTplItemVOMeta.PAGE_SIZE, AssetLabelTplItemVOMeta.SEARCH_FIELD, AssetLabelTplItemVOMeta.FUZZY_FIELD, AssetLabelTplItemVOMeta.SEARCH_VALUE, AssetLabelTplItemVOMeta.DIRTY_FIELDS, AssetLabelTplItemVOMeta.SORT_FIELD, AssetLabelTplItemVOMeta.SORT_TYPE, AssetLabelTplItemVOMeta.IDS })
     @SentinelResource(value = AssetLabelTplItemServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelTplItemServiceProxy.UPDATE)
@@ -113,7 +127,12 @@ public class AssetLabelTplItemController extends SuperController {
      * 保存标签模版
      */
     @ApiOperation(value = "保存标签模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetLabelTplItemVOMeta.TPL_ID, value = "模版", required = false, dataTypeClass = String.class, example = "t1"), @ApiImplicitParam(name = AssetLabelTplItemVOMeta.COL_ID, value = "字段ID", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetLabelTplItemVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelTplItemVOMeta.TPL_ID, value = "模版", required = false, dataTypeClass = String.class, example = "t1"),
+		@ApiImplicitParam(name = AssetLabelTplItemVOMeta.COL_ID, value = "字段ID", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelTplItemVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class, example = "1")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetLabelTplItemVOMeta.PAGE_INDEX, AssetLabelTplItemVOMeta.PAGE_SIZE, AssetLabelTplItemVOMeta.SEARCH_FIELD, AssetLabelTplItemVOMeta.FUZZY_FIELD, AssetLabelTplItemVOMeta.SEARCH_VALUE, AssetLabelTplItemVOMeta.DIRTY_FIELDS, AssetLabelTplItemVOMeta.SORT_FIELD, AssetLabelTplItemVOMeta.SORT_TYPE, AssetLabelTplItemVOMeta.IDS })
     @SentinelResource(value = AssetLabelTplItemServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelTplItemServiceProxy.SAVE)
@@ -127,7 +146,9 @@ public class AssetLabelTplItemController extends SuperController {
      * 获取标签模版
      */
     @ApiOperation(value = "获取标签模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetLabelTplItemServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelTplItemServiceProxy.GET_BY_ID)
@@ -143,7 +164,9 @@ public class AssetLabelTplItemController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取标签模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelTplItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelTplItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetLabelTplItemServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelTplItemServiceProxy.GET_BY_IDS)
@@ -158,7 +181,12 @@ public class AssetLabelTplItemController extends SuperController {
      * 查询标签模版
      */
     @ApiOperation(value = "查询标签模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetLabelTplItemVOMeta.TPL_ID, value = "模版", required = false, dataTypeClass = String.class, example = "t1"), @ApiImplicitParam(name = AssetLabelTplItemVOMeta.COL_ID, value = "字段ID", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetLabelTplItemVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelTplItemVOMeta.TPL_ID, value = "模版", required = false, dataTypeClass = String.class, example = "t1"),
+		@ApiImplicitParam(name = AssetLabelTplItemVOMeta.COL_ID, value = "字段ID", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelTplItemVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class, example = "1")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetLabelTplItemVOMeta.PAGE_INDEX, AssetLabelTplItemVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetLabelTplItemServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelTplItemServiceProxy.QUERY_LIST)
@@ -173,7 +201,12 @@ public class AssetLabelTplItemController extends SuperController {
      * 分页查询标签模版
      */
     @ApiOperation(value = "分页查询标签模版")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetLabelTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetLabelTplItemVOMeta.TPL_ID, value = "模版", required = false, dataTypeClass = String.class, example = "t1"), @ApiImplicitParam(name = AssetLabelTplItemVOMeta.COL_ID, value = "字段ID", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetLabelTplItemVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetLabelTplItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelTplItemVOMeta.TPL_ID, value = "模版", required = false, dataTypeClass = String.class, example = "t1"),
+		@ApiImplicitParam(name = AssetLabelTplItemVOMeta.COL_ID, value = "字段ID", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelTplItemVOMeta.SORT, value = "顺序", required = false, dataTypeClass = Integer.class, example = "1")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetLabelTplItemServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetLabelTplItemServiceProxy.QUERY_PAGED_LIST)

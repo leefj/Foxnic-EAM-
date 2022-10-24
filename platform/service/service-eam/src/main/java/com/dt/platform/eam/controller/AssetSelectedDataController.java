@@ -66,7 +66,11 @@ public class AssetSelectedDataController extends SuperController {
      * 添加资产选择
      */
     @ApiOperation(value = "添加资产选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSelectedDataVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSelectedDataVOMeta.ASSET_SELECTED_CODE, value = "资产选择编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSelectedDataVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSelectedDataVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSelectedDataVOMeta.ASSET_SELECTED_CODE, value = "资产选择编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSelectedDataVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetSelectedDataServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSelectedDataServiceProxy.INSERT)
@@ -80,7 +84,9 @@ public class AssetSelectedDataController extends SuperController {
      * 删除资产选择
      */
     @ApiOperation(value = "删除资产选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSelectedDataVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSelectedDataVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetSelectedDataServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSelectedDataServiceProxy.DELETE)
@@ -94,7 +100,9 @@ public class AssetSelectedDataController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSelectedDataVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSelectedDataVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetSelectedDataServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSelectedDataServiceProxy.DELETE_BY_IDS)
@@ -133,7 +141,11 @@ public class AssetSelectedDataController extends SuperController {
      * 更新资产选择
      */
     @ApiOperation(value = "更新资产选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSelectedDataVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSelectedDataVOMeta.ASSET_SELECTED_CODE, value = "资产选择编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSelectedDataVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSelectedDataVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSelectedDataVOMeta.ASSET_SELECTED_CODE, value = "资产选择编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSelectedDataVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetSelectedDataVOMeta.PAGE_INDEX, AssetSelectedDataVOMeta.PAGE_SIZE, AssetSelectedDataVOMeta.SEARCH_FIELD, AssetSelectedDataVOMeta.FUZZY_FIELD, AssetSelectedDataVOMeta.SEARCH_VALUE, AssetSelectedDataVOMeta.SORT_FIELD, AssetSelectedDataVOMeta.SORT_TYPE, AssetSelectedDataVOMeta.IDS })
     @SentinelResource(value = AssetSelectedDataServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSelectedDataServiceProxy.UPDATE)
@@ -147,7 +159,11 @@ public class AssetSelectedDataController extends SuperController {
      * 保存资产选择
      */
     @ApiOperation(value = "保存资产选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSelectedDataVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSelectedDataVOMeta.ASSET_SELECTED_CODE, value = "资产选择编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSelectedDataVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSelectedDataVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSelectedDataVOMeta.ASSET_SELECTED_CODE, value = "资产选择编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSelectedDataVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetSelectedDataVOMeta.PAGE_INDEX, AssetSelectedDataVOMeta.PAGE_SIZE, AssetSelectedDataVOMeta.SEARCH_FIELD, AssetSelectedDataVOMeta.FUZZY_FIELD, AssetSelectedDataVOMeta.SEARCH_VALUE, AssetSelectedDataVOMeta.SORT_FIELD, AssetSelectedDataVOMeta.SORT_TYPE, AssetSelectedDataVOMeta.IDS })
     @SentinelResource(value = AssetSelectedDataServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSelectedDataServiceProxy.SAVE)
@@ -161,7 +177,9 @@ public class AssetSelectedDataController extends SuperController {
      * 获取资产选择
      */
     @ApiOperation(value = "获取资产选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSelectedDataVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSelectedDataVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetSelectedDataServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSelectedDataServiceProxy.GET_BY_ID)
@@ -176,7 +194,11 @@ public class AssetSelectedDataController extends SuperController {
      * 查询资产选择
      */
     @ApiOperation(value = "查询资产选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSelectedDataVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSelectedDataVOMeta.ASSET_SELECTED_CODE, value = "资产选择编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSelectedDataVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSelectedDataVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSelectedDataVOMeta.ASSET_SELECTED_CODE, value = "资产选择编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSelectedDataVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetSelectedDataVOMeta.PAGE_INDEX, AssetSelectedDataVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetSelectedDataServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSelectedDataServiceProxy.QUERY_LIST)
@@ -191,7 +213,11 @@ public class AssetSelectedDataController extends SuperController {
      * 分页查询资产选择
      */
     @ApiOperation(value = "分页查询资产选择")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSelectedDataVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSelectedDataVOMeta.ASSET_SELECTED_CODE, value = "资产选择编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetSelectedDataVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSelectedDataVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSelectedDataVOMeta.ASSET_SELECTED_CODE, value = "资产选择编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetSelectedDataVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetSelectedDataServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSelectedDataServiceProxy.QUERY_PAGED_LIST)
@@ -207,7 +233,10 @@ public class AssetSelectedDataController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量保存选择的资产")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetSelectedDataVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]"), @ApiImplicitParam(name = AssetSelectedDataVOMeta.ASSET_SELECTED_CODE, value = "编码", required = true, dataTypeClass = List.class, example = "1234") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetSelectedDataVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]"),
+		@ApiImplicitParam(name = AssetSelectedDataVOMeta.ASSET_SELECTED_CODE, value = "编码", required = true, dataTypeClass = List.class, example = "1234")
+	})
     @ApiOperationSupport(order = 9)
     @SentinelResource(value = AssetSelectedDataServiceProxy.SAVE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSelectedDataServiceProxy.SAVE_BY_IDS)

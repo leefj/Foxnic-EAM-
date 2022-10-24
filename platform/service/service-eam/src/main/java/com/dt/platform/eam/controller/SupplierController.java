@@ -59,7 +59,19 @@ public class SupplierController extends SuperController {
      * 添加供应商
      */
     @ApiOperation(value = "添加供应商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SupplierVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471976330536157184"), @ApiImplicitParam(name = SupplierVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.SUPPLIER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "杭州BB有限公司"), @ApiImplicitParam(name = SupplierVOMeta.BUSINESS_CONTACTS, value = "商务联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.GRADE, value = "评级", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.BUSINESS_CONTACTS_INFO, value = "商务联系方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.AFTER_SALES_CONTACTS, value = "售后联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.AFTER_SALES_CONTACTS_INFO, value = "售后联系方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.UNIT_CODE, value = "统一社会信用代码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.SUPPLIER_NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "杭州BB有限公司") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SupplierVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471976330536157184"),
+		@ApiImplicitParam(name = SupplierVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.SUPPLIER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "杭州BB有限公司"),
+		@ApiImplicitParam(name = SupplierVOMeta.BUSINESS_CONTACTS, value = "商务联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.GRADE, value = "评级", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.BUSINESS_CONTACTS_INFO, value = "商务联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.AFTER_SALES_CONTACTS, value = "售后联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.AFTER_SALES_CONTACTS_INFO, value = "售后联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.UNIT_CODE, value = "统一社会信用代码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.SUPPLIER_NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "杭州BB有限公司")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = SupplierServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SupplierServiceProxy.INSERT)
@@ -73,7 +85,9 @@ public class SupplierController extends SuperController {
      * 删除供应商
      */
     @ApiOperation(value = "删除供应商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SupplierVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471976330536157184") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SupplierVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471976330536157184")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = SupplierServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SupplierServiceProxy.DELETE)
@@ -98,7 +112,9 @@ public class SupplierController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除供应商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SupplierVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SupplierVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = SupplierServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SupplierServiceProxy.DELETE_BY_IDS)
@@ -143,7 +159,19 @@ public class SupplierController extends SuperController {
      * 更新供应商
      */
     @ApiOperation(value = "更新供应商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SupplierVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471976330536157184"), @ApiImplicitParam(name = SupplierVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.SUPPLIER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "杭州BB有限公司"), @ApiImplicitParam(name = SupplierVOMeta.BUSINESS_CONTACTS, value = "商务联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.GRADE, value = "评级", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.BUSINESS_CONTACTS_INFO, value = "商务联系方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.AFTER_SALES_CONTACTS, value = "售后联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.AFTER_SALES_CONTACTS_INFO, value = "售后联系方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.UNIT_CODE, value = "统一社会信用代码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.SUPPLIER_NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "杭州BB有限公司") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SupplierVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471976330536157184"),
+		@ApiImplicitParam(name = SupplierVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.SUPPLIER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "杭州BB有限公司"),
+		@ApiImplicitParam(name = SupplierVOMeta.BUSINESS_CONTACTS, value = "商务联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.GRADE, value = "评级", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.BUSINESS_CONTACTS_INFO, value = "商务联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.AFTER_SALES_CONTACTS, value = "售后联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.AFTER_SALES_CONTACTS_INFO, value = "售后联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.UNIT_CODE, value = "统一社会信用代码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.SUPPLIER_NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "杭州BB有限公司")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { SupplierVOMeta.PAGE_INDEX, SupplierVOMeta.PAGE_SIZE, SupplierVOMeta.SEARCH_FIELD, SupplierVOMeta.FUZZY_FIELD, SupplierVOMeta.SEARCH_VALUE, SupplierVOMeta.DIRTY_FIELDS, SupplierVOMeta.SORT_FIELD, SupplierVOMeta.SORT_TYPE, SupplierVOMeta.IDS })
     @SentinelResource(value = SupplierServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SupplierServiceProxy.UPDATE)
@@ -157,7 +185,19 @@ public class SupplierController extends SuperController {
      * 保存供应商
      */
     @ApiOperation(value = "保存供应商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SupplierVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471976330536157184"), @ApiImplicitParam(name = SupplierVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.SUPPLIER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "杭州BB有限公司"), @ApiImplicitParam(name = SupplierVOMeta.BUSINESS_CONTACTS, value = "商务联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.GRADE, value = "评级", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.BUSINESS_CONTACTS_INFO, value = "商务联系方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.AFTER_SALES_CONTACTS, value = "售后联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.AFTER_SALES_CONTACTS_INFO, value = "售后联系方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.UNIT_CODE, value = "统一社会信用代码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.SUPPLIER_NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "杭州BB有限公司") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SupplierVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471976330536157184"),
+		@ApiImplicitParam(name = SupplierVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.SUPPLIER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "杭州BB有限公司"),
+		@ApiImplicitParam(name = SupplierVOMeta.BUSINESS_CONTACTS, value = "商务联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.GRADE, value = "评级", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.BUSINESS_CONTACTS_INFO, value = "商务联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.AFTER_SALES_CONTACTS, value = "售后联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.AFTER_SALES_CONTACTS_INFO, value = "售后联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.UNIT_CODE, value = "统一社会信用代码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.SUPPLIER_NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "杭州BB有限公司")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { SupplierVOMeta.PAGE_INDEX, SupplierVOMeta.PAGE_SIZE, SupplierVOMeta.SEARCH_FIELD, SupplierVOMeta.FUZZY_FIELD, SupplierVOMeta.SEARCH_VALUE, SupplierVOMeta.DIRTY_FIELDS, SupplierVOMeta.SORT_FIELD, SupplierVOMeta.SORT_TYPE, SupplierVOMeta.IDS })
     @SentinelResource(value = SupplierServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SupplierServiceProxy.SAVE)
@@ -171,7 +211,9 @@ public class SupplierController extends SuperController {
      * 获取供应商
      */
     @ApiOperation(value = "获取供应商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SupplierVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SupplierVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = SupplierServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SupplierServiceProxy.GET_BY_ID)
@@ -189,7 +231,9 @@ public class SupplierController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取供应商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SupplierVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SupplierVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = SupplierServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SupplierServiceProxy.GET_BY_IDS)
@@ -204,7 +248,19 @@ public class SupplierController extends SuperController {
      * 查询供应商
      */
     @ApiOperation(value = "查询供应商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SupplierVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471976330536157184"), @ApiImplicitParam(name = SupplierVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.SUPPLIER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "杭州BB有限公司"), @ApiImplicitParam(name = SupplierVOMeta.BUSINESS_CONTACTS, value = "商务联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.GRADE, value = "评级", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.BUSINESS_CONTACTS_INFO, value = "商务联系方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.AFTER_SALES_CONTACTS, value = "售后联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.AFTER_SALES_CONTACTS_INFO, value = "售后联系方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.UNIT_CODE, value = "统一社会信用代码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.SUPPLIER_NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "杭州BB有限公司") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SupplierVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471976330536157184"),
+		@ApiImplicitParam(name = SupplierVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.SUPPLIER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "杭州BB有限公司"),
+		@ApiImplicitParam(name = SupplierVOMeta.BUSINESS_CONTACTS, value = "商务联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.GRADE, value = "评级", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.BUSINESS_CONTACTS_INFO, value = "商务联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.AFTER_SALES_CONTACTS, value = "售后联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.AFTER_SALES_CONTACTS_INFO, value = "售后联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.UNIT_CODE, value = "统一社会信用代码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.SUPPLIER_NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "杭州BB有限公司")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { SupplierVOMeta.PAGE_INDEX, SupplierVOMeta.PAGE_SIZE })
     @SentinelResource(value = SupplierServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SupplierServiceProxy.QUERY_LIST)
@@ -219,7 +275,19 @@ public class SupplierController extends SuperController {
      * 分页查询供应商
      */
     @ApiOperation(value = "分页查询供应商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SupplierVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471976330536157184"), @ApiImplicitParam(name = SupplierVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.SUPPLIER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "杭州BB有限公司"), @ApiImplicitParam(name = SupplierVOMeta.BUSINESS_CONTACTS, value = "商务联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.GRADE, value = "评级", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.BUSINESS_CONTACTS_INFO, value = "商务联系方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.AFTER_SALES_CONTACTS, value = "售后联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.AFTER_SALES_CONTACTS_INFO, value = "售后联系方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.UNIT_CODE, value = "统一社会信用代码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SupplierVOMeta.SUPPLIER_NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "杭州BB有限公司") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SupplierVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471976330536157184"),
+		@ApiImplicitParam(name = SupplierVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.SUPPLIER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "杭州BB有限公司"),
+		@ApiImplicitParam(name = SupplierVOMeta.BUSINESS_CONTACTS, value = "商务联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.GRADE, value = "评级", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.BUSINESS_CONTACTS_INFO, value = "商务联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.AFTER_SALES_CONTACTS, value = "售后联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.AFTER_SALES_CONTACTS_INFO, value = "售后联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.UNIT_CODE, value = "统一社会信用代码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SupplierVOMeta.SUPPLIER_NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "杭州BB有限公司")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = SupplierServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SupplierServiceProxy.QUERY_PAGED_LIST)

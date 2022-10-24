@@ -65,7 +65,30 @@ public class MonitorNodeController extends SuperController {
      * 添加节点
      */
     @ApiOperation(value = "添加节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeVOMeta.NODE_IP, value = "IP", required = false, dataTypeClass = String.class, example = "121.43.103.102"), @ApiImplicitParam(name = MonitorNodeVOMeta.PID, value = "父节点", required = false, dataTypeClass = String.class, example = "0"), @ApiImplicitParam(name = MonitorNodeVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "os"), @ApiImplicitParam(name = MonitorNodeVOMeta.SUB_TYPE, value = "子类型", required = false, dataTypeClass = String.class, example = "Redhat"), @ApiImplicitParam(name = MonitorNodeVOMeta.GROUP_ID, value = "节点分组", required = false, dataTypeClass = String.class, example = "543027032871665664"), @ApiImplicitParam(name = MonitorNodeVOMeta.NODE_NAME, value = "主机名", required = false, dataTypeClass = String.class, example = "192.168.1.1"), @ApiImplicitParam(name = MonitorNodeVOMeta.NODE_NAME_SHOW, value = "可见主机名", required = false, dataTypeClass = String.class, example = "121.43.103.10222"), @ApiImplicitParam(name = MonitorNodeVOMeta.NODE_TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeVOMeta.NODE_ENABLED, value = "是否启用", required = false, dataTypeClass = String.class, example = "disabled"), @ApiImplicitParam(name = MonitorNodeVOMeta.STATUS, value = "监控状态", required = false, dataTypeClass = String.class, example = "online"), @ApiImplicitParam(name = MonitorNodeVOMeta.SSH_VOUCHER_ID, value = "凭证(SSH)", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeVOMeta.SSH_PORT, value = "SSH端口", required = false, dataTypeClass = Integer.class, example = "22"), @ApiImplicitParam(name = MonitorNodeVOMeta.AGENT_PORT, value = "Agent端口", required = false, dataTypeClass = Integer.class, example = "10052"), @ApiImplicitParam(name = MonitorNodeVOMeta.ZABBIX_AGENT_PORT, value = "Zabbix代理端口", required = false, dataTypeClass = Integer.class, example = "10050"), @ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_PORT, value = "Snmp端口", required = false, dataTypeClass = Integer.class, example = "12345"), @ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_VERSION, value = "Snmp版本", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_COMMUNITY, value = "Snmp团体", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeVOMeta.JMX_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "12345"), @ApiImplicitParam(name = MonitorNodeVOMeta.IMPI_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "623"), @ApiImplicitParam(name = MonitorNodeVOMeta.JDBC_URL, value = "Jdbc地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NODE_IP, value = "IP", required = false, dataTypeClass = String.class, example = "121.43.103.102"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.PID, value = "父节点", required = false, dataTypeClass = String.class, example = "0"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "os"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SUB_TYPE, value = "子类型", required = false, dataTypeClass = String.class, example = "Redhat"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.GROUP_ID, value = "节点分组", required = false, dataTypeClass = String.class, example = "543027032871665664"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NODE_NAME, value = "主机名", required = false, dataTypeClass = String.class, example = "192.168.1.1"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NODE_NAME_SHOW, value = "可见主机名", required = false, dataTypeClass = String.class, example = "121.43.103.10222"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NODE_TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NODE_ENABLED, value = "是否启用", required = false, dataTypeClass = String.class, example = "disabled"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.STATUS, value = "监控状态", required = false, dataTypeClass = String.class, example = "online"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SSH_VOUCHER_ID, value = "凭证(SSH)", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SSH_PORT, value = "SSH端口", required = false, dataTypeClass = Integer.class, example = "22"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.AGENT_PORT, value = "Agent端口", required = false, dataTypeClass = Integer.class, example = "10052"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.ZABBIX_AGENT_PORT, value = "Zabbix代理端口", required = false, dataTypeClass = Integer.class, example = "10050"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_PORT, value = "Snmp端口", required = false, dataTypeClass = Integer.class, example = "12345"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_VERSION, value = "Snmp版本", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_COMMUNITY, value = "Snmp团体", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.JMX_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "12345"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.IMPI_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "623"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.JDBC_URL, value = "Jdbc地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = MonitorNodeServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeServiceProxy.INSERT)
@@ -79,7 +102,9 @@ public class MonitorNodeController extends SuperController {
      * 删除节点
      */
     @ApiOperation(value = "删除节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = MonitorNodeServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeServiceProxy.DELETE)
@@ -104,7 +129,9 @@ public class MonitorNodeController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MonitorNodeServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeServiceProxy.DELETE_BY_IDS)
@@ -149,7 +176,30 @@ public class MonitorNodeController extends SuperController {
      * 更新节点
      */
     @ApiOperation(value = "更新节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeVOMeta.NODE_IP, value = "IP", required = false, dataTypeClass = String.class, example = "121.43.103.102"), @ApiImplicitParam(name = MonitorNodeVOMeta.PID, value = "父节点", required = false, dataTypeClass = String.class, example = "0"), @ApiImplicitParam(name = MonitorNodeVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "os"), @ApiImplicitParam(name = MonitorNodeVOMeta.SUB_TYPE, value = "子类型", required = false, dataTypeClass = String.class, example = "Redhat"), @ApiImplicitParam(name = MonitorNodeVOMeta.GROUP_ID, value = "节点分组", required = false, dataTypeClass = String.class, example = "543027032871665664"), @ApiImplicitParam(name = MonitorNodeVOMeta.NODE_NAME, value = "主机名", required = false, dataTypeClass = String.class, example = "192.168.1.1"), @ApiImplicitParam(name = MonitorNodeVOMeta.NODE_NAME_SHOW, value = "可见主机名", required = false, dataTypeClass = String.class, example = "121.43.103.10222"), @ApiImplicitParam(name = MonitorNodeVOMeta.NODE_TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeVOMeta.NODE_ENABLED, value = "是否启用", required = false, dataTypeClass = String.class, example = "disabled"), @ApiImplicitParam(name = MonitorNodeVOMeta.STATUS, value = "监控状态", required = false, dataTypeClass = String.class, example = "online"), @ApiImplicitParam(name = MonitorNodeVOMeta.SSH_VOUCHER_ID, value = "凭证(SSH)", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeVOMeta.SSH_PORT, value = "SSH端口", required = false, dataTypeClass = Integer.class, example = "22"), @ApiImplicitParam(name = MonitorNodeVOMeta.AGENT_PORT, value = "Agent端口", required = false, dataTypeClass = Integer.class, example = "10052"), @ApiImplicitParam(name = MonitorNodeVOMeta.ZABBIX_AGENT_PORT, value = "Zabbix代理端口", required = false, dataTypeClass = Integer.class, example = "10050"), @ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_PORT, value = "Snmp端口", required = false, dataTypeClass = Integer.class, example = "12345"), @ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_VERSION, value = "Snmp版本", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_COMMUNITY, value = "Snmp团体", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeVOMeta.JMX_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "12345"), @ApiImplicitParam(name = MonitorNodeVOMeta.IMPI_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "623"), @ApiImplicitParam(name = MonitorNodeVOMeta.JDBC_URL, value = "Jdbc地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NODE_IP, value = "IP", required = false, dataTypeClass = String.class, example = "121.43.103.102"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.PID, value = "父节点", required = false, dataTypeClass = String.class, example = "0"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "os"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SUB_TYPE, value = "子类型", required = false, dataTypeClass = String.class, example = "Redhat"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.GROUP_ID, value = "节点分组", required = false, dataTypeClass = String.class, example = "543027032871665664"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NODE_NAME, value = "主机名", required = false, dataTypeClass = String.class, example = "192.168.1.1"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NODE_NAME_SHOW, value = "可见主机名", required = false, dataTypeClass = String.class, example = "121.43.103.10222"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NODE_TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NODE_ENABLED, value = "是否启用", required = false, dataTypeClass = String.class, example = "disabled"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.STATUS, value = "监控状态", required = false, dataTypeClass = String.class, example = "online"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SSH_VOUCHER_ID, value = "凭证(SSH)", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SSH_PORT, value = "SSH端口", required = false, dataTypeClass = Integer.class, example = "22"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.AGENT_PORT, value = "Agent端口", required = false, dataTypeClass = Integer.class, example = "10052"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.ZABBIX_AGENT_PORT, value = "Zabbix代理端口", required = false, dataTypeClass = Integer.class, example = "10050"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_PORT, value = "Snmp端口", required = false, dataTypeClass = Integer.class, example = "12345"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_VERSION, value = "Snmp版本", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_COMMUNITY, value = "Snmp团体", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.JMX_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "12345"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.IMPI_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "623"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.JDBC_URL, value = "Jdbc地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { MonitorNodeVOMeta.PAGE_INDEX, MonitorNodeVOMeta.PAGE_SIZE, MonitorNodeVOMeta.SEARCH_FIELD, MonitorNodeVOMeta.FUZZY_FIELD, MonitorNodeVOMeta.SEARCH_VALUE, MonitorNodeVOMeta.DIRTY_FIELDS, MonitorNodeVOMeta.SORT_FIELD, MonitorNodeVOMeta.SORT_TYPE, MonitorNodeVOMeta.IDS })
     @SentinelResource(value = MonitorNodeServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeServiceProxy.UPDATE)
@@ -163,7 +213,30 @@ public class MonitorNodeController extends SuperController {
      * 保存节点
      */
     @ApiOperation(value = "保存节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeVOMeta.NODE_IP, value = "IP", required = false, dataTypeClass = String.class, example = "121.43.103.102"), @ApiImplicitParam(name = MonitorNodeVOMeta.PID, value = "父节点", required = false, dataTypeClass = String.class, example = "0"), @ApiImplicitParam(name = MonitorNodeVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "os"), @ApiImplicitParam(name = MonitorNodeVOMeta.SUB_TYPE, value = "子类型", required = false, dataTypeClass = String.class, example = "Redhat"), @ApiImplicitParam(name = MonitorNodeVOMeta.GROUP_ID, value = "节点分组", required = false, dataTypeClass = String.class, example = "543027032871665664"), @ApiImplicitParam(name = MonitorNodeVOMeta.NODE_NAME, value = "主机名", required = false, dataTypeClass = String.class, example = "192.168.1.1"), @ApiImplicitParam(name = MonitorNodeVOMeta.NODE_NAME_SHOW, value = "可见主机名", required = false, dataTypeClass = String.class, example = "121.43.103.10222"), @ApiImplicitParam(name = MonitorNodeVOMeta.NODE_TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeVOMeta.NODE_ENABLED, value = "是否启用", required = false, dataTypeClass = String.class, example = "disabled"), @ApiImplicitParam(name = MonitorNodeVOMeta.STATUS, value = "监控状态", required = false, dataTypeClass = String.class, example = "online"), @ApiImplicitParam(name = MonitorNodeVOMeta.SSH_VOUCHER_ID, value = "凭证(SSH)", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeVOMeta.SSH_PORT, value = "SSH端口", required = false, dataTypeClass = Integer.class, example = "22"), @ApiImplicitParam(name = MonitorNodeVOMeta.AGENT_PORT, value = "Agent端口", required = false, dataTypeClass = Integer.class, example = "10052"), @ApiImplicitParam(name = MonitorNodeVOMeta.ZABBIX_AGENT_PORT, value = "Zabbix代理端口", required = false, dataTypeClass = Integer.class, example = "10050"), @ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_PORT, value = "Snmp端口", required = false, dataTypeClass = Integer.class, example = "12345"), @ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_VERSION, value = "Snmp版本", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_COMMUNITY, value = "Snmp团体", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeVOMeta.JMX_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "12345"), @ApiImplicitParam(name = MonitorNodeVOMeta.IMPI_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "623"), @ApiImplicitParam(name = MonitorNodeVOMeta.JDBC_URL, value = "Jdbc地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NODE_IP, value = "IP", required = false, dataTypeClass = String.class, example = "121.43.103.102"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.PID, value = "父节点", required = false, dataTypeClass = String.class, example = "0"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "os"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SUB_TYPE, value = "子类型", required = false, dataTypeClass = String.class, example = "Redhat"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.GROUP_ID, value = "节点分组", required = false, dataTypeClass = String.class, example = "543027032871665664"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NODE_NAME, value = "主机名", required = false, dataTypeClass = String.class, example = "192.168.1.1"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NODE_NAME_SHOW, value = "可见主机名", required = false, dataTypeClass = String.class, example = "121.43.103.10222"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NODE_TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NODE_ENABLED, value = "是否启用", required = false, dataTypeClass = String.class, example = "disabled"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.STATUS, value = "监控状态", required = false, dataTypeClass = String.class, example = "online"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SSH_VOUCHER_ID, value = "凭证(SSH)", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SSH_PORT, value = "SSH端口", required = false, dataTypeClass = Integer.class, example = "22"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.AGENT_PORT, value = "Agent端口", required = false, dataTypeClass = Integer.class, example = "10052"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.ZABBIX_AGENT_PORT, value = "Zabbix代理端口", required = false, dataTypeClass = Integer.class, example = "10050"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_PORT, value = "Snmp端口", required = false, dataTypeClass = Integer.class, example = "12345"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_VERSION, value = "Snmp版本", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_COMMUNITY, value = "Snmp团体", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.JMX_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "12345"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.IMPI_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "623"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.JDBC_URL, value = "Jdbc地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MonitorNodeVOMeta.PAGE_INDEX, MonitorNodeVOMeta.PAGE_SIZE, MonitorNodeVOMeta.SEARCH_FIELD, MonitorNodeVOMeta.FUZZY_FIELD, MonitorNodeVOMeta.SEARCH_VALUE, MonitorNodeVOMeta.DIRTY_FIELDS, MonitorNodeVOMeta.SORT_FIELD, MonitorNodeVOMeta.SORT_TYPE, MonitorNodeVOMeta.IDS })
     @SentinelResource(value = MonitorNodeServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeServiceProxy.SAVE)
@@ -177,7 +250,9 @@ public class MonitorNodeController extends SuperController {
      * 获取节点
      */
     @ApiOperation(value = "获取节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = MonitorNodeServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeServiceProxy.GET_BY_ID)
@@ -195,7 +270,9 @@ public class MonitorNodeController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MonitorNodeServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeServiceProxy.GET_BY_IDS)
@@ -210,7 +287,30 @@ public class MonitorNodeController extends SuperController {
      * 查询节点
      */
     @ApiOperation(value = "查询节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeVOMeta.NODE_IP, value = "IP", required = false, dataTypeClass = String.class, example = "121.43.103.102"), @ApiImplicitParam(name = MonitorNodeVOMeta.PID, value = "父节点", required = false, dataTypeClass = String.class, example = "0"), @ApiImplicitParam(name = MonitorNodeVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "os"), @ApiImplicitParam(name = MonitorNodeVOMeta.SUB_TYPE, value = "子类型", required = false, dataTypeClass = String.class, example = "Redhat"), @ApiImplicitParam(name = MonitorNodeVOMeta.GROUP_ID, value = "节点分组", required = false, dataTypeClass = String.class, example = "543027032871665664"), @ApiImplicitParam(name = MonitorNodeVOMeta.NODE_NAME, value = "主机名", required = false, dataTypeClass = String.class, example = "192.168.1.1"), @ApiImplicitParam(name = MonitorNodeVOMeta.NODE_NAME_SHOW, value = "可见主机名", required = false, dataTypeClass = String.class, example = "121.43.103.10222"), @ApiImplicitParam(name = MonitorNodeVOMeta.NODE_TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeVOMeta.NODE_ENABLED, value = "是否启用", required = false, dataTypeClass = String.class, example = "disabled"), @ApiImplicitParam(name = MonitorNodeVOMeta.STATUS, value = "监控状态", required = false, dataTypeClass = String.class, example = "online"), @ApiImplicitParam(name = MonitorNodeVOMeta.SSH_VOUCHER_ID, value = "凭证(SSH)", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeVOMeta.SSH_PORT, value = "SSH端口", required = false, dataTypeClass = Integer.class, example = "22"), @ApiImplicitParam(name = MonitorNodeVOMeta.AGENT_PORT, value = "Agent端口", required = false, dataTypeClass = Integer.class, example = "10052"), @ApiImplicitParam(name = MonitorNodeVOMeta.ZABBIX_AGENT_PORT, value = "Zabbix代理端口", required = false, dataTypeClass = Integer.class, example = "10050"), @ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_PORT, value = "Snmp端口", required = false, dataTypeClass = Integer.class, example = "12345"), @ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_VERSION, value = "Snmp版本", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_COMMUNITY, value = "Snmp团体", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeVOMeta.JMX_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "12345"), @ApiImplicitParam(name = MonitorNodeVOMeta.IMPI_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "623"), @ApiImplicitParam(name = MonitorNodeVOMeta.JDBC_URL, value = "Jdbc地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NODE_IP, value = "IP", required = false, dataTypeClass = String.class, example = "121.43.103.102"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.PID, value = "父节点", required = false, dataTypeClass = String.class, example = "0"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "os"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SUB_TYPE, value = "子类型", required = false, dataTypeClass = String.class, example = "Redhat"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.GROUP_ID, value = "节点分组", required = false, dataTypeClass = String.class, example = "543027032871665664"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NODE_NAME, value = "主机名", required = false, dataTypeClass = String.class, example = "192.168.1.1"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NODE_NAME_SHOW, value = "可见主机名", required = false, dataTypeClass = String.class, example = "121.43.103.10222"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NODE_TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NODE_ENABLED, value = "是否启用", required = false, dataTypeClass = String.class, example = "disabled"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.STATUS, value = "监控状态", required = false, dataTypeClass = String.class, example = "online"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SSH_VOUCHER_ID, value = "凭证(SSH)", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SSH_PORT, value = "SSH端口", required = false, dataTypeClass = Integer.class, example = "22"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.AGENT_PORT, value = "Agent端口", required = false, dataTypeClass = Integer.class, example = "10052"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.ZABBIX_AGENT_PORT, value = "Zabbix代理端口", required = false, dataTypeClass = Integer.class, example = "10050"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_PORT, value = "Snmp端口", required = false, dataTypeClass = Integer.class, example = "12345"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_VERSION, value = "Snmp版本", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_COMMUNITY, value = "Snmp团体", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.JMX_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "12345"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.IMPI_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "623"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.JDBC_URL, value = "Jdbc地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MonitorNodeVOMeta.PAGE_INDEX, MonitorNodeVOMeta.PAGE_SIZE })
     @SentinelResource(value = MonitorNodeServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeServiceProxy.QUERY_LIST)
@@ -225,7 +325,30 @@ public class MonitorNodeController extends SuperController {
      * 分页查询节点
      */
     @ApiOperation(value = "分页查询节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeVOMeta.NODE_IP, value = "IP", required = false, dataTypeClass = String.class, example = "121.43.103.102"), @ApiImplicitParam(name = MonitorNodeVOMeta.PID, value = "父节点", required = false, dataTypeClass = String.class, example = "0"), @ApiImplicitParam(name = MonitorNodeVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "os"), @ApiImplicitParam(name = MonitorNodeVOMeta.SUB_TYPE, value = "子类型", required = false, dataTypeClass = String.class, example = "Redhat"), @ApiImplicitParam(name = MonitorNodeVOMeta.GROUP_ID, value = "节点分组", required = false, dataTypeClass = String.class, example = "543027032871665664"), @ApiImplicitParam(name = MonitorNodeVOMeta.NODE_NAME, value = "主机名", required = false, dataTypeClass = String.class, example = "192.168.1.1"), @ApiImplicitParam(name = MonitorNodeVOMeta.NODE_NAME_SHOW, value = "可见主机名", required = false, dataTypeClass = String.class, example = "121.43.103.10222"), @ApiImplicitParam(name = MonitorNodeVOMeta.NODE_TYPE, value = "类型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeVOMeta.NODE_ENABLED, value = "是否启用", required = false, dataTypeClass = String.class, example = "disabled"), @ApiImplicitParam(name = MonitorNodeVOMeta.STATUS, value = "监控状态", required = false, dataTypeClass = String.class, example = "online"), @ApiImplicitParam(name = MonitorNodeVOMeta.SSH_VOUCHER_ID, value = "凭证(SSH)", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = MonitorNodeVOMeta.SSH_PORT, value = "SSH端口", required = false, dataTypeClass = Integer.class, example = "22"), @ApiImplicitParam(name = MonitorNodeVOMeta.AGENT_PORT, value = "Agent端口", required = false, dataTypeClass = Integer.class, example = "10052"), @ApiImplicitParam(name = MonitorNodeVOMeta.ZABBIX_AGENT_PORT, value = "Zabbix代理端口", required = false, dataTypeClass = Integer.class, example = "10050"), @ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_PORT, value = "Snmp端口", required = false, dataTypeClass = Integer.class, example = "12345"), @ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_VERSION, value = "Snmp版本", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_COMMUNITY, value = "Snmp团体", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeVOMeta.JMX_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "12345"), @ApiImplicitParam(name = MonitorNodeVOMeta.IMPI_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "623"), @ApiImplicitParam(name = MonitorNodeVOMeta.JDBC_URL, value = "Jdbc地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NODE_IP, value = "IP", required = false, dataTypeClass = String.class, example = "121.43.103.102"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.PID, value = "父节点", required = false, dataTypeClass = String.class, example = "0"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "os"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SUB_TYPE, value = "子类型", required = false, dataTypeClass = String.class, example = "Redhat"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.GROUP_ID, value = "节点分组", required = false, dataTypeClass = String.class, example = "543027032871665664"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NODE_NAME, value = "主机名", required = false, dataTypeClass = String.class, example = "192.168.1.1"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NODE_NAME_SHOW, value = "可见主机名", required = false, dataTypeClass = String.class, example = "121.43.103.10222"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NODE_TYPE, value = "类型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NODE_ENABLED, value = "是否启用", required = false, dataTypeClass = String.class, example = "disabled"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.STATUS, value = "监控状态", required = false, dataTypeClass = String.class, example = "online"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SSH_VOUCHER_ID, value = "凭证(SSH)", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SSH_PORT, value = "SSH端口", required = false, dataTypeClass = Integer.class, example = "22"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.AGENT_PORT, value = "Agent端口", required = false, dataTypeClass = Integer.class, example = "10052"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.ZABBIX_AGENT_PORT, value = "Zabbix代理端口", required = false, dataTypeClass = Integer.class, example = "10050"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_PORT, value = "Snmp端口", required = false, dataTypeClass = Integer.class, example = "12345"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_VERSION, value = "Snmp版本", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.SNMP_COMMUNITY, value = "Snmp团体", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.JMX_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "12345"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.IMPI_PORT, value = "Jmx端口", required = false, dataTypeClass = Integer.class, example = "623"),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.JDBC_URL, value = "Jdbc地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = MonitorNodeServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorNodeServiceProxy.QUERY_PAGED_LIST)

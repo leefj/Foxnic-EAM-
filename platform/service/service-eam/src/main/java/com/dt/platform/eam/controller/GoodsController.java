@@ -60,7 +60,18 @@ public class GoodsController extends SuperController {
      * 添加物品档案
      */
     @ApiOperation(value = "添加物品档案")
-    @ApiImplicitParams({ @ApiImplicitParam(name = GoodsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "474282035079282688"), @ApiImplicitParam(name = GoodsVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "474275619551576064"), @ApiImplicitParam(name = GoodsVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.NAME, value = "物品名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.MODEL, value = "规格型号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.MANUFACTURER_ID, value = "厂商", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.UNIT, value = "计量单位", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.REFERENCE_PRICE, value = "参考单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"), @ApiImplicitParam(name = GoodsVOMeta.PICTURE_ID, value = "物品图片", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = GoodsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "474282035079282688"),
+		@ApiImplicitParam(name = GoodsVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "474275619551576064"),
+		@ApiImplicitParam(name = GoodsVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.NAME, value = "物品名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.MODEL, value = "规格型号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.MANUFACTURER_ID, value = "厂商", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.UNIT, value = "计量单位", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.REFERENCE_PRICE, value = "参考单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = GoodsVOMeta.PICTURE_ID, value = "物品图片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = GoodsServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(GoodsServiceProxy.INSERT)
@@ -74,7 +85,9 @@ public class GoodsController extends SuperController {
      * 删除物品档案
      */
     @ApiOperation(value = "删除物品档案")
-    @ApiImplicitParams({ @ApiImplicitParam(name = GoodsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "474282035079282688") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = GoodsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "474282035079282688")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = GoodsServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(GoodsServiceProxy.DELETE)
@@ -88,7 +101,9 @@ public class GoodsController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除物品档案")
-    @ApiImplicitParams({ @ApiImplicitParam(name = GoodsVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = GoodsVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = GoodsServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(GoodsServiceProxy.DELETE_BY_IDS)
@@ -101,7 +116,18 @@ public class GoodsController extends SuperController {
      * 更新物品档案
      */
     @ApiOperation(value = "更新物品档案")
-    @ApiImplicitParams({ @ApiImplicitParam(name = GoodsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "474282035079282688"), @ApiImplicitParam(name = GoodsVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "474275619551576064"), @ApiImplicitParam(name = GoodsVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.NAME, value = "物品名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.MODEL, value = "规格型号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.MANUFACTURER_ID, value = "厂商", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.UNIT, value = "计量单位", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.REFERENCE_PRICE, value = "参考单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"), @ApiImplicitParam(name = GoodsVOMeta.PICTURE_ID, value = "物品图片", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = GoodsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "474282035079282688"),
+		@ApiImplicitParam(name = GoodsVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "474275619551576064"),
+		@ApiImplicitParam(name = GoodsVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.NAME, value = "物品名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.MODEL, value = "规格型号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.MANUFACTURER_ID, value = "厂商", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.UNIT, value = "计量单位", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.REFERENCE_PRICE, value = "参考单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = GoodsVOMeta.PICTURE_ID, value = "物品图片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { GoodsVOMeta.PAGE_INDEX, GoodsVOMeta.PAGE_SIZE, GoodsVOMeta.SEARCH_FIELD, GoodsVOMeta.FUZZY_FIELD, GoodsVOMeta.SEARCH_VALUE, GoodsVOMeta.SORT_FIELD, GoodsVOMeta.SORT_TYPE, GoodsVOMeta.IDS })
     @SentinelResource(value = GoodsServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(GoodsServiceProxy.UPDATE)
@@ -115,7 +141,18 @@ public class GoodsController extends SuperController {
      * 保存物品档案
      */
     @ApiOperation(value = "保存物品档案")
-    @ApiImplicitParams({ @ApiImplicitParam(name = GoodsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "474282035079282688"), @ApiImplicitParam(name = GoodsVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "474275619551576064"), @ApiImplicitParam(name = GoodsVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.NAME, value = "物品名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.MODEL, value = "规格型号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.MANUFACTURER_ID, value = "厂商", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.UNIT, value = "计量单位", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.REFERENCE_PRICE, value = "参考单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"), @ApiImplicitParam(name = GoodsVOMeta.PICTURE_ID, value = "物品图片", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = GoodsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "474282035079282688"),
+		@ApiImplicitParam(name = GoodsVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "474275619551576064"),
+		@ApiImplicitParam(name = GoodsVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.NAME, value = "物品名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.MODEL, value = "规格型号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.MANUFACTURER_ID, value = "厂商", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.UNIT, value = "计量单位", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.REFERENCE_PRICE, value = "参考单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = GoodsVOMeta.PICTURE_ID, value = "物品图片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { GoodsVOMeta.PAGE_INDEX, GoodsVOMeta.PAGE_SIZE, GoodsVOMeta.SEARCH_FIELD, GoodsVOMeta.FUZZY_FIELD, GoodsVOMeta.SEARCH_VALUE, GoodsVOMeta.SORT_FIELD, GoodsVOMeta.SORT_TYPE, GoodsVOMeta.IDS })
     @SentinelResource(value = GoodsServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(GoodsServiceProxy.SAVE)
@@ -129,7 +166,9 @@ public class GoodsController extends SuperController {
      * 获取物品档案
      */
     @ApiOperation(value = "获取物品档案")
-    @ApiImplicitParams({ @ApiImplicitParam(name = GoodsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = GoodsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = GoodsServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(GoodsServiceProxy.GET_BY_ID)
@@ -147,7 +186,9 @@ public class GoodsController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取物品档案")
-    @ApiImplicitParams({ @ApiImplicitParam(name = GoodsVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = GoodsVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = GoodsServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(GoodsServiceProxy.GET_BY_IDS)
@@ -162,7 +203,18 @@ public class GoodsController extends SuperController {
      * 查询物品档案
      */
     @ApiOperation(value = "查询物品档案")
-    @ApiImplicitParams({ @ApiImplicitParam(name = GoodsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "474282035079282688"), @ApiImplicitParam(name = GoodsVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "474275619551576064"), @ApiImplicitParam(name = GoodsVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.NAME, value = "物品名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.MODEL, value = "规格型号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.MANUFACTURER_ID, value = "厂商", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.UNIT, value = "计量单位", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.REFERENCE_PRICE, value = "参考单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"), @ApiImplicitParam(name = GoodsVOMeta.PICTURE_ID, value = "物品图片", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = GoodsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "474282035079282688"),
+		@ApiImplicitParam(name = GoodsVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "474275619551576064"),
+		@ApiImplicitParam(name = GoodsVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.NAME, value = "物品名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.MODEL, value = "规格型号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.MANUFACTURER_ID, value = "厂商", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.UNIT, value = "计量单位", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.REFERENCE_PRICE, value = "参考单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = GoodsVOMeta.PICTURE_ID, value = "物品图片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { GoodsVOMeta.PAGE_INDEX, GoodsVOMeta.PAGE_SIZE })
     @SentinelResource(value = GoodsServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(GoodsServiceProxy.QUERY_LIST)
@@ -177,7 +229,18 @@ public class GoodsController extends SuperController {
      * 分页查询物品档案
      */
     @ApiOperation(value = "分页查询物品档案")
-    @ApiImplicitParams({ @ApiImplicitParam(name = GoodsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "474282035079282688"), @ApiImplicitParam(name = GoodsVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "474275619551576064"), @ApiImplicitParam(name = GoodsVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.NAME, value = "物品名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.MODEL, value = "规格型号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.MANUFACTURER_ID, value = "厂商", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.UNIT, value = "计量单位", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.REFERENCE_PRICE, value = "参考单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"), @ApiImplicitParam(name = GoodsVOMeta.PICTURE_ID, value = "物品图片", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = GoodsVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = GoodsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "474282035079282688"),
+		@ApiImplicitParam(name = GoodsVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "474275619551576064"),
+		@ApiImplicitParam(name = GoodsVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.NAME, value = "物品名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.MODEL, value = "规格型号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.MANUFACTURER_ID, value = "厂商", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.UNIT, value = "计量单位", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.REFERENCE_PRICE, value = "参考单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = GoodsVOMeta.PICTURE_ID, value = "物品图片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = GoodsVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = GoodsServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(GoodsServiceProxy.QUERY_PAGED_LIST)

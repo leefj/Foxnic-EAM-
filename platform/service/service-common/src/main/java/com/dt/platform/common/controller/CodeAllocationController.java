@@ -60,7 +60,12 @@ public class CodeAllocationController extends SuperController {
      * 添加编码分配
      */
     @ApiOperation(value = "添加编码分配")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeAllocationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = CodeAllocationVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class, example = "eam_asset_allocate"), @ApiImplicitParam(name = CodeAllocationVOMeta.RULE_ID, value = "规则ID", required = false, dataTypeClass = String.class, example = "5"), @ApiImplicitParam(name = CodeAllocationVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "EAM资产调拨编码生成规则") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeAllocationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = CodeAllocationVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class, example = "eam_asset_allocate"),
+		@ApiImplicitParam(name = CodeAllocationVOMeta.RULE_ID, value = "规则ID", required = false, dataTypeClass = String.class, example = "5"),
+		@ApiImplicitParam(name = CodeAllocationVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "EAM资产调拨编码生成规则")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = CodeAllocationServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeAllocationServiceProxy.INSERT)
@@ -74,7 +79,9 @@ public class CodeAllocationController extends SuperController {
      * 删除编码分配
      */
     @ApiOperation(value = "删除编码分配")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeAllocationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeAllocationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = CodeAllocationServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeAllocationServiceProxy.DELETE)
@@ -88,7 +95,9 @@ public class CodeAllocationController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除编码分配")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeAllocationVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeAllocationVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = CodeAllocationServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeAllocationServiceProxy.DELETE_BY_IDS)
@@ -101,7 +110,12 @@ public class CodeAllocationController extends SuperController {
      * 更新编码分配
      */
     @ApiOperation(value = "更新编码分配")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeAllocationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = CodeAllocationVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class, example = "eam_asset_allocate"), @ApiImplicitParam(name = CodeAllocationVOMeta.RULE_ID, value = "规则ID", required = false, dataTypeClass = String.class, example = "5"), @ApiImplicitParam(name = CodeAllocationVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "EAM资产调拨编码生成规则") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeAllocationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = CodeAllocationVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class, example = "eam_asset_allocate"),
+		@ApiImplicitParam(name = CodeAllocationVOMeta.RULE_ID, value = "规则ID", required = false, dataTypeClass = String.class, example = "5"),
+		@ApiImplicitParam(name = CodeAllocationVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "EAM资产调拨编码生成规则")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { CodeAllocationVOMeta.PAGE_INDEX, CodeAllocationVOMeta.PAGE_SIZE, CodeAllocationVOMeta.SEARCH_FIELD, CodeAllocationVOMeta.FUZZY_FIELD, CodeAllocationVOMeta.SEARCH_VALUE, CodeAllocationVOMeta.SORT_FIELD, CodeAllocationVOMeta.SORT_TYPE, CodeAllocationVOMeta.IDS })
     @SentinelResource(value = CodeAllocationServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeAllocationServiceProxy.UPDATE)
@@ -115,7 +129,12 @@ public class CodeAllocationController extends SuperController {
      * 保存编码分配
      */
     @ApiOperation(value = "保存编码分配")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeAllocationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = CodeAllocationVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class, example = "eam_asset_allocate"), @ApiImplicitParam(name = CodeAllocationVOMeta.RULE_ID, value = "规则ID", required = false, dataTypeClass = String.class, example = "5"), @ApiImplicitParam(name = CodeAllocationVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "EAM资产调拨编码生成规则") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeAllocationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = CodeAllocationVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class, example = "eam_asset_allocate"),
+		@ApiImplicitParam(name = CodeAllocationVOMeta.RULE_ID, value = "规则ID", required = false, dataTypeClass = String.class, example = "5"),
+		@ApiImplicitParam(name = CodeAllocationVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "EAM资产调拨编码生成规则")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { CodeAllocationVOMeta.PAGE_INDEX, CodeAllocationVOMeta.PAGE_SIZE, CodeAllocationVOMeta.SEARCH_FIELD, CodeAllocationVOMeta.FUZZY_FIELD, CodeAllocationVOMeta.SEARCH_VALUE, CodeAllocationVOMeta.SORT_FIELD, CodeAllocationVOMeta.SORT_TYPE, CodeAllocationVOMeta.IDS })
     @SentinelResource(value = CodeAllocationServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeAllocationServiceProxy.SAVE)
@@ -129,7 +148,9 @@ public class CodeAllocationController extends SuperController {
      * 获取编码分配
      */
     @ApiOperation(value = "获取编码分配")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeAllocationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeAllocationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = CodeAllocationServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeAllocationServiceProxy.GET_BY_ID)
@@ -147,7 +168,9 @@ public class CodeAllocationController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取编码分配")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeAllocationVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeAllocationVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = CodeAllocationServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeAllocationServiceProxy.GET_BY_IDS)
@@ -162,7 +185,12 @@ public class CodeAllocationController extends SuperController {
      * 查询编码分配
      */
     @ApiOperation(value = "查询编码分配")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeAllocationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = CodeAllocationVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class, example = "eam_asset_allocate"), @ApiImplicitParam(name = CodeAllocationVOMeta.RULE_ID, value = "规则ID", required = false, dataTypeClass = String.class, example = "5"), @ApiImplicitParam(name = CodeAllocationVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "EAM资产调拨编码生成规则") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeAllocationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = CodeAllocationVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class, example = "eam_asset_allocate"),
+		@ApiImplicitParam(name = CodeAllocationVOMeta.RULE_ID, value = "规则ID", required = false, dataTypeClass = String.class, example = "5"),
+		@ApiImplicitParam(name = CodeAllocationVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "EAM资产调拨编码生成规则")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { CodeAllocationVOMeta.PAGE_INDEX, CodeAllocationVOMeta.PAGE_SIZE })
     @SentinelResource(value = CodeAllocationServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeAllocationServiceProxy.QUERY_LIST)
@@ -177,7 +205,12 @@ public class CodeAllocationController extends SuperController {
      * 分页查询编码分配
      */
     @ApiOperation(value = "分页查询编码分配")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CodeAllocationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = CodeAllocationVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class, example = "eam_asset_allocate"), @ApiImplicitParam(name = CodeAllocationVOMeta.RULE_ID, value = "规则ID", required = false, dataTypeClass = String.class, example = "5"), @ApiImplicitParam(name = CodeAllocationVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "EAM资产调拨编码生成规则") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CodeAllocationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = CodeAllocationVOMeta.CODE, value = "业务编码", required = false, dataTypeClass = String.class, example = "eam_asset_allocate"),
+		@ApiImplicitParam(name = CodeAllocationVOMeta.RULE_ID, value = "规则ID", required = false, dataTypeClass = String.class, example = "5"),
+		@ApiImplicitParam(name = CodeAllocationVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "EAM资产调拨编码生成规则")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = CodeAllocationServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeAllocationServiceProxy.QUERY_PAGED_LIST)

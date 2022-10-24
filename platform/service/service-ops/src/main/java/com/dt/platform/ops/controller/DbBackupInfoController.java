@@ -65,7 +65,24 @@ public class DbBackupInfoController extends SuperController {
      * 添加数据库备份
      */
     @ApiOperation(value = "添加数据库备份")
-    @ApiImplicitParams({ @ApiImplicitParam(name = DbBackupInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "621369753377701888"), @ApiImplicitParam(name = DbBackupInfoVOMeta.DATABASE_ID, value = "数据库", required = false, dataTypeClass = String.class, example = "621350881815691264"), @ApiImplicitParam(name = DbBackupInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "online"), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_STRATEGY, value = "备份策略", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_TYPE, value = "备份类型", required = false, dataTypeClass = String.class, example = "physical"), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_METHOD, value = "备份方式", required = false, dataTypeClass = String.class, example = "full"), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_DATAKEEP, value = "备份保留时长", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_RESULT, value = "备份结果", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_SOURCE, value = "备份来源", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_SIZE, value = "备份大小", required = false, dataTypeClass = BigDecimal.class, example = "0.00"), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_TIME, value = "上次备份", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_RESULT_CT, value = "结果内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.STORAGE, value = "存放位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = DbBackupInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "621369753377701888"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.DATABASE_ID, value = "数据库", required = false, dataTypeClass = String.class, example = "621350881815691264"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "online"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_STRATEGY, value = "备份策略", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_TYPE, value = "备份类型", required = false, dataTypeClass = String.class, example = "physical"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_METHOD, value = "备份方式", required = false, dataTypeClass = String.class, example = "full"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_DATAKEEP, value = "备份保留时长", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_RESULT, value = "备份结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_SOURCE, value = "备份来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_SIZE, value = "备份大小", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_TIME, value = "上次备份", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_RESULT_CT, value = "结果内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.STORAGE, value = "存放位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = DbBackupInfoServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(DbBackupInfoServiceProxy.INSERT)
@@ -79,7 +96,9 @@ public class DbBackupInfoController extends SuperController {
      * 删除数据库备份
      */
     @ApiOperation(value = "删除数据库备份")
-    @ApiImplicitParams({ @ApiImplicitParam(name = DbBackupInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "621369753377701888") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "621369753377701888")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = DbBackupInfoServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(DbBackupInfoServiceProxy.DELETE)
@@ -104,7 +123,9 @@ public class DbBackupInfoController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除数据库备份")
-    @ApiImplicitParams({ @ApiImplicitParam(name = DbBackupInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = DbBackupInfoServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(DbBackupInfoServiceProxy.DELETE_BY_IDS)
@@ -149,7 +170,24 @@ public class DbBackupInfoController extends SuperController {
      * 更新数据库备份
      */
     @ApiOperation(value = "更新数据库备份")
-    @ApiImplicitParams({ @ApiImplicitParam(name = DbBackupInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "621369753377701888"), @ApiImplicitParam(name = DbBackupInfoVOMeta.DATABASE_ID, value = "数据库", required = false, dataTypeClass = String.class, example = "621350881815691264"), @ApiImplicitParam(name = DbBackupInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "online"), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_STRATEGY, value = "备份策略", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_TYPE, value = "备份类型", required = false, dataTypeClass = String.class, example = "physical"), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_METHOD, value = "备份方式", required = false, dataTypeClass = String.class, example = "full"), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_DATAKEEP, value = "备份保留时长", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_RESULT, value = "备份结果", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_SOURCE, value = "备份来源", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_SIZE, value = "备份大小", required = false, dataTypeClass = BigDecimal.class, example = "0.00"), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_TIME, value = "上次备份", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_RESULT_CT, value = "结果内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.STORAGE, value = "存放位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = DbBackupInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "621369753377701888"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.DATABASE_ID, value = "数据库", required = false, dataTypeClass = String.class, example = "621350881815691264"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "online"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_STRATEGY, value = "备份策略", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_TYPE, value = "备份类型", required = false, dataTypeClass = String.class, example = "physical"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_METHOD, value = "备份方式", required = false, dataTypeClass = String.class, example = "full"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_DATAKEEP, value = "备份保留时长", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_RESULT, value = "备份结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_SOURCE, value = "备份来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_SIZE, value = "备份大小", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_TIME, value = "上次备份", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_RESULT_CT, value = "结果内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.STORAGE, value = "存放位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { DbBackupInfoVOMeta.PAGE_INDEX, DbBackupInfoVOMeta.PAGE_SIZE, DbBackupInfoVOMeta.SEARCH_FIELD, DbBackupInfoVOMeta.FUZZY_FIELD, DbBackupInfoVOMeta.SEARCH_VALUE, DbBackupInfoVOMeta.DIRTY_FIELDS, DbBackupInfoVOMeta.SORT_FIELD, DbBackupInfoVOMeta.SORT_TYPE, DbBackupInfoVOMeta.IDS })
     @SentinelResource(value = DbBackupInfoServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(DbBackupInfoServiceProxy.UPDATE)
@@ -163,7 +201,24 @@ public class DbBackupInfoController extends SuperController {
      * 保存数据库备份
      */
     @ApiOperation(value = "保存数据库备份")
-    @ApiImplicitParams({ @ApiImplicitParam(name = DbBackupInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "621369753377701888"), @ApiImplicitParam(name = DbBackupInfoVOMeta.DATABASE_ID, value = "数据库", required = false, dataTypeClass = String.class, example = "621350881815691264"), @ApiImplicitParam(name = DbBackupInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "online"), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_STRATEGY, value = "备份策略", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_TYPE, value = "备份类型", required = false, dataTypeClass = String.class, example = "physical"), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_METHOD, value = "备份方式", required = false, dataTypeClass = String.class, example = "full"), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_DATAKEEP, value = "备份保留时长", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_RESULT, value = "备份结果", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_SOURCE, value = "备份来源", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_SIZE, value = "备份大小", required = false, dataTypeClass = BigDecimal.class, example = "0.00"), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_TIME, value = "上次备份", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_RESULT_CT, value = "结果内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.STORAGE, value = "存放位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = DbBackupInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "621369753377701888"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.DATABASE_ID, value = "数据库", required = false, dataTypeClass = String.class, example = "621350881815691264"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "online"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_STRATEGY, value = "备份策略", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_TYPE, value = "备份类型", required = false, dataTypeClass = String.class, example = "physical"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_METHOD, value = "备份方式", required = false, dataTypeClass = String.class, example = "full"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_DATAKEEP, value = "备份保留时长", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_RESULT, value = "备份结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_SOURCE, value = "备份来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_SIZE, value = "备份大小", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_TIME, value = "上次备份", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_RESULT_CT, value = "结果内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.STORAGE, value = "存放位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { DbBackupInfoVOMeta.PAGE_INDEX, DbBackupInfoVOMeta.PAGE_SIZE, DbBackupInfoVOMeta.SEARCH_FIELD, DbBackupInfoVOMeta.FUZZY_FIELD, DbBackupInfoVOMeta.SEARCH_VALUE, DbBackupInfoVOMeta.DIRTY_FIELDS, DbBackupInfoVOMeta.SORT_FIELD, DbBackupInfoVOMeta.SORT_TYPE, DbBackupInfoVOMeta.IDS })
     @SentinelResource(value = DbBackupInfoServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(DbBackupInfoServiceProxy.SAVE)
@@ -177,7 +232,9 @@ public class DbBackupInfoController extends SuperController {
      * 获取数据库备份
      */
     @ApiOperation(value = "获取数据库备份")
-    @ApiImplicitParams({ @ApiImplicitParam(name = DbBackupInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = DbBackupInfoServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(DbBackupInfoServiceProxy.GET_BY_ID)
@@ -195,7 +252,9 @@ public class DbBackupInfoController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取数据库备份")
-    @ApiImplicitParams({ @ApiImplicitParam(name = DbBackupInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = DbBackupInfoServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(DbBackupInfoServiceProxy.GET_BY_IDS)
@@ -210,7 +269,24 @@ public class DbBackupInfoController extends SuperController {
      * 查询数据库备份
      */
     @ApiOperation(value = "查询数据库备份")
-    @ApiImplicitParams({ @ApiImplicitParam(name = DbBackupInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "621369753377701888"), @ApiImplicitParam(name = DbBackupInfoVOMeta.DATABASE_ID, value = "数据库", required = false, dataTypeClass = String.class, example = "621350881815691264"), @ApiImplicitParam(name = DbBackupInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "online"), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_STRATEGY, value = "备份策略", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_TYPE, value = "备份类型", required = false, dataTypeClass = String.class, example = "physical"), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_METHOD, value = "备份方式", required = false, dataTypeClass = String.class, example = "full"), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_DATAKEEP, value = "备份保留时长", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_RESULT, value = "备份结果", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_SOURCE, value = "备份来源", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_SIZE, value = "备份大小", required = false, dataTypeClass = BigDecimal.class, example = "0.00"), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_TIME, value = "上次备份", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_RESULT_CT, value = "结果内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.STORAGE, value = "存放位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = DbBackupInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "621369753377701888"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.DATABASE_ID, value = "数据库", required = false, dataTypeClass = String.class, example = "621350881815691264"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "online"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_STRATEGY, value = "备份策略", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_TYPE, value = "备份类型", required = false, dataTypeClass = String.class, example = "physical"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_METHOD, value = "备份方式", required = false, dataTypeClass = String.class, example = "full"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_DATAKEEP, value = "备份保留时长", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_RESULT, value = "备份结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_SOURCE, value = "备份来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_SIZE, value = "备份大小", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_TIME, value = "上次备份", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_RESULT_CT, value = "结果内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.STORAGE, value = "存放位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { DbBackupInfoVOMeta.PAGE_INDEX, DbBackupInfoVOMeta.PAGE_SIZE })
     @SentinelResource(value = DbBackupInfoServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(DbBackupInfoServiceProxy.QUERY_LIST)
@@ -225,7 +301,24 @@ public class DbBackupInfoController extends SuperController {
      * 分页查询数据库备份
      */
     @ApiOperation(value = "分页查询数据库备份")
-    @ApiImplicitParams({ @ApiImplicitParam(name = DbBackupInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "621369753377701888"), @ApiImplicitParam(name = DbBackupInfoVOMeta.DATABASE_ID, value = "数据库", required = false, dataTypeClass = String.class, example = "621350881815691264"), @ApiImplicitParam(name = DbBackupInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "online"), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_STRATEGY, value = "备份策略", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_TYPE, value = "备份类型", required = false, dataTypeClass = String.class, example = "physical"), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_METHOD, value = "备份方式", required = false, dataTypeClass = String.class, example = "full"), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_DATAKEEP, value = "备份保留时长", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_RESULT, value = "备份结果", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_SOURCE, value = "备份来源", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_SIZE, value = "备份大小", required = false, dataTypeClass = BigDecimal.class, example = "0.00"), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_TIME, value = "上次备份", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_RESULT_CT, value = "结果内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.STORAGE, value = "存放位置", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = DbBackupInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = DbBackupInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "621369753377701888"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.DATABASE_ID, value = "数据库", required = false, dataTypeClass = String.class, example = "621350881815691264"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "online"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_STRATEGY, value = "备份策略", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_TYPE, value = "备份类型", required = false, dataTypeClass = String.class, example = "physical"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_METHOD, value = "备份方式", required = false, dataTypeClass = String.class, example = "full"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_DATAKEEP, value = "备份保留时长", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_RESULT, value = "备份结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_SOURCE, value = "备份来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_SIZE, value = "备份大小", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_TIME, value = "上次备份", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.BACKUP_RESULT_CT, value = "结果内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.STORAGE, value = "存放位置", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = DbBackupInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = DbBackupInfoServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(DbBackupInfoServiceProxy.QUERY_PAGED_LIST)

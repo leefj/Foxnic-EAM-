@@ -57,7 +57,14 @@ public class InspectionPointOwnerController extends SuperController {
      * 添加巡检点
      */
     @ApiOperation(value = "添加巡检点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionPointOwnerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionPointOwnerVOMeta.OWNER_ID, value = "巡检计划", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionPointOwnerVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionPointOwnerVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = InspectionPointOwnerVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionPointOwnerVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.OWNER_ID, value = "巡检计划", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = InspectionPointOwnerServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionPointOwnerServiceProxy.INSERT)
@@ -71,7 +78,9 @@ public class InspectionPointOwnerController extends SuperController {
      * 删除巡检点
      */
     @ApiOperation(value = "删除巡检点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionPointOwnerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = InspectionPointOwnerServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionPointOwnerServiceProxy.DELETE)
@@ -85,7 +94,9 @@ public class InspectionPointOwnerController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除巡检点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionPointOwnerVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = InspectionPointOwnerServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionPointOwnerServiceProxy.DELETE_BY_IDS)
@@ -98,7 +109,14 @@ public class InspectionPointOwnerController extends SuperController {
      * 更新巡检点
      */
     @ApiOperation(value = "更新巡检点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionPointOwnerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionPointOwnerVOMeta.OWNER_ID, value = "巡检计划", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionPointOwnerVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionPointOwnerVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = InspectionPointOwnerVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionPointOwnerVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.OWNER_ID, value = "巡检计划", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { InspectionPointOwnerVOMeta.PAGE_INDEX, InspectionPointOwnerVOMeta.PAGE_SIZE, InspectionPointOwnerVOMeta.SEARCH_FIELD, InspectionPointOwnerVOMeta.FUZZY_FIELD, InspectionPointOwnerVOMeta.SEARCH_VALUE, InspectionPointOwnerVOMeta.DIRTY_FIELDS, InspectionPointOwnerVOMeta.SORT_FIELD, InspectionPointOwnerVOMeta.SORT_TYPE, InspectionPointOwnerVOMeta.IDS })
     @SentinelResource(value = InspectionPointOwnerServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionPointOwnerServiceProxy.UPDATE)
@@ -112,7 +130,14 @@ public class InspectionPointOwnerController extends SuperController {
      * 保存巡检点
      */
     @ApiOperation(value = "保存巡检点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionPointOwnerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionPointOwnerVOMeta.OWNER_ID, value = "巡检计划", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionPointOwnerVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionPointOwnerVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = InspectionPointOwnerVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionPointOwnerVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.OWNER_ID, value = "巡检计划", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InspectionPointOwnerVOMeta.PAGE_INDEX, InspectionPointOwnerVOMeta.PAGE_SIZE, InspectionPointOwnerVOMeta.SEARCH_FIELD, InspectionPointOwnerVOMeta.FUZZY_FIELD, InspectionPointOwnerVOMeta.SEARCH_VALUE, InspectionPointOwnerVOMeta.DIRTY_FIELDS, InspectionPointOwnerVOMeta.SORT_FIELD, InspectionPointOwnerVOMeta.SORT_TYPE, InspectionPointOwnerVOMeta.IDS })
     @SentinelResource(value = InspectionPointOwnerServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionPointOwnerServiceProxy.SAVE)
@@ -126,7 +151,9 @@ public class InspectionPointOwnerController extends SuperController {
      * 获取巡检点
      */
     @ApiOperation(value = "获取巡检点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionPointOwnerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = InspectionPointOwnerServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionPointOwnerServiceProxy.GET_BY_ID)
@@ -142,7 +169,9 @@ public class InspectionPointOwnerController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取巡检点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionPointOwnerVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = InspectionPointOwnerServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionPointOwnerServiceProxy.GET_BY_IDS)
@@ -157,7 +186,14 @@ public class InspectionPointOwnerController extends SuperController {
      * 查询巡检点
      */
     @ApiOperation(value = "查询巡检点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionPointOwnerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionPointOwnerVOMeta.OWNER_ID, value = "巡检计划", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionPointOwnerVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionPointOwnerVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = InspectionPointOwnerVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionPointOwnerVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.OWNER_ID, value = "巡检计划", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InspectionPointOwnerVOMeta.PAGE_INDEX, InspectionPointOwnerVOMeta.PAGE_SIZE })
     @SentinelResource(value = InspectionPointOwnerServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionPointOwnerServiceProxy.QUERY_LIST)
@@ -172,7 +208,14 @@ public class InspectionPointOwnerController extends SuperController {
      * 分页查询巡检点
      */
     @ApiOperation(value = "分页查询巡检点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InspectionPointOwnerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionPointOwnerVOMeta.OWNER_ID, value = "巡检计划", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionPointOwnerVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionPointOwnerVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = InspectionPointOwnerVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InspectionPointOwnerVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.OWNER_ID, value = "巡检计划", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.POINT_ID, value = "巡检点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionPointOwnerVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = InspectionPointOwnerServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionPointOwnerServiceProxy.QUERY_PAGED_LIST)

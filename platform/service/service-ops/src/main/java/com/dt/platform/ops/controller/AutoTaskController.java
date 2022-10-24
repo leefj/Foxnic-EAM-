@@ -62,7 +62,14 @@ public class AutoTaskController extends SuperController {
      * 添加批次作业
      */
     @ApiOperation(value = "添加批次作业")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613764113549492224"), @ApiImplicitParam(name = AutoTaskVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AutoTaskVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"), @ApiImplicitParam(name = AutoTaskVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class, example = "613756265390145536"), @ApiImplicitParam(name = AutoTaskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AutoTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613764113549492224"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class, example = "613756265390145536"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AutoTaskServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskServiceProxy.INSERT)
@@ -76,7 +83,9 @@ public class AutoTaskController extends SuperController {
      * 删除批次作业
      */
     @ApiOperation(value = "删除批次作业")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613764113549492224") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613764113549492224")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AutoTaskServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskServiceProxy.DELETE)
@@ -101,7 +110,9 @@ public class AutoTaskController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除批次作业")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoTaskServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskServiceProxy.DELETE_BY_IDS)
@@ -146,7 +157,14 @@ public class AutoTaskController extends SuperController {
      * 更新批次作业
      */
     @ApiOperation(value = "更新批次作业")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613764113549492224"), @ApiImplicitParam(name = AutoTaskVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AutoTaskVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"), @ApiImplicitParam(name = AutoTaskVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class, example = "613756265390145536"), @ApiImplicitParam(name = AutoTaskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AutoTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613764113549492224"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class, example = "613756265390145536"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AutoTaskVOMeta.PAGE_INDEX, AutoTaskVOMeta.PAGE_SIZE, AutoTaskVOMeta.SEARCH_FIELD, AutoTaskVOMeta.FUZZY_FIELD, AutoTaskVOMeta.SEARCH_VALUE, AutoTaskVOMeta.DIRTY_FIELDS, AutoTaskVOMeta.SORT_FIELD, AutoTaskVOMeta.SORT_TYPE, AutoTaskVOMeta.IDS })
     @SentinelResource(value = AutoTaskServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskServiceProxy.UPDATE)
@@ -160,7 +178,14 @@ public class AutoTaskController extends SuperController {
      * 保存批次作业
      */
     @ApiOperation(value = "保存批次作业")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613764113549492224"), @ApiImplicitParam(name = AutoTaskVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AutoTaskVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"), @ApiImplicitParam(name = AutoTaskVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class, example = "613756265390145536"), @ApiImplicitParam(name = AutoTaskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AutoTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613764113549492224"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class, example = "613756265390145536"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoTaskVOMeta.PAGE_INDEX, AutoTaskVOMeta.PAGE_SIZE, AutoTaskVOMeta.SEARCH_FIELD, AutoTaskVOMeta.FUZZY_FIELD, AutoTaskVOMeta.SEARCH_VALUE, AutoTaskVOMeta.DIRTY_FIELDS, AutoTaskVOMeta.SORT_FIELD, AutoTaskVOMeta.SORT_TYPE, AutoTaskVOMeta.IDS })
     @SentinelResource(value = AutoTaskServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskServiceProxy.SAVE)
@@ -174,7 +199,9 @@ public class AutoTaskController extends SuperController {
      * 获取批次作业
      */
     @ApiOperation(value = "获取批次作业")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AutoTaskServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskServiceProxy.GET_BY_ID)
@@ -192,7 +219,9 @@ public class AutoTaskController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取批次作业")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoTaskServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskServiceProxy.GET_BY_IDS)
@@ -207,7 +236,14 @@ public class AutoTaskController extends SuperController {
      * 查询批次作业
      */
     @ApiOperation(value = "查询批次作业")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613764113549492224"), @ApiImplicitParam(name = AutoTaskVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AutoTaskVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"), @ApiImplicitParam(name = AutoTaskVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class, example = "613756265390145536"), @ApiImplicitParam(name = AutoTaskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AutoTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613764113549492224"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class, example = "613756265390145536"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoTaskVOMeta.PAGE_INDEX, AutoTaskVOMeta.PAGE_SIZE })
     @SentinelResource(value = AutoTaskServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskServiceProxy.QUERY_LIST)
@@ -222,7 +258,14 @@ public class AutoTaskController extends SuperController {
      * 分页查询批次作业
      */
     @ApiOperation(value = "分页查询批次作业")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613764113549492224"), @ApiImplicitParam(name = AutoTaskVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AutoTaskVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"), @ApiImplicitParam(name = AutoTaskVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class, example = "613756265390145536"), @ApiImplicitParam(name = AutoTaskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AutoTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613764113549492224"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class, example = "613756265390145536"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AutoTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AutoTaskServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskServiceProxy.QUERY_PAGED_LIST)
@@ -239,7 +282,9 @@ public class AutoTaskController extends SuperController {
      * 执行作业
      */
     @ApiOperation(value = "执行作业")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613764113549492224") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613764113549492224")
+	})
     @ApiOperationSupport(order = 9)
     @SentinelResource(value = AutoTaskServiceProxy.EXECUTE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskServiceProxy.EXECUTE)

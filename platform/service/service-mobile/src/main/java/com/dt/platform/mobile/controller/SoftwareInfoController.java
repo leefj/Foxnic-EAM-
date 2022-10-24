@@ -58,7 +58,18 @@ public class SoftwareInfoController extends SuperController {
      * 添加软件信息
      */
     @ApiOperation(value = "添加软件信息")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593357632526356480"), @ApiImplicitParam(name = SoftwareInfoVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "eam_mobile_android"), @ApiImplicitParam(name = SoftwareInfoVOMeta.GROUP_ID, value = "软件组", required = false, dataTypeClass = String.class, example = "593357452821401600"), @ApiImplicitParam(name = SoftwareInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "安卓移动端"), @ApiImplicitParam(name = SoftwareInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = SoftwareInfoVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "android"), @ApiImplicitParam(name = SoftwareInfoVOMeta.SOFTWARE_VERSION, value = "软件版本", required = false, dataTypeClass = String.class, example = "1.0.9"), @ApiImplicitParam(name = SoftwareInfoVOMeta.PICTURE_ID, value = "图标", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareInfoVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593357632526356480"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "eam_mobile_android"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.GROUP_ID, value = "软件组", required = false, dataTypeClass = String.class, example = "593357452821401600"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "安卓移动端"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "android"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.SOFTWARE_VERSION, value = "软件版本", required = false, dataTypeClass = String.class, example = "1.0.9"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.PICTURE_ID, value = "图标", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = SoftwareInfoServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareInfoServiceProxy.INSERT)
@@ -72,7 +83,9 @@ public class SoftwareInfoController extends SuperController {
      * 删除软件信息
      */
     @ApiOperation(value = "删除软件信息")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593357632526356480") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593357632526356480")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = SoftwareInfoServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareInfoServiceProxy.DELETE)
@@ -86,7 +99,9 @@ public class SoftwareInfoController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除软件信息")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = SoftwareInfoServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareInfoServiceProxy.DELETE_BY_IDS)
@@ -99,7 +114,18 @@ public class SoftwareInfoController extends SuperController {
      * 更新软件信息
      */
     @ApiOperation(value = "更新软件信息")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593357632526356480"), @ApiImplicitParam(name = SoftwareInfoVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "eam_mobile_android"), @ApiImplicitParam(name = SoftwareInfoVOMeta.GROUP_ID, value = "软件组", required = false, dataTypeClass = String.class, example = "593357452821401600"), @ApiImplicitParam(name = SoftwareInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "安卓移动端"), @ApiImplicitParam(name = SoftwareInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = SoftwareInfoVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "android"), @ApiImplicitParam(name = SoftwareInfoVOMeta.SOFTWARE_VERSION, value = "软件版本", required = false, dataTypeClass = String.class, example = "1.0.9"), @ApiImplicitParam(name = SoftwareInfoVOMeta.PICTURE_ID, value = "图标", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareInfoVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593357632526356480"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "eam_mobile_android"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.GROUP_ID, value = "软件组", required = false, dataTypeClass = String.class, example = "593357452821401600"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "安卓移动端"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "android"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.SOFTWARE_VERSION, value = "软件版本", required = false, dataTypeClass = String.class, example = "1.0.9"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.PICTURE_ID, value = "图标", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { SoftwareInfoVOMeta.PAGE_INDEX, SoftwareInfoVOMeta.PAGE_SIZE, SoftwareInfoVOMeta.SEARCH_FIELD, SoftwareInfoVOMeta.FUZZY_FIELD, SoftwareInfoVOMeta.SEARCH_VALUE, SoftwareInfoVOMeta.DIRTY_FIELDS, SoftwareInfoVOMeta.SORT_FIELD, SoftwareInfoVOMeta.SORT_TYPE, SoftwareInfoVOMeta.IDS })
     @SentinelResource(value = SoftwareInfoServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareInfoServiceProxy.UPDATE)
@@ -113,7 +139,18 @@ public class SoftwareInfoController extends SuperController {
      * 保存软件信息
      */
     @ApiOperation(value = "保存软件信息")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593357632526356480"), @ApiImplicitParam(name = SoftwareInfoVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "eam_mobile_android"), @ApiImplicitParam(name = SoftwareInfoVOMeta.GROUP_ID, value = "软件组", required = false, dataTypeClass = String.class, example = "593357452821401600"), @ApiImplicitParam(name = SoftwareInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "安卓移动端"), @ApiImplicitParam(name = SoftwareInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = SoftwareInfoVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "android"), @ApiImplicitParam(name = SoftwareInfoVOMeta.SOFTWARE_VERSION, value = "软件版本", required = false, dataTypeClass = String.class, example = "1.0.9"), @ApiImplicitParam(name = SoftwareInfoVOMeta.PICTURE_ID, value = "图标", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareInfoVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593357632526356480"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "eam_mobile_android"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.GROUP_ID, value = "软件组", required = false, dataTypeClass = String.class, example = "593357452821401600"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "安卓移动端"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "android"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.SOFTWARE_VERSION, value = "软件版本", required = false, dataTypeClass = String.class, example = "1.0.9"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.PICTURE_ID, value = "图标", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { SoftwareInfoVOMeta.PAGE_INDEX, SoftwareInfoVOMeta.PAGE_SIZE, SoftwareInfoVOMeta.SEARCH_FIELD, SoftwareInfoVOMeta.FUZZY_FIELD, SoftwareInfoVOMeta.SEARCH_VALUE, SoftwareInfoVOMeta.DIRTY_FIELDS, SoftwareInfoVOMeta.SORT_FIELD, SoftwareInfoVOMeta.SORT_TYPE, SoftwareInfoVOMeta.IDS })
     @SentinelResource(value = SoftwareInfoServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareInfoServiceProxy.SAVE)
@@ -127,7 +164,9 @@ public class SoftwareInfoController extends SuperController {
      * 获取软件信息
      */
     @ApiOperation(value = "获取软件信息")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = SoftwareInfoServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareInfoServiceProxy.GET_BY_ID)
@@ -145,7 +184,9 @@ public class SoftwareInfoController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取软件信息")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = SoftwareInfoServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareInfoServiceProxy.GET_BY_IDS)
@@ -160,7 +201,18 @@ public class SoftwareInfoController extends SuperController {
      * 查询软件信息
      */
     @ApiOperation(value = "查询软件信息")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593357632526356480"), @ApiImplicitParam(name = SoftwareInfoVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "eam_mobile_android"), @ApiImplicitParam(name = SoftwareInfoVOMeta.GROUP_ID, value = "软件组", required = false, dataTypeClass = String.class, example = "593357452821401600"), @ApiImplicitParam(name = SoftwareInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "安卓移动端"), @ApiImplicitParam(name = SoftwareInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = SoftwareInfoVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "android"), @ApiImplicitParam(name = SoftwareInfoVOMeta.SOFTWARE_VERSION, value = "软件版本", required = false, dataTypeClass = String.class, example = "1.0.9"), @ApiImplicitParam(name = SoftwareInfoVOMeta.PICTURE_ID, value = "图标", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareInfoVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593357632526356480"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "eam_mobile_android"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.GROUP_ID, value = "软件组", required = false, dataTypeClass = String.class, example = "593357452821401600"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "安卓移动端"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "android"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.SOFTWARE_VERSION, value = "软件版本", required = false, dataTypeClass = String.class, example = "1.0.9"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.PICTURE_ID, value = "图标", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { SoftwareInfoVOMeta.PAGE_INDEX, SoftwareInfoVOMeta.PAGE_SIZE })
     @SentinelResource(value = SoftwareInfoServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareInfoServiceProxy.QUERY_LIST)
@@ -175,7 +227,18 @@ public class SoftwareInfoController extends SuperController {
      * 分页查询软件信息
      */
     @ApiOperation(value = "分页查询软件信息")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SoftwareInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593357632526356480"), @ApiImplicitParam(name = SoftwareInfoVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "eam_mobile_android"), @ApiImplicitParam(name = SoftwareInfoVOMeta.GROUP_ID, value = "软件组", required = false, dataTypeClass = String.class, example = "593357452821401600"), @ApiImplicitParam(name = SoftwareInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "安卓移动端"), @ApiImplicitParam(name = SoftwareInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = SoftwareInfoVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "android"), @ApiImplicitParam(name = SoftwareInfoVOMeta.SOFTWARE_VERSION, value = "软件版本", required = false, dataTypeClass = String.class, example = "1.0.9"), @ApiImplicitParam(name = SoftwareInfoVOMeta.PICTURE_ID, value = "图标", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareInfoVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = SoftwareInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593357632526356480"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "eam_mobile_android"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.GROUP_ID, value = "软件组", required = false, dataTypeClass = String.class, example = "593357452821401600"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "安卓移动端"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "android"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.SOFTWARE_VERSION, value = "软件版本", required = false, dataTypeClass = String.class, example = "1.0.9"),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.PICTURE_ID, value = "图标", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.FILE_ID, value = "文件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = SoftwareInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = SoftwareInfoServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SoftwareInfoServiceProxy.QUERY_PAGED_LIST)

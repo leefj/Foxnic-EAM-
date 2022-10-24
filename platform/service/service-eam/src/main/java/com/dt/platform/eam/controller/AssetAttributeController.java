@@ -60,7 +60,22 @@ public class AssetAttributeController extends SuperController {
      * 添加资产字段配置
      */
     @ApiOperation(value = "添加资产字段配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"), @ApiImplicitParam(name = AssetAttributeVOMeta.CODE, value = "字段编码", required = false, dataTypeClass = String.class, example = "maintainer_name"), @ApiImplicitParam(name = AssetAttributeVOMeta.LABEL, value = "字段名称", required = false, dataTypeClass = String.class, example = "维保厂商"), @ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_TYPE, value = "字段值类型", required = false, dataTypeClass = String.class, example = "string"), @ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_PATH, value = "取值路径", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.LABEL_NOTES, value = "标签备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.DIMENSION, value = "所属维度", required = false, dataTypeClass = String.class, example = "maintainer"), @ApiImplicitParam(name = AssetAttributeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid"), @ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED, value = "是否必选", required = false, dataTypeClass = String.class, example = "0"), @ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED_MODIFY, value = "是否修改", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_TYPE, value = "组件类型", required = false, dataTypeClass = String.class, example = "text_input"), @ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_CONTENT, value = "组件内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.OWNER, value = "归属", required = false, dataTypeClass = String.class, example = "asset") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.CODE, value = "字段编码", required = false, dataTypeClass = String.class, example = "maintainer_name"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.LABEL, value = "字段名称", required = false, dataTypeClass = String.class, example = "维保厂商"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_TYPE, value = "字段值类型", required = false, dataTypeClass = String.class, example = "string"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_PATH, value = "取值路径", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.LABEL_NOTES, value = "标签备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.DIMENSION, value = "所属维度", required = false, dataTypeClass = String.class, example = "maintainer"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED, value = "是否必选", required = false, dataTypeClass = String.class, example = "0"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED_MODIFY, value = "是否修改", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_TYPE, value = "组件类型", required = false, dataTypeClass = String.class, example = "text_input"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_CONTENT, value = "组件内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.OWNER, value = "归属", required = false, dataTypeClass = String.class, example = "asset")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetAttributeServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetAttributeServiceProxy.INSERT)
@@ -74,7 +89,9 @@ public class AssetAttributeController extends SuperController {
      * 删除资产字段配置
      */
     @ApiOperation(value = "删除资产字段配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetAttributeServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetAttributeServiceProxy.DELETE)
@@ -87,7 +104,10 @@ public class AssetAttributeController extends SuperController {
      * 查询资产字段配置项
      */
     @ApiOperation(value = "查询资产字段配置项")
-    @ApiImplicitParams({ @ApiImplicitParam(name = "owner", value = "归属", required = true, dataTypeClass = String.class, example = "asset"), @ApiImplicitParam(name = "itemOwner", value = "归属", required = true, dataTypeClass = String.class, example = "asset") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = "owner", value = "归属", required = true, dataTypeClass = String.class, example = "asset"),
+		@ApiImplicitParam(name = "itemOwner", value = "归属", required = true, dataTypeClass = String.class, example = "asset")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetAttributeItemVOMeta.PAGE_INDEX, AssetAttributeItemVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetAttributeServiceProxy.QUERY_ATTRIBUTE_OWNER_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetAttributeServiceProxy.QUERY_ATTRIBUTE_OWNER_LIST)
@@ -103,7 +123,9 @@ public class AssetAttributeController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产字段配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetAttributeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetAttributeServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetAttributeServiceProxy.DELETE_BY_IDS)
@@ -116,7 +138,22 @@ public class AssetAttributeController extends SuperController {
      * 更新资产字段配置
      */
     @ApiOperation(value = "更新资产字段配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"), @ApiImplicitParam(name = AssetAttributeVOMeta.CODE, value = "字段编码", required = false, dataTypeClass = String.class, example = "maintainer_name"), @ApiImplicitParam(name = AssetAttributeVOMeta.LABEL, value = "字段名称", required = false, dataTypeClass = String.class, example = "维保厂商"), @ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_TYPE, value = "字段值类型", required = false, dataTypeClass = String.class, example = "string"), @ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_PATH, value = "取值路径", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.LABEL_NOTES, value = "标签备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.DIMENSION, value = "所属维度", required = false, dataTypeClass = String.class, example = "maintainer"), @ApiImplicitParam(name = AssetAttributeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid"), @ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED, value = "是否必选", required = false, dataTypeClass = String.class, example = "0"), @ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED_MODIFY, value = "是否修改", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_TYPE, value = "组件类型", required = false, dataTypeClass = String.class, example = "text_input"), @ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_CONTENT, value = "组件内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.OWNER, value = "归属", required = false, dataTypeClass = String.class, example = "asset") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.CODE, value = "字段编码", required = false, dataTypeClass = String.class, example = "maintainer_name"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.LABEL, value = "字段名称", required = false, dataTypeClass = String.class, example = "维保厂商"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_TYPE, value = "字段值类型", required = false, dataTypeClass = String.class, example = "string"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_PATH, value = "取值路径", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.LABEL_NOTES, value = "标签备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.DIMENSION, value = "所属维度", required = false, dataTypeClass = String.class, example = "maintainer"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED, value = "是否必选", required = false, dataTypeClass = String.class, example = "0"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED_MODIFY, value = "是否修改", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_TYPE, value = "组件类型", required = false, dataTypeClass = String.class, example = "text_input"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_CONTENT, value = "组件内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.OWNER, value = "归属", required = false, dataTypeClass = String.class, example = "asset")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetAttributeVOMeta.PAGE_INDEX, AssetAttributeVOMeta.PAGE_SIZE, AssetAttributeVOMeta.SEARCH_FIELD, AssetAttributeVOMeta.FUZZY_FIELD, AssetAttributeVOMeta.SEARCH_VALUE, AssetAttributeVOMeta.SORT_FIELD, AssetAttributeVOMeta.SORT_TYPE, AssetAttributeVOMeta.IDS })
     @SentinelResource(value = AssetAttributeServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetAttributeServiceProxy.UPDATE)
@@ -130,7 +167,22 @@ public class AssetAttributeController extends SuperController {
      * 保存资产字段配置
      */
     @ApiOperation(value = "保存资产字段配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"), @ApiImplicitParam(name = AssetAttributeVOMeta.CODE, value = "字段编码", required = false, dataTypeClass = String.class, example = "maintainer_name"), @ApiImplicitParam(name = AssetAttributeVOMeta.LABEL, value = "字段名称", required = false, dataTypeClass = String.class, example = "维保厂商"), @ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_TYPE, value = "字段值类型", required = false, dataTypeClass = String.class, example = "string"), @ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_PATH, value = "取值路径", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.LABEL_NOTES, value = "标签备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.DIMENSION, value = "所属维度", required = false, dataTypeClass = String.class, example = "maintainer"), @ApiImplicitParam(name = AssetAttributeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid"), @ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED, value = "是否必选", required = false, dataTypeClass = String.class, example = "0"), @ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED_MODIFY, value = "是否修改", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_TYPE, value = "组件类型", required = false, dataTypeClass = String.class, example = "text_input"), @ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_CONTENT, value = "组件内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.OWNER, value = "归属", required = false, dataTypeClass = String.class, example = "asset") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.CODE, value = "字段编码", required = false, dataTypeClass = String.class, example = "maintainer_name"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.LABEL, value = "字段名称", required = false, dataTypeClass = String.class, example = "维保厂商"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_TYPE, value = "字段值类型", required = false, dataTypeClass = String.class, example = "string"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_PATH, value = "取值路径", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.LABEL_NOTES, value = "标签备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.DIMENSION, value = "所属维度", required = false, dataTypeClass = String.class, example = "maintainer"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED, value = "是否必选", required = false, dataTypeClass = String.class, example = "0"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED_MODIFY, value = "是否修改", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_TYPE, value = "组件类型", required = false, dataTypeClass = String.class, example = "text_input"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_CONTENT, value = "组件内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.OWNER, value = "归属", required = false, dataTypeClass = String.class, example = "asset")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetAttributeVOMeta.PAGE_INDEX, AssetAttributeVOMeta.PAGE_SIZE, AssetAttributeVOMeta.SEARCH_FIELD, AssetAttributeVOMeta.FUZZY_FIELD, AssetAttributeVOMeta.SEARCH_VALUE, AssetAttributeVOMeta.SORT_FIELD, AssetAttributeVOMeta.SORT_TYPE, AssetAttributeVOMeta.IDS })
     @SentinelResource(value = AssetAttributeServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetAttributeServiceProxy.SAVE)
@@ -144,7 +196,9 @@ public class AssetAttributeController extends SuperController {
      * 获取资产字段配置
      */
     @ApiOperation(value = "获取资产字段配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetAttributeServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetAttributeServiceProxy.GET_BY_ID)
@@ -160,7 +214,9 @@ public class AssetAttributeController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产字段配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetAttributeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetAttributeServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetAttributeServiceProxy.GET_BY_IDS)
@@ -175,7 +231,22 @@ public class AssetAttributeController extends SuperController {
      * 查询资产字段配置
      */
     @ApiOperation(value = "查询资产字段配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"), @ApiImplicitParam(name = AssetAttributeVOMeta.CODE, value = "字段编码", required = false, dataTypeClass = String.class, example = "maintainer_name"), @ApiImplicitParam(name = AssetAttributeVOMeta.LABEL, value = "字段名称", required = false, dataTypeClass = String.class, example = "维保厂商"), @ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_TYPE, value = "字段值类型", required = false, dataTypeClass = String.class, example = "string"), @ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_PATH, value = "取值路径", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.LABEL_NOTES, value = "标签备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.DIMENSION, value = "所属维度", required = false, dataTypeClass = String.class, example = "maintainer"), @ApiImplicitParam(name = AssetAttributeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid"), @ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED, value = "是否必选", required = false, dataTypeClass = String.class, example = "0"), @ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED_MODIFY, value = "是否修改", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_TYPE, value = "组件类型", required = false, dataTypeClass = String.class, example = "text_input"), @ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_CONTENT, value = "组件内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.OWNER, value = "归属", required = false, dataTypeClass = String.class, example = "asset") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.CODE, value = "字段编码", required = false, dataTypeClass = String.class, example = "maintainer_name"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.LABEL, value = "字段名称", required = false, dataTypeClass = String.class, example = "维保厂商"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_TYPE, value = "字段值类型", required = false, dataTypeClass = String.class, example = "string"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_PATH, value = "取值路径", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.LABEL_NOTES, value = "标签备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.DIMENSION, value = "所属维度", required = false, dataTypeClass = String.class, example = "maintainer"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED, value = "是否必选", required = false, dataTypeClass = String.class, example = "0"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED_MODIFY, value = "是否修改", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_TYPE, value = "组件类型", required = false, dataTypeClass = String.class, example = "text_input"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_CONTENT, value = "组件内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.OWNER, value = "归属", required = false, dataTypeClass = String.class, example = "asset")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetAttributeVOMeta.PAGE_INDEX, AssetAttributeVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetAttributeServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetAttributeServiceProxy.QUERY_LIST)
@@ -190,7 +261,22 @@ public class AssetAttributeController extends SuperController {
      * 分页查询资产字段配置
      */
     @ApiOperation(value = "分页查询资产字段配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"), @ApiImplicitParam(name = AssetAttributeVOMeta.CODE, value = "字段编码", required = false, dataTypeClass = String.class, example = "maintainer_name"), @ApiImplicitParam(name = AssetAttributeVOMeta.LABEL, value = "字段名称", required = false, dataTypeClass = String.class, example = "维保厂商"), @ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_TYPE, value = "字段值类型", required = false, dataTypeClass = String.class, example = "string"), @ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_PATH, value = "取值路径", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.LABEL_NOTES, value = "标签备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.DIMENSION, value = "所属维度", required = false, dataTypeClass = String.class, example = "maintainer"), @ApiImplicitParam(name = AssetAttributeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid"), @ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED, value = "是否必选", required = false, dataTypeClass = String.class, example = "0"), @ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED_MODIFY, value = "是否修改", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_TYPE, value = "组件类型", required = false, dataTypeClass = String.class, example = "text_input"), @ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_CONTENT, value = "组件内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeVOMeta.OWNER, value = "归属", required = false, dataTypeClass = String.class, example = "asset") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetAttributeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.CODE, value = "字段编码", required = false, dataTypeClass = String.class, example = "maintainer_name"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.LABEL, value = "字段名称", required = false, dataTypeClass = String.class, example = "维保厂商"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_TYPE, value = "字段值类型", required = false, dataTypeClass = String.class, example = "string"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.VALUE_PATH, value = "取值路径", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.LABEL_NOTES, value = "标签备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.DIMENSION, value = "所属维度", required = false, dataTypeClass = String.class, example = "maintainer"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED, value = "是否必选", required = false, dataTypeClass = String.class, example = "0"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.REQUIRED_MODIFY, value = "是否修改", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_TYPE, value = "组件类型", required = false, dataTypeClass = String.class, example = "text_input"),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.COMPONENT_CONTENT, value = "组件内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAttributeVOMeta.OWNER, value = "归属", required = false, dataTypeClass = String.class, example = "asset")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetAttributeServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetAttributeServiceProxy.QUERY_PAGED_LIST)

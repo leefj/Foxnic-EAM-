@@ -58,7 +58,13 @@ public class MonitorObjectGrafanaController extends SuperController {
      * 添加grafana配置
      */
     @ApiOperation(value = "添加grafana配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.URL, value = "地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.URL, value = "地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = MonitorObjectGrafanaServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectGrafanaServiceProxy.INSERT)
@@ -72,7 +78,9 @@ public class MonitorObjectGrafanaController extends SuperController {
      * 删除grafana配置
      */
     @ApiOperation(value = "删除grafana配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = MonitorObjectGrafanaServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectGrafanaServiceProxy.DELETE)
@@ -97,7 +105,9 @@ public class MonitorObjectGrafanaController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除grafana配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MonitorObjectGrafanaServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectGrafanaServiceProxy.DELETE_BY_IDS)
@@ -142,7 +152,13 @@ public class MonitorObjectGrafanaController extends SuperController {
      * 更新grafana配置
      */
     @ApiOperation(value = "更新grafana配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.URL, value = "地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.URL, value = "地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { MonitorObjectGrafanaVOMeta.PAGE_INDEX, MonitorObjectGrafanaVOMeta.PAGE_SIZE, MonitorObjectGrafanaVOMeta.SEARCH_FIELD, MonitorObjectGrafanaVOMeta.FUZZY_FIELD, MonitorObjectGrafanaVOMeta.SEARCH_VALUE, MonitorObjectGrafanaVOMeta.DIRTY_FIELDS, MonitorObjectGrafanaVOMeta.SORT_FIELD, MonitorObjectGrafanaVOMeta.SORT_TYPE, MonitorObjectGrafanaVOMeta.IDS })
     @SentinelResource(value = MonitorObjectGrafanaServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectGrafanaServiceProxy.UPDATE)
@@ -156,7 +172,13 @@ public class MonitorObjectGrafanaController extends SuperController {
      * 保存grafana配置
      */
     @ApiOperation(value = "保存grafana配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.URL, value = "地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.URL, value = "地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MonitorObjectGrafanaVOMeta.PAGE_INDEX, MonitorObjectGrafanaVOMeta.PAGE_SIZE, MonitorObjectGrafanaVOMeta.SEARCH_FIELD, MonitorObjectGrafanaVOMeta.FUZZY_FIELD, MonitorObjectGrafanaVOMeta.SEARCH_VALUE, MonitorObjectGrafanaVOMeta.DIRTY_FIELDS, MonitorObjectGrafanaVOMeta.SORT_FIELD, MonitorObjectGrafanaVOMeta.SORT_TYPE, MonitorObjectGrafanaVOMeta.IDS })
     @SentinelResource(value = MonitorObjectGrafanaServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectGrafanaServiceProxy.SAVE)
@@ -170,7 +192,9 @@ public class MonitorObjectGrafanaController extends SuperController {
      * 获取grafana配置
      */
     @ApiOperation(value = "获取grafana配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = MonitorObjectGrafanaServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectGrafanaServiceProxy.GET_BY_ID)
@@ -186,7 +210,9 @@ public class MonitorObjectGrafanaController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取grafana配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MonitorObjectGrafanaServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectGrafanaServiceProxy.GET_BY_IDS)
@@ -201,7 +227,13 @@ public class MonitorObjectGrafanaController extends SuperController {
      * 查询grafana配置
      */
     @ApiOperation(value = "查询grafana配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.URL, value = "地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.URL, value = "地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MonitorObjectGrafanaVOMeta.PAGE_INDEX, MonitorObjectGrafanaVOMeta.PAGE_SIZE })
     @SentinelResource(value = MonitorObjectGrafanaServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectGrafanaServiceProxy.QUERY_LIST)
@@ -216,7 +248,13 @@ public class MonitorObjectGrafanaController extends SuperController {
      * 分页查询grafana配置
      */
     @ApiOperation(value = "分页查询grafana配置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.URL, value = "地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.URL, value = "地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MonitorObjectGrafanaVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = MonitorObjectGrafanaServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MonitorObjectGrafanaServiceProxy.QUERY_PAGED_LIST)

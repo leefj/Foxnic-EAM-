@@ -58,7 +58,11 @@ public class ServiceMyPortalController extends SuperController {
      * 添加我的门户
      */
     @ApiOperation(value = "添加我的门户")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceMyPortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceMyPortalVOMeta.PORTAL_ID, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceMyPortalVOMeta.USER_ID, value = "我的", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceMyPortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceMyPortalVOMeta.PORTAL_ID, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceMyPortalVOMeta.USER_ID, value = "我的", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = ServiceMyPortalServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceMyPortalServiceProxy.INSERT)
@@ -72,7 +76,9 @@ public class ServiceMyPortalController extends SuperController {
      * 删除我的门户
      */
     @ApiOperation(value = "删除我的门户")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceMyPortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceMyPortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = ServiceMyPortalServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceMyPortalServiceProxy.DELETE)
@@ -97,7 +103,9 @@ public class ServiceMyPortalController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除我的门户")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceMyPortalVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceMyPortalVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ServiceMyPortalServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceMyPortalServiceProxy.DELETE_BY_IDS)
@@ -142,7 +150,11 @@ public class ServiceMyPortalController extends SuperController {
      * 更新我的门户
      */
     @ApiOperation(value = "更新我的门户")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceMyPortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceMyPortalVOMeta.PORTAL_ID, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceMyPortalVOMeta.USER_ID, value = "我的", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceMyPortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceMyPortalVOMeta.PORTAL_ID, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceMyPortalVOMeta.USER_ID, value = "我的", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { ServiceMyPortalVOMeta.PAGE_INDEX, ServiceMyPortalVOMeta.PAGE_SIZE, ServiceMyPortalVOMeta.SEARCH_FIELD, ServiceMyPortalVOMeta.FUZZY_FIELD, ServiceMyPortalVOMeta.SEARCH_VALUE, ServiceMyPortalVOMeta.DIRTY_FIELDS, ServiceMyPortalVOMeta.SORT_FIELD, ServiceMyPortalVOMeta.SORT_TYPE, ServiceMyPortalVOMeta.IDS })
     @SentinelResource(value = ServiceMyPortalServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceMyPortalServiceProxy.UPDATE)
@@ -156,7 +168,11 @@ public class ServiceMyPortalController extends SuperController {
      * 保存我的门户
      */
     @ApiOperation(value = "保存我的门户")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceMyPortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceMyPortalVOMeta.PORTAL_ID, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceMyPortalVOMeta.USER_ID, value = "我的", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceMyPortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceMyPortalVOMeta.PORTAL_ID, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceMyPortalVOMeta.USER_ID, value = "我的", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ServiceMyPortalVOMeta.PAGE_INDEX, ServiceMyPortalVOMeta.PAGE_SIZE, ServiceMyPortalVOMeta.SEARCH_FIELD, ServiceMyPortalVOMeta.FUZZY_FIELD, ServiceMyPortalVOMeta.SEARCH_VALUE, ServiceMyPortalVOMeta.DIRTY_FIELDS, ServiceMyPortalVOMeta.SORT_FIELD, ServiceMyPortalVOMeta.SORT_TYPE, ServiceMyPortalVOMeta.IDS })
     @SentinelResource(value = ServiceMyPortalServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceMyPortalServiceProxy.SAVE)
@@ -170,7 +186,9 @@ public class ServiceMyPortalController extends SuperController {
      * 获取我的门户
      */
     @ApiOperation(value = "获取我的门户")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceMyPortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceMyPortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = ServiceMyPortalServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceMyPortalServiceProxy.GET_BY_ID)
@@ -186,7 +204,9 @@ public class ServiceMyPortalController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取我的门户")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceMyPortalVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceMyPortalVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ServiceMyPortalServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceMyPortalServiceProxy.GET_BY_IDS)
@@ -201,7 +221,11 @@ public class ServiceMyPortalController extends SuperController {
      * 查询我的门户
      */
     @ApiOperation(value = "查询我的门户")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceMyPortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceMyPortalVOMeta.PORTAL_ID, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceMyPortalVOMeta.USER_ID, value = "我的", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceMyPortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceMyPortalVOMeta.PORTAL_ID, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceMyPortalVOMeta.USER_ID, value = "我的", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ServiceMyPortalVOMeta.PAGE_INDEX, ServiceMyPortalVOMeta.PAGE_SIZE })
     @SentinelResource(value = ServiceMyPortalServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceMyPortalServiceProxy.QUERY_LIST)
@@ -216,7 +240,11 @@ public class ServiceMyPortalController extends SuperController {
      * 分页查询我的门户
      */
     @ApiOperation(value = "分页查询我的门户")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceMyPortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceMyPortalVOMeta.PORTAL_ID, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceMyPortalVOMeta.USER_ID, value = "我的", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceMyPortalVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceMyPortalVOMeta.PORTAL_ID, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceMyPortalVOMeta.USER_ID, value = "我的", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = ServiceMyPortalServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceMyPortalServiceProxy.QUERY_PAGED_LIST)

@@ -57,7 +57,11 @@ public class BillRelationController extends SuperController {
      * 添加单据关联
      */
     @ApiOperation(value = "添加单据关联")
-    @ApiImplicitParams({ @ApiImplicitParam(name = BillRelationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = BillRelationVOMeta.MASTER_ID, value = "主节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = BillRelationVOMeta.SLAVER_ID, value = "从节点", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = BillRelationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = BillRelationVOMeta.MASTER_ID, value = "主节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = BillRelationVOMeta.SLAVER_ID, value = "从节点", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = BillRelationServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(BillRelationServiceProxy.INSERT)
@@ -71,7 +75,9 @@ public class BillRelationController extends SuperController {
      * 删除单据关联
      */
     @ApiOperation(value = "删除单据关联")
-    @ApiImplicitParams({ @ApiImplicitParam(name = BillRelationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = BillRelationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = BillRelationServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(BillRelationServiceProxy.DELETE)
@@ -85,7 +91,9 @@ public class BillRelationController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除单据关联")
-    @ApiImplicitParams({ @ApiImplicitParam(name = BillRelationVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = BillRelationVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = BillRelationServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(BillRelationServiceProxy.DELETE_BY_IDS)
@@ -98,7 +106,11 @@ public class BillRelationController extends SuperController {
      * 更新单据关联
      */
     @ApiOperation(value = "更新单据关联")
-    @ApiImplicitParams({ @ApiImplicitParam(name = BillRelationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = BillRelationVOMeta.MASTER_ID, value = "主节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = BillRelationVOMeta.SLAVER_ID, value = "从节点", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = BillRelationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = BillRelationVOMeta.MASTER_ID, value = "主节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = BillRelationVOMeta.SLAVER_ID, value = "从节点", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { BillRelationVOMeta.PAGE_INDEX, BillRelationVOMeta.PAGE_SIZE, BillRelationVOMeta.SEARCH_FIELD, BillRelationVOMeta.FUZZY_FIELD, BillRelationVOMeta.SEARCH_VALUE, BillRelationVOMeta.DIRTY_FIELDS, BillRelationVOMeta.SORT_FIELD, BillRelationVOMeta.SORT_TYPE, BillRelationVOMeta.IDS })
     @SentinelResource(value = BillRelationServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(BillRelationServiceProxy.UPDATE)
@@ -112,7 +124,11 @@ public class BillRelationController extends SuperController {
      * 保存单据关联
      */
     @ApiOperation(value = "保存单据关联")
-    @ApiImplicitParams({ @ApiImplicitParam(name = BillRelationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = BillRelationVOMeta.MASTER_ID, value = "主节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = BillRelationVOMeta.SLAVER_ID, value = "从节点", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = BillRelationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = BillRelationVOMeta.MASTER_ID, value = "主节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = BillRelationVOMeta.SLAVER_ID, value = "从节点", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { BillRelationVOMeta.PAGE_INDEX, BillRelationVOMeta.PAGE_SIZE, BillRelationVOMeta.SEARCH_FIELD, BillRelationVOMeta.FUZZY_FIELD, BillRelationVOMeta.SEARCH_VALUE, BillRelationVOMeta.DIRTY_FIELDS, BillRelationVOMeta.SORT_FIELD, BillRelationVOMeta.SORT_TYPE, BillRelationVOMeta.IDS })
     @SentinelResource(value = BillRelationServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(BillRelationServiceProxy.SAVE)
@@ -126,7 +142,9 @@ public class BillRelationController extends SuperController {
      * 获取单据关联
      */
     @ApiOperation(value = "获取单据关联")
-    @ApiImplicitParams({ @ApiImplicitParam(name = BillRelationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = BillRelationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = BillRelationServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(BillRelationServiceProxy.GET_BY_ID)
@@ -142,7 +160,9 @@ public class BillRelationController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取单据关联")
-    @ApiImplicitParams({ @ApiImplicitParam(name = BillRelationVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = BillRelationVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = BillRelationServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(BillRelationServiceProxy.GET_BY_IDS)
@@ -157,7 +177,11 @@ public class BillRelationController extends SuperController {
      * 查询单据关联
      */
     @ApiOperation(value = "查询单据关联")
-    @ApiImplicitParams({ @ApiImplicitParam(name = BillRelationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = BillRelationVOMeta.MASTER_ID, value = "主节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = BillRelationVOMeta.SLAVER_ID, value = "从节点", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = BillRelationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = BillRelationVOMeta.MASTER_ID, value = "主节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = BillRelationVOMeta.SLAVER_ID, value = "从节点", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { BillRelationVOMeta.PAGE_INDEX, BillRelationVOMeta.PAGE_SIZE })
     @SentinelResource(value = BillRelationServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(BillRelationServiceProxy.QUERY_LIST)
@@ -172,7 +196,11 @@ public class BillRelationController extends SuperController {
      * 分页查询单据关联
      */
     @ApiOperation(value = "分页查询单据关联")
-    @ApiImplicitParams({ @ApiImplicitParam(name = BillRelationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = BillRelationVOMeta.MASTER_ID, value = "主节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = BillRelationVOMeta.SLAVER_ID, value = "从节点", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = BillRelationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = BillRelationVOMeta.MASTER_ID, value = "主节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = BillRelationVOMeta.SLAVER_ID, value = "从节点", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = BillRelationServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(BillRelationServiceProxy.QUERY_PAGED_LIST)

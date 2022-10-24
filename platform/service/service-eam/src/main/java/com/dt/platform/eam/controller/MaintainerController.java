@@ -58,7 +58,18 @@ public class MaintainerController extends SuperController {
      * 添加维保厂商
      */
     @ApiOperation(value = "添加维保厂商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MaintainerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471599404445335552"), @ApiImplicitParam(name = MaintainerVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "华为科技有限公司"), @ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS, value = "商务联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS_INFO, value = "商务联系方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.AFTER_SALES_CONTACTS, value = "售后联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.AFTER_SALES_CONTACTS_INFO, value = "售后联系方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.UNIT_CODE, value = "统一社会信用代码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MaintainerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471599404445335552"),
+		@ApiImplicitParam(name = MaintainerVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "华为科技有限公司"),
+		@ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS, value = "商务联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS_INFO, value = "商务联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.AFTER_SALES_CONTACTS, value = "售后联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.AFTER_SALES_CONTACTS_INFO, value = "售后联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.UNIT_CODE, value = "统一社会信用代码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = MaintainerServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MaintainerServiceProxy.INSERT)
@@ -72,7 +83,9 @@ public class MaintainerController extends SuperController {
      * 删除维保厂商
      */
     @ApiOperation(value = "删除维保厂商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MaintainerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471599404445335552") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MaintainerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471599404445335552")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = MaintainerServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MaintainerServiceProxy.DELETE)
@@ -97,7 +110,9 @@ public class MaintainerController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除维保厂商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MaintainerVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MaintainerVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MaintainerServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MaintainerServiceProxy.DELETE_BY_IDS)
@@ -142,7 +157,18 @@ public class MaintainerController extends SuperController {
      * 更新维保厂商
      */
     @ApiOperation(value = "更新维保厂商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MaintainerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471599404445335552"), @ApiImplicitParam(name = MaintainerVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "华为科技有限公司"), @ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS, value = "商务联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS_INFO, value = "商务联系方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.AFTER_SALES_CONTACTS, value = "售后联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.AFTER_SALES_CONTACTS_INFO, value = "售后联系方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.UNIT_CODE, value = "统一社会信用代码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MaintainerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471599404445335552"),
+		@ApiImplicitParam(name = MaintainerVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "华为科技有限公司"),
+		@ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS, value = "商务联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS_INFO, value = "商务联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.AFTER_SALES_CONTACTS, value = "售后联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.AFTER_SALES_CONTACTS_INFO, value = "售后联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.UNIT_CODE, value = "统一社会信用代码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { MaintainerVOMeta.PAGE_INDEX, MaintainerVOMeta.PAGE_SIZE, MaintainerVOMeta.SEARCH_FIELD, MaintainerVOMeta.FUZZY_FIELD, MaintainerVOMeta.SEARCH_VALUE, MaintainerVOMeta.DIRTY_FIELDS, MaintainerVOMeta.SORT_FIELD, MaintainerVOMeta.SORT_TYPE, MaintainerVOMeta.IDS })
     @SentinelResource(value = MaintainerServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MaintainerServiceProxy.UPDATE)
@@ -156,7 +182,18 @@ public class MaintainerController extends SuperController {
      * 保存维保厂商
      */
     @ApiOperation(value = "保存维保厂商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MaintainerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471599404445335552"), @ApiImplicitParam(name = MaintainerVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "华为科技有限公司"), @ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS, value = "商务联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS_INFO, value = "商务联系方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.AFTER_SALES_CONTACTS, value = "售后联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.AFTER_SALES_CONTACTS_INFO, value = "售后联系方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.UNIT_CODE, value = "统一社会信用代码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MaintainerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471599404445335552"),
+		@ApiImplicitParam(name = MaintainerVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "华为科技有限公司"),
+		@ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS, value = "商务联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS_INFO, value = "商务联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.AFTER_SALES_CONTACTS, value = "售后联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.AFTER_SALES_CONTACTS_INFO, value = "售后联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.UNIT_CODE, value = "统一社会信用代码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MaintainerVOMeta.PAGE_INDEX, MaintainerVOMeta.PAGE_SIZE, MaintainerVOMeta.SEARCH_FIELD, MaintainerVOMeta.FUZZY_FIELD, MaintainerVOMeta.SEARCH_VALUE, MaintainerVOMeta.DIRTY_FIELDS, MaintainerVOMeta.SORT_FIELD, MaintainerVOMeta.SORT_TYPE, MaintainerVOMeta.IDS })
     @SentinelResource(value = MaintainerServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MaintainerServiceProxy.SAVE)
@@ -170,7 +207,9 @@ public class MaintainerController extends SuperController {
      * 获取维保厂商
      */
     @ApiOperation(value = "获取维保厂商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MaintainerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MaintainerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = MaintainerServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MaintainerServiceProxy.GET_BY_ID)
@@ -186,7 +225,9 @@ public class MaintainerController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取维保厂商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MaintainerVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MaintainerVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MaintainerServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MaintainerServiceProxy.GET_BY_IDS)
@@ -201,7 +242,18 @@ public class MaintainerController extends SuperController {
      * 查询维保厂商
      */
     @ApiOperation(value = "查询维保厂商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MaintainerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471599404445335552"), @ApiImplicitParam(name = MaintainerVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "华为科技有限公司"), @ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS, value = "商务联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS_INFO, value = "商务联系方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.AFTER_SALES_CONTACTS, value = "售后联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.AFTER_SALES_CONTACTS_INFO, value = "售后联系方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.UNIT_CODE, value = "统一社会信用代码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MaintainerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471599404445335552"),
+		@ApiImplicitParam(name = MaintainerVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "华为科技有限公司"),
+		@ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS, value = "商务联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS_INFO, value = "商务联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.AFTER_SALES_CONTACTS, value = "售后联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.AFTER_SALES_CONTACTS_INFO, value = "售后联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.UNIT_CODE, value = "统一社会信用代码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MaintainerVOMeta.PAGE_INDEX, MaintainerVOMeta.PAGE_SIZE })
     @SentinelResource(value = MaintainerServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MaintainerServiceProxy.QUERY_LIST)
@@ -216,7 +268,18 @@ public class MaintainerController extends SuperController {
      * 分页查询维保厂商
      */
     @ApiOperation(value = "分页查询维保厂商")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MaintainerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471599404445335552"), @ApiImplicitParam(name = MaintainerVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "华为科技有限公司"), @ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS, value = "商务联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS_INFO, value = "商务联系方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.AFTER_SALES_CONTACTS, value = "售后联系人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.AFTER_SALES_CONTACTS_INFO, value = "售后联系方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.UNIT_CODE, value = "统一社会信用代码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MaintainerVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "471599404445335552"),
+		@ApiImplicitParam(name = MaintainerVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NAME, value = "名称", required = false, dataTypeClass = String.class, example = "华为科技有限公司"),
+		@ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS, value = "商务联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.BUSINESS_CONTACTS_INFO, value = "商务联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.AFTER_SALES_CONTACTS, value = "售后联系人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.AFTER_SALES_CONTACTS_INFO, value = "售后联系方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.UNIT_CODE, value = "统一社会信用代码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.ADDRESS, value = "地址", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainerVOMeta.MAINTAINER_NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = MaintainerServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MaintainerServiceProxy.QUERY_PAGED_LIST)

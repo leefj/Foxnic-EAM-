@@ -58,7 +58,13 @@ public class AutoVoucherController extends SuperController {
      * 添加自动化凭证
      */
     @ApiOperation(value = "添加自动化凭证")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoVoucherVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoVoucherVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoVoucherVOMeta.ACCOUNT, value = "账户", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoVoucherVOMeta.VOUCHER, value = "凭证", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoVoucherVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoVoucherVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoVoucherVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoVoucherVOMeta.ACCOUNT, value = "账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoVoucherVOMeta.VOUCHER, value = "凭证", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoVoucherVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AutoVoucherServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoVoucherServiceProxy.INSERT)
@@ -72,7 +78,9 @@ public class AutoVoucherController extends SuperController {
      * 删除自动化凭证
      */
     @ApiOperation(value = "删除自动化凭证")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoVoucherVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoVoucherVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AutoVoucherServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoVoucherServiceProxy.DELETE)
@@ -97,7 +105,9 @@ public class AutoVoucherController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除自动化凭证")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoVoucherVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoVoucherVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoVoucherServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoVoucherServiceProxy.DELETE_BY_IDS)
@@ -142,7 +152,13 @@ public class AutoVoucherController extends SuperController {
      * 更新自动化凭证
      */
     @ApiOperation(value = "更新自动化凭证")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoVoucherVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoVoucherVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoVoucherVOMeta.ACCOUNT, value = "账户", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoVoucherVOMeta.VOUCHER, value = "凭证", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoVoucherVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoVoucherVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoVoucherVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoVoucherVOMeta.ACCOUNT, value = "账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoVoucherVOMeta.VOUCHER, value = "凭证", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoVoucherVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AutoVoucherVOMeta.PAGE_INDEX, AutoVoucherVOMeta.PAGE_SIZE, AutoVoucherVOMeta.SEARCH_FIELD, AutoVoucherVOMeta.FUZZY_FIELD, AutoVoucherVOMeta.SEARCH_VALUE, AutoVoucherVOMeta.DIRTY_FIELDS, AutoVoucherVOMeta.SORT_FIELD, AutoVoucherVOMeta.SORT_TYPE, AutoVoucherVOMeta.IDS })
     @SentinelResource(value = AutoVoucherServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoVoucherServiceProxy.UPDATE)
@@ -156,7 +172,13 @@ public class AutoVoucherController extends SuperController {
      * 保存自动化凭证
      */
     @ApiOperation(value = "保存自动化凭证")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoVoucherVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoVoucherVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoVoucherVOMeta.ACCOUNT, value = "账户", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoVoucherVOMeta.VOUCHER, value = "凭证", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoVoucherVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoVoucherVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoVoucherVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoVoucherVOMeta.ACCOUNT, value = "账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoVoucherVOMeta.VOUCHER, value = "凭证", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoVoucherVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoVoucherVOMeta.PAGE_INDEX, AutoVoucherVOMeta.PAGE_SIZE, AutoVoucherVOMeta.SEARCH_FIELD, AutoVoucherVOMeta.FUZZY_FIELD, AutoVoucherVOMeta.SEARCH_VALUE, AutoVoucherVOMeta.DIRTY_FIELDS, AutoVoucherVOMeta.SORT_FIELD, AutoVoucherVOMeta.SORT_TYPE, AutoVoucherVOMeta.IDS })
     @SentinelResource(value = AutoVoucherServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoVoucherServiceProxy.SAVE)
@@ -170,7 +192,9 @@ public class AutoVoucherController extends SuperController {
      * 获取自动化凭证
      */
     @ApiOperation(value = "获取自动化凭证")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoVoucherVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoVoucherVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AutoVoucherServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoVoucherServiceProxy.GET_BY_ID)
@@ -186,7 +210,9 @@ public class AutoVoucherController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取自动化凭证")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoVoucherVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoVoucherVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoVoucherServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoVoucherServiceProxy.GET_BY_IDS)
@@ -201,7 +227,13 @@ public class AutoVoucherController extends SuperController {
      * 查询自动化凭证
      */
     @ApiOperation(value = "查询自动化凭证")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoVoucherVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoVoucherVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoVoucherVOMeta.ACCOUNT, value = "账户", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoVoucherVOMeta.VOUCHER, value = "凭证", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoVoucherVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoVoucherVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoVoucherVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoVoucherVOMeta.ACCOUNT, value = "账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoVoucherVOMeta.VOUCHER, value = "凭证", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoVoucherVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoVoucherVOMeta.PAGE_INDEX, AutoVoucherVOMeta.PAGE_SIZE })
     @SentinelResource(value = AutoVoucherServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoVoucherServiceProxy.QUERY_LIST)
@@ -216,7 +248,13 @@ public class AutoVoucherController extends SuperController {
      * 分页查询自动化凭证
      */
     @ApiOperation(value = "分页查询自动化凭证")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoVoucherVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoVoucherVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoVoucherVOMeta.ACCOUNT, value = "账户", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoVoucherVOMeta.VOUCHER, value = "凭证", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoVoucherVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoVoucherVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoVoucherVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoVoucherVOMeta.ACCOUNT, value = "账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoVoucherVOMeta.VOUCHER, value = "凭证", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoVoucherVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AutoVoucherServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoVoucherServiceProxy.QUERY_PAGED_LIST)

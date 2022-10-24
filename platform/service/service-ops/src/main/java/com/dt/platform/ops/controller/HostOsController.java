@@ -57,7 +57,11 @@ public class HostOsController extends SuperController {
      * 添加操作系统
      */
     @ApiOperation(value = "添加操作系统")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostOsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "478957044561346560"), @ApiImplicitParam(name = HostOsVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class, example = "478957043391135744"), @ApiImplicitParam(name = HostOsVOMeta.SERVICE_INFO_ID, value = "服务内容", required = false, dataTypeClass = String.class, example = "473630679364534272") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostOsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "478957044561346560"),
+		@ApiImplicitParam(name = HostOsVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class, example = "478957043391135744"),
+		@ApiImplicitParam(name = HostOsVOMeta.SERVICE_INFO_ID, value = "服务内容", required = false, dataTypeClass = String.class, example = "473630679364534272")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = HostOsServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostOsServiceProxy.INSERT)
@@ -71,7 +75,9 @@ public class HostOsController extends SuperController {
      * 删除操作系统
      */
     @ApiOperation(value = "删除操作系统")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostOsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "478957044561346560") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostOsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "478957044561346560")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = HostOsServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostOsServiceProxy.DELETE)
@@ -85,7 +91,9 @@ public class HostOsController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除操作系统")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostOsVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostOsVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = HostOsServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostOsServiceProxy.DELETE_BY_IDS)
@@ -98,7 +106,11 @@ public class HostOsController extends SuperController {
      * 更新操作系统
      */
     @ApiOperation(value = "更新操作系统")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostOsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "478957044561346560"), @ApiImplicitParam(name = HostOsVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class, example = "478957043391135744"), @ApiImplicitParam(name = HostOsVOMeta.SERVICE_INFO_ID, value = "服务内容", required = false, dataTypeClass = String.class, example = "473630679364534272") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostOsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "478957044561346560"),
+		@ApiImplicitParam(name = HostOsVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class, example = "478957043391135744"),
+		@ApiImplicitParam(name = HostOsVOMeta.SERVICE_INFO_ID, value = "服务内容", required = false, dataTypeClass = String.class, example = "473630679364534272")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { HostOsVOMeta.PAGE_INDEX, HostOsVOMeta.PAGE_SIZE, HostOsVOMeta.SEARCH_FIELD, HostOsVOMeta.FUZZY_FIELD, HostOsVOMeta.SEARCH_VALUE, HostOsVOMeta.SORT_FIELD, HostOsVOMeta.SORT_TYPE, HostOsVOMeta.IDS })
     @SentinelResource(value = HostOsServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostOsServiceProxy.UPDATE)
@@ -112,7 +124,11 @@ public class HostOsController extends SuperController {
      * 保存操作系统
      */
     @ApiOperation(value = "保存操作系统")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostOsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "478957044561346560"), @ApiImplicitParam(name = HostOsVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class, example = "478957043391135744"), @ApiImplicitParam(name = HostOsVOMeta.SERVICE_INFO_ID, value = "服务内容", required = false, dataTypeClass = String.class, example = "473630679364534272") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostOsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "478957044561346560"),
+		@ApiImplicitParam(name = HostOsVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class, example = "478957043391135744"),
+		@ApiImplicitParam(name = HostOsVOMeta.SERVICE_INFO_ID, value = "服务内容", required = false, dataTypeClass = String.class, example = "473630679364534272")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { HostOsVOMeta.PAGE_INDEX, HostOsVOMeta.PAGE_SIZE, HostOsVOMeta.SEARCH_FIELD, HostOsVOMeta.FUZZY_FIELD, HostOsVOMeta.SEARCH_VALUE, HostOsVOMeta.SORT_FIELD, HostOsVOMeta.SORT_TYPE, HostOsVOMeta.IDS })
     @SentinelResource(value = HostOsServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostOsServiceProxy.SAVE)
@@ -126,7 +142,9 @@ public class HostOsController extends SuperController {
      * 获取操作系统
      */
     @ApiOperation(value = "获取操作系统")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostOsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostOsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = HostOsServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostOsServiceProxy.GET_BY_ID)
@@ -144,7 +162,9 @@ public class HostOsController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取操作系统")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostOsVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostOsVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = HostOsServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostOsServiceProxy.GET_BY_IDS)
@@ -159,7 +179,11 @@ public class HostOsController extends SuperController {
      * 查询操作系统
      */
     @ApiOperation(value = "查询操作系统")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostOsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "478957044561346560"), @ApiImplicitParam(name = HostOsVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class, example = "478957043391135744"), @ApiImplicitParam(name = HostOsVOMeta.SERVICE_INFO_ID, value = "服务内容", required = false, dataTypeClass = String.class, example = "473630679364534272") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostOsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "478957044561346560"),
+		@ApiImplicitParam(name = HostOsVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class, example = "478957043391135744"),
+		@ApiImplicitParam(name = HostOsVOMeta.SERVICE_INFO_ID, value = "服务内容", required = false, dataTypeClass = String.class, example = "473630679364534272")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { HostOsVOMeta.PAGE_INDEX, HostOsVOMeta.PAGE_SIZE })
     @SentinelResource(value = HostOsServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostOsServiceProxy.QUERY_LIST)
@@ -174,7 +198,11 @@ public class HostOsController extends SuperController {
      * 分页查询操作系统
      */
     @ApiOperation(value = "分页查询操作系统")
-    @ApiImplicitParams({ @ApiImplicitParam(name = HostOsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "478957044561346560"), @ApiImplicitParam(name = HostOsVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class, example = "478957043391135744"), @ApiImplicitParam(name = HostOsVOMeta.SERVICE_INFO_ID, value = "服务内容", required = false, dataTypeClass = String.class, example = "473630679364534272") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = HostOsVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "478957044561346560"),
+		@ApiImplicitParam(name = HostOsVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class, example = "478957043391135744"),
+		@ApiImplicitParam(name = HostOsVOMeta.SERVICE_INFO_ID, value = "服务内容", required = false, dataTypeClass = String.class, example = "473630679364534272")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = HostOsServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(HostOsServiceProxy.QUERY_PAGED_LIST)

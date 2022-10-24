@@ -58,7 +58,14 @@ public class OperateController extends SuperController {
      * 添加资产操作
      */
     @ApiOperation(value = "添加资产操作")
-    @ApiImplicitParams({ @ApiImplicitParam(name = OperateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = OperateVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = OperateVOMeta.ALLOCATE_CODE, value = "分配编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = OperateVOMeta.OPERATE_CODE, value = "操作编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = OperateVOMeta.APPROVAL, value = "审批", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = OperateVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = OperateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = OperateVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = OperateVOMeta.ALLOCATE_CODE, value = "分配编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = OperateVOMeta.OPERATE_CODE, value = "操作编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = OperateVOMeta.APPROVAL, value = "审批", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = OperateVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = OperateServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(OperateServiceProxy.INSERT)
@@ -72,7 +79,9 @@ public class OperateController extends SuperController {
      * 删除资产操作
      */
     @ApiOperation(value = "删除资产操作")
-    @ApiImplicitParams({ @ApiImplicitParam(name = OperateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = OperateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = OperateServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(OperateServiceProxy.DELETE)
@@ -86,7 +95,9 @@ public class OperateController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产操作")
-    @ApiImplicitParams({ @ApiImplicitParam(name = OperateVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = OperateVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = OperateServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(OperateServiceProxy.DELETE_BY_IDS)
@@ -99,7 +110,14 @@ public class OperateController extends SuperController {
      * 更新资产操作
      */
     @ApiOperation(value = "更新资产操作")
-    @ApiImplicitParams({ @ApiImplicitParam(name = OperateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = OperateVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = OperateVOMeta.ALLOCATE_CODE, value = "分配编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = OperateVOMeta.OPERATE_CODE, value = "操作编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = OperateVOMeta.APPROVAL, value = "审批", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = OperateVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = OperateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = OperateVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = OperateVOMeta.ALLOCATE_CODE, value = "分配编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = OperateVOMeta.OPERATE_CODE, value = "操作编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = OperateVOMeta.APPROVAL, value = "审批", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = OperateVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { OperateVOMeta.PAGE_INDEX, OperateVOMeta.PAGE_SIZE, OperateVOMeta.SEARCH_FIELD, OperateVOMeta.FUZZY_FIELD, OperateVOMeta.SEARCH_VALUE, OperateVOMeta.SORT_FIELD, OperateVOMeta.SORT_TYPE, OperateVOMeta.IDS })
     @SentinelResource(value = OperateServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(OperateServiceProxy.UPDATE)
@@ -113,7 +131,14 @@ public class OperateController extends SuperController {
      * 保存资产操作
      */
     @ApiOperation(value = "保存资产操作")
-    @ApiImplicitParams({ @ApiImplicitParam(name = OperateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = OperateVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = OperateVOMeta.ALLOCATE_CODE, value = "分配编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = OperateVOMeta.OPERATE_CODE, value = "操作编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = OperateVOMeta.APPROVAL, value = "审批", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = OperateVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = OperateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = OperateVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = OperateVOMeta.ALLOCATE_CODE, value = "分配编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = OperateVOMeta.OPERATE_CODE, value = "操作编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = OperateVOMeta.APPROVAL, value = "审批", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = OperateVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { OperateVOMeta.PAGE_INDEX, OperateVOMeta.PAGE_SIZE, OperateVOMeta.SEARCH_FIELD, OperateVOMeta.FUZZY_FIELD, OperateVOMeta.SEARCH_VALUE, OperateVOMeta.SORT_FIELD, OperateVOMeta.SORT_TYPE, OperateVOMeta.IDS })
     @SentinelResource(value = OperateServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(OperateServiceProxy.SAVE)
@@ -127,7 +152,9 @@ public class OperateController extends SuperController {
      * 获取资产操作
      */
     @ApiOperation(value = "获取资产操作")
-    @ApiImplicitParams({ @ApiImplicitParam(name = OperateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = OperateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = OperateServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(OperateServiceProxy.GET_BY_ID)
@@ -143,7 +170,9 @@ public class OperateController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产操作")
-    @ApiImplicitParams({ @ApiImplicitParam(name = OperateVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = OperateVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = OperateServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(OperateServiceProxy.GET_BY_IDS)
@@ -158,7 +187,14 @@ public class OperateController extends SuperController {
      * 查询资产操作
      */
     @ApiOperation(value = "查询资产操作")
-    @ApiImplicitParams({ @ApiImplicitParam(name = OperateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = OperateVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = OperateVOMeta.ALLOCATE_CODE, value = "分配编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = OperateVOMeta.OPERATE_CODE, value = "操作编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = OperateVOMeta.APPROVAL, value = "审批", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = OperateVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = OperateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = OperateVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = OperateVOMeta.ALLOCATE_CODE, value = "分配编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = OperateVOMeta.OPERATE_CODE, value = "操作编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = OperateVOMeta.APPROVAL, value = "审批", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = OperateVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { OperateVOMeta.PAGE_INDEX, OperateVOMeta.PAGE_SIZE })
     @SentinelResource(value = OperateServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(OperateServiceProxy.QUERY_LIST)
@@ -173,7 +209,14 @@ public class OperateController extends SuperController {
      * 分页查询资产操作
      */
     @ApiOperation(value = "分页查询资产操作")
-    @ApiImplicitParams({ @ApiImplicitParam(name = OperateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = OperateVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = OperateVOMeta.ALLOCATE_CODE, value = "分配编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = OperateVOMeta.OPERATE_CODE, value = "操作编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = OperateVOMeta.APPROVAL, value = "审批", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = OperateVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = OperateVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = OperateVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = OperateVOMeta.ALLOCATE_CODE, value = "分配编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = OperateVOMeta.OPERATE_CODE, value = "操作编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = OperateVOMeta.APPROVAL, value = "审批", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = OperateVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = OperateServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(OperateServiceProxy.QUERY_PAGED_LIST)
@@ -188,7 +231,9 @@ public class OperateController extends SuperController {
      * 是否需要审批
      */
     @ApiOperation(value = "获取资产操作")
-    @ApiImplicitParams({ @ApiImplicitParam(name = "businessType", value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = "businessType", value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 9)
     @SentinelResource(value = OperateServiceProxy.APPROVAL_REQUIRED, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(OperateServiceProxy.APPROVAL_REQUIRED)

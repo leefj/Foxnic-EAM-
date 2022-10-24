@@ -61,7 +61,25 @@ public class AssetDepreciationDetailController extends SuperController {
      * 添加折旧明细
      */
     @ApiOperation(value = "添加折旧明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "577959276836827136"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class, example = "573881211244515328"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.OPER_ID, value = "折旧操作", required = false, dataTypeClass = String.class, example = "577959262710411264"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class, example = "572681609443016704"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_METHOD, value = "折旧方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESULT, value = "折旧结果", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESULT_DETAIL, value = "折旧结果明细", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.SERVICE_LIFE, value = "使用周期(月)", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESIDUAL_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.PURCHASE_DATE, value = "采购日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DETAIL_ID_SOURCE, value = "折旧前", required = false, dataTypeClass = String.class, example = "577959276073463808"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DETAIL_ID_TARGET, value = "折旧后", required = false, dataTypeClass = String.class, example = "577959356692180992"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.PURCHASE_UNIT_PRICE, value = "采购价格", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_PRICE, value = "本期折旧", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.CUR_PRICE, value = "当前净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.BEFORE_PRICE, value = "折旧前净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.AFTER_PRICE, value = "折旧后净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "577959276836827136"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class, example = "573881211244515328"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.OPER_ID, value = "折旧操作", required = false, dataTypeClass = String.class, example = "577959262710411264"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class, example = "572681609443016704"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_METHOD, value = "折旧方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESULT, value = "折旧结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESULT_DETAIL, value = "折旧结果明细", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.SERVICE_LIFE, value = "使用周期(月)", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESIDUAL_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.PURCHASE_DATE, value = "采购日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DETAIL_ID_SOURCE, value = "折旧前", required = false, dataTypeClass = String.class, example = "577959276073463808"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DETAIL_ID_TARGET, value = "折旧后", required = false, dataTypeClass = String.class, example = "577959356692180992"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.PURCHASE_UNIT_PRICE, value = "采购价格", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_PRICE, value = "本期折旧", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.CUR_PRICE, value = "当前净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.BEFORE_PRICE, value = "折旧前净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.AFTER_PRICE, value = "折旧后净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetDepreciationDetailServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDepreciationDetailServiceProxy.INSERT)
@@ -75,7 +93,9 @@ public class AssetDepreciationDetailController extends SuperController {
      * 删除折旧明细
      */
     @ApiOperation(value = "删除折旧明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "577959276836827136") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "577959276836827136")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetDepreciationDetailServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDepreciationDetailServiceProxy.DELETE)
@@ -89,7 +109,9 @@ public class AssetDepreciationDetailController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除折旧明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetDepreciationDetailServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDepreciationDetailServiceProxy.DELETE_BY_IDS)
@@ -102,7 +124,25 @@ public class AssetDepreciationDetailController extends SuperController {
      * 更新折旧明细
      */
     @ApiOperation(value = "更新折旧明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "577959276836827136"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class, example = "573881211244515328"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.OPER_ID, value = "折旧操作", required = false, dataTypeClass = String.class, example = "577959262710411264"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class, example = "572681609443016704"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_METHOD, value = "折旧方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESULT, value = "折旧结果", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESULT_DETAIL, value = "折旧结果明细", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.SERVICE_LIFE, value = "使用周期(月)", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESIDUAL_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.PURCHASE_DATE, value = "采购日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DETAIL_ID_SOURCE, value = "折旧前", required = false, dataTypeClass = String.class, example = "577959276073463808"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DETAIL_ID_TARGET, value = "折旧后", required = false, dataTypeClass = String.class, example = "577959356692180992"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.PURCHASE_UNIT_PRICE, value = "采购价格", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_PRICE, value = "本期折旧", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.CUR_PRICE, value = "当前净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.BEFORE_PRICE, value = "折旧前净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.AFTER_PRICE, value = "折旧后净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "577959276836827136"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class, example = "573881211244515328"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.OPER_ID, value = "折旧操作", required = false, dataTypeClass = String.class, example = "577959262710411264"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class, example = "572681609443016704"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_METHOD, value = "折旧方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESULT, value = "折旧结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESULT_DETAIL, value = "折旧结果明细", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.SERVICE_LIFE, value = "使用周期(月)", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESIDUAL_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.PURCHASE_DATE, value = "采购日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DETAIL_ID_SOURCE, value = "折旧前", required = false, dataTypeClass = String.class, example = "577959276073463808"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DETAIL_ID_TARGET, value = "折旧后", required = false, dataTypeClass = String.class, example = "577959356692180992"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.PURCHASE_UNIT_PRICE, value = "采购价格", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_PRICE, value = "本期折旧", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.CUR_PRICE, value = "当前净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.BEFORE_PRICE, value = "折旧前净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.AFTER_PRICE, value = "折旧后净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetDepreciationDetailVOMeta.PAGE_INDEX, AssetDepreciationDetailVOMeta.PAGE_SIZE, AssetDepreciationDetailVOMeta.SEARCH_FIELD, AssetDepreciationDetailVOMeta.FUZZY_FIELD, AssetDepreciationDetailVOMeta.SEARCH_VALUE, AssetDepreciationDetailVOMeta.DIRTY_FIELDS, AssetDepreciationDetailVOMeta.SORT_FIELD, AssetDepreciationDetailVOMeta.SORT_TYPE, AssetDepreciationDetailVOMeta.IDS })
     @SentinelResource(value = AssetDepreciationDetailServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDepreciationDetailServiceProxy.UPDATE)
@@ -116,7 +156,25 @@ public class AssetDepreciationDetailController extends SuperController {
      * 保存折旧明细
      */
     @ApiOperation(value = "保存折旧明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "577959276836827136"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class, example = "573881211244515328"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.OPER_ID, value = "折旧操作", required = false, dataTypeClass = String.class, example = "577959262710411264"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class, example = "572681609443016704"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_METHOD, value = "折旧方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESULT, value = "折旧结果", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESULT_DETAIL, value = "折旧结果明细", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.SERVICE_LIFE, value = "使用周期(月)", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESIDUAL_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.PURCHASE_DATE, value = "采购日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DETAIL_ID_SOURCE, value = "折旧前", required = false, dataTypeClass = String.class, example = "577959276073463808"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DETAIL_ID_TARGET, value = "折旧后", required = false, dataTypeClass = String.class, example = "577959356692180992"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.PURCHASE_UNIT_PRICE, value = "采购价格", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_PRICE, value = "本期折旧", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.CUR_PRICE, value = "当前净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.BEFORE_PRICE, value = "折旧前净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.AFTER_PRICE, value = "折旧后净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "577959276836827136"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class, example = "573881211244515328"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.OPER_ID, value = "折旧操作", required = false, dataTypeClass = String.class, example = "577959262710411264"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class, example = "572681609443016704"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_METHOD, value = "折旧方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESULT, value = "折旧结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESULT_DETAIL, value = "折旧结果明细", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.SERVICE_LIFE, value = "使用周期(月)", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESIDUAL_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.PURCHASE_DATE, value = "采购日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DETAIL_ID_SOURCE, value = "折旧前", required = false, dataTypeClass = String.class, example = "577959276073463808"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DETAIL_ID_TARGET, value = "折旧后", required = false, dataTypeClass = String.class, example = "577959356692180992"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.PURCHASE_UNIT_PRICE, value = "采购价格", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_PRICE, value = "本期折旧", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.CUR_PRICE, value = "当前净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.BEFORE_PRICE, value = "折旧前净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.AFTER_PRICE, value = "折旧后净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetDepreciationDetailVOMeta.PAGE_INDEX, AssetDepreciationDetailVOMeta.PAGE_SIZE, AssetDepreciationDetailVOMeta.SEARCH_FIELD, AssetDepreciationDetailVOMeta.FUZZY_FIELD, AssetDepreciationDetailVOMeta.SEARCH_VALUE, AssetDepreciationDetailVOMeta.DIRTY_FIELDS, AssetDepreciationDetailVOMeta.SORT_FIELD, AssetDepreciationDetailVOMeta.SORT_TYPE, AssetDepreciationDetailVOMeta.IDS })
     @SentinelResource(value = AssetDepreciationDetailServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDepreciationDetailServiceProxy.SAVE)
@@ -130,7 +188,9 @@ public class AssetDepreciationDetailController extends SuperController {
      * 获取折旧明细
      */
     @ApiOperation(value = "获取折旧明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetDepreciationDetailServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDepreciationDetailServiceProxy.GET_BY_ID)
@@ -148,7 +208,9 @@ public class AssetDepreciationDetailController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取折旧明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetDepreciationDetailServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDepreciationDetailServiceProxy.GET_BY_IDS)
@@ -163,7 +225,25 @@ public class AssetDepreciationDetailController extends SuperController {
      * 查询折旧明细
      */
     @ApiOperation(value = "查询折旧明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "577959276836827136"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class, example = "573881211244515328"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.OPER_ID, value = "折旧操作", required = false, dataTypeClass = String.class, example = "577959262710411264"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class, example = "572681609443016704"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_METHOD, value = "折旧方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESULT, value = "折旧结果", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESULT_DETAIL, value = "折旧结果明细", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.SERVICE_LIFE, value = "使用周期(月)", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESIDUAL_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.PURCHASE_DATE, value = "采购日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DETAIL_ID_SOURCE, value = "折旧前", required = false, dataTypeClass = String.class, example = "577959276073463808"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DETAIL_ID_TARGET, value = "折旧后", required = false, dataTypeClass = String.class, example = "577959356692180992"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.PURCHASE_UNIT_PRICE, value = "采购价格", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_PRICE, value = "本期折旧", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.CUR_PRICE, value = "当前净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.BEFORE_PRICE, value = "折旧前净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.AFTER_PRICE, value = "折旧后净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "577959276836827136"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class, example = "573881211244515328"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.OPER_ID, value = "折旧操作", required = false, dataTypeClass = String.class, example = "577959262710411264"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class, example = "572681609443016704"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_METHOD, value = "折旧方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESULT, value = "折旧结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESULT_DETAIL, value = "折旧结果明细", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.SERVICE_LIFE, value = "使用周期(月)", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESIDUAL_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.PURCHASE_DATE, value = "采购日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DETAIL_ID_SOURCE, value = "折旧前", required = false, dataTypeClass = String.class, example = "577959276073463808"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DETAIL_ID_TARGET, value = "折旧后", required = false, dataTypeClass = String.class, example = "577959356692180992"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.PURCHASE_UNIT_PRICE, value = "采购价格", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_PRICE, value = "本期折旧", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.CUR_PRICE, value = "当前净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.BEFORE_PRICE, value = "折旧前净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.AFTER_PRICE, value = "折旧后净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetDepreciationDetailVOMeta.PAGE_INDEX, AssetDepreciationDetailVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetDepreciationDetailServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDepreciationDetailServiceProxy.QUERY_LIST)
@@ -178,7 +258,25 @@ public class AssetDepreciationDetailController extends SuperController {
      * 分页查询折旧明细
      */
     @ApiOperation(value = "分页查询折旧明细")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "577959276836827136"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class, example = "573881211244515328"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.OPER_ID, value = "折旧操作", required = false, dataTypeClass = String.class, example = "577959262710411264"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class, example = "572681609443016704"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_METHOD, value = "折旧方式", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESULT, value = "折旧结果", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESULT_DETAIL, value = "折旧结果明细", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.SERVICE_LIFE, value = "使用周期(月)", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESIDUAL_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.PURCHASE_DATE, value = "采购日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DETAIL_ID_SOURCE, value = "折旧前", required = false, dataTypeClass = String.class, example = "577959276073463808"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DETAIL_ID_TARGET, value = "折旧后", required = false, dataTypeClass = String.class, example = "577959356692180992"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.PURCHASE_UNIT_PRICE, value = "采购价格", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_PRICE, value = "本期折旧", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.CUR_PRICE, value = "当前净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.BEFORE_PRICE, value = "折旧前净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00"), @ApiImplicitParam(name = AssetDepreciationDetailVOMeta.AFTER_PRICE, value = "折旧后净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "577959276836827136"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class, example = "573881211244515328"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.OPER_ID, value = "折旧操作", required = false, dataTypeClass = String.class, example = "577959262710411264"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class, example = "572681609443016704"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_METHOD, value = "折旧方式", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESULT, value = "折旧结果", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESULT_DETAIL, value = "折旧结果明细", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.SERVICE_LIFE, value = "使用周期(月)", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESIDUAL_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.PURCHASE_DATE, value = "采购日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DETAIL_ID_SOURCE, value = "折旧前", required = false, dataTypeClass = String.class, example = "577959276073463808"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DETAIL_ID_TARGET, value = "折旧后", required = false, dataTypeClass = String.class, example = "577959356692180992"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.PURCHASE_UNIT_PRICE, value = "采购价格", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_PRICE, value = "本期折旧", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.CUR_PRICE, value = "当前净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.BEFORE_PRICE, value = "折旧前净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.AFTER_PRICE, value = "折旧后净值", required = false, dataTypeClass = BigDecimal.class, example = "200.00")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetDepreciationDetailServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDepreciationDetailServiceProxy.QUERY_PAGED_LIST)

@@ -58,7 +58,12 @@ public class AutoTaskNodeController extends SuperController {
      * 添加作业节点
      */
     @ApiOperation(value = "添加作业节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskNodeVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskNodeVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskNodeVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskNodeVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AutoTaskNodeServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskNodeServiceProxy.INSERT)
@@ -72,7 +77,9 @@ public class AutoTaskNodeController extends SuperController {
      * 删除作业节点
      */
     @ApiOperation(value = "删除作业节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AutoTaskNodeServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskNodeServiceProxy.DELETE)
@@ -97,7 +104,9 @@ public class AutoTaskNodeController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除作业节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskNodeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskNodeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoTaskNodeServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskNodeServiceProxy.DELETE_BY_IDS)
@@ -142,7 +151,12 @@ public class AutoTaskNodeController extends SuperController {
      * 更新作业节点
      */
     @ApiOperation(value = "更新作业节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskNodeVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskNodeVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskNodeVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskNodeVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AutoTaskNodeVOMeta.PAGE_INDEX, AutoTaskNodeVOMeta.PAGE_SIZE, AutoTaskNodeVOMeta.SEARCH_FIELD, AutoTaskNodeVOMeta.FUZZY_FIELD, AutoTaskNodeVOMeta.SEARCH_VALUE, AutoTaskNodeVOMeta.DIRTY_FIELDS, AutoTaskNodeVOMeta.SORT_FIELD, AutoTaskNodeVOMeta.SORT_TYPE, AutoTaskNodeVOMeta.IDS })
     @SentinelResource(value = AutoTaskNodeServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskNodeServiceProxy.UPDATE)
@@ -156,7 +170,12 @@ public class AutoTaskNodeController extends SuperController {
      * 保存作业节点
      */
     @ApiOperation(value = "保存作业节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskNodeVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskNodeVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskNodeVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskNodeVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoTaskNodeVOMeta.PAGE_INDEX, AutoTaskNodeVOMeta.PAGE_SIZE, AutoTaskNodeVOMeta.SEARCH_FIELD, AutoTaskNodeVOMeta.FUZZY_FIELD, AutoTaskNodeVOMeta.SEARCH_VALUE, AutoTaskNodeVOMeta.DIRTY_FIELDS, AutoTaskNodeVOMeta.SORT_FIELD, AutoTaskNodeVOMeta.SORT_TYPE, AutoTaskNodeVOMeta.IDS })
     @SentinelResource(value = AutoTaskNodeServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskNodeServiceProxy.SAVE)
@@ -170,7 +189,9 @@ public class AutoTaskNodeController extends SuperController {
      * 获取作业节点
      */
     @ApiOperation(value = "获取作业节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AutoTaskNodeServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskNodeServiceProxy.GET_BY_ID)
@@ -186,7 +207,9 @@ public class AutoTaskNodeController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取作业节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskNodeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskNodeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoTaskNodeServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskNodeServiceProxy.GET_BY_IDS)
@@ -201,7 +224,12 @@ public class AutoTaskNodeController extends SuperController {
      * 查询作业节点
      */
     @ApiOperation(value = "查询作业节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskNodeVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskNodeVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskNodeVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskNodeVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoTaskNodeVOMeta.PAGE_INDEX, AutoTaskNodeVOMeta.PAGE_SIZE })
     @SentinelResource(value = AutoTaskNodeServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskNodeServiceProxy.QUERY_LIST)
@@ -216,7 +244,12 @@ public class AutoTaskNodeController extends SuperController {
      * 分页查询作业节点
      */
     @ApiOperation(value = "分页查询作业节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskNodeVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskNodeVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskNodeVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskNodeVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AutoTaskNodeServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskNodeServiceProxy.QUERY_PAGED_LIST)

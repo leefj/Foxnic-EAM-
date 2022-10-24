@@ -58,7 +58,11 @@ public class ServiceGroupController extends SuperController {
      * 添加服务分组
      */
     @ApiOperation(value = "添加服务分组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = ServiceGroupVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "db"), @ApiImplicitParam(name = ServiceGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "数据库") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = ServiceGroupVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "db"),
+		@ApiImplicitParam(name = ServiceGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "数据库")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = ServiceGroupServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceGroupServiceProxy.INSERT)
@@ -72,7 +76,9 @@ public class ServiceGroupController extends SuperController {
      * 删除服务分组
      */
     @ApiOperation(value = "删除服务分组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = ServiceGroupServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceGroupServiceProxy.DELETE)
@@ -97,7 +103,9 @@ public class ServiceGroupController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除服务分组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceGroupVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceGroupVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ServiceGroupServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceGroupServiceProxy.DELETE_BY_IDS)
@@ -142,7 +150,11 @@ public class ServiceGroupController extends SuperController {
      * 更新服务分组
      */
     @ApiOperation(value = "更新服务分组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = ServiceGroupVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "db"), @ApiImplicitParam(name = ServiceGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "数据库") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = ServiceGroupVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "db"),
+		@ApiImplicitParam(name = ServiceGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "数据库")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { ServiceGroupVOMeta.PAGE_INDEX, ServiceGroupVOMeta.PAGE_SIZE, ServiceGroupVOMeta.SEARCH_FIELD, ServiceGroupVOMeta.FUZZY_FIELD, ServiceGroupVOMeta.SEARCH_VALUE, ServiceGroupVOMeta.DIRTY_FIELDS, ServiceGroupVOMeta.SORT_FIELD, ServiceGroupVOMeta.SORT_TYPE, ServiceGroupVOMeta.IDS })
     @SentinelResource(value = ServiceGroupServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceGroupServiceProxy.UPDATE)
@@ -156,7 +168,11 @@ public class ServiceGroupController extends SuperController {
      * 保存服务分组
      */
     @ApiOperation(value = "保存服务分组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = ServiceGroupVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "db"), @ApiImplicitParam(name = ServiceGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "数据库") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = ServiceGroupVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "db"),
+		@ApiImplicitParam(name = ServiceGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "数据库")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ServiceGroupVOMeta.PAGE_INDEX, ServiceGroupVOMeta.PAGE_SIZE, ServiceGroupVOMeta.SEARCH_FIELD, ServiceGroupVOMeta.FUZZY_FIELD, ServiceGroupVOMeta.SEARCH_VALUE, ServiceGroupVOMeta.DIRTY_FIELDS, ServiceGroupVOMeta.SORT_FIELD, ServiceGroupVOMeta.SORT_TYPE, ServiceGroupVOMeta.IDS })
     @SentinelResource(value = ServiceGroupServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceGroupServiceProxy.SAVE)
@@ -170,7 +186,9 @@ public class ServiceGroupController extends SuperController {
      * 获取服务分组
      */
     @ApiOperation(value = "获取服务分组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = ServiceGroupServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceGroupServiceProxy.GET_BY_ID)
@@ -186,7 +204,9 @@ public class ServiceGroupController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取服务分组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceGroupVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceGroupVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ServiceGroupServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceGroupServiceProxy.GET_BY_IDS)
@@ -201,7 +221,11 @@ public class ServiceGroupController extends SuperController {
      * 查询服务分组
      */
     @ApiOperation(value = "查询服务分组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = ServiceGroupVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "db"), @ApiImplicitParam(name = ServiceGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "数据库") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = ServiceGroupVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "db"),
+		@ApiImplicitParam(name = ServiceGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "数据库")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ServiceGroupVOMeta.PAGE_INDEX, ServiceGroupVOMeta.PAGE_SIZE })
     @SentinelResource(value = ServiceGroupServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceGroupServiceProxy.QUERY_LIST)
@@ -216,7 +240,11 @@ public class ServiceGroupController extends SuperController {
      * 分页查询服务分组
      */
     @ApiOperation(value = "分页查询服务分组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = ServiceGroupVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "db"), @ApiImplicitParam(name = ServiceGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "数据库") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = ServiceGroupVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class, example = "db"),
+		@ApiImplicitParam(name = ServiceGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "数据库")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = ServiceGroupServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceGroupServiceProxy.QUERY_PAGED_LIST)

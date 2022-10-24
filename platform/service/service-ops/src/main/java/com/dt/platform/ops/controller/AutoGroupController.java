@@ -58,7 +58,12 @@ public class AutoGroupController extends SuperController {
      * 添加自动化分组
      */
     @ApiOperation(value = "添加自动化分组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AutoGroupServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoGroupServiceProxy.INSERT)
@@ -72,7 +77,9 @@ public class AutoGroupController extends SuperController {
      * 删除自动化分组
      */
     @ApiOperation(value = "删除自动化分组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AutoGroupServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoGroupServiceProxy.DELETE)
@@ -97,7 +104,9 @@ public class AutoGroupController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除自动化分组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoGroupVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoGroupVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoGroupServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoGroupServiceProxy.DELETE_BY_IDS)
@@ -142,7 +151,12 @@ public class AutoGroupController extends SuperController {
      * 更新自动化分组
      */
     @ApiOperation(value = "更新自动化分组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AutoGroupVOMeta.PAGE_INDEX, AutoGroupVOMeta.PAGE_SIZE, AutoGroupVOMeta.SEARCH_FIELD, AutoGroupVOMeta.FUZZY_FIELD, AutoGroupVOMeta.SEARCH_VALUE, AutoGroupVOMeta.DIRTY_FIELDS, AutoGroupVOMeta.SORT_FIELD, AutoGroupVOMeta.SORT_TYPE, AutoGroupVOMeta.IDS })
     @SentinelResource(value = AutoGroupServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoGroupServiceProxy.UPDATE)
@@ -156,7 +170,12 @@ public class AutoGroupController extends SuperController {
      * 保存自动化分组
      */
     @ApiOperation(value = "保存自动化分组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoGroupVOMeta.PAGE_INDEX, AutoGroupVOMeta.PAGE_SIZE, AutoGroupVOMeta.SEARCH_FIELD, AutoGroupVOMeta.FUZZY_FIELD, AutoGroupVOMeta.SEARCH_VALUE, AutoGroupVOMeta.DIRTY_FIELDS, AutoGroupVOMeta.SORT_FIELD, AutoGroupVOMeta.SORT_TYPE, AutoGroupVOMeta.IDS })
     @SentinelResource(value = AutoGroupServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoGroupServiceProxy.SAVE)
@@ -170,7 +189,9 @@ public class AutoGroupController extends SuperController {
      * 获取自动化分组
      */
     @ApiOperation(value = "获取自动化分组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AutoGroupServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoGroupServiceProxy.GET_BY_ID)
@@ -186,7 +207,9 @@ public class AutoGroupController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取自动化分组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoGroupVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoGroupVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoGroupServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoGroupServiceProxy.GET_BY_IDS)
@@ -201,7 +224,12 @@ public class AutoGroupController extends SuperController {
      * 查询自动化分组
      */
     @ApiOperation(value = "查询自动化分组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoGroupVOMeta.PAGE_INDEX, AutoGroupVOMeta.PAGE_SIZE })
     @SentinelResource(value = AutoGroupServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoGroupServiceProxy.QUERY_LIST)
@@ -216,7 +244,12 @@ public class AutoGroupController extends SuperController {
      * 分页查询自动化分组
      */
     @ApiOperation(value = "分页查询自动化分组")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AutoGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoGroupVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AutoGroupServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoGroupServiceProxy.QUERY_PAGED_LIST)

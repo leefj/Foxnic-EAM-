@@ -57,7 +57,11 @@ public class CertificatePositionController extends SuperController {
      * 添加证书位置
      */
     @ApiOperation(value = "添加证书位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificatePositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CertificatePositionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificatePositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificatePositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificatePositionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificatePositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = CertificatePositionServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificatePositionServiceProxy.INSERT)
@@ -71,7 +75,9 @@ public class CertificatePositionController extends SuperController {
      * 删除证书位置
      */
     @ApiOperation(value = "删除证书位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificatePositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificatePositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = CertificatePositionServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificatePositionServiceProxy.DELETE)
@@ -85,7 +91,9 @@ public class CertificatePositionController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除证书位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificatePositionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificatePositionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = CertificatePositionServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificatePositionServiceProxy.DELETE_BY_IDS)
@@ -98,7 +106,11 @@ public class CertificatePositionController extends SuperController {
      * 更新证书位置
      */
     @ApiOperation(value = "更新证书位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificatePositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CertificatePositionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificatePositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificatePositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificatePositionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificatePositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { CertificatePositionVOMeta.PAGE_INDEX, CertificatePositionVOMeta.PAGE_SIZE, CertificatePositionVOMeta.SEARCH_FIELD, CertificatePositionVOMeta.FUZZY_FIELD, CertificatePositionVOMeta.SEARCH_VALUE, CertificatePositionVOMeta.DIRTY_FIELDS, CertificatePositionVOMeta.SORT_FIELD, CertificatePositionVOMeta.SORT_TYPE, CertificatePositionVOMeta.IDS })
     @SentinelResource(value = CertificatePositionServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificatePositionServiceProxy.UPDATE)
@@ -112,7 +124,11 @@ public class CertificatePositionController extends SuperController {
      * 保存证书位置
      */
     @ApiOperation(value = "保存证书位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificatePositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CertificatePositionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificatePositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificatePositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificatePositionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificatePositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { CertificatePositionVOMeta.PAGE_INDEX, CertificatePositionVOMeta.PAGE_SIZE, CertificatePositionVOMeta.SEARCH_FIELD, CertificatePositionVOMeta.FUZZY_FIELD, CertificatePositionVOMeta.SEARCH_VALUE, CertificatePositionVOMeta.DIRTY_FIELDS, CertificatePositionVOMeta.SORT_FIELD, CertificatePositionVOMeta.SORT_TYPE, CertificatePositionVOMeta.IDS })
     @SentinelResource(value = CertificatePositionServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificatePositionServiceProxy.SAVE)
@@ -126,7 +142,9 @@ public class CertificatePositionController extends SuperController {
      * 获取证书位置
      */
     @ApiOperation(value = "获取证书位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificatePositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificatePositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = CertificatePositionServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificatePositionServiceProxy.GET_BY_ID)
@@ -142,7 +160,9 @@ public class CertificatePositionController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取证书位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificatePositionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificatePositionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = CertificatePositionServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificatePositionServiceProxy.GET_BY_IDS)
@@ -157,7 +177,11 @@ public class CertificatePositionController extends SuperController {
      * 查询证书位置
      */
     @ApiOperation(value = "查询证书位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificatePositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CertificatePositionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificatePositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificatePositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificatePositionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificatePositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { CertificatePositionVOMeta.PAGE_INDEX, CertificatePositionVOMeta.PAGE_SIZE })
     @SentinelResource(value = CertificatePositionServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificatePositionServiceProxy.QUERY_LIST)
@@ -172,7 +196,11 @@ public class CertificatePositionController extends SuperController {
      * 分页查询证书位置
      */
     @ApiOperation(value = "分页查询证书位置")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CertificatePositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CertificatePositionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CertificatePositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CertificatePositionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificatePositionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CertificatePositionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = CertificatePositionServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CertificatePositionServiceProxy.QUERY_PAGED_LIST)

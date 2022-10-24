@@ -57,7 +57,12 @@ public class InventoryWarehouseController extends SuperController {
      * 添加盘点仓库
      */
     @ApiOperation(value = "添加盘点仓库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryWarehouseVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryWarehouseVOMeta.INVENTORY_ID, value = "盘点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryWarehouseVOMeta.VALUE, value = "仓库", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryWarehouseVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryWarehouseVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryWarehouseVOMeta.INVENTORY_ID, value = "盘点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryWarehouseVOMeta.VALUE, value = "仓库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryWarehouseVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = InventoryWarehouseServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryWarehouseServiceProxy.INSERT)
@@ -71,7 +76,9 @@ public class InventoryWarehouseController extends SuperController {
      * 删除盘点仓库
      */
     @ApiOperation(value = "删除盘点仓库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryWarehouseVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryWarehouseVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = InventoryWarehouseServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryWarehouseServiceProxy.DELETE)
@@ -85,7 +92,9 @@ public class InventoryWarehouseController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除盘点仓库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryWarehouseVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryWarehouseVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = InventoryWarehouseServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryWarehouseServiceProxy.DELETE_BY_IDS)
@@ -98,7 +107,12 @@ public class InventoryWarehouseController extends SuperController {
      * 更新盘点仓库
      */
     @ApiOperation(value = "更新盘点仓库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryWarehouseVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryWarehouseVOMeta.INVENTORY_ID, value = "盘点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryWarehouseVOMeta.VALUE, value = "仓库", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryWarehouseVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryWarehouseVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryWarehouseVOMeta.INVENTORY_ID, value = "盘点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryWarehouseVOMeta.VALUE, value = "仓库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryWarehouseVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { InventoryWarehouseVOMeta.PAGE_INDEX, InventoryWarehouseVOMeta.PAGE_SIZE, InventoryWarehouseVOMeta.SEARCH_FIELD, InventoryWarehouseVOMeta.FUZZY_FIELD, InventoryWarehouseVOMeta.SEARCH_VALUE, InventoryWarehouseVOMeta.DIRTY_FIELDS, InventoryWarehouseVOMeta.SORT_FIELD, InventoryWarehouseVOMeta.SORT_TYPE, InventoryWarehouseVOMeta.IDS })
     @SentinelResource(value = InventoryWarehouseServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryWarehouseServiceProxy.UPDATE)
@@ -112,7 +126,12 @@ public class InventoryWarehouseController extends SuperController {
      * 保存盘点仓库
      */
     @ApiOperation(value = "保存盘点仓库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryWarehouseVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryWarehouseVOMeta.INVENTORY_ID, value = "盘点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryWarehouseVOMeta.VALUE, value = "仓库", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryWarehouseVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryWarehouseVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryWarehouseVOMeta.INVENTORY_ID, value = "盘点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryWarehouseVOMeta.VALUE, value = "仓库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryWarehouseVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InventoryWarehouseVOMeta.PAGE_INDEX, InventoryWarehouseVOMeta.PAGE_SIZE, InventoryWarehouseVOMeta.SEARCH_FIELD, InventoryWarehouseVOMeta.FUZZY_FIELD, InventoryWarehouseVOMeta.SEARCH_VALUE, InventoryWarehouseVOMeta.DIRTY_FIELDS, InventoryWarehouseVOMeta.SORT_FIELD, InventoryWarehouseVOMeta.SORT_TYPE, InventoryWarehouseVOMeta.IDS })
     @SentinelResource(value = InventoryWarehouseServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryWarehouseServiceProxy.SAVE)
@@ -126,7 +145,9 @@ public class InventoryWarehouseController extends SuperController {
      * 获取盘点仓库
      */
     @ApiOperation(value = "获取盘点仓库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryWarehouseVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryWarehouseVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = InventoryWarehouseServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryWarehouseServiceProxy.GET_BY_ID)
@@ -142,7 +163,9 @@ public class InventoryWarehouseController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取盘点仓库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryWarehouseVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryWarehouseVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = InventoryWarehouseServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryWarehouseServiceProxy.GET_BY_IDS)
@@ -157,7 +180,12 @@ public class InventoryWarehouseController extends SuperController {
      * 查询盘点仓库
      */
     @ApiOperation(value = "查询盘点仓库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryWarehouseVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryWarehouseVOMeta.INVENTORY_ID, value = "盘点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryWarehouseVOMeta.VALUE, value = "仓库", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryWarehouseVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryWarehouseVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryWarehouseVOMeta.INVENTORY_ID, value = "盘点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryWarehouseVOMeta.VALUE, value = "仓库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryWarehouseVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InventoryWarehouseVOMeta.PAGE_INDEX, InventoryWarehouseVOMeta.PAGE_SIZE })
     @SentinelResource(value = InventoryWarehouseServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryWarehouseServiceProxy.QUERY_LIST)
@@ -172,7 +200,12 @@ public class InventoryWarehouseController extends SuperController {
      * 分页查询盘点仓库
      */
     @ApiOperation(value = "分页查询盘点仓库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = InventoryWarehouseVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryWarehouseVOMeta.INVENTORY_ID, value = "盘点", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryWarehouseVOMeta.VALUE, value = "仓库", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = InventoryWarehouseVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = InventoryWarehouseVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryWarehouseVOMeta.INVENTORY_ID, value = "盘点", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryWarehouseVOMeta.VALUE, value = "仓库", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryWarehouseVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = InventoryWarehouseServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryWarehouseServiceProxy.QUERY_PAGED_LIST)

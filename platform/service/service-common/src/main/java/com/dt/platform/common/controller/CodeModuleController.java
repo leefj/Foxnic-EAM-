@@ -31,7 +31,9 @@ public class CodeModuleController {
     	 * 获取编码
 	*/
     @ApiOperation(value = "获取编码")
-    @ApiImplicitParams({ @ApiImplicitParam(name = "module", value = "业务编号", required = true, dataTypeClass = String.class, example = "eam_asset_code") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = "module", value = "业务编号", required = true, dataTypeClass = String.class, example = "eam_asset_code")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = CodeRuleServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeModuleServiceProxy.GENERATE_CODE)

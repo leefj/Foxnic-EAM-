@@ -62,7 +62,21 @@ public class AutoTaskLogController extends SuperController {
      * 添加明细日志
      */
     @ApiOperation(value = "添加明细日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614532689201987584"), @ApiImplicitParam(name = AutoTaskLogVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class, example = "614532481739128832"), @ApiImplicitParam(name = AutoTaskLogVOMeta.M_LOG_ID, value = "日志", required = false, dataTypeClass = String.class, example = "614532688249880576"), @ApiImplicitParam(name = AutoTaskLogVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class, example = "614531850873864192"), @ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_IP, value = "IP", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "614532378768965632"), @ApiImplicitParam(name = AutoTaskLogVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "failed"), @ApiImplicitParam(name = AutoTaskLogVOMeta.STIME, value = "开始时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:53:31"), @ApiImplicitParam(name = AutoTaskLogVOMeta.ETIME, value = "结束时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:58:31"), @ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_CONTENT, value = "记录结果", required = false, dataTypeClass = String.class, example = "Connect to host by sftp error!"), @ApiImplicitParam(name = AutoTaskLogVOMeta.CONTENT_DETAIL, value = "内容明细", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:53:31"), @ApiImplicitParam(name = AutoTaskLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614532689201987584"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class, example = "614532481739128832"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.M_LOG_ID, value = "日志", required = false, dataTypeClass = String.class, example = "614532688249880576"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class, example = "614531850873864192"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_IP, value = "IP", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "614532378768965632"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "failed"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.STIME, value = "开始时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:53:31"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ETIME, value = "结束时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:58:31"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_CONTENT, value = "记录结果", required = false, dataTypeClass = String.class, example = "Connect to host by sftp error!"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.CONTENT_DETAIL, value = "内容明细", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:53:31"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AutoTaskLogServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskLogServiceProxy.INSERT)
@@ -76,7 +90,9 @@ public class AutoTaskLogController extends SuperController {
      * 删除明细日志
      */
     @ApiOperation(value = "删除明细日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614532689201987584") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614532689201987584")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AutoTaskLogServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskLogServiceProxy.DELETE)
@@ -101,7 +117,9 @@ public class AutoTaskLogController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除明细日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskLogVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoTaskLogServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskLogServiceProxy.DELETE_BY_IDS)
@@ -146,7 +164,21 @@ public class AutoTaskLogController extends SuperController {
      * 更新明细日志
      */
     @ApiOperation(value = "更新明细日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614532689201987584"), @ApiImplicitParam(name = AutoTaskLogVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class, example = "614532481739128832"), @ApiImplicitParam(name = AutoTaskLogVOMeta.M_LOG_ID, value = "日志", required = false, dataTypeClass = String.class, example = "614532688249880576"), @ApiImplicitParam(name = AutoTaskLogVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class, example = "614531850873864192"), @ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_IP, value = "IP", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "614532378768965632"), @ApiImplicitParam(name = AutoTaskLogVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "failed"), @ApiImplicitParam(name = AutoTaskLogVOMeta.STIME, value = "开始时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:53:31"), @ApiImplicitParam(name = AutoTaskLogVOMeta.ETIME, value = "结束时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:58:31"), @ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_CONTENT, value = "记录结果", required = false, dataTypeClass = String.class, example = "Connect to host by sftp error!"), @ApiImplicitParam(name = AutoTaskLogVOMeta.CONTENT_DETAIL, value = "内容明细", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:53:31"), @ApiImplicitParam(name = AutoTaskLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614532689201987584"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class, example = "614532481739128832"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.M_LOG_ID, value = "日志", required = false, dataTypeClass = String.class, example = "614532688249880576"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class, example = "614531850873864192"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_IP, value = "IP", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "614532378768965632"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "failed"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.STIME, value = "开始时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:53:31"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ETIME, value = "结束时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:58:31"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_CONTENT, value = "记录结果", required = false, dataTypeClass = String.class, example = "Connect to host by sftp error!"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.CONTENT_DETAIL, value = "内容明细", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:53:31"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AutoTaskLogVOMeta.PAGE_INDEX, AutoTaskLogVOMeta.PAGE_SIZE, AutoTaskLogVOMeta.SEARCH_FIELD, AutoTaskLogVOMeta.FUZZY_FIELD, AutoTaskLogVOMeta.SEARCH_VALUE, AutoTaskLogVOMeta.DIRTY_FIELDS, AutoTaskLogVOMeta.SORT_FIELD, AutoTaskLogVOMeta.SORT_TYPE, AutoTaskLogVOMeta.IDS })
     @SentinelResource(value = AutoTaskLogServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskLogServiceProxy.UPDATE)
@@ -160,7 +192,21 @@ public class AutoTaskLogController extends SuperController {
      * 保存明细日志
      */
     @ApiOperation(value = "保存明细日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614532689201987584"), @ApiImplicitParam(name = AutoTaskLogVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class, example = "614532481739128832"), @ApiImplicitParam(name = AutoTaskLogVOMeta.M_LOG_ID, value = "日志", required = false, dataTypeClass = String.class, example = "614532688249880576"), @ApiImplicitParam(name = AutoTaskLogVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class, example = "614531850873864192"), @ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_IP, value = "IP", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "614532378768965632"), @ApiImplicitParam(name = AutoTaskLogVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "failed"), @ApiImplicitParam(name = AutoTaskLogVOMeta.STIME, value = "开始时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:53:31"), @ApiImplicitParam(name = AutoTaskLogVOMeta.ETIME, value = "结束时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:58:31"), @ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_CONTENT, value = "记录结果", required = false, dataTypeClass = String.class, example = "Connect to host by sftp error!"), @ApiImplicitParam(name = AutoTaskLogVOMeta.CONTENT_DETAIL, value = "内容明细", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:53:31"), @ApiImplicitParam(name = AutoTaskLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614532689201987584"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class, example = "614532481739128832"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.M_LOG_ID, value = "日志", required = false, dataTypeClass = String.class, example = "614532688249880576"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class, example = "614531850873864192"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_IP, value = "IP", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "614532378768965632"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "failed"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.STIME, value = "开始时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:53:31"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ETIME, value = "结束时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:58:31"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_CONTENT, value = "记录结果", required = false, dataTypeClass = String.class, example = "Connect to host by sftp error!"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.CONTENT_DETAIL, value = "内容明细", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:53:31"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoTaskLogVOMeta.PAGE_INDEX, AutoTaskLogVOMeta.PAGE_SIZE, AutoTaskLogVOMeta.SEARCH_FIELD, AutoTaskLogVOMeta.FUZZY_FIELD, AutoTaskLogVOMeta.SEARCH_VALUE, AutoTaskLogVOMeta.DIRTY_FIELDS, AutoTaskLogVOMeta.SORT_FIELD, AutoTaskLogVOMeta.SORT_TYPE, AutoTaskLogVOMeta.IDS })
     @SentinelResource(value = AutoTaskLogServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskLogServiceProxy.SAVE)
@@ -174,7 +220,9 @@ public class AutoTaskLogController extends SuperController {
      * 获取明细日志
      */
     @ApiOperation(value = "获取明细日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AutoTaskLogServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskLogServiceProxy.GET_BY_ID)
@@ -192,7 +240,9 @@ public class AutoTaskLogController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取明细日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskLogVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoTaskLogServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskLogServiceProxy.GET_BY_IDS)
@@ -207,7 +257,21 @@ public class AutoTaskLogController extends SuperController {
      * 查询明细日志
      */
     @ApiOperation(value = "查询明细日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614532689201987584"), @ApiImplicitParam(name = AutoTaskLogVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class, example = "614532481739128832"), @ApiImplicitParam(name = AutoTaskLogVOMeta.M_LOG_ID, value = "日志", required = false, dataTypeClass = String.class, example = "614532688249880576"), @ApiImplicitParam(name = AutoTaskLogVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class, example = "614531850873864192"), @ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_IP, value = "IP", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "614532378768965632"), @ApiImplicitParam(name = AutoTaskLogVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "failed"), @ApiImplicitParam(name = AutoTaskLogVOMeta.STIME, value = "开始时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:53:31"), @ApiImplicitParam(name = AutoTaskLogVOMeta.ETIME, value = "结束时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:58:31"), @ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_CONTENT, value = "记录结果", required = false, dataTypeClass = String.class, example = "Connect to host by sftp error!"), @ApiImplicitParam(name = AutoTaskLogVOMeta.CONTENT_DETAIL, value = "内容明细", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:53:31"), @ApiImplicitParam(name = AutoTaskLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614532689201987584"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class, example = "614532481739128832"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.M_LOG_ID, value = "日志", required = false, dataTypeClass = String.class, example = "614532688249880576"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class, example = "614531850873864192"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_IP, value = "IP", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "614532378768965632"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "failed"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.STIME, value = "开始时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:53:31"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ETIME, value = "结束时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:58:31"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_CONTENT, value = "记录结果", required = false, dataTypeClass = String.class, example = "Connect to host by sftp error!"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.CONTENT_DETAIL, value = "内容明细", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:53:31"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoTaskLogVOMeta.PAGE_INDEX, AutoTaskLogVOMeta.PAGE_SIZE })
     @SentinelResource(value = AutoTaskLogServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskLogServiceProxy.QUERY_LIST)
@@ -222,7 +286,21 @@ public class AutoTaskLogController extends SuperController {
      * 分页查询明细日志
      */
     @ApiOperation(value = "分页查询明细日志")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoTaskLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614532689201987584"), @ApiImplicitParam(name = AutoTaskLogVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class, example = "614532481739128832"), @ApiImplicitParam(name = AutoTaskLogVOMeta.M_LOG_ID, value = "日志", required = false, dataTypeClass = String.class, example = "614532688249880576"), @ApiImplicitParam(name = AutoTaskLogVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class, example = "614531850873864192"), @ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_IP, value = "IP", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "614532378768965632"), @ApiImplicitParam(name = AutoTaskLogVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "failed"), @ApiImplicitParam(name = AutoTaskLogVOMeta.STIME, value = "开始时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:53:31"), @ApiImplicitParam(name = AutoTaskLogVOMeta.ETIME, value = "结束时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:58:31"), @ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_CONTENT, value = "记录结果", required = false, dataTypeClass = String.class, example = "Connect to host by sftp error!"), @ApiImplicitParam(name = AutoTaskLogVOMeta.CONTENT_DETAIL, value = "内容明细", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:53:31"), @ApiImplicitParam(name = AutoTaskLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "614532689201987584"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.TASK_ID, value = "作业", required = false, dataTypeClass = String.class, example = "614532481739128832"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.M_LOG_ID, value = "日志", required = false, dataTypeClass = String.class, example = "614532688249880576"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ACTION_ID, value = "动作", required = false, dataTypeClass = String.class, example = "614531850873864192"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_IP, value = "IP", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.NODE_ID, value = "节点", required = false, dataTypeClass = String.class, example = "614532378768965632"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "failed"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.STIME, value = "开始时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:53:31"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.ETIME, value = "结束时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:58:31"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_CONTENT, value = "记录结果", required = false, dataTypeClass = String.class, example = "Connect to host by sftp error!"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.CONTENT_DETAIL, value = "内容明细", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class, example = "2022-08-23 06:53:31"),
+		@ApiImplicitParam(name = AutoTaskLogVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AutoTaskLogServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoTaskLogServiceProxy.QUERY_PAGED_LIST)

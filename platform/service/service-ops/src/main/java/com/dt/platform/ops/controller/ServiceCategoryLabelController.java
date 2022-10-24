@@ -58,7 +58,11 @@ public class ServiceCategoryLabelController extends SuperController {
      * 添加分类标签
      */
     @ApiOperation(value = "添加分类标签")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceCategoryLabelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceCategoryLabelVOMeta.CATEGORY_ID, value = "分类", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceCategoryLabelVOMeta.LABEL_CODE, value = "标签", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceCategoryLabelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceCategoryLabelVOMeta.CATEGORY_ID, value = "分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceCategoryLabelVOMeta.LABEL_CODE, value = "标签", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = ServiceCategoryLabelServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceCategoryLabelServiceProxy.INSERT)
@@ -72,7 +76,9 @@ public class ServiceCategoryLabelController extends SuperController {
      * 删除分类标签
      */
     @ApiOperation(value = "删除分类标签")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceCategoryLabelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceCategoryLabelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = ServiceCategoryLabelServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceCategoryLabelServiceProxy.DELETE)
@@ -97,7 +103,9 @@ public class ServiceCategoryLabelController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除分类标签")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceCategoryLabelVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceCategoryLabelVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ServiceCategoryLabelServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceCategoryLabelServiceProxy.DELETE_BY_IDS)
@@ -142,7 +150,11 @@ public class ServiceCategoryLabelController extends SuperController {
      * 更新分类标签
      */
     @ApiOperation(value = "更新分类标签")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceCategoryLabelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceCategoryLabelVOMeta.CATEGORY_ID, value = "分类", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceCategoryLabelVOMeta.LABEL_CODE, value = "标签", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceCategoryLabelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceCategoryLabelVOMeta.CATEGORY_ID, value = "分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceCategoryLabelVOMeta.LABEL_CODE, value = "标签", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { ServiceCategoryLabelVOMeta.PAGE_INDEX, ServiceCategoryLabelVOMeta.PAGE_SIZE, ServiceCategoryLabelVOMeta.SEARCH_FIELD, ServiceCategoryLabelVOMeta.FUZZY_FIELD, ServiceCategoryLabelVOMeta.SEARCH_VALUE, ServiceCategoryLabelVOMeta.DIRTY_FIELDS, ServiceCategoryLabelVOMeta.SORT_FIELD, ServiceCategoryLabelVOMeta.SORT_TYPE, ServiceCategoryLabelVOMeta.IDS })
     @SentinelResource(value = ServiceCategoryLabelServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceCategoryLabelServiceProxy.UPDATE)
@@ -156,7 +168,11 @@ public class ServiceCategoryLabelController extends SuperController {
      * 保存分类标签
      */
     @ApiOperation(value = "保存分类标签")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceCategoryLabelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceCategoryLabelVOMeta.CATEGORY_ID, value = "分类", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceCategoryLabelVOMeta.LABEL_CODE, value = "标签", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceCategoryLabelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceCategoryLabelVOMeta.CATEGORY_ID, value = "分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceCategoryLabelVOMeta.LABEL_CODE, value = "标签", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ServiceCategoryLabelVOMeta.PAGE_INDEX, ServiceCategoryLabelVOMeta.PAGE_SIZE, ServiceCategoryLabelVOMeta.SEARCH_FIELD, ServiceCategoryLabelVOMeta.FUZZY_FIELD, ServiceCategoryLabelVOMeta.SEARCH_VALUE, ServiceCategoryLabelVOMeta.DIRTY_FIELDS, ServiceCategoryLabelVOMeta.SORT_FIELD, ServiceCategoryLabelVOMeta.SORT_TYPE, ServiceCategoryLabelVOMeta.IDS })
     @SentinelResource(value = ServiceCategoryLabelServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceCategoryLabelServiceProxy.SAVE)
@@ -170,7 +186,9 @@ public class ServiceCategoryLabelController extends SuperController {
      * 获取分类标签
      */
     @ApiOperation(value = "获取分类标签")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceCategoryLabelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceCategoryLabelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = ServiceCategoryLabelServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceCategoryLabelServiceProxy.GET_BY_ID)
@@ -186,7 +204,9 @@ public class ServiceCategoryLabelController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取分类标签")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceCategoryLabelVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceCategoryLabelVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ServiceCategoryLabelServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceCategoryLabelServiceProxy.GET_BY_IDS)
@@ -201,7 +221,11 @@ public class ServiceCategoryLabelController extends SuperController {
      * 查询分类标签
      */
     @ApiOperation(value = "查询分类标签")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceCategoryLabelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceCategoryLabelVOMeta.CATEGORY_ID, value = "分类", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceCategoryLabelVOMeta.LABEL_CODE, value = "标签", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceCategoryLabelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceCategoryLabelVOMeta.CATEGORY_ID, value = "分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceCategoryLabelVOMeta.LABEL_CODE, value = "标签", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ServiceCategoryLabelVOMeta.PAGE_INDEX, ServiceCategoryLabelVOMeta.PAGE_SIZE })
     @SentinelResource(value = ServiceCategoryLabelServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceCategoryLabelServiceProxy.QUERY_LIST)
@@ -216,7 +240,11 @@ public class ServiceCategoryLabelController extends SuperController {
      * 分页查询分类标签
      */
     @ApiOperation(value = "分页查询分类标签")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceCategoryLabelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceCategoryLabelVOMeta.CATEGORY_ID, value = "分类", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceCategoryLabelVOMeta.LABEL_CODE, value = "标签", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceCategoryLabelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceCategoryLabelVOMeta.CATEGORY_ID, value = "分类", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceCategoryLabelVOMeta.LABEL_CODE, value = "标签", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = ServiceCategoryLabelServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceCategoryLabelServiceProxy.QUERY_PAGED_LIST)

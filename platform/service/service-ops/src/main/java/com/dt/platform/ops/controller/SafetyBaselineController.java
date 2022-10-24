@@ -59,7 +59,17 @@ public class SafetyBaselineController extends SuperController {
      * 添加安全基线
      */
     @ApiOperation(value = "添加安全基线")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SafetyBaselineVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "623074744979161088"), @ApiImplicitParam(name = SafetyBaselineVOMeta.BASE_TYPE_ID, value = "类型", required = false, dataTypeClass = String.class, example = "593841519329288192"), @ApiImplicitParam(name = SafetyBaselineVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = SafetyBaselineVOMeta.BASE_VERSION, value = "版本", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = SafetyBaselineVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "effect"), @ApiImplicitParam(name = SafetyBaselineVOMeta.USAGE_SCENARIOS, value = "使用场景", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = SafetyBaselineVOMeta.FILE_ID, value = "基线文件", required = false, dataTypeClass = String.class, example = "623074709520515072"), @ApiImplicitParam(name = SafetyBaselineVOMeta.CHECK_FILE_ID, value = "检查文件", required = false, dataTypeClass = String.class, example = "623074721516224512"), @ApiImplicitParam(name = SafetyBaselineVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "623074744979161088"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.BASE_TYPE_ID, value = "类型", required = false, dataTypeClass = String.class, example = "593841519329288192"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.BASE_VERSION, value = "版本", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "effect"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.USAGE_SCENARIOS, value = "使用场景", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.FILE_ID, value = "基线文件", required = false, dataTypeClass = String.class, example = "623074709520515072"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.CHECK_FILE_ID, value = "检查文件", required = false, dataTypeClass = String.class, example = "623074721516224512"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = SafetyBaselineServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SafetyBaselineServiceProxy.INSERT)
@@ -73,7 +83,9 @@ public class SafetyBaselineController extends SuperController {
      * 删除安全基线
      */
     @ApiOperation(value = "删除安全基线")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SafetyBaselineVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "623074744979161088") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "623074744979161088")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = SafetyBaselineServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SafetyBaselineServiceProxy.DELETE)
@@ -98,7 +110,9 @@ public class SafetyBaselineController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除安全基线")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SafetyBaselineVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = SafetyBaselineServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SafetyBaselineServiceProxy.DELETE_BY_IDS)
@@ -143,7 +157,17 @@ public class SafetyBaselineController extends SuperController {
      * 更新安全基线
      */
     @ApiOperation(value = "更新安全基线")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SafetyBaselineVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "623074744979161088"), @ApiImplicitParam(name = SafetyBaselineVOMeta.BASE_TYPE_ID, value = "类型", required = false, dataTypeClass = String.class, example = "593841519329288192"), @ApiImplicitParam(name = SafetyBaselineVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = SafetyBaselineVOMeta.BASE_VERSION, value = "版本", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = SafetyBaselineVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "effect"), @ApiImplicitParam(name = SafetyBaselineVOMeta.USAGE_SCENARIOS, value = "使用场景", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = SafetyBaselineVOMeta.FILE_ID, value = "基线文件", required = false, dataTypeClass = String.class, example = "623074709520515072"), @ApiImplicitParam(name = SafetyBaselineVOMeta.CHECK_FILE_ID, value = "检查文件", required = false, dataTypeClass = String.class, example = "623074721516224512"), @ApiImplicitParam(name = SafetyBaselineVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "623074744979161088"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.BASE_TYPE_ID, value = "类型", required = false, dataTypeClass = String.class, example = "593841519329288192"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.BASE_VERSION, value = "版本", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "effect"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.USAGE_SCENARIOS, value = "使用场景", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.FILE_ID, value = "基线文件", required = false, dataTypeClass = String.class, example = "623074709520515072"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.CHECK_FILE_ID, value = "检查文件", required = false, dataTypeClass = String.class, example = "623074721516224512"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { SafetyBaselineVOMeta.PAGE_INDEX, SafetyBaselineVOMeta.PAGE_SIZE, SafetyBaselineVOMeta.SEARCH_FIELD, SafetyBaselineVOMeta.FUZZY_FIELD, SafetyBaselineVOMeta.SEARCH_VALUE, SafetyBaselineVOMeta.DIRTY_FIELDS, SafetyBaselineVOMeta.SORT_FIELD, SafetyBaselineVOMeta.SORT_TYPE, SafetyBaselineVOMeta.IDS })
     @SentinelResource(value = SafetyBaselineServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SafetyBaselineServiceProxy.UPDATE)
@@ -157,7 +181,17 @@ public class SafetyBaselineController extends SuperController {
      * 保存安全基线
      */
     @ApiOperation(value = "保存安全基线")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SafetyBaselineVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "623074744979161088"), @ApiImplicitParam(name = SafetyBaselineVOMeta.BASE_TYPE_ID, value = "类型", required = false, dataTypeClass = String.class, example = "593841519329288192"), @ApiImplicitParam(name = SafetyBaselineVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = SafetyBaselineVOMeta.BASE_VERSION, value = "版本", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = SafetyBaselineVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "effect"), @ApiImplicitParam(name = SafetyBaselineVOMeta.USAGE_SCENARIOS, value = "使用场景", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = SafetyBaselineVOMeta.FILE_ID, value = "基线文件", required = false, dataTypeClass = String.class, example = "623074709520515072"), @ApiImplicitParam(name = SafetyBaselineVOMeta.CHECK_FILE_ID, value = "检查文件", required = false, dataTypeClass = String.class, example = "623074721516224512"), @ApiImplicitParam(name = SafetyBaselineVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "623074744979161088"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.BASE_TYPE_ID, value = "类型", required = false, dataTypeClass = String.class, example = "593841519329288192"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.BASE_VERSION, value = "版本", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "effect"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.USAGE_SCENARIOS, value = "使用场景", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.FILE_ID, value = "基线文件", required = false, dataTypeClass = String.class, example = "623074709520515072"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.CHECK_FILE_ID, value = "检查文件", required = false, dataTypeClass = String.class, example = "623074721516224512"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { SafetyBaselineVOMeta.PAGE_INDEX, SafetyBaselineVOMeta.PAGE_SIZE, SafetyBaselineVOMeta.SEARCH_FIELD, SafetyBaselineVOMeta.FUZZY_FIELD, SafetyBaselineVOMeta.SEARCH_VALUE, SafetyBaselineVOMeta.DIRTY_FIELDS, SafetyBaselineVOMeta.SORT_FIELD, SafetyBaselineVOMeta.SORT_TYPE, SafetyBaselineVOMeta.IDS })
     @SentinelResource(value = SafetyBaselineServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SafetyBaselineServiceProxy.SAVE)
@@ -171,7 +205,9 @@ public class SafetyBaselineController extends SuperController {
      * 获取安全基线
      */
     @ApiOperation(value = "获取安全基线")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SafetyBaselineVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = SafetyBaselineServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SafetyBaselineServiceProxy.GET_BY_ID)
@@ -189,7 +225,9 @@ public class SafetyBaselineController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取安全基线")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SafetyBaselineVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = SafetyBaselineServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SafetyBaselineServiceProxy.GET_BY_IDS)
@@ -204,7 +242,17 @@ public class SafetyBaselineController extends SuperController {
      * 查询安全基线
      */
     @ApiOperation(value = "查询安全基线")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SafetyBaselineVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "623074744979161088"), @ApiImplicitParam(name = SafetyBaselineVOMeta.BASE_TYPE_ID, value = "类型", required = false, dataTypeClass = String.class, example = "593841519329288192"), @ApiImplicitParam(name = SafetyBaselineVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = SafetyBaselineVOMeta.BASE_VERSION, value = "版本", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = SafetyBaselineVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "effect"), @ApiImplicitParam(name = SafetyBaselineVOMeta.USAGE_SCENARIOS, value = "使用场景", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = SafetyBaselineVOMeta.FILE_ID, value = "基线文件", required = false, dataTypeClass = String.class, example = "623074709520515072"), @ApiImplicitParam(name = SafetyBaselineVOMeta.CHECK_FILE_ID, value = "检查文件", required = false, dataTypeClass = String.class, example = "623074721516224512"), @ApiImplicitParam(name = SafetyBaselineVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "623074744979161088"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.BASE_TYPE_ID, value = "类型", required = false, dataTypeClass = String.class, example = "593841519329288192"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.BASE_VERSION, value = "版本", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "effect"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.USAGE_SCENARIOS, value = "使用场景", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.FILE_ID, value = "基线文件", required = false, dataTypeClass = String.class, example = "623074709520515072"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.CHECK_FILE_ID, value = "检查文件", required = false, dataTypeClass = String.class, example = "623074721516224512"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { SafetyBaselineVOMeta.PAGE_INDEX, SafetyBaselineVOMeta.PAGE_SIZE })
     @SentinelResource(value = SafetyBaselineServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SafetyBaselineServiceProxy.QUERY_LIST)
@@ -219,7 +267,17 @@ public class SafetyBaselineController extends SuperController {
      * 分页查询安全基线
      */
     @ApiOperation(value = "分页查询安全基线")
-    @ApiImplicitParams({ @ApiImplicitParam(name = SafetyBaselineVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "623074744979161088"), @ApiImplicitParam(name = SafetyBaselineVOMeta.BASE_TYPE_ID, value = "类型", required = false, dataTypeClass = String.class, example = "593841519329288192"), @ApiImplicitParam(name = SafetyBaselineVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = SafetyBaselineVOMeta.BASE_VERSION, value = "版本", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = SafetyBaselineVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "effect"), @ApiImplicitParam(name = SafetyBaselineVOMeta.USAGE_SCENARIOS, value = "使用场景", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = SafetyBaselineVOMeta.FILE_ID, value = "基线文件", required = false, dataTypeClass = String.class, example = "623074709520515072"), @ApiImplicitParam(name = SafetyBaselineVOMeta.CHECK_FILE_ID, value = "检查文件", required = false, dataTypeClass = String.class, example = "623074721516224512"), @ApiImplicitParam(name = SafetyBaselineVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "623074744979161088"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.BASE_TYPE_ID, value = "类型", required = false, dataTypeClass = String.class, example = "593841519329288192"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.BASE_VERSION, value = "版本", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "effect"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.USAGE_SCENARIOS, value = "使用场景", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.FILE_ID, value = "基线文件", required = false, dataTypeClass = String.class, example = "623074709520515072"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.CHECK_FILE_ID, value = "检查文件", required = false, dataTypeClass = String.class, example = "623074721516224512"),
+		@ApiImplicitParam(name = SafetyBaselineVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = SafetyBaselineServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SafetyBaselineServiceProxy.QUERY_PAGED_LIST)

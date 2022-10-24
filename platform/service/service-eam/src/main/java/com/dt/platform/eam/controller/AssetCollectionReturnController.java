@@ -68,7 +68,22 @@ public class AssetCollectionReturnController extends SuperController implements 
      * 添加资产退库
      */
     @ApiOperation(value = "添加资产退库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetCollectionReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480667671264768000"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.USE_ORGANIZATION_ID, value = "退库后公司/部门", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.POSITION_ID, value = "退库后位置", required = false, dataTypeClass = String.class, example = "473623769873645568"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.POSITION_DETAIL, value = "详细位置", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.CONTENT, value = "退库说明", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.RETURN_DATE, value = "退库日期", required = false, dataTypeClass = Date.class, example = "2021-08-02 12:00:00"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480667671264768000"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.USE_ORGANIZATION_ID, value = "退库后公司/部门", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.POSITION_ID, value = "退库后位置", required = false, dataTypeClass = String.class, example = "473623769873645568"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.POSITION_DETAIL, value = "详细位置", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.CONTENT, value = "退库说明", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.RETURN_DATE, value = "退库日期", required = false, dataTypeClass = Date.class, example = "2021-08-02 12:00:00"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetCollectionReturnServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetCollectionReturnServiceProxy.INSERT)
@@ -81,7 +96,9 @@ public class AssetCollectionReturnController extends SuperController implements 
      * 删除资产退库
      */
     @ApiOperation(value = "删除资产退库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetCollectionReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480667671264768000") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480667671264768000")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetCollectionReturnServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetCollectionReturnServiceProxy.DELETE)
@@ -100,7 +117,9 @@ public class AssetCollectionReturnController extends SuperController implements 
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产退库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetCollectionReturnVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetCollectionReturnServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetCollectionReturnServiceProxy.DELETE_BY_IDS)
@@ -113,7 +132,22 @@ public class AssetCollectionReturnController extends SuperController implements 
      * 更新资产退库
      */
     @ApiOperation(value = "更新资产退库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetCollectionReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480667671264768000"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.USE_ORGANIZATION_ID, value = "退库后公司/部门", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.POSITION_ID, value = "退库后位置", required = false, dataTypeClass = String.class, example = "473623769873645568"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.POSITION_DETAIL, value = "详细位置", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.CONTENT, value = "退库说明", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.RETURN_DATE, value = "退库日期", required = false, dataTypeClass = Date.class, example = "2021-08-02 12:00:00"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480667671264768000"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.USE_ORGANIZATION_ID, value = "退库后公司/部门", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.POSITION_ID, value = "退库后位置", required = false, dataTypeClass = String.class, example = "473623769873645568"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.POSITION_DETAIL, value = "详细位置", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.CONTENT, value = "退库说明", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.RETURN_DATE, value = "退库日期", required = false, dataTypeClass = Date.class, example = "2021-08-02 12:00:00"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetCollectionReturnVOMeta.PAGE_INDEX, AssetCollectionReturnVOMeta.PAGE_SIZE, AssetCollectionReturnVOMeta.SEARCH_FIELD, AssetCollectionReturnVOMeta.FUZZY_FIELD, AssetCollectionReturnVOMeta.SEARCH_VALUE, AssetCollectionReturnVOMeta.SORT_FIELD, AssetCollectionReturnVOMeta.SORT_TYPE, AssetCollectionReturnVOMeta.IDS })
     @SentinelResource(value = AssetCollectionReturnServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetCollectionReturnServiceProxy.UPDATE)
@@ -131,7 +165,22 @@ public class AssetCollectionReturnController extends SuperController implements 
      * 保存资产退库
      */
     @ApiOperation(value = "保存资产退库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetCollectionReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480667671264768000"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.USE_ORGANIZATION_ID, value = "退库后公司/部门", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.POSITION_ID, value = "退库后位置", required = false, dataTypeClass = String.class, example = "473623769873645568"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.POSITION_DETAIL, value = "详细位置", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.CONTENT, value = "退库说明", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.RETURN_DATE, value = "退库日期", required = false, dataTypeClass = Date.class, example = "2021-08-02 12:00:00"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480667671264768000"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.USE_ORGANIZATION_ID, value = "退库后公司/部门", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.POSITION_ID, value = "退库后位置", required = false, dataTypeClass = String.class, example = "473623769873645568"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.POSITION_DETAIL, value = "详细位置", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.CONTENT, value = "退库说明", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.RETURN_DATE, value = "退库日期", required = false, dataTypeClass = Date.class, example = "2021-08-02 12:00:00"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetCollectionReturnVOMeta.PAGE_INDEX, AssetCollectionReturnVOMeta.PAGE_SIZE, AssetCollectionReturnVOMeta.SEARCH_FIELD, AssetCollectionReturnVOMeta.FUZZY_FIELD, AssetCollectionReturnVOMeta.SEARCH_VALUE, AssetCollectionReturnVOMeta.SORT_FIELD, AssetCollectionReturnVOMeta.SORT_TYPE, AssetCollectionReturnVOMeta.IDS })
     @SentinelResource(value = AssetCollectionReturnServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetCollectionReturnServiceProxy.SAVE)
@@ -145,7 +194,9 @@ public class AssetCollectionReturnController extends SuperController implements 
      * 获取资产退库
      */
     @ApiOperation(value = "获取资产退库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetCollectionReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetCollectionReturnServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetCollectionReturnServiceProxy.GET_BY_ID)
@@ -168,7 +219,9 @@ public class AssetCollectionReturnController extends SuperController implements 
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产退库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetCollectionReturnVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetCollectionReturnServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetCollectionReturnServiceProxy.GET_BY_IDS)
@@ -183,7 +236,22 @@ public class AssetCollectionReturnController extends SuperController implements 
      * 查询资产退库
      */
     @ApiOperation(value = "查询资产退库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetCollectionReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480667671264768000"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.USE_ORGANIZATION_ID, value = "退库后公司/部门", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.POSITION_ID, value = "退库后位置", required = false, dataTypeClass = String.class, example = "473623769873645568"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.POSITION_DETAIL, value = "详细位置", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.CONTENT, value = "退库说明", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.RETURN_DATE, value = "退库日期", required = false, dataTypeClass = Date.class, example = "2021-08-02 12:00:00"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480667671264768000"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.USE_ORGANIZATION_ID, value = "退库后公司/部门", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.POSITION_ID, value = "退库后位置", required = false, dataTypeClass = String.class, example = "473623769873645568"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.POSITION_DETAIL, value = "详细位置", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.CONTENT, value = "退库说明", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.RETURN_DATE, value = "退库日期", required = false, dataTypeClass = Date.class, example = "2021-08-02 12:00:00"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetCollectionReturnVOMeta.PAGE_INDEX, AssetCollectionReturnVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetCollectionReturnServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetCollectionReturnServiceProxy.QUERY_LIST)
@@ -198,7 +266,22 @@ public class AssetCollectionReturnController extends SuperController implements 
      * 分页查询资产退库
      */
     @ApiOperation(value = "分页查询资产退库")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetCollectionReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480667671264768000"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.USE_ORGANIZATION_ID, value = "退库后公司/部门", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.POSITION_ID, value = "退库后位置", required = false, dataTypeClass = String.class, example = "473623769873645568"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.POSITION_DETAIL, value = "详细位置", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.CONTENT, value = "退库说明", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.RETURN_DATE, value = "退库日期", required = false, dataTypeClass = Date.class, example = "2021-08-02 12:00:00"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetCollectionReturnVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "480667671264768000"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.PROC_ID, value = "流程", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.USE_ORGANIZATION_ID, value = "退库后公司/部门", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.POSITION_ID, value = "退库后位置", required = false, dataTypeClass = String.class, example = "473623769873645568"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.POSITION_DETAIL, value = "详细位置", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.CONTENT, value = "退库说明", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.RETURN_DATE, value = "退库日期", required = false, dataTypeClass = Date.class, example = "2021-08-02 12:00:00"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetCollectionReturnServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetCollectionReturnServiceProxy.QUERY_PAGED_LIST)
@@ -221,7 +304,9 @@ public class AssetCollectionReturnController extends SuperController implements 
      * 确认
      */
     @ApiOperation(value = "领用归还确认")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetCollectionReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetCollectionReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 13)
     @SentinelResource(value = AssetCollectionReturnServiceProxy.CONFIRM_OPERATION, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @RequestMapping(AssetCollectionReturnServiceProxy.CONFIRM_OPERATION)

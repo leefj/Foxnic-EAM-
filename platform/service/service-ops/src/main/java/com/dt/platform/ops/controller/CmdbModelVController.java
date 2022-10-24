@@ -61,7 +61,60 @@ public class CmdbModelVController extends SuperController {
      * 添加配置值
      */
     @ApiOperation(value = "添加配置值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbModelVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.PID, value = "父", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.MODEL_ID, value = "当前模型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.DATA_TRACE_CODE, value = "数据跟踪", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.V_STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.V_VERSION, value = "版本", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.OBJ_SOURCE_ID, value = "对象", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.DESC, value = "描述", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S1, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S2, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S3, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S4, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S5, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S6, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S7, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S8, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M1, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M2, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M3, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M4, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M5, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M6, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M7, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M8, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M9, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M10, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.BS1, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.BS2, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.BS3, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I1, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I2, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I3, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I4, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I5, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I6, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I7, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I8, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I9, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I10, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D1, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D2, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D3, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D4, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D5, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D6, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D7, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D8, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.DA1, value = "内容", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CmdbModelVVOMeta.DA2, value = "内容", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CmdbModelVVOMeta.DA3, value = "内容", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CmdbModelVVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbModelVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.PID, value = "父", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.MODEL_ID, value = "当前模型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.DATA_TRACE_CODE, value = "数据跟踪", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.V_STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.V_VERSION, value = "版本", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.OBJ_SOURCE_ID, value = "对象", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.DESC, value = "描述", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S1, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S2, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S3, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S4, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S5, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S6, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S7, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S8, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M1, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M2, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M3, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M4, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M5, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M6, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M7, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M8, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M9, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M10, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.BS1, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.BS2, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.BS3, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I1, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I2, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I3, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I4, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I5, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I6, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I7, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I8, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I9, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I10, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D1, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D2, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D3, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D4, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D5, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D6, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D7, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D8, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.DA1, value = "内容", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.DA2, value = "内容", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.DA3, value = "内容", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = CmdbModelVServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -75,7 +128,9 @@ public class CmdbModelVController extends SuperController {
      * 删除配置值
      */
     @ApiOperation(value = "删除配置值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbModelVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbModelVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = CmdbModelVServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CmdbModelVServiceProxy.DELETE)
@@ -100,7 +155,9 @@ public class CmdbModelVController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除配置值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbModelVVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbModelVVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = CmdbModelVServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CmdbModelVServiceProxy.DELETE_BY_IDS)
@@ -145,7 +202,60 @@ public class CmdbModelVController extends SuperController {
      * 更新配置值
      */
     @ApiOperation(value = "更新配置值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbModelVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.PID, value = "父", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.MODEL_ID, value = "当前模型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.DATA_TRACE_CODE, value = "数据跟踪", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.V_STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.V_VERSION, value = "版本", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.OBJ_SOURCE_ID, value = "对象", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.DESC, value = "描述", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S1, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S2, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S3, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S4, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S5, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S6, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S7, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S8, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M1, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M2, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M3, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M4, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M5, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M6, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M7, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M8, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M9, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M10, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.BS1, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.BS2, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.BS3, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I1, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I2, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I3, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I4, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I5, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I6, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I7, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I8, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I9, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I10, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D1, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D2, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D3, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D4, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D5, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D6, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D7, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D8, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.DA1, value = "内容", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CmdbModelVVOMeta.DA2, value = "内容", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CmdbModelVVOMeta.DA3, value = "内容", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CmdbModelVVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbModelVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.PID, value = "父", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.MODEL_ID, value = "当前模型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.DATA_TRACE_CODE, value = "数据跟踪", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.V_STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.V_VERSION, value = "版本", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.OBJ_SOURCE_ID, value = "对象", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.DESC, value = "描述", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S1, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S2, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S3, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S4, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S5, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S6, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S7, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S8, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M1, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M2, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M3, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M4, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M5, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M6, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M7, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M8, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M9, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M10, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.BS1, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.BS2, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.BS3, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I1, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I2, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I3, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I4, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I5, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I6, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I7, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I8, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I9, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I10, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D1, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D2, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D3, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D4, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D5, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D6, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D7, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D8, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.DA1, value = "内容", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.DA2, value = "内容", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.DA3, value = "内容", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { CmdbModelVVOMeta.PAGE_INDEX, CmdbModelVVOMeta.PAGE_SIZE, CmdbModelVVOMeta.SEARCH_FIELD, CmdbModelVVOMeta.FUZZY_FIELD, CmdbModelVVOMeta.SEARCH_VALUE, CmdbModelVVOMeta.DIRTY_FIELDS, CmdbModelVVOMeta.SORT_FIELD, CmdbModelVVOMeta.SORT_TYPE, CmdbModelVVOMeta.IDS })
     @SentinelResource(value = CmdbModelVServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -159,7 +269,60 @@ public class CmdbModelVController extends SuperController {
      * 保存配置值
      */
     @ApiOperation(value = "保存配置值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbModelVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.PID, value = "父", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.MODEL_ID, value = "当前模型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.DATA_TRACE_CODE, value = "数据跟踪", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.V_STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.V_VERSION, value = "版本", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.OBJ_SOURCE_ID, value = "对象", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.DESC, value = "描述", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S1, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S2, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S3, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S4, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S5, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S6, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S7, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S8, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M1, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M2, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M3, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M4, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M5, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M6, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M7, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M8, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M9, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M10, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.BS1, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.BS2, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.BS3, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I1, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I2, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I3, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I4, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I5, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I6, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I7, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I8, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I9, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I10, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D1, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D2, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D3, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D4, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D5, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D6, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D7, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D8, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.DA1, value = "内容", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CmdbModelVVOMeta.DA2, value = "内容", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CmdbModelVVOMeta.DA3, value = "内容", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CmdbModelVVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbModelVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.PID, value = "父", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.MODEL_ID, value = "当前模型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.DATA_TRACE_CODE, value = "数据跟踪", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.V_STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.V_VERSION, value = "版本", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.OBJ_SOURCE_ID, value = "对象", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.DESC, value = "描述", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S1, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S2, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S3, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S4, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S5, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S6, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S7, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S8, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M1, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M2, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M3, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M4, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M5, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M6, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M7, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M8, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M9, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M10, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.BS1, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.BS2, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.BS3, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I1, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I2, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I3, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I4, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I5, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I6, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I7, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I8, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I9, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I10, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D1, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D2, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D3, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D4, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D5, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D6, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D7, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D8, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.DA1, value = "内容", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.DA2, value = "内容", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.DA3, value = "内容", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { CmdbModelVVOMeta.PAGE_INDEX, CmdbModelVVOMeta.PAGE_SIZE, CmdbModelVVOMeta.SEARCH_FIELD, CmdbModelVVOMeta.FUZZY_FIELD, CmdbModelVVOMeta.SEARCH_VALUE, CmdbModelVVOMeta.DIRTY_FIELDS, CmdbModelVVOMeta.SORT_FIELD, CmdbModelVVOMeta.SORT_TYPE, CmdbModelVVOMeta.IDS })
     @SentinelResource(value = CmdbModelVServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -173,7 +336,9 @@ public class CmdbModelVController extends SuperController {
      * 获取配置值
      */
     @ApiOperation(value = "获取配置值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbModelVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbModelVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = CmdbModelVServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CmdbModelVServiceProxy.GET_BY_ID)
@@ -189,7 +354,9 @@ public class CmdbModelVController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取配置值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbModelVVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbModelVVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = CmdbModelVServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CmdbModelVServiceProxy.GET_BY_IDS)
@@ -204,7 +371,60 @@ public class CmdbModelVController extends SuperController {
      * 查询配置值
      */
     @ApiOperation(value = "查询配置值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbModelVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.PID, value = "父", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.MODEL_ID, value = "当前模型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.DATA_TRACE_CODE, value = "数据跟踪", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.V_STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.V_VERSION, value = "版本", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.OBJ_SOURCE_ID, value = "对象", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.DESC, value = "描述", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S1, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S2, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S3, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S4, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S5, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S6, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S7, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S8, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M1, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M2, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M3, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M4, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M5, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M6, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M7, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M8, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M9, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M10, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.BS1, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.BS2, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.BS3, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I1, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I2, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I3, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I4, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I5, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I6, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I7, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I8, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I9, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I10, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D1, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D2, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D3, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D4, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D5, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D6, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D7, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D8, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.DA1, value = "内容", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CmdbModelVVOMeta.DA2, value = "内容", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CmdbModelVVOMeta.DA3, value = "内容", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CmdbModelVVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbModelVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.PID, value = "父", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.MODEL_ID, value = "当前模型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.DATA_TRACE_CODE, value = "数据跟踪", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.V_STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.V_VERSION, value = "版本", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.OBJ_SOURCE_ID, value = "对象", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.DESC, value = "描述", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S1, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S2, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S3, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S4, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S5, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S6, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S7, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S8, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M1, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M2, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M3, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M4, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M5, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M6, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M7, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M8, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M9, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M10, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.BS1, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.BS2, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.BS3, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I1, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I2, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I3, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I4, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I5, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I6, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I7, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I8, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I9, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I10, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D1, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D2, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D3, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D4, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D5, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D6, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D7, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D8, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.DA1, value = "内容", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.DA2, value = "内容", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.DA3, value = "内容", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { CmdbModelVVOMeta.PAGE_INDEX, CmdbModelVVOMeta.PAGE_SIZE })
     @SentinelResource(value = CmdbModelVServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CmdbModelVServiceProxy.QUERY_LIST)
@@ -219,7 +439,60 @@ public class CmdbModelVController extends SuperController {
      * 分页查询配置值
      */
     @ApiOperation(value = "分页查询配置值")
-    @ApiImplicitParams({ @ApiImplicitParam(name = CmdbModelVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.PID, value = "父", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.MODEL_ID, value = "当前模型", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.DATA_TRACE_CODE, value = "数据跟踪", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.V_STATUS, value = "状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.V_VERSION, value = "版本", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.OBJ_SOURCE_ID, value = "对象", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.DESC, value = "描述", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S1, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S2, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S3, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S4, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S5, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S6, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S7, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.S8, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M1, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M2, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M3, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M4, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M5, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M6, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M7, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M8, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M9, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.M10, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.BS1, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.BS2, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.BS3, value = "内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I1, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I2, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I3, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I4, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I5, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I6, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I7, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I8, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I9, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.I10, value = "内容", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D1, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D2, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D3, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D4, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D5, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D6, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D7, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.D8, value = "内容", required = false, dataTypeClass = BigDecimal.class), @ApiImplicitParam(name = CmdbModelVVOMeta.DA1, value = "内容", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CmdbModelVVOMeta.DA2, value = "内容", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CmdbModelVVOMeta.DA3, value = "内容", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = CmdbModelVVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = CmdbModelVVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.PID, value = "父", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.MODEL_ID, value = "当前模型", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.DATA_TRACE_CODE, value = "数据跟踪", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.V_STATUS, value = "状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.V_VERSION, value = "版本", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.OBJ_SOURCE_ID, value = "对象", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.DESC, value = "描述", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S1, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S2, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S3, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S4, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S5, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S6, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S7, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.S8, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M1, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M2, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M3, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M4, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M5, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M6, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M7, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M8, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M9, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.M10, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.BS1, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.BS2, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.BS3, value = "内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I1, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I2, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I3, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I4, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I5, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I6, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I7, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I8, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I9, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.I10, value = "内容", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D1, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D2, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D3, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D4, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D5, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D6, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D7, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.D8, value = "内容", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.DA1, value = "内容", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.DA2, value = "内容", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.DA3, value = "内容", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CmdbModelVVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = CmdbModelVServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CmdbModelVServiceProxy.QUERY_PAGED_LIST)

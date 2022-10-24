@@ -67,7 +67,12 @@ public class VoucherPrivController extends SuperController {
      * 添加凭证权限
      */
     @ApiOperation(value = "添加凭证权限")
-    @ApiImplicitParams({ @ApiImplicitParam(name = VoucherPrivVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "486554803770494976"), @ApiImplicitParam(name = VoucherPrivVOMeta.TYPE, value = "凭证类别", required = false, dataTypeClass = String.class, example = "app"), @ApiImplicitParam(name = VoucherPrivVOMeta.EMPL_ID, value = "用户", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = VoucherPrivVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = VoucherPrivVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "486554803770494976"),
+		@ApiImplicitParam(name = VoucherPrivVOMeta.TYPE, value = "凭证类别", required = false, dataTypeClass = String.class, example = "app"),
+		@ApiImplicitParam(name = VoucherPrivVOMeta.EMPL_ID, value = "用户", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = VoucherPrivVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = VoucherPrivServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(VoucherPrivServiceProxy.INSERT)
@@ -81,7 +86,9 @@ public class VoucherPrivController extends SuperController {
      * 删除凭证权限
      */
     @ApiOperation(value = "删除凭证权限")
-    @ApiImplicitParams({ @ApiImplicitParam(name = VoucherPrivVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "486554803770494976") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = VoucherPrivVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "486554803770494976")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = VoucherPrivServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(VoucherPrivServiceProxy.DELETE)
@@ -95,7 +102,9 @@ public class VoucherPrivController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除凭证权限")
-    @ApiImplicitParams({ @ApiImplicitParam(name = VoucherPrivVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = VoucherPrivVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = VoucherPrivServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(VoucherPrivServiceProxy.DELETE_BY_IDS)
@@ -108,7 +117,12 @@ public class VoucherPrivController extends SuperController {
      * 更新凭证权限
      */
     @ApiOperation(value = "更新凭证权限")
-    @ApiImplicitParams({ @ApiImplicitParam(name = VoucherPrivVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "486554803770494976"), @ApiImplicitParam(name = VoucherPrivVOMeta.TYPE, value = "凭证类别", required = false, dataTypeClass = String.class, example = "app"), @ApiImplicitParam(name = VoucherPrivVOMeta.EMPL_ID, value = "用户", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = VoucherPrivVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = VoucherPrivVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "486554803770494976"),
+		@ApiImplicitParam(name = VoucherPrivVOMeta.TYPE, value = "凭证类别", required = false, dataTypeClass = String.class, example = "app"),
+		@ApiImplicitParam(name = VoucherPrivVOMeta.EMPL_ID, value = "用户", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = VoucherPrivVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { VoucherPrivVOMeta.PAGE_INDEX, VoucherPrivVOMeta.PAGE_SIZE, VoucherPrivVOMeta.SEARCH_FIELD, VoucherPrivVOMeta.FUZZY_FIELD, VoucherPrivVOMeta.SEARCH_VALUE, VoucherPrivVOMeta.SORT_FIELD, VoucherPrivVOMeta.SORT_TYPE, VoucherPrivVOMeta.IDS })
     @SentinelResource(value = VoucherPrivServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(VoucherPrivServiceProxy.UPDATE)
@@ -122,7 +136,12 @@ public class VoucherPrivController extends SuperController {
      * 保存凭证权限
      */
     @ApiOperation(value = "保存凭证权限")
-    @ApiImplicitParams({ @ApiImplicitParam(name = VoucherPrivVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "486554803770494976"), @ApiImplicitParam(name = VoucherPrivVOMeta.TYPE, value = "凭证类别", required = false, dataTypeClass = String.class, example = "app"), @ApiImplicitParam(name = VoucherPrivVOMeta.EMPL_ID, value = "用户", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = VoucherPrivVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = VoucherPrivVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "486554803770494976"),
+		@ApiImplicitParam(name = VoucherPrivVOMeta.TYPE, value = "凭证类别", required = false, dataTypeClass = String.class, example = "app"),
+		@ApiImplicitParam(name = VoucherPrivVOMeta.EMPL_ID, value = "用户", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = VoucherPrivVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { VoucherPrivVOMeta.PAGE_INDEX, VoucherPrivVOMeta.PAGE_SIZE, VoucherPrivVOMeta.SEARCH_FIELD, VoucherPrivVOMeta.FUZZY_FIELD, VoucherPrivVOMeta.SEARCH_VALUE, VoucherPrivVOMeta.SORT_FIELD, VoucherPrivVOMeta.SORT_TYPE, VoucherPrivVOMeta.IDS })
     @SentinelResource(value = VoucherPrivServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(VoucherPrivServiceProxy.SAVE)
@@ -136,7 +155,9 @@ public class VoucherPrivController extends SuperController {
      * 获取凭证权限
      */
     @ApiOperation(value = "获取凭证权限")
-    @ApiImplicitParams({ @ApiImplicitParam(name = VoucherPrivVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = VoucherPrivVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = VoucherPrivServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(VoucherPrivServiceProxy.GET_BY_ID)
@@ -153,7 +174,9 @@ public class VoucherPrivController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除凭证权限")
-    @ApiImplicitParams({ @ApiImplicitParam(name = VoucherPrivVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = VoucherPrivVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = VoucherPrivServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(VoucherPrivServiceProxy.GET_BY_IDS)
@@ -168,7 +191,12 @@ public class VoucherPrivController extends SuperController {
      * 查询凭证权限
      */
     @ApiOperation(value = "查询凭证权限")
-    @ApiImplicitParams({ @ApiImplicitParam(name = VoucherPrivVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "486554803770494976"), @ApiImplicitParam(name = VoucherPrivVOMeta.TYPE, value = "凭证类别", required = false, dataTypeClass = String.class, example = "app"), @ApiImplicitParam(name = VoucherPrivVOMeta.EMPL_ID, value = "用户", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = VoucherPrivVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = VoucherPrivVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "486554803770494976"),
+		@ApiImplicitParam(name = VoucherPrivVOMeta.TYPE, value = "凭证类别", required = false, dataTypeClass = String.class, example = "app"),
+		@ApiImplicitParam(name = VoucherPrivVOMeta.EMPL_ID, value = "用户", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = VoucherPrivVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { VoucherPrivVOMeta.PAGE_INDEX, VoucherPrivVOMeta.PAGE_SIZE })
     @SentinelResource(value = VoucherPrivServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(VoucherPrivServiceProxy.QUERY_LIST)
@@ -231,7 +259,12 @@ public class VoucherPrivController extends SuperController {
      * 分页查询凭证权限
      */
     @ApiOperation(value = "分页查询凭证权限")
-    @ApiImplicitParams({ @ApiImplicitParam(name = VoucherPrivVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "486554803770494976"), @ApiImplicitParam(name = VoucherPrivVOMeta.TYPE, value = "凭证类别", required = false, dataTypeClass = String.class, example = "app"), @ApiImplicitParam(name = VoucherPrivVOMeta.EMPL_ID, value = "用户", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = VoucherPrivVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = VoucherPrivVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "486554803770494976"),
+		@ApiImplicitParam(name = VoucherPrivVOMeta.TYPE, value = "凭证类别", required = false, dataTypeClass = String.class, example = "app"),
+		@ApiImplicitParam(name = VoucherPrivVOMeta.EMPL_ID, value = "用户", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = VoucherPrivVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = VoucherPrivServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(VoucherPrivServiceProxy.QUERY_PAGED_LIST)

@@ -68,7 +68,19 @@ public class AssetEmployeeApplyController extends SuperController implements Bpm
      * 添加领用申请
      */
     @ApiOperation(value = "添加领用申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593493381083037696"), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class, example = "2"), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.CONTENT, value = "原因", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.APPLY_COUNT, value = "申请数量", required = false, dataTypeClass = Integer.class, example = "0"), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593493381083037696"),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class, example = "2"),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.CONTENT, value = "原因", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.APPLY_COUNT, value = "申请数量", required = false, dataTypeClass = Integer.class, example = "0"),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetEmployeeApplyServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetEmployeeApplyServiceProxy.INSERT)
@@ -82,7 +94,9 @@ public class AssetEmployeeApplyController extends SuperController implements Bpm
      * 删除领用申请
      */
     @ApiOperation(value = "删除领用申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593493381083037696") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593493381083037696")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetEmployeeApplyServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetEmployeeApplyServiceProxy.DELETE)
@@ -107,7 +121,9 @@ public class AssetEmployeeApplyController extends SuperController implements Bpm
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除领用申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetEmployeeApplyServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetEmployeeApplyServiceProxy.DELETE_BY_IDS)
@@ -152,7 +168,19 @@ public class AssetEmployeeApplyController extends SuperController implements Bpm
      * 更新领用申请
      */
     @ApiOperation(value = "更新领用申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593493381083037696"), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class, example = "2"), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.CONTENT, value = "原因", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.APPLY_COUNT, value = "申请数量", required = false, dataTypeClass = Integer.class, example = "0"), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593493381083037696"),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class, example = "2"),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.CONTENT, value = "原因", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.APPLY_COUNT, value = "申请数量", required = false, dataTypeClass = Integer.class, example = "0"),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetEmployeeApplyVOMeta.PAGE_INDEX, AssetEmployeeApplyVOMeta.PAGE_SIZE, AssetEmployeeApplyVOMeta.SEARCH_FIELD, AssetEmployeeApplyVOMeta.FUZZY_FIELD, AssetEmployeeApplyVOMeta.SEARCH_VALUE, AssetEmployeeApplyVOMeta.DIRTY_FIELDS, AssetEmployeeApplyVOMeta.SORT_FIELD, AssetEmployeeApplyVOMeta.SORT_TYPE, AssetEmployeeApplyVOMeta.IDS })
     @SentinelResource(value = AssetEmployeeApplyServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetEmployeeApplyServiceProxy.UPDATE)
@@ -166,7 +194,19 @@ public class AssetEmployeeApplyController extends SuperController implements Bpm
      * 保存领用申请
      */
     @ApiOperation(value = "保存领用申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593493381083037696"), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class, example = "2"), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.CONTENT, value = "原因", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.APPLY_COUNT, value = "申请数量", required = false, dataTypeClass = Integer.class, example = "0"), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593493381083037696"),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class, example = "2"),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.CONTENT, value = "原因", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.APPLY_COUNT, value = "申请数量", required = false, dataTypeClass = Integer.class, example = "0"),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetEmployeeApplyVOMeta.PAGE_INDEX, AssetEmployeeApplyVOMeta.PAGE_SIZE, AssetEmployeeApplyVOMeta.SEARCH_FIELD, AssetEmployeeApplyVOMeta.FUZZY_FIELD, AssetEmployeeApplyVOMeta.SEARCH_VALUE, AssetEmployeeApplyVOMeta.DIRTY_FIELDS, AssetEmployeeApplyVOMeta.SORT_FIELD, AssetEmployeeApplyVOMeta.SORT_TYPE, AssetEmployeeApplyVOMeta.IDS })
     @SentinelResource(value = AssetEmployeeApplyServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetEmployeeApplyServiceProxy.SAVE)
@@ -180,7 +220,9 @@ public class AssetEmployeeApplyController extends SuperController implements Bpm
      * 获取领用申请
      */
     @ApiOperation(value = "获取领用申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetEmployeeApplyServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetEmployeeApplyServiceProxy.GET_BY_ID)
@@ -199,7 +241,9 @@ public class AssetEmployeeApplyController extends SuperController implements Bpm
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取领用申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetEmployeeApplyServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetEmployeeApplyServiceProxy.GET_BY_IDS)
@@ -214,7 +258,19 @@ public class AssetEmployeeApplyController extends SuperController implements Bpm
      * 查询领用申请
      */
     @ApiOperation(value = "查询领用申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593493381083037696"), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class, example = "2"), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.CONTENT, value = "原因", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.APPLY_COUNT, value = "申请数量", required = false, dataTypeClass = Integer.class, example = "0"), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593493381083037696"),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class, example = "2"),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.CONTENT, value = "原因", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.APPLY_COUNT, value = "申请数量", required = false, dataTypeClass = Integer.class, example = "0"),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetEmployeeApplyVOMeta.PAGE_INDEX, AssetEmployeeApplyVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetEmployeeApplyServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetEmployeeApplyServiceProxy.QUERY_LIST)
@@ -231,7 +287,19 @@ public class AssetEmployeeApplyController extends SuperController implements Bpm
      * 分页查询领用申请
      */
     @ApiOperation(value = "分页查询领用申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593493381083037696"), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class, example = "2"), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.CONTENT, value = "原因", required = false, dataTypeClass = String.class, example = "1212"), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.APPLY_COUNT, value = "申请数量", required = false, dataTypeClass = Integer.class, example = "0"), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetEmployeeApplyVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "593493381083037696"),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.NAME, value = "业务名称", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ORG_ID, value = "申请部门", required = false, dataTypeClass = String.class, example = "2"),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.CONTENT, value = "原因", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.APPLY_COUNT, value = "申请数量", required = false, dataTypeClass = Integer.class, example = "0"),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.RECORD_TIME, value = "记录时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetEmployeeApplyVOMeta.SELECTED_CODE, value = "选择数据", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetEmployeeApplyServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetEmployeeApplyServiceProxy.QUERY_PAGED_LIST)

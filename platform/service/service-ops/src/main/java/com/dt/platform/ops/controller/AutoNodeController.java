@@ -61,7 +61,18 @@ public class AutoNodeController extends SuperController {
      * 添加节点
      */
     @ApiOperation(value = "添加节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613661580453740544"), @ApiImplicitParam(name = AutoNodeVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoNodeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "节点1"), @ApiImplicitParam(name = AutoNodeVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"), @ApiImplicitParam(name = AutoNodeVOMeta.TYPE, value = "节点类型", required = false, dataTypeClass = String.class, example = "host"), @ApiImplicitParam(name = AutoNodeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AutoNodeVOMeta.IP, value = "IP", required = false, dataTypeClass = String.class, example = "127.0.0.1"), @ApiImplicitParam(name = AutoNodeVOMeta.PORT, value = "端口", required = false, dataTypeClass = Integer.class, example = "22"), @ApiImplicitParam(name = AutoNodeVOMeta.VOUCHER_ID, value = "凭证", required = false, dataTypeClass = String.class, example = "613742519708024832"), @ApiImplicitParam(name = AutoNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613661580453740544"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoNodeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "节点1"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.TYPE, value = "节点类型", required = false, dataTypeClass = String.class, example = "host"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.IP, value = "IP", required = false, dataTypeClass = String.class, example = "127.0.0.1"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.PORT, value = "端口", required = false, dataTypeClass = Integer.class, example = "22"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.VOUCHER_ID, value = "凭证", required = false, dataTypeClass = String.class, example = "613742519708024832"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AutoNodeServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoNodeServiceProxy.INSERT)
@@ -75,7 +86,9 @@ public class AutoNodeController extends SuperController {
      * 删除节点
      */
     @ApiOperation(value = "删除节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613661580453740544") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613661580453740544")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AutoNodeServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoNodeServiceProxy.DELETE)
@@ -100,7 +113,9 @@ public class AutoNodeController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoNodeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoNodeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoNodeServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoNodeServiceProxy.DELETE_BY_IDS)
@@ -145,7 +160,18 @@ public class AutoNodeController extends SuperController {
      * 更新节点
      */
     @ApiOperation(value = "更新节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613661580453740544"), @ApiImplicitParam(name = AutoNodeVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoNodeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "节点1"), @ApiImplicitParam(name = AutoNodeVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"), @ApiImplicitParam(name = AutoNodeVOMeta.TYPE, value = "节点类型", required = false, dataTypeClass = String.class, example = "host"), @ApiImplicitParam(name = AutoNodeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AutoNodeVOMeta.IP, value = "IP", required = false, dataTypeClass = String.class, example = "127.0.0.1"), @ApiImplicitParam(name = AutoNodeVOMeta.PORT, value = "端口", required = false, dataTypeClass = Integer.class, example = "22"), @ApiImplicitParam(name = AutoNodeVOMeta.VOUCHER_ID, value = "凭证", required = false, dataTypeClass = String.class, example = "613742519708024832"), @ApiImplicitParam(name = AutoNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613661580453740544"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoNodeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "节点1"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.TYPE, value = "节点类型", required = false, dataTypeClass = String.class, example = "host"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.IP, value = "IP", required = false, dataTypeClass = String.class, example = "127.0.0.1"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.PORT, value = "端口", required = false, dataTypeClass = Integer.class, example = "22"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.VOUCHER_ID, value = "凭证", required = false, dataTypeClass = String.class, example = "613742519708024832"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AutoNodeVOMeta.PAGE_INDEX, AutoNodeVOMeta.PAGE_SIZE, AutoNodeVOMeta.SEARCH_FIELD, AutoNodeVOMeta.FUZZY_FIELD, AutoNodeVOMeta.SEARCH_VALUE, AutoNodeVOMeta.DIRTY_FIELDS, AutoNodeVOMeta.SORT_FIELD, AutoNodeVOMeta.SORT_TYPE, AutoNodeVOMeta.IDS })
     @SentinelResource(value = AutoNodeServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoNodeServiceProxy.UPDATE)
@@ -159,7 +185,18 @@ public class AutoNodeController extends SuperController {
      * 保存节点
      */
     @ApiOperation(value = "保存节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613661580453740544"), @ApiImplicitParam(name = AutoNodeVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoNodeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "节点1"), @ApiImplicitParam(name = AutoNodeVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"), @ApiImplicitParam(name = AutoNodeVOMeta.TYPE, value = "节点类型", required = false, dataTypeClass = String.class, example = "host"), @ApiImplicitParam(name = AutoNodeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AutoNodeVOMeta.IP, value = "IP", required = false, dataTypeClass = String.class, example = "127.0.0.1"), @ApiImplicitParam(name = AutoNodeVOMeta.PORT, value = "端口", required = false, dataTypeClass = Integer.class, example = "22"), @ApiImplicitParam(name = AutoNodeVOMeta.VOUCHER_ID, value = "凭证", required = false, dataTypeClass = String.class, example = "613742519708024832"), @ApiImplicitParam(name = AutoNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613661580453740544"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoNodeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "节点1"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.TYPE, value = "节点类型", required = false, dataTypeClass = String.class, example = "host"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.IP, value = "IP", required = false, dataTypeClass = String.class, example = "127.0.0.1"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.PORT, value = "端口", required = false, dataTypeClass = Integer.class, example = "22"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.VOUCHER_ID, value = "凭证", required = false, dataTypeClass = String.class, example = "613742519708024832"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoNodeVOMeta.PAGE_INDEX, AutoNodeVOMeta.PAGE_SIZE, AutoNodeVOMeta.SEARCH_FIELD, AutoNodeVOMeta.FUZZY_FIELD, AutoNodeVOMeta.SEARCH_VALUE, AutoNodeVOMeta.DIRTY_FIELDS, AutoNodeVOMeta.SORT_FIELD, AutoNodeVOMeta.SORT_TYPE, AutoNodeVOMeta.IDS })
     @SentinelResource(value = AutoNodeServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoNodeServiceProxy.SAVE)
@@ -173,7 +210,9 @@ public class AutoNodeController extends SuperController {
      * 获取节点
      */
     @ApiOperation(value = "获取节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AutoNodeServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoNodeServiceProxy.GET_BY_ID)
@@ -191,7 +230,9 @@ public class AutoNodeController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoNodeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoNodeVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoNodeServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoNodeServiceProxy.GET_BY_IDS)
@@ -206,7 +247,18 @@ public class AutoNodeController extends SuperController {
      * 查询节点
      */
     @ApiOperation(value = "查询节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613661580453740544"), @ApiImplicitParam(name = AutoNodeVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoNodeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "节点1"), @ApiImplicitParam(name = AutoNodeVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"), @ApiImplicitParam(name = AutoNodeVOMeta.TYPE, value = "节点类型", required = false, dataTypeClass = String.class, example = "host"), @ApiImplicitParam(name = AutoNodeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AutoNodeVOMeta.IP, value = "IP", required = false, dataTypeClass = String.class, example = "127.0.0.1"), @ApiImplicitParam(name = AutoNodeVOMeta.PORT, value = "端口", required = false, dataTypeClass = Integer.class, example = "22"), @ApiImplicitParam(name = AutoNodeVOMeta.VOUCHER_ID, value = "凭证", required = false, dataTypeClass = String.class, example = "613742519708024832"), @ApiImplicitParam(name = AutoNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613661580453740544"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoNodeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "节点1"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.TYPE, value = "节点类型", required = false, dataTypeClass = String.class, example = "host"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.IP, value = "IP", required = false, dataTypeClass = String.class, example = "127.0.0.1"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.PORT, value = "端口", required = false, dataTypeClass = Integer.class, example = "22"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.VOUCHER_ID, value = "凭证", required = false, dataTypeClass = String.class, example = "613742519708024832"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoNodeVOMeta.PAGE_INDEX, AutoNodeVOMeta.PAGE_SIZE })
     @SentinelResource(value = AutoNodeServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoNodeServiceProxy.QUERY_LIST)
@@ -221,7 +273,18 @@ public class AutoNodeController extends SuperController {
      * 分页查询节点
      */
     @ApiOperation(value = "分页查询节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613661580453740544"), @ApiImplicitParam(name = AutoNodeVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoNodeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "节点1"), @ApiImplicitParam(name = AutoNodeVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"), @ApiImplicitParam(name = AutoNodeVOMeta.TYPE, value = "节点类型", required = false, dataTypeClass = String.class, example = "host"), @ApiImplicitParam(name = AutoNodeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AutoNodeVOMeta.IP, value = "IP", required = false, dataTypeClass = String.class, example = "127.0.0.1"), @ApiImplicitParam(name = AutoNodeVOMeta.PORT, value = "端口", required = false, dataTypeClass = Integer.class, example = "22"), @ApiImplicitParam(name = AutoNodeVOMeta.VOUCHER_ID, value = "凭证", required = false, dataTypeClass = String.class, example = "613742519708024832"), @ApiImplicitParam(name = AutoNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613661580453740544"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoNodeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "节点1"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.TYPE, value = "节点类型", required = false, dataTypeClass = String.class, example = "host"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.IP, value = "IP", required = false, dataTypeClass = String.class, example = "127.0.0.1"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.PORT, value = "端口", required = false, dataTypeClass = Integer.class, example = "22"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.VOUCHER_ID, value = "凭证", required = false, dataTypeClass = String.class, example = "613742519708024832"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AutoNodeServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoNodeServiceProxy.QUERY_PAGED_LIST)
@@ -238,7 +301,18 @@ public class AutoNodeController extends SuperController {
      * 分页查询节点
      */
     @ApiOperation(value = "分页查询节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613661580453740544"), @ApiImplicitParam(name = AutoNodeVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoNodeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "节点1"), @ApiImplicitParam(name = AutoNodeVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"), @ApiImplicitParam(name = AutoNodeVOMeta.TYPE, value = "节点类型", required = false, dataTypeClass = String.class, example = "host"), @ApiImplicitParam(name = AutoNodeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AutoNodeVOMeta.IP, value = "IP", required = false, dataTypeClass = String.class, example = "127.0.0.1"), @ApiImplicitParam(name = AutoNodeVOMeta.PORT, value = "端口", required = false, dataTypeClass = Integer.class, example = "22"), @ApiImplicitParam(name = AutoNodeVOMeta.VOUCHER_ID, value = "凭证", required = false, dataTypeClass = String.class, example = "613742519708024832"), @ApiImplicitParam(name = AutoNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613661580453740544"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoNodeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "节点1"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.TYPE, value = "节点类型", required = false, dataTypeClass = String.class, example = "host"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.IP, value = "IP", required = false, dataTypeClass = String.class, example = "127.0.0.1"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.PORT, value = "端口", required = false, dataTypeClass = Integer.class, example = "22"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.VOUCHER_ID, value = "凭证", required = false, dataTypeClass = String.class, example = "613742519708024832"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AutoNodeServiceProxy.QUERY_PAGED_LIST_BY_SELECTED, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoNodeServiceProxy.QUERY_PAGED_LIST_BY_SELECTED)
@@ -255,7 +329,18 @@ public class AutoNodeController extends SuperController {
      * 分页查询节点
      */
     @ApiOperation(value = "分页查询节点")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613661580453740544"), @ApiImplicitParam(name = AutoNodeVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoNodeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "节点1"), @ApiImplicitParam(name = AutoNodeVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"), @ApiImplicitParam(name = AutoNodeVOMeta.TYPE, value = "节点类型", required = false, dataTypeClass = String.class, example = "host"), @ApiImplicitParam(name = AutoNodeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AutoNodeVOMeta.IP, value = "IP", required = false, dataTypeClass = String.class, example = "127.0.0.1"), @ApiImplicitParam(name = AutoNodeVOMeta.PORT, value = "端口", required = false, dataTypeClass = Integer.class, example = "22"), @ApiImplicitParam(name = AutoNodeVOMeta.VOUCHER_ID, value = "凭证", required = false, dataTypeClass = String.class, example = "613742519708024832"), @ApiImplicitParam(name = AutoNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoNodeVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613661580453740544"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.OWNER_CODE, value = "归属", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoNodeVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "节点1"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.GROUP_ID, value = "分组", required = false, dataTypeClass = String.class, example = "613661086134042624"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.TYPE, value = "节点类型", required = false, dataTypeClass = String.class, example = "host"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.IP, value = "IP", required = false, dataTypeClass = String.class, example = "127.0.0.1"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.PORT, value = "端口", required = false, dataTypeClass = Integer.class, example = "22"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.VOUCHER_ID, value = "凭证", required = false, dataTypeClass = String.class, example = "613742519708024832"),
+		@ApiImplicitParam(name = AutoNodeVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AutoNodeServiceProxy.QUERY_PAGED_LIST_BY_SELECT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoNodeServiceProxy.QUERY_PAGED_LIST_BY_SELECT)

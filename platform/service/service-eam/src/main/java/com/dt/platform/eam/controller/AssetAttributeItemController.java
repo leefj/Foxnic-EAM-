@@ -59,7 +59,21 @@ public class AssetAttributeItemController extends SuperController {
      * 添加资产字段配置项
      */
     @ApiOperation(value = "添加资产字段配置项")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "527a4336-0f92-11ec-ab08-00163e2e6a36"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.OWNER_CODE, value = "所属模块", required = false, dataTypeClass = String.class, example = "base"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.ATTRIBUTE_ID, value = "属性", required = false, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.DIMENSION, value = "所属维度", required = false, dataTypeClass = String.class, example = "maintainer"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.REQUIRED, value = "必选", required = false, dataTypeClass = String.class, example = "0"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_TYPE, value = "布局类型", required = false, dataTypeClass = String.class, example = "3"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_SHOW, value = "列表显示", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_CONTENT, value = "列表内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_SORT, value = "列表排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetAttributeItemVOMeta.FORM_SHOW, value = "表单显示", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_ROW, value = "行布局位置", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_COLUMN, value = "列布局位置", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "527a4336-0f92-11ec-ab08-00163e2e6a36"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.OWNER_CODE, value = "所属模块", required = false, dataTypeClass = String.class, example = "base"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.ATTRIBUTE_ID, value = "属性", required = false, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.DIMENSION, value = "所属维度", required = false, dataTypeClass = String.class, example = "maintainer"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.REQUIRED, value = "必选", required = false, dataTypeClass = String.class, example = "0"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_TYPE, value = "布局类型", required = false, dataTypeClass = String.class, example = "3"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_SHOW, value = "列表显示", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_CONTENT, value = "列表内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_SORT, value = "列表排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.FORM_SHOW, value = "表单显示", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_ROW, value = "行布局位置", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_COLUMN, value = "列布局位置", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetAttributeItemServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetAttributeItemServiceProxy.INSERT)
@@ -73,7 +87,9 @@ public class AssetAttributeItemController extends SuperController {
      * 删除资产字段配置项
      */
     @ApiOperation(value = "删除资产字段配置项")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "527a4336-0f92-11ec-ab08-00163e2e6a36") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "527a4336-0f92-11ec-ab08-00163e2e6a36")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetAttributeItemServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetAttributeItemServiceProxy.DELETE)
@@ -87,7 +103,9 @@ public class AssetAttributeItemController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产字段配置项")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetAttributeItemServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetAttributeItemServiceProxy.DELETE_BY_IDS)
@@ -100,7 +118,21 @@ public class AssetAttributeItemController extends SuperController {
      * 更新资产字段配置项
      */
     @ApiOperation(value = "更新资产字段配置项")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "527a4336-0f92-11ec-ab08-00163e2e6a36"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.OWNER_CODE, value = "所属模块", required = false, dataTypeClass = String.class, example = "base"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.ATTRIBUTE_ID, value = "属性", required = false, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.DIMENSION, value = "所属维度", required = false, dataTypeClass = String.class, example = "maintainer"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.REQUIRED, value = "必选", required = false, dataTypeClass = String.class, example = "0"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_TYPE, value = "布局类型", required = false, dataTypeClass = String.class, example = "3"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_SHOW, value = "列表显示", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_CONTENT, value = "列表内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_SORT, value = "列表排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetAttributeItemVOMeta.FORM_SHOW, value = "表单显示", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_ROW, value = "行布局位置", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_COLUMN, value = "列布局位置", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "527a4336-0f92-11ec-ab08-00163e2e6a36"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.OWNER_CODE, value = "所属模块", required = false, dataTypeClass = String.class, example = "base"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.ATTRIBUTE_ID, value = "属性", required = false, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.DIMENSION, value = "所属维度", required = false, dataTypeClass = String.class, example = "maintainer"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.REQUIRED, value = "必选", required = false, dataTypeClass = String.class, example = "0"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_TYPE, value = "布局类型", required = false, dataTypeClass = String.class, example = "3"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_SHOW, value = "列表显示", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_CONTENT, value = "列表内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_SORT, value = "列表排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.FORM_SHOW, value = "表单显示", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_ROW, value = "行布局位置", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_COLUMN, value = "列布局位置", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetAttributeItemVOMeta.PAGE_INDEX, AssetAttributeItemVOMeta.PAGE_SIZE, AssetAttributeItemVOMeta.SEARCH_FIELD, AssetAttributeItemVOMeta.FUZZY_FIELD, AssetAttributeItemVOMeta.SEARCH_VALUE, AssetAttributeItemVOMeta.SORT_FIELD, AssetAttributeItemVOMeta.SORT_TYPE, AssetAttributeItemVOMeta.IDS })
     @SentinelResource(value = AssetAttributeItemServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetAttributeItemServiceProxy.UPDATE)
@@ -114,7 +146,21 @@ public class AssetAttributeItemController extends SuperController {
      * 保存资产字段配置项
      */
     @ApiOperation(value = "保存资产字段配置项")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "527a4336-0f92-11ec-ab08-00163e2e6a36"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.OWNER_CODE, value = "所属模块", required = false, dataTypeClass = String.class, example = "base"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.ATTRIBUTE_ID, value = "属性", required = false, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.DIMENSION, value = "所属维度", required = false, dataTypeClass = String.class, example = "maintainer"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.REQUIRED, value = "必选", required = false, dataTypeClass = String.class, example = "0"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_TYPE, value = "布局类型", required = false, dataTypeClass = String.class, example = "3"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_SHOW, value = "列表显示", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_CONTENT, value = "列表内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_SORT, value = "列表排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetAttributeItemVOMeta.FORM_SHOW, value = "表单显示", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_ROW, value = "行布局位置", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_COLUMN, value = "列布局位置", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "527a4336-0f92-11ec-ab08-00163e2e6a36"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.OWNER_CODE, value = "所属模块", required = false, dataTypeClass = String.class, example = "base"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.ATTRIBUTE_ID, value = "属性", required = false, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.DIMENSION, value = "所属维度", required = false, dataTypeClass = String.class, example = "maintainer"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.REQUIRED, value = "必选", required = false, dataTypeClass = String.class, example = "0"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_TYPE, value = "布局类型", required = false, dataTypeClass = String.class, example = "3"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_SHOW, value = "列表显示", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_CONTENT, value = "列表内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_SORT, value = "列表排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.FORM_SHOW, value = "表单显示", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_ROW, value = "行布局位置", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_COLUMN, value = "列布局位置", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetAttributeItemVOMeta.PAGE_INDEX, AssetAttributeItemVOMeta.PAGE_SIZE, AssetAttributeItemVOMeta.SEARCH_FIELD, AssetAttributeItemVOMeta.FUZZY_FIELD, AssetAttributeItemVOMeta.SEARCH_VALUE, AssetAttributeItemVOMeta.SORT_FIELD, AssetAttributeItemVOMeta.SORT_TYPE, AssetAttributeItemVOMeta.IDS })
     @SentinelResource(value = AssetAttributeItemServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetAttributeItemServiceProxy.SAVE)
@@ -128,7 +174,9 @@ public class AssetAttributeItemController extends SuperController {
      * 获取资产字段配置项
      */
     @ApiOperation(value = "获取资产字段配置项")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetAttributeItemServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetAttributeItemServiceProxy.GET_BY_ID)
@@ -146,7 +194,9 @@ public class AssetAttributeItemController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产字段配置项")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetAttributeItemServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetAttributeItemServiceProxy.GET_BY_IDS)
@@ -161,7 +211,21 @@ public class AssetAttributeItemController extends SuperController {
      * 查询资产字段配置项
      */
     @ApiOperation(value = "查询资产字段配置项")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "527a4336-0f92-11ec-ab08-00163e2e6a36"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.OWNER_CODE, value = "所属模块", required = false, dataTypeClass = String.class, example = "base"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.ATTRIBUTE_ID, value = "属性", required = false, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.DIMENSION, value = "所属维度", required = false, dataTypeClass = String.class, example = "maintainer"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.REQUIRED, value = "必选", required = false, dataTypeClass = String.class, example = "0"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_TYPE, value = "布局类型", required = false, dataTypeClass = String.class, example = "3"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_SHOW, value = "列表显示", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_CONTENT, value = "列表内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_SORT, value = "列表排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetAttributeItemVOMeta.FORM_SHOW, value = "表单显示", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_ROW, value = "行布局位置", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_COLUMN, value = "列布局位置", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "527a4336-0f92-11ec-ab08-00163e2e6a36"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.OWNER_CODE, value = "所属模块", required = false, dataTypeClass = String.class, example = "base"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.ATTRIBUTE_ID, value = "属性", required = false, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.DIMENSION, value = "所属维度", required = false, dataTypeClass = String.class, example = "maintainer"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.REQUIRED, value = "必选", required = false, dataTypeClass = String.class, example = "0"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_TYPE, value = "布局类型", required = false, dataTypeClass = String.class, example = "3"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_SHOW, value = "列表显示", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_CONTENT, value = "列表内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_SORT, value = "列表排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.FORM_SHOW, value = "表单显示", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_ROW, value = "行布局位置", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_COLUMN, value = "列布局位置", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetAttributeItemVOMeta.PAGE_INDEX, AssetAttributeItemVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetAttributeItemServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetAttributeItemServiceProxy.QUERY_LIST)
@@ -177,7 +241,21 @@ public class AssetAttributeItemController extends SuperController {
      * 分页查询资产字段配置项
      */
     @ApiOperation(value = "分页查询资产字段配置项")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "527a4336-0f92-11ec-ab08-00163e2e6a36"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.OWNER_CODE, value = "所属模块", required = false, dataTypeClass = String.class, example = "base"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.ATTRIBUTE_ID, value = "属性", required = false, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.DIMENSION, value = "所属维度", required = false, dataTypeClass = String.class, example = "maintainer"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.REQUIRED, value = "必选", required = false, dataTypeClass = String.class, example = "0"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_TYPE, value = "布局类型", required = false, dataTypeClass = String.class, example = "3"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_SHOW, value = "列表显示", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_CONTENT, value = "列表内容", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_SORT, value = "列表排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = AssetAttributeItemVOMeta.FORM_SHOW, value = "表单显示", required = false, dataTypeClass = String.class, example = "1"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_ROW, value = "行布局位置", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_COLUMN, value = "列布局位置", required = false, dataTypeClass = Integer.class, example = "1"), @ApiImplicitParam(name = AssetAttributeItemVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "527a4336-0f92-11ec-ab08-00163e2e6a36"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.OWNER_CODE, value = "所属模块", required = false, dataTypeClass = String.class, example = "base"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.ATTRIBUTE_ID, value = "属性", required = false, dataTypeClass = String.class, example = "000b5919-0f8b-11ec-ab08-00163e2e6a36"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.DIMENSION, value = "所属维度", required = false, dataTypeClass = String.class, example = "maintainer"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.REQUIRED, value = "必选", required = false, dataTypeClass = String.class, example = "0"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_TYPE, value = "布局类型", required = false, dataTypeClass = String.class, example = "3"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_SHOW, value = "列表显示", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_CONTENT, value = "列表内容", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LIST_SORT, value = "列表排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.FORM_SHOW, value = "表单显示", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_ROW, value = "行布局位置", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.LAYOUT_COLUMN, value = "列布局位置", required = false, dataTypeClass = Integer.class, example = "1"),
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetAttributeItemServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetAttributeItemServiceProxy.QUERY_PAGED_LIST)
@@ -194,7 +272,9 @@ public class AssetAttributeItemController extends SuperController {
      * 分页查询资产字段配置项
      */
     @ApiOperation(value = "分页查询资产字段配置项")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "527a4336-0f92-11ec-ab08-00163e2e6a36") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "527a4336-0f92-11ec-ab08-00163e2e6a36")
+	})
     @ApiOperationSupport(order = 9)
     @SentinelResource(value = AssetAttributeItemServiceProxy.QUERY_FORM_COLUMN_BY_MODULE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetAttributeItemServiceProxy.QUERY_FORM_COLUMN_BY_MODULE)
@@ -208,7 +288,9 @@ public class AssetAttributeItemController extends SuperController {
      * 分页查询资产字段配置项
      */
     @ApiOperation(value = "分页查询资产字段配置项")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetAttributeItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "527a4336-0f92-11ec-ab08-00163e2e6a36") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetAttributeItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "527a4336-0f92-11ec-ab08-00163e2e6a36")
+	})
     @ApiOperationSupport(order = 10)
     @SentinelResource(value = AssetAttributeItemServiceProxy.QUERY_LIST_COLUMN_BY_MODULE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetAttributeItemServiceProxy.QUERY_LIST_COLUMN_BY_MODULE)

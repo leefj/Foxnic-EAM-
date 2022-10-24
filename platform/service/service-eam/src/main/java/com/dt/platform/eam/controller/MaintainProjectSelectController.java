@@ -57,7 +57,12 @@ public class MaintainProjectSelectController extends SuperController {
      * 添加项目
      */
     @ApiOperation(value = "添加项目")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MaintainProjectSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainProjectSelectVOMeta.PROJECT_ID, value = "处理", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainProjectSelectVOMeta.OWNER_ID, value = "资产", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainProjectSelectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MaintainProjectSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainProjectSelectVOMeta.PROJECT_ID, value = "处理", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainProjectSelectVOMeta.OWNER_ID, value = "资产", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainProjectSelectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = MaintainProjectSelectServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MaintainProjectSelectServiceProxy.INSERT)
@@ -71,7 +76,9 @@ public class MaintainProjectSelectController extends SuperController {
      * 删除项目
      */
     @ApiOperation(value = "删除项目")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MaintainProjectSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MaintainProjectSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = MaintainProjectSelectServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MaintainProjectSelectServiceProxy.DELETE)
@@ -85,7 +92,9 @@ public class MaintainProjectSelectController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除项目")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MaintainProjectSelectVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MaintainProjectSelectVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MaintainProjectSelectServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MaintainProjectSelectServiceProxy.DELETE_BY_IDS)
@@ -98,7 +107,12 @@ public class MaintainProjectSelectController extends SuperController {
      * 更新项目
      */
     @ApiOperation(value = "更新项目")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MaintainProjectSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainProjectSelectVOMeta.PROJECT_ID, value = "处理", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainProjectSelectVOMeta.OWNER_ID, value = "资产", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainProjectSelectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MaintainProjectSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainProjectSelectVOMeta.PROJECT_ID, value = "处理", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainProjectSelectVOMeta.OWNER_ID, value = "资产", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainProjectSelectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { MaintainProjectSelectVOMeta.PAGE_INDEX, MaintainProjectSelectVOMeta.PAGE_SIZE, MaintainProjectSelectVOMeta.SEARCH_FIELD, MaintainProjectSelectVOMeta.FUZZY_FIELD, MaintainProjectSelectVOMeta.SEARCH_VALUE, MaintainProjectSelectVOMeta.DIRTY_FIELDS, MaintainProjectSelectVOMeta.SORT_FIELD, MaintainProjectSelectVOMeta.SORT_TYPE, MaintainProjectSelectVOMeta.IDS })
     @SentinelResource(value = MaintainProjectSelectServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MaintainProjectSelectServiceProxy.UPDATE)
@@ -112,7 +126,12 @@ public class MaintainProjectSelectController extends SuperController {
      * 保存项目
      */
     @ApiOperation(value = "保存项目")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MaintainProjectSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainProjectSelectVOMeta.PROJECT_ID, value = "处理", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainProjectSelectVOMeta.OWNER_ID, value = "资产", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainProjectSelectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MaintainProjectSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainProjectSelectVOMeta.PROJECT_ID, value = "处理", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainProjectSelectVOMeta.OWNER_ID, value = "资产", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainProjectSelectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MaintainProjectSelectVOMeta.PAGE_INDEX, MaintainProjectSelectVOMeta.PAGE_SIZE, MaintainProjectSelectVOMeta.SEARCH_FIELD, MaintainProjectSelectVOMeta.FUZZY_FIELD, MaintainProjectSelectVOMeta.SEARCH_VALUE, MaintainProjectSelectVOMeta.DIRTY_FIELDS, MaintainProjectSelectVOMeta.SORT_FIELD, MaintainProjectSelectVOMeta.SORT_TYPE, MaintainProjectSelectVOMeta.IDS })
     @SentinelResource(value = MaintainProjectSelectServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MaintainProjectSelectServiceProxy.SAVE)
@@ -126,7 +145,9 @@ public class MaintainProjectSelectController extends SuperController {
      * 获取项目
      */
     @ApiOperation(value = "获取项目")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MaintainProjectSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MaintainProjectSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = MaintainProjectSelectServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MaintainProjectSelectServiceProxy.GET_BY_ID)
@@ -142,7 +163,9 @@ public class MaintainProjectSelectController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取项目")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MaintainProjectSelectVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MaintainProjectSelectVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = MaintainProjectSelectServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MaintainProjectSelectServiceProxy.GET_BY_IDS)
@@ -157,7 +180,12 @@ public class MaintainProjectSelectController extends SuperController {
      * 查询项目
      */
     @ApiOperation(value = "查询项目")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MaintainProjectSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainProjectSelectVOMeta.PROJECT_ID, value = "处理", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainProjectSelectVOMeta.OWNER_ID, value = "资产", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainProjectSelectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MaintainProjectSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainProjectSelectVOMeta.PROJECT_ID, value = "处理", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainProjectSelectVOMeta.OWNER_ID, value = "资产", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainProjectSelectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { MaintainProjectSelectVOMeta.PAGE_INDEX, MaintainProjectSelectVOMeta.PAGE_SIZE })
     @SentinelResource(value = MaintainProjectSelectServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MaintainProjectSelectServiceProxy.QUERY_LIST)
@@ -172,7 +200,12 @@ public class MaintainProjectSelectController extends SuperController {
      * 分页查询项目
      */
     @ApiOperation(value = "分页查询项目")
-    @ApiImplicitParams({ @ApiImplicitParam(name = MaintainProjectSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainProjectSelectVOMeta.PROJECT_ID, value = "处理", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainProjectSelectVOMeta.OWNER_ID, value = "资产", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = MaintainProjectSelectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = MaintainProjectSelectVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainProjectSelectVOMeta.PROJECT_ID, value = "处理", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainProjectSelectVOMeta.OWNER_ID, value = "资产", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = MaintainProjectSelectVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = MaintainProjectSelectServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MaintainProjectSelectServiceProxy.QUERY_PAGED_LIST)

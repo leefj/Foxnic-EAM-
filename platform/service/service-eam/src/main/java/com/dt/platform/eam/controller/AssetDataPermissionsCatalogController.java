@@ -57,7 +57,11 @@ public class AssetDataPermissionsCatalogController extends SuperController {
      * 添加分类
      */
     @ApiOperation(value = "添加分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetDataPermissionsCatalogServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsCatalogServiceProxy.INSERT)
@@ -71,7 +75,9 @@ public class AssetDataPermissionsCatalogController extends SuperController {
      * 删除分类
      */
     @ApiOperation(value = "删除分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetDataPermissionsCatalogServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsCatalogServiceProxy.DELETE)
@@ -85,7 +91,9 @@ public class AssetDataPermissionsCatalogController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetDataPermissionsCatalogServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsCatalogServiceProxy.DELETE_BY_IDS)
@@ -98,7 +106,11 @@ public class AssetDataPermissionsCatalogController extends SuperController {
      * 更新分类
      */
     @ApiOperation(value = "更新分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetDataPermissionsCatalogVOMeta.PAGE_INDEX, AssetDataPermissionsCatalogVOMeta.PAGE_SIZE, AssetDataPermissionsCatalogVOMeta.SEARCH_FIELD, AssetDataPermissionsCatalogVOMeta.FUZZY_FIELD, AssetDataPermissionsCatalogVOMeta.SEARCH_VALUE, AssetDataPermissionsCatalogVOMeta.DIRTY_FIELDS, AssetDataPermissionsCatalogVOMeta.SORT_FIELD, AssetDataPermissionsCatalogVOMeta.SORT_TYPE, AssetDataPermissionsCatalogVOMeta.IDS })
     @SentinelResource(value = AssetDataPermissionsCatalogServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsCatalogServiceProxy.UPDATE)
@@ -112,7 +124,11 @@ public class AssetDataPermissionsCatalogController extends SuperController {
      * 保存分类
      */
     @ApiOperation(value = "保存分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetDataPermissionsCatalogVOMeta.PAGE_INDEX, AssetDataPermissionsCatalogVOMeta.PAGE_SIZE, AssetDataPermissionsCatalogVOMeta.SEARCH_FIELD, AssetDataPermissionsCatalogVOMeta.FUZZY_FIELD, AssetDataPermissionsCatalogVOMeta.SEARCH_VALUE, AssetDataPermissionsCatalogVOMeta.DIRTY_FIELDS, AssetDataPermissionsCatalogVOMeta.SORT_FIELD, AssetDataPermissionsCatalogVOMeta.SORT_TYPE, AssetDataPermissionsCatalogVOMeta.IDS })
     @SentinelResource(value = AssetDataPermissionsCatalogServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsCatalogServiceProxy.SAVE)
@@ -126,7 +142,9 @@ public class AssetDataPermissionsCatalogController extends SuperController {
      * 获取分类
      */
     @ApiOperation(value = "获取分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetDataPermissionsCatalogServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsCatalogServiceProxy.GET_BY_ID)
@@ -142,7 +160,9 @@ public class AssetDataPermissionsCatalogController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetDataPermissionsCatalogServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsCatalogServiceProxy.GET_BY_IDS)
@@ -157,7 +177,11 @@ public class AssetDataPermissionsCatalogController extends SuperController {
      * 查询分类
      */
     @ApiOperation(value = "查询分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetDataPermissionsCatalogVOMeta.PAGE_INDEX, AssetDataPermissionsCatalogVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetDataPermissionsCatalogServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsCatalogServiceProxy.QUERY_LIST)
@@ -172,7 +196,11 @@ public class AssetDataPermissionsCatalogController extends SuperController {
      * 分页查询分类
      */
     @ApiOperation(value = "分页查询分类")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.PERMISSION_ID, value = "权限", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDataPermissionsCatalogVOMeta.VALUE, value = "值", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetDataPermissionsCatalogServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetDataPermissionsCatalogServiceProxy.QUERY_PAGED_LIST)

@@ -57,7 +57,13 @@ public class RepairUrgencyController extends SuperController {
      * 添加紧急程度
      */
     @ApiOperation(value = "添加紧急程度")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairUrgencyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = RepairUrgencyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairUrgencyVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairUrgencyVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = RepairUrgencyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = RepairUrgencyServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairUrgencyServiceProxy.INSERT)
@@ -71,7 +77,9 @@ public class RepairUrgencyController extends SuperController {
      * 删除紧急程度
      */
     @ApiOperation(value = "删除紧急程度")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairUrgencyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = RepairUrgencyServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairUrgencyServiceProxy.DELETE)
@@ -85,7 +93,9 @@ public class RepairUrgencyController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除紧急程度")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairUrgencyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = RepairUrgencyServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairUrgencyServiceProxy.DELETE_BY_IDS)
@@ -98,7 +108,13 @@ public class RepairUrgencyController extends SuperController {
      * 更新紧急程度
      */
     @ApiOperation(value = "更新紧急程度")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairUrgencyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = RepairUrgencyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairUrgencyVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairUrgencyVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = RepairUrgencyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { RepairUrgencyVOMeta.PAGE_INDEX, RepairUrgencyVOMeta.PAGE_SIZE, RepairUrgencyVOMeta.SEARCH_FIELD, RepairUrgencyVOMeta.FUZZY_FIELD, RepairUrgencyVOMeta.SEARCH_VALUE, RepairUrgencyVOMeta.DIRTY_FIELDS, RepairUrgencyVOMeta.SORT_FIELD, RepairUrgencyVOMeta.SORT_TYPE, RepairUrgencyVOMeta.IDS })
     @SentinelResource(value = RepairUrgencyServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairUrgencyServiceProxy.UPDATE)
@@ -112,7 +128,13 @@ public class RepairUrgencyController extends SuperController {
      * 保存紧急程度
      */
     @ApiOperation(value = "保存紧急程度")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairUrgencyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = RepairUrgencyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairUrgencyVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairUrgencyVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = RepairUrgencyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { RepairUrgencyVOMeta.PAGE_INDEX, RepairUrgencyVOMeta.PAGE_SIZE, RepairUrgencyVOMeta.SEARCH_FIELD, RepairUrgencyVOMeta.FUZZY_FIELD, RepairUrgencyVOMeta.SEARCH_VALUE, RepairUrgencyVOMeta.DIRTY_FIELDS, RepairUrgencyVOMeta.SORT_FIELD, RepairUrgencyVOMeta.SORT_TYPE, RepairUrgencyVOMeta.IDS })
     @SentinelResource(value = RepairUrgencyServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairUrgencyServiceProxy.SAVE)
@@ -126,7 +148,9 @@ public class RepairUrgencyController extends SuperController {
      * 获取紧急程度
      */
     @ApiOperation(value = "获取紧急程度")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairUrgencyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = RepairUrgencyServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairUrgencyServiceProxy.GET_BY_ID)
@@ -142,7 +166,9 @@ public class RepairUrgencyController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取紧急程度")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairUrgencyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = RepairUrgencyServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairUrgencyServiceProxy.GET_BY_IDS)
@@ -157,7 +183,13 @@ public class RepairUrgencyController extends SuperController {
      * 查询紧急程度
      */
     @ApiOperation(value = "查询紧急程度")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairUrgencyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = RepairUrgencyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairUrgencyVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairUrgencyVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = RepairUrgencyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { RepairUrgencyVOMeta.PAGE_INDEX, RepairUrgencyVOMeta.PAGE_SIZE })
     @SentinelResource(value = RepairUrgencyServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairUrgencyServiceProxy.QUERY_LIST)
@@ -172,7 +204,13 @@ public class RepairUrgencyController extends SuperController {
      * 分页查询紧急程度
      */
     @ApiOperation(value = "分页查询紧急程度")
-    @ApiImplicitParams({ @ApiImplicitParam(name = RepairUrgencyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = RepairUrgencyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairUrgencyVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = RepairUrgencyVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class), @ApiImplicitParam(name = RepairUrgencyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = RepairUrgencyVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = RepairUrgencyServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(RepairUrgencyServiceProxy.QUERY_PAGED_LIST)

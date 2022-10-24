@@ -65,7 +65,21 @@ public class NetworkStrategyApplyController extends SuperController implements B
      * 添加网络策略申请
      */
     @ApiOperation(value = "添加网络策略申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "596614640608215040"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "服务器策略申请"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.PROJECT_NAME, value = "项目", required = false, dataTypeClass = String.class, example = "服务器策略申请"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class, example = "prod"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class, example = "permanent"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CONTENT, value = "申请原因", required = false, dataTypeClass = String.class, example = "服务器策略申请"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "596614640608215040"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "服务器策略申请"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.PROJECT_NAME, value = "项目", required = false, dataTypeClass = String.class, example = "服务器策略申请"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class, example = "prod"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class, example = "permanent"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CONTENT, value = "申请原因", required = false, dataTypeClass = String.class, example = "服务器策略申请"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = NetworkStrategyApplyServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(NetworkStrategyApplyServiceProxy.INSERT)
@@ -79,7 +93,9 @@ public class NetworkStrategyApplyController extends SuperController implements B
      * 删除网络策略申请
      */
     @ApiOperation(value = "删除网络策略申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "596614640608215040") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "596614640608215040")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = NetworkStrategyApplyServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(NetworkStrategyApplyServiceProxy.DELETE)
@@ -104,7 +120,9 @@ public class NetworkStrategyApplyController extends SuperController implements B
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除网络策略申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = NetworkStrategyApplyServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(NetworkStrategyApplyServiceProxy.DELETE_BY_IDS)
@@ -149,7 +167,21 @@ public class NetworkStrategyApplyController extends SuperController implements B
      * 更新网络策略申请
      */
     @ApiOperation(value = "更新网络策略申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "596614640608215040"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "服务器策略申请"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.PROJECT_NAME, value = "项目", required = false, dataTypeClass = String.class, example = "服务器策略申请"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class, example = "prod"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class, example = "permanent"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CONTENT, value = "申请原因", required = false, dataTypeClass = String.class, example = "服务器策略申请"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "596614640608215040"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "服务器策略申请"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.PROJECT_NAME, value = "项目", required = false, dataTypeClass = String.class, example = "服务器策略申请"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class, example = "prod"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class, example = "permanent"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CONTENT, value = "申请原因", required = false, dataTypeClass = String.class, example = "服务器策略申请"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { NetworkStrategyApplyVOMeta.PAGE_INDEX, NetworkStrategyApplyVOMeta.PAGE_SIZE, NetworkStrategyApplyVOMeta.SEARCH_FIELD, NetworkStrategyApplyVOMeta.FUZZY_FIELD, NetworkStrategyApplyVOMeta.SEARCH_VALUE, NetworkStrategyApplyVOMeta.DIRTY_FIELDS, NetworkStrategyApplyVOMeta.SORT_FIELD, NetworkStrategyApplyVOMeta.SORT_TYPE, NetworkStrategyApplyVOMeta.IDS })
     @SentinelResource(value = NetworkStrategyApplyServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(NetworkStrategyApplyServiceProxy.UPDATE)
@@ -163,7 +195,21 @@ public class NetworkStrategyApplyController extends SuperController implements B
      * 保存网络策略申请
      */
     @ApiOperation(value = "保存网络策略申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "596614640608215040"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "服务器策略申请"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.PROJECT_NAME, value = "项目", required = false, dataTypeClass = String.class, example = "服务器策略申请"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class, example = "prod"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class, example = "permanent"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CONTENT, value = "申请原因", required = false, dataTypeClass = String.class, example = "服务器策略申请"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "596614640608215040"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "服务器策略申请"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.PROJECT_NAME, value = "项目", required = false, dataTypeClass = String.class, example = "服务器策略申请"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class, example = "prod"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class, example = "permanent"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CONTENT, value = "申请原因", required = false, dataTypeClass = String.class, example = "服务器策略申请"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { NetworkStrategyApplyVOMeta.PAGE_INDEX, NetworkStrategyApplyVOMeta.PAGE_SIZE, NetworkStrategyApplyVOMeta.SEARCH_FIELD, NetworkStrategyApplyVOMeta.FUZZY_FIELD, NetworkStrategyApplyVOMeta.SEARCH_VALUE, NetworkStrategyApplyVOMeta.DIRTY_FIELDS, NetworkStrategyApplyVOMeta.SORT_FIELD, NetworkStrategyApplyVOMeta.SORT_TYPE, NetworkStrategyApplyVOMeta.IDS })
     @SentinelResource(value = NetworkStrategyApplyServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(NetworkStrategyApplyServiceProxy.SAVE)
@@ -177,7 +223,9 @@ public class NetworkStrategyApplyController extends SuperController implements B
      * 获取网络策略申请
      */
     @ApiOperation(value = "获取网络策略申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = NetworkStrategyApplyServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(NetworkStrategyApplyServiceProxy.GET_BY_ID)
@@ -195,7 +243,9 @@ public class NetworkStrategyApplyController extends SuperController implements B
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取网络策略申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = NetworkStrategyApplyServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(NetworkStrategyApplyServiceProxy.GET_BY_IDS)
@@ -210,7 +260,21 @@ public class NetworkStrategyApplyController extends SuperController implements B
      * 查询网络策略申请
      */
     @ApiOperation(value = "查询网络策略申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "596614640608215040"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "服务器策略申请"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.PROJECT_NAME, value = "项目", required = false, dataTypeClass = String.class, example = "服务器策略申请"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class, example = "prod"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class, example = "permanent"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CONTENT, value = "申请原因", required = false, dataTypeClass = String.class, example = "服务器策略申请"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "596614640608215040"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "服务器策略申请"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.PROJECT_NAME, value = "项目", required = false, dataTypeClass = String.class, example = "服务器策略申请"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class, example = "prod"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class, example = "permanent"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CONTENT, value = "申请原因", required = false, dataTypeClass = String.class, example = "服务器策略申请"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { NetworkStrategyApplyVOMeta.PAGE_INDEX, NetworkStrategyApplyVOMeta.PAGE_SIZE })
     @SentinelResource(value = NetworkStrategyApplyServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(NetworkStrategyApplyServiceProxy.QUERY_LIST)
@@ -225,7 +289,21 @@ public class NetworkStrategyApplyController extends SuperController implements B
      * 分页查询网络策略申请
      */
     @ApiOperation(value = "分页查询网络策略申请")
-    @ApiImplicitParams({ @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "596614640608215040"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "服务器策略申请"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.PROJECT_NAME, value = "项目", required = false, dataTypeClass = String.class, example = "服务器策略申请"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class, example = "prod"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class, example = "permanent"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CONTENT, value = "申请原因", required = false, dataTypeClass = String.class, example = "服务器策略申请"), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "596614640608215040"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "服务器策略申请"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.PROJECT_NAME, value = "项目", required = false, dataTypeClass = String.class, example = "服务器策略申请"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ENVIRONMENT_ID, value = "运行环境", required = false, dataTypeClass = String.class, example = "prod"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.PERIOD_TYPE, value = "有效期", required = false, dataTypeClass = String.class, example = "permanent"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.EXPIRATION_DATE, value = "过期日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.APPLY_DATE, value = "申请日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.EXPECTED_COMPLETION_DATE, value = "期望日期", required = false, dataTypeClass = Date.class, example = "2022-07-05 12:00:00"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.CONTENT, value = "申请原因", required = false, dataTypeClass = String.class, example = "服务器策略申请"),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.FILE_ID, value = "附件", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = NetworkStrategyApplyVOMeta.ORIGINATOR_ID, value = "申请人", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = NetworkStrategyApplyServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(NetworkStrategyApplyServiceProxy.QUERY_PAGED_LIST)

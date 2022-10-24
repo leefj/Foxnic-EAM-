@@ -61,7 +61,22 @@ public class AutoActionController extends SuperController {
      * 添加执行任务
      */
     @ApiOperation(value = "添加执行任务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613756265390145536"), @ApiImplicitParam(name = AutoActionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "测试1"), @ApiImplicitParam(name = AutoActionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AutoActionVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "host"), @ApiImplicitParam(name = AutoActionVOMeta.TPL_VERSION, value = "模版版本", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.SUPPORT, value = "场景", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.INFO, value = "说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.FILE_STATUS, value = "介质状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.NODE_NUMBER_TYPE, value = "节点数量", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.CONF_CONTENT, value = "配置内容", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AutoActionVOMeta.EXAMPLE_CONF_CONTENT, value = "配置例子", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.EXECUTE_CONTENT, value = "执行内容", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AutoActionVOMeta.EXECUTE_TOOL, value = "执行工具", required = false, dataTypeClass = String.class, example = "ops_tool"), @ApiImplicitParam(name = AutoActionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613756265390145536"),
+		@ApiImplicitParam(name = AutoActionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "测试1"),
+		@ApiImplicitParam(name = AutoActionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AutoActionVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "host"),
+		@ApiImplicitParam(name = AutoActionVOMeta.TPL_VERSION, value = "模版版本", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.SUPPORT, value = "场景", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.INFO, value = "说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.FILE_STATUS, value = "介质状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.NODE_NUMBER_TYPE, value = "节点数量", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.CONF_CONTENT, value = "配置内容", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AutoActionVOMeta.EXAMPLE_CONF_CONTENT, value = "配置例子", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.EXECUTE_CONTENT, value = "执行内容", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AutoActionVOMeta.EXECUTE_TOOL, value = "执行工具", required = false, dataTypeClass = String.class, example = "ops_tool"),
+		@ApiImplicitParam(name = AutoActionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12")
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AutoActionServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionServiceProxy.INSERT)
@@ -75,7 +90,9 @@ public class AutoActionController extends SuperController {
      * 删除执行任务
      */
     @ApiOperation(value = "删除执行任务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613756265390145536") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613756265390145536")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AutoActionServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionServiceProxy.DELETE)
@@ -100,7 +117,9 @@ public class AutoActionController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除执行任务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoActionServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionServiceProxy.DELETE_BY_IDS)
@@ -145,7 +164,22 @@ public class AutoActionController extends SuperController {
      * 更新执行任务
      */
     @ApiOperation(value = "更新执行任务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613756265390145536"), @ApiImplicitParam(name = AutoActionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "测试1"), @ApiImplicitParam(name = AutoActionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AutoActionVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "host"), @ApiImplicitParam(name = AutoActionVOMeta.TPL_VERSION, value = "模版版本", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.SUPPORT, value = "场景", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.INFO, value = "说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.FILE_STATUS, value = "介质状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.NODE_NUMBER_TYPE, value = "节点数量", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.CONF_CONTENT, value = "配置内容", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AutoActionVOMeta.EXAMPLE_CONF_CONTENT, value = "配置例子", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.EXECUTE_CONTENT, value = "执行内容", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AutoActionVOMeta.EXECUTE_TOOL, value = "执行工具", required = false, dataTypeClass = String.class, example = "ops_tool"), @ApiImplicitParam(name = AutoActionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613756265390145536"),
+		@ApiImplicitParam(name = AutoActionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "测试1"),
+		@ApiImplicitParam(name = AutoActionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AutoActionVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "host"),
+		@ApiImplicitParam(name = AutoActionVOMeta.TPL_VERSION, value = "模版版本", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.SUPPORT, value = "场景", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.INFO, value = "说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.FILE_STATUS, value = "介质状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.NODE_NUMBER_TYPE, value = "节点数量", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.CONF_CONTENT, value = "配置内容", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AutoActionVOMeta.EXAMPLE_CONF_CONTENT, value = "配置例子", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.EXECUTE_CONTENT, value = "执行内容", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AutoActionVOMeta.EXECUTE_TOOL, value = "执行工具", required = false, dataTypeClass = String.class, example = "ops_tool"),
+		@ApiImplicitParam(name = AutoActionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12")
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AutoActionVOMeta.PAGE_INDEX, AutoActionVOMeta.PAGE_SIZE, AutoActionVOMeta.SEARCH_FIELD, AutoActionVOMeta.FUZZY_FIELD, AutoActionVOMeta.SEARCH_VALUE, AutoActionVOMeta.DIRTY_FIELDS, AutoActionVOMeta.SORT_FIELD, AutoActionVOMeta.SORT_TYPE, AutoActionVOMeta.IDS })
     @SentinelResource(value = AutoActionServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionServiceProxy.UPDATE)
@@ -159,7 +193,22 @@ public class AutoActionController extends SuperController {
      * 保存执行任务
      */
     @ApiOperation(value = "保存执行任务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613756265390145536"), @ApiImplicitParam(name = AutoActionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "测试1"), @ApiImplicitParam(name = AutoActionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AutoActionVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "host"), @ApiImplicitParam(name = AutoActionVOMeta.TPL_VERSION, value = "模版版本", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.SUPPORT, value = "场景", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.INFO, value = "说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.FILE_STATUS, value = "介质状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.NODE_NUMBER_TYPE, value = "节点数量", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.CONF_CONTENT, value = "配置内容", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AutoActionVOMeta.EXAMPLE_CONF_CONTENT, value = "配置例子", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.EXECUTE_CONTENT, value = "执行内容", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AutoActionVOMeta.EXECUTE_TOOL, value = "执行工具", required = false, dataTypeClass = String.class, example = "ops_tool"), @ApiImplicitParam(name = AutoActionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613756265390145536"),
+		@ApiImplicitParam(name = AutoActionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "测试1"),
+		@ApiImplicitParam(name = AutoActionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AutoActionVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "host"),
+		@ApiImplicitParam(name = AutoActionVOMeta.TPL_VERSION, value = "模版版本", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.SUPPORT, value = "场景", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.INFO, value = "说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.FILE_STATUS, value = "介质状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.NODE_NUMBER_TYPE, value = "节点数量", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.CONF_CONTENT, value = "配置内容", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AutoActionVOMeta.EXAMPLE_CONF_CONTENT, value = "配置例子", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.EXECUTE_CONTENT, value = "执行内容", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AutoActionVOMeta.EXECUTE_TOOL, value = "执行工具", required = false, dataTypeClass = String.class, example = "ops_tool"),
+		@ApiImplicitParam(name = AutoActionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoActionVOMeta.PAGE_INDEX, AutoActionVOMeta.PAGE_SIZE, AutoActionVOMeta.SEARCH_FIELD, AutoActionVOMeta.FUZZY_FIELD, AutoActionVOMeta.SEARCH_VALUE, AutoActionVOMeta.DIRTY_FIELDS, AutoActionVOMeta.SORT_FIELD, AutoActionVOMeta.SORT_TYPE, AutoActionVOMeta.IDS })
     @SentinelResource(value = AutoActionServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionServiceProxy.SAVE)
@@ -173,7 +222,9 @@ public class AutoActionController extends SuperController {
      * 获取执行任务
      */
     @ApiOperation(value = "获取执行任务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AutoActionServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionServiceProxy.GET_BY_ID)
@@ -191,7 +242,9 @@ public class AutoActionController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取执行任务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AutoActionServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionServiceProxy.GET_BY_IDS)
@@ -206,7 +259,22 @@ public class AutoActionController extends SuperController {
      * 查询执行任务
      */
     @ApiOperation(value = "查询执行任务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613756265390145536"), @ApiImplicitParam(name = AutoActionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "测试1"), @ApiImplicitParam(name = AutoActionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AutoActionVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "host"), @ApiImplicitParam(name = AutoActionVOMeta.TPL_VERSION, value = "模版版本", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.SUPPORT, value = "场景", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.INFO, value = "说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.FILE_STATUS, value = "介质状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.NODE_NUMBER_TYPE, value = "节点数量", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.CONF_CONTENT, value = "配置内容", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AutoActionVOMeta.EXAMPLE_CONF_CONTENT, value = "配置例子", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.EXECUTE_CONTENT, value = "执行内容", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AutoActionVOMeta.EXECUTE_TOOL, value = "执行工具", required = false, dataTypeClass = String.class, example = "ops_tool"), @ApiImplicitParam(name = AutoActionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613756265390145536"),
+		@ApiImplicitParam(name = AutoActionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "测试1"),
+		@ApiImplicitParam(name = AutoActionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AutoActionVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "host"),
+		@ApiImplicitParam(name = AutoActionVOMeta.TPL_VERSION, value = "模版版本", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.SUPPORT, value = "场景", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.INFO, value = "说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.FILE_STATUS, value = "介质状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.NODE_NUMBER_TYPE, value = "节点数量", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.CONF_CONTENT, value = "配置内容", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AutoActionVOMeta.EXAMPLE_CONF_CONTENT, value = "配置例子", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.EXECUTE_CONTENT, value = "执行内容", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AutoActionVOMeta.EXECUTE_TOOL, value = "执行工具", required = false, dataTypeClass = String.class, example = "ops_tool"),
+		@ApiImplicitParam(name = AutoActionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12")
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AutoActionVOMeta.PAGE_INDEX, AutoActionVOMeta.PAGE_SIZE })
     @SentinelResource(value = AutoActionServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionServiceProxy.QUERY_LIST)
@@ -221,7 +289,22 @@ public class AutoActionController extends SuperController {
      * 分页查询执行任务
      */
     @ApiOperation(value = "分页查询执行任务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AutoActionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613756265390145536"), @ApiImplicitParam(name = AutoActionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "测试1"), @ApiImplicitParam(name = AutoActionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"), @ApiImplicitParam(name = AutoActionVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "host"), @ApiImplicitParam(name = AutoActionVOMeta.TPL_VERSION, value = "模版版本", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.SUPPORT, value = "场景", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.INFO, value = "说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.FILE_STATUS, value = "介质状态", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.NODE_NUMBER_TYPE, value = "节点数量", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.CONF_CONTENT, value = "配置内容", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AutoActionVOMeta.EXAMPLE_CONF_CONTENT, value = "配置例子", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AutoActionVOMeta.EXECUTE_CONTENT, value = "执行内容", required = false, dataTypeClass = String.class, example = "12"), @ApiImplicitParam(name = AutoActionVOMeta.EXECUTE_TOOL, value = "执行工具", required = false, dataTypeClass = String.class, example = "ops_tool"), @ApiImplicitParam(name = AutoActionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AutoActionVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "613756265390145536"),
+		@ApiImplicitParam(name = AutoActionVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "测试1"),
+		@ApiImplicitParam(name = AutoActionVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+		@ApiImplicitParam(name = AutoActionVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "host"),
+		@ApiImplicitParam(name = AutoActionVOMeta.TPL_VERSION, value = "模版版本", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.SUPPORT, value = "场景", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.INFO, value = "说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.FILE_STATUS, value = "介质状态", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.NODE_NUMBER_TYPE, value = "节点数量", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.CONF_CONTENT, value = "配置内容", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AutoActionVOMeta.EXAMPLE_CONF_CONTENT, value = "配置例子", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AutoActionVOMeta.EXECUTE_CONTENT, value = "执行内容", required = false, dataTypeClass = String.class, example = "12"),
+		@ApiImplicitParam(name = AutoActionVOMeta.EXECUTE_TOOL, value = "执行工具", required = false, dataTypeClass = String.class, example = "ops_tool"),
+		@ApiImplicitParam(name = AutoActionVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "12")
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AutoActionServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AutoActionServiceProxy.QUERY_PAGED_LIST)

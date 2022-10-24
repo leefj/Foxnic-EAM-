@@ -58,7 +58,13 @@ public class AssetBorrowReturnController extends SuperController {
      * 添加资产借用归还
      */
     @ApiOperation(value = "添加资产借用归还")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetBorrowReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowReturnVOMeta.BORROW_ID, value = "借用单", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowReturnVOMeta.RETURN_DATE, value = "归还时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetBorrowReturnVOMeta.CONTENT, value = "归还说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowReturnVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.BORROW_ID, value = "借用单", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.RETURN_DATE, value = "归还时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.CONTENT, value = "归还说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetBorrowReturnServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetBorrowReturnServiceProxy.INSERT)
@@ -72,7 +78,9 @@ public class AssetBorrowReturnController extends SuperController {
      * 删除资产借用归还
      */
     @ApiOperation(value = "删除资产借用归还")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetBorrowReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = AssetBorrowReturnServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetBorrowReturnServiceProxy.DELETE)
@@ -86,7 +94,9 @@ public class AssetBorrowReturnController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产借用归还")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetBorrowReturnVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetBorrowReturnServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetBorrowReturnServiceProxy.DELETE_BY_IDS)
@@ -99,7 +109,13 @@ public class AssetBorrowReturnController extends SuperController {
      * 更新资产借用归还
      */
     @ApiOperation(value = "更新资产借用归还")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetBorrowReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowReturnVOMeta.BORROW_ID, value = "借用单", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowReturnVOMeta.RETURN_DATE, value = "归还时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetBorrowReturnVOMeta.CONTENT, value = "归还说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowReturnVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.BORROW_ID, value = "借用单", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.RETURN_DATE, value = "归还时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.CONTENT, value = "归还说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetBorrowReturnVOMeta.PAGE_INDEX, AssetBorrowReturnVOMeta.PAGE_SIZE, AssetBorrowReturnVOMeta.SEARCH_FIELD, AssetBorrowReturnVOMeta.FUZZY_FIELD, AssetBorrowReturnVOMeta.SEARCH_VALUE, AssetBorrowReturnVOMeta.SORT_FIELD, AssetBorrowReturnVOMeta.SORT_TYPE, AssetBorrowReturnVOMeta.IDS })
     @SentinelResource(value = AssetBorrowReturnServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetBorrowReturnServiceProxy.UPDATE)
@@ -113,7 +129,13 @@ public class AssetBorrowReturnController extends SuperController {
      * 保存资产借用归还
      */
     @ApiOperation(value = "保存资产借用归还")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetBorrowReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowReturnVOMeta.BORROW_ID, value = "借用单", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowReturnVOMeta.RETURN_DATE, value = "归还时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetBorrowReturnVOMeta.CONTENT, value = "归还说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowReturnVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.BORROW_ID, value = "借用单", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.RETURN_DATE, value = "归还时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.CONTENT, value = "归还说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetBorrowReturnVOMeta.PAGE_INDEX, AssetBorrowReturnVOMeta.PAGE_SIZE, AssetBorrowReturnVOMeta.SEARCH_FIELD, AssetBorrowReturnVOMeta.FUZZY_FIELD, AssetBorrowReturnVOMeta.SEARCH_VALUE, AssetBorrowReturnVOMeta.SORT_FIELD, AssetBorrowReturnVOMeta.SORT_TYPE, AssetBorrowReturnVOMeta.IDS })
     @SentinelResource(value = AssetBorrowReturnServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetBorrowReturnServiceProxy.SAVE)
@@ -127,7 +149,9 @@ public class AssetBorrowReturnController extends SuperController {
      * 获取资产借用归还
      */
     @ApiOperation(value = "获取资产借用归还")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetBorrowReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = AssetBorrowReturnServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetBorrowReturnServiceProxy.GET_BY_ID)
@@ -145,7 +169,9 @@ public class AssetBorrowReturnController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取资产借用归还")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetBorrowReturnVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = AssetBorrowReturnServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetBorrowReturnServiceProxy.GET_BY_IDS)
@@ -160,7 +186,13 @@ public class AssetBorrowReturnController extends SuperController {
      * 查询资产借用归还
      */
     @ApiOperation(value = "查询资产借用归还")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetBorrowReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowReturnVOMeta.BORROW_ID, value = "借用单", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowReturnVOMeta.RETURN_DATE, value = "归还时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetBorrowReturnVOMeta.CONTENT, value = "归还说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowReturnVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.BORROW_ID, value = "借用单", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.RETURN_DATE, value = "归还时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.CONTENT, value = "归还说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetBorrowReturnVOMeta.PAGE_INDEX, AssetBorrowReturnVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetBorrowReturnServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetBorrowReturnServiceProxy.QUERY_LIST)
@@ -175,7 +207,13 @@ public class AssetBorrowReturnController extends SuperController {
      * 分页查询资产借用归还
      */
     @ApiOperation(value = "分页查询资产借用归还")
-    @ApiImplicitParams({ @ApiImplicitParam(name = AssetBorrowReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowReturnVOMeta.BORROW_ID, value = "借用单", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowReturnVOMeta.RETURN_DATE, value = "归还时间", required = false, dataTypeClass = Date.class), @ApiImplicitParam(name = AssetBorrowReturnVOMeta.CONTENT, value = "归还说明", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = AssetBorrowReturnVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.BORROW_ID, value = "借用单", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.RETURN_DATE, value = "归还时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.CONTENT, value = "归还说明", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetBorrowReturnVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetBorrowReturnServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetBorrowReturnServiceProxy.QUERY_PAGED_LIST)

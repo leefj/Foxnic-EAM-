@@ -61,7 +61,15 @@ public class ServiceInfoController extends SuperController {
      * 添加服务
      */
     @ApiOperation(value = "添加服务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "223e5dc8-0ddc-11ec-ab08-00163e2e6a36"), @ApiImplicitParam(name = ServiceInfoVOMeta.GROUP_ID, value = "服务分组", required = false, dataTypeClass = String.class, example = "os"), @ApiImplicitParam(name = ServiceInfoVOMeta.SERVICE_CATEGORY_ID, value = "服务分类", required = false, dataTypeClass = String.class, example = "473621743190147072"), @ApiImplicitParam(name = ServiceInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Redhat 7.8"), @ApiImplicitParam(name = ServiceInfoVOMeta.PATCH, value = "补丁", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceInfoVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "223e5dc8-0ddc-11ec-ab08-00163e2e6a36"),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.GROUP_ID, value = "服务分组", required = false, dataTypeClass = String.class, example = "os"),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.SERVICE_CATEGORY_ID, value = "服务分类", required = false, dataTypeClass = String.class, example = "473621743190147072"),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Redhat 7.8"),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.PATCH, value = "补丁", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class)
+	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = ServiceInfoServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceInfoServiceProxy.INSERT)
@@ -75,7 +83,9 @@ public class ServiceInfoController extends SuperController {
      * 删除服务
      */
     @ApiOperation(value = "删除服务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "223e5dc8-0ddc-11ec-ab08-00163e2e6a36") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "223e5dc8-0ddc-11ec-ab08-00163e2e6a36")
+	})
     @ApiOperationSupport(order = 2)
     @SentinelResource(value = ServiceInfoServiceProxy.DELETE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceInfoServiceProxy.DELETE)
@@ -100,7 +110,9 @@ public class ServiceInfoController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除服务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ServiceInfoServiceProxy.DELETE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceInfoServiceProxy.DELETE_BY_IDS)
@@ -145,7 +157,15 @@ public class ServiceInfoController extends SuperController {
      * 更新服务
      */
     @ApiOperation(value = "更新服务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "223e5dc8-0ddc-11ec-ab08-00163e2e6a36"), @ApiImplicitParam(name = ServiceInfoVOMeta.GROUP_ID, value = "服务分组", required = false, dataTypeClass = String.class, example = "os"), @ApiImplicitParam(name = ServiceInfoVOMeta.SERVICE_CATEGORY_ID, value = "服务分类", required = false, dataTypeClass = String.class, example = "473621743190147072"), @ApiImplicitParam(name = ServiceInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Redhat 7.8"), @ApiImplicitParam(name = ServiceInfoVOMeta.PATCH, value = "补丁", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceInfoVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "223e5dc8-0ddc-11ec-ab08-00163e2e6a36"),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.GROUP_ID, value = "服务分组", required = false, dataTypeClass = String.class, example = "os"),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.SERVICE_CATEGORY_ID, value = "服务分类", required = false, dataTypeClass = String.class, example = "473621743190147072"),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Redhat 7.8"),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.PATCH, value = "补丁", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class)
+	})
     @ApiOperationSupport(order = 4, ignoreParameters = { ServiceInfoVOMeta.PAGE_INDEX, ServiceInfoVOMeta.PAGE_SIZE, ServiceInfoVOMeta.SEARCH_FIELD, ServiceInfoVOMeta.FUZZY_FIELD, ServiceInfoVOMeta.SEARCH_VALUE, ServiceInfoVOMeta.DIRTY_FIELDS, ServiceInfoVOMeta.SORT_FIELD, ServiceInfoVOMeta.SORT_TYPE, ServiceInfoVOMeta.IDS })
     @SentinelResource(value = ServiceInfoServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceInfoServiceProxy.UPDATE)
@@ -159,7 +179,15 @@ public class ServiceInfoController extends SuperController {
      * 保存服务
      */
     @ApiOperation(value = "保存服务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "223e5dc8-0ddc-11ec-ab08-00163e2e6a36"), @ApiImplicitParam(name = ServiceInfoVOMeta.GROUP_ID, value = "服务分组", required = false, dataTypeClass = String.class, example = "os"), @ApiImplicitParam(name = ServiceInfoVOMeta.SERVICE_CATEGORY_ID, value = "服务分类", required = false, dataTypeClass = String.class, example = "473621743190147072"), @ApiImplicitParam(name = ServiceInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Redhat 7.8"), @ApiImplicitParam(name = ServiceInfoVOMeta.PATCH, value = "补丁", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceInfoVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "223e5dc8-0ddc-11ec-ab08-00163e2e6a36"),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.GROUP_ID, value = "服务分组", required = false, dataTypeClass = String.class, example = "os"),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.SERVICE_CATEGORY_ID, value = "服务分类", required = false, dataTypeClass = String.class, example = "473621743190147072"),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Redhat 7.8"),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.PATCH, value = "补丁", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ServiceInfoVOMeta.PAGE_INDEX, ServiceInfoVOMeta.PAGE_SIZE, ServiceInfoVOMeta.SEARCH_FIELD, ServiceInfoVOMeta.FUZZY_FIELD, ServiceInfoVOMeta.SEARCH_VALUE, ServiceInfoVOMeta.DIRTY_FIELDS, ServiceInfoVOMeta.SORT_FIELD, ServiceInfoVOMeta.SORT_TYPE, ServiceInfoVOMeta.IDS })
     @SentinelResource(value = ServiceInfoServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceInfoServiceProxy.SAVE)
@@ -173,7 +201,9 @@ public class ServiceInfoController extends SuperController {
      * 获取服务
      */
     @ApiOperation(value = "获取服务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = ServiceInfoServiceProxy.GET_BY_ID, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceInfoServiceProxy.GET_BY_ID)
@@ -191,7 +221,9 @@ public class ServiceInfoController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取服务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]") })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceInfoVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
+	})
     @ApiOperationSupport(order = 3)
     @SentinelResource(value = ServiceInfoServiceProxy.GET_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceInfoServiceProxy.GET_BY_IDS)
@@ -206,7 +238,15 @@ public class ServiceInfoController extends SuperController {
      * 查询服务
      */
     @ApiOperation(value = "查询服务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "223e5dc8-0ddc-11ec-ab08-00163e2e6a36"), @ApiImplicitParam(name = ServiceInfoVOMeta.GROUP_ID, value = "服务分组", required = false, dataTypeClass = String.class, example = "os"), @ApiImplicitParam(name = ServiceInfoVOMeta.SERVICE_CATEGORY_ID, value = "服务分类", required = false, dataTypeClass = String.class, example = "473621743190147072"), @ApiImplicitParam(name = ServiceInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Redhat 7.8"), @ApiImplicitParam(name = ServiceInfoVOMeta.PATCH, value = "补丁", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceInfoVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "223e5dc8-0ddc-11ec-ab08-00163e2e6a36"),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.GROUP_ID, value = "服务分组", required = false, dataTypeClass = String.class, example = "os"),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.SERVICE_CATEGORY_ID, value = "服务分类", required = false, dataTypeClass = String.class, example = "473621743190147072"),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Redhat 7.8"),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.PATCH, value = "补丁", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class)
+	})
     @ApiOperationSupport(order = 5, ignoreParameters = { ServiceInfoVOMeta.PAGE_INDEX, ServiceInfoVOMeta.PAGE_SIZE })
     @SentinelResource(value = ServiceInfoServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceInfoServiceProxy.QUERY_LIST)
@@ -221,7 +261,15 @@ public class ServiceInfoController extends SuperController {
      * 分页查询服务
      */
     @ApiOperation(value = "分页查询服务")
-    @ApiImplicitParams({ @ApiImplicitParam(name = ServiceInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "223e5dc8-0ddc-11ec-ab08-00163e2e6a36"), @ApiImplicitParam(name = ServiceInfoVOMeta.GROUP_ID, value = "服务分组", required = false, dataTypeClass = String.class, example = "os"), @ApiImplicitParam(name = ServiceInfoVOMeta.SERVICE_CATEGORY_ID, value = "服务分类", required = false, dataTypeClass = String.class, example = "473621743190147072"), @ApiImplicitParam(name = ServiceInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Redhat 7.8"), @ApiImplicitParam(name = ServiceInfoVOMeta.PATCH, value = "补丁", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class), @ApiImplicitParam(name = ServiceInfoVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class) })
+    @ApiImplicitParams({ 
+		@ApiImplicitParam(name = ServiceInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "223e5dc8-0ddc-11ec-ab08-00163e2e6a36"),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.GROUP_ID, value = "服务分组", required = false, dataTypeClass = String.class, example = "os"),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.SERVICE_CATEGORY_ID, value = "服务分类", required = false, dataTypeClass = String.class, example = "473621743190147072"),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "Redhat 7.8"),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.PATCH, value = "补丁", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ServiceInfoVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class)
+	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = ServiceInfoServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(ServiceInfoServiceProxy.QUERY_PAGED_LIST)
