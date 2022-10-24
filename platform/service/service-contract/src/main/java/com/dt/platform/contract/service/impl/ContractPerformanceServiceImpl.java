@@ -1,11 +1,15 @@
 package com.dt.platform.contract.service.impl;
 
-
 import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.github.foxnic.commons.collection.MapUtil;
+import java.util.Arrays;
 
 
 import com.dt.platform.domain.contract.ContractPerformance;
+import com.dt.platform.domain.contract.ContractPerformanceVO;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -21,17 +25,20 @@ import com.github.foxnic.dao.excel.ExcelStructure;
 import java.io.InputStream;
 import com.github.foxnic.sql.meta.DBField;
 import com.github.foxnic.dao.data.SaveMode;
+import com.github.foxnic.dao.meta.DBColumnMeta;
+import com.github.foxnic.sql.expr.Select;
 import java.util.ArrayList;
 import com.dt.platform.contract.service.IContractPerformanceService;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * <p>
- * 合同履行情况表 服务实现
+ * 合同履行情况服务实现
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2021-12-28 14:20:20
+ * @since 2022-10-21 15:39:35
 */
 
 
@@ -91,7 +98,7 @@ public class ContractPerformanceServiceImpl extends SuperService<ContractPerform
 
 	
 	/**
-	 * 按主键删除 合同履行情况
+	 * 按主键删除合同履行情况
 	 *
 	 * @param id id
 	 * @return 删除是否成功
@@ -112,7 +119,7 @@ public class ContractPerformanceServiceImpl extends SuperService<ContractPerform
 	}
 	
 	/**
-	 * 按主键删除 合同履行情况
+	 * 按主键删除合同履行情况
 	 *
 	 * @param id id
 	 * @return 删除是否成功
@@ -121,7 +128,7 @@ public class ContractPerformanceServiceImpl extends SuperService<ContractPerform
 		ContractPerformance contractPerformance = new ContractPerformance();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		contractPerformance.setId(id);
-		contractPerformance.setDeleted(dao.getDBTreaty().getTrueValue());
+		contractPerformance.setDeleted(true);
 		contractPerformance.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		contractPerformance.setDeleteTime(new Date());
 		try {
@@ -172,7 +179,7 @@ public class ContractPerformanceServiceImpl extends SuperService<ContractPerform
 
 	
 	/**
-	 * 按主键更新字段 合同履行情况
+	 * 按主键更新合同履行情况
 	 *
 	 * @param id id
 	 * @return 是否更新成功
@@ -186,7 +193,7 @@ public class ContractPerformanceServiceImpl extends SuperService<ContractPerform
 
 	
 	/**
-	 * 按主键获取 合同履行情况
+	 * 按主键获取合同履行情况
 	 *
 	 * @param id id
 	 * @return ContractPerformance 数据对象
@@ -198,9 +205,22 @@ public class ContractPerformanceServiceImpl extends SuperService<ContractPerform
 		return dao.queryEntity(sample);
 	}
 
+	/**
+	 * 等价于 queryListByIds
+	 * */
 	@Override
 	public List<ContractPerformance> getByIds(List<String> ids) {
+		return this.queryListByIds(ids);
+	}
+
+	@Override
+	public List<ContractPerformance> queryListByIds(List<String> ids) {
 		return super.queryListByUKeys("id",ids);
+	}
+
+	@Override
+	public Map<String, ContractPerformance> queryMapByIds(List<String> ids) {
+		return super.queryMapByUKeys("id",ids, ContractPerformance::getId);
 	}
 
 
@@ -212,7 +232,7 @@ public class ContractPerformanceServiceImpl extends SuperService<ContractPerform
 	 * @return 查询结果
 	 * */
 	@Override
-	public List<ContractPerformance> queryList(ContractPerformance sample) {
+	public List<ContractPerformance> queryList(ContractPerformanceVO sample) {
 		return super.queryList(sample);
 	}
 
@@ -226,7 +246,7 @@ public class ContractPerformanceServiceImpl extends SuperService<ContractPerform
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<ContractPerformance> queryPagedList(ContractPerformance sample, int pageSize, int pageIndex) {
+	public PagedList<ContractPerformance> queryPagedList(ContractPerformanceVO sample, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, pageSize, pageIndex);
 	}
 
@@ -257,25 +277,33 @@ public class ContractPerformanceServiceImpl extends SuperService<ContractPerform
 		return false;
 	}
 
+
+	/**
+	 * 检查引用
+	 * @param id  检查ID是否又被外部表引用
+	 * */
 	@Override
-	public ExcelWriter exportExcel(ContractPerformance sample) {
-		return super.exportExcel(sample);
+	public Boolean hasRefers(String id) {
+		Map<String, Boolean> map=this.hasRefers(Arrays.asList(id));
+		Boolean ex=map.get(id);
+		if(ex==null) return false;
+		return ex;
 	}
 
+	/**
+	 * 批量检查引用
+	 * @param ids  检查这些ID是否又被外部表引用
+	 * */
 	@Override
-	public ExcelWriter exportExcelTemplate() {
-		return super.exportExcelTemplate();
+	public Map<String, Boolean> hasRefers(List<String> ids) {
+		// 默认无业务逻辑，返回此行；有业务逻辑需要校验时，请修改并使用已注释的行代码！！！
+		return MapUtil.asMap(ids,false);
+		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
 	}
 
-	@Override
-	public List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch) {
-		return super.importExcel(input,sheetIndex,batch);
-	}
 
-	@Override
-	public ExcelStructure buildExcelStructure(boolean isForExport) {
-		return super.buildExcelStructure(isForExport);
-	}
+
+
 
 
 }

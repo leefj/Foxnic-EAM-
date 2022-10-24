@@ -4,6 +4,7 @@ import com.dt.platform.constants.db.ContractTables.CONT_CONTRACT_ATTACHMENT;
 import com.dt.platform.constants.enums.contract.AttachmentOwnerType;
 import com.dt.platform.constants.enums.contract.AttachmentType;
 import com.dt.platform.generator.module.CodeStarter;
+import com.github.foxnic.generator.builder.business.option.ControllerOptions;
 import com.github.foxnic.generator.builder.business.option.ServiceOptions;
 import com.github.foxnic.generator.builder.model.PoClassFile;
 import com.github.foxnic.generator.builder.model.VoClassFile;
@@ -82,6 +83,11 @@ public class ContContractAttachmentConfig extends CodeStarter.BaseCodeConfig<CON
                 CONT_CONTRACT_ATTACHMENT.NOTES
         });
 
+    }
+
+    @Override
+    public void configController(ControllerOptions controller) {
+        controller.restApiTagDir("合同管理");
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.dt.platform.contract.service;
 
+import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
@@ -15,16 +16,18 @@ import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ExcelStructure;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.data.SaveMode;
+import java.util.Map;
 
 /**
  * <p>
- * 合同附件 服务接口
+ * 合同附件服务接口
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2021-12-28 15:44:51
+ * @since 2022-10-21 15:39:34
 */
 
-public interface IContractAttachmentService extends ISuperService<ContractAttachment> {
+public interface IContractAttachmentService extends  ISimpleIdService<ContractAttachment,String> {
+
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
@@ -52,7 +55,7 @@ public interface IContractAttachmentService extends ISuperService<ContractAttach
 
 		
 	/**
-	 * 按主键删除 合同附件
+	 * 按主键删除合同附件
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -60,7 +63,7 @@ public interface IContractAttachmentService extends ISuperService<ContractAttach
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 合同附件
+	 * 按主键删除合同附件
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -83,7 +86,7 @@ public interface IContractAttachmentService extends ISuperService<ContractAttach
 
 		
 	/**
-	 * 按主键更新字段 合同附件
+	 * 按主键更新合同附件
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -153,7 +156,7 @@ public interface IContractAttachmentService extends ISuperService<ContractAttach
 
 		
 	/**
-	 * 按主键获取 合同附件
+	 * 按主键获取合同附件
 	 *
 	 * @param id 主键
 	 * @return ContractAttachment 数据对象
@@ -161,11 +164,31 @@ public interface IContractAttachmentService extends ISuperService<ContractAttach
 	ContractAttachment getById(String id);
 
 	/**
+	 * 检查引用
+	 * @param id  检查ID是否又被外部表引用
+	 * */
+	Boolean hasRefers(String id);
+
+	/**
+	 * 批量检查引用
+	 * @param ids  检查这些ID是否又被外部表引用
+	 * */
+	Map<String,Boolean> hasRefers(List<String> ids);
+
+	/**
 	 * 按 id 获取多个对象
 	 * @param ids  主键清单
 	 * @return 实体集
 	 * */
-	List<ContractAttachment> getByIds(List<String> ids);
+	List<ContractAttachment> queryListByIds(List<String> ids);
+
+	/**
+	 * 按 id 列表查询 Map
+	 * @param ids  主键清单
+	 * */
+	Map<String, ContractAttachment> queryMapByIds(List<String> ids);
+
+
 
 	/**
 	 * 检查 实体 是否已经存在 , 判断 主键值不同，但指定字段的值相同的记录是否存在
@@ -195,7 +218,7 @@ public interface IContractAttachmentService extends ISuperService<ContractAttach
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
-	List<ContractAttachment> queryList(ContractAttachment sample);
+	List<ContractAttachment> queryList(ContractAttachmentVO sample);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -236,7 +259,7 @@ public interface IContractAttachmentService extends ISuperService<ContractAttach
 	 * @param pageIndex 页码
 	 * @return 查询结果
 	 * */
-	PagedList<ContractAttachment> queryPagedList(ContractAttachment sample,int pageSize,int pageIndex);
+	PagedList<ContractAttachment> queryPagedList(ContractAttachmentVO sample,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -290,28 +313,8 @@ public interface IContractAttachmentService extends ISuperService<ContractAttach
 	 * */
 	<T> List<T> queryValues(DBField field, Class<T> type, String condition,Object... ps);
 
-	/**
-	 * 导出 Excel
-	 * */
-	ExcelWriter exportExcel(ContractAttachment sample);
 
-	/**
-	 * 导出用于数据导入的 Excel 模版
-	 * */
-	ExcelWriter  exportExcelTemplate();
 
-	/**
-	 * 构建 Excel 结构
-	 * @param  isForExport 是否用于数据导出
-	 * @return   ExcelStructure
-	 * */
-	ExcelStructure buildExcelStructure(boolean isForExport);
-
-	/**
-	 * 导入 Excel 数据
-	 * @return  错误信息，成功时返回 null
-	 * */
-	List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch);
 
 
 }

@@ -122,7 +122,7 @@ public class ContractServiceImpl extends SuperService<Contract> implements ICont
 		Contract contract = new Contract();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		contract.setId(id);
-		contract.setDeleted(dao.getDBTreaty().getTrueValue());
+		contract.setDeleted(true);
 		contract.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		contract.setDeleteTime(new Date());
 		try {

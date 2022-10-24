@@ -4,6 +4,7 @@ import com.dt.platform.constants.db.ContractTables.CONT_CONTRACT_SIGNER;
 import com.dt.platform.constants.enums.contract.SignerAlias;
 import com.dt.platform.constants.enums.contract.SignerType;
 import com.dt.platform.generator.module.CodeStarter;
+import com.github.foxnic.generator.builder.business.option.ControllerOptions;
 import com.github.foxnic.generator.builder.business.option.ServiceOptions;
 import com.github.foxnic.generator.builder.model.PoClassFile;
 import com.github.foxnic.generator.builder.model.VoClassFile;
@@ -86,6 +87,11 @@ public class ContContractSignerConfig extends CodeStarter.BaseCodeConfig<CONT_CO
                 }
         );
 
+    }
+
+    @Override
+    public void configController(ControllerOptions controller) {
+        controller.restApiTagDir("合同管理");
     }
 
     @Override

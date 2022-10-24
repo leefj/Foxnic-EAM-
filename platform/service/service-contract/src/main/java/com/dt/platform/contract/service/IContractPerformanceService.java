@@ -1,5 +1,6 @@
 package com.dt.platform.contract.service;
 
+import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
@@ -15,16 +16,18 @@ import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ExcelStructure;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.data.SaveMode;
+import java.util.Map;
 
 /**
  * <p>
- * 合同履行情况表 服务接口
+ * 合同履行情况服务接口
  * </p>
  * @author 李方捷 , leefangjie@qq.com
- * @since 2021-12-28 14:20:20
+ * @since 2022-10-21 15:39:35
 */
 
-public interface IContractPerformanceService extends ISuperService<ContractPerformance> {
+public interface IContractPerformanceService extends  ISimpleIdService<ContractPerformance,String> {
+
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
@@ -52,7 +55,7 @@ public interface IContractPerformanceService extends ISuperService<ContractPerfo
 
 		
 	/**
-	 * 按主键删除 合同履行情况
+	 * 按主键删除合同履行情况
 	 *
 	 * @param id id
 	 * @return 删除是否成功
@@ -60,7 +63,7 @@ public interface IContractPerformanceService extends ISuperService<ContractPerfo
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 合同履行情况
+	 * 按主键删除合同履行情况
 	 *
 	 * @param id id
 	 * @return 删除是否成功
@@ -83,7 +86,7 @@ public interface IContractPerformanceService extends ISuperService<ContractPerfo
 
 		
 	/**
-	 * 按主键更新字段 合同履行情况
+	 * 按主键更新合同履行情况
 	 *
 	 * @param id id
 	 * @return 是否更新成功
@@ -153,7 +156,7 @@ public interface IContractPerformanceService extends ISuperService<ContractPerfo
 
 		
 	/**
-	 * 按主键获取 合同履行情况
+	 * 按主键获取合同履行情况
 	 *
 	 * @param id id
 	 * @return ContractPerformance 数据对象
@@ -161,11 +164,31 @@ public interface IContractPerformanceService extends ISuperService<ContractPerfo
 	ContractPerformance getById(String id);
 
 	/**
+	 * 检查引用
+	 * @param id  检查ID是否又被外部表引用
+	 * */
+	Boolean hasRefers(String id);
+
+	/**
+	 * 批量检查引用
+	 * @param ids  检查这些ID是否又被外部表引用
+	 * */
+	Map<String,Boolean> hasRefers(List<String> ids);
+
+	/**
 	 * 按 id 获取多个对象
 	 * @param ids  主键清单
 	 * @return 实体集
 	 * */
-	List<ContractPerformance> getByIds(List<String> ids);
+	List<ContractPerformance> queryListByIds(List<String> ids);
+
+	/**
+	 * 按 id 列表查询 Map
+	 * @param ids  主键清单
+	 * */
+	Map<String, ContractPerformance> queryMapByIds(List<String> ids);
+
+
 
 	/**
 	 * 检查 实体 是否已经存在 , 判断 主键值不同，但指定字段的值相同的记录是否存在
@@ -195,7 +218,7 @@ public interface IContractPerformanceService extends ISuperService<ContractPerfo
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
-	List<ContractPerformance> queryList(ContractPerformance sample);
+	List<ContractPerformance> queryList(ContractPerformanceVO sample);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -236,7 +259,7 @@ public interface IContractPerformanceService extends ISuperService<ContractPerfo
 	 * @param pageIndex 页码
 	 * @return 查询结果
 	 * */
-	PagedList<ContractPerformance> queryPagedList(ContractPerformance sample,int pageSize,int pageIndex);
+	PagedList<ContractPerformance> queryPagedList(ContractPerformanceVO sample,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -290,28 +313,8 @@ public interface IContractPerformanceService extends ISuperService<ContractPerfo
 	 * */
 	<T> List<T> queryValues(DBField field, Class<T> type, String condition,Object... ps);
 
-	/**
-	 * 导出 Excel
-	 * */
-	ExcelWriter exportExcel(ContractPerformance sample);
 
-	/**
-	 * 导出用于数据导入的 Excel 模版
-	 * */
-	ExcelWriter  exportExcelTemplate();
 
-	/**
-	 * 构建 Excel 结构
-	 * @param  isForExport 是否用于数据导出
-	 * @return   ExcelStructure
-	 * */
-	ExcelStructure buildExcelStructure(boolean isForExport);
-
-	/**
-	 * 导入 Excel 数据
-	 * @return  错误信息，成功时返回 null
-	 * */
-	List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch);
 
 
 }

@@ -7,13 +7,14 @@ import com.dt.platform.domain.contract.Contract;
 import java.math.BigDecimal;
 import java.util.Date;
 import org.github.foxnic.web.domain.hrm.Organization;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 李方捷 , leefangjie@qq.com
- * @since 2021-12-28 14:16:12
- * @sign 64C302ACE5E20B9C8B88FE6A2052BE36
+ * @since 2022-10-21 15:39:24
+ * @sign 30316EED5E1994FE8CEBF3ED0B458264
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -808,5 +809,64 @@ public class ContractVOMeta extends ContractMeta {
 			super.setDepartment(department);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public ContractVO clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public ContractVO duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setEndDate(this.getEndDate());
+			inst.setContractNo(this.getContractNo());
+			inst.setSigningDate(this.getSigningDate());
+			inst.setDepartmentId(this.getDepartmentId());
+			inst.setCatalogCode(this.getCatalogCode());
+			inst.setType(this.getType());
+			inst.setTitle(this.getTitle());
+			inst.setDeliverables(this.getDeliverables());
+			inst.setFundingStatus(this.getFundingStatus());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setId(this.getId());
+			inst.setExpirationDate(this.getExpirationDate());
+			inst.setSummary(this.getSummary());
+			inst.setAmount(this.getAmount());
+			inst.setContractStatus(this.getContractStatus());
+			inst.setFundingDirection(this.getFundingDirection());
+			inst.setDeliveryLocation(this.getDeliveryLocation());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setParentId(this.getParentId());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setEffectiveDate(this.getEffectiveDate());
+			if(all) {
+				inst.setSearchField(this.getSearchField());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setDirtyFields(this.getDirtyFields());
+				inst.setSortField(this.getSortField());
+				inst.setPageSize(this.getPageSize());
+				inst.setIds(this.getIds());
+				inst.setDepartment(this.getDepartment());
+				inst.setSearchValue(this.getSearchValue());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }
