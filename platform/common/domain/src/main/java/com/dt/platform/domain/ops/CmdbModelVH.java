@@ -4,7 +4,7 @@ import com.github.foxnic.dao.entity.Entity;
 import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
-import com.dt.platform.constants.db.OpsTables.OPS_CMDB_MODEL_V;
+import com.dt.platform.constants.db.OpsTables.OPS_CMDB_MODEL_V_H;
 import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
@@ -22,20 +22,20 @@ import com.github.foxnic.dao.entity.EntityContext;
 
 /**
  * 配置值
- * <p>配置值 , 数据表 ops_cmdb_model_v 的PO类型</p>
+ * <p>配置值 , 数据表 ops_cmdb_model_v_h 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-24 13:33:56
- * @sign 8D55CBDC18C89225C5BF7F137B352574
+ * @since 2022-10-24 13:34:04
+ * @sign 0D0BD55239724D7D4439E4E97D5B6F22
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
-@Table(name = "ops_cmdb_model_v")
-@ApiModel(description = "配置值 ; 配置值 , 数据表 ops_cmdb_model_v 的PO类型")
-public class CmdbModelV extends Entity {
+@Table(name = "ops_cmdb_model_v_h")
+@ApiModel(description = "配置值 ; 配置值 , 数据表 ops_cmdb_model_v_h 的PO类型")
+public class CmdbModelVH extends Entity {
 
 	private static final long serialVersionUID = 1L;
 
-	public static final DBTable TABLE =OPS_CMDB_MODEL_V.$TABLE;
+	public static final DBTable TABLE =OPS_CMDB_MODEL_V_H.$TABLE;
 	
 	/**
 	 * 主键：主键
@@ -444,7 +444,7 @@ public class CmdbModelV extends Entity {
 	 * @param id 主键
 	 * @return 当前对象
 	*/
-	public CmdbModelV setId(String id) {
+	public CmdbModelVH setId(String id) {
 		this.id=id;
 		return this;
 	}
@@ -463,7 +463,7 @@ public class CmdbModelV extends Entity {
 	 * @param pid 父
 	 * @return 当前对象
 	*/
-	public CmdbModelV setPid(String pid) {
+	public CmdbModelVH setPid(String pid) {
 		this.pid=pid;
 		return this;
 	}
@@ -482,7 +482,7 @@ public class CmdbModelV extends Entity {
 	 * @param modelId 模型
 	 * @return 当前对象
 	*/
-	public CmdbModelV setModelId(String modelId) {
+	public CmdbModelVH setModelId(String modelId) {
 		this.modelId=modelId;
 		return this;
 	}
@@ -501,7 +501,7 @@ public class CmdbModelV extends Entity {
 	 * @param modelCode 模型编码
 	 * @return 当前对象
 	*/
-	public CmdbModelV setModelCode(String modelCode) {
+	public CmdbModelVH setModelCode(String modelCode) {
 		this.modelCode=modelCode;
 		return this;
 	}
@@ -520,7 +520,7 @@ public class CmdbModelV extends Entity {
 	 * @param dataTraceCode 数据跟踪
 	 * @return 当前对象
 	*/
-	public CmdbModelV setDataTraceCode(String dataTraceCode) {
+	public CmdbModelVH setDataTraceCode(String dataTraceCode) {
 		this.dataTraceCode=dataTraceCode;
 		return this;
 	}
@@ -539,7 +539,7 @@ public class CmdbModelV extends Entity {
 	 * @param vStatus 状态
 	 * @return 当前对象
 	*/
-	public CmdbModelV setVStatus(String vStatus) {
+	public CmdbModelVH setVStatus(String vStatus) {
 		this.vStatus=vStatus;
 		return this;
 	}
@@ -558,7 +558,7 @@ public class CmdbModelV extends Entity {
 	 * @param vVersion 版本
 	 * @return 当前对象
 	*/
-	public CmdbModelV setVVersion(String vVersion) {
+	public CmdbModelVH setVVersion(String vVersion) {
 		this.vVersion=vVersion;
 		return this;
 	}
@@ -577,7 +577,7 @@ public class CmdbModelV extends Entity {
 	 * @param objSourceId 对象
 	 * @return 当前对象
 	*/
-	public CmdbModelV setObjSourceId(String objSourceId) {
+	public CmdbModelVH setObjSourceId(String objSourceId) {
 		this.objSourceId=objSourceId;
 		return this;
 	}
@@ -596,7 +596,7 @@ public class CmdbModelV extends Entity {
 	 * @param name 名称
 	 * @return 当前对象
 	*/
-	public CmdbModelV setName(String name) {
+	public CmdbModelVH setName(String name) {
 		this.name=name;
 		return this;
 	}
@@ -615,7 +615,7 @@ public class CmdbModelV extends Entity {
 	 * @param desc 描述
 	 * @return 当前对象
 	*/
-	public CmdbModelV setDesc(String desc) {
+	public CmdbModelVH setDesc(String desc) {
 		this.desc=desc;
 		return this;
 	}
@@ -634,7 +634,7 @@ public class CmdbModelV extends Entity {
 	 * @param s1 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setS1(String s1) {
+	public CmdbModelVH setS1(String s1) {
 		this.s1=s1;
 		return this;
 	}
@@ -653,7 +653,7 @@ public class CmdbModelV extends Entity {
 	 * @param s2 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setS2(String s2) {
+	public CmdbModelVH setS2(String s2) {
 		this.s2=s2;
 		return this;
 	}
@@ -672,7 +672,7 @@ public class CmdbModelV extends Entity {
 	 * @param s3 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setS3(String s3) {
+	public CmdbModelVH setS3(String s3) {
 		this.s3=s3;
 		return this;
 	}
@@ -691,7 +691,7 @@ public class CmdbModelV extends Entity {
 	 * @param s4 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setS4(String s4) {
+	public CmdbModelVH setS4(String s4) {
 		this.s4=s4;
 		return this;
 	}
@@ -710,7 +710,7 @@ public class CmdbModelV extends Entity {
 	 * @param s5 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setS5(String s5) {
+	public CmdbModelVH setS5(String s5) {
 		this.s5=s5;
 		return this;
 	}
@@ -729,7 +729,7 @@ public class CmdbModelV extends Entity {
 	 * @param s6 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setS6(String s6) {
+	public CmdbModelVH setS6(String s6) {
 		this.s6=s6;
 		return this;
 	}
@@ -748,7 +748,7 @@ public class CmdbModelV extends Entity {
 	 * @param s7 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setS7(String s7) {
+	public CmdbModelVH setS7(String s7) {
 		this.s7=s7;
 		return this;
 	}
@@ -767,7 +767,7 @@ public class CmdbModelV extends Entity {
 	 * @param s8 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setS8(String s8) {
+	public CmdbModelVH setS8(String s8) {
 		this.s8=s8;
 		return this;
 	}
@@ -786,7 +786,7 @@ public class CmdbModelV extends Entity {
 	 * @param m1 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setM1(String m1) {
+	public CmdbModelVH setM1(String m1) {
 		this.m1=m1;
 		return this;
 	}
@@ -805,7 +805,7 @@ public class CmdbModelV extends Entity {
 	 * @param m2 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setM2(String m2) {
+	public CmdbModelVH setM2(String m2) {
 		this.m2=m2;
 		return this;
 	}
@@ -824,7 +824,7 @@ public class CmdbModelV extends Entity {
 	 * @param m3 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setM3(String m3) {
+	public CmdbModelVH setM3(String m3) {
 		this.m3=m3;
 		return this;
 	}
@@ -843,7 +843,7 @@ public class CmdbModelV extends Entity {
 	 * @param m4 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setM4(String m4) {
+	public CmdbModelVH setM4(String m4) {
 		this.m4=m4;
 		return this;
 	}
@@ -862,7 +862,7 @@ public class CmdbModelV extends Entity {
 	 * @param m5 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setM5(String m5) {
+	public CmdbModelVH setM5(String m5) {
 		this.m5=m5;
 		return this;
 	}
@@ -881,7 +881,7 @@ public class CmdbModelV extends Entity {
 	 * @param m6 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setM6(String m6) {
+	public CmdbModelVH setM6(String m6) {
 		this.m6=m6;
 		return this;
 	}
@@ -900,7 +900,7 @@ public class CmdbModelV extends Entity {
 	 * @param m7 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setM7(String m7) {
+	public CmdbModelVH setM7(String m7) {
 		this.m7=m7;
 		return this;
 	}
@@ -919,7 +919,7 @@ public class CmdbModelV extends Entity {
 	 * @param m8 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setM8(String m8) {
+	public CmdbModelVH setM8(String m8) {
 		this.m8=m8;
 		return this;
 	}
@@ -938,7 +938,7 @@ public class CmdbModelV extends Entity {
 	 * @param m9 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setM9(String m9) {
+	public CmdbModelVH setM9(String m9) {
 		this.m9=m9;
 		return this;
 	}
@@ -957,7 +957,7 @@ public class CmdbModelV extends Entity {
 	 * @param m10 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setM10(String m10) {
+	public CmdbModelVH setM10(String m10) {
 		this.m10=m10;
 		return this;
 	}
@@ -976,7 +976,7 @@ public class CmdbModelV extends Entity {
 	 * @param bs1 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setBs1(String bs1) {
+	public CmdbModelVH setBs1(String bs1) {
 		this.bs1=bs1;
 		return this;
 	}
@@ -995,7 +995,7 @@ public class CmdbModelV extends Entity {
 	 * @param bs2 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setBs2(String bs2) {
+	public CmdbModelVH setBs2(String bs2) {
 		this.bs2=bs2;
 		return this;
 	}
@@ -1014,7 +1014,7 @@ public class CmdbModelV extends Entity {
 	 * @param bs3 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setBs3(String bs3) {
+	public CmdbModelVH setBs3(String bs3) {
 		this.bs3=bs3;
 		return this;
 	}
@@ -1033,7 +1033,7 @@ public class CmdbModelV extends Entity {
 	 * @param i1 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setI1(Integer i1) {
+	public CmdbModelVH setI1(Integer i1) {
 		this.i1=i1;
 		return this;
 	}
@@ -1052,7 +1052,7 @@ public class CmdbModelV extends Entity {
 	 * @param i2 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setI2(Integer i2) {
+	public CmdbModelVH setI2(Integer i2) {
 		this.i2=i2;
 		return this;
 	}
@@ -1071,7 +1071,7 @@ public class CmdbModelV extends Entity {
 	 * @param i3 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setI3(Integer i3) {
+	public CmdbModelVH setI3(Integer i3) {
 		this.i3=i3;
 		return this;
 	}
@@ -1090,7 +1090,7 @@ public class CmdbModelV extends Entity {
 	 * @param i4 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setI4(Integer i4) {
+	public CmdbModelVH setI4(Integer i4) {
 		this.i4=i4;
 		return this;
 	}
@@ -1109,7 +1109,7 @@ public class CmdbModelV extends Entity {
 	 * @param i5 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setI5(Integer i5) {
+	public CmdbModelVH setI5(Integer i5) {
 		this.i5=i5;
 		return this;
 	}
@@ -1128,7 +1128,7 @@ public class CmdbModelV extends Entity {
 	 * @param i6 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setI6(Integer i6) {
+	public CmdbModelVH setI6(Integer i6) {
 		this.i6=i6;
 		return this;
 	}
@@ -1147,7 +1147,7 @@ public class CmdbModelV extends Entity {
 	 * @param i7 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setI7(Integer i7) {
+	public CmdbModelVH setI7(Integer i7) {
 		this.i7=i7;
 		return this;
 	}
@@ -1166,7 +1166,7 @@ public class CmdbModelV extends Entity {
 	 * @param i8 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setI8(Integer i8) {
+	public CmdbModelVH setI8(Integer i8) {
 		this.i8=i8;
 		return this;
 	}
@@ -1185,7 +1185,7 @@ public class CmdbModelV extends Entity {
 	 * @param i9 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setI9(Integer i9) {
+	public CmdbModelVH setI9(Integer i9) {
 		this.i9=i9;
 		return this;
 	}
@@ -1204,7 +1204,7 @@ public class CmdbModelV extends Entity {
 	 * @param i10 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setI10(Integer i10) {
+	public CmdbModelVH setI10(Integer i10) {
 		this.i10=i10;
 		return this;
 	}
@@ -1223,7 +1223,7 @@ public class CmdbModelV extends Entity {
 	 * @param d1 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setD1(BigDecimal d1) {
+	public CmdbModelVH setD1(BigDecimal d1) {
 		this.d1=d1;
 		return this;
 	}
@@ -1242,7 +1242,7 @@ public class CmdbModelV extends Entity {
 	 * @param d2 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setD2(BigDecimal d2) {
+	public CmdbModelVH setD2(BigDecimal d2) {
 		this.d2=d2;
 		return this;
 	}
@@ -1261,7 +1261,7 @@ public class CmdbModelV extends Entity {
 	 * @param d3 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setD3(BigDecimal d3) {
+	public CmdbModelVH setD3(BigDecimal d3) {
 		this.d3=d3;
 		return this;
 	}
@@ -1280,7 +1280,7 @@ public class CmdbModelV extends Entity {
 	 * @param d4 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setD4(BigDecimal d4) {
+	public CmdbModelVH setD4(BigDecimal d4) {
 		this.d4=d4;
 		return this;
 	}
@@ -1299,7 +1299,7 @@ public class CmdbModelV extends Entity {
 	 * @param d5 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setD5(BigDecimal d5) {
+	public CmdbModelVH setD5(BigDecimal d5) {
 		this.d5=d5;
 		return this;
 	}
@@ -1318,7 +1318,7 @@ public class CmdbModelV extends Entity {
 	 * @param d6 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setD6(BigDecimal d6) {
+	public CmdbModelVH setD6(BigDecimal d6) {
 		this.d6=d6;
 		return this;
 	}
@@ -1337,7 +1337,7 @@ public class CmdbModelV extends Entity {
 	 * @param d7 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setD7(BigDecimal d7) {
+	public CmdbModelVH setD7(BigDecimal d7) {
 		this.d7=d7;
 		return this;
 	}
@@ -1356,7 +1356,7 @@ public class CmdbModelV extends Entity {
 	 * @param d8 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setD8(BigDecimal d8) {
+	public CmdbModelVH setD8(BigDecimal d8) {
 		this.d8=d8;
 		return this;
 	}
@@ -1375,7 +1375,7 @@ public class CmdbModelV extends Entity {
 	 * @param da1 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setDa1(Date da1) {
+	public CmdbModelVH setDa1(Date da1) {
 		this.da1=da1;
 		return this;
 	}
@@ -1394,7 +1394,7 @@ public class CmdbModelV extends Entity {
 	 * @param da2 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setDa2(Date da2) {
+	public CmdbModelVH setDa2(Date da2) {
 		this.da2=da2;
 		return this;
 	}
@@ -1413,7 +1413,7 @@ public class CmdbModelV extends Entity {
 	 * @param da3 内容
 	 * @return 当前对象
 	*/
-	public CmdbModelV setDa3(Date da3) {
+	public CmdbModelVH setDa3(Date da3) {
 		this.da3=da3;
 		return this;
 	}
@@ -1432,7 +1432,7 @@ public class CmdbModelV extends Entity {
 	 * @param notes 备注
 	 * @return 当前对象
 	*/
-	public CmdbModelV setNotes(String notes) {
+	public CmdbModelVH setNotes(String notes) {
 		this.notes=notes;
 		return this;
 	}
@@ -1451,7 +1451,7 @@ public class CmdbModelV extends Entity {
 	 * @param createBy 创建人ID
 	 * @return 当前对象
 	*/
-	public CmdbModelV setCreateBy(String createBy) {
+	public CmdbModelVH setCreateBy(String createBy) {
 		this.createBy=createBy;
 		return this;
 	}
@@ -1470,7 +1470,7 @@ public class CmdbModelV extends Entity {
 	 * @param createTime 创建时间
 	 * @return 当前对象
 	*/
-	public CmdbModelV setCreateTime(Date createTime) {
+	public CmdbModelVH setCreateTime(Date createTime) {
 		this.createTime=createTime;
 		return this;
 	}
@@ -1489,7 +1489,7 @@ public class CmdbModelV extends Entity {
 	 * @param updateBy 修改人ID
 	 * @return 当前对象
 	*/
-	public CmdbModelV setUpdateBy(String updateBy) {
+	public CmdbModelVH setUpdateBy(String updateBy) {
 		this.updateBy=updateBy;
 		return this;
 	}
@@ -1508,7 +1508,7 @@ public class CmdbModelV extends Entity {
 	 * @param updateTime 修改时间
 	 * @return 当前对象
 	*/
-	public CmdbModelV setUpdateTime(Date updateTime) {
+	public CmdbModelVH setUpdateTime(Date updateTime) {
 		this.updateTime=updateTime;
 		return this;
 	}
@@ -1541,7 +1541,7 @@ public class CmdbModelV extends Entity {
 	 * @return 当前对象
 	*/
 	@JsonProperty("deleted")
-	public CmdbModelV setDeleted(Integer deleted) {
+	public CmdbModelVH setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
 		return this;
@@ -1553,7 +1553,7 @@ public class CmdbModelV extends Entity {
 	 * @return 当前对象
 	*/
 	@Transient
-	public CmdbModelV setDeleted(Boolean deletedBool) {
+	public CmdbModelVH setDeleted(Boolean deletedBool) {
 		if(deletedBool==null) {
 			this.deleted=null;
 		} else {
@@ -1577,7 +1577,7 @@ public class CmdbModelV extends Entity {
 	 * @param deleteBy 删除人ID
 	 * @return 当前对象
 	*/
-	public CmdbModelV setDeleteBy(String deleteBy) {
+	public CmdbModelVH setDeleteBy(String deleteBy) {
 		this.deleteBy=deleteBy;
 		return this;
 	}
@@ -1596,7 +1596,7 @@ public class CmdbModelV extends Entity {
 	 * @param deleteTime 删除时间
 	 * @return 当前对象
 	*/
-	public CmdbModelV setDeleteTime(Date deleteTime) {
+	public CmdbModelVH setDeleteTime(Date deleteTime) {
 		this.deleteTime=deleteTime;
 		return this;
 	}
@@ -1615,7 +1615,7 @@ public class CmdbModelV extends Entity {
 	 * @param version version
 	 * @return 当前对象
 	*/
-	public CmdbModelV setVersion(Integer version) {
+	public CmdbModelVH setVersion(Integer version) {
 		this.version=version;
 		return this;
 	}
@@ -1634,7 +1634,7 @@ public class CmdbModelV extends Entity {
 	 * @param tenantId 租户
 	 * @return 当前对象
 	*/
-	public CmdbModelV setTenantId(String tenantId) {
+	public CmdbModelVH setTenantId(String tenantId) {
 		this.tenantId=tenantId;
 		return this;
 	}
@@ -1653,7 +1653,7 @@ public class CmdbModelV extends Entity {
 	 * @param cmdbModel cmdbModel
 	 * @return 当前对象
 	*/
-	public CmdbModelV setCmdbModel(CmdbModel cmdbModel) {
+	public CmdbModelVH setCmdbModel(CmdbModel cmdbModel) {
 		this.cmdbModel=cmdbModel;
 		return this;
 	}
@@ -1672,7 +1672,7 @@ public class CmdbModelV extends Entity {
 	 * @param cmdbObjAttributeList cmdbObjAttributeList
 	 * @return 当前对象
 	*/
-	public CmdbModelV setCmdbObjAttributeList(List<CmdbObjAttribute> cmdbObjAttributeList) {
+	public CmdbModelVH setCmdbObjAttributeList(List<CmdbObjAttribute> cmdbObjAttributeList) {
 		this.cmdbObjAttributeList=cmdbObjAttributeList;
 		return this;
 	}
@@ -1682,7 +1682,7 @@ public class CmdbModelV extends Entity {
 	 * @param cmdbObjAttribute cmdbObjAttributeList
 	 * @return 当前对象
 	*/
-	public CmdbModelV addCmdbObjAttribute(CmdbObjAttribute... cmdbObjAttribute) {
+	public CmdbModelVH addCmdbObjAttribute(CmdbObjAttribute... cmdbObjAttribute) {
 		if(this.cmdbObjAttributeList==null) cmdbObjAttributeList=new ArrayList<>();
 		this.cmdbObjAttributeList.addAll(Arrays.asList(cmdbObjAttribute));
 		return this;
@@ -1702,7 +1702,7 @@ public class CmdbModelV extends Entity {
 	 * @param cmdbModelVParent cmdbModelVParent
 	 * @return 当前对象
 	*/
-	public CmdbModelV setCmdbModelVParent(CmdbModelV cmdbModelVParent) {
+	public CmdbModelVH setCmdbModelVParent(CmdbModelV cmdbModelVParent) {
 		this.cmdbModelVParent=cmdbModelVParent;
 		return this;
 	}
@@ -1710,7 +1710,7 @@ public class CmdbModelV extends Entity {
 	/**
 	 * 将自己转换成指定类型的PO
 	 * @param poType  PO类型
-	 * @return CmdbModelV , 转换好的 CmdbModelV 对象
+	 * @return CmdbModelVH , 转换好的 CmdbModelVH 对象
 	*/
 	@Transient
 	public <T extends Entity> T toPO(Class<T> poType) {
@@ -1720,7 +1720,7 @@ public class CmdbModelV extends Entity {
 	/**
 	 * 将自己转换成任意指定类型
 	 * @param pojoType  Pojo类型
-	 * @return CmdbModelV , 转换好的 PoJo 对象
+	 * @return CmdbModelVH , 转换好的 PoJo 对象
 	*/
 	@Transient
 	public <T> T toPojo(Class<T> pojoType) {
@@ -1740,7 +1740,7 @@ public class CmdbModelV extends Entity {
 	 * 克隆当前对象
 	*/
 	@Transient
-	public CmdbModelV clone() {
+	public CmdbModelVH clone() {
 		return duplicate(true);
 	}
 
@@ -1749,8 +1749,8 @@ public class CmdbModelV extends Entity {
 	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
 	*/
 	@Transient
-	public CmdbModelV duplicate(boolean all) {
-		com.dt.platform.domain.ops.meta.CmdbModelVMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.CmdbModelVMeta.$$proxy$$();
+	public CmdbModelVH duplicate(boolean all) {
+		com.dt.platform.domain.ops.meta.CmdbModelVHMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.CmdbModelVHMeta.$$proxy$$();
 		inst.setBs2(this.getBs2());
 		inst.setBs1(this.getBs1());
 		inst.setBs3(this.getBs3());
@@ -1826,44 +1826,44 @@ public class CmdbModelV extends Entity {
 	 * 克隆当前对象
 	*/
 	@Transient
-	public CmdbModelV clone(boolean deep) {
-		return EntityContext.clone(CmdbModelV.class,this,deep);
+	public CmdbModelVH clone(boolean deep) {
+		return EntityContext.clone(CmdbModelVH.class,this,deep);
 	}
 
 	/**
-	 * 将 Map 转换成 CmdbModelV
-	 * @param cmdbModelVMap 包含实体信息的 Map 对象
-	 * @return CmdbModelV , 转换好的的 CmdbModelV 对象
+	 * 将 Map 转换成 CmdbModelVH
+	 * @param cmdbModelVHMap 包含实体信息的 Map 对象
+	 * @return CmdbModelVH , 转换好的的 CmdbModelVH 对象
 	*/
 	@Transient
-	public static CmdbModelV createFrom(Map<String,Object> cmdbModelVMap) {
-		if(cmdbModelVMap==null) return null;
-		CmdbModelV po = create();
-		EntityContext.copyProperties(po,cmdbModelVMap);
+	public static CmdbModelVH createFrom(Map<String,Object> cmdbModelVHMap) {
+		if(cmdbModelVHMap==null) return null;
+		CmdbModelVH po = create();
+		EntityContext.copyProperties(po,cmdbModelVHMap);
 		po.clearModifies();
 		return po;
 	}
 
 	/**
-	 * 将 Pojo 转换成 CmdbModelV
+	 * 将 Pojo 转换成 CmdbModelVH
 	 * @param pojo 包含实体信息的 Pojo 对象
-	 * @return CmdbModelV , 转换好的的 CmdbModelV 对象
+	 * @return CmdbModelVH , 转换好的的 CmdbModelVH 对象
 	*/
 	@Transient
-	public static CmdbModelV createFrom(Object pojo) {
+	public static CmdbModelVH createFrom(Object pojo) {
 		if(pojo==null) return null;
-		CmdbModelV po = create();
+		CmdbModelVH po = create();
 		EntityContext.copyProperties(po,pojo);
 		po.clearModifies();
 		return po;
 	}
 
 	/**
-	 * 创建一个 CmdbModelV，等同于 new
-	 * @return CmdbModelV 对象
+	 * 创建一个 CmdbModelVH，等同于 new
+	 * @return CmdbModelVH 对象
 	*/
 	@Transient
-	public static CmdbModelV create() {
-		return new com.dt.platform.domain.ops.meta.CmdbModelVMeta.$$proxy$$();
+	public static CmdbModelVH create() {
+		return new com.dt.platform.domain.ops.meta.CmdbModelVHMeta.$$proxy$$();
 	}
 }

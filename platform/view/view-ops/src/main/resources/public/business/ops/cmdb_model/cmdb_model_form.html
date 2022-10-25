@@ -2,16 +2,16 @@
 /**
  * 配置库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-23 20:59:20
+ * @since 2022-10-24 13:07:18
  */
  -->
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html style="background-color: #FFFFFF;">
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
-    <title th:text="${lang.translate('配置库')}">配置库</title>
+	<title th:text="${lang.translate('配置库')}">配置库</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:if(theme.ico!="null") rel="icon" th:href="theme.ico" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -34,38 +34,38 @@
 
         <input name="id" id="id"  type="hidden"/>
 
-        <!--开始：group 循环-->
+         <!--开始：group 循环-->
 
 
 
-        <div class="layui-row form-row" id="random-9701-content">
+        <div class="layui-row form-row" id="random-0942-content">
 
-            <!--开始：column 循环-->
+             <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs6 form-column" >
 
-                <div class="layui-form-item" >
-                    <div class="layui-form-label "><div th:text="${lang.translate('编码')}">编码</div><div class="layui-required">*</div></div>
-                    <div class="layui-input-block ">
-                        <input lay-filter="code" id="code" name="code" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('编码') }" type="text" class="layui-input"    lay-verify="|required"  />
+                    <div class="layui-form-item" >
+                        <div class="layui-form-label "><div th:text="${lang.translate('编码')}">编码</div><div class="layui-required">*</div></div>
+                        <div class="layui-input-block ">
+                            <input lay-filter="code" id="code" name="code" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('编码') }" type="text" class="layui-input"    lay-verify="|required"  />
+                        </div>
                     </div>
-                </div>
 
-                <div class="layui-form-item" >
-                    <div class="layui-form-label "><div th:text="${lang.translate('名称')}">名称</div><div class="layui-required">*</div></div>
-                    <div class="layui-input-block ">
-                        <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('名称') }" type="text" class="layui-input"    lay-verify="|required"  />
+                                    <div class="layui-form-item" >
+                        <div class="layui-form-label "><div th:text="${lang.translate('名称')}">名称</div><div class="layui-required">*</div></div>
+                        <div class="layui-input-block ">
+                            <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('名称') }" type="text" class="layui-input"    lay-verify="|required"  />
+                        </div>
                     </div>
-                </div>
 
-                <div class="layui-form-item" >
-                    <div class="layui-form-label "><div th:text="${lang.translate('全称')}">全称</div><div class="layui-required">*</div></div>
-                    <div class="layui-input-block ">
-                        <input lay-filter="fullName" id="fullName" name="fullName" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('全称') }" type="text" class="layui-input"    lay-verify="|required"  />
+                                    <div class="layui-form-item" >
+                        <div class="layui-form-label "><div th:text="${lang.translate('全称')}">全称</div><div class="layui-required">*</div></div>
+                        <div class="layui-input-block ">
+                            <input lay-filter="fullName" id="fullName" name="fullName" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('全称') }" type="text" class="layui-input"    lay-verify="|required"  />
+                        </div>
                     </div>
-                </div>
 
-
+                
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
@@ -74,18 +74,9 @@
                 </div>
 
 
-
-                <div class="layui-form-item" >
-                    <div class="layui-form-label "><div th:text="${lang.translate('存储方式')}">存储方式</div><div class="layui-required">*</div></div>
-                    <div class="layui-input-block ">
-                        <input input-type="radio" type="radio" name="storageType" lay-filter="storageType" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.ops.OpsCmdbStorageTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)}">
-                    </div>
-                </div>
-
-
                 <!--结束：栏次内字段循环-->
             </div>
-            <!--开始：column 循环-->
+             <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs6 form-column" >
 
@@ -98,47 +89,40 @@
                 </div>
 
 
-
+                
                 <div class="layui-form-item" >
-                    <div class="layui-form-label "><div th:text="${lang.translate('来源方式')}">来源方式</div><div class="layui-required">*</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('存储方式')}">存储方式</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
-                        <div id="dataSource" input-type="select" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.OpsCmdbDataFetchTypeEnum')}" extraParam="{}"></div>
+                        <input input-type="radio" type="radio" name="storageType" lay-filter="storageType" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.ops.OpsCmdbStorageTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)}">
                     </div>
                 </div>
 
 
-
-                <div class="layui-form-item" >
-                    <div class="layui-form-label "><div th:text="${lang.translate('关联方式')}">关联方式</div><div class="layui-required">*</div></div>
-                    <div class="layui-input-block ">
-                        <div id="associationType" input-type="select" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.OpsCmdbAssociationTypeEnum')}" extraParam="{}"></div>
+                
+                    <div class="layui-form-item" >
+                        <div class="layui-form-label "><div th:text="${lang.translate('来源方式')}">来源方式</div><div class="layui-required">*</div></div>
+                        <div class="layui-input-block ">
+                            <div id="dataSource" input-type="select" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.OpsCmdbDataFetchTypeEnum')}" extraParam="{}"></div>
+                        </div>
                     </div>
-                </div>
 
-
-                <div class="layui-form-item" >
-                    <div class="layui-form-label "><div th:text="${lang.translate('关联编码')}">关联编码</div></div>
-                    <div class="layui-input-block ">
-                        <input lay-filter="relationCode" id="relationCode" name="relationCode" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('关联编码') }" type="text" class="layui-input"  />
-                    </div>
-                </div>
 
                 <!--结束：栏次内字段循环-->
             </div>
             <!--结束：栏次输入框循环-->
         </div>
-        <!--开始：group 循环-->
+         <!--开始：group 循环-->
 
 
 
-        <div class="layui-row form-row" id="random-7119-content">
+        <div class="layui-row form-row" id="random-5993-content">
 
-            <!--开始：column 循环-->
+             <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs12 form-column"  style="padding-top: 0px" >
 
 
-                <div class="layui-form-item" >
+                    <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('来源')}">来源</div></div>
                     <div class="layui-input-block ">
                         <textarea lay-filter="source" id="source" name="source" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('来源') }" class="layui-textarea" style="height: 60px" ></textarea>
@@ -146,8 +130,8 @@
                 </div>
 
 
-
-                <div class="layui-form-item" >
+                
+                    <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
                     <div class="layui-input-block ">
                         <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" class="layui-textarea" style="height: 60px" ></textarea>
@@ -183,9 +167,8 @@
     var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
     var RADIO_SOURCETYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.OpsCmdbSourceTypeEnum')}]];
     var SELECT_DATASOURCE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.OpsCmdbDataFetchTypeEnum')}]];
-    var SELECT_ASSOCIATIONTYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.OpsCmdbAssociationTypeEnum')}]];
     var RADIO_STORAGETYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.ops.OpsCmdbStorageTypeEnum')}]];
-    var VALIDATE_CONFIG={"code":{"labelInForm":"编码","inputType":"text_input","required":true},"sourceType":{"labelInForm":"数据来源","inputType":"radio_box","required":true},"associationType":{"labelInForm":"关联方式","inputType":"select_box","required":true},"name":{"labelInForm":"名称","inputType":"text_input","required":true},"fullName":{"labelInForm":"全称","inputType":"text_input","required":true},"storageType":{"labelInForm":"存储方式","inputType":"radio_box","required":true},"dataSource":{"labelInForm":"来源方式","inputType":"select_box","required":true},"status":{"labelInForm":"状态","inputType":"radio_box","required":true}};
+    var VALIDATE_CONFIG={"code":{"labelInForm":"编码","inputType":"text_input","required":true},"sourceType":{"labelInForm":"数据来源","inputType":"radio_box","required":true},"name":{"labelInForm":"名称","inputType":"text_input","required":true},"fullName":{"labelInForm":"全称","inputType":"text_input","required":true},"storageType":{"labelInForm":"存储方式","inputType":"radio_box","required":true},"dataSource":{"labelInForm":"来源方式","inputType":"select_box","required":true},"status":{"labelInForm":"状态","inputType":"radio_box","required":true}};
     var AUTH_PREFIX="ops_cmdb_model";
 
 

@@ -95,10 +95,9 @@ function ListPage() {
 		if(treeNode==null) return;
 		editingNode=treeNode;
 
-		$("#form-view")[0].contentWindow.loadFormData(treeNode.id);
-
+		console.log("1212",$("#form-view")[0].contentWindow.pageExt.form);
+		$("#form-view")[0].contentWindow.pageExt.form.loadFormData(treeNode.id);
 		console.log( "######", $("#form-view2"));
-
 		$("#form-view2")[0].contentWindow.pageExt.list.loadList(treeNode.id);
 	}
 

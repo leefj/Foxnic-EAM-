@@ -23,8 +23,8 @@ import com.github.foxnic.dao.entity.EntityContext;
  * 配置库
  * <p>配置库 , 数据表 ops_cmdb_model 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-23 20:59:19
- * @sign E3BAD785196862603E3E12FA09D1A906
+ * @since 2022-10-24 13:07:17
+ * @sign CFCB8B84E804BE1F2EE157007D5268AE
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -110,22 +110,10 @@ public class CmdbModel extends Entity {
 	private String dataSource;
 	
 	/**
-	 * 关联方式：关联方式
-	*/
-	@ApiModelProperty(required = false,value="关联方式" , notes = "关联方式")
-	private String associationType;
-	
-	/**
 	 * 存储方式：存储方式
 	*/
 	@ApiModelProperty(required = false,value="存储方式" , notes = "存储方式")
 	private String storageType;
-	
-	/**
-	 * 关联编码：关联编码
-	*/
-	@ApiModelProperty(required = false,value="关联编码" , notes = "关联编码")
-	private String relationCode;
 	
 	/**
 	 * 排序：排序
@@ -448,25 +436,6 @@ public class CmdbModel extends Entity {
 	}
 	
 	/**
-	 * 获得 关联方式<br>
-	 * 关联方式
-	 * @return 关联方式
-	*/
-	public String getAssociationType() {
-		return associationType;
-	}
-	
-	/**
-	 * 设置 关联方式
-	 * @param associationType 关联方式
-	 * @return 当前对象
-	*/
-	public CmdbModel setAssociationType(String associationType) {
-		this.associationType=associationType;
-		return this;
-	}
-	
-	/**
 	 * 获得 存储方式<br>
 	 * 存储方式
 	 * @return 存储方式
@@ -482,25 +451,6 @@ public class CmdbModel extends Entity {
 	*/
 	public CmdbModel setStorageType(String storageType) {
 		this.storageType=storageType;
-		return this;
-	}
-	
-	/**
-	 * 获得 关联编码<br>
-	 * 关联编码
-	 * @return 关联编码
-	*/
-	public String getRelationCode() {
-		return relationCode;
-	}
-	
-	/**
-	 * 设置 关联编码
-	 * @param relationCode 关联编码
-	 * @return 当前对象
-	*/
-	public CmdbModel setRelationCode(String relationCode) {
-		this.relationCode=relationCode;
 		return this;
 	}
 	
@@ -899,16 +849,12 @@ public class CmdbModel extends Entity {
 		com.dt.platform.domain.ops.meta.CmdbModelMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.CmdbModelMeta.$$proxy$$();
 		inst.setCode(this.getCode());
 		inst.setNotes(this.getNotes());
-		inst.setRelationCode(this.getRelationCode());
-		inst.setSource(this.getSource());
-		inst.setUpdateBy(this.getUpdateBy());
-		inst.setId(this.getId());
 		inst.setHierarchy(this.getHierarchy());
-		inst.setAssociationType(this.getAssociationType());
 		inst.setHierarchyName(this.getHierarchyName());
 		inst.setFullName(this.getFullName());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setModelType(this.getModelType());
+		inst.setSource(this.getSource());
 		inst.setSort(this.getSort());
 		inst.setVersion(this.getVersion());
 		inst.setParentId(this.getParentId());
@@ -916,11 +862,13 @@ public class CmdbModel extends Entity {
 		inst.setDeleted(this.getDeleted());
 		inst.setSourceType(this.getSourceType());
 		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setName(this.getName());
 		inst.setTenantId(this.getTenantId());
 		inst.setStorageType(this.getStorageType());
 		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
 		inst.setDataSource(this.getDataSource());
 		inst.setStatus(this.getStatus());
 		if(all) {

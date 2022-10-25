@@ -153,6 +153,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
+
         /**
          * 末尾执行
          */
@@ -254,7 +255,15 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         afterSubmit:function (param,result) {
             console.log("afterSubmitt",param,result);
         },
-
+        loadFormData:function(id) {
+            admin.request(moduleURL+"/get-by-id",{id:id},function(r) {
+                if(r.success) {
+                    window.module.fillFormData(r.data);
+                } else {
+                    admin.toast().error("获取数据失败 : "+r.message,{time:1000,position:"right-bottom",width:"300px"});
+                }
+            });
+        },
         /**
          * 文件上传组件回调
          *  event 类型包括：

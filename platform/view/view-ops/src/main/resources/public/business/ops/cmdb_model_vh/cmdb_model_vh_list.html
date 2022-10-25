@@ -2,7 +2,7 @@
 /**
  * 配置值 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-24 13:33:57
+ * @since 2022-10-24 13:34:05
  */
  -->
  <!DOCTYPE html>
@@ -126,18 +126,18 @@
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
-        <button th:if="${perm.checkAuth('ops_cmdb_model_v:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建')}">新建</span></button>
+        <button th:if="${perm.checkAuth('ops_cmdb_model_v_h:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建')}">新建</span></button>
     </div>
 </script>
 
 <!-- 表格操作列 -->
 <script type="text/html" id="tableOperationTemplate">
 
-    <button th:if="${perm.checkAuth('ops_cmdb_model_v:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看')}">查看</span></button>
-    <button th:if="${perm.checkAnyAuth('ops_cmdb_model_v:update','ops_cmdb_model_v:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('修改')}">修改</span></button>
+    <button th:if="${perm.checkAuth('ops_cmdb_model_v_h:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看')}">查看</span></button>
+    <button th:if="${perm.checkAnyAuth('ops_cmdb_model_v_h:update','ops_cmdb_model_v_h:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('修改')}">修改</span></button>
 
 
-    <button th:if="${perm.checkAuth('ops_cmdb_model_v:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除')}">删除</span></button>
+    <button th:if="${perm.checkAuth('ops_cmdb_model_v_h:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除')}">删除</span></button>
 
 
 </script>
@@ -146,15 +146,15 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var RADIO_VSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
-    var AUTH_PREFIX="ops_cmdb_model_v";
+    var AUTH_PREFIX="ops_cmdb_model_v_h";
 
     // modelId
     var MODEL_ID = [[${modelId}]] ;
 
 </script>
 
-<script th:src="'/business/ops/cmdb_model_v/cmdb_model_v_ext.js?'+${cacheKey}"></script>
-<script th:src="'/business/ops/cmdb_model_v/cmdb_model_v_list.js?'+${cacheKey}"></script>
+<script th:src="'/business/ops/cmdb_model_vh/cmdb_model_vh_ext.js?'+${cacheKey}"></script>
+<script th:src="'/business/ops/cmdb_model_vh/cmdb_model_vh_list.js?'+${cacheKey}"></script>
 
 </body>
 </html>

@@ -8,8 +8,8 @@ import com.github.foxnic.commons.collection.MapUtil;
 import java.util.Arrays;
 
 
-import com.dt.platform.domain.ops.CmdbModelV;
-import com.dt.platform.domain.ops.CmdbModelVVO;
+import com.dt.platform.domain.ops.CmdbModelVH;
+import com.dt.platform.domain.ops.CmdbModelVHVO;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -28,7 +28,7 @@ import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.meta.DBColumnMeta;
 import com.github.foxnic.sql.expr.Select;
 import java.util.ArrayList;
-import com.dt.platform.ops.service.ICmdbModelVService;
+import com.dt.platform.ops.service.ICmdbModelVHService;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import java.util.Date;
 import java.util.Map;
@@ -38,12 +38,12 @@ import java.util.Map;
  * 配置值服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-24 13:33:56
+ * @since 2022-10-24 13:34:05
 */
 
 
-@Service("OpsCmdbModelVService")
-public class CmdbModelVServiceImpl extends SuperService<CmdbModelV> implements ICmdbModelVService {
+@Service("OpsCmdbModelVHService")
+public class CmdbModelVHServiceImpl extends SuperService<CmdbModelVH> implements ICmdbModelVHService {
 
 	/**
 	 * 注入DAO对象
@@ -66,34 +66,34 @@ public class CmdbModelVServiceImpl extends SuperService<CmdbModelV> implements I
 	/**
 	 * 添加，根据 throwsException 参数抛出异常或返回 Result 对象
 	 *
-	 * @param cmdbModelV  数据对象
+	 * @param cmdbModelVH  数据对象
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 结果 , 如果失败返回 false，成功返回 true
 	 */
 	@Override
-	public Result insert(CmdbModelV cmdbModelV,boolean throwsException) {
-		Result r=super.insert(cmdbModelV,throwsException);
+	public Result insert(CmdbModelVH cmdbModelVH,boolean throwsException) {
+		Result r=super.insert(cmdbModelVH,throwsException);
 		return r;
 	}
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
-	 * @param cmdbModelV 数据对象
+	 * @param cmdbModelVH 数据对象
 	 * @return 插入是否成功
 	 * */
 	@Override
-	public Result insert(CmdbModelV cmdbModelV) {
-		return this.insert(cmdbModelV,true);
+	public Result insert(CmdbModelVH cmdbModelVH) {
+		return this.insert(cmdbModelVH,true);
 	}
 
 	/**
 	 * 批量插入实体，事务内
-	 * @param cmdbModelVList 实体数据清单
+	 * @param cmdbModelVHList 实体数据清单
 	 * @return 插入是否成功
 	 * */
 	@Override
-	public Result insertList(List<CmdbModelV> cmdbModelVList) {
-		return super.insertList(cmdbModelVList);
+	public Result insertList(List<CmdbModelVH> cmdbModelVHList) {
+		return super.insertList(cmdbModelVHList);
 	}
 
 	
@@ -104,11 +104,11 @@ public class CmdbModelVServiceImpl extends SuperService<CmdbModelV> implements I
 	 * @return 删除是否成功
 	 */
 	public Result deleteByIdPhysical(String id) {
-		CmdbModelV cmdbModelV = new CmdbModelV();
+		CmdbModelVH cmdbModelVH = new CmdbModelVH();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
-		cmdbModelV.setId(id);
+		cmdbModelVH.setId(id);
 		try {
-			boolean suc = dao.deleteEntity(cmdbModelV);
+			boolean suc = dao.deleteEntity(cmdbModelVH);
 			return suc?ErrorDesc.success():ErrorDesc.failure();
 		}
 		catch(Exception e) {
@@ -125,14 +125,14 @@ public class CmdbModelVServiceImpl extends SuperService<CmdbModelV> implements I
 	 * @return 删除是否成功
 	 */
 	public Result deleteByIdLogical(String id) {
-		CmdbModelV cmdbModelV = new CmdbModelV();
+		CmdbModelVH cmdbModelVH = new CmdbModelVH();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
-		cmdbModelV.setId(id);
-		cmdbModelV.setDeleted(true);
-		cmdbModelV.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
-		cmdbModelV.setDeleteTime(new Date());
+		cmdbModelVH.setId(id);
+		cmdbModelVH.setDeleted(true);
+		cmdbModelVH.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
+		cmdbModelVH.setDeleteTime(new Date());
 		try {
-			boolean suc = dao.updateEntity(cmdbModelV,SaveMode.NOT_NULL_FIELDS);
+			boolean suc = dao.updateEntity(cmdbModelVH,SaveMode.NOT_NULL_FIELDS);
 			return suc?ErrorDesc.success():ErrorDesc.failure();
 		}
 		catch(Exception e) {
@@ -144,37 +144,37 @@ public class CmdbModelVServiceImpl extends SuperService<CmdbModelV> implements I
 
 	/**
 	 * 更新，如果执行错误，则抛出异常
-	 * @param cmdbModelV 数据对象
+	 * @param cmdbModelVH 数据对象
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
 	@Override
-	public Result update(CmdbModelV cmdbModelV , SaveMode mode) {
-		return this.update(cmdbModelV,mode,true);
+	public Result update(CmdbModelVH cmdbModelVH , SaveMode mode) {
+		return this.update(cmdbModelVH,mode,true);
 	}
 
 	/**
 	 * 更新，根据 throwsException 参数抛出异常或返回 Result 对象
-	 * @param cmdbModelV 数据对象
+	 * @param cmdbModelVH 数据对象
 	 * @param mode 保存模式
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 保存是否成功
 	 * */
 	@Override
-	public Result update(CmdbModelV cmdbModelV , SaveMode mode,boolean throwsException) {
-		Result r=super.update(cmdbModelV , mode , throwsException);
+	public Result update(CmdbModelVH cmdbModelVH , SaveMode mode,boolean throwsException) {
+		Result r=super.update(cmdbModelVH , mode , throwsException);
 		return r;
 	}
 
 	/**
 	 * 更新实体集，事务内
-	 * @param cmdbModelVList 数据对象列表
+	 * @param cmdbModelVHList 数据对象列表
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
 	@Override
-	public Result updateList(List<CmdbModelV> cmdbModelVList , SaveMode mode) {
-		return super.updateList(cmdbModelVList , mode);
+	public Result updateList(List<CmdbModelVH> cmdbModelVHList , SaveMode mode) {
+		return super.updateList(cmdbModelVHList , mode);
 	}
 
 	
@@ -196,10 +196,10 @@ public class CmdbModelVServiceImpl extends SuperService<CmdbModelV> implements I
 	 * 按主键获取配置值
 	 *
 	 * @param id 主键
-	 * @return CmdbModelV 数据对象
+	 * @return CmdbModelVH 数据对象
 	 */
-	public CmdbModelV getById(String id) {
-		CmdbModelV sample = new CmdbModelV();
+	public CmdbModelVH getById(String id) {
+		CmdbModelVH sample = new CmdbModelVH();
 		if(id==null) throw new IllegalArgumentException("id 不允许为 null ");
 		sample.setId(id);
 		return dao.queryEntity(sample);
@@ -209,18 +209,18 @@ public class CmdbModelVServiceImpl extends SuperService<CmdbModelV> implements I
 	 * 等价于 queryListByIds
 	 * */
 	@Override
-	public List<CmdbModelV> getByIds(List<String> ids) {
+	public List<CmdbModelVH> getByIds(List<String> ids) {
 		return this.queryListByIds(ids);
 	}
 
 	@Override
-	public List<CmdbModelV> queryListByIds(List<String> ids) {
+	public List<CmdbModelVH> queryListByIds(List<String> ids) {
 		return super.queryListByUKeys("id",ids);
 	}
 
 	@Override
-	public Map<String, CmdbModelV> queryMapByIds(List<String> ids) {
-		return super.queryMapByUKeys("id",ids, CmdbModelV::getId);
+	public Map<String, CmdbModelVH> queryMapByIds(List<String> ids) {
+		return super.queryMapByUKeys("id",ids, CmdbModelVH::getId);
 	}
 
 
@@ -232,7 +232,7 @@ public class CmdbModelVServiceImpl extends SuperService<CmdbModelV> implements I
 	 * @return 查询结果
 	 * */
 	@Override
-	public List<CmdbModelV> queryList(CmdbModelVVO sample) {
+	public List<CmdbModelVH> queryList(CmdbModelVHVO sample) {
 		return super.queryList(sample);
 	}
 
@@ -246,7 +246,7 @@ public class CmdbModelVServiceImpl extends SuperService<CmdbModelV> implements I
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<CmdbModelV> queryPagedList(CmdbModelVVO sample, int pageSize, int pageIndex) {
+	public PagedList<CmdbModelVH> queryPagedList(CmdbModelVHVO sample, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, pageSize, pageIndex);
 	}
 
@@ -260,19 +260,19 @@ public class CmdbModelVServiceImpl extends SuperService<CmdbModelV> implements I
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<CmdbModelV> queryPagedList(CmdbModelV sample, ConditionExpr condition, int pageSize, int pageIndex) {
+	public PagedList<CmdbModelVH> queryPagedList(CmdbModelVH sample, ConditionExpr condition, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, condition, pageSize, pageIndex);
 	}
 
 	/**
 	 * 检查 实体 是否已经存在 , 判断 主键值不同，但指定字段的值相同的记录是否存在
 	 *
-	 * @param cmdbModelV 数据对象
+	 * @param cmdbModelVH 数据对象
 	 * @return 判断结果
 	 */
-	public Boolean checkExists(CmdbModelV cmdbModelV) {
+	public Boolean checkExists(CmdbModelVH cmdbModelVH) {
 		//TDOD 此处添加判断段的代码
-		//boolean exists=super.checkExists(cmdbModelV, SYS_ROLE.NAME);
+		//boolean exists=super.checkExists(cmdbModelVH, SYS_ROLE.NAME);
 		//return exists;
 		return false;
 	}

@@ -12,8 +12,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-23 20:59:19
- * @sign E3BAD785196862603E3E12FA09D1A906
+ * @since 2022-10-24 13:07:17
+ * @sign CFCB8B84E804BE1F2EE157007D5268AE
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -140,16 +140,6 @@ public class CmdbModelMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.CmdbModel,java.lang.String> DATA_SOURCE_PROP = new BeanProperty(com.dt.platform.domain.ops.CmdbModel.class ,DATA_SOURCE, java.lang.String.class, "来源方式", "来源方式", java.lang.String.class, null);
 	
 	/**
-	 * 关联方式 , 类型: java.lang.String
-	*/
-	public static final String ASSOCIATION_TYPE="associationType";
-	
-	/**
-	 * 关联方式 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.CmdbModel,java.lang.String> ASSOCIATION_TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.CmdbModel.class ,ASSOCIATION_TYPE, java.lang.String.class, "关联方式", "关联方式", java.lang.String.class, null);
-	
-	/**
 	 * 存储方式 , 类型: java.lang.String
 	*/
 	public static final String STORAGE_TYPE="storageType";
@@ -158,16 +148,6 @@ public class CmdbModelMeta {
 	 * 存储方式 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.CmdbModel,java.lang.String> STORAGE_TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.CmdbModel.class ,STORAGE_TYPE, java.lang.String.class, "存储方式", "存储方式", java.lang.String.class, null);
-	
-	/**
-	 * 关联编码 , 类型: java.lang.String
-	*/
-	public static final String RELATION_CODE="relationCode";
-	
-	/**
-	 * 关联编码 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.CmdbModel,java.lang.String> RELATION_CODE_PROP = new BeanProperty(com.dt.platform.domain.ops.CmdbModel.class ,RELATION_CODE, java.lang.String.class, "关联编码", "关联编码", java.lang.String.class, null);
 	
 	/**
 	 * 排序 , 类型: java.lang.Integer
@@ -322,7 +302,7 @@ public class CmdbModelMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , PARENT_ID , STATUS , HIERARCHY , HIERARCHY_NAME , NAME , FULL_NAME , CODE , MODEL_TYPE , SOURCE_TYPE , SOURCE , DATA_SOURCE , ASSOCIATION_TYPE , STORAGE_TYPE , RELATION_CODE , SORT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CMDB_OBJ_ATTRIBUTE_LIST , CMDB_MODEL_V_LIST , CMDB_OBJ_ATTRIBUTE_PARENT_LIST , CMDB_MODEL_PARENT };
+	public static final String[] $PROPS={ ID , PARENT_ID , STATUS , HIERARCHY , HIERARCHY_NAME , NAME , FULL_NAME , CODE , MODEL_TYPE , SOURCE_TYPE , SOURCE , DATA_SOURCE , STORAGE_TYPE , SORT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CMDB_OBJ_ATTRIBUTE_LIST , CMDB_MODEL_V_LIST , CMDB_OBJ_ATTRIBUTE_PARENT_LIST , CMDB_MODEL_PARENT };
 	
 	/**
 	 * 代理类
@@ -465,17 +445,6 @@ public class CmdbModelMeta {
 		}
 		
 		/**
-		 * 设置 关联方式
-		 * @param associationType 关联方式
-		 * @return 当前对象
-		*/
-		public CmdbModel setAssociationType(String associationType) {
-			super.change(ASSOCIATION_TYPE,super.getAssociationType(),associationType);
-			super.setAssociationType(associationType);
-			return this;
-		}
-		
-		/**
 		 * 设置 存储方式
 		 * @param storageType 存储方式
 		 * @return 当前对象
@@ -483,17 +452,6 @@ public class CmdbModelMeta {
 		public CmdbModel setStorageType(String storageType) {
 			super.change(STORAGE_TYPE,super.getStorageType(),storageType);
 			super.setStorageType(storageType);
-			return this;
-		}
-		
-		/**
-		 * 设置 关联编码
-		 * @param relationCode 关联编码
-		 * @return 当前对象
-		*/
-		public CmdbModel setRelationCode(String relationCode) {
-			super.change(RELATION_CODE,super.getRelationCode(),relationCode);
-			super.setRelationCode(relationCode);
 			return this;
 		}
 		
@@ -679,16 +637,12 @@ public class CmdbModelMeta {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setCode(this.getCode());
 			inst.setNotes(this.getNotes());
-			inst.setRelationCode(this.getRelationCode());
-			inst.setSource(this.getSource());
-			inst.setUpdateBy(this.getUpdateBy());
-			inst.setId(this.getId());
 			inst.setHierarchy(this.getHierarchy());
-			inst.setAssociationType(this.getAssociationType());
 			inst.setHierarchyName(this.getHierarchyName());
 			inst.setFullName(this.getFullName());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setModelType(this.getModelType());
+			inst.setSource(this.getSource());
 			inst.setSort(this.getSort());
 			inst.setVersion(this.getVersion());
 			inst.setParentId(this.getParentId());
@@ -696,11 +650,13 @@ public class CmdbModelMeta {
 			inst.setDeleted(this.getDeleted());
 			inst.setSourceType(this.getSourceType());
 			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setName(this.getName());
 			inst.setTenantId(this.getTenantId());
 			inst.setStorageType(this.getStorageType());
 			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
 			inst.setDataSource(this.getDataSource());
 			inst.setStatus(this.getStatus());
 			if(all) {

@@ -15,16 +15,16 @@ import java.util.Map;
 
 
 /**
- * 配置库VO类型
- * <p>配置库 , 数据表 ops_cmdb_model 的通用VO类型</p>
+ * 配置值VO类型
+ * <p>配置值 , 数据表 ops_cmdb_model_v_h 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-24 13:07:17
- * @sign 7BCC7CA20332EF3F712D48A667B223C5
+ * @since 2022-10-24 13:34:04
+ * @sign 0CD26D04A224A5CFD1796BDBD9049868
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
-@ApiModel(description = "配置库VO类型 ; 配置库 , 数据表 ops_cmdb_model 的通用VO类型" , parent = CmdbModel.class)
-public class CmdbModelVO extends CmdbModel {
+@ApiModel(description = "配置值VO类型 ; 配置值 , 数据表 ops_cmdb_model_v_h 的通用VO类型" , parent = CmdbModelVH.class)
+public class CmdbModelVHVO extends CmdbModelVH {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -95,7 +95,7 @@ public class CmdbModelVO extends CmdbModel {
 	 * @param pageIndex 页码
 	 * @return 当前对象
 	*/
-	public CmdbModelVO setPageIndex(Integer pageIndex) {
+	public CmdbModelVHVO setPageIndex(Integer pageIndex) {
 		this.pageIndex=pageIndex;
 		return this;
 	}
@@ -113,7 +113,7 @@ public class CmdbModelVO extends CmdbModel {
 	 * @param pageSize 分页大小
 	 * @return 当前对象
 	*/
-	public CmdbModelVO setPageSize(Integer pageSize) {
+	public CmdbModelVHVO setPageSize(Integer pageSize) {
 		this.pageSize=pageSize;
 		return this;
 	}
@@ -131,7 +131,7 @@ public class CmdbModelVO extends CmdbModel {
 	 * @param searchField 搜索字段
 	 * @return 当前对象
 	*/
-	public CmdbModelVO setSearchField(String searchField) {
+	public CmdbModelVHVO setSearchField(String searchField) {
 		this.searchField=searchField;
 		return this;
 	}
@@ -149,7 +149,7 @@ public class CmdbModelVO extends CmdbModel {
 	 * @param fuzzyField 模糊搜索字段
 	 * @return 当前对象
 	*/
-	public CmdbModelVO setFuzzyField(String fuzzyField) {
+	public CmdbModelVHVO setFuzzyField(String fuzzyField) {
 		this.fuzzyField=fuzzyField;
 		return this;
 	}
@@ -167,7 +167,7 @@ public class CmdbModelVO extends CmdbModel {
 	 * @param searchValue 搜索的值
 	 * @return 当前对象
 	*/
-	public CmdbModelVO setSearchValue(String searchValue) {
+	public CmdbModelVHVO setSearchValue(String searchValue) {
 		this.searchValue=searchValue;
 		return this;
 	}
@@ -185,7 +185,7 @@ public class CmdbModelVO extends CmdbModel {
 	 * @param dirtyFields 已修改字段
 	 * @return 当前对象
 	*/
-	public CmdbModelVO setDirtyFields(List<String> dirtyFields) {
+	public CmdbModelVHVO setDirtyFields(List<String> dirtyFields) {
 		this.dirtyFields=dirtyFields;
 		return this;
 	}
@@ -195,7 +195,7 @@ public class CmdbModelVO extends CmdbModel {
 	 * @param dirtyField 已修改字段
 	 * @return 当前对象
 	*/
-	public CmdbModelVO addDirtyField(String... dirtyField) {
+	public CmdbModelVHVO addDirtyField(String... dirtyField) {
 		if(this.dirtyFields==null) dirtyFields=new ArrayList<>();
 		this.dirtyFields.addAll(Arrays.asList(dirtyField));
 		return this;
@@ -214,7 +214,7 @@ public class CmdbModelVO extends CmdbModel {
 	 * @param sortField 排序字段
 	 * @return 当前对象
 	*/
-	public CmdbModelVO setSortField(String sortField) {
+	public CmdbModelVHVO setSortField(String sortField) {
 		this.sortField=sortField;
 		return this;
 	}
@@ -232,7 +232,7 @@ public class CmdbModelVO extends CmdbModel {
 	 * @param sortType 排序方式
 	 * @return 当前对象
 	*/
-	public CmdbModelVO setSortType(String sortType) {
+	public CmdbModelVHVO setSortType(String sortType) {
 		this.sortType=sortType;
 		return this;
 	}
@@ -251,7 +251,7 @@ public class CmdbModelVO extends CmdbModel {
 	 * @param ids 主键清单
 	 * @return 当前对象
 	*/
-	public CmdbModelVO setIds(List<String> ids) {
+	public CmdbModelVHVO setIds(List<String> ids) {
 		this.ids=ids;
 		return this;
 	}
@@ -261,7 +261,7 @@ public class CmdbModelVO extends CmdbModel {
 	 * @param id 主键清单
 	 * @return 当前对象
 	*/
-	public CmdbModelVO addId(String... id) {
+	public CmdbModelVHVO addId(String... id) {
 		if(this.ids==null) ids=new ArrayList<>();
 		this.ids.addAll(Arrays.asList(id));
 		return this;
@@ -281,7 +281,7 @@ public class CmdbModelVO extends CmdbModel {
 	/**
 	 * 将自己转换成指定类型的PO
 	 * @param poType  PO类型
-	 * @return CmdbModelVO , 转换好的 CmdbModelVO 对象
+	 * @return CmdbModelVHVO , 转换好的 CmdbModelVHVO 对象
 	*/
 	@Transient
 	public <T extends Entity> T toPO(Class<T> poType) {
@@ -291,7 +291,7 @@ public class CmdbModelVO extends CmdbModel {
 	/**
 	 * 将自己转换成任意指定类型
 	 * @param pojoType  Pojo类型
-	 * @return CmdbModelVO , 转换好的 PoJo 对象
+	 * @return CmdbModelVHVO , 转换好的 PoJo 对象
 	*/
 	@Transient
 	public <T> T toPojo(Class<T> pojoType) {
@@ -311,7 +311,7 @@ public class CmdbModelVO extends CmdbModel {
 	 * 克隆当前对象
 	*/
 	@Transient
-	public CmdbModelVO clone() {
+	public CmdbModelVHVO clone() {
 		return duplicate(true);
 	}
 
@@ -320,45 +320,82 @@ public class CmdbModelVO extends CmdbModel {
 	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
 	*/
 	@Transient
-	public CmdbModelVO duplicate(boolean all) {
-		com.dt.platform.domain.ops.meta.CmdbModelVOMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.CmdbModelVOMeta.$$proxy$$();
-		inst.setCode(this.getCode());
+	public CmdbModelVHVO duplicate(boolean all) {
+		com.dt.platform.domain.ops.meta.CmdbModelVHVOMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.CmdbModelVHVOMeta.$$proxy$$();
+		inst.setBs2(this.getBs2());
+		inst.setBs1(this.getBs1());
+		inst.setBs3(this.getBs3());
 		inst.setNotes(this.getNotes());
-		inst.setHierarchy(this.getHierarchy());
-		inst.setHierarchyName(this.getHierarchyName());
-		inst.setFullName(this.getFullName());
-		inst.setUpdateTime(this.getUpdateTime());
-		inst.setModelType(this.getModelType());
-		inst.setSource(this.getSource());
-		inst.setSort(this.getSort());
+		inst.setModelId(this.getModelId());
+		inst.setPid(this.getPid());
+		inst.setModelCode(this.getModelCode());
+		inst.setId(this.getId());
+		inst.setS1(this.getS1());
+		inst.setS2(this.getS2());
+		inst.setS3(this.getS3());
+		inst.setS4(this.getS4());
+		inst.setS5(this.getS5());
+		inst.setObjSourceId(this.getObjSourceId());
+		inst.setS6(this.getS6());
+		inst.setS7(this.getS7());
+		inst.setS8(this.getS8());
 		inst.setVersion(this.getVersion());
-		inst.setParentId(this.getParentId());
-		inst.setCreateBy(this.getCreateBy());
-		inst.setDeleted(this.getDeleted());
-		inst.setSourceType(this.getSourceType());
-		inst.setCreateTime(this.getCreateTime());
-		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setName(this.getName());
-		inst.setTenantId(this.getTenantId());
-		inst.setStorageType(this.getStorageType());
 		inst.setDeleteBy(this.getDeleteBy());
-		inst.setId(this.getId());
-		inst.setDataSource(this.getDataSource());
-		inst.setStatus(this.getStatus());
+		inst.setDesc(this.getDesc());
+		inst.setDataTraceCode(this.getDataTraceCode());
+		inst.setI10(this.getI10());
+		inst.setM10(this.getM10());
+		inst.setD1(this.getD1());
+		inst.setD2(this.getD2());
+		inst.setD3(this.getD3());
+		inst.setD4(this.getD4());
+		inst.setD5(this.getD5());
+		inst.setD6(this.getD6());
+		inst.setD7(this.getD7());
+		inst.setD8(this.getD8());
+		inst.setDa2(this.getDa2());
+		inst.setDa1(this.getDa1());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDa3(this.getDa3());
+		inst.setVStatus(this.getVStatus());
+		inst.setM1(this.getM1());
+		inst.setM2(this.getM2());
+		inst.setM3(this.getM3());
+		inst.setM4(this.getM4());
+		inst.setM5(this.getM5());
+		inst.setI1(this.getI1());
+		inst.setM6(this.getM6());
+		inst.setI2(this.getI2());
+		inst.setM7(this.getM7());
+		inst.setI3(this.getI3());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setM8(this.getM8());
+		inst.setI4(this.getI4());
+		inst.setM9(this.getM9());
+		inst.setI5(this.getI5());
+		inst.setI6(this.getI6());
+		inst.setI7(this.getI7());
+		inst.setI8(this.getI8());
+		inst.setI9(this.getI9());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setTenantId(this.getTenantId());
+		inst.setVVersion(this.getVVersion());
 		if(all) {
-			inst.setSearchField(this.getSearchField());
-			inst.setFuzzyField(this.getFuzzyField());
-			inst.setPageSize(this.getPageSize());
-			inst.setCmdbModelVList(this.getCmdbModelVList());
+			inst.setCmdbModelVParent(this.getCmdbModelVParent());
+			inst.setCmdbModel(this.getCmdbModel());
 			inst.setCmdbObjAttributeList(this.getCmdbObjAttributeList());
+			inst.setSearchField(this.getSearchField());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
-			inst.setCmdbModelParent(this.getCmdbModelParent());
+			inst.setFuzzyField(this.getFuzzyField());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
+			inst.setPageSize(this.getPageSize());
 			inst.setIds(this.getIds());
-			inst.setCmdbObjAttributeParentList(this.getCmdbObjAttributeParentList());
 			inst.setSearchValue(this.getSearchValue());
 		}
 		inst.clearModifies();
@@ -369,44 +406,44 @@ public class CmdbModelVO extends CmdbModel {
 	 * 克隆当前对象
 	*/
 	@Transient
-	public CmdbModelVO clone(boolean deep) {
-		return EntityContext.clone(CmdbModelVO.class,this,deep);
+	public CmdbModelVHVO clone(boolean deep) {
+		return EntityContext.clone(CmdbModelVHVO.class,this,deep);
 	}
 
 	/**
-	 * 将 Map 转换成 CmdbModelVO
-	 * @param cmdbModelMap 包含实体信息的 Map 对象
-	 * @return CmdbModelVO , 转换好的的 CmdbModel 对象
+	 * 将 Map 转换成 CmdbModelVHVO
+	 * @param cmdbModelVHMap 包含实体信息的 Map 对象
+	 * @return CmdbModelVHVO , 转换好的的 CmdbModelVH 对象
 	*/
 	@Transient
-	public static CmdbModelVO createFrom(Map<String,Object> cmdbModelMap) {
-		if(cmdbModelMap==null) return null;
-		CmdbModelVO vo = create();
-		EntityContext.copyProperties(vo,cmdbModelMap);
+	public static CmdbModelVHVO createFrom(Map<String,Object> cmdbModelVHMap) {
+		if(cmdbModelVHMap==null) return null;
+		CmdbModelVHVO vo = create();
+		EntityContext.copyProperties(vo,cmdbModelVHMap);
 		vo.clearModifies();
 		return vo;
 	}
 
 	/**
-	 * 将 Pojo 转换成 CmdbModelVO
+	 * 将 Pojo 转换成 CmdbModelVHVO
 	 * @param pojo 包含实体信息的 Pojo 对象
-	 * @return CmdbModelVO , 转换好的的 CmdbModel 对象
+	 * @return CmdbModelVHVO , 转换好的的 CmdbModelVH 对象
 	*/
 	@Transient
-	public static CmdbModelVO createFrom(Object pojo) {
+	public static CmdbModelVHVO createFrom(Object pojo) {
 		if(pojo==null) return null;
-		CmdbModelVO vo = create();
+		CmdbModelVHVO vo = create();
 		EntityContext.copyProperties(vo,pojo);
 		vo.clearModifies();
 		return vo;
 	}
 
 	/**
-	 * 创建一个 CmdbModelVO，等同于 new
-	 * @return CmdbModelVO 对象
+	 * 创建一个 CmdbModelVHVO，等同于 new
+	 * @return CmdbModelVHVO 对象
 	*/
 	@Transient
-	public static CmdbModelVO create() {
-		return new com.dt.platform.domain.ops.meta.CmdbModelVOMeta.$$proxy$$();
+	public static CmdbModelVHVO create() {
+		return new com.dt.platform.domain.ops.meta.CmdbModelVHVOMeta.$$proxy$$();
 	}
 }
