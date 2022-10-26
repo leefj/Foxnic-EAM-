@@ -822,10 +822,15 @@ function ListPage() {
 			#if(opColumnMenus!=null && opColumnMenus.size()>0)
 			else if(obj.event === 'ops-more'){
 				//更多下拉菜单
+				var  items = #(opColumnMenuData);
+				items=items.filter(function (item,i,arr){
+					if(!item.perm) return true;
+					else return admin.checkAuth(item.perm);
+				});
 				dropdown.render({
 					elem: this
 					,show: true //外部事件触发即显示
-					,data: #(opColumnMenuData)
+					,data: items
 					,click: function(menu, othis){
 						if(menu.perm && !admin.checkAuth(menu.perm)) {
 							top.layer.msg(fox.translate('缺少操作权限'), {icon: 2, time: 1500});
