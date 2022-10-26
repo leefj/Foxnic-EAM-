@@ -2,7 +2,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-27 23:31:30
+ * @since 2022-10-25 20:25:34
  */
  -->
  <!DOCTYPE html>
@@ -188,7 +188,7 @@
                     <div class="layui-form-item" >
                         <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('使用期限(月)')}">使用期限(月)</div></div>
                         <div class="layui-input-block layui-input-block-c1">
-                            <input lay-filter="serviceLife" id="serviceLife" name="serviceLife" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('使用期限(月)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="1.0"   scale="2" />
+                            <input lay-filter="serviceLife" id="serviceLife" name="serviceLife" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('使用期限(月)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="0.2"   scale="2" />
                         </div>
                     </div>
 
@@ -295,7 +295,7 @@
                     <div class="layui-form-item" >
                         <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('资产数量')}">资产数量</div></div>
                         <div class="layui-input-block layui-input-block-c1">
-                            <input lay-filter="assetNumber" id="assetNumber" name="assetNumber" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('资产数量') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="false" step="1.0"   scale="0" />
+                            <input lay-filter="assetNumber" id="assetNumber" name="assetNumber" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('资产数量') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="false" step="0.2"   scale="0" />
                         </div>
                     </div>
 
@@ -304,7 +304,7 @@
                     <div class="layui-form-item" >
                         <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('剩余数量')}">剩余数量</div></div>
                         <div class="layui-input-block layui-input-block-c1">
-                            <input lay-filter="remainNumber" id="remainNumber" name="remainNumber" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('剩余数量') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="false" step="1.0"   scale="0" />
+                            <input lay-filter="remainNumber" id="remainNumber" name="remainNumber" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('剩余数量') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="false" step="0.2"   scale="0" />
                         </div>
                     </div>
 
@@ -476,7 +476,7 @@
                     <div class="layui-form-item" >
                         <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('税额')}">税额</div></div>
                         <div class="layui-input-block layui-input-block-c1">
-                            <input lay-filter="taxAmountRate" id="taxAmountRate" name="taxAmountRate" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('税额') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="1.0"   scale="2" />
+                            <input lay-filter="taxAmountRate" id="taxAmountRate" name="taxAmountRate" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('税额') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="0.2"   scale="2" />
                         </div>
                     </div>
 
@@ -485,7 +485,7 @@
                     <div class="layui-form-item" >
                         <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('含税金额')}">含税金额</div></div>
                         <div class="layui-input-block layui-input-block-c1">
-                            <input lay-filter="taxAmountPrice" id="taxAmountPrice" name="taxAmountPrice" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('含税金额') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="1.0"   scale="2" />
+                            <input lay-filter="taxAmountPrice" id="taxAmountPrice" name="taxAmountPrice" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('含税金额') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="0.2"   scale="2" />
                         </div>
                     </div>
 
@@ -503,7 +503,7 @@
                     <div class="layui-form-item" >
                         <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('资产原值(单价)')}">资产原值(单价)</div></div>
                         <div class="layui-input-block layui-input-block-c1">
-                            <input lay-filter="originalUnitPrice" id="originalUnitPrice" name="originalUnitPrice" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('资产原值(单价)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="1.0"   scale="2" />
+                            <input lay-filter="originalUnitPrice" id="originalUnitPrice" name="originalUnitPrice" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('资产原值(单价)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="0.2"   scale="2" />
                         </div>
                     </div>
 
@@ -530,7 +530,7 @@
                     <div class="layui-form-item" >
                         <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('累计折旧')}">累计折旧</div></div>
                         <div class="layui-input-block layui-input-block-c1">
-                            <input lay-filter="accumulatedDepreciation" id="accumulatedDepreciation" name="accumulatedDepreciation" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('累计折旧') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="1.0"   scale="2" />
+                            <input lay-filter="accumulatedDepreciation" id="accumulatedDepreciation" name="accumulatedDepreciation" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('累计折旧') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="0.2"   scale="2" />
                         </div>
                     </div>
 
@@ -548,7 +548,7 @@
                     <div class="layui-form-item" >
                         <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('残值率')}">残值率</div></div>
                         <div class="layui-input-block layui-input-block-c1">
-                            <input lay-filter="residualsRate" id="residualsRate" name="residualsRate" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('残值率') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="1.0"   scale="2" />
+                            <input lay-filter="residualsRate" id="residualsRate" name="residualsRate" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('残值率') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="0.2"   scale="2" />
                         </div>
                     </div>
 
@@ -575,7 +575,7 @@
                     <div class="layui-form-item" >
                         <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('采购单价')}">采购单价</div></div>
                         <div class="layui-input-block layui-input-block-c1">
-                            <input lay-filter="purchaseUnitPrice" id="purchaseUnitPrice" name="purchaseUnitPrice" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('采购单价') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="1.0"   scale="2" />
+                            <input lay-filter="purchaseUnitPrice" id="purchaseUnitPrice" name="purchaseUnitPrice" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('采购单价') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="0.2"   scale="2" />
                         </div>
                     </div>
 
@@ -677,7 +677,7 @@
                     <div class="layui-form-item" >
                         <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('机柜')}">机柜</div></div>
                         <div class="layui-input-block layui-input-block-c1">
-                            <div id="rackId" input-type="select" th:data="${'/service-datacenter/dc-rack/query-paged-list'}" extraParam="{}"></div>
+                            <div id="rackId" input-type="select" th:data="${'/service-eam/eam-asset-rack/query-paged-list'}" extraParam="{}"></div>
                         </div>
                     </div>
 
@@ -686,7 +686,7 @@
                     <div class="layui-form-item" >
                         <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('设备机柜上位置')}">设备机柜上位置</div></div>
                         <div class="layui-input-block layui-input-block-c1">
-                            <input lay-filter="rackUpNumber" id="rackUpNumber" name="rackUpNumber" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('设备机柜上位置') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="false" step="1.0"   scale="0" />
+                            <input lay-filter="rackUpNumber" id="rackUpNumber" name="rackUpNumber" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('设备机柜上位置') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="false" step="0.2"   scale="0" />
                         </div>
                     </div>
 
@@ -695,7 +695,7 @@
                     <div class="layui-form-item" >
                         <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('设备机柜下位置')}">设备机柜下位置</div></div>
                         <div class="layui-input-block layui-input-block-c1">
-                            <input lay-filter="rackDownNumber" id="rackDownNumber" name="rackDownNumber" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('设备机柜下位置') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="false" step="1.0"   scale="0" />
+                            <input lay-filter="rackDownNumber" id="rackDownNumber" name="rackDownNumber" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('设备机柜下位置') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="false" step="0.2"   scale="0" />
                         </div>
                     </div>
 

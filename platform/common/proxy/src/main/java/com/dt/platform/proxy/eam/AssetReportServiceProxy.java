@@ -76,6 +76,21 @@ public interface AssetReportServiceProxy {
 	public static final String QUERY_ASSET_DATA_BY_LABEL = API_PREFIX + "query-asset-data-by-label";
 
 
+	/**
+	 * 资产
+	 */
+	public static final String QUERY_AUX_CATEGORY_DATA = API_PREFIX + "query-aux-category-data";
+
+
+	/**
+	 * 资产
+	 */
+	public static final String ASSET_FOR_LEAVE_EMPLOYEE_REPORT = API_PREFIX + "asset-for-leave-employee-report";
+
+	/**
+	 * 资产
+	 */
+	public static final String ASSET_OPER_DATA_REPORT = API_PREFIX + "asset-oper-data-report";
 
 	/**
 	 * 控制器类名

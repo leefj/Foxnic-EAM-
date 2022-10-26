@@ -21,6 +21,7 @@ public enum CodeAttrTypeEnum implements CodeTextEnum {
 	NUMBER_RAND("number_rand" , "随机数字"),
 	TIME("time" , "时间"),
 	ORG("org" , "组织架构"),
+	BUSI("busi" , "业务"),
 	;
 
 	private String code;

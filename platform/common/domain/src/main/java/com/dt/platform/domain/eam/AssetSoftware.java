@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_ASSET_SOFTWARE;
@@ -9,10 +10,12 @@ import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import org.github.foxnic.web.domain.pcm.Catalog;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
@@ -21,13 +24,15 @@ import com.github.foxnic.dao.entity.EntityContext;
 
 /**
  * 软件资产
+ * <p>软件资产 , 数据表 eam_asset_software 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-15 06:50:47
- * @sign E7161E4F6B5AB2B91EF3726CB6B463DB
+ * @since 2022-10-25 20:03:27
+ * @sign E6AC84F693C3E2E90D5E8ADCD5849022
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_asset_software")
+@ApiModel(description = "软件资产 ; 软件资产 , 数据表 eam_asset_software 的PO类型")
 public class AssetSoftware extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -38,19 +43,19 @@ public class AssetSoftware extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "576883988434526208")
 	private String id;
 	
 	/**
 	 * 业务编号：业务编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号")
+	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "SW202205112105555")
 	private String businessCode;
 	
 	/**
 	 * 所属：所属
 	*/
-	@ApiModelProperty(required = false,value="所属" , notes = "所属")
+	@ApiModelProperty(required = false,value="所属" , notes = "所属" , example = "asset_software")
 	private String ownerCode;
 	
 	/**
@@ -62,19 +67,19 @@ public class AssetSoftware extends Entity {
 	/**
 	 * 办理状态：办理状态
 	*/
-	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态")
+	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态" , example = "complete")
 	private String status;
 	
 	/**
 	 * 软件名称：软件名称
 	*/
-	@ApiModelProperty(required = false,value="软件名称" , notes = "软件名称")
+	@ApiModelProperty(required = false,value="软件名称" , notes = "软件名称" , example = "测试")
 	private String name;
 	
 	/**
 	 * 软件分类：软件分类
 	*/
-	@ApiModelProperty(required = false,value="软件分类" , notes = "软件分类")
+	@ApiModelProperty(required = false,value="软件分类" , notes = "软件分类" , example = "574010699332718592")
 	private String categoryId;
 	
 	/**
@@ -110,7 +115,7 @@ public class AssetSoftware extends Entity {
 	/**
 	 * 所属公司：所属公司
 	*/
-	@ApiModelProperty(required = false,value="所属公司" , notes = "所属公司")
+	@ApiModelProperty(required = false,value="所属公司" , notes = "所属公司" , example = "2")
 	private String ownCompanyId;
 	
 	/**
@@ -158,19 +163,19 @@ public class AssetSoftware extends Entity {
 	/**
 	 * 授权数量：授权数量
 	*/
-	@ApiModelProperty(required = false,value="授权数量" , notes = "授权数量")
+	@ApiModelProperty(required = false,value="授权数量" , notes = "授权数量" , example = "100")
 	private Integer authorizedNumber;
 	
 	/**
 	 * 可用数量：可用数量
 	*/
-	@ApiModelProperty(required = false,value="可用数量" , notes = "可用数量")
+	@ApiModelProperty(required = false,value="可用数量" , notes = "可用数量" , example = "95")
 	private Integer authorizedAvailableNumber;
 	
 	/**
 	 * 无限授权：无限授权
 	*/
-	@ApiModelProperty(required = false,value="无限授权" , notes = "无限授权")
+	@ApiModelProperty(required = false,value="无限授权" , notes = "无限授权" , example = "0")
 	private String authorizedNumberUnlimit;
 	
 	/**
@@ -188,13 +193,13 @@ public class AssetSoftware extends Entity {
 	/**
 	 * 永久授权：永久授权
 	*/
-	@ApiModelProperty(required = false,value="永久授权" , notes = "永久授权")
+	@ApiModelProperty(required = false,value="永久授权" , notes = "永久授权" , example = "0")
 	private String authorizationExpirationUnlimit;
 	
 	/**
 	 * 是否维保：是否维保
 	*/
-	@ApiModelProperty(required = false,value="是否维保" , notes = "是否维保")
+	@ApiModelProperty(required = false,value="是否维保" , notes = "是否维保" , example = "0")
 	private String needMaintenance;
 	
 	/**
@@ -206,25 +211,25 @@ public class AssetSoftware extends Entity {
 	/**
 	 * 维保开始时间：维保开始时间
 	*/
-	@ApiModelProperty(required = false,value="维保开始时间" , notes = "维保开始时间")
+	@ApiModelProperty(required = false,value="维保开始时间" , notes = "维保开始时间" , example = "2022-07-15 12:00:00")
 	private Date maintenanceStartDate;
 	
 	/**
 	 * 维保到期时间：维保到期时间
 	*/
-	@ApiModelProperty(required = false,value="维保到期时间" , notes = "维保到期时间")
+	@ApiModelProperty(required = false,value="维保到期时间" , notes = "维保到期时间" , example = "2022-07-16 12:00:00")
 	private Date maintenanceEndDate;
 	
 	/**
 	 * 购置日期：购置日期
 	*/
-	@ApiModelProperty(required = false,value="购置日期" , notes = "购置日期")
+	@ApiModelProperty(required = false,value="购置日期" , notes = "购置日期" , example = "2022-05-11 12:00:00")
 	private Date purchaseDate;
 	
 	/**
 	 * 登记时间：登记时间
 	*/
-	@ApiModelProperty(required = false,value="登记时间" , notes = "登记时间")
+	@ApiModelProperty(required = false,value="登记时间" , notes = "登记时间" , example = "2022-05-11 12:00:00")
 	private Date registerDate;
 	
 	/**
@@ -278,33 +283,34 @@ public class AssetSoftware extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-05-11 09:31:01")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-07-15 06:24:29")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = false,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = false,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -322,19 +328,19 @@ public class AssetSoftware extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "4")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
 	 * 制单人：制单人
 	*/
-	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
+	@ApiModelProperty(required = false,value="制单人" , notes = "制单人" , example = "E001")
 	private String originatorId;
 	
 	/**
@@ -1326,6 +1332,7 @@ public class AssetSoftware extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public AssetSoftware setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -1872,6 +1879,106 @@ public class AssetSoftware extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetSoftware clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AssetSoftware duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.AssetSoftwareMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetSoftwareMeta.$$proxy$$();
+		inst.setSourceId(this.getSourceId());
+		inst.setAuthorizationInfo(this.getAuthorizationInfo());
+		inst.setAuthorizedNumberUnlimit(this.getAuthorizedNumberUnlimit());
+		inst.setNotes(this.getNotes());
+		inst.setProcId(this.getProcId());
+		inst.setApprovalOpinion(this.getApprovalOpinion());
+		inst.setLabel4(this.getLabel4());
+		inst.setBusinessCode(this.getBusinessCode());
+		inst.setMaintenanceEndDate(this.getMaintenanceEndDate());
+		inst.setAuthorizationExpirationDate(this.getAuthorizationExpirationDate());
+		inst.setCtl(this.getCtl());
+		inst.setId(this.getId());
+		inst.setAuthorizedNumber(this.getAuthorizedNumber());
+		inst.setNextApproverNames(this.getNextApproverNames());
+		inst.setLatestApproverId(this.getLatestApproverId());
+		inst.setUseOrganizationId(this.getUseOrganizationId());
+		inst.setNeedMaintenance(this.getNeedMaintenance());
+		inst.setVersion(this.getVersion());
+		inst.setOwnCompanyId(this.getOwnCompanyId());
+		inst.setMaintainerId(this.getMaintainerId());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setSoftwareVersion(this.getSoftwareVersion());
+		inst.setStatus(this.getStatus());
+		inst.setPurchaseDate(this.getPurchaseDate());
+		inst.setChsVersion(this.getChsVersion());
+		inst.setCode(this.getCode());
+		inst.setLicenseMode(this.getLicenseMode());
+		inst.setSupplierId(this.getSupplierId());
+		inst.setOwnerCode(this.getOwnerCode());
+		inst.setAuthorizationCode(this.getAuthorizationCode());
+		inst.setLatestApproverName(this.getLatestApproverName());
+		inst.setChangeInstanceId(this.getChangeInstanceId());
+		inst.setSelectedCode(this.getSelectedCode());
+		inst.setContent(this.getContent());
+		inst.setNextApproverIds(this.getNextApproverIds());
+		inst.setChsStatus(this.getChsStatus());
+		inst.setCopyrightType(this.getCopyrightType());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setOriginatorId(this.getOriginatorId());
+		inst.setAttachId(this.getAttachId());
+		inst.setAuthorizationExpirationUnlimit(this.getAuthorizationExpirationUnlimit());
+		inst.setRegisterDate(this.getRegisterDate());
+		inst.setSummary(this.getSummary());
+		inst.setCostPrice(this.getCostPrice());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setManagerId(this.getManagerId());
+		inst.setLabel1(this.getLabel1());
+		inst.setLabel2(this.getLabel2());
+		inst.setLabel3(this.getLabel3());
+		inst.setPositionDetail(this.getPositionDetail());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setSourceDetail(this.getSourceDetail());
+		inst.setAuthorizedAvailableNumber(this.getAuthorizedAvailableNumber());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setChsType(this.getChsType());
+		inst.setTenantId(this.getTenantId());
+		inst.setMaintenanceStartDate(this.getMaintenanceStartDate());
+		inst.setCategoryId(this.getCategoryId());
+		if(all) {
+			inst.setUseOrganization(this.getUseOrganization());
+			inst.setOwnerCompany(this.getOwnerCompany());
+			inst.setManager(this.getManager());
+			inst.setLicenseModeDict(this.getLicenseModeDict());
+			inst.setSupplier(this.getSupplier());
+			inst.setSource(this.getSource());
+			inst.setOriginator(this.getOriginator());
+			inst.setCategory(this.getCategory());
+			inst.setMaintainer(this.getMaintainer());
+			inst.setCopyrightTypeDict(this.getCopyrightTypeDict());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetSoftware clone(boolean deep) {
+		return EntityContext.clone(AssetSoftware.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 AssetSoftware
 	 * @param assetSoftwareMap 包含实体信息的 Map 对象
 	 * @return AssetSoftware , 转换好的的 AssetSoftware 对象
@@ -1879,7 +1986,9 @@ public class AssetSoftware extends Entity {
 	@Transient
 	public static AssetSoftware createFrom(Map<String,Object> assetSoftwareMap) {
 		if(assetSoftwareMap==null) return null;
-		AssetSoftware po = EntityContext.create(AssetSoftware.class, assetSoftwareMap);
+		AssetSoftware po = create();
+		EntityContext.copyProperties(po,assetSoftwareMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -1891,7 +2000,9 @@ public class AssetSoftware extends Entity {
 	@Transient
 	public static AssetSoftware createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AssetSoftware po = EntityContext.create(AssetSoftware.class,pojo);
+		AssetSoftware po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -1901,6 +2012,6 @@ public class AssetSoftware extends Entity {
 	*/
 	@Transient
 	public static AssetSoftware create() {
-		return EntityContext.create(AssetSoftware.class);
+		return new com.dt.platform.domain.eam.meta.AssetSoftwareMeta.$$proxy$$();
 	}
 }

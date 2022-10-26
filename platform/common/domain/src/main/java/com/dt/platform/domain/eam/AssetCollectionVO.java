@@ -1,5 +1,6 @@
 package com.dt.platform.domain.eam;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import java.util.ArrayList;
@@ -7,17 +8,22 @@ import java.util.Arrays;
 import com.github.foxnic.api.model.CompositeParameter;
 import javax.persistence.Transient;
 import com.github.foxnic.commons.bean.BeanUtil;
+import com.github.foxnic.dao.entity.EntityContext;
+import com.github.foxnic.dao.entity.Entity;
+import java.util.Map;
 
 
 
 /**
- * 资产领用
+ * 资产领用VO类型
+ * <p>资产领用 , 数据表 eam_asset_collection 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-27 21:22:36
+ * @since 2022-10-25 19:51:27
  * @sign 51281062D0178464BF1E096C340F1737
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
+@ApiModel(description = "资产领用VO类型 ; 资产领用 , 数据表 eam_asset_collection 的通用VO类型" , parent = AssetCollection.class)
 public class AssetCollectionVO extends AssetCollection {
 
 	private static final long serialVersionUID = 1L;
@@ -270,5 +276,140 @@ public class AssetCollectionVO extends AssetCollection {
 		if($compositeParameter!=null) return  $compositeParameter;
 		$compositeParameter=new CompositeParameter(this.getSearchValue(),BeanUtil.toMap(this));
 		return  $compositeParameter;
+	}
+
+	/**
+	 * 将自己转换成指定类型的PO
+	 * @param poType  PO类型
+	 * @return AssetCollectionVO , 转换好的 AssetCollectionVO 对象
+	*/
+	@Transient
+	public <T extends Entity> T toPO(Class<T> poType) {
+		return EntityContext.create(poType, this);
+	}
+
+	/**
+	 * 将自己转换成任意指定类型
+	 * @param pojoType  Pojo类型
+	 * @return AssetCollectionVO , 转换好的 PoJo 对象
+	*/
+	@Transient
+	public <T> T toPojo(Class<T> pojoType) {
+		if(Entity.class.isAssignableFrom(pojoType)) {
+			return (T)this.toPO((Class<Entity>)pojoType);
+		}
+		try {
+			T pojo=pojoType.newInstance();
+			EntityContext.copyProperties(pojo, this);
+			return pojo;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetCollectionVO clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AssetCollectionVO duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.AssetCollectionVOMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetCollectionVOMeta.$$proxy$$();
+		inst.setProcId(this.getProcId());
+		inst.setUseOrganizationId(this.getUseOrganizationId());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setCollectionDate(this.getCollectionDate());
+		inst.setVersion(this.getVersion());
+		inst.setSelectedCode(this.getSelectedCode());
+		inst.setContent(this.getContent());
+		inst.setPositionDetail(this.getPositionDetail());
+		inst.setBusinessDate(this.getBusinessDate());
+		inst.setBusinessCode(this.getBusinessCode());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setPositionId(this.getPositionId());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setOriginatorId(this.getOriginatorId());
+		inst.setAttach(this.getAttach());
+		inst.setUseUserId(this.getUseUserId());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setSearchField(this.getSearchField());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setAssetIds(this.getAssetIds());
+			inst.setPageSize(this.getPageSize());
+			inst.setOriginator(this.getOriginator());
+			inst.setAssetList(this.getAssetList());
+			inst.setOriginatorUserName(this.getOriginatorUserName());
+			inst.setUseOrganization(this.getUseOrganization());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
+			inst.setDirtyFields(this.getDirtyFields());
+			inst.setSortField(this.getSortField());
+			inst.setIds(this.getIds());
+			inst.setPosition(this.getPosition());
+			inst.setUseUser(this.getUseUser());
+			inst.setSearchValue(this.getSearchValue());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetCollectionVO clone(boolean deep) {
+		return EntityContext.clone(AssetCollectionVO.class,this,deep);
+	}
+
+	/**
+	 * 将 Map 转换成 AssetCollectionVO
+	 * @param assetCollectionMap 包含实体信息的 Map 对象
+	 * @return AssetCollectionVO , 转换好的的 AssetCollection 对象
+	*/
+	@Transient
+	public static AssetCollectionVO createFrom(Map<String,Object> assetCollectionMap) {
+		if(assetCollectionMap==null) return null;
+		AssetCollectionVO vo = create();
+		EntityContext.copyProperties(vo,assetCollectionMap);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 将 Pojo 转换成 AssetCollectionVO
+	 * @param pojo 包含实体信息的 Pojo 对象
+	 * @return AssetCollectionVO , 转换好的的 AssetCollection 对象
+	*/
+	@Transient
+	public static AssetCollectionVO createFrom(Object pojo) {
+		if(pojo==null) return null;
+		AssetCollectionVO vo = create();
+		EntityContext.copyProperties(vo,pojo);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 创建一个 AssetCollectionVO，等同于 new
+	 * @return AssetCollectionVO 对象
+	*/
+	@Transient
+	public static AssetCollectionVO create() {
+		return new com.dt.platform.domain.eam.meta.AssetCollectionVOMeta.$$proxy$$();
 	}
 }

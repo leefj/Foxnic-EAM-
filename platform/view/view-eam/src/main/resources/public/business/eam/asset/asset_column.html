@@ -70,7 +70,6 @@
 
 <div  th:fragment="batch_code" class="layui-form-item" >
     <div class="layui-form-label layui-form-label-c1"><div th:text="${item.attribute.label}"></div><div th:if="${item.required} == 1" class="layui-required">*</div></div>
-
     <div class="layui-input-block layui-input-block-c1">
         <input lay-filter="batchCode" id="batchCode" name="batchCode" th:placeholder="${ lang.translate('请输入') +''+ item.attribute.label}" type="text" class="layui-input"   />
     </div>
@@ -79,8 +78,9 @@
 
 
 <div  th:fragment="asset_code" class="layui-form-item" >
-    <div class="layui-form-label layui-form-label-c1"><div th:text="${item.attribute.label}"></div><div th:if="${item.required} == 1" class="layui-required">*</div></div>
-
+    <div class="layui-form-label layui-form-label-c1" id="assetCodeLabel">
+        <div th:text="${item.attribute.label}"></div>
+        <div th:if="${item.required} == 1" class="layui-required">*</div></div>
     <div class="layui-input-block layui-input-block-c1">
         <input lay-filter="asset_code" id="assetCode" name="assetCode" th:placeholder="${ lang.translate('系统自动生成') }" type="text" class="layui-input"   />
     </div>

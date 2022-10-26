@@ -10,10 +10,10 @@ import com.dt.platform.proxy.common.CodeAttrServiceProxy;
 import javax.servlet.http.HttpServletRequest;
 /**
  * <p>
- * 编码属性 模版页面控制器
+ * 编码属性模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:26:37
+ * @since 2022-10-25 09:57:38
 */
 
 @Controller("SysCodeAttrPageController")

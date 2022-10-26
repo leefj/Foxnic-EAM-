@@ -433,6 +433,8 @@ public class AssetPageController extends ViewController {
 		model.addAttribute("approvalRequired",approvalRequired);
 
 
+
+
 		//设置字段布局
 		Result<HashMap<String,List<AssetAttributeItem>>> result = AssetAttributeItemServiceProxy.api().queryListColumnByModule(pageType,null);
 		if(result.isSuccess()){
@@ -473,6 +475,7 @@ public class AssetPageController extends ViewController {
 		model.addAttribute("pageType",pageType);
 		model.addAttribute("ownerCode",ownerCode);
 		model.addAttribute("internalControlLabel",internalControlLabel);
+
 
 
 		//设置字段布局
@@ -605,6 +608,13 @@ public class AssetPageController extends ViewController {
 
 		}
 
+		//是否自动生产编码,以及前端验证
+		boolean assetCodeAutoCreate=true;
+		Result assetCodeAutoCreateResult= OperateServiceProxy.api().queryAssetCodeAutoCreate();
+		if(assetCodeAutoCreateResult.isSuccess()){
+			assetCodeAutoCreate= (boolean) assetCodeAutoCreateResult.getData();
+		}
+		model.addAttribute("assetCodeAutoCreate",assetCodeAutoCreate);
 
 		//设置字段必选
 		AssetAttributeItemVO attributeItem=new AssetAttributeItemVO();
@@ -627,14 +637,22 @@ public class AssetPageController extends ViewController {
 						obj.put("inputType",attributeItemRequiredList.get(i).getAttribute().getComponentType());
 						obj.put("required",true);
 					}
+					//System.out.println("put name:"+BeanNameUtil.instance().getPropertyName(attributeItemRequiredList.get(i).getAttribute().getCode()));
 					attributeItemRequiredObject.put(BeanNameUtil.instance().getPropertyName(attributeItemRequiredList.get(i).getAttribute().getCode()),obj);
 				}
 			}
 		}
 
+		//加入资产编号验证
+		if(!assetCodeAutoCreate){
+			JSONObject obj=new JSONObject();
+			obj.put("labelInForm","资产编号");
+			obj.put("inputType","text_input");
+			obj.put("required",true);
+			attributeItemRequiredObject.put("assetCode",obj);
+		}
 
 		model.addAttribute("attributeRequiredData",attributeItemRequiredObject);
-
 
 		//设置资产分类
 		CatalogVO catalog=new CatalogVO();

@@ -176,6 +176,7 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
 //        cfg.view().form().addJsVariable("EMPLOYEE_ID",   "[[${user.getUser().getActivatedEmployeeId()}]]","用户ID");
 //        cfg.view().form().addJsVariable("EMPLOYEE_NAME", "[[${user.getUser().getActivatedEmployeeName()}]]","用户姓名");
 //
+        cfg.view().search().rowsDisplay(1);
 
         //文件生成覆盖模式
         cfg.overrides()

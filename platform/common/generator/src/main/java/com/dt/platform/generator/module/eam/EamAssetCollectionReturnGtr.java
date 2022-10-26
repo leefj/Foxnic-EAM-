@@ -63,8 +63,8 @@ public class EamAssetCollectionReturnGtr extends BaseCodeGenerator {
         cfg.view().search().inputLayout(
                 new Object[]{
                         EAMTables.EAM_ASSET_COLLECTION_RETURN.STATUS,
-                        EAMTables.EAM_ASSET_COLLECTION_RETURN.BUSINESS_CODE,
                         EAMTables.EAM_ASSET_COLLECTION_RETURN.POSITION_ID,
+                        EAMTables.EAM_ASSET_COLLECTION_RETURN.BUSINESS_CODE,
                         EAMTables.EAM_ASSET_COLLECTION_RETURN.USE_ORGANIZATION_ID,
 
                 },
@@ -136,6 +136,7 @@ public class EamAssetCollectionReturnGtr extends BaseCodeGenerator {
                 }
         );
 
+        cfg.view().search().rowsDisplay(1);
         cfg.view().list().addJs("/extmodule/commonFunction/commonFunction.js");
         cfg.view().list().disableBatchDelete();
         cfg.view().form().addPage("资产列表","assetSelectList");

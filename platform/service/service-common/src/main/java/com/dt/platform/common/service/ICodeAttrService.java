@@ -1,5 +1,6 @@
 package com.dt.platform.common.service;
 
+import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
@@ -15,23 +16,34 @@ import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ExcelStructure;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.data.SaveMode;
+import java.util.Map;
 
 /**
  * <p>
- * 编码属性 服务接口
+ * 编码属性服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:26:37
+ * @since 2022-10-25 09:57:38
 */
 
-public interface ICodeAttrService extends ISuperService<CodeAttr> {
+public interface ICodeAttrService extends  ISimpleIdService<CodeAttr,String> {
+
 
 	/**
-	 * 插入实体
-	 * @param codeAttr 实体数据
+	 * 添加，如果语句错误，则抛出异常
+	 * @param codeAttr 数据对象
 	 * @return 插入是否成功
 	 * */
 	Result insert(CodeAttr codeAttr);
+
+	/**
+	 * 添加，根据 throwsException 参数抛出异常或返回 Result 对象
+	 *
+	 * @param codeAttr  数据对象
+	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
+	 * @return 结果 , 如果失败返回 false，成功返回 true
+	 */
+	Result insert(CodeAttr codeAttr,boolean throwsException);
 
 	/**
 	 * 批量插入实体，事务内
@@ -43,7 +55,7 @@ public interface ICodeAttrService extends ISuperService<CodeAttr> {
 
 		
 	/**
-	 * 按主键删除 编码属性
+	 * 按主键删除编码属性
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -51,7 +63,7 @@ public interface ICodeAttrService extends ISuperService<CodeAttr> {
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 编码属性
+	 * 按主键删除编码属性
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -74,7 +86,7 @@ public interface ICodeAttrService extends ISuperService<CodeAttr> {
 
 		
 	/**
-	 * 按主键更新字段 编码属性
+	 * 按主键更新编码属性
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -82,12 +94,23 @@ public interface ICodeAttrService extends ISuperService<CodeAttr> {
 	boolean update(DBField field,Object value , String id);
 
 	/**
-	 * 更新实体
+	 * 更新，如果执行错误，则抛出异常
 	 * @param codeAttr 数据对象
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
 	Result update(CodeAttr codeAttr , SaveMode mode);
+
+
+	/**
+	 * 更新，根据 throwsException 参数抛出异常或返回 Result 对象
+	 *
+	 * @param codeAttr 数据对象
+	 * @param mode SaveMode,数据更新的模式
+	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
+	 * @return 结果
+	 */
+	Result update(CodeAttr codeAttr , SaveMode mode,boolean throwsException);
 
 
 	/**
@@ -99,7 +122,16 @@ public interface ICodeAttrService extends ISuperService<CodeAttr> {
 	Result updateList(List<CodeAttr> codeAttrList, SaveMode mode);
 
 	/**
-	 * 保存实体，如果主键值不为 null，则更新，否则插入
+	 * 保存实体，根据 throwsException 参数抛出异常或返回 Result 对象
+	 * @param codeAttr 实体数据
+	 * @param mode 保存模式
+	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
+	 * @return 保存是否成功
+	 * */
+	Result save(CodeAttr codeAttr , SaveMode mode,boolean throwsException);
+
+	/**
+	 * 保存实体，如果语句错误，则抛出异常
 	 * @param codeAttr 实体数据
 	 * @param mode 保存模式
 	 * @return 保存是否成功
@@ -115,7 +147,7 @@ public interface ICodeAttrService extends ISuperService<CodeAttr> {
 	Result saveList(List<CodeAttr> codeAttrList , SaveMode mode);
 
 	/**
-	 * 检查实体中的数据字段是否已经存在
+	 * 检查实体中的数据字段是否已经存在 . 判断 主键值不同，但指定字段的值相同的记录是否存在
 	 * @param codeAttr  实体对象
 	 * @param field  字段清单，至少指定一个
 	 * @return 是否已经存在
@@ -124,7 +156,7 @@ public interface ICodeAttrService extends ISuperService<CodeAttr> {
 
 		
 	/**
-	 * 按主键获取 编码属性
+	 * 按主键获取编码属性
 	 *
 	 * @param id 主键
 	 * @return CodeAttr 数据对象
@@ -132,19 +164,39 @@ public interface ICodeAttrService extends ISuperService<CodeAttr> {
 	CodeAttr getById(String id);
 
 	/**
-	 * 检查实体中的数据字段是否已经存在
+	 * 检查引用
+	 * @param id  检查ID是否又被外部表引用
+	 * */
+	Boolean hasRefers(String id);
+
+	/**
+	 * 批量检查引用
+	 * @param ids  检查这些ID是否又被外部表引用
+	 * */
+	Map<String,Boolean> hasRefers(List<String> ids);
+
+	/**
+	 * 按 id 获取多个对象
 	 * @param ids  主键清单
 	 * @return 实体集
 	 * */
-	List<CodeAttr> getByIds(List<String> ids);
+	List<CodeAttr> queryListByIds(List<String> ids);
 
 	/**
-	 * 检查 角色 是否已经存在
+	 * 按 id 列表查询 Map
+	 * @param ids  主键清单
+	 * */
+	Map<String, CodeAttr> queryMapByIds(List<String> ids);
+
+
+
+	/**
+	 * 检查 实体 是否已经存在 , 判断 主键值不同，但指定字段的值相同的记录是否存在
 	 *
 	 * @param codeAttr 数据对象
 	 * @return 判断结果
 	 */
-	Result<CodeAttr> checkExists(CodeAttr codeAttr);
+	Boolean checkExists(CodeAttr codeAttr);
 
 	/**
 	 * 根据实体数构建默认的条件表达式, 不支持 Join 其它表
@@ -166,7 +218,7 @@ public interface ICodeAttrService extends ISuperService<CodeAttr> {
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
-	List<CodeAttr> queryList(CodeAttr sample);
+	List<CodeAttr> queryList(CodeAttrVO sample);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -207,7 +259,7 @@ public interface ICodeAttrService extends ISuperService<CodeAttr> {
 	 * @param pageIndex 页码
 	 * @return 查询结果
 	 * */
-	PagedList<CodeAttr> queryPagedList(CodeAttr sample,int pageSize,int pageIndex);
+	PagedList<CodeAttr> queryPagedList(CodeAttrVO sample,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -261,28 +313,8 @@ public interface ICodeAttrService extends ISuperService<CodeAttr> {
 	 * */
 	<T> List<T> queryValues(DBField field, Class<T> type, String condition,Object... ps);
 
-	/**
-	 * 导出 Excel
-	 * */
-	ExcelWriter exportExcel(CodeAttr sample);
 
-	/**
-	 * 导出用于数据导入的 Excel 模版
-	 * */
-	ExcelWriter  exportExcelTemplate();
 
-	/**
-	 * 构建 Excel 结构
-	 * @param  isForExport 是否用于数据导出
-	 * @return   ExcelStructure
-	 * */
-	ExcelStructure buildExcelStructure(boolean isForExport);
-
-	/**
-	 * 导入 Excel 数据
-	 * @return  错误信息，成功时返回 null
-	 * */
-	List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch);
 
 
 }

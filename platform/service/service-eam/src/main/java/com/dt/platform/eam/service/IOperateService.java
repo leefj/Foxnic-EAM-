@@ -50,6 +50,7 @@ public interface IOperateService extends ISuperService<Operate> {
 	boolean queryAssetSerialNumberIsUnique(String sn,String id);
 
 
+
 	/**
 	 * 判断资产序列是否唯一
 	 * @return 返回
@@ -69,6 +70,7 @@ public interface IOperateService extends ISuperService<Operate> {
 	 * */
 	boolean queryAssetStatusColumnDisable();
 
+	boolean queryAssetCodeAutoCreate();
 
 	boolean queryAssetImportDataReplenish();
 

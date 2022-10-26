@@ -53,6 +53,8 @@ function ListPage() {
 		});
 		fox.adjustSearchElement();
 		//
+		var marginTop=$(".search-bar").height()+$(".search-bar").css("padding-top")+$(".search-bar").css("padding-bottom")
+		$("#table-area").css("margin-top",marginTop+"px");
 		function renderTableInternal() {
 
 			var ps={};
@@ -252,7 +254,7 @@ function ListPage() {
 
 	function initSearchFields() {
 
-		fox.switchSearchRow(2);
+		fox.switchSearchRow(1);
 
 		//渲染 status 下拉字段
 		fox.renderSelectBox({
@@ -748,7 +750,49 @@ function ListPage() {
 			}
 			else if (layEvent === 'asset-box') { // 变更
 				window.pageExt.list.boxWindow(data);
+			}else if(obj.event === 'ops-more'){
+				//更多下拉菜单
+				var operList=[];
+				var operSourceList=[
+					{"perm":"eam_asset:copy","id":"assetCopy","title":"复制"},
+					{"perm":"eam_asset:asset-voucher","id":"assetVoucher","title":"凭证"},
+					{"perm":"eam_asset:box","id":"assetBox","title":"密文箱"}
+
+				];
+				if(UPDATE_BTN){
+					operList.push({"perm":"updateBtn","id":"updateBtn","title":"修改"})
+				}
+				for(var i=0;i<operSourceList.length;i++){
+					if(admin.checkAuth(operSourceList[i].perm)){
+						operList.push(operSourceList[i]);
+					}
+				}
+				if(CHANGE_QUERY_BTN){
+					operList.push({"perm":"changeQueryBtn","id":"changeQueryBtn","title":"操作明细"})
+				}
+				if(DELETE_BTN){
+					operList.push({"perm":"deleteBtn","id":"deleteBtn","title":"删除"})
+				}
+				dropdown.render({
+					elem: this
+					,show: true //外部事件触发即显示
+					,data: operList
+					,click: function(menu, othis){
+						if(menu.id=="updateBtn"||menu.id=="changeQueryBtn"||menu.id=="deleteBtn"){
+							console.log("continue")
+						}else{
+							if(menu.perm && !admin.checkAuth(menu.perm)) {
+								top.layer.msg(fox.translate('缺少操作权限'), {icon: 2, time: 1500});
+								return;
+							}
+						}
+						window.pageExt.list.moreAction && window.pageExt.list.moreAction(menu,data, othis);
+					}
+					,align: 'right'
+					,style: 'box-shadow: 1px 1px 10px rgb(0 0 0 / 12%);'
+				});
 			}
+
 
 		});
 
@@ -794,6 +838,7 @@ function ListPage() {
 
 
 	window.module={
+		showEditForm:showEditForm,
 		refreshTableData: refreshTableData,
 		getCheckedList: getCheckedList
 	};

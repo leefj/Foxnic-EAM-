@@ -155,7 +155,7 @@
             </div>
         </div>
 
-        <div style="margin-top: 84px ">
+        <div style="margin-top: 42px ">
             <table class="layui-table" id="data-table" lay-filter="data-table"></table>
         </div>
 
@@ -180,10 +180,7 @@
 
     <button th:if="${perm.checkAuth('eam_asset_software:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看')}">查看</span></button>
     <button th:if="${perm.checkAnyAuth('eam_asset_software:update','eam_asset_software:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('修改')}">修改</span></button>
-
-
     <button th:if="${perm.checkAuth('eam_asset_software:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除')}">删除</span></button>
-
     <button th:if="${perm.checkAuth('eam_asset_software:for-approval')}"class="layui-btn layui-btn-xs  for-approval-button " lay-event="for-approval" data-id="{{d.id}}"><span th:text="${lang.translate('送审')}">送审</span></button>
     <button th:if="${perm.checkAuth('eam_asset_software:confirm')}"class="layui-btn layui-btn-xs  confirm-data-button " lay-event="confirm-data" data-id="{{d.id}}"><span th:text="${lang.translate('确认')}">确认</span></button>
     <button th:if="${perm.checkAuth('eam_asset_software:revoke')}"class="layui-btn layui-btn-xs  revoke-data-button " lay-event="revoke-data" data-id="{{d.id}}"><span th:text="${lang.translate('撤销')}">撤销</span></button>

@@ -44,7 +44,7 @@ function FormPage() {
 			elem: '#col'
 			,title: ['未选择', '已选择']
 			,data: data1
-			,height: 400 //定义高度
+			,height: 550 //定义高度
 		})
 
 
@@ -174,7 +174,7 @@ function FormPage() {
 				,title: ['未选择', '已选择']
 				,data: data1
 				,value: ids
-				,height: 450 //定义高度
+				,height: 550 //定义高度
 	})
 		window.pageExt.form.beforeDataFill && window.pageExt.form.beforeDataFill(formData);
 

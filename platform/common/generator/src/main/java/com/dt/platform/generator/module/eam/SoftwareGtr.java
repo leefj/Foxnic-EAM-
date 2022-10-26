@@ -287,6 +287,8 @@ public class SoftwareGtr extends BaseCodeGenerator {
         );
 
 
+        cfg.view().search().rowsDisplay(1);
+
 
 
         //文件生成覆盖模式

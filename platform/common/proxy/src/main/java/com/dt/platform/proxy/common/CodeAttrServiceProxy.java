@@ -3,6 +3,9 @@ package com.dt.platform.proxy.common;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import com.dt.platform.domain.common.CodeAttr;
 import com.dt.platform.domain.common.CodeAttrVO;
@@ -10,14 +13,13 @@ import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
 import com.dt.platform.proxy.ServiceNames;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * <p>
- * 编码属性  控制器服务代理
+ * 编码属性 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:26:37
+ * @since 2022-10-25 09:57:38
  */
 @FeignClient(value = ServiceNames.COMMON, contextId = CodeAttrServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface CodeAttrServiceProxy {
@@ -83,21 +85,6 @@ public interface CodeAttrServiceProxy {
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
     /**
-     * 导出编码属性数据(Excel)
-     */
-    public static final String EXPORT_EXCEL = API_PREFIX + "export-excel";
-
-    /**
-     * 下载编码属性导入模版(Excel)
-     */
-    public static final String EXPORT_EXCEL_TEMPLATE = API_PREFIX + "export-excel-template";
-
-    /**
-     * 导入编码属性数据(Excel)
-     */
-    public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
-
-    /**
      * 添加编码属性
      */
     @RequestMapping(CodeAttrServiceProxy.INSERT)
@@ -134,7 +121,7 @@ public interface CodeAttrServiceProxy {
     Result<CodeAttr> getById(@RequestParam(name = "id") String id);
 
     /**
-     * 批量删除编码属性
+     * 获取多个编码属性
      */
     @RequestMapping(CodeAttrServiceProxy.GET_BY_IDS)
     Result<List<CodeAttr>> getByIds(@RequestParam(name = "ids") List<String> ids);

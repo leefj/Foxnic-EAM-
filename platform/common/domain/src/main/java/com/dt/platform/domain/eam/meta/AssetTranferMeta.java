@@ -8,12 +8,13 @@ import java.util.List;
 import com.dt.platform.domain.eam.Position;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-27 21:24:28
+ * @since 2022-10-25 19:55:58
  * @sign 238835EA8099AD28D66DA4AE44E4D615
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -746,5 +747,61 @@ public class AssetTranferMeta {
 			super.setInUseOrganization(inUseOrganization);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AssetTranfer clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AssetTranfer duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setProcId(this.getProcId());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setContent(this.getContent());
+			inst.setOutUseOrganizationId(this.getOutUseOrganizationId());
+			inst.setBusinessDate(this.getBusinessDate());
+			inst.setBusinessCode(this.getBusinessCode());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setId(this.getId());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setAttach(this.getAttach());
+			inst.setInUseOrganizationId(this.getInUseOrganizationId());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setManagerId(this.getManagerId());
+			inst.setVersion(this.getVersion());
+			inst.setPositionDetail(this.getPositionDetail());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setPositionId(this.getPositionId());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setUseUserId(this.getUseUserId());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setInUseOrganization(this.getInUseOrganization());
+				inst.setManager(this.getManager());
+				inst.setOutUseOrganization(this.getOutUseOrganization());
+				inst.setAssetIds(this.getAssetIds());
+				inst.setPosition(this.getPosition());
+				inst.setOriginator(this.getOriginator());
+				inst.setAssetList(this.getAssetList());
+				inst.setUseUser(this.getUseUser());
+				inst.setOriginatorUserName(this.getOriginatorUserName());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

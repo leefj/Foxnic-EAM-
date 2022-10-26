@@ -118,7 +118,7 @@ public class EamAssetAllocationGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(4,Config.searchLabelWidth+30);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
-
+        cfg.view().search().rowsDisplay(1);
 
         //分成分组布局
         cfg.view().form().labelWidth(70);

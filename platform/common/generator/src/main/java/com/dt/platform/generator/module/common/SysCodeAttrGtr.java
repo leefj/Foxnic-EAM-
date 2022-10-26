@@ -22,6 +22,7 @@ public class SysCodeAttrGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.SYS_CODE_ATTR.SORT).
                 search().hidden();
 
+        cfg.getPoClassFile().shadow(EAMTables.SYS_CODE_ATTR.TYPE,CodeAttrTypeEnum.class);
 
 
         cfg.view().field(EAMTables.SYS_CODE_ATTR.TYPE).basic().label("属性类型")

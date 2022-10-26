@@ -2,7 +2,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-27 23:31:30
+ * @since 2022-10-25 20:25:33
  */
  -->
  <!DOCTYPE html>
@@ -260,7 +260,7 @@
             </div>
         </div>
 
-        <div id="table-area" style="margin-top: 84px ">
+        <div id="table-area" style="margin-top: 42px ">
             <table class="layui-table" id="data-table" lay-filter="data-table"></table>
         </div>
 
@@ -291,6 +291,7 @@
 
     <button class="layui-btn layui-btn-xs " lay-event="asset-data-change" data-id="{{d.id}}"><span th:text="${lang.translate('变更')}">变更</span></button>
 
+    <button class="layui-btn layui-btn-xs layui-btn-primary layui-border-blue" lay-event="ops-more" data-id="{{d.id}}"><span th:text="${lang.translate('更多')}">更多</span><i class="layui-icon layui-icon-down"></i></button>
 </script>
 
 

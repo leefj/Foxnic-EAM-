@@ -64,8 +64,8 @@ public class EamAssetCollectionGtr extends BaseCodeGenerator {
         cfg.view().search().inputLayout(
                 new Object[]{
                         EAMTables.EAM_ASSET_COLLECTION.STATUS,
-                        EAMTables.EAM_ASSET_COLLECTION.BUSINESS_CODE,
                         EAMTables.EAM_ASSET_COLLECTION.POSITION_ID,
+                        EAMTables.EAM_ASSET_COLLECTION.BUSINESS_CODE,
                         EAMTables.EAM_ASSET_COLLECTION.USE_USER_ID,
 
                 },
@@ -159,6 +159,7 @@ public class EamAssetCollectionGtr extends BaseCodeGenerator {
                 }
         );
 
+        cfg.view().search().rowsDisplay(1);
 
         cfg.view().list().addJs("/extmodule/commonFunction/commonFunction.js");
         cfg.view().list().disableBatchDelete();

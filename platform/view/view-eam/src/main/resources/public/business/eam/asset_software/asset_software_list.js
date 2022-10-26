@@ -223,7 +223,7 @@ function ListPage() {
 
 	function initSearchFields() {
 
-		fox.switchSearchRow(2);
+		fox.switchSearchRow(1);
 
 		//渲染 status 下拉字段
 		fox.renderSelectBox({

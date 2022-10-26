@@ -1,22 +1,29 @@
 package com.dt.platform.domain.common;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import com.github.foxnic.api.model.CompositeParameter;
 import javax.persistence.Transient;
 import com.github.foxnic.commons.bean.BeanUtil;
+import com.github.foxnic.dao.entity.EntityContext;
+import com.github.foxnic.dao.entity.Entity;
+import java.util.Map;
 
 
 
 /**
- * 编码属性
+ * 编码属性VO类型
+ * <p>编码属性 , 数据表 sys_code_attr 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:26:37
- * @sign F626670DCA58A36A46BBF3D346581683
+ * @since 2022-10-25 09:57:38
+ * @sign 396CE98F444666302D7B15492040AFFF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
+@ApiModel(description = "编码属性VO类型 ; 编码属性 , 数据表 sys_code_attr 的通用VO类型" , parent = CodeAttr.class)
 public class CodeAttrVO extends CodeAttr {
 
 	private static final long serialVersionUID = 1L;
@@ -50,6 +57,12 @@ public class CodeAttrVO extends CodeAttr {
 	*/
 	@ApiModelProperty(required = false,value="搜索的值" , notes = "")
 	private String searchValue;
+	
+	/**
+	 * 已修改字段
+	*/
+	@ApiModelProperty(required = false,value="已修改字段" , notes = "")
+	private List<String> dirtyFields;
 	
 	/**
 	 * 排序字段
@@ -160,6 +173,35 @@ public class CodeAttrVO extends CodeAttr {
 	}
 	
 	/**
+	 * 获得 已修改字段<br>
+	 * @return 已修改字段
+	*/
+	public List<String> getDirtyFields() {
+		return dirtyFields;
+	}
+	
+	/**
+	 * 设置 已修改字段
+	 * @param dirtyFields 已修改字段
+	 * @return 当前对象
+	*/
+	public CodeAttrVO setDirtyFields(List<String> dirtyFields) {
+		this.dirtyFields=dirtyFields;
+		return this;
+	}
+	
+	/**
+	 * 添加 已修改字段
+	 * @param dirtyField 已修改字段
+	 * @return 当前对象
+	*/
+	public CodeAttrVO addDirtyField(String... dirtyField) {
+		if(this.dirtyFields==null) dirtyFields=new ArrayList<>();
+		this.dirtyFields.addAll(Arrays.asList(dirtyField));
+		return this;
+	}
+	
+	/**
 	 * 获得 排序字段<br>
 	 * @return 排序字段
 	*/
@@ -219,13 +261,13 @@ public class CodeAttrVO extends CodeAttr {
 	 * @param id 主键清单
 	 * @return 当前对象
 	*/
-	public CodeAttrVO addId(String id) {
+	public CodeAttrVO addId(String... id) {
 		if(this.ids==null) ids=new ArrayList<>();
-		this.ids.add(id);
+		this.ids.addAll(Arrays.asList(id));
 		return this;
 	}
 	@Transient
-	private CompositeParameter $compositeParameter;
+	private transient CompositeParameter $compositeParameter;
 	/**
 	 * 获得解析后的复合查询参数
 	 */
@@ -234,5 +276,123 @@ public class CodeAttrVO extends CodeAttr {
 		if($compositeParameter!=null) return  $compositeParameter;
 		$compositeParameter=new CompositeParameter(this.getSearchValue(),BeanUtil.toMap(this));
 		return  $compositeParameter;
+	}
+
+	/**
+	 * 将自己转换成指定类型的PO
+	 * @param poType  PO类型
+	 * @return CodeAttrVO , 转换好的 CodeAttrVO 对象
+	*/
+	@Transient
+	public <T extends Entity> T toPO(Class<T> poType) {
+		return EntityContext.create(poType, this);
+	}
+
+	/**
+	 * 将自己转换成任意指定类型
+	 * @param pojoType  Pojo类型
+	 * @return CodeAttrVO , 转换好的 PoJo 对象
+	*/
+	@Transient
+	public <T> T toPojo(Class<T> pojoType) {
+		if(Entity.class.isAssignableFrom(pojoType)) {
+			return (T)this.toPO((Class<Entity>)pojoType);
+		}
+		try {
+			T pojo=pojoType.newInstance();
+			EntityContext.copyProperties(pojo, this);
+			return pojo;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public CodeAttrVO clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public CodeAttrVO duplicate(boolean all) {
+		com.dt.platform.domain.common.meta.CodeAttrVOMeta.$$proxy$$ inst = new com.dt.platform.domain.common.meta.CodeAttrVOMeta.$$proxy$$();
+		inst.setCode(this.getCode());
+		inst.setNotes(this.getNotes());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setSort(this.getSort());
+		inst.setType(this.getType());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		if(all) {
+			inst.setSearchField(this.getSearchField());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setDirtyFields(this.getDirtyFields());
+			inst.setSortField(this.getSortField());
+			inst.setPageSize(this.getPageSize());
+			inst.setIds(this.getIds());
+			inst.setSearchValue(this.getSearchValue());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public CodeAttrVO clone(boolean deep) {
+		return EntityContext.clone(CodeAttrVO.class,this,deep);
+	}
+
+	/**
+	 * 将 Map 转换成 CodeAttrVO
+	 * @param codeAttrMap 包含实体信息的 Map 对象
+	 * @return CodeAttrVO , 转换好的的 CodeAttr 对象
+	*/
+	@Transient
+	public static CodeAttrVO createFrom(Map<String,Object> codeAttrMap) {
+		if(codeAttrMap==null) return null;
+		CodeAttrVO vo = create();
+		EntityContext.copyProperties(vo,codeAttrMap);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 将 Pojo 转换成 CodeAttrVO
+	 * @param pojo 包含实体信息的 Pojo 对象
+	 * @return CodeAttrVO , 转换好的的 CodeAttr 对象
+	*/
+	@Transient
+	public static CodeAttrVO createFrom(Object pojo) {
+		if(pojo==null) return null;
+		CodeAttrVO vo = create();
+		EntityContext.copyProperties(vo,pojo);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 创建一个 CodeAttrVO，等同于 new
+	 * @return CodeAttrVO 对象
+	*/
+	@Transient
+	public static CodeAttrVO create() {
+		return new com.dt.platform.domain.common.meta.CodeAttrVOMeta.$$proxy$$();
 	}
 }
