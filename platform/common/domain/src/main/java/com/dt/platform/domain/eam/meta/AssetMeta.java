@@ -24,12 +24,13 @@ import com.dt.platform.domain.eam.AssetRack;
 import org.github.foxnic.web.domain.changes.ChangeInstance;
 import com.dt.platform.domain.eam.GoodsStock;
 import com.dt.platform.domain.eam.AssetRegion;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-27 23:31:29
+ * @since 2022-10-25 20:25:32
  * @sign F7BF93B5D20D236DC39B368B6D550731
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -2841,5 +2842,160 @@ public class AssetMeta {
 			super.setRegion(region);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public Asset clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public Asset duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setEquipmentCode(this.getEquipmentCode());
+			inst.setPurchaseUnitPrice(this.getPurchaseUnitPrice());
+			inst.setApprovalOpinion(this.getApprovalOpinion());
+			inst.setMaintenanceStatus(this.getMaintenanceStatus());
+			inst.setNavPrice(this.getNavPrice());
+			inst.setLabel4(this.getLabel4());
+			inst.setLabel5(this.getLabel5());
+			inst.setBusinessCode(this.getBusinessCode());
+			inst.setAssetNumber(this.getAssetNumber());
+			inst.setModel(this.getModel());
+			inst.setId(this.getId());
+			inst.setEquipmentEnvironmentCode(this.getEquipmentEnvironmentCode());
+			inst.setDirector(this.getDirector());
+			inst.setMonthDepreciationPrice(this.getMonthDepreciationPrice());
+			inst.setVersion(this.getVersion());
+			inst.setSafetyLevelCode(this.getSafetyLevelCode());
+			inst.setMaintainerId(this.getMaintainerId());
+			inst.setMaintenanceNotes(this.getMaintenanceNotes());
+			inst.setEntryTime(this.getEntryTime());
+			inst.setManageIp(this.getManageIp());
+			inst.setWarehouseId(this.getWarehouseId());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setFinancialNotes(this.getFinancialNotes());
+			inst.setStatus(this.getStatus());
+			inst.setPurchaseDate(this.getPurchaseDate());
+			inst.setOwnerCode(this.getOwnerCode());
+			inst.setRemainNumber(this.getRemainNumber());
+			inst.setGoodsId(this.getGoodsId());
+			inst.setChangeInstanceId(this.getChangeInstanceId());
+			inst.setEquipmentConf(this.getEquipmentConf());
+			inst.setAssetNotes(this.getAssetNotes());
+			inst.setOriginalUnitPrice(this.getOriginalUnitPrice());
+			inst.setPictureId(this.getPictureId());
+			inst.setTotalAmountPrice(this.getTotalAmountPrice());
+			inst.setServiceLife(this.getServiceLife());
+			inst.setAttach(this.getAttach());
+			inst.setMaintainerName(this.getMaintainerName());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setCleanOut(this.getCleanOut());
+			inst.setRackId(this.getRackId());
+			inst.setDisplay(this.getDisplay());
+			inst.setManufacturerId(this.getManufacturerId());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setCategoryCode(this.getCategoryCode());
+			inst.setManagerId(this.getManagerId());
+			inst.setAccumulatedDepreciation(this.getAccumulatedDepreciation());
+			inst.setLabel2(this.getLabel2());
+			inst.setLabel3(this.getLabel3());
+			inst.setAssetSelectedData(this.getAssetSelectedData());
+			inst.setDeleted(this.getDeleted());
+			inst.setPositionId(this.getPositionId());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setTenantId(this.getTenantId());
+			inst.setRfid(this.getRfid());
+			inst.setMaintenanceStartDate(this.getMaintenanceStartDate());
+			inst.setLastVerificationDate(this.getLastVerificationDate());
+			inst.setUseUserId(this.getUseUserId());
+			inst.setContacts(this.getContacts());
+			inst.setSourceId(this.getSourceId());
+			inst.setProcId(this.getProcId());
+			inst.setFinancialCategoryId(this.getFinancialCategoryId());
+			inst.setEquipmentIp(this.getEquipmentIp());
+			inst.setMaintenanceEndDate(this.getMaintenanceEndDate());
+			inst.setNextApproverNames(this.getNextApproverNames());
+			inst.setAssetCode(this.getAssetCode());
+			inst.setSerialNumber(this.getSerialNumber());
+			inst.setLatestApproverId(this.getLatestApproverId());
+			inst.setGoodsStockId(this.getGoodsStockId());
+			inst.setTaxAmountRate(this.getTaxAmountRate());
+			inst.setCurrentYearDepreciation(this.getCurrentYearDepreciation());
+			inst.setUseOrganizationId(this.getUseOrganizationId());
+			inst.setEquipmentLabel(this.getEquipmentLabel());
+			inst.setUnit(this.getUnit());
+			inst.setOwnCompanyId(this.getOwnCompanyId());
+			inst.setBillId(this.getBillId());
+			inst.setName(this.getName());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setFinancialCode(this.getFinancialCode());
+			inst.setRackUpNumber(this.getRackUpNumber());
+			inst.setResidualsRate(this.getResidualsRate());
+			inst.setAssetStatus(this.getAssetStatus());
+			inst.setChsVersion(this.getChsVersion());
+			inst.setSupplierId(this.getSupplierId());
+			inst.setPurpose(this.getPurpose());
+			inst.setResidualsPrice(this.getResidualsPrice());
+			inst.setInternalControlLabel(this.getInternalControlLabel());
+			inst.setLatestApproverName(this.getLatestApproverName());
+			inst.setNextApproverIds(this.getNextApproverIds());
+			inst.setChsStatus(this.getChsStatus());
+			inst.setProductionDate(this.getProductionDate());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setRegisterDate(this.getRegisterDate());
+			inst.setSummary(this.getSummary());
+			inst.setEquipmentSerialNumber(this.getEquipmentSerialNumber());
+			inst.setBatchCode(this.getBatchCode());
+			inst.setEquipmentCpu(this.getEquipmentCpu());
+			inst.setEquipmentMemory(this.getEquipmentMemory());
+			inst.setLabel(this.getLabel());
+			inst.setEquipmentStatus(this.getEquipmentStatus());
+			inst.setPositionDetail(this.getPositionDetail());
+			inst.setDepreciationYear(this.getDepreciationYear());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setContactInformation(this.getContactInformation());
+			inst.setTaxAmountPrice(this.getTaxAmountPrice());
+			inst.setRegionId(this.getRegionId());
+			inst.setChsType(this.getChsType());
+			inst.setRackDownNumber(this.getRackDownNumber());
+			inst.setCategoryId(this.getCategoryId());
+			if(all) {
+				inst.setOwnerCompany(this.getOwnerCompany());
+				inst.setSafetyLevel(this.getSafetyLevel());
+				inst.setCategoryFinance(this.getCategoryFinance());
+				inst.setGoods(this.getGoods());
+				inst.setOriginator(this.getOriginator());
+				inst.setSource(this.getSource());
+				inst.setManufacturer(this.getManufacturer());
+				inst.setCatalogAttribute(this.getCatalogAttribute());
+				inst.setSupplier(this.getSupplier());
+				inst.setUseUser(this.getUseUser());
+				inst.setEquipmentEnvironment(this.getEquipmentEnvironment());
+				inst.setAssetCycleStatus(this.getAssetCycleStatus());
+				inst.setRack(this.getRack());
+				inst.setManager(this.getManager());
+				inst.setWarehouse(this.getWarehouse());
+				inst.setPcmData(this.getPcmData());
+				inst.setGoodsStock(this.getGoodsStock());
+				inst.setUseOrganization(this.getUseOrganization());
+				inst.setChangeInstance(this.getChangeInstance());
+				inst.setExtData(this.getExtData());
+				inst.setMaintnainer(this.getMaintnainer());
+				inst.setAssetMaintenanceStatus(this.getAssetMaintenanceStatus());
+				inst.setPosition(this.getPosition());
+				inst.setCategory(this.getCategory());
+				inst.setRegion(this.getRegion());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

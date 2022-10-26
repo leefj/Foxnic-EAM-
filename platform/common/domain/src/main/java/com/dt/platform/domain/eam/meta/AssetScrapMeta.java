@@ -8,13 +8,14 @@ import java.util.List;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.changes.ChangeInstance;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-28 07:59:35
- * @sign F7DEEDCA22D5FE65158604A3C582E3C3
+ * @since 2022-10-25 19:54:32
+ * @sign 62E78CD41A92483C79977FDBB9E53204
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -71,16 +72,6 @@ public class AssetScrapMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetScrap,java.lang.String> CLEAN_STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetScrap.class ,CLEAN_STATUS, java.lang.String.class, "清理状态", "清理状态", java.lang.String.class, null);
 	
 	/**
-	 * method , 类型: java.lang.String
-	*/
-	public static final String METHOD="method";
-	
-	/**
-	 * method , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetScrap,java.lang.String> METHOD_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetScrap.class ,METHOD, java.lang.String.class, "method", "method", java.lang.String.class, null);
-	
-	/**
 	 * 业务名称 , 类型: java.lang.String
 	*/
 	public static final String NAME="name";
@@ -89,6 +80,16 @@ public class AssetScrapMeta {
 	 * 业务名称 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetScrap,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetScrap.class ,NAME, java.lang.String.class, "业务名称", "业务名称", java.lang.String.class, null);
+	
+	/**
+	 * 报废方式 , 类型: java.lang.String
+	*/
+	public static final String METHOD="method";
+	
+	/**
+	 * 报废方式 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetScrap,java.lang.String> METHOD_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetScrap.class ,METHOD, java.lang.String.class, "报废方式", "报废方式", java.lang.String.class, null);
 	
 	/**
 	 * 报废时间 , 类型: java.lang.String
@@ -403,7 +404,7 @@ public class AssetScrapMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , BUSINESS_CODE , PROC_ID , STATUS , CLEAN_STATUS , METHOD , NAME , SCRAP_DATE , CONTENT , ORIGINATOR_ID , BUSINESS_DATE , ATTACH , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_LIST , METHOD_DICT , ASSET_IDS , ORIGINATOR_USER_NAME , ORIGINATOR , CHANGE_INSTANCE };
+	public static final String[] $PROPS={ ID , BUSINESS_CODE , PROC_ID , STATUS , CLEAN_STATUS , NAME , METHOD , SCRAP_DATE , CONTENT , ORIGINATOR_ID , BUSINESS_DATE , ATTACH , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_LIST , METHOD_DICT , ASSET_IDS , ORIGINATOR_USER_NAME , ORIGINATOR , CHANGE_INSTANCE };
 	
 	/**
 	 * 代理类
@@ -469,17 +470,6 @@ public class AssetScrapMeta {
 		}
 		
 		/**
-		 * 设置 method
-		 * @param method method
-		 * @return 当前对象
-		*/
-		public AssetScrap setMethod(String method) {
-			super.change(METHOD,super.getMethod(),method);
-			super.setMethod(method);
-			return this;
-		}
-		
-		/**
 		 * 设置 业务名称
 		 * @param name 业务名称
 		 * @return 当前对象
@@ -487,6 +477,17 @@ public class AssetScrapMeta {
 		public AssetScrap setName(String name) {
 			super.change(NAME,super.getName(),name);
 			super.setName(name);
+			return this;
+		}
+		
+		/**
+		 * 设置 报废方式
+		 * @param method 报废方式
+		 * @return 当前对象
+		*/
+		public AssetScrap setMethod(String method) {
+			super.change(METHOD,super.getMethod(),method);
+			super.setMethod(method);
 			return this;
 		}
 		
@@ -830,5 +831,65 @@ public class AssetScrapMeta {
 			super.setChangeInstance(changeInstance);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AssetScrap clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AssetScrap duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setChsVersion(this.getChsVersion());
+			inst.setCleanStatus(this.getCleanStatus());
+			inst.setProcId(this.getProcId());
+			inst.setLatestApproverName(this.getLatestApproverName());
+			inst.setChangeInstanceId(this.getChangeInstanceId());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setContent(this.getContent());
+			inst.setNextApproverIds(this.getNextApproverIds());
+			inst.setApprovalOpinion(this.getApprovalOpinion());
+			inst.setChsStatus(this.getChsStatus());
+			inst.setBusinessDate(this.getBusinessDate());
+			inst.setBusinessCode(this.getBusinessCode());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setId(this.getId());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setAttach(this.getAttach());
+			inst.setSummary(this.getSummary());
+			inst.setNextApproverNames(this.getNextApproverNames());
+			inst.setLatestApproverId(this.getLatestApproverId());
+			inst.setMethod(this.getMethod());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setChsType(this.getChsType());
+			inst.setScrapDate(this.getScrapDate());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setChangeInstance(this.getChangeInstance());
+				inst.setMethodDict(this.getMethodDict());
+				inst.setAssetIds(this.getAssetIds());
+				inst.setOriginator(this.getOriginator());
+				inst.setAssetList(this.getAssetList());
+				inst.setOriginatorUserName(this.getOriginatorUserName());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

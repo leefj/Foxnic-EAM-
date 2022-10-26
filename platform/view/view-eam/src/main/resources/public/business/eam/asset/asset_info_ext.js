@@ -24,27 +24,79 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         /**
          * 表格右侧操作列更多按钮事件
          * */
-        moreAction:function (menu,data, it){
-            // {"code":"card","id":"1","title":"打印资产卡片"},
-            // {"code":"labelCard","id":"2","title":"打印资产标签"},
-            // {"code":"labelDown","id":"3","title":"下载资产标签"}
 
-            // {"code":"batchInsert","id":"1","title":"资产批量入库"},
-            // {"code":"highExportData","id":"2","title":"资产数据导出"}
+        moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
-            if(menu.code=="card"){
-                window.pageExt.list.downBills(data);
-            }else if(menu.code=="labelCard"){
-                window.pageExt.list.printPdf(data);
-            }else if(menu.code=="labelDown"){
-                window.pageExt.list.assetLabel(data);
-            }else if(menu.code=="batchInsert"){
-                window.pageExt.list.batchInsert(data,null);
-            }else if(menu.code=="highExportData"){
-                window.pageExt.list.highExportData(data,null);
-            }else if(menu.code=="downloadAssetTpl"){
-                window.pageExt.list.downloadAssetTpl(data,null);
+            if(menu.code){
+                if(menu.code=="card"){
+                    window.pageExt.list.downBills(data);
+                }else if(menu.code=="labelCard"){
+                    window.pageExt.list.printPdf(data);
+                }else if(menu.code=="labelDown"){
+                    window.pageExt.list.assetLabel(data);
+                }else if(menu.code=="batchInsert"){
+                    window.pageExt.list.batchInsert(data,null);
+                }else if(menu.code=="highExportData"){
+                    window.pageExt.list.highExportData(data,null);
+                }else if(menu.code=="downloadAssetTpl"){
+                    window.pageExt.list.downloadAssetTpl(data,null);
+                }
             }
+            if(menu.id){
+                if(menu.id=="deleteBtn"){
+                    top.layer.confirm(fox.translate('确定删除此')+fox.translate('资产')+fox.translate('吗？'), function (i) {
+                        top.layer.close(i);
+                        top.layer.load(2);
+                        admin.request(moduleURL+"/delete", { id : data.id }, function (resData) {
+                            top.layer.closeAll('loading');
+                            if (resData.success) {
+                                top.layer.msg(resData.message, {icon: 1, time: 500});
+                                window.module.refreshTableData();
+                            } else {
+                                top.layer.msg(resData.message, {icon: 2, time: 1500});
+                            }
+                        });
+                    });
+                }else if(menu.id=="updateBtn"){
+                    //延迟显示加载动画，避免界面闪动
+                    var task=setTimeout(function(){layer.load(2);},1000);
+                    admin.request(moduleURL+"/get-by-id", { id : data.id }, function (resData) {
+                        clearTimeout(task);
+                        layer.closeAll('loading');
+                        if(resData.success) {
+                            admin.putTempData('eam-asset-form-data-form-action', "edit",true);
+                            window.module.showEditForm(resData.data);
+                        } else {
+                            layer.msg(resData.message, {icon: 1, time: 1500});
+                        }
+                    });
+                }else if(menu.id=="changeQueryBtn"){
+                    window.pageExt.list.assetDataChange(data);
+                }else if(menu.id=="assetVoucher"){
+                    window.pageExt.list.assetVoucher(data);
+                }else if(menu.id=="assetBox"){
+                    window.pageExt.list.boxWindow(data,it);
+                }else if(menu.id=="assetCopy"){
+                    window.pageExt.list.assetCopy(data,it);
+                }
+            }
+
+        },
+        assetCopy:function(data){
+            var queryString="?assetId="+data.id
+            var index=admin.popupCenter({
+                title: "资产复制",
+                resize: false,
+                offset: [15,null],
+                area: ["50%","50%"],
+                type: 2,
+                id:"eam-asset-copy-form-data-win",
+                content: '/business/eam/asset_copy/asset_copy_form.html' + queryString,
+                finish: function () {
+                    window.module.refreshTableData();
+                }
+            });
+            admin.putTempData('eam-asset-copy-form-data-form-action', "create",true);
         },
         downloadAssetTpl:function (data){
             var categoryId;
@@ -158,7 +210,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 title: "数据导入",
                 resize: false,
                 offset: [15,null],
-                area: ["80%","95%"],
+                area: ["98%","98%"],
                 type: 2,
                 id:"eam-asset-data-batch-insert-data-win",
                 content: '/business/eam/asset/asset_excel_oper.html' + queryString,
@@ -511,6 +563,15 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单初始化前调用
          * */
         beforeInit:function () {
+
+            if(!ASSET_CODE_AUTO_CREATE){
+                setTimeout(function(){
+                    $("#assetCode").removeAttr("disabled");
+                    $("#assetCode").removeAttr("style");
+                    $("#assetCode").attr("placeholder","请输入资产编号");
+                    $("#assetCodeLabel").html("<div>资产编号</div><div class=\"layui-required\">*</div>")
+                },200)
+            }
             $("#ownCompanyId-button").css({"border-color":"#eee","height": "38px","color": "rgba(0,0,0,.85)","border-style": "solid","background-color":"white","border-radius": "2px","border-width": "1px"});
             $("#useOrganizationId-button").css({"border-color":"#eee","height": "38px","color": "rgba(0,0,0,.85)","border-style": "solid","background-color":"white","border-radius": "2px","border-width": "1px"});
             $("#managerId-button").css({"border-color":"#eee","height": "38px","color": "rgba(0,0,0,.85)","border-style": "solid","background-color":"white","border-radius": "2px","border-width": "1px"});

@@ -176,6 +176,7 @@ public class EamAssetTranferGtr extends BaseCodeGenerator {
                 }
         );
 
+        cfg.view().search().rowsDisplay(1);
         cfg.view().form().addPage("资产列表","assetSelectList");
         //文件生成覆盖模式
         cfg.overrides()

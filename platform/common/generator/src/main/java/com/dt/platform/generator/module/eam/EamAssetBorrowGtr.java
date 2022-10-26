@@ -161,6 +161,7 @@ public class EamAssetBorrowGtr extends BaseCodeGenerator {
                         EAMTables.EAM_ASSET_BORROW.ATTACH,
                 }
         );
+        cfg.view().search().rowsDisplay(1);
 
         cfg.view().list().disableBatchDelete();
         cfg.view().form().addPage("资产列表","assetSelectList");

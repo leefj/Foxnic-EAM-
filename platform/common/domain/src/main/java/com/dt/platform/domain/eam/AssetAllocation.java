@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_ASSET_ALLOCATION;
@@ -8,9 +9,11 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,13 +24,15 @@ import com.github.foxnic.dao.entity.EntityContext;
 
 /**
  * 资产调拨
+ * <p>资产调拨 , 数据表 eam_asset_allocation 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-15 20:34:37
- * @sign 9B2CB39C7CB1F016169D0B0B11EDF6CA
+ * @since 2022-10-25 19:53:16
+ * @sign D3E7E834C9623BF8B05E34907B21AE1C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_asset_allocation")
+@ApiModel(description = "资产调拨 ; 资产调拨 , 数据表 eam_asset_allocation 的PO类型")
 public class AssetAllocation extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -38,13 +43,13 @@ public class AssetAllocation extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "604777916768727040")
 	private String id;
 	
 	/**
 	 * 业务编号：业务编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号")
+	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "AL202207272007279")
 	private String businessCode;
 	
 	/**
@@ -56,49 +61,49 @@ public class AssetAllocation extends Entity {
 	/**
 	 * 办理状态：办理状态
 	*/
-	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态")
+	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态" , example = "complete")
 	private String status;
 	
 	/**
 	 * 业务名称：业务名称
 	*/
-	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称")
+	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称" , example = "1212")
 	private String name;
 	
 	/**
 	 * 调出所属公司：调出所属公司
 	*/
-	@ApiModelProperty(required = false,value="调出所属公司" , notes = "调出所属公司")
+	@ApiModelProperty(required = false,value="调出所属公司" , notes = "调出所属公司" , example = "2")
 	private String outOwnCompanyId;
 	
 	/**
 	 * 调入所属公司：调入所属公司
 	*/
-	@ApiModelProperty(required = false,value="调入所属公司" , notes = "调入所属公司")
+	@ApiModelProperty(required = false,value="调入所属公司" , notes = "调入所属公司" , example = "2")
 	private String inOwnCompanyId;
 	
 	/**
 	 * 调入管理员：调入管理员
 	*/
-	@ApiModelProperty(required = false,value="调入管理员" , notes = "调入管理员")
+	@ApiModelProperty(required = false,value="调入管理员" , notes = "调入管理员" , example = "569945398324494336")
 	private String managerId;
 	
 	/**
 	 * 调拨说明：调拨说明
 	*/
-	@ApiModelProperty(required = false,value="调拨说明" , notes = "调拨说明")
+	@ApiModelProperty(required = false,value="调拨说明" , notes = "调拨说明" , example = "12")
 	private String content;
 	
 	/**
 	 * 制单人：制单人
 	*/
-	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
+	@ApiModelProperty(required = false,value="制单人" , notes = "制单人" , example = "E001")
 	private String originatorId;
 	
 	/**
 	 * 业务日期：业务日期
 	*/
-	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期")
+	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期" , example = "2022-07-27 12:00:00")
 	private Date businessDate;
 	
 	/**
@@ -110,33 +115,34 @@ public class AssetAllocation extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-07-27 08:51:32")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-07-27 08:51:35")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -154,19 +160,19 @@ public class AssetAllocation extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
 	 * 选择数据：选择数据
 	*/
-	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据")
+	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1658926274000")
 	private String selectedCode;
 	
 	/**
@@ -542,6 +548,7 @@ public class AssetAllocation extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public AssetAllocation setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -844,6 +851,64 @@ public class AssetAllocation extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetAllocation clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AssetAllocation duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.AssetAllocationMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetAllocationMeta.$$proxy$$();
+		inst.setInOwnCompanyId(this.getInOwnCompanyId());
+		inst.setProcId(this.getProcId());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setOutOwnCompanyId(this.getOutOwnCompanyId());
+		inst.setManagerId(this.getManagerId());
+		inst.setVersion(this.getVersion());
+		inst.setSelectedCode(this.getSelectedCode());
+		inst.setContent(this.getContent());
+		inst.setBusinessDate(this.getBusinessDate());
+		inst.setBusinessCode(this.getBusinessCode());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setOriginatorId(this.getOriginatorId());
+		inst.setAttach(this.getAttach());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setManager(this.getManager());
+			inst.setInOwnerCompany(this.getInOwnerCompany());
+			inst.setAssetIds(this.getAssetIds());
+			inst.setOriginator(this.getOriginator());
+			inst.setAssetList(this.getAssetList());
+			inst.setOutOwnerCompany(this.getOutOwnerCompany());
+			inst.setOriginatorUserName(this.getOriginatorUserName());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetAllocation clone(boolean deep) {
+		return EntityContext.clone(AssetAllocation.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 AssetAllocation
 	 * @param assetAllocationMap 包含实体信息的 Map 对象
 	 * @return AssetAllocation , 转换好的的 AssetAllocation 对象
@@ -851,7 +916,9 @@ public class AssetAllocation extends Entity {
 	@Transient
 	public static AssetAllocation createFrom(Map<String,Object> assetAllocationMap) {
 		if(assetAllocationMap==null) return null;
-		AssetAllocation po = EntityContext.create(AssetAllocation.class, assetAllocationMap);
+		AssetAllocation po = create();
+		EntityContext.copyProperties(po,assetAllocationMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -863,7 +930,9 @@ public class AssetAllocation extends Entity {
 	@Transient
 	public static AssetAllocation createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AssetAllocation po = EntityContext.create(AssetAllocation.class,pojo);
+		AssetAllocation po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -873,6 +942,6 @@ public class AssetAllocation extends Entity {
 	*/
 	@Transient
 	public static AssetAllocation create() {
-		return EntityContext.create(AssetAllocation.class);
+		return new com.dt.platform.domain.eam.meta.AssetAllocationMeta.$$proxy$$();
 	}
 }

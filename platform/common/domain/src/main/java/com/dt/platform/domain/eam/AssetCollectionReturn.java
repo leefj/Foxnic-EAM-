@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_ASSET_COLLECTION_RETURN;
@@ -8,9 +9,11 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,13 +24,15 @@ import com.github.foxnic.dao.entity.EntityContext;
 
 /**
  * 资产退库
+ * <p>资产退库 , 数据表 eam_asset_collection_return 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-27 21:22:58
+ * @since 2022-10-25 19:51:34
  * @sign C86555EC97ABE3539CA9936314C3C9FD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_asset_collection_return")
+@ApiModel(description = "资产退库 ; 资产退库 , 数据表 eam_asset_collection_return 的PO类型")
 public class AssetCollectionReturn extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -38,13 +43,13 @@ public class AssetCollectionReturn extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "604777423912841216")
 	private String id;
 	
 	/**
 	 * 业务编号：业务编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号")
+	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "RE202207272007533")
 	private String businessCode;
 	
 	/**
@@ -56,25 +61,25 @@ public class AssetCollectionReturn extends Entity {
 	/**
 	 * 办理状态：办理状态
 	*/
-	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态")
+	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态" , example = "complete")
 	private String status;
 	
 	/**
 	 * 业务名称：业务名称
 	*/
-	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称")
+	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称" , example = "1212")
 	private String name;
 	
 	/**
 	 * 退库后公司/部门：退库后公司/部门
 	*/
-	@ApiModelProperty(required = false,value="退库后公司/部门" , notes = "退库后公司/部门")
+	@ApiModelProperty(required = false,value="退库后公司/部门" , notes = "退库后公司/部门" , example = "2")
 	private String useOrganizationId;
 	
 	/**
 	 * 退库后位置：退库后位置
 	*/
-	@ApiModelProperty(required = false,value="退库后位置" , notes = "退库后位置")
+	@ApiModelProperty(required = false,value="退库后位置" , notes = "退库后位置" , example = "472024543184027649")
 	private String positionId;
 	
 	/**
@@ -86,25 +91,25 @@ public class AssetCollectionReturn extends Entity {
 	/**
 	 * 退库说明：退库说明
 	*/
-	@ApiModelProperty(required = false,value="退库说明" , notes = "退库说明")
+	@ApiModelProperty(required = false,value="退库说明" , notes = "退库说明" , example = "1212")
 	private String content;
 	
 	/**
 	 * 退库日期：退库日期
 	*/
-	@ApiModelProperty(required = false,value="退库日期" , notes = "退库日期")
+	@ApiModelProperty(required = false,value="退库日期" , notes = "退库日期" , example = "2022-07-27 12:00:00")
 	private Date returnDate;
 	
 	/**
 	 * 制单人：制单人
 	*/
-	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
+	@ApiModelProperty(required = false,value="制单人" , notes = "制单人" , example = "E001")
 	private String originatorId;
 	
 	/**
 	 * 业务日期：业务日期
 	*/
-	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期")
+	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期" , example = "2022-07-27 12:00:00")
 	private Date businessDate;
 	
 	/**
@@ -116,33 +121,34 @@ public class AssetCollectionReturn extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-07-27 08:49:34")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-07-27 08:49:36")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -160,19 +166,19 @@ public class AssetCollectionReturn extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
 	 * 选择数据：选择数据
 	*/
-	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据")
+	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1658926163000")
 	private String selectedCode;
 	
 	/**
@@ -561,6 +567,7 @@ public class AssetCollectionReturn extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public AssetCollectionReturn setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -848,7 +855,49 @@ public class AssetCollectionReturn extends Entity {
 	*/
 	@Transient
 	public AssetCollectionReturn clone() {
-		return EntityContext.clone(AssetCollectionReturn.class,this);
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AssetCollectionReturn duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.AssetCollectionReturnMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetCollectionReturnMeta.$$proxy$$();
+		inst.setProcId(this.getProcId());
+		inst.setUseOrganizationId(this.getUseOrganizationId());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setSelectedCode(this.getSelectedCode());
+		inst.setContent(this.getContent());
+		inst.setPositionDetail(this.getPositionDetail());
+		inst.setBusinessDate(this.getBusinessDate());
+		inst.setBusinessCode(this.getBusinessCode());
+		inst.setReturnDate(this.getReturnDate());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setPositionId(this.getPositionId());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setOriginatorId(this.getOriginatorId());
+		inst.setAttach(this.getAttach());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setUseOrganization(this.getUseOrganization());
+			inst.setAssetIds(this.getAssetIds());
+			inst.setPosition(this.getPosition());
+			inst.setOriginator(this.getOriginator());
+			inst.setAssetList(this.getAssetList());
+			inst.setOriginatorUserName(this.getOriginatorUserName());
+		}
+		inst.clearModifies();
+		return inst;
 	}
 
 	/**
@@ -867,7 +916,9 @@ public class AssetCollectionReturn extends Entity {
 	@Transient
 	public static AssetCollectionReturn createFrom(Map<String,Object> assetCollectionReturnMap) {
 		if(assetCollectionReturnMap==null) return null;
-		AssetCollectionReturn po = EntityContext.create(AssetCollectionReturn.class, assetCollectionReturnMap);
+		AssetCollectionReturn po = create();
+		EntityContext.copyProperties(po,assetCollectionReturnMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -879,7 +930,9 @@ public class AssetCollectionReturn extends Entity {
 	@Transient
 	public static AssetCollectionReturn createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AssetCollectionReturn po = EntityContext.create(AssetCollectionReturn.class,pojo);
+		AssetCollectionReturn po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -889,6 +942,6 @@ public class AssetCollectionReturn extends Entity {
 	*/
 	@Transient
 	public static AssetCollectionReturn create() {
-		return EntityContext.create(AssetCollectionReturn.class);
+		return new com.dt.platform.domain.eam.meta.AssetCollectionReturnMeta.$$proxy$$();
 	}
 }

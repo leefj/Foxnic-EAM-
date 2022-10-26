@@ -128,6 +128,17 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
+            if(menu.id=="deleteBtn"){
+              //  this.
+            }else if(menu.id=="updateBtn"){
+
+            }else if(menu.id=="changeQueryBtn"){
+
+            }else if(menu.id=="assetVoucher"){
+
+            }else if(menu.id=="assetBox"){
+
+            }
         },
         assetDataChange:function (data){
             console.log('assetDataChange',data);

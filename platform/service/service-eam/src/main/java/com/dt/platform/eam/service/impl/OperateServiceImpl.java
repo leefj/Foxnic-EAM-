@@ -68,16 +68,11 @@ public class OperateServiceImpl extends SuperService<Operate> implements IOperat
 	 * */
 	public DAO dao() { return dao; }
 
-
-
 	
 	@Override
 	public Object generateId(Field field) {
 		return IDGenerator.getSnowflakeIdString();
 	}
-
-
-
 
 
 	/*
@@ -185,6 +180,22 @@ public class OperateServiceImpl extends SuperService<Operate> implements IOperat
 		return r;
 
 	}
+
+	@Override
+	public boolean queryAssetCodeAutoCreate(){
+		boolean r=false;
+		ConfigVO vo=new ConfigVO();
+		vo.setCode("eam.assetCodeAutoCreate");
+		Result<List<Config>> dataRs=ConfigServiceProxy.api().queryList(vo);
+		if(dataRs.isSuccess()&&dataRs.getData().size()>0){
+			Config conf=dataRs.getData().get(0);
+			if(!StringUtil.isBlank(conf.getValue()) && "1".equals(conf.getValue())){
+				r=true;
+			}
+		}
+		return r;
+	}
+
 
 	@Override
 	public boolean queryAssetDataPermissions(){

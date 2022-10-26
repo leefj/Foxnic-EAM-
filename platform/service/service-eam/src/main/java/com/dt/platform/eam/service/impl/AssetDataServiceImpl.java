@@ -625,7 +625,6 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
             return map;
         }
         String rootId= vgGidList.get(0).getId();
-        System.out.println("asset category root id:"+rootId);
         PcmCatalogDelegate delegate=new PcmCatalogDelegate(rootId);
         Result r = delegate.queryNodesFlatten(true,true);
         if(r.isSuccess()){
@@ -639,7 +638,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                         path=path+"/"+node.getNamePathArray().get(j);
                     }
                 }
-                System.out.println("##"+node.getId()+","+path+","+node.getHierarchy());
+                Logger.info("id:"+node.getId()+","+path+","+node.getHierarchy());
                 if(node.getHierarchy().startsWith(rootId)){
                     map.put(node.getId(),path);
                 }

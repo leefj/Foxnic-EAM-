@@ -1,7 +1,7 @@
 /**
  * 资产调拨 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-15 20:34:39
+ * @since 2022-10-25 19:53:17
  */
 
 
@@ -78,13 +78,13 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'businessCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务编号') , templet: function (d) { return templet('businessCode',d.businessCode,d);}  }
-					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('办理状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status),d);}}
+					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('办理状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'outOwnCompanyId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('调出所属公司') , templet: function (d) { return templet('outOwnCompanyId',fox.getProperty(d,["outOwnerCompany","fullName"]),d);} }
-					,{ field: 'inOwnCompanyId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('调入所属公司') , templet: function (d) { return templet('inOwnCompanyId',fox.getProperty(d,["inOwnerCompany","fullName"]),d);} }
-					,{ field: 'managerId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('调入管理员') , templet: function (d) { return templet('managerId',fox.getProperty(d,["manager","name"]),d);} }
+					,{ field: 'outOwnCompanyId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('调出所属公司') , templet: function (d) { return templet('outOwnCompanyId',fox.getProperty(d,["outOwnerCompany","fullName"],0,'','outOwnCompanyId'),d);} }
+					,{ field: 'inOwnCompanyId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('调入所属公司') , templet: function (d) { return templet('inOwnCompanyId',fox.getProperty(d,["inOwnerCompany","fullName"],0,'','inOwnCompanyId'),d);} }
+					,{ field: 'managerId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('调入管理员') , templet: function (d) { return templet('managerId',fox.getProperty(d,["manager","name"],0,'','managerId'),d);} }
 					,{ field: 'content', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('调拨说明') , templet: function (d) { return templet('content',d.content,d);}  }
-					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"]),d);} }
+					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"],0,'','originatorId'),d);} }
 					,{ field: 'businessDate', align:"right", fixed:false, hide:true, sort: true   ,title: fox.translate('业务日期') ,templet: function (d) { return templet('businessDate',fox.dateFormat(d.businessDate,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'attach', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('附件') , templet: function (d) { return templet('attach',d.attach,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
@@ -156,8 +156,7 @@ function ListPage() {
 			if(sort) {
 				ps.sortField=sort.field;
 				ps.sortType=sort.type;
-			}
-		}
+			} 		}
 		if(reset) {
 			table.reload('data-table', { where : ps , page:{ curr:1 } });
 		} else {
@@ -188,7 +187,7 @@ function ListPage() {
 
 	function initSearchFields() {
 
-		fox.switchSearchRow(2);
+		fox.switchSearchRow(1);
 
 		//渲染 status 下拉字段
 		fox.renderSelectBox({
@@ -251,7 +250,7 @@ function ListPage() {
 
 		// 搜索按钮点击事件
 		$('#search-button-advance').click(function () {
-			fox.switchSearchRow(2,function (ex){
+			fox.switchSearchRow(1,function (ex){
 				if(ex=="1") {
 					$('#search-button-advance span').text("关闭");
 				} else {
@@ -345,7 +344,8 @@ function ListPage() {
             }
             //调用批量删除接口
 			top.layer.confirm(fox.translate('确定删除已选中的')+fox.translate('资产调拨')+fox.translate('吗？'), function (i) {
-                admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
+                top.layer.close(i);
+				admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
                     if (data.success) {
 						if(window.pageExt.list.afterBatchDelete) {
 							var doNext=window.pageExt.list.afterBatchDelete(data);
@@ -356,7 +356,7 @@ function ListPage() {
                     } else {
 						fox.showMessage(data);
                     }
-                });
+                },{delayLoading:200,elms:[$("#delete-button")]});
 			});
         }
 	}
@@ -404,9 +404,7 @@ function ListPage() {
 
 				top.layer.confirm(fox.translate('确定删除此')+fox.translate('资产调拨')+fox.translate('吗？'), function (i) {
 					top.layer.close(i);
-
-					top.layer.load(2);
-					admin.request(moduleURL+"/delete", { id : data.id }, function (data) {
+					admin.post(moduleURL+"/delete", { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
 						if (data.success) {
 							if(window.pageExt.list.afterSingleDelete) {
@@ -418,7 +416,7 @@ function ListPage() {
 						} else {
 							fox.showMessage(data);
 						}
-					});
+					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
 			}
 			else if (layEvent === 'confirm-data') { // 确认

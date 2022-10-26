@@ -273,6 +273,19 @@ public class OperateController extends SuperController {
     }
 
     /**
+     *  资产编码判断
+     */
+    @ApiOperation(value = "资产编码判断")
+    @ApiOperationSupport(order = 12)
+    @SentinelResource(value = OperateServiceProxy.QUERY_ASSET_CODE_AUTO_CREATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(OperateServiceProxy.QUERY_ASSET_CODE_AUTO_CREATE)
+    public Result queryAssetCodeAutoCreate() {
+        Result result = new Result();
+        result.success(true).data(operateService.queryAssetCodeAutoCreate());
+        return result;
+    }
+
+    /**
      * 导出 Excel
      */
     @SentinelResource(value = OperateServiceProxy.EXPORT_EXCEL, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

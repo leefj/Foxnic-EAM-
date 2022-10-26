@@ -8,13 +8,14 @@ import java.util.Date;
 import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.AssetItem;
 import org.github.foxnic.web.domain.hrm.Employee;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-15 20:34:49
- * @sign 911646B9F45E79FCBA170EAF628D1AA6
+ * @since 2022-10-25 19:52:41
+ * @sign 0672F52F4172AB6780A36A868D31982F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -851,5 +852,66 @@ public class AssetBorrowVOMeta extends AssetBorrowMeta {
 			super.setBorrower(borrower);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AssetBorrowVO clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AssetBorrowVO duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setBorrowerId(this.getBorrowerId());
+			inst.setPlanReturnDate(this.getPlanReturnDate());
+			inst.setProcId(this.getProcId());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setContent(this.getContent());
+			inst.setBusinessDate(this.getBusinessDate());
+			inst.setBusinessCode(this.getBusinessCode());
+			inst.setReturnDate(this.getReturnDate());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setBorrowStatus(this.getBorrowStatus());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setBorrowTime(this.getBorrowTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setAttach(this.getAttach());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setSearchField(this.getSearchField());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setBorrower(this.getBorrower());
+				inst.setPageSize(this.getPageSize());
+				inst.setAssetIds(this.getAssetIds());
+				inst.setOriginator(this.getOriginator());
+				inst.setAssetList(this.getAssetList());
+				inst.setOriginatorUserName(this.getOriginatorUserName());
+				inst.setAssetItemList(this.getAssetItemList());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setDirtyFields(this.getDirtyFields());
+				inst.setSortField(this.getSortField());
+				inst.setIds(this.getIds());
+				inst.setSearchValue(this.getSearchValue());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

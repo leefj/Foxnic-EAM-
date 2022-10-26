@@ -3,23 +3,30 @@ package com.dt.platform.eam.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.dt.platform.constants.enums.eam.AssetStatusEnum;
-import com.dt.platform.constants.enums.eam.InspectionTaskStatusEnum;
-import com.dt.platform.constants.enums.eam.RepairOrderStatusEnum;
+import com.dt.platform.constants.enums.eam.*;
 import com.dt.platform.domain.eam.Asset;
+import com.dt.platform.domain.eam.AssetVO;
 import com.dt.platform.eam.service.IAssetDataService;
 import com.dt.platform.eam.service.IAssetReportService;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.commons.reflect.EnumUtil;
+import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.data.Rcd;
 import com.github.foxnic.dao.data.RcdSet;
 import com.github.foxnic.dao.entity.SuperService;
 import com.github.foxnic.dao.spec.DAO;
+import com.github.foxnic.sql.expr.ConditionExpr;
 import org.apache.poi.ss.formula.functions.T;
+import org.github.foxnic.web.domain.pcm.Catalog;
+import org.github.foxnic.web.domain.pcm.CatalogVO;
 import org.github.foxnic.web.framework.dao.DBConfigs;
+import org.github.foxnic.web.framework.pcm.PcmCatalogDelegate;
+import org.github.foxnic.web.misc.ztree.ZTreeNode;
+import org.github.foxnic.web.proxy.pcm.CatalogServiceProxy;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +34,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.List;
 
 @Service("EAMAssetReportService")
 public class AssetReportServiceImpl  extends SuperService<Asset> implements IAssetReportService {
@@ -339,7 +347,78 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
         return resJson;
     }
 
+    @Override
+    public  JSONArray assetOperDataReport(Asset sample) {
+        String sql="select * from (select * from eam_asset_process_record where deleted=0 order by create_time desc) t limit 100";
+        return dao.query(sql).toJSONArrayWithJSONObject();
+    }
+
+
+    @Override
+    public PagedList<Asset> assetForLeaveEmployeeReport(Asset sample,int pageSize,int pageIndex) {
+        ConditionExpr expr=new ConditionExpr();
+        expr.and("use_user_id in (select id from hrm_employee where deleted=0 and status='leave')");
+        if(StringUtil.isBlank(sample.getOwnerCode())){
+            sample.setOwnerCode(AssetOwnerCodeEnum.ASSET.code());
+        }
+
+        return queryPagedList(sample, expr, pageSize, pageIndex);
+    }
+
+    @Override
+    public JSONArray queryAuxCategoryData() {
+
+
+        JSONArray data=new JSONArray();
+        //所有分类转换成  id + 全路径名称
+        HashMap<String,String> map=new HashMap<>();
+        CatalogVO voGId=new CatalogVO();
+        voGId.setCode(AssetPcmCodeEnum.ASSET.code());
+        Result<List<Catalog>> vgGidRes=CatalogServiceProxy.api().queryList(voGId);
+        if(!vgGidRes.isSuccess()){
+            return data;
+        }
+        List<Catalog> vgGidList=vgGidRes.getData();
+        if(vgGidList.size()!=1){
+            return data;
+        }
+
+        String rootId= vgGidList.get(0).getId();
+        Logger.info("asset category root id:"+rootId);
+        PcmCatalogDelegate delegate=new PcmCatalogDelegate(rootId);
+        Result r = delegate.queryNodesFlatten(true,true);
+        if(r.isSuccess()){
+            List<ZTreeNode> list= (List<ZTreeNode> )r.getData();
+            for( ZTreeNode node:list){
+                JSONObject obj=new JSONObject();
+                obj.put("name",node.getName());
+                String path="";
+                for(int j=0;j<node.getNamePathArray().size();j++){
+                    if(j==0){
+                        path=node.getNamePathArray().get(j);
+                    }else{
+                        path=path+"/"+node.getNamePathArray().get(j);
+                    }
+                }
+                Rcd rs=dao.queryRecord("select code,data_table from pcm_catalog where id=?",node.getId());
+                if(rs!=null){
+                    obj.put("code",rs.getString("code"));
+                    obj.put("dataTable",rs.getString("data_table"));
+                }
+                Logger.info("id:"+node.getId()+","+path+","+node.getHierarchy());
+                if(node.getHierarchy().startsWith(rootId)){
+                    map.put(node.getId(),path);
+                    obj.put("id",node.getId());
+                    obj.put("path",path);
+                }
+                data.add(obj);
+            }
+        }
+        return data;
+    }
+
     public JSONArray queryOrganizationData(Asset sample){
+
 
 //        HashMap<String,String> org = assetDataService.queryUseOrganizationNodes();
 //        //查询组织

@@ -1,13 +1,19 @@
 package com.dt.platform.domain.common;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.SYS_CODE_ATTR;
 import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
-import java.util.Date;
+import com.dt.platform.constants.enums.common.CodeAttrTypeEnum;
 import javax.persistence.Transient;
+import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.foxnic.commons.reflect.EnumUtil;
+import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 
@@ -15,13 +21,15 @@ import com.github.foxnic.dao.entity.EntityContext;
 
 /**
  * 编码属性
+ * <p>编码属性 , 数据表 sys_code_attr 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:26:37
- * @sign 23640B395ED174761CD82F3C5F393ECC
+ * @since 2022-10-25 09:57:37
+ * @sign 59CA230998EC5706750C67D1FD175A37
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "sys_code_attr")
+@ApiModel(description = "编码属性 ; 编码属性 , 数据表 sys_code_attr 的PO类型")
 public class CodeAttr extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -46,6 +54,8 @@ public class CodeAttr extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="编码类型" , notes = "编码类型")
 	private String type;
+	@Transient
+	private CodeAttrTypeEnum typeEnum;
 	
 	/**
 	 * 占位符：占位符
@@ -94,6 +104,8 @@ public class CodeAttr extends Entity {
 	*/
 	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
+	@Transient
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -161,12 +173,46 @@ public class CodeAttr extends Entity {
 	}
 	
 	/**
+	 * 获得 编码类型 的投影属性<br>
+	 * 等价于 getType 方法，获得对应的枚举类型
+	 * @return 编码类型
+	*/
+	@Transient
+	public CodeAttrTypeEnum getTypeEnum() {
+		if(this.typeEnum==null) {
+			this.typeEnum = (CodeAttrTypeEnum) EnumUtil.parseByCode(CodeAttrTypeEnum.values(),type);
+		}
+		return this.typeEnum ;
+	}
+	
+	/**
 	 * 设置 编码类型
 	 * @param type 编码类型
 	 * @return 当前对象
 	*/
+	@JsonProperty("type")
 	public CodeAttr setType(String type) {
 		this.type=type;
+		this.typeEnum= (CodeAttrTypeEnum) EnumUtil.parseByCode(CodeAttrTypeEnum.values(),type) ;
+		if(StringUtil.hasContent(type) && this.typeEnum==null) {
+			throw new IllegalArgumentException( type + " is not one of CodeAttrTypeEnum");
+		}
+		return this;
+	}
+	
+	/**
+	 * 设置 编码类型的投影属性，等同于设置 编码类型
+	 * @param typeEnum 编码类型
+	 * @return 当前对象
+	*/
+	@Transient
+	public CodeAttr setTypeEnum(CodeAttrTypeEnum typeEnum) {
+		if(typeEnum==null) {
+			this.setType(null);
+		} else {
+			this.setType(typeEnum.code());
+		}
+		this.typeEnum=typeEnum;
 		return this;
 	}
 	
@@ -313,12 +359,43 @@ public class CodeAttr extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public CodeAttr setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public CodeAttr setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -409,6 +486,47 @@ public class CodeAttr extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public CodeAttr clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public CodeAttr duplicate(boolean all) {
+		com.dt.platform.domain.common.meta.CodeAttrMeta.$$proxy$$ inst = new com.dt.platform.domain.common.meta.CodeAttrMeta.$$proxy$$();
+		inst.setCode(this.getCode());
+		inst.setNotes(this.getNotes());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setSort(this.getSort());
+		inst.setType(this.getType());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public CodeAttr clone(boolean deep) {
+		return EntityContext.clone(CodeAttr.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 CodeAttr
 	 * @param codeAttrMap 包含实体信息的 Map 对象
 	 * @return CodeAttr , 转换好的的 CodeAttr 对象
@@ -416,7 +534,9 @@ public class CodeAttr extends Entity {
 	@Transient
 	public static CodeAttr createFrom(Map<String,Object> codeAttrMap) {
 		if(codeAttrMap==null) return null;
-		CodeAttr po = EntityContext.create(CodeAttr.class, codeAttrMap);
+		CodeAttr po = create();
+		EntityContext.copyProperties(po,codeAttrMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -428,7 +548,9 @@ public class CodeAttr extends Entity {
 	@Transient
 	public static CodeAttr createFrom(Object pojo) {
 		if(pojo==null) return null;
-		CodeAttr po = EntityContext.create(CodeAttr.class,pojo);
+		CodeAttr po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -438,6 +560,6 @@ public class CodeAttr extends Entity {
 	*/
 	@Transient
 	public static CodeAttr create() {
-		return EntityContext.create(CodeAttr.class);
+		return new com.dt.platform.domain.common.meta.CodeAttrMeta.$$proxy$$();
 	}
 }

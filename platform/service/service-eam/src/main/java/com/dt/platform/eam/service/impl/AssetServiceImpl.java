@@ -37,6 +37,7 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
+import com.mysql.cj.log.Log;
 import org.apache.poi.ss.usermodel.*;
 import org.github.foxnic.web.constants.enums.changes.ApprovalAction;
 import org.github.foxnic.web.constants.enums.changes.ApprovalMode;
@@ -86,13 +87,11 @@ import org.github.foxnic.web.framework.dao.DBConfigs;
 @Service("EamAssetService")
 public class AssetServiceImpl extends SuperService<Asset> implements IAssetService {
 
-
 	@Autowired
 	private IOperateService operateService;
 
 	@Autowired
 	private IAssetDataService assetDataService;
-
 
 	@Autowired
 	private IAssetCategoryService assetCategoryService;
@@ -117,12 +116,75 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 	 * 获得 DAO 对象
 	 * */
 	public DAO dao() { return dao; }
+//        1、为了保证复制速度，一次最多可复制500个资产
+//        2、以下资产信息不可被复制：
+//        资产编码、资产编码（旧）
+//        设备序列号、
+//        使用人、
+//        领用日期
+//        入库时间
+//        累计折旧
+//        残值
+//        净值
+//        3、复制后的资产状态为空闲
+	@Override
+	public Result<List<String>> assetCopy(String id, int number) {
+		//该功能只有在自动编码开启时才能使用
+		Logger.info("自动创建资产assetId:"+id+",数量:"+number);
+		if(!operateService.queryAssetCodeAutoCreate()){
+			return ErrorDesc.failureMessage("当前资产编码自动生成未启用,无法使用复制的功能");
+		}
+		int limit=200;
+		if(number>limit){
+			return ErrorDesc.failureMessage("复制数量过大，最大不可超过"+limit);
+		}
+		Asset asset=this.getById(id);
+		if(asset==null){
+			return ErrorDesc.failureMessage("复制的资产不存在");
+		}
+		List<String> idsList=new ArrayList<>();
+		for(int i=0;i<number;i++){
+			String assetId=IDGenerator.getSnowflakeIdString();
+			asset.setId(assetId);
+			asset.setAssetStatus(AssetStatusEnum.IDLE.code());
+			asset.setAssetCode(null);
+			asset.setSerialNumber(null);
+			asset.setCreateBy(null);
+			asset.setCreateTime(null);
+			asset.setUpdateBy(null);
+			asset.setUpdateTime(null);
+			asset.setUseUserId(null);
+			asset.setManagerId(null);
+
+			asset.setBillId(null);
+			asset.setOriginatorId(null);
+			asset.setEntryTime(null);
+			asset.setTaxAmountPrice(null);
+			asset.setTaxAmountPrice(null);
+			asset.setTotalAmountPrice(null);
+			asset.setOriginalUnitPrice(null);
+			asset.setCurrentYearDepreciation(null);
+			asset.setDepreciationYear(null);
+			asset.setAccumulatedDepreciation(null);
+			asset.setMonthDepreciationPrice(null);
+			asset.setResidualsRate(null);
+			asset.setResidualsPrice(null);
+			asset.setNavPrice(null);
+			asset.setPurchaseUnitPrice(null);
+			asset.setPurchaseDate(null);
+			asset.setAssetNumber(1);
+			Result insertResult=this.insert(asset);
+			idsList.add(assetId);
+		}
+		Result<List<String>> result=new Result<>();
+		result.success(true);
+		result.data(idsList);
+		return result;
+	}
 
 
 	public String applyAssetDataPermissions(Asset asset,ConditionExpr expr){
 		String dp="";
-
-
 		Logger.info("dataPermissions|applyAssetDataPermissions,ownerCode:"+AssetOwnerCodeEnum.ASSET.code());
 		if(!StringUtil.isBlank(AssetOwnerCodeEnum.ASSET.code())){
 			if(AssetOwnerCodeEnum.ASSET.code().equals(asset.getOwnerCode())){
@@ -367,6 +429,34 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		data.put("change",ins);
 		return data;
 	}
+
+	@Override
+	public Result generateAssetCode(String codeRule,JSONObject ctl,String defaultAssetCode) {
+
+		//不自动生产编码
+		if(!operateService.queryAssetCodeAutoCreate()){
+			Result<String> codeResult=new Result<>();
+			codeResult.success();
+			codeResult.data(StringUtil.isBlank(defaultAssetCode)?"":defaultAssetCode);
+			return codeResult;
+		}
+
+		//自动生产编码
+		Logger.info("ctl:"+ctl.toJSONString());
+		String ownOrgId=ctl.containsKey("ownOrgId")?ctl.getString("ownOrgId"):"";
+		String useOrgId=ctl.containsKey("useOrgId")?ctl.getString("useOrgId"):"";
+		String categoryId=ctl.containsKey("categoryId")?ctl.getString("categoryId"):"";
+		Logger.info("to generate asset code,ownOrgId:"+ownOrgId+",useOrgId:"+useOrgId+",categoryId:"+categoryId);
+		String code=IDGenerator.getSnowflakeIdString();
+		if(CodeModuleEnum.EAM_ASSET_CODE.code().equals(codeRule)){
+			return CodeModuleServiceProxy.api().generateCode(codeRule) ;
+		}else{
+			return CodeModuleServiceProxy.api().generateCode(codeRule) ;
+		}
+
+	}
+
+
 	/**
 	 *  changeMap只更新不是null部分
 	 * */
@@ -587,6 +677,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		}
 		return result;
 	}
+
 
 	public Result approve(String instanceId, List<Asset> assets, String approveAction, String opinion) {
 
@@ -936,7 +1027,11 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		if(StringUtil.isBlank(asset.getAssetCode())){
 			if(!StringUtil.isBlank(codeRule)){
 				if(!StringUtil.isBlank(codeRule)){
-					Result codeResult= CodeModuleServiceProxy.api().generateCode(codeRule) ;
+					JSONObject codeObject=new JSONObject();
+					codeObject.put("ownOrgId",asset.getOwnCompanyId());
+					codeObject.put("useOrgId",asset.getUseOrganizationId());
+					codeObject.put("categoryId",asset.getCategoryId());
+					Result codeResult= generateAssetCode(codeRule,codeObject,asset.getAssetCode());
 					if(!codeResult.isSuccess()){
 						return codeResult;
 					}else{
@@ -1389,11 +1484,9 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		List<ValidateResult> errors=new ArrayList<>();
 		DBTableMeta tm=dao().getTableMeta(this.table());
 		DBTreaty dbTreaty= dao().getDBTreaty();
-
 		List<CatalogAttribute> catalogAttribteList=new ArrayList<>();
 		List<CatalogData> catalogDataList=new ArrayList<>();
 		List<String> assetSerialNumberList=new ArrayList<>();
-
 		HashMap<String,HashMap<String,String>> matchMap=new HashMap<>();
 		matchMap.put("organizationMap",assetDataService.queryOrganizationNodes("all"));
 		matchMap.put("categoryMap",assetDataService.queryAssetCategoryNodes("all"));
@@ -1401,8 +1494,6 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		matchMap.put("eam_equipment_environment",assetDataService.queryDictItemDataByDictCode("eam_equipment_environment"));
 		matchMap.put("eam_source",assetDataService.queryDictItemDataByDictCode("eam_source"));
 		matchMap.put("eam_maintenance_status",assetDataService.queryDictItemDataByDictCode("eam_maintenance_status"));
-
-
 		String pcmCategoryId=null;
 		if(attributeMap.size()>0){
 			Logger.info("本次资产导入为自定义模式");
@@ -1413,7 +1504,6 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		}else{
 			Logger.info("本次资产导入为通用模式");
 		}
-
 		String actionType="update";
 		String assetId="";
 		List<SQL> sqls=new ArrayList<>();
@@ -1430,24 +1520,20 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				actionType="update";
 				assetId=r.getString(AssetDataExportColumnEnum.ASSET_ID.text());
 			}
-
-
 			//校验数据
 			Result verifyResult=assetDataService.verifyAssetRecord(r,matchMap,dataType);
 			if(!verifyResult.isSuccess()){
 				errors.add(new ValidateResult(null,(i+1),verifyResult.getMessage()));
 				break;
 			}
-
 			//判断资产分类是否存在
 			String categoryId=r.getString(AssetDataExportColumnEnum.ASSET_CATEGORY_NAME.text());
 			if(StringUtil.isBlank(categoryId)){
 				errors.add(new ValidateResult(null,(i+1),"当前资产分类不存在"+r.toString()));
 				break;
 			}
-
 			//判断是否序列号要唯一,满足非空唯一即可
-			if(AssetOwnerCodeEnum.ASSET.code().equals(assetOwner)&& !StringUtil.isBlank(r.getString("serial_number")) && operateService.queryAssetSerialNumberNeedUnique() ){
+			if(AssetOwnerCodeEnum.ASSET.code().equals(assetOwner)&&!StringUtil.isBlank(r.getString("serial_number")) && operateService.queryAssetSerialNumberNeedUnique() ){
 				String sn=r.getString("serial_number");
 				if(!operateService.queryAssetSerialNumberIsUnique(sn,r.getString("id"))){
 					errors.add(new ValidateResult(null,(i+1),"当前资产序列号不唯一:"+sn));
@@ -1460,7 +1546,6 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 					assetSerialNumberList.add(sn);
 				}
 			}
-
 			//处理自定义属性
 			if(pcmCategoryId!=null){
 				if(categoryId.equals(pcmCategoryId)){
@@ -1476,12 +1561,8 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 					break;
 				}
 			}
-
 			//汇总更新数据
 			String sql="";
-
-
-
 			if("insert".equals(actionType)){
 				String codeRule="";
 				boolean codeGen=true;
@@ -1506,10 +1587,14 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				else{
 					errors.add(new ValidateResult(null,(i+1),"资产ownerCode设置错误"));
 				}
-
 				if(codeGen){
 					//自动生产自动编号
-					Result codeResult= CodeModuleServiceProxy.api().generateCode(codeRule);
+					//Result codeResult= CodeModuleServiceProxy.api().generateCode(codeRule);
+					JSONObject codeObject=new JSONObject();
+					codeObject.put("ownOrgId",r.getString("own_company_id") );
+					codeObject.put("useOrgId",r.getString("use_organization_id"));
+					codeObject.put("categoryId",r.getString("category_id"));
+					Result codeResult= generateAssetCode(codeRule,codeObject,r.getString("asset_code") );
 					if(!codeResult.isSuccess()){
 						//返回报错
 						errors.add(new ValidateResult(null,(i+1),codeResult.getMessage()));
@@ -1520,7 +1605,11 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				}else{
 					//导入新增保持原资产编号，不生成自动编号,但是如果编号为空，则自动生成
 					if(StringUtil.isBlank(r.getString("asset_code"))){
-						Result codeResult= CodeModuleServiceProxy.api().generateCode(codeRule);
+						JSONObject codeObject=new JSONObject();
+						codeObject.put("ownOrgId",r.getString("own_company_id") );
+						codeObject.put("useOrgId",r.getString("use_organization_id"));
+						codeObject.put("categoryId",r.getString("category_id"));
+						Result codeResult= generateAssetCode(codeRule,codeObject,r.getString("asset_code") );
 						if(!codeResult.isSuccess()){
 							//返回报错
 							errors.add(new ValidateResult(null,(i+1),codeResult.getMessage()));
@@ -1530,11 +1619,9 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 						}
 					}
 				}
-
 				//转换Rcd 到Insert
 				Insert insert = SQLBuilder.buildInsert(r,this.table(),this.dao(), true);
 				insert.setIf("asset_selected_data",selectedCode);
-
 				//办理情况,新增不管是否需要审批，默认为未完成状态
 //				if(operateService.approvalRequired(approvalRule) ){
 //					insert.set("status",AssetHandleStatusEnum.INCOMPLETE.code());
@@ -1543,7 +1630,6 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 //					insert.set("status",AssetHandleStatusEnum.COMPLETE.code());
 //				}
 				insert.set("status",AssetHandleStatusEnum.INCOMPLETE.code());
-
 				//数量
 				if (StringUtil.isBlank(r.getString("asset_number"))){
 					insert.set("asset_number",1);
@@ -1551,19 +1637,15 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				if (StringUtil.isBlank(r.getString("remain_number"))){
 					insert.set("remain_number",1);
 				}
-
 				//登记时间
 				if (StringUtil.isBlank(r.getString("register_date"))){
 					insert.set("register_date",new Date());
 				}
-
 				insert.set(AssetDataExportColumnEnum.ASSET_ID.text(),assetId);
 				insert.set("tenant_id",SessionUser.getCurrent().getActivatedTenantId());
 				insert.set("owner_code",assetOwner);
 				//制单人
 				insert.set("originator_id",SessionUser.getCurrent().getUser().getActivatedEmployeeId());
-
-
 
 				//设置创建时间
 				if(tm.getColumn(dbTreaty.getCreateTimeField())!=null) {
@@ -1582,20 +1664,14 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				}
 				sql=insert.getSQL();
 			}else{
-
-
 				//办理情况
 				if(r.getOwnerSet().hasColumn(AssetDataExportColumnEnum.STATUS_NAME.text())){
 //                  //r.getOwnerSet().removeColumn(AssetDataExportColumnEnum.STATUS_NAME.text());
 				}
-
 				if(r.getOwnerSet().hasColumn(AssetDataExportColumnEnum.ASSET_CODE.text())){
 					//r.getOwnerSet().removeColumn(AssetDataExportColumnEnum.ASSET_CODE.text());
 				}
-
 				//不允许更新资产编号
-
-
 				Update update=SQLBuilder.buildUpdate(r,SaveMode.ALL_FIELDS,this.table(),this.dao());
 				update.setIf("asset_selected_data",selectedCode);
 

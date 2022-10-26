@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-27 23:31:30
+ * @since 2022-10-25 20:25:34
  */
 
 
@@ -149,7 +149,7 @@ function ListPage() {
 					,{ field: 'equipmentConf', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('设备配置') , templet: function (d) { return templet('equipmentConf',d.equipmentConf,d);}  }
 					,{ field: 'equipmentEnvironmentCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('运行环境'), templet: function (d) { return templet('equipmentEnvironmentCode' ,fox.joinLabel(d.equipmentEnvironment,"label",',','','equipmentEnvironmentCode'),d);}}
 					,{ field: 'equipmentSerialNumber', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('设备序列号') , templet: function (d) { return templet('equipmentSerialNumber',d.equipmentSerialNumber,d);}  }
-					,{ field: 'rackId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('机柜'), templet: function (d) { return templet('rackId' ,fox.joinLabel(d.rack,"rackName",',','','rackId'),d);}}
+					,{ field: 'rackId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('机柜'), templet: function (d) { return templet('rackId' ,fox.joinLabel(d.rack,"name",',','','rackId'),d);}}
 					,{ field: 'rackUpNumber', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('设备机柜上位置') , templet: function (d) { return templet('rackUpNumber',d.rackUpNumber,d);}  }
 					,{ field: 'rackDownNumber', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('设备机柜下位置') , templet: function (d) { return templet('rackDownNumber',d.rackDownNumber,d);}  }
 					,{ field: 'label', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('短标签1') , templet: function (d) { return templet('label',d.label,d);}  }
@@ -284,7 +284,7 @@ function ListPage() {
 
 	function initSearchFields() {
 
-		fox.switchSearchRow(2);
+		fox.switchSearchRow(1);
 
 		//渲染 status 下拉字段
 		fox.renderSelectBox({
@@ -497,7 +497,7 @@ function ListPage() {
 
 		// 搜索按钮点击事件
 		$('#search-button-advance').click(function () {
-			fox.switchSearchRow(2,function (ex){
+			fox.switchSearchRow(1,function (ex){
 				if(ex=="1") {
 					$('#search-button-advance span').text("关闭");
 				} else {
@@ -698,6 +698,23 @@ function ListPage() {
 			}
 			else if (layEvent === 'asset-data-change') { // 变更
 				window.pageExt.list.assetDataChange(data,this);
+			}
+			else if(obj.event === 'ops-more'){
+				//更多下拉菜单
+				dropdown.render({
+					elem: this
+					,show: true //外部事件触发即显示
+					,data: [{"perm":"id1","id":"id1","title":"测试1"},{"perm":"id1","id":"id1","title":"测试2"}]
+					,click: function(menu, othis){
+						if(menu.perm && !admin.checkAuth(menu.perm)) {
+							top.layer.msg(fox.translate('缺少操作权限'), {icon: 2, time: 1500});
+							return;
+						}
+						window.pageExt.list.moreAction && window.pageExt.list.moreAction(menu,data, othis);
+					}
+					,align: 'right'
+					,style: 'box-shadow: 1px 1px 10px rgb(0 0 0 / 12%);'
+				});
 			}
 			
 		});

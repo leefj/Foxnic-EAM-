@@ -88,11 +88,46 @@ public class AssetReportPageController extends ViewController {
 	/**
 	 * 资产组织查询数据
 	 */
+	@RequestMapping("/aux_category_report_list.html")
+	public String auxCategoryReportList(Model model,HttpServletRequest request ) {
+		return prefix+"/aux_category_report_list";
+	}
+
+
+	/**
+	 * 分类
+	 */
 	@RequestMapping("/org_report_list.html")
 	public String orgReportList(Model model,HttpServletRequest request , String id) {
 
 		return prefix+"/org_report_list";
 	}
+
+	/**
+	 *
+	 */
+	@RequestMapping("/asset_oper_data_report.html")
+	public String assetOperDataReport(Model model,HttpServletRequest request , String id) {
+		return prefix+"/asset_oper_data_report";
+	}
+
+	/**
+	 *
+	 */
+	@RequestMapping("/asset_for_leave_employee_report.html")
+	public String assetForLeaveEmployeeReport(Model model,HttpServletRequest request , String id) {
+
+		Result<HashMap<String,List<AssetAttributeItem>>> result = AssetAttributeItemServiceProxy.api().queryListColumnByModule(AssetAttributeItemOwnerEnum.PUBLIC_SHOW.code(),null);
+		if(result.isSuccess()){
+			HashMap<String,List<AssetAttributeItem>> data = result.getData();
+			List<AssetAttributeItem> list=data.get("attributeListData");
+			model.addAttribute("attributeListData",list);
+		}
+
+		return prefix+"/asset_for_leave_employee_report";
+	}
+
+
 
 
 	/**

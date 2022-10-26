@@ -174,10 +174,6 @@
 
 
 
-
-
-
-
         <div style="height: 80px"></div>
 
     </form>
@@ -197,27 +193,18 @@
 <script th:inline="javascript">
 
     var PAGE_TYPE =  [[${pageType}]];
-
     var OWNER_CODE =  [[${ownerCode}]];
-
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
-
     var SELECT_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetHandleStatusEnum')}]];
     var SELECT_ASSETSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetStatusEnum')}]];
     var SELECT_EQUIPMENTSTATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetEquipmentStatusEnum')}]];
-
-
     var AUTH_PREFIX="eam_asset";
+    var ASSET_CODE_AUTO_CREATE =  [[${assetCodeAutoCreate}]];
     var VALIDATE_CONFIG =  [[${attributeRequiredData}]];
-
     var ASSET_CATEGORY_DATA =  [[${assetCategoryData}]];
-
     var ASSET_DIRECT_UPDATE_MODE =  [[${assetDirectUpdateMode}]];
-
     var ASSET_STATUS_COLUMN_DISABLE =  [[${assetStatusColumnDisable}]];
-
     var ASSET_DEFAULT_OWN_COMPANY =  [[${assetDefaultOwnCompany}]];
-
     var INTERNAL_CONTROL_LABEL =  [[${internalControlLabel}]];
 
 

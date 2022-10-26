@@ -8,12 +8,13 @@ import com.dt.platform.domain.eam.Asset;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-27 21:22:36
+ * @since 2022-10-25 19:51:27
  * @sign 0B92E5A67AC0BF576D5369E50EED21A4
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -683,5 +684,58 @@ public class AssetCollectionMeta {
 			super.setOriginatorUserName(originatorUserName);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AssetCollection clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AssetCollection duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setProcId(this.getProcId());
+			inst.setUseOrganizationId(this.getUseOrganizationId());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setCollectionDate(this.getCollectionDate());
+			inst.setVersion(this.getVersion());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setContent(this.getContent());
+			inst.setPositionDetail(this.getPositionDetail());
+			inst.setBusinessDate(this.getBusinessDate());
+			inst.setBusinessCode(this.getBusinessCode());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setPositionId(this.getPositionId());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setAttach(this.getAttach());
+			inst.setUseUserId(this.getUseUserId());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setUseOrganization(this.getUseOrganization());
+				inst.setAssetIds(this.getAssetIds());
+				inst.setPosition(this.getPosition());
+				inst.setOriginator(this.getOriginator());
+				inst.setAssetList(this.getAssetList());
+				inst.setUseUser(this.getUseUser());
+				inst.setOriginatorUserName(this.getOriginatorUserName());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

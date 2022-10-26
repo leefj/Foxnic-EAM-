@@ -112,6 +112,16 @@ public interface OperateServiceProxy {
      */
     public static final String QUERY_ASSET_STATUS_COLUMN_DISABLE = API_PREFIX + "query-asset-status-column-disable";
 
+
+    //资产编码自动生成判断
+    public static final String QUERY_ASSET_CODE_AUTO_CREATE = API_PREFIX + "query-asset-code-auto-create";
+
+    /**
+     * 资产更新判断
+     */
+    @RequestMapping(OperateServiceProxy.QUERY_ASSET_CODE_AUTO_CREATE)
+    public Result queryAssetCodeAutoCreate();
+
     /**
      * 资产更新判断
      */

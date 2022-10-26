@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_ASSET_TRANFER;
@@ -8,9 +9,11 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,13 +24,15 @@ import com.github.foxnic.dao.entity.EntityContext;
 
 /**
  * 资产转移
+ * <p>资产转移 , 数据表 eam_asset_tranfer 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-27 21:24:28
+ * @since 2022-10-25 19:55:58
  * @sign 238835EA8099AD28D66DA4AE44E4D615
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_asset_tranfer")
+@ApiModel(description = "资产转移 ; 资产转移 , 数据表 eam_asset_tranfer 的PO类型")
 public class AssetTranfer extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -38,19 +43,19 @@ public class AssetTranfer extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "596040453103550464")
 	private String id;
 	
 	/**
 	 * 业务名称：业务名称
 	*/
-	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称")
+	@ApiModelProperty(required = false,value="业务名称" , notes = "业务名称" , example = "物品2")
 	private String name;
 	
 	/**
 	 * 业务编号：业务编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号")
+	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "BO202207031807818")
 	private String businessCode;
 	
 	/**
@@ -62,25 +67,25 @@ public class AssetTranfer extends Entity {
 	/**
 	 * 办理状态：办理状态
 	*/
-	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态")
+	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态" , example = "complete")
 	private String status;
 	
 	/**
 	 * 调出使用公司/部门：调出使用公司/部门
 	*/
-	@ApiModelProperty(required = false,value="调出使用公司/部门" , notes = "调出使用公司/部门")
+	@ApiModelProperty(required = false,value="调出使用公司/部门" , notes = "调出使用公司/部门" , example = "2")
 	private String outUseOrganizationId;
 	
 	/**
 	 * 调入使用公司/部门：调入使用公司/部门
 	*/
-	@ApiModelProperty(required = false,value="调入使用公司/部门" , notes = "调入使用公司/部门")
+	@ApiModelProperty(required = false,value="调入使用公司/部门" , notes = "调入使用公司/部门" , example = "503504845043400704")
 	private String inUseOrganizationId;
 	
 	/**
 	 * 调入管理员：调入管理员
 	*/
-	@ApiModelProperty(required = false,value="调入管理员" , notes = "调入管理员")
+	@ApiModelProperty(required = false,value="调入管理员" , notes = "调入管理员" , example = "569945398324494336")
 	private String managerId;
 	
 	/**
@@ -92,13 +97,13 @@ public class AssetTranfer extends Entity {
 	/**
 	 * 位置：位置
 	*/
-	@ApiModelProperty(required = false,value="位置" , notes = "位置")
+	@ApiModelProperty(required = false,value="位置" , notes = "位置" , example = "472024543184027649")
 	private String positionId;
 	
 	/**
 	 * 位置详情：位置详情
 	*/
-	@ApiModelProperty(required = false,value="位置详情" , notes = "位置详情")
+	@ApiModelProperty(required = false,value="位置详情" , notes = "位置详情" , example = "我去玩")
 	private String positionDetail;
 	
 	/**
@@ -110,13 +115,13 @@ public class AssetTranfer extends Entity {
 	/**
 	 * 制单人：制单人
 	*/
-	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
+	@ApiModelProperty(required = false,value="制单人" , notes = "制单人" , example = "E001")
 	private String originatorId;
 	
 	/**
 	 * 业务日期：业务日期
 	*/
-	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期")
+	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期" , example = "2022-07-03 12:00:00")
 	private Date businessDate;
 	
 	/**
@@ -128,33 +133,34 @@ public class AssetTranfer extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-07-03 06:11:58")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-07-03 06:12:01")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -172,19 +178,19 @@ public class AssetTranfer extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
 	 * 选择数据：选择数据
 	*/
-	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据")
+	@ApiModelProperty(required = false,value="选择数据" , notes = "选择数据" , example = "1656843091000")
 	private String selectedCode;
 	
 	/**
@@ -629,6 +635,7 @@ public class AssetTranfer extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public AssetTranfer setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -973,7 +980,54 @@ public class AssetTranfer extends Entity {
 	*/
 	@Transient
 	public AssetTranfer clone() {
-		return EntityContext.clone(AssetTranfer.class,this);
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AssetTranfer duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.AssetTranferMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetTranferMeta.$$proxy$$();
+		inst.setProcId(this.getProcId());
+		inst.setSelectedCode(this.getSelectedCode());
+		inst.setContent(this.getContent());
+		inst.setOutUseOrganizationId(this.getOutUseOrganizationId());
+		inst.setBusinessDate(this.getBusinessDate());
+		inst.setBusinessCode(this.getBusinessCode());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setId(this.getId());
+		inst.setOriginatorId(this.getOriginatorId());
+		inst.setAttach(this.getAttach());
+		inst.setInUseOrganizationId(this.getInUseOrganizationId());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setManagerId(this.getManagerId());
+		inst.setVersion(this.getVersion());
+		inst.setPositionDetail(this.getPositionDetail());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setPositionId(this.getPositionId());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setUseUserId(this.getUseUserId());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setInUseOrganization(this.getInUseOrganization());
+			inst.setManager(this.getManager());
+			inst.setOutUseOrganization(this.getOutUseOrganization());
+			inst.setAssetIds(this.getAssetIds());
+			inst.setPosition(this.getPosition());
+			inst.setOriginator(this.getOriginator());
+			inst.setAssetList(this.getAssetList());
+			inst.setUseUser(this.getUseUser());
+			inst.setOriginatorUserName(this.getOriginatorUserName());
+		}
+		inst.clearModifies();
+		return inst;
 	}
 
 	/**
@@ -992,7 +1046,9 @@ public class AssetTranfer extends Entity {
 	@Transient
 	public static AssetTranfer createFrom(Map<String,Object> assetTranferMap) {
 		if(assetTranferMap==null) return null;
-		AssetTranfer po = EntityContext.create(AssetTranfer.class, assetTranferMap);
+		AssetTranfer po = create();
+		EntityContext.copyProperties(po,assetTranferMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -1004,7 +1060,9 @@ public class AssetTranfer extends Entity {
 	@Transient
 	public static AssetTranfer createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AssetTranfer po = EntityContext.create(AssetTranfer.class,pojo);
+		AssetTranfer po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -1014,6 +1072,6 @@ public class AssetTranfer extends Entity {
 	*/
 	@Transient
 	public static AssetTranfer create() {
-		return EntityContext.create(AssetTranfer.class);
+		return new com.dt.platform.domain.eam.meta.AssetTranferMeta.$$proxy$$();
 	}
 }

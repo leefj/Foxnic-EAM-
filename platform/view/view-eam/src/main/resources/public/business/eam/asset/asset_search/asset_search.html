@@ -53,10 +53,7 @@
                         <div id="assetStatus" th:data="${'/service-eam/eam-asset-status/query-list'}"  style="width:150px" extraParam="{}" ></div>
                     </div>
                     <!-- 资产编号 , assetCode ,typeName=text_input, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('资产编号')}" class="search-label assetCode-label">资产编号</span><span class="search-colon">:</span></div>
-                        <input id="assetCode" class="layui-input search-input" style="width: 150px" type="text" />
-                    </div>
+
                     <!-- 来源 , sourceId ,typeName=select_box, isHideInSearch=false -->
 <!--                    <div class="search-unit">-->
 <!--                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('来源')}" class="search-label sourceId-label">来源</span><span class="search-colon">:</span></div>-->
@@ -66,6 +63,11 @@
                     <div class="search-unit">
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('位置')}" class="search-label positionId-label">位置</span><span class="search-colon">:</span></div>
                         <div id="positionId" th:data="${'/service-eam/eam-position/query-paged-list'}" style="width:150px"></div>
+                    </div>
+
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('资产编号')}" class="search-label assetCode-label">资产编号</span><span class="search-colon">:</span></div>
+                        <input id="assetCode" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
 
                 </div>
@@ -159,7 +161,7 @@
             </div>
         </div>
 
-        <div style="margin-top: 84px ">
+        <div style="margin-top: 42px ">
             <table class="layui-table" id="data-table" lay-filter="data-table"></table>
         </div>
 

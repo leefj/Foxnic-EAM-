@@ -2,6 +2,7 @@ package com.dt.platform.eam.service;
 
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.domain.eam.AssetBorrow;
 import com.dt.platform.domain.eam.AssetExtData;
@@ -44,6 +45,9 @@ import org.github.foxnic.web.domain.changes.ProcessStartVO;
 
 public interface IAssetService extends ISuperService<Asset> {
 
+
+	Result generateAssetCode(String codeRule, JSONObject ctl,String defaultAssetCode);
+
 	HashMap<String,List<SQL>> parseAssetChangeRecordWithChangeAsset(List<Asset> assetBefore, HashMap<String, Object> changeMap,String businessCode,String operType,String notes);
 
 	Result joinData(List<Asset> list);
@@ -52,6 +56,7 @@ public interface IAssetService extends ISuperService<Asset> {
 
 	Result approve(ProcessApproveVO approveVO);
 
+	Result<List<String>> assetCopy(String id,int number);
 
 	List<Map<String, Object>> getBills(List<String> ids);
 

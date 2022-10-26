@@ -10,13 +10,14 @@ import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
 import com.dt.platform.domain.eam.Maintainer;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-07-15 06:50:47
- * @sign E7161E4F6B5AB2B91EF3726CB6B463DB
+ * @since 2022-10-25 20:03:27
+ * @sign E6AC84F693C3E2E90D5E8ADCD5849022
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -1525,5 +1526,98 @@ public class AssetSoftwareMeta {
 			super.setMaintainer(maintainer);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AssetSoftware clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AssetSoftware duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setSourceId(this.getSourceId());
+			inst.setAuthorizationInfo(this.getAuthorizationInfo());
+			inst.setAuthorizedNumberUnlimit(this.getAuthorizedNumberUnlimit());
+			inst.setNotes(this.getNotes());
+			inst.setProcId(this.getProcId());
+			inst.setApprovalOpinion(this.getApprovalOpinion());
+			inst.setLabel4(this.getLabel4());
+			inst.setBusinessCode(this.getBusinessCode());
+			inst.setMaintenanceEndDate(this.getMaintenanceEndDate());
+			inst.setAuthorizationExpirationDate(this.getAuthorizationExpirationDate());
+			inst.setCtl(this.getCtl());
+			inst.setId(this.getId());
+			inst.setAuthorizedNumber(this.getAuthorizedNumber());
+			inst.setNextApproverNames(this.getNextApproverNames());
+			inst.setLatestApproverId(this.getLatestApproverId());
+			inst.setUseOrganizationId(this.getUseOrganizationId());
+			inst.setNeedMaintenance(this.getNeedMaintenance());
+			inst.setVersion(this.getVersion());
+			inst.setOwnCompanyId(this.getOwnCompanyId());
+			inst.setMaintainerId(this.getMaintainerId());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setSoftwareVersion(this.getSoftwareVersion());
+			inst.setStatus(this.getStatus());
+			inst.setPurchaseDate(this.getPurchaseDate());
+			inst.setChsVersion(this.getChsVersion());
+			inst.setCode(this.getCode());
+			inst.setLicenseMode(this.getLicenseMode());
+			inst.setSupplierId(this.getSupplierId());
+			inst.setOwnerCode(this.getOwnerCode());
+			inst.setAuthorizationCode(this.getAuthorizationCode());
+			inst.setLatestApproverName(this.getLatestApproverName());
+			inst.setChangeInstanceId(this.getChangeInstanceId());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setContent(this.getContent());
+			inst.setNextApproverIds(this.getNextApproverIds());
+			inst.setChsStatus(this.getChsStatus());
+			inst.setCopyrightType(this.getCopyrightType());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setAttachId(this.getAttachId());
+			inst.setAuthorizationExpirationUnlimit(this.getAuthorizationExpirationUnlimit());
+			inst.setRegisterDate(this.getRegisterDate());
+			inst.setSummary(this.getSummary());
+			inst.setCostPrice(this.getCostPrice());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setManagerId(this.getManagerId());
+			inst.setLabel1(this.getLabel1());
+			inst.setLabel2(this.getLabel2());
+			inst.setLabel3(this.getLabel3());
+			inst.setPositionDetail(this.getPositionDetail());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setSourceDetail(this.getSourceDetail());
+			inst.setAuthorizedAvailableNumber(this.getAuthorizedAvailableNumber());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setChsType(this.getChsType());
+			inst.setTenantId(this.getTenantId());
+			inst.setMaintenanceStartDate(this.getMaintenanceStartDate());
+			inst.setCategoryId(this.getCategoryId());
+			if(all) {
+				inst.setUseOrganization(this.getUseOrganization());
+				inst.setOwnerCompany(this.getOwnerCompany());
+				inst.setManager(this.getManager());
+				inst.setLicenseModeDict(this.getLicenseModeDict());
+				inst.setSupplier(this.getSupplier());
+				inst.setSource(this.getSource());
+				inst.setOriginator(this.getOriginator());
+				inst.setCategory(this.getCategory());
+				inst.setMaintainer(this.getMaintainer());
+				inst.setCopyrightTypeDict(this.getCopyrightTypeDict());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }
