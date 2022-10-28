@@ -27,6 +27,14 @@ import com.github.foxnic.dao.data.SaveMode;
 public interface IInventoryService extends ISuperService<Inventory> {
 
 
+	/**
+	 * 启动
+	 * @param inventroyId 盘点ID
+	 * @param assetId 资产ID
+	 * @return 是否成功
+	 * */
+	Result assetPlusData(String inventroyId,String assetId);
+
 
 	/**
 	 * 启动

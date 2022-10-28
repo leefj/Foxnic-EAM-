@@ -135,7 +135,7 @@ public class CodeRuleServiceImpl extends SuperService<CodeRule> implements ICode
 		CodeRule codeRule = new CodeRule();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		codeRule.setId(id);
-		codeRule.setDeleted(dao.getDBTreaty().getTrueValue());
+		codeRule.setDeleted(true);
 		codeRule.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		codeRule.setDeleteTime(new Date());
 		try {
@@ -217,6 +217,7 @@ public class CodeRuleServiceImpl extends SuperService<CodeRule> implements ICode
 			codeRule.setValue(value);
 		}
 		//更新
+
 		Result r=super.update(codeRule , mode , throwsException);
 
 		if(r.isSuccess()){

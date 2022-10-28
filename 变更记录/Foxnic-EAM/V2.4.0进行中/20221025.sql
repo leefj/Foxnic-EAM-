@@ -37,3 +37,10 @@ VALUES
 ('eam.assetCodeAutoCreate', 'default', 'eam', 'eam.assetCodeAutoCreate', '资产编码自动生成', 'ENUM', 'org.github.foxnic.web.constants.enums.system.YesNo', '1', 1, '资产编码自动生成', NULL, NULL, NULL, NULL, 0, NULL, NULL, 1);
 
 
+
+
+eam_inventory_asset 表结果变更
+
+
+员工盘点表
+

@@ -1185,6 +1185,7 @@ public class EamRelationManager extends RelationManager {
         int count=0;
         int loss=0;
         int surplus=0;
+        int dataException=0;
         if(assets!=null&&assets.size()>0){
             for(int i=0;i<assets.size();i++){
                 if(AssetInventoryDetailStatusEnum.NOT_COUNTED.code().equals( assets.get(i).getStatus())){
@@ -1195,12 +1196,15 @@ public class EamRelationManager extends RelationManager {
                     loss++;
                 }else if(AssetInventoryDetailStatusEnum.SURPLUS.code().equals( assets.get(i).getStatus())){
                     surplus++;
+                }else if(AssetInventoryDetailStatusEnum.EXCEPTION.code().equals( assets.get(i).getStatus())){
+                    dataException++;
                 }
             }
             map.put(AssetInventoryDetailStatusEnum.NOT_COUNTED.code(),notCount);
             map.put(AssetInventoryDetailStatusEnum.COUNTED.code(),count);
             map.put(AssetInventoryDetailStatusEnum.LOSS.code(),loss);
             map.put(AssetInventoryDetailStatusEnum.SURPLUS.code(),surplus);
+            map.put(AssetInventoryDetailStatusEnum.EXCEPTION.code(),dataException);
         }
         return map;
     }

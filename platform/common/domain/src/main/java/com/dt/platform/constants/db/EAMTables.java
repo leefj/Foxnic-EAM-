@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-10-26 11:33:07
+ * @since 2022-10-27 21:22:08
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -9386,6 +9386,11 @@ public class EAMTables {
 		public static final DBField NUMBER_SEQ = new DBField(DBDataType.INTEGER , "number_seq","numberSeq","随机数位数","随机数位数",false,false,true);
 		
 		/**
+		 * 序列类型
+		*/
+		public static final DBField NUMBER_SEQ_TYPE = new DBField(DBDataType.STRING , "number_seq_type","numberSeqType","序列类型","序列类型",false,false,true);
+		
+		/**
 		 * 固定字符串
 		*/
 		public static final DBField FS1 = new DBField(DBDataType.STRING , "fs1","fs1","固定字符串","固定字符串",false,false,true);
@@ -9435,7 +9440,7 @@ public class EAMTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public EAM_CODE_RULE() {
-			this.init($NAME,"编码字段" , ID , NAME , VALUE , SYS_VALUE , PART_IDS , CODE_SEPARATOR , NUMBER_SEQ , FS1 , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"编码字段" , ID , NAME , VALUE , SYS_VALUE , PART_IDS , CODE_SEPARATOR , NUMBER_SEQ , NUMBER_SEQ_TYPE , FS1 , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final EAM_CODE_RULE $TABLE=new EAM_CODE_RULE();
 	}
@@ -11344,6 +11349,21 @@ public class EAMTables {
 		public static final DBField OPER_EMPL_ID = new DBField(DBDataType.STRING , "oper_empl_id","operEmplId","员工","员工",false,false,true);
 		
 		/**
+		 * 盘盈动作
+		*/
+		public static final DBField ASSET_PLUS_ACTION_TYPE = new DBField(DBDataType.STRING , "asset_plus_action_type","assetPlusActionType","盘盈动作","盘盈动作",false,false,true);
+		
+		/**
+		 * 盘亏动作
+		*/
+		public static final DBField ASSET_LOSS_ACTION_TYPE = new DBField(DBDataType.STRING , "asset_loss_action_type","assetLossActionType","盘亏动作","盘亏动作",false,false,true);
+		
+		/**
+		 * 数据来源
+		*/
+		public static final DBField SOURCE = new DBField(DBDataType.STRING , "source","source","数据来源","数据来源",false,false,true);
+		
+		/**
 		 * 操作时间
 		*/
 		public static final DBField OPER_DATE = new DBField(DBDataType.DATE , "oper_date","operDate","操作时间","操作时间",false,false,true);
@@ -11394,7 +11414,7 @@ public class EAMTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","数据版本号","数据版本号",false,false,false);
 		
 		public EAM_INVENTORY_ASSET() {
-			this.init($NAME,"盘点明细" , ID , INVENTORY_ID , STATUS , ASSET_ID , OPER_EMPL_ID , OPER_DATE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"盘点明细" , ID , INVENTORY_ID , STATUS , ASSET_ID , OPER_EMPL_ID , ASSET_PLUS_ACTION_TYPE , ASSET_LOSS_ACTION_TYPE , SOURCE , OPER_DATE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final EAM_INVENTORY_ASSET $TABLE=new EAM_INVENTORY_ASSET();
 	}

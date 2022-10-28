@@ -127,7 +127,7 @@ public class InventoryAssetServiceImpl extends SuperService<InventoryAsset> impl
 		InventoryAsset inventoryAsset = new InventoryAsset();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		inventoryAsset.setId(id);
-		inventoryAsset.setDeleted(dao.getDBTreaty().getTrueValue());
+		inventoryAsset.setDeleted(true);
 		inventoryAsset.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		inventoryAsset.setDeleteTime(new Date());
 		try {

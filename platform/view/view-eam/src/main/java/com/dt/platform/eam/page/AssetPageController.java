@@ -584,12 +584,13 @@ public class AssetPageController extends ViewController {
          * 资产 表单页面
          */
 	@RequestMapping("/asset_info_form.html")
-	public String infoForm(Model model,HttpServletRequest request , String id,String pageType,String categoryCode,String ownerCode,String internalControlLabel) {
+	public String infoForm(Model model,HttpServletRequest request ,String id,String pageType,String categoryCode,String ownerCode,String internalControlLabel,String traceId) {
 
 		//页面类型
 		model.addAttribute("pageType",pageType);
 		model.addAttribute("ownerCode",ownerCode);
 		model.addAttribute("internalControlLabel",internalControlLabel);
+		model.addAttribute("traceId",traceId);
 
 
 		//设置字段布局

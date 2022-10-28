@@ -1,22 +1,29 @@
 package com.dt.platform.domain.eam;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import com.github.foxnic.api.model.CompositeParameter;
 import javax.persistence.Transient;
 import com.github.foxnic.commons.bean.BeanUtil;
+import com.github.foxnic.dao.entity.EntityContext;
+import com.github.foxnic.dao.entity.Entity;
+import java.util.Map;
 
 
 
 /**
- * 编码字段
+ * 编码字段VO类型
+ * <p>编码字段 , 数据表 eam_code_rule 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-24 21:08:17
- * @sign 64DECEA1B9B82B800D964D598D04AE16
+ * @since 2022-10-27 07:35:50
+ * @sign F5D22FDEC131D2A05BF909023A81D626
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
+@ApiModel(description = "编码字段VO类型 ; 编码字段 , 数据表 eam_code_rule 的通用VO类型" , parent = CodeRule.class)
 public class CodeRuleVO extends CodeRule {
 
 	private static final long serialVersionUID = 1L;
@@ -188,9 +195,9 @@ public class CodeRuleVO extends CodeRule {
 	 * @param dirtyField 已修改字段
 	 * @return 当前对象
 	*/
-	public CodeRuleVO addDirtyField(String dirtyField) {
+	public CodeRuleVO addDirtyField(String... dirtyField) {
 		if(this.dirtyFields==null) dirtyFields=new ArrayList<>();
-		this.dirtyFields.add(dirtyField);
+		this.dirtyFields.addAll(Arrays.asList(dirtyField));
 		return this;
 	}
 	
@@ -254,13 +261,13 @@ public class CodeRuleVO extends CodeRule {
 	 * @param id 主键清单
 	 * @return 当前对象
 	*/
-	public CodeRuleVO addId(String id) {
+	public CodeRuleVO addId(String... id) {
 		if(this.ids==null) ids=new ArrayList<>();
-		this.ids.add(id);
+		this.ids.addAll(Arrays.asList(id));
 		return this;
 	}
 	@Transient
-	private CompositeParameter $compositeParameter;
+	private transient CompositeParameter $compositeParameter;
 	/**
 	 * 获得解析后的复合查询参数
 	 */
@@ -269,5 +276,127 @@ public class CodeRuleVO extends CodeRule {
 		if($compositeParameter!=null) return  $compositeParameter;
 		$compositeParameter=new CompositeParameter(this.getSearchValue(),BeanUtil.toMap(this));
 		return  $compositeParameter;
+	}
+
+	/**
+	 * 将自己转换成指定类型的PO
+	 * @param poType  PO类型
+	 * @return CodeRuleVO , 转换好的 CodeRuleVO 对象
+	*/
+	@Transient
+	public <T extends Entity> T toPO(Class<T> poType) {
+		return EntityContext.create(poType, this);
+	}
+
+	/**
+	 * 将自己转换成任意指定类型
+	 * @param pojoType  Pojo类型
+	 * @return CodeRuleVO , 转换好的 PoJo 对象
+	*/
+	@Transient
+	public <T> T toPojo(Class<T> pojoType) {
+		if(Entity.class.isAssignableFrom(pojoType)) {
+			return (T)this.toPO((Class<Entity>)pojoType);
+		}
+		try {
+			T pojo=pojoType.newInstance();
+			EntityContext.copyProperties(pojo, this);
+			return pojo;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public CodeRuleVO clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public CodeRuleVO duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.CodeRuleVOMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.CodeRuleVOMeta.$$proxy$$();
+		inst.setNumberSeq(this.getNumberSeq());
+		inst.setSysValue(this.getSysValue());
+		inst.setCodeSeparator(this.getCodeSeparator());
+		inst.setFs1(this.getFs1());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setNumberSeqType(this.getNumberSeqType());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setPartIds(this.getPartIds());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setValue(this.getValue());
+		if(all) {
+			inst.setSearchField(this.getSearchField());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setDirtyFields(this.getDirtyFields());
+			inst.setSortField(this.getSortField());
+			inst.setPageSize(this.getPageSize());
+			inst.setIds(this.getIds());
+			inst.setSearchValue(this.getSearchValue());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public CodeRuleVO clone(boolean deep) {
+		return EntityContext.clone(CodeRuleVO.class,this,deep);
+	}
+
+	/**
+	 * 将 Map 转换成 CodeRuleVO
+	 * @param codeRuleMap 包含实体信息的 Map 对象
+	 * @return CodeRuleVO , 转换好的的 CodeRule 对象
+	*/
+	@Transient
+	public static CodeRuleVO createFrom(Map<String,Object> codeRuleMap) {
+		if(codeRuleMap==null) return null;
+		CodeRuleVO vo = create();
+		EntityContext.copyProperties(vo,codeRuleMap);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 将 Pojo 转换成 CodeRuleVO
+	 * @param pojo 包含实体信息的 Pojo 对象
+	 * @return CodeRuleVO , 转换好的的 CodeRule 对象
+	*/
+	@Transient
+	public static CodeRuleVO createFrom(Object pojo) {
+		if(pojo==null) return null;
+		CodeRuleVO vo = create();
+		EntityContext.copyProperties(vo,pojo);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 创建一个 CodeRuleVO，等同于 new
+	 * @return CodeRuleVO 对象
+	*/
+	@Transient
+	public static CodeRuleVO create() {
+		return new com.dt.platform.domain.eam.meta.CodeRuleVOMeta.$$proxy$$();
 	}
 }

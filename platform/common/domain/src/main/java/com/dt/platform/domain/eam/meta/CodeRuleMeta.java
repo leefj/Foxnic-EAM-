@@ -3,13 +3,14 @@ package com.dt.platform.domain.eam.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.CodeRule;
 import java.util.Date;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-24 21:08:17
- * @sign 1028E3DFC847A052FE6788BFCCF6176B
+ * @since 2022-10-27 07:35:50
+ * @sign 0E67117644020810D0FAC4321DF74D9A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -84,6 +85,16 @@ public class CodeRuleMeta {
 	 * 随机数位数 , 类型: java.lang.Integer
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.CodeRule,java.lang.Integer> NUMBER_SEQ_PROP = new BeanProperty(com.dt.platform.domain.eam.CodeRule.class ,NUMBER_SEQ, java.lang.Integer.class, "随机数位数", "随机数位数", java.lang.Integer.class, null);
+	
+	/**
+	 * 序列类型 , 类型: java.lang.String
+	*/
+	public static final String NUMBER_SEQ_TYPE="numberSeqType";
+	
+	/**
+	 * 序列类型 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.CodeRule,java.lang.String> NUMBER_SEQ_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.CodeRule.class ,NUMBER_SEQ_TYPE, java.lang.String.class, "序列类型", "序列类型", java.lang.String.class, null);
 	
 	/**
 	 * 固定字符串 , 类型: java.lang.String
@@ -188,7 +199,7 @@ public class CodeRuleMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NAME , VALUE , SYS_VALUE , PART_IDS , CODE_SEPARATOR , NUMBER_SEQ , FS1 , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ ID , NAME , VALUE , SYS_VALUE , PART_IDS , CODE_SEPARATOR , NUMBER_SEQ , NUMBER_SEQ_TYPE , FS1 , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
 	
 	/**
 	 * 代理类
@@ -272,6 +283,17 @@ public class CodeRuleMeta {
 		public CodeRule setNumberSeq(Integer numberSeq) {
 			super.change(NUMBER_SEQ,super.getNumberSeq(),numberSeq);
 			super.setNumberSeq(numberSeq);
+			return this;
+		}
+		
+		/**
+		 * 设置 序列类型
+		 * @param numberSeqType 序列类型
+		 * @return 当前对象
+		*/
+		public CodeRule setNumberSeqType(String numberSeqType) {
+			super.change(NUMBER_SEQ_TYPE,super.getNumberSeqType(),numberSeqType);
+			super.setNumberSeqType(numberSeqType);
 			return this;
 		}
 		
@@ -384,5 +406,43 @@ public class CodeRuleMeta {
 			super.setTenantId(tenantId);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public CodeRule clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public CodeRule duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNumberSeq(this.getNumberSeq());
+			inst.setSysValue(this.getSysValue());
+			inst.setCodeSeparator(this.getCodeSeparator());
+			inst.setFs1(this.getFs1());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setNumberSeqType(this.getNumberSeqType());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setPartIds(this.getPartIds());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setValue(this.getValue());
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

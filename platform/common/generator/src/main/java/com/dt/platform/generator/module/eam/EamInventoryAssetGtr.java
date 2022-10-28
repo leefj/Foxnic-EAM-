@@ -3,6 +3,7 @@ package com.dt.platform.generator.module.eam;
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.constants.enums.eam.AssetInventoryActionStatusEnum;
+import com.dt.platform.constants.enums.eam.AssetInventoryDetailDataSourceEnum;
 import com.dt.platform.constants.enums.eam.AssetInventoryDetailStatusEnum;
 import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.InventoryAsset;
@@ -37,9 +38,11 @@ public class EamInventoryAssetGtr extends BaseCodeGenerator{
                 }
         );
 
-        cfg.view().field(EAMTables.EAM_INVENTORY_ASSET.STATUS).form()
+        cfg.view().field(EAMTables.EAM_INVENTORY_ASSET.STATUS).form().validate().required().form()
                 .label("盘点状态").selectBox().enumType(AssetInventoryDetailStatusEnum.class);
 
+        cfg.view().field(EAMTables.EAM_INVENTORY_ASSET.SOURCE).form().validate().required().form()
+                .selectBox().enumType(AssetInventoryDetailDataSourceEnum.class);
 
         cfg.view().formWindow().bottomSpace(250);
         cfg.view().formWindow().width(Config.baseFormWidth);;
@@ -56,8 +59,8 @@ public class EamInventoryAssetGtr extends BaseCodeGenerator{
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
                 .setControllerAndAgent(WriteMode.IGNORE) //Rest
                 .setPageController(WriteMode.IGNORE) //页面控制器
-                .setFormPage(WriteMode.IGNORE) //表单HTML页
-                .setListPage(WriteMode.IGNORE)//列表HTML页
+                .setFormPage(WriteMode.WRITE_TEMP_FILE) //表单HTML页
+                .setListPage(WriteMode.WRITE_TEMP_FILE)//列表HTML页
                 .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         cfg.buildAll();
     }
@@ -66,6 +69,6 @@ public class EamInventoryAssetGtr extends BaseCodeGenerator{
         EamInventoryAssetGtr g=new EamInventoryAssetGtr();
         g.generateCode();
         //生成菜单
-        g.generateMenu(InventoryAssetServiceProxy.class, InventoryAssetPageController.class);
+       // g.generateMenu(InventoryAssetServiceProxy.class, InventoryAssetPageController.class);
     }
 }

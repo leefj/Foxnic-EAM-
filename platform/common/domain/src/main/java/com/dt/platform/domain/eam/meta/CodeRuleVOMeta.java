@@ -5,13 +5,14 @@ import com.dt.platform.domain.eam.CodeRuleVO;
 import java.util.List;
 import com.dt.platform.domain.eam.CodeRule;
 import java.util.Date;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-24 21:08:17
- * @sign 64DECEA1B9B82B800D964D598D04AE16
+ * @since 2022-10-27 07:35:50
+ * @sign F5D22FDEC131D2A05BF909023A81D626
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -178,6 +179,16 @@ public class CodeRuleVOMeta extends CodeRuleMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.CodeRuleVO,java.lang.Integer> NUMBER_SEQ_PROP = new BeanProperty(com.dt.platform.domain.eam.CodeRuleVO.class ,NUMBER_SEQ, java.lang.Integer.class, "随机数位数", "随机数位数", java.lang.Integer.class, null);
 	
 	/**
+	 * 序列类型 , 类型: java.lang.String
+	*/
+	public static final String NUMBER_SEQ_TYPE="numberSeqType";
+	
+	/**
+	 * 序列类型 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.CodeRuleVO,java.lang.String> NUMBER_SEQ_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.CodeRuleVO.class ,NUMBER_SEQ_TYPE, java.lang.String.class, "序列类型", "序列类型", java.lang.String.class, null);
+	
+	/**
 	 * 固定字符串 , 类型: java.lang.String
 	*/
 	public static final String FS1="fs1";
@@ -280,7 +291,7 @@ public class CodeRuleVOMeta extends CodeRuleMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , NAME , VALUE , SYS_VALUE , PART_IDS , CODE_SEPARATOR , NUMBER_SEQ , FS1 , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , NAME , VALUE , SYS_VALUE , PART_IDS , CODE_SEPARATOR , NUMBER_SEQ , NUMBER_SEQ_TYPE , FS1 , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
 	
 	/**
 	 * 代理类
@@ -467,6 +478,17 @@ public class CodeRuleVOMeta extends CodeRuleMeta {
 		}
 		
 		/**
+		 * 设置 序列类型
+		 * @param numberSeqType 序列类型
+		 * @return 当前对象
+		*/
+		public CodeRule setNumberSeqType(String numberSeqType) {
+			super.change(NUMBER_SEQ_TYPE,super.getNumberSeqType(),numberSeqType);
+			super.setNumberSeqType(numberSeqType);
+			return this;
+		}
+		
+		/**
 		 * 设置 固定字符串
 		 * @param fs1 固定字符串
 		 * @return 当前对象
@@ -575,5 +597,54 @@ public class CodeRuleVOMeta extends CodeRuleMeta {
 			super.setTenantId(tenantId);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public CodeRuleVO clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public CodeRuleVO duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNumberSeq(this.getNumberSeq());
+			inst.setSysValue(this.getSysValue());
+			inst.setCodeSeparator(this.getCodeSeparator());
+			inst.setFs1(this.getFs1());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setNumberSeqType(this.getNumberSeqType());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setPartIds(this.getPartIds());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setValue(this.getValue());
+			if(all) {
+				inst.setSearchField(this.getSearchField());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setDirtyFields(this.getDirtyFields());
+				inst.setSortField(this.getSortField());
+				inst.setPageSize(this.getPageSize());
+				inst.setIds(this.getIds());
+				inst.setSearchValue(this.getSearchValue());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

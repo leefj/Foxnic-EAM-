@@ -7,13 +7,14 @@ import com.dt.platform.domain.eam.InventoryAsset;
 import java.util.Date;
 import com.dt.platform.domain.eam.Asset;
 import org.github.foxnic.web.domain.hrm.Employee;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-03-27 08:56:49
- * @sign 7F824BA18ECA7EC2F5A16B082CCD7272
+ * @since 2022-10-27 21:25:01
+ * @sign AED45A006BFCCB8364AF055579A38759
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -160,6 +161,36 @@ public class InventoryAssetVOMeta extends InventoryAssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InventoryAssetVO,java.lang.String> OPER_EMPL_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InventoryAssetVO.class ,OPER_EMPL_ID, java.lang.String.class, "员工", "员工", java.lang.String.class, null);
 	
 	/**
+	 * 盘盈动作 , 类型: java.lang.String
+	*/
+	public static final String ASSET_PLUS_ACTION_TYPE="assetPlusActionType";
+	
+	/**
+	 * 盘盈动作 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InventoryAssetVO,java.lang.String> ASSET_PLUS_ACTION_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.InventoryAssetVO.class ,ASSET_PLUS_ACTION_TYPE, java.lang.String.class, "盘盈动作", "盘盈动作", java.lang.String.class, null);
+	
+	/**
+	 * 盘亏动作 , 类型: java.lang.String
+	*/
+	public static final String ASSET_LOSS_ACTION_TYPE="assetLossActionType";
+	
+	/**
+	 * 盘亏动作 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InventoryAssetVO,java.lang.String> ASSET_LOSS_ACTION_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.InventoryAssetVO.class ,ASSET_LOSS_ACTION_TYPE, java.lang.String.class, "盘亏动作", "盘亏动作", java.lang.String.class, null);
+	
+	/**
+	 * 数据来源 , 类型: java.lang.String
+	*/
+	public static final String SOURCE="source";
+	
+	/**
+	 * 数据来源 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InventoryAssetVO,java.lang.String> SOURCE_PROP = new BeanProperty(com.dt.platform.domain.eam.InventoryAssetVO.class ,SOURCE, java.lang.String.class, "数据来源", "数据来源", java.lang.String.class, null);
+	
+	/**
 	 * 操作时间 , 类型: java.util.Date
 	*/
 	public static final String OPER_DATE="operDate";
@@ -282,7 +313,7 @@ public class InventoryAssetVOMeta extends InventoryAssetMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , INVENTORY_ID , STATUS , ASSET_ID , OPER_EMPL_ID , OPER_DATE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , ASSET , OPERATER };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , INVENTORY_ID , STATUS , ASSET_ID , OPER_EMPL_ID , ASSET_PLUS_ACTION_TYPE , ASSET_LOSS_ACTION_TYPE , SOURCE , OPER_DATE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , ASSET , OPERATER };
 	
 	/**
 	 * 代理类
@@ -447,6 +478,39 @@ public class InventoryAssetVOMeta extends InventoryAssetMeta {
 		}
 		
 		/**
+		 * 设置 盘盈动作
+		 * @param assetPlusActionType 盘盈动作
+		 * @return 当前对象
+		*/
+		public InventoryAsset setAssetPlusActionType(String assetPlusActionType) {
+			super.change(ASSET_PLUS_ACTION_TYPE,super.getAssetPlusActionType(),assetPlusActionType);
+			super.setAssetPlusActionType(assetPlusActionType);
+			return this;
+		}
+		
+		/**
+		 * 设置 盘亏动作
+		 * @param assetLossActionType 盘亏动作
+		 * @return 当前对象
+		*/
+		public InventoryAsset setAssetLossActionType(String assetLossActionType) {
+			super.change(ASSET_LOSS_ACTION_TYPE,super.getAssetLossActionType(),assetLossActionType);
+			super.setAssetLossActionType(assetLossActionType);
+			return this;
+		}
+		
+		/**
+		 * 设置 数据来源
+		 * @param source 数据来源
+		 * @return 当前对象
+		*/
+		public InventoryAsset setSource(String source) {
+			super.change(SOURCE,super.getSource(),source);
+			super.setSource(source);
+			return this;
+		}
+		
+		/**
 		 * 设置 操作时间
 		 * @param operDate 操作时间
 		 * @return 当前对象
@@ -577,5 +641,56 @@ public class InventoryAssetVOMeta extends InventoryAssetMeta {
 			super.setOperater(operater);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public InventoryAssetVO clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public InventoryAssetVO duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setAssetLossActionType(this.getAssetLossActionType());
+			inst.setOperDate(this.getOperDate());
+			inst.setNotes(this.getNotes());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setSource(this.getSource());
+			inst.setVersion(this.getVersion());
+			inst.setAssetPlusActionType(this.getAssetPlusActionType());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setOperEmplId(this.getOperEmplId());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setAssetId(this.getAssetId());
+			inst.setInventoryId(this.getInventoryId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setSearchField(this.getSearchField());
+				inst.setOperater(this.getOperater());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setDirtyFields(this.getDirtyFields());
+				inst.setSortField(this.getSortField());
+				inst.setPageSize(this.getPageSize());
+				inst.setIds(this.getIds());
+				inst.setAsset(this.getAsset());
+				inst.setSearchValue(this.getSearchValue());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

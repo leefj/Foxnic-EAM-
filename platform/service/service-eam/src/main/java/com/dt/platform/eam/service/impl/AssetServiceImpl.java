@@ -1059,7 +1059,11 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			}
 		}
 
-
+		//盘点数据录入,没有问题时，在转
+		if(AssetInternalControlLabelTypeEnum.INVENTORY_LABEL.code().equals(asset.getInternalControlLabel())){
+			asset.setStatus(AssetHandleStatusEnum.COMPLETE.code());
+			asset.setOwnerCode(AssetOwnerCodeEnum.INVENTORY_ASSET.code());
+		}
 		Result r=super.insert(asset);
 		return r;
 	}

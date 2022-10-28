@@ -10,13 +10,14 @@ import org.github.foxnic.web.domain.hrm.Employee;
 import com.dt.platform.domain.eam.Position;
 import com.dt.platform.domain.eam.Warehouse;
 import org.github.foxnic.web.domain.pcm.Catalog;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-03-26 19:25:56
- * @sign 99C40F56A1550EB223B5DDEC3129C19B
+ * @since 2022-10-27 19:48:57
+ * @sign 181BBEDF1613631E07B6D3B8145165AA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -1084,5 +1085,77 @@ public class InventoryMeta {
 			super.setCategoryIds(categoryIds);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public Inventory clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public Inventory duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNotes(this.getNotes());
+			inst.setOwnerCode(this.getOwnerCode());
+			inst.setType(this.getType());
+			inst.setAllEmployee(this.getAllEmployee());
+			inst.setBusinessDate(this.getBusinessDate());
+			inst.setBusinessCode(this.getBusinessCode());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setPurchaseStartDate(this.getPurchaseStartDate());
+			inst.setStartTime(this.getStartTime());
+			inst.setPlanId(this.getPlanId());
+			inst.setId(this.getId());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setFinishTime(this.getFinishTime());
+			inst.setInventoryStatus(this.getInventoryStatus());
+			inst.setDataStatus(this.getDataStatus());
+			inst.setUseOrganizationId(this.getUseOrganizationId());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setOwnCompanyId(this.getOwnCompanyId());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setPurchaseEndDate(this.getPurchaseEndDate());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setAssetStatus(this.getAssetStatus());
+			inst.setCategoryId(this.getCategoryId());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setOwnerCompany(this.getOwnerCompany());
+				inst.setInventoryUserIds(this.getInventoryUserIds());
+				inst.setPositionIds(this.getPositionIds());
+				inst.setManager(this.getManager());
+				inst.setInventoryAssetCountByLoss(this.getInventoryAssetCountByLoss());
+				inst.setDirector(this.getDirector());
+				inst.setInventoryAssetCountByCounted(this.getInventoryAssetCountByCounted());
+				inst.setOriginator(this.getOriginator());
+				inst.setWarehouse(this.getWarehouse());
+				inst.setUseOrganization(this.getUseOrganization());
+				inst.setInventoryAssetInfoList(this.getInventoryAssetInfoList());
+				inst.setInventoryAssetCountByNotCounted(this.getInventoryAssetCountByNotCounted());
+				inst.setCategoryIds(this.getCategoryIds());
+				inst.setInventoryUser(this.getInventoryUser());
+				inst.setInventoryAssetCountBySurplus(this.getInventoryAssetCountBySurplus());
+				inst.setInventoryManagerIds(this.getInventoryManagerIds());
+				inst.setInventoryDirectorIds(this.getInventoryDirectorIds());
+				inst.setPosition(this.getPosition());
+				inst.setCategory(this.getCategory());
+				inst.setWarehouseIds(this.getWarehouseIds());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

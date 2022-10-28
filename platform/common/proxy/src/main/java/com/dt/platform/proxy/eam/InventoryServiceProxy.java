@@ -123,6 +123,25 @@ public interface InventoryServiceProxy {
     public static final String INVENTORY_ASSET = API_PREFIX + "inventory-asset";
 
     /**
+     * 新增盘赢资产
+     */
+    public static final String ASSET_PLUS_DATA = API_PREFIX + "asset-plus-data";
+
+    /**
+     * 全员盘点
+     */
+    public static final String QUERY_ALL_EMPLOYEE_PAGED_LIST = API_PREFIX + "query-all-employee-paged-list";
+
+
+    /**
+     * 全员盘点员工数据
+     */
+    public static final String QUERY_EMPLOYEE_ASSET_PAGED_LIST = API_PREFIX + "query-employee-asset-paged-list";
+
+
+
+
+    /**
      * 添加资产盘点
      */
     @RequestMapping(InventoryServiceProxy.INSERT)

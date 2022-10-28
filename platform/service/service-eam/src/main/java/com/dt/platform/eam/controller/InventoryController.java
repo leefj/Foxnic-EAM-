@@ -406,6 +406,57 @@ public class InventoryController extends SuperController {
         return result;
     }
 
+
+
+    /**
+     * 	盘盈新增
+     */
+    @ApiOperation(value = "盘盈新增")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = InventoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+            @ApiImplicitParam(name = "assetId", value = "资产", required = true, dataTypeClass = String.class, example = "1"),
+     })
+    @ApiOperationSupport(order = 13)
+    @SentinelResource(value = InventoryServiceProxy.ASSET_PLUS_DATA, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(InventoryServiceProxy.ASSET_PLUS_DATA)
+    public Result inventoryAsset(String inventoryId, String assetId) {
+        return inventoryService.assetPlusData(inventoryId,assetId);
+    }
+
+
+    /**
+     * 	盘点全员数据
+     */
+    @ApiOperation(value = "盘点全员数据")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = InventoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+            @ApiImplicitParam(name = "assetId", value = "资产", required = true, dataTypeClass = String.class, example = "1"),
+    })
+    @ApiOperationSupport(order = 14)
+    @SentinelResource(value = InventoryServiceProxy.QUERY_ALL_EMPLOYEE_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(InventoryServiceProxy.QUERY_ALL_EMPLOYEE_PAGED_LIST)
+    public Result QUERY_ALL_EMPLOYEE_PAGED_LIST(String inventoryId, String assetId) {
+        return inventoryService.assetPlusData(inventoryId,assetId);
+    }
+
+    /**
+     * 	全员盘点员工资产
+     */
+    @ApiOperation(value = "全员盘点员工资产")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = InventoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+            @ApiImplicitParam(name = "assetId", value = "资产", required = true, dataTypeClass = String.class, example = "1"),
+    })
+    @ApiOperationSupport(order = 15)
+    @SentinelResource(value = InventoryServiceProxy.QUERY_EMPLOYEE_ASSET_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(InventoryServiceProxy.QUERY_EMPLOYEE_ASSET_PAGED_LIST)
+    public Result QUERY_EMPLOYEE_ASSET_PAGED_LIST(String inventoryId, String assetId) {
+        return inventoryService.assetPlusData(inventoryId,assetId);
+    }
+
+
+
+
     /**
      * 导出 Excel
      */
