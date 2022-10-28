@@ -69,14 +69,25 @@ public class InventoryAssetController extends SuperController {
      * 添加盘点明细
      */
     @ApiOperation(value = "添加盘点明细")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InventoryAssetVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "66476b1b-6dd0-11ec-bf3e-00163e1b60a7"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.INVENTORY_ID, value = "盘点", required = false, dataTypeClass = String.class, example = "531058564924444672"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "loss"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class, example = "518094137103220736"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.OPER_EMPL_ID, value = "员工", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.OPER_DATE, value = "操作时间", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = InventoryAssetVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InventoryAssetVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.SOURCE", value = "数据来源", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = InventoryAssetServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -91,7 +102,7 @@ public class InventoryAssetController extends SuperController {
      * 删除盘点明细
      */
     @ApiOperation(value = "删除盘点明细")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InventoryAssetVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "66476b1b-6dd0-11ec-bf3e-00163e1b60a7")
 	})
     @ApiOperationSupport(order = 2)
@@ -107,7 +118,7 @@ public class InventoryAssetController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除盘点明细")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InventoryAssetVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -122,14 +133,25 @@ public class InventoryAssetController extends SuperController {
      * 更新盘点明细
      */
     @ApiOperation(value = "更新盘点明细")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InventoryAssetVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "66476b1b-6dd0-11ec-bf3e-00163e1b60a7"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.INVENTORY_ID, value = "盘点", required = false, dataTypeClass = String.class, example = "531058564924444672"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "loss"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class, example = "518094137103220736"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.OPER_EMPL_ID, value = "员工", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.OPER_DATE, value = "操作时间", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = InventoryAssetVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InventoryAssetVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.SOURCE", value = "数据来源", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { InventoryAssetVOMeta.PAGE_INDEX, InventoryAssetVOMeta.PAGE_SIZE, InventoryAssetVOMeta.SEARCH_FIELD, InventoryAssetVOMeta.FUZZY_FIELD, InventoryAssetVOMeta.SEARCH_VALUE, InventoryAssetVOMeta.DIRTY_FIELDS, InventoryAssetVOMeta.SORT_FIELD, InventoryAssetVOMeta.SORT_TYPE, InventoryAssetVOMeta.IDS })
     @SentinelResource(value = InventoryAssetServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -144,14 +166,25 @@ public class InventoryAssetController extends SuperController {
      * 保存盘点明细
      */
     @ApiOperation(value = "保存盘点明细")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InventoryAssetVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "66476b1b-6dd0-11ec-bf3e-00163e1b60a7"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.INVENTORY_ID, value = "盘点", required = false, dataTypeClass = String.class, example = "531058564924444672"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "loss"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class, example = "518094137103220736"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.OPER_EMPL_ID, value = "员工", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.OPER_DATE, value = "操作时间", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = InventoryAssetVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InventoryAssetVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.SOURCE", value = "数据来源", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InventoryAssetVOMeta.PAGE_INDEX, InventoryAssetVOMeta.PAGE_SIZE, InventoryAssetVOMeta.SEARCH_FIELD, InventoryAssetVOMeta.FUZZY_FIELD, InventoryAssetVOMeta.SEARCH_VALUE, InventoryAssetVOMeta.DIRTY_FIELDS, InventoryAssetVOMeta.SORT_FIELD, InventoryAssetVOMeta.SORT_TYPE, InventoryAssetVOMeta.IDS })
     @SentinelResource(value = InventoryAssetServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -166,7 +199,7 @@ public class InventoryAssetController extends SuperController {
      * 获取盘点明细
      */
     @ApiOperation(value = "获取盘点明细")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InventoryAssetVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 6)
@@ -189,7 +222,7 @@ public class InventoryAssetController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取盘点明细")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InventoryAssetVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -206,14 +239,25 @@ public class InventoryAssetController extends SuperController {
      * 查询盘点明细
      */
     @ApiOperation(value = "查询盘点明细")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InventoryAssetVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "66476b1b-6dd0-11ec-bf3e-00163e1b60a7"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.INVENTORY_ID, value = "盘点", required = false, dataTypeClass = String.class, example = "531058564924444672"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "loss"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class, example = "518094137103220736"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.OPER_EMPL_ID, value = "员工", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.OPER_DATE, value = "操作时间", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = InventoryAssetVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InventoryAssetVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.SOURCE", value = "数据来源", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InventoryAssetVOMeta.PAGE_INDEX, InventoryAssetVOMeta.PAGE_SIZE })
     @SentinelResource(value = InventoryAssetServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -229,14 +273,25 @@ public class InventoryAssetController extends SuperController {
      * 分页查询盘点明细
      */
     @ApiOperation(value = "分页查询盘点明细")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InventoryAssetVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "66476b1b-6dd0-11ec-bf3e-00163e1b60a7"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.INVENTORY_ID, value = "盘点", required = false, dataTypeClass = String.class, example = "531058564924444672"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "loss"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class, example = "518094137103220736"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.OPER_EMPL_ID, value = "员工", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.OPER_DATE, value = "操作时间", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = InventoryAssetVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InventoryAssetVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.SOURCE", value = "数据来源", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = InventoryAssetServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

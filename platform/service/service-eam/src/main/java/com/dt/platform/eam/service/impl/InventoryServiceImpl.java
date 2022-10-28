@@ -11,6 +11,7 @@ import com.dt.platform.domain.eam.meta.InventoryVOMeta;
 import com.dt.platform.eam.service.IInventoryAssetService;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.sql.expr.In;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,8 +71,10 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 
 	@Autowired 
 	private InventoryUserServiceImpl inventoryUserServiceImpl;
+
 	@Autowired 
 	private InventoryDirectorServiceImpl inventoryDirectorServiceImpl;
+
 	@Autowired 
 	private InventoryManagerServiceImpl inventoryManagerServiceImpl;
 
@@ -96,16 +99,26 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 	}
 
 
-
-
+	@Override
+	public Result assetPlusData(String inventroyId, String assetId) {
+		InventoryAsset inventoryAsset=new InventoryAsset();
+		inventoryAsset.setAssetId(assetId);
+		inventoryAsset.setOperEmplId(SessionUser.getCurrent().getUser().getActivatedEmployeeId());
+		inventoryAsset.setOperDate(new Date());
+		inventoryAsset.setInventoryId(inventroyId);
+		inventoryAsset.setStatus(AssetInventoryDetailStatusEnum.SURPLUS.code());
+		inventoryAsset.setSource(AssetInventoryDetailDataSourceEnum.ASSET_PLUS.code());
+		inventoryAssetServiceImpl.insert(inventoryAsset,false);
+		return ErrorDesc.success();
+	}
 
 	@Override
 	public Result createAssetRecord(String id) {
 		Inventory inventory=this.getById(id);
 		String tenantId=SessionUser.getCurrent().getActivatedTenantId();
 		dao.execute("delete from eam_inventory_asset where inventory_id=?",id);
-		String sql="insert into eam_inventory_asset (id,inventory_id,status,asset_id)" +
-				"select uuid(),'"+id+"','"+AssetInventoryDetailStatusEnum.NOT_COUNTED.code()+"',id from eam_asset where deleted=0 and tenant_id='"+tenantId+"' and owner_code='"+inventory.getType()+"' and status='"+AssetHandleStatusEnum.COMPLETE.code()+"' ";
+		String sql="insert into eam_inventory_asset (id,inventory_id,status,asset_id,create_time)" +
+				"select uuid(),'"+id+"','"+AssetInventoryDetailStatusEnum.NOT_COUNTED.code()+"',id,now() from eam_asset where deleted=0 and tenant_id='"+tenantId+"' and owner_code='"+inventory.getType()+"' and status='"+AssetHandleStatusEnum.COMPLETE.code()+"' ";
 		//资产状态
 		sql=sql+" and clean_out='0'";
 		if(!StringUtil.isBlank(inventory.getAssetStatus())) {
@@ -135,27 +148,27 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 		}
 
 		//管理人员
-		String csql1="select count(1) cnt from eam_inventory_manager where inventory_id=? and deleted=0";
+		String csql1="select count(1) cnt from eam_inventory_manager where inventory_id=? and deleted=0 and user_id is not null and user_id<>''";
 		if(dao.queryRecord(csql1,id).getInteger("cnt")>0){
-			sql=sql+" and manager_id in (select user_id from eam_inventory_manager where inventory_id='"+id+"' and deleted=0)";
+			sql=sql+" and manager_id in (select user_id from eam_inventory_manager where inventory_id='"+id+"' and deleted=0 and user_id is not null and user_id<>''  )";
 		}
 
 		//位置
-		String csql2="select count(1) cnt from eam_inventory_position where inventory_id=? and deleted=0";
+		String csql2="select count(1) cnt from eam_inventory_position where inventory_id=? and deleted=0 and value is not null and value<>''";
 		if(dao.queryRecord(csql2,id).getInteger("cnt")>0){
-			sql=sql+" and position_id in (select value from eam_inventory_position where inventory_id='"+id+"' and deleted=0)";
+			sql=sql+" and position_id in (select value from eam_inventory_position where inventory_id='"+id+"' and deleted=0 and value is not null and value<>'')";
 		}
 
 		//仓库
-		String csql3="select count(1) cnt from eam_inventory_warehouse where inventory_id=? and deleted=0";
+		String csql3="select count(1) cnt from eam_inventory_warehouse where inventory_id=? and deleted=0 and value is not null and value<>''";
 		if(dao.queryRecord(csql3,id).getInteger("cnt")>0){
-			sql=sql+" and warehouse_id in (select value from eam_inventory_warehouse where inventory_id='"+id+"' and deleted=0)";
+			sql=sql+" and warehouse_id in (select value from eam_inventory_warehouse where inventory_id='"+id+"' and deleted=0 and value is not null and value<>'')";
 		}
 
 		//资产分类
-		String csql4="select count(1) cnt from eam_inventory_catalog where inventory_id=? and deleted=0";
+		String csql4="select count(1) cnt from eam_inventory_catalog where inventory_id=? and deleted=0 and value is not null and value<>''";
 		if(dao.queryRecord(csql4,id).getInteger("cnt")>0){
-			sql=sql+" and category_id in (select value from eam_inventory_catalog where inventory_id='"+id+"' and deleted=0)";
+			sql=sql+" and category_id in (select value from eam_inventory_catalog where inventory_id='"+id+"' and deleted=0 and value is not null and value<>'')";
 		}
 
 		//所属公司
@@ -195,10 +208,12 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 			}
 		}
 
-		System.out.println(sql);
+		System.out.println("盘点初始化获取资产数据SQL\n"+sql);
 		dao.execute(sql);
 		return ErrorDesc.success();
 	}
+
+
 
 	@Override
 	public Result start(String id) {
@@ -270,11 +285,13 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 					rcdsList.add(r);
 				}
 				assetProcessRecordServiceImpl.insertList(rcdsList);
-
 			}
+			//追加的盘赢数据
+			dao.execute("update eam_asset set owner_code='asset' where owner_code='inventory_asset' and id in (select asset_id from eam_inventory_asset where deleted=0 and status='surplus' and inventory_id=?)",id);
 			//更新核对时间
 			dao.execute("update eam_inventory set data_status='"+AssetInventoryDataStatusEnum.SYNC.code()+"' where id=?",id);
 			dao.execute("update eam_asset set last_verification_date=now() where id in (select  asset_id from eam_inventory_asset where deleted='0' and inventory_id=?)",id);
+
 
 		}else{
 			return ErrorDesc.failure().message("当前盘点状态，不允许该操作!");
@@ -427,7 +444,7 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 		Inventory inventory = new Inventory();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		inventory.setId(id);
-		inventory.setDeleted(dao.getDBTreaty().getTrueValue());
+		inventory.setDeleted(true);
 		inventory.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		inventory.setDeleteTime(new Date());
 		try {

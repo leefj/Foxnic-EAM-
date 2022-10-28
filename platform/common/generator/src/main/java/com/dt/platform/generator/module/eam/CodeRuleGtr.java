@@ -1,6 +1,7 @@
 package com.dt.platform.generator.module.eam;
 
 import com.dt.platform.constants.db.EAMTables;
+import com.dt.platform.constants.enums.eam.AssetCodeSeqNumberTypeEnum;
 import com.dt.platform.eam.page.CodeRulePageController;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.CodeRuleServiceProxy;
@@ -40,12 +41,17 @@ public class CodeRuleGtr extends BaseCodeGenerator{
 
         cfg.view().form().addJsVariable("CODE_PARTS","[[${codeParts}]]","codeParts");
 
+        cfg.view().field(EAMTables.EAM_CODE_RULE.NUMBER_SEQ_TYPE).form().validate().required().form()
+                .radioBox().defaultIndex(0).enumType(AssetCodeSeqNumberTypeEnum.class);
+
+
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_CODE_RULE.VALUE,
                         EAMTables.EAM_CODE_RULE.FS1,
                         EAMTables.EAM_CODE_RULE.CODE_SEPARATOR,
                         EAMTables.EAM_CODE_RULE.NUMBER_SEQ,
+                        EAMTables.EAM_CODE_RULE.NUMBER_SEQ_TYPE
                 }
         );
 
@@ -55,7 +61,7 @@ public class CodeRuleGtr extends BaseCodeGenerator{
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
                 .setControllerAndAgent(WriteMode.IGNORE) //Rest
                 .setPageController(WriteMode.IGNORE) //页面控制器
-                .setFormPage(WriteMode.IGNORE) //表单HTML页
+                .setFormPage(WriteMode.WRITE_TEMP_FILE) //表单HTML页
                 .setListPage(WriteMode.IGNORE)//列表HTML页
                 .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         cfg.buildAll();

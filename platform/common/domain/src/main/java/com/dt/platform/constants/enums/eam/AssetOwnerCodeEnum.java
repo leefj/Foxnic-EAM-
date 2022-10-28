@@ -14,6 +14,7 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 public enum AssetOwnerCodeEnum implements CodeTextEnum {
 
+	INVENTORY_ASSET("inventory_asset" , "盘点资产"),
 	ASSET(AssetPcmCodeEnum.ASSET.code() , "资产"),
 	ASSET_SOFTWARE(AssetPcmCodeEnum.ASSET_SOFTWARE.code() , "软件资产"),
 	ASSET_CONSUMABLES(AssetPcmCodeEnum.ASSET_CONSUMABLES.code(), "耗材资产"),
@@ -31,7 +32,7 @@ public enum AssetOwnerCodeEnum implements CodeTextEnum {
 	ASSET_CHANGE_FINANCIAL(CodeModuleEnum.EAM_ASSET_CHANGE_FINANCIAL.code() , "EAM_资产变更-财务"),
 	ASSET_CHANGE_EQUIPMENT(CodeModuleEnum.EAM_ASSET_CHANGE_EQUIPMENT.code() , "EAM_资产变更-设备"),
 	ASSET_DEPRECIATION_DATA("asset_depreciation_data" , "资产折旧数据"),
-	ASSET_DATA_SELECTED("asset_data_selected" , "资产选择数据"),
+	ASSET_DATA_SELECTED("asset_data_selected" , "资产选择数据")
 	;
 	private String code;
 	private String text;

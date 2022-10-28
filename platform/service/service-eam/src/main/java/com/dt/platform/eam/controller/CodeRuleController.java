@@ -58,14 +58,16 @@ public class CodeRuleController extends SuperController {
      * 添加编码字段
      */
     @ApiOperation(value = "添加编码字段")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CodeRuleVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "T001"),
 		@ApiImplicitParam(name = CodeRuleVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "资产编码"),
 		@ApiImplicitParam(name = CodeRuleVOMeta.VALUE, value = "编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CodeRuleVOMeta.PART_IDS, value = "组成", required = false, dataTypeClass = String.class, example = "[]"),
 		@ApiImplicitParam(name = CodeRuleVOMeta.CODE_SEPARATOR, value = "分割符", required = false, dataTypeClass = String.class, example = "-"),
 		@ApiImplicitParam(name = CodeRuleVOMeta.NUMBER_SEQ, value = "随机数位数", required = false, dataTypeClass = Integer.class, example = "5"),
-		@ApiImplicitParam(name = CodeRuleVOMeta.FS1, value = "固定字符串", required = false, dataTypeClass = String.class, example = "E")
+		@ApiImplicitParam(name = CodeRuleVOMeta.FS1, value = "固定字符串", required = false, dataTypeClass = String.class, example = "E"),
+		@ApiImplicitParam(name = "CodeRuleVOMeta.SYS_VALUE", value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CodeRuleVOMeta.NUMBER_SEQ_TYPE", value = "序列类型", required = false, dataTypeClass = String.class, example = "unique")
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = CodeRuleServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -80,7 +82,7 @@ public class CodeRuleController extends SuperController {
      * 删除编码字段
      */
     @ApiOperation(value = "删除编码字段")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CodeRuleVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "T001")
 	})
     @ApiOperationSupport(order = 2)
@@ -96,7 +98,7 @@ public class CodeRuleController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除编码字段")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CodeRuleVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -111,14 +113,16 @@ public class CodeRuleController extends SuperController {
      * 更新编码字段
      */
     @ApiOperation(value = "更新编码字段")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CodeRuleVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "T001"),
 		@ApiImplicitParam(name = CodeRuleVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "资产编码"),
 		@ApiImplicitParam(name = CodeRuleVOMeta.VALUE, value = "编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CodeRuleVOMeta.PART_IDS, value = "组成", required = false, dataTypeClass = String.class, example = "[]"),
 		@ApiImplicitParam(name = CodeRuleVOMeta.CODE_SEPARATOR, value = "分割符", required = false, dataTypeClass = String.class, example = "-"),
 		@ApiImplicitParam(name = CodeRuleVOMeta.NUMBER_SEQ, value = "随机数位数", required = false, dataTypeClass = Integer.class, example = "5"),
-		@ApiImplicitParam(name = CodeRuleVOMeta.FS1, value = "固定字符串", required = false, dataTypeClass = String.class, example = "E")
+		@ApiImplicitParam(name = CodeRuleVOMeta.FS1, value = "固定字符串", required = false, dataTypeClass = String.class, example = "E"),
+		@ApiImplicitParam(name = "CodeRuleVOMeta.SYS_VALUE", value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CodeRuleVOMeta.NUMBER_SEQ_TYPE", value = "序列类型", required = false, dataTypeClass = String.class, example = "unique")
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { CodeRuleVOMeta.PAGE_INDEX, CodeRuleVOMeta.PAGE_SIZE, CodeRuleVOMeta.SEARCH_FIELD, CodeRuleVOMeta.FUZZY_FIELD, CodeRuleVOMeta.SEARCH_VALUE, CodeRuleVOMeta.DIRTY_FIELDS, CodeRuleVOMeta.SORT_FIELD, CodeRuleVOMeta.SORT_TYPE, CodeRuleVOMeta.IDS })
     @SentinelResource(value = CodeRuleServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -133,14 +137,16 @@ public class CodeRuleController extends SuperController {
      * 保存编码字段
      */
     @ApiOperation(value = "保存编码字段")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CodeRuleVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "T001"),
 		@ApiImplicitParam(name = CodeRuleVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "资产编码"),
 		@ApiImplicitParam(name = CodeRuleVOMeta.VALUE, value = "编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CodeRuleVOMeta.PART_IDS, value = "组成", required = false, dataTypeClass = String.class, example = "[]"),
 		@ApiImplicitParam(name = CodeRuleVOMeta.CODE_SEPARATOR, value = "分割符", required = false, dataTypeClass = String.class, example = "-"),
 		@ApiImplicitParam(name = CodeRuleVOMeta.NUMBER_SEQ, value = "随机数位数", required = false, dataTypeClass = Integer.class, example = "5"),
-		@ApiImplicitParam(name = CodeRuleVOMeta.FS1, value = "固定字符串", required = false, dataTypeClass = String.class, example = "E")
+		@ApiImplicitParam(name = CodeRuleVOMeta.FS1, value = "固定字符串", required = false, dataTypeClass = String.class, example = "E"),
+		@ApiImplicitParam(name = "CodeRuleVOMeta.SYS_VALUE", value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CodeRuleVOMeta.NUMBER_SEQ_TYPE", value = "序列类型", required = false, dataTypeClass = String.class, example = "unique")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { CodeRuleVOMeta.PAGE_INDEX, CodeRuleVOMeta.PAGE_SIZE, CodeRuleVOMeta.SEARCH_FIELD, CodeRuleVOMeta.FUZZY_FIELD, CodeRuleVOMeta.SEARCH_VALUE, CodeRuleVOMeta.DIRTY_FIELDS, CodeRuleVOMeta.SORT_FIELD, CodeRuleVOMeta.SORT_TYPE, CodeRuleVOMeta.IDS })
     @SentinelResource(value = CodeRuleServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -155,7 +161,7 @@ public class CodeRuleController extends SuperController {
      * 获取编码字段
      */
     @ApiOperation(value = "获取编码字段")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CodeRuleVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 6)
@@ -176,7 +182,7 @@ public class CodeRuleController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取编码字段")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CodeRuleVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -193,14 +199,16 @@ public class CodeRuleController extends SuperController {
      * 查询编码字段
      */
     @ApiOperation(value = "查询编码字段")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CodeRuleVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "T001"),
 		@ApiImplicitParam(name = CodeRuleVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "资产编码"),
 		@ApiImplicitParam(name = CodeRuleVOMeta.VALUE, value = "编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CodeRuleVOMeta.PART_IDS, value = "组成", required = false, dataTypeClass = String.class, example = "[]"),
 		@ApiImplicitParam(name = CodeRuleVOMeta.CODE_SEPARATOR, value = "分割符", required = false, dataTypeClass = String.class, example = "-"),
 		@ApiImplicitParam(name = CodeRuleVOMeta.NUMBER_SEQ, value = "随机数位数", required = false, dataTypeClass = Integer.class, example = "5"),
-		@ApiImplicitParam(name = CodeRuleVOMeta.FS1, value = "固定字符串", required = false, dataTypeClass = String.class, example = "E")
+		@ApiImplicitParam(name = CodeRuleVOMeta.FS1, value = "固定字符串", required = false, dataTypeClass = String.class, example = "E"),
+		@ApiImplicitParam(name = "CodeRuleVOMeta.SYS_VALUE", value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CodeRuleVOMeta.NUMBER_SEQ_TYPE", value = "序列类型", required = false, dataTypeClass = String.class, example = "unique")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { CodeRuleVOMeta.PAGE_INDEX, CodeRuleVOMeta.PAGE_SIZE })
     @SentinelResource(value = CodeRuleServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -216,14 +224,16 @@ public class CodeRuleController extends SuperController {
      * 分页查询编码字段
      */
     @ApiOperation(value = "分页查询编码字段")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CodeRuleVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "T001"),
 		@ApiImplicitParam(name = CodeRuleVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "资产编码"),
 		@ApiImplicitParam(name = CodeRuleVOMeta.VALUE, value = "编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CodeRuleVOMeta.PART_IDS, value = "组成", required = false, dataTypeClass = String.class, example = "[]"),
 		@ApiImplicitParam(name = CodeRuleVOMeta.CODE_SEPARATOR, value = "分割符", required = false, dataTypeClass = String.class, example = "-"),
 		@ApiImplicitParam(name = CodeRuleVOMeta.NUMBER_SEQ, value = "随机数位数", required = false, dataTypeClass = Integer.class, example = "5"),
-		@ApiImplicitParam(name = CodeRuleVOMeta.FS1, value = "固定字符串", required = false, dataTypeClass = String.class, example = "E")
+		@ApiImplicitParam(name = CodeRuleVOMeta.FS1, value = "固定字符串", required = false, dataTypeClass = String.class, example = "E"),
+		@ApiImplicitParam(name = "CodeRuleVOMeta.SYS_VALUE", value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = "CodeRuleVOMeta.NUMBER_SEQ_TYPE", value = "序列类型", required = false, dataTypeClass = String.class, example = "unique")
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = CodeRuleServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

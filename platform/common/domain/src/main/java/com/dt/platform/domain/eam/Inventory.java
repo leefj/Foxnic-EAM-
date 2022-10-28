@@ -1,18 +1,23 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_INVENTORY;
 import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
+import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.pcm.Catalog;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
-import javax.persistence.Transient;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 
@@ -20,13 +25,15 @@ import com.github.foxnic.dao.entity.EntityContext;
 
 /**
  * 资产盘点
+ * <p>资产盘点 , 数据表 eam_inventory 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-03-26 19:25:56
- * @sign 99C40F56A1550EB223B5DDEC3129C19B
+ * @since 2022-10-27 19:48:57
+ * @sign 181BBEDF1613631E07B6D3B8145165AA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_inventory")
+@ApiModel(description = "资产盘点 ; 资产盘点 , 数据表 eam_inventory 的PO类型")
 public class Inventory extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -37,61 +44,61 @@ public class Inventory extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "560106827891605504")
 	private String id;
 	
 	/**
 	 * 类型：类型
 	*/
-	@ApiModelProperty(required = false,value="类型" , notes = "类型")
+	@ApiModelProperty(required = false,value="类型" , notes = "类型" , example = "asset")
 	private String type;
 	
 	/**
 	 * 业务编码：业务编码
 	*/
-	@ApiModelProperty(required = false,value="业务编码" , notes = "业务编码")
+	@ApiModelProperty(required = false,value="业务编码" , notes = "业务编码" , example = "ASI202203261403938")
 	private String businessCode;
 	
 	/**
 	 * 所属：所属
 	*/
-	@ApiModelProperty(required = false,value="所属" , notes = "所属")
+	@ApiModelProperty(required = false,value="所属" , notes = "所属" , example = "asset_inventory")
 	private String ownerCode;
 	
 	/**
 	 * 业务状态：业务状态
 	*/
-	@ApiModelProperty(required = false,value="业务状态" , notes = "业务状态")
+	@ApiModelProperty(required = false,value="业务状态" , notes = "业务状态" , example = "complete")
 	private String status;
 	
 	/**
 	 * 盘点名称：盘点名称
 	*/
-	@ApiModelProperty(required = false,value="盘点名称" , notes = "盘点名称")
+	@ApiModelProperty(required = false,value="盘点名称" , notes = "盘点名称" , example = "121")
 	private String name;
 	
 	/**
 	 * 盘点状态：盘点状态
 	*/
-	@ApiModelProperty(required = false,value="盘点状态" , notes = "盘点状态")
+	@ApiModelProperty(required = false,value="盘点状态" , notes = "盘点状态" , example = "not_start")
 	private String inventoryStatus;
 	
 	/**
 	 * 数据状态：数据状态
 	*/
-	@ApiModelProperty(required = false,value="数据状态" , notes = "数据状态")
+	@ApiModelProperty(required = false,value="数据状态" , notes = "数据状态" , example = "not_sync")
 	private String dataStatus;
 	
 	/**
 	 * 全员盘点：全员盘点
 	*/
-	@ApiModelProperty(required = false,value="全员盘点" , notes = "全员盘点")
+	@ApiModelProperty(required = false,value="全员盘点" , notes = "全员盘点" , example = "disable")
 	private String allEmployee;
 	
 	/**
 	 * 资产状态：资产状态
 	*/
-	@ApiModelProperty(required = false,value="资产状态" , notes = "资产状态")
+	@ApiModelProperty(required = false,value="资产状态" , notes = "资产状态" , example = "using,borrow")
 	private String assetStatus;
 	
 	/**
@@ -103,25 +110,25 @@ public class Inventory extends Entity {
 	/**
 	 * 所属公司：所属公司
 	*/
-	@ApiModelProperty(required = false,value="所属公司" , notes = "所属公司")
+	@ApiModelProperty(required = false,value="所属公司" , notes = "所属公司" , example = "2,500996108965646336")
 	private String ownCompanyId;
 	
 	/**
 	 * 使用公司/部门：使用公司/部门
 	*/
-	@ApiModelProperty(required = false,value="使用公司/部门" , notes = "使用公司/部门")
+	@ApiModelProperty(required = false,value="使用公司/部门" , notes = "使用公司/部门" , example = "2,558589156280762368")
 	private String useOrganizationId;
 	
 	/**
 	 * 购置开始日期：购置开始日期
 	*/
-	@ApiModelProperty(required = false,value="购置开始日期" , notes = "购置开始日期")
+	@ApiModelProperty(required = false,value="购置开始日期" , notes = "购置开始日期" , example = "2022-03-08 12:00:00")
 	private Date purchaseStartDate;
 	
 	/**
 	 * 购置结束日期：购置结束日期
 	*/
-	@ApiModelProperty(required = false,value="购置结束日期" , notes = "购置结束日期")
+	@ApiModelProperty(required = false,value="购置结束日期" , notes = "购置结束日期" , example = "2022-03-04 12:00:00")
 	private Date purchaseEndDate;
 	
 	/**
@@ -139,13 +146,13 @@ public class Inventory extends Entity {
 	/**
 	 * 制单人：制单人
 	*/
-	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
+	@ApiModelProperty(required = false,value="制单人" , notes = "制单人" , example = "E001")
 	private String originatorId;
 	
 	/**
 	 * 业务日期：业务日期
 	*/
-	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期")
+	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期" , example = "2022-03-26 12:00:00")
 	private Date businessDate;
 	
 	/**
@@ -163,32 +170,35 @@ public class Inventory extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-03-26 02:24:34")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-03-26 02:25:23")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
+	@Transient
+	@EnumFor("deleted")
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -205,13 +215,13 @@ public class Inventory extends Entity {
 	/**
 	 * 数据版本号：数据版本号
 	*/
-	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号")
+	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "4")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -819,12 +829,43 @@ public class Inventory extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public Inventory setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public Inventory setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -928,9 +969,9 @@ public class Inventory extends Entity {
 	 * @param inventoryAssetInfo 盘点资产数据
 	 * @return 当前对象
 	*/
-	public Inventory addInventoryAssetInfo(InventoryAsset inventoryAssetInfo) {
+	public Inventory addInventoryAssetInfo(InventoryAsset... inventoryAssetInfo) {
 		if(this.inventoryAssetInfoList==null) inventoryAssetInfoList=new ArrayList<>();
-		this.inventoryAssetInfoList.add(inventoryAssetInfo);
+		this.inventoryAssetInfoList.addAll(Arrays.asList(inventoryAssetInfo));
 		return this;
 	}
 	
@@ -1034,9 +1075,9 @@ public class Inventory extends Entity {
 	 * @param entity 所属公司
 	 * @return 当前对象
 	*/
-	public Inventory addOwnerCompany(Organization entity) {
+	public Inventory addOwnerCompany(Organization... entity) {
 		if(this.ownerCompany==null) ownerCompany=new ArrayList<>();
-		this.ownerCompany.add(entity);
+		this.ownerCompany.addAll(Arrays.asList(entity));
 		return this;
 	}
 	
@@ -1064,9 +1105,9 @@ public class Inventory extends Entity {
 	 * @param entity 使用公司/部门
 	 * @return 当前对象
 	*/
-	public Inventory addUseOrganization(Organization entity) {
+	public Inventory addUseOrganization(Organization... entity) {
 		if(this.useOrganization==null) useOrganization=new ArrayList<>();
-		this.useOrganization.add(entity);
+		this.useOrganization.addAll(Arrays.asList(entity));
 		return this;
 	}
 	
@@ -1094,9 +1135,9 @@ public class Inventory extends Entity {
 	 * @param entity 盘点人员
 	 * @return 当前对象
 	*/
-	public Inventory addInventoryUser(Employee entity) {
+	public Inventory addInventoryUser(Employee... entity) {
 		if(this.inventoryUser==null) inventoryUser=new ArrayList<>();
-		this.inventoryUser.add(entity);
+		this.inventoryUser.addAll(Arrays.asList(entity));
 		return this;
 	}
 	
@@ -1124,9 +1165,9 @@ public class Inventory extends Entity {
 	 * @param inventoryUserId 盘点人员列表
 	 * @return 当前对象
 	*/
-	public Inventory addInventoryUserId(String inventoryUserId) {
+	public Inventory addInventoryUserId(String... inventoryUserId) {
 		if(this.inventoryUserIds==null) inventoryUserIds=new ArrayList<>();
-		this.inventoryUserIds.add(inventoryUserId);
+		this.inventoryUserIds.addAll(Arrays.asList(inventoryUserId));
 		return this;
 	}
 	
@@ -1154,9 +1195,9 @@ public class Inventory extends Entity {
 	 * @param entity 管理人员
 	 * @return 当前对象
 	*/
-	public Inventory addManager(Employee entity) {
+	public Inventory addManager(Employee... entity) {
 		if(this.manager==null) manager=new ArrayList<>();
-		this.manager.add(entity);
+		this.manager.addAll(Arrays.asList(entity));
 		return this;
 	}
 	
@@ -1184,9 +1225,9 @@ public class Inventory extends Entity {
 	 * @param inventoryManagerId 管理人列表
 	 * @return 当前对象
 	*/
-	public Inventory addInventoryManagerId(String inventoryManagerId) {
+	public Inventory addInventoryManagerId(String... inventoryManagerId) {
 		if(this.inventoryManagerIds==null) inventoryManagerIds=new ArrayList<>();
-		this.inventoryManagerIds.add(inventoryManagerId);
+		this.inventoryManagerIds.addAll(Arrays.asList(inventoryManagerId));
 		return this;
 	}
 	
@@ -1214,9 +1255,9 @@ public class Inventory extends Entity {
 	 * @param entity 负责人
 	 * @return 当前对象
 	*/
-	public Inventory addDirector(Employee entity) {
+	public Inventory addDirector(Employee... entity) {
 		if(this.director==null) director=new ArrayList<>();
-		this.director.add(entity);
+		this.director.addAll(Arrays.asList(entity));
 		return this;
 	}
 	
@@ -1244,9 +1285,9 @@ public class Inventory extends Entity {
 	 * @param inventoryDirectorId 负责人列表
 	 * @return 当前对象
 	*/
-	public Inventory addInventoryDirectorId(String inventoryDirectorId) {
+	public Inventory addInventoryDirectorId(String... inventoryDirectorId) {
 		if(this.inventoryDirectorIds==null) inventoryDirectorIds=new ArrayList<>();
-		this.inventoryDirectorIds.add(inventoryDirectorId);
+		this.inventoryDirectorIds.addAll(Arrays.asList(inventoryDirectorId));
 		return this;
 	}
 	
@@ -1293,9 +1334,9 @@ public class Inventory extends Entity {
 	 * @param entity 存放位置
 	 * @return 当前对象
 	*/
-	public Inventory addPosition(Position entity) {
+	public Inventory addPosition(Position... entity) {
 		if(this.position==null) position=new ArrayList<>();
-		this.position.add(entity);
+		this.position.addAll(Arrays.asList(entity));
 		return this;
 	}
 	
@@ -1323,9 +1364,9 @@ public class Inventory extends Entity {
 	 * @param positionId 存放位置Ids
 	 * @return 当前对象
 	*/
-	public Inventory addPositionId(String positionId) {
+	public Inventory addPositionId(String... positionId) {
 		if(this.positionIds==null) positionIds=new ArrayList<>();
-		this.positionIds.add(positionId);
+		this.positionIds.addAll(Arrays.asList(positionId));
 		return this;
 	}
 	
@@ -1353,9 +1394,9 @@ public class Inventory extends Entity {
 	 * @param entity 仓库
 	 * @return 当前对象
 	*/
-	public Inventory addWarehouse(Warehouse entity) {
+	public Inventory addWarehouse(Warehouse... entity) {
 		if(this.warehouse==null) warehouse=new ArrayList<>();
-		this.warehouse.add(entity);
+		this.warehouse.addAll(Arrays.asList(entity));
 		return this;
 	}
 	
@@ -1383,9 +1424,9 @@ public class Inventory extends Entity {
 	 * @param warehouseId 仓库Ids
 	 * @return 当前对象
 	*/
-	public Inventory addWarehouseId(String warehouseId) {
+	public Inventory addWarehouseId(String... warehouseId) {
 		if(this.warehouseIds==null) warehouseIds=new ArrayList<>();
-		this.warehouseIds.add(warehouseId);
+		this.warehouseIds.addAll(Arrays.asList(warehouseId));
 		return this;
 	}
 	
@@ -1413,9 +1454,9 @@ public class Inventory extends Entity {
 	 * @param entity 资产分类
 	 * @return 当前对象
 	*/
-	public Inventory addCategory(Catalog entity) {
+	public Inventory addCategory(Catalog... entity) {
 		if(this.category==null) category=new ArrayList<>();
-		this.category.add(entity);
+		this.category.addAll(Arrays.asList(entity));
 		return this;
 	}
 	
@@ -1443,9 +1484,9 @@ public class Inventory extends Entity {
 	 * @param categoryId 资产分类Ids
 	 * @return 当前对象
 	*/
-	public Inventory addCategoryId(String categoryId) {
+	public Inventory addCategoryId(String... categoryId) {
 		if(this.categoryIds==null) categoryIds=new ArrayList<>();
-		this.categoryIds.add(categoryId);
+		this.categoryIds.addAll(Arrays.asList(categoryId));
 		return this;
 	}
 
@@ -1479,6 +1520,85 @@ public class Inventory extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public Inventory clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public Inventory duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.InventoryMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.InventoryMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setOwnerCode(this.getOwnerCode());
+		inst.setType(this.getType());
+		inst.setAllEmployee(this.getAllEmployee());
+		inst.setBusinessDate(this.getBusinessDate());
+		inst.setBusinessCode(this.getBusinessCode());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setPurchaseStartDate(this.getPurchaseStartDate());
+		inst.setStartTime(this.getStartTime());
+		inst.setPlanId(this.getPlanId());
+		inst.setId(this.getId());
+		inst.setOriginatorId(this.getOriginatorId());
+		inst.setFinishTime(this.getFinishTime());
+		inst.setInventoryStatus(this.getInventoryStatus());
+		inst.setDataStatus(this.getDataStatus());
+		inst.setUseOrganizationId(this.getUseOrganizationId());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setOwnCompanyId(this.getOwnCompanyId());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setPurchaseEndDate(this.getPurchaseEndDate());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setAssetStatus(this.getAssetStatus());
+		inst.setCategoryId(this.getCategoryId());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setOwnerCompany(this.getOwnerCompany());
+			inst.setInventoryUserIds(this.getInventoryUserIds());
+			inst.setPositionIds(this.getPositionIds());
+			inst.setManager(this.getManager());
+			inst.setInventoryAssetCountByLoss(this.getInventoryAssetCountByLoss());
+			inst.setDirector(this.getDirector());
+			inst.setInventoryAssetCountByCounted(this.getInventoryAssetCountByCounted());
+			inst.setOriginator(this.getOriginator());
+			inst.setWarehouse(this.getWarehouse());
+			inst.setUseOrganization(this.getUseOrganization());
+			inst.setInventoryAssetInfoList(this.getInventoryAssetInfoList());
+			inst.setInventoryAssetCountByNotCounted(this.getInventoryAssetCountByNotCounted());
+			inst.setCategoryIds(this.getCategoryIds());
+			inst.setInventoryUser(this.getInventoryUser());
+			inst.setInventoryAssetCountBySurplus(this.getInventoryAssetCountBySurplus());
+			inst.setInventoryManagerIds(this.getInventoryManagerIds());
+			inst.setInventoryDirectorIds(this.getInventoryDirectorIds());
+			inst.setPosition(this.getPosition());
+			inst.setCategory(this.getCategory());
+			inst.setWarehouseIds(this.getWarehouseIds());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public Inventory clone(boolean deep) {
+		return EntityContext.clone(Inventory.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 Inventory
 	 * @param inventoryMap 包含实体信息的 Map 对象
 	 * @return Inventory , 转换好的的 Inventory 对象
@@ -1486,7 +1606,9 @@ public class Inventory extends Entity {
 	@Transient
 	public static Inventory createFrom(Map<String,Object> inventoryMap) {
 		if(inventoryMap==null) return null;
-		Inventory po = EntityContext.create(Inventory.class, inventoryMap);
+		Inventory po = create();
+		EntityContext.copyProperties(po,inventoryMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -1498,7 +1620,9 @@ public class Inventory extends Entity {
 	@Transient
 	public static Inventory createFrom(Object pojo) {
 		if(pojo==null) return null;
-		Inventory po = EntityContext.create(Inventory.class,pojo);
+		Inventory po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -1508,6 +1632,6 @@ public class Inventory extends Entity {
 	*/
 	@Transient
 	public static Inventory create() {
-		return EntityContext.create(Inventory.class);
+		return new com.dt.platform.domain.eam.meta.InventoryMeta.$$proxy$$();
 	}
 }

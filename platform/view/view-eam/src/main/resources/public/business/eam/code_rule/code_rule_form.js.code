@@ -1,26 +1,26 @@
 /**
  * 编码字段 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-24 20:46:24
+ * @since 2022-10-27 07:35:51
  */
 
 function FormPage() {
 
-	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,transfer;
+	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
 	const moduleURL="/service-eam/eam-code-rule";
 	// 表单执行操作类型：view，create，edit
 	var action=null;
 	var disableCreateNew=false;
 	var disableModify=false;
 	var dataBeforeEdit=null;
-	var tr=null;
-	var data1 = [];
+	const bpmIntegrateMode="none";
+	var isInProcess=QueryString.get("isInProcess");
+
 	/**
-	 * 入口函数，初始化
-	 */
+      * 入口函数，初始化
+      */
 	this.init=function(layui) {
-		transfer=layui.transfer;
-		admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload;
+     	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload,dropdown=layui.dropdown;
 		laydate = layui.laydate,table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect;
 
 		action=admin.getTempData('eam-code-rule-form-data-form-action');
@@ -32,71 +32,33 @@ function FormPage() {
 			disableModify=true;
 		}
 
-
-		for(var i=0;i<CODE_PARTS.length;i++){
-			var e={};
-			e.value=CODE_PARTS[i].id;
-			e.title=CODE_PARTS[i].name;
-			console.log("tranfer",e);
-			data1.push(e);
+		if(bpmIntegrateMode=="front" && isInProcess==1) {
+			$(".model-form-footer").hide();
 		}
-		tr=transfer.render({
-			elem: '#col'
-			,title: ['未选择', '已选择']
-			,data: data1
-			,height: 550 //定义高度
-		})
-
 
 		if(window.pageExt.form.beforeInit) {
 			window.pageExt.form.beforeInit(action,admin.getTempData('eam-code-rule-form-data'));
 		}
 
-
-		//关闭窗口
-		$("#submit-button").click(function(){
-			var dataF=form.val("data-form");
-			var ps=dataF;
-			ps.partIds=JSON.stringify(tr.config.value);
-			var api="/service-eam/eam-code-rule/update";
-			top.layer.confirm(fox.translate('是否保存当前资产编码规则？'), function (i) {
-				top.layer.close(i);
-				admin.post(api, ps, function (r) {
-					if (r.success) {
-						reload();
-						top.layer.msg("操作成功", {time: 1000});
-					} else {
-						top.layer.msg(r.message, {time: 1000});
-					}
-				}, {delayLoading: 1000, elms: []});
-			});
-		});
-
-		reload();
-
 		//渲染表单组件
 		renderFormFields();
 
 		//填充表单数据
-	//	fillFormData();
+		fillFormData();
 
 		//绑定提交事件
 		bindButtonEvent();
 
 		//调整窗口的高度与位置
 		adjustPopup();
+
+
 	}
 
-	function reload(){
-		admin.post(moduleURL+"/get-by-id", {id:""}, function (data) {
-			if (data.success) {
-				fillFormData(data.data);
-			} else {
-				fox.showMessage(data);
-			}
 
-		}, {delayLoading:1000,elms:[]});
-	}
+
+
+
 	/**
 	 * 自动调节窗口高度
 	 * */
@@ -107,13 +69,26 @@ function FormPage() {
 			if(!doNext) return;
 		}
 
+
+
 		clearTimeout(adjustPopupTask);
 		var scroll=$(".form-container").attr("scroll");
 		if(scroll=='yes') return;
+		var prevBodyHeight=-1;
 		adjustPopupTask=setTimeout(function () {
 			var body=$("body");
 			var bodyHeight=body.height();
 			var footerHeight=$(".model-form-footer").height();
+			if(bpmIntegrateMode=="front" && isInProcess==1) {
+				var updateFormIframeHeight=admin.getVar("updateFormIframeHeight");
+				if(bodyHeight>0 && bodyHeight!=prevBodyHeight) {
+					updateFormIframeHeight && updateFormIframeHeight(bodyHeight);
+				} else {
+					setTimeout(adjustPopup,1000);
+				}
+				prevBodyHeight = bodyHeight;
+				return;
+			}
 			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'eam-code-rule-form-data-win');
 			if(area==null) return;
 			admin.putTempData('eam-code-rule-form-area', area);
@@ -131,8 +106,8 @@ function FormPage() {
 	}
 
 	/**
-	 * 渲染表单组件
-	 */
+      * 渲染表单组件
+      */
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
@@ -143,47 +118,40 @@ function FormPage() {
 			});
 			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("numberSeqType",data,checked);
 		});
-
 	}
-
-	function ArrayIndexOf(arr,attr,value){
-		//检测value在attr中出现的位置
-		for (var i=0;i<arr.length;i++){
-			if(arr[i][attr]===value){
-				console.log("catch it");
-				return i;
-			}
-		}
-		return -1;
-	}
-
-	function transferRightSort(arr1,attr,arr2){
-		var arr=[];
-		for(var i=0;i<arr2.length;i++){
-			var index=ArrayIndexOf(arr1,attr,arr2[i]);
-			arr.push(arr1[index]);
-			arr1.splice($.inArray(arr1[index],arr1),1);
-		}
-		arr1.push.apply(arr1,arr);
-	}
-
 
 	/**
-	 * 填充表单数据
-	 */
+	 * 根据id填充表单
+	 * */
+	function fillFormDataByIds(ids) {
+		if(!ids) return;
+		if(ids.length==0) return;
+		var id=ids[0];
+		if(!id) return;
+		admin.post(moduleURL+"/get-by-id", { id : id }, function (r) {
+			if (r.success) {
+				fillFormData(r.data)
+			} else {
+				fox.showMessage(r);
+			}
+		});
+	}
+
+	/**
+	 * 在流程提交前处理表单数据
+	 * */
+	function processFormData4Bpm (processInstanceId,param,cb) {
+		window.pageExt.form.processFormData4Bpm && window.pageExt.form.processFormData4Bpm(processInstanceId,param,cb);
+	}
+
+	/**
+      * 填充表单数据
+      */
 	function fillFormData(formData) {
 		if(!formData) {
 			formData = admin.getTempData('eam-code-rule-form-data');
 		}
-		var ids=JSON.parse(formData.partIds);
-		transferRightSort(data1,"value",ids);
-		tr=transfer.render({
-				elem: '#col'
-				,title: ['未选择', '已选择']
-				,data: data1
-				,value: ids
-				,height: 550 //定义高度
-	})
+
 		window.pageExt.form.beforeDataFill && window.pageExt.form.beforeDataFill(formData);
 
 		var hasData=true;
@@ -196,25 +164,35 @@ function FormPage() {
 		if (hasData) {
 			fm[0].reset();
 			form.val('data-form', formData);
+
+
+
+
+
+
+
 			//处理fillBy
-			fm.attr('method', 'POST');
-			fox.fillDialogButtons();
-			renderFormFields();
+
+			//
+	     	fm.attr('method', 'POST');
+	     	fox.fillDialogButtons();
+	     	renderFormFields();
+
 			window.pageExt.form.afterDataFill && window.pageExt.form.afterDataFill(formData);
 
 		}
 
 		//渐显效果
 		fm.css("opacity","0.0");
-		fm.css("display","");
-		setTimeout(function (){
-			fm.animate({
-				opacity:'1.0'
-			},100,null,function (){
+        fm.css("display","");
+        setTimeout(function (){
+            fm.animate({
+                opacity:'1.0'
+            },100,null,function (){
 				fm.css("opacity","1.0");});
-		},1);
+        },1);
 
-		//禁用编辑
+        //禁用编辑
 		if((hasData && disableModify) || (!hasData &&disableCreateNew)) {
 			fox.lockForm($("#data-form"),true);
 			$("#submit-button").hide();
@@ -240,6 +218,10 @@ function FormPage() {
 
 	function getFormData() {
 		var data=form.val("data-form");
+
+
+
+
 		return data;
 	}
 
@@ -247,18 +229,40 @@ function FormPage() {
 		return fox.formVerify("data-form",data,VALIDATE_CONFIG)
 	}
 
-	function saveForm(param) {
+	function saveForm(param,callback) {
+
+		if(window.pageExt.form.beforeSubmit) {
+			var doNext=window.pageExt.form.beforeSubmit(param);
+			if(!doNext) return ;
+		}
+
 		param.dirtyFields=fox.compareDirtyFields(dataBeforeEdit,param);
+		var action=param.id?"edit":"create";
 		var api=moduleURL+"/"+(param.id?"update":"insert");
 		admin.post(api, param, function (data) {
 			if (data.success) {
 				var doNext=true;
+				var pkValues=data.data;
+				if(pkValues) {
+					for (var key in pkValues) {
+						$("#"+key).val(pkValues[key]);
+					}
+				}
 				if(window.pageExt.form.betweenFormSubmitAndClose) {
 					doNext=window.pageExt.form.betweenFormSubmitAndClose(param,data);
 				}
+
+				if(callback) {
+					doNext = callback(data,action);
+				}
+
 				if(doNext) {
 					admin.finishPopupCenterById('eam-code-rule-form-data-win');
 				}
+
+				// 调整状态为编辑
+				action="edit";
+
 			} else {
 				fox.showMessage(data);
 			}
@@ -266,38 +270,37 @@ function FormPage() {
 		}, {delayLoading:1000,elms:[$("#submit-button")]});
 	}
 
-	/**
-	 * 保存数据，表单提交事件
-	 */
-	function bindButtonEvent() {
-
-		form.on('submit(submit-button)', function (data) {
-			var ps=data.field;
-			ps.partIds=JSON.stringify(tr.config.value);
-			var api="/service-eam/eam-code-rule/update";
-			top.layer.confirm(fox.translate('是否保存当前资产编码规则？'), function (i) {
-				top.layer.close(i);
-				admin.post(api, ps, function (r) {
-					if (r.success) {
-						reload();
-						top.layer.msg("操作成功", {time: 1000});
-					} else {
-						top.layer.msg(r.message, {time: 1000});
-					}
-				}, {delayLoading: 1000, elms: []});
-			});
-			return false;
-		});
-
-
-
+	function verifyAndSaveForm(data) {
+		if(!data) data={};
+		//debugger;
+		data.field = getFormData();
+		//校验表单
+		if(!verifyForm(data.field)) return;
+		saveForm(data.field);
+		return false;
 	}
 
-	window.module={
+	/**
+      * 保存数据，表单提交事件
+      */
+    function bindButtonEvent() {
+
+	    form.on('submit(submit-button)', verifyAndSaveForm);
+
+
+	    //关闭窗口
+	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('eam-code-rule-form-data-win',this); });
+
+    }
+
+    window.module={
 		getFormData: getFormData,
 		verifyForm: verifyForm,
 		saveForm: saveForm,
+		verifyAndSaveForm:verifyAndSaveForm,
 		fillFormData: fillFormData,
+		fillFormDataByIds:fillFormDataByIds,
+		processFormData4Bpm:processFormData4Bpm,
 		adjustPopup: adjustPopup,
 		action: action,
 		setAction: function (act) {
@@ -309,7 +312,7 @@ function FormPage() {
 
 }
 
-layui.use(['transfer','form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','foxnicUpload','laydate'],function() {
+layui.use(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','foxnicUpload','laydate','dropdown'],function() {
 	var task=setInterval(function (){
 		if(!window["pageExt"]) return;
 		clearInterval(task);

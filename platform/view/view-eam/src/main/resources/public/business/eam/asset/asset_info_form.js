@@ -1126,6 +1126,10 @@ function FormPage() {
 		admin.post(api,data,function (r){
 			console.log(r);
 			if (r.success) {
+				if(TRACE_ID){
+					console.log('asset-data-'+TRACE_ID,r.data);
+					admin.putTempData('asset-data-'+TRACE_ID, r.data);
+				}
 				layer.msg(r.message, {icon: 1, time: 500});
 				var index=admin.getTempData('eam-asset-form-data-popup-index');
 				admin.finishPopupCenter(index);
@@ -1148,7 +1152,6 @@ function FormPage() {
 		form.on('submit(submit-button)', function (data) {
 			//debugger;
 			data.field = getFormData();
-
 			if(window.pageExt.form.beforeSubmit) {
 				var doNext=window.pageExt.form.beforeSubmit(data.field);
 				if(!doNext) return ;
