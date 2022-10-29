@@ -242,6 +242,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             if(R_IDS&&R_IDS.length>0){
                 data.recordIdList= R_IDS;
             }
+            data.maintenanceUpdateId=MAINTENANCE_UPDATE_ID;
             console.log("beforeSubmit",data);
             return true;
         },
