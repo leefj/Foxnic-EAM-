@@ -270,13 +270,7 @@ function ListPage() {
 		table.on('tool(data-table)', function (obj) {
 			var data = obj.data;
 			var layEvent = obj.event;
-
-
-
 			if (layEvent === 'detail') { // 修改
-
-
-
 				var task=setTimeout(function(){layer.load(2);},1000);
 				admin.request("/service-eam/eam-asset/get-by-id", { id : data.id }, function (assetResult) {
 					clearTimeout(task);

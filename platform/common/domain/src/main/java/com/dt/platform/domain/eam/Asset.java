@@ -25,6 +25,8 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.AssetMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
@@ -32,8 +34,8 @@ import com.github.foxnic.dao.entity.EntityContext;
  * 资产
  * <p>资产 , 数据表 eam_asset 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-25 20:25:32
- * @sign F7BF93B5D20D236DC39B368B6D550731
+ * @since 2022-10-28 17:39:55
+ * @sign 91AB2A98BC55CA72F58F9E933A15D853
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -309,6 +311,18 @@ public class Asset extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="维保状态" , notes = "维保状态")
 	private String maintenanceStatus;
+	
+	/**
+	 * 维保方式：维保方式
+	*/
+	@ApiModelProperty(required = false,value="维保方式" , notes = "维保方式")
+	private String maintenanceMethod;
+	
+	/**
+	 * 建议维保方式：建议维保方式
+	*/
+	@ApiModelProperty(required = false,value="建议维保方式" , notes = "建议维保方式")
+	private String suggestMaintenanceMethod;
 	
 	/**
 	 * 联系人：联系人
@@ -816,6 +830,18 @@ public class Asset extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="维保状态" , notes = "维保状态")
 	private DictItem assetMaintenanceStatus;
+	
+	/**
+	 * 建议维保方式：建议维保方式
+	*/
+	@ApiModelProperty(required = false,value="建议维保方式" , notes = "建议维保方式")
+	private DictItem suggestMaintenanceMethodData;
+	
+	/**
+	 * 维保方式：维保方式
+	*/
+	@ApiModelProperty(required = false,value="维保方式" , notes = "维保方式")
+	private DictItem maintenanceMethodData;
 	
 	/**
 	 * assetCycleStatus：assetCycleStatus
@@ -1680,6 +1706,44 @@ public class Asset extends Entity {
 	*/
 	public Asset setMaintenanceStatus(String maintenanceStatus) {
 		this.maintenanceStatus=maintenanceStatus;
+		return this;
+	}
+	
+	/**
+	 * 获得 维保方式<br>
+	 * 维保方式
+	 * @return 维保方式
+	*/
+	public String getMaintenanceMethod() {
+		return maintenanceMethod;
+	}
+	
+	/**
+	 * 设置 维保方式
+	 * @param maintenanceMethod 维保方式
+	 * @return 当前对象
+	*/
+	public Asset setMaintenanceMethod(String maintenanceMethod) {
+		this.maintenanceMethod=maintenanceMethod;
+		return this;
+	}
+	
+	/**
+	 * 获得 建议维保方式<br>
+	 * 建议维保方式
+	 * @return 建议维保方式
+	*/
+	public String getSuggestMaintenanceMethod() {
+		return suggestMaintenanceMethod;
+	}
+	
+	/**
+	 * 设置 建议维保方式
+	 * @param suggestMaintenanceMethod 建议维保方式
+	 * @return 当前对象
+	*/
+	public Asset setSuggestMaintenanceMethod(String suggestMaintenanceMethod) {
+		this.suggestMaintenanceMethod=suggestMaintenanceMethod;
 		return this;
 	}
 	
@@ -3334,6 +3398,44 @@ public class Asset extends Entity {
 	}
 	
 	/**
+	 * 获得 建议维保方式<br>
+	 * 建议维保方式
+	 * @return 建议维保方式
+	*/
+	public DictItem getSuggestMaintenanceMethodData() {
+		return suggestMaintenanceMethodData;
+	}
+	
+	/**
+	 * 设置 建议维保方式
+	 * @param suggestMaintenanceMethodData 建议维保方式
+	 * @return 当前对象
+	*/
+	public Asset setSuggestMaintenanceMethodData(DictItem suggestMaintenanceMethodData) {
+		this.suggestMaintenanceMethodData=suggestMaintenanceMethodData;
+		return this;
+	}
+	
+	/**
+	 * 获得 维保方式<br>
+	 * 维保方式
+	 * @return 维保方式
+	*/
+	public DictItem getMaintenanceMethodData() {
+		return maintenanceMethodData;
+	}
+	
+	/**
+	 * 设置 维保方式
+	 * @param maintenanceMethodData 维保方式
+	 * @return 当前对象
+	*/
+	public Asset setMaintenanceMethodData(DictItem maintenanceMethodData) {
+		this.maintenanceMethodData=maintenanceMethodData;
+		return this;
+	}
+	
+	/**
 	 * 获得 assetCycleStatus<br>
 	 * assetCycleStatus
 	 * @return assetCycleStatus
@@ -3495,6 +3597,7 @@ public class Asset extends Entity {
 		inst.setWarehouseId(this.getWarehouseId());
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setFinancialNotes(this.getFinancialNotes());
+		inst.setMaintenanceMethod(this.getMaintenanceMethod());
 		inst.setStatus(this.getStatus());
 		inst.setPurchaseDate(this.getPurchaseDate());
 		inst.setOwnerCode(this.getOwnerCode());
@@ -3505,6 +3608,7 @@ public class Asset extends Entity {
 		inst.setAssetNotes(this.getAssetNotes());
 		inst.setOriginalUnitPrice(this.getOriginalUnitPrice());
 		inst.setPictureId(this.getPictureId());
+		inst.setSuggestMaintenanceMethod(this.getSuggestMaintenanceMethod());
 		inst.setTotalAmountPrice(this.getTotalAmountPrice());
 		inst.setServiceLife(this.getServiceLife());
 		inst.setAttach(this.getAttach());
@@ -3582,6 +3686,7 @@ public class Asset extends Entity {
 		inst.setCategoryId(this.getCategoryId());
 		if(all) {
 			inst.setOwnerCompany(this.getOwnerCompany());
+			inst.setSuggestMaintenanceMethodData(this.getSuggestMaintenanceMethodData());
 			inst.setSafetyLevel(this.getSafetyLevel());
 			inst.setCategoryFinance(this.getCategoryFinance());
 			inst.setGoods(this.getGoods());
@@ -3590,6 +3695,7 @@ public class Asset extends Entity {
 			inst.setManufacturer(this.getManufacturer());
 			inst.setCatalogAttribute(this.getCatalogAttribute());
 			inst.setSupplier(this.getSupplier());
+			inst.setMaintenanceMethodData(this.getMaintenanceMethodData());
 			inst.setUseUser(this.getUseUser());
 			inst.setEquipmentEnvironment(this.getEquipmentEnvironment());
 			inst.setAssetCycleStatus(this.getAssetCycleStatus());
@@ -3654,5 +3760,535 @@ public class Asset extends Entity {
 	@Transient
 	public static Asset create() {
 		return new com.dt.platform.domain.eam.meta.AssetMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setEquipmentCode(DataParser.parse(String.class, map.get(AssetMeta.EQUIPMENT_CODE)));
+			this.setPurchaseUnitPrice(DataParser.parse(BigDecimal.class, map.get(AssetMeta.PURCHASE_UNIT_PRICE)));
+			this.setApprovalOpinion(DataParser.parse(String.class, map.get(AssetMeta.APPROVAL_OPINION)));
+			this.setMaintenanceStatus(DataParser.parse(String.class, map.get(AssetMeta.MAINTENANCE_STATUS)));
+			this.setNavPrice(DataParser.parse(BigDecimal.class, map.get(AssetMeta.NAV_PRICE)));
+			this.setLabel4(DataParser.parse(String.class, map.get(AssetMeta.LABEL4)));
+			this.setLabel5(DataParser.parse(String.class, map.get(AssetMeta.LABEL5)));
+			this.setBusinessCode(DataParser.parse(String.class, map.get(AssetMeta.BUSINESS_CODE)));
+			this.setAssetNumber(DataParser.parse(Integer.class, map.get(AssetMeta.ASSET_NUMBER)));
+			this.setModel(DataParser.parse(String.class, map.get(AssetMeta.MODEL)));
+			this.setId(DataParser.parse(String.class, map.get(AssetMeta.ID)));
+			this.setEquipmentEnvironmentCode(DataParser.parse(String.class, map.get(AssetMeta.EQUIPMENT_ENVIRONMENT_CODE)));
+			this.setDirector(DataParser.parse(String.class, map.get(AssetMeta.DIRECTOR)));
+			this.setMonthDepreciationPrice(DataParser.parse(BigDecimal.class, map.get(AssetMeta.MONTH_DEPRECIATION_PRICE)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetMeta.VERSION)));
+			this.setSafetyLevelCode(DataParser.parse(String.class, map.get(AssetMeta.SAFETY_LEVEL_CODE)));
+			this.setMaintainerId(DataParser.parse(String.class, map.get(AssetMeta.MAINTAINER_ID)));
+			this.setMaintenanceNotes(DataParser.parse(String.class, map.get(AssetMeta.MAINTENANCE_NOTES)));
+			this.setEntryTime(DataParser.parse(Date.class, map.get(AssetMeta.ENTRY_TIME)));
+			this.setManageIp(DataParser.parse(String.class, map.get(AssetMeta.MANAGE_IP)));
+			this.setWarehouseId(DataParser.parse(String.class, map.get(AssetMeta.WAREHOUSE_ID)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetMeta.DELETE_TIME)));
+			this.setFinancialNotes(DataParser.parse(String.class, map.get(AssetMeta.FINANCIAL_NOTES)));
+			this.setMaintenanceMethod(DataParser.parse(String.class, map.get(AssetMeta.MAINTENANCE_METHOD)));
+			this.setStatus(DataParser.parse(String.class, map.get(AssetMeta.STATUS)));
+			this.setPurchaseDate(DataParser.parse(Date.class, map.get(AssetMeta.PURCHASE_DATE)));
+			this.setOwnerCode(DataParser.parse(String.class, map.get(AssetMeta.OWNER_CODE)));
+			this.setRemainNumber(DataParser.parse(Integer.class, map.get(AssetMeta.REMAIN_NUMBER)));
+			this.setGoodsId(DataParser.parse(String.class, map.get(AssetMeta.GOODS_ID)));
+			this.setChangeInstanceId(DataParser.parse(String.class, map.get(AssetMeta.CHANGE_INSTANCE_ID)));
+			this.setEquipmentConf(DataParser.parse(String.class, map.get(AssetMeta.EQUIPMENT_CONF)));
+			this.setAssetNotes(DataParser.parse(String.class, map.get(AssetMeta.ASSET_NOTES)));
+			this.setOriginalUnitPrice(DataParser.parse(BigDecimal.class, map.get(AssetMeta.ORIGINAL_UNIT_PRICE)));
+			this.setPictureId(DataParser.parse(String.class, map.get(AssetMeta.PICTURE_ID)));
+			this.setSuggestMaintenanceMethod(DataParser.parse(String.class, map.get(AssetMeta.SUGGEST_MAINTENANCE_METHOD)));
+			this.setTotalAmountPrice(DataParser.parse(BigDecimal.class, map.get(AssetMeta.TOTAL_AMOUNT_PRICE)));
+			this.setServiceLife(DataParser.parse(BigDecimal.class, map.get(AssetMeta.SERVICE_LIFE)));
+			this.setAttach(DataParser.parse(String.class, map.get(AssetMeta.ATTACH)));
+			this.setMaintainerName(DataParser.parse(String.class, map.get(AssetMeta.MAINTAINER_NAME)));
+			this.setOriginatorId(DataParser.parse(String.class, map.get(AssetMeta.ORIGINATOR_ID)));
+			this.setCleanOut(DataParser.parse(String.class, map.get(AssetMeta.CLEAN_OUT)));
+			this.setRackId(DataParser.parse(String.class, map.get(AssetMeta.RACK_ID)));
+			this.setDisplay(DataParser.parse(String.class, map.get(AssetMeta.DISPLAY)));
+			this.setManufacturerId(DataParser.parse(String.class, map.get(AssetMeta.MANUFACTURER_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetMeta.UPDATE_TIME)));
+			this.setCategoryCode(DataParser.parse(String.class, map.get(AssetMeta.CATEGORY_CODE)));
+			this.setManagerId(DataParser.parse(String.class, map.get(AssetMeta.MANAGER_ID)));
+			this.setAccumulatedDepreciation(DataParser.parse(BigDecimal.class, map.get(AssetMeta.ACCUMULATED_DEPRECIATION)));
+			this.setLabel2(DataParser.parse(String.class, map.get(AssetMeta.LABEL2)));
+			this.setLabel3(DataParser.parse(String.class, map.get(AssetMeta.LABEL3)));
+			this.setAssetSelectedData(DataParser.parse(String.class, map.get(AssetMeta.ASSET_SELECTED_DATA)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetMeta.DELETED)));
+			this.setPositionId(DataParser.parse(String.class, map.get(AssetMeta.POSITION_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetMeta.CREATE_TIME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetMeta.TENANT_ID)));
+			this.setRfid(DataParser.parse(String.class, map.get(AssetMeta.RFID)));
+			this.setMaintenanceStartDate(DataParser.parse(Date.class, map.get(AssetMeta.MAINTENANCE_START_DATE)));
+			this.setLastVerificationDate(DataParser.parse(Date.class, map.get(AssetMeta.LAST_VERIFICATION_DATE)));
+			this.setUseUserId(DataParser.parse(String.class, map.get(AssetMeta.USE_USER_ID)));
+			this.setContacts(DataParser.parse(String.class, map.get(AssetMeta.CONTACTS)));
+			this.setSourceId(DataParser.parse(String.class, map.get(AssetMeta.SOURCE_ID)));
+			this.setProcId(DataParser.parse(String.class, map.get(AssetMeta.PROC_ID)));
+			this.setFinancialCategoryId(DataParser.parse(String.class, map.get(AssetMeta.FINANCIAL_CATEGORY_ID)));
+			this.setEquipmentIp(DataParser.parse(String.class, map.get(AssetMeta.EQUIPMENT_IP)));
+			this.setMaintenanceEndDate(DataParser.parse(Date.class, map.get(AssetMeta.MAINTENANCE_END_DATE)));
+			this.setNextApproverNames(DataParser.parse(String.class, map.get(AssetMeta.NEXT_APPROVER_NAMES)));
+			this.setAssetCode(DataParser.parse(String.class, map.get(AssetMeta.ASSET_CODE)));
+			this.setSerialNumber(DataParser.parse(String.class, map.get(AssetMeta.SERIAL_NUMBER)));
+			this.setLatestApproverId(DataParser.parse(String.class, map.get(AssetMeta.LATEST_APPROVER_ID)));
+			this.setGoodsStockId(DataParser.parse(String.class, map.get(AssetMeta.GOODS_STOCK_ID)));
+			this.setTaxAmountRate(DataParser.parse(BigDecimal.class, map.get(AssetMeta.TAX_AMOUNT_RATE)));
+			this.setCurrentYearDepreciation(DataParser.parse(BigDecimal.class, map.get(AssetMeta.CURRENT_YEAR_DEPRECIATION)));
+			this.setUseOrganizationId(DataParser.parse(String.class, map.get(AssetMeta.USE_ORGANIZATION_ID)));
+			this.setEquipmentLabel(DataParser.parse(String.class, map.get(AssetMeta.EQUIPMENT_LABEL)));
+			this.setUnit(DataParser.parse(String.class, map.get(AssetMeta.UNIT)));
+			this.setOwnCompanyId(DataParser.parse(String.class, map.get(AssetMeta.OWN_COMPANY_ID)));
+			this.setBillId(DataParser.parse(String.class, map.get(AssetMeta.BILL_ID)));
+			this.setName(DataParser.parse(String.class, map.get(AssetMeta.NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetMeta.DELETE_BY)));
+			this.setFinancialCode(DataParser.parse(String.class, map.get(AssetMeta.FINANCIAL_CODE)));
+			this.setRackUpNumber(DataParser.parse(Integer.class, map.get(AssetMeta.RACK_UP_NUMBER)));
+			this.setResidualsRate(DataParser.parse(BigDecimal.class, map.get(AssetMeta.RESIDUALS_RATE)));
+			this.setAssetStatus(DataParser.parse(String.class, map.get(AssetMeta.ASSET_STATUS)));
+			this.setChsVersion(DataParser.parse(String.class, map.get(AssetMeta.CHS_VERSION)));
+			this.setSupplierId(DataParser.parse(String.class, map.get(AssetMeta.SUPPLIER_ID)));
+			this.setPurpose(DataParser.parse(String.class, map.get(AssetMeta.PURPOSE)));
+			this.setResidualsPrice(DataParser.parse(BigDecimal.class, map.get(AssetMeta.RESIDUALS_PRICE)));
+			this.setInternalControlLabel(DataParser.parse(String.class, map.get(AssetMeta.INTERNAL_CONTROL_LABEL)));
+			this.setLatestApproverName(DataParser.parse(String.class, map.get(AssetMeta.LATEST_APPROVER_NAME)));
+			this.setNextApproverIds(DataParser.parse(String.class, map.get(AssetMeta.NEXT_APPROVER_IDS)));
+			this.setChsStatus(DataParser.parse(String.class, map.get(AssetMeta.CHS_STATUS)));
+			this.setProductionDate(DataParser.parse(Date.class, map.get(AssetMeta.PRODUCTION_DATE)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetMeta.UPDATE_BY)));
+			this.setRegisterDate(DataParser.parse(Date.class, map.get(AssetMeta.REGISTER_DATE)));
+			this.setSummary(DataParser.parse(String.class, map.get(AssetMeta.SUMMARY)));
+			this.setEquipmentSerialNumber(DataParser.parse(String.class, map.get(AssetMeta.EQUIPMENT_SERIAL_NUMBER)));
+			this.setBatchCode(DataParser.parse(String.class, map.get(AssetMeta.BATCH_CODE)));
+			this.setEquipmentCpu(DataParser.parse(String.class, map.get(AssetMeta.EQUIPMENT_CPU)));
+			this.setEquipmentMemory(DataParser.parse(String.class, map.get(AssetMeta.EQUIPMENT_MEMORY)));
+			this.setLabel(DataParser.parse(String.class, map.get(AssetMeta.LABEL)));
+			this.setEquipmentStatus(DataParser.parse(String.class, map.get(AssetMeta.EQUIPMENT_STATUS)));
+			this.setPositionDetail(DataParser.parse(String.class, map.get(AssetMeta.POSITION_DETAIL)));
+			this.setDepreciationYear(DataParser.parse(Integer.class, map.get(AssetMeta.DEPRECIATION_YEAR)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetMeta.CREATE_BY)));
+			this.setContactInformation(DataParser.parse(String.class, map.get(AssetMeta.CONTACT_INFORMATION)));
+			this.setTaxAmountPrice(DataParser.parse(BigDecimal.class, map.get(AssetMeta.TAX_AMOUNT_PRICE)));
+			this.setRegionId(DataParser.parse(String.class, map.get(AssetMeta.REGION_ID)));
+			this.setChsType(DataParser.parse(String.class, map.get(AssetMeta.CHS_TYPE)));
+			this.setRackDownNumber(DataParser.parse(Integer.class, map.get(AssetMeta.RACK_DOWN_NUMBER)));
+			this.setCategoryId(DataParser.parse(String.class, map.get(AssetMeta.CATEGORY_ID)));
+			// others
+			this.setOwnerCompany(DataParser.parse(Organization.class, map.get(AssetMeta.OWNER_COMPANY)));
+			this.setSuggestMaintenanceMethodData(DataParser.parse(DictItem.class, map.get(AssetMeta.SUGGEST_MAINTENANCE_METHOD_DATA)));
+			this.setSafetyLevel(DataParser.parse(DictItem.class, map.get(AssetMeta.SAFETY_LEVEL)));
+			this.setCategoryFinance(DataParser.parse(CategoryFinance.class, map.get(AssetMeta.CATEGORY_FINANCE)));
+			this.setGoods(DataParser.parse(Goods.class, map.get(AssetMeta.GOODS)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(AssetMeta.ORIGINATOR)));
+			this.setSource(DataParser.parse(DictItem.class, map.get(AssetMeta.SOURCE)));
+			this.setManufacturer(DataParser.parse(Manufacturer.class, map.get(AssetMeta.MANUFACTURER)));
+			this.setSupplier(DataParser.parse(Supplier.class, map.get(AssetMeta.SUPPLIER)));
+			this.setMaintenanceMethodData(DataParser.parse(DictItem.class, map.get(AssetMeta.MAINTENANCE_METHOD_DATA)));
+			this.setUseUser(DataParser.parse(Employee.class, map.get(AssetMeta.USE_USER)));
+			this.setEquipmentEnvironment(DataParser.parse(DictItem.class, map.get(AssetMeta.EQUIPMENT_ENVIRONMENT)));
+			this.setAssetCycleStatus(DataParser.parse(AssetStatus.class, map.get(AssetMeta.ASSET_CYCLE_STATUS)));
+			this.setRack(DataParser.parse(AssetRack.class, map.get(AssetMeta.RACK)));
+			this.setManager(DataParser.parse(Employee.class, map.get(AssetMeta.MANAGER)));
+			this.setWarehouse(DataParser.parse(Warehouse.class, map.get(AssetMeta.WAREHOUSE)));
+			this.setGoodsStock(DataParser.parse(GoodsStock.class, map.get(AssetMeta.GOODS_STOCK)));
+			this.setUseOrganization(DataParser.parse(Organization.class, map.get(AssetMeta.USE_ORGANIZATION)));
+			this.setChangeInstance(DataParser.parse(ChangeInstance.class, map.get(AssetMeta.CHANGE_INSTANCE)));
+			this.setExtData(DataParser.parse(AssetExtData.class, map.get(AssetMeta.EXT_DATA)));
+			this.setMaintnainer(DataParser.parse(Maintainer.class, map.get(AssetMeta.MAINTNAINER)));
+			this.setAssetMaintenanceStatus(DataParser.parse(DictItem.class, map.get(AssetMeta.ASSET_MAINTENANCE_STATUS)));
+			this.setPosition(DataParser.parse(Position.class, map.get(AssetMeta.POSITION)));
+			this.setCategory(DataParser.parse(Catalog.class, map.get(AssetMeta.CATEGORY)));
+			this.setRegion(DataParser.parse(AssetRegion.class, map.get(AssetMeta.REGION)));
+			return true;
+		} else {
+			try {
+				this.setEquipmentCode( (String)map.get(AssetMeta.EQUIPMENT_CODE));
+				this.setPurchaseUnitPrice( (BigDecimal)map.get(AssetMeta.PURCHASE_UNIT_PRICE));
+				this.setApprovalOpinion( (String)map.get(AssetMeta.APPROVAL_OPINION));
+				this.setMaintenanceStatus( (String)map.get(AssetMeta.MAINTENANCE_STATUS));
+				this.setNavPrice( (BigDecimal)map.get(AssetMeta.NAV_PRICE));
+				this.setLabel4( (String)map.get(AssetMeta.LABEL4));
+				this.setLabel5( (String)map.get(AssetMeta.LABEL5));
+				this.setBusinessCode( (String)map.get(AssetMeta.BUSINESS_CODE));
+				this.setAssetNumber( (Integer)map.get(AssetMeta.ASSET_NUMBER));
+				this.setModel( (String)map.get(AssetMeta.MODEL));
+				this.setId( (String)map.get(AssetMeta.ID));
+				this.setEquipmentEnvironmentCode( (String)map.get(AssetMeta.EQUIPMENT_ENVIRONMENT_CODE));
+				this.setDirector( (String)map.get(AssetMeta.DIRECTOR));
+				this.setMonthDepreciationPrice( (BigDecimal)map.get(AssetMeta.MONTH_DEPRECIATION_PRICE));
+				this.setVersion( (Integer)map.get(AssetMeta.VERSION));
+				this.setSafetyLevelCode( (String)map.get(AssetMeta.SAFETY_LEVEL_CODE));
+				this.setMaintainerId( (String)map.get(AssetMeta.MAINTAINER_ID));
+				this.setMaintenanceNotes( (String)map.get(AssetMeta.MAINTENANCE_NOTES));
+				this.setEntryTime( (Date)map.get(AssetMeta.ENTRY_TIME));
+				this.setManageIp( (String)map.get(AssetMeta.MANAGE_IP));
+				this.setWarehouseId( (String)map.get(AssetMeta.WAREHOUSE_ID));
+				this.setDeleteTime( (Date)map.get(AssetMeta.DELETE_TIME));
+				this.setFinancialNotes( (String)map.get(AssetMeta.FINANCIAL_NOTES));
+				this.setMaintenanceMethod( (String)map.get(AssetMeta.MAINTENANCE_METHOD));
+				this.setStatus( (String)map.get(AssetMeta.STATUS));
+				this.setPurchaseDate( (Date)map.get(AssetMeta.PURCHASE_DATE));
+				this.setOwnerCode( (String)map.get(AssetMeta.OWNER_CODE));
+				this.setRemainNumber( (Integer)map.get(AssetMeta.REMAIN_NUMBER));
+				this.setGoodsId( (String)map.get(AssetMeta.GOODS_ID));
+				this.setChangeInstanceId( (String)map.get(AssetMeta.CHANGE_INSTANCE_ID));
+				this.setEquipmentConf( (String)map.get(AssetMeta.EQUIPMENT_CONF));
+				this.setAssetNotes( (String)map.get(AssetMeta.ASSET_NOTES));
+				this.setOriginalUnitPrice( (BigDecimal)map.get(AssetMeta.ORIGINAL_UNIT_PRICE));
+				this.setPictureId( (String)map.get(AssetMeta.PICTURE_ID));
+				this.setSuggestMaintenanceMethod( (String)map.get(AssetMeta.SUGGEST_MAINTENANCE_METHOD));
+				this.setTotalAmountPrice( (BigDecimal)map.get(AssetMeta.TOTAL_AMOUNT_PRICE));
+				this.setServiceLife( (BigDecimal)map.get(AssetMeta.SERVICE_LIFE));
+				this.setAttach( (String)map.get(AssetMeta.ATTACH));
+				this.setMaintainerName( (String)map.get(AssetMeta.MAINTAINER_NAME));
+				this.setOriginatorId( (String)map.get(AssetMeta.ORIGINATOR_ID));
+				this.setCleanOut( (String)map.get(AssetMeta.CLEAN_OUT));
+				this.setRackId( (String)map.get(AssetMeta.RACK_ID));
+				this.setDisplay( (String)map.get(AssetMeta.DISPLAY));
+				this.setManufacturerId( (String)map.get(AssetMeta.MANUFACTURER_ID));
+				this.setUpdateTime( (Date)map.get(AssetMeta.UPDATE_TIME));
+				this.setCategoryCode( (String)map.get(AssetMeta.CATEGORY_CODE));
+				this.setManagerId( (String)map.get(AssetMeta.MANAGER_ID));
+				this.setAccumulatedDepreciation( (BigDecimal)map.get(AssetMeta.ACCUMULATED_DEPRECIATION));
+				this.setLabel2( (String)map.get(AssetMeta.LABEL2));
+				this.setLabel3( (String)map.get(AssetMeta.LABEL3));
+				this.setAssetSelectedData( (String)map.get(AssetMeta.ASSET_SELECTED_DATA));
+				this.setDeleted( (Integer)map.get(AssetMeta.DELETED));
+				this.setPositionId( (String)map.get(AssetMeta.POSITION_ID));
+				this.setCreateTime( (Date)map.get(AssetMeta.CREATE_TIME));
+				this.setTenantId( (String)map.get(AssetMeta.TENANT_ID));
+				this.setRfid( (String)map.get(AssetMeta.RFID));
+				this.setMaintenanceStartDate( (Date)map.get(AssetMeta.MAINTENANCE_START_DATE));
+				this.setLastVerificationDate( (Date)map.get(AssetMeta.LAST_VERIFICATION_DATE));
+				this.setUseUserId( (String)map.get(AssetMeta.USE_USER_ID));
+				this.setContacts( (String)map.get(AssetMeta.CONTACTS));
+				this.setSourceId( (String)map.get(AssetMeta.SOURCE_ID));
+				this.setProcId( (String)map.get(AssetMeta.PROC_ID));
+				this.setFinancialCategoryId( (String)map.get(AssetMeta.FINANCIAL_CATEGORY_ID));
+				this.setEquipmentIp( (String)map.get(AssetMeta.EQUIPMENT_IP));
+				this.setMaintenanceEndDate( (Date)map.get(AssetMeta.MAINTENANCE_END_DATE));
+				this.setNextApproverNames( (String)map.get(AssetMeta.NEXT_APPROVER_NAMES));
+				this.setAssetCode( (String)map.get(AssetMeta.ASSET_CODE));
+				this.setSerialNumber( (String)map.get(AssetMeta.SERIAL_NUMBER));
+				this.setLatestApproverId( (String)map.get(AssetMeta.LATEST_APPROVER_ID));
+				this.setGoodsStockId( (String)map.get(AssetMeta.GOODS_STOCK_ID));
+				this.setTaxAmountRate( (BigDecimal)map.get(AssetMeta.TAX_AMOUNT_RATE));
+				this.setCurrentYearDepreciation( (BigDecimal)map.get(AssetMeta.CURRENT_YEAR_DEPRECIATION));
+				this.setUseOrganizationId( (String)map.get(AssetMeta.USE_ORGANIZATION_ID));
+				this.setEquipmentLabel( (String)map.get(AssetMeta.EQUIPMENT_LABEL));
+				this.setUnit( (String)map.get(AssetMeta.UNIT));
+				this.setOwnCompanyId( (String)map.get(AssetMeta.OWN_COMPANY_ID));
+				this.setBillId( (String)map.get(AssetMeta.BILL_ID));
+				this.setName( (String)map.get(AssetMeta.NAME));
+				this.setDeleteBy( (String)map.get(AssetMeta.DELETE_BY));
+				this.setFinancialCode( (String)map.get(AssetMeta.FINANCIAL_CODE));
+				this.setRackUpNumber( (Integer)map.get(AssetMeta.RACK_UP_NUMBER));
+				this.setResidualsRate( (BigDecimal)map.get(AssetMeta.RESIDUALS_RATE));
+				this.setAssetStatus( (String)map.get(AssetMeta.ASSET_STATUS));
+				this.setChsVersion( (String)map.get(AssetMeta.CHS_VERSION));
+				this.setSupplierId( (String)map.get(AssetMeta.SUPPLIER_ID));
+				this.setPurpose( (String)map.get(AssetMeta.PURPOSE));
+				this.setResidualsPrice( (BigDecimal)map.get(AssetMeta.RESIDUALS_PRICE));
+				this.setInternalControlLabel( (String)map.get(AssetMeta.INTERNAL_CONTROL_LABEL));
+				this.setLatestApproverName( (String)map.get(AssetMeta.LATEST_APPROVER_NAME));
+				this.setNextApproverIds( (String)map.get(AssetMeta.NEXT_APPROVER_IDS));
+				this.setChsStatus( (String)map.get(AssetMeta.CHS_STATUS));
+				this.setProductionDate( (Date)map.get(AssetMeta.PRODUCTION_DATE));
+				this.setUpdateBy( (String)map.get(AssetMeta.UPDATE_BY));
+				this.setRegisterDate( (Date)map.get(AssetMeta.REGISTER_DATE));
+				this.setSummary( (String)map.get(AssetMeta.SUMMARY));
+				this.setEquipmentSerialNumber( (String)map.get(AssetMeta.EQUIPMENT_SERIAL_NUMBER));
+				this.setBatchCode( (String)map.get(AssetMeta.BATCH_CODE));
+				this.setEquipmentCpu( (String)map.get(AssetMeta.EQUIPMENT_CPU));
+				this.setEquipmentMemory( (String)map.get(AssetMeta.EQUIPMENT_MEMORY));
+				this.setLabel( (String)map.get(AssetMeta.LABEL));
+				this.setEquipmentStatus( (String)map.get(AssetMeta.EQUIPMENT_STATUS));
+				this.setPositionDetail( (String)map.get(AssetMeta.POSITION_DETAIL));
+				this.setDepreciationYear( (Integer)map.get(AssetMeta.DEPRECIATION_YEAR));
+				this.setCreateBy( (String)map.get(AssetMeta.CREATE_BY));
+				this.setContactInformation( (String)map.get(AssetMeta.CONTACT_INFORMATION));
+				this.setTaxAmountPrice( (BigDecimal)map.get(AssetMeta.TAX_AMOUNT_PRICE));
+				this.setRegionId( (String)map.get(AssetMeta.REGION_ID));
+				this.setChsType( (String)map.get(AssetMeta.CHS_TYPE));
+				this.setRackDownNumber( (Integer)map.get(AssetMeta.RACK_DOWN_NUMBER));
+				this.setCategoryId( (String)map.get(AssetMeta.CATEGORY_ID));
+				// others
+				this.setOwnerCompany( (Organization)map.get(AssetMeta.OWNER_COMPANY));
+				this.setSuggestMaintenanceMethodData( (DictItem)map.get(AssetMeta.SUGGEST_MAINTENANCE_METHOD_DATA));
+				this.setSafetyLevel( (DictItem)map.get(AssetMeta.SAFETY_LEVEL));
+				this.setCategoryFinance( (CategoryFinance)map.get(AssetMeta.CATEGORY_FINANCE));
+				this.setGoods( (Goods)map.get(AssetMeta.GOODS));
+				this.setOriginator( (Employee)map.get(AssetMeta.ORIGINATOR));
+				this.setSource( (DictItem)map.get(AssetMeta.SOURCE));
+				this.setManufacturer( (Manufacturer)map.get(AssetMeta.MANUFACTURER));
+				this.setSupplier( (Supplier)map.get(AssetMeta.SUPPLIER));
+				this.setMaintenanceMethodData( (DictItem)map.get(AssetMeta.MAINTENANCE_METHOD_DATA));
+				this.setUseUser( (Employee)map.get(AssetMeta.USE_USER));
+				this.setEquipmentEnvironment( (DictItem)map.get(AssetMeta.EQUIPMENT_ENVIRONMENT));
+				this.setAssetCycleStatus( (AssetStatus)map.get(AssetMeta.ASSET_CYCLE_STATUS));
+				this.setRack( (AssetRack)map.get(AssetMeta.RACK));
+				this.setManager( (Employee)map.get(AssetMeta.MANAGER));
+				this.setWarehouse( (Warehouse)map.get(AssetMeta.WAREHOUSE));
+				this.setGoodsStock( (GoodsStock)map.get(AssetMeta.GOODS_STOCK));
+				this.setUseOrganization( (Organization)map.get(AssetMeta.USE_ORGANIZATION));
+				this.setChangeInstance( (ChangeInstance)map.get(AssetMeta.CHANGE_INSTANCE));
+				this.setExtData( (AssetExtData)map.get(AssetMeta.EXT_DATA));
+				this.setMaintnainer( (Maintainer)map.get(AssetMeta.MAINTNAINER));
+				this.setAssetMaintenanceStatus( (DictItem)map.get(AssetMeta.ASSET_MAINTENANCE_STATUS));
+				this.setPosition( (Position)map.get(AssetMeta.POSITION));
+				this.setCategory( (Catalog)map.get(AssetMeta.CATEGORY));
+				this.setRegion( (AssetRegion)map.get(AssetMeta.REGION));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setEquipmentCode(DataParser.parse(String.class, r.getValue(AssetMeta.EQUIPMENT_CODE)));
+			this.setPurchaseUnitPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.PURCHASE_UNIT_PRICE)));
+			this.setApprovalOpinion(DataParser.parse(String.class, r.getValue(AssetMeta.APPROVAL_OPINION)));
+			this.setMaintenanceStatus(DataParser.parse(String.class, r.getValue(AssetMeta.MAINTENANCE_STATUS)));
+			this.setNavPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.NAV_PRICE)));
+			this.setLabel4(DataParser.parse(String.class, r.getValue(AssetMeta.LABEL4)));
+			this.setLabel5(DataParser.parse(String.class, r.getValue(AssetMeta.LABEL5)));
+			this.setBusinessCode(DataParser.parse(String.class, r.getValue(AssetMeta.BUSINESS_CODE)));
+			this.setAssetNumber(DataParser.parse(Integer.class, r.getValue(AssetMeta.ASSET_NUMBER)));
+			this.setModel(DataParser.parse(String.class, r.getValue(AssetMeta.MODEL)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetMeta.ID)));
+			this.setEquipmentEnvironmentCode(DataParser.parse(String.class, r.getValue(AssetMeta.EQUIPMENT_ENVIRONMENT_CODE)));
+			this.setDirector(DataParser.parse(String.class, r.getValue(AssetMeta.DIRECTOR)));
+			this.setMonthDepreciationPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.MONTH_DEPRECIATION_PRICE)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetMeta.VERSION)));
+			this.setSafetyLevelCode(DataParser.parse(String.class, r.getValue(AssetMeta.SAFETY_LEVEL_CODE)));
+			this.setMaintainerId(DataParser.parse(String.class, r.getValue(AssetMeta.MAINTAINER_ID)));
+			this.setMaintenanceNotes(DataParser.parse(String.class, r.getValue(AssetMeta.MAINTENANCE_NOTES)));
+			this.setEntryTime(DataParser.parse(Date.class, r.getValue(AssetMeta.ENTRY_TIME)));
+			this.setManageIp(DataParser.parse(String.class, r.getValue(AssetMeta.MANAGE_IP)));
+			this.setWarehouseId(DataParser.parse(String.class, r.getValue(AssetMeta.WAREHOUSE_ID)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetMeta.DELETE_TIME)));
+			this.setFinancialNotes(DataParser.parse(String.class, r.getValue(AssetMeta.FINANCIAL_NOTES)));
+			this.setMaintenanceMethod(DataParser.parse(String.class, r.getValue(AssetMeta.MAINTENANCE_METHOD)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(AssetMeta.STATUS)));
+			this.setPurchaseDate(DataParser.parse(Date.class, r.getValue(AssetMeta.PURCHASE_DATE)));
+			this.setOwnerCode(DataParser.parse(String.class, r.getValue(AssetMeta.OWNER_CODE)));
+			this.setRemainNumber(DataParser.parse(Integer.class, r.getValue(AssetMeta.REMAIN_NUMBER)));
+			this.setGoodsId(DataParser.parse(String.class, r.getValue(AssetMeta.GOODS_ID)));
+			this.setChangeInstanceId(DataParser.parse(String.class, r.getValue(AssetMeta.CHANGE_INSTANCE_ID)));
+			this.setEquipmentConf(DataParser.parse(String.class, r.getValue(AssetMeta.EQUIPMENT_CONF)));
+			this.setAssetNotes(DataParser.parse(String.class, r.getValue(AssetMeta.ASSET_NOTES)));
+			this.setOriginalUnitPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.ORIGINAL_UNIT_PRICE)));
+			this.setPictureId(DataParser.parse(String.class, r.getValue(AssetMeta.PICTURE_ID)));
+			this.setSuggestMaintenanceMethod(DataParser.parse(String.class, r.getValue(AssetMeta.SUGGEST_MAINTENANCE_METHOD)));
+			this.setTotalAmountPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.TOTAL_AMOUNT_PRICE)));
+			this.setServiceLife(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.SERVICE_LIFE)));
+			this.setAttach(DataParser.parse(String.class, r.getValue(AssetMeta.ATTACH)));
+			this.setMaintainerName(DataParser.parse(String.class, r.getValue(AssetMeta.MAINTAINER_NAME)));
+			this.setOriginatorId(DataParser.parse(String.class, r.getValue(AssetMeta.ORIGINATOR_ID)));
+			this.setCleanOut(DataParser.parse(String.class, r.getValue(AssetMeta.CLEAN_OUT)));
+			this.setRackId(DataParser.parse(String.class, r.getValue(AssetMeta.RACK_ID)));
+			this.setDisplay(DataParser.parse(String.class, r.getValue(AssetMeta.DISPLAY)));
+			this.setManufacturerId(DataParser.parse(String.class, r.getValue(AssetMeta.MANUFACTURER_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetMeta.UPDATE_TIME)));
+			this.setCategoryCode(DataParser.parse(String.class, r.getValue(AssetMeta.CATEGORY_CODE)));
+			this.setManagerId(DataParser.parse(String.class, r.getValue(AssetMeta.MANAGER_ID)));
+			this.setAccumulatedDepreciation(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.ACCUMULATED_DEPRECIATION)));
+			this.setLabel2(DataParser.parse(String.class, r.getValue(AssetMeta.LABEL2)));
+			this.setLabel3(DataParser.parse(String.class, r.getValue(AssetMeta.LABEL3)));
+			this.setAssetSelectedData(DataParser.parse(String.class, r.getValue(AssetMeta.ASSET_SELECTED_DATA)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetMeta.DELETED)));
+			this.setPositionId(DataParser.parse(String.class, r.getValue(AssetMeta.POSITION_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetMeta.CREATE_TIME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetMeta.TENANT_ID)));
+			this.setRfid(DataParser.parse(String.class, r.getValue(AssetMeta.RFID)));
+			this.setMaintenanceStartDate(DataParser.parse(Date.class, r.getValue(AssetMeta.MAINTENANCE_START_DATE)));
+			this.setLastVerificationDate(DataParser.parse(Date.class, r.getValue(AssetMeta.LAST_VERIFICATION_DATE)));
+			this.setUseUserId(DataParser.parse(String.class, r.getValue(AssetMeta.USE_USER_ID)));
+			this.setContacts(DataParser.parse(String.class, r.getValue(AssetMeta.CONTACTS)));
+			this.setSourceId(DataParser.parse(String.class, r.getValue(AssetMeta.SOURCE_ID)));
+			this.setProcId(DataParser.parse(String.class, r.getValue(AssetMeta.PROC_ID)));
+			this.setFinancialCategoryId(DataParser.parse(String.class, r.getValue(AssetMeta.FINANCIAL_CATEGORY_ID)));
+			this.setEquipmentIp(DataParser.parse(String.class, r.getValue(AssetMeta.EQUIPMENT_IP)));
+			this.setMaintenanceEndDate(DataParser.parse(Date.class, r.getValue(AssetMeta.MAINTENANCE_END_DATE)));
+			this.setNextApproverNames(DataParser.parse(String.class, r.getValue(AssetMeta.NEXT_APPROVER_NAMES)));
+			this.setAssetCode(DataParser.parse(String.class, r.getValue(AssetMeta.ASSET_CODE)));
+			this.setSerialNumber(DataParser.parse(String.class, r.getValue(AssetMeta.SERIAL_NUMBER)));
+			this.setLatestApproverId(DataParser.parse(String.class, r.getValue(AssetMeta.LATEST_APPROVER_ID)));
+			this.setGoodsStockId(DataParser.parse(String.class, r.getValue(AssetMeta.GOODS_STOCK_ID)));
+			this.setTaxAmountRate(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.TAX_AMOUNT_RATE)));
+			this.setCurrentYearDepreciation(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.CURRENT_YEAR_DEPRECIATION)));
+			this.setUseOrganizationId(DataParser.parse(String.class, r.getValue(AssetMeta.USE_ORGANIZATION_ID)));
+			this.setEquipmentLabel(DataParser.parse(String.class, r.getValue(AssetMeta.EQUIPMENT_LABEL)));
+			this.setUnit(DataParser.parse(String.class, r.getValue(AssetMeta.UNIT)));
+			this.setOwnCompanyId(DataParser.parse(String.class, r.getValue(AssetMeta.OWN_COMPANY_ID)));
+			this.setBillId(DataParser.parse(String.class, r.getValue(AssetMeta.BILL_ID)));
+			this.setName(DataParser.parse(String.class, r.getValue(AssetMeta.NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetMeta.DELETE_BY)));
+			this.setFinancialCode(DataParser.parse(String.class, r.getValue(AssetMeta.FINANCIAL_CODE)));
+			this.setRackUpNumber(DataParser.parse(Integer.class, r.getValue(AssetMeta.RACK_UP_NUMBER)));
+			this.setResidualsRate(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.RESIDUALS_RATE)));
+			this.setAssetStatus(DataParser.parse(String.class, r.getValue(AssetMeta.ASSET_STATUS)));
+			this.setChsVersion(DataParser.parse(String.class, r.getValue(AssetMeta.CHS_VERSION)));
+			this.setSupplierId(DataParser.parse(String.class, r.getValue(AssetMeta.SUPPLIER_ID)));
+			this.setPurpose(DataParser.parse(String.class, r.getValue(AssetMeta.PURPOSE)));
+			this.setResidualsPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.RESIDUALS_PRICE)));
+			this.setInternalControlLabel(DataParser.parse(String.class, r.getValue(AssetMeta.INTERNAL_CONTROL_LABEL)));
+			this.setLatestApproverName(DataParser.parse(String.class, r.getValue(AssetMeta.LATEST_APPROVER_NAME)));
+			this.setNextApproverIds(DataParser.parse(String.class, r.getValue(AssetMeta.NEXT_APPROVER_IDS)));
+			this.setChsStatus(DataParser.parse(String.class, r.getValue(AssetMeta.CHS_STATUS)));
+			this.setProductionDate(DataParser.parse(Date.class, r.getValue(AssetMeta.PRODUCTION_DATE)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetMeta.UPDATE_BY)));
+			this.setRegisterDate(DataParser.parse(Date.class, r.getValue(AssetMeta.REGISTER_DATE)));
+			this.setSummary(DataParser.parse(String.class, r.getValue(AssetMeta.SUMMARY)));
+			this.setEquipmentSerialNumber(DataParser.parse(String.class, r.getValue(AssetMeta.EQUIPMENT_SERIAL_NUMBER)));
+			this.setBatchCode(DataParser.parse(String.class, r.getValue(AssetMeta.BATCH_CODE)));
+			this.setEquipmentCpu(DataParser.parse(String.class, r.getValue(AssetMeta.EQUIPMENT_CPU)));
+			this.setEquipmentMemory(DataParser.parse(String.class, r.getValue(AssetMeta.EQUIPMENT_MEMORY)));
+			this.setLabel(DataParser.parse(String.class, r.getValue(AssetMeta.LABEL)));
+			this.setEquipmentStatus(DataParser.parse(String.class, r.getValue(AssetMeta.EQUIPMENT_STATUS)));
+			this.setPositionDetail(DataParser.parse(String.class, r.getValue(AssetMeta.POSITION_DETAIL)));
+			this.setDepreciationYear(DataParser.parse(Integer.class, r.getValue(AssetMeta.DEPRECIATION_YEAR)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetMeta.CREATE_BY)));
+			this.setContactInformation(DataParser.parse(String.class, r.getValue(AssetMeta.CONTACT_INFORMATION)));
+			this.setTaxAmountPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.TAX_AMOUNT_PRICE)));
+			this.setRegionId(DataParser.parse(String.class, r.getValue(AssetMeta.REGION_ID)));
+			this.setChsType(DataParser.parse(String.class, r.getValue(AssetMeta.CHS_TYPE)));
+			this.setRackDownNumber(DataParser.parse(Integer.class, r.getValue(AssetMeta.RACK_DOWN_NUMBER)));
+			this.setCategoryId(DataParser.parse(String.class, r.getValue(AssetMeta.CATEGORY_ID)));
+			return true;
+		} else {
+			try {
+				this.setEquipmentCode( (String)r.getValue(AssetMeta.EQUIPMENT_CODE));
+				this.setPurchaseUnitPrice( (BigDecimal)r.getValue(AssetMeta.PURCHASE_UNIT_PRICE));
+				this.setApprovalOpinion( (String)r.getValue(AssetMeta.APPROVAL_OPINION));
+				this.setMaintenanceStatus( (String)r.getValue(AssetMeta.MAINTENANCE_STATUS));
+				this.setNavPrice( (BigDecimal)r.getValue(AssetMeta.NAV_PRICE));
+				this.setLabel4( (String)r.getValue(AssetMeta.LABEL4));
+				this.setLabel5( (String)r.getValue(AssetMeta.LABEL5));
+				this.setBusinessCode( (String)r.getValue(AssetMeta.BUSINESS_CODE));
+				this.setAssetNumber( (Integer)r.getValue(AssetMeta.ASSET_NUMBER));
+				this.setModel( (String)r.getValue(AssetMeta.MODEL));
+				this.setId( (String)r.getValue(AssetMeta.ID));
+				this.setEquipmentEnvironmentCode( (String)r.getValue(AssetMeta.EQUIPMENT_ENVIRONMENT_CODE));
+				this.setDirector( (String)r.getValue(AssetMeta.DIRECTOR));
+				this.setMonthDepreciationPrice( (BigDecimal)r.getValue(AssetMeta.MONTH_DEPRECIATION_PRICE));
+				this.setVersion( (Integer)r.getValue(AssetMeta.VERSION));
+				this.setSafetyLevelCode( (String)r.getValue(AssetMeta.SAFETY_LEVEL_CODE));
+				this.setMaintainerId( (String)r.getValue(AssetMeta.MAINTAINER_ID));
+				this.setMaintenanceNotes( (String)r.getValue(AssetMeta.MAINTENANCE_NOTES));
+				this.setEntryTime( (Date)r.getValue(AssetMeta.ENTRY_TIME));
+				this.setManageIp( (String)r.getValue(AssetMeta.MANAGE_IP));
+				this.setWarehouseId( (String)r.getValue(AssetMeta.WAREHOUSE_ID));
+				this.setDeleteTime( (Date)r.getValue(AssetMeta.DELETE_TIME));
+				this.setFinancialNotes( (String)r.getValue(AssetMeta.FINANCIAL_NOTES));
+				this.setMaintenanceMethod( (String)r.getValue(AssetMeta.MAINTENANCE_METHOD));
+				this.setStatus( (String)r.getValue(AssetMeta.STATUS));
+				this.setPurchaseDate( (Date)r.getValue(AssetMeta.PURCHASE_DATE));
+				this.setOwnerCode( (String)r.getValue(AssetMeta.OWNER_CODE));
+				this.setRemainNumber( (Integer)r.getValue(AssetMeta.REMAIN_NUMBER));
+				this.setGoodsId( (String)r.getValue(AssetMeta.GOODS_ID));
+				this.setChangeInstanceId( (String)r.getValue(AssetMeta.CHANGE_INSTANCE_ID));
+				this.setEquipmentConf( (String)r.getValue(AssetMeta.EQUIPMENT_CONF));
+				this.setAssetNotes( (String)r.getValue(AssetMeta.ASSET_NOTES));
+				this.setOriginalUnitPrice( (BigDecimal)r.getValue(AssetMeta.ORIGINAL_UNIT_PRICE));
+				this.setPictureId( (String)r.getValue(AssetMeta.PICTURE_ID));
+				this.setSuggestMaintenanceMethod( (String)r.getValue(AssetMeta.SUGGEST_MAINTENANCE_METHOD));
+				this.setTotalAmountPrice( (BigDecimal)r.getValue(AssetMeta.TOTAL_AMOUNT_PRICE));
+				this.setServiceLife( (BigDecimal)r.getValue(AssetMeta.SERVICE_LIFE));
+				this.setAttach( (String)r.getValue(AssetMeta.ATTACH));
+				this.setMaintainerName( (String)r.getValue(AssetMeta.MAINTAINER_NAME));
+				this.setOriginatorId( (String)r.getValue(AssetMeta.ORIGINATOR_ID));
+				this.setCleanOut( (String)r.getValue(AssetMeta.CLEAN_OUT));
+				this.setRackId( (String)r.getValue(AssetMeta.RACK_ID));
+				this.setDisplay( (String)r.getValue(AssetMeta.DISPLAY));
+				this.setManufacturerId( (String)r.getValue(AssetMeta.MANUFACTURER_ID));
+				this.setUpdateTime( (Date)r.getValue(AssetMeta.UPDATE_TIME));
+				this.setCategoryCode( (String)r.getValue(AssetMeta.CATEGORY_CODE));
+				this.setManagerId( (String)r.getValue(AssetMeta.MANAGER_ID));
+				this.setAccumulatedDepreciation( (BigDecimal)r.getValue(AssetMeta.ACCUMULATED_DEPRECIATION));
+				this.setLabel2( (String)r.getValue(AssetMeta.LABEL2));
+				this.setLabel3( (String)r.getValue(AssetMeta.LABEL3));
+				this.setAssetSelectedData( (String)r.getValue(AssetMeta.ASSET_SELECTED_DATA));
+				this.setDeleted( (Integer)r.getValue(AssetMeta.DELETED));
+				this.setPositionId( (String)r.getValue(AssetMeta.POSITION_ID));
+				this.setCreateTime( (Date)r.getValue(AssetMeta.CREATE_TIME));
+				this.setTenantId( (String)r.getValue(AssetMeta.TENANT_ID));
+				this.setRfid( (String)r.getValue(AssetMeta.RFID));
+				this.setMaintenanceStartDate( (Date)r.getValue(AssetMeta.MAINTENANCE_START_DATE));
+				this.setLastVerificationDate( (Date)r.getValue(AssetMeta.LAST_VERIFICATION_DATE));
+				this.setUseUserId( (String)r.getValue(AssetMeta.USE_USER_ID));
+				this.setContacts( (String)r.getValue(AssetMeta.CONTACTS));
+				this.setSourceId( (String)r.getValue(AssetMeta.SOURCE_ID));
+				this.setProcId( (String)r.getValue(AssetMeta.PROC_ID));
+				this.setFinancialCategoryId( (String)r.getValue(AssetMeta.FINANCIAL_CATEGORY_ID));
+				this.setEquipmentIp( (String)r.getValue(AssetMeta.EQUIPMENT_IP));
+				this.setMaintenanceEndDate( (Date)r.getValue(AssetMeta.MAINTENANCE_END_DATE));
+				this.setNextApproverNames( (String)r.getValue(AssetMeta.NEXT_APPROVER_NAMES));
+				this.setAssetCode( (String)r.getValue(AssetMeta.ASSET_CODE));
+				this.setSerialNumber( (String)r.getValue(AssetMeta.SERIAL_NUMBER));
+				this.setLatestApproverId( (String)r.getValue(AssetMeta.LATEST_APPROVER_ID));
+				this.setGoodsStockId( (String)r.getValue(AssetMeta.GOODS_STOCK_ID));
+				this.setTaxAmountRate( (BigDecimal)r.getValue(AssetMeta.TAX_AMOUNT_RATE));
+				this.setCurrentYearDepreciation( (BigDecimal)r.getValue(AssetMeta.CURRENT_YEAR_DEPRECIATION));
+				this.setUseOrganizationId( (String)r.getValue(AssetMeta.USE_ORGANIZATION_ID));
+				this.setEquipmentLabel( (String)r.getValue(AssetMeta.EQUIPMENT_LABEL));
+				this.setUnit( (String)r.getValue(AssetMeta.UNIT));
+				this.setOwnCompanyId( (String)r.getValue(AssetMeta.OWN_COMPANY_ID));
+				this.setBillId( (String)r.getValue(AssetMeta.BILL_ID));
+				this.setName( (String)r.getValue(AssetMeta.NAME));
+				this.setDeleteBy( (String)r.getValue(AssetMeta.DELETE_BY));
+				this.setFinancialCode( (String)r.getValue(AssetMeta.FINANCIAL_CODE));
+				this.setRackUpNumber( (Integer)r.getValue(AssetMeta.RACK_UP_NUMBER));
+				this.setResidualsRate( (BigDecimal)r.getValue(AssetMeta.RESIDUALS_RATE));
+				this.setAssetStatus( (String)r.getValue(AssetMeta.ASSET_STATUS));
+				this.setChsVersion( (String)r.getValue(AssetMeta.CHS_VERSION));
+				this.setSupplierId( (String)r.getValue(AssetMeta.SUPPLIER_ID));
+				this.setPurpose( (String)r.getValue(AssetMeta.PURPOSE));
+				this.setResidualsPrice( (BigDecimal)r.getValue(AssetMeta.RESIDUALS_PRICE));
+				this.setInternalControlLabel( (String)r.getValue(AssetMeta.INTERNAL_CONTROL_LABEL));
+				this.setLatestApproverName( (String)r.getValue(AssetMeta.LATEST_APPROVER_NAME));
+				this.setNextApproverIds( (String)r.getValue(AssetMeta.NEXT_APPROVER_IDS));
+				this.setChsStatus( (String)r.getValue(AssetMeta.CHS_STATUS));
+				this.setProductionDate( (Date)r.getValue(AssetMeta.PRODUCTION_DATE));
+				this.setUpdateBy( (String)r.getValue(AssetMeta.UPDATE_BY));
+				this.setRegisterDate( (Date)r.getValue(AssetMeta.REGISTER_DATE));
+				this.setSummary( (String)r.getValue(AssetMeta.SUMMARY));
+				this.setEquipmentSerialNumber( (String)r.getValue(AssetMeta.EQUIPMENT_SERIAL_NUMBER));
+				this.setBatchCode( (String)r.getValue(AssetMeta.BATCH_CODE));
+				this.setEquipmentCpu( (String)r.getValue(AssetMeta.EQUIPMENT_CPU));
+				this.setEquipmentMemory( (String)r.getValue(AssetMeta.EQUIPMENT_MEMORY));
+				this.setLabel( (String)r.getValue(AssetMeta.LABEL));
+				this.setEquipmentStatus( (String)r.getValue(AssetMeta.EQUIPMENT_STATUS));
+				this.setPositionDetail( (String)r.getValue(AssetMeta.POSITION_DETAIL));
+				this.setDepreciationYear( (Integer)r.getValue(AssetMeta.DEPRECIATION_YEAR));
+				this.setCreateBy( (String)r.getValue(AssetMeta.CREATE_BY));
+				this.setContactInformation( (String)r.getValue(AssetMeta.CONTACT_INFORMATION));
+				this.setTaxAmountPrice( (BigDecimal)r.getValue(AssetMeta.TAX_AMOUNT_PRICE));
+				this.setRegionId( (String)r.getValue(AssetMeta.REGION_ID));
+				this.setChsType( (String)r.getValue(AssetMeta.CHS_TYPE));
+				this.setRackDownNumber( (Integer)r.getValue(AssetMeta.RACK_DOWN_NUMBER));
+				this.setCategoryId( (String)r.getValue(AssetMeta.CATEGORY_ID));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

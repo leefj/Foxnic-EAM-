@@ -141,7 +141,7 @@ public class AssetAttributeItemServiceImpl extends SuperService<AssetAttributeIt
 		AssetAttributeItem assetAttributeItem = new AssetAttributeItem();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		assetAttributeItem.setId(id);
-		assetAttributeItem.setDeleted(dao.getDBTreaty().getTrueValue());
+		assetAttributeItem.setDeleted(true);
 		assetAttributeItem.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		assetAttributeItem.setDeleteTime(new Date());
 		try {

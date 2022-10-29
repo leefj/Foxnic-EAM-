@@ -31,7 +31,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-25 20:25:32
+ * @since 2022-10-28 17:39:55
  * @sign C05127D02CE5B4FBBB8CDA17B7C59FAA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -567,6 +567,26 @@ public class AssetVOMeta extends AssetMeta {
 	 * 维保状态 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> MAINTENANCE_STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,MAINTENANCE_STATUS, java.lang.String.class, "维保状态", "维保状态", java.lang.String.class, null);
+	
+	/**
+	 * 维保方式 , 类型: java.lang.String
+	*/
+	public static final String MAINTENANCE_METHOD="maintenanceMethod";
+	
+	/**
+	 * 维保方式 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> MAINTENANCE_METHOD_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,MAINTENANCE_METHOD, java.lang.String.class, "维保方式", "维保方式", java.lang.String.class, null);
+	
+	/**
+	 * 建议维保方式 , 类型: java.lang.String
+	*/
+	public static final String SUGGEST_MAINTENANCE_METHOD="suggestMaintenanceMethod";
+	
+	/**
+	 * 建议维保方式 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> SUGGEST_MAINTENANCE_METHOD_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,SUGGEST_MAINTENANCE_METHOD, java.lang.String.class, "建议维保方式", "建议维保方式", java.lang.String.class, null);
 	
 	/**
 	 * 联系人 , 类型: java.lang.String
@@ -1409,6 +1429,26 @@ public class AssetVOMeta extends AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,org.github.foxnic.web.domain.system.DictItem> ASSET_MAINTENANCE_STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,ASSET_MAINTENANCE_STATUS, org.github.foxnic.web.domain.system.DictItem.class, "维保状态", "维保状态", org.github.foxnic.web.domain.system.DictItem.class, null);
 	
 	/**
+	 * 建议维保方式 , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final String SUGGEST_MAINTENANCE_METHOD_DATA="suggestMaintenanceMethodData";
+	
+	/**
+	 * 建议维保方式 , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,org.github.foxnic.web.domain.system.DictItem> SUGGEST_MAINTENANCE_METHOD_DATA_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,SUGGEST_MAINTENANCE_METHOD_DATA, org.github.foxnic.web.domain.system.DictItem.class, "建议维保方式", "建议维保方式", org.github.foxnic.web.domain.system.DictItem.class, null);
+	
+	/**
+	 * 维保方式 , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final String MAINTENANCE_METHOD_DATA="maintenanceMethodData";
+	
+	/**
+	 * 维保方式 , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,org.github.foxnic.web.domain.system.DictItem> MAINTENANCE_METHOD_DATA_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,MAINTENANCE_METHOD_DATA, org.github.foxnic.web.domain.system.DictItem.class, "维保方式", "维保方式", org.github.foxnic.web.domain.system.DictItem.class, null);
+	
+	/**
 	 * assetCycleStatus , 类型: com.dt.platform.domain.eam.AssetStatus
 	*/
 	public static final String ASSET_CYCLE_STATUS="assetCycleStatus";
@@ -1461,7 +1501,7 @@ public class AssetVOMeta extends AssetMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , REGION_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , SUPPLIER_ID , TAX_AMOUNT_RATE , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , ORIGINAL_UNIT_PRICE , CURRENT_YEAR_DEPRECIATION , DEPRECIATION_YEAR , ACCUMULATED_DEPRECIATION , MONTH_DEPRECIATION_PRICE , RESIDUALS_RATE , RESIDUALS_PRICE , NAV_PRICE , PURCHASE_UNIT_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL2 , LABEL3 , LABEL4 , LABEL5 , INTERNAL_CONTROL_LABEL , BILL_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA , EXT_DATA , PCM_DATA , CATALOG_ATTRIBUTE , POSITION , CATEGORY_FINANCE , CATEGORY , GOODS , MANUFACTURER , WAREHOUSE , USE_USER , MANAGER , ORIGINATOR , SUPPLIER , MAINTNAINER , OWNER_COMPANY , USE_ORGANIZATION , SOURCE , EQUIPMENT_ENVIRONMENT , SAFETY_LEVEL , ASSET_MAINTENANCE_STATUS , ASSET_CYCLE_STATUS , RACK , CHANGE_INSTANCE , GOODS_STOCK , REGION };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , REGION_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , MAINTENANCE_METHOD , SUGGEST_MAINTENANCE_METHOD , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , SUPPLIER_ID , TAX_AMOUNT_RATE , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , ORIGINAL_UNIT_PRICE , CURRENT_YEAR_DEPRECIATION , DEPRECIATION_YEAR , ACCUMULATED_DEPRECIATION , MONTH_DEPRECIATION_PRICE , RESIDUALS_RATE , RESIDUALS_PRICE , NAV_PRICE , PURCHASE_UNIT_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL2 , LABEL3 , LABEL4 , LABEL5 , INTERNAL_CONTROL_LABEL , BILL_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA , EXT_DATA , PCM_DATA , CATALOG_ATTRIBUTE , POSITION , CATEGORY_FINANCE , CATEGORY , GOODS , MANUFACTURER , WAREHOUSE , USE_USER , MANAGER , ORIGINATOR , SUPPLIER , MAINTNAINER , OWNER_COMPANY , USE_ORGANIZATION , SOURCE , EQUIPMENT_ENVIRONMENT , SAFETY_LEVEL , ASSET_MAINTENANCE_STATUS , SUGGEST_MAINTENANCE_METHOD_DATA , MAINTENANCE_METHOD_DATA , ASSET_CYCLE_STATUS , RACK , CHANGE_INSTANCE , GOODS_STOCK , REGION };
 	
 	/**
 	 * 代理类
@@ -2051,6 +2091,28 @@ public class AssetVOMeta extends AssetMeta {
 		public Asset setMaintenanceStatus(String maintenanceStatus) {
 			super.change(MAINTENANCE_STATUS,super.getMaintenanceStatus(),maintenanceStatus);
 			super.setMaintenanceStatus(maintenanceStatus);
+			return this;
+		}
+		
+		/**
+		 * 设置 维保方式
+		 * @param maintenanceMethod 维保方式
+		 * @return 当前对象
+		*/
+		public Asset setMaintenanceMethod(String maintenanceMethod) {
+			super.change(MAINTENANCE_METHOD,super.getMaintenanceMethod(),maintenanceMethod);
+			super.setMaintenanceMethod(maintenanceMethod);
+			return this;
+		}
+		
+		/**
+		 * 设置 建议维保方式
+		 * @param suggestMaintenanceMethod 建议维保方式
+		 * @return 当前对象
+		*/
+		public Asset setSuggestMaintenanceMethod(String suggestMaintenanceMethod) {
+			super.change(SUGGEST_MAINTENANCE_METHOD,super.getSuggestMaintenanceMethod(),suggestMaintenanceMethod);
+			super.setSuggestMaintenanceMethod(suggestMaintenanceMethod);
 			return this;
 		}
 		
@@ -2979,6 +3041,28 @@ public class AssetVOMeta extends AssetMeta {
 		}
 		
 		/**
+		 * 设置 建议维保方式
+		 * @param suggestMaintenanceMethodData 建议维保方式
+		 * @return 当前对象
+		*/
+		public Asset setSuggestMaintenanceMethodData(DictItem suggestMaintenanceMethodData) {
+			super.change(SUGGEST_MAINTENANCE_METHOD_DATA,super.getSuggestMaintenanceMethodData(),suggestMaintenanceMethodData);
+			super.setSuggestMaintenanceMethodData(suggestMaintenanceMethodData);
+			return this;
+		}
+		
+		/**
+		 * 设置 维保方式
+		 * @param maintenanceMethodData 维保方式
+		 * @return 当前对象
+		*/
+		public Asset setMaintenanceMethodData(DictItem maintenanceMethodData) {
+			super.change(MAINTENANCE_METHOD_DATA,super.getMaintenanceMethodData(),maintenanceMethodData);
+			super.setMaintenanceMethodData(maintenanceMethodData);
+			return this;
+		}
+		
+		/**
 		 * 设置 assetCycleStatus
 		 * @param assetCycleStatus assetCycleStatus
 		 * @return 当前对象
@@ -3071,6 +3155,7 @@ public class AssetVOMeta extends AssetMeta {
 			inst.setWarehouseId(this.getWarehouseId());
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setFinancialNotes(this.getFinancialNotes());
+			inst.setMaintenanceMethod(this.getMaintenanceMethod());
 			inst.setStatus(this.getStatus());
 			inst.setPurchaseDate(this.getPurchaseDate());
 			inst.setOwnerCode(this.getOwnerCode());
@@ -3081,6 +3166,7 @@ public class AssetVOMeta extends AssetMeta {
 			inst.setAssetNotes(this.getAssetNotes());
 			inst.setOriginalUnitPrice(this.getOriginalUnitPrice());
 			inst.setPictureId(this.getPictureId());
+			inst.setSuggestMaintenanceMethod(this.getSuggestMaintenanceMethod());
 			inst.setTotalAmountPrice(this.getTotalAmountPrice());
 			inst.setServiceLife(this.getServiceLife());
 			inst.setAttach(this.getAttach());
@@ -3158,6 +3244,7 @@ public class AssetVOMeta extends AssetMeta {
 			inst.setCategoryId(this.getCategoryId());
 			if(all) {
 				inst.setOwnerCompany(this.getOwnerCompany());
+				inst.setSuggestMaintenanceMethodData(this.getSuggestMaintenanceMethodData());
 				inst.setSearchField(this.getSearchField());
 				inst.setSafetyLevel(this.getSafetyLevel());
 				inst.setCategoryFinance(this.getCategoryFinance());
@@ -3171,6 +3258,7 @@ public class AssetVOMeta extends AssetMeta {
 				inst.setSupplier(this.getSupplier());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
+				inst.setMaintenanceMethodData(this.getMaintenanceMethodData());
 				inst.setUseUser(this.getUseUser());
 				inst.setEquipmentEnvironment(this.getEquipmentEnvironment());
 				inst.setAssetCycleStatus(this.getAssetCycleStatus());

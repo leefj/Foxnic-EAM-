@@ -104,6 +104,9 @@ public class EamRelationManager extends RelationManager {
 
         this.setupAssetRack2();
         this.setupAssetRackInfo();
+        this.setupAssetMaintenanceRecord();
+        this.setupAssetMaintenanceRecordUpdate();
+
     }
 
 
@@ -1583,12 +1586,72 @@ public class EamRelationManager extends RelationManager {
 //
 //    public void setupAssetFinancial() {
 //
-//        // 关联供应商
-//        this.property(AssetExtFinancialMeta.SUPPLIER_PROP)
-//                .using(EAMTables.EAM_ASSET_EXT_FINANCIAL.SUPPLIER_ID).join(EAMTables.EAM_SUPPLIER.ID);
-//
+
+
+
 //    }
 
+    public void  setupAssetMaintenanceRecordUpdate(){
+
+        // 关联维保商
+        this.property(AssetMaintenanceRecordUMeta.MAINTNAINER_PROP)
+                .using(EAMTables.EAM_ASSET_MAINTENANCE_RECORD_U.MAINTAINER_ID).join(EAMTables.EAM_MAINTAINER.ID);
+
+        // 建议维保方式
+        this.property(AssetMaintenanceRecordUMeta.MAINTENANCE_METHOD_DATA_PROP)
+                .using(EAMTables.EAM_ASSET_MAINTENANCE_RECORD_U.MAINTENANCE_METHOD).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='eam_maintenance_method'");
+
+        // 维保方式
+        this.property(AssetMaintenanceRecordUMeta.SUGGEST_MAINTENANCE_METHOD_DATA_PROP)
+                .using(EAMTables.EAM_ASSET_MAINTENANCE_RECORD_U.SUGGEST_MAINTENANCE_METHOD).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='eam_suggest_maintenance_method'");
+
+        this.property(AssetMaintenanceRecordUMeta.ASSET_MAINTENANCE_STATUS_PROP)
+                .using(EAMTables.EAM_ASSET_MAINTENANCE_RECORD_U.MAINTENANCE_STATUS).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='eam_maintenance_status'");
+
+    }
+
+    public void setupAssetMaintenanceRecord() {
+
+        this.property(AssetMaintenanceRecordMeta.ASSET_MAINTENANCE_UPDATE_PROP)
+                .using(EAMTables.EAM_ASSET_MAINTENANCE_RECORD.MAINTENANCE_UPDATE_ID).join(EAMTables.EAM_ASSET_MAINTENANCE_UPDATE.ID);
+
+
+        this.property(AssetMaintenanceRecordMeta.ASSET_STATUS_PROP)
+                .using(EAMTables.EAM_ASSET_MAINTENANCE_RECORD.ASSET_ID).join(EAMTables.EAM_ASSET.ID)
+                .using(EAMTables.EAM_ASSET.ASSET_STATUS).join(EAMTables.EAM_ASSET_STATUS.CODE);
+
+        // 关联资产分类
+        this.property(AssetMaintenanceRecordMeta.CATEGORY_PROP)
+                .using(EAMTables.EAM_ASSET_MAINTENANCE_RECORD.ASSET_ID).join(EAMTables.EAM_ASSET.ID)
+                .using(EAMTables.EAM_ASSET.CATEGORY_ID).join(FoxnicWeb.PCM_CATALOG.ID);
+
+
+        this.property(AssetMaintenanceRecordMeta.ASSET_PROP)
+                .using(EAMTables.EAM_ASSET_MAINTENANCE_RECORD.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
+
+
+        // 关联维保商
+        this.property(AssetMaintenanceRecordMeta.MAINTNAINER_PROP)
+                .using(EAMTables.EAM_ASSET_MAINTENANCE_RECORD.MAINTAINER_ID).join(EAMTables.EAM_MAINTAINER.ID);
+
+        // 建议维保方式
+        this.property(AssetMaintenanceRecordMeta.MAINTENANCE_METHOD_DATA_PROP)
+                .using(EAMTables.EAM_ASSET_MAINTENANCE_RECORD.MAINTENANCE_METHOD).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='eam_maintenance_method'");
+
+        // 维保方式
+        this.property(AssetMaintenanceRecordMeta.SUGGEST_MAINTENANCE_METHOD_DATA_PROP)
+                .using(EAMTables.EAM_ASSET_MAINTENANCE_RECORD.SUGGEST_MAINTENANCE_METHOD).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='eam_suggest_maintenance_method'");
+
+        this.property(AssetMaintenanceRecordMeta.ASSET_MAINTENANCE_STATUS_PROP)
+                .using(EAMTables.EAM_ASSET_MAINTENANCE_RECORD.MAINTENANCE_STATUS).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='eam_maintenance_status'");
+
+    }
     public void setupAsset() {
 
         this.property(AssetMeta.CHANGE_INSTANCE_PROP)
@@ -1602,6 +1665,17 @@ public class EamRelationManager extends RelationManager {
         this.property(AssetMeta.SOURCE_PROP)
                 .using(EAMTables.EAM_ASSET.SOURCE_ID).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
           .condition("dict_code='eam_source'");
+
+        // 建议维保方式
+        this.property(AssetMeta.MAINTENANCE_METHOD_DATA_PROP)
+                .using(EAMTables.EAM_ASSET.MAINTENANCE_METHOD).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='eam_maintenance_method'");
+
+
+        // 维保方式
+        this.property(AssetMeta.SUGGEST_MAINTENANCE_METHOD_DATA_PROP)
+                .using(EAMTables.EAM_ASSET.SUGGEST_MAINTENANCE_METHOD).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='eam_suggest_maintenance_method'");
 
 
 

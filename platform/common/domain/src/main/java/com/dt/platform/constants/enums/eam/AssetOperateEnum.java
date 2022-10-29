@@ -55,6 +55,9 @@ public enum AssetOperateEnum implements CodeTextEnum {
     EAM_ASSET_CHANGE_FINANCIAL(CodeModuleEnum.EAM_ASSET_CHANGE_FINANCIAL.code(), CodeModuleEnum.EAM_ASSET_CHANGE_FINANCIAL.text()),
     EAM_ASSET_CHANGE_EQUIPMENT(CodeModuleEnum.EAM_ASSET_CHANGE_EQUIPMENT.code(), CodeModuleEnum.EAM_ASSET_CHANGE_EQUIPMENT.text()),
 
+    //维保数据变更
+    EAM_ASSET_CHANGE_MAINTENANCE_2(CodeModuleEnum.EAM_ASSET_CHANGE_MAINTENANCE.code(), CodeModuleEnum.EAM_ASSET_CHANGE_MAINTENANCE.text()),
+
 
 
 

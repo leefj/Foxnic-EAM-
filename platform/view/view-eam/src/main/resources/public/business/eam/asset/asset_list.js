@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-25 20:25:34
+ * @since 2022-10-28 17:39:57
  */
 
 
@@ -116,6 +116,8 @@ function ListPage() {
 					,{ field: 'maintainerId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维保商'), templet: function (d) { return templet('maintainerId' ,fox.joinLabel(d.maintnainer,"maintainerName",',','','maintainerId'),d);}}
 					,{ field: 'maintainerName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维保厂商') , templet: function (d) { return templet('maintainerName',d.maintainerName,d);}  }
 					,{ field: 'maintenanceStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维保状态'), templet: function (d) { return templet('maintenanceStatus' ,fox.joinLabel(d.assetMaintenanceStatus,"label",',','','maintenanceStatus'),d);}}
+					,{ field: 'maintenanceMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维保方式'), templet: function (d) { return templet('maintenanceMethod' ,fox.joinLabel(d.maintenanceMethodData,"label",',','','maintenanceMethod'),d);}}
+					,{ field: 'suggestMaintenanceMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('建议维保方式'), templet: function (d) { return templet('suggestMaintenanceMethod' ,fox.joinLabel(d.suggestMaintenanceMethodData,"label",',','','suggestMaintenanceMethod'),d);}}
 					,{ field: 'contacts', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('联系人') , templet: function (d) { return templet('contacts',d.contacts,d);}  }
 					,{ field: 'contactInformation', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('联系方式') , templet: function (d) { return templet('contactInformation',d.contactInformation,d);}  }
 					,{ field: 'director', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('负责人') , templet: function (d) { return templet('director',d.director,d);}  }
@@ -701,10 +703,15 @@ function ListPage() {
 			}
 			else if(obj.event === 'ops-more'){
 				//更多下拉菜单
+				var  items = [{"perm":"id1","id":"id1","title":"测试1"},{"perm":"id1","id":"id1","title":"测试2"}];
+				items=items.filter(function (item,i,arr){
+					if(!item.perm) return true;
+					else return admin.checkAuth(item.perm);
+				});
 				dropdown.render({
 					elem: this
 					,show: true //外部事件触发即显示
-					,data: [{"perm":"id1","id":"id1","title":"测试1"},{"perm":"id1","id":"id1","title":"测试2"}]
+					,data: items
 					,click: function(menu, othis){
 						if(menu.perm && !admin.checkAuth(menu.perm)) {
 							top.layer.msg(fox.translate('缺少操作权限'), {icon: 2, time: 1500});

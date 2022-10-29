@@ -197,8 +197,8 @@ public class EamInventoryGtr extends BaseCodeGenerator{
 //        inventoryService.dao().join(directors, Person.class);
 
         cfg.view().list().disableBatchDelete();
-        cfg.view().list().addToolButton("开始","inventoryStart",null,"eam_inventory:start");
-        cfg.view().list().addToolButton("结束","inventoryFinish",null,"eam_inventory:finish");
+        cfg.view().list().addToolButton("开始盘点","inventoryStart",null,"eam_inventory:start");
+        cfg.view().list().addToolButton("结束盘点","inventoryFinish",null,"eam_inventory:finish");
         cfg.view().list().addToolButton("取消","inventoryCancel",null,"eam_inventory:cancel");
         cfg.view().list().addToolButton("数据同步","inventoryDataSync",null,"eam_inventory:datasync");
        cfg.view().list().operationColumn().addActionButton("明细","inventoryDetail","inventory-detail-button",null);

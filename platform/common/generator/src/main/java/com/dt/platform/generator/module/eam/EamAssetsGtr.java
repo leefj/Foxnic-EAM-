@@ -65,6 +65,9 @@ public class EamAssetsGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"equipmentEnvironment","设备运行环境","设备运行环境");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"safetyLevel","安全等级","安全等级");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"assetMaintenanceStatus","维保状态","维保状态");
+        cfg.getPoClassFile().addSimpleProperty(DictItem.class,"suggestMaintenanceMethodData","建议维保方式","建议维保方式");
+        cfg.getPoClassFile().addSimpleProperty(DictItem.class,"maintenanceMethodData","维保方式","维保方式");
+
         cfg.getPoClassFile().addSimpleProperty(AssetStatus.class,"assetCycleStatus","assetCycleStatus","assetCycleStatus");
        // cfg.getPoClassFile().addSimpleProperty(Rack.class,"rack","机柜","机柜");
         cfg.getPoClassFile().addSimpleProperty(AssetRack.class,"rack","机柜","机柜");
@@ -204,6 +207,23 @@ public class EamAssetsGtr extends BaseCodeGenerator {
                 .valueField(DictItemMeta.CODE).
                 textField(DictItemMeta.LABEL).
                 fillWith(AssetMeta.ASSET_MAINTENANCE_STATUS).muliti(false);
+
+        cfg.view().field(EAMTables.EAM_ASSET.MAINTENANCE_METHOD)
+                .basic().label("维保方式")
+                .form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=eam_maintenance_method")
+                .paging(false).filter(false).toolbar(false)
+                .valueField(DictItemMeta.CODE).
+                textField(DictItemMeta.LABEL).
+                fillWith(AssetMeta.MAINTENANCE_METHOD_DATA).muliti(false);
+
+        cfg.view().field(EAMTables.EAM_ASSET.SUGGEST_MAINTENANCE_METHOD)
+                .basic().label("建议维保方式")
+                .form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=eam_suggest_maintenance_method")
+                .paging(false).filter(false).toolbar(false)
+                .valueField(DictItemMeta.CODE).
+                textField(DictItemMeta.LABEL).
+                fillWith(AssetMeta.SUGGEST_MAINTENANCE_METHOD_DATA).muliti(false);
+
 
 
 
