@@ -1,6 +1,12 @@
 package com.dt.platform.eam.service.impl;
 
 import javax.annotation.Resource;
+
+import com.dt.platform.constants.enums.eam.AssetMaintenanceRecordBatchUpdateTypeEnum;
+import com.dt.platform.domain.eam.AssetItem;
+import com.dt.platform.eam.service.IAssetItemService;
+import com.dt.platform.eam.service.IAssetProcessRecordService;
+import com.github.foxnic.commons.lang.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,6 +64,9 @@ public class AssetMaintenanceRecordUServiceImpl extends SuperService<AssetMainte
 
 
 
+	@Autowired
+	private IAssetItemService assetItemService;
+
 	@Override
 	public Object generateId(Field field) {
 		return IDGenerator.getSnowflakeIdString();
@@ -73,8 +82,157 @@ public class AssetMaintenanceRecordUServiceImpl extends SuperService<AssetMainte
 	@Override
 	public Result insert(AssetMaintenanceRecordU assetMaintenanceRecordU,boolean throwsException) {
 
+		if(StringUtil.isBlank(assetMaintenanceRecordU.getMaintenanceUpdateId())){
+			return ErrorDesc.failureMessage("maintenanceUpdateId参数未设置");
+		}
+
+		List<String> recordIdList=new ArrayList<>();
+		if(assetMaintenanceRecordU.getRecordIdList()!=null&&assetMaintenanceRecordU.getRecordIdList().size()>0){
+			recordIdList=assetMaintenanceRecordU.getRecordIdList();
+		}
+
 
 		Result r=super.insert(assetMaintenanceRecordU,throwsException);
+
+		String updateId=assetMaintenanceRecordU.getMaintenanceUpdateId();
+		String id=assetMaintenanceRecordU.getId();
+
+		if(recordIdList.size()>0){
+			for(String rId:recordIdList){
+				AssetItem item=new AssetItem();
+				item.setHandleId(id);
+				item.setAssetId(rId);
+				assetItemService.insert(item);
+			}
+		}
+
+		if(AssetMaintenanceRecordBatchUpdateTypeEnum.ALL.code().equals(assetMaintenanceRecordU.getUMaintainerId())){
+			dao.execute("update eam_asset_maintenance_record a set a.maintainer_id=(select maintainer_id from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}else if(recordIdList.size()>0&&AssetMaintenanceRecordBatchUpdateTypeEnum.SELECTED.code().equals(assetMaintenanceRecordU.getUMaintainerId())){
+			dao.execute("update eam_asset_maintenance_record a set a.maintainer_id=(select maintainer_id from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=? and id in (select asset_id from eam_asset_item where handle_id=?)",id,updateId,id);
+		}
+		if(AssetMaintenanceRecordBatchUpdateTypeEnum.ALL.code().equals(assetMaintenanceRecordU.getUSMaintainerId())){
+			dao.execute("update eam_asset_maintenance_record a set a.s_maintainer_id=(select s_maintainer_id from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}else if(recordIdList.size()>0&&AssetMaintenanceRecordBatchUpdateTypeEnum.SELECTED.code().equals(assetMaintenanceRecordU.getUSMaintainerId())){
+			dao.execute("update eam_asset_maintenance_record a set a.s_maintainer_id=(select s_maintainer_id from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=? and id in (select asset_id from eam_asset_item where handle_id=?)",id,updateId,id);
+		}
+
+
+		if(AssetMaintenanceRecordBatchUpdateTypeEnum.ALL.code().equals(assetMaintenanceRecordU.getUMaintainerName())){
+			dao.execute("update eam_asset_maintenance_record a set a.maintainer_name=(select maintainer_name from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}else if(recordIdList.size()>0&&AssetMaintenanceRecordBatchUpdateTypeEnum.SELECTED.code().equals(assetMaintenanceRecordU.getUMaintainerName())){
+			dao.execute("update eam_asset_maintenance_record a set a.maintainer_name=(select maintainer_name from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=? and id in (select asset_id from eam_asset_item where handle_id=?)",id,updateId,id);
+		}
+		if(AssetMaintenanceRecordBatchUpdateTypeEnum.ALL.code().equals(assetMaintenanceRecordU.getUSMaintainerName())){
+			dao.execute("update eam_asset_maintenance_record a set a.s_maintainer_name=(select s_maintainer_name from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}else if(recordIdList.size()>0&&AssetMaintenanceRecordBatchUpdateTypeEnum.SELECTED.code().equals(assetMaintenanceRecordU.getUSMaintainerName())){
+			dao.execute("update eam_asset_maintenance_record a set a.s_maintainer_name=(select s_maintainer_name from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=? and id in (select asset_id from eam_asset_item where handle_id=?)",id,updateId,id);
+		}
+
+
+		if(AssetMaintenanceRecordBatchUpdateTypeEnum.ALL.code().equals(assetMaintenanceRecordU.getUMaintenanceStatus())){
+			dao.execute("update eam_asset_maintenance_record a set a.maintenance_status=(select maintenance_status from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}else if(recordIdList.size()>0&&AssetMaintenanceRecordBatchUpdateTypeEnum.SELECTED.code().equals(assetMaintenanceRecordU.getUMaintenanceStatus())){
+			dao.execute("update eam_asset_maintenance_record a set a.maintenance_status=(select maintenance_status from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=? and id in (select asset_id from eam_asset_item where handle_id=?)",id,updateId,id);
+		}
+		if(AssetMaintenanceRecordBatchUpdateTypeEnum.ALL.code().equals(assetMaintenanceRecordU.getUSMaintenanceStatus())){
+			dao.execute("update eam_asset_maintenance_record a set a.s_maintenance_status=(select s_maintenance_status from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}else if(recordIdList.size()>0&&AssetMaintenanceRecordBatchUpdateTypeEnum.SELECTED.code().equals(assetMaintenanceRecordU.getUSMaintenanceStatus())){
+			dao.execute("update eam_asset_maintenance_record a set a.s_maintenance_status=(select s_maintenance_status from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=? and id in (select asset_id from eam_asset_item where handle_id=?)",id,updateId,id);
+		}
+
+
+		if(AssetMaintenanceRecordBatchUpdateTypeEnum.ALL.code().equals(assetMaintenanceRecordU.getUMaintenanceMethod())){
+			dao.execute("update eam_asset_maintenance_record a set a.maintenance_method=(select maintenance_method from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}else if(recordIdList.size()>0&&AssetMaintenanceRecordBatchUpdateTypeEnum.SELECTED.code().equals(assetMaintenanceRecordU.getUMaintenanceMethod())){
+			dao.execute("update eam_asset_maintenance_record a set a.maintenance_method=(select maintenance_method from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=? and id in (select asset_id from eam_asset_item where handle_id=?)",id,updateId,id);
+		}
+		if(AssetMaintenanceRecordBatchUpdateTypeEnum.ALL.code().equals(assetMaintenanceRecordU.getUSMaintenanceMethod())){
+			dao.execute("update eam_asset_maintenance_record a set a.s_maintenance_method=(select s_maintenance_method from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}else if(recordIdList.size()>0&&AssetMaintenanceRecordBatchUpdateTypeEnum.SELECTED.code().equals(assetMaintenanceRecordU.getUSMaintenanceMethod())){
+			dao.execute("update eam_asset_maintenance_record a set a.s_maintenance_method=(select s_maintenance_method from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=? and id in (select asset_id from eam_asset_item where handle_id=?)",id,updateId,id);
+		}
+
+		if(AssetMaintenanceRecordBatchUpdateTypeEnum.ALL.code().equals(assetMaintenanceRecordU.getUSuggestMaintenanceMethod())){
+			dao.execute("update eam_asset_maintenance_record a set a.suggest_maintenance_method=(select suggest_maintenance_method from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}else if(recordIdList.size()>0&&AssetMaintenanceRecordBatchUpdateTypeEnum.SELECTED.code().equals(assetMaintenanceRecordU.getUSuggestMaintenanceMethod())){
+			dao.execute("update eam_asset_maintenance_record a set a.suggest_maintenance_method=(select suggest_maintenance_method from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=? and id in (select asset_id from eam_asset_item where handle_id=?)",id,updateId,id);
+		}
+		if(AssetMaintenanceRecordBatchUpdateTypeEnum.ALL.code().equals(assetMaintenanceRecordU.getUSSuggestMaintenanceMethod())){
+			dao.execute("update eam_asset_maintenance_record a set a.s_suggest_maintenance_method=(select s_suggest_maintenance_method from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}else if(recordIdList.size()>0&&AssetMaintenanceRecordBatchUpdateTypeEnum.SELECTED.code().equals(assetMaintenanceRecordU.getUSSuggestMaintenanceMethod())){
+			dao.execute("update eam_asset_maintenance_record a set a.s_suggest_maintenance_method=(select s_suggest_maintenance_method from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=? and id in (select asset_id from eam_asset_item where handle_id=?)",id,updateId,id);
+		}
+
+
+		if(AssetMaintenanceRecordBatchUpdateTypeEnum.ALL.code().equals(assetMaintenanceRecordU.getUContacts())){
+			dao.execute("update eam_asset_maintenance_record a set a.contacts=(select contacts from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}else if(recordIdList.size()>0&&AssetMaintenanceRecordBatchUpdateTypeEnum.SELECTED.code().equals(assetMaintenanceRecordU.getUContacts())){
+			dao.execute("update eam_asset_maintenance_record a set a.contacts=(select contacts from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}
+		if(AssetMaintenanceRecordBatchUpdateTypeEnum.ALL.code().equals(assetMaintenanceRecordU.getUSContacts())){
+			dao.execute("update eam_asset_maintenance_record a set a.s_contacts=(select s_contacts from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}else if(recordIdList.size()>0&&AssetMaintenanceRecordBatchUpdateTypeEnum.SELECTED.code().equals(assetMaintenanceRecordU.getUSContacts())){
+			dao.execute("update eam_asset_maintenance_record a set a.s_contacts=(select s_contacts from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}
+
+		if(AssetMaintenanceRecordBatchUpdateTypeEnum.ALL.code().equals(assetMaintenanceRecordU.getUDirector())){
+			dao.execute("update eam_asset_maintenance_record a set a.director=(select director from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}else if(recordIdList.size()>0&&AssetMaintenanceRecordBatchUpdateTypeEnum.SELECTED.code().equals(assetMaintenanceRecordU.getUDirector())){
+			dao.execute("update eam_asset_maintenance_record a set a.director=(select director from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}
+		if(AssetMaintenanceRecordBatchUpdateTypeEnum.ALL.code().equals(assetMaintenanceRecordU.getUSDirector())){
+			dao.execute("update eam_asset_maintenance_record a set a.s_director=(select s_director from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}else if(recordIdList.size()>0&&AssetMaintenanceRecordBatchUpdateTypeEnum.SELECTED.code().equals(assetMaintenanceRecordU.getUSDirector())){
+			dao.execute("update eam_asset_maintenance_record a set a.s_director=(select s_director from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}
+
+		if(AssetMaintenanceRecordBatchUpdateTypeEnum.ALL.code().equals(assetMaintenanceRecordU.getUContactInformation())){
+			dao.execute("update eam_asset_maintenance_record a set a.contact_information=(select contact_information from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}else if(recordIdList.size()>0&&AssetMaintenanceRecordBatchUpdateTypeEnum.SELECTED.code().equals(assetMaintenanceRecordU.getUContactInformation())){
+			dao.execute("update eam_asset_maintenance_record a set a.contact_information=(select contact_information from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}
+		if(AssetMaintenanceRecordBatchUpdateTypeEnum.ALL.code().equals(assetMaintenanceRecordU.getUSContactInformation())){
+			dao.execute("update eam_asset_maintenance_record a set a.s_contact_information=(select s_contact_information from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}else if(recordIdList.size()>0&&AssetMaintenanceRecordBatchUpdateTypeEnum.SELECTED.code().equals(assetMaintenanceRecordU.getUSContactInformation())){
+			dao.execute("update eam_asset_maintenance_record a set a.s_contact_information=(select s_contact_information from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}
+
+		if(AssetMaintenanceRecordBatchUpdateTypeEnum.ALL.code().equals(assetMaintenanceRecordU.getUMaintenanceNotes())){
+			dao.execute("update eam_asset_maintenance_record a set a.maintenance_notes=(select maintenance_notes from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}else if(recordIdList.size()>0&&AssetMaintenanceRecordBatchUpdateTypeEnum.SELECTED.code().equals(assetMaintenanceRecordU.getUMaintenanceNotes())){
+			dao.execute("update eam_asset_maintenance_record a set a.maintenance_notes=(select maintenance_notes from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}
+		if(AssetMaintenanceRecordBatchUpdateTypeEnum.ALL.code().equals(assetMaintenanceRecordU.getUSMaintenanceNotes())){
+			dao.execute("update eam_asset_maintenance_record a set a.s_maintenance_notes=(select s_maintenance_notes from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}else if(recordIdList.size()>0&&AssetMaintenanceRecordBatchUpdateTypeEnum.SELECTED.code().equals(assetMaintenanceRecordU.getUSMaintenanceNotes())){
+			dao.execute("update eam_asset_maintenance_record a set a.s_maintenance_notes=(select s_maintenance_notes from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}
+
+		if(AssetMaintenanceRecordBatchUpdateTypeEnum.ALL.code().equals(assetMaintenanceRecordU.getUMaintenanceStartDate())){
+			dao.execute("update eam_asset_maintenance_record a set a.maintenance_start_date=(select maintenance_start_date from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}else if(recordIdList.size()>0&&AssetMaintenanceRecordBatchUpdateTypeEnum.SELECTED.code().equals(assetMaintenanceRecordU.getUMaintenanceStartDate())){
+			dao.execute("update eam_asset_maintenance_record a set a.maintenance_start_date=(select maintenance_start_date from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}
+		if(AssetMaintenanceRecordBatchUpdateTypeEnum.ALL.code().equals(assetMaintenanceRecordU.getUSMaintenanceStartDate())){
+			dao.execute("update eam_asset_maintenance_record a set a.s_maintenance_start_date=(select s_maintenance_start_date from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}else if(recordIdList.size()>0&&AssetMaintenanceRecordBatchUpdateTypeEnum.SELECTED.code().equals(assetMaintenanceRecordU.getUSMaintenanceStartDate())){
+			dao.execute("update eam_asset_maintenance_record a set a.s_maintenance_start_date=(select s_maintenance_start_date from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}
+
+
+		if(AssetMaintenanceRecordBatchUpdateTypeEnum.ALL.code().equals(assetMaintenanceRecordU.getUMaintenanceEndDate())){
+			dao.execute("update eam_asset_maintenance_record a set a.maintenance_end_date=(select maintenance_end_date from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}else if(recordIdList.size()>0&&AssetMaintenanceRecordBatchUpdateTypeEnum.SELECTED.code().equals(assetMaintenanceRecordU.getUMaintenanceEndDate())){
+			dao.execute("update eam_asset_maintenance_record a set a.maintenance_end_date=(select maintenance_end_date from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}
+		if(AssetMaintenanceRecordBatchUpdateTypeEnum.ALL.code().equals(assetMaintenanceRecordU.getUSMaintenanceEndDate())){
+			dao.execute("update eam_asset_maintenance_record a set a.s_maintenance_end_date=(select s_maintenance_end_date from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}else if(recordIdList.size()>0&&AssetMaintenanceRecordBatchUpdateTypeEnum.SELECTED.code().equals(assetMaintenanceRecordU.getUSMaintenanceEndDate())){
+			dao.execute("update eam_asset_maintenance_record a set a.s_maintenance_end_date=(select s_maintenance_end_date from eam_asset_maintenance_record_u where id=?) where maintenance_update_id=?",id,updateId);
+		}
+
+
 		return r;
 	}
 
