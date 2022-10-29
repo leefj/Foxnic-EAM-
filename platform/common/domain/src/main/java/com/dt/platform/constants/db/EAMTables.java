@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-10-27 21:22:08
+ * @since 2022-10-29 15:06:35
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -581,6 +581,16 @@ public class EAMTables {
 		public static final DBField MAINTENANCE_STATUS = new DBField(DBDataType.STRING , "maintenance_status","maintenanceStatus","维保状态","维保状态",false,false,true);
 		
 		/**
+		 * 维保方式
+		*/
+		public static final DBField MAINTENANCE_METHOD = new DBField(DBDataType.STRING , "maintenance_method","maintenanceMethod","维保方式","维保方式",false,false,true);
+		
+		/**
+		 * 建议维保方式
+		*/
+		public static final DBField SUGGEST_MAINTENANCE_METHOD = new DBField(DBDataType.STRING , "suggest_maintenance_method","suggestMaintenanceMethod","建议维保方式","建议维保方式",false,false,true);
+		
+		/**
 		 * 联系人
 		*/
 		public static final DBField CONTACTS = new DBField(DBDataType.STRING , "contacts","contacts","联系人","联系人",false,false,true);
@@ -901,7 +911,7 @@ public class EAMTables {
 		public static final DBField ASSET_SELECTED_DATA = new DBField(DBDataType.STRING , "asset_selected_data","assetSelectedData","选择","选择",false,false,true);
 		
 		public EAM_ASSET() {
-			this.init($NAME,"资产" , ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , REGION_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , SUPPLIER_ID , TAX_AMOUNT_RATE , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , ORIGINAL_UNIT_PRICE , CURRENT_YEAR_DEPRECIATION , DEPRECIATION_YEAR , ACCUMULATED_DEPRECIATION , MONTH_DEPRECIATION_PRICE , RESIDUALS_RATE , RESIDUALS_PRICE , NAV_PRICE , PURCHASE_UNIT_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL2 , LABEL3 , LABEL4 , LABEL5 , INTERNAL_CONTROL_LABEL , BILL_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA);
+			this.init($NAME,"资产" , ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , REGION_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , MAINTENANCE_METHOD , SUGGEST_MAINTENANCE_METHOD , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , SUPPLIER_ID , TAX_AMOUNT_RATE , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , ORIGINAL_UNIT_PRICE , CURRENT_YEAR_DEPRECIATION , DEPRECIATION_YEAR , ACCUMULATED_DEPRECIATION , MONTH_DEPRECIATION_PRICE , RESIDUALS_RATE , RESIDUALS_PRICE , NAV_PRICE , PURCHASE_UNIT_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL2 , LABEL3 , LABEL4 , LABEL5 , INTERNAL_CONTROL_LABEL , BILL_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA);
 		}
 		public static final EAM_ASSET $TABLE=new EAM_ASSET();
 	}
@@ -4476,6 +4486,581 @@ public class EAMTables {
 			this.init($NAME,"维保处理" , ID , OWNER_TYPE , BUSINESS_CODE , HANDLE_STATUS , NAME , CONTRACT_ID , MAINTAINER_ID , STARTDATE , ENDDATE , BUSINESS_DATE , NOTES , ORIGINATOR_ID , OPER_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , SELECTED_CODE);
 		}
 		public static final EAM_ASSET_MAINTENANCE $TABLE=new EAM_ASSET_MAINTENANCE();
+	}
+	
+	/**
+	 * 维保更新记录
+	*/
+	public static class EAM_ASSET_MAINTENANCE_RECORD extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "eam_asset_maintenance_record";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 维保更新
+		*/
+		public static final DBField MAINTENANCE_UPDATE_ID = new DBField(DBDataType.STRING , "maintenance_update_id","maintenanceUpdateId","维保更新","维保更新",false,false,true);
+		
+		/**
+		 * 资产
+		*/
+		public static final DBField ASSET_ID = new DBField(DBDataType.STRING , "asset_id","assetId","资产","资产",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField MAINTENANCE_NOTES = new DBField(DBDataType.STRING , "maintenance_notes","maintenanceNotes","备注","备注",false,false,true);
+		
+		/**
+		 * 备注[状态]
+		*/
+		public static final DBField S_MAINTENANCE_NOTES = new DBField(DBDataType.STRING , "s_maintenance_notes","sMaintenanceNotes","备注[状态]","备注[状态]",false,false,true);
+		
+		/**
+		 * 维保厂商
+		*/
+		public static final DBField MAINTAINER_ID = new DBField(DBDataType.STRING , "maintainer_id","maintainerId","维保厂商","维保厂商",false,false,true);
+		
+		/**
+		 * 维保厂商[状态]
+		*/
+		public static final DBField S_MAINTAINER_ID = new DBField(DBDataType.STRING , "s_maintainer_id","sMaintainerId","维保厂商[状态]","维保厂商[状态]",false,false,true);
+		
+		/**
+		 * 维保厂商名称
+		*/
+		public static final DBField MAINTAINER_NAME = new DBField(DBDataType.STRING , "maintainer_name","maintainerName","维保厂商名称","维保厂商名称",false,false,true);
+		
+		/**
+		 * 维保厂商名称[状态]
+		*/
+		public static final DBField S_MAINTAINER_NAME = new DBField(DBDataType.STRING , "s_maintainer_name","sMaintainerName","维保厂商名称[状态]","维保厂商名称[状态]",false,false,true);
+		
+		/**
+		 * 维保状态
+		*/
+		public static final DBField MAINTENANCE_STATUS = new DBField(DBDataType.STRING , "maintenance_status","maintenanceStatus","维保状态","维保状态",false,false,true);
+		
+		/**
+		 * 维保状态[状态]
+		*/
+		public static final DBField S_MAINTENANCE_STATUS = new DBField(DBDataType.STRING , "s_maintenance_status","sMaintenanceStatus","维保状态[状态]","维保状态[状态]",false,false,true);
+		
+		/**
+		 * 维保方式
+		*/
+		public static final DBField MAINTENANCE_METHOD = new DBField(DBDataType.STRING , "maintenance_method","maintenanceMethod","维保方式","维保方式",false,false,true);
+		
+		/**
+		 * 维保方式[状态]
+		*/
+		public static final DBField S_MAINTENANCE_METHOD = new DBField(DBDataType.STRING , "s_maintenance_method","sMaintenanceMethod","维保方式[状态]","维保方式[状态]",false,false,true);
+		
+		/**
+		 * 建议维保方式
+		*/
+		public static final DBField SUGGEST_MAINTENANCE_METHOD = new DBField(DBDataType.STRING , "suggest_maintenance_method","suggestMaintenanceMethod","建议维保方式","建议维保方式",false,false,true);
+		
+		/**
+		 * 建议维保方式[状态]
+		*/
+		public static final DBField S_SUGGEST_MAINTENANCE_METHOD = new DBField(DBDataType.STRING , "s_suggest_maintenance_method","sSuggestMaintenanceMethod","建议维保方式[状态]","建议维保方式[状态]",false,false,true);
+		
+		/**
+		 * 联系人
+		*/
+		public static final DBField CONTACTS = new DBField(DBDataType.STRING , "contacts","contacts","联系人","联系人",false,false,true);
+		
+		/**
+		 * 联系人[状态]
+		*/
+		public static final DBField S_CONTACTS = new DBField(DBDataType.STRING , "s_contacts","sContacts","联系人[状态]","联系人[状态]",false,false,true);
+		
+		/**
+		 * 联系方式
+		*/
+		public static final DBField CONTACT_INFORMATION = new DBField(DBDataType.STRING , "contact_information","contactInformation","联系方式","联系方式",false,false,true);
+		
+		/**
+		 * 联系方式[状态]
+		*/
+		public static final DBField S_CONTACT_INFORMATION = new DBField(DBDataType.STRING , "s_contact_information","sContactInformation","联系方式[状态]","联系方式[状态]",false,false,true);
+		
+		/**
+		 * 负责人
+		*/
+		public static final DBField DIRECTOR = new DBField(DBDataType.STRING , "director","director","负责人","负责人",false,false,true);
+		
+		/**
+		 * 负责人[状态]
+		*/
+		public static final DBField S_DIRECTOR = new DBField(DBDataType.STRING , "s_director","sDirector","负责人[状态]","负责人[状态]",false,false,true);
+		
+		/**
+		 * 维保开始时间
+		*/
+		public static final DBField MAINTENANCE_START_DATE = new DBField(DBDataType.DATE , "maintenance_start_date","maintenanceStartDate","维保开始时间","维保开始时间",false,false,true);
+		
+		/**
+		 * 维保开始时间[状态]
+		*/
+		public static final DBField S_MAINTENANCE_START_DATE = new DBField(DBDataType.STRING , "s_maintenance_start_date","sMaintenanceStartDate","维保开始时间[状态]","维保开始时间[状态]",false,false,true);
+		
+		/**
+		 * 维保到期时间
+		*/
+		public static final DBField MAINTENANCE_END_DATE = new DBField(DBDataType.DATE , "maintenance_end_date","maintenanceEndDate","维保到期时间","维保到期时间",false,false,true);
+		
+		/**
+		 * 维保到期时间[状态]
+		*/
+		public static final DBField S_MAINTENANCE_END_DATE = new DBField(DBDataType.STRING , "s_maintenance_end_date","sMaintenanceEndDate","维保到期时间[状态]","维保到期时间[状态]",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public EAM_ASSET_MAINTENANCE_RECORD() {
+			this.init($NAME,"维保更新记录" , ID , MAINTENANCE_UPDATE_ID , ASSET_ID , MAINTENANCE_NOTES , S_MAINTENANCE_NOTES , MAINTAINER_ID , S_MAINTAINER_ID , MAINTAINER_NAME , S_MAINTAINER_NAME , MAINTENANCE_STATUS , S_MAINTENANCE_STATUS , MAINTENANCE_METHOD , S_MAINTENANCE_METHOD , SUGGEST_MAINTENANCE_METHOD , S_SUGGEST_MAINTENANCE_METHOD , CONTACTS , S_CONTACTS , CONTACT_INFORMATION , S_CONTACT_INFORMATION , DIRECTOR , S_DIRECTOR , MAINTENANCE_START_DATE , S_MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , S_MAINTENANCE_END_DATE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final EAM_ASSET_MAINTENANCE_RECORD $TABLE=new EAM_ASSET_MAINTENANCE_RECORD();
+	}
+	
+	/**
+	 * 维保更新记录
+	*/
+	public static class EAM_ASSET_MAINTENANCE_RECORD_U extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "eam_asset_maintenance_record_u";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 维保更新
+		*/
+		public static final DBField MAINTENANCE_UPDATE_ID = new DBField(DBDataType.STRING , "maintenance_update_id","maintenanceUpdateId","维保更新","维保更新",false,false,true);
+		
+		/**
+		 * 维保厂商
+		*/
+		public static final DBField MAINTAINER_ID = new DBField(DBDataType.STRING , "maintainer_id","maintainerId","维保厂商","维保厂商",false,false,true);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField S_MAINTAINER_ID = new DBField(DBDataType.STRING , "s_maintainer_id","sMaintainerId","状态","状态",false,false,true);
+		
+		/**
+		 * 更新方式
+		*/
+		public static final DBField U_MAINTAINER_ID = new DBField(DBDataType.STRING , "u_maintainer_id","uMaintainerId","更新方式","更新方式",false,false,true);
+		
+		/**
+		 * 更新方式
+		*/
+		public static final DBField U_S_MAINTAINER_ID = new DBField(DBDataType.STRING , "u_s_maintainer_id","uSMaintainerId","更新方式","更新方式",false,false,true);
+		
+		/**
+		 * 维保厂商名称
+		*/
+		public static final DBField MAINTAINER_NAME = new DBField(DBDataType.STRING , "maintainer_name","maintainerName","维保厂商名称","维保厂商名称",false,false,true);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField S_MAINTAINER_NAME = new DBField(DBDataType.STRING , "s_maintainer_name","sMaintainerName","状态","状态",false,false,true);
+		
+		/**
+		 * 更新方式
+		*/
+		public static final DBField U_MAINTAINER_NAME = new DBField(DBDataType.STRING , "u_maintainer_name","uMaintainerName","更新方式","更新方式",false,false,true);
+		
+		/**
+		 * 更新方式
+		*/
+		public static final DBField U_S_MAINTAINER_NAME = new DBField(DBDataType.STRING , "u_s_maintainer_name","uSMaintainerName","更新方式","更新方式",false,false,true);
+		
+		/**
+		 * 维保状态
+		*/
+		public static final DBField MAINTENANCE_STATUS = new DBField(DBDataType.STRING , "maintenance_status","maintenanceStatus","维保状态","维保状态",false,false,true);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField S_MAINTENANCE_STATUS = new DBField(DBDataType.STRING , "s_maintenance_status","sMaintenanceStatus","状态","状态",false,false,true);
+		
+		/**
+		 * 更新方式
+		*/
+		public static final DBField U_MAINTENANCE_STATUS = new DBField(DBDataType.STRING , "u_maintenance_status","uMaintenanceStatus","更新方式","更新方式",false,false,true);
+		
+		/**
+		 * 更新方式
+		*/
+		public static final DBField U_S_MAINTENANCE_STATUS = new DBField(DBDataType.STRING , "u_s_maintenance_status","uSMaintenanceStatus","更新方式","更新方式",false,false,true);
+		
+		/**
+		 * 维保方式
+		*/
+		public static final DBField MAINTENANCE_METHOD = new DBField(DBDataType.STRING , "maintenance_method","maintenanceMethod","维保方式","维保方式",false,false,true);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField S_MAINTENANCE_METHOD = new DBField(DBDataType.STRING , "s_maintenance_method","sMaintenanceMethod","状态","状态",false,false,true);
+		
+		/**
+		 * 更新方式
+		*/
+		public static final DBField U_MAINTENANCE_METHOD = new DBField(DBDataType.STRING , "u_maintenance_method","uMaintenanceMethod","更新方式","更新方式",false,false,true);
+		
+		/**
+		 * 更新方式
+		*/
+		public static final DBField U_S_MAINTENANCE_METHOD = new DBField(DBDataType.STRING , "u_s_maintenance_method","uSMaintenanceMethod","更新方式","更新方式",false,false,true);
+		
+		/**
+		 * 联系方式
+		*/
+		public static final DBField CONTACT_INFORMATION = new DBField(DBDataType.STRING , "contact_information","contactInformation","联系方式","联系方式",false,false,true);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField S_CONTACT_INFORMATION = new DBField(DBDataType.STRING , "s_contact_information","sContactInformation","状态","状态",false,false,true);
+		
+		/**
+		 * 更新方式
+		*/
+		public static final DBField U_CONTACT_INFORMATION = new DBField(DBDataType.STRING , "u_contact_information","uContactInformation","更新方式","更新方式",false,false,true);
+		
+		/**
+		 * 更新方式
+		*/
+		public static final DBField U_S_CONTACT_INFORMATION = new DBField(DBDataType.STRING , "u_s_contact_information","uSContactInformation","更新方式","更新方式",false,false,true);
+		
+		/**
+		 * 建议维保方式
+		*/
+		public static final DBField SUGGEST_MAINTENANCE_METHOD = new DBField(DBDataType.STRING , "suggest_maintenance_method","suggestMaintenanceMethod","建议维保方式","建议维保方式",false,false,true);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField S_SUGGEST_MAINTENANCE_METHOD = new DBField(DBDataType.STRING , "s_suggest_maintenance_method","sSuggestMaintenanceMethod","状态","状态",false,false,true);
+		
+		/**
+		 * 更新方式
+		*/
+		public static final DBField U_SUGGEST_MAINTENANCE_METHOD = new DBField(DBDataType.STRING , "u_suggest_maintenance_method","uSuggestMaintenanceMethod","更新方式","更新方式",false,false,true);
+		
+		/**
+		 * 更新方式
+		*/
+		public static final DBField U_S_SUGGEST_MAINTENANCE_METHOD = new DBField(DBDataType.STRING , "u_s_suggest_maintenance_method","uSSuggestMaintenanceMethod","更新方式","更新方式",false,false,true);
+		
+		/**
+		 * 联系人
+		*/
+		public static final DBField CONTACTS = new DBField(DBDataType.STRING , "contacts","contacts","联系人","联系人",false,false,true);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField S_CONTACTS = new DBField(DBDataType.STRING , "s_contacts","sContacts","状态","状态",false,false,true);
+		
+		/**
+		 * 更新方式
+		*/
+		public static final DBField U_CONTACTS = new DBField(DBDataType.STRING , "u_contacts","uContacts","更新方式","更新方式",false,false,true);
+		
+		/**
+		 * 更新方式
+		*/
+		public static final DBField U_S_CONTACTS = new DBField(DBDataType.STRING , "u_s_contacts","uSContacts","更新方式","更新方式",false,false,true);
+		
+		/**
+		 * 负责人
+		*/
+		public static final DBField DIRECTOR = new DBField(DBDataType.STRING , "director","director","负责人","负责人",false,false,true);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField S_DIRECTOR = new DBField(DBDataType.STRING , "s_director","sDirector","状态","状态",false,false,true);
+		
+		/**
+		 * 更新方式
+		*/
+		public static final DBField U_DIRECTOR = new DBField(DBDataType.STRING , "u_director","uDirector","更新方式","更新方式",false,false,true);
+		
+		/**
+		 * 更新方式
+		*/
+		public static final DBField U_S_DIRECTOR = new DBField(DBDataType.STRING , "u_s_director","uSDirector","更新方式","更新方式",false,false,true);
+		
+		/**
+		 * 维保开始时间
+		*/
+		public static final DBField MAINTENANCE_START_DATE = new DBField(DBDataType.DATE , "maintenance_start_date","maintenanceStartDate","维保开始时间","维保开始时间",false,false,true);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField S_MAINTENANCE_START_DATE = new DBField(DBDataType.STRING , "s_maintenance_start_date","sMaintenanceStartDate","状态","状态",false,false,true);
+		
+		/**
+		 * 更新方式
+		*/
+		public static final DBField U_MAINTENANCE_START_DATE = new DBField(DBDataType.STRING , "u_maintenance_start_date","uMaintenanceStartDate","更新方式","更新方式",false,false,true);
+		
+		/**
+		 * 更新方式
+		*/
+		public static final DBField U_S_MAINTENANCE_START_DATE = new DBField(DBDataType.STRING , "u_s_maintenance_start_date","uSMaintenanceStartDate","更新方式","更新方式",false,false,true);
+		
+		/**
+		 * 维保到期时间
+		*/
+		public static final DBField MAINTENANCE_END_DATE = new DBField(DBDataType.DATE , "maintenance_end_date","maintenanceEndDate","维保到期时间","维保到期时间",false,false,true);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField S_MAINTENANCE_END_DATE = new DBField(DBDataType.STRING , "s_maintenance_end_date","sMaintenanceEndDate","状态","状态",false,false,true);
+		
+		/**
+		 * 更新方式
+		*/
+		public static final DBField U_MAINTENANCE_END_DATE = new DBField(DBDataType.STRING , "u_maintenance_end_date","uMaintenanceEndDate","更新方式","更新方式",false,false,true);
+		
+		/**
+		 * 更新方式
+		*/
+		public static final DBField U_S_MAINTENANCE_END_DATE = new DBField(DBDataType.STRING , "u_s_maintenance_end_date","uSMaintenanceEndDate","更新方式","更新方式",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField MAINTENANCE_NOTES = new DBField(DBDataType.STRING , "maintenance_notes","maintenanceNotes","备注","备注",false,false,true);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField S_MAINTENANCE_NOTES = new DBField(DBDataType.STRING , "s_maintenance_notes","sMaintenanceNotes","状态","状态",false,false,true);
+		
+		/**
+		 * 更新方式
+		*/
+		public static final DBField U_MAINTENANCE_NOTES = new DBField(DBDataType.STRING , "u_maintenance_notes","uMaintenanceNotes","更新方式","更新方式",false,false,true);
+		
+		/**
+		 * 更新方式
+		*/
+		public static final DBField U_S_MAINTENANCE_NOTES = new DBField(DBDataType.STRING , "u_s_maintenance_notes","uSMaintenanceNotes","更新方式","更新方式",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public EAM_ASSET_MAINTENANCE_RECORD_U() {
+			this.init($NAME,"维保更新记录" , ID , MAINTENANCE_UPDATE_ID , MAINTAINER_ID , S_MAINTAINER_ID , U_MAINTAINER_ID , U_S_MAINTAINER_ID , MAINTAINER_NAME , S_MAINTAINER_NAME , U_MAINTAINER_NAME , U_S_MAINTAINER_NAME , MAINTENANCE_STATUS , S_MAINTENANCE_STATUS , U_MAINTENANCE_STATUS , U_S_MAINTENANCE_STATUS , MAINTENANCE_METHOD , S_MAINTENANCE_METHOD , U_MAINTENANCE_METHOD , U_S_MAINTENANCE_METHOD , CONTACT_INFORMATION , S_CONTACT_INFORMATION , U_CONTACT_INFORMATION , U_S_CONTACT_INFORMATION , SUGGEST_MAINTENANCE_METHOD , S_SUGGEST_MAINTENANCE_METHOD , U_SUGGEST_MAINTENANCE_METHOD , U_S_SUGGEST_MAINTENANCE_METHOD , CONTACTS , S_CONTACTS , U_CONTACTS , U_S_CONTACTS , DIRECTOR , S_DIRECTOR , U_DIRECTOR , U_S_DIRECTOR , MAINTENANCE_START_DATE , S_MAINTENANCE_START_DATE , U_MAINTENANCE_START_DATE , U_S_MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , S_MAINTENANCE_END_DATE , U_MAINTENANCE_END_DATE , U_S_MAINTENANCE_END_DATE , MAINTENANCE_NOTES , S_MAINTENANCE_NOTES , U_MAINTENANCE_NOTES , U_S_MAINTENANCE_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final EAM_ASSET_MAINTENANCE_RECORD_U $TABLE=new EAM_ASSET_MAINTENANCE_RECORD_U();
+	}
+	
+	/**
+	 * 维保更新
+	*/
+	public static class EAM_ASSET_MAINTENANCE_UPDATE extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "eam_asset_maintenance_update";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 业务编号
+		*/
+		public static final DBField BUSINESS_CODE = new DBField(DBDataType.STRING , "business_code","businessCode","业务编号","业务编号",false,false,true);
+		
+		/**
+		 * 处理状态
+		*/
+		public static final DBField HANDLE_STATUS = new DBField(DBDataType.STRING , "handle_status","handleStatus","处理状态","处理状态",false,false,true);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
+		
+		/**
+		 * 原因
+		*/
+		public static final DBField REASON = new DBField(DBDataType.STRING , "reason","reason","原因","原因",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField CONTENT = new DBField(DBDataType.STRING , "content","content","内容","内容",false,false,true);
+		
+		/**
+		 * 附件
+		*/
+		public static final DBField ATTACH_ID = new DBField(DBDataType.STRING , "attach_id","attachId","附件","附件",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public EAM_ASSET_MAINTENANCE_UPDATE() {
+			this.init($NAME,"维保更新" , ID , BUSINESS_CODE , HANDLE_STATUS , NAME , REASON , CONTENT , ATTACH_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final EAM_ASSET_MAINTENANCE_UPDATE $TABLE=new EAM_ASSET_MAINTENANCE_UPDATE();
 	}
 	
 	/**
@@ -11369,6 +11954,11 @@ public class EAMTables {
 		public static final DBField OPER_DATE = new DBField(DBDataType.DATE , "oper_date","operDate","操作时间","操作时间",false,false,true);
 		
 		/**
+		 * 照片
+		*/
+		public static final DBField PICTURE_ID = new DBField(DBDataType.STRING , "picture_id","pictureId","照片","照片",false,false,true);
+		
+		/**
 		 * 备注
 		*/
 		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
@@ -11414,7 +12004,7 @@ public class EAMTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","数据版本号","数据版本号",false,false,false);
 		
 		public EAM_INVENTORY_ASSET() {
-			this.init($NAME,"盘点明细" , ID , INVENTORY_ID , STATUS , ASSET_ID , OPER_EMPL_ID , ASSET_PLUS_ACTION_TYPE , ASSET_LOSS_ACTION_TYPE , SOURCE , OPER_DATE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"盘点明细" , ID , INVENTORY_ID , STATUS , ASSET_ID , OPER_EMPL_ID , ASSET_PLUS_ACTION_TYPE , ASSET_LOSS_ACTION_TYPE , SOURCE , OPER_DATE , PICTURE_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final EAM_INVENTORY_ASSET $TABLE=new EAM_INVENTORY_ASSET();
 	}
@@ -11569,6 +12159,92 @@ public class EAMTables {
 			this.init($NAME,"盘点负责人" , ID , INVENTORY_ID , USER_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final EAM_INVENTORY_DIRECTOR $TABLE=new EAM_INVENTORY_DIRECTOR();
+	}
+	
+	/**
+	 * 我的盘点
+	*/
+	public static class EAM_INVENTORY_EMPLOYEE extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "eam_inventory_employee";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 盘点
+		*/
+		public static final DBField INVENTORY_ID = new DBField(DBDataType.STRING , "inventory_id","inventoryId","盘点","盘点",false,false,true);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 计划编号
+		*/
+		public static final DBField PLAN_ID = new DBField(DBDataType.STRING , "plan_id","planId","计划编号","计划编号",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		 * 数据版本号
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","数据版本号","数据版本号",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public EAM_INVENTORY_EMPLOYEE() {
+			this.init($NAME,"我的盘点" , ID , INVENTORY_ID , NAME , NOTES , PLAN_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final EAM_INVENTORY_EMPLOYEE $TABLE=new EAM_INVENTORY_EMPLOYEE();
 	}
 	
 	/**

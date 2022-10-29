@@ -44,7 +44,24 @@ public class InventoryPageController extends ViewController {
 		}
 		return proxy;
 	}
-	
+
+	/**
+	 * 盘点
+	 */
+	@RequestMapping("/inventory_employee_asset_list.html")
+	public String inventoryEmployeeAssetList(Model model,HttpServletRequest request) {
+		return prefix+"/inventory_employee_asset_list";
+	}
+
+	/**
+	 * 盘点
+	 */
+	@RequestMapping("/inventory_all_employee_list.html")
+	public String inventoryAllEmployeeList(Model model,HttpServletRequest request) {
+		return prefix+"/inventory_all_employee_list";
+	}
+
+
 	/**
 	 * 资产盘点 功能主页面
 	 */

@@ -1498,6 +1498,8 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		matchMap.put("eam_equipment_environment",assetDataService.queryDictItemDataByDictCode("eam_equipment_environment"));
 		matchMap.put("eam_source",assetDataService.queryDictItemDataByDictCode("eam_source"));
 		matchMap.put("eam_maintenance_status",assetDataService.queryDictItemDataByDictCode("eam_maintenance_status"));
+		matchMap.put("eam_suggest_maintenance_method",assetDataService.queryDictItemDataByDictCode("eam_suggest_maintenance_method"));
+		matchMap.put("eam_maintenance_method",assetDataService.queryDictItemDataByDictCode("eam_maintenance_method"));
 		String pcmCategoryId=null;
 		if(attributeMap.size()>0){
 			Logger.info("本次资产导入为自定义模式");
@@ -1748,6 +1750,8 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				.with(AssetMeta.SAFETY_LEVEL)
 				.with(AssetMeta.EQUIPMENT_ENVIRONMENT)
 				.with(AssetMeta.ASSET_MAINTENANCE_STATUS)
+				.with(AssetMeta.SUGGEST_MAINTENANCE_METHOD_DATA)
+				.with(AssetMeta.MAINTENANCE_METHOD_DATA)
 				.execute();
 //
 

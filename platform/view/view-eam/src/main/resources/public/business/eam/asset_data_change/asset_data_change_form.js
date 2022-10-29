@@ -186,6 +186,60 @@ function FormPage() {
 
 
 
+		fox.renderSelectBox({
+			el: "maintenanceMethod",
+			radio: true,
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("maintenanceMethod",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
+		//渲染 suggestMaintenanceMethod 下拉字段
+		fox.renderSelectBox({
+			el: "suggestMaintenanceMethod",
+			radio: true,
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("suggestMaintenanceMethod",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
+
 
 		//渲染 goodsId 下拉字段
 		fox.renderSelectBox({
@@ -665,6 +719,12 @@ function FormPage() {
 			//设置  设备状态 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#maintenanceStatus",formData.assetMaintenanceStatus);
 
+
+			fox.setSelectValue4QueryApi("#maintenanceMethod",formData.maintenanceMethodData);
+
+			//设置  建议维保方式 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#suggestMaintenanceMethod",formData.suggestMaintenanceMethodData);
+
 			//设置  物品档案 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#goodsId",formData.goods);
 			//设置  厂商 设置下拉框勾选
@@ -827,6 +887,18 @@ function FormPage() {
 		if(!data["maintenanceStatus"]){
 			data["maintenanceStatus"]="";
 		}
+
+
+		data["maintenanceMethod"]=fox.getSelectedValue("maintenanceMethod",false);
+		if(!data["maintenanceMethod"]){
+			data["maintenanceMethod"]="";
+		}
+
+		data["suggestMaintenanceMethod"]=fox.getSelectedValue("suggestMaintenanceMethod",false);
+		if(!data["suggestMaintenanceMethod"]){
+			data["suggestMaintenanceMethod"]="";
+		}
+
 
 		data["safetyLevelCode"]=fox.getSelectedValue("safetyLevelCode",false);
 		if(!data["safetyLevelCode"]){

@@ -23,6 +23,8 @@ public enum AssetDataExportColumnEnum implements CodeTextEnum {
     SAFETY_LEVEL_NAME( "safetyLevelName","safety_level_code" ),
     MAINTENANCE_STATUS( "maintenanceStatusName","maintenance_status" ),
 
+    SUGGEST_MAINTENANCE_METHOD( "suggestMaintenanceMethodName","suggest_maintenance_method" ),
+    MAINTENANCE_METHOD( "maintenanceMethodName","maintenance_method" ),
 
     RACK_NAME( "rackName","rack_id" ),
 

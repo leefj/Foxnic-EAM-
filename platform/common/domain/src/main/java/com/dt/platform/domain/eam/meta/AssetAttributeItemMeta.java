@@ -4,13 +4,14 @@ import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.AssetAttributeItem;
 import java.util.Date;
 import com.dt.platform.domain.eam.AssetAttribute;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:27:08
- * @sign B8559719E6FA753A6D1633A459D5B084
+ * @since 2022-10-28 17:53:45
+ * @sign 76619BED4D662052BFE393E79FF5D75D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -511,5 +512,50 @@ public class AssetAttributeItemMeta {
 			super.setAttribute(attribute);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AssetAttributeItem clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AssetAttributeItem duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setLayoutRow(this.getLayoutRow());
+			inst.setNotes(this.getNotes());
+			inst.setOwnerCode(this.getOwnerCode());
+			inst.setListSort(this.getListSort());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setListContent(this.getListContent());
+			inst.setVersion(this.getVersion());
+			inst.setRequired(this.getRequired());
+			inst.setListShow(this.getListShow());
+			inst.setAttributeId(this.getAttributeId());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setTenantId(this.getTenantId());
+			inst.setLayoutType(this.getLayoutType());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setFormShow(this.getFormShow());
+			inst.setId(this.getId());
+			inst.setLayoutColumn(this.getLayoutColumn());
+			inst.setDimension(this.getDimension());
+			if(all) {
+				inst.setAttribute(this.getAttribute());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

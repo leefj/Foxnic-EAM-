@@ -722,6 +722,8 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         dictColumns.put(AssetMeta.SAFETY_LEVEL_CODE,"eam_safety_level,安全等级");
         dictColumns.put(AssetMeta.EQUIPMENT_ENVIRONMENT_CODE,"eam_equipment_environment,设备运行状态");
         dictColumns.put(AssetMeta.MAINTENANCE_STATUS,"eam_maintenance_status,维保状态");
+        dictColumns.put(AssetMeta.MAINTENANCE_METHOD,"eam_maintenance_method,维保方式");
+        dictColumns.put(AssetMeta.SUGGEST_MAINTENANCE_METHOD,"eam_suggest_maintenance_method,建议维保方式");
         for(String key:dictColumns.keySet()){
             String keyValue=dictColumns.get(key);
             String[] keyValueArr=keyValue.split(",");
@@ -730,6 +732,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
             HashMap<String,String> map=matchMap.get(dict);
             String col=BeanNameUtil.instance().depart(key);
             String valueCol=rcd.getString(col);
+            System.out.println("col:"+col+",valueCol:"+valueCol);
             if(!StringUtil.isBlank(valueCol)){
                 if(map.containsValue(valueCol)){
                     rcd.setValue(col,queryMapKeyByValue(map,valueCol));
@@ -1064,6 +1067,16 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
             //设备状态
             CodeTextEnum vEquipStatus= EnumUtil.parseByCode(AssetEquipmentStatusEnum.class,assetItem.getEquipmentStatus());
             assetMap.put(AssetDataExportColumnEnum.EQUIPMENT_STATUS_NAME.code(),vEquipStatus==null?"":vEquipStatus.text());
+
+            //数据字典
+            if(assetItem.getMaintenanceMethodData()!=null){
+                assetMap.put(AssetDataExportColumnEnum.MAINTENANCE_METHOD.code(),assetItem.getMaintenanceMethodData().getLabel());
+            }
+
+            if(assetItem.getSuggestMaintenanceMethodData()!=null){
+                assetMap.put(AssetDataExportColumnEnum.SUGGEST_MAINTENANCE_METHOD.code(),assetItem.getSuggestMaintenanceMethodData().getLabel());
+            }
+
 
             if(assetItem.getSource()!=null){
                 assetMap.put(AssetDataExportColumnEnum.ASSET_SOURCE_NAME.code(),assetItem.getSource().getLabel());

@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-25 20:25:34
+ * @since 2022-10-28 17:39:58
  */
 
 function FormPage() {
@@ -544,6 +544,60 @@ function FormPage() {
 				return opts;
 			}
 		});
+		//渲染 maintenanceMethod 下拉字段
+		fox.renderSelectBox({
+			el: "maintenanceMethod",
+			radio: true,
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("maintenanceMethod",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
+		//渲染 suggestMaintenanceMethod 下拉字段
+		fox.renderSelectBox({
+			el: "suggestMaintenanceMethod",
+			radio: true,
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("suggestMaintenanceMethod",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
 		laydate.render({
 			elem: '#maintenanceStartDate',
 			format:"yyyy-MM-dd",
@@ -830,6 +884,10 @@ function FormPage() {
 			fox.setSelectValue4QueryApi("#maintainerId",formData.maintnainer);
 			//设置  维保状态 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#maintenanceStatus",formData.assetMaintenanceStatus);
+			//设置  维保方式 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#maintenanceMethod",formData.maintenanceMethodData);
+			//设置  建议维保方式 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#suggestMaintenanceMethod",formData.suggestMaintenanceMethodData);
 			//设置  财务分类 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#financialCategoryId",formData.categoryFinance);
 			//设置  供应商 设置下拉框勾选
@@ -915,6 +973,12 @@ function FormPage() {
 		data["maintainerId"]=fox.getSelectedValue("maintainerId",false);
 		//获取 维保状态 下拉框的值
 		data["maintenanceStatus"]=fox.getSelectedValue("maintenanceStatus",false);
+		//获取 维保方式 下拉框的值
+		data["maintenanceMethod"]=fox.getSelectedValue("maintenanceMethod",false);
+		//获取 建议维保方式 下拉框的值
+		data["suggestMaintenanceMethod"]=fox.getSelectedValue("suggestMaintenanceMethod",false);
+
+
 		//获取 财务分类 下拉框的值
 		data["financialCategoryId"]=fox.getSelectedValue("financialCategoryId",false);
 		//获取 供应商 下拉框的值
