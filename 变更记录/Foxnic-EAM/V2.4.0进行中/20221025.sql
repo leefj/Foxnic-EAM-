@@ -35,7 +35,7 @@ CREATE TABLE `eam_asset_copy_record` (
 -- modify eam_asset
 alter table eam_asset add column suggest_maintenance_method varchar(50) default null comment '建议维保方式' after maintenance_status;
 alter table eam_asset add column maintenance_method varchar(50) default null comment '维保方式' after maintenance_status;
-
+alter table eam_asset add column maintenance_price decimal(10,2) default 0.0  comment '维保价格' after maintenance_status;
 
 -- add sys_config data
 INSERT INTO `sys_config` (`id`, `profile_id`, `catalog_code`, `code`, `name`, `type`, `type_desc`, `value`, `valid`, `notes`, `create_by`, `create_time`, `update_by`, `update_time`, `deleted`, `delete_by`, `delete_time`, `version`)
@@ -187,6 +187,31 @@ CREATE TABLE `eam_asset_maintenance_record` (
                                                 PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='维保更新记录';
 
--- eam_inventory_asset 表结果变更未写
+create table eam_inventory_asset_bak_001 as select * from eam_inventory_asset_bak;
+
+
+-- eam_inventory_asset
+CREATE TABLE `eam_inventory_asset` (
+                                       `id` varchar(50) NOT NULL COMMENT '主键',
+                                       `inventory_id` varchar(50) DEFAULT NULL COMMENT '盘点',
+                                       `status` varchar(50) DEFAULT NULL COMMENT '状态',
+                                       `asset_id` varchar(50) DEFAULT NULL COMMENT '资产',
+                                       `oper_empl_id` varchar(50) DEFAULT NULL COMMENT '员工',
+                                       `asset_plus_action_type` varchar(50) DEFAULT 'none' COMMENT '盘盈动作',
+                                       `asset_loss_action_type` varchar(50) DEFAULT 'none' COMMENT '盘亏动作',
+                                       `source` varchar(50) DEFAULT 'asset' COMMENT '数据来源',
+                                       `oper_date` datetime DEFAULT NULL COMMENT '操作时间',
+                                       `picture_id` varchar(100) DEFAULT NULL COMMENT '照片',
+                                       `notes` varchar(500) DEFAULT NULL COMMENT '备注',
+                                       `create_by` varchar(18) DEFAULT NULL COMMENT '创建人ID',
+                                       `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+                                       `update_by` varchar(18) DEFAULT NULL COMMENT '修改人ID',
+                                       `update_time` datetime DEFAULT NULL COMMENT '修改时间',
+                                       `deleted` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否已删除',
+                                       `delete_by` varchar(18) DEFAULT NULL COMMENT '删除人ID',
+                                       `delete_time` datetime DEFAULT NULL COMMENT '删除时间',
+                                       `version` int(11) NOT NULL DEFAULT '1' COMMENT '数据版本号',
+                                       PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='盘点明细';
 
 

@@ -1755,7 +1755,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				.execute();
 //
 
-		System.out.println(list);
+
 	//	List<Employee> originators= CollectorUtil.collectList(list,Asset::getOriginator);
 //		dao().join(originators, Person.class);
 

@@ -26,6 +26,33 @@
 
 <body style="overflow-y: hidden;">
 
+<style>
+    /*---滚动条默认显示样式--*/
+    ::-webkit-scrollbar-thumb{
+        background-color:#DEDFDF;
+        height:50px;
+        outline-offset:-2px;
+        outline:3px solid #fff;
+        -webkit-border-radius:4px;
+        border: 3px solid #fff;
+    }
+    /*---鼠标点击滚动条显示样式--*/
+    ::-webkit-scrollbar-thumb:hover{
+        background-color:#DEDFDF;
+        height:50px;
+        -webkit-border-radius:4px;
+    }
+    /*---滚动条大小--*/
+    ::-webkit-scrollbar{
+        width:8px;
+        height:8px;
+    }
+    /*---滚动框背景样式--*/
+    ::-webkit-scrollbar-track-piece{
+        background-color:white;
+        -webkit-border-radius:1px;
+    }
+</style>
 <div id="luckysheet" style="margin:0px;padding:0px;position:absolute;width:100%;height:97%;left: 0px;top: 0px;"></div>
 
 <script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
@@ -54,10 +81,10 @@
     var ID =  [[${id}]];
     var PAGE_TYPE =  [[${pageType}]];
     var SELECTED_CODE =  [[${selectedCode}]];
-
     var sheetConfigStr =  [[${sheetConfig}]];
     var sheetConfig =  JSON.parse(sheetConfigStr);
     console.log(sheetConfig);
+    sheetConfig.row=30;
     var allowEdit=true;
     if(PAGE_TYPE=="view"){
         allowEdit=false;
@@ -69,6 +96,7 @@
             allowEdit:allowEdit,
             frozen:{ type: 'row'},
             row:10,
+            showtoolbar: false,
             enableAddBackTop:false,
             defaultColWidth:157,
             column:60,
