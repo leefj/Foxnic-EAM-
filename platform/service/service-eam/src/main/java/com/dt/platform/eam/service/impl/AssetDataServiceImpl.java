@@ -431,10 +431,10 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                         dataVer.put("prohibitInput",true);
                         dataVer.put("type","dropdown");
                         HashMap<String,String> catalogMap = queryAssetCategoryNodes("all");
-                        List values = new ArrayList(catalogMap.values());
+                        List<String> values = new ArrayList(catalogMap.values());
+                        Collections.sort(values);
                         dataVer.put("value1",  String.join(",", values));
                         dataVerification=dataVer;
-
 //                        dataVer.put("prohibitInput",true);
 //                        dataVer.put("type","dropdown");
 //                        HashMap<String,String> compMap = queryOrganizationNodes("all");
@@ -447,6 +447,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                         dataVer.put("type","dropdown");
                         HashMap<String,String> compMap = queryOrganizationNodes("all");
                         List values = new ArrayList(compMap.values());
+                        Collections.sort(values);
                         dataVer.put("value1",  String.join(",", values));
                         dataVerification=dataVer;
                     }else if("useOrganizationName".equals(secondAssetColumn)){
@@ -454,6 +455,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                         dataVer.put("type","dropdown");
                         HashMap<String,String> orgMap = queryOrganizationNodes("all");
                         List values = new ArrayList(orgMap.values());
+                        Collections.sort(values);
                         dataVer.put("value1",  String.join(",", values));
                         dataVerification=dataVer;
                     }else if("safetyLevelName".equals(secondAssetColumn)){
@@ -463,12 +465,9 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                         dataVer.put("value1",  String.join(",", value));
                         dataVerification=dataVer;
                     }
-
-
                     if(dataVerification!=null){
                         metaData.setDataVerification(dataVerification);
                     }
-
 
                     System.out.println("###metaData"+metaData);
                     list.add(metaData);
@@ -644,6 +643,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                 }
             }
         }
+
         return map;
     }
 

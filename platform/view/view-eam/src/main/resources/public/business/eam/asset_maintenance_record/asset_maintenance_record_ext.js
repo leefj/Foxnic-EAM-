@@ -43,6 +43,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 operHtml=operHtml.replace(/lay-event="tool-import-asset"/i, "style=\"display:none\"")
                 operHtml=operHtml.replace(/lay-event="tool-data-fill"/i, "style=\"display:none\"")
                 operHtml=operHtml.replace(/lay-event="tool-finish"/i, "style=\"display:none\"")
+                operHtml=operHtml.replace(/lay-event="tool-batch-modify"/i, "style=\"display:none\"")
                 document.getElementById("toolbarTemplate").innerHTML=operHtml;
             }
 
