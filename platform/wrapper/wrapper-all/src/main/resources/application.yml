@@ -229,7 +229,17 @@ foxnic:
         enable: true
         # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
         end-points: http://127.0.0.1:8089,1 | http://127.0.0.1:8089,1
-
+  language:
+    translator:
+      encrypt:
+        enable: true
+        file:
+          windows: d:/foxnic/passwd.txt
+          mac: /Users/Shared/foxnic/passwd.txt
+          linux: /foxnic/passwd.txt
+      baidu:
+        appId: oEXl3F7Mx4VZch8pcOZGRatfDPJIGqQrMFHEnN8aMH8=
+        securityKey: TyrKCb6TgvTWU78ARppPs9dCs1VrZjGRYHqGIlkZ/14=
 
 
 
