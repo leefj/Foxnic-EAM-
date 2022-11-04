@@ -231,6 +231,7 @@ foxnic:
         end-points: http://127.0.0.1:8089,1 | http://127.0.0.1:8089,1
   language:
     translator:
+      enable: true
       encrypt:
         enable: true
         file:
