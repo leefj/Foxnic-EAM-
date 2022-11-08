@@ -77,6 +77,10 @@ spring:
         maxPoolPreparedStatementPerConnectionSize: -1
         # 是否打印语句，生产环境建议关闭
         printSQL: true
+        # 是否使用简单模式输出日志
+        printSQLSimple: true
+        # 是否输出调用栈
+        printSQLCallstack: false
   thymeleaf:
     prefix: classpath:/public/
     check-template-location: true
