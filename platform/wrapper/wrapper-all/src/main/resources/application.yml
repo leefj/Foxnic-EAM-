@@ -251,6 +251,8 @@ security:
   ignored-urls:  /console/** , /assets/** , /pages/** , /*.ico ,/extmodule/** , /module/** ,  /**/*.css , /**/*.js , /error , /druid/**,/business/eam/user_book/**
   # mode=session 时配置的登录页面
   login-page: /login.html
+  # 配置登录标识的范围与优先级,可选值在 LoginIdentityType 枚举中定义
+  login-identity-priority: employee_badge,user_account,user_phone,user_id
   jwt:
     key-location: foxnic-web.jks
     key-alias: foxnic-web
