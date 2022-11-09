@@ -37,7 +37,6 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
-import com.mysql.cj.log.Log;
 import org.apache.poi.ss.usermodel.*;
 import org.github.foxnic.web.constants.enums.changes.ApprovalAction;
 import org.github.foxnic.web.constants.enums.changes.ApprovalMode;
