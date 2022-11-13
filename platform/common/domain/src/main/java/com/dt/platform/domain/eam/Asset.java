@@ -34,8 +34,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产
  * <p>资产 , 数据表 eam_asset 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-28 17:39:55
- * @sign 91AB2A98BC55CA72F58F9E933A15D853
+ * @since 2022-11-13 13:10:08
+ * @sign 1EB7E5CB31984F5824165F3BC1814EDF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -313,6 +313,12 @@ public class Asset extends Entity {
 	private String maintenanceStatus;
 	
 	/**
+	 * 维保价格：维保价格
+	*/
+	@ApiModelProperty(required = false,value="维保价格" , notes = "维保价格" , example = "0.00")
+	private BigDecimal maintenancePrice;
+	
+	/**
 	 * 维保方式：维保方式
 	*/
 	@ApiModelProperty(required = false,value="维保方式" , notes = "维保方式")
@@ -571,16 +577,34 @@ public class Asset extends Entity {
 	private String label5;
 	
 	/**
+	 * 单据：单据
+	*/
+	@ApiModelProperty(required = false,value="单据" , notes = "单据")
+	private String billId;
+	
+	/**
 	 * 内部控制标签：内部控制标签
 	*/
 	@ApiModelProperty(required = false,value="内部控制标签" , notes = "内部控制标签")
 	private String internalControlLabel;
 	
 	/**
-	 * 单据：单据
+	 * 领用ID：领用ID
 	*/
-	@ApiModelProperty(required = false,value="单据" , notes = "单据")
-	private String billId;
+	@ApiModelProperty(required = false,value="领用ID" , notes = "领用ID")
+	private String collectionId;
+	
+	/**
+	 * 借用ID：借用ID
+	*/
+	@ApiModelProperty(required = false,value="借用ID" , notes = "借用ID")
+	private String borrowId;
+	
+	/**
+	 * 报废ID：报废ID
+	*/
+	@ApiModelProperty(required = false,value="报废ID" , notes = "报废ID")
+	private String scrapId;
 	
 	/**
 	 * 创建人ID：创建人ID
@@ -1710,6 +1734,25 @@ public class Asset extends Entity {
 	}
 	
 	/**
+	 * 获得 维保价格<br>
+	 * 维保价格
+	 * @return 维保价格
+	*/
+	public BigDecimal getMaintenancePrice() {
+		return maintenancePrice;
+	}
+	
+	/**
+	 * 设置 维保价格
+	 * @param maintenancePrice 维保价格
+	 * @return 当前对象
+	*/
+	public Asset setMaintenancePrice(BigDecimal maintenancePrice) {
+		this.maintenancePrice=maintenancePrice;
+		return this;
+	}
+	
+	/**
 	 * 获得 维保方式<br>
 	 * 维保方式
 	 * @return 维保方式
@@ -2527,6 +2570,25 @@ public class Asset extends Entity {
 	}
 	
 	/**
+	 * 获得 单据<br>
+	 * 单据
+	 * @return 单据
+	*/
+	public String getBillId() {
+		return billId;
+	}
+	
+	/**
+	 * 设置 单据
+	 * @param billId 单据
+	 * @return 当前对象
+	*/
+	public Asset setBillId(String billId) {
+		this.billId=billId;
+		return this;
+	}
+	
+	/**
 	 * 获得 内部控制标签<br>
 	 * 内部控制标签
 	 * @return 内部控制标签
@@ -2546,21 +2608,59 @@ public class Asset extends Entity {
 	}
 	
 	/**
-	 * 获得 单据<br>
-	 * 单据
-	 * @return 单据
+	 * 获得 领用ID<br>
+	 * 领用ID
+	 * @return 领用ID
 	*/
-	public String getBillId() {
-		return billId;
+	public String getCollectionId() {
+		return collectionId;
 	}
 	
 	/**
-	 * 设置 单据
-	 * @param billId 单据
+	 * 设置 领用ID
+	 * @param collectionId 领用ID
 	 * @return 当前对象
 	*/
-	public Asset setBillId(String billId) {
-		this.billId=billId;
+	public Asset setCollectionId(String collectionId) {
+		this.collectionId=collectionId;
+		return this;
+	}
+	
+	/**
+	 * 获得 借用ID<br>
+	 * 借用ID
+	 * @return 借用ID
+	*/
+	public String getBorrowId() {
+		return borrowId;
+	}
+	
+	/**
+	 * 设置 借用ID
+	 * @param borrowId 借用ID
+	 * @return 当前对象
+	*/
+	public Asset setBorrowId(String borrowId) {
+		this.borrowId=borrowId;
+		return this;
+	}
+	
+	/**
+	 * 获得 报废ID<br>
+	 * 报废ID
+	 * @return 报废ID
+	*/
+	public String getScrapId() {
+		return scrapId;
+	}
+	
+	/**
+	 * 设置 报废ID
+	 * @param scrapId 报废ID
+	 * @return 当前对象
+	*/
+	public Asset setScrapId(String scrapId) {
+		this.scrapId=scrapId;
 		return this;
 	}
 	
@@ -3585,6 +3685,7 @@ public class Asset extends Entity {
 		inst.setAssetNumber(this.getAssetNumber());
 		inst.setModel(this.getModel());
 		inst.setId(this.getId());
+		inst.setScrapId(this.getScrapId());
 		inst.setEquipmentEnvironmentCode(this.getEquipmentEnvironmentCode());
 		inst.setDirector(this.getDirector());
 		inst.setMonthDepreciationPrice(this.getMonthDepreciationPrice());
@@ -3637,6 +3738,7 @@ public class Asset extends Entity {
 		inst.setSourceId(this.getSourceId());
 		inst.setProcId(this.getProcId());
 		inst.setFinancialCategoryId(this.getFinancialCategoryId());
+		inst.setMaintenancePrice(this.getMaintenancePrice());
 		inst.setEquipmentIp(this.getEquipmentIp());
 		inst.setMaintenanceEndDate(this.getMaintenanceEndDate());
 		inst.setNextApproverNames(this.getNextApproverNames());
@@ -3667,6 +3769,7 @@ public class Asset extends Entity {
 		inst.setChsStatus(this.getChsStatus());
 		inst.setProductionDate(this.getProductionDate());
 		inst.setUpdateBy(this.getUpdateBy());
+		inst.setCollectionId(this.getCollectionId());
 		inst.setRegisterDate(this.getRegisterDate());
 		inst.setSummary(this.getSummary());
 		inst.setEquipmentSerialNumber(this.getEquipmentSerialNumber());
@@ -3683,6 +3786,7 @@ public class Asset extends Entity {
 		inst.setRegionId(this.getRegionId());
 		inst.setChsType(this.getChsType());
 		inst.setRackDownNumber(this.getRackDownNumber());
+		inst.setBorrowId(this.getBorrowId());
 		inst.setCategoryId(this.getCategoryId());
 		if(all) {
 			inst.setOwnerCompany(this.getOwnerCompany());
@@ -3782,6 +3886,7 @@ public class Asset extends Entity {
 			this.setAssetNumber(DataParser.parse(Integer.class, map.get(AssetMeta.ASSET_NUMBER)));
 			this.setModel(DataParser.parse(String.class, map.get(AssetMeta.MODEL)));
 			this.setId(DataParser.parse(String.class, map.get(AssetMeta.ID)));
+			this.setScrapId(DataParser.parse(String.class, map.get(AssetMeta.SCRAP_ID)));
 			this.setEquipmentEnvironmentCode(DataParser.parse(String.class, map.get(AssetMeta.EQUIPMENT_ENVIRONMENT_CODE)));
 			this.setDirector(DataParser.parse(String.class, map.get(AssetMeta.DIRECTOR)));
 			this.setMonthDepreciationPrice(DataParser.parse(BigDecimal.class, map.get(AssetMeta.MONTH_DEPRECIATION_PRICE)));
@@ -3834,6 +3939,7 @@ public class Asset extends Entity {
 			this.setSourceId(DataParser.parse(String.class, map.get(AssetMeta.SOURCE_ID)));
 			this.setProcId(DataParser.parse(String.class, map.get(AssetMeta.PROC_ID)));
 			this.setFinancialCategoryId(DataParser.parse(String.class, map.get(AssetMeta.FINANCIAL_CATEGORY_ID)));
+			this.setMaintenancePrice(DataParser.parse(BigDecimal.class, map.get(AssetMeta.MAINTENANCE_PRICE)));
 			this.setEquipmentIp(DataParser.parse(String.class, map.get(AssetMeta.EQUIPMENT_IP)));
 			this.setMaintenanceEndDate(DataParser.parse(Date.class, map.get(AssetMeta.MAINTENANCE_END_DATE)));
 			this.setNextApproverNames(DataParser.parse(String.class, map.get(AssetMeta.NEXT_APPROVER_NAMES)));
@@ -3864,6 +3970,7 @@ public class Asset extends Entity {
 			this.setChsStatus(DataParser.parse(String.class, map.get(AssetMeta.CHS_STATUS)));
 			this.setProductionDate(DataParser.parse(Date.class, map.get(AssetMeta.PRODUCTION_DATE)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetMeta.UPDATE_BY)));
+			this.setCollectionId(DataParser.parse(String.class, map.get(AssetMeta.COLLECTION_ID)));
 			this.setRegisterDate(DataParser.parse(Date.class, map.get(AssetMeta.REGISTER_DATE)));
 			this.setSummary(DataParser.parse(String.class, map.get(AssetMeta.SUMMARY)));
 			this.setEquipmentSerialNumber(DataParser.parse(String.class, map.get(AssetMeta.EQUIPMENT_SERIAL_NUMBER)));
@@ -3880,6 +3987,7 @@ public class Asset extends Entity {
 			this.setRegionId(DataParser.parse(String.class, map.get(AssetMeta.REGION_ID)));
 			this.setChsType(DataParser.parse(String.class, map.get(AssetMeta.CHS_TYPE)));
 			this.setRackDownNumber(DataParser.parse(Integer.class, map.get(AssetMeta.RACK_DOWN_NUMBER)));
+			this.setBorrowId(DataParser.parse(String.class, map.get(AssetMeta.BORROW_ID)));
 			this.setCategoryId(DataParser.parse(String.class, map.get(AssetMeta.CATEGORY_ID)));
 			// others
 			this.setOwnerCompany(DataParser.parse(Organization.class, map.get(AssetMeta.OWNER_COMPANY)));
@@ -3921,6 +4029,7 @@ public class Asset extends Entity {
 				this.setAssetNumber( (Integer)map.get(AssetMeta.ASSET_NUMBER));
 				this.setModel( (String)map.get(AssetMeta.MODEL));
 				this.setId( (String)map.get(AssetMeta.ID));
+				this.setScrapId( (String)map.get(AssetMeta.SCRAP_ID));
 				this.setEquipmentEnvironmentCode( (String)map.get(AssetMeta.EQUIPMENT_ENVIRONMENT_CODE));
 				this.setDirector( (String)map.get(AssetMeta.DIRECTOR));
 				this.setMonthDepreciationPrice( (BigDecimal)map.get(AssetMeta.MONTH_DEPRECIATION_PRICE));
@@ -3973,6 +4082,7 @@ public class Asset extends Entity {
 				this.setSourceId( (String)map.get(AssetMeta.SOURCE_ID));
 				this.setProcId( (String)map.get(AssetMeta.PROC_ID));
 				this.setFinancialCategoryId( (String)map.get(AssetMeta.FINANCIAL_CATEGORY_ID));
+				this.setMaintenancePrice( (BigDecimal)map.get(AssetMeta.MAINTENANCE_PRICE));
 				this.setEquipmentIp( (String)map.get(AssetMeta.EQUIPMENT_IP));
 				this.setMaintenanceEndDate( (Date)map.get(AssetMeta.MAINTENANCE_END_DATE));
 				this.setNextApproverNames( (String)map.get(AssetMeta.NEXT_APPROVER_NAMES));
@@ -4003,6 +4113,7 @@ public class Asset extends Entity {
 				this.setChsStatus( (String)map.get(AssetMeta.CHS_STATUS));
 				this.setProductionDate( (Date)map.get(AssetMeta.PRODUCTION_DATE));
 				this.setUpdateBy( (String)map.get(AssetMeta.UPDATE_BY));
+				this.setCollectionId( (String)map.get(AssetMeta.COLLECTION_ID));
 				this.setRegisterDate( (Date)map.get(AssetMeta.REGISTER_DATE));
 				this.setSummary( (String)map.get(AssetMeta.SUMMARY));
 				this.setEquipmentSerialNumber( (String)map.get(AssetMeta.EQUIPMENT_SERIAL_NUMBER));
@@ -4019,6 +4130,7 @@ public class Asset extends Entity {
 				this.setRegionId( (String)map.get(AssetMeta.REGION_ID));
 				this.setChsType( (String)map.get(AssetMeta.CHS_TYPE));
 				this.setRackDownNumber( (Integer)map.get(AssetMeta.RACK_DOWN_NUMBER));
+				this.setBorrowId( (String)map.get(AssetMeta.BORROW_ID));
 				this.setCategoryId( (String)map.get(AssetMeta.CATEGORY_ID));
 				// others
 				this.setOwnerCompany( (Organization)map.get(AssetMeta.OWNER_COMPANY));
@@ -4073,6 +4185,7 @@ public class Asset extends Entity {
 			this.setAssetNumber(DataParser.parse(Integer.class, r.getValue(AssetMeta.ASSET_NUMBER)));
 			this.setModel(DataParser.parse(String.class, r.getValue(AssetMeta.MODEL)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssetMeta.ID)));
+			this.setScrapId(DataParser.parse(String.class, r.getValue(AssetMeta.SCRAP_ID)));
 			this.setEquipmentEnvironmentCode(DataParser.parse(String.class, r.getValue(AssetMeta.EQUIPMENT_ENVIRONMENT_CODE)));
 			this.setDirector(DataParser.parse(String.class, r.getValue(AssetMeta.DIRECTOR)));
 			this.setMonthDepreciationPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.MONTH_DEPRECIATION_PRICE)));
@@ -4125,6 +4238,7 @@ public class Asset extends Entity {
 			this.setSourceId(DataParser.parse(String.class, r.getValue(AssetMeta.SOURCE_ID)));
 			this.setProcId(DataParser.parse(String.class, r.getValue(AssetMeta.PROC_ID)));
 			this.setFinancialCategoryId(DataParser.parse(String.class, r.getValue(AssetMeta.FINANCIAL_CATEGORY_ID)));
+			this.setMaintenancePrice(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.MAINTENANCE_PRICE)));
 			this.setEquipmentIp(DataParser.parse(String.class, r.getValue(AssetMeta.EQUIPMENT_IP)));
 			this.setMaintenanceEndDate(DataParser.parse(Date.class, r.getValue(AssetMeta.MAINTENANCE_END_DATE)));
 			this.setNextApproverNames(DataParser.parse(String.class, r.getValue(AssetMeta.NEXT_APPROVER_NAMES)));
@@ -4155,6 +4269,7 @@ public class Asset extends Entity {
 			this.setChsStatus(DataParser.parse(String.class, r.getValue(AssetMeta.CHS_STATUS)));
 			this.setProductionDate(DataParser.parse(Date.class, r.getValue(AssetMeta.PRODUCTION_DATE)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetMeta.UPDATE_BY)));
+			this.setCollectionId(DataParser.parse(String.class, r.getValue(AssetMeta.COLLECTION_ID)));
 			this.setRegisterDate(DataParser.parse(Date.class, r.getValue(AssetMeta.REGISTER_DATE)));
 			this.setSummary(DataParser.parse(String.class, r.getValue(AssetMeta.SUMMARY)));
 			this.setEquipmentSerialNumber(DataParser.parse(String.class, r.getValue(AssetMeta.EQUIPMENT_SERIAL_NUMBER)));
@@ -4171,6 +4286,7 @@ public class Asset extends Entity {
 			this.setRegionId(DataParser.parse(String.class, r.getValue(AssetMeta.REGION_ID)));
 			this.setChsType(DataParser.parse(String.class, r.getValue(AssetMeta.CHS_TYPE)));
 			this.setRackDownNumber(DataParser.parse(Integer.class, r.getValue(AssetMeta.RACK_DOWN_NUMBER)));
+			this.setBorrowId(DataParser.parse(String.class, r.getValue(AssetMeta.BORROW_ID)));
 			this.setCategoryId(DataParser.parse(String.class, r.getValue(AssetMeta.CATEGORY_ID)));
 			return true;
 		} else {
@@ -4186,6 +4302,7 @@ public class Asset extends Entity {
 				this.setAssetNumber( (Integer)r.getValue(AssetMeta.ASSET_NUMBER));
 				this.setModel( (String)r.getValue(AssetMeta.MODEL));
 				this.setId( (String)r.getValue(AssetMeta.ID));
+				this.setScrapId( (String)r.getValue(AssetMeta.SCRAP_ID));
 				this.setEquipmentEnvironmentCode( (String)r.getValue(AssetMeta.EQUIPMENT_ENVIRONMENT_CODE));
 				this.setDirector( (String)r.getValue(AssetMeta.DIRECTOR));
 				this.setMonthDepreciationPrice( (BigDecimal)r.getValue(AssetMeta.MONTH_DEPRECIATION_PRICE));
@@ -4238,6 +4355,7 @@ public class Asset extends Entity {
 				this.setSourceId( (String)r.getValue(AssetMeta.SOURCE_ID));
 				this.setProcId( (String)r.getValue(AssetMeta.PROC_ID));
 				this.setFinancialCategoryId( (String)r.getValue(AssetMeta.FINANCIAL_CATEGORY_ID));
+				this.setMaintenancePrice( (BigDecimal)r.getValue(AssetMeta.MAINTENANCE_PRICE));
 				this.setEquipmentIp( (String)r.getValue(AssetMeta.EQUIPMENT_IP));
 				this.setMaintenanceEndDate( (Date)r.getValue(AssetMeta.MAINTENANCE_END_DATE));
 				this.setNextApproverNames( (String)r.getValue(AssetMeta.NEXT_APPROVER_NAMES));
@@ -4268,6 +4386,7 @@ public class Asset extends Entity {
 				this.setChsStatus( (String)r.getValue(AssetMeta.CHS_STATUS));
 				this.setProductionDate( (Date)r.getValue(AssetMeta.PRODUCTION_DATE));
 				this.setUpdateBy( (String)r.getValue(AssetMeta.UPDATE_BY));
+				this.setCollectionId( (String)r.getValue(AssetMeta.COLLECTION_ID));
 				this.setRegisterDate( (Date)r.getValue(AssetMeta.REGISTER_DATE));
 				this.setSummary( (String)r.getValue(AssetMeta.SUMMARY));
 				this.setEquipmentSerialNumber( (String)r.getValue(AssetMeta.EQUIPMENT_SERIAL_NUMBER));
@@ -4284,6 +4403,7 @@ public class Asset extends Entity {
 				this.setRegionId( (String)r.getValue(AssetMeta.REGION_ID));
 				this.setChsType( (String)r.getValue(AssetMeta.CHS_TYPE));
 				this.setRackDownNumber( (Integer)r.getValue(AssetMeta.RACK_DOWN_NUMBER));
+				this.setBorrowId( (String)r.getValue(AssetMeta.BORROW_ID));
 				this.setCategoryId( (String)r.getValue(AssetMeta.CATEGORY_ID));
 				return true;
 			} catch (Exception e) {

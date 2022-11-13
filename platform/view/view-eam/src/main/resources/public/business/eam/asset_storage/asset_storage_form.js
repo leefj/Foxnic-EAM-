@@ -1,7 +1,7 @@
 /**
  * 资产入库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-25 19:44:37
+ * @since 2022-11-05 14:24:20
  */
 
 function FormPage() {
@@ -263,8 +263,6 @@ function FormPage() {
 			}
 
 
-			//设置  供应商 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#supplierId",formData.supplier);
 
 			//处理fillBy
 			$("#originatorUserName").val(fox.getProperty(formData,["originator","name"]));
@@ -317,8 +315,6 @@ function FormPage() {
 
 
 
-		//获取 供应商 下拉框的值
-		data["supplierId"]=fox.getSelectedValue("supplierId",false);
 
 		return data;
 	}

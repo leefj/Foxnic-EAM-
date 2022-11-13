@@ -128,16 +128,28 @@ public interface InventoryServiceProxy {
     public static final String ASSET_PLUS_DATA = API_PREFIX + "asset-plus-data";
 
     /**
-     * 全员盘点
+     * 全员盘点任务单
      */
-    public static final String QUERY_ALL_EMPLOYEE_PAGED_LIST = API_PREFIX + "query-all-employee-paged-list";
+    public static final String QUERY_BY_EMPLOYEE_MODE_PAGED_LIST = API_PREFIX + "query-by-employee-mode-paged-list";
 
 
     /**
      * 全员盘点员工数据
      */
-    public static final String QUERY_EMPLOYEE_ASSET_PAGED_LIST = API_PREFIX + "query-employee-asset-paged-list";
+    public static final String QUERY_MY_ASSET_BY_EMPLOYEE_MODE_PAGED_LIST = API_PREFIX + "query-my-asset-by-employee-mode-paged-list";
 
+
+    /**
+     * 全员盘点所有资产数据
+     */
+    public static final String QUERY_ASSET_BY_EMPLOYEE_MODE_PAGED_LIST = API_PREFIX + "query-asset-by-employee-mode-paged-list";
+
+
+
+    /**
+     * 下载资产
+     */
+    public static final String DOWNLOAD_ASSET = API_PREFIX + "download-asset";
 
 
 

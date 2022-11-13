@@ -98,7 +98,6 @@ public class AssetController extends SuperController {
     @Autowired
     private IAssetCategoryService assetCategoryService;
 
-
     /**
      * 添加资产
      */
@@ -369,7 +368,11 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetVOMeta.ASSET_SELECTED_DATA, value = "选择", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetVOMeta.ASSET_SELECTED_DATA, value = "选择", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.MAINTENANCE_PRICE, value = "维保价格", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetVOMeta.COLLECTION_ID, value = "领用ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.SCRAP_ID, value = "报废ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.BORROW_ID, value = "借用ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -703,7 +706,11 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.NEXT_APPROVER_IDS, value = "下一节点审批人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.NEXT_APPROVER_NAMES, value = "下一个审批节点审批人姓名", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.APPROVAL_OPINION, value = "审批意见", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetVOMeta.ASSET_SELECTED_DATA, value = "选择", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetVOMeta.ASSET_SELECTED_DATA, value = "选择", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.MAINTENANCE_PRICE, value = "维保价格", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetVOMeta.COLLECTION_ID, value = "领用ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.SCRAP_ID, value = "报废ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.BORROW_ID, value = "借用ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetVOMeta.PAGE_INDEX, AssetVOMeta.PAGE_SIZE, AssetVOMeta.SEARCH_FIELD, AssetVOMeta.FUZZY_FIELD, AssetVOMeta.SEARCH_VALUE, AssetVOMeta.SORT_FIELD, AssetVOMeta.SORT_TYPE, AssetVOMeta.IDS })
     @SentinelResource(value = AssetServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -895,7 +902,11 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.LABEL3, value = "短标签3", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.LABEL4, value = "长标签4", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.LABEL5, value = "短标签5", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetVOMeta.ASSET_SELECTED_DATA, value = "选择", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetVOMeta.ASSET_SELECTED_DATA, value = "选择", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.MAINTENANCE_PRICE, value = "维保价格", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetVOMeta.COLLECTION_ID, value = "领用ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.SCRAP_ID, value = "报废ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.BORROW_ID, value = "借用ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetVOMeta.PAGE_INDEX, AssetVOMeta.PAGE_SIZE, AssetVOMeta.SEARCH_FIELD, AssetVOMeta.FUZZY_FIELD, AssetVOMeta.SEARCH_VALUE, AssetVOMeta.SORT_FIELD, AssetVOMeta.SORT_TYPE, AssetVOMeta.IDS })
     @SentinelResource(value = AssetServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -919,11 +930,7 @@ public class AssetController extends SuperController {
     public Result<Asset> getById(String id) {
         Result<Asset> result = new Result<>();
         Asset asset = assetService.getById(id);
-        assetService.dao().fill(asset).with(AssetMeta.CATEGORY).with(AssetMeta.CATEGORY_FINANCE).with(AssetMeta.GOODS)
-				.with(AssetMeta.MANUFACTURER)
-				.with(AssetMeta.MAINTENANCE_METHOD_DATA)
-				.with(AssetMeta.SUGGEST_MAINTENANCE_METHOD_DATA)
-				.with(AssetMeta.POSITION).with(AssetMeta.MAINTNAINER).with(AssetMeta.SUPPLIER).with(AssetMeta.OWNER_COMPANY).with(AssetMeta.USE_ORGANIZATION).with(AssetMeta.MANAGER).with(AssetMeta.REGION).with(AssetMeta.USE_USER).with(AssetMeta.ORIGINATOR).with(AssetMeta.ASSET_CYCLE_STATUS).with(AssetMeta.RACK).with(AssetMeta.SOURCE).with(AssetMeta.SAFETY_LEVEL).with(AssetMeta.EQUIPMENT_ENVIRONMENT).with(AssetMeta.ASSET_MAINTENANCE_STATUS).execute();
+        assetService.dao().fill(asset).with(AssetMeta.CATEGORY).with(AssetMeta.CATEGORY_FINANCE).with(AssetMeta.GOODS).with(AssetMeta.MANUFACTURER).with(AssetMeta.MAINTENANCE_METHOD_DATA).with(AssetMeta.SUGGEST_MAINTENANCE_METHOD_DATA).with(AssetMeta.POSITION).with(AssetMeta.MAINTNAINER).with(AssetMeta.SUPPLIER).with(AssetMeta.OWNER_COMPANY).with(AssetMeta.USE_ORGANIZATION).with(AssetMeta.MANAGER).with(AssetMeta.REGION).with(AssetMeta.USE_USER).with(AssetMeta.ORIGINATOR).with(AssetMeta.ASSET_CYCLE_STATUS).with(AssetMeta.RACK).with(AssetMeta.SOURCE).with(AssetMeta.SAFETY_LEVEL).with(AssetMeta.EQUIPMENT_ENVIRONMENT).with(AssetMeta.ASSET_MAINTENANCE_STATUS).execute();
         assetService.dao().join(asset.getManager(), Person.class);
         assetService.dao().join(asset.getUseUser(), Person.class);
         // 加载自定义数据
@@ -1111,7 +1118,11 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.LABEL3, value = "短标签3", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.LABEL4, value = "长标签4", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.LABEL5, value = "短标签5", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetVOMeta.ASSET_SELECTED_DATA, value = "选择", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetVOMeta.ASSET_SELECTED_DATA, value = "选择", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.MAINTENANCE_PRICE, value = "维保价格", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetVOMeta.COLLECTION_ID, value = "领用ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.SCRAP_ID, value = "报废ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.BORROW_ID, value = "借用ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetVOMeta.PAGE_INDEX, AssetVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -1283,7 +1294,11 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.LABEL3, value = "短标签3", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.LABEL4, value = "长标签4", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.LABEL5, value = "短标签5", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetVOMeta.ASSET_SELECTED_DATA, value = "选择", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetVOMeta.ASSET_SELECTED_DATA, value = "选择", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.MAINTENANCE_PRICE, value = "维保价格", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetVOMeta.COLLECTION_ID, value = "领用ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.SCRAP_ID, value = "报废ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.BORROW_ID, value = "借用ID", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

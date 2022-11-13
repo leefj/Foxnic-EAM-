@@ -1,14 +1,16 @@
 package com.dt.platform.eam.service;
 
 
+import com.dt.platform.domain.eam.*;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
-import com.dt.platform.domain.eam.Inventory;
-import com.dt.platform.domain.eam.InventoryVO;
+
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
 import java.io.InputStream;
+import java.util.Map;
+
 import com.github.foxnic.sql.expr.OrderBy;
 import com.github.foxnic.sql.meta.DBField;
 import com.github.foxnic.dao.excel.ExcelWriter;
@@ -27,6 +29,29 @@ import com.github.foxnic.dao.data.SaveMode;
 public interface IInventoryService extends ISuperService<Inventory> {
 
 
+
+	/**
+	 * 盘点资产
+	 * @param inventroyId 盘点ID
+	 * @return 盘点资产
+	 * */
+	Map<String, Object> queryInventoryAssetMap(String inventroyId);
+
+	/**
+	 * 盘点资产
+	 * @param inventroyId 盘点ID
+	 * @return 盘点资产
+	 * */
+	Map<String, Object> getBill(String inventroyId);
+
+
+	/**
+	 * 盘点资产
+	 * @param inventroyId 盘点ID
+	 * @return 盘点资产
+	 * */
+	Result DownLoadAsset(String inventroyId);
+
 	/**
 	 * 启动
 	 * @param inventroyId 盘点ID
@@ -35,6 +60,22 @@ public interface IInventoryService extends ISuperService<Inventory> {
 	 * */
 	Result assetPlusData(String inventroyId,String assetId);
 
+	/**
+	 * 全员盘点,员工个人盘点单据
+	 * */
+	PagedList<Inventory> queryByEmployeeModePagedList(Inventory sample,int pageSize,int pageIndex);
+
+	/**
+	 * 全员盘点，员工个人盘点单据的数据
+	 *
+	 */
+	PagedList<InventoryAsset> queryMyAssetByEmployeeModePagedList(InventoryAsset sample, int pageSize, int pageIndex);
+
+
+	/**
+	 * 全员盘点所有资产数据
+	 */
+	PagedList<Asset> queryAssetByEmployeeModePagedList(String inventoryId);
 
 	/**
 	 * 启动

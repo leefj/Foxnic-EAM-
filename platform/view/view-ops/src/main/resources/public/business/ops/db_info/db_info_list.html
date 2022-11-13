@@ -2,7 +2,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 14:57:16
+ * @since 2022-11-02 22:08:26
  */
  -->
  <!DOCTYPE html>
@@ -77,12 +77,25 @@
 
 
                 </div>
+                <!-- 搜索输入区域 -->
+                <div class="layui-form toolbar search-inputs">
+                    <!-- 创建时间 , createTime ,typeName=date_input, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('创建时间')}" class="search-label createTime-label">创建时间</span><span class="search-colon">:</span></div>
+                            <input type="text" id="createTime-begin" style="width: 150px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
+                            <span class="search-dash">-</span>
+                            <input type="text" id="createTime-end"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
+                    </div>
+
+
+                </div>
             </div>
 
 
             <!-- 按钮区域 -->
             <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">
                 <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索')}">搜索</span></button>
+                <button id="search-button-advance" class="layui-btn layui-btn-primary icon-btn search-button-advance"><i class="layui-icon">&#xe671;</i><span th:text="${lang.translate('更多')}">更多</span></button>
             </div>
         </div>
 
@@ -114,9 +127,8 @@
 
     <button th:if="${perm.checkAuth('ops_db_info:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除')}">删除</span></button>
 
-    <button th:if="${perm.checkAuth('ops_db_info:backup')}" class="layui-btn layui-btn-xs " lay-event="open-backup-window" data-id="{{d.id}}"><span th:text="${lang.translate('备份记录')}">备份记录</span></button>
-
-    <button th:if="${perm.checkAuth('ops_db_info:box')}" class="layui-btn layui-btn-xs " lay-event="box-window" data-id="{{d.id}}"><span th:text="${lang.translate('密文箱')}">密文箱</span></button>
+    <button th:if="${perm.checkAuth('ops_db_info:backup')}"class="layui-btn layui-btn-xs " lay-event="open-backup-window" data-id="{{d.id}}"><span th:text="${lang.translate('备份记录')}">备份记录</span></button>
+    <button th:if="${perm.checkAuth('ops_db_info:box')}"class="layui-btn layui-btn-xs " lay-event="box-window" data-id="{{d.id}}"><span th:text="${lang.translate('密文箱')}">密文箱</span></button>
 
 </script>
 

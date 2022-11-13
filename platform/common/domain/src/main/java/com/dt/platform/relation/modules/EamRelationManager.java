@@ -107,8 +107,50 @@ public class EamRelationManager extends RelationManager {
         this.setupAssetMaintenanceRecord();
         this.setupAssetMaintenanceRecordUpdate();
 
+
+        this.setupAssetBorrowReturn();
+
     }
 
+
+    public void setupAssetBorrowReturn() {
+
+        this.property(AssetBorrowReturnMeta.ASSET_ITEM_LIST_PROP)
+                .using(EAMTables.EAM_ASSET_BORROW_RETURN.ID )
+                .join(EAMTables.EAM_ASSET_ITEM.HANDLE_ID);
+
+
+        // 关联资产
+        this.property(AssetBorrowReturnMeta.ASSET_LIST_PROP)
+                .using(EAMTables.EAM_ASSET_BORROW_RETURN.ID ).join(EAMTables.EAM_ASSET_ITEM.HANDLE_ID)
+                .using( EAMTables.EAM_ASSET_ITEM.ASSET_ID).join( EAMTables.EAM_ASSET.ID);
+
+
+        // 关联位置
+        this.property(AssetBorrowReturnMeta.POSITION_PROP)
+                .using(EAMTables.EAM_ASSET_BORROW_RETURN.POSITION_ID)
+                .join( EAMTables.EAM_POSITION.ID);
+
+        // 关联制单人
+        this.property(AssetBorrowReturnMeta.ORIGINATOR_PROP)
+                .using(EAMTables.EAM_ASSET_BORROW_RETURN.ORIGINATOR_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+//                .using(FoxnicWeb.HRM_EMPLOYEE.PERSON_ID).join(FoxnicWeb.HRM_PERSON.ID);
+
+        // 关联制单人
+        this.property(AssetBorrowReturnMeta.MANAGER_PROP)
+                .using(EAMTables.EAM_ASSET_BORROW_RETURN.MANAGER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+        this.property(AssetBorrowReturnMeta.USE_USER_PROP)
+                .using(EAMTables.EAM_ASSET_BORROW_RETURN.USE_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+//                .using(FoxnicWeb.HRM_EMPLOYEE.PERSON_ID).join(FoxnicWeb.HRM_PERSON.ID);
+
+
+        this.property(AssetBorrowReturnMeta.USE_ORGANIZATION_PROP)
+                .using(EAMTables.EAM_ASSET_BORROW_RETURN.USE_ORGANIZATION_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
+
+
+    }
 
 
 
@@ -1221,6 +1263,7 @@ public class EamRelationManager extends RelationManager {
             inventory.setInventoryAssetCountByCounted(data.getOrDefault(AssetInventoryDetailStatusEnum.COUNTED.code(),0));
             inventory.setInventoryAssetCountByLoss(data.getOrDefault(AssetInventoryDetailStatusEnum.LOSS.code(),0));
             inventory.setInventoryAssetCountBySurplus(data.getOrDefault(AssetInventoryDetailStatusEnum.SURPLUS.code(),0));
+            inventory.setInventoryAssetCountByException(data.getOrDefault(AssetInventoryDetailStatusEnum.EXCEPTION.code(),0));
             return assets;
         });
 

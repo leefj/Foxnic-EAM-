@@ -5,7 +5,7 @@
  * @since 2022-01-05 11:04:56
  */
  -->
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html style="background-color: #FFFFFF;">
 
 <head>
@@ -50,10 +50,23 @@
                     </div>
                 </div>
 
-                                    <div class="layui-form-item" >
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('照片')}">照片</div></div>
+                    <div class="layui-upload layui-input-block layui-input-block-c1">
+                        <input input-type="upload" id="pictureId"  name="pictureId" lay-filter="pictureId" style="display: none">
+                        <button type="button" class="layui-btn" id="pictureId-button" th:text="${lang.translate('选择附件')}">选择附件</button>
+                        <div class="layui-upload-list" id="pictureId-file-list"></div>
+                    </div>
+                </div>
+
+
+
+                <div class="layui-form-item" >
                         <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备注')}">备注</div></div>
                         <div class="layui-input-block layui-input-block-c1">
-                            <input lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" type="text" class="layui-input"  />
+<!--                            <textarea style="height: 180px" lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" type="text" class="layui-input"  /></textarea>-->
+<!--                         -->
+                            <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" class="layui-textarea" style="height: 120px" ></textarea>
                         </div>
                     </div>
 
@@ -72,7 +85,7 @@
 </div>
 <div class="model-form-footer">
     <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消')}" >取消</button>
-    <button th:if="${perm.checkAnyAuth('eam_inventory_asset:create','eam_inventory_asset:update','eam_inventory_asset:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存')}">保存</button>
+    <button  class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存')}">保存</button>
 </div>
 
 <script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
@@ -87,6 +100,9 @@
 
     var VALIDATE_CONFIG={"status":{"labelInForm":"盘点状态","inputType":"select_box","required":true}};
     var AUTH_PREFIX="eam_inventory_asset";
+
+
+
 
 
 </script>

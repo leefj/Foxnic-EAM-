@@ -218,12 +218,16 @@ public class AssetCollectionServiceImpl extends SuperService<AssetCollection> im
 	private Result applyChange(String id){
 		AssetCollection billData=getById(id);
 		join(billData, AssetCollectionMeta.ASSET_LIST);
+
+		dao.execute("update eam_asset_item a,eam_asset b set b.collection_id=? where a.asset_id=b.id and a.handle_id=?",id,id);
+
 		HashMap<String,Object> map=new HashMap<>();
 		map.put("asset_status",AssetStatusEnum.USING.code());
 		map.put("use_user_id",billData.getUseUserId());
 		map.put("position_id",billData.getPositionId());
 		map.put("position_detail",billData.getPositionDetail());
 		map.put("use_organization_id",billData.getUseOrganizationId());
+
 
 		HashMap<String,List<SQL>> resultMap=assetService.parseAssetChangeRecordWithChangeAsset(billData.getAssetList(),map,billData.getBusinessCode(),AssetOperateEnum.EAM_ASSET_COLLECTION.code(),"");
 		for(String key:resultMap.keySet()){

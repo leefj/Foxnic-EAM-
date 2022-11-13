@@ -3,25 +3,30 @@ package com.dt.platform.eam.service.impl;
 
 import javax.annotation.Resource;
 
+import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.eam.*;
-import com.dt.platform.domain.eam.AssetProcessRecord;
-import com.dt.platform.domain.eam.InventoryAsset;
+import com.dt.platform.domain.eam.*;
+import com.dt.platform.domain.eam.meta.InventoryAssetMeta;
 import com.dt.platform.domain.eam.meta.InventoryMeta;
 import com.dt.platform.domain.eam.meta.InventoryVOMeta;
-import com.dt.platform.eam.service.IInventoryAssetService;
+import com.dt.platform.eam.service.*;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
+import com.github.foxnic.api.constant.CodeTextEnum;
+import com.github.foxnic.commons.bean.BeanUtil;
+import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.reflect.EnumUtil;
 import com.github.foxnic.sql.expr.In;
+import org.github.foxnic.web.domain.hrm.Employee;
+import org.github.foxnic.web.domain.hrm.Person;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import com.dt.platform.domain.eam.Inventory;
-import com.dt.platform.domain.eam.InventoryVO;
-
 import java.text.SimpleDateFormat;
-import java.util.List;
+import java.util.*;
+
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.entity.SuperService;
@@ -38,12 +43,9 @@ import com.github.foxnic.sql.meta.DBField;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.meta.DBColumnMeta;
 import com.github.foxnic.sql.expr.Select;
-import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import com.dt.platform.eam.service.IInventoryService;
 import org.github.foxnic.web.framework.dao.DBConfigs;
-import java.util.Date;
 
 /**
  * <p>
@@ -57,6 +59,16 @@ import java.util.Date;
 @Service("EamInventoryService")
 public class InventoryServiceImpl extends SuperService<Inventory> implements IInventoryService {
 
+
+	@Autowired
+	InventoryAssetServiceImpl inventoryAssetService;
+
+	@Autowired
+	IAssetService assetService;
+
+
+	@Autowired
+	private IAssetDataService assetDataService;
 
 	/**
 	 * 注入DAO对象
@@ -100,6 +112,121 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 
 
 	@Override
+	public Map<String, Object> queryInventoryAssetMap(String inventoryId) {
+
+		Map<String,Object> map=new HashMap<>();
+
+		Inventory inventory=this.getById(inventoryId);
+		if(inventory==null){
+			return map;
+		}else{
+			map=BeanUtil.toMap(inventory);
+			if(inventory.getInventoryStatus()!=null){
+				CodeTextEnum en= EnumUtil.parseByCode(AssetInventoryActionStatusEnum.class,inventory.getInventoryStatus());
+				map.put("inventoryStatusName", en==null?inventory.getInventoryStatus():en.text());
+			}
+			if(inventory.getAllEmployee()!=null){
+				CodeTextEnum en= EnumUtil.parseByCode(StatusEnableEnum.class,inventory.getAllEmployee());
+				map.put("allEmployeeEnable", en==null?inventory.getAllEmployee():en.text());
+			}
+		}
+
+		HashMap<String,String> orgMap=assetDataService.queryOrganizationNodes("all");
+		HashMap<String,String> categoryMap=assetDataService.queryAssetCategoryNodes("all");
+
+		InventoryAsset inventoryAssetQuery=new InventoryAsset();
+		inventoryAssetQuery.setInventoryId(inventoryId);
+
+		List<InventoryAsset> list=inventoryAssetServiceImpl.queryList(inventoryAssetQuery);
+
+		// join 关联的对象
+		inventoryAssetService.dao().fill(list).with(InventoryAssetMeta.OPERATER).with(InventoryAssetMeta.ASSET).execute();
+
+		List<Employee> operList = CollectorUtil.collectList(list, InventoryAsset::getOperater);
+		inventoryAssetService.dao().join(operList, Person.class);
+
+		List<Asset> assetList = CollectorUtil.collectList(list, InventoryAsset::getAsset);
+		assetService.joinData(assetList);
+
+
+		map.put("assetList",list);
+
+		List<Map<String, Object>> listMap = new ArrayList<Map<String, Object>>();
+		for(int i=0;i<list.size();i++){
+			InventoryAsset assetItem=list.get(i);
+			System.out.println("######inventoryAssetMap"+BeanUtil.toJSONObject(assetItem));
+			Map<String, Object> assetMap= BeanUtil.toMap(assetItem);
+
+			if(assetItem.getStatus()!=null){
+				CodeTextEnum statusName= EnumUtil.parseByCode(AssetInventoryDetailStatusEnum.class,assetItem.getStatus());
+				assetMap.put("statusName",statusName.text());
+			}
+
+
+			if(assetItem.getOperater()!=null){
+				System.out.println("oper:"+assetItem.getOperater().getBadge());
+				assetMap.put("assetWithOperUserNameAndBadge",assetItem.getOperater().getNameAndBadge());
+				assetMap.put("assetWithOperUserName",assetItem.getOperater().getName());
+				assetMap.put("assetWithOperUserBadge",assetItem.getOperater().getBadge());
+			}
+
+
+			if(assetItem.getAsset()!=null){
+				Asset asset=assetItem.getAsset();
+				//资产状态
+				if(asset.getAssetCycleStatus()!=null){
+					assetMap.put("assetWithAssetStatusName",asset.getAssetCycleStatus().getName());
+				}
+				assetMap.put("assetWithAssetCode",asset.getAssetCode());
+				assetMap.put("assetWithAssetSerialNumber",asset.getSerialNumber());
+				assetMap.put("assetWithAssetName",asset.getName());
+				assetMap.put("assetWithAssetModel",asset.getModel());
+				assetMap.put("assetWithAssetNotes",asset.getAssetNotes());
+				String categoryName=categoryMap.get(asset.getCategoryId());
+				assetMap.put("assetWithAssetCategoryName",categoryName);
+				String companyName=orgMap.get(asset.getOwnCompanyId());
+				assetMap.put("assetWithOwnCompanyName",companyName);
+				String orgName=orgMap.get(asset.getUseOrganizationId());
+				assetMap.put("assetWithUseOrganizationName",orgName);
+//				CodeTextEnum vStatus= EnumUtil.parseByCode(AssetHandleStatusEnum.class,asset.getStatus());
+//				assetMap.put("assetWithAssetStatusName",vStatus==null?"":vStatus.text());
+				if(asset.getPosition()!=null){
+					// 关联出 存放位置 数据
+					assetMap.put("assetWithAssetPositionName",asset.getPosition().getHierarchyName());
+				}
+				if(asset.getManager()!=null){
+					System.out.println("manager:"+asset.getManager().getBadge());
+					assetMap.put("assetWithManagerNameAndBadge",asset.getManager().getNameAndBadge());
+					assetMap.put("assetWithManagerName",asset.getManager().getName());
+					assetMap.put("assetWithManagerBadge",asset.getManager().getBadge());
+				}
+				if(asset.getUseUser()!=null){
+					System.out.println("user:"+asset.getUseUser().getBadge());
+					assetMap.put("assetWithUseUserNameAndBadge",asset.getUseUser().getNameAndBadge());
+					assetMap.put("assetWithUseUserName",asset.getUseUser().getName());
+					assetMap.put("assetWithUseUserNameBadge",asset.getUseUser().getBadge());
+				}
+			}
+			listMap.add(assetMap);
+		}
+		map.put("dataList", listMap);
+		System.out.println("map data:\n"+map);
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> getBill(String inventroyId) {
+		return queryInventoryAssetMap(inventroyId);
+	}
+
+
+	@Override
+	public Result DownLoadAsset(String inventroyId) {
+
+		return null;
+	}
+
+	@Override
 	public Result assetPlusData(String inventroyId, String assetId) {
 		InventoryAsset inventoryAsset=new InventoryAsset();
 		inventoryAsset.setAssetId(assetId);
@@ -110,6 +237,29 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 		inventoryAsset.setSource(AssetInventoryDetailDataSourceEnum.ASSET_PLUS.code());
 		inventoryAssetServiceImpl.insert(inventoryAsset,false);
 		return ErrorDesc.success();
+	}
+
+	@Override
+	public PagedList<Inventory> queryByEmployeeModePagedList(Inventory sample,int pageSize,int pageIndex) {
+		sample.setAllEmployee(StatusEnableEnum.ENABLE.code());
+		return this.queryPagedList(sample,pageSize,pageIndex);
+	}
+
+	@Override
+	public PagedList<InventoryAsset> queryMyAssetByEmployeeModePagedList(InventoryAsset sample,int pageSize,int pageIndex) {
+		if(StringUtil.isBlank(sample.getInventoryId())){
+			sample.setInventoryId("-1");
+		}
+		ConditionExpr expr=new ConditionExpr();
+		String curUserId=SessionUser.getCurrent().getUser().getActivatedEmployeeId();
+		//后续考虑是否添加 or operuser=自己
+		expr.and("asset_id in (select id from eam_asset where use_user_id='"+curUserId+"') or oper_empl_id='"+curUserId+"'" );
+		return inventoryAssetService.queryPagedList(sample,expr,pageSize,pageIndex);
+	}
+
+	@Override
+	public PagedList<Asset> queryAssetByEmployeeModePagedList(String inventoryId) {
+		return null;
 	}
 
 	@Override

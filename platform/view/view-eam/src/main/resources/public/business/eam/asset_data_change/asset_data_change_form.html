@@ -99,7 +99,7 @@
         <!--开始：group 循环-->
 
         <fieldset class="layui-elem-field layui-field-title form-group-title">
-        <legend>资产列表</legend>
+       <legend th:text="${lang.translate('资产列表')}" >资产列表</legend>
         </fieldset>
         <div class="layui-row form-row" style="text-align: center;">
             <div style="display: inline-block;padding-right: 8px;padding-left: 8px" class="layui-col-xs12">
@@ -108,7 +108,7 @@
         </div>
         <!--结束：group循环-->
         <fieldset class="layui-elem-field layui-field-title form-group-title">
-            <legend>变更内容</legend>
+            <legend  th:text="${lang.translate('变更内容')}">变更内容</legend>
         </fieldset>
 
 

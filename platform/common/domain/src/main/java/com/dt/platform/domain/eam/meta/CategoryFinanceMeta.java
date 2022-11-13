@@ -3,13 +3,14 @@ package com.dt.platform.domain.eam.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.CategoryFinance;
 import java.util.Date;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:27:03
- * @sign 668C3469B1B46865F76ABFF9D014CAA7
+ * @since 2022-11-13 10:04:46
+ * @sign 0E0D1FCB5917DFA1D33049EDDC09238D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -426,5 +427,44 @@ public class CategoryFinanceMeta {
 			super.setTenantId(tenantId);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public CategoryFinance clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public CategoryFinance duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNotes(this.getNotes());
+			inst.setHierarchy(this.getHierarchy());
+			inst.setHierarchyName(this.getHierarchyName());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setCategoryCode(this.getCategoryCode());
+			inst.setSort(this.getSort());
+			inst.setCategoryName(this.getCategoryName());
+			inst.setVersion(this.getVersion());
+			inst.setParentId(this.getParentId());
+			inst.setCategoryFullname(this.getCategoryFullname());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setStatus(this.getStatus());
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

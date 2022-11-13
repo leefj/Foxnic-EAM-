@@ -40,7 +40,7 @@ public class EamAssetStorageGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_ASSET_STORAGE.ORIGINATOR_ID).table().fillBy("originator","name");
         cfg.view().field(EAMTables.EAM_ASSET_STORAGE.MANAGER_USER_ID).table().fillBy("managerUser","name");
-        cfg.view().field(EAMTables.EAM_ASSET_STORAGE.MANAGER_USER_ID).form().validate().required().form()
+        cfg.view().field(EAMTables.EAM_ASSET_STORAGE.MANAGER_USER_ID).form()
                 .button().chooseEmployee(true);
 
         cfg.view().field(EAMTables.EAM_ASSET_STORAGE.ATTACH)
@@ -97,7 +97,7 @@ public class EamAssetStorageGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_STORAGE.CONTENT).form().textArea().height(Config.textAreaHeight_Z).search().fuzzySearch();
 
         cfg.view().field(EAMTables.EAM_ASSET_STORAGE.OWN_COMPANY_ID)
-                .form().validate().required().form().button().chooseCompany(true);
+                 .form().button().chooseCompany(true);
         cfg.view().field(EAMTables.EAM_ASSET.OWN_COMPANY_ID).table().fillBy("ownerCompany","fullName");
 
         cfg.view().field(EAMTables.EAM_ASSET_STORAGE.SUPPLIER_ID)
@@ -105,6 +105,14 @@ public class EamAssetStorageGtr extends BaseCodeGenerator {
                 .form().selectBox().queryApi(SupplierServiceProxy.QUERY_PAGED_LIST).paging(true).filter(true).toolbar(false)
                 .valueField(SupplierMeta.ID).textField(SupplierMeta.SUPPLIER_NAME).fillWith(AssetStorageMeta.SUPPLIER).muliti(false);
 
+
+
+        cfg.view().field(EAMTables.EAM_ASSET_STORAGE.SUPPLIER_ID).table().disable();
+        cfg.view().field(EAMTables.EAM_ASSET_STORAGE.SUPPLIER_INFO).table().disable();
+        cfg.view().field(EAMTables.EAM_ASSET_STORAGE.SELECTED_CODE).table().disable();
+
+        cfg.view().field(EAMTables.EAM_ASSET_STORAGE.SUPPLIER_ID).table().disable();
+        cfg.view().field(EAMTables.EAM_ASSET_STORAGE.OWN_COMPANY_ID).table().disable();
 
       //  cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_storage:for-approval");
         cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_storage:confirm");
@@ -124,15 +132,18 @@ public class EamAssetStorageGtr extends BaseCodeGenerator {
                 new Object[] {
                         EAMTables.EAM_ASSET_STORAGE.NAME,
                         EAMTables.EAM_ASSET_STORAGE.BUSINESS_DATE,
+
                 },
                 new Object[] {
-                        EAMTables.EAM_ASSET_STORAGE.SUPPLIER_ID,
-                        EAMTables.EAM_ASSET_STORAGE.SUPPLIER_INFO,
+                    EAMTables.EAM_ASSET_STORAGE.SUPPLIER_INFO,
+                    EAMTables.EAM_ASSET_STORAGE.MANAGER_USER_ID,
+//                        EAMTables.EAM_ASSET_STORAGE.SUPPLIER_ID,
+
                 },
-                new Object[] {
-                        EAMTables.EAM_ASSET_STORAGE.OWN_COMPANY_ID,
-                        EAMTables.EAM_ASSET_STORAGE.MANAGER_USER_ID,
-                },
+//                new Object[] {
+//                        EAMTables.EAM_ASSET_STORAGE.OWN_COMPANY_ID,
+//
+//                },
                 new Object[] {
                         EAMTables.EAM_ASSET_STORAGE.LOCATION_NAME,
                         EAMTables.EAM_ASSET_STORAGE.ATTACH,

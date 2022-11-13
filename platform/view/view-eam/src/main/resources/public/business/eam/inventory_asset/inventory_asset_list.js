@@ -62,12 +62,20 @@ function ListPage() {
 					return value;
 				}
 			}
+
+
+			var dataUrl=moduleURL +'/query-paged-list';
+			if(INVENTORY_MODE){
+				if(INVENTORY_MODE=="employ_inventory_mode"){
+					dataUrl="/service-eam/eam-inventory/query-my-asset-by-employee-mode-paged-list"
+				}
+			}
 			var h=$(".search-bar").height();
 			var tableConfig={
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
 				defaultToolbar: ['filter', 'print',{title: '刷新数据',layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
-				url: moduleURL +'/query-paged-list',
+				url:dataUrl,
 				height: 'full-'+(h+28),
 				limit: 50,
 				where: ps,
@@ -80,16 +88,22 @@ function ListPage() {
 					,{ field: 'operEmplId', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('盘点人员') , templet: function (d) { return templet('operEmplId',fox.getProperty(d,["operater","name"]),d);} }
 					,{ field: 'operDate', align:"right", fixed:false, hide:false, sort: true, title: fox.translate('操作时间') ,templet: function (d) { return templet('operDate',fox.dateFormat(d.operDate,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('盘点备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
-
-					//	,{ field: 'assetId', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('资产') , templet: function (d) { return templet('assetId',d.assetId,d);}  }
-					,{ field: 'assetCode', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('资产编号') , templet: function (d) { return templet('assetCode',d.asset.assetCode,d);}  }
+				//	,{ field: 'assetId', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('资产') , templet: function (d) { return templet('assetId',d.assetId,d);}  }
+					,{ field: 'assetCode', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('资产编号') , templet: function (d) { return templet('assetCode',d.asset.assetCode,d);}}
 					,{ field: 'categoryId', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('资产分类'), templet: function (d) { return templet('categoryId',fox.joinLabel(d.asset.category,"name"),d);}}
 					,{ field: 'assetStatus', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('资产状态'), templet:function (d){ return templet('assetStatus',fox.getEnumText(SELECT_ASSETSTATUS_DATA,d.asset.assetStatus),d);}}
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('名称') , templet: function (d) { return templet('name',d.asset.name,d);}  }
 					,{ field: 'model', align:"left",fixed:false, hide:false, sort: true, title: fox.translate('规格型号') , templet: function (d) { return templet('model',d.asset.model,d);}  }
 					,{ field: 'serialNumber', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('序列号') , templet: function (d) { return templet('serialNumber',d.asset.serialNumber,d);}  }
-					,{ field: 'assetNotes', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('资产备注') , templet: function (d) { return templet('assetNotes',d.asset.assetNotes,d);}  }
+					,{ field: 'ownCompanyId', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('所属公司') , templet: function (d) { return templet('ownCompanyId',fox.getProperty(d.asset,["ownerCompany","fullName"]),d);} }
+					,{ field: 'managerId', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('管理人员') , templet: function (d) { return templet('managerId',fox.getProperty(d.asset,["manager","name"]),d);} }
+					,{field: 'useOrganizationId', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('使用公司/部门') , templet: function (d) { return templet('useOrganizationId',fox.getProperty(d.asset,["useOrganization","fullName"]),d);} }
+					, { field: 'useUserId', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('使用人员') , templet: function (d) { return templet('useUserId',fox.getProperty(d.asset,["useUser","name"]),d);} }
+					,{ field: 'positionId', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('位置'), templet: function (d) { return templet('positionId',fox.joinLabel(d.asset.position,"hierarchyName"),d);}}
+					, { field: 'positionDetail', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('详细位置') , templet: function (d) { return templet('positionDetail',d.asset.positionDetail,d);}  }
 
+
+		,{ field: 'assetNotes', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('资产备注') , templet: function (d) { return templet('assetNotes',d.asset.assetNotes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true, title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
@@ -175,7 +189,6 @@ function ListPage() {
 	function initSearchFields() {
 
 		fox.switchSearchRow(1);
-
 		//渲染 status 下拉字段
 		fox.renderSelectBox({
 			el: "status",
@@ -304,6 +317,9 @@ function ListPage() {
 					break;
 				case 'refresh-data':
 					refreshTableData();
+					break;
+				case 'download-asset':
+					window.pageExt.list.downloadAsset(selected);
 					break;
 				case 'asset-plus':
 					console.log("asset-plus start");
@@ -447,10 +463,6 @@ function ListPage() {
 						layer.msg(data.message, {icon: 1, time: 1500});
 					}
 				});
-
-
-
-
 			}
 			else if (layEvent === 'del') { // 删除
 

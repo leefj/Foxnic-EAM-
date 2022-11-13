@@ -209,9 +209,12 @@ public class CodeRuleServiceImpl extends SuperService<CodeRule> implements ICode
 				value=value+part.getCode().replaceAll("#SP#",codeRule.getCodeSeparator());
 			}else if("number_seq".equals(part.getType())){
 				value=value+part.getCode().replaceAll("#NUM#",codeRule.getNumberSeq().toString());
-			}else if("string_fix".equals(part.getType())){
-				value=value+part.getCode().replaceAll("#FS1#",codeRule.getFs1());
-			}else{
+			}else if("number_seq_relation".equals(part.getType())){
+				value=value+part.getCode().replaceAll("#NUM#",codeRule.getNumberSeq().toString());
+			}else if("string_fix".equals(part.getType())) {
+				value = value + part.getCode().replaceAll("#FS1#", codeRule.getFs1());
+			}
+			else{
 				value=value+part.getCode();
 			}
 			codeRule.setValue(value);

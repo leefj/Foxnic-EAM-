@@ -3,13 +3,14 @@ package com.dt.platform.domain.eam.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.AssetItem;
 import java.util.Date;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-23 16:52:57
- * @sign 55474E1646CA66872D7A3B32EB9C563D
+ * @since 2022-11-13 18:13:51
+ * @sign 18FABF07026DC9BABF26484FC1156091
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -64,6 +65,16 @@ public class AssetItemMeta {
 	 * 资产状态 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetItem,java.lang.String> BEFORE_ASSET_STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetItem.class ,BEFORE_ASSET_STATUS, java.lang.String.class, "资产状态", "资产状态", java.lang.String.class, null);
+	
+	/**
+	 * 标记 , 类型: java.lang.String
+	*/
+	public static final String FLAG="flag";
+	
+	/**
+	 * 标记 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetItem,java.lang.String> FLAG_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetItem.class ,FLAG, java.lang.String.class, "标记", "标记", java.lang.String.class, null);
 	
 	/**
 	 * 修改标记 , 类型: java.lang.String
@@ -168,7 +179,7 @@ public class AssetItemMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , HANDLE_ID , ASSET_ID , BEFORE_USE_USER_ID , BEFORE_ASSET_STATUS , CRD , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION };
+	public static final String[] $PROPS={ ID , HANDLE_ID , ASSET_ID , BEFORE_USE_USER_ID , BEFORE_ASSET_STATUS , FLAG , CRD , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION };
 	
 	/**
 	 * 代理类
@@ -230,6 +241,17 @@ public class AssetItemMeta {
 		public AssetItem setBeforeAssetStatus(String beforeAssetStatus) {
 			super.change(BEFORE_ASSET_STATUS,super.getBeforeAssetStatus(),beforeAssetStatus);
 			super.setBeforeAssetStatus(beforeAssetStatus);
+			return this;
+		}
+		
+		/**
+		 * 设置 标记
+		 * @param flag 标记
+		 * @return 当前对象
+		*/
+		public AssetItem setFlag(String flag) {
+			super.change(FLAG,super.getFlag(),flag);
+			super.setFlag(flag);
 			return this;
 		}
 		
@@ -342,5 +364,41 @@ public class AssetItemMeta {
 			super.setVersion(version);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AssetItem clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AssetItem duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setBeforeAssetStatus(this.getBeforeAssetStatus());
+			inst.setFlag(this.getFlag());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setVersion(this.getVersion());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCrd(this.getCrd());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setAssetId(this.getAssetId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setHandleId(this.getHandleId());
+			inst.setBeforeUseUserId(this.getBeforeUseUserId());
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

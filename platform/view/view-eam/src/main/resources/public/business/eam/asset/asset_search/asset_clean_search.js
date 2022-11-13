@@ -240,7 +240,7 @@ function ListPage() {
 
     function initSearchFields() {
 
-        fox.switchSearchRow(2);
+        fox.switchSearchRow(1);
 
         //渲染 status 下拉字段
         fox.renderSelectBox({
@@ -395,7 +395,7 @@ function ListPage() {
 
         // 搜索按钮点击事件
         $('#search-button-advance').click(function () {
-            fox.switchSearchRow(2,function (ex){
+            fox.switchSearchRow(1,function (ex){
                 if(ex=="1") {
                     $('#search-button-advance span').text("关闭");
                 } else {

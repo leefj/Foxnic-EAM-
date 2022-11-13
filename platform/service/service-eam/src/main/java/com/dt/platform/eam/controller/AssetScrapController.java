@@ -255,6 +255,7 @@ public class AssetScrapController extends SuperController implements BpmCallback
         AssetScrap assetScrap = assetScrapService.getById(id);
         assetScrapService.join(assetScrap, AssetScrapMeta.ORIGINATOR);
         assetScrapService.join(assetScrap, AssetScrapMeta.METHOD_DICT);
+
         assetScrapService.dao().join(assetScrap.getOriginator(), Person.class);
         result.success(true).data(assetScrap);
         return result;

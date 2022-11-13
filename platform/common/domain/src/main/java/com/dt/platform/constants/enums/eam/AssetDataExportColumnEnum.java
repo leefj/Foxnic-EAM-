@@ -32,6 +32,7 @@ public enum AssetDataExportColumnEnum implements CodeTextEnum {
     OWN_COMPANY_NAME("ownCompanyName","own_company_id" ),
 
     USE_ORGANIZATION_NAME("useOrganizationName","use_organization_id"),
+
     MANAGER_NAME( "managerName","manager_name" ),
     MANAGER_BADGE( "managerBadge","manager_id" ),
     MANAGER_NAME_BADGE( "managerNameBadge","manager_name_badge" ),

@@ -35,6 +35,23 @@ public interface ICodeModuleService {
     /**
      * 获取业务编码
      * @param module 传入业务编码模块
+     * @param ownOrgId 传入业务编码模块
+     * @param pcmId 传入业务编码模块
+     * @return 返回编号
+     * */
+     Result generateCodeByData(String module,String ownOrgId,String pcmId);
+
+    /**
+     * 获取业务编码
+     * @param rule 传入业务编码模块
+     * @return 返回编号
+     * */
+    Result generateCodeByRule(String rule);
+
+
+    /**
+     * 获取业务编码
+     * @param module 传入业务编码模块
      * @return 返回编号
      * */
     Result generateCode(String module);

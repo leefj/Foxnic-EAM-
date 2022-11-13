@@ -10,10 +10,10 @@ import com.dt.platform.proxy.eam.AssetItemServiceProxy;
 import javax.servlet.http.HttpServletRequest;
 /**
  * <p>
- * 资产 模版页面控制器
+ * 资产模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-23 16:52:58
+ * @since 2022-11-13 18:13:52
 */
 
 @Controller("EamAssetItemPageController")

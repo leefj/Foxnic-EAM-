@@ -48,10 +48,6 @@
                         <input id="assetCode" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
 
-                    <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('名称')}" class="search-label name-label">名称</span><span class="search-colon">:</span></div>
-                        <input id="name" class="layui-input search-input" style="width: 150px" type="text" />
-                    </div>
 
 
                     <!-- 规格型号 , model ,typeName=text_input, isHideInSearch=false -->
@@ -59,6 +55,12 @@
                         <div class="search-label-div"  style="width:70px"><span th:text="${lang.translate('规格型号')}" class="search-label model-label">规格型号</span><span class="search-colon">:</span></div>
                         <input id="model" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
+
+                    <div class="search-unit">
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('名称')}" class="search-label name-label">名称</span><span class="search-colon">:</span></div>
+                        <input id="name" class="layui-input search-input" style="width: 150px" type="text" />
+                    </div>
+
 
                 </div>
 
@@ -70,7 +72,7 @@
             </div>
         </div>
 
-        <div style="margin-top: 60px ">
+        <div style="margin-top: 42px ">
             <table class="layui-table" id="data-table" lay-filter="data-table"></table>
         </div>
 

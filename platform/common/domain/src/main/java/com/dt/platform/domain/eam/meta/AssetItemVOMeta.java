@@ -5,13 +5,14 @@ import com.dt.platform.domain.eam.AssetItemVO;
 import java.util.List;
 import com.dt.platform.domain.eam.AssetItem;
 import java.util.Date;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-23 16:52:57
- * @sign B072E64D837A1516F2E6ABF12FF57C5B
+ * @since 2022-11-13 18:13:51
+ * @sign 43ACC8582D5BAFAE871200ABB1CAAC6E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -158,6 +159,16 @@ public class AssetItemVOMeta extends AssetItemMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetItemVO,java.lang.String> BEFORE_ASSET_STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetItemVO.class ,BEFORE_ASSET_STATUS, java.lang.String.class, "资产状态", "资产状态", java.lang.String.class, null);
 	
 	/**
+	 * 标记 , 类型: java.lang.String
+	*/
+	public static final String FLAG="flag";
+	
+	/**
+	 * 标记 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetItemVO,java.lang.String> FLAG_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetItemVO.class ,FLAG, java.lang.String.class, "标记", "标记", java.lang.String.class, null);
+	
+	/**
 	 * 修改标记 , 类型: java.lang.String
 	*/
 	public static final String CRD="crd";
@@ -260,7 +271,7 @@ public class AssetItemVOMeta extends AssetItemMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , HANDLE_ID , ASSET_ID , BEFORE_USE_USER_ID , BEFORE_ASSET_STATUS , CRD , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , HANDLE_ID , ASSET_ID , BEFORE_USE_USER_ID , BEFORE_ASSET_STATUS , FLAG , CRD , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , SELECTED_CODE , VERSION };
 	
 	/**
 	 * 代理类
@@ -425,6 +436,17 @@ public class AssetItemVOMeta extends AssetItemMeta {
 		}
 		
 		/**
+		 * 设置 标记
+		 * @param flag 标记
+		 * @return 当前对象
+		*/
+		public AssetItem setFlag(String flag) {
+			super.change(FLAG,super.getFlag(),flag);
+			super.setFlag(flag);
+			return this;
+		}
+		
+		/**
 		 * 设置 修改标记
 		 * @param crd 修改标记
 		 * @return 当前对象
@@ -533,5 +555,52 @@ public class AssetItemVOMeta extends AssetItemMeta {
 			super.setVersion(version);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AssetItemVO clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AssetItemVO duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setBeforeAssetStatus(this.getBeforeAssetStatus());
+			inst.setFlag(this.getFlag());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setVersion(this.getVersion());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCrd(this.getCrd());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setAssetId(this.getAssetId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setHandleId(this.getHandleId());
+			inst.setBeforeUseUserId(this.getBeforeUseUserId());
+			if(all) {
+				inst.setSearchField(this.getSearchField());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setDirtyFields(this.getDirtyFields());
+				inst.setSortField(this.getSortField());
+				inst.setPageSize(this.getPageSize());
+				inst.setIds(this.getIds());
+				inst.setSearchValue(this.getSearchValue());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

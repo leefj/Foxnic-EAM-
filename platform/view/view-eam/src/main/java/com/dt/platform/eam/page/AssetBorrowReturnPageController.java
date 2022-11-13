@@ -1,5 +1,6 @@
 package com.dt.platform.eam.page;
 
+import com.dt.platform.constants.enums.eam.AssetOperateEnum;
 import org.github.foxnic.web.framework.view.controller.ViewController;
 
 import org.springframework.stereotype.Controller;
@@ -10,10 +11,10 @@ import com.dt.platform.proxy.eam.AssetBorrowReturnServiceProxy;
 import javax.servlet.http.HttpServletRequest;
 /**
  * <p>
- * 资产借用归还 模版页面控制器
+ * 资产归还模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:27:30
+ * @since 2022-11-13 10:13:25
 */
 
 @Controller("EamAssetBorrowReturnPageController")
@@ -38,18 +39,21 @@ public class AssetBorrowReturnPageController extends ViewController {
 	}
 	
 	/**
-	 * 资产借用归还 功能主页面
+	 * 资产归还 功能主页面
 	 */
 	@RequestMapping("/asset_borrow_return_list.html")
 	public String list(Model model,HttpServletRequest request) {
+		model.addAttribute("approvalRequired",false);
 		return prefix+"/asset_borrow_return_list";
 	}
 
 	/**
-	 * 资产借用归还 表单页面
+	 * 资产归还 表单页面
 	 */
 	@RequestMapping("/asset_borrow_return_form.html")
 	public String form(Model model,HttpServletRequest request , String id) {
+		model.addAttribute("billId",id);
+		model.addAttribute("billType", AssetOperateEnum.EAM_ASSET_BORROW_RETURN.code());
 		return prefix+"/asset_borrow_return_form";
 	}
 }

@@ -1,21 +1,26 @@
 /**
- * 资产借用归还 列表页 JS 脚本
+ * 资产归还 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:27:30
+ * @since 2022-11-13 18:22:46
  */
 
 function FormPage() {
 
-	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup;
+	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
 	const moduleURL="/service-eam/eam-asset-borrow-return";
+	// 表单执行操作类型：view，create，edit
 	var action=null;
 	var disableCreateNew=false;
 	var disableModify=false;
+	var dataBeforeEdit=null;
+	const bpmIntegrateMode="none";
+	var isInProcess=QueryString.get("isInProcess");
+
 	/**
       * 入口函数，初始化
       */
 	this.init=function(layui) {
-     	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload;
+     	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload,dropdown=layui.dropdown;
 		laydate = layui.laydate,table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect;
 
 		action=admin.getTempData('eam-asset-borrow-return-form-data-form-action');
@@ -27,8 +32,12 @@ function FormPage() {
 			disableModify=true;
 		}
 
+		if(bpmIntegrateMode=="front" && isInProcess==1) {
+			$(".model-form-footer").hide();
+		}
+
 		if(window.pageExt.form.beforeInit) {
-			window.pageExt.form.beforeInit();
+			window.pageExt.form.beforeInit(action,admin.getTempData('eam-asset-borrow-return-form-data'));
 		}
 
 		//渲染表单组件
@@ -40,23 +49,45 @@ function FormPage() {
 		//绑定提交事件
 		bindButtonEvent();
 
-		//调整窗口的高度与位置
-		adjustPopup();
+
+
 	}
+
+
+
+
 
 	/**
 	 * 自动调节窗口高度
 	 * */
 	var adjustPopupTask=-1;
 	function adjustPopup() {
+		if(window.pageExt.form.beforeAdjustPopup) {
+			var doNext=window.pageExt.form.beforeAdjustPopup();
+			if(!doNext) return;
+		}
+
+
+
 		clearTimeout(adjustPopupTask);
 		var scroll=$(".form-container").attr("scroll");
 		if(scroll=='yes') return;
+		var prevBodyHeight=-1;
 		adjustPopupTask=setTimeout(function () {
 			var body=$("body");
 			var bodyHeight=body.height();
 			var footerHeight=$(".model-form-footer").height();
-			var area=admin.changePopupArea(null,bodyHeight+footerHeight);
+			if(bpmIntegrateMode=="front" && isInProcess==1) {
+				var updateFormIframeHeight=admin.getVar("updateFormIframeHeight");
+				if(bodyHeight>0 && bodyHeight!=prevBodyHeight) {
+					updateFormIframeHeight && updateFormIframeHeight(bodyHeight);
+				} else {
+					setTimeout(adjustPopup,1000);
+				}
+				prevBodyHeight = bodyHeight;
+				return;
+			}
+			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'eam-asset-borrow-return-form-data-win');
 			if(area==null) return;
 			admin.putTempData('eam-asset-borrow-return-form-area', area);
 			window.adjustPopup=adjustPopup;
@@ -78,11 +109,129 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
+		//渲染 status 下拉字段
+		fox.renderSelectBox({
+			el: "status",
+			radio: true,
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
+		//渲染 positionId 下拉字段
+		fox.renderSelectBox({
+			el: "positionId",
+			radio: true,
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("positionId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "hierarchyName", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "0".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].hierarchyName,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
 		laydate.render({
 			elem: '#returnDate',
-			format:"yyyy-MM-dd HH:mm:ss",
-			trigger:"click"
+			format:"yyyy-MM-dd",
+			value:$('#returnDate').val()?$('#returnDate').val():new Date(),
+			trigger:"click",
+			done: function(value, date, endDate){
+				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("returnDate",value, date, endDate);
+			}
 		});
+		laydate.render({
+			elem: '#businessDate',
+			format:"yyyy-MM-dd",
+			value:$('#businessDate').val()?$('#businessDate').val():new Date(),
+			trigger:"click",
+			done: function(value, date, endDate){
+				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("businessDate",value, date, endDate);
+			}
+		});
+	    //渲染图片字段
+		foxup.render({
+			el:"attach",
+			maxFileCount: 1,
+			displayFileName: false,
+			accept: "file",
+			afterPreview:function(elId,index,fileId,upload,fileName,fileType){
+				adjustPopup();
+				window.pageExt.form.onUploadEvent &&  window.pageExt.form.onUploadEvent({event:"afterPreview",elId:elId,index:index,fileId:fileId,upload:upload,fileName:fileName,fileType:fileType});
+			},
+			afterUpload:function (elId,result,index,upload) {
+				console.log("文件上传后回调");
+				window.pageExt.form.onUploadEvent &&  window.pageExt.form.onUploadEvent({event:"afterUpload",elId:elId,index:index,upload:upload});
+			},
+			beforeRemove:function (elId,fileId,index,upload) {
+				console.log("文件删除前回调");
+				if(window.pageExt.form.onUploadEvent) {
+					return window.pageExt.form.onUploadEvent({event:"beforeRemove",elId:elId,index:index,fileId:fileId,upload:upload});
+				}
+				return true;
+			},
+			afterRemove:function (elId,fileId,index,upload) {
+				adjustPopup();
+				window.pageExt.form.onUploadEvent &&  window.pageExt.form.onUploadEvent({event:"afterRemove",elId:elId,index:index,upload:upload});
+			}
+	    });
+	}
+
+	/**
+	 * 根据id填充表单
+	 * */
+	function fillFormDataByIds(ids) {
+		if(!ids) return;
+		if(ids.length==0) return;
+		var id=ids[0];
+		if(!id) return;
+		admin.post(moduleURL+"/get-by-id", { id : id }, function (r) {
+			if (r.success) {
+				fillFormData(r.data)
+			} else {
+				fox.showMessage(r);
+			}
+		});
+	}
+
+	/**
+	 * 在流程提交前处理表单数据
+	 * */
+	function processFormData4Bpm (processInstanceId,param,cb) {
+		window.pageExt.form.processFormData4Bpm && window.pageExt.form.processFormData4Bpm(processInstanceId,param,cb);
 	}
 
 	/**
@@ -106,17 +255,26 @@ function FormPage() {
 			fm[0].reset();
 			form.val('data-form', formData);
 
-
-
-
-			//设置 归还时间 显示复选框勾选
-			if(formData["returnDate"]) {
-				$("#returnDate").val(fox.dateFormat(formData["returnDate"],"yyyy-MM-dd HH:mm:ss"));
+			//设置 附件 显示附件
+		    if($("#attach").val()) {
+				foxup.fill("attach",$("#attach").val());
+		    } else {
+				adjustPopup();
 			}
 
 
 
+			//设置 归还日期 显示复选框勾选
+			if(formData["returnDate"]) {
+				$("#returnDate").val(fox.dateFormat(formData["returnDate"],"yyyy-MM-dd"));
+			}
+
+
+			//设置  存放位置 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#positionId",formData.position);
+
 			//处理fillBy
+			$("#originatorUserName").val(fox.getProperty(formData,["originator","name"]));
 
 			//
 	     	fm.attr('method', 'POST');
@@ -133,7 +291,8 @@ function FormPage() {
         setTimeout(function (){
             fm.animate({
                 opacity:'1.0'
-            },100);
+            },100,null,function (){
+				fm.css("opacity","1.0");});
         },1);
 
         //禁用编辑
@@ -156,6 +315,8 @@ function FormPage() {
 			}
 		}
 
+		dataBeforeEdit=getFormData();
+
 	}
 
 	function getFormData() {
@@ -163,6 +324,8 @@ function FormPage() {
 
 
 
+		//获取 存放位置 下拉框的值
+		data["positionId"]=fox.getSelectedValue("positionId",false);
 
 		return data;
 	}
@@ -171,21 +334,55 @@ function FormPage() {
 		return fox.formVerify("data-form",data,VALIDATE_CONFIG)
 	}
 
-	function saveForm(param) {
+	function saveForm(param,callback) {
+
+		if(window.pageExt.form.beforeSubmit) {
+			var doNext=window.pageExt.form.beforeSubmit(param);
+			if(!doNext) return ;
+		}
+
+		param.dirtyFields=fox.compareDirtyFields(dataBeforeEdit,param);
+		var action=param.id?"edit":"create";
 		var api=moduleURL+"/"+(param.id?"update":"insert");
-		var task=setTimeout(function(){layer.load(2);},1000);
-		admin.request(api, param, function (data) {
-			clearTimeout(task);
-			layer.closeAll('loading');
+		admin.post(api, param, function (data) {
 			if (data.success) {
-				layer.msg(data.message, {icon: 1, time: 500});
-				var index=admin.getTempData('eam-asset-borrow-return-form-data-popup-index');
-				admin.finishPopupCenter(index);
+				var doNext=true;
+				var pkValues=data.data;
+				if(pkValues) {
+					for (var key in pkValues) {
+						$("#"+key).val(pkValues[key]);
+					}
+				}
+				if(window.pageExt.form.betweenFormSubmitAndClose) {
+					doNext=window.pageExt.form.betweenFormSubmitAndClose(param,data);
+				}
+
+				if(callback) {
+					doNext = callback(data,action);
+				}
+
+				if(doNext) {
+					admin.finishPopupCenterById('eam-asset-borrow-return-form-data-win');
+				}
+
+				// 调整状态为编辑
+				action="edit";
+
 			} else {
-				layer.msg(data.message, {icon: 2, time: 1000});
+				fox.showMessage(data);
 			}
 			window.pageExt.form.afterSubmit && window.pageExt.form.afterSubmit(param,data);
-		}, "POST");
+		}, {delayLoading:1000,elms:[$("#submit-button")]});
+	}
+
+	function verifyAndSaveForm(data) {
+		if(!data) data={};
+		//debugger;
+		data.field = getFormData();
+		//校验表单
+		if(!verifyForm(data.field)) return;
+		saveForm(data.field);
+		return false;
 	}
 
 	/**
@@ -193,24 +390,59 @@ function FormPage() {
       */
     function bindButtonEvent() {
 
-	    form.on('submit(submit-button)', function (data) {
-	    	//debugger;
-			data.field = getFormData();
+	    form.on('submit(submit-button)', verifyAndSaveForm);
 
-			if(window.pageExt.form.beforeSubmit) {
-				var doNext=window.pageExt.form.beforeSubmit(data.field);
-				if(!doNext) return ;
-			}
-			//校验表单
-			if(!verifyForm(data.field)) return;
-
-			saveForm(data.field);
-	        return false;
-	    });
-
+		// 请选择组织节点对话框
+		$("#useOrganizationId-button").click(function(){
+			var useOrganizationIdDialogOptions={
+				field:"useOrganizationId",
+				formData:getFormData(),
+				inputEl:$("#useOrganizationId"),
+				buttonEl:$(this),
+				single:true,
+				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
+				root: "",
+				targetType:"org",
+				prepose:function(param){ return window.pageExt.form.beforeDialog && window.pageExt.form.beforeDialog(param);},
+				callback:function(param,result){ window.pageExt.form.afterDialog && window.pageExt.form.afterDialog(param,result);}
+			};
+			fox.chooseOrgNode(useOrganizationIdDialogOptions);
+		});
+		// 请选择人员对话框
+		$("#managerId-button").click(function(){
+				var managerIdDialogOptions={
+				field:"managerId",
+				formData:getFormData(),
+				inputEl:$("#managerId"),
+				buttonEl:$(this),
+				single:true,
+				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
+				root: "",
+				targetType:"emp",
+				prepose:function(param){ return window.pageExt.form.beforeDialog && window.pageExt.form.beforeDialog(param);},
+				callback:function(param,result){ window.pageExt.form.afterDialog && window.pageExt.form.afterDialog(param,result);}
+			};
+			fox.chooseEmployee(managerIdDialogOptions);
+		});
+		// 请选择人员对话框
+		$("#useUserId-button").click(function(){
+				var useUserIdDialogOptions={
+				field:"useUserId",
+				formData:getFormData(),
+				inputEl:$("#useUserId"),
+				buttonEl:$(this),
+				single:true,
+				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
+				root: "",
+				targetType:"emp",
+				prepose:function(param){ return window.pageExt.form.beforeDialog && window.pageExt.form.beforeDialog(param);},
+				callback:function(param,result){ window.pageExt.form.afterDialog && window.pageExt.form.afterDialog(param,result);}
+			};
+			fox.chooseEmployee(useUserIdDialogOptions);
+		});
 
 	    //关闭窗口
-	    $("#cancel-button").click(function(){admin.closePopupCenter();});
+	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('eam-asset-borrow-return-form-data-win',this); });
 
     }
 
@@ -218,15 +450,22 @@ function FormPage() {
 		getFormData: getFormData,
 		verifyForm: verifyForm,
 		saveForm: saveForm,
+		verifyAndSaveForm:verifyAndSaveForm,
 		fillFormData: fillFormData,
-		adjustPopup: adjustPopup
+		fillFormDataByIds:fillFormDataByIds,
+		processFormData4Bpm:processFormData4Bpm,
+		adjustPopup: adjustPopup,
+		action: action,
+		setAction: function (act) {
+			action = act;
+		}
 	};
 
 	window.pageExt.form.ending && window.pageExt.form.ending();
 
 }
 
-layui.use(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','foxnicUpload','laydate'],function() {
+layui.use(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','foxnicUpload','laydate','dropdown'],function() {
 	var task=setInterval(function (){
 		if(!window["pageExt"]) return;
 		clearInterval(task);

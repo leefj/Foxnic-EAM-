@@ -22,9 +22,9 @@ function FormPage() {
 
 		action=admin.getTempData('eam-inventory-asset-form-data-form-action');
 		//如果没有修改和保存权限
-		if( !admin.checkAuth(AUTH_PREFIX+":update") && !admin.checkAuth(AUTH_PREFIX+":save")) {
-			disableModify=true;
-		}
+		// if( !admin.checkAuth(AUTH_PREFIX+":update") && !admin.checkAuth(AUTH_PREFIX+":save")) {
+		// 	disableModify=true;
+		// }
 		if(action=="view") {
 			disableModify=true;
 		}
@@ -119,6 +119,31 @@ function FormPage() {
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("operDate",value, date, endDate);
 			}
 		});
+		foxup.render({
+			el:"pictureId",
+			maxFileCount: 6,
+			displayFileName: true,
+			accept: "image",
+			afterPreview:function(elId,index,fileId,upload,fileName,fileType){
+				adjustPopup();
+				window.pageExt.form.onUploadEvent &&  window.pageExt.form.onUploadEvent({event:"afterPreview",elId:elId,index:index,fileId:fileId,upload:upload,fileName:fileName,fileType:fileType});
+			},
+			afterUpload:function (elId,result,index,upload) {
+				console.log("文件上传后回调");
+				window.pageExt.form.onUploadEvent &&  window.pageExt.form.onUploadEvent({event:"afterUpload",elId:elId,index:index,upload:upload});
+			},
+			beforeRemove:function (elId,fileId,index,upload) {
+				console.log("文件删除前回调");
+				if(window.pageExt.form.onUploadEvent) {
+					return window.pageExt.form.onUploadEvent({event:"beforeRemove",elId:elId,index:index,fileId:fileId,upload:upload});
+				}
+				return true;
+			},
+			afterRemove:function (elId,fileId,index,upload) {
+				adjustPopup();
+				window.pageExt.form.onUploadEvent &&  window.pageExt.form.onUploadEvent({event:"afterRemove",elId:elId,index:index,upload:upload});
+			}
+		});
 	}
 
 	/**
@@ -144,6 +169,14 @@ function FormPage() {
 
 			//设置  盘点状态 设置下拉框勾选
 			fox.setSelectValue4Enum("#status",formData.status,SELECT_STATUS_DATA);
+
+			//设置 照片 显示附件
+			if($("#pictureId").val()) {
+				foxup.fill("pictureId",$("#pictureId").val());
+			} else {
+				adjustPopup();
+			}
+
 
 			//处理fillBy
 

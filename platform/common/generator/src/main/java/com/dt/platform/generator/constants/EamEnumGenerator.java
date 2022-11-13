@@ -29,9 +29,7 @@ public class EamEnumGenerator  {
 	 * */
 	public static void main(String[] args) throws Exception {
 		EamEnumGenerator g = new EamEnumGenerator();
-		g.buildEnums();
-
-
+	//	g.buildEnums();
 	}
 
 	private PlatformConfigs configs;

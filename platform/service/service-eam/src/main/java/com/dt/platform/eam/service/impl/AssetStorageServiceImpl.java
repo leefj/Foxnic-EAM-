@@ -218,10 +218,9 @@ public class AssetStorageServiceImpl extends SuperService<AssetStorage> implemen
 			if(list!=null&&list.size()>0){
 				List<AssetProcessRecord> insertRecordList=new ArrayList<>();
 				for(Asset asset:list){
-
 					asset.setStatus(status);
 					asset.setOwnerCode(AssetOwnerCodeEnum.ASSET.code());
-					Result codeResult= CodeModuleServiceProxy.api().generateCode(CodeModuleEnum.EAM_ASSET_CODE.code()) ;
+					Result codeResult= CodeModuleServiceProxy.api().generateCodeByData(CodeModuleEnum.EAM_ASSET_CODE.code(),asset.getOwnCompanyId(),asset.getCategoryId()) ;
 					if(!codeResult.isSuccess()){
 						return codeResult;
 					}else{

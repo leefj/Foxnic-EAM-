@@ -35,10 +35,27 @@ public class CodeModuleController {
 		@ApiImplicitParam(name = "module", value = "业务编号", required = true, dataTypeClass = String.class, example = "eam_asset_code")
 	})
     @ApiOperationSupport(order = 1)
-    @SentinelResource(value = CodeRuleServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @SentinelResource(value = CodeModuleServiceProxy.GENERATE_CODE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CodeModuleServiceProxy.GENERATE_CODE)
     public Result generateCode(String module) {
         Result result = codeModuleService.generateCode(module);
+        return result;
+    }
+
+    /*
+     * 获取编码
+     */
+    @ApiOperation(value = "获取编码")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "module", value = "业务编号", required = true, dataTypeClass = String.class, example = "eam_asset_code"),
+            @ApiImplicitParam(name = "ownOrgId", value = "业务编号", required = true, dataTypeClass = String.class, example = "eam_asset_code"),
+            @ApiImplicitParam(name = "pcmId", value = "业务编号", required = true, dataTypeClass = String.class, example = "eam_asset_code")
+    })
+    @ApiOperationSupport(order = 1)
+    @SentinelResource(value = CodeModuleServiceProxy.GENERATE_CODE_BY_DATA, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(CodeModuleServiceProxy.GENERATE_CODE_BY_DATA)
+    public Result generateCodeByData(String module,String ownOrgId,String pcmId) {
+        Result result = codeModuleService.generateCodeByData(module,ownOrgId,pcmId);
         return result;
     }
 }

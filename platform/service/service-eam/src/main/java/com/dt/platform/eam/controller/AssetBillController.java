@@ -93,7 +93,12 @@ public class AssetBillController extends SuperController {
     @Autowired
     private IAssetStockGoodsAdjustService assetStockGoodsAdjustService;
 
+    @Autowired
+    private IInventoryService inventoryService;
 
+
+    @Autowired
+    private IAssetBorrowReturnService assetBorrowReturnService;
 
     @Autowired
     private IAssetSoftwareDistributeService assetSoftwareDistributeService;
@@ -802,6 +807,46 @@ public class AssetBillController extends SuperController {
         out.flush();
         PoitlIOUtils.closeQuietlyMulti(template, bos, out);
     }
+
+    @RequestMapping(AssetBillServiceProxy.QUERY_ASSET_INVENTORY_BILL)
+    public void queryAssetInventoryBill(String id,HttpServletResponse response) throws Exception {
+
+        InputStream inputstream=TplFileServiceProxy.api().getTplFileStreamByCode(AssetOperateEnum.EAM_DOWNLOAD_ASSET_INVENTORY_BILL.code());
+        Map<String,Object> billdata=inventoryService.getBill(id);
+        HackLoopTableRenderPolicy policy = new HackLoopTableRenderPolicy();
+        Configure config = Configure.builder().bind("dataList",policy).build();
+        XWPFTemplate template = XWPFTemplate.compile(inputstream,config).render(billdata);
+        response.setContentType("application/msword");
+        response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("盘点单据.docx", "UTF-8"))));
+        OutputStream out = response.getOutputStream();
+        BufferedOutputStream bos = new BufferedOutputStream(out);
+        template.write(bos);
+        bos.flush();
+        out.flush();
+        PoitlIOUtils.closeQuietlyMulti(template, bos, out);
+    }
+
+    @RequestMapping(AssetBillServiceProxy.QUERY_BORROW_RETURN_BILL)
+    public void queryBorrowReturnBill(String id,HttpServletResponse response) throws Exception {
+
+        InputStream inputstream=TplFileServiceProxy.api().getTplFileStreamByCode(AssetOperateEnum.EAM_DOWNLOAD_ASSET_BORROW_RETURN_BILL.code());
+        Map<String,Object> billdata=assetBorrowReturnService.getBill(id);
+        HackLoopTableRenderPolicy policy = new HackLoopTableRenderPolicy();
+        Configure config = Configure.builder().bind("assetList",policy).build();
+        XWPFTemplate template = XWPFTemplate.compile(inputstream,config).render(billdata);
+        response.setContentType("application/msword");
+        response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("归还单据.docx", "UTF-8"))));
+        OutputStream out = response.getOutputStream();
+        BufferedOutputStream bos = new BufferedOutputStream(out);
+        template.write(bos);
+        bos.flush();
+        out.flush();
+        PoitlIOUtils.closeQuietlyMulti(template, bos, out);
+    }
+
+
+
+
 
     @RequestMapping(AssetBillServiceProxy.QUERY_ASSET_STOCK_GOODS_ADJUST_BILL)
     public void queryAssetStockGoodsAdjustBill(String id,HttpServletResponse response) throws Exception {

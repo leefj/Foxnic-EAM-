@@ -151,7 +151,7 @@ public class CategoryFinanceServiceImpl extends SuperService<CategoryFinance> im
 		CategoryFinance categoryFinance = new CategoryFinance();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		categoryFinance.setId(id);
-		categoryFinance.setDeleted(dao.getDBTreaty().getTrueValue());
+		categoryFinance.setDeleted(1);
 		categoryFinance.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		categoryFinance.setDeleteTime(new Date());
 		try {

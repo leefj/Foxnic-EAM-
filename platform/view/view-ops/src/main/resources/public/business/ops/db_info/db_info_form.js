@@ -1,7 +1,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 14:57:16
+ * @since 2022-11-02 22:08:27
  */
 
 function FormPage() {
@@ -118,8 +118,6 @@ function FormPage() {
 			filterable: true,
 			paging: true,
 			pageRemote: true,
-			layVerify: 'required',
-			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("hostId",data.arr,data.change,data.isAdd);

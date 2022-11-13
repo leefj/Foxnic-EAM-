@@ -1,6 +1,7 @@
 package com.dt.platform.domain.ops;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.OpsTables.OPS_DB_INFO;
@@ -9,6 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
 import org.github.foxnic.web.domain.system.DictItem;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -17,18 +19,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.ops.meta.DbInfoMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 数据库
+ * <p>数据库 , 数据表 ops_db_info 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 14:57:15
+ * @since 2022-11-02 22:08:25
  * @sign 9CC3FE897AC246245F83B2B18261244B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "ops_db_info")
+@ApiModel(description = "数据库 ; 数据库 , 数据表 ops_db_info 的PO类型")
 public class DbInfo extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -39,61 +45,61 @@ public class DbInfo extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "620984665599115264")
 	private String id;
 	
 	/**
 	 * 主机：主机
 	*/
-	@ApiModelProperty(required = false,value="主机" , notes = "主机")
+	@ApiModelProperty(required = false,value="主机" , notes = "主机" , example = "607860248228663296")
 	private String hostId;
 	
 	/**
 	 * 数据库类型：数据库类型
 	*/
-	@ApiModelProperty(required = false,value="数据库类型" , notes = "数据库类型")
+	@ApiModelProperty(required = false,value="数据库类型" , notes = "数据库类型" , example = "495613594017202176")
 	private String typeId;
 	
 	/**
 	 * 数据库名：数据库名
 	*/
-	@ApiModelProperty(required = false,value="数据库名" , notes = "数据库名")
+	@ApiModelProperty(required = false,value="数据库名" , notes = "数据库名" , example = "cw3")
 	private String name;
 	
 	/**
 	 * 数据库状态：数据库状态
 	*/
-	@ApiModelProperty(required = false,value="数据库状态" , notes = "数据库状态")
+	@ApiModelProperty(required = false,value="数据库状态" , notes = "数据库状态" , example = "online")
 	private String status;
 	
 	/**
 	 * 备份状态：备份状态
 	*/
-	@ApiModelProperty(required = false,value="备份状态" , notes = "备份状态")
+	@ApiModelProperty(required = false,value="备份状态" , notes = "备份状态" , example = "backup")
 	private String backupStatus;
 	
 	/**
 	 * 部署模式：部署模式
 	*/
-	@ApiModelProperty(required = false,value="部署模式" , notes = "部署模式")
+	@ApiModelProperty(required = false,value="部署模式" , notes = "部署模式" , example = "single")
 	private String deployMode;
 	
 	/**
 	 * 备份策略：备份策略
 	*/
-	@ApiModelProperty(required = false,value="备份策略" , notes = "备份策略")
+	@ApiModelProperty(required = false,value="备份策略" , notes = "备份策略" , example = "无")
 	private String backupStrategy;
 	
 	/**
 	 * 大小(M)：大小(M)
 	*/
-	@ApiModelProperty(required = false,value="大小(M)" , notes = "大小(M)")
+	@ApiModelProperty(required = false,value="大小(M)" , notes = "大小(M)" , example = "10923.00")
 	private BigDecimal dbSize;
 	
 	/**
 	 * 日志模式：日志模式
 	*/
-	@ApiModelProperty(required = false,value="日志模式" , notes = "日志模式")
+	@ApiModelProperty(required = false,value="日志模式" , notes = "日志模式" , example = "no_arch")
 	private String logMethod;
 	
 	/**
@@ -129,45 +135,46 @@ public class DbInfo extends Entity {
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "1212")
 	private String notes;
 	
 	/**
 	 * 选择：选择
 	*/
-	@ApiModelProperty(required = false,value="选择" , notes = "选择")
+	@ApiModelProperty(required = false,value="选择" , notes = "选择" , example = "1662883885000")
 	private String selectedCode;
 	
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-09-10 02:11:22")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-09-11 04:11:31")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = false,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = false,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -185,7 +192,7 @@ public class DbInfo extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "6")
 	private Integer version;
 	
 	/**
@@ -964,5 +971,151 @@ public class DbInfo extends Entity {
 	@Transient
 	public static DbInfo create() {
 		return new com.dt.platform.domain.ops.meta.DbInfoMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(DbInfoMeta.NOTES)));
+			this.setLogMethod(DataParser.parse(String.class, map.get(DbInfoMeta.LOG_METHOD)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(DbInfoMeta.SELECTED_CODE)));
+			this.setBackupStatus(DataParser.parse(String.class, map.get(DbInfoMeta.BACKUP_STATUS)));
+			this.setBackupStrategy(DataParser.parse(String.class, map.get(DbInfoMeta.BACKUP_STRATEGY)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(DbInfoMeta.UPDATE_BY)));
+			this.setVoucherStr(DataParser.parse(String.class, map.get(DbInfoMeta.VOUCHER_STR)));
+			this.setId(DataParser.parse(String.class, map.get(DbInfoMeta.ID)));
+			this.setAdminUserList(DataParser.parse(String.class, map.get(DbInfoMeta.ADMIN_USER_LIST)));
+			this.setAppUserList(DataParser.parse(String.class, map.get(DbInfoMeta.APP_USER_LIST)));
+			this.setDeployMode(DataParser.parse(String.class, map.get(DbInfoMeta.DEPLOY_MODE)));
+			this.setOtherUserList(DataParser.parse(String.class, map.get(DbInfoMeta.OTHER_USER_LIST)));
+			this.setHostId(DataParser.parse(String.class, map.get(DbInfoMeta.HOST_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(DbInfoMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(DbInfoMeta.VERSION)));
+			this.setDbSize(DataParser.parse(BigDecimal.class, map.get(DbInfoMeta.DB_SIZE)));
+			this.setDbPort(DataParser.parse(String.class, map.get(DbInfoMeta.DB_PORT)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(DbInfoMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(DbInfoMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(DbInfoMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(DbInfoMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(DbInfoMeta.NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(DbInfoMeta.DELETE_BY)));
+			this.setTypeId(DataParser.parse(String.class, map.get(DbInfoMeta.TYPE_ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(DbInfoMeta.STATUS)));
+			// others
+			this.setHost(DataParser.parse(Host.class, map.get(DbInfoMeta.HOST)));
+			this.setDeployModeDict(DataParser.parse(DictItem.class, map.get(DbInfoMeta.DEPLOY_MODE_DICT)));
+			this.setType(DataParser.parse(ServiceInfo.class, map.get(DbInfoMeta.TYPE)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(DbInfoMeta.NOTES));
+				this.setLogMethod( (String)map.get(DbInfoMeta.LOG_METHOD));
+				this.setSelectedCode( (String)map.get(DbInfoMeta.SELECTED_CODE));
+				this.setBackupStatus( (String)map.get(DbInfoMeta.BACKUP_STATUS));
+				this.setBackupStrategy( (String)map.get(DbInfoMeta.BACKUP_STRATEGY));
+				this.setUpdateBy( (String)map.get(DbInfoMeta.UPDATE_BY));
+				this.setVoucherStr( (String)map.get(DbInfoMeta.VOUCHER_STR));
+				this.setId( (String)map.get(DbInfoMeta.ID));
+				this.setAdminUserList( (String)map.get(DbInfoMeta.ADMIN_USER_LIST));
+				this.setAppUserList( (String)map.get(DbInfoMeta.APP_USER_LIST));
+				this.setDeployMode( (String)map.get(DbInfoMeta.DEPLOY_MODE));
+				this.setOtherUserList( (String)map.get(DbInfoMeta.OTHER_USER_LIST));
+				this.setHostId( (String)map.get(DbInfoMeta.HOST_ID));
+				this.setUpdateTime( (Date)map.get(DbInfoMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(DbInfoMeta.VERSION));
+				this.setDbSize( (BigDecimal)map.get(DbInfoMeta.DB_SIZE));
+				this.setDbPort( (String)map.get(DbInfoMeta.DB_PORT));
+				this.setCreateBy( (String)map.get(DbInfoMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(DbInfoMeta.DELETED));
+				this.setCreateTime( (Date)map.get(DbInfoMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)map.get(DbInfoMeta.DELETE_TIME));
+				this.setName( (String)map.get(DbInfoMeta.NAME));
+				this.setDeleteBy( (String)map.get(DbInfoMeta.DELETE_BY));
+				this.setTypeId( (String)map.get(DbInfoMeta.TYPE_ID));
+				this.setStatus( (String)map.get(DbInfoMeta.STATUS));
+				// others
+				this.setHost( (Host)map.get(DbInfoMeta.HOST));
+				this.setDeployModeDict( (DictItem)map.get(DbInfoMeta.DEPLOY_MODE_DICT));
+				this.setType( (ServiceInfo)map.get(DbInfoMeta.TYPE));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(DbInfoMeta.NOTES)));
+			this.setLogMethod(DataParser.parse(String.class, r.getValue(DbInfoMeta.LOG_METHOD)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(DbInfoMeta.SELECTED_CODE)));
+			this.setBackupStatus(DataParser.parse(String.class, r.getValue(DbInfoMeta.BACKUP_STATUS)));
+			this.setBackupStrategy(DataParser.parse(String.class, r.getValue(DbInfoMeta.BACKUP_STRATEGY)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(DbInfoMeta.UPDATE_BY)));
+			this.setVoucherStr(DataParser.parse(String.class, r.getValue(DbInfoMeta.VOUCHER_STR)));
+			this.setId(DataParser.parse(String.class, r.getValue(DbInfoMeta.ID)));
+			this.setAdminUserList(DataParser.parse(String.class, r.getValue(DbInfoMeta.ADMIN_USER_LIST)));
+			this.setAppUserList(DataParser.parse(String.class, r.getValue(DbInfoMeta.APP_USER_LIST)));
+			this.setDeployMode(DataParser.parse(String.class, r.getValue(DbInfoMeta.DEPLOY_MODE)));
+			this.setOtherUserList(DataParser.parse(String.class, r.getValue(DbInfoMeta.OTHER_USER_LIST)));
+			this.setHostId(DataParser.parse(String.class, r.getValue(DbInfoMeta.HOST_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(DbInfoMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(DbInfoMeta.VERSION)));
+			this.setDbSize(DataParser.parse(BigDecimal.class, r.getValue(DbInfoMeta.DB_SIZE)));
+			this.setDbPort(DataParser.parse(String.class, r.getValue(DbInfoMeta.DB_PORT)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(DbInfoMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(DbInfoMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(DbInfoMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(DbInfoMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(DbInfoMeta.NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(DbInfoMeta.DELETE_BY)));
+			this.setTypeId(DataParser.parse(String.class, r.getValue(DbInfoMeta.TYPE_ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(DbInfoMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(DbInfoMeta.NOTES));
+				this.setLogMethod( (String)r.getValue(DbInfoMeta.LOG_METHOD));
+				this.setSelectedCode( (String)r.getValue(DbInfoMeta.SELECTED_CODE));
+				this.setBackupStatus( (String)r.getValue(DbInfoMeta.BACKUP_STATUS));
+				this.setBackupStrategy( (String)r.getValue(DbInfoMeta.BACKUP_STRATEGY));
+				this.setUpdateBy( (String)r.getValue(DbInfoMeta.UPDATE_BY));
+				this.setVoucherStr( (String)r.getValue(DbInfoMeta.VOUCHER_STR));
+				this.setId( (String)r.getValue(DbInfoMeta.ID));
+				this.setAdminUserList( (String)r.getValue(DbInfoMeta.ADMIN_USER_LIST));
+				this.setAppUserList( (String)r.getValue(DbInfoMeta.APP_USER_LIST));
+				this.setDeployMode( (String)r.getValue(DbInfoMeta.DEPLOY_MODE));
+				this.setOtherUserList( (String)r.getValue(DbInfoMeta.OTHER_USER_LIST));
+				this.setHostId( (String)r.getValue(DbInfoMeta.HOST_ID));
+				this.setUpdateTime( (Date)r.getValue(DbInfoMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(DbInfoMeta.VERSION));
+				this.setDbSize( (BigDecimal)r.getValue(DbInfoMeta.DB_SIZE));
+				this.setDbPort( (String)r.getValue(DbInfoMeta.DB_PORT));
+				this.setCreateBy( (String)r.getValue(DbInfoMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(DbInfoMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(DbInfoMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)r.getValue(DbInfoMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(DbInfoMeta.NAME));
+				this.setDeleteBy( (String)r.getValue(DbInfoMeta.DELETE_BY));
+				this.setTypeId( (String)r.getValue(DbInfoMeta.TYPE_ID));
+				this.setStatus( (String)r.getValue(DbInfoMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

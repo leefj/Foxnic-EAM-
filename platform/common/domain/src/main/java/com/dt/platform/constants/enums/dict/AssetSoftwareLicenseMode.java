@@ -6,7 +6,7 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 
 /**
- * @since 2022-08-30 21:55:02
+ * @since 2022-11-07 07:39:31
  * @author 金杰 , maillank@qq.com
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
 */
