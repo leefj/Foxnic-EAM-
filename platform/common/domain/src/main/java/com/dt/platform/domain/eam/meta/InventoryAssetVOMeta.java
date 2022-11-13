@@ -13,7 +13,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-27 21:25:01
+ * @since 2022-11-06 07:04:13
  * @sign AED45A006BFCCB8364AF055579A38759
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -201,6 +201,16 @@ public class InventoryAssetVOMeta extends InventoryAssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InventoryAssetVO,java.util.Date> OPER_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.InventoryAssetVO.class ,OPER_DATE, java.util.Date.class, "操作时间", "操作时间", java.util.Date.class, null);
 	
 	/**
+	 * 照片 , 类型: java.lang.String
+	*/
+	public static final String PICTURE_ID="pictureId";
+	
+	/**
+	 * 照片 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InventoryAssetVO,java.lang.String> PICTURE_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InventoryAssetVO.class ,PICTURE_ID, java.lang.String.class, "照片", "照片", java.lang.String.class, null);
+	
+	/**
 	 * 备注 , 类型: java.lang.String
 	*/
 	public static final String NOTES="notes";
@@ -313,7 +323,7 @@ public class InventoryAssetVOMeta extends InventoryAssetMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , INVENTORY_ID , STATUS , ASSET_ID , OPER_EMPL_ID , ASSET_PLUS_ACTION_TYPE , ASSET_LOSS_ACTION_TYPE , SOURCE , OPER_DATE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , ASSET , OPERATER };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , INVENTORY_ID , STATUS , ASSET_ID , OPER_EMPL_ID , ASSET_PLUS_ACTION_TYPE , ASSET_LOSS_ACTION_TYPE , SOURCE , OPER_DATE , PICTURE_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , ASSET , OPERATER };
 	
 	/**
 	 * 代理类
@@ -522,6 +532,17 @@ public class InventoryAssetVOMeta extends InventoryAssetMeta {
 		}
 		
 		/**
+		 * 设置 照片
+		 * @param pictureId 照片
+		 * @return 当前对象
+		*/
+		public InventoryAsset setPictureId(String pictureId) {
+			super.change(PICTURE_ID,super.getPictureId(),pictureId);
+			super.setPictureId(pictureId);
+			return this;
+		}
+		
+		/**
 		 * 设置 备注
 		 * @param notes 备注
 		 * @return 当前对象
@@ -666,6 +687,7 @@ public class InventoryAssetVOMeta extends InventoryAssetMeta {
 			inst.setAssetPlusActionType(this.getAssetPlusActionType());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
+			inst.setPictureId(this.getPictureId());
 			inst.setOperEmplId(this.getOperEmplId());
 			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());

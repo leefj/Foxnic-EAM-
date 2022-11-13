@@ -26,9 +26,9 @@ function FormPage() {
 
 		action=admin.getTempData('eam-asset-form-data-form-action');
 		//如果没有修改和保存权限，
-		if( !admin.checkAuth(AUTH_PREFIX+":update") && !admin.checkAuth(AUTH_PREFIX+":save")) {
-			disableModify=true;
-		}
+		// if( !admin.checkAuth(AUTH_PREFIX+":update") && !admin.checkAuth(AUTH_PREFIX+":save")) {
+		//	disableModify=true;
+		//}
 		if(action=="view") {
 			disableModify=true;
 		}

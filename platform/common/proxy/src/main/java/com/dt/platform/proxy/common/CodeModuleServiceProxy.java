@@ -31,6 +31,12 @@ public interface CodeModuleServiceProxy {
      */
     public static final String GENERATE_CODE = API_PREFIX + "generate-code";
 
+
+    /**
+     * 添加编码属性
+     */
+    public static final String GENERATE_CODE_BY_DATA = API_PREFIX + "generate-code-by-data";
+
     /**
      * 获取业务编码
      *
@@ -39,6 +45,19 @@ public interface CodeModuleServiceProxy {
      */
     @RequestMapping(CodeModuleServiceProxy.GENERATE_CODE)
     Result generateCode(@RequestParam(name = "module") String module);
+
+
+
+    /**
+     * 获取业务编码
+     *
+     * @param module 传入业务编码模块
+     * @return 返回编号
+     */
+    @RequestMapping(CodeModuleServiceProxy.GENERATE_CODE_BY_DATA)
+    Result generateCodeByData(@RequestParam(name = "module") String module,@RequestParam(name = "ownOrgId") String ownOrgId,@RequestParam(name = "pcmId") String pcmId);
+
+
 
     /**
      * 控制器类名

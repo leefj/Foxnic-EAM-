@@ -1,6 +1,7 @@
 package com.dt.platform.domain.ops;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.OpsTables.OPS_SOFTWARE_BASE_VERSION;
@@ -8,6 +9,7 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
@@ -15,18 +17,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.ops.meta.SoftwareBaseVersionMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 软件基线版本
+ * <p>软件基线版本 , 数据表 ops_software_base_version 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-16 08:30:06
+ * @since 2022-11-03 07:34:18
  * @sign 9D86F981458060C20649FC34EF59DECD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "ops_software_base_version")
+@ApiModel(description = "软件基线版本 ; 软件基线版本 , 数据表 ops_software_base_version 的PO类型")
 public class SoftwareBaseVersion extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -37,25 +43,25 @@ public class SoftwareBaseVersion extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "593892461445652480")
 	private String id;
 	
 	/**
 	 * 类型：类型
 	*/
-	@ApiModelProperty(required = false,value="类型" , notes = "类型")
+	@ApiModelProperty(required = false,value="类型" , notes = "类型" , example = "593841519329288192")
 	private String softwareTypeId;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "Linux")
 	private String name;
 	
 	/**
 	 * 版本：版本
 	*/
-	@ApiModelProperty(required = false,value="版本" , notes = "版本")
+	@ApiModelProperty(required = false,value="版本" , notes = "版本" , example = "7.9")
 	private String softwareVersion;
 	
 	/**
@@ -67,7 +73,7 @@ public class SoftwareBaseVersion extends Entity {
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "effect")
 	private String status;
 	
 	/**
@@ -91,13 +97,13 @@ public class SoftwareBaseVersion extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-06-27 07:56:37")
 	private Date createTime;
 	
 	/**
@@ -115,9 +121,10 @@ public class SoftwareBaseVersion extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -135,13 +142,13 @@ public class SoftwareBaseVersion extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -665,5 +672,117 @@ public class SoftwareBaseVersion extends Entity {
 	@Transient
 	public static SoftwareBaseVersion create() {
 		return new com.dt.platform.domain.ops.meta.SoftwareBaseVersionMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setUsageScenarios(DataParser.parse(String.class, map.get(SoftwareBaseVersionMeta.USAGE_SCENARIOS)));
+			this.setNotes(DataParser.parse(String.class, map.get(SoftwareBaseVersionMeta.NOTES)));
+			this.setSoftwareTypeId(DataParser.parse(String.class, map.get(SoftwareBaseVersionMeta.SOFTWARE_TYPE_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(SoftwareBaseVersionMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(SoftwareBaseVersionMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(SoftwareBaseVersionMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(SoftwareBaseVersionMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(SoftwareBaseVersionMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(SoftwareBaseVersionMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(SoftwareBaseVersionMeta.DELETE_TIME)));
+			this.setPatchInfo(DataParser.parse(String.class, map.get(SoftwareBaseVersionMeta.PATCH_INFO)));
+			this.setName(DataParser.parse(String.class, map.get(SoftwareBaseVersionMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(SoftwareBaseVersionMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(SoftwareBaseVersionMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(SoftwareBaseVersionMeta.ID)));
+			this.setSoftwareVersion(DataParser.parse(String.class, map.get(SoftwareBaseVersionMeta.SOFTWARE_VERSION)));
+			this.setStatus(DataParser.parse(String.class, map.get(SoftwareBaseVersionMeta.STATUS)));
+			this.setFileId(DataParser.parse(String.class, map.get(SoftwareBaseVersionMeta.FILE_ID)));
+			// others
+			return true;
+		} else {
+			try {
+				this.setUsageScenarios( (String)map.get(SoftwareBaseVersionMeta.USAGE_SCENARIOS));
+				this.setNotes( (String)map.get(SoftwareBaseVersionMeta.NOTES));
+				this.setSoftwareTypeId( (String)map.get(SoftwareBaseVersionMeta.SOFTWARE_TYPE_ID));
+				this.setUpdateTime( (Date)map.get(SoftwareBaseVersionMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(SoftwareBaseVersionMeta.VERSION));
+				this.setCreateBy( (String)map.get(SoftwareBaseVersionMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(SoftwareBaseVersionMeta.DELETED));
+				this.setCreateTime( (Date)map.get(SoftwareBaseVersionMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(SoftwareBaseVersionMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(SoftwareBaseVersionMeta.DELETE_TIME));
+				this.setPatchInfo( (String)map.get(SoftwareBaseVersionMeta.PATCH_INFO));
+				this.setName( (String)map.get(SoftwareBaseVersionMeta.NAME));
+				this.setTenantId( (String)map.get(SoftwareBaseVersionMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(SoftwareBaseVersionMeta.DELETE_BY));
+				this.setId( (String)map.get(SoftwareBaseVersionMeta.ID));
+				this.setSoftwareVersion( (String)map.get(SoftwareBaseVersionMeta.SOFTWARE_VERSION));
+				this.setStatus( (String)map.get(SoftwareBaseVersionMeta.STATUS));
+				this.setFileId( (String)map.get(SoftwareBaseVersionMeta.FILE_ID));
+				// others
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setUsageScenarios(DataParser.parse(String.class, r.getValue(SoftwareBaseVersionMeta.USAGE_SCENARIOS)));
+			this.setNotes(DataParser.parse(String.class, r.getValue(SoftwareBaseVersionMeta.NOTES)));
+			this.setSoftwareTypeId(DataParser.parse(String.class, r.getValue(SoftwareBaseVersionMeta.SOFTWARE_TYPE_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(SoftwareBaseVersionMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(SoftwareBaseVersionMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(SoftwareBaseVersionMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(SoftwareBaseVersionMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(SoftwareBaseVersionMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(SoftwareBaseVersionMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(SoftwareBaseVersionMeta.DELETE_TIME)));
+			this.setPatchInfo(DataParser.parse(String.class, r.getValue(SoftwareBaseVersionMeta.PATCH_INFO)));
+			this.setName(DataParser.parse(String.class, r.getValue(SoftwareBaseVersionMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(SoftwareBaseVersionMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(SoftwareBaseVersionMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(SoftwareBaseVersionMeta.ID)));
+			this.setSoftwareVersion(DataParser.parse(String.class, r.getValue(SoftwareBaseVersionMeta.SOFTWARE_VERSION)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(SoftwareBaseVersionMeta.STATUS)));
+			this.setFileId(DataParser.parse(String.class, r.getValue(SoftwareBaseVersionMeta.FILE_ID)));
+			return true;
+		} else {
+			try {
+				this.setUsageScenarios( (String)r.getValue(SoftwareBaseVersionMeta.USAGE_SCENARIOS));
+				this.setNotes( (String)r.getValue(SoftwareBaseVersionMeta.NOTES));
+				this.setSoftwareTypeId( (String)r.getValue(SoftwareBaseVersionMeta.SOFTWARE_TYPE_ID));
+				this.setUpdateTime( (Date)r.getValue(SoftwareBaseVersionMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(SoftwareBaseVersionMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(SoftwareBaseVersionMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(SoftwareBaseVersionMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(SoftwareBaseVersionMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(SoftwareBaseVersionMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(SoftwareBaseVersionMeta.DELETE_TIME));
+				this.setPatchInfo( (String)r.getValue(SoftwareBaseVersionMeta.PATCH_INFO));
+				this.setName( (String)r.getValue(SoftwareBaseVersionMeta.NAME));
+				this.setTenantId( (String)r.getValue(SoftwareBaseVersionMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(SoftwareBaseVersionMeta.DELETE_BY));
+				this.setId( (String)r.getValue(SoftwareBaseVersionMeta.ID));
+				this.setSoftwareVersion( (String)r.getValue(SoftwareBaseVersionMeta.SOFTWARE_VERSION));
+				this.setStatus( (String)r.getValue(SoftwareBaseVersionMeta.STATUS));
+				this.setFileId( (String)r.getValue(SoftwareBaseVersionMeta.FILE_ID));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

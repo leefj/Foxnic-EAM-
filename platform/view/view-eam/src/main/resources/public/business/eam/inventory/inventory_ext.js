@@ -64,7 +64,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeQuery:function (conditions,param,location) {
             console.log('beforeQuery',conditions,param,location);
-
             param.ownerCode=OWNER_CODE;
             return true;
         },
@@ -94,7 +93,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         templet:function (field,value,r) {
             if(value==null) return "";
-            return value;
+            if(r.allEmployee&&r.allEmployee=="enable"){
+                return "<div style=\"color:green;font-weight: bold \" >"+value+"</div>"
+            }else{
+                return value;
+            }
         },
         /**
          * 在新建或编辑窗口打开前调用，若返回 false 则不继续执行后续操作
@@ -214,6 +217,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
         inventoryDetail:function (data){
             console.log('inventoryDetail',data);
+        },
+        inventoryBill:function (data,it){
+            console.log('downloadBill',data);
+            var downloadUrl="/service-eam/eam-asset-bill/query-asset-inventory-bill";
+            fox.submit(downloadUrl,{id:data.id});
         },
         /**
          * 末尾执行

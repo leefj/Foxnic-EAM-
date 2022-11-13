@@ -2,10 +2,10 @@
 /**
  * 资产盘点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-01-04 12:33:27
+ * @since 2022-11-12 11:28:27
  */
  -->
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 
 <head>
@@ -53,8 +53,6 @@
                     <!-- 资产分类 , categoryId ,typeName=text_area, isHideInSearch=true -->
                     <!-- 所属公司 , ownCompanyId ,typeName=button, isHideInSearch=true -->
                     <!-- 使用公司/部门 , useOrganizationId ,typeName=button, isHideInSearch=true -->
-                    <!-- 存放位置 , positionId ,typeName=text_area, isHideInSearch=true -->
-                    <!-- 仓库 , warehouseId ,typeName=text_area, isHideInSearch=true -->
                     <!-- 购置开始日期 , purchaseStartDate ,typeName=date_input, isHideInSearch=true -->
                     <!-- 购置结束日期 , purchaseEndDate ,typeName=date_input, isHideInSearch=true -->
                     <!-- 盘点开始时间 , startTime ,typeName=date_input, isHideInSearch=true -->
@@ -90,9 +88,9 @@
                     <!-- 业务日期 , businessDate ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('业务日期')}" class="search-label businessDate-label">业务日期</span><span class="search-colon">:</span></div>
-                        <input type="text" id="businessDate-begin" style="width: 150px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
-                        <span class="search-dash">-</span>
-                        <input type="text" id="businessDate-end"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
+                            <input type="text" id="businessDate-begin" style="width: 150px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
+                            <span class="search-dash">-</span>
+                            <input type="text" id="businessDate-end"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
                     </div>
 
 
@@ -101,12 +99,12 @@
 
 
             <!-- 按钮区域 -->
-            <div class="layui-form toolbar search-buttons" style="opacity: 0">
-                <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索')}">搜索</span></button>
+            <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">
+                <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索','','cmp:table.search')}">搜索</span></button>
             </div>
         </div>
 
-        <div style="margin-top: 42px ">
+        <div id="table-area" style="margin-top: 84px ">
             <table class="layui-table" id="data-table" lay-filter="data-table"></table>
         </div>
 
@@ -118,26 +116,28 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
-
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
-        <button th:if="${perm.checkAuth('eam_inventory:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建')}">新建</span></button>
-        <button id="inventory-start"  th:if="${perm.checkAuth('eam_inventory:start')}"class="layui-btn icon-btn layui-btn-sm " lay-event="tool-inventory-start"><span th:text="${lang.translate('开始盘点')}">开始盘点</span></button>
-        <button id="inventory-finish"  th:if="${perm.checkAuth('eam_inventory:finish')}"class="layui-btn icon-btn layui-btn-sm " lay-event="tool-inventory-finish"><span th:text="${lang.translate('结束盘点')}">结束盘点</span></button>
-        <button id="inventory-cancel"  th:if="${perm.checkAuth('eam_inventory:cancel')}"class="layui-btn icon-btn layui-btn-sm " lay-event="tool-inventory-cancel"><span th:text="${lang.translate('取消')}">取消</span></button>
-        <button id="inventory-data-sync"  th:if="${perm.checkAuth('eam_inventory:datasync')}"class="layui-btn icon-btn layui-btn-sm " lay-event="tool-inventory-data-sync"><span th:text="${lang.translate('数据同步')}">数据同步</span></button>
+        <button th:if="${perm.checkAuth('eam_inventory:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建','','cmp:table.button')}">新建</span></button>
+        <button id="inventory-start"  th:if="${perm.checkAuth('eam_inventory:start')}"class="layui-btn icon-btn layui-btn-sm " lay-event="tool-inventory-start"><span th:text="${lang.translate('开始盘点','','cmp:table.button')}">开始盘点</span></button>
+        <button id="inventory-finish"  th:if="${perm.checkAuth('eam_inventory:finish')}"class="layui-btn icon-btn layui-btn-sm " lay-event="tool-inventory-finish"><span th:text="${lang.translate('结束盘点','','cmp:table.button')}">结束盘点</span></button>
+        <button id="inventory-cancel"  th:if="${perm.checkAuth('eam_inventory:cancel')}"class="layui-btn icon-btn layui-btn-sm " lay-event="tool-inventory-cancel"><span th:text="${lang.translate('取消','','cmp:table.button')}">取消</span></button>
+        <button id="inventory-data-sync"  th:if="${perm.checkAuth('eam_inventory:datasync')}"class="layui-btn icon-btn layui-btn-sm " lay-event="tool-inventory-data-sync"><span th:text="${lang.translate('数据同步','','cmp:table.button')}">数据同步</span></button>
     </div>
 </script>
 
 <!-- 表格操作列 -->
 <script type="text/html" id="tableOperationTemplate">
 
-    <button class="layui-btn layui-btn-xs layui-btn-danger ops-inventory-detail-button " lay-event="inventory-detail" th:text="${lang.translate('明细')}" data-id="{{d.id}}">明细</button>
-    <button th:if="${perm.checkAuth('eam_inventory:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view" th:text="${lang.translate('查看')}" data-id="{{d.id}}">查看</button>
-    <button th:if="${perm.checkAnyAuth('eam_inventory:update','eam_inventory:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit" th:text="${lang.translate('修改')}" data-id="{{d.id}}">盘点</button>
-    <button th:if="${perm.checkAuth('eam_inventory:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" th:text="${lang.translate('删除')}" data-id="{{d.id}}">删除</button>
+    <button th:if="${perm.checkAuth('eam_inventory:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看','','cmp:table.ops')}">查看</span></button>
+    <button th:if="${perm.checkAnyAuth('eam_inventory:update','eam_inventory:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('修改','','cmp:table.ops')}">修改</span></button>
 
+
+    <button th:if="${perm.checkAuth('eam_inventory:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
+
+    <button class="layui-btn layui-btn-xs  inventory-detail-button " lay-event="inventory-detail" data-id="{{d.id}}"><span th:text="${lang.translate('明细','','cmp:table.ops')}">明细</span></button>
+    <button th:if="${perm.checkAuth('eam_inventory:bill')}"class="layui-btn layui-btn-xs  inventory-bill-button " lay-event="inventory-bill" data-id="{{d.id}}"><span th:text="${lang.translate('单据','','cmp:table.ops')}">单据</span></button>
 
 </script>
 
@@ -153,11 +153,6 @@
 
     // OWNER_CODE
     var OWNER_CODE = [[${ownerCode}]] ;
-
-
-
-
-
 
 </script>
 

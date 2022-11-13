@@ -86,7 +86,8 @@ public class AssetStorageController extends SuperController implements BpmCallba
 		@ApiImplicitParam(name = AssetStorageVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStorageVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStorageVOMeta.CUSTOM_DATA, value = "自定义数据", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = "AssetStorageVOMeta.SELECTED_CODE", value = "选择", required = false, dataTypeClass = String.class, example = "1653021634000")
+		@ApiImplicitParam(name = "AssetStorageVOMeta.SELECTED_CODE", value = "选择", required = false, dataTypeClass = String.class, example = "1653021634000"),
+		@ApiImplicitParam(name = AssetStorageVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1653021634000")
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetStorageServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -148,7 +149,8 @@ public class AssetStorageController extends SuperController implements BpmCallba
 		@ApiImplicitParam(name = AssetStorageVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStorageVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStorageVOMeta.CUSTOM_DATA, value = "自定义数据", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = "AssetStorageVOMeta.SELECTED_CODE", value = "选择", required = false, dataTypeClass = String.class, example = "1653021634000")
+		@ApiImplicitParam(name = "AssetStorageVOMeta.SELECTED_CODE", value = "选择", required = false, dataTypeClass = String.class, example = "1653021634000"),
+		@ApiImplicitParam(name = AssetStorageVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1653021634000")
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetStorageVOMeta.PAGE_INDEX, AssetStorageVOMeta.PAGE_SIZE, AssetStorageVOMeta.SEARCH_FIELD, AssetStorageVOMeta.FUZZY_FIELD, AssetStorageVOMeta.SEARCH_VALUE, AssetStorageVOMeta.DIRTY_FIELDS, AssetStorageVOMeta.SORT_FIELD, AssetStorageVOMeta.SORT_TYPE, AssetStorageVOMeta.IDS })
     @SentinelResource(value = AssetStorageServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -179,7 +181,8 @@ public class AssetStorageController extends SuperController implements BpmCallba
 		@ApiImplicitParam(name = AssetStorageVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStorageVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStorageVOMeta.CUSTOM_DATA, value = "自定义数据", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = "AssetStorageVOMeta.SELECTED_CODE", value = "选择", required = false, dataTypeClass = String.class, example = "1653021634000")
+		@ApiImplicitParam(name = "AssetStorageVOMeta.SELECTED_CODE", value = "选择", required = false, dataTypeClass = String.class, example = "1653021634000"),
+		@ApiImplicitParam(name = AssetStorageVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1653021634000")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetStorageVOMeta.PAGE_INDEX, AssetStorageVOMeta.PAGE_SIZE, AssetStorageVOMeta.SEARCH_FIELD, AssetStorageVOMeta.FUZZY_FIELD, AssetStorageVOMeta.SEARCH_VALUE, AssetStorageVOMeta.DIRTY_FIELDS, AssetStorageVOMeta.SORT_FIELD, AssetStorageVOMeta.SORT_TYPE, AssetStorageVOMeta.IDS })
     @SentinelResource(value = AssetStorageServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -249,7 +252,8 @@ public class AssetStorageController extends SuperController implements BpmCallba
 		@ApiImplicitParam(name = AssetStorageVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStorageVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStorageVOMeta.CUSTOM_DATA, value = "自定义数据", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = "AssetStorageVOMeta.SELECTED_CODE", value = "选择", required = false, dataTypeClass = String.class, example = "1653021634000")
+		@ApiImplicitParam(name = "AssetStorageVOMeta.SELECTED_CODE", value = "选择", required = false, dataTypeClass = String.class, example = "1653021634000"),
+		@ApiImplicitParam(name = AssetStorageVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1653021634000")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetStorageVOMeta.PAGE_INDEX, AssetStorageVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetStorageServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -281,7 +285,8 @@ public class AssetStorageController extends SuperController implements BpmCallba
 		@ApiImplicitParam(name = AssetStorageVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStorageVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetStorageVOMeta.CUSTOM_DATA, value = "自定义数据", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = "AssetStorageVOMeta.SELECTED_CODE", value = "选择", required = false, dataTypeClass = String.class, example = "1653021634000")
+		@ApiImplicitParam(name = "AssetStorageVOMeta.SELECTED_CODE", value = "选择", required = false, dataTypeClass = String.class, example = "1653021634000"),
+		@ApiImplicitParam(name = AssetStorageVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1653021634000")
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetStorageServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

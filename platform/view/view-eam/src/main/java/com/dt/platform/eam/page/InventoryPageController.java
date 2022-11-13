@@ -65,6 +65,15 @@ public class InventoryPageController extends ViewController {
 	/**
 	 * 资产盘点 功能主页面
 	 */
+	@RequestMapping("/my_inventory_list.html")
+	public String myList(Model model,HttpServletRequest request,String ownerCode) {
+		model.addAttribute("ownerCode",ownerCode);
+		return prefix+"/my_inventory_list";
+	}
+
+	/**
+	 * 资产盘点 功能主页面
+	 */
 	@RequestMapping("/inventory_list.html")
 	public String list(Model model,HttpServletRequest request,String ownerCode) {
 		model.addAttribute("ownerCode",ownerCode);

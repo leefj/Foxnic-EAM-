@@ -26,6 +26,32 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 列表页初始化前调用
          * */
         beforeInit:function () {
+            if(INVENTORY){
+                if(INVENTORY.inventoryStatus=="finish"){
+                    console.log("start to hide ")
+                    var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
+                    toolHtml=toolHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
+                    toolHtml=toolHtml.replace(/lay-event="asset-plus"/i, "style=\"display:none\"")
+                    toolHtml=toolHtml.replace(/lay-event="batch-del"/i, "style=\"display:none\"")
+                    document.getElementById("toolbarTemplate").innerHTML=toolHtml;
+
+                    var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+                    operHtml=operHtml.replace(/lay-event="modify-asset"/i, "style=\"display:none\"")
+                    operHtml=operHtml.replace(/lay-event="edit"/i, "style=\"display:none\"")
+                    operHtml=operHtml.replace(/lay-event="del"/i, "style=\"display:none\"")
+                    document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+                }
+            }
+
+            if(INVENTORY_MODE&&INVENTORY_MODE=="employ_inventory_mode"){
+                var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+                operHtml=operHtml.replace(/lay-event="del"/i, "style=\"display:none\"")
+                document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+
+                var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
+                toolHtml=toolHtml.replace(/lay-event="batch-del"/i, "style=\"display:none\"")
+                document.getElementById("toolbarTemplate").innerHTML=toolHtml;
+            }
             console.log("list:beforeInit");
         },
         /**
@@ -33,6 +59,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param cfg 表格配置参数
          * */
         beforeTableRender:function (cfg){
+          //  cfg.defaultToolbar=  ['filter', 'print','exports',{title: '刷新数据',layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}];
             console.log("list:beforeTableRender",cfg);
         },
         /**
@@ -151,9 +178,18 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
-        /**
-         * 末尾执行
-         */
+        downloadAsset:function(selected){
+            console.log("download");
+            var downloadUrl="/service-eam/eam-inventory/download-asset";
+            ps={};
+            ps.inventoryId=INVENTORY_ID;
+            var task=setTimeout(function(){layer.load(2);},10);
+            fox.submit(downloadUrl,ps,"post",function(){
+                clearTimeout(task);
+                layer.closeAll('loading');
+                console.log("execute finish");
+            });
+        },
         ending:function() {
 
         }

@@ -66,11 +66,7 @@ public class EamAssetBorrowGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_ASSET_BORROW.PLAN_RETURN_DATE).form().validate().required().search().range();
         cfg.view().field(EAMTables.EAM_ASSET_BORROW.RETURN_DATE).form().search().range();
-
         cfg.view().field(EAMTables.EAM_ASSET_BORROW.BORROWER_ID).form().validate().required().form().button().chooseEmployee(true);
-
-
-
         cfg.view().field(EAMTables.EAM_ASSET_BORROW.CONTENT).form().textArea().height(Config.textAreaHeight).search().fuzzySearch();
 
 
@@ -84,6 +80,7 @@ public class EamAssetBorrowGtr extends BaseCodeGenerator {
         cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_borrow:confirm");
   //      cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_borrow:revoke");
         cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_borrow:bill");
+        cfg.view().list().operationColumn().addActionButton("归还单据","downloadReturnBill","download-return-bill-button","eam_asset_borrow_return:bill");
 
 
         //  cfg.view().field(EAMTables.EAM_ASSET_BORROW.BORROW_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();

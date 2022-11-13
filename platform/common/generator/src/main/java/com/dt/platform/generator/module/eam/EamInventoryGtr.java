@@ -40,7 +40,7 @@ public class EamInventoryGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addSimpleProperty(Integer.class,"inventoryAssetCountByCounted","已盘点","已盘点");
         cfg.getPoClassFile().addSimpleProperty(Integer.class,"inventoryAssetCountByLoss","盘亏","盘亏");
         cfg.getPoClassFile().addSimpleProperty(Integer.class,"inventoryAssetCountBySurplus","盘盈","盘盈");
-
+        cfg.getPoClassFile().addSimpleProperty(Integer.class,"inventoryAssetCountByException","异常","异常");
 
         cfg.getPoClassFile().addListProperty(Organization.class,"ownerCompany","所属公司","所属公司");
         cfg.getPoClassFile().addListProperty(Organization.class,"useOrganization","使用公司/部门","使用公司/部门");
@@ -201,7 +201,8 @@ public class EamInventoryGtr extends BaseCodeGenerator{
         cfg.view().list().addToolButton("结束盘点","inventoryFinish",null,"eam_inventory:finish");
         cfg.view().list().addToolButton("取消","inventoryCancel",null,"eam_inventory:cancel");
         cfg.view().list().addToolButton("数据同步","inventoryDataSync",null,"eam_inventory:datasync");
-       cfg.view().list().operationColumn().addActionButton("明细","inventoryDetail","inventory-detail-button",null);
+        cfg.view().list().operationColumn().addActionButton("明细","inventoryDetail","inventory-detail-button",null);
+        cfg.view().list().operationColumn().addActionButton("单据","inventoryBill","inventory-bill-button","eam_inventory:bill");
 
         cfg.view().formWindow().bottomSpace(250);
          cfg.view().formWindow().width(Config.baseFormWidth);;
@@ -257,6 +258,8 @@ public class EamInventoryGtr extends BaseCodeGenerator{
         cfg.service().addRelationSaveAction(InventoryWarehouseServiceImpl.class,InventoryVOMeta.WAREHOUSE_IDS);
         cfg.service().addRelationSaveAction(InventoryCatalogServiceImpl.class,InventoryVOMeta.CATEGORY_IDS);
 
+        cfg.view().form().addJsVariable("BILL_ID","[[${billId}]]","单据ID");
+
 
 
         //文件生成覆盖模式
@@ -264,8 +267,8 @@ public class EamInventoryGtr extends BaseCodeGenerator{
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
                 .setControllerAndAgent(WriteMode.IGNORE) //Rest
                 .setPageController(WriteMode.IGNORE) //页面控制器
-                .setFormPage(WriteMode.IGNORE) //表单HTML页
-                .setListPage(WriteMode.IGNORE)//列表HTML页
+                .setFormPage(WriteMode.WRITE_TEMP_FILE) //表单HTML页
+                .setListPage(WriteMode.WRITE_TEMP_FILE)//列表HTML页
                 .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         cfg.buildAll();
 

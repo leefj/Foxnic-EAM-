@@ -42,21 +42,24 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"deployModeDict","deployModeDict","deployModeDict");
         cfg.view().field(OpsTables.OPS_DB_INFO.NAME).search().fuzzySearch();
         cfg.view().field(OpsTables.OPS_DB_INFO.NOTES).search().fuzzySearch();
+        cfg.view().field(OpsTables.OPS_DB_INFO.CREATE_TIME).search().range();
         cfg.view().field(OpsTables.OPS_DB_INFO.ID).basic().hidden(true);
         cfg.view().search().inputLayout(
                 new Object[]{
                         OpsTables.OPS_DB_INFO.STATUS,
                         OpsTables.OPS_DB_INFO.BACKUP_STATUS,
                         OpsTables.OPS_DB_INFO.NAME,
-
+                },
+                new Object[]{
+                        OpsTables.OPS_DB_INFO.CREATE_TIME,
                 }
         );
 
-
+        cfg.view().search().rowsDisplay(1);
         cfg.view().field(OpsTables.OPS_DB_INFO.HOST_ID)
                 .basic().label("主机名称")
                 .table().sort(false)
-                .form().validate().required().form().selectBox().queryApi(HostServiceProxy.QUERY_PAGED_LIST)
+                  .form().selectBox().queryApi(HostServiceProxy.QUERY_PAGED_LIST)
                 .valueField(HostMeta.ID).textField(HostMeta.HOST_NAME)
                 .toolbar(false).paging(true)
                 .fillWith(DbInfoMeta.HOST).muliti(false).defaultIndex(0);

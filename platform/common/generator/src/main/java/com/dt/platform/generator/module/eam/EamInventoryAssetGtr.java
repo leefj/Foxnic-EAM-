@@ -27,8 +27,8 @@ public class EamInventoryAssetGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"operater","操作人员","操作人员");
 
 
-
         cfg.view().field(EAMTables.EAM_INVENTORY_ASSET.ID).basic().hidden(true);
+        cfg.view().field(EAMTables.EAM_INVENTORY_ASSET.PICTURE_ID).form().upload().acceptImageType().maxFileCount(6);
 
         //eam_asset_change_data
         cfg.view().search().inputLayout(
@@ -41,7 +41,7 @@ public class EamInventoryAssetGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_INVENTORY_ASSET.STATUS).form().validate().required().form()
                 .label("盘点状态").selectBox().enumType(AssetInventoryDetailStatusEnum.class);
 
-        cfg.view().field(EAMTables.EAM_INVENTORY_ASSET.SOURCE).form().validate().required().form()
+        cfg.view().field(EAMTables.EAM_INVENTORY_ASSET.SOURCE).form()
                 .selectBox().enumType(AssetInventoryDetailDataSourceEnum.class);
 
         cfg.view().formWindow().bottomSpace(250);
@@ -49,6 +49,7 @@ public class EamInventoryAssetGtr extends BaseCodeGenerator{
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_INVENTORY_ASSET.STATUS,
+                        EAMTables.EAM_INVENTORY_ASSET.PICTURE_ID,
                         EAMTables.EAM_INVENTORY_ASSET.NOTES,
                 }
         );

@@ -428,6 +428,8 @@ function ListPage() {
 				admin.putTempData('eam-asset-inventory-data-popup-index', index);
 
 
+			}else if (layEvent === 'inventory-bill') { // 单据
+				window.pageExt.list.inventoryBill(data,this);
 			}
 
 		});

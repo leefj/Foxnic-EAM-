@@ -439,16 +439,15 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			codeResult.data(StringUtil.isBlank(defaultAssetCode)?"":defaultAssetCode);
 			return codeResult;
 		}
-
 		//自动生产编码
 		Logger.info("ctl:"+ctl.toJSONString());
 		String ownOrgId=ctl.containsKey("ownOrgId")?ctl.getString("ownOrgId"):"";
 		String useOrgId=ctl.containsKey("useOrgId")?ctl.getString("useOrgId"):"";
 		String categoryId=ctl.containsKey("categoryId")?ctl.getString("categoryId"):"";
 		Logger.info("to generate asset code,ownOrgId:"+ownOrgId+",useOrgId:"+useOrgId+",categoryId:"+categoryId);
-		String code=IDGenerator.getSnowflakeIdString();
+		//String code=IDGenerator.getSnowflakeIdString();
 		if(CodeModuleEnum.EAM_ASSET_CODE.code().equals(codeRule)){
-			return CodeModuleServiceProxy.api().generateCode(codeRule) ;
+			return CodeModuleServiceProxy.api().generateCodeByData(codeRule,ownOrgId,categoryId);
 		}else{
 			return CodeModuleServiceProxy.api().generateCode(codeRule) ;
 		}

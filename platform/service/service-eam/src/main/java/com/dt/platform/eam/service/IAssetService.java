@@ -61,6 +61,8 @@ public interface IAssetService extends ISuperService<Asset> {
 	List<Map<String, Object>> getBills(List<String> ids);
 
 
+
+
 	/**
 	 * 按主键获取 资产
 	 * @param owner 主键

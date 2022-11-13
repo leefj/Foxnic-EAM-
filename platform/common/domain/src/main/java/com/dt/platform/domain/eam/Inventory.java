@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.InventoryMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
@@ -27,8 +29,8 @@ import com.github.foxnic.dao.entity.EntityContext;
  * 资产盘点
  * <p>资产盘点 , 数据表 eam_inventory 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-27 19:48:57
- * @sign 181BBEDF1613631E07B6D3B8145165AA
+ * @since 2022-11-12 11:28:25
+ * @sign 393929C9F3634A82B0E4BC7632B95E12
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -253,6 +255,12 @@ public class Inventory extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="盘盈" , notes = "盘盈")
 	private Integer inventoryAssetCountBySurplus;
+	
+	/**
+	 * 异常：异常
+	*/
+	@ApiModelProperty(required = false,value="异常" , notes = "异常")
+	private Integer inventoryAssetCountByException;
 	
 	/**
 	 * 所属公司：所属公司
@@ -1052,6 +1060,25 @@ public class Inventory extends Entity {
 	}
 	
 	/**
+	 * 获得 异常<br>
+	 * 异常
+	 * @return 异常
+	*/
+	public Integer getInventoryAssetCountByException() {
+		return inventoryAssetCountByException;
+	}
+	
+	/**
+	 * 设置 异常
+	 * @param inventoryAssetCountByException 异常
+	 * @return 当前对象
+	*/
+	public Inventory setInventoryAssetCountByException(Integer inventoryAssetCountByException) {
+		this.inventoryAssetCountByException=inventoryAssetCountByException;
+		return this;
+	}
+	
+	/**
 	 * 获得 所属公司<br>
 	 * 所属公司
 	 * @return 所属公司
@@ -1571,6 +1598,7 @@ public class Inventory extends Entity {
 			inst.setManager(this.getManager());
 			inst.setInventoryAssetCountByLoss(this.getInventoryAssetCountByLoss());
 			inst.setDirector(this.getDirector());
+			inst.setInventoryAssetCountByException(this.getInventoryAssetCountByException());
 			inst.setInventoryAssetCountByCounted(this.getInventoryAssetCountByCounted());
 			inst.setOriginator(this.getOriginator());
 			inst.setWarehouse(this.getWarehouse());
@@ -1633,5 +1661,177 @@ public class Inventory extends Entity {
 	@Transient
 	public static Inventory create() {
 		return new com.dt.platform.domain.eam.meta.InventoryMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(InventoryMeta.NOTES)));
+			this.setOwnerCode(DataParser.parse(String.class, map.get(InventoryMeta.OWNER_CODE)));
+			this.setType(DataParser.parse(String.class, map.get(InventoryMeta.TYPE)));
+			this.setAllEmployee(DataParser.parse(String.class, map.get(InventoryMeta.ALL_EMPLOYEE)));
+			this.setBusinessDate(DataParser.parse(Date.class, map.get(InventoryMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, map.get(InventoryMeta.BUSINESS_CODE)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(InventoryMeta.UPDATE_BY)));
+			this.setPurchaseStartDate(DataParser.parse(Date.class, map.get(InventoryMeta.PURCHASE_START_DATE)));
+			this.setStartTime(DataParser.parse(Date.class, map.get(InventoryMeta.START_TIME)));
+			this.setPlanId(DataParser.parse(String.class, map.get(InventoryMeta.PLAN_ID)));
+			this.setId(DataParser.parse(String.class, map.get(InventoryMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, map.get(InventoryMeta.ORIGINATOR_ID)));
+			this.setFinishTime(DataParser.parse(Date.class, map.get(InventoryMeta.FINISH_TIME)));
+			this.setInventoryStatus(DataParser.parse(String.class, map.get(InventoryMeta.INVENTORY_STATUS)));
+			this.setDataStatus(DataParser.parse(String.class, map.get(InventoryMeta.DATA_STATUS)));
+			this.setUseOrganizationId(DataParser.parse(String.class, map.get(InventoryMeta.USE_ORGANIZATION_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(InventoryMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(InventoryMeta.VERSION)));
+			this.setOwnCompanyId(DataParser.parse(String.class, map.get(InventoryMeta.OWN_COMPANY_ID)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(InventoryMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(InventoryMeta.DELETED)));
+			this.setPurchaseEndDate(DataParser.parse(Date.class, map.get(InventoryMeta.PURCHASE_END_DATE)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(InventoryMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(InventoryMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(InventoryMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(InventoryMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(InventoryMeta.DELETE_BY)));
+			this.setAssetStatus(DataParser.parse(String.class, map.get(InventoryMeta.ASSET_STATUS)));
+			this.setCategoryId(DataParser.parse(String.class, map.get(InventoryMeta.CATEGORY_ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(InventoryMeta.STATUS)));
+			// others
+			this.setInventoryAssetCountByLoss(DataParser.parse(Integer.class, map.get(InventoryMeta.INVENTORY_ASSET_COUNT_BY_LOSS)));
+			this.setInventoryAssetCountByException(DataParser.parse(Integer.class, map.get(InventoryMeta.INVENTORY_ASSET_COUNT_BY_EXCEPTION)));
+			this.setInventoryAssetCountByCounted(DataParser.parse(Integer.class, map.get(InventoryMeta.INVENTORY_ASSET_COUNT_BY_COUNTED)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(InventoryMeta.ORIGINATOR)));
+			this.setInventoryAssetCountByNotCounted(DataParser.parse(Integer.class, map.get(InventoryMeta.INVENTORY_ASSET_COUNT_BY_NOT_COUNTED)));
+			this.setInventoryAssetCountBySurplus(DataParser.parse(Integer.class, map.get(InventoryMeta.INVENTORY_ASSET_COUNT_BY_SURPLUS)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(InventoryMeta.NOTES));
+				this.setOwnerCode( (String)map.get(InventoryMeta.OWNER_CODE));
+				this.setType( (String)map.get(InventoryMeta.TYPE));
+				this.setAllEmployee( (String)map.get(InventoryMeta.ALL_EMPLOYEE));
+				this.setBusinessDate( (Date)map.get(InventoryMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)map.get(InventoryMeta.BUSINESS_CODE));
+				this.setUpdateBy( (String)map.get(InventoryMeta.UPDATE_BY));
+				this.setPurchaseStartDate( (Date)map.get(InventoryMeta.PURCHASE_START_DATE));
+				this.setStartTime( (Date)map.get(InventoryMeta.START_TIME));
+				this.setPlanId( (String)map.get(InventoryMeta.PLAN_ID));
+				this.setId( (String)map.get(InventoryMeta.ID));
+				this.setOriginatorId( (String)map.get(InventoryMeta.ORIGINATOR_ID));
+				this.setFinishTime( (Date)map.get(InventoryMeta.FINISH_TIME));
+				this.setInventoryStatus( (String)map.get(InventoryMeta.INVENTORY_STATUS));
+				this.setDataStatus( (String)map.get(InventoryMeta.DATA_STATUS));
+				this.setUseOrganizationId( (String)map.get(InventoryMeta.USE_ORGANIZATION_ID));
+				this.setUpdateTime( (Date)map.get(InventoryMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(InventoryMeta.VERSION));
+				this.setOwnCompanyId( (String)map.get(InventoryMeta.OWN_COMPANY_ID));
+				this.setCreateBy( (String)map.get(InventoryMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(InventoryMeta.DELETED));
+				this.setPurchaseEndDate( (Date)map.get(InventoryMeta.PURCHASE_END_DATE));
+				this.setCreateTime( (Date)map.get(InventoryMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)map.get(InventoryMeta.DELETE_TIME));
+				this.setName( (String)map.get(InventoryMeta.NAME));
+				this.setTenantId( (String)map.get(InventoryMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(InventoryMeta.DELETE_BY));
+				this.setAssetStatus( (String)map.get(InventoryMeta.ASSET_STATUS));
+				this.setCategoryId( (String)map.get(InventoryMeta.CATEGORY_ID));
+				this.setStatus( (String)map.get(InventoryMeta.STATUS));
+				// others
+				this.setInventoryAssetCountByLoss( (Integer)map.get(InventoryMeta.INVENTORY_ASSET_COUNT_BY_LOSS));
+				this.setInventoryAssetCountByException( (Integer)map.get(InventoryMeta.INVENTORY_ASSET_COUNT_BY_EXCEPTION));
+				this.setInventoryAssetCountByCounted( (Integer)map.get(InventoryMeta.INVENTORY_ASSET_COUNT_BY_COUNTED));
+				this.setOriginator( (Employee)map.get(InventoryMeta.ORIGINATOR));
+				this.setInventoryAssetCountByNotCounted( (Integer)map.get(InventoryMeta.INVENTORY_ASSET_COUNT_BY_NOT_COUNTED));
+				this.setInventoryAssetCountBySurplus( (Integer)map.get(InventoryMeta.INVENTORY_ASSET_COUNT_BY_SURPLUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(InventoryMeta.NOTES)));
+			this.setOwnerCode(DataParser.parse(String.class, r.getValue(InventoryMeta.OWNER_CODE)));
+			this.setType(DataParser.parse(String.class, r.getValue(InventoryMeta.TYPE)));
+			this.setAllEmployee(DataParser.parse(String.class, r.getValue(InventoryMeta.ALL_EMPLOYEE)));
+			this.setBusinessDate(DataParser.parse(Date.class, r.getValue(InventoryMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, r.getValue(InventoryMeta.BUSINESS_CODE)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(InventoryMeta.UPDATE_BY)));
+			this.setPurchaseStartDate(DataParser.parse(Date.class, r.getValue(InventoryMeta.PURCHASE_START_DATE)));
+			this.setStartTime(DataParser.parse(Date.class, r.getValue(InventoryMeta.START_TIME)));
+			this.setPlanId(DataParser.parse(String.class, r.getValue(InventoryMeta.PLAN_ID)));
+			this.setId(DataParser.parse(String.class, r.getValue(InventoryMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, r.getValue(InventoryMeta.ORIGINATOR_ID)));
+			this.setFinishTime(DataParser.parse(Date.class, r.getValue(InventoryMeta.FINISH_TIME)));
+			this.setInventoryStatus(DataParser.parse(String.class, r.getValue(InventoryMeta.INVENTORY_STATUS)));
+			this.setDataStatus(DataParser.parse(String.class, r.getValue(InventoryMeta.DATA_STATUS)));
+			this.setUseOrganizationId(DataParser.parse(String.class, r.getValue(InventoryMeta.USE_ORGANIZATION_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(InventoryMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(InventoryMeta.VERSION)));
+			this.setOwnCompanyId(DataParser.parse(String.class, r.getValue(InventoryMeta.OWN_COMPANY_ID)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(InventoryMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(InventoryMeta.DELETED)));
+			this.setPurchaseEndDate(DataParser.parse(Date.class, r.getValue(InventoryMeta.PURCHASE_END_DATE)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(InventoryMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(InventoryMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(InventoryMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(InventoryMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(InventoryMeta.DELETE_BY)));
+			this.setAssetStatus(DataParser.parse(String.class, r.getValue(InventoryMeta.ASSET_STATUS)));
+			this.setCategoryId(DataParser.parse(String.class, r.getValue(InventoryMeta.CATEGORY_ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(InventoryMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(InventoryMeta.NOTES));
+				this.setOwnerCode( (String)r.getValue(InventoryMeta.OWNER_CODE));
+				this.setType( (String)r.getValue(InventoryMeta.TYPE));
+				this.setAllEmployee( (String)r.getValue(InventoryMeta.ALL_EMPLOYEE));
+				this.setBusinessDate( (Date)r.getValue(InventoryMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)r.getValue(InventoryMeta.BUSINESS_CODE));
+				this.setUpdateBy( (String)r.getValue(InventoryMeta.UPDATE_BY));
+				this.setPurchaseStartDate( (Date)r.getValue(InventoryMeta.PURCHASE_START_DATE));
+				this.setStartTime( (Date)r.getValue(InventoryMeta.START_TIME));
+				this.setPlanId( (String)r.getValue(InventoryMeta.PLAN_ID));
+				this.setId( (String)r.getValue(InventoryMeta.ID));
+				this.setOriginatorId( (String)r.getValue(InventoryMeta.ORIGINATOR_ID));
+				this.setFinishTime( (Date)r.getValue(InventoryMeta.FINISH_TIME));
+				this.setInventoryStatus( (String)r.getValue(InventoryMeta.INVENTORY_STATUS));
+				this.setDataStatus( (String)r.getValue(InventoryMeta.DATA_STATUS));
+				this.setUseOrganizationId( (String)r.getValue(InventoryMeta.USE_ORGANIZATION_ID));
+				this.setUpdateTime( (Date)r.getValue(InventoryMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(InventoryMeta.VERSION));
+				this.setOwnCompanyId( (String)r.getValue(InventoryMeta.OWN_COMPANY_ID));
+				this.setCreateBy( (String)r.getValue(InventoryMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(InventoryMeta.DELETED));
+				this.setPurchaseEndDate( (Date)r.getValue(InventoryMeta.PURCHASE_END_DATE));
+				this.setCreateTime( (Date)r.getValue(InventoryMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)r.getValue(InventoryMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(InventoryMeta.NAME));
+				this.setTenantId( (String)r.getValue(InventoryMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(InventoryMeta.DELETE_BY));
+				this.setAssetStatus( (String)r.getValue(InventoryMeta.ASSET_STATUS));
+				this.setCategoryId( (String)r.getValue(InventoryMeta.CATEGORY_ID));
+				this.setStatus( (String)r.getValue(InventoryMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

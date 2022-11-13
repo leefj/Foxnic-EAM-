@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_ASSET_ITEM;
@@ -8,21 +9,27 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.AssetItemMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 资产
+ * <p>资产 , 数据表 eam_asset_item 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-23 16:52:57
- * @sign 55474E1646CA66872D7A3B32EB9C563D
+ * @since 2022-11-13 18:13:51
+ * @sign 18FABF07026DC9BABF26484FC1156091
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_asset_item")
+@ApiModel(description = "资产 ; 资产 , 数据表 eam_asset_item 的PO类型")
 public class AssetItem extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -33,19 +40,19 @@ public class AssetItem extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "595862371419815936")
 	private String id;
 	
 	/**
 	 * 处理：处理
 	*/
-	@ApiModelProperty(required = false,value="处理" , notes = "处理")
+	@ApiModelProperty(required = false,value="处理" , notes = "处理" , example = "595861733386485760")
 	private String handleId;
 	
 	/**
 	 * 资产：资产
 	*/
-	@ApiModelProperty(required = false,value="资产" , notes = "资产")
+	@ApiModelProperty(required = false,value="资产" , notes = "资产" , example = "593901526246760448")
 	private String assetId;
 	
 	/**
@@ -61,21 +68,27 @@ public class AssetItem extends Entity {
 	private String beforeAssetStatus;
 	
 	/**
+	 * 标记：标记
+	*/
+	@ApiModelProperty(required = false,value="标记" , notes = "标记")
+	private String flag;
+	
+	/**
 	 * 修改标记：修改标记
 	*/
-	@ApiModelProperty(required = false,value="修改标记" , notes = "修改标记")
+	@ApiModelProperty(required = false,value="修改标记" , notes = "修改标记" , example = "c")
 	private String crd;
 	
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-07-03 06:24:20")
 	private Date createTime;
 	
 	/**
@@ -93,9 +106,10 @@ public class AssetItem extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -113,13 +127,13 @@ public class AssetItem extends Entity {
 	/**
 	 * 选择：选择
 	*/
-	@ApiModelProperty(required = false,value="选择" , notes = "选择")
+	@ApiModelProperty(required = false,value="选择" , notes = "选择" , example = "1656800566000")
 	private String selectedCode;
 	
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
@@ -214,6 +228,25 @@ public class AssetItem extends Entity {
 	*/
 	public AssetItem setBeforeAssetStatus(String beforeAssetStatus) {
 		this.beforeAssetStatus=beforeAssetStatus;
+		return this;
+	}
+	
+	/**
+	 * 获得 标记<br>
+	 * 标记
+	 * @return 标记
+	*/
+	public String getFlag() {
+		return flag;
+	}
+	
+	/**
+	 * 设置 标记
+	 * @param flag 标记
+	 * @return 当前对象
+	*/
+	public AssetItem setFlag(String flag) {
+		this.flag=flag;
 		return this;
 	}
 	
@@ -339,6 +372,7 @@ public class AssetItem extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public AssetItem setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -467,6 +501,49 @@ public class AssetItem extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetItem clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AssetItem duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.AssetItemMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetItemMeta.$$proxy$$();
+		inst.setBeforeAssetStatus(this.getBeforeAssetStatus());
+		inst.setFlag(this.getFlag());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setSelectedCode(this.getSelectedCode());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCrd(this.getCrd());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setAssetId(this.getAssetId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setHandleId(this.getHandleId());
+		inst.setBeforeUseUserId(this.getBeforeUseUserId());
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetItem clone(boolean deep) {
+		return EntityContext.clone(AssetItem.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 AssetItem
 	 * @param assetItemMap 包含实体信息的 Map 对象
 	 * @return AssetItem , 转换好的的 AssetItem 对象
@@ -474,7 +551,9 @@ public class AssetItem extends Entity {
 	@Transient
 	public static AssetItem createFrom(Map<String,Object> assetItemMap) {
 		if(assetItemMap==null) return null;
-		AssetItem po = EntityContext.create(AssetItem.class, assetItemMap);
+		AssetItem po = create();
+		EntityContext.copyProperties(po,assetItemMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -486,7 +565,9 @@ public class AssetItem extends Entity {
 	@Transient
 	public static AssetItem createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AssetItem po = EntityContext.create(AssetItem.class,pojo);
+		AssetItem po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -496,6 +577,110 @@ public class AssetItem extends Entity {
 	*/
 	@Transient
 	public static AssetItem create() {
-		return EntityContext.create(AssetItem.class);
+		return new com.dt.platform.domain.eam.meta.AssetItemMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setBeforeAssetStatus(DataParser.parse(String.class, map.get(AssetItemMeta.BEFORE_ASSET_STATUS)));
+			this.setFlag(DataParser.parse(String.class, map.get(AssetItemMeta.FLAG)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetItemMeta.UPDATE_TIME)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(AssetItemMeta.SELECTED_CODE)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetItemMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetItemMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetItemMeta.DELETED)));
+			this.setCrd(DataParser.parse(String.class, map.get(AssetItemMeta.CRD)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetItemMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetItemMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetItemMeta.DELETE_TIME)));
+			this.setAssetId(DataParser.parse(String.class, map.get(AssetItemMeta.ASSET_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetItemMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AssetItemMeta.ID)));
+			this.setHandleId(DataParser.parse(String.class, map.get(AssetItemMeta.HANDLE_ID)));
+			this.setBeforeUseUserId(DataParser.parse(String.class, map.get(AssetItemMeta.BEFORE_USE_USER_ID)));
+			// others
+			return true;
+		} else {
+			try {
+				this.setBeforeAssetStatus( (String)map.get(AssetItemMeta.BEFORE_ASSET_STATUS));
+				this.setFlag( (String)map.get(AssetItemMeta.FLAG));
+				this.setUpdateTime( (Date)map.get(AssetItemMeta.UPDATE_TIME));
+				this.setSelectedCode( (String)map.get(AssetItemMeta.SELECTED_CODE));
+				this.setVersion( (Integer)map.get(AssetItemMeta.VERSION));
+				this.setCreateBy( (String)map.get(AssetItemMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AssetItemMeta.DELETED));
+				this.setCrd( (String)map.get(AssetItemMeta.CRD));
+				this.setCreateTime( (Date)map.get(AssetItemMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(AssetItemMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AssetItemMeta.DELETE_TIME));
+				this.setAssetId( (String)map.get(AssetItemMeta.ASSET_ID));
+				this.setDeleteBy( (String)map.get(AssetItemMeta.DELETE_BY));
+				this.setId( (String)map.get(AssetItemMeta.ID));
+				this.setHandleId( (String)map.get(AssetItemMeta.HANDLE_ID));
+				this.setBeforeUseUserId( (String)map.get(AssetItemMeta.BEFORE_USE_USER_ID));
+				// others
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setBeforeAssetStatus(DataParser.parse(String.class, r.getValue(AssetItemMeta.BEFORE_ASSET_STATUS)));
+			this.setFlag(DataParser.parse(String.class, r.getValue(AssetItemMeta.FLAG)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetItemMeta.UPDATE_TIME)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(AssetItemMeta.SELECTED_CODE)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetItemMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetItemMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetItemMeta.DELETED)));
+			this.setCrd(DataParser.parse(String.class, r.getValue(AssetItemMeta.CRD)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetItemMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetItemMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetItemMeta.DELETE_TIME)));
+			this.setAssetId(DataParser.parse(String.class, r.getValue(AssetItemMeta.ASSET_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetItemMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetItemMeta.ID)));
+			this.setHandleId(DataParser.parse(String.class, r.getValue(AssetItemMeta.HANDLE_ID)));
+			this.setBeforeUseUserId(DataParser.parse(String.class, r.getValue(AssetItemMeta.BEFORE_USE_USER_ID)));
+			return true;
+		} else {
+			try {
+				this.setBeforeAssetStatus( (String)r.getValue(AssetItemMeta.BEFORE_ASSET_STATUS));
+				this.setFlag( (String)r.getValue(AssetItemMeta.FLAG));
+				this.setUpdateTime( (Date)r.getValue(AssetItemMeta.UPDATE_TIME));
+				this.setSelectedCode( (String)r.getValue(AssetItemMeta.SELECTED_CODE));
+				this.setVersion( (Integer)r.getValue(AssetItemMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(AssetItemMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AssetItemMeta.DELETED));
+				this.setCrd( (String)r.getValue(AssetItemMeta.CRD));
+				this.setCreateTime( (Date)r.getValue(AssetItemMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(AssetItemMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AssetItemMeta.DELETE_TIME));
+				this.setAssetId( (String)r.getValue(AssetItemMeta.ASSET_ID));
+				this.setDeleteBy( (String)r.getValue(AssetItemMeta.DELETE_BY));
+				this.setId( (String)r.getValue(AssetItemMeta.ID));
+				this.setHandleId( (String)r.getValue(AssetItemMeta.HANDLE_ID));
+				this.setBeforeUseUserId( (String)r.getValue(AssetItemMeta.BEFORE_USE_USER_ID));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

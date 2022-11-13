@@ -1021,14 +1021,13 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
     public Map<String, Object> queryAssetMap(List<Asset> list,String categoryId) {
         HashMap<String,String> orgMap=queryOrganizationNodes("all");
         HashMap<String,String> categoryMap=queryAssetCategoryNodes("all");
+
         Map<String,Object> map=new HashMap<>();
         assetService.joinData(list);
-
         String tenantId=SessionUser.getCurrent().getActivatedTenantId();
         List<Map<String, Object>> listMap = new ArrayList<Map<String, Object>>();
         for(int i=0;i<list.size();i++){
             Asset assetItem=list.get(i);
-            System.out.println(categoryId+"#####map"+BeanUtil.toJSONObject(assetItem));
 //            if(!StringUtil.isBlank(categoryId)){
 //                if(!categoryId.equals(assetItem.getCategoryId())){
 //                    continue;

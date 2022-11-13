@@ -17,8 +17,10 @@ public enum CodeAttrTypeEnum implements CodeTextEnum {
 
 	STRING_FIX("string_fix" , "固定字符串"),
 	STRING_RAND("string_rand" , "随机字符串"),
-	NUMBER_SEQ("number_seq" , "顺序数字"),
+	NUMBER_SEQ("number_seq" , "顺序数字(独立)"),
+	NUMBER_SEQ_RELATION("number_seq_relation" , "顺序数字(关联)"),
 	NUMBER_RAND("number_rand" , "随机数字"),
+	PCM_CODE("pcm" , "PCM_CODE"),
 	TIME("time" , "时间"),
 	ORG("org" , "组织架构"),
 	BUSI("busi" , "业务"),

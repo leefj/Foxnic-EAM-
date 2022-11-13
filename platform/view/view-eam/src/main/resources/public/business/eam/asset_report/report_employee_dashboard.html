@@ -187,7 +187,7 @@
                                     <image class="labelpng" src="/assets/images/workbench/myasset.png" alt="" />
                                 </div>
                                 <div>
-                                    <span class="label">我的资产：<span id="myAssetCount">0</span></span>
+                                    <span class="label"> <span th:text="${lang.translate('我的资产')}" >我的资产</span>：<span id="myAssetCount">0</span></span>
                                 </div>
                             </div>
                             <div th:if="${perm.checkAuth('my-asset:mgr')}"  style="margin-right:20px;font-size: 20px;">
@@ -204,7 +204,7 @@
                                 <image class="labelpng" src="/assets/images/workbench/staffapprovel.png" alt="" />
                             </div>
                             <div>
-                                <span class="label">我发起的：<span id="myBusinessCount">0</span></span>
+                                <span class="label"> <span th:text="${lang.translate('我发起的')}" >我发起的</span>：<span id="myBusinessCount">0</span></span>
                             </div>
                         </div>
                         <div style="margin-right:20px;font-size: 20px;">
@@ -227,7 +227,7 @@
         <div class="layui-col-md12"  >
             <div class="panel layui-bg-number bannerF  " >
                 <div class="panel-body " >
-                    <div class="title ht">
+                    <div class="title ht"  th:text="${lang.translate('资产申请')}">
                         资产申请
                     </div>
                     <div class="panel-content">
@@ -236,7 +236,7 @@
                                 <div class="boxPng">
                                     <image class="boxPngValue" src="/assets/images/workbench/zcly.png" alt="" />
                                 </div>
-                                <div class="boxLabel">
+                                <div class="boxLabel" th:text="${lang.translate('资产领用')}">
                                     资产领用
                                 </div>
                             </div>
@@ -246,7 +246,7 @@
                                 <div class="boxPng">
                                     <image class="boxPngValue" src="/assets/images/workbench/msghandover.png" alt="" />
                                 </div>
-                                <div class="boxLabel">
+                                <div class="boxLabel" th:text="${lang.translate('资产交接')}" >
                                     资产交接
                                 </div>
                             </div>
@@ -255,7 +255,7 @@
                                 <div class="boxPng">
                                     <image class="boxPngValue" src="/assets/images/workbench/zichanjiaojie.png" alt="" />
                                 </div>
-                                <div class="boxLabel">
+                                <div class="boxLabel" th:text="${lang.translate('资产报失')}">
                                     资产报失
                                 </div>
                             </div>
@@ -264,7 +264,7 @@
                                 <div class="boxPng">
                                     <image class="boxPngValue" src="/assets/images/workbench/zichanbaoxiu.png" alt="" />
                                 </div>
-                                <div class="boxLabel">
+                                <div class="boxLabel" th:text="${lang.translate('资产报修')}">
                                     资产报修
                                 </div>
                             </div>
@@ -282,7 +282,7 @@
         <div class="layui-col-md12"  >
             <div class="panel layui-bg-number bannerF  " >
                 <div class="panel-body " >
-                    <div class="title ht">
+                    <div class="title ht" th:text="${lang.translate('移动端')}">
                         移动端
                     </div>
                     <div class="panel-content">
@@ -291,7 +291,7 @@
                                 <div class="boxPng">
                                     <image class="boxPngValue" src="/assets/images/workbench/zcly.png" alt="" />
                                 </div>
-                                <div class="boxLabel">
+                                <div class="boxLabel" th:text="${lang.translate('移动端下载')}">
                                     移动端下载
                                 </div>
                             </div>
