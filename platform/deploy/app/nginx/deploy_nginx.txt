@@ -1,0 +1,57 @@
+# wget http://nginx.org/download/nginx-1.20.2.tar.gz
+# yum -y install gcc wget gcc-c++ automake autoconf libtool libxml2-devel libxslt-devel perl-devel perl-ExtUtils-Embed pcre-devel openssl-devel
+
+# 编译安装
+# cd /tmp/nginx-1.20.2
+$./configure --prefix=/usr/local/nginx \
+--with-stream \
+--with-http_ssl_module \
+--with-stream_ssl_module
+# make && make install
+
+
+# 存放证书
+mkdir -p /usr/local/nginx/cert
+将证书copy至 /usr/local/nginx/cert
+
+# 配置移动端证书
+server {
+    listen 8091 ssl;
+    #配置HTTPS的默认访问端口为443。
+    #如果未在此处配置HTTPS的默认访问端口，可能会造成Nginx无法启动。
+    #如果您使用Nginx 1.15.0及以上版本，请使用listen 443 ssl代替listen 443和ssl on。
+    server_name eam-demo.rainbooow.com;
+    root  html;
+    index index.html index.htm;
+    ssl_certificate ../cert/8803285_eam-demo.rainbooow.com.pem;
+    ssl_certificate_key ../cert/8803285_eam-demo.rainbooow.com.key;
+    ssl_session_timeout 5m;
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+    #表示使用的加密套件的类型。
+    ssl_protocols TLSv1.1 TLSv1.2 TLSv1.3; #表示使用的TLS协议的类型，您需要自行评估是否配置TLSv1.1协议。
+    ssl_prefer_server_ciphers on;
+    location / {
+        root html;  #Web网站程序存放目录。
+        index index.html index.htm;
+    }
+}
+
+# 配置PC端，SSL卸载
+server {
+    listen 8090 ssl;
+    server_name eam-demo.rainbooow.com;
+    keepalive_timeout 60;
+    ssl_certificate ../cert/8803285_eam-demo.rainbooow.com.pem;
+    ssl_certificate_key ../cert/8803285_eam-demo.rainbooow.com.key;
+    ssl_session_timeout 5m;
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+    #表示使用的加密套件的类型。
+    ssl_protocols TLSv1.1 TLSv1.2 TLSv1.3; #表示使用的TLS协议的类型，您需要自行评估是否配置TLSv1.1协议。
+    location / {
+      proxy_pass http://172.20.132.138:8089;
+      proxy_redirect http:// https://;
+      proxy_set_header Host $host:$server_port;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
