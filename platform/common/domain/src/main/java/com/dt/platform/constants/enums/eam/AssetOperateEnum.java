@@ -113,8 +113,6 @@ public enum AssetOperateEnum implements CodeTextEnum {
     //资产折旧
     EAM_ASSET_DEPRECIATION_OPER(CodeModuleEnum.EAM_ASSET_DEPRECIATION_OPER.code(), CodeModuleEnum.EAM_ASSET_DEPRECIATION_OPER.text()),
 
-
-
     EAM_DOWNLOAD_ASSET_SOFTWARE_INSERT_BILL("eam_download_asset_software_insert_bill" , "EAM_资产软件登记下载"),
     EAM_DOWNLOAD_ASSET_SOFTWARE_DISTRIBUTE_BILL("eam_download_asset_software_distribute_bill" , "EAM_资产软件分发下载"),
     EAM_DOWNLOAD_ASSET_SOFTWARE_CHANGE_BILL("eam_download_asset_software_change_bill" , "EAM_资产软件变更下载"),
@@ -131,10 +129,15 @@ public enum AssetOperateEnum implements CodeTextEnum {
     EAM_DOWNLOAD_ASSET_ALLOCATE_BILL("eam_download_asset_allocate_bill" , "EAM_资产调拨下载"),
     EAM_DOWNLOAD_ASSET_COLLECTION_BILL("eam_download_asset_collection_bill" , "EAM_资产领用下载"),
     EAM_DOWNLOAD_ASSET_COLLECTION_RETURN_BILL("eam_download_asset_collection_return_bill" , "EAM_资产退库下载"),
+
     EAM_DOWNLOAD_ASSET_BORROW_BILL("eam_download_asset_borrow_bill" , "EAM_资产借用下载"),
+    EAM_DOWNLOAD_ASSET_BORROW_RETURN_BILL("eam_download_asset_borrow_return_bill" , "EAM_资产借用归还下载"),
     EAM_DOWNLOAD_ASSET_REPAIR_BILL("eam_download_asset_repair_bill" , "EAM_资产报修下载"),
     EAM_DOWNLOAD_ASSET_REPAIR_ORDER_BILL("eam_download_asset_repair_order_bill" , "EAM_资产维修工单下载"),
     EAM_DOWNLOAD_ASSET_SCRAP_BILL("eam_download_asset_scrap_bill" , "EAM_资产报废下载"),
+
+    EAM_DOWNLOAD_ASSET_INVENTORY_BILL("eam_download_asset_inventory_bill" , "EAM_资产盘点单据下载"),
+    EAM_DOWNLOAD_ASSET_INVENTORY_ASSET("eam_download_asset_inventory_asset" , "EAM_资产盘点资产下载"),
 
     //库存
     EAM_DOWNLOAD_ASSET_STOCK_GOODS_IN_BILL2("eam_download_asset_stock_goods_in_bill2" , "EAM_资产物品库存入库单下载"),

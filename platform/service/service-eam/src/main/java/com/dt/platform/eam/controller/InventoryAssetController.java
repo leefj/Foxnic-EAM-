@@ -87,7 +87,11 @@ public class InventoryAssetController extends SuperController {
 		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = "InventoryAssetVOMeta.SOURCE", value = "数据来源", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.SOURCE", value = "数据来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE, value = "盘盈动作", required = false, dataTypeClass = String.class, example = "none"),
+		@ApiImplicitParam(name = InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE, value = "盘亏动作", required = false, dataTypeClass = String.class, example = "none"),
+		@ApiImplicitParam(name = InventoryAssetVOMeta.SOURCE, value = "数据来源", required = false, dataTypeClass = String.class, example = "asset"),
+		@ApiImplicitParam(name = InventoryAssetVOMeta.PICTURE_ID, value = "照片", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = InventoryAssetServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -151,7 +155,11 @@ public class InventoryAssetController extends SuperController {
 		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = "InventoryAssetVOMeta.SOURCE", value = "数据来源", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.SOURCE", value = "数据来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE, value = "盘盈动作", required = false, dataTypeClass = String.class, example = "none"),
+		@ApiImplicitParam(name = InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE, value = "盘亏动作", required = false, dataTypeClass = String.class, example = "none"),
+		@ApiImplicitParam(name = InventoryAssetVOMeta.SOURCE, value = "数据来源", required = false, dataTypeClass = String.class, example = "asset"),
+		@ApiImplicitParam(name = InventoryAssetVOMeta.PICTURE_ID, value = "照片", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { InventoryAssetVOMeta.PAGE_INDEX, InventoryAssetVOMeta.PAGE_SIZE, InventoryAssetVOMeta.SEARCH_FIELD, InventoryAssetVOMeta.FUZZY_FIELD, InventoryAssetVOMeta.SEARCH_VALUE, InventoryAssetVOMeta.DIRTY_FIELDS, InventoryAssetVOMeta.SORT_FIELD, InventoryAssetVOMeta.SORT_TYPE, InventoryAssetVOMeta.IDS })
     @SentinelResource(value = InventoryAssetServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -184,7 +192,11 @@ public class InventoryAssetController extends SuperController {
 		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = "InventoryAssetVOMeta.SOURCE", value = "数据来源", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.SOURCE", value = "数据来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE, value = "盘盈动作", required = false, dataTypeClass = String.class, example = "none"),
+		@ApiImplicitParam(name = InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE, value = "盘亏动作", required = false, dataTypeClass = String.class, example = "none"),
+		@ApiImplicitParam(name = InventoryAssetVOMeta.SOURCE, value = "数据来源", required = false, dataTypeClass = String.class, example = "asset"),
+		@ApiImplicitParam(name = InventoryAssetVOMeta.PICTURE_ID, value = "照片", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InventoryAssetVOMeta.PAGE_INDEX, InventoryAssetVOMeta.PAGE_SIZE, InventoryAssetVOMeta.SEARCH_FIELD, InventoryAssetVOMeta.FUZZY_FIELD, InventoryAssetVOMeta.SEARCH_VALUE, InventoryAssetVOMeta.DIRTY_FIELDS, InventoryAssetVOMeta.SORT_FIELD, InventoryAssetVOMeta.SORT_TYPE, InventoryAssetVOMeta.IDS })
     @SentinelResource(value = InventoryAssetServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -257,7 +269,11 @@ public class InventoryAssetController extends SuperController {
 		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = "InventoryAssetVOMeta.SOURCE", value = "数据来源", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.SOURCE", value = "数据来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE, value = "盘盈动作", required = false, dataTypeClass = String.class, example = "none"),
+		@ApiImplicitParam(name = InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE, value = "盘亏动作", required = false, dataTypeClass = String.class, example = "none"),
+		@ApiImplicitParam(name = InventoryAssetVOMeta.SOURCE, value = "数据来源", required = false, dataTypeClass = String.class, example = "asset"),
+		@ApiImplicitParam(name = InventoryAssetVOMeta.PICTURE_ID, value = "照片", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InventoryAssetVOMeta.PAGE_INDEX, InventoryAssetVOMeta.PAGE_SIZE })
     @SentinelResource(value = InventoryAssetServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -291,7 +307,11 @@ public class InventoryAssetController extends SuperController {
 		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE", value = "盘盈动作", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = "InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE", value = "盘亏动作", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = "InventoryAssetVOMeta.SOURCE", value = "数据来源", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = "InventoryAssetVOMeta.SOURCE", value = "数据来源", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE, value = "盘盈动作", required = false, dataTypeClass = String.class, example = "none"),
+		@ApiImplicitParam(name = InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE, value = "盘亏动作", required = false, dataTypeClass = String.class, example = "none"),
+		@ApiImplicitParam(name = InventoryAssetVOMeta.SOURCE, value = "数据来源", required = false, dataTypeClass = String.class, example = "asset"),
+		@ApiImplicitParam(name = InventoryAssetVOMeta.PICTURE_ID, value = "照片", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = InventoryAssetServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -300,8 +320,10 @@ public class InventoryAssetController extends SuperController {
         Result<PagedList<InventoryAsset>> result = new Result<>();
         PagedList<InventoryAsset> list = inventoryAssetService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        inventoryAssetService.dao().fill(list).with(InventoryAssetMeta.OPERATER).with(InventoryAssetMeta.ASSET).execute();
+        inventoryAssetService.dao().fill(list).with(InventoryAssetMeta.OPERATER)
+                .with(InventoryAssetMeta.ASSET).execute();
         List<Employee> operList = CollectorUtil.collectList(list.getList(), InventoryAsset::getOperater);
+
         inventoryAssetService.dao().join(operList, Person.class);
         List<Asset> assetList = CollectorUtil.collectList(list.getList(), InventoryAsset::getAsset);
         assetService.joinData(assetList);

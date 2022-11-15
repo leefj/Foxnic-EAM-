@@ -1,7 +1,7 @@
 /**
- * 资产借用归还 列表页 JS 脚本
+ * 资产归还 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:27:30
+ * @since 2022-11-13 12:16:24
  */
 
 layui.config({
@@ -17,12 +17,21 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     var admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate,dropdown=layui.dropdown;
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload;
 
+    //模块基础路径
+    const moduleURL="/service-eam/eam-asset-borrow-return";
+
+
     //列表页的扩展
     var list={
         /**
          * 列表页初始化前调用
          * */
         beforeInit:function () {
+            var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+            operHtml=operHtml.replace(/lay-event="revoke-data"/i, "style=\"display:none\"")
+            operHtml=operHtml.replace(/lay-event="for-approval"/i, "style=\"display:none\"")
+            document.getElementById("tableOperationTemplate").innerHTML=operHtml;
+
             console.log("list:beforeInit");
         },
         /**
@@ -45,7 +54,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 对话框打开之前调用，如果返回 null 则不打开对话框
          * */
         beforeDialog:function (param){
-            param.title="覆盖对话框标题";
+            //param.title="覆盖对话框标题";
             return param;
         },
         /**
@@ -53,6 +62,18 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         afterDialog:function (param,result) {
             console.log('dialog',param,result);
+        },
+        /**
+         * 当下拉框别选择后触发
+         * */
+        onSelectBoxChanged:function(id,selected,changes,isAdd) {
+            console.log('onSelectBoxChanged',id,selected,changes,isAdd);
+        },
+        /**
+         * 当日期选择组件选择后触发
+         * */
+        onDatePickerChanged:function(id,value, date, endDate) {
+            console.log('onDatePickerChanged',id,value, date, endDate);
         },
         /**
          * 查询前调用
@@ -68,7 +89,40 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 查询结果渲染后调用
          * */
         afterQuery : function (data) {
-
+            for (var i = 0; i < data.length; i++) {
+                //如果审批中或审批通过的不允许编辑
+                if(data[i].status=="complete") {
+                    fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.for-approval-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.revoke-data-button').filter("[data-id='" + data[i].id + "']"), true);
+                }else if(data[i].status=="incomplete"){
+                    // fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.for-approval-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.revoke-data-button').filter("[data-id='" + data[i].id + "']"), true);
+                }else if(data[i].status=="deny"){
+                    fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.for-approval-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.revoke-data-button').filter("[data-id='" + data[i].id + "']"), true);
+                }else if(data[i].status=="approval"){
+                    fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.for-approval-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
+                    // fox.disableButton($('.revoke-data-button').filter("[data-id='" + data[i].id + "']"), true);
+                }else if(data[i].status=="cancel"){
+                    fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.for-approval-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.confirm-data-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.revoke-data-button').filter("[data-id='" + data[i].id + "']"), true);
+                }
+            }
         },
         /**
          * 进一步转换 list 数据
@@ -76,6 +130,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         templet:function (field,value,r) {
             if(value==null) return "";
             return value;
+        },
+        /**
+         * 表单页面打开时，追加更多的参数信息
+         * */
+        makeFormQueryString:function(data,queryString,action) {
+            return queryString;
         },
         /**
          * 在新建或编辑窗口打开前调用，若返回 false 则不继续执行后续操作
@@ -123,12 +183,43 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log('beforeRowOperationEvent',data,obj);
             return true;
         },
+        billOper:function(url,btnClass,ps,successMessage){
+            var btn=$('.'+btnClass).filter("[data-id='" +ps.id + "']");
+            var api=moduleURL+"/"+url;
+            admin.post(api,ps,function (r){
+                if(r.success) {
+                    top.layer.msg(successMessage,{time:1000});
+                    window.module.refreshTableData();
+                } else {
+                    var errs=[];
+                    if(r.errors&&r.errors.length>0){
+                        for (var i = 0; i < r.errors.length; i++) {
+                            if(errs.indexOf(r.errors[i].message)==-1) {
+                                errs.push(r.errors[i].message);
+                            }
+                        }
+                        top.layer.msg(errs.join("<br>"),{time:2000});
+                    }else{
+                        top.layer.msg(r.message,{time:2000});
+                    }
+                }
+            },{delayLoading:1000,elms:[btn]});
+        },
         /**
          * 表格右侧操作列更多按钮事件
          * */
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
+        downloadBill:function (data){
+            console.log('downloadBill',data);
+            var downloadUrl="/service-eam/eam-asset-bill/query-borrow-return-bill";
+            fox.submit(downloadUrl,{id:data.id});
+        },
+        confirmData:function (item){
+            list.billOper("confirm-operation","confirm-data-button",{id:item.id},"已确认");
+        },
+
         /**
          * 末尾执行
          */
@@ -137,16 +228,28 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         }
     }
 
+    var timestamp = Date.parse(new Date());
+    var formAction=admin.getTempData('eam-asset-borrow-return-form-data-form-action');
+
     //表单页的扩展
     var form={
         /**
-         * 表单初始化前调用
+         * 表单初始化前调用 , 并传入表单数据
          * */
-        beforeInit:function () {
+        beforeInit:function (action,data) {
+            $("#originatorUserName").attr("disabled","disabled").css("background-color","#e6e6e6");
+            $("#originatorUserName").attr("placeholder","自动填充")
             //获取参数，并调整下拉框查询用的URL
             //var companyId=admin.getTempData("companyId");
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
             console.log("form:beforeInit")
+        },
+        /**
+         * 窗口调节前
+         * */
+        beforeAdjustPopup:function () {
+            console.log('beforeAdjustPopup');
+            return true;
         },
         /**
          * 表单数据填充前
@@ -164,7 +267,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 对话框打开之前调用，如果返回 null 则不打开对话框
          * */
         beforeDialog:function (param){
-            param.title="覆盖对话框标题";
+            //param.title="覆盖对话框标题";
             return param;
         },
         /**
@@ -174,10 +277,51 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log('dialog',param,result);
         },
         /**
+         * 当下拉框别选择后触发
+         * */
+        onSelectBoxChanged:function(id,selected,changes,isAdd) {
+            console.log('onSelectBoxChanged',id,selected,changes,isAdd);
+        },
+        /**
+         * 当日期选择组件选择后触发
+         * */
+        onDatePickerChanged:function(id,value, date, endDate) {
+            console.log('onDatePickerChanged',id,value, date, endDate);
+        },
+        onRadioBoxChanged:function(id,data,checked) {
+            console.log('onRadioChanged',id,data,checked);
+        },
+        onCheckBoxChanged:function(id,data,checked) {
+            console.log('onCheckBoxChanged',id,data,checked);
+        },
+
+        /**
+         * 在流程提交前处理表单数据
+         * */
+        processFormData4Bpm:function(processInstanceId,param,callback) {
+            // 设置流程变量，并通过回调返回
+            var variables={};
+            // 此回调是必须的，否则流程提交会被中断
+            callback(variables);
+        },
+        /**
          * 数据提交前，如果返回 false，停止后续步骤的执行
          * */
         beforeSubmit:function (data) {
+            var dataListSize=$(".form-iframe")[0].contentWindow.module.getDataListSize();
+            if(dataListSize==0){
+                layer.msg("请选择资产数据", {icon: 2, time: 1000});
+                return false;
+            }
+            data.selectedCode=timestamp;
             console.log("beforeSubmit",data);
+            return true;
+        },
+        /**
+         * 数据提交后窗口关闭前，如果返回 false，停止后续步骤的执行
+         * */
+        betweenFormSubmitAndClose:function (param,result) {
+            console.log("betweenFormSubmitAndClose",result);
             return true;
         },
         /**
@@ -187,6 +331,37 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log("afterSubmitt",param,result);
         },
 
+        /**
+         *  加载 资产列表
+         */
+        assetSelectList:function (ifr,win,data) {
+            console.log("assetSelectList",ifr,data);
+            //设置 iframe 高度
+            ifr.height("450px");
+            //设置地址
+            var data={};
+            data.searchContent={};
+            data.assetSelectedCode=timestamp;
+            data.assetBusinessType=BILL_TYPE
+            data.action=formAction;
+            data.ownerCode="asset";
+            if(BILL_ID==null)BILL_ID="";
+            data.assetOwnerId=BILL_ID;
+            admin.putTempData('eam-asset-selected-data'+timestamp,data,true);
+            admin.putTempData('eam-asset-selected-action'+timestamp,formAction,true);
+            win.location="/business/eam/asset/asset_selected_list.html?assetSelectedCode="+timestamp+"&pageType="+formAction;
+        },
+        /**
+         * 文件上传组件回调
+         *  event 类型包括：
+         *  afterPreview ：文件选择后，未上传前触发；
+         *  afterUpload ：文件上传后触发
+         *  beforeRemove ：文件删除前触发
+         *  afterRemove ：文件删除后触发
+         * */
+        onUploadEvent: function(e) {
+            console.log("onUploadEvent",e);
+        },
         /**
          * 末尾执行
          */

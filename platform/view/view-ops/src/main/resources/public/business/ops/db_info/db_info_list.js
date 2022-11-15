@@ -1,7 +1,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 14:57:16
+ * @since 2022-11-02 22:08:27
  */
 
 
@@ -146,6 +146,7 @@ function ListPage() {
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.backupStatus={ inputType:"radio_box", value: getSelectedValue("#backupStatus","value"), label:getSelectedValue("#backupStatus","nameStr") };
+		value.createTime={ inputType:"date_input", begin: $("#createTime-begin").val(), end: $("#createTime-end").val() ,matchType:"auto" };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -232,6 +233,24 @@ function ListPage() {
 					opts.push({data:data[i],name:data[i].text,value:data[i].code});
 				}
 				return opts;
+			}
+		});
+		laydate.render({
+			elem: '#createTime-begin',
+			trigger:"click",
+			done: function(value, date, endDate) {
+				setTimeout(function () {
+					window.pageExt.list.onDatePickerChanged && window.pageExt.list.onDatePickerChanged("createTime",value, date, endDate);
+				},1);
+			}
+		});
+		laydate.render({
+			elem: '#createTime-end',
+			trigger:"click",
+			done: function(value, date, endDate) {
+				setTimeout(function () {
+					window.pageExt.list.onDatePickerChanged && window.pageExt.list.onDatePickerChanged("createTime",value, date, endDate);
+				},1);
 			}
 		});
 		fox.renderSearchInputs();

@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_CATEGORY_FINANCE;
@@ -8,20 +9,27 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.CategoryFinanceMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 财务分类
+ * <p>财务分类 , 数据表 eam_category_finance 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-10-26 15:27:03
- * @sign 668C3469B1B46865F76ABFF9D014CAA7
+ * @since 2022-11-13 10:04:46
+ * @sign 0E0D1FCB5917DFA1D33049EDDC09238D
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_category_finance")
+@ApiModel(description = "财务分类 ; 财务分类 , 数据表 eam_category_finance 的PO类型")
 public class CategoryFinance extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -32,7 +40,7 @@ public class CategoryFinance extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "488717624729939968")
 	private String id;
 	
 	/**
@@ -44,7 +52,7 @@ public class CategoryFinance extends Entity {
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "房屋和建筑物")
 	private String categoryName;
 	
 	/**
@@ -56,68 +64,71 @@ public class CategoryFinance extends Entity {
 	/**
 	 * 编码：编码
 	*/
-	@ApiModelProperty(required = false,value="编码" , notes = "编码")
+	@ApiModelProperty(required = false,value="编码" , notes = "编码" , example = "房屋和建筑物")
 	private String categoryCode;
 	
 	/**
 	 * 父节点：父节点
 	*/
-	@ApiModelProperty(required = false,value="父节点" , notes = "父节点")
+	@ApiModelProperty(required = false,value="父节点" , notes = "父节点" , example = "0")
 	private String parentId;
 	
 	/**
 	 * 排序：排序
 	*/
-	@ApiModelProperty(required = false,value="排序" , notes = "排序")
+	@ApiModelProperty(required = false,value="排序" , notes = "排序" , example = "9999")
 	private Integer sort;
 	
 	/**
 	 * 节点路径：节点路径
 	*/
-	@ApiModelProperty(required = false,value="节点路径" , notes = "节点路径")
+	@ApiModelProperty(required = false,value="节点路径" , notes = "节点路径" , example = "488717624729939968")
 	private String hierarchy;
 	
 	/**
 	 * 节点路径名称：节点路径名称
 	*/
-	@ApiModelProperty(required = false,value="节点路径名称" , notes = "节点路径名称")
+	@ApiModelProperty(required = false,value="节点路径名称" , notes = "节点路径名称" , example = "房屋和建筑物")
 	private String hierarchyName;
 	
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "房屋和建筑物")
 	private String notes;
 	
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2021-09-10 02:29:22")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-06-21 12:35:20")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
+	@Transient
+	@EnumFor("deleted")
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -134,13 +145,13 @@ public class CategoryFinance extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = false,value="version" , notes = "version")
+	@ApiModelProperty(required = false,value="version" , notes = "version" , example = "9")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -419,12 +430,43 @@ public class CategoryFinance extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public CategoryFinance setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public CategoryFinance setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -534,6 +576,52 @@ public class CategoryFinance extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public CategoryFinance clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public CategoryFinance duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.CategoryFinanceMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.CategoryFinanceMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setHierarchy(this.getHierarchy());
+		inst.setHierarchyName(this.getHierarchyName());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setCategoryCode(this.getCategoryCode());
+		inst.setSort(this.getSort());
+		inst.setCategoryName(this.getCategoryName());
+		inst.setVersion(this.getVersion());
+		inst.setParentId(this.getParentId());
+		inst.setCategoryFullname(this.getCategoryFullname());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setStatus(this.getStatus());
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public CategoryFinance clone(boolean deep) {
+		return EntityContext.clone(CategoryFinance.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 CategoryFinance
 	 * @param categoryFinanceMap 包含实体信息的 Map 对象
 	 * @return CategoryFinance , 转换好的的 CategoryFinance 对象
@@ -541,7 +629,9 @@ public class CategoryFinance extends Entity {
 	@Transient
 	public static CategoryFinance createFrom(Map<String,Object> categoryFinanceMap) {
 		if(categoryFinanceMap==null) return null;
-		CategoryFinance po = EntityContext.create(CategoryFinance.class, categoryFinanceMap);
+		CategoryFinance po = create();
+		EntityContext.copyProperties(po,categoryFinanceMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -553,7 +643,9 @@ public class CategoryFinance extends Entity {
 	@Transient
 	public static CategoryFinance createFrom(Object pojo) {
 		if(pojo==null) return null;
-		CategoryFinance po = EntityContext.create(CategoryFinance.class,pojo);
+		CategoryFinance po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -563,6 +655,122 @@ public class CategoryFinance extends Entity {
 	*/
 	@Transient
 	public static CategoryFinance create() {
-		return EntityContext.create(CategoryFinance.class);
+		return new com.dt.platform.domain.eam.meta.CategoryFinanceMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(CategoryFinanceMeta.NOTES)));
+			this.setHierarchy(DataParser.parse(String.class, map.get(CategoryFinanceMeta.HIERARCHY)));
+			this.setHierarchyName(DataParser.parse(String.class, map.get(CategoryFinanceMeta.HIERARCHY_NAME)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(CategoryFinanceMeta.UPDATE_TIME)));
+			this.setCategoryCode(DataParser.parse(String.class, map.get(CategoryFinanceMeta.CATEGORY_CODE)));
+			this.setSort(DataParser.parse(Integer.class, map.get(CategoryFinanceMeta.SORT)));
+			this.setCategoryName(DataParser.parse(String.class, map.get(CategoryFinanceMeta.CATEGORY_NAME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(CategoryFinanceMeta.VERSION)));
+			this.setParentId(DataParser.parse(String.class, map.get(CategoryFinanceMeta.PARENT_ID)));
+			this.setCategoryFullname(DataParser.parse(String.class, map.get(CategoryFinanceMeta.CATEGORY_FULLNAME)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(CategoryFinanceMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(CategoryFinanceMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(CategoryFinanceMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(CategoryFinanceMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(CategoryFinanceMeta.DELETE_TIME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(CategoryFinanceMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(CategoryFinanceMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(CategoryFinanceMeta.ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(CategoryFinanceMeta.STATUS)));
+			// others
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(CategoryFinanceMeta.NOTES));
+				this.setHierarchy( (String)map.get(CategoryFinanceMeta.HIERARCHY));
+				this.setHierarchyName( (String)map.get(CategoryFinanceMeta.HIERARCHY_NAME));
+				this.setUpdateTime( (Date)map.get(CategoryFinanceMeta.UPDATE_TIME));
+				this.setCategoryCode( (String)map.get(CategoryFinanceMeta.CATEGORY_CODE));
+				this.setSort( (Integer)map.get(CategoryFinanceMeta.SORT));
+				this.setCategoryName( (String)map.get(CategoryFinanceMeta.CATEGORY_NAME));
+				this.setVersion( (Integer)map.get(CategoryFinanceMeta.VERSION));
+				this.setParentId( (String)map.get(CategoryFinanceMeta.PARENT_ID));
+				this.setCategoryFullname( (String)map.get(CategoryFinanceMeta.CATEGORY_FULLNAME));
+				this.setCreateBy( (String)map.get(CategoryFinanceMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(CategoryFinanceMeta.DELETED));
+				this.setCreateTime( (Date)map.get(CategoryFinanceMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(CategoryFinanceMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(CategoryFinanceMeta.DELETE_TIME));
+				this.setTenantId( (String)map.get(CategoryFinanceMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(CategoryFinanceMeta.DELETE_BY));
+				this.setId( (String)map.get(CategoryFinanceMeta.ID));
+				this.setStatus( (String)map.get(CategoryFinanceMeta.STATUS));
+				// others
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(CategoryFinanceMeta.NOTES)));
+			this.setHierarchy(DataParser.parse(String.class, r.getValue(CategoryFinanceMeta.HIERARCHY)));
+			this.setHierarchyName(DataParser.parse(String.class, r.getValue(CategoryFinanceMeta.HIERARCHY_NAME)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(CategoryFinanceMeta.UPDATE_TIME)));
+			this.setCategoryCode(DataParser.parse(String.class, r.getValue(CategoryFinanceMeta.CATEGORY_CODE)));
+			this.setSort(DataParser.parse(Integer.class, r.getValue(CategoryFinanceMeta.SORT)));
+			this.setCategoryName(DataParser.parse(String.class, r.getValue(CategoryFinanceMeta.CATEGORY_NAME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(CategoryFinanceMeta.VERSION)));
+			this.setParentId(DataParser.parse(String.class, r.getValue(CategoryFinanceMeta.PARENT_ID)));
+			this.setCategoryFullname(DataParser.parse(String.class, r.getValue(CategoryFinanceMeta.CATEGORY_FULLNAME)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(CategoryFinanceMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(CategoryFinanceMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(CategoryFinanceMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(CategoryFinanceMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(CategoryFinanceMeta.DELETE_TIME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(CategoryFinanceMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(CategoryFinanceMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(CategoryFinanceMeta.ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(CategoryFinanceMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(CategoryFinanceMeta.NOTES));
+				this.setHierarchy( (String)r.getValue(CategoryFinanceMeta.HIERARCHY));
+				this.setHierarchyName( (String)r.getValue(CategoryFinanceMeta.HIERARCHY_NAME));
+				this.setUpdateTime( (Date)r.getValue(CategoryFinanceMeta.UPDATE_TIME));
+				this.setCategoryCode( (String)r.getValue(CategoryFinanceMeta.CATEGORY_CODE));
+				this.setSort( (Integer)r.getValue(CategoryFinanceMeta.SORT));
+				this.setCategoryName( (String)r.getValue(CategoryFinanceMeta.CATEGORY_NAME));
+				this.setVersion( (Integer)r.getValue(CategoryFinanceMeta.VERSION));
+				this.setParentId( (String)r.getValue(CategoryFinanceMeta.PARENT_ID));
+				this.setCategoryFullname( (String)r.getValue(CategoryFinanceMeta.CATEGORY_FULLNAME));
+				this.setCreateBy( (String)r.getValue(CategoryFinanceMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(CategoryFinanceMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(CategoryFinanceMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(CategoryFinanceMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(CategoryFinanceMeta.DELETE_TIME));
+				this.setTenantId( (String)r.getValue(CategoryFinanceMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(CategoryFinanceMeta.DELETE_BY));
+				this.setId( (String)r.getValue(CategoryFinanceMeta.ID));
+				this.setStatus( (String)r.getValue(CategoryFinanceMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

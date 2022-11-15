@@ -138,6 +138,7 @@
     <button th:if="${perm.checkAnyAuth('eam_inventory:update','eam_inventory:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit" th:text="${lang.translate('修改')}" data-id="{{d.id}}">盘点</button>
     <button th:if="${perm.checkAuth('eam_inventory:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" th:text="${lang.translate('删除')}" data-id="{{d.id}}">删除</button>
 
+    <button th:if="${perm.checkAuth('eam_inventory:bill')}"class="layui-btn layui-btn-xs  inventory-bill-button " lay-event="inventory-bill" data-id="{{d.id}}"><span th:text="${lang.translate('单据','','cmp:table.ops')}">单据</span></button>
 
 </script>
 

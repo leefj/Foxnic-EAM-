@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-10-24 13:31:57
+ * @since 2022-11-03 09:18:39
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -4012,6 +4012,126 @@ public class OpsTables {
 			this.init($NAME,"数据库实例" , ID , HOST_ID , DATABASE_ID , NAME , LOG_METHOD , BACKUP_STRATEGY , BACKUP_TYPE , BACKUP_DATAKEEP , BACKUP_STATUS , BACKUP_METHOD , BACKUP_TIME , BACKUP_SIZE , LABELS , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final OPS_DB_INSTANCE $TABLE=new OPS_DB_INSTANCE();
+	}
+	
+	/**
+	 * 部署标准
+	*/
+	public static class OPS_DEPLOY_STANDARD extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "ops_deploy_standard";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
+		
+		/**
+		 * 类型
+		*/
+		public static final DBField TYPE_ID = new DBField(DBDataType.STRING , "type_id","typeId","类型","类型",false,false,true);
+		
+		/**
+		 * 用户标准
+		*/
+		public static final DBField USER_CONTENT = new DBField(DBDataType.STRING , "user_content","userContent","用户标准","用户标准",false,false,true);
+		
+		/**
+		 * 目录标准
+		*/
+		public static final DBField DIR_CONTENT = new DBField(DBDataType.STRING , "dir_content","dirContent","目录标准","目录标准",false,false,true);
+		
+		/**
+		 * 部署标准
+		*/
+		public static final DBField DEPLOY_CONTENT = new DBField(DBDataType.STRING , "deploy_content","deployContent","部署标准","部署标准",false,false,true);
+		
+		/**
+		 * 实例标准
+		*/
+		public static final DBField CREATE_DB_CONTENT = new DBField(DBDataType.STRING , "create_db_content","createDbContent","实例标准","实例标准",false,false,true);
+		
+		/**
+		 * 日常维护
+		*/
+		public static final DBField MAINTENANCE_CONTENT = new DBField(DBDataType.STRING , "maintenance_content","maintenanceContent","日常维护","日常维护",false,false,true);
+		
+		/**
+		 * 备份脚本
+		*/
+		public static final DBField BACKUP_SCRIPT = new DBField(DBDataType.STRING , "backup_script","backupScript","备份脚本","备份脚本",false,false,true);
+		
+		/**
+		 * 版本
+		*/
+		public static final DBField RELEASE_VERSION = new DBField(DBDataType.STRING , "release_version","releaseVersion","版本","版本",false,false,true);
+		
+		/**
+		 * 附件人
+		*/
+		public static final DBField ATTACH_ID = new DBField(DBDataType.STRING , "attach_id","attachId","附件人","附件人",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public OPS_DEPLOY_STANDARD() {
+			this.init($NAME,"部署标准" , ID , NAME , TYPE_ID , USER_CONTENT , DIR_CONTENT , DEPLOY_CONTENT , CREATE_DB_CONTENT , MAINTENANCE_CONTENT , BACKUP_SCRIPT , RELEASE_VERSION , ATTACH_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final OPS_DEPLOY_STANDARD $TABLE=new OPS_DEPLOY_STANDARD();
 	}
 	
 	/**

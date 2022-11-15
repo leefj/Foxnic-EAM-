@@ -9,7 +9,6 @@ layui.define([],
                 ,status:{ field: 'status', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('办理状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status),d);}}
                 ,batch_code:{ field: 'batchCode', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('批次编码') , templet: function (d) { return templet('batchCode',d.batchCode,d);}  }
                 ,asset_code:{ field: 'assetCode', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('资产编号') , templet: function (d) { return templet('assetCode',d.assetCode,d);}  }
-              //  ,asset_status:{ field: 'assetStatus', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('资产状态'), templet:function (d){ return templet('assetStatus',fox.getEnumText(SELECT_ASSETSTATUS_DATA,d.assetStatus),d);}}
                 ,asset_status:{ field: 'assetStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('资产状态'), templet: function (d) { return templet('assetStatus' ,fox.joinLabel(d.assetCycleStatus,"name",',','','assetStatus'),d);}}
                 ,goods_id:{ field: 'goodsId', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('物品档案'), templet: function (d) { return templet('goodsId',fox.joinLabel(d.goods,"name"),d);}}
                 ,name:{ field: 'name', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
@@ -39,8 +38,7 @@ layui.define([],
                 ,maintenance_status:{ field: 'maintenanceStatus', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('维保状态'), templet: function (d) { return templet('maintenanceStatus',fox.joinLabel(d.assetMaintenanceStatus,"label"),d);}}
                 ,maintenance_method:{ field: 'maintenanceMethod', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('维保方式'), templet: function (d) { return templet('maintenanceMethod',fox.joinLabel(d.maintenanceMethodData,"label"),d);}}
                 ,suggest_maintenance_method:{ field: 'suggestMaintenanceMethod', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('建议维保方式'), templet: function (d) { return templet('suggestMaintenanceMethod',fox.joinLabel(d.suggestMaintenanceMethodData,"label"),d);}}
-                // ,{ field: 'suggestMaintenanceMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('建议维保方式'), templet: function (d) { return templet('suggestMaintenanceMethod' ,fox.joinLabel(d.suggestMaintenanceMethodData,"label",',','','suggestMaintenanceMethod'),d);}}
-
+                ,maintenance_price:{ field: 'maintenancePrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('维保价格') , templet: function (d) { return templet('maintenancePrice',d.maintenancePrice,d);}  }
                 ,contacts:{ field: 'contacts', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('联系人') , templet: function (d) { return templet('contacts',d.contacts,d);}  }
                 ,contact_information: { field: 'contactInformation', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('联系方式') , templet: function (d) { return templet('contactInformation',d.contactInformation,d);}  }
                 ,director: { field: 'director', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('负责人') , templet: function (d) { return templet('director',d.director,d);}  }

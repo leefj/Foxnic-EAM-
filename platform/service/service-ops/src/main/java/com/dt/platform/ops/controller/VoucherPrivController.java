@@ -233,7 +233,8 @@ public class VoucherPrivController extends SuperController {
         }
         String type = vpData.getType();
         DictItemVO diVo = new DictItemVO();
-        diVo.setDictCode(DictEnum.OPS_VOUCHER_TYPE.code());
+      //  diVo.setDictCode(DictEnum.OPS_VOUCHER_TYPE.code());
+        diVo.setDictCode("OPS_VOUCHER_TYPE");
         Result<List<DictItem>> dictItem_result = DictItemServiceProxy.api().queryList(diVo);
         if (!dictItem_result.isSuccess()) {
             return dictItem_result;

@@ -229,23 +229,23 @@
             <div data-v-882cb81c="" class="cursor-pointer add-custom-btn text-center p-2 mt-6"><span data-v-882cb81c="" class="feather-icon select-none relative" style="display: inline-block; vertical-align: middle;"><svg data-v-882cb81c="" xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus w-4 h-4 mr-1 mt-1"><line data-v-882cb81c="" x1="12" y1="5" x2="12" y2="19"></line><line data-v-882cb81c="" x1="5" y1="12" x2="19" y2="12"></line></svg></span><span data-v-882cb81c="">自定义打印模板</span></div>
         </div>
     </div>
-    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;"> <legend>打印纸设置</legend>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;"> <legend th:text="${lang.translate('打印纸设置')}">打印纸设置</legend>
     </fieldset>
 
     <div class="layui-form-item">
-        <div class="layui-inline"> <label class="layui-form-label">标签宽度(cm)</label>
+        <div class="layui-inline"> <label class="layui-form-label" th:text="${lang.translate('标签宽度(cm)')}">标签宽度(cm)</label>
             <div class="layui-input-inline">
                 <input type="number" name="number" lay-verify="required|number" autocomplete="off" class="layui-input">
             </div>
         </div>
-        <div class="layui-inline"> <label class="layui-form-label">标签高度(cm)</label>
+        <div class="layui-inline"> <label class="layui-form-label" th:text="${lang.translate('标签高度(cm)')}">标签高度(cm)</label>
             <div class="layui-input-inline">
                 <input type="number" name="number" lay-verify="required|number" autocomplete="off" class="layui-input">
             </div>
         </div>
     </div>
     <div class="layui-form-item">
-        <label class="layui-form-label">纸张类型</label>
+        <label class="layui-form-label" th:text="${lang.translate('纸张类型')}">纸张类型</label>
         <div class="layui-input-block">
             <input type="radio" name="sex" value="男" title="专用" checked="">
             <input type="radio" name="sex" value="女" title="A4">

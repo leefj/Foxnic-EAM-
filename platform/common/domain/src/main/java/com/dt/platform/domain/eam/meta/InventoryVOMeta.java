@@ -17,7 +17,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-27 19:48:57
+ * @since 2022-11-12 11:28:25
  * @sign 135BAC98096056B53E4C9E13041936AF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -465,6 +465,16 @@ public class InventoryVOMeta extends InventoryMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InventoryVO,java.lang.Integer> INVENTORY_ASSET_COUNT_BY_SURPLUS_PROP = new BeanProperty(com.dt.platform.domain.eam.InventoryVO.class ,INVENTORY_ASSET_COUNT_BY_SURPLUS, java.lang.Integer.class, "盘盈", "盘盈", java.lang.Integer.class, null);
 	
 	/**
+	 * 异常 , 类型: java.lang.Integer
+	*/
+	public static final String INVENTORY_ASSET_COUNT_BY_EXCEPTION="inventoryAssetCountByException";
+	
+	/**
+	 * 异常 , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InventoryVO,java.lang.Integer> INVENTORY_ASSET_COUNT_BY_EXCEPTION_PROP = new BeanProperty(com.dt.platform.domain.eam.InventoryVO.class ,INVENTORY_ASSET_COUNT_BY_EXCEPTION, java.lang.Integer.class, "异常", "异常", java.lang.Integer.class, null);
+	
+	/**
 	 * 所属公司 , 集合类型: LIST , 类型: org.github.foxnic.web.domain.hrm.Organization
 	*/
 	public static final String OWNER_COMPANY="ownerCompany";
@@ -617,7 +627,7 @@ public class InventoryVOMeta extends InventoryMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , TYPE , BUSINESS_CODE , OWNER_CODE , STATUS , NAME , INVENTORY_STATUS , DATA_STATUS , ALL_EMPLOYEE , ASSET_STATUS , CATEGORY_ID , OWN_COMPANY_ID , USE_ORGANIZATION_ID , PURCHASE_START_DATE , PURCHASE_END_DATE , START_TIME , FINISH_TIME , ORIGINATOR_ID , BUSINESS_DATE , NOTES , PLAN_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , INVENTORY_ASSET_INFO_LIST , INVENTORY_ASSET_COUNT_BY_NOT_COUNTED , INVENTORY_ASSET_COUNT_BY_COUNTED , INVENTORY_ASSET_COUNT_BY_LOSS , INVENTORY_ASSET_COUNT_BY_SURPLUS , OWNER_COMPANY , USE_ORGANIZATION , INVENTORY_USER , INVENTORY_USER_IDS , MANAGER , INVENTORY_MANAGER_IDS , DIRECTOR , INVENTORY_DIRECTOR_IDS , ORIGINATOR , POSITION , POSITION_IDS , WAREHOUSE , WAREHOUSE_IDS , CATEGORY , CATEGORY_IDS };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , TYPE , BUSINESS_CODE , OWNER_CODE , STATUS , NAME , INVENTORY_STATUS , DATA_STATUS , ALL_EMPLOYEE , ASSET_STATUS , CATEGORY_ID , OWN_COMPANY_ID , USE_ORGANIZATION_ID , PURCHASE_START_DATE , PURCHASE_END_DATE , START_TIME , FINISH_TIME , ORIGINATOR_ID , BUSINESS_DATE , NOTES , PLAN_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , INVENTORY_ASSET_INFO_LIST , INVENTORY_ASSET_COUNT_BY_NOT_COUNTED , INVENTORY_ASSET_COUNT_BY_COUNTED , INVENTORY_ASSET_COUNT_BY_LOSS , INVENTORY_ASSET_COUNT_BY_SURPLUS , INVENTORY_ASSET_COUNT_BY_EXCEPTION , OWNER_COMPANY , USE_ORGANIZATION , INVENTORY_USER , INVENTORY_USER_IDS , MANAGER , INVENTORY_MANAGER_IDS , DIRECTOR , INVENTORY_DIRECTOR_IDS , ORIGINATOR , POSITION , POSITION_IDS , WAREHOUSE , WAREHOUSE_IDS , CATEGORY , CATEGORY_IDS };
 	
 	/**
 	 * 代理类
@@ -1112,6 +1122,17 @@ public class InventoryVOMeta extends InventoryMeta {
 		}
 		
 		/**
+		 * 设置 异常
+		 * @param inventoryAssetCountByException 异常
+		 * @return 当前对象
+		*/
+		public Inventory setInventoryAssetCountByException(Integer inventoryAssetCountByException) {
+			super.change(INVENTORY_ASSET_COUNT_BY_EXCEPTION,super.getInventoryAssetCountByException(),inventoryAssetCountByException);
+			super.setInventoryAssetCountByException(inventoryAssetCountByException);
+			return this;
+		}
+		
+		/**
 		 * 设置 所属公司
 		 * @param ownerCompany 所属公司
 		 * @return 当前对象
@@ -1328,6 +1349,7 @@ public class InventoryVOMeta extends InventoryMeta {
 				inst.setSearchField(this.getSearchField());
 				inst.setInventoryAssetCountByLoss(this.getInventoryAssetCountByLoss());
 				inst.setFuzzyField(this.getFuzzyField());
+				inst.setInventoryAssetCountByException(this.getInventoryAssetCountByException());
 				inst.setPageSize(this.getPageSize());
 				inst.setInventoryAssetCountByCounted(this.getInventoryAssetCountByCounted());
 				inst.setOriginator(this.getOriginator());

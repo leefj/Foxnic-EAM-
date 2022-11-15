@@ -1,5 +1,6 @@
 package com.dt.platform.domain.ops;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import java.util.ArrayList;
@@ -10,17 +11,25 @@ import com.github.foxnic.commons.bean.BeanUtil;
 import com.github.foxnic.dao.entity.EntityContext;
 import com.github.foxnic.dao.entity.Entity;
 import java.util.Map;
+import com.dt.platform.domain.ops.meta.DbInfoVOMeta;
+import com.github.foxnic.commons.lang.DataParser;
+import java.util.Date;
+import java.math.BigDecimal;
+import org.github.foxnic.web.domain.system.DictItem;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
- * 数据库
+ * 数据库VO类型
+ * <p>数据库 , 数据表 ops_db_info 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-19 14:57:15
+ * @since 2022-11-02 22:08:25
  * @sign 34945B314FDD9C5B5C62D17AD6EFC0FD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
+@ApiModel(description = "数据库VO类型 ; 数据库 , 数据表 ops_db_info 的通用VO类型" , parent = DbInfo.class)
 public class DbInfoVO extends DbInfo {
 
 	private static final long serialVersionUID = 1L;
@@ -407,5 +416,165 @@ public class DbInfoVO extends DbInfo {
 	@Transient
 	public static DbInfoVO create() {
 		return new com.dt.platform.domain.ops.meta.DbInfoVOMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(DbInfoVOMeta.NOTES)));
+			this.setLogMethod(DataParser.parse(String.class, map.get(DbInfoVOMeta.LOG_METHOD)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(DbInfoVOMeta.SELECTED_CODE)));
+			this.setBackupStatus(DataParser.parse(String.class, map.get(DbInfoVOMeta.BACKUP_STATUS)));
+			this.setBackupStrategy(DataParser.parse(String.class, map.get(DbInfoVOMeta.BACKUP_STRATEGY)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(DbInfoVOMeta.UPDATE_BY)));
+			this.setVoucherStr(DataParser.parse(String.class, map.get(DbInfoVOMeta.VOUCHER_STR)));
+			this.setId(DataParser.parse(String.class, map.get(DbInfoVOMeta.ID)));
+			this.setAdminUserList(DataParser.parse(String.class, map.get(DbInfoVOMeta.ADMIN_USER_LIST)));
+			this.setAppUserList(DataParser.parse(String.class, map.get(DbInfoVOMeta.APP_USER_LIST)));
+			this.setDeployMode(DataParser.parse(String.class, map.get(DbInfoVOMeta.DEPLOY_MODE)));
+			this.setOtherUserList(DataParser.parse(String.class, map.get(DbInfoVOMeta.OTHER_USER_LIST)));
+			this.setHostId(DataParser.parse(String.class, map.get(DbInfoVOMeta.HOST_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(DbInfoVOMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(DbInfoVOMeta.VERSION)));
+			this.setDbSize(DataParser.parse(BigDecimal.class, map.get(DbInfoVOMeta.DB_SIZE)));
+			this.setDbPort(DataParser.parse(String.class, map.get(DbInfoVOMeta.DB_PORT)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(DbInfoVOMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(DbInfoVOMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(DbInfoVOMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(DbInfoVOMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(DbInfoVOMeta.NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(DbInfoVOMeta.DELETE_BY)));
+			this.setTypeId(DataParser.parse(String.class, map.get(DbInfoVOMeta.TYPE_ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(DbInfoVOMeta.STATUS)));
+			// others
+			this.setSearchField(DataParser.parse(String.class, map.get(DbInfoVOMeta.SEARCH_FIELD)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(DbInfoVOMeta.FUZZY_FIELD)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(DbInfoVOMeta.PAGE_SIZE)));
+			this.setType(DataParser.parse(ServiceInfo.class, map.get(DbInfoVOMeta.TYPE)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(DbInfoVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(DbInfoVOMeta.SORT_TYPE)));
+			this.setHost(DataParser.parse(Host.class, map.get(DbInfoVOMeta.HOST)));
+			this.setSortField(DataParser.parse(String.class, map.get(DbInfoVOMeta.SORT_FIELD)));
+			this.setDeployModeDict(DataParser.parse(DictItem.class, map.get(DbInfoVOMeta.DEPLOY_MODE_DICT)));
+			this.setSearchValue(DataParser.parse(String.class, map.get(DbInfoVOMeta.SEARCH_VALUE)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(DbInfoVOMeta.NOTES));
+				this.setLogMethod( (String)map.get(DbInfoVOMeta.LOG_METHOD));
+				this.setSelectedCode( (String)map.get(DbInfoVOMeta.SELECTED_CODE));
+				this.setBackupStatus( (String)map.get(DbInfoVOMeta.BACKUP_STATUS));
+				this.setBackupStrategy( (String)map.get(DbInfoVOMeta.BACKUP_STRATEGY));
+				this.setUpdateBy( (String)map.get(DbInfoVOMeta.UPDATE_BY));
+				this.setVoucherStr( (String)map.get(DbInfoVOMeta.VOUCHER_STR));
+				this.setId( (String)map.get(DbInfoVOMeta.ID));
+				this.setAdminUserList( (String)map.get(DbInfoVOMeta.ADMIN_USER_LIST));
+				this.setAppUserList( (String)map.get(DbInfoVOMeta.APP_USER_LIST));
+				this.setDeployMode( (String)map.get(DbInfoVOMeta.DEPLOY_MODE));
+				this.setOtherUserList( (String)map.get(DbInfoVOMeta.OTHER_USER_LIST));
+				this.setHostId( (String)map.get(DbInfoVOMeta.HOST_ID));
+				this.setUpdateTime( (Date)map.get(DbInfoVOMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(DbInfoVOMeta.VERSION));
+				this.setDbSize( (BigDecimal)map.get(DbInfoVOMeta.DB_SIZE));
+				this.setDbPort( (String)map.get(DbInfoVOMeta.DB_PORT));
+				this.setCreateBy( (String)map.get(DbInfoVOMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(DbInfoVOMeta.DELETED));
+				this.setCreateTime( (Date)map.get(DbInfoVOMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)map.get(DbInfoVOMeta.DELETE_TIME));
+				this.setName( (String)map.get(DbInfoVOMeta.NAME));
+				this.setDeleteBy( (String)map.get(DbInfoVOMeta.DELETE_BY));
+				this.setTypeId( (String)map.get(DbInfoVOMeta.TYPE_ID));
+				this.setStatus( (String)map.get(DbInfoVOMeta.STATUS));
+				// others
+				this.setSearchField( (String)map.get(DbInfoVOMeta.SEARCH_FIELD));
+				this.setFuzzyField( (String)map.get(DbInfoVOMeta.FUZZY_FIELD));
+				this.setPageSize( (Integer)map.get(DbInfoVOMeta.PAGE_SIZE));
+				this.setType( (ServiceInfo)map.get(DbInfoVOMeta.TYPE));
+				this.setPageIndex( (Integer)map.get(DbInfoVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(DbInfoVOMeta.SORT_TYPE));
+				this.setHost( (Host)map.get(DbInfoVOMeta.HOST));
+				this.setSortField( (String)map.get(DbInfoVOMeta.SORT_FIELD));
+				this.setDeployModeDict( (DictItem)map.get(DbInfoVOMeta.DEPLOY_MODE_DICT));
+				this.setSearchValue( (String)map.get(DbInfoVOMeta.SEARCH_VALUE));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.NOTES)));
+			this.setLogMethod(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.LOG_METHOD)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.SELECTED_CODE)));
+			this.setBackupStatus(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.BACKUP_STATUS)));
+			this.setBackupStrategy(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.BACKUP_STRATEGY)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.UPDATE_BY)));
+			this.setVoucherStr(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.VOUCHER_STR)));
+			this.setId(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.ID)));
+			this.setAdminUserList(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.ADMIN_USER_LIST)));
+			this.setAppUserList(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.APP_USER_LIST)));
+			this.setDeployMode(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.DEPLOY_MODE)));
+			this.setOtherUserList(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.OTHER_USER_LIST)));
+			this.setHostId(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.HOST_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(DbInfoVOMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(DbInfoVOMeta.VERSION)));
+			this.setDbSize(DataParser.parse(BigDecimal.class, r.getValue(DbInfoVOMeta.DB_SIZE)));
+			this.setDbPort(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.DB_PORT)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(DbInfoVOMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(DbInfoVOMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(DbInfoVOMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.DELETE_BY)));
+			this.setTypeId(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.TYPE_ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(DbInfoVOMeta.NOTES));
+				this.setLogMethod( (String)r.getValue(DbInfoVOMeta.LOG_METHOD));
+				this.setSelectedCode( (String)r.getValue(DbInfoVOMeta.SELECTED_CODE));
+				this.setBackupStatus( (String)r.getValue(DbInfoVOMeta.BACKUP_STATUS));
+				this.setBackupStrategy( (String)r.getValue(DbInfoVOMeta.BACKUP_STRATEGY));
+				this.setUpdateBy( (String)r.getValue(DbInfoVOMeta.UPDATE_BY));
+				this.setVoucherStr( (String)r.getValue(DbInfoVOMeta.VOUCHER_STR));
+				this.setId( (String)r.getValue(DbInfoVOMeta.ID));
+				this.setAdminUserList( (String)r.getValue(DbInfoVOMeta.ADMIN_USER_LIST));
+				this.setAppUserList( (String)r.getValue(DbInfoVOMeta.APP_USER_LIST));
+				this.setDeployMode( (String)r.getValue(DbInfoVOMeta.DEPLOY_MODE));
+				this.setOtherUserList( (String)r.getValue(DbInfoVOMeta.OTHER_USER_LIST));
+				this.setHostId( (String)r.getValue(DbInfoVOMeta.HOST_ID));
+				this.setUpdateTime( (Date)r.getValue(DbInfoVOMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(DbInfoVOMeta.VERSION));
+				this.setDbSize( (BigDecimal)r.getValue(DbInfoVOMeta.DB_SIZE));
+				this.setDbPort( (String)r.getValue(DbInfoVOMeta.DB_PORT));
+				this.setCreateBy( (String)r.getValue(DbInfoVOMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(DbInfoVOMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(DbInfoVOMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)r.getValue(DbInfoVOMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(DbInfoVOMeta.NAME));
+				this.setDeleteBy( (String)r.getValue(DbInfoVOMeta.DELETE_BY));
+				this.setTypeId( (String)r.getValue(DbInfoVOMeta.TYPE_ID));
+				this.setStatus( (String)r.getValue(DbInfoVOMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

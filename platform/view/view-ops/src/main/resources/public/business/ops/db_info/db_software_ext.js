@@ -74,8 +74,14 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
-            if(value==null) return "";
-            return value;
+            var result=value
+            if(value==null){
+                result="";
+            }
+            if(r.dbInfoCount=="0"){
+                result="<span style=\"color: red; font-weight: bold\" >"+result+"</span>";
+            }
+            return result;
         },
         /**
          * 在新建或编辑窗口打开前调用，若返回 false 则不继续执行后续操作

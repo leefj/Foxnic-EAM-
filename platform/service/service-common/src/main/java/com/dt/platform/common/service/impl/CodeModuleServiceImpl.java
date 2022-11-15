@@ -5,9 +5,12 @@ import com.dt.platform.common.service.ICodeModuleService;
 import com.dt.platform.constants.enums.common.CodeAttrTypeEnum;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.commons.busi.id.SequenceType;
+import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.dao.data.Rcd;
 import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.dao.spec.DBSequence;
+
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.api.transter.Result;
@@ -77,23 +80,110 @@ public class CodeModuleServiceImpl implements ICodeModuleService {
 	}
 
 
+
+	public Result generateCode2(String module){
+
+		String v="${string_fix,1011}${string_fix,-}${string_fix,1011}${string_fix,-}${number_seq,5,1011_1011_asset}";
+
+		return null;
+	}
+
+
+
+	@Override
+	public Result generateCodeByRule(String rule) {
+		Result result = new Result();
+	//	rule="${string_fix,1011}${string_fix,-}${string_fix,1011}${string_fix,-}${number_seq,5,1011_1011_asset}";
+		String code=parseCode(rule);
+		Logger.info("generate code result:"+code);
+		result.success(true);
+		result.data(code);
+		return result;
+	}
+
+
 	/**
 	 * 获取业务编码
 	 * @param module 传入业务编码模块
 	 * @return 返回编号
 	 * */
+	@Override
 	public Result generateCode(String module){
-		Result result = new Result();
-		System.out.println("generateCode:"+module);
+		Logger.info("generateCode:"+module);
 		Rcd rs=dao.queryRecord("select b.rule rule from sys_code_allocation a,sys_code_rule b where a.rule_id=b.id and a.deleted=0 and b.deleted=0 and a.code=?",module);
 		if(rs==null){
 			return ErrorDesc.failure().message("资产编号不允许为 null 。");
 		}
-		String code=parseCode(rs.getString("rule"));
-		System.out.println("code:"+code);
-		result.success(true);
-		result.data(code);
-		return result;
+		String rule=rs.getString("rule");
+		Logger.info("generateCode rule:"+rule);
+		return generateCodeByRule(rule);
+	}
+
+
+	public static void main(String[] args) {
+		String v="${org,ownOrgId}${org,ownOrgId}${string_fix,-}${busi,assetCategoryCode}${string_fix,-}${number_seq,5,asset}";
+		System.out.println(v.indexOf("org,ownOrgId"));
+		System.out.println(v.replaceAll("org,ownOrgId","string_fix,-") );
+	}
+
+	public Result generateCodeByData(String module,String ownOrgId,String pcmId){
+		Logger.info("module:"+module+",ownerOrgId:"+ownOrgId+",pcmId:"+pcmId);
+		Rcd rs=dao.queryRecord("select b.rule rule from sys_code_allocation a,sys_code_rule b where a.rule_id=b.id and a.deleted=0 and b.deleted=0 and a.code=?",module);
+		if(rs==null){
+			return ErrorDesc.failure().message("资产编号不允许为 null 。");
+		}
+		String rule=rs.getString("rule");
+		String[] pharr=rule.split("\\$");
+		String ruleRewrite="";
+		String prefix="";
+		for(int i=0;i< pharr.length;i++){
+			String item=pharr[i];
+			Logger.info("index:"+(i+1)+",item:"+item);
+			if(StringUtil.isBlank(item)){
+				continue;
+			}
+			if(item.contains("org,ownOrgCode")){
+				if(StringUtil.isBlank(ownOrgId)){
+					return ErrorDesc.failureMessage("当前归属公司ID为空,Id:"+ownOrgId);
+				}
+				Rcd orgRs=dao.queryRecord("select code,full_name from hrm_organization where id=?",ownOrgId);
+				if(orgRs==null){
+					return ErrorDesc.failureMessage("无该公司数据,Id:"+ownOrgId);
+				}
+				String code=orgRs.getString("code");
+				if(StringUtil.isBlank(code)){
+					return ErrorDesc.failureMessage("当前归属公司编码为空,Id:"+ownOrgId+",名称:"+orgRs.getString("full_name"));
+				}
+				prefix=prefix+code.trim()+"_";
+				ruleRewrite=ruleRewrite+"$"+item.replace("org,ownOrgCode","string_fix,"+code);
+
+			}else if(item.contains("pcm,pcmCode")){
+				if(StringUtil.isBlank(pcmId)){
+					return ErrorDesc.failureMessage("当前PCM ID为空,Id:"+pcmId);
+				}
+				Rcd pcmRs=dao.queryRecord("select code,name from pcm_catalog where id=?",pcmId);
+				if(pcmRs==null){
+					return ErrorDesc.failureMessage("无该PCM数据,id:"+pcmId);
+				}
+				if(StringUtil.isBlank(pcmRs.getString("code"))){
+					return ErrorDesc.failureMessage("当前PCM编码为空,Id:"+pcmId+",名称:"+pcmRs.getString("name"));
+				}
+				String code=pcmRs.getString("code");
+				prefix=prefix+code.trim()+"_";
+				ruleRewrite=ruleRewrite+"$"+item.replace("pcm,pcmCode","string_fix,"+code);
+			}else if(item.contains("number_seq_relation")){
+				if(StringUtil.isBlank(prefix)){
+					ruleRewrite=ruleRewrite+item;
+				}else{
+					ruleRewrite=ruleRewrite+"$"+item.replace("}",prefix+"}");
+				}
+			}else{
+				ruleRewrite=ruleRewrite+"$"+item;
+			}
+		}
+		Logger.info("generateCode rule:"+rule);
+		Logger.info("generateCode rule rewrite:"+ruleRewrite);
+		return generateCodeByRule(ruleRewrite);
 
 	}
 
@@ -103,9 +193,6 @@ public class CodeModuleServiceImpl implements ICodeModuleService {
 	 * @return 返回编号
 	 * */
 	public String parseCode(String ph){
-//		if (ph==null){
-//			return null;
-//		}
 		String result="";
 		String[] pharr=ph.split("\\$");
 		for(int i=0;i< pharr.length;i++){
@@ -122,9 +209,7 @@ public class CodeModuleServiceImpl implements ICodeModuleService {
 	 * @return 返回编号
 	 * */
 	public String parsePlaceholder(String ph){
-//		if(ph==null){
-//			return "";
-//		}
+
 		String type=ph.replaceAll("\\{","").replaceAll("\\}","").split(",")[0];
 		if(type.equals(CodeAttrTypeEnum.TIME.code())){
 			return parseTime(ph);
@@ -136,7 +221,13 @@ public class CodeModuleServiceImpl implements ICodeModuleService {
 			return parseNumberRand(ph);
 		}else if (type.equals(CodeAttrTypeEnum.NUMBER_SEQ.code())){
 			return parseNumberSeq(ph);
+		}else if (type.equals(CodeAttrTypeEnum.NUMBER_SEQ_RELATION.code())){
+			return parseNumberSeqRelation(ph);
 		}else if (type.equals(CodeAttrTypeEnum.ORG.code())){
+			//正常前面已转
+			return "";
+		}else if (type.equals(CodeAttrTypeEnum.PCM_CODE.code())){
+			//正常前面已转
 			return "";
 		}
 		return null;
@@ -173,9 +264,6 @@ public class CodeModuleServiceImpl implements ICodeModuleService {
 	 * @return 返回编号
 	 * */
 	public String parseStringFix(String ph){
-//		if(ph==null){
-//			return "";
-//		}
 		return ph.replaceAll("\\{"+CodeAttrTypeEnum.STRING_FIX.code() +",","")
 				.replaceAll("\\}","").trim();
 	}
@@ -188,7 +276,6 @@ public class CodeModuleServiceImpl implements ICodeModuleService {
 	 * */
 	public String getRandomString(int length){
 		String str="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-	//	Random random=new Random();
 		StringBuffer sb=new StringBuffer();
 		for(int i=0;i<length;i++){
 			int number=this.rand.nextInt(62);
@@ -248,5 +335,22 @@ public class CodeModuleServiceImpl implements ICodeModuleService {
 		return seq.next();
 	}
 
+	public String parseNumberSeqRelation(String ph){
+		String seqSource="default";
+		int phLength=0;
+		String[] attr=ph.replaceAll("\\{","").replaceAll("\\}","").split(",");
+		for(int i=0;i<attr.length;i++){
+			if(i==1){
+				phLength=Integer.valueOf(attr[i]);
+			}else if(i==2){
+				seqSource=attr[i];
+			}
+		}
+		DBSequence seq=dao.getSequence(seqSource);
+		if(!seq.exists()){
+			seq.create(SequenceType.AI,phLength);
+		}
+		return seq.next();
+	}
 
 }

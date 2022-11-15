@@ -182,6 +182,9 @@ public class AssetBorrowServiceImpl extends SuperService<AssetBorrow> implements
 			bill.setBorrowStatus(AssetBorrowStatusEnum.RETURNED.code());
 			bill.setReturnDate(new Date());
 			super.update(bill,SaveMode.NOT_NULL_FIELDS);
+
+			dao.execute("update eam_asset_item a,eam_asset b set b.borrow_id='' where a.asset_id=b.id and a.handle_id=?",id);
+
 			return  ErrorDesc.success();
 		}else{
 			return ErrorDesc.failureMessage(str);
@@ -208,9 +211,13 @@ public class AssetBorrowServiceImpl extends SuperService<AssetBorrow> implements
 	private Result applyChange(String id){
 		AssetBorrow billData=getById(id);
 		join(billData, AssetBorrowMeta.ASSET_LIST);
-		HashMap<String,Object> map=new HashMap<>();
+
 		//保存当前使用人
 		dao.execute("update eam_asset_item a,eam_asset b set a.before_use_user_id=b.use_user_id,a.before_asset_status=b.asset_status where a.asset_id=b.id and a.handle_id=?",id);
+		//资产记录保存借用单据
+		dao.execute("update eam_asset_item a,eam_asset b set b.borrow_id=? where a.asset_id=b.id and a.handle_id=?",id,id);
+
+		HashMap<String,Object> map=new HashMap<>();
 		map.put("use_user_id",billData.getBorrowerId());
 		map.put("asset_status", AssetStatusEnum.BORROW.code());
 		HashMap<String,List<SQL>> resultMap=assetService.parseAssetChangeRecordWithChangeAsset(billData.getAssetList(),map,billData.getBusinessCode(),AssetOperateEnum.EAM_ASSET_BORROW.code(),"");
@@ -240,6 +247,7 @@ public class AssetBorrowServiceImpl extends SuperService<AssetBorrow> implements
 
 			Result applayResult=applyChange(id);
 			if(!applayResult.isSuccess()) return applayResult;
+
 			AssetBorrow bill=new AssetBorrow();
 			bill.setId(id);
 			bill.setStatus(status);

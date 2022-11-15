@@ -109,8 +109,8 @@ public class AssetScrapServiceImpl extends SuperService<AssetScrap> implements I
 	public Result cleanOut(String id) {
 		AssetScrap billData=getById(id);
 		if(AssetHandleStatusEnum.COMPLETE.code().equals(billData.getStatus())){
-			String sql="update eam_asset set asset_status='"+AssetStatusEnum.SCRAPPED.code()+"',owner_code=? where id in (select asset_id from eam_asset_item where handle_id=? and crd in ('r','c') and deleted=0)";
-			dao.execute(sql, AssetOwnerCodeEnum.ASSET_CLEAN_OUT.code(),id);
+			String sql="update eam_asset set scrap_id=?, asset_status='"+AssetStatusEnum.SCRAPPED.code()+"',owner_code=? where id in (select asset_id from eam_asset_item where handle_id=? and crd in ('r','c') and deleted=0)";
+			dao.execute(sql, id,AssetOwnerCodeEnum.ASSET_CLEAN_OUT.code(),id);
 			AssetScrap bill=new AssetScrap();
 			bill.setId(id);
 			bill.setCleanStatus(AssetHandleStatusEnum.COMPLETE.code());

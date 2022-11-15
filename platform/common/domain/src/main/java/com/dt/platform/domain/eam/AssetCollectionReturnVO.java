@@ -11,6 +11,12 @@ import com.github.foxnic.commons.bean.BeanUtil;
 import com.github.foxnic.dao.entity.EntityContext;
 import com.github.foxnic.dao.entity.Entity;
 import java.util.Map;
+import com.dt.platform.domain.eam.meta.AssetCollectionReturnVOMeta;
+import com.github.foxnic.commons.lang.DataParser;
+import java.util.Date;
+import org.github.foxnic.web.domain.hrm.Employee;
+import org.github.foxnic.web.domain.hrm.Organization;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
@@ -18,7 +24,7 @@ import java.util.Map;
  * 资产退库VO类型
  * <p>资产退库 , 数据表 eam_asset_collection_return 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-25 19:51:34
+ * @since 2022-11-12 20:49:26
  * @sign A5A678FE2F7B43B48A7A9782B5E92BA5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -409,5 +415,159 @@ public class AssetCollectionReturnVO extends AssetCollectionReturn {
 	@Transient
 	public static AssetCollectionReturnVO create() {
 		return new com.dt.platform.domain.eam.meta.AssetCollectionReturnVOMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setProcId(DataParser.parse(String.class, map.get(AssetCollectionReturnVOMeta.PROC_ID)));
+			this.setUseOrganizationId(DataParser.parse(String.class, map.get(AssetCollectionReturnVOMeta.USE_ORGANIZATION_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetCollectionReturnVOMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetCollectionReturnVOMeta.VERSION)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(AssetCollectionReturnVOMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, map.get(AssetCollectionReturnVOMeta.CONTENT)));
+			this.setPositionDetail(DataParser.parse(String.class, map.get(AssetCollectionReturnVOMeta.POSITION_DETAIL)));
+			this.setBusinessDate(DataParser.parse(Date.class, map.get(AssetCollectionReturnVOMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, map.get(AssetCollectionReturnVOMeta.BUSINESS_CODE)));
+			this.setReturnDate(DataParser.parse(Date.class, map.get(AssetCollectionReturnVOMeta.RETURN_DATE)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetCollectionReturnVOMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetCollectionReturnVOMeta.DELETED)));
+			this.setPositionId(DataParser.parse(String.class, map.get(AssetCollectionReturnVOMeta.POSITION_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetCollectionReturnVOMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetCollectionReturnVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetCollectionReturnVOMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(AssetCollectionReturnVOMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetCollectionReturnVOMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetCollectionReturnVOMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AssetCollectionReturnVOMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, map.get(AssetCollectionReturnVOMeta.ORIGINATOR_ID)));
+			this.setAttach(DataParser.parse(String.class, map.get(AssetCollectionReturnVOMeta.ATTACH)));
+			this.setStatus(DataParser.parse(String.class, map.get(AssetCollectionReturnVOMeta.STATUS)));
+			// others
+			this.setSearchField(DataParser.parse(String.class, map.get(AssetCollectionReturnVOMeta.SEARCH_FIELD)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(AssetCollectionReturnVOMeta.FUZZY_FIELD)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(AssetCollectionReturnVOMeta.PAGE_SIZE)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(AssetCollectionReturnVOMeta.ORIGINATOR)));
+			this.setOriginatorUserName(DataParser.parse(String.class, map.get(AssetCollectionReturnVOMeta.ORIGINATOR_USER_NAME)));
+			this.setUseOrganization(DataParser.parse(Organization.class, map.get(AssetCollectionReturnVOMeta.USE_ORGANIZATION)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(AssetCollectionReturnVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(AssetCollectionReturnVOMeta.SORT_TYPE)));
+			this.setSortField(DataParser.parse(String.class, map.get(AssetCollectionReturnVOMeta.SORT_FIELD)));
+			this.setPosition(DataParser.parse(Position.class, map.get(AssetCollectionReturnVOMeta.POSITION)));
+			this.setSearchValue(DataParser.parse(String.class, map.get(AssetCollectionReturnVOMeta.SEARCH_VALUE)));
+			return true;
+		} else {
+			try {
+				this.setProcId( (String)map.get(AssetCollectionReturnVOMeta.PROC_ID));
+				this.setUseOrganizationId( (String)map.get(AssetCollectionReturnVOMeta.USE_ORGANIZATION_ID));
+				this.setUpdateTime( (Date)map.get(AssetCollectionReturnVOMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(AssetCollectionReturnVOMeta.VERSION));
+				this.setSelectedCode( (String)map.get(AssetCollectionReturnVOMeta.SELECTED_CODE));
+				this.setContent( (String)map.get(AssetCollectionReturnVOMeta.CONTENT));
+				this.setPositionDetail( (String)map.get(AssetCollectionReturnVOMeta.POSITION_DETAIL));
+				this.setBusinessDate( (Date)map.get(AssetCollectionReturnVOMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)map.get(AssetCollectionReturnVOMeta.BUSINESS_CODE));
+				this.setReturnDate( (Date)map.get(AssetCollectionReturnVOMeta.RETURN_DATE));
+				this.setCreateBy( (String)map.get(AssetCollectionReturnVOMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AssetCollectionReturnVOMeta.DELETED));
+				this.setPositionId( (String)map.get(AssetCollectionReturnVOMeta.POSITION_ID));
+				this.setCreateTime( (Date)map.get(AssetCollectionReturnVOMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(AssetCollectionReturnVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AssetCollectionReturnVOMeta.DELETE_TIME));
+				this.setName( (String)map.get(AssetCollectionReturnVOMeta.NAME));
+				this.setTenantId( (String)map.get(AssetCollectionReturnVOMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AssetCollectionReturnVOMeta.DELETE_BY));
+				this.setId( (String)map.get(AssetCollectionReturnVOMeta.ID));
+				this.setOriginatorId( (String)map.get(AssetCollectionReturnVOMeta.ORIGINATOR_ID));
+				this.setAttach( (String)map.get(AssetCollectionReturnVOMeta.ATTACH));
+				this.setStatus( (String)map.get(AssetCollectionReturnVOMeta.STATUS));
+				// others
+				this.setSearchField( (String)map.get(AssetCollectionReturnVOMeta.SEARCH_FIELD));
+				this.setFuzzyField( (String)map.get(AssetCollectionReturnVOMeta.FUZZY_FIELD));
+				this.setPageSize( (Integer)map.get(AssetCollectionReturnVOMeta.PAGE_SIZE));
+				this.setOriginator( (Employee)map.get(AssetCollectionReturnVOMeta.ORIGINATOR));
+				this.setOriginatorUserName( (String)map.get(AssetCollectionReturnVOMeta.ORIGINATOR_USER_NAME));
+				this.setUseOrganization( (Organization)map.get(AssetCollectionReturnVOMeta.USE_ORGANIZATION));
+				this.setPageIndex( (Integer)map.get(AssetCollectionReturnVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(AssetCollectionReturnVOMeta.SORT_TYPE));
+				this.setSortField( (String)map.get(AssetCollectionReturnVOMeta.SORT_FIELD));
+				this.setPosition( (Position)map.get(AssetCollectionReturnVOMeta.POSITION));
+				this.setSearchValue( (String)map.get(AssetCollectionReturnVOMeta.SEARCH_VALUE));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setProcId(DataParser.parse(String.class, r.getValue(AssetCollectionReturnVOMeta.PROC_ID)));
+			this.setUseOrganizationId(DataParser.parse(String.class, r.getValue(AssetCollectionReturnVOMeta.USE_ORGANIZATION_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetCollectionReturnVOMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetCollectionReturnVOMeta.VERSION)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(AssetCollectionReturnVOMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, r.getValue(AssetCollectionReturnVOMeta.CONTENT)));
+			this.setPositionDetail(DataParser.parse(String.class, r.getValue(AssetCollectionReturnVOMeta.POSITION_DETAIL)));
+			this.setBusinessDate(DataParser.parse(Date.class, r.getValue(AssetCollectionReturnVOMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, r.getValue(AssetCollectionReturnVOMeta.BUSINESS_CODE)));
+			this.setReturnDate(DataParser.parse(Date.class, r.getValue(AssetCollectionReturnVOMeta.RETURN_DATE)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetCollectionReturnVOMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetCollectionReturnVOMeta.DELETED)));
+			this.setPositionId(DataParser.parse(String.class, r.getValue(AssetCollectionReturnVOMeta.POSITION_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetCollectionReturnVOMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetCollectionReturnVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetCollectionReturnVOMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(AssetCollectionReturnVOMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetCollectionReturnVOMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetCollectionReturnVOMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetCollectionReturnVOMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, r.getValue(AssetCollectionReturnVOMeta.ORIGINATOR_ID)));
+			this.setAttach(DataParser.parse(String.class, r.getValue(AssetCollectionReturnVOMeta.ATTACH)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(AssetCollectionReturnVOMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setProcId( (String)r.getValue(AssetCollectionReturnVOMeta.PROC_ID));
+				this.setUseOrganizationId( (String)r.getValue(AssetCollectionReturnVOMeta.USE_ORGANIZATION_ID));
+				this.setUpdateTime( (Date)r.getValue(AssetCollectionReturnVOMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(AssetCollectionReturnVOMeta.VERSION));
+				this.setSelectedCode( (String)r.getValue(AssetCollectionReturnVOMeta.SELECTED_CODE));
+				this.setContent( (String)r.getValue(AssetCollectionReturnVOMeta.CONTENT));
+				this.setPositionDetail( (String)r.getValue(AssetCollectionReturnVOMeta.POSITION_DETAIL));
+				this.setBusinessDate( (Date)r.getValue(AssetCollectionReturnVOMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)r.getValue(AssetCollectionReturnVOMeta.BUSINESS_CODE));
+				this.setReturnDate( (Date)r.getValue(AssetCollectionReturnVOMeta.RETURN_DATE));
+				this.setCreateBy( (String)r.getValue(AssetCollectionReturnVOMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AssetCollectionReturnVOMeta.DELETED));
+				this.setPositionId( (String)r.getValue(AssetCollectionReturnVOMeta.POSITION_ID));
+				this.setCreateTime( (Date)r.getValue(AssetCollectionReturnVOMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(AssetCollectionReturnVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AssetCollectionReturnVOMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(AssetCollectionReturnVOMeta.NAME));
+				this.setTenantId( (String)r.getValue(AssetCollectionReturnVOMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AssetCollectionReturnVOMeta.DELETE_BY));
+				this.setId( (String)r.getValue(AssetCollectionReturnVOMeta.ID));
+				this.setOriginatorId( (String)r.getValue(AssetCollectionReturnVOMeta.ORIGINATOR_ID));
+				this.setAttach( (String)r.getValue(AssetCollectionReturnVOMeta.ATTACH));
+				this.setStatus( (String)r.getValue(AssetCollectionReturnVOMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

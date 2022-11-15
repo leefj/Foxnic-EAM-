@@ -31,8 +31,8 @@ public class EamAssetCollectionReturnGtr extends BaseCodeGenerator {
 
         cfg.bpm().form("eam_asset_collection_return");
         System.out.println(this.getClass().getName());
-        cfg.getPoClassFile().addSimpleProperty(Position.class,"position","存放位置","存放位置");
 
+        cfg.getPoClassFile().addSimpleProperty(Position.class,"position","存放位置","存放位置");
         cfg.getPoClassFile().addListProperty(Asset.class,"assetList","资产","资产");
         cfg.getPoClassFile().addListProperty(String.class,"assetIds","资产列表","资产列表");
         cfg.getPoClassFile().addSimpleProperty(String.class,"originatorUserName","申请人","申请人");
@@ -104,7 +104,6 @@ public class EamAssetCollectionReturnGtr extends BaseCodeGenerator {
 
 
         cfg.view().field(EAMTables.EAM_ASSET_COLLECTION_RETURN.BUSINESS_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
-
         cfg.view().field(EAMTables.EAM_ASSET_COLLECTION_RETURN.RETURN_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
 
         //分成分组布局
@@ -153,7 +152,7 @@ public class EamAssetCollectionReturnGtr extends BaseCodeGenerator {
     //    cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_collection_return:for-approval");
         cfg.view().list().operationColumn().addActionButton("确认","confirmData","confirm-data-button","eam_asset_collection_return:confirm");
         cfg.view().list().operationColumn().addActionButton("撤销","revokeData","revoke-data-button","eam_asset_collection_return:revoke");
-    //    cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_collection_return:bill");
+        cfg.view().list().operationColumn().addActionButton("单据","downloadBill","download-bill-button","eam_asset_collection_return:bill");
         cfg.view().list().operationColumn().width(350);
 
 //        cfg.view().form().addJsVariable("EMPLOYEE_ID",   "[[${user.getUser().getActivatedEmployeeId()}]]","用户ID");

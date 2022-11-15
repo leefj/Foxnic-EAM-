@@ -1,5 +1,9 @@
 package com.dt.platform.eam.page;
 
+import com.dt.platform.domain.eam.Inventory;
+import com.dt.platform.proxy.eam.InventoryServiceProxy;
+import com.github.foxnic.api.transter.Result;
+import com.github.foxnic.commons.lang.StringUtil;
 import org.github.foxnic.web.framework.view.controller.ViewController;
 
 import org.springframework.stereotype.Controller;
@@ -41,8 +45,21 @@ public class InventoryAssetPageController extends ViewController {
 	 * 盘点明细 功能主页面
 	 */
 	@RequestMapping("/inventory_asset_list.html")
-	public String list(Model model,HttpServletRequest request,String inventoryId) {
+	public String list(Model model,HttpServletRequest request,String inventoryId,String inventoryMode) {
 		model.addAttribute("inventoryId",inventoryId);
+		if(!StringUtil.isBlank(inventoryId)){
+			Result<Inventory> res=InventoryServiceProxy.api().getById(inventoryId);
+			if(res.isSuccess()){
+				model.addAttribute("inventory", res.data());
+			}
+		}
+		//pageType,
+		//employ_inventory_mode
+		//full_inventory_mode
+		if(!StringUtil.isBlank(inventoryMode)){
+			model.addAttribute("inventoryMode",inventoryMode);
+		}
+
 		return prefix+"/inventory_asset_list";
 	}
 

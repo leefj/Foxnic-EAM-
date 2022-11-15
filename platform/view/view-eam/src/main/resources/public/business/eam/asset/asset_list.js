@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-28 17:39:57
+ * @since 2022-11-13 13:10:11
  */
 
 
@@ -69,7 +69,7 @@ function ListPage() {
 			var tableConfig={
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
-				defaultToolbar: ['filter', 'print',{title: '刷新数据',layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
+				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
 				url: moduleURL +'/query-paged-list',
 				height: 'full-'+(h+28),
 				limit: 50,
@@ -116,6 +116,7 @@ function ListPage() {
 					,{ field: 'maintainerId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维保商'), templet: function (d) { return templet('maintainerId' ,fox.joinLabel(d.maintnainer,"maintainerName",',','','maintainerId'),d);}}
 					,{ field: 'maintainerName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维保厂商') , templet: function (d) { return templet('maintainerName',d.maintainerName,d);}  }
 					,{ field: 'maintenanceStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维保状态'), templet: function (d) { return templet('maintenanceStatus' ,fox.joinLabel(d.assetMaintenanceStatus,"label",',','','maintenanceStatus'),d);}}
+					,{ field: 'maintenancePrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('维保价格') , templet: function (d) { return templet('maintenancePrice',d.maintenancePrice,d);}  }
 					,{ field: 'maintenanceMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维保方式'), templet: function (d) { return templet('maintenanceMethod' ,fox.joinLabel(d.maintenanceMethodData,"label",',','','maintenanceMethod'),d);}}
 					,{ field: 'suggestMaintenanceMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('建议维保方式'), templet: function (d) { return templet('suggestMaintenanceMethod' ,fox.joinLabel(d.suggestMaintenanceMethodData,"label",',','','suggestMaintenanceMethod'),d);}}
 					,{ field: 'contacts', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('联系人') , templet: function (d) { return templet('contacts',d.contacts,d);}  }
@@ -159,8 +160,11 @@ function ListPage() {
 					,{ field: 'label3', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('短标签3') , templet: function (d) { return templet('label3',d.label3,d);}  }
 					,{ field: 'label4', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('长标签4') , templet: function (d) { return templet('label4',d.label4,d);}  }
 					,{ field: 'label5', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('短标签5') , templet: function (d) { return templet('label5',d.label5,d);}  }
-					,{ field: 'internalControlLabel', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('内部控制标签') , templet: function (d) { return templet('internalControlLabel',d.internalControlLabel,d);}  }
 					,{ field: 'billId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('单据') , templet: function (d) { return templet('billId',d.billId,d);}  }
+					,{ field: 'internalControlLabel', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('内部控制标签') , templet: function (d) { return templet('internalControlLabel',d.internalControlLabel,d);}  }
+					,{ field: 'collectionId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('领用ID') , templet: function (d) { return templet('collectionId',d.collectionId,d);}  }
+					,{ field: 'borrowId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('借用ID') , templet: function (d) { return templet('borrowId',d.borrowId,d);}  }
+					,{ field: 'scrapId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('报废ID') , templet: function (d) { return templet('scrapId',d.scrapId,d);}  }
 					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',d.originatorId,d);}  }
 					,{ field: 'chsType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('变更类型') , templet: function (d) { return templet('chsType',d.chsType,d);}  }
 					,{ field: 'chsStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('变更状态') , templet: function (d) { return templet('chsStatus',d.chsStatus,d);}  }
@@ -618,11 +622,11 @@ function ListPage() {
 
 			var ids=getCheckedList("id");
             if(ids.length==0) {
-				top.layer.msg(fox.translate('请选择需要删除的')+fox.translate('资产')+"!");
+				top.layer.msg(fox.translate('请选择需要删除的'+'资产'+"!"));
             	return;
             }
             //调用批量删除接口
-			top.layer.confirm(fox.translate('确定删除已选中的')+fox.translate('资产')+fox.translate('吗？'), function (i) {
+			top.layer.confirm(fox.translate('确定删除已选中的'+'资产'+'吗？'), function (i) {
                 top.layer.close(i);
 				admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
                     if (data.success) {
@@ -681,7 +685,7 @@ function ListPage() {
 					if(!doNext) return;
 				}
 
-				top.layer.confirm(fox.translate('确定删除此')+fox.translate('资产')+fox.translate('吗？'), function (i) {
+				top.layer.confirm(fox.translate('确定删除此'+'资产'+'吗？'), function (i) {
 					top.layer.close(i);
 					admin.post(moduleURL+"/delete", { id : data.id }, function (data) {
 						top.layer.closeAll('loading');

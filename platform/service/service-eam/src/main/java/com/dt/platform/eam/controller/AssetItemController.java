@@ -57,14 +57,15 @@ public class AssetItemController extends SuperController {
      * 添加资产
      */
     @ApiOperation(value = "添加资产")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "568055947281301504"),
 		@ApiImplicitParam(name = AssetItemVOMeta.HANDLE_ID, value = "处理", required = false, dataTypeClass = String.class, example = "568055947201609728"),
 		@ApiImplicitParam(name = AssetItemVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class, example = "568055936627769344"),
 		@ApiImplicitParam(name = AssetItemVOMeta.BEFORE_USE_USER_ID, value = "资产使用人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetItemVOMeta.BEFORE_ASSET_STATUS, value = "资产状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetItemVOMeta.CRD, value = "修改标记", required = false, dataTypeClass = String.class, example = "r"),
-		@ApiImplicitParam(name = AssetItemVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetItemVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetItemVOMeta.FLAG, value = "标记", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetItemServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -79,7 +80,7 @@ public class AssetItemController extends SuperController {
      * 删除资产
      */
     @ApiOperation(value = "删除资产")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "568055947281301504")
 	})
     @ApiOperationSupport(order = 2)
@@ -95,7 +96,7 @@ public class AssetItemController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -110,14 +111,15 @@ public class AssetItemController extends SuperController {
      * 更新资产
      */
     @ApiOperation(value = "更新资产")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "568055947281301504"),
 		@ApiImplicitParam(name = AssetItemVOMeta.HANDLE_ID, value = "处理", required = false, dataTypeClass = String.class, example = "568055947201609728"),
 		@ApiImplicitParam(name = AssetItemVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class, example = "568055936627769344"),
 		@ApiImplicitParam(name = AssetItemVOMeta.BEFORE_USE_USER_ID, value = "资产使用人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetItemVOMeta.BEFORE_ASSET_STATUS, value = "资产状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetItemVOMeta.CRD, value = "修改标记", required = false, dataTypeClass = String.class, example = "r"),
-		@ApiImplicitParam(name = AssetItemVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetItemVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetItemVOMeta.FLAG, value = "标记", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetItemVOMeta.PAGE_INDEX, AssetItemVOMeta.PAGE_SIZE, AssetItemVOMeta.SEARCH_FIELD, AssetItemVOMeta.FUZZY_FIELD, AssetItemVOMeta.SEARCH_VALUE, AssetItemVOMeta.DIRTY_FIELDS, AssetItemVOMeta.SORT_FIELD, AssetItemVOMeta.SORT_TYPE, AssetItemVOMeta.IDS })
     @SentinelResource(value = AssetItemServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -132,14 +134,15 @@ public class AssetItemController extends SuperController {
      * 保存资产
      */
     @ApiOperation(value = "保存资产")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "568055947281301504"),
 		@ApiImplicitParam(name = AssetItemVOMeta.HANDLE_ID, value = "处理", required = false, dataTypeClass = String.class, example = "568055947201609728"),
 		@ApiImplicitParam(name = AssetItemVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class, example = "568055936627769344"),
 		@ApiImplicitParam(name = AssetItemVOMeta.BEFORE_USE_USER_ID, value = "资产使用人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetItemVOMeta.BEFORE_ASSET_STATUS, value = "资产状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetItemVOMeta.CRD, value = "修改标记", required = false, dataTypeClass = String.class, example = "r"),
-		@ApiImplicitParam(name = AssetItemVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetItemVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetItemVOMeta.FLAG, value = "标记", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetItemVOMeta.PAGE_INDEX, AssetItemVOMeta.PAGE_SIZE, AssetItemVOMeta.SEARCH_FIELD, AssetItemVOMeta.FUZZY_FIELD, AssetItemVOMeta.SEARCH_VALUE, AssetItemVOMeta.DIRTY_FIELDS, AssetItemVOMeta.SORT_FIELD, AssetItemVOMeta.SORT_TYPE, AssetItemVOMeta.IDS })
     @SentinelResource(value = AssetItemServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -154,7 +157,7 @@ public class AssetItemController extends SuperController {
      * 获取资产
      */
     @ApiOperation(value = "获取资产")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 6)
@@ -172,7 +175,7 @@ public class AssetItemController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取资产")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetItemVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -189,14 +192,15 @@ public class AssetItemController extends SuperController {
      * 查询资产
      */
     @ApiOperation(value = "查询资产")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "568055947281301504"),
 		@ApiImplicitParam(name = AssetItemVOMeta.HANDLE_ID, value = "处理", required = false, dataTypeClass = String.class, example = "568055947201609728"),
 		@ApiImplicitParam(name = AssetItemVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class, example = "568055936627769344"),
 		@ApiImplicitParam(name = AssetItemVOMeta.BEFORE_USE_USER_ID, value = "资产使用人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetItemVOMeta.BEFORE_ASSET_STATUS, value = "资产状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetItemVOMeta.CRD, value = "修改标记", required = false, dataTypeClass = String.class, example = "r"),
-		@ApiImplicitParam(name = AssetItemVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetItemVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetItemVOMeta.FLAG, value = "标记", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetItemVOMeta.PAGE_INDEX, AssetItemVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetItemServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -212,14 +216,15 @@ public class AssetItemController extends SuperController {
      * 分页查询资产
      */
     @ApiOperation(value = "分页查询资产")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetItemVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "568055947281301504"),
 		@ApiImplicitParam(name = AssetItemVOMeta.HANDLE_ID, value = "处理", required = false, dataTypeClass = String.class, example = "568055947201609728"),
 		@ApiImplicitParam(name = AssetItemVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class, example = "568055936627769344"),
 		@ApiImplicitParam(name = AssetItemVOMeta.BEFORE_USE_USER_ID, value = "资产使用人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetItemVOMeta.BEFORE_ASSET_STATUS, value = "资产状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetItemVOMeta.CRD, value = "修改标记", required = false, dataTypeClass = String.class, example = "r"),
-		@ApiImplicitParam(name = AssetItemVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetItemVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetItemVOMeta.FLAG, value = "标记", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetItemServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

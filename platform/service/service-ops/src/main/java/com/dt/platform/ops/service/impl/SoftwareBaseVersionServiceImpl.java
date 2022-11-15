@@ -35,10 +35,10 @@ import java.util.Map;
 
 /**
  * <p>
- * 软件基线版本 服务实现
+ * 软件基线版本服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-16 08:30:07
+ * @since 2022-11-03 07:34:18
 */
 
 
@@ -98,7 +98,7 @@ public class SoftwareBaseVersionServiceImpl extends SuperService<SoftwareBaseVer
 
 	
 	/**
-	 * 按主键删除 软件基线版本
+	 * 按主键删除软件基线版本
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -119,7 +119,7 @@ public class SoftwareBaseVersionServiceImpl extends SuperService<SoftwareBaseVer
 	}
 	
 	/**
-	 * 按主键删除 软件基线版本
+	 * 按主键删除软件基线版本
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -179,7 +179,7 @@ public class SoftwareBaseVersionServiceImpl extends SuperService<SoftwareBaseVer
 
 	
 	/**
-	 * 按主键更新字段 软件基线版本
+	 * 按主键更新软件基线版本
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -193,7 +193,7 @@ public class SoftwareBaseVersionServiceImpl extends SuperService<SoftwareBaseVer
 
 	
 	/**
-	 * 按主键获取 软件基线版本
+	 * 按主键获取软件基线版本
 	 *
 	 * @param id 主键
 	 * @return SoftwareBaseVersion 数据对象

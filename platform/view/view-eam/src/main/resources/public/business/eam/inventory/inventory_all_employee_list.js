@@ -75,7 +75,7 @@ function ListPage() {
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
 				defaultToolbar: ['filter', 'print',{title: '刷新数据',layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
-				url: moduleURL +'/query-paged-list',
+				url: moduleURL +'/query-by-employee-mode-paged-list',
 				height: 'full-'+(h+28),
 				limit: 50,
 				where: ps,
@@ -88,27 +88,13 @@ function ListPage() {
 					//,{ field: 'ownerCode', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('所属') , templet: function (d) { return templet('ownerCode',d.ownerCode,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('盘点名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'inventoryStatus', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('盘点状态'), templet:function (d){ return templet('inventoryStatus',fox.getEnumText(SELECT_INVENTORYSTATUS_DATA,d.inventoryStatus),d);}}
-					,{ field: 'inventoryAssetCountByNotCounted', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('待盘点'), templet:function (d){ return pdCount(d,"inventoryAssetCountByNotCounted");}}
-					,{ field: 'inventoryAssetCountByCounted', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('已盘点'), templet:function (d){ return pdCount(d,"inventoryAssetCountByCounted");}}
-					,{ field: 'inventoryAssetCountByLoss', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('盘亏'), templet:function (d){ return pdCount(d,"inventoryAssetCountByLoss");}}
-					,{ field: 'inventoryAssetCountBySurplus', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('盘盈'), templet:function (d){ return pdCount(d,"inventoryAssetCountBySurplus");}}
-					,{ field: 'inventoryAssetCountByException', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('异常数据'), templet:function (d){ return pdCount(d,"inventoryAssetCountByException");}}
-					,{ field: 'dataStatus', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('数据状态'), templet:function (d){ return templet('dataStatus',fox.getEnumText(SELECT_DATASTATUS_DATA,d.dataStatus),d);}}
-					,{ field: 'allEmployee', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('全员盘点'), templet:function (d){ return templet('allEmployee',fox.getEnumText(SELECT_ALLEMPLOYEE_DATA,d.allEmployee),d);}}
-					,{ field: 'assetStatus', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('资产状态'), templet:function (d){ return templet('assetStatus',fox.getEnumText(SELECT_ASSETSTATUS_DATA,d.assetStatus),d);}}
-				//	,{ field: 'categoryId', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('资产分类') , templet: function (d) { return templet('categoryId',d.categoryId,d);}  }
-					,{ field: 'purchaseStartDate', align:"right", fixed:false, hide:false, sort: true, title: fox.translate('购置开始日期') ,templet: function (d) { return templet('purchaseStartDate',fox.dateFormat(d.purchaseStartDate,"yyyy-MM-dd"),d); }  }
-					,{ field: 'purchaseEndDate', align:"right", fixed:false, hide:false, sort: true, title: fox.translate('购置结束日期') ,templet: function (d) { return templet('purchaseEndDate',fox.dateFormat(d.purchaseEndDate,"yyyy-MM-dd"),d); }  }
-					,{ field: 'startTime', align:"right", fixed:false, hide:false, sort: true, title: fox.translate('盘点开始时间') ,templet: function (d) { return templet('startTime',fox.dateFormat(d.startTime,"yyyy-MM-dd"),d); }  }
+				    ,{ field: 'startTime', align:"right", fixed:false, hide:false, sort: true, title: fox.translate('盘点开始时间') ,templet: function (d) { return templet('startTime',fox.dateFormat(d.startTime,"yyyy-MM-dd"),d); }  }
 					,{ field: 'finishTime', align:"right", fixed:false, hide:false, sort: true, title: fox.translate('盘点结束时间') ,templet: function (d) { return templet('finishTime',fox.dateFormat(d.finishTime,"yyyy-MM-dd"),d); }  }
 					,{ field: 'businessDate', align:"right", fixed:false, hide:false, sort: true, title: fox.translate('业务日期') ,templet: function (d) { return templet('businessDate',fox.dateFormat(d.businessDate,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 				//	,{ field: 'planId', align:"left",fixed:false,  hide:true, sort: true, title: fox.translate('计划编号') , templet: function (d) { return templet('planId',d.planId,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true, title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'warehouseIds', align:"",fixed:false,  hide:false, sort: true, title: fox.translate('仓库'), templet: function (d) { return templet('warehouseIds' ,fox.joinLabel(d.warehouse,"warehouseName"),d);}}
-					,{ field: 'positionIds', align:"",fixed:false,  hide:false, sort: true, title: fox.translate('位置'), templet: function (d) { return templet('positionIds' ,fox.joinLabel(d.position,"name"),d);}}
-					,{ field: 'categoryIds', align:"",fixed:false,  hide:false, sort: false, title: fox.translate('资产分类'), templet: function (d) { return templet('categoryIds' ,fox.joinLabel(d.category,"name"),d);}}
-					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
+				 	,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
@@ -420,13 +406,12 @@ function ListPage() {
 					area: ["95%","95%"],
 					type: 2,
 					id:"eam-asset-inventory-data",
-					content: '/business/eam/inventory_asset/inventory_asset_list.html?inventoryId='+data.id,
+					content: '/business/eam/inventory_asset/inventory_asset_list.html?inventoryId='+data.id+"&inventoryMode=employ_inventory_mode",
 					finish: function () {
 						console.log('11');
 					}
 				});
 				admin.putTempData('eam-asset-inventory-data-popup-index', index);
-
 
 			}
 

@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-23 16:52:58
+ * @since 2022-11-13 18:13:52
  */
 
 layui.config({
@@ -19,6 +19,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
     //模块基础路径
     const moduleURL="/service-eam/eam-asset-item";
+
 
     //列表页的扩展
     var list={

@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-28 17:39:58
+ * @since 2022-11-13 13:10:12
  */
 
 function FormPage() {
@@ -977,8 +977,6 @@ function FormPage() {
 		data["maintenanceMethod"]=fox.getSelectedValue("maintenanceMethod",false);
 		//获取 建议维保方式 下拉框的值
 		data["suggestMaintenanceMethod"]=fox.getSelectedValue("suggestMaintenanceMethod",false);
-
-
 		//获取 财务分类 下拉框的值
 		data["financialCategoryId"]=fox.getSelectedValue("financialCategoryId",false);
 		//获取 供应商 下拉框的值

@@ -18,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.AssetBorrowMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
@@ -25,7 +27,7 @@ import com.github.foxnic.dao.entity.EntityContext;
  * 资产借用
  * <p>资产借用 , 数据表 eam_asset_borrow 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-25 19:52:41
+ * @since 2022-11-13 09:02:44
  * @sign 2DBCFE192C923F95E8FA46724967C7DC
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -979,5 +981,147 @@ public class AssetBorrow extends Entity {
 	@Transient
 	public static AssetBorrow create() {
 		return new com.dt.platform.domain.eam.meta.AssetBorrowMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setBorrowerId(DataParser.parse(String.class, map.get(AssetBorrowMeta.BORROWER_ID)));
+			this.setPlanReturnDate(DataParser.parse(Date.class, map.get(AssetBorrowMeta.PLAN_RETURN_DATE)));
+			this.setProcId(DataParser.parse(String.class, map.get(AssetBorrowMeta.PROC_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetBorrowMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetBorrowMeta.VERSION)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(AssetBorrowMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, map.get(AssetBorrowMeta.CONTENT)));
+			this.setBusinessDate(DataParser.parse(Date.class, map.get(AssetBorrowMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, map.get(AssetBorrowMeta.BUSINESS_CODE)));
+			this.setReturnDate(DataParser.parse(Date.class, map.get(AssetBorrowMeta.RETURN_DATE)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetBorrowMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetBorrowMeta.DELETED)));
+			this.setBorrowStatus(DataParser.parse(String.class, map.get(AssetBorrowMeta.BORROW_STATUS)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetBorrowMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetBorrowMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetBorrowMeta.DELETE_TIME)));
+			this.setBorrowTime(DataParser.parse(Date.class, map.get(AssetBorrowMeta.BORROW_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(AssetBorrowMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetBorrowMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetBorrowMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AssetBorrowMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, map.get(AssetBorrowMeta.ORIGINATOR_ID)));
+			this.setAttach(DataParser.parse(String.class, map.get(AssetBorrowMeta.ATTACH)));
+			this.setStatus(DataParser.parse(String.class, map.get(AssetBorrowMeta.STATUS)));
+			// others
+			this.setBorrower(DataParser.parse(Employee.class, map.get(AssetBorrowMeta.BORROWER)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(AssetBorrowMeta.ORIGINATOR)));
+			this.setOriginatorUserName(DataParser.parse(String.class, map.get(AssetBorrowMeta.ORIGINATOR_USER_NAME)));
+			return true;
+		} else {
+			try {
+				this.setBorrowerId( (String)map.get(AssetBorrowMeta.BORROWER_ID));
+				this.setPlanReturnDate( (Date)map.get(AssetBorrowMeta.PLAN_RETURN_DATE));
+				this.setProcId( (String)map.get(AssetBorrowMeta.PROC_ID));
+				this.setUpdateTime( (Date)map.get(AssetBorrowMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(AssetBorrowMeta.VERSION));
+				this.setSelectedCode( (String)map.get(AssetBorrowMeta.SELECTED_CODE));
+				this.setContent( (String)map.get(AssetBorrowMeta.CONTENT));
+				this.setBusinessDate( (Date)map.get(AssetBorrowMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)map.get(AssetBorrowMeta.BUSINESS_CODE));
+				this.setReturnDate( (Date)map.get(AssetBorrowMeta.RETURN_DATE));
+				this.setCreateBy( (String)map.get(AssetBorrowMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AssetBorrowMeta.DELETED));
+				this.setBorrowStatus( (String)map.get(AssetBorrowMeta.BORROW_STATUS));
+				this.setCreateTime( (Date)map.get(AssetBorrowMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(AssetBorrowMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AssetBorrowMeta.DELETE_TIME));
+				this.setBorrowTime( (Date)map.get(AssetBorrowMeta.BORROW_TIME));
+				this.setName( (String)map.get(AssetBorrowMeta.NAME));
+				this.setTenantId( (String)map.get(AssetBorrowMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AssetBorrowMeta.DELETE_BY));
+				this.setId( (String)map.get(AssetBorrowMeta.ID));
+				this.setOriginatorId( (String)map.get(AssetBorrowMeta.ORIGINATOR_ID));
+				this.setAttach( (String)map.get(AssetBorrowMeta.ATTACH));
+				this.setStatus( (String)map.get(AssetBorrowMeta.STATUS));
+				// others
+				this.setBorrower( (Employee)map.get(AssetBorrowMeta.BORROWER));
+				this.setOriginator( (Employee)map.get(AssetBorrowMeta.ORIGINATOR));
+				this.setOriginatorUserName( (String)map.get(AssetBorrowMeta.ORIGINATOR_USER_NAME));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setBorrowerId(DataParser.parse(String.class, r.getValue(AssetBorrowMeta.BORROWER_ID)));
+			this.setPlanReturnDate(DataParser.parse(Date.class, r.getValue(AssetBorrowMeta.PLAN_RETURN_DATE)));
+			this.setProcId(DataParser.parse(String.class, r.getValue(AssetBorrowMeta.PROC_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetBorrowMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetBorrowMeta.VERSION)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(AssetBorrowMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, r.getValue(AssetBorrowMeta.CONTENT)));
+			this.setBusinessDate(DataParser.parse(Date.class, r.getValue(AssetBorrowMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, r.getValue(AssetBorrowMeta.BUSINESS_CODE)));
+			this.setReturnDate(DataParser.parse(Date.class, r.getValue(AssetBorrowMeta.RETURN_DATE)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetBorrowMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetBorrowMeta.DELETED)));
+			this.setBorrowStatus(DataParser.parse(String.class, r.getValue(AssetBorrowMeta.BORROW_STATUS)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetBorrowMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetBorrowMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetBorrowMeta.DELETE_TIME)));
+			this.setBorrowTime(DataParser.parse(Date.class, r.getValue(AssetBorrowMeta.BORROW_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(AssetBorrowMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetBorrowMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetBorrowMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetBorrowMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, r.getValue(AssetBorrowMeta.ORIGINATOR_ID)));
+			this.setAttach(DataParser.parse(String.class, r.getValue(AssetBorrowMeta.ATTACH)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(AssetBorrowMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setBorrowerId( (String)r.getValue(AssetBorrowMeta.BORROWER_ID));
+				this.setPlanReturnDate( (Date)r.getValue(AssetBorrowMeta.PLAN_RETURN_DATE));
+				this.setProcId( (String)r.getValue(AssetBorrowMeta.PROC_ID));
+				this.setUpdateTime( (Date)r.getValue(AssetBorrowMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(AssetBorrowMeta.VERSION));
+				this.setSelectedCode( (String)r.getValue(AssetBorrowMeta.SELECTED_CODE));
+				this.setContent( (String)r.getValue(AssetBorrowMeta.CONTENT));
+				this.setBusinessDate( (Date)r.getValue(AssetBorrowMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)r.getValue(AssetBorrowMeta.BUSINESS_CODE));
+				this.setReturnDate( (Date)r.getValue(AssetBorrowMeta.RETURN_DATE));
+				this.setCreateBy( (String)r.getValue(AssetBorrowMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AssetBorrowMeta.DELETED));
+				this.setBorrowStatus( (String)r.getValue(AssetBorrowMeta.BORROW_STATUS));
+				this.setCreateTime( (Date)r.getValue(AssetBorrowMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(AssetBorrowMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AssetBorrowMeta.DELETE_TIME));
+				this.setBorrowTime( (Date)r.getValue(AssetBorrowMeta.BORROW_TIME));
+				this.setName( (String)r.getValue(AssetBorrowMeta.NAME));
+				this.setTenantId( (String)r.getValue(AssetBorrowMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AssetBorrowMeta.DELETE_BY));
+				this.setId( (String)r.getValue(AssetBorrowMeta.ID));
+				this.setOriginatorId( (String)r.getValue(AssetBorrowMeta.ORIGINATOR_ID));
+				this.setAttach( (String)r.getValue(AssetBorrowMeta.ATTACH));
+				this.setStatus( (String)r.getValue(AssetBorrowMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

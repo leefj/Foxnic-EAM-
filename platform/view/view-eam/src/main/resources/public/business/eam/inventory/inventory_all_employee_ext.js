@@ -64,8 +64,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeQuery:function (conditions,param,location) {
             console.log('beforeQuery',conditions,param,location);
-
-            param.ownerCode=OWNER_CODE;
             return true;
         },
         /**
@@ -73,20 +71,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         afterQuery : function (data) {
             console.log('afterDataFill',data);
-            for (var i = 0; i < data.length; i++) {
-                //如果审批中或审批通过的不允许编辑
-                if(data[i].inventoryStatus=="not_start") {
-                    console.log('none');
-                }else if(data[i].inventoryStatus=="acting"){
-                    fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
-                }else if(data[i].inventoryStatus=="cancel"){
-                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
-                }else if(data[i].inventoryStatus=="finish"){
-                    fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
-                }
-            }
+
 
         },
         /**

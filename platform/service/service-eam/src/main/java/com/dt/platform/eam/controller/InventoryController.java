@@ -1,10 +1,23 @@
 package com.dt.platform.eam.controller;
 
+import java.io.File;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
+import com.dt.platform.constants.enums.eam.AssetOperateEnum;
 import com.dt.platform.domain.eam.*;
+import com.dt.platform.domain.eam.meta.InventoryAssetMeta;
+import com.dt.platform.eam.service.IAssetDataService;
 import com.dt.platform.eam.service.IAssetService;
+import com.dt.platform.eam.service.IInventoryAssetService;
+import com.dt.platform.proxy.common.TplFileServiceProxy;
 import com.github.foxnic.commons.collection.CollectorUtil;
+import com.github.foxnic.commons.log.Logger;
+import io.swagger.models.auth.In;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.github.foxnic.web.domain.hrm.Person;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +43,7 @@ import com.github.foxnic.commons.io.StreamUtil;
 import java.util.Map;
 import com.github.foxnic.dao.excel.ValidateResult;
 import java.io.InputStream;
+
 import com.dt.platform.domain.eam.meta.InventoryMeta;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.pcm.Catalog;
@@ -61,6 +75,12 @@ public class InventoryController extends SuperController {
 
     @Autowired
     private IAssetService assetService;
+
+    @Autowired
+    private IAssetDataService assetDataService;
+
+    @Autowired
+    private IInventoryAssetService inventoryAssetService;
 
     /**
      * 添加资产盘点
@@ -428,34 +448,67 @@ public class InventoryController extends SuperController {
      * 	盘点全员数据
      */
     @ApiOperation(value = "盘点全员数据")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = InventoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
-            @ApiImplicitParam(name = "assetId", value = "资产", required = true, dataTypeClass = String.class, example = "1"),
-    })
+
     @ApiOperationSupport(order = 14)
-    @SentinelResource(value = InventoryServiceProxy.QUERY_ALL_EMPLOYEE_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
-    @PostMapping(InventoryServiceProxy.QUERY_ALL_EMPLOYEE_PAGED_LIST)
-    public Result QUERY_ALL_EMPLOYEE_PAGED_LIST(String inventoryId, String assetId) {
-        return inventoryService.assetPlusData(inventoryId,assetId);
+    @SentinelResource(value = InventoryServiceProxy.QUERY_ASSET_BY_EMPLOYEE_MODE_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(InventoryServiceProxy.QUERY_ASSET_BY_EMPLOYEE_MODE_PAGED_LIST)
+    public Result<PagedList<Asset>> queryAssetByEmployeeModePagedList(String inventoryId) {
+        PagedList<Asset> list= inventoryService.queryAssetByEmployeeModePagedList(inventoryId);
+
+        Result<PagedList<Asset>> result = new Result<>();
+        result.success(true).data(list);
+        return result;
     }
 
     /**
      * 	全员盘点员工资产
      */
-    @ApiOperation(value = "全员盘点员工资产")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = InventoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
-            @ApiImplicitParam(name = "assetId", value = "资产", required = true, dataTypeClass = String.class, example = "1"),
-    })
+    @ApiOperation(value = "全员盘点我的员工资产")
     @ApiOperationSupport(order = 15)
-    @SentinelResource(value = InventoryServiceProxy.QUERY_EMPLOYEE_ASSET_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
-    @PostMapping(InventoryServiceProxy.QUERY_EMPLOYEE_ASSET_PAGED_LIST)
-    public Result QUERY_EMPLOYEE_ASSET_PAGED_LIST(String inventoryId, String assetId) {
-        return inventoryService.assetPlusData(inventoryId,assetId);
+    @SentinelResource(value = InventoryServiceProxy.QUERY_MY_ASSET_BY_EMPLOYEE_MODE_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(InventoryServiceProxy.QUERY_MY_ASSET_BY_EMPLOYEE_MODE_PAGED_LIST)
+    public Result<PagedList<InventoryAsset>> queryMyAssetByEmployeeModePagedList(InventoryAssetVO sample) {
+        PagedList<InventoryAsset> list= inventoryService.queryMyAssetByEmployeeModePagedList(sample, sample.getPageSize(), sample.getPageIndex());
+        Result<PagedList<InventoryAsset>> result = new Result<>();
+        // join 关联的对象
+        inventoryAssetService.dao().fill(list).with(InventoryAssetMeta.OPERATER)
+                .with(InventoryAssetMeta.ASSET).execute();
+        List<Employee> operList = CollectorUtil.collectList(list.getList(), InventoryAsset::getOperater);
+        inventoryAssetService.dao().join(operList, Person.class);
+        List<Asset> assetList = CollectorUtil.collectList(list.getList(), InventoryAsset::getAsset);
+        assetService.joinData(assetList);
+        result.success(true).data(list);
+
+        return result;
     }
 
 
-
+    /**
+     * 	全员盘点
+     */
+    @ApiOperation(value = "全员盘点清单")
+    @ApiOperationSupport(order = 15)
+    @SentinelResource(value = InventoryServiceProxy.QUERY_BY_EMPLOYEE_MODE_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(InventoryServiceProxy.QUERY_BY_EMPLOYEE_MODE_PAGED_LIST)
+    public  Result<PagedList<Inventory>>  queryByEmployeeModePagedList(InventoryVO sample) {
+        PagedList<Inventory> list= inventoryService.queryByEmployeeModePagedList(sample, sample.getPageSize(), sample.getPageIndex());
+        // join 关联的对象
+        inventoryService.dao().fill(list).with(InventoryMeta.INVENTORY_ASSET_INFO_LIST).with(InventoryMeta.MANAGER).with(InventoryMeta.ORIGINATOR).with(InventoryMeta.INVENTORY_USER).with(InventoryMeta.DIRECTOR).with(InventoryMeta.CATEGORY).with(InventoryMeta.WAREHOUSE).with(InventoryMeta.POSITION).execute();
+        List<List<Employee>> managerList = CollectorUtil.collectList(list.getList(), Inventory::getManager);
+        List<Employee> managers = managerList.stream().collect(ArrayList::new, ArrayList::addAll, ArrayList::addAll);
+        inventoryService.dao().join(managers, Person.class);
+        List<Employee> originator = CollectorUtil.collectList(list.getList(), Inventory::getOriginator);
+        inventoryService.dao().join(originator, Person.class);
+        List<List<Employee>> usersList = CollectorUtil.collectList(list.getList(), Inventory::getInventoryUser);
+        List<Employee> users = usersList.stream().collect(ArrayList::new, ArrayList::addAll, ArrayList::addAll);
+        inventoryService.dao().join(users, Person.class);
+        List<List<Employee>> directorList = CollectorUtil.collectList(list.getList(), Inventory::getDirector);
+        List<Employee> directors = directorList.stream().collect(ArrayList::new, ArrayList::addAll, ArrayList::addAll);
+        inventoryService.dao().join(directors, Person.class);
+        Result<PagedList<Inventory>> result = new Result<>();
+        result.success(true).data(list);
+        return result;
+    }
 
     /**
      * 导出 Excel
@@ -484,6 +537,34 @@ public class InventoryController extends SuperController {
             ExcelWriter ew = inventoryService.exportExcelTemplate();
             // 下载
             DownloadUtil.writeToOutput(response, ew.getWorkBook(), ew.getWorkBookName());
+        } catch (Exception e) {
+            DownloadUtil.writeDownloadError(response, e);
+        }
+    }
+
+    /**
+     * 导出 Excel 模板
+     */
+    @SentinelResource(value = InventoryServiceProxy.DOWNLOAD_ASSET, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @RequestMapping(InventoryServiceProxy.DOWNLOAD_ASSET)
+    public void downloadAsset(HttpServletResponse response,String inventoryId) throws Exception {
+        try {
+            // 生成 Excel 数据
+            InputStream inputstream= TplFileServiceProxy.api().getTplFileStreamByCode(AssetOperateEnum.EAM_DOWNLOAD_ASSET_INVENTORY_ASSET.code());
+            if (inputstream == null) {
+                Logger.info("为找到下载模版文件");
+                return;
+            }
+            File f = assetDataService.saveTempFile(inputstream, "tmp_download_inventory_asset_data.xls");
+            Map<String, Object> map=inventoryService.queryInventoryAssetMap(inventoryId);
+            TemplateExportParams templateExportParams = new TemplateExportParams(f.getPath());
+            templateExportParams.setScanAllsheet(true);
+            Workbook workbook = ExcelExportUtil.exportExcel(templateExportParams, map);
+            response.setCharacterEncoding("UTF-8");
+            response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("资产数据.xls", "UTF-8"))));
+            response.setContentType("application/vnd.ms-excel");
+            // 下载
+            DownloadUtil.writeToOutput(response, workbook, "盘点资产数据.xls");
         } catch (Exception e) {
             DownloadUtil.writeDownloadError(response, e);
         }

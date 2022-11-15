@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.AssetStorageMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
@@ -26,7 +28,7 @@ import com.github.foxnic.dao.entity.EntityContext;
  * 资产入库
  * <p>资产入库 , 数据表 eam_asset_storage 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-25 19:44:36
+ * @since 2022-11-05 14:24:18
  * @sign 7FB08675CC4466CA4FC88B5516E96A12
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -1021,5 +1023,155 @@ public class AssetStorage extends Entity {
 	@Transient
 	public static AssetStorage create() {
 		return new com.dt.platform.domain.eam.meta.AssetStorageMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setSupplierId(DataParser.parse(String.class, map.get(AssetStorageMeta.SUPPLIER_ID)));
+			this.setProcId(DataParser.parse(String.class, map.get(AssetStorageMeta.PROC_ID)));
+			this.setCustomData(DataParser.parse(String.class, map.get(AssetStorageMeta.CUSTOM_DATA)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(AssetStorageMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, map.get(AssetStorageMeta.CONTENT)));
+			this.setSupplierInfo(DataParser.parse(String.class, map.get(AssetStorageMeta.SUPPLIER_INFO)));
+			this.setBusinessDate(DataParser.parse(Date.class, map.get(AssetStorageMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, map.get(AssetStorageMeta.BUSINESS_CODE)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetStorageMeta.UPDATE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AssetStorageMeta.ID)));
+			this.setAttach(DataParser.parse(String.class, map.get(AssetStorageMeta.ATTACH)));
+			this.setOriginatorId(DataParser.parse(String.class, map.get(AssetStorageMeta.ORIGINATOR_ID)));
+			this.setLocationName(DataParser.parse(String.class, map.get(AssetStorageMeta.LOCATION_NAME)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetStorageMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetStorageMeta.VERSION)));
+			this.setOwnCompanyId(DataParser.parse(String.class, map.get(AssetStorageMeta.OWN_COMPANY_ID)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetStorageMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetStorageMeta.DELETED)));
+			this.setManagerUserId(DataParser.parse(String.class, map.get(AssetStorageMeta.MANAGER_USER_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetStorageMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetStorageMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(AssetStorageMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetStorageMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetStorageMeta.DELETE_BY)));
+			this.setStatus(DataParser.parse(String.class, map.get(AssetStorageMeta.STATUS)));
+			// others
+			this.setOwnerCompany(DataParser.parse(Organization.class, map.get(AssetStorageMeta.OWNER_COMPANY)));
+			this.setSupplier(DataParser.parse(Supplier.class, map.get(AssetStorageMeta.SUPPLIER)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(AssetStorageMeta.ORIGINATOR)));
+			this.setOriginatorUserName(DataParser.parse(String.class, map.get(AssetStorageMeta.ORIGINATOR_USER_NAME)));
+			this.setManagerUser(DataParser.parse(Employee.class, map.get(AssetStorageMeta.MANAGER_USER)));
+			return true;
+		} else {
+			try {
+				this.setSupplierId( (String)map.get(AssetStorageMeta.SUPPLIER_ID));
+				this.setProcId( (String)map.get(AssetStorageMeta.PROC_ID));
+				this.setCustomData( (String)map.get(AssetStorageMeta.CUSTOM_DATA));
+				this.setSelectedCode( (String)map.get(AssetStorageMeta.SELECTED_CODE));
+				this.setContent( (String)map.get(AssetStorageMeta.CONTENT));
+				this.setSupplierInfo( (String)map.get(AssetStorageMeta.SUPPLIER_INFO));
+				this.setBusinessDate( (Date)map.get(AssetStorageMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)map.get(AssetStorageMeta.BUSINESS_CODE));
+				this.setUpdateBy( (String)map.get(AssetStorageMeta.UPDATE_BY));
+				this.setId( (String)map.get(AssetStorageMeta.ID));
+				this.setAttach( (String)map.get(AssetStorageMeta.ATTACH));
+				this.setOriginatorId( (String)map.get(AssetStorageMeta.ORIGINATOR_ID));
+				this.setLocationName( (String)map.get(AssetStorageMeta.LOCATION_NAME));
+				this.setUpdateTime( (Date)map.get(AssetStorageMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(AssetStorageMeta.VERSION));
+				this.setOwnCompanyId( (String)map.get(AssetStorageMeta.OWN_COMPANY_ID));
+				this.setCreateBy( (String)map.get(AssetStorageMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AssetStorageMeta.DELETED));
+				this.setManagerUserId( (String)map.get(AssetStorageMeta.MANAGER_USER_ID));
+				this.setCreateTime( (Date)map.get(AssetStorageMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)map.get(AssetStorageMeta.DELETE_TIME));
+				this.setName( (String)map.get(AssetStorageMeta.NAME));
+				this.setTenantId( (String)map.get(AssetStorageMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AssetStorageMeta.DELETE_BY));
+				this.setStatus( (String)map.get(AssetStorageMeta.STATUS));
+				// others
+				this.setOwnerCompany( (Organization)map.get(AssetStorageMeta.OWNER_COMPANY));
+				this.setSupplier( (Supplier)map.get(AssetStorageMeta.SUPPLIER));
+				this.setOriginator( (Employee)map.get(AssetStorageMeta.ORIGINATOR));
+				this.setOriginatorUserName( (String)map.get(AssetStorageMeta.ORIGINATOR_USER_NAME));
+				this.setManagerUser( (Employee)map.get(AssetStorageMeta.MANAGER_USER));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setSupplierId(DataParser.parse(String.class, r.getValue(AssetStorageMeta.SUPPLIER_ID)));
+			this.setProcId(DataParser.parse(String.class, r.getValue(AssetStorageMeta.PROC_ID)));
+			this.setCustomData(DataParser.parse(String.class, r.getValue(AssetStorageMeta.CUSTOM_DATA)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(AssetStorageMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, r.getValue(AssetStorageMeta.CONTENT)));
+			this.setSupplierInfo(DataParser.parse(String.class, r.getValue(AssetStorageMeta.SUPPLIER_INFO)));
+			this.setBusinessDate(DataParser.parse(Date.class, r.getValue(AssetStorageMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, r.getValue(AssetStorageMeta.BUSINESS_CODE)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetStorageMeta.UPDATE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetStorageMeta.ID)));
+			this.setAttach(DataParser.parse(String.class, r.getValue(AssetStorageMeta.ATTACH)));
+			this.setOriginatorId(DataParser.parse(String.class, r.getValue(AssetStorageMeta.ORIGINATOR_ID)));
+			this.setLocationName(DataParser.parse(String.class, r.getValue(AssetStorageMeta.LOCATION_NAME)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetStorageMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetStorageMeta.VERSION)));
+			this.setOwnCompanyId(DataParser.parse(String.class, r.getValue(AssetStorageMeta.OWN_COMPANY_ID)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetStorageMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetStorageMeta.DELETED)));
+			this.setManagerUserId(DataParser.parse(String.class, r.getValue(AssetStorageMeta.MANAGER_USER_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetStorageMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetStorageMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(AssetStorageMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetStorageMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetStorageMeta.DELETE_BY)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(AssetStorageMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setSupplierId( (String)r.getValue(AssetStorageMeta.SUPPLIER_ID));
+				this.setProcId( (String)r.getValue(AssetStorageMeta.PROC_ID));
+				this.setCustomData( (String)r.getValue(AssetStorageMeta.CUSTOM_DATA));
+				this.setSelectedCode( (String)r.getValue(AssetStorageMeta.SELECTED_CODE));
+				this.setContent( (String)r.getValue(AssetStorageMeta.CONTENT));
+				this.setSupplierInfo( (String)r.getValue(AssetStorageMeta.SUPPLIER_INFO));
+				this.setBusinessDate( (Date)r.getValue(AssetStorageMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)r.getValue(AssetStorageMeta.BUSINESS_CODE));
+				this.setUpdateBy( (String)r.getValue(AssetStorageMeta.UPDATE_BY));
+				this.setId( (String)r.getValue(AssetStorageMeta.ID));
+				this.setAttach( (String)r.getValue(AssetStorageMeta.ATTACH));
+				this.setOriginatorId( (String)r.getValue(AssetStorageMeta.ORIGINATOR_ID));
+				this.setLocationName( (String)r.getValue(AssetStorageMeta.LOCATION_NAME));
+				this.setUpdateTime( (Date)r.getValue(AssetStorageMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(AssetStorageMeta.VERSION));
+				this.setOwnCompanyId( (String)r.getValue(AssetStorageMeta.OWN_COMPANY_ID));
+				this.setCreateBy( (String)r.getValue(AssetStorageMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AssetStorageMeta.DELETED));
+				this.setManagerUserId( (String)r.getValue(AssetStorageMeta.MANAGER_USER_ID));
+				this.setCreateTime( (Date)r.getValue(AssetStorageMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)r.getValue(AssetStorageMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(AssetStorageMeta.NAME));
+				this.setTenantId( (String)r.getValue(AssetStorageMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AssetStorageMeta.DELETE_BY));
+				this.setStatus( (String)r.getValue(AssetStorageMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

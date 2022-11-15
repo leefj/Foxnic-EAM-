@@ -121,7 +121,6 @@ function ListPage() {
 								refreshTableData(null,null,true);
 							} else {
 								var errs = [];
-
 								if (r.data&&r.data.length>0) {
 									for (var i = 0; i < r.data.length; i++) {
 										if (errs.indexOf(r.data[i].message) == -1) {
@@ -158,18 +157,13 @@ function ListPage() {
 	 */
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
-
 		var value = {};
-
-
 		value.businessCode={ inputType:"button",value: $("#businessCode").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
-
 		//value.businessCode={ inputType:"button",value: $("#businessCode").val()};
 		value.status={ inputType:"select_box", value: xmSelect.get("#status",true).getValue("value"), label:xmSelect.get("#status",true).getValue("nameStr") };
 		value.assetCode={ inputType:"button",value: $("#assetCode").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
 	//	value.assetStatus={ inputType:"select_box", value: xmSelect.get("#assetStatus",true).getValue("value"), label:xmSelect.get("#assetStatus",true).getValue("nameStr") };
 		value.assetStatus={ inputType:"select_box", value: getSelectedValue("#assetStatus","value") ,fillBy:["assetCycleStatus"]  , label:getSelectedValue("#assetStatus","nameStr") };
-
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
 		value.manufacturerId={ inputType:"select_box", value: xmSelect.get("#manufacturerId",true).getValue("value") ,fillBy:["manufacturer"]  , label:xmSelect.get("#manufacturerId",true).getValue("nameStr") };
 		value.model={ inputType:"button",value: $("#model").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
@@ -183,13 +177,10 @@ function ListPage() {
 		value.purchaseDate={ inputType:"date_input", begin: $("#purchaseDate-begin").val(), end: $("#purchaseDate-end").val() };
 		value.assetNotes={ inputType:"button",value: $("#assetNotes").val() ,fuzzy: true,valuePrefix:"",valueSuffix:"" };
 		value.maintainerId={ inputType:"select_box", value: xmSelect.get("#maintainerId",true).getValue("value") ,fillBy:["maintnainer"]  ,label:xmSelect.get("#maintainerId",true).getValue("nameStr") };
-
 		value.equipmentIp={ inputType:"button",value: $("#equipmentIp").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.manageIp={ inputType:"button",value: $("#manageIp").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.equipmentLabel={ inputType:"button",value: $("#equipmentLabel").val()};
 		value.equipmentEnvironmentCode={ inputType:"select_box", value: getSelectedValue("#equipmentEnvironmentCode","value") ,fillBy:["equipmentEnvironment"]  , label:getSelectedValue("#equipmentEnvironmentCode","nameStr") };
-
-
 
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value)) return;
@@ -462,7 +453,7 @@ function ListPage() {
 
 		// 搜索按钮点击事件
 		$('#search-button-advance').click(function () {
-			fox.switchSearchRow(2,function (ex){
+			fox.switchSearchRow(1,function (ex){
 				if(ex=="1") {
 					$('#search-button-advance span').text("关闭");
 				} else {
@@ -589,13 +580,13 @@ function ListPage() {
 					menuSelect=selected;
 					var exportArr=[];
 					if(admin.checkAuth("eam_asset:label")){
-						exportArr.push({"code":"labelDown","id":"3","title":"下载资产标签"});
+						exportArr.push({"code":"labelDown","id":"3","title":   fox.translate('下载资产标签') });
 					}
 					if(admin.checkAuth("eam_asset:card")){
-						exportArr.push({"code":"card","id":"1","title":"打印资产卡片"});
+						exportArr.push({"code":"card","id":"1","title":  fox.translate('打印资产卡片') });
 					}
 					if(admin.checkAuth("eam_asset:print-pdf")){
-						exportArr.push({"code":"labelCard","id":"2","title":"打印资产标签"});
+						exportArr.push({"code":"labelCard","id":"2","title":  fox.translate('打印资产标签') });
 					}
 					dropdown.render({
 						elem: this
@@ -612,11 +603,11 @@ function ListPage() {
 					menuSelect=selected;
 					var exportArr=[];
 					if(admin.checkAuth("eam_asset:eam_asset:import")){
-						exportArr.push({"code":"batchInsert","id":"1","title":"资产批量入库"});
+						exportArr.push({"code":"batchInsert","id":"1","title": fox.translate('资产批量入库') });
 					}
 
 					if(admin.checkAuth("eam_asset:high-export-data")){
-						exportArr.push({"code":"highExportData","id":"2","title":"资产数据导出"});
+						exportArr.push({"code":"highExportData","id":"2","title":  fox.translate('资产数据导出')});
 					}
 					// exportArr.push({"code":"downloadAssetTpl","id":"3","title":"下载导入模版"});
 					dropdown.render({
@@ -754,13 +745,13 @@ function ListPage() {
 				//更多下拉菜单
 				var operList=[];
 				var operSourceList=[
-					{"perm":"eam_asset:copy","id":"assetCopy","title":"复制"},
-					{"perm":"eam_asset:asset-voucher","id":"assetVoucher","title":"凭证"},
-					{"perm":"eam_asset:box","id":"assetBox","title":"密文箱"}
+					{"perm":"eam_asset:copy","id":"assetCopy","title": fox.translate('复制')},
+					{"perm":"eam_asset:asset-voucher","id":"assetVoucher","title":fox.translate('凭证') },
+					{"perm":"eam_asset:box","id":"assetBox","title":fox.translate('密文箱')  }
 
 				];
 				if(UPDATE_BTN){
-					operList.push({"perm":"updateBtn","id":"updateBtn","title":"修改"})
+					operList.push({"perm":"updateBtn","id":"updateBtn","title":fox.translate('修改')})
 				}
 				for(var i=0;i<operSourceList.length;i++){
 					if(admin.checkAuth(operSourceList[i].perm)){
@@ -768,10 +759,10 @@ function ListPage() {
 					}
 				}
 				if(CHANGE_QUERY_BTN){
-					operList.push({"perm":"changeQueryBtn","id":"changeQueryBtn","title":"操作明细"})
+					operList.push({"perm":"changeQueryBtn","id":"changeQueryBtn","title":fox.translate('操作明细')})
 				}
 				if(DELETE_BTN){
-					operList.push({"perm":"deleteBtn","id":"deleteBtn","title":"删除"})
+					operList.push({"perm":"deleteBtn","id":"deleteBtn","title": fox.translate('删除')})
 				}
 				dropdown.render({
 					elem: this

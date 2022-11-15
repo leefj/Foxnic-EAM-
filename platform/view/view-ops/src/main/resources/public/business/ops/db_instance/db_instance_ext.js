@@ -19,6 +19,15 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
     //列表页的扩展
     var list={
+        /**
+         * 表格渲染前调用
+         * @param cfg 表格配置参数
+         * */
+        beforeTableRender:function (cfg){
+            console.log("list:beforeTableRender2",cfg);
+            cfg.defaultToolbar= ['filter', 'print','exports',{title: '刷新数据',layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}];
+
+        }
 
     }
 
@@ -26,7 +35,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
     //表单页的扩展
     var form={
-
 
         /**
          * 表单数据填充后

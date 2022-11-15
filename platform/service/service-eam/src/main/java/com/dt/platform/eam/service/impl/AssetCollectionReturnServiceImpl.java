@@ -195,6 +195,8 @@ public class AssetCollectionReturnServiceImpl extends SuperService<AssetCollecti
 		map.put("position_id",billData.getPositionId());
 		map.put("position_detail",billData.getPositionDetail());
 		map.put("use_organization_id",billData.getUseOrganizationId());
+		dao.execute("update eam_asset_item a,eam_asset b set b.collection_id='' where a.asset_id=b.id and a.handle_id=?",id);
+
 		HashMap<String,List<SQL>> resultMap=assetService.parseAssetChangeRecordWithChangeAsset(billData.getAssetList(),map,billData.getBusinessCode(),AssetOperateEnum.EAM_ASSET_COLLECTION_RETURN.code(),"");
 		List<SQL> updateSqls=resultMap.get("update");
 		List<SQL> changeSqls=resultMap.get("change");
@@ -280,6 +282,8 @@ public class AssetCollectionReturnServiceImpl extends SuperService<AssetCollecti
 			if(!batchInsertReuslt.isSuccess()){
 				return batchInsertReuslt;
 			}
+
+			dao.execute("update eam_asset_item a,eam_asset b set a.flag=b.borrow_id where a.asset_id=b.id and a.handle_id=?",assetCollectionReturn.getId());
 		}
 		return r;
 	}

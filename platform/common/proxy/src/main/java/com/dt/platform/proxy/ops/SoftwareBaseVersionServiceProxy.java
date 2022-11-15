@@ -16,10 +16,10 @@ import com.dt.platform.proxy.ServiceNames;
 
 /**
  * <p>
- * 软件基线版本  控制器服务代理
+ * 软件基线版本 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-16 08:30:07
+ * @since 2022-11-03 07:34:18
  */
 @FeignClient(value = ServiceNames.OPS, contextId = SoftwareBaseVersionServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface SoftwareBaseVersionServiceProxy {

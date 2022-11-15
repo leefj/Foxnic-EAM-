@@ -43,6 +43,12 @@ public interface AssetBillServiceProxy {
      */
     public static final String QUERY_BORROW_BILL = API_PREFIX + "query-borrow-bill";
 
+
+    /**
+     * 查询资产单据
+     */
+    public static final String QUERY_BORROW_RETURN_BILL = API_PREFIX + "query-borrow-return-bill";
+
     /**
      * 查询资产单据
      */
@@ -147,6 +153,15 @@ public interface AssetBillServiceProxy {
      */
     public static final String QUERY_ASSET_STORAGE_BILL = API_PREFIX + "query-asset-storage-bill";
 
+
+    /**
+     * 查询转移单据
+     */
+    public static final String QUERY_ASSET_INVENTORY_BILL = API_PREFIX + "query-asset-inventory-bill";
+
+
+
+
     /**
      * 查询转移单据
      */
@@ -160,7 +175,6 @@ public interface AssetBillServiceProxy {
     public static final String QUERY_ASSET_STOCK_GOODS_ADJUST_BILL = API_PREFIX + "query-asset-stock-goods-adjust-bill";
 
     //耗材
-
 
     //软件
     public static final String QUERY_ASSET_SOFTWARE_INSERT_BILL = API_PREFIX + "query-asset-software-insert-bill";

@@ -30,8 +30,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-28 17:39:55
- * @sign 91AB2A98BC55CA72F58F9E933A15D853
+ * @since 2022-11-13 13:10:08
+ * @sign 1EB7E5CB31984F5824165F3BC1814EDF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -478,6 +478,16 @@ public class AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.lang.String> MAINTENANCE_STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,MAINTENANCE_STATUS, java.lang.String.class, "维保状态", "维保状态", java.lang.String.class, null);
 	
 	/**
+	 * 维保价格 , 类型: java.math.BigDecimal
+	*/
+	public static final String MAINTENANCE_PRICE="maintenancePrice";
+	
+	/**
+	 * 维保价格 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.math.BigDecimal> MAINTENANCE_PRICE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,MAINTENANCE_PRICE, java.math.BigDecimal.class, "维保价格", "维保价格", java.math.BigDecimal.class, null);
+	
+	/**
 	 * 维保方式 , 类型: java.lang.String
 	*/
 	public static final String MAINTENANCE_METHOD="maintenanceMethod";
@@ -908,6 +918,16 @@ public class AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.lang.String> LABEL5_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,LABEL5, java.lang.String.class, "短标签5", "短标签5", java.lang.String.class, null);
 	
 	/**
+	 * 单据 , 类型: java.lang.String
+	*/
+	public static final String BILL_ID="billId";
+	
+	/**
+	 * 单据 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.lang.String> BILL_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,BILL_ID, java.lang.String.class, "单据", "单据", java.lang.String.class, null);
+	
+	/**
 	 * 内部控制标签 , 类型: java.lang.String
 	*/
 	public static final String INTERNAL_CONTROL_LABEL="internalControlLabel";
@@ -918,14 +938,34 @@ public class AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.lang.String> INTERNAL_CONTROL_LABEL_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,INTERNAL_CONTROL_LABEL, java.lang.String.class, "内部控制标签", "内部控制标签", java.lang.String.class, null);
 	
 	/**
-	 * 单据 , 类型: java.lang.String
+	 * 领用ID , 类型: java.lang.String
 	*/
-	public static final String BILL_ID="billId";
+	public static final String COLLECTION_ID="collectionId";
 	
 	/**
-	 * 单据 , 类型: java.lang.String
+	 * 领用ID , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.lang.String> BILL_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,BILL_ID, java.lang.String.class, "单据", "单据", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.lang.String> COLLECTION_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,COLLECTION_ID, java.lang.String.class, "领用ID", "领用ID", java.lang.String.class, null);
+	
+	/**
+	 * 借用ID , 类型: java.lang.String
+	*/
+	public static final String BORROW_ID="borrowId";
+	
+	/**
+	 * 借用ID , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.lang.String> BORROW_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,BORROW_ID, java.lang.String.class, "借用ID", "借用ID", java.lang.String.class, null);
+	
+	/**
+	 * 报废ID , 类型: java.lang.String
+	*/
+	public static final String SCRAP_ID="scrapId";
+	
+	/**
+	 * 报废ID , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.lang.String> SCRAP_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,SCRAP_ID, java.lang.String.class, "报废ID", "报废ID", java.lang.String.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -1410,7 +1450,7 @@ public class AssetMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , REGION_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , MAINTENANCE_METHOD , SUGGEST_MAINTENANCE_METHOD , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , SUPPLIER_ID , TAX_AMOUNT_RATE , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , ORIGINAL_UNIT_PRICE , CURRENT_YEAR_DEPRECIATION , DEPRECIATION_YEAR , ACCUMULATED_DEPRECIATION , MONTH_DEPRECIATION_PRICE , RESIDUALS_RATE , RESIDUALS_PRICE , NAV_PRICE , PURCHASE_UNIT_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL2 , LABEL3 , LABEL4 , LABEL5 , INTERNAL_CONTROL_LABEL , BILL_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA , EXT_DATA , PCM_DATA , CATALOG_ATTRIBUTE , POSITION , CATEGORY_FINANCE , CATEGORY , GOODS , MANUFACTURER , WAREHOUSE , USE_USER , MANAGER , ORIGINATOR , SUPPLIER , MAINTNAINER , OWNER_COMPANY , USE_ORGANIZATION , SOURCE , EQUIPMENT_ENVIRONMENT , SAFETY_LEVEL , ASSET_MAINTENANCE_STATUS , SUGGEST_MAINTENANCE_METHOD_DATA , MAINTENANCE_METHOD_DATA , ASSET_CYCLE_STATUS , RACK , CHANGE_INSTANCE , GOODS_STOCK , REGION };
+	public static final String[] $PROPS={ ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , REGION_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , MAINTENANCE_PRICE , MAINTENANCE_METHOD , SUGGEST_MAINTENANCE_METHOD , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , SUPPLIER_ID , TAX_AMOUNT_RATE , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , ORIGINAL_UNIT_PRICE , CURRENT_YEAR_DEPRECIATION , DEPRECIATION_YEAR , ACCUMULATED_DEPRECIATION , MONTH_DEPRECIATION_PRICE , RESIDUALS_RATE , RESIDUALS_PRICE , NAV_PRICE , PURCHASE_UNIT_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL2 , LABEL3 , LABEL4 , LABEL5 , BILL_ID , INTERNAL_CONTROL_LABEL , COLLECTION_ID , BORROW_ID , SCRAP_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA , EXT_DATA , PCM_DATA , CATALOG_ATTRIBUTE , POSITION , CATEGORY_FINANCE , CATEGORY , GOODS , MANUFACTURER , WAREHOUSE , USE_USER , MANAGER , ORIGINATOR , SUPPLIER , MAINTNAINER , OWNER_COMPANY , USE_ORGANIZATION , SOURCE , EQUIPMENT_ENVIRONMENT , SAFETY_LEVEL , ASSET_MAINTENANCE_STATUS , SUGGEST_MAINTENANCE_METHOD_DATA , MAINTENANCE_METHOD_DATA , ASSET_CYCLE_STATUS , RACK , CHANGE_INSTANCE , GOODS_STOCK , REGION };
 	
 	/**
 	 * 代理类
@@ -1905,6 +1945,17 @@ public class AssetMeta {
 		}
 		
 		/**
+		 * 设置 维保价格
+		 * @param maintenancePrice 维保价格
+		 * @return 当前对象
+		*/
+		public Asset setMaintenancePrice(BigDecimal maintenancePrice) {
+			super.change(MAINTENANCE_PRICE,super.getMaintenancePrice(),maintenancePrice);
+			super.setMaintenancePrice(maintenancePrice);
+			return this;
+		}
+		
+		/**
 		 * 设置 维保方式
 		 * @param maintenanceMethod 维保方式
 		 * @return 当前对象
@@ -2378,6 +2429,17 @@ public class AssetMeta {
 		}
 		
 		/**
+		 * 设置 单据
+		 * @param billId 单据
+		 * @return 当前对象
+		*/
+		public Asset setBillId(String billId) {
+			super.change(BILL_ID,super.getBillId(),billId);
+			super.setBillId(billId);
+			return this;
+		}
+		
+		/**
 		 * 设置 内部控制标签
 		 * @param internalControlLabel 内部控制标签
 		 * @return 当前对象
@@ -2389,13 +2451,35 @@ public class AssetMeta {
 		}
 		
 		/**
-		 * 设置 单据
-		 * @param billId 单据
+		 * 设置 领用ID
+		 * @param collectionId 领用ID
 		 * @return 当前对象
 		*/
-		public Asset setBillId(String billId) {
-			super.change(BILL_ID,super.getBillId(),billId);
-			super.setBillId(billId);
+		public Asset setCollectionId(String collectionId) {
+			super.change(COLLECTION_ID,super.getCollectionId(),collectionId);
+			super.setCollectionId(collectionId);
+			return this;
+		}
+		
+		/**
+		 * 设置 借用ID
+		 * @param borrowId 借用ID
+		 * @return 当前对象
+		*/
+		public Asset setBorrowId(String borrowId) {
+			super.change(BORROW_ID,super.getBorrowId(),borrowId);
+			super.setBorrowId(borrowId);
+			return this;
+		}
+		
+		/**
+		 * 设置 报废ID
+		 * @param scrapId 报废ID
+		 * @return 当前对象
+		*/
+		public Asset setScrapId(String scrapId) {
+			super.change(SCRAP_ID,super.getScrapId(),scrapId);
+			super.setScrapId(scrapId);
 			return this;
 		}
 		
@@ -2953,6 +3037,7 @@ public class AssetMeta {
 			inst.setAssetNumber(this.getAssetNumber());
 			inst.setModel(this.getModel());
 			inst.setId(this.getId());
+			inst.setScrapId(this.getScrapId());
 			inst.setEquipmentEnvironmentCode(this.getEquipmentEnvironmentCode());
 			inst.setDirector(this.getDirector());
 			inst.setMonthDepreciationPrice(this.getMonthDepreciationPrice());
@@ -3005,6 +3090,7 @@ public class AssetMeta {
 			inst.setSourceId(this.getSourceId());
 			inst.setProcId(this.getProcId());
 			inst.setFinancialCategoryId(this.getFinancialCategoryId());
+			inst.setMaintenancePrice(this.getMaintenancePrice());
 			inst.setEquipmentIp(this.getEquipmentIp());
 			inst.setMaintenanceEndDate(this.getMaintenanceEndDate());
 			inst.setNextApproverNames(this.getNextApproverNames());
@@ -3035,6 +3121,7 @@ public class AssetMeta {
 			inst.setChsStatus(this.getChsStatus());
 			inst.setProductionDate(this.getProductionDate());
 			inst.setUpdateBy(this.getUpdateBy());
+			inst.setCollectionId(this.getCollectionId());
 			inst.setRegisterDate(this.getRegisterDate());
 			inst.setSummary(this.getSummary());
 			inst.setEquipmentSerialNumber(this.getEquipmentSerialNumber());
@@ -3051,6 +3138,7 @@ public class AssetMeta {
 			inst.setRegionId(this.getRegionId());
 			inst.setChsType(this.getChsType());
 			inst.setRackDownNumber(this.getRackDownNumber());
+			inst.setBorrowId(this.getBorrowId());
 			inst.setCategoryId(this.getCategoryId());
 			if(all) {
 				inst.setOwnerCompany(this.getOwnerCompany());

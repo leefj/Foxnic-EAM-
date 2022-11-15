@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.AssetCollectionReturnMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
@@ -26,7 +28,7 @@ import com.github.foxnic.dao.entity.EntityContext;
  * 资产退库
  * <p>资产退库 , 数据表 eam_asset_collection_return 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-25 19:51:34
+ * @since 2022-11-12 20:49:26
  * @sign C86555EC97ABE3539CA9936314C3C9FD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -943,5 +945,145 @@ public class AssetCollectionReturn extends Entity {
 	@Transient
 	public static AssetCollectionReturn create() {
 		return new com.dt.platform.domain.eam.meta.AssetCollectionReturnMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setProcId(DataParser.parse(String.class, map.get(AssetCollectionReturnMeta.PROC_ID)));
+			this.setUseOrganizationId(DataParser.parse(String.class, map.get(AssetCollectionReturnMeta.USE_ORGANIZATION_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetCollectionReturnMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetCollectionReturnMeta.VERSION)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(AssetCollectionReturnMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, map.get(AssetCollectionReturnMeta.CONTENT)));
+			this.setPositionDetail(DataParser.parse(String.class, map.get(AssetCollectionReturnMeta.POSITION_DETAIL)));
+			this.setBusinessDate(DataParser.parse(Date.class, map.get(AssetCollectionReturnMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, map.get(AssetCollectionReturnMeta.BUSINESS_CODE)));
+			this.setReturnDate(DataParser.parse(Date.class, map.get(AssetCollectionReturnMeta.RETURN_DATE)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetCollectionReturnMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetCollectionReturnMeta.DELETED)));
+			this.setPositionId(DataParser.parse(String.class, map.get(AssetCollectionReturnMeta.POSITION_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetCollectionReturnMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetCollectionReturnMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetCollectionReturnMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(AssetCollectionReturnMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetCollectionReturnMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetCollectionReturnMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AssetCollectionReturnMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, map.get(AssetCollectionReturnMeta.ORIGINATOR_ID)));
+			this.setAttach(DataParser.parse(String.class, map.get(AssetCollectionReturnMeta.ATTACH)));
+			this.setStatus(DataParser.parse(String.class, map.get(AssetCollectionReturnMeta.STATUS)));
+			// others
+			this.setUseOrganization(DataParser.parse(Organization.class, map.get(AssetCollectionReturnMeta.USE_ORGANIZATION)));
+			this.setPosition(DataParser.parse(Position.class, map.get(AssetCollectionReturnMeta.POSITION)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(AssetCollectionReturnMeta.ORIGINATOR)));
+			this.setOriginatorUserName(DataParser.parse(String.class, map.get(AssetCollectionReturnMeta.ORIGINATOR_USER_NAME)));
+			return true;
+		} else {
+			try {
+				this.setProcId( (String)map.get(AssetCollectionReturnMeta.PROC_ID));
+				this.setUseOrganizationId( (String)map.get(AssetCollectionReturnMeta.USE_ORGANIZATION_ID));
+				this.setUpdateTime( (Date)map.get(AssetCollectionReturnMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(AssetCollectionReturnMeta.VERSION));
+				this.setSelectedCode( (String)map.get(AssetCollectionReturnMeta.SELECTED_CODE));
+				this.setContent( (String)map.get(AssetCollectionReturnMeta.CONTENT));
+				this.setPositionDetail( (String)map.get(AssetCollectionReturnMeta.POSITION_DETAIL));
+				this.setBusinessDate( (Date)map.get(AssetCollectionReturnMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)map.get(AssetCollectionReturnMeta.BUSINESS_CODE));
+				this.setReturnDate( (Date)map.get(AssetCollectionReturnMeta.RETURN_DATE));
+				this.setCreateBy( (String)map.get(AssetCollectionReturnMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AssetCollectionReturnMeta.DELETED));
+				this.setPositionId( (String)map.get(AssetCollectionReturnMeta.POSITION_ID));
+				this.setCreateTime( (Date)map.get(AssetCollectionReturnMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(AssetCollectionReturnMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AssetCollectionReturnMeta.DELETE_TIME));
+				this.setName( (String)map.get(AssetCollectionReturnMeta.NAME));
+				this.setTenantId( (String)map.get(AssetCollectionReturnMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AssetCollectionReturnMeta.DELETE_BY));
+				this.setId( (String)map.get(AssetCollectionReturnMeta.ID));
+				this.setOriginatorId( (String)map.get(AssetCollectionReturnMeta.ORIGINATOR_ID));
+				this.setAttach( (String)map.get(AssetCollectionReturnMeta.ATTACH));
+				this.setStatus( (String)map.get(AssetCollectionReturnMeta.STATUS));
+				// others
+				this.setUseOrganization( (Organization)map.get(AssetCollectionReturnMeta.USE_ORGANIZATION));
+				this.setPosition( (Position)map.get(AssetCollectionReturnMeta.POSITION));
+				this.setOriginator( (Employee)map.get(AssetCollectionReturnMeta.ORIGINATOR));
+				this.setOriginatorUserName( (String)map.get(AssetCollectionReturnMeta.ORIGINATOR_USER_NAME));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setProcId(DataParser.parse(String.class, r.getValue(AssetCollectionReturnMeta.PROC_ID)));
+			this.setUseOrganizationId(DataParser.parse(String.class, r.getValue(AssetCollectionReturnMeta.USE_ORGANIZATION_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetCollectionReturnMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetCollectionReturnMeta.VERSION)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(AssetCollectionReturnMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, r.getValue(AssetCollectionReturnMeta.CONTENT)));
+			this.setPositionDetail(DataParser.parse(String.class, r.getValue(AssetCollectionReturnMeta.POSITION_DETAIL)));
+			this.setBusinessDate(DataParser.parse(Date.class, r.getValue(AssetCollectionReturnMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, r.getValue(AssetCollectionReturnMeta.BUSINESS_CODE)));
+			this.setReturnDate(DataParser.parse(Date.class, r.getValue(AssetCollectionReturnMeta.RETURN_DATE)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetCollectionReturnMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetCollectionReturnMeta.DELETED)));
+			this.setPositionId(DataParser.parse(String.class, r.getValue(AssetCollectionReturnMeta.POSITION_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetCollectionReturnMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetCollectionReturnMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetCollectionReturnMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(AssetCollectionReturnMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetCollectionReturnMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetCollectionReturnMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetCollectionReturnMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, r.getValue(AssetCollectionReturnMeta.ORIGINATOR_ID)));
+			this.setAttach(DataParser.parse(String.class, r.getValue(AssetCollectionReturnMeta.ATTACH)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(AssetCollectionReturnMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setProcId( (String)r.getValue(AssetCollectionReturnMeta.PROC_ID));
+				this.setUseOrganizationId( (String)r.getValue(AssetCollectionReturnMeta.USE_ORGANIZATION_ID));
+				this.setUpdateTime( (Date)r.getValue(AssetCollectionReturnMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(AssetCollectionReturnMeta.VERSION));
+				this.setSelectedCode( (String)r.getValue(AssetCollectionReturnMeta.SELECTED_CODE));
+				this.setContent( (String)r.getValue(AssetCollectionReturnMeta.CONTENT));
+				this.setPositionDetail( (String)r.getValue(AssetCollectionReturnMeta.POSITION_DETAIL));
+				this.setBusinessDate( (Date)r.getValue(AssetCollectionReturnMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)r.getValue(AssetCollectionReturnMeta.BUSINESS_CODE));
+				this.setReturnDate( (Date)r.getValue(AssetCollectionReturnMeta.RETURN_DATE));
+				this.setCreateBy( (String)r.getValue(AssetCollectionReturnMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AssetCollectionReturnMeta.DELETED));
+				this.setPositionId( (String)r.getValue(AssetCollectionReturnMeta.POSITION_ID));
+				this.setCreateTime( (Date)r.getValue(AssetCollectionReturnMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(AssetCollectionReturnMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AssetCollectionReturnMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(AssetCollectionReturnMeta.NAME));
+				this.setTenantId( (String)r.getValue(AssetCollectionReturnMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AssetCollectionReturnMeta.DELETE_BY));
+				this.setId( (String)r.getValue(AssetCollectionReturnMeta.ID));
+				this.setOriginatorId( (String)r.getValue(AssetCollectionReturnMeta.ORIGINATOR_ID));
+				this.setAttach( (String)r.getValue(AssetCollectionReturnMeta.ATTACH));
+				this.setStatus( (String)r.getValue(AssetCollectionReturnMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }
