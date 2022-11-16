@@ -11,6 +11,10 @@ import com.github.foxnic.commons.bean.BeanUtil;
 import com.github.foxnic.dao.entity.EntityContext;
 import com.github.foxnic.dao.entity.Entity;
 import java.util.Map;
+import com.dt.platform.domain.eam.meta.AssetCopyVOMeta;
+import com.github.foxnic.commons.lang.DataParser;
+import java.util.Date;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
@@ -18,7 +22,7 @@ import java.util.Map;
  * 资产复制VO类型
  * <p>资产复制 , 数据表 eam_asset_copy 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-26 12:28:39
+ * @since 2022-11-16 12:39:45
  * @sign DB8C8770F6E59192667424AE08B44C73
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -393,5 +397,111 @@ public class AssetCopyVO extends AssetCopy {
 	@Transient
 	public static AssetCopyVO create() {
 		return new com.dt.platform.domain.eam.meta.AssetCopyVOMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(AssetCopyVOMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetCopyVOMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetCopyVOMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetCopyVOMeta.CREATE_BY)));
+			this.setAssetNumber(DataParser.parse(Integer.class, map.get(AssetCopyVOMeta.ASSET_NUMBER)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetCopyVOMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetCopyVOMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetCopyVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetCopyVOMeta.DELETE_TIME)));
+			this.setAssetId(DataParser.parse(String.class, map.get(AssetCopyVOMeta.ASSET_ID)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetCopyVOMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetCopyVOMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AssetCopyVOMeta.ID)));
+			// others
+			this.setSearchField(DataParser.parse(String.class, map.get(AssetCopyVOMeta.SEARCH_FIELD)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(AssetCopyVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(AssetCopyVOMeta.SORT_TYPE)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(AssetCopyVOMeta.FUZZY_FIELD)));
+			this.setSortField(DataParser.parse(String.class, map.get(AssetCopyVOMeta.SORT_FIELD)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(AssetCopyVOMeta.PAGE_SIZE)));
+			this.setSearchValue(DataParser.parse(String.class, map.get(AssetCopyVOMeta.SEARCH_VALUE)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(AssetCopyVOMeta.NOTES));
+				this.setUpdateTime( (Date)map.get(AssetCopyVOMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(AssetCopyVOMeta.VERSION));
+				this.setCreateBy( (String)map.get(AssetCopyVOMeta.CREATE_BY));
+				this.setAssetNumber( (Integer)map.get(AssetCopyVOMeta.ASSET_NUMBER));
+				this.setDeleted( (Integer)map.get(AssetCopyVOMeta.DELETED));
+				this.setCreateTime( (Date)map.get(AssetCopyVOMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(AssetCopyVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AssetCopyVOMeta.DELETE_TIME));
+				this.setAssetId( (String)map.get(AssetCopyVOMeta.ASSET_ID));
+				this.setTenantId( (String)map.get(AssetCopyVOMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AssetCopyVOMeta.DELETE_BY));
+				this.setId( (String)map.get(AssetCopyVOMeta.ID));
+				// others
+				this.setSearchField( (String)map.get(AssetCopyVOMeta.SEARCH_FIELD));
+				this.setPageIndex( (Integer)map.get(AssetCopyVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(AssetCopyVOMeta.SORT_TYPE));
+				this.setFuzzyField( (String)map.get(AssetCopyVOMeta.FUZZY_FIELD));
+				this.setSortField( (String)map.get(AssetCopyVOMeta.SORT_FIELD));
+				this.setPageSize( (Integer)map.get(AssetCopyVOMeta.PAGE_SIZE));
+				this.setSearchValue( (String)map.get(AssetCopyVOMeta.SEARCH_VALUE));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(AssetCopyVOMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetCopyVOMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetCopyVOMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetCopyVOMeta.CREATE_BY)));
+			this.setAssetNumber(DataParser.parse(Integer.class, r.getValue(AssetCopyVOMeta.ASSET_NUMBER)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetCopyVOMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetCopyVOMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetCopyVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetCopyVOMeta.DELETE_TIME)));
+			this.setAssetId(DataParser.parse(String.class, r.getValue(AssetCopyVOMeta.ASSET_ID)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetCopyVOMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetCopyVOMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetCopyVOMeta.ID)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(AssetCopyVOMeta.NOTES));
+				this.setUpdateTime( (Date)r.getValue(AssetCopyVOMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(AssetCopyVOMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(AssetCopyVOMeta.CREATE_BY));
+				this.setAssetNumber( (Integer)r.getValue(AssetCopyVOMeta.ASSET_NUMBER));
+				this.setDeleted( (Integer)r.getValue(AssetCopyVOMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(AssetCopyVOMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(AssetCopyVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AssetCopyVOMeta.DELETE_TIME));
+				this.setAssetId( (String)r.getValue(AssetCopyVOMeta.ASSET_ID));
+				this.setTenantId( (String)r.getValue(AssetCopyVOMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AssetCopyVOMeta.DELETE_BY));
+				this.setId( (String)r.getValue(AssetCopyVOMeta.ID));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

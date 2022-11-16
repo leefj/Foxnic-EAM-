@@ -16,7 +16,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-02 22:08:25
+ * @since 2022-11-16 10:04:46
  * @sign 34945B314FDD9C5B5C62D17AD6EFC0FD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -414,9 +414,29 @@ public class DbInfoVOMeta extends DbInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,org.github.foxnic.web.domain.system.DictItem> DEPLOY_MODE_DICT_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,DEPLOY_MODE_DICT, org.github.foxnic.web.domain.system.DictItem.class, "deployModeDict", "deployModeDict", org.github.foxnic.web.domain.system.DictItem.class, null);
 	
 	/**
+	 * labelList , 集合类型: LIST , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final String LABEL_LIST="labelList";
+	
+	/**
+	 * labelList , 集合类型: LIST , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,org.github.foxnic.web.domain.system.DictItem> LABEL_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,LABEL_LIST, java.util.List.class, "labelList", "labelList", org.github.foxnic.web.domain.system.DictItem.class, null);
+	
+	/**
+	 * labelIds , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String LABEL_IDS="labelIds";
+	
+	/**
+	 * labelIds , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> LABEL_IDS_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,LABEL_IDS, java.util.List.class, "labelIds", "labelIds", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , BACKUP_STRATEGY , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OTHER_USER_LIST , VOUCHER_STR , DB_PORT , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , BACKUP_INFO_LIST , BACKUP_INFO_IDS , HOST , TYPE , DEPLOY_MODE_DICT };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , BACKUP_STRATEGY , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OTHER_USER_LIST , VOUCHER_STR , DB_PORT , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , BACKUP_INFO_LIST , BACKUP_INFO_IDS , HOST , TYPE , DEPLOY_MODE_DICT , LABEL_LIST , LABEL_IDS };
 	
 	/**
 	 * 代理类
@@ -854,6 +874,28 @@ public class DbInfoVOMeta extends DbInfoMeta {
 			super.setDeployModeDict(deployModeDict);
 			return this;
 		}
+		
+		/**
+		 * 设置 labelList
+		 * @param labelList labelList
+		 * @return 当前对象
+		*/
+		public DbInfo setLabelList(List<DictItem> labelList) {
+			super.change(LABEL_LIST,super.getLabelList(),labelList);
+			super.setLabelList(labelList);
+			return this;
+		}
+		
+		/**
+		 * 设置 labelIds
+		 * @param labelIds labelIds
+		 * @return 当前对象
+		*/
+		public DbInfo setLabelIds(List<String> labelIds) {
+			super.change(LABEL_IDS,super.getLabelIds(),labelIds);
+			super.setLabelIds(labelIds);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -901,6 +943,8 @@ public class DbInfoVOMeta extends DbInfoMeta {
 				inst.setBackupInfoList(this.getBackupInfoList());
 				inst.setPageSize(this.getPageSize());
 				inst.setType(this.getType());
+				inst.setLabelList(this.getLabelList());
+				inst.setLabelIds(this.getLabelIds());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
 				inst.setDirtyFields(this.getDirtyFields());

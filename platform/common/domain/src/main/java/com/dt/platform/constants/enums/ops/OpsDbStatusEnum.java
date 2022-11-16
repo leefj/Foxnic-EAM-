@@ -16,7 +16,7 @@ public enum OpsDbStatusEnum implements CodeTextEnum {
 
     ONLINE("online" , "在线"),
     OFFLINE("offline" , "下线"),
-    STOP("stop" , "停用")
+    STOP("stop" , "在线停用")
     ;
 
     private String code;

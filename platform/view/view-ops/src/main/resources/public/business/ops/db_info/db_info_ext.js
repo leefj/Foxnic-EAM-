@@ -3,6 +3,8 @@
  * @author 金杰 , maillank@qq.com
  * @since 2022-09-10 14:39:12
  */
+//   自动运行后修改下面
+//  opts.push({data:data[i],name:data[i].hostName+"-"+data[i].hostIp,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
 
 layui.config({
     dir: layuiPath,

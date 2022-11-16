@@ -16,6 +16,7 @@ public enum OpsDbBackupStatusEnum implements CodeTextEnum {
 
     BACKUP("backup" , " 备份"),
     NO_BACKUP("no_need_backup" , "不需备份"),
+    STOP_BACKUP("no_need_backup" , "备份停用"),
     UNKNOW("unknow" , "未知");
 
     private String code;

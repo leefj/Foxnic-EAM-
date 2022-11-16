@@ -1,13 +1,13 @@
 /**
- * 数据库 列表页 JS 脚本
+ * 资产复制 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-16 10:04:48
+ * @since 2022-11-16 12:39:46
  */
 
 function FormPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
-	const moduleURL="/service-ops/ops-db-info";
+	const moduleURL="/service-eam/eam-asset-copy";
 	// 表单执行操作类型：view，create，edit
 	var action=null;
 	var disableCreateNew=false;
@@ -23,7 +23,7 @@ function FormPage() {
      	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload,dropdown=layui.dropdown;
 		laydate = layui.laydate,table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect;
 
-		action=admin.getTempData('ops-db-info-form-data-form-action');
+		action=admin.getTempData('eam-asset-copy-form-data-form-action');
 		//如果没有修改和保存权限
 		if( !admin.checkAuth(AUTH_PREFIX+":update") && !admin.checkAuth(AUTH_PREFIX+":save")) {
 			disableModify=true;
@@ -37,7 +37,7 @@ function FormPage() {
 		}
 
 		if(window.pageExt.form.beforeInit) {
-			window.pageExt.form.beforeInit(action,admin.getTempData('ops-db-info-form-data'));
+			window.pageExt.form.beforeInit(action,admin.getTempData('eam-asset-copy-form-data'));
 		}
 
 		//渲染表单组件
@@ -89,9 +89,9 @@ function FormPage() {
 				prevBodyHeight = bodyHeight;
 				return;
 			}
-			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'ops-db-info-form-data-win');
+			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'eam-asset-copy-form-data-win');
 			if(area==null) return;
-			admin.putTempData('ops-db-info-form-area', area);
+			admin.putTempData('eam-asset-copy-form-area', area);
 			window.adjustPopup=adjustPopup;
 			if(area.tooHeigh) {
 				var windowHeight=area.iframeHeight;
@@ -111,149 +111,6 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
-		//渲染 hostId 下拉字段
-		fox.renderSelectBox({
-			el: "hostId",
-			radio: true,
-			filterable: true,
-			paging: true,
-			pageRemote: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("hostId",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			searchField: "hostName", //请自行调整用于搜索的字段名称
-			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var defaultValues=[],defaultIndexs=[];
-				if(action=="create") {
-					defaultValues = "".split(",");
-					defaultIndexs = "0".split(",");
-				}
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					opts.push({data:data[i],name:data[i].hostName,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
-				}
-				return opts;
-			}
-		});
-		//渲染 typeId 下拉字段
-		fox.renderSelectBox({
-			el: "typeId",
-			radio: true,
-			filterable: true,
-			paging: true,
-			pageRemote: true,
-			layVerify: 'required',
-			layVerType: 'msg',
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("typeId",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			searchField: "name", //请自行调整用于搜索的字段名称
-			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var defaultValues=[],defaultIndexs=[];
-				if(action=="create") {
-					defaultValues = "".split(",");
-					defaultIndexs = "0".split(",");
-				}
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
-				}
-				return opts;
-			}
-		});
-		form.on('radio(status)', function(data){
-			var checked=[];
-			$('input[type=radio][lay-filter=status]:checked').each(function() {
-				checked.push($(this).val());
-			});
-			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("status",data,checked);
-		});
-		form.on('radio(backupStatus)', function(data){
-			var checked=[];
-			$('input[type=radio][lay-filter=backupStatus]:checked').each(function() {
-				checked.push($(this).val());
-			});
-			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("backupStatus",data,checked);
-		});
-		//渲染 deployMode 下拉字段
-		fox.renderSelectBox({
-			el: "deployMode",
-			radio: true,
-			filterable: true,
-			layVerify: 'required',
-			layVerType: 'msg',
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("deployMode",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			searchField: "label", //请自行调整用于搜索的字段名称
-			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var defaultValues=[],defaultIndexs=[];
-				if(action=="create") {
-					defaultValues = "single".split(",");
-					defaultIndexs = "".split(",");
-				}
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					opts.push({data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
-				}
-				return opts;
-			}
-		});
-		form.on('radio(logMethod)', function(data){
-			var checked=[];
-			$('input[type=radio][lay-filter=logMethod]:checked').each(function() {
-				checked.push($(this).val());
-			});
-			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("logMethod",data,checked);
-		});
-		//渲染 labelIds 下拉字段
-		fox.renderSelectBox({
-			el: "labelIds",
-			radio: false,
-			filterable: false,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("labelIds",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var defaultValues=[],defaultIndexs=[];
-				if(action=="create") {
-					defaultValues = "".split(",");
-					defaultIndexs = "".split(",");
-				}
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					opts.push({data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
-				}
-				return opts;
-			}
-		});
 	}
 
 	/**
@@ -285,7 +142,7 @@ function FormPage() {
       */
 	function fillFormData(formData) {
 		if(!formData) {
-			formData = admin.getTempData('ops-db-info-form-data');
+			formData = admin.getTempData('eam-asset-copy-form-data');
 		}
 
 		window.pageExt.form.beforeDataFill && window.pageExt.form.beforeDataFill(formData);
@@ -306,14 +163,6 @@ function FormPage() {
 
 
 
-			//设置  主机名称 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#hostId",formData.host);
-			//设置  库类型 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#typeId",formData.type);
-			//设置  部署模式 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#deployMode",formData.deployModeDict);
-			//设置  标签 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#labelIds",formData.labelList);
 
 			//处理fillBy
 
@@ -365,14 +214,6 @@ function FormPage() {
 
 
 
-		//获取 主机名称 下拉框的值
-		data["hostId"]=fox.getSelectedValue("hostId",false);
-		//获取 库类型 下拉框的值
-		data["typeId"]=fox.getSelectedValue("typeId",false);
-		//获取 部署模式 下拉框的值
-		data["deployMode"]=fox.getSelectedValue("deployMode",false);
-		//获取 标签 下拉框的值
-		data["labelIds"]=fox.getSelectedValue("labelIds",true);
 
 		return data;
 	}
@@ -409,7 +250,7 @@ function FormPage() {
 				}
 
 				if(doNext) {
-					admin.finishPopupCenterById('ops-db-info-form-data-win');
+					admin.finishPopupCenterById('eam-asset-copy-form-data-win');
 				}
 
 				// 调整状态为编辑
@@ -441,7 +282,7 @@ function FormPage() {
 
 
 	    //关闭窗口
-	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('ops-db-info-form-data-win',this); });
+	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('eam-asset-copy-form-data-win',this); });
 
     }
 
