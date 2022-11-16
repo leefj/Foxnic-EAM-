@@ -1,4 +1,4 @@
-# wget http://nginx.org/download/nginx-1.20.2.tar.gz
+# 移动端部署方式
 # yum -y install gcc wget gcc-c++ automake autoconf libtool libxml2-devel libxslt-devel perl-devel perl-ExtUtils-Embed pcre-devel openssl-devel
 
 # 编译安装

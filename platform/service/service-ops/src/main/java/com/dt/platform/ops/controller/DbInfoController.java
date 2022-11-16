@@ -1,6 +1,5 @@
 package com.dt.platform.ops.controller;
 
-
 import java.util.*;
 import org.github.foxnic.web.framework.web.SuperController;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,7 +48,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 数据库接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-02 22:08:26
+ * @since 2022-11-16 10:04:46
 */
 
 @InDoc
@@ -258,6 +257,7 @@ public class DbInfoController extends SuperController {
 			.with(DbInfoMeta.HOST)
 			.with(DbInfoMeta.TYPE)
 			.with(DbInfoMeta.DEPLOY_MODE_DICT)
+			.with(DbInfoMeta.LABEL_LIST)
 			.execute();
 		result.success(true).data(dbInfo);
 		return result;
@@ -352,6 +352,7 @@ public class DbInfoController extends SuperController {
 			.with(DbInfoMeta.HOST)
 			.with(DbInfoMeta.TYPE)
 			.with(DbInfoMeta.DEPLOY_MODE_DICT)
+			.with(DbInfoMeta.LABEL_LIST)
 			.execute();
 		result.success(true).data(list);
 		return result;

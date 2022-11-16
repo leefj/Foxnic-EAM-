@@ -1,6 +1,8 @@
 package com.dt.platform.ops.service.impl;
 
 import javax.annotation.Resource;
+
+import com.github.foxnic.sql.expr.Insert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -75,6 +77,16 @@ public class DbInfoServiceImpl extends SuperService<DbInfo> implements IDbInfoSe
 		Result r=super.insert(dbInfo,throwsException);
 		if(r.isSuccess()){
 			dao.execute("update ops_db_backup_info set database_id=? where selected_code=?",dbInfo.getId(),dbInfo.getSelectedCode());
+			dao.execute("delete from ops_db_info_label where db_id=?",dbInfo.getId());
+			if(dbInfo.getLabelIds()!=null){
+				for(String labelId:dbInfo.getLabelIds()){
+					Insert ins=new Insert("ops_db_info_label");
+					ins.set("id",IDGenerator.getSnowflakeIdString());
+					ins.set("db_id",dbInfo.getId());
+					ins.set("label",labelId);
+					dao.execute(ins);
+				}
+			}
 		}
 		return r;
 	}
@@ -172,6 +184,19 @@ public class DbInfoServiceImpl extends SuperService<DbInfo> implements IDbInfoSe
 	@Override
 	public Result update(DbInfo dbInfo , SaveMode mode,boolean throwsException) {
 		Result r=super.update(dbInfo , mode , throwsException);
+		if(r.isSuccess()){
+			dao.execute("delete from ops_db_info_label where db_id=?",dbInfo.getId());
+			if(dbInfo.getLabelIds()!=null){
+				for(String labelId:dbInfo.getLabelIds()){
+					Insert ins=new Insert("ops_db_info_label");
+					ins.set("id",IDGenerator.getSnowflakeIdString());
+					ins.set("db_id",dbInfo.getId());
+					ins.set("label",labelId);
+					dao.execute(ins);
+				}
+			}
+		}
+
 		return r;
 	}
 

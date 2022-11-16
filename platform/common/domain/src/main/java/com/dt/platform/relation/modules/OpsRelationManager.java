@@ -163,6 +163,11 @@ public class OpsRelationManager extends RelationManager {
     }
 
     public void setupDbInfo() {
+        this.property(DbInfoMeta.LABEL_LIST_PROP)
+                .using(OpsTables.OPS_DB_INFO.ID).join(OpsTables.OPS_DB_INFO_LABEL.DB_ID)
+                .using(OpsTables.OPS_DB_INFO_LABEL.LABEL).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='ops_db_label'");
+
         this.property(DbInfoMeta.DEPLOY_MODE_DICT_PROP)
                 .using(OpsTables.OPS_DB_INFO.DEPLOY_MODE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
                 .condition("dict_code='ops_db_deploy_mode'");

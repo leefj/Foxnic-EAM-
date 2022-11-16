@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 
+import com.dt.platform.eam.service.IAssetService;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -61,7 +62,8 @@ public class AssetCopyController extends SuperController {
 	@Autowired
 	private IAssetCopyService assetCopyService;
 
-
+	@Autowired
+	private IAssetService assetService;
 	/**
 	 * 添加资产复制
 	*/
@@ -77,8 +79,8 @@ public class AssetCopyController extends SuperController {
 	@SentinelResource(value = AssetCopyServiceProxy.INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AssetCopyServiceProxy.INSERT)
 	public Result insert(AssetCopyVO assetCopyVO) {
-		Result result=assetCopyService.insert(assetCopyVO,false);
-		return result;
+		return assetService.assetCopy(assetCopyVO.getAssetId(),assetCopyVO.getAssetNumber());
+
 	}
 
 

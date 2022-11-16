@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库
  * <p>数据库 , 数据表 ops_db_info 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-02 22:08:25
- * @sign 9CC3FE897AC246245F83B2B18261244B
+ * @since 2022-11-16 10:04:46
+ * @sign 0CA36E4594EF4B86E95A4B519CE0001A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -224,6 +224,18 @@ public class DbInfo extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="deployModeDict" , notes = "deployModeDict")
 	private DictItem deployModeDict;
+	
+	/**
+	 * labelList：labelList
+	*/
+	@ApiModelProperty(required = false,value="labelList" , notes = "labelList")
+	private List<DictItem> labelList;
+	
+	/**
+	 * labelIds：labelIds
+	*/
+	@ApiModelProperty(required = false,value="labelIds" , notes = "labelIds")
+	private List<String> labelIds;
 	
 	/**
 	 * 获得 主键<br>
@@ -847,6 +859,66 @@ public class DbInfo extends Entity {
 		this.deployModeDict=deployModeDict;
 		return this;
 	}
+	
+	/**
+	 * 获得 labelList<br>
+	 * labelList
+	 * @return labelList
+	*/
+	public List<DictItem> getLabelList() {
+		return labelList;
+	}
+	
+	/**
+	 * 设置 labelList
+	 * @param labelList labelList
+	 * @return 当前对象
+	*/
+	public DbInfo setLabelList(List<DictItem> labelList) {
+		this.labelList=labelList;
+		return this;
+	}
+	
+	/**
+	 * 添加 labelList
+	 * @param label labelList
+	 * @return 当前对象
+	*/
+	public DbInfo addLabel(DictItem... label) {
+		if(this.labelList==null) labelList=new ArrayList<>();
+		this.labelList.addAll(Arrays.asList(label));
+		return this;
+	}
+	
+	/**
+	 * 获得 labelIds<br>
+	 * labelIds
+	 * @return labelIds
+	*/
+	public List<String> getLabelIds() {
+		return labelIds;
+	}
+	
+	/**
+	 * 设置 labelIds
+	 * @param labelIds labelIds
+	 * @return 当前对象
+	*/
+	public DbInfo setLabelIds(List<String> labelIds) {
+		this.labelIds=labelIds;
+		return this;
+	}
+	
+	/**
+	 * 添加 labelIds
+	 * @param labelId labelIds
+	 * @return 当前对象
+	*/
+	public DbInfo addLabelId(String... labelId) {
+		if(this.labelIds==null) labelIds=new ArrayList<>();
+		this.labelIds.addAll(Arrays.asList(labelId));
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -918,6 +990,8 @@ public class DbInfo extends Entity {
 		inst.setTypeId(this.getTypeId());
 		inst.setStatus(this.getStatus());
 		if(all) {
+			inst.setLabelList(this.getLabelList());
+			inst.setLabelIds(this.getLabelIds());
 			inst.setBackupInfoList(this.getBackupInfoList());
 			inst.setHost(this.getHost());
 			inst.setBackupInfoIds(this.getBackupInfoIds());

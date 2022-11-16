@@ -14,6 +14,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.AssetCopyMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
@@ -21,7 +23,7 @@ import com.github.foxnic.dao.entity.EntityContext;
  * 资产复制
  * <p>资产复制 , 数据表 eam_asset_copy 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-26 12:28:39
+ * @since 2022-11-16 12:39:45
  * @sign F9A7309258946BCFF8E406B53EB9E778
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -38,19 +40,19 @@ public class AssetCopy extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "645240338448908288")
 	private String id;
 	
 	/**
 	 * 资产：资产
 	*/
-	@ApiModelProperty(required = false,value="资产" , notes = "资产")
+	@ApiModelProperty(required = false,value="资产" , notes = "资产" , example = "644266092318949376")
 	private String assetId;
 	
 	/**
 	 * 复制数量：复制数量
 	*/
-	@ApiModelProperty(required = false,value="复制数量" , notes = "复制数量")
+	@ApiModelProperty(required = false,value="复制数量" , notes = "复制数量" , example = "1")
 	private Integer assetNumber;
 	
 	/**
@@ -62,31 +64,31 @@ public class AssetCopy extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-11-16 12:34:45")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-11-16 12:34:45")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -107,13 +109,13 @@ public class AssetCopy extends Entity {
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
 	 * 数据版本号：数据版本号
 	*/
-	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号")
+	@ApiModelProperty(required = true,value="数据版本号" , notes = "数据版本号" , example = "2")
 	private Integer version;
 	
 	/**
@@ -498,5 +500,97 @@ public class AssetCopy extends Entity {
 	@Transient
 	public static AssetCopy create() {
 		return new com.dt.platform.domain.eam.meta.AssetCopyMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(AssetCopyMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetCopyMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetCopyMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetCopyMeta.CREATE_BY)));
+			this.setAssetNumber(DataParser.parse(Integer.class, map.get(AssetCopyMeta.ASSET_NUMBER)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetCopyMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetCopyMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetCopyMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetCopyMeta.DELETE_TIME)));
+			this.setAssetId(DataParser.parse(String.class, map.get(AssetCopyMeta.ASSET_ID)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetCopyMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetCopyMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AssetCopyMeta.ID)));
+			// others
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(AssetCopyMeta.NOTES));
+				this.setUpdateTime( (Date)map.get(AssetCopyMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(AssetCopyMeta.VERSION));
+				this.setCreateBy( (String)map.get(AssetCopyMeta.CREATE_BY));
+				this.setAssetNumber( (Integer)map.get(AssetCopyMeta.ASSET_NUMBER));
+				this.setDeleted( (Integer)map.get(AssetCopyMeta.DELETED));
+				this.setCreateTime( (Date)map.get(AssetCopyMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(AssetCopyMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AssetCopyMeta.DELETE_TIME));
+				this.setAssetId( (String)map.get(AssetCopyMeta.ASSET_ID));
+				this.setTenantId( (String)map.get(AssetCopyMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AssetCopyMeta.DELETE_BY));
+				this.setId( (String)map.get(AssetCopyMeta.ID));
+				// others
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(AssetCopyMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetCopyMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetCopyMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetCopyMeta.CREATE_BY)));
+			this.setAssetNumber(DataParser.parse(Integer.class, r.getValue(AssetCopyMeta.ASSET_NUMBER)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetCopyMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetCopyMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetCopyMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetCopyMeta.DELETE_TIME)));
+			this.setAssetId(DataParser.parse(String.class, r.getValue(AssetCopyMeta.ASSET_ID)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetCopyMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetCopyMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetCopyMeta.ID)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(AssetCopyMeta.NOTES));
+				this.setUpdateTime( (Date)r.getValue(AssetCopyMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(AssetCopyMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(AssetCopyMeta.CREATE_BY));
+				this.setAssetNumber( (Integer)r.getValue(AssetCopyMeta.ASSET_NUMBER));
+				this.setDeleted( (Integer)r.getValue(AssetCopyMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(AssetCopyMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(AssetCopyMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AssetCopyMeta.DELETE_TIME));
+				this.setAssetId( (String)r.getValue(AssetCopyMeta.ASSET_ID));
+				this.setTenantId( (String)r.getValue(AssetCopyMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AssetCopyMeta.DELETE_BY));
+				this.setId( (String)r.getValue(AssetCopyMeta.ID));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

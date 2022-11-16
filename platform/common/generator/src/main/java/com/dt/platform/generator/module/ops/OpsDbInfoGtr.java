@@ -1,11 +1,13 @@
 package com.dt.platform.generator.module.ops;
 
+import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.db.OpsTables;
 import com.dt.platform.constants.enums.DictEnum;
 import com.dt.platform.constants.enums.ops.MonitorWarnLevelEnum;
 import com.dt.platform.constants.enums.ops.MonitorWarnProcessStatusEnum;
 import com.dt.platform.constants.enums.ops.OpsDbBackupStatusEnum;
 import com.dt.platform.constants.enums.ops.OpsDbStatusEnum;
+import com.dt.platform.domain.eam.meta.AssetMeta;
 import com.dt.platform.domain.ops.DbBackupInfo;
 import com.dt.platform.domain.ops.Host;
 import com.dt.platform.domain.ops.ServiceInfo;
@@ -40,6 +42,13 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addSimpleProperty(Host.class,"host","host","host");
         cfg.getPoClassFile().addSimpleProperty(ServiceInfo.class,"type","type","type");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"deployModeDict","deployModeDict","deployModeDict");
+
+
+
+        cfg.getPoClassFile().addListProperty(DictItem.class,"labelList","labelList","labelList");
+        cfg.getPoClassFile().addListProperty(String.class,"labelIds","labelIds","labelIds");
+
+
         cfg.view().field(OpsTables.OPS_DB_INFO.NAME).search().fuzzySearch();
         cfg.view().field(OpsTables.OPS_DB_INFO.NOTES).search().fuzzySearch();
         cfg.view().field(OpsTables.OPS_DB_INFO.CREATE_TIME).search().range();
@@ -47,13 +56,21 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.view().search().inputLayout(
                 new Object[]{
                         OpsTables.OPS_DB_INFO.STATUS,
+                        DbInfoMeta.LABEL_IDS,
                         OpsTables.OPS_DB_INFO.BACKUP_STATUS,
                         OpsTables.OPS_DB_INFO.NAME,
                 },
                 new Object[]{
+                        OpsTables.OPS_DB_INFO.NOTES,
                         OpsTables.OPS_DB_INFO.CREATE_TIME,
                 }
         );
+
+        cfg.view().search().labelWidth(1,Config.searchLabelWidth+20);
+        cfg.view().search().labelWidth(2,Config.searchLabelWidth+20);
+        cfg.view().search().labelWidth(3,Config.searchLabelWidth+20);
+        cfg.view().search().labelWidth(4,Config.searchLabelWidth+20);
+        cfg.view().search().inputWidth(Config.searchInputWidth);
 
         cfg.view().search().rowsDisplay(1);
         cfg.view().field(OpsTables.OPS_DB_INFO.HOST_ID)
@@ -93,13 +110,24 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_DB_INFO.BACKUP_STATUS).form().validate().required().form()
                 .radioBox().enumType(OpsDbBackupStatusEnum.class).defaultIndex(0);
 
-        cfg.view().field(OpsTables.OPS_DB_INSTANCE.LOG_METHOD).basic().label("日志模式")
+        cfg.view().field(OpsTables.OPS_DB_INFO.LOG_METHOD).basic().label("日志模式")
                 .form().validate().required().form().radioBox().dict(DictEnum.OPS_DB_LOG_METHOD).defaultIndex(0);
 
         String resourceNameField="res_"+OpsTables.OPS_HOST.HOST_IP;
         cfg.view().field(resourceNameField)
                 .basic().label("IP")
                 .table().fillBy(DbInfoMeta.HOST, HostMeta.HOST_IP);
+
+        cfg.view().field(DbInfoMeta.LABEL_IDS)
+                .basic().label("标签")
+                .table().sort(false)
+                .form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=ops_db_label")
+                               .paging(false).filter(false).toolbar(false)
+                .valueField(ServiceInfoMeta.ID).textField(ServiceInfoMeta.NAME)
+                .toolbar(false).paging(false)
+                        .valueField(DictItemMeta.CODE).
+                        textField(DictItemMeta.LABEL).
+                fillWith(DbInfoMeta.LABEL_LIST).muliti(true);
 
 
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
@@ -110,12 +138,13 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_DB_INFO.HOST_ID,
+                        OpsTables.OPS_DB_INFO.NAME,
                         OpsTables.OPS_DB_INFO.STATUS,
                         OpsTables.OPS_DB_INFO.TYPE_ID,
-                        OpsTables.OPS_DB_INFO.NAME,
-
+                        DbInfoMeta.LABEL_IDS,
                 },
                 new Object[] {
+
                         OpsTables.OPS_DB_INFO.DEPLOY_MODE,
                         OpsTables.OPS_DB_INFO.LOG_METHOD,
                         OpsTables.OPS_DB_INFO.DB_PORT,
