@@ -7,7 +7,6 @@ import java.util.List;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
-import com.dt.platform.constants.enums.eam.AssetInventoryDetailStatusEnum;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
 import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.InventoryAssetMeta;
@@ -17,12 +16,11 @@ import com.dt.platform.eam.service.IInventoryAssetService;
 import com.dt.platform.proxy.common.TplFileServiceProxy;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.commons.log.Logger;
-import com.github.foxnic.dao.data.Rcd;
-import com.github.foxnic.dao.data.RcdSet;
 import io.swagger.models.auth.In;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.github.foxnic.web.domain.hrm.Person;
-import org.github.foxnic.web.session.SessionUser;
+import com.github.foxnic.commons.collection.CollectorUtil;
+import com.github.foxnic.dao.entity.ReferCause;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -244,62 +242,6 @@ public class InventoryController extends SuperController {
         inventoryService.dao().join(inventory.getManager(), Person.class);
         inventoryService.dao().join(inventory.getOriginator(), Person.class);
         inventoryService.dao().join(inventory.getInventoryUser(), Person.class);
-        result.success(true).data(inventory);
-        return result;
-    }
-
-    /**
-     * 获取资产盘点
-     */
-    @ApiOperation(value = "获取资产盘点")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = InventoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
-    })
-    @ApiOperationSupport(order = 6)
-    @SentinelResource(value = InventoryServiceProxy.GET_BY_ID_FOR_EMPLOYEE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
-    @PostMapping(InventoryServiceProxy.GET_BY_ID_FOR_EMPLOYEE)
-    public Result<Inventory> getByIdForEmployee(String id) {
-        Result<Inventory> result = new Result<>();
-        Inventory inventory = inventoryService.getById(id);
-        // join 关联的对象
-        inventoryService.dao().fill(inventory).
-                with(InventoryMeta.MANAGER).with(InventoryMeta.ORIGINATOR).
-                with(InventoryMeta.DIRECTOR).with(InventoryMeta.INVENTORY_USER).
-                with(InventoryMeta.CATEGORY).with(InventoryMeta.WAREHOUSE).
-                with(InventoryMeta.POSITION).execute();
-        inventoryService.dao().join(inventory.getDirector(), Person.class);
-        inventoryService.dao().join(inventory.getManager(), Person.class);
-        inventoryService.dao().join(inventory.getOriginator(), Person.class);
-        inventoryService.dao().join(inventory.getInventoryUser(), Person.class);
-        String userId=SessionUser.getCurrent().getActivatedEmployeeId();
-        String sql="select a.status,count(1) cnt from eam_inventory_asset a,eam_asset b \n" +
-                "where a.asset_id=b.id and a.deleted='0' and b.deleted='0'\n" +
-                "and inventory_id=?\n" +
-                "and (b.use_user_id=? or oper_empl_id=?) group by a.status";
-        RcdSet rs=inventoryService.dao().query(sql,id,userId,userId);
-        int surplus=0;
-        int loss=0;
-        int counted=0;
-        int not_counted=0;
-        int exception=0;
-        for(Rcd rcd:rs){
-            if(AssetInventoryDetailStatusEnum.SURPLUS.code().equals( rcd.getString("status"))){
-                surplus=rcd.getInteger("cnt");
-            }else if(AssetInventoryDetailStatusEnum.EXCEPTION.code().equals( rcd.getString("status"))){
-                exception=rcd.getInteger("cnt");
-            }else if(AssetInventoryDetailStatusEnum.NOT_COUNTED.code().equals( rcd.getString("status"))){
-                not_counted=rcd.getInteger("cnt");
-            }else if(AssetInventoryDetailStatusEnum.LOSS.code().equals( rcd.getString("status"))){
-                loss=rcd.getInteger("cnt");
-            }else if(AssetInventoryDetailStatusEnum.COUNTED.code().equals( rcd.getString("status"))){
-                counted=rcd.getInteger("cnt");
-            }
-        }
-        inventory.setInventoryAssetCountByException(exception);
-        inventory.setInventoryAssetCountBySurplus(surplus);
-        inventory.setInventoryAssetCountByNotCounted(not_counted);
-        inventory.setInventoryAssetCountByCounted(counted);
-        inventory.setInventoryAssetCountByLoss(loss);
         result.success(true).data(inventory);
         return result;
     }

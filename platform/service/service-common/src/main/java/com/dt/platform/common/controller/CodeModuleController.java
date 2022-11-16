@@ -17,6 +17,8 @@ import io.swagger.annotations.ApiOperation;
 import org.github.foxnic.web.framework.sentinel.SentinelExceptionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import com.github.foxnic.commons.collection.CollectorUtil;
+import com.github.foxnic.dao.entity.ReferCause;
 import org.springframework.web.bind.annotation.RestController;
 
 @Api(tags = "编码生成")
