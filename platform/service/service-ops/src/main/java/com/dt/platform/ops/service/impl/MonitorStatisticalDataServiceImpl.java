@@ -24,6 +24,7 @@ import com.github.foxnic.commons.concurrent.SimpleJoinForkTask;
 import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.dao.data.Rcd;
 import com.github.foxnic.dao.data.RcdSet;
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.SuperService;
 import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.sql.expr.Insert;
@@ -61,6 +62,11 @@ public class MonitorStatisticalDataServiceImpl extends SuperService<MonitorNode>
      * 获得 DAO 对象
      * */
     public DAO dao() { return dao; }
+
+    @Override
+    public <T> Map<T, ReferCause> hasRefers(List<T> list) {
+        return null;
+    }
 
 
     @Override

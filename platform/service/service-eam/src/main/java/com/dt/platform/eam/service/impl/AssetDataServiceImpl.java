@@ -26,6 +26,7 @@ import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.commons.reflect.EnumUtil;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.data.Rcd;
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.SuperService;
 import com.github.foxnic.dao.excel.ExcelStructure;
 import com.github.foxnic.dao.excel.ValidateResult;
@@ -105,6 +106,11 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
      * 获得 DAO 对象
      * */
     public DAO dao() { return dao; }
+
+    @Override
+    public <T> Map<T, ReferCause> hasRefers(List<T> list) {
+        return null;
+    }
 
 
     @Override

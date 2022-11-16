@@ -3,40 +3,30 @@ package com.dt.platform.ops.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.dt.platform.constants.enums.ops.*;
-import com.dt.platform.domain.ops.*;
-import com.dt.platform.domain.ops.meta.HostMeta;
-import com.dt.platform.domain.ops.meta.InformationSystemMeta;
-import com.dt.platform.ops.service.*;
-import com.github.foxnic.api.constant.CodeTextEnum;
+import com.dt.platform.constants.enums.ops.OpsDbBackupResultEnum;
+import com.dt.platform.domain.ops.DbBackupInfo;
+import com.dt.platform.domain.ops.DbBackupRecord;
+import com.dt.platform.domain.ops.DbInfo;
+import com.dt.platform.ops.service.IDbBackupInfoService;
+import com.dt.platform.ops.service.IDbBackupRecordService;
+import com.dt.platform.ops.service.IOpsDatabaseService;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
-import com.github.foxnic.commons.bean.BeanNameUtil;
-import com.github.foxnic.commons.bean.BeanUtil;
+import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.commons.log.Logger;
-import com.github.foxnic.commons.reflect.EnumUtil;
 import com.github.foxnic.dao.data.Rcd;
 import com.github.foxnic.dao.data.SaveMode;
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.SuperService;
 import com.github.foxnic.dao.spec.DAO;
-import org.github.foxnic.web.domain.hrm.OrganizationVO;
-import org.github.foxnic.web.domain.system.DictItem;
-import org.github.foxnic.web.domain.system.DictItemVO;
 import org.github.foxnic.web.framework.dao.DBConfigs;
-import org.github.foxnic.web.misc.ztree.ZTreeNode;
-import org.github.foxnic.web.proxy.hrm.OrganizationServiceProxy;
-import org.github.foxnic.web.proxy.system.DictItemServiceProxy;
-import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.io.*;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -67,6 +57,17 @@ public class OpsDatabaseServiceImpl extends SuperService<DbInfo> implements IOps
 	 * 获得 DAO 对象
 	 * */
 	public DAO dao() { return dao; }
+
+/**
+	 * 批量检查引用
+	 * @param ids  检查这些ID是否又被外部表引用
+	 * */
+	@Override
+	public <T> Map<T, ReferCause> hasRefers(List<T> ids) {
+		// 默认无业务逻辑，返回此行；有业务逻辑需要校验时，请修改并使用已注释的行代码！！！
+		return MapUtil.asMap(ids,new ReferCause(false));
+		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
+	}
 
 
 	//数据相关

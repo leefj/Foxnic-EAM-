@@ -17,6 +17,7 @@ import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.data.Rcd;
 import com.github.foxnic.dao.data.RcdSet;
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.SuperService;
 import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -32,6 +33,7 @@ import javax.annotation.Resource;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class AssetAlarmServiceImpl extends SuperService<Asset> implements IAssetAlarmService {
@@ -56,6 +58,10 @@ public class AssetAlarmServiceImpl extends SuperService<Asset> implements IAsset
      * */
     public DAO dao() { return dao; }
 
+    @Override
+    public <T> Map<T, ReferCause> hasRefers(List<T> list) {
+        return null;
+    }
 
 
     @Override
