@@ -68,6 +68,11 @@ public interface InventoryServiceProxy {
     public static final String GET_BY_ID = API_PREFIX + "get-by-id";
 
     /**
+     * 获取单个资产盘点
+     */
+    public static final String GET_BY_ID_FOR_EMPLOYEE = API_PREFIX + "get-by-id-for-employee";
+
+    /**
      * 获取多个资产盘点
      */
     public static final String GET_BY_IDS = API_PREFIX + "get-by-ids";
