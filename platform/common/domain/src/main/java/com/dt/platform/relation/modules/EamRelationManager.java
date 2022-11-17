@@ -1234,6 +1234,7 @@ public class EamRelationManager extends RelationManager {
         if(assets!=null&&assets.size()>0){
             for(int i=0;i<assets.size();i++){
                 if(AssetInventoryDetailStatusEnum.NOT_COUNTED.code().equals( assets.get(i).getStatus())){
+
                     notCount++;
                 }else if(AssetInventoryDetailStatusEnum.COUNTED.code().equals( assets.get(i).getStatus())){
                     count++;
@@ -1258,7 +1259,10 @@ public class EamRelationManager extends RelationManager {
 
         this.property(InventoryMeta.INVENTORY_ASSET_INFO_LIST_PROP)
                 .using(EAMTables.EAM_INVENTORY.ID).join(EAMTables.EAM_INVENTORY_ASSET.INVENTORY_ID).after((tag,inventory,assets,map)->{
+
+
             HashMap<String,Integer> data= calculateInventoryAssetQuantityStatistics(assets);
+
             inventory.setInventoryAssetCountByNotCounted(data.getOrDefault(AssetInventoryDetailStatusEnum.NOT_COUNTED.code(),0));
             inventory.setInventoryAssetCountByCounted(data.getOrDefault(AssetInventoryDetailStatusEnum.COUNTED.code(),0));
             inventory.setInventoryAssetCountByLoss(data.getOrDefault(AssetInventoryDetailStatusEnum.LOSS.code(),0));
