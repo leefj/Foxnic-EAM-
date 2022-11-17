@@ -218,6 +218,8 @@ public class InventoryController extends SuperController {
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     public Result save(InventoryVO inventoryVO) {
         Result result = inventoryService.save(inventoryVO, SaveMode.DIRTY_OR_NOT_NULL_FIELDS, false);
+
+
         return result;
     }
 
