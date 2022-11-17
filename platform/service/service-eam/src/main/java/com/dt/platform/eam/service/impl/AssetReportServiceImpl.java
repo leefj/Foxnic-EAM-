@@ -3,24 +3,24 @@ package com.dt.platform.eam.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.dt.platform.constants.enums.eam.*;
+import com.dt.platform.constants.enums.eam.AssetOwnerCodeEnum;
+import com.dt.platform.constants.enums.eam.AssetPcmCodeEnum;
+import com.dt.platform.constants.enums.eam.InspectionTaskStatusEnum;
+import com.dt.platform.constants.enums.eam.RepairOrderStatusEnum;
 import com.dt.platform.domain.eam.Asset;
-import com.dt.platform.domain.eam.AssetVO;
 import com.dt.platform.eam.service.IAssetDataService;
 import com.dt.platform.eam.service.IAssetReportService;
-import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.commons.log.Logger;
-import com.github.foxnic.commons.reflect.EnumUtil;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.data.Rcd;
 import com.github.foxnic.dao.data.RcdSet;
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.SuperService;
 import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.sql.expr.ConditionExpr;
-import org.apache.poi.ss.formula.functions.T;
 import org.github.foxnic.web.domain.pcm.Catalog;
 import org.github.foxnic.web.domain.pcm.CatalogVO;
 import org.github.foxnic.web.framework.dao.DBConfigs;
@@ -35,6 +35,7 @@ import javax.annotation.Resource;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service("EAMAssetReportService")
 public class AssetReportServiceImpl  extends SuperService<Asset> implements IAssetReportService {
@@ -60,6 +61,11 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
      * 获得 DAO 对象
      * */
     public DAO dao() { return dao; }
+
+    @Override
+    public <T> Map<T, ReferCause> hasRefers(List<T> list) {
+        return null;
+    }
 
 
     @Override

@@ -1,59 +1,57 @@
 package com.dt.platform.eam.service.impl;
 
 
-import javax.annotation.Resource;
-
-import com.alibaba.druid.pool.ha.node.NodeEventTypeEnum;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.db.EAMTables;
-import com.dt.platform.constants.enums.common.CodeModuleEnum;
 import com.dt.platform.constants.enums.eam.*;
-import com.dt.platform.domain.eam.*;
+import com.dt.platform.domain.eam.Asset;
+import com.dt.platform.domain.eam.AssetDataChange;
+import com.dt.platform.domain.eam.AssetDataChangeRecord;
+import com.dt.platform.domain.eam.AssetItem;
 import com.dt.platform.domain.eam.meta.AssetDataChangeMeta;
+import com.dt.platform.eam.service.IAssetDataChangeService;
 import com.dt.platform.eam.service.IAssetSelectedDataService;
 import com.dt.platform.eam.service.IAssetService;
 import com.dt.platform.eam.service.IOperateService;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
+import com.github.foxnic.api.error.ErrorDesc;
+import com.github.foxnic.api.transter.Result;
+import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.CollectorUtil;
+import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.commons.lang.StringUtil;
-import com.github.foxnic.commons.reflect.EnumUtil;
+import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.data.Rcd;
 import com.github.foxnic.dao.data.RcdSet;
-import com.github.foxnic.sql.expr.*;
-import org.github.foxnic.web.constants.db.FoxnicWeb;
+import com.github.foxnic.dao.data.SaveMode;
+import com.github.foxnic.dao.entity.ReferCause;
+import com.github.foxnic.dao.entity.SuperService;
+import com.github.foxnic.dao.excel.ExcelStructure;
+import com.github.foxnic.dao.excel.ExcelWriter;
+import com.github.foxnic.dao.excel.ValidateResult;
+import com.github.foxnic.dao.spec.DAO;
+import com.github.foxnic.sql.expr.ConditionExpr;
+import com.github.foxnic.sql.expr.In;
+import com.github.foxnic.sql.expr.SQL;
+import com.github.foxnic.sql.meta.DBField;
 import org.github.foxnic.web.constants.enums.changes.ApprovalAction;
 import org.github.foxnic.web.constants.enums.changes.ApprovalMode;
-import org.github.foxnic.web.constants.enums.changes.ApprovalStatus;
 import org.github.foxnic.web.constants.enums.changes.ChangeType;
 import org.github.foxnic.web.domain.bpm.Assignee;
 import org.github.foxnic.web.domain.changes.*;
 import org.github.foxnic.web.framework.change.ChangesAssistant;
+import org.github.foxnic.web.framework.dao.DBConfigs;
 import org.github.foxnic.web.proxy.changes.ChangeDefinitionServiceProxy;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
-import java.util.*;
-
-import com.github.foxnic.api.transter.Result;
-import com.github.foxnic.dao.data.PagedList;
-import com.github.foxnic.dao.entity.SuperService;
-import com.github.foxnic.dao.spec.DAO;
-import java.lang.reflect.Field;
-import com.github.foxnic.commons.busi.id.IDGenerator;
-import com.github.foxnic.api.error.ErrorDesc;
-import com.github.foxnic.dao.excel.ExcelWriter;
-import com.github.foxnic.dao.excel.ValidateResult;
-import com.github.foxnic.dao.excel.ExcelStructure;
-import java.io.InputStream;
-import com.github.foxnic.sql.meta.DBField;
-import com.github.foxnic.dao.data.SaveMode;
-import com.github.foxnic.dao.meta.DBColumnMeta;
-import com.dt.platform.eam.service.IAssetDataChangeService;
-import org.github.foxnic.web.framework.dao.DBConfigs;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
+import java.io.InputStream;
+import java.lang.reflect.Field;
+import java.util.*;
 
 /**
  * <p>
@@ -896,6 +894,17 @@ public class AssetDataChangeServiceImpl extends SuperService<AssetDataChange> im
 	@Override
 	public List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch) {
 		return super.importExcel(input,sheetIndex,batch);
+	}
+
+/**
+	 * 批量检查引用
+	 * @param ids  检查这些ID是否又被外部表引用
+	 * */
+	@Override
+	public <T> Map<T, ReferCause> hasRefers(List<T> ids) {
+		// 默认无业务逻辑，返回此行；有业务逻辑需要校验时，请修改并使用已注释的行代码！！！
+		return MapUtil.asMap(ids,new ReferCause(false));
+		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
 	}
 
 	@Override

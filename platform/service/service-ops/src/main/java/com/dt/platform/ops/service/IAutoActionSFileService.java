@@ -164,17 +164,9 @@ public interface IAutoActionSFileService extends  ISimpleIdService<AutoActionSFi
 	 */
 	AutoActionSFile getById(String id);
 
-	/**
-	 * 检查引用
-	 * @param id  检查ID是否又被外部表引用
-	 * */
-	Boolean hasRefers(String id);
 
-	/**
-	 * 批量检查引用
-	 * @param ids  检查这些ID是否又被外部表引用
-	 * */
-	Map<String,Boolean> hasRefers(List<String> ids);
+
+
 
 	/**
 	 * 按 id 获取多个对象

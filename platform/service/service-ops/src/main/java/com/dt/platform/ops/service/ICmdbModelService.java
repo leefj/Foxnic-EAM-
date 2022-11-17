@@ -172,18 +172,6 @@ public interface ICmdbModelService extends  ISimpleIdService<CmdbModel,String> {
 	CmdbModel getById(String id);
 
 	/**
-	 * 检查引用
-	 * @param id  检查ID是否又被外部表引用
-	 * */
-	Boolean hasRefers(String id);
-
-	/**
-	 * 批量检查引用
-	 * @param ids  检查这些ID是否又被外部表引用
-	 * */
-	Map<String,Boolean> hasRefers(List<String> ids);
-
-	/**
 	 * 按 id 获取多个对象
 	 * @param ids  主键清单
 	 * @return 实体集

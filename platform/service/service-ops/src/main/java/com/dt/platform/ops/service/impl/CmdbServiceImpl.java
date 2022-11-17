@@ -1,16 +1,16 @@
 package com.dt.platform.ops.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.ops.OpsCmdbAttributeTypeEnum;
-import com.dt.platform.domain.ops.*;
-import com.dt.platform.domain.ops.meta.CmdbLogMeta;
+import com.dt.platform.domain.ops.CmdbModel;
+import com.dt.platform.domain.ops.CmdbModelV;
+import com.dt.platform.domain.ops.CmdbModelVVO;
+import com.dt.platform.domain.ops.CmdbObjAttribute;
 import com.dt.platform.domain.ops.meta.CmdbModelMeta;
 import com.dt.platform.domain.ops.meta.CmdbModelVMeta;
 import com.dt.platform.ops.service.*;
-import com.github.foxnic.api.error.CommonError;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.bean.BeanUtil;
@@ -18,21 +18,20 @@ import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.commons.log.Logger;
-import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.data.SaveMode;
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.SuperService;
 import com.github.foxnic.dao.spec.DAO;
-import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.sql.expr.Update;
-import com.github.foxnic.sql.meta.DBField;
-import org.apache.commons.lang3.StringUtils;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -60,7 +59,16 @@ public class CmdbServiceImpl extends SuperService<CmdbModel> implements ICmdbSer
 	 * */
 	public DAO dao() { return dao; }
 
-
+/**
+	 * 批量检查引用
+	 * @param ids  检查这些ID是否又被外部表引用
+	 * */
+	@Override
+	public <T> Map<T, ReferCause> hasRefers(List<T> ids) {
+		// 默认无业务逻辑，返回此行；有业务逻辑需要校验时，请修改并使用已注释的行代码！！！
+		return MapUtil.asMap(ids,new ReferCause(false));
+		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
+	}
 
 
 	@Override

@@ -1,21 +1,12 @@
 package com.dt.platform.ops.service.impl;
 
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.dt.platform.constants.enums.DictEnum;
-import com.dt.platform.constants.enums.eam.AssetDataExportColumnEnum;
-import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
-import com.dt.platform.constants.enums.eam.AssetStatusEnum;
 import com.dt.platform.constants.enums.ops.HostMonitorStatusEnum;
 import com.dt.platform.constants.enums.ops.HostStatusEnum;
 import com.dt.platform.constants.enums.ops.OpsHostDataExportColumnEnum;
 import com.dt.platform.constants.enums.ops.OpsISDataExportColumnEnum;
-import com.dt.platform.domain.eam.Asset;
-import com.dt.platform.domain.eam.AssetVO;
-import com.dt.platform.domain.eam.Position;
-import com.dt.platform.domain.eam.meta.AssetMeta;
 import com.dt.platform.domain.ops.*;
 import com.dt.platform.domain.ops.meta.HostMeta;
 import com.dt.platform.domain.ops.meta.InformationSystemMeta;
@@ -25,40 +16,26 @@ import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.bean.BeanNameUtil;
 import com.github.foxnic.commons.bean.BeanUtil;
-import com.github.foxnic.commons.busi.id.IDGenerator;
-import com.github.foxnic.commons.collection.CollectorUtil;
+import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.commons.reflect.EnumUtil;
-import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.data.Rcd;
-import com.github.foxnic.dao.data.SaveMode;
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.SuperService;
-import com.github.foxnic.dao.excel.ExcelStructure;
-import com.github.foxnic.dao.excel.ExcelWriter;
-import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.spec.DAO;
-import com.github.foxnic.sql.expr.ConditionExpr;
-import com.github.foxnic.sql.meta.DBField;
 import org.github.foxnic.web.domain.hrm.OrganizationVO;
-import org.github.foxnic.web.domain.system.Dict;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.system.DictItemVO;
-import org.github.foxnic.web.domain.system.DictVO;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import org.github.foxnic.web.misc.ztree.ZTreeNode;
 import org.github.foxnic.web.proxy.hrm.OrganizationServiceProxy;
 import org.github.foxnic.web.proxy.system.DictItemServiceProxy;
-import org.github.foxnic.web.proxy.system.DictServiceProxy;
-import org.github.foxnic.web.proxy.utils.DictProxyUtil;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import oshi.software.os.windows.WindowsOSSystemInfo;
 
 import javax.annotation.Resource;
 import java.io.*;
-import java.lang.reflect.Field;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -86,6 +63,17 @@ public class OpsDataServiceImpl extends SuperService<Host> implements IOpsDataSe
 	 * 获得 DAO 对象
 	 * */
 	public DAO dao() { return dao; }
+
+/**
+	 * 批量检查引用
+	 * @param ids  检查这些ID是否又被外部表引用
+	 * */
+	@Override
+	public <T> Map<T, ReferCause> hasRefers(List<T> ids) {
+		// 默认无业务逻辑，返回此行；有业务逻辑需要校验时，请修改并使用已注释的行代码！！！
+		return MapUtil.asMap(ids,new ReferCause(false));
+		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
+	}
 
 	@Autowired
 	IHostService hostService;

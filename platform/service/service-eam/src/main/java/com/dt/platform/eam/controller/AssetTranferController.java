@@ -14,6 +14,8 @@ import org.github.foxnic.web.domain.bpm.BpmActionResult;
 import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
 import org.github.foxnic.web.proxy.bpm.BpmCallbackController;
+import com.github.foxnic.commons.collection.CollectorUtil;
+import com.github.foxnic.dao.entity.ReferCause;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,73 +1,57 @@
 package com.dt.platform.vehicle.service.impl;
 
 
-import javax.annotation.Resource;
-
-import com.dt.platform.constants.enums.common.CodeModuleEnum;
-import com.dt.platform.constants.enums.eam.*;
 import com.dt.platform.constants.enums.vehicle.VehicleDataExportColumnEnum;
-import com.dt.platform.constants.enums.vehicle.VehicleStatusEnum;
-import com.dt.platform.domain.eam.Asset;
-import com.dt.platform.domain.eam.AssetEmployeeApply;
-import com.dt.platform.domain.eam.meta.AssetMeta;
+import com.dt.platform.domain.vehicle.Info;
 import com.dt.platform.domain.vehicle.meta.InfoMeta;
-import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.dt.platform.proxy.common.TplFileServiceProxy;
-import com.github.foxnic.api.constant.CodeTextEnum;
+import com.dt.platform.vehicle.service.IInfoService;
+import com.github.foxnic.api.error.ErrorDesc;
+import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.bean.BeanNameUtil;
 import com.github.foxnic.commons.bean.BeanUtil;
+import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.CollectorUtil;
+import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.commons.lang.DateUtil;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.commons.reflect.EnumUtil;
+import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.data.Rcd;
 import com.github.foxnic.dao.data.RcdSet;
-import com.github.foxnic.dao.entity.QuerySQLBuilder;
+import com.github.foxnic.dao.data.SaveMode;
+import com.github.foxnic.dao.entity.ReferCause;
+import com.github.foxnic.dao.entity.SuperService;
 import com.github.foxnic.dao.excel.*;
+import com.github.foxnic.dao.meta.DBColumnMeta;
 import com.github.foxnic.dao.meta.DBTableMeta;
+import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.dao.sql.SQLBuilder;
 import com.github.foxnic.sql.expr.*;
+import com.github.foxnic.sql.meta.DBField;
 import com.github.foxnic.sql.treaty.DBTreaty;
 import org.apache.poi.ss.usermodel.*;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.OrganizationVO;
 import org.github.foxnic.web.domain.hrm.Person;
-import org.github.foxnic.web.domain.pcm.CatalogAttribute;
-import org.github.foxnic.web.domain.pcm.CatalogData;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.system.DictItemVO;
+import org.github.foxnic.web.framework.dao.DBConfigs;
 import org.github.foxnic.web.misc.ztree.ZTreeNode;
 import org.github.foxnic.web.proxy.hrm.EmployeeServiceProxy;
 import org.github.foxnic.web.proxy.hrm.OrganizationServiceProxy;
-import org.github.foxnic.web.proxy.pcm.CatalogServiceProxy;
 import org.github.foxnic.web.proxy.system.DictItemServiceProxy;
 import org.github.foxnic.web.session.SessionUser;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
-import com.dt.platform.domain.vehicle.Info;
-import com.dt.platform.domain.vehicle.InfoVO;
-
+import javax.annotation.Resource;
 import java.io.*;
+import java.lang.reflect.Field;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
-import com.github.foxnic.api.transter.Result;
-import com.github.foxnic.dao.data.PagedList;
-import com.github.foxnic.dao.entity.SuperService;
-import com.github.foxnic.dao.spec.DAO;
-import java.lang.reflect.Field;
-import com.github.foxnic.commons.busi.id.IDGenerator;
-import com.github.foxnic.api.error.ErrorDesc;
-import com.github.foxnic.sql.meta.DBField;
-import com.github.foxnic.dao.data.SaveMode;
-import com.github.foxnic.dao.meta.DBColumnMeta;
-import com.dt.platform.vehicle.service.IInfoService;
-import org.github.foxnic.web.framework.dao.DBConfigs;
 
 /**
  * <p>
@@ -753,6 +737,17 @@ public class InfoServiceImpl extends SuperService<Info> implements IInfoService 
 	@Override
 	public ExcelStructure buildExcelStructure(boolean isForExport) {
 		return super.buildExcelStructure(isForExport);
+	}
+
+/**
+	 * 批量检查引用
+	 * @param ids  检查这些ID是否又被外部表引用
+	 * */
+	@Override
+	public <T> Map<T, ReferCause> hasRefers(List<T> ids) {
+		// 默认无业务逻辑，返回此行；有业务逻辑需要校验时，请修改并使用已注释的行代码！！！
+		return MapUtil.asMap(ids,new ReferCause(false));
+		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
 	}
 
 	@Override

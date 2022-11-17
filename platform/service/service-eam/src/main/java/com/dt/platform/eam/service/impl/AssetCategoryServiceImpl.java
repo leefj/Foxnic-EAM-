@@ -1,15 +1,11 @@
 package com.dt.platform.eam.service.impl;
 
-import com.dt.platform.constants.enums.eam.AssetStatusEnum;
-import com.dt.platform.domain.eam.AssetBorrow;
-import com.dt.platform.eam.service.IAssetBorrowService;
 import com.dt.platform.eam.service.IAssetCategoryService;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.lang.StringUtil;
-import com.github.foxnic.commons.reflect.EnumUtil;
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.SuperService;
 import com.github.foxnic.dao.spec.DAO;
-import com.github.foxnic.sql.meta.DBDataType;
 import org.github.foxnic.web.domain.pcm.*;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import org.github.foxnic.web.misc.ztree.ZTreeNode;
@@ -20,6 +16,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service("EamAssetCategory")
 public class AssetCategoryServiceImpl  extends SuperService<Catalog> implements IAssetCategoryService {
@@ -36,6 +33,10 @@ public class AssetCategoryServiceImpl  extends SuperService<Catalog> implements 
      * */
     public DAO dao() { return dao; }
 
+    @Override
+    public <T> Map<T, ReferCause> hasRefers(List<T> list) {
+        return null;
+    }
 
 
     @Override

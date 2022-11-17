@@ -1,9 +1,6 @@
 package com.dt.platform.eam.service.impl;
 
 
-import javax.annotation.Resource;
-
-
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.deepoove.poi.data.PictureType;
@@ -19,18 +16,29 @@ import com.dt.platform.eam.service.*;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.dt.platform.proxy.common.TplFileServiceProxy;
 import com.github.foxnic.api.constant.CodeTextEnum;
+import com.github.foxnic.api.error.ErrorDesc;
+import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.bean.BeanNameUtil;
 import com.github.foxnic.commons.bean.BeanUtil;
+import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.CollectorUtil;
+import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.commons.concurrent.SimpleJoinForkTask;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.commons.reflect.EnumUtil;
-import com.github.foxnic.dao.data.*;
+import com.github.foxnic.dao.data.PagedList;
+import com.github.foxnic.dao.data.Rcd;
+import com.github.foxnic.dao.data.RcdSet;
+import com.github.foxnic.dao.data.SaveMode;
+import com.github.foxnic.dao.entity.ReferCause;
+import com.github.foxnic.dao.entity.SuperService;
 import com.github.foxnic.dao.excel.*;
 import com.github.foxnic.dao.meta.DBTableMeta;
+import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.dao.sql.SQLBuilder;
 import com.github.foxnic.sql.expr.*;
+import com.github.foxnic.sql.meta.DBField;
 import com.github.foxnic.sql.treaty.DBTreaty;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
@@ -49,30 +57,23 @@ import org.github.foxnic.web.domain.pcm.CatalogAttribute;
 import org.github.foxnic.web.domain.pcm.CatalogData;
 import org.github.foxnic.web.domain.pcm.DataQueryVo;
 import org.github.foxnic.web.framework.change.ChangesAssistant;
+import org.github.foxnic.web.framework.dao.DBConfigs;
 import org.github.foxnic.web.proxy.changes.ChangeDefinitionServiceProxy;
 import org.github.foxnic.web.proxy.pcm.CatalogServiceProxy;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import javax.annotation.Resource;
 import java.awt.image.BufferedImage;
-import java.io.*;
-import java.util.*;
-
-import com.github.foxnic.api.transter.Result;
-import com.github.foxnic.dao.entity.SuperService;
-import com.github.foxnic.dao.spec.DAO;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.lang.reflect.Field;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import com.github.foxnic.commons.busi.id.IDGenerator;
-import com.github.foxnic.api.error.ErrorDesc;
-
-import com.github.foxnic.sql.meta.DBField;
-
-import org.github.foxnic.web.framework.dao.DBConfigs;
 
 /**
  * <p>
@@ -1480,6 +1481,16 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		return null;
 	}
 
+/**
+	 * 批量检查引用
+	 * @param ids  检查这些ID是否又被外部表引用
+	 * */
+	@Override
+	public <T> Map<T, ReferCause> hasRefers(List<T> ids) {
+		// 默认无业务逻辑，返回此行；有业务逻辑需要校验时，请修改并使用已注释的行代码！！！
+		return MapUtil.asMap(ids,new ReferCause(false));
+		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
+	}
 
 
 	public List<ValidateResult> importData(RcdSet rs,HashMap<String,List<CatalogAttribute>> attributeMap,boolean batch,String assetOwner,boolean dataType,String selectedCode) {

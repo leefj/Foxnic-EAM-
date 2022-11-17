@@ -1,43 +1,35 @@
 package com.dt.platform.ops.controller;
 
 
-import java.util.*;
-import org.github.foxnic.web.framework.web.SuperController;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import com.github.foxnic.api.swagger.InDoc;
-import org.github.foxnic.web.framework.sentinel.SentinelExceptionUtil;
-import com.github.foxnic.api.swagger.ApiParamSupport;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
-
-
-import com.dt.platform.proxy.ops.SoftwareBaseVersionServiceProxy;
-import com.dt.platform.domain.ops.meta.SoftwareBaseVersionVOMeta;
 import com.dt.platform.domain.ops.SoftwareBaseVersion;
 import com.dt.platform.domain.ops.SoftwareBaseVersionVO;
-import com.github.foxnic.api.transter.Result;
-import com.github.foxnic.dao.data.SaveMode;
-import com.github.foxnic.dao.excel.ExcelWriter;
-import com.github.foxnic.springboot.web.DownloadUtil;
-import com.github.foxnic.dao.data.PagedList;
-import java.util.Date;
-import java.sql.Timestamp;
-import com.github.foxnic.api.error.ErrorDesc;
-import com.github.foxnic.commons.io.StreamUtil;
-import java.util.Map;
-import com.github.foxnic.dao.excel.ValidateResult;
-import java.io.InputStream;
 import com.dt.platform.domain.ops.meta.SoftwareBaseVersionMeta;
-import com.dt.platform.domain.ops.SoftwareBaseType;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiImplicitParam;
-import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
-import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.dt.platform.domain.ops.meta.SoftwareBaseVersionVOMeta;
 import com.dt.platform.ops.service.ISoftwareBaseVersionService;
-import com.github.foxnic.api.validate.annotations.NotNull;
+import com.dt.platform.proxy.ops.SoftwareBaseVersionServiceProxy;
+import com.github.foxnic.api.error.ErrorDesc;
+import com.github.foxnic.api.swagger.ApiParamSupport;
+import com.github.foxnic.api.swagger.InDoc;
+import com.github.foxnic.api.transter.Result;
+import com.github.foxnic.commons.collection.CollectorUtil;
+import com.github.foxnic.dao.data.PagedList;
+import com.github.foxnic.dao.data.SaveMode;
+import com.github.foxnic.dao.entity.ReferCause;
+import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import org.github.foxnic.web.framework.sentinel.SentinelExceptionUtil;
+import org.github.foxnic.web.framework.web.SuperController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -98,9 +90,9 @@ public class SoftwareBaseVersionController extends SuperController {
 			return this.validator().getFirstResult();
 		}
 		// 引用校验
-		Boolean hasRefer = softwareBaseVersionService.hasRefers(id);
+		ReferCause cause =  softwareBaseVersionService.hasRefers(id);
 		// 判断是否可以删除
-		this.validator().asserts(hasRefer).requireEqual("不允许删除当前记录",false);
+		this.validator().asserts(cause.hasRefer()).requireEqual("不允许删除当前记录："+cause.message(),false);
 		if(this.validator().failure()) {
 			return this.validator().getFirstResult();
 		}
@@ -129,11 +121,11 @@ public class SoftwareBaseVersionController extends SuperController {
 		}
 
 		// 查询引用
-		Map<String, Boolean> hasRefersMap = softwareBaseVersionService.hasRefers(ids);
+		Map<String, ReferCause> causeMap = softwareBaseVersionService.hasRefers(ids);
 		// 收集可以删除的ID值
 		List<String> canDeleteIds = new ArrayList<>();
-		for (Map.Entry<String, Boolean> e : hasRefersMap.entrySet()) {
-			if (!e.getValue()) {
+		for (Map.Entry<String, ReferCause> e : causeMap.entrySet()) {
+			if (!e.getValue().hasRefer()) {
 				canDeleteIds.add(e.getKey());
 			}
 		}
@@ -141,7 +133,9 @@ public class SoftwareBaseVersionController extends SuperController {
 		// 执行删除
 		if (canDeleteIds.isEmpty()) {
 			// 如果没有一行可以被删除
-			return ErrorDesc.failure().message("无法删除您选中的数据行");
+			return ErrorDesc.failure().message("无法删除您选中的数据行：").data(0)
+				.addErrors(CollectorUtil.collectArray(CollectorUtil.filter(causeMap.values(),(e)->{return e.hasRefer();}),ReferCause::message,String.class))
+				.messageLevel4Confirm();
 		} else if (canDeleteIds.size() == ids.size()) {
 			// 如果全部可以删除
 			Result result=softwareBaseVersionService.deleteByIdsLogical(canDeleteIds);
@@ -152,7 +146,9 @@ public class SoftwareBaseVersionController extends SuperController {
 			if (result.failure()) {
 				return result;
 			} else {
-				return ErrorDesc.success().message("已删除 " + canDeleteIds.size() + " 行，但另有 " + (ids.size() - canDeleteIds.size()) + " 行数据无法删除").messageLevel4Confirm();
+				return ErrorDesc.success().message("已删除 " + canDeleteIds.size() + " 行，但另有 " + (ids.size() - canDeleteIds.size()) + " 行数据无法删除").data(canDeleteIds.size())
+					.addErrors(CollectorUtil.collectArray(CollectorUtil.filter(causeMap.values(),(e)->{return e.hasRefer();}),ReferCause::message,String.class))
+					.messageLevel4Confirm();
 			}
 		} else {
 			// 理论上，这个分支不存在

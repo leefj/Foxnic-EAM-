@@ -3,6 +3,7 @@ package com.dt.platform.eam.service.impl;
 import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.eam.service.IAssetBillService;
 import com.github.foxnic.api.transter.Result;
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.SuperService;
 import com.github.foxnic.dao.spec.DAO;
 import org.apache.poi.ss.formula.functions.T;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -35,6 +37,11 @@ public class AssetBillServiceImpl extends SuperService<Asset> implements IAssetB
      * 获得 DAO 对象
      * */
     public DAO dao() { return dao; }
+
+    @Override
+    public <T> Map<T, ReferCause> hasRefers(List<T> list) {
+        return null;
+    }
 
     @Override
     public Result queryBorrowBills(List<T> ids) {
