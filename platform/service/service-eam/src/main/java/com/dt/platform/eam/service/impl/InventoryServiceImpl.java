@@ -129,8 +129,8 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 			}
 		}
 
-		HashMap<String,String> orgMap=assetDataService.queryOrganizationNodes("all");
-		HashMap<String,String> categoryMap=assetDataService.queryAssetCategoryNodes("all");
+		HashMap<String,String> orgMap=assetDataService.queryOrganizationNodes("");
+		HashMap<String,String> categoryMap=assetDataService.queryAssetCategoryNodes("");
 
 		InventoryAsset inventoryAssetQuery=new InventoryAsset();
 		inventoryAssetQuery.setInventoryId(inventoryId);

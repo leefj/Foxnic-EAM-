@@ -441,17 +441,10 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                         Collections.sort(values);
                         dataVer.put("value1",  String.join(",", values));
                         dataVerification=dataVer;
-//                        dataVer.put("prohibitInput",true);
-//                        dataVer.put("type","dropdown");
-//                        HashMap<String,String> compMap = queryOrganizationNodes("all");
-//                        List values = new ArrayList(compMap.values());
-//                        dataVer.put("value1",  String.join(",", values));
-//                        dataVerification=dataVer;
-
                     }else if("ownCompanyName".equals(secondAssetColumn)){
                         dataVer.put("prohibitInput",true);
                         dataVer.put("type","dropdown");
-                        HashMap<String,String> compMap = queryOrganizationNodes("all");
+                        HashMap<String,String> compMap = queryOrganizationNodes("comp");
                         List values = new ArrayList(compMap.values());
                         Collections.sort(values);
                         dataVer.put("value1",  String.join(",", values));
@@ -459,7 +452,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                     }else if("useOrganizationName".equals(secondAssetColumn)){
                         dataVer.put("prohibitInput",true);
                         dataVer.put("type","dropdown");
-                        HashMap<String,String> orgMap = queryOrganizationNodes("all");
+                        HashMap<String,String> orgMap = queryOrganizationNodes("org");
                         List values = new ArrayList(orgMap.values());
                         Collections.sort(values);
                         dataVer.put("value1",  String.join(",", values));
@@ -572,11 +565,27 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         HashMap<String,String> map=new HashMap<String,String>();
         OrganizationVO vo=new OrganizationVO();
         vo.setIsLoadAllDescendants(1);
+        if(!StringUtil.isBlank(type)){
+         //   vo.setTargetType(type);
+        }
         vo.setTenantId(SessionUser.getCurrent().getActivatedTenantId());
         Result r= OrganizationServiceProxy.api().queryNodesFlatten(vo);
         if(r.isSuccess()){
             List<ZTreeNode> list= (List<ZTreeNode> )r.getData();
             for( ZTreeNode node:list){
+                if("com".equals(type)){
+                    if("com".equals(node.getType())){
+                       System.out.println("add");
+                    }else{
+                        continue;
+                    }
+                }else if("org".equals(type)){
+                    if("com".equals(node.getType()) || "dept".equals(node.getType())){
+                        System.out.println("add");
+                    }else{
+                        continue;
+                    }
+                }
                 String path="";
                 for(int j=0;j<node.getNamePathArray().size();j++){
                     if(j==0){
@@ -585,7 +594,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                         path=path+"/"+node.getNamePathArray().get(j);
                     }
                 }
-                System.out.println(""+node.getId()+","+path);
+                System.out.println("node:"+node.getId()+",path:"+path+"type:"+node.getType());
                 map.put(node.getId(),path);
             }
         }
@@ -1025,8 +1034,8 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
     //将assetList转Map,保存dataList,categoryId过滤条件
     @Override
     public Map<String, Object> queryAssetMap(List<Asset> list,String categoryId) {
-        HashMap<String,String> orgMap=queryOrganizationNodes("all");
-        HashMap<String,String> categoryMap=queryAssetCategoryNodes("all");
+        HashMap<String,String> orgMap=queryOrganizationNodes("");
+        HashMap<String,String> categoryMap=queryAssetCategoryNodes("");
 
         Map<String,Object> map=new HashMap<>();
         assetService.joinData(list);

@@ -1,5 +1,7 @@
 package com.dt.platform.ops.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.domain.ops.DbInfo;
 import com.dt.platform.domain.ops.DbInfoVO;
 import com.dt.platform.ops.service.IDbInfoService;
@@ -7,6 +9,7 @@ import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.MapUtil;
+import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -219,6 +222,10 @@ public class DbInfoServiceImpl extends SuperService<DbInfo> implements IDbInfoSe
 	 * 按主键获取 数据库
 	 *
 	 * @param id 主键
+	 *
+	 *
+	 *
+	 *
 	 * @return DbInfo 数据对象
 	 */
 	public DbInfo getById(String id) {
@@ -270,7 +277,33 @@ public class DbInfoServiceImpl extends SuperService<DbInfo> implements IDbInfoSe
 	 * */
 	@Override
 	public PagedList<DbInfo> queryPagedList(DbInfoVO sample, int pageSize, int pageIndex) {
-		return super.queryPagedList(sample, pageSize, pageIndex);
+		ConditionExpr expr=new ConditionExpr();
+		expr.and("1=1");
+		String searchValue=sample.getSearchValue();
+		JSONObject searchObj=null;
+		JSONObject labelIdsObj=null;
+		JSONArray labelIdsValueArr=null;
+		if(!StringUtil.isBlank(searchValue)){
+			searchObj=JSONObject.parseObject(searchValue);
+			if(searchObj.containsKey("labelIds")){
+				labelIdsObj=searchObj.getJSONObject("labelIds");
+				if(labelIdsObj.containsKey("value")){
+					labelIdsValueArr=labelIdsObj.getJSONArray("value");
+				}
+			}
+		}
+		if(labelIdsValueArr!=null&&labelIdsValueArr.size()>0){
+			String labels="";
+			for(int i=0;i<labelIdsValueArr.size();i++){
+				if(i==0){
+					labels=labels+"'"+labelIdsValueArr.get(i)+"'";
+				}else{
+					labels=labels+",'"+labelIdsValueArr.get(i)+"'";
+				}
+			}
+			expr.and("id in (select db_id from ops_db_info_label where label in ("+labels+") and deleted=0 )");
+		}
+		return super.queryPagedList(sample, expr,pageSize, pageIndex);
 	}
 
 	/**

@@ -1501,7 +1501,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		List<CatalogData> catalogDataList=new ArrayList<>();
 		List<String> assetSerialNumberList=new ArrayList<>();
 		HashMap<String,HashMap<String,String>> matchMap=new HashMap<>();
-		matchMap.put("organizationMap",assetDataService.queryOrganizationNodes("all"));
+		matchMap.put("organizationMap",assetDataService.queryOrganizationNodes(""));
 		matchMap.put("categoryMap",assetDataService.queryAssetCategoryNodes("all"));
 		matchMap.put("eam_safety_level", assetDataService.queryDictItemDataByDictCode("eam_safety_level"));
 		matchMap.put("eam_equipment_environment",assetDataService.queryDictItemDataByDictCode("eam_equipment_environment"));
