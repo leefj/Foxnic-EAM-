@@ -1,4 +1,5 @@
 -- system
+delete from sys_token where 1=1;;
 delete from hrm_company where id<>'002';
 delete from sys_tenant where id<>'T001';
 update sys_tenant set valid=1 where id='T001';
@@ -68,6 +69,11 @@ delete from eam_asset_depreciation_oper  where 1=1  and tenant_id='T001' ;
 delete from eam_asset_depreciation_detail  where 1=1;
 delete from eam_purchase_order  where 1=1  and tenant_id='T001' ;
 delete from eam_asset_depreciation  where 1=1;
+delete from eam_operate where 1=1;
+delete from eam_asset_borrow_return where 1=1;
+delete from eam_asset_collection_return where 1=1;
+
+
 
 -- software
 delete from eam_asset_software  where 1=1  and tenant_id='T001' ;
@@ -135,10 +141,16 @@ delete from cont_contract where 1=1 and tenant_id='T001' ;
 delete from cont_contract_attachment where 1=1  and tenant_id='T001' ;
 delete from cont_contract_performance where 1=1  and tenant_id='T001' ;
 delete from cont_contract_signer where 1=1 and tenant_id='T001' ;
+--
+delete from eam_asset_maintenance_record where 1=1;;
+delete from eam_asset_maintenance_record_u where 1=1;;
+delete from eam_asset_maintenance_update where 1=1;;
+
 -- other
 delete from eam_feedback where 1=1 ;
 -- job
 delete from sys_job_log;
+
 -- kn
 delete from kn_content where 1=1 and tenant_id='T001' ;
 --  ops
@@ -161,6 +173,9 @@ delete from ops_ciphertext_box_data;
 delete from ops_ciphertext_box where deleted=1;
 delete from ops_ciphertext_conf where deleted=1;
 delete from ops_ciphertext_conf where user_id<>'E001';
+
+delete from ops_db_info where 1=1;
+
 
 -- ops_certificate
 delete from ops_certificate where 1=1 and tenant_id='T001' ;

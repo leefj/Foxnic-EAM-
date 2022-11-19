@@ -98,7 +98,10 @@ insert into sys_tpl_file(id,type,name,code,file_id,tenant_id)values('T001_cont_1
 delete from app_software_info where id='T001_eam_mobile_a1';
 delete from sys_file where id='T001_eam_mobile_a1';
 insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_eam_mobile_a1','app.apk','/software/app.apk',10000,'application/octet-stream','apk');
-insert into `app_software_info` (`id`, `code`, `group_id`, `name`, `status`, `type`, `software_version`, `picture_id`, `file_id`,`tenant_id`) VALUES ('T001_eam_mobile_a1', 'eam_mobile_android', 'eam_mobile', '安卓移动端', 'enable', 'android', '1.0.9', '', 'T001_eam_mobile_a1', 'T001');
+insert into `app_software_info` (`id`, `code`, `group_id`, `name`, `status`, `type`, `software_version`, `picture_id`, `file_id`,`tenant_id`) VALUES ('T001_eam_mobile_a1', 'eam_mobile_android', 'eam_mobile', '安卓移动端', 'enable', 'android', '2.4.0', '', 'T001_eam_mobile_a1', 'T001');
+insert into sys_file(id,file_name,location,size,media_type,file_type)values('T001_eam_mobile_a2','h5.tar.gz','/software/h5.tar.gz',10000,'application/octet-stream','gz');
+insert into `app_software_info` (`id`, `code`, `group_id`, `name`, `status`, `type`, `software_version`, `picture_id`, `file_id`,`tenant_id`) VALUES ('T001_eam_mobile_a2', 'eam_mobile_h5', 'eam_mobile', 'H5版本介质', 'enable', 'h5', '2.4.0', '', 'T001_eam_mobile_a2', 'T001');
+
 
 -- Ops Auto Task File
 -- File
