@@ -71,6 +71,11 @@ public interface AssetServiceProxy {
     /**
      * 获取多个资产
      */
+    public static final String USER_LOGIN_DATA = API_PREFIX + "user-login-data";
+
+    /**
+     * 获取多个资产
+     */
     public static final String GET_BY_IDS = API_PREFIX + "get-by-ids";
 
     /**

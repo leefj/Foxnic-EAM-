@@ -392,7 +392,7 @@ public class InfoServiceImpl extends SuperService<Info> implements IInfoService 
 	public Map<String, Object> queryVehicleInfoMap(Info sample) {
 
 		List<Info> list=this.queryList(sample);
-		HashMap<String,String> orgMap=queryOrganizationNodes("all");
+		HashMap<String,String> orgMap=queryOrganizationNodes("");
 		Map<String,Object> map=new HashMap<>();
 		dao().fill(list)
 				.with("ownerCompany")
@@ -640,7 +640,7 @@ public class InfoServiceImpl extends SuperService<Info> implements IInfoService 
 		DBTableMeta tm=dao().getTableMeta(this.table());
 		DBTreaty dbTreaty= dao().getDBTreaty();
 		HashMap<String,HashMap<String,String>> matchMap=new HashMap<>();
-		matchMap.put("organizationMap",this.queryOrganizationNodes("all"));
+		matchMap.put("organizationMap",this.queryOrganizationNodes(""));
 		matchMap.put("vehicle_status", this.queryDictItemDataByDictCode("vehicle_status"));
 		matchMap.put("vehicle_type",this.queryDictItemDataByDictCode("vehicle_type"));
 
