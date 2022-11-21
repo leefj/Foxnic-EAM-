@@ -1,7 +1,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-16 10:04:47
+ * @since 2022-11-17 19:12:07
  */
 
 
@@ -147,6 +147,7 @@ function ListPage() {
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.backupStatus={ inputType:"radio_box", value: getSelectedValue("#backupStatus","value"), label:getSelectedValue("#backupStatus","nameStr") };
+		value.deployMode={ inputType:"select_box", value: getSelectedValue("#deployMode","value") ,fillBy:["deployModeDict"]  , label:getSelectedValue("#deployMode","nameStr") };
 		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.createTime={ inputType:"date_input", begin: $("#createTime-begin").val(), end: $("#createTime-end").val() ,matchType:"auto" };
 		value.labelIds={ inputType:"select_box", value: getSelectedValue("#labelIds","value") ,fillBy:["labelList"]  , label:getSelectedValue("#labelIds","nameStr") };
@@ -234,6 +235,31 @@ function ListPage() {
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					opts.push({data:data[i],name:data[i].text,value:data[i].code});
+				}
+				return opts;
+			}
+		});
+		//渲染 deployMode 下拉字段
+		fox.renderSelectBox({
+			el: "deployMode",
+			radio: true,
+			size: "small",
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("deployMode",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "label", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].label,value:data[i].code});
 				}
 				return opts;
 			}
@@ -374,6 +400,9 @@ function ListPage() {
 						fox.showMessage(data);
                         refreshTableData();
                     } else {
+						if(data.data>0) {
+							refreshTableData();
+						}
 						fox.showMessage(data);
                     }
                 },{delayLoading:200,elms:[$("#delete-button")]});

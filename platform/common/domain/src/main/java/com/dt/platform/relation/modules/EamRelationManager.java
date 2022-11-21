@@ -1234,7 +1234,6 @@ public class EamRelationManager extends RelationManager {
         if(assets!=null&&assets.size()>0){
             for(int i=0;i<assets.size();i++){
                 if(AssetInventoryDetailStatusEnum.NOT_COUNTED.code().equals( assets.get(i).getStatus())){
-
                     notCount++;
                 }else if(AssetInventoryDetailStatusEnum.COUNTED.code().equals( assets.get(i).getStatus())){
                     count++;

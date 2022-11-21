@@ -36,7 +36,10 @@ spring:
             windows: d:/foxnic/passwd.txt
             mac: /Users/Shared/foxnic/passwd.txt
             linux: /foxnic/passwd.txt
-        driver-class-name: com.mysql.cj.jdbc.Driver
+        # 8.x
+        #driver-class-name: com.mysql.cj.jdbc.Driver
+        # 5.x
+        driver-class-name: com.mysql.jdbc.Driver
         url: jdbc:mysql://127.0.0.1:APP_DB_PORT/APP_DB_NAME?tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true
         username: APP_DB_USERNAME
         password: APP_DB_PASSWORD
@@ -77,6 +80,10 @@ spring:
         maxPoolPreparedStatementPerConnectionSize: -1
         # 是否打印语句，生产环境建议关闭
         printSQL: true
+        # 是否使用简单模式输出日志
+        printSQLSimple: true
+        # 是否输出调用栈
+        printSQLCallstack: false
   thymeleaf:
     prefix: classpath:/public/
     check-template-location: true
@@ -187,7 +194,10 @@ foxnic:
         enable: true
         # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
         end-points: http://127.0.0.1:8089,2 | http://127.0.0.1:8089,1
-
+      service-oa:
+        enable: true
+        # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
+        end-points: http://127.0.0.1:8089,2 | http://127.0.0.1:8089,1
 
 logging:
   config: classpath:logback-config.xml

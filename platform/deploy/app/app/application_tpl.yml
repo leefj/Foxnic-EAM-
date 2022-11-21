@@ -6,7 +6,7 @@ server:
     session:
       # 会话超时时间，如 30s , 20m 等
       timeout: 12000s
-  #应用web访问端口,可按照实际情况进行修改
+  # 应用web访问端口,可按照实际情况进行修改
   port: APP_WEB_PORT
 
 spring:
@@ -25,8 +25,8 @@ spring:
       url-prefix: druid
       username: root
       password: root
-      #allow: 192.168.33.108,127.0.0.1
-      #deny: 192.168.1.73
+      # allow: 192.168.33.108,127.0.0.1
+      # deny: 192.168.1.73
       resetEnable: true
     druid:
       primary:
@@ -37,15 +37,18 @@ spring:
             windows: d:/foxnic/passwd.txt
             mac: /Users/Shared/foxnic/passwd.txt
             linux: /foxnic/passwd.txt
-        driver-class-name: com.mysql.cj.jdbc.Driver
+        # 8.x
+        #driver-class-name: com.mysql.cj.jdbc.Driver
+        # 5.x
+        driver-class-name: com.mysql.jdbc.Driver
+#        url: ai+mCm8asbK9SNrQDk7ac29neidjdgHp2jFU7HYbZZM7XPIVnc3jn040SCi2ghsOJmvzo7Z8DsMWz0GJtHzk5fVkSVq8PVTLpt97W7e4//KN1tJ8luj3f2R4xGk6d01pnyaG7DyU2tsIMcGZTOl8T0kLJom6Izu9ePptW1UPa7MuTPWKDKUSCYKdQSv51ASxJE99hLodGgxEtGeRBhnlDigwekNCLkMQGvjVKTeDRDsro2ghN1qDTzmyCaGJQxMq
+#        username: tD5wkJAfnCt04A+Y+QN5GA==
+#        password: ODGx5F84xpWJgfRFnzAaYhViHJqrTO3uxxDZ2lRlZNk=
         url: jdbc:mysql://127.0.0.1:APP_DB_PORT/APP_DB_NAME?tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true
         username: APP_DB_USERNAME
         password: APP_DB_PASSWORD
-        #        url: jdbc:mysql://121.43.103.102:3306/eam?tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true
-        #        username: root
-        #        password: P@sswOracle1
         # 启动程序时，在连接池中初始化多少个连接
-        initialSize: 16
+        initialSize: 10
         # 连接池中最多支持多少个活动会话
         maxActive: 128
         # 程序向连接池中请求连接时,超过maxWait的值后，认为本次请求失败，即连接池没有可用连接，单位毫秒，设置-1时表示无限等待
@@ -80,6 +83,10 @@ spring:
         maxPoolPreparedStatementPerConnectionSize: -1
         # 是否打印语句，生产环境建议关闭
         printSQL: true
+        # 是否使用简单模式输出日志
+        printSQLSimple: true
+        # 是否输出调用栈
+        printSQLCallstack: false
   thymeleaf:
     prefix: classpath:/public/
     check-template-location: true
@@ -107,6 +114,7 @@ spring:
       timeout: 30000
     # 单节配置
     port: 6379
+    # redis地址
     host: 192.168.80.63
     password: asdf@123
     database: 13
@@ -121,8 +129,7 @@ spring:
       # 是否启用集群模式的 redis
       enable: false
       nodes: 192.168.1.24:6389,192.168.1.24:6479,192.168.1.24:6579
-    #profiles:
-    #active: local
+
 
 foxnic:
   api:
@@ -139,7 +146,7 @@ foxnic:
     # 容许的最大作业延长时间，超出则认为 misfire 发生，单位毫秒
     misfire-threshold: 1000
     # 日志保留天数
-    log-keep-days: 7
+    log-keep-days: 30
   storage:
     mode: disk
     disk:
@@ -220,25 +227,36 @@ foxnic:
       service-hrm:
         enable: true
         # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
-        end-points: http://127.0.0.1:8089,1 | http://127.0.0.1:8089,2
+        end-points: http://127.0.0.1:8089,1 | http://127.0.0.1:8089,1
       service-oauth:
         enable: true
         # 多个节点时用逗号隔开,格式： 地址,权重 | 地址,权重 | ...
-        end-points: http://127.0.0.1:8089,1 | http://127.0.0.1:8089,2
+        end-points: http://127.0.0.1:8089,1 | http://127.0.0.1:8089,1
+  language:
+    translator:
+      enable: true
+      encrypt:
+        enable: true
+        file:
+          windows: d:/foxnic/passwd.txt
+          mac: /Users/Shared/foxnic/passwd.txt
+          linux: /foxnic/passwd.txt
+      baidu:
+        appId: oEXl3F7Mx4VZch8pcOZGRatfDPJIGqQrMFHEnN8aMH8=
+        securityKey: TyrKCb6TgvTWU78ARppPs9dCs1VrZjGRYHqGIlkZ/14=
 
-#禁止自动扫描API
-springfox:
-  documentation:
-    auto-startup: false
 
 
 security:
   # 模式：session / jwt
   mode: both
   # 配置无需鉴权可以访问的地址
-  ignored-urls:  /console/** , /assets/** , /pages/** , /*.ico ,/extmodule/** , /module/** ,  /**/*.css , /**/*.js , /error , /druid/**,/business/eam/user_book/**
+  # /service-storage/sys-file/upload/**,/service-storage/sys-file/image/** 移动端访问开放，后续修正
+  ignored-urls:  /service-eam/eam-asset/user-login-data,/service-storage/sys-file/upload/**,/service-storage/sys-file/image/**, /console/** , /assets/** , /pages/** , /*.ico ,/extmodule/** , /module/** ,  /**/*.css , /**/*.js , /error , /druid/**,/business/eam/user_book/**
   # mode=session 时配置的登录页面
   login-page: /login.html
+  # 配置登录标识的范围与优先级,可选值在 LoginIdentityType 枚举中定义
+  login-identity-priority: employee_badge,user_account,user_phone,user_id
   jwt:
     key-location: foxnic-web.jks
     key-alias: foxnic-web
@@ -264,18 +282,26 @@ management:
       exposure:
         include: "*"
 
+#自动扫描API
+springfox:
+  documentation:
+    auto-startup: true
+
 knife4j:
   enable: true
   title: ${spring.application.name}
   description: ${spring.application.description}
   version: 1.0
+  setting:
+    enableSwaggerModels: true
+    swaggerModelName: EamModel
 
 
 
 develop:
-  language: defaults
+  #language: defaults
   start-relation-monitor: true
   deploy:
     enable: true
     # 可以使用以当前项目为基础的相对路径，指定静态资源自动部署的项目目录
-    projects: ../view/view-oa,../view/view-workorder,../view/view-cms,../view/view-vehicle,../view/view-customer,../view/view-contract,../view/view-knowledgebase, ../view/view-common, ../view/view-console, ../view/view-datacenter, ../view/view-eam, ../view/view-hrm, ../view/view-ops, ../view/view-mobile
+    projects: ../view/view-oa,../view/view-workorder,../view/view-cms,../view/view-vehicle,../view/view-customer,../view/view-contract,../view/view-knowledgebase, ../view/view-common, ../view/view-console, ../view/view-datacenter, ../view/view-eam, ../view/view-hr, ../view/view-ops, ../view/view-mobile

@@ -2,11 +2,11 @@ package com.dt.platform.ops.controller;
 
 import java.util.*;
 import org.github.foxnic.web.framework.web.SuperController;
-import com.github.foxnic.commons.collection.CollectorUtil;
-import com.github.foxnic.dao.entity.ReferCause;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import com.github.foxnic.commons.collection.CollectorUtil;
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.api.swagger.InDoc;
 import org.github.foxnic.web.framework.sentinel.SentinelExceptionUtil;
 import com.github.foxnic.api.swagger.ApiParamSupport;
@@ -50,7 +50,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 数据库接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-16 10:04:46
+ * @since 2022-11-17 19:12:06
 */
 
 @InDoc
@@ -116,7 +116,7 @@ public class DbInfoController extends SuperController {
 		// 判断是否可以删除
 		this.validator().asserts(cause.hasRefer()).requireEqual("不允许删除当前记录："+cause.message(),false);
 		if(this.validator().failure()) {
-			return this.validator().getFirstResult();
+			return this.validator().getFirstResult().messageLevel4Confirm();
 		}
 		Result result=dbInfoService.deleteByIdLogical(id);
 		return result;
@@ -169,8 +169,8 @@ public class DbInfoController extends SuperController {
 				return result;
 			} else {
 				return ErrorDesc.success().message("已删除 " + canDeleteIds.size() + " 行，但另有 " + (ids.size() - canDeleteIds.size()) + " 行数据无法删除").data(canDeleteIds.size())
-					.addErrors(CollectorUtil.collectArray(CollectorUtil.filter(causeMap.values(),(e)->{return e.hasRefer();}),ReferCause::message,String.class))
-					.messageLevel4Confirm();
+				.addErrors(CollectorUtil.collectArray(CollectorUtil.filter(causeMap.values(),(e)->{return e.hasRefer();}),ReferCause::message,String.class))
+				.messageLevel4Confirm();
 			}
 		} else {
 			// 理论上，这个分支不存在

@@ -9,6 +9,7 @@ import java.util.List;
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.deepoove.poi.util.PoitlIOUtils;
 import com.dt.platform.constants.enums.eam.*;
 import com.dt.platform.constants.enums.ops.OpsOperateEnum;
@@ -20,6 +21,7 @@ import com.dt.platform.proxy.eam.OperateServiceProxy;
 import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.dao.data.Rcd;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import org.apache.commons.io.IOUtils;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -99,6 +101,9 @@ public class AssetController extends SuperController {
 
     @Autowired
     private IAssetCategoryService assetCategoryService;
+
+
+
 
     /**
      * 添加资产
@@ -1791,6 +1796,36 @@ public class AssetController extends SuperController {
         // out.flush();
         // PoitlIOUtils.closeQuietlyMulti(workbook, bos, out);
     }
+
+
+	/**
+	 * 获取资产
+	 */
+	@ApiOperation(value = "模拟登录用户")
+
+	@ApiOperationSupport(order = 16)
+	@SentinelResource(value = AssetServiceProxy.USER_LOGIN_DATA, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+	@PostMapping(AssetServiceProxy.USER_LOGIN_DATA)
+	public Result<JSONObject> userLoginData() {
+		//{account:"admin",password:"123456",captcha:"123456"}
+		Result<JSONObject> result = new Result<>();
+		JSONObject obj=new JSONObject();
+		obj.put("account","");
+		obj.put("password","");
+		obj.put("captcha","");
+		Rcd rs=assetService.dao().queryRecord("select * from sys_config where id='system.login.default'");
+		if(rs!=null){
+			String value=rs.getString("value");
+			if(!StringUtil.isBlank(value)){
+				JSONObject valueObj=JSONObject.parseObject(value);
+				if(valueObj!=null){
+					obj=valueObj;
+				}
+			}
+		}
+		result.success(true).data(obj);
+		return result;
+	}
 
     /**
      * 导出 Excel 模板

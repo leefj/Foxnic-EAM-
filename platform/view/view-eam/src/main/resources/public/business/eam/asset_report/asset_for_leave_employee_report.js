@@ -97,7 +97,7 @@ function ListPage() {
                 elem: '#data-table',
                 toolbar: '#toolbarTemplate',
                 defaultToolbar: ['filter', 'print','exports',{title: '刷新数据',layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
-                url: moduleURL +'/asset-for-leave-employee-report',
+                url: '/service-eam/eam-asset-report/asset-for-leave-employee-report',
                 height: 'full-'+(h+28),
                 limit: 50,
                 where: ps,
