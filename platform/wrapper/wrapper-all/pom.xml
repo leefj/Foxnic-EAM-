@@ -68,6 +68,31 @@
             <version>${foxnic-web.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.github.foxnic.web</groupId>
+            <artifactId>view-dataperm</artifactId>
+            <version>${foxnic-web.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.foxnic.web</groupId>
+            <artifactId>view-pcm</artifactId>
+            <version>${foxnic-web.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.foxnic.web</groupId>
+            <artifactId>view-changes</artifactId>
+            <version>${foxnic-web.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.foxnic.web</groupId>
+            <artifactId>view-console</artifactId>
+            <version>${foxnic-web.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.foxnic.web</groupId>
+            <artifactId>view-bpm</artifactId>
+            <version>${foxnic-web.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.dt.platform</groupId>
             <artifactId>domain</artifactId>
             <version>${platform.version}</version>
@@ -158,21 +183,6 @@
             <version>${platform.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.github.foxnic.web</groupId>
-            <artifactId>view-dataperm</artifactId>
-            <version>${foxnic-web.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.foxnic.web</groupId>
-            <artifactId>view-pcm</artifactId>
-            <version>${foxnic-web.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.foxnic.web</groupId>
-            <artifactId>view-changes</artifactId>
-            <version>${foxnic-web.version}</version>
-        </dependency>
-        <dependency>
             <groupId>com.dt.platform</groupId>
             <artifactId>view-eam</artifactId>
             <version>${platform.version}</version>
@@ -227,16 +237,7 @@
             <artifactId>view-cms</artifactId>
             <version>${platform.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.github.foxnic.web</groupId>
-            <artifactId>view-console</artifactId>
-            <version>${foxnic-web.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.foxnic.web</groupId>
-            <artifactId>view-bpm</artifactId>
-            <version>${foxnic-web.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
