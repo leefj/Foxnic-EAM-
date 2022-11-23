@@ -78,41 +78,8 @@ public class DAOConfig {
 
 
 			//数据权限管理器
-			DataPermManager dataPermManager=new DataPermManager();
+			DataPermManager dataPermManager=getDataPermManager(dao);
 			dao.setDataPermManager(dataPermManager);
-			//资产管理全局数据权限
-			dataPermManager.registerGlobalContextGetter(AssetDataPermissions.class,"assetDataPermissions",()->{
-				AssetDataPermissions dp=null;
-				SessionUser user=(SessionUser)dao.getDBTreaty().getSubject();
-				String employId=user.getActivatedEmployeeId();
-				//数值越小，优先级越高
-				String sql="select c.* from eam_asset_data_permissions c where c.status='enable' and  c.owner_code='asset' and c.deleted=0 " +
-						"and c.role_code in (select distinct a.code from sys_busi_role a,sys_busi_role_member b where b.member_id=? and a.id=b.role_id and a.deleted=0) " +
-						"order by c.priority";
-				RcdSet rs= dao.query(sql,employId);
-				List<AssetDataPermissions> list=rs.toEntityList(AssetDataPermissions.class);
-				if(list.size()>0){
-					dp=list.get(0);
-				}
-
-				if(dp==null){
-					RcdSet rs2= dao.query("select * from eam_asset_data_permissions where code='data_perm_0' and deleted=0");
-					List<AssetDataPermissions> list2=rs2.toEntityList(AssetDataPermissions.class);
-					if(list2.size()>0){
-						dp=list2.get(0);
-					}
-				}
-				if(dp!=null){
-					dao.fill(dp)
-							.with(AssetDataPermissionsMeta.ORGANIZATION)
-							.with(AssetDataPermissionsMeta.OWN_ORGANIZATION)
-							.with(AssetDataPermissionsMeta.BUSI_ROLE)
-							.with(AssetDataPermissionsMeta.POSITION)
-							.with(AssetDataPermissionsMeta.CATEGORY)
-							.execute();
-				}
-				return dp;
-			});
 
 			//设置SQL扫描
 			SQLoader.addTQLScanPackage(dao,SpringUtil.getStartupClass().getPackage().getName());
@@ -128,6 +95,46 @@ public class DAOConfig {
 			Logger.error("创建DAO失败",e);
 			return null;
 		}
+	}
+
+	public DataPermManager getDataPermManager(DAO dao) {
+
+		DataPermManager dataPermManager=new DataPermManager();
+
+		//资产管理全局数据权限
+		dataPermManager.registerGlobalContextGetter(AssetDataPermissions.class,"assetDataPermissions",()->{
+			AssetDataPermissions dp=null;
+			SessionUser user=(SessionUser)dao.getDBTreaty().getSubject();
+			String employId=user.getActivatedEmployeeId();
+			//数值越小，优先级越高
+			String sql="select c.* from eam_asset_data_permissions c where c.status='enable' and  c.owner_code='asset' and c.deleted=0 " +
+					"and c.role_code in (select distinct a.code from sys_busi_role a,sys_busi_role_member b where b.member_id=? and a.id=b.role_id and a.deleted=0) " +
+					"order by c.priority";
+			RcdSet rs= dao.query(sql,employId);
+			List<AssetDataPermissions> list=rs.toEntityList(AssetDataPermissions.class);
+			if(list.size()>0){
+				dp=list.get(0);
+			}
+
+			if(dp==null){
+				RcdSet rs2= dao.query("select * from eam_asset_data_permissions where code='data_perm_0' and deleted=0");
+				List<AssetDataPermissions> list2=rs2.toEntityList(AssetDataPermissions.class);
+				if(list2.size()>0){
+					dp=list2.get(0);
+				}
+			}
+			if(dp!=null){
+				dao.fill(dp)
+						.with(AssetDataPermissionsMeta.ORGANIZATION)
+						.with(AssetDataPermissionsMeta.OWN_ORGANIZATION)
+						.with(AssetDataPermissionsMeta.BUSI_ROLE)
+						.with(AssetDataPermissionsMeta.POSITION)
+						.with(AssetDataPermissionsMeta.CATEGORY)
+						.execute();
+			}
+			return dp;
+		});
+		return dataPermManager;
 	}
 
 	public DBTreaty getDBTreaty() {
