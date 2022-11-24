@@ -2,7 +2,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-13 13:10:11
+ * @since 2022-11-23 16:21:52
  */
  -->
  <!DOCTYPE html>
@@ -187,11 +187,11 @@
                     </div>
                 </div>
             
-                <!-- number_input : 使用期限(月) ,  serviceLife  -->
+                <!-- number_input : 使用期限 ,  serviceLife  -->
                 <div class="layui-form-item" >
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('使用期限(月)')}">使用期限(月)</div></div>
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('使用期限')}">使用期限</div></div>
                     <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="serviceLife" id="serviceLife" name="serviceLife" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('使用期限(月)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="0.2"   scale="2" />
+                        <input lay-filter="serviceLife" id="serviceLife" name="serviceLife" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('使用期限') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="0.2"   scale="2" />
                     </div>
                 </div>
             
@@ -488,6 +488,22 @@
                     </div>
                 </div>
             
+                <!-- select_box : 财务选项 ,  financialOption  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('财务选项')}">财务选项</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <div id="financialOption" input-type="select" th:data="${'/service-system/sys-dict-item/query-list?dictCode=eam_financial_options'}" extraParam="{}"></div>
+                    </div>
+                </div>
+            
+                <!-- select_box : 费用项目 ,  expenseItem  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('费用项目')}">费用项目</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <div id="expenseItem" input-type="select" th:data="${'/service-system/sys-dict-item/query-list?dictCode=eam_expense_items'}" extraParam="{}"></div>
+                    </div>
+                </div>
+            
                 <!-- select_box : 供应商 ,  supplierId  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('供应商')}">供应商</div></div>
@@ -496,35 +512,83 @@
                     </div>
                 </div>
             
+                <!-- text_input : 客户信息 ,  customerInfo -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('客户信息')}">客户信息</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="customerInfo" id="customerInfo" name="customerInfo" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('客户信息') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
+                <!-- number_input : 含税总值 ,  taxAmountPrice  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('含税总值')}">含税总值</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="taxAmountPrice" id="taxAmountPrice" name="taxAmountPrice" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('含税总值') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="0.2"   scale="2" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 未税总值 ,  totalAmountPrice  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('未税总值')}">未税总值</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="totalAmountPrice" id="totalAmountPrice" name="totalAmountPrice" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('未税总值') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 含税单价 ,  purchaseUnitPrice  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('含税单价')}">含税单价</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="purchaseUnitPrice" id="purchaseUnitPrice" name="purchaseUnitPrice" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('含税单价') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="0.2"   scale="2" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 资产原值 ,  originalUnitPrice  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('资产原值')}">资产原值</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="originalUnitPrice" id="originalUnitPrice" name="originalUnitPrice" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('资产原值') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="0.2"   scale="2" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 资产净值 ,  navPrice  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('资产净值')}">资产净值</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="navPrice" id="navPrice" name="navPrice" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('资产净值') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 已用期限 ,  assetUsedServiceLife  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('已用期限')}">已用期限</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="assetUsedServiceLife" id="assetUsedServiceLife" name="assetUsedServiceLife" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('已用期限') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 残值率 ,  residualsRate  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('残值率')}">残值率</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="residualsRate" id="residualsRate" name="residualsRate" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('残值率') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="0.2"   scale="2" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 残值 ,  residualsPrice  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('残值')}">残值</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="residualsPrice" id="residualsPrice" name="residualsPrice" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('残值') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
+                    </div>
+                </div>
+            
                 <!-- number_input : 税额 ,  taxAmountRate  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('税额')}">税额</div></div>
                     <div class="layui-input-block layui-input-block-c1">
                         <input lay-filter="taxAmountRate" id="taxAmountRate" name="taxAmountRate" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('税额') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="0.2"   scale="2" />
-                    </div>
-                </div>
-            
-                <!-- number_input : 含税金额 ,  taxAmountPrice  -->
-                <div class="layui-form-item" >
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('含税金额')}">含税金额</div></div>
-                    <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="taxAmountPrice" id="taxAmountPrice" name="taxAmountPrice" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('含税金额') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="0.2"   scale="2" />
-                    </div>
-                </div>
-            
-                <!-- number_input : 资产总值 ,  totalAmountPrice  -->
-                <div class="layui-form-item" >
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('资产总值')}">资产总值</div></div>
-                    <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="totalAmountPrice" id="totalAmountPrice" name="totalAmountPrice" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('资产总值') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
-                    </div>
-                </div>
-            
-                <!-- number_input : 资产原值(单价) ,  originalUnitPrice  -->
-                <div class="layui-form-item" >
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('资产原值(单价)')}">资产原值(单价)</div></div>
-                    <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="originalUnitPrice" id="originalUnitPrice" name="originalUnitPrice" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('资产原值(单价)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="0.2"   scale="2" />
                     </div>
                 </div>
             
@@ -557,38 +621,6 @@
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('月折金额')}">月折金额</div></div>
                     <div class="layui-input-block layui-input-block-c1">
                         <input lay-filter="monthDepreciationPrice" id="monthDepreciationPrice" name="monthDepreciationPrice" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('月折金额') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
-                    </div>
-                </div>
-            
-                <!-- number_input : 残值率 ,  residualsRate  -->
-                <div class="layui-form-item" >
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('残值率')}">残值率</div></div>
-                    <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="residualsRate" id="residualsRate" name="residualsRate" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('残值率') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="0.2"   scale="2" />
-                    </div>
-                </div>
-            
-                <!-- number_input : 残值 ,  residualsPrice  -->
-                <div class="layui-form-item" >
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('残值')}">残值</div></div>
-                    <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="residualsPrice" id="residualsPrice" name="residualsPrice" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('残值') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
-                    </div>
-                </div>
-            
-                <!-- number_input : 资产净值 ,  navPrice  -->
-                <div class="layui-form-item" >
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('资产净值')}">资产净值</div></div>
-                    <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="navPrice" id="navPrice" name="navPrice" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('资产净值') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
-                    </div>
-                </div>
-            
-                <!-- number_input : 采购单价 ,  purchaseUnitPrice  -->
-                <div class="layui-form-item" >
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('采购单价')}">采购单价</div></div>
-                    <div class="layui-input-block layui-input-block-c1">
-                        <input lay-filter="purchaseUnitPrice" id="purchaseUnitPrice" name="purchaseUnitPrice" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('采购单价') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="0.2"   scale="2" />
                     </div>
                 </div>
             

@@ -45,7 +45,7 @@ public class EamDbMetaGenerator  {
 		dbMetaBuilder=new DBMetaClassFile(dao,configs.getDomianProject(),this.configs.getProjectConfigs().getDomainConstantsPackage(),"ContractTables");
 		dbMetaBuilder.setTableFilter(table->{
 			table=table.toLowerCase();
-			if( table.startsWith("cont_")) return true;
+			if(table.startsWith("cont_")) return true;
 			return false;
 		});
 		dbMetaBuilder.save(true);

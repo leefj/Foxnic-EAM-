@@ -464,6 +464,23 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                         dataVer.put("value1",  String.join(",", value));
                         dataVerification=dataVer;
                     }
+
+                    else if("expenseItemName".equals(secondAssetColumn)){
+                        dataVer.put("prohibitInput",true);
+                        dataVer.put("type","dropdown");
+                        List<String> value=this.dao.query("select label from sys_dict_item where deleted=0 and dict_code='eam_expense_items'" ).getValueList("label",String.class);
+                        dataVer.put("value1",  String.join(",", value));
+                        dataVerification=dataVer;
+                    }
+
+                    else if("financialOptionName".equals(secondAssetColumn)){
+                        dataVer.put("prohibitInput",true);
+                        dataVer.put("type","dropdown");
+                        List<String> value=this.dao.query("select label from sys_dict_item where deleted=0 and dict_code='eam_financial_options'" ).getValueList("label",String.class);
+                        dataVer.put("value1",  String.join(",", value));
+                        dataVerification=dataVer;
+                    }
+
                     if(dataVerification!=null){
                         metaData.setDataVerification(dataVerification);
                     }
@@ -739,6 +756,8 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         dictColumns.put(AssetMeta.MAINTENANCE_STATUS,"eam_maintenance_status,维保状态");
         dictColumns.put(AssetMeta.MAINTENANCE_METHOD,"eam_maintenance_method,维保方式");
         dictColumns.put(AssetMeta.SUGGEST_MAINTENANCE_METHOD,"eam_suggest_maintenance_method,建议维保方式");
+        dictColumns.put(AssetMeta.EXPENSE_ITEM,"eam_expense_items,费用项目");
+        dictColumns.put(AssetMeta.FINANCIAL_OPTION,"eam_financial_options,财务选项");
         for(String key:dictColumns.keySet()){
             String keyValue=dictColumns.get(key);
             String[] keyValueArr=keyValue.split(",");
@@ -761,7 +780,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         String[] stringColumns = {AssetMeta.ASSET_CODE,AssetMeta.NAME,AssetMeta.SERIAL_NUMBER,AssetMeta.BATCH_CODE,
                 AssetMeta.MODEL,AssetMeta.UNIT,AssetMeta.POSITION_DETAIL,AssetMeta.RFID,
                 AssetMeta.ASSET_NOTES,AssetMeta.MAINTAINER_NAME,AssetMeta.CONTACTS,AssetMeta.CONTACT_INFORMATION,
-                AssetMeta.DIRECTOR,AssetMeta.MAINTENANCE_NOTES,AssetMeta.FINANCIAL_CODE};
+                AssetMeta.DIRECTOR,AssetMeta.MAINTENANCE_NOTES,AssetMeta.FINANCIAL_CODE,AssetMeta.CUSTOMER_INFO};
         for(int j=0;j<stringColumns.length;j++){
             String stringColumn=stringColumns[j];
             String value=rcd.getString(BeanNameUtil.instance().depart(stringColumn));
@@ -772,7 +791,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
 
 
         //日期类型
-        String[] dateColumns = {AssetMeta.MAINTENANCE_START_DATE,AssetMeta.MAINTENANCE_END_DATE,AssetMeta.PURCHASE_DATE};
+        String[] dateColumns = {AssetMeta.MAINTENANCE_START_DATE,AssetMeta.MAINTENANCE_END_DATE,AssetMeta.PURCHASE_DATE,AssetMeta.ENTRY_TIME};
         for(int j=0;j<dateColumns.length;j++){
             String dateColumn=dateColumns[j];
             String value=rcd.getString(BeanNameUtil.instance().depart(dateColumn));
@@ -1087,8 +1106,12 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                 assetMap.put(AssetDataExportColumnEnum.MAINTENANCE_METHOD.code(),assetItem.getMaintenanceMethodData().getLabel());
             }
 
-            if(assetItem.getSuggestMaintenanceMethodData()!=null){
-                assetMap.put(AssetDataExportColumnEnum.SUGGEST_MAINTENANCE_METHOD.code(),assetItem.getSuggestMaintenanceMethodData().getLabel());
+            if(assetItem.getExpenseItemDict()!=null){
+                assetMap.put(AssetDataExportColumnEnum.EXPENSE_ITEM.code(),assetItem.getExpenseItemDict().getLabel());
+            }
+
+            if(assetItem.getFinancialOptionDict()!=null){
+                assetMap.put(AssetDataExportColumnEnum.FINANCIAL_OPTION.code(),assetItem.getFinancialOptionDict().getLabel());
             }
 
 

@@ -155,7 +155,6 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			asset.setUpdateTime(null);
 			asset.setUseUserId(null);
 			asset.setManagerId(null);
-
 			asset.setBillId(null);
 			asset.setOriginatorId(null);
 			asset.setEntryTime(null);
@@ -784,8 +783,32 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		return data;
 	}
 
+	@Override
+	public JSONObject queryEmployeeHaveAsset(String userId) {
+		JSONObject r=new JSONObject();
+		List<Asset> list=this.queryEmployeeAsset(userId);
+		boolean hasAsset=false;
+		if(list!=null&&list.size()>0){
+			hasAsset=true;
+		}
+		r.put("hasAsset",list);
+		r.put("assetCount",list.size());
+		r.put("asset",list);
+		return r;
+	}
 
-	 /**
+
+	@Override
+	public List<Asset> queryEmployeeAsset(String userId) {
+		AssetVO vo=new AssetVO();
+		vo.setUseUserId(userId);
+		vo.setStatus(AssetHandleStatusEnum.COMPLETE.code());
+		vo.setOwnerCode(AssetOwnerCodeEnum.ASSET.code());
+		List<Asset> list=this.queryList(vo);
+		return list;
+	}
+
+	/**
 	  * 批量撤销
 	  * @param ids 主键清单
 	 * @return 是否成功
@@ -1509,6 +1532,8 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		matchMap.put("eam_maintenance_status",assetDataService.queryDictItemDataByDictCode("eam_maintenance_status"));
 		matchMap.put("eam_suggest_maintenance_method",assetDataService.queryDictItemDataByDictCode("eam_suggest_maintenance_method"));
 		matchMap.put("eam_maintenance_method",assetDataService.queryDictItemDataByDictCode("eam_maintenance_method"));
+		matchMap.put("eam_expense_items",assetDataService.queryDictItemDataByDictCode("eam_expense_items"));
+		matchMap.put("eam_financial_options",assetDataService.queryDictItemDataByDictCode("eam_financial_options"));
 		String pcmCategoryId=null;
 		if(attributeMap.size()>0){
 			Logger.info("本次资产导入为自定义模式");
@@ -1761,11 +1786,12 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				.with(AssetMeta.ASSET_MAINTENANCE_STATUS)
 				.with(AssetMeta.SUGGEST_MAINTENANCE_METHOD_DATA)
 				.with(AssetMeta.MAINTENANCE_METHOD_DATA)
+				.with(AssetMeta.EXPENSE_ITEM_DICT)
+				.with(AssetMeta.FINANCIAL_OPTION_DICT)
 				.execute();
 //
 
-
-	//	List<Employee> originators= CollectorUtil.collectList(list,Asset::getOriginator);
+//		List<Employee> originators= CollectorUtil.collectList(list,Asset::getOriginator);
 //		dao().join(originators, Person.class);
 
 		List<Employee> managers= CollectorUtil.collectList(list,Asset::getManager);

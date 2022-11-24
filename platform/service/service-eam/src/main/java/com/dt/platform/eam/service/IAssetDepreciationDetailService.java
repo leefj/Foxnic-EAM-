@@ -1,5 +1,7 @@
 package com.dt.platform.eam.service;
 
+import com.github.foxnic.dao.entity.ReferCause;
+import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
@@ -19,13 +21,14 @@ import java.util.Map;
 
 /**
  * <p>
- * 折旧明细 服务接口
+ * 折旧明细服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-28 06:41:50
+ * @since 2022-11-24 12:59:20
 */
 
-public interface IAssetDepreciationDetailService extends ISuperService<AssetDepreciationDetail> {
+public interface IAssetDepreciationDetailService extends  ISimpleIdService<AssetDepreciationDetail,String> {
+
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
@@ -53,7 +56,7 @@ public interface IAssetDepreciationDetailService extends ISuperService<AssetDepr
 
 		
 	/**
-	 * 按主键删除 折旧明细
+	 * 按主键删除折旧明细
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -61,7 +64,7 @@ public interface IAssetDepreciationDetailService extends ISuperService<AssetDepr
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 折旧明细
+	 * 按主键删除折旧明细
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -84,7 +87,7 @@ public interface IAssetDepreciationDetailService extends ISuperService<AssetDepr
 
 		
 	/**
-	 * 按主键更新字段 折旧明细
+	 * 按主键更新折旧明细
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -154,7 +157,7 @@ public interface IAssetDepreciationDetailService extends ISuperService<AssetDepr
 
 		
 	/**
-	 * 按主键获取 折旧明细
+	 * 按主键获取折旧明细
 	 *
 	 * @param id 主键
 	 * @return AssetDepreciationDetail 数据对象
@@ -204,7 +207,7 @@ public interface IAssetDepreciationDetailService extends ISuperService<AssetDepr
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
-	List<AssetDepreciationDetail> queryList(AssetDepreciationDetail sample);
+	List<AssetDepreciationDetail> queryList(AssetDepreciationDetailVO sample);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -245,7 +248,7 @@ public interface IAssetDepreciationDetailService extends ISuperService<AssetDepr
 	 * @param pageIndex 页码
 	 * @return 查询结果
 	 * */
-	PagedList<AssetDepreciationDetail> queryPagedList(AssetDepreciationDetail sample,int pageSize,int pageIndex);
+	PagedList<AssetDepreciationDetail> queryPagedList(AssetDepreciationDetailVO sample,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -299,28 +302,8 @@ public interface IAssetDepreciationDetailService extends ISuperService<AssetDepr
 	 * */
 	<T> List<T> queryValues(DBField field, Class<T> type, String condition,Object... ps);
 
-	/**
-	 * 导出 Excel
-	 * */
-	ExcelWriter exportExcel(AssetDepreciationDetail sample);
 
-	/**
-	 * 导出用于数据导入的 Excel 模版
-	 * */
-	ExcelWriter  exportExcelTemplate();
 
-	/**
-	 * 构建 Excel 结构
-	 * @param  isForExport 是否用于数据导出
-	 * @return   ExcelStructure
-	 * */
-	ExcelStructure buildExcelStructure(boolean isForExport);
-
-	/**
-	 * 导入 Excel 数据
-	 * @return  错误信息，成功时返回 null
-	 * */
-	List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch);
 
 
 }

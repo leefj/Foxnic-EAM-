@@ -1,6 +1,7 @@
 package com.dt.platform.proxy.eam;
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
@@ -160,9 +161,23 @@ public interface AssetServiceProxy {
 
 
     /**
+     * 盘点员工是否有资产
+     */
+    public static final String QUERY_EMPLOYEE_HAVE_ASSET = API_PREFIX + "query-employee-have-asset";
+
+
+
+    /**
      * 查询QUERY_INTERNAL_CONTROL_LABEL数据
      */
     public static final String QUERY_INTERNAL_CONTROL_LABEL_DATA = API_PREFIX + "query-internal-control-label-data";
+
+    /**
+     * 盘点员工是否有资产
+     */
+    @RequestMapping(AssetServiceProxy.QUERY_EMPLOYEE_HAVE_ASSET)
+    Result<JSONObject> queryEmployeeHaveAsset(String userId);
+
 
     /**
      * 查询资产新增审批
@@ -175,6 +190,8 @@ public interface AssetServiceProxy {
      */
     @RequestMapping(AssetServiceProxy.QUERY_ASSET_STATUS_LIST)
     Result<JSONArray> queryAssetStatusList(@RequestParam(name = "owner") String owner);
+
+
 
     /**
      * 添加资产
@@ -241,6 +258,7 @@ public interface AssetServiceProxy {
      */
     @RequestMapping(AssetServiceProxy.QUERY_PAGED_LIST_BY_SELECTED)
     Result<PagedList<Asset>> queryPagedListBySelected(@RequestParam(name = "sample") AssetVO sample, @RequestParam(name = "assetBusinessType") String assetBusinessType, @RequestParam(name = "assetSelectedCode") String assetSelectedCode, @RequestParam(name = "assetSearchContent") String assetSearchContent);
+
 
 
 

@@ -7,13 +7,14 @@ import com.dt.platform.domain.eam.Asset;
 import java.util.List;
 import com.dt.platform.domain.eam.AssetDepreciation;
 import org.github.foxnic.web.domain.hrm.Employee;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-03 16:09:53
- * @sign 03334B63D4CFA318A8E8B91DF291309B
+ * @since 2022-11-24 12:09:42
+ * @sign C57D86DA48956F7A82CD31FEF989B66C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -619,5 +620,55 @@ public class AssetDepreciationOperMeta {
 			super.setOriginator(originator);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AssetDepreciationOper clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AssetDepreciationOper duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNotes(this.getNotes());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setExecutionEndTime(this.getExecutionEndTime());
+			inst.setVersion(this.getVersion());
+			inst.setContent(this.getContent());
+			inst.setBusinessDate(this.getBusinessDate());
+			inst.setBusinessCode(this.getBusinessCode());
+			inst.setDepreciationId(this.getDepreciationId());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setExecutionStartTime(this.getExecutionStartTime());
+			inst.setId(this.getId());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setAssetSourceIds(this.getAssetSourceIds());
+				inst.setAssetDepreciationIds(this.getAssetDepreciationIds());
+				inst.setAssetTargetList(this.getAssetTargetList());
+				inst.setAssetDepreciationList(this.getAssetDepreciationList());
+				inst.setOriginator(this.getOriginator());
+				inst.setAssetTargetIds(this.getAssetTargetIds());
+				inst.setAssetDepreciation(this.getAssetDepreciation());
+				inst.setAssetSourceList(this.getAssetSourceList());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

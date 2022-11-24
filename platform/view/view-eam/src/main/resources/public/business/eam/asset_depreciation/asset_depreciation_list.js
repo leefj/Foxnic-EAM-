@@ -1,7 +1,7 @@
 /**
  * 折旧方案 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-30 07:26:03
+ * @since 2022-11-23 17:22:29
  */
 
 
@@ -69,7 +69,7 @@ function ListPage() {
 			var tableConfig={
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
-				defaultToolbar: ['filter', 'print',{title: '刷新数据',layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
+				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
 				url: moduleURL +'/query-paged-list',
 				height: 'full-'+(h+28),
 				limit: 50,
@@ -78,32 +78,22 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status),d);}}
+					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status,'','status'),d);}}
+					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编码') , templet: function (d) { return templet('code',d.code,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧方案') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'method', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧方式'), templet:function (d){ return templet('method',fox.getEnumText(SELECT_METHOD_DATA,d.method),d);}}
+					,{ field: 'method', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧方式'), templet:function (d){ return templet('method',fox.getEnumText(SELECT_METHOD_DATA,d.method,'','method'),d);}}
 					,{ field: 'preResidualRate', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('预计残值率') , templet: function (d) { return templet('preResidualRate',d.preResidualRate,d);}  }
-					,{ field: 'residualValueSelect', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('残值选择'), templet:function (d){ return templet('residualValueSelect',fox.getEnumText(SELECT_RESIDUALVALUESELECT_DATA,d.residualValueSelect),d);}}
-					,{ field: 'firstDepreciationDate', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('首次折旧时间'), templet:function (d){ return templet('firstDepreciationDate',fox.getEnumText(SELECT_FIRSTDEPRECIATIONDATE_DATA,d.firstDepreciationDate),d);}}
+					,{ field: 'residualValueSelect', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('残值选择'), templet:function (d){ return templet('residualValueSelect',fox.getEnumText(SELECT_RESIDUALVALUESELECT_DATA,d.residualValueSelect,'','residualValueSelect'),d);}}
+					,{ field: 'firstDepreciationDate', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('首次折旧时间'), templet:function (d){ return templet('firstDepreciationDate',fox.getEnumText(SELECT_FIRSTDEPRECIATIONDATE_DATA,d.firstDepreciationDate,'','firstDepreciationDate'),d);}}
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
-					,{ field: 'categoryIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('资产分类'), templet: function (d) { return templet('categoryIds' ,fox.joinLabel(d.category,"name"),d);}}
+					,{ field: 'categoryIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('资产分类'), templet: function (d) { return templet('categoryIds' ,fox.joinLabel(d.category,"name",',','','categoryIds'),d);}}
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
-					exportExcel : admin.checkAuth(AUTH_PREFIX+":export"),
-					importExcel : admin.checkAuth(AUTH_PREFIX+":import")?{
-						params : {} ,
-						callback : function(r) {
-							if(r.success) {
-								layer.msg(fox.translate('数据导入成功')+"!");
-							} else {
-								layer.msg(fox.translate('数据导入失败')+"!");
-							}
-							// 是否执行后续逻辑：错误提示
-							return false;
-						}
-					}:false
+					exportExcel : false ,
+					importExcel : false 
 				}
 			};
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
@@ -161,8 +151,7 @@ function ListPage() {
 			if(sort) {
 				ps.sortField=sort.field;
 				ps.sortType=sort.type;
-			}
-		}
+			} 		}
 		if(reset) {
 			table.reload('data-table', { where : ps , page:{ curr:1 } });
 		} else {
@@ -319,12 +308,13 @@ function ListPage() {
 
 			var ids=getCheckedList("id");
             if(ids.length==0) {
-				top.layer.msg(fox.translate('请选择需要删除的')+fox.translate('折旧方案')+"!");
+				top.layer.msg(fox.translate('请选择需要删除的'+'折旧方案'+"!"));
             	return;
             }
             //调用批量删除接口
-			top.layer.confirm(fox.translate('确定删除已选中的')+fox.translate('折旧方案')+fox.translate('吗？'), function (i) {
-                admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
+			top.layer.confirm(fox.translate('确定删除已选中的'+'折旧方案'+'吗？'), function (i) {
+                top.layer.close(i);
+				admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
                     if (data.success) {
 						if(window.pageExt.list.afterBatchDelete) {
 							var doNext=window.pageExt.list.afterBatchDelete(data);
@@ -333,9 +323,12 @@ function ListPage() {
 						fox.showMessage(data);
                         refreshTableData();
                     } else {
+						if(data.data>0) {
+							refreshTableData();
+						}
 						fox.showMessage(data);
                     }
-                });
+                },{delayLoading:200,elms:[$("#delete-button")]});
 			});
         }
 	}
@@ -381,11 +374,9 @@ function ListPage() {
 					if(!doNext) return;
 				}
 
-				top.layer.confirm(fox.translate('确定删除此')+fox.translate('折旧方案')+fox.translate('吗？'), function (i) {
+				top.layer.confirm(fox.translate('确定删除此'+'折旧方案'+'吗？'), function (i) {
 					top.layer.close(i);
-
-					top.layer.load(2);
-					admin.request(moduleURL+"/delete", { id : data.id }, function (data) {
+					admin.post(moduleURL+"/delete", { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
 						if (data.success) {
 							if(window.pageExt.list.afterSingleDelete) {
@@ -397,7 +388,7 @@ function ListPage() {
 						} else {
 							fox.showMessage(data);
 						}
-					});
+					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
 			}
 			

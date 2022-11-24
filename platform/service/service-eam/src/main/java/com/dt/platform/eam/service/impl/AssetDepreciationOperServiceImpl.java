@@ -10,6 +10,7 @@ import com.dt.platform.eam.service.IAssetDepreciationOperService;
 import com.dt.platform.eam.service.IAssetProcessRecordService;
 import com.dt.platform.eam.service.IAssetService;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
+import com.dt.platform.proxy.eam.AssetServiceProxy;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.busi.id.IDGenerator;
@@ -95,10 +96,20 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 
 
 		AssetDepreciation assetDepreciation=bill.getAssetDepreciation();
-		if(!AssetDepreciationStatusEnum.NOT_START.code().equals(bill.getStatus())){
+		if(AssetDepreciationStatusEnum.ACTING.code().equals(bill.getStatus())
+			||AssetDepreciationStatusEnum.NOT_START.code().equals(bill.getStatus())
+				||AssetDepreciationStatusEnum.FAILED.code().equals(bill.getStatus())
+		){
+			System.out.println("start to collect asset data!");
+		}else{
 			return ErrorDesc.failureMessage("当前状态,不可进行本操作");
 		}
 
+		if(bill==null){
+			return ErrorDesc.failureMessage("当前折旧单据不存在,不能进行操作!");
+		}
+		//删除数据
+		dao.execute("delete from eam_asset_depreciation_detail where depreciation_id=?",id);
 
 		//查询折旧资产
 		AssetVO assetVO=new AssetVO();
@@ -106,11 +117,15 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 		assetVO.setStatus(AssetHandleStatusEnum.COMPLETE.code());
 		assetVO.setCleanOut("0");
 		ConditionExpr expr=new ConditionExpr();
-		if(dao.queryRecord("select count(1) cnt from eam_asset_depreciation_category where deleted=0 and depreciation_id=?",bill.getDepreciationId()).getInteger("cnt")>0) {
+		if(dao.queryRecord("select count(1) cnt from eam_asset_depreciation_category where deleted=0 and category_id<>'' and category_id is not null and depreciation_id=?",bill.getDepreciationId()).getInteger("cnt")>0) {
 			expr.and("category_id in (select category_id from eam_asset_depreciation_category where deleted=0 and depreciation_id='"+bill.getDepreciationId()+"')");
 		}else{
 		}
 		List<Asset> assetList=assetService.queryList(assetVO,expr);
+		//关联获取资产属性实体数据
+		assetService.joinData(assetList);
+
+
 		List<AssetDepreciationDetail> detailList=new ArrayList<>();
 		if(assetList.size()>0){
 			for(Asset asset:assetList){
@@ -127,6 +142,12 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 				detail.setServiceLife(asset.getServiceLife());
 				detail.setPurchaseDate(asset.getPurchaseDate());
 				detail.setPurchaseUnitPrice(asset.getPurchaseUnitPrice());
+
+				detail.setAssetCode(asset.getAssetCode());
+				detail.setAssetName(asset.getName());
+				detail.setAssetModel(asset.getModel());
+			//	detail.setOriginalUnitPrice(asset.getOriginalUnitPrice());
+
 				asset.setId(null);
 				asset.setOwnerCode(AssetOwnerCodeEnum.ASSET_DEPRECIATION_DATA.code());
 				assetService.insert(asset);
@@ -401,7 +422,7 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 		AssetDepreciationOper assetDepreciationOper = new AssetDepreciationOper();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		assetDepreciationOper.setId(id);
-		assetDepreciationOper.setDeleted(dao.getDBTreaty().getTrueValue());
+		assetDepreciationOper.setDeleted(1);
 		assetDepreciationOper.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		assetDepreciationOper.setDeleteTime(new Date());
 		try {

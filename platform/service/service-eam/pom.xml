@@ -20,11 +20,14 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
     <dependencies>
+
+
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
             <version>1.30</version>
         </dependency>
+
         <!-- itext7 全家桶 -->
         <dependency>
             <groupId>com.itextpdf</groupId>
@@ -90,6 +93,9 @@
             <artifactId>easypoi-base</artifactId>
             <version>4.4.0</version>
         </dependency>
+
+
+
     </dependencies>
     <build>
         <defaultGoal>compile</defaultGoal>

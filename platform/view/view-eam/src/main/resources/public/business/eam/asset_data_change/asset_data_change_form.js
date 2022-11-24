@@ -336,6 +336,60 @@ function FormPage() {
 			}
 		});
 
+		//渲染 financialOption 下拉字段
+		fox.renderSelectBox({
+			el: "financialOption",
+			radio: true,
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("financialOption",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
+		//渲染 expenseItem 下拉字段
+		fox.renderSelectBox({
+			el: "expenseItem",
+			radio: true,
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("expenseItem",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
 
 		//渲染 positionId 下拉字段
 		fox.renderSelectBox({
@@ -752,6 +806,11 @@ function FormPage() {
 			//设置  机柜 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#rackId",formData.rack);
 
+			//设置  财务选项 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#financialOption",formData.financialOptionDict);
+			//设置  费用项目 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#expenseItem",formData.expenseItemDict);
+
 			setTimeout(function(){
 				if(categorySelect){
 					if(formData.category&&formData.category.id){
@@ -837,6 +896,18 @@ function FormPage() {
 		data["manufacturerId"]=fox.getSelectedValue("manufacturerId",false);
 		if(!data["manufacturerId"]){
 			data["manufacturerId"]="";
+		}
+
+		//获取 财务选项 下拉框的值
+		data["financialOption"]=fox.getSelectedValue("financialOption",false);
+		if(!data["financialOption"]){
+			data["financialOption"]="";
+		}
+
+		//获取 费用项目 下拉框的值
+		data["expenseItem"]=fox.getSelectedValue("expenseItem",false);
+		if(!data["expenseItem"]){
+			data["expenseItem"]="";
 		}
 
 		//获取 位置 下拉框的值
