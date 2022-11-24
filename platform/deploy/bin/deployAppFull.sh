@@ -1,5 +1,5 @@
 #!/bin/sh
-modify_date="20221011_1"
+modify_date="2022/11/25"
 ####################################################################################
 # run:
 #   sh appInstallFull.sh
@@ -61,8 +61,7 @@ db_host=127.0.0.1
 yum -y install unzip zip telnet net-tools wget java numactl
 yum -y install libaio
 yum -y install glibc-*
-yum -y nc
-yum -y nc
+yum -y install nc
 #strings command need it
 yum -y install binutils*base*x86_64
 #centos 8.0
@@ -340,13 +339,11 @@ function installApp(){
 	bpm_application_yml=$app_dir/app/bpm/application.yml
 	job_application_tpl_yml=$app_dir/app/job/application_tpl.yml
 	job_application_yml=$app_dir/app/job/application.yml
-
 	if [[ ! -f "$db_sql_file" ]];then
 	  echo "Error|db sql file:$db_sql_file not exist"
 	  echo "deploy failed!"
 	  exit 1
 	fi
-
 	if [[ ! -f "$db_procedure_file" ]];then
 	  echo "Error|db procedure file:$db_procedure_file not exist"
 	  echo "deploy failed!"
@@ -372,6 +369,11 @@ function installApp(){
 	$MYSQL -u$db_user -p$db_pwd -h$db_host $db_name < $db_sql_file  2>/dev/null
 	tab_cnt=`$MYSQL -u$db_user -p$db_pwd $db_name -e 'show tables' 2>/dev/null |wc -l`
 	echo "load tables success,table count:$tab_cnt"
+	if [[ $tab_cnt -lt 20 ]];then
+	  echo "Error|db table count $tab_cnt"
+	  echo "deploy failed!"
+	  exit 1
+	fi
 	echo "#########start to create procedure"
 	$MYSQL -u$db_user -p$db_pwd -h$db_host $db_name < $db_procedure_file  2>/dev/null
 	echo "#########start to conf upload file data"

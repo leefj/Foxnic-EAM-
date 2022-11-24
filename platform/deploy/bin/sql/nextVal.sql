@@ -3,7 +3,7 @@ CREATE  PROCEDURE `NEXT_VAL`(IN ID varchar(100),IN TID varchar(100),IN NUM int,O
 BEGIN
 
     DECLARE VAL bigint;
-    DECLARE USQID varchar(32);
+    DECLARE USQID varchar(100);
     DECLARE SQNUM varchar(32);
     DECLARE TP varchar(16);
     DECLARE CATA VARCHAR(16);

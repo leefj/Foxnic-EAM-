@@ -173,7 +173,7 @@ public class CodeModuleServiceImpl implements ICodeModuleService {
 				ruleRewrite=ruleRewrite+"$"+item.replace("pcm,pcmCode","string_fix,"+code);
 			}else if(item.contains("number_seq_relation")){
 				if(StringUtil.isBlank(prefix)){
-					ruleRewrite=ruleRewrite+item;
+					ruleRewrite=ruleRewrite+"$"+item;
 				}else{
 					ruleRewrite=ruleRewrite+"$"+item.replace("}",prefix+"}");
 				}
@@ -195,8 +195,10 @@ public class CodeModuleServiceImpl implements ICodeModuleService {
 	public String parseCode(String ph){
 		String result="";
 		String[] pharr=ph.split("\\$");
+		Logger.info("parseCode value:"+ph);
 		for(int i=0;i< pharr.length;i++){
 			if(i>0){
+				Logger.info("parseCode index:"+i+",value:"+pharr[i]);
 				result=result+parsePlaceholder(pharr[i]);
 			}
 		}
