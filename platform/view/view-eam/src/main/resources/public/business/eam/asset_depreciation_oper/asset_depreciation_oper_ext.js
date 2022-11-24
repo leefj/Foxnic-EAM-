@@ -235,7 +235,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 title: "折旧明细",
                 resize: false,
                 offset: [formTop,null],
-                area: ["100%","90%"],
+                area: ["100%","98%"],
                 type: 2,
                 id:"eam-asset-inventory-data",
                 content: '/business/eam/asset_depreciation_detail/asset_depreciation_detail_list.html?operId='+data.id,

@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 折旧操作VO类型
  * <p>折旧操作 , 数据表 eam_asset_depreciation_oper 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-24 12:09:42
+ * @since 2022-11-24 19:20:29
  * @sign BB9297D6EE1735DBBADAAF0AB0486CA3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

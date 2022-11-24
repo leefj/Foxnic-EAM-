@@ -816,7 +816,6 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 	@Override
 	public Result batchRevokeOperation(List<String> ids){
 
-
 		ConditionExpr expr=new ConditionExpr();
 		expr.andIn("id",ids);
 		expr.andIn("status",AssetHandleStatusEnum.APPROVAL.code(),AssetHandleStatusEnum.DENY.code());

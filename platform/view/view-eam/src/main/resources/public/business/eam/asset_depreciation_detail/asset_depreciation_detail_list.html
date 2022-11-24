@@ -2,7 +2,7 @@
 /**
  * 折旧明细 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-24 12:59:21
+ * @since 2022-11-24 19:55:18
  */
  -->
  <!DOCTYPE html>
@@ -49,6 +49,7 @@
                         <div class="search-label-div" style=""><span th:text="${lang.translate('资产编码',null,'eam_asset_dep_detail')}" class="search-label assetCode-label">资产编码</span><span class="search-colon">:</span></div>
                         <input id="assetCode" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
+                    <!-- 业务日期 , businessDate ,typeName=date_input, isHideInSearch=true -->
                     <!-- 资产原值 , originalUnitPrice ,typeName=number_input, isHideInSearch=true -->
                     <!-- 使用寿命 , serviceLife ,typeName=number_input, isHideInSearch=true -->
                     <!-- 已用寿命 , usedServiceLife ,typeName=number_input, isHideInSearch=true -->
@@ -77,9 +78,6 @@
                     <!-- 当前净值 , curPrice ,typeName=number_input, isHideInSearch=true -->
                     <!-- 折旧前净值 , beforePrice ,typeName=number_input, isHideInSearch=true -->
                     <!-- 折旧后净值 , afterPrice ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 资产名称 , assetCurName ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 资产型号 , assetCurModel ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 资产编号 , assetCurCode ,typeName=select_box, isHideInSearch=true -->
                     <!-- 资产类别 , assetCategoryName ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style=""><span th:text="${lang.translate('资产类别',null,'eam_asset_dep_detail')}" class="search-label assetCategoryName-label">资产类别</span><span class="search-colon">:</span></div>
@@ -132,9 +130,9 @@
                             <span class="search-dash">-</span>
                             <input type="text" id="purchaseDate-end"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('结束日期',null,'eam_asset_dep_detail')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
                     </div>
-                    <!-- 入账日期 , registerDate ,typeName=date_input, isHideInSearch=false -->
+                    <!-- 启用日期 , registerDate ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('入账日期',null,'eam_asset_dep_detail')}" class="search-label registerDate-label">入账日期</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('启用日期',null,'eam_asset_dep_detail')}" class="search-label registerDate-label">启用日期</span><span class="search-colon">:</span></div>
                             <input type="text" id="registerDate-begin" style="width: 150px" lay-verify="date" th:placeholder="${lang.translate('开始日期',null,'eam_asset_dep_detail')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
                             <span class="search-dash">-</span>
                             <input type="text" id="registerDate-end"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('结束日期',null,'eam_asset_dep_detail')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
@@ -177,6 +175,10 @@
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
+        <button id="depreciation-start"  th:if="${perm.checkAuth('eam_asset_depreciation_oper:start')}"class="layui-btn icon-btn layui-btn-sm  depreciationStart-btn " lay-event="tool-depreciation-start"><span th:text="${lang.translate('导入资产','','cmp:table.button')}">导入资产</span></button>
+        <button id="depreciation-execute"  th:if="${perm.checkAuth('eam_asset_depreciation_oper:execute')}"class="layui-btn icon-btn layui-btn-sm  depreciationExecute-btn " lay-event="tool-depreciation-execute"><span th:text="${lang.translate('执行折旧','','cmp:table.button')}">执行折旧</span></button>
+        <button id="depreciation-sync"  th:if="${perm.checkAuth('eam_asset_depreciation_oper:sync')}"class="layui-btn icon-btn layui-btn-sm  depreciationSync-btn " lay-event="tool-depreciation-sync"><span th:text="${lang.translate('同步数据','','cmp:table.button')}">同步数据</span></button>
+        <button id="depreciation-export"  th:if="${perm.checkAuth('eam_asset_depreciation_oper:export')}"class="layui-btn icon-btn layui-btn-sm  depreciationExport-btn " lay-event="tool-depreciation-export"><span th:text="${lang.translate('数据导出','','cmp:table.button')}">数据导出</span></button>
     </div>
 </script>
 

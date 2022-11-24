@@ -2,7 +2,7 @@
 /**
  * 折旧操作 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-24 12:09:44
+ * @since 2022-11-24 19:20:30
  */
  -->
  <!DOCTYPE html>
@@ -11,7 +11,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
-	<title th:text="${lang.translate('折旧操作')}">折旧操作</title>
+	<title th:text="${lang.translate('折旧操作',null,'eam_dep_oper')}">折旧操作</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:if(theme.ico!="null") rel="icon" th:href="theme.ico" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -37,7 +37,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-6516-content">
+        <div class="layui-row form-row" id="random-2021-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -45,9 +45,9 @@
 
                 <!-- text_input : 名称 ,  name -->
                 <div class="layui-form-item" >
-                    <div class="layui-form-label "><div th:text="${lang.translate('名称')}">名称</div><div class="layui-required">*</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('名称',null,'eam_dep_oper')}">名称</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('名称') }" type="text" class="layui-input"    lay-verify="|required"  />
+                        <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入'+'名称',null,'eam_dep_oper') }" type="text" class="layui-input"    lay-verify="|required"  />
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -58,7 +58,7 @@
 
                 <!-- select_box : 折旧方案 ,  depreciationId  -->
                 <div class="layui-form-item" >
-                    <div class="layui-form-label "><div th:text="${lang.translate('折旧方案')}">折旧方案</div><div class="layui-required">*</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('折旧方案',null,'eam_dep_oper')}">折旧方案</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
                         <div id="depreciationId" input-type="select" th:data="${'/service-eam/eam-asset-depreciation/query-paged-list'}" extraParam="{}"></div>
                     </div>
@@ -71,9 +71,9 @@
 
                 <!-- date_input : 业务日期 ,  businessDate  -->
                 <div class="layui-form-item" >
-                    <div class="layui-form-label "><div th:text="${lang.translate('业务日期')}">业务日期</div><div class="layui-required">*</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('业务日期',null,'eam_dep_oper')}">业务日期</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
-                        <input input-type="date" lay-filter="businessDate" id="businessDate" name="businessDate"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择') +''+ lang.translate('业务日期') }" type="text" class="layui-input"    lay-verify="|required"   />
+                        <input input-type="date" lay-filter="businessDate" id="businessDate" name="businessDate"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择'+'业务日期',null,'eam_dep_oper') }" type="text" class="layui-input"    lay-verify="|required"   />
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -83,7 +83,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-6934-content">
+        <div class="layui-row form-row" id="random-0773-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -91,17 +91,17 @@
 
                 <!-- text_area : 折旧内容 ,  content  -->
                 <div class="layui-form-item" >
-                    <div class="layui-form-label "><div th:text="${lang.translate('折旧内容')}">折旧内容</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('折旧内容',null,'eam_dep_oper')}">折旧内容</div></div>
                     <div class="layui-input-block ">
-                        <textarea lay-filter="content" id="content" name="content" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('折旧内容') }" class="layui-textarea" style="height: 120px" ></textarea>
+                        <textarea lay-filter="content" id="content" name="content" th:placeholder="${ lang.translate('请输入'+'折旧内容',null,'eam_dep_oper') }" class="layui-textarea" style="height: 120px" ></textarea>
                     </div>
                 </div>
             
                 <!-- text_area : 备注 ,  notes  -->
                 <div class="layui-form-item" >
-                    <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('备注',null,'eam_dep_oper')}">备注</div></div>
                     <div class="layui-input-block ">
-                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" class="layui-textarea" style="height: 120px" ></textarea>
+                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入'+'备注',null,'eam_dep_oper') }" class="layui-textarea" style="height: 120px" ></textarea>
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -118,8 +118,8 @@
 
 </div>
 <div class="model-form-footer">
-    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消')}" >取消</button>
-    <button th:if="${perm.checkAnyAuth('eam_asset_depreciation_oper:create','eam_asset_depreciation_oper:update','eam_asset_depreciation_oper:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存')}">保存</button>
+    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消','','form.button')}" >取消</button>
+    <button th:if="${perm.checkAnyAuth('eam_asset_depreciation_oper:create','eam_asset_depreciation_oper:update','eam_asset_depreciation_oper:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存','','form.button')}">保存</button>
 </div>
 
 <script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>

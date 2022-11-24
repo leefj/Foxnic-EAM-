@@ -1,12 +1,13 @@
 /**
  * 折旧操作 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-24 12:09:44
+ * @since 2022-11-24 19:20:31
  */
 
 function FormPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
+	const languageContext='eam_dep_oper'; 
 	const moduleURL="/service-eam/eam-asset-depreciation-oper";
 	// 表单执行操作类型：view，create，edit
 	var action=null;

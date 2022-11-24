@@ -1,13 +1,14 @@
 /**
  * 折旧操作 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-24 12:09:44
+ * @since 2022-11-24 19:20:30
  */
 
 
 function ListPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect;
+	const languageContext='eam_dep_oper'; 
 	//模块基础路径
 	const moduleURL="/service-eam/eam-asset-depreciation-oper";
 	var dataTable=null;
@@ -18,7 +19,7 @@ function ListPage() {
 	this.init=function(layui) {
 
      	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate;
-		table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,dropdown=layui.dropdown;;
+		table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,dropdown=layui.dropdown;
 
 		if(window.pageExt.list.beforeInit) {
 			window.pageExt.list.beforeInit();
@@ -69,7 +70,7 @@ function ListPage() {
 			var tableConfig={
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
-				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
+				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
 				url: moduleURL +'/query-paged-list',
 				height: 'full-'+(h+28),
 				limit: 50,
@@ -77,20 +78,20 @@ function ListPage() {
 				cols: [[
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
-					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'businessCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务编号') , templet: function (d) { return templet('businessCode',d.businessCode,d);}  }
-					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status,'','status'),d);}}
-					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'depreciationId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧方案'), templet: function (d) { return templet('depreciationId' ,fox.joinLabel(d.assetDepreciation,"name",',','','depreciationId'),d);}}
-					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧内容') , templet: function (d) { return templet('content',d.content,d);}  }
-					,{ field: 'businessDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('业务日期') ,templet: function (d) { return templet('businessDate',fox.dateFormat(d.businessDate,"yyyy-MM-dd"),d); }  }
-					,{ field: 'executionStartTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('执行时间') ,templet: function (d) { return templet('executionStartTime',fox.dateFormat(d.executionStartTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'executionEndTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('结束时间') ,templet: function (d) { return templet('executionEndTime',fox.dateFormat(d.executionEndTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
-					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"],0,'','originatorId'),d);} }
-					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
-					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
+					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键',null,languageContext) , templet: function (d) { return templet('id',d.id,d);}  }
+					,{ field: 'businessCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务编号',null,languageContext) , templet: function (d) { return templet('businessCode',d.businessCode,d);}  }
+					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态',null,languageContext), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status,'','status'),d);}}
+					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称',null,languageContext) , templet: function (d) { return templet('name',d.name,d);}  }
+					,{ field: 'depreciationId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧方案',null,languageContext), templet: function (d) { return templet('depreciationId' ,fox.joinLabel(d.assetDepreciation,"name",',','','depreciationId'),d);}}
+					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧内容',null,languageContext) , templet: function (d) { return templet('content',d.content,d);}  }
+					,{ field: 'businessDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('业务日期',null,languageContext) ,templet: function (d) { return templet('businessDate',fox.dateFormat(d.businessDate,"yyyy-MM-dd"),d); }  }
+					,{ field: 'executionStartTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('执行时间',null,languageContext) ,templet: function (d) { return templet('executionStartTime',fox.dateFormat(d.executionStartTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'executionEndTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('结束时间',null,languageContext) ,templet: function (d) { return templet('executionEndTime',fox.dateFormat(d.executionEndTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注',null,languageContext) , templet: function (d) { return templet('notes',d.notes,d);}  }
+					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人',null,languageContext) , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"],0,'','originatorId'),d);} }
+					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间',null,languageContext) ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
+					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
@@ -314,11 +315,11 @@ function ListPage() {
 
 			var ids=getCheckedList("id");
             if(ids.length==0) {
-				top.layer.msg(fox.translate('请选择需要删除的'+'折旧操作'+"!"));
+				top.layer.msg(fox.translate('请选择需要删除的'+'折旧操作'+"!",null,languageContext));
             	return;
             }
             //调用批量删除接口
-			top.layer.confirm(fox.translate('确定删除已选中的'+'折旧操作'+'吗？'), function (i) {
+			top.layer.confirm(fox.translate('确定删除已选中的'+'折旧操作'+'吗？',null,languageContext), function (i) {
                 top.layer.close(i);
 				admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
                     if (data.success) {
@@ -380,7 +381,7 @@ function ListPage() {
 					if(!doNext) return;
 				}
 
-				top.layer.confirm(fox.translate('确定删除此'+'折旧操作'+'吗？'), function (i) {
+				top.layer.confirm(fox.translate('确定删除此'+'折旧操作'+'吗？',null,languageContext), function (i) {
 					top.layer.close(i);
 					admin.post(moduleURL+"/delete", { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
@@ -399,18 +400,6 @@ function ListPage() {
 			}
 			else if (layEvent === 'depreciation-detail') { // 明细
 				window.pageExt.list.depreciationDetail(data,this);
-			}
-			else if (layEvent === 'depreciation-start') { // 导入资产
-				window.pageExt.list.depreciationStart(data,this);
-			}
-			else if (layEvent === 'depreciation-execute') { // 预执行
-				window.pageExt.list.depreciationExecute(data,this);
-			}
-			else if (layEvent === 'depreciation-rollback') { // 回退
-				window.pageExt.list.depreciationRollback(data,this);
-			}
-			else if (layEvent === 'depreciation-sync') { // 同步数据
-				window.pageExt.list.depreciationSync(data,this);
 			}
 			
 		});
@@ -435,10 +424,10 @@ function ListPage() {
 		var area=admin.getTempData('eam-asset-depreciation-oper-form-area');
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
 		var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
-		var title = fox.translate('折旧操作');
-		if(action=="create") title=fox.translate('添加')+title;
-		else if(action=="edit") title=fox.translate('修改')+title;
-		else if(action=="view") title=fox.translate('查看')+title;
+		var title = fox.translate('折旧操作',null,languageContext);
+		if(action=="create") title=fox.translate('添加','','cmp:table')+title;
+		else if(action=="edit") title=fox.translate('修改','','cmp:table')+title;
+		else if(action=="view") title=fox.translate('查看','','cmp:table')+title;
 
 		admin.popupCenter({
 			title: title,

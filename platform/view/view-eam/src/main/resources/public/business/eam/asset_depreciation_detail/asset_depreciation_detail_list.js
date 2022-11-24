@@ -1,7 +1,7 @@
 /**
  * 折旧明细 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-24 12:59:22
+ * @since 2022-11-24 19:55:18
  */
 
 
@@ -88,7 +88,8 @@ function ListPage() {
 					,{ field: 'assetModel', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('资产型号',null,languageContext) , templet: function (d) { return templet('assetModel',d.assetModel,d);}  }
 					,{ field: 'assetStatusName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('资产状态',null,languageContext) , templet: function (d) { return templet('assetStatusName',d.assetStatusName,d);}  }
 					,{ field: 'purchaseDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('采购日期',null,languageContext) ,templet: function (d) { return templet('purchaseDate',fox.dateFormat(d.purchaseDate,"yyyy-MM-dd"),d); }  }
-					,{ field: 'registerDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('入账日期',null,languageContext) ,templet: function (d) { return templet('registerDate',fox.dateFormat(d.registerDate,"yyyy-MM-dd"),d); }  }
+					,{ field: 'registerDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('启用日期',null,languageContext) ,templet: function (d) { return templet('registerDate',fox.dateFormat(d.registerDate,"yyyy-MM-dd"),d); }  }
+					,{ field: 'businessDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('业务日期',null,languageContext) ,templet: function (d) { return templet('businessDate',fox.dateFormat(d.businessDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'originalUnitPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('资产原值',null,languageContext) , templet: function (d) { return templet('originalUnitPrice',d.originalUnitPrice,d);}  }
 					,{ field: 'serviceLife', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('使用寿命',null,languageContext) , templet: function (d) { return templet('serviceLife',d.serviceLife,d);}  }
 					,{ field: 'usedServiceLife', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('已用寿命',null,languageContext) , templet: function (d) { return templet('usedServiceLife',d.usedServiceLife,d);}  }
@@ -105,11 +106,7 @@ function ListPage() {
 					,{ field: 'eDepreciationAmount', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('(期末)期末累计折旧',null,languageContext) , templet: function (d) { return templet('eDepreciationAmount',d.eDepreciationAmount,d);}  }
 					,{ field: 'eNavAmount', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('(期末)期末净值',null,languageContext) , templet: function (d) { return templet('eNavAmount',d.eNavAmount,d);}  }
 					,{ field: 'eRecoverableAmount', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('(期末)期末可回收金额',null,languageContext) , templet: function (d) { return templet('eRecoverableAmount',d.eRecoverableAmount,d);}  }
-					,{ field: 'useUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('使用人',null,languageContext) , templet: function (d) { return templet('useUserId',fox.getProperty(d,["useUser","name"],0,'','useUserId'),d);} }
-					,{ field: 'useOrgId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('部门ID',null,languageContext) , templet: function (d) { return templet('useOrgId',d.useOrgId,d);}  }
 					,{ field: 'useOrgName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('使用部门',null,languageContext) , templet: function (d) { return templet('useOrgName',d.useOrgName,d);}  }
-					,{ field: 'financialOptionKey', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('财务选项',null,languageContext), templet: function (d) { return templet('financialOptionKey' ,fox.joinLabel(d.financialOptionDict,"label",',','','financialOptionKey'),d);}}
-					,{ field: 'expenseItemKey', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('费用项目',null,languageContext), templet: function (d) { return templet('expenseItemKey' ,fox.joinLabel(d.expenseItemDict,"label",',','','expenseItemKey'),d);}}
 					,{ field: 'financialOptionName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('财务选项',null,languageContext) , templet: function (d) { return templet('financialOptionName',d.financialOptionName,d);}  }
 					,{ field: 'expenseItemName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('费用项目',null,languageContext) , templet: function (d) { return templet('expenseItemName',d.expenseItemName,d);}  }
 					,{ field: 'customerInfo', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('客户情况',null,languageContext) , templet: function (d) { return templet('customerInfo',d.customerInfo,d);}  }
@@ -118,9 +115,6 @@ function ListPage() {
 					,{ field: 'curPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('当前净值',null,languageContext) , templet: function (d) { return templet('curPrice',d.curPrice,d);}  }
 					,{ field: 'beforePrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧前净值',null,languageContext) , templet: function (d) { return templet('beforePrice',d.beforePrice,d);}  }
 					,{ field: 'afterPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧后净值',null,languageContext) , templet: function (d) { return templet('afterPrice',d.afterPrice,d);}  }
-					,{ field: 'assetCurName', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('资产名称',null,languageContext), templet: function (d) { return templet('assetCurName' ,fox.joinLabel(d.asset,"name",',','','assetCurName'),d);}}
-					,{ field: 'assetCurModel', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('资产型号',null,languageContext), templet: function (d) { return templet('assetCurModel' ,fox.joinLabel(d.asset,"model",',','','assetCurModel'),d);}}
-					,{ field: 'assetCurCode', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('资产编号',null,languageContext), templet: function (d) { return templet('assetCurCode' ,fox.joinLabel(d.asset,"assetCode",',','','assetCurCode'),d);}}
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -336,6 +330,18 @@ function ListPage() {
 					break;
 				case 'batch-del':
 					batchDelete(selected);
+					break;
+				case 'tool-depreciation-start':
+					window.pageExt.list.depreciationStart && window.pageExt.list.depreciationStart(selected,obj);
+					break;
+				case 'tool-depreciation-execute':
+					window.pageExt.list.depreciationExecute && window.pageExt.list.depreciationExecute(selected,obj);
+					break;
+				case 'tool-depreciation-sync':
+					window.pageExt.list.depreciationSync && window.pageExt.list.depreciationSync(selected,obj);
+					break;
+				case 'tool-depreciation-export':
+					window.pageExt.list.depreciationExport && window.pageExt.list.depreciationExport(selected,obj);
 					break;
 				case 'refresh-data':
 					refreshTableData();

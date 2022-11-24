@@ -26,7 +26,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 折旧明细VO类型
  * <p>折旧明细 , 数据表 eam_asset_depreciation_detail 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-24 12:59:20
+ * @since 2022-11-24 19:55:17
  * @sign A99C923C580D1F59CCE2589999291802
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -363,6 +363,7 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 		inst.setEOriginalPrice(this.getEOriginalPrice());
 		inst.setResult(this.getResult());
 		inst.setOriginalUnitPrice(this.getOriginalUnitPrice());
+		inst.setBusinessDate(this.getBusinessDate());
 		inst.setDepreciationId(this.getDepreciationId());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setAssetId(this.getAssetId());
@@ -394,7 +395,6 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 			inst.setUseOrganization(this.getUseOrganization());
 			inst.setAssetTarget(this.getAssetTarget());
 			inst.setExpenseItemDict(this.getExpenseItemDict());
-			inst.setAssetCurModel(this.getAssetCurModel());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
 			inst.setAssetDepreciationOper(this.getAssetDepreciationOper());
@@ -402,10 +402,8 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 			inst.setSortField(this.getSortField());
 			inst.setIds(this.getIds());
 			inst.setAsset(this.getAsset());
-			inst.setAssetCurCode(this.getAssetCurCode());
 			inst.setUseUser(this.getUseUser());
 			inst.setSearchValue(this.getSearchValue());
-			inst.setAssetCurName(this.getAssetCurName());
 		}
 		inst.clearModifies();
 		return inst;
@@ -498,6 +496,7 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 			this.setEOriginalPrice(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationDetailVOMeta.E_ORIGINAL_PRICE)));
 			this.setResult(DataParser.parse(String.class, map.get(AssetDepreciationDetailVOMeta.RESULT)));
 			this.setOriginalUnitPrice(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationDetailVOMeta.ORIGINAL_UNIT_PRICE)));
+			this.setBusinessDate(DataParser.parse(Date.class, map.get(AssetDepreciationDetailVOMeta.BUSINESS_DATE)));
 			this.setDepreciationId(DataParser.parse(String.class, map.get(AssetDepreciationDetailVOMeta.DEPRECIATION_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetDepreciationDetailVOMeta.UPDATE_BY)));
 			this.setAssetId(DataParser.parse(String.class, map.get(AssetDepreciationDetailVOMeta.ASSET_ID)));
@@ -529,16 +528,13 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 			this.setUseOrganization(DataParser.parse(Organization.class, map.get(AssetDepreciationDetailVOMeta.USE_ORGANIZATION)));
 			this.setAssetTarget(DataParser.parse(Asset.class, map.get(AssetDepreciationDetailVOMeta.ASSET_TARGET)));
 			this.setExpenseItemDict(DataParser.parse(DictItem.class, map.get(AssetDepreciationDetailVOMeta.EXPENSE_ITEM_DICT)));
-			this.setAssetCurModel(DataParser.parse(String.class, map.get(AssetDepreciationDetailVOMeta.ASSET_CUR_MODEL)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(AssetDepreciationDetailVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(AssetDepreciationDetailVOMeta.SORT_TYPE)));
 			this.setAssetDepreciationOper(DataParser.parse(AssetDepreciationOper.class, map.get(AssetDepreciationDetailVOMeta.ASSET_DEPRECIATION_OPER)));
 			this.setSortField(DataParser.parse(String.class, map.get(AssetDepreciationDetailVOMeta.SORT_FIELD)));
 			this.setAsset(DataParser.parse(Asset.class, map.get(AssetDepreciationDetailVOMeta.ASSET)));
-			this.setAssetCurCode(DataParser.parse(String.class, map.get(AssetDepreciationDetailVOMeta.ASSET_CUR_CODE)));
 			this.setUseUser(DataParser.parse(Employee.class, map.get(AssetDepreciationDetailVOMeta.USE_USER)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(AssetDepreciationDetailVOMeta.SEARCH_VALUE)));
-			this.setAssetCurName(DataParser.parse(String.class, map.get(AssetDepreciationDetailVOMeta.ASSET_CUR_NAME)));
 			return true;
 		} else {
 			try {
@@ -575,6 +571,7 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 				this.setEOriginalPrice( (BigDecimal)map.get(AssetDepreciationDetailVOMeta.E_ORIGINAL_PRICE));
 				this.setResult( (String)map.get(AssetDepreciationDetailVOMeta.RESULT));
 				this.setOriginalUnitPrice( (BigDecimal)map.get(AssetDepreciationDetailVOMeta.ORIGINAL_UNIT_PRICE));
+				this.setBusinessDate( (Date)map.get(AssetDepreciationDetailVOMeta.BUSINESS_DATE));
 				this.setDepreciationId( (String)map.get(AssetDepreciationDetailVOMeta.DEPRECIATION_ID));
 				this.setUpdateBy( (String)map.get(AssetDepreciationDetailVOMeta.UPDATE_BY));
 				this.setAssetId( (String)map.get(AssetDepreciationDetailVOMeta.ASSET_ID));
@@ -606,16 +603,13 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 				this.setUseOrganization( (Organization)map.get(AssetDepreciationDetailVOMeta.USE_ORGANIZATION));
 				this.setAssetTarget( (Asset)map.get(AssetDepreciationDetailVOMeta.ASSET_TARGET));
 				this.setExpenseItemDict( (DictItem)map.get(AssetDepreciationDetailVOMeta.EXPENSE_ITEM_DICT));
-				this.setAssetCurModel( (String)map.get(AssetDepreciationDetailVOMeta.ASSET_CUR_MODEL));
 				this.setPageIndex( (Integer)map.get(AssetDepreciationDetailVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(AssetDepreciationDetailVOMeta.SORT_TYPE));
 				this.setAssetDepreciationOper( (AssetDepreciationOper)map.get(AssetDepreciationDetailVOMeta.ASSET_DEPRECIATION_OPER));
 				this.setSortField( (String)map.get(AssetDepreciationDetailVOMeta.SORT_FIELD));
 				this.setAsset( (Asset)map.get(AssetDepreciationDetailVOMeta.ASSET));
-				this.setAssetCurCode( (String)map.get(AssetDepreciationDetailVOMeta.ASSET_CUR_CODE));
 				this.setUseUser( (Employee)map.get(AssetDepreciationDetailVOMeta.USE_USER));
 				this.setSearchValue( (String)map.get(AssetDepreciationDetailVOMeta.SEARCH_VALUE));
-				this.setAssetCurName( (String)map.get(AssetDepreciationDetailVOMeta.ASSET_CUR_NAME));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -665,6 +659,7 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 			this.setEOriginalPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationDetailVOMeta.E_ORIGINAL_PRICE)));
 			this.setResult(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailVOMeta.RESULT)));
 			this.setOriginalUnitPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationDetailVOMeta.ORIGINAL_UNIT_PRICE)));
+			this.setBusinessDate(DataParser.parse(Date.class, r.getValue(AssetDepreciationDetailVOMeta.BUSINESS_DATE)));
 			this.setDepreciationId(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailVOMeta.DEPRECIATION_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailVOMeta.UPDATE_BY)));
 			this.setAssetId(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailVOMeta.ASSET_ID)));
@@ -722,6 +717,7 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 				this.setEOriginalPrice( (BigDecimal)r.getValue(AssetDepreciationDetailVOMeta.E_ORIGINAL_PRICE));
 				this.setResult( (String)r.getValue(AssetDepreciationDetailVOMeta.RESULT));
 				this.setOriginalUnitPrice( (BigDecimal)r.getValue(AssetDepreciationDetailVOMeta.ORIGINAL_UNIT_PRICE));
+				this.setBusinessDate( (Date)r.getValue(AssetDepreciationDetailVOMeta.BUSINESS_DATE));
 				this.setDepreciationId( (String)r.getValue(AssetDepreciationDetailVOMeta.DEPRECIATION_ID));
 				this.setUpdateBy( (String)r.getValue(AssetDepreciationDetailVOMeta.UPDATE_BY));
 				this.setAssetId( (String)r.getValue(AssetDepreciationDetailVOMeta.ASSET_ID));
