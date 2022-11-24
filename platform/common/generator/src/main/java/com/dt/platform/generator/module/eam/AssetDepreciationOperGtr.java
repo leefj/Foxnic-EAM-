@@ -40,7 +40,7 @@ public class AssetDepreciationOperGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(AssetDepreciation.class,"assetDepreciation","方案","方案");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
 
-
+        cfg.view().language().enableContext("eam_dep_oper");
 
 
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_OPER.ID).basic().hidden(true);
@@ -55,10 +55,10 @@ public class AssetDepreciationOperGtr extends BaseCodeGenerator {
 
         cfg.view().list().disableBatchDelete();
         cfg.view().list().operationColumn().addActionButton("明细","depreciationDetail","depreciationDetail-btn","eam_asset_depreciation_oper:detail");
-        cfg.view().list().operationColumn().addActionButton("导入资产","depreciationStart","depreciationStart-btn","eam_asset_depreciation_oper:start");
-        cfg.view().list().operationColumn().addActionButton("预执行","depreciationExecute","depreciationExecute-btn","eam_asset_depreciation_oper:execute");
-        cfg.view().list().operationColumn().addActionButton("回退","depreciationRollback","depreciationRollback-btn","eam_asset_depreciation_oper:rollback");
-        cfg.view().list().operationColumn().addActionButton("同步数据","depreciationSync","depreciationSync-btn","eam_asset_depreciation_oper:sync");
+       // cfg.view().list().operationColumn().addActionButton("导入资产","depreciationStart","depreciationStart-btn","eam_asset_depreciation_oper:start");
+     //   cfg.view().list().operationColumn().addActionButton("预执行","depreciationExecute","depreciationExecute-btn","eam_asset_depreciation_oper:execute");
+       // cfg.view().list().operationColumn().addActionButton("回退","depreciationRollback","depreciationRollback-btn","eam_asset_depreciation_oper:rollback");
+       // cfg.view().list().operationColumn().addActionButton("同步数据","depreciationSync","depreciationSync-btn","eam_asset_depreciation_oper:sync");
 
 
          cfg.view().formWindow().width(Config.baseFormWidth);;

@@ -18,7 +18,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-24 12:59:20
+ * @since 2022-11-24 19:55:17
  * @sign A99C923C580D1F59CCE2589999291802
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -246,14 +246,24 @@ public class AssetDepreciationDetailVOMeta extends AssetDepreciationDetailMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationDetailVO,java.util.Date> PURCHASE_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationDetailVO.class ,PURCHASE_DATE, java.util.Date.class, "采购日期", "采购日期", java.util.Date.class, null);
 	
 	/**
-	 * 入账日期 , 类型: java.util.Date
+	 * 启用日期 , 类型: java.util.Date
 	*/
 	public static final String REGISTER_DATE="registerDate";
 	
 	/**
-	 * 入账日期 , 类型: java.util.Date
+	 * 启用日期 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationDetailVO,java.util.Date> REGISTER_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationDetailVO.class ,REGISTER_DATE, java.util.Date.class, "入账日期", "入账日期", java.util.Date.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationDetailVO,java.util.Date> REGISTER_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationDetailVO.class ,REGISTER_DATE, java.util.Date.class, "启用日期", "启用日期", java.util.Date.class, null);
+	
+	/**
+	 * 业务日期 , 类型: java.util.Date
+	*/
+	public static final String BUSINESS_DATE="businessDate";
+	
+	/**
+	 * 业务日期 , 类型: java.util.Date
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationDetailVO,java.util.Date> BUSINESS_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationDetailVO.class ,BUSINESS_DATE, java.util.Date.class, "业务日期", "业务日期", java.util.Date.class, null);
 	
 	/**
 	 * 资产原值 , 类型: java.math.BigDecimal
@@ -706,36 +716,6 @@ public class AssetDepreciationDetailVOMeta extends AssetDepreciationDetailMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationDetailVO,com.dt.platform.domain.eam.AssetDepreciationOper> ASSET_DEPRECIATION_OPER_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationDetailVO.class ,ASSET_DEPRECIATION_OPER, com.dt.platform.domain.eam.AssetDepreciationOper.class, "操作", "操作", com.dt.platform.domain.eam.AssetDepreciationOper.class, null);
 	
 	/**
-	 * 名称 , 类型: java.lang.String
-	*/
-	public static final String ASSET_CUR_NAME="assetCurName";
-	
-	/**
-	 * 名称 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationDetailVO,java.lang.String> ASSET_CUR_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationDetailVO.class ,ASSET_CUR_NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
-	
-	/**
-	 * 类型 , 类型: java.lang.String
-	*/
-	public static final String ASSET_CUR_MODEL="assetCurModel";
-	
-	/**
-	 * 类型 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationDetailVO,java.lang.String> ASSET_CUR_MODEL_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationDetailVO.class ,ASSET_CUR_MODEL, java.lang.String.class, "类型", "类型", java.lang.String.class, null);
-	
-	/**
-	 * 编码 , 类型: java.lang.String
-	*/
-	public static final String ASSET_CUR_CODE="assetCurCode";
-	
-	/**
-	 * 编码 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationDetailVO,java.lang.String> ASSET_CUR_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationDetailVO.class ,ASSET_CUR_CODE, java.lang.String.class, "编码", "编码", java.lang.String.class, null);
-	
-	/**
 	 * 财务选项 , 类型: org.github.foxnic.web.domain.system.DictItem
 	*/
 	public static final String FINANCIAL_OPTION_DICT="financialOptionDict";
@@ -778,7 +758,7 @@ public class AssetDepreciationDetailVOMeta extends AssetDepreciationDetailMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , DEPRECIATION_ID , OPER_ID , DEPRECIATION_METHOD , RESULT , RESULT_DETAIL , ASSET_ID , ASSET_CATEGORY_NAME , ASSET_CODE , ASSET_NAME , ASSET_MODEL , ASSET_STATUS_NAME , PURCHASE_DATE , REGISTER_DATE , ORIGINAL_UNIT_PRICE , SERVICE_LIFE , USED_SERVICE_LIFE , RESIDUAL_RATE , REDIDUAL_PRICE , S_ORIGINAL_PRICE , S_DEPRECIATION_AMOUNT , S_NAV_AMOUNT , S_RECOVERABLE_AMOUNT , C_ORIGINAL_PRICE_INCREASE , C_DEPRECIATION_AMOUNT , C_YEAR_DEPRECIATION_AMOUNT , E_ORIGINAL_PRICE , E_DEPRECIATION_AMOUNT , E_NAV_AMOUNT , E_RECOVERABLE_AMOUNT , USE_USER_ID , USE_ORG_ID , USE_ORG_NAME , FINANCIAL_OPTION_KEY , EXPENSE_ITEM_KEY , FINANCIAL_OPTION_NAME , EXPENSE_ITEM_NAME , CUSTOMER_INFO , DETAIL_ID_SOURCE , DETAIL_ID_TARGET , PURCHASE_UNIT_PRICE , DEPRECIATION_PRICE , CUR_PRICE , BEFORE_PRICE , AFTER_PRICE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSET_SOURCE , ASSET_TARGET , ASSET , ASSET_DEPRECIATION , ASSET_DEPRECIATION_OPER , ASSET_CUR_NAME , ASSET_CUR_MODEL , ASSET_CUR_CODE , FINANCIAL_OPTION_DICT , EXPENSE_ITEM_DICT , USE_USER , USE_ORGANIZATION };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , DEPRECIATION_ID , OPER_ID , DEPRECIATION_METHOD , RESULT , RESULT_DETAIL , ASSET_ID , ASSET_CATEGORY_NAME , ASSET_CODE , ASSET_NAME , ASSET_MODEL , ASSET_STATUS_NAME , PURCHASE_DATE , REGISTER_DATE , BUSINESS_DATE , ORIGINAL_UNIT_PRICE , SERVICE_LIFE , USED_SERVICE_LIFE , RESIDUAL_RATE , REDIDUAL_PRICE , S_ORIGINAL_PRICE , S_DEPRECIATION_AMOUNT , S_NAV_AMOUNT , S_RECOVERABLE_AMOUNT , C_ORIGINAL_PRICE_INCREASE , C_DEPRECIATION_AMOUNT , C_YEAR_DEPRECIATION_AMOUNT , E_ORIGINAL_PRICE , E_DEPRECIATION_AMOUNT , E_NAV_AMOUNT , E_RECOVERABLE_AMOUNT , USE_USER_ID , USE_ORG_ID , USE_ORG_NAME , FINANCIAL_OPTION_KEY , EXPENSE_ITEM_KEY , FINANCIAL_OPTION_NAME , EXPENSE_ITEM_NAME , CUSTOMER_INFO , DETAIL_ID_SOURCE , DETAIL_ID_TARGET , PURCHASE_UNIT_PRICE , DEPRECIATION_PRICE , CUR_PRICE , BEFORE_PRICE , AFTER_PRICE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSET_SOURCE , ASSET_TARGET , ASSET , ASSET_DEPRECIATION , ASSET_DEPRECIATION_OPER , FINANCIAL_OPTION_DICT , EXPENSE_ITEM_DICT , USE_USER , USE_ORGANIZATION };
 	
 	/**
 	 * 代理类
@@ -1031,13 +1011,24 @@ public class AssetDepreciationDetailVOMeta extends AssetDepreciationDetailMeta {
 		}
 		
 		/**
-		 * 设置 入账日期
-		 * @param registerDate 入账日期
+		 * 设置 启用日期
+		 * @param registerDate 启用日期
 		 * @return 当前对象
 		*/
 		public AssetDepreciationDetail setRegisterDate(Date registerDate) {
 			super.change(REGISTER_DATE,super.getRegisterDate(),registerDate);
 			super.setRegisterDate(registerDate);
+			return this;
+		}
+		
+		/**
+		 * 设置 业务日期
+		 * @param businessDate 业务日期
+		 * @return 当前对象
+		*/
+		public AssetDepreciationDetail setBusinessDate(Date businessDate) {
+			super.change(BUSINESS_DATE,super.getBusinessDate(),businessDate);
+			super.setBusinessDate(businessDate);
 			return this;
 		}
 		
@@ -1537,39 +1528,6 @@ public class AssetDepreciationDetailVOMeta extends AssetDepreciationDetailMeta {
 		}
 		
 		/**
-		 * 设置 名称
-		 * @param assetCurName 名称
-		 * @return 当前对象
-		*/
-		public AssetDepreciationDetail setAssetCurName(String assetCurName) {
-			super.change(ASSET_CUR_NAME,super.getAssetCurName(),assetCurName);
-			super.setAssetCurName(assetCurName);
-			return this;
-		}
-		
-		/**
-		 * 设置 类型
-		 * @param assetCurModel 类型
-		 * @return 当前对象
-		*/
-		public AssetDepreciationDetail setAssetCurModel(String assetCurModel) {
-			super.change(ASSET_CUR_MODEL,super.getAssetCurModel(),assetCurModel);
-			super.setAssetCurModel(assetCurModel);
-			return this;
-		}
-		
-		/**
-		 * 设置 编码
-		 * @param assetCurCode 编码
-		 * @return 当前对象
-		*/
-		public AssetDepreciationDetail setAssetCurCode(String assetCurCode) {
-			super.change(ASSET_CUR_CODE,super.getAssetCurCode(),assetCurCode);
-			super.setAssetCurCode(assetCurCode);
-			return this;
-		}
-		
-		/**
 		 * 设置 财务选项
 		 * @param financialOptionDict 财务选项
 		 * @return 当前对象
@@ -1661,6 +1619,7 @@ public class AssetDepreciationDetailVOMeta extends AssetDepreciationDetailMeta {
 			inst.setEOriginalPrice(this.getEOriginalPrice());
 			inst.setResult(this.getResult());
 			inst.setOriginalUnitPrice(this.getOriginalUnitPrice());
+			inst.setBusinessDate(this.getBusinessDate());
 			inst.setDepreciationId(this.getDepreciationId());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setAssetId(this.getAssetId());
@@ -1694,16 +1653,13 @@ public class AssetDepreciationDetailVOMeta extends AssetDepreciationDetailMeta {
 				inst.setExpenseItemDict(this.getExpenseItemDict());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
-				inst.setAssetCurModel(this.getAssetCurModel());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
 				inst.setAssetDepreciationOper(this.getAssetDepreciationOper());
 				inst.setIds(this.getIds());
 				inst.setAsset(this.getAsset());
-				inst.setAssetCurCode(this.getAssetCurCode());
 				inst.setUseUser(this.getUseUser());
 				inst.setSearchValue(this.getSearchValue());
-				inst.setAssetCurName(this.getAssetCurName());
 			}
 			inst.clearModifies();
 			return inst;

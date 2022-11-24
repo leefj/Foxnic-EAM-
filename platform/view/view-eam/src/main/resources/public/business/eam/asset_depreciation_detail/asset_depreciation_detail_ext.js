@@ -22,12 +22,47 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
     //列表页的扩展
     var list={
+        billOper:function(url,btnClass,ps,successMessage){
+            var btn=$('.'+btnClass).filter("[data-id='" +ps.id + "']");
+            var api="/service-eam/eam-asset-depreciation-oper/"+url;
+            top.layer.confirm(fox.translate('确定进行该操作吗？'), function (i) {
+                top.layer.close(i);
+                admin.post(api, ps, function (r) {
+                    if (r.success) {
+                        top.layer.msg(successMessage, {time: 1000});
+                        window.module.refreshTableData();
+                    } else {
+                        var errs = [];
+                        if(r.errors&&r.errors.length>0){
+                            for (var i = 0; i < r.errors.length; i++) {
+                                if (errs.indexOf(r.errors[i].message) == -1) {
+                                    errs.push(r.errors[i].message);
+                                }
+                            }
+                            top.layer.msg(errs.join("<br>"), {time: 2000});
+                        } else {
+                            top.layer.msg(r.message, {time: 2000});
+                        }
+                    }
+                }, {delayLoading: 1000, elms: [btn]});
+            });
+        },
+        depreciationStart:function (item,obj){
+            list.billOper("start","depreciationStart-btn",{id:OPER_ID},"已导入资产");
+        },
+        depreciationExecute:function (item,obj){
+            list.billOper("execute","depreciationExecute-btn",{id:OPER_ID},"已执行");
+        },
+        depreciationRollback:function (item,obj){
+            list.billOper("rollback","depreciationRollback-btn",{id:OPER_ID},"已回退");
+        },
+        depreciationSync:function (item,obj){
+            list.billOper("syncData","depreciationSync-btn",{id:OPER_ID},"已同步");
+        },
         /**
          * 列表页初始化前调用
          * */
         beforeInit:function () {
-
-
             var moduleURL2="/service-eam/eam-asset-depreciation-oper";
             admin.post(moduleURL2+"/get-by-id", { id :OPER_ID }, function (r) {
                 if (r.success) {
@@ -40,7 +75,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     fox.showMessage(data);
                 }
             });
-
             console.log("list:beforeInit");
         },
         /**
