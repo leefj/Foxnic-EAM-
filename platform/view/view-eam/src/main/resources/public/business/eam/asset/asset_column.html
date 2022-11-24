@@ -586,9 +586,17 @@
 <div  th:fragment="entry_time" class="layui-form-item" >
     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate(item.attribute.label)}"></div><div th:if="${item.required} == 1" class="layui-required">*</div></div>
     <div class="layui-input-block layui-input-block-c1">
-        <input input-type="date" lay-filter="entryTime" id="entryTime" name="entryTime"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择') +''+ lang.translate(item.attribute.label) }" type="text" class="layui-input"   />
+        <input input-type="date" lay-filter="entryTime" id="entryTime" name="entryTime"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请输入') +''+ lang.translate(item.attribute.label) }" type="text" class="layui-input"    lay-verify=""   />
     </div>
 </div>
+
+<!-- date_input : 入账时间 ,  entryTime  -->
+<!--<div class="layui-form-item" >-->
+<!--    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('入账时间')}">入账时间</div></div>-->
+<!--    <div class="layui-input-block layui-input-block-c1">-->
+<!--        <input input-type="date" lay-filter="entryTime" id="entryTime" name="entryTime"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择') +''+ lang.translate('入账时间') }" type="text" class="layui-input"    lay-verify=""   />-->
+<!--    </div>-->
+<!--</div>-->
 
 
 <div  th:fragment="financial_notes" class="layui-form-item" >
@@ -762,6 +770,43 @@
         <div id="goodsStockId" input-type="select" th:data="${'/service-eam/eam-goods-stock/query-paged-list'}" extraParam="{}"></div>
     </div>
 </div>
+
+
+<!-- select_box : 财务选项 ,  financialOption  -->
+<div th:fragment="financial_option" class="layui-form-item" >
+    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate(item.attribute.label)}"></div></div>
+    <div class="layui-input-block layui-input-block-c1">
+        <div id="financialOption" input-type="select" th:data="${'/service-system/sys-dict-item/query-list?dictCode=eam_financial_options'}" extraParam="{}"></div>
+    </div>
+</div>
+
+<!-- select_box : 费用项目 ,  expenseItem  -->
+<div th:fragment="expense_item" class="layui-form-item" >
+    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate(item.attribute.label)}"></div></div>
+    <div class="layui-input-block layui-input-block-c1">
+        <div id="expenseItem" input-type="select" th:data="${'/service-system/sys-dict-item/query-list?dictCode=eam_expense_items'}" extraParam="{}"></div>
+    </div>
+</div>
+
+<!-- text_input : 客户信息 ,  customerInfo -->
+<div th:fragment="customer_info" class="layui-form-item" >
+    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate(item.attribute.label)}"></div></div>
+    <div class="layui-input-block layui-input-block-c1">
+        <input lay-filter="customerInfo" id="customerInfo" name="customerInfo" th:placeholder="${ lang.translate('请输入') +''+ lang.translate(item.attribute.label )}" type="text" class="layui-input"  />
+    </div>
+</div>
+
+
+<!-- number_input : 已用期限 ,  assetUsedServiceLife  -->
+<div th:fragment="asset_used_service_life" class="layui-form-item" >
+    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate(item.attribute.label)}"></div></div>
+    <div class="layui-input-block layui-input-block-c1">
+        <input lay-filter="assetUsedServiceLife" id="assetUsedServiceLife" name="assetUsedServiceLife" th:placeholder="${ lang.translate('请输入') +''+ lang.translate(item.attribute.label )}" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
+    </div>
+</div>
+
+
+
 
 
 </body>

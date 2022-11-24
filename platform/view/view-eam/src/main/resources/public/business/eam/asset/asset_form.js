@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-13 13:10:12
+ * @since 2022-11-23 16:21:53
  */
 
 function FormPage() {
@@ -645,6 +645,60 @@ function FormPage() {
 				return opts;
 			}
 		});
+		//渲染 financialOption 下拉字段
+		fox.renderSelectBox({
+			el: "financialOption",
+			radio: true,
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("financialOption",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
+		//渲染 expenseItem 下拉字段
+		fox.renderSelectBox({
+			el: "expenseItem",
+			radio: true,
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("expenseItem",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].label,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
 		//渲染 supplierId 下拉字段
 		fox.renderSelectBox({
 			el: "supplierId",
@@ -890,6 +944,10 @@ function FormPage() {
 			fox.setSelectValue4QueryApi("#suggestMaintenanceMethod",formData.suggestMaintenanceMethodData);
 			//设置  财务分类 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#financialCategoryId",formData.categoryFinance);
+			//设置  财务选项 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#financialOption",formData.financialOptionDict);
+			//设置  费用项目 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#expenseItem",formData.expenseItemDict);
 			//设置  供应商 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#supplierId",formData.supplier);
 			//设置  设备状态 设置下拉框勾选
@@ -979,6 +1037,10 @@ function FormPage() {
 		data["suggestMaintenanceMethod"]=fox.getSelectedValue("suggestMaintenanceMethod",false);
 		//获取 财务分类 下拉框的值
 		data["financialCategoryId"]=fox.getSelectedValue("financialCategoryId",false);
+		//获取 财务选项 下拉框的值
+		data["financialOption"]=fox.getSelectedValue("financialOption",false);
+		//获取 费用项目 下拉框的值
+		data["expenseItem"]=fox.getSelectedValue("expenseItem",false);
 		//获取 供应商 下拉框的值
 		data["supplierId"]=fox.getSelectedValue("supplierId",false);
 		//获取 设备状态 下拉框的值

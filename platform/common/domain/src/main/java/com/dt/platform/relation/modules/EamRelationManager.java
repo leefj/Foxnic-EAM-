@@ -634,6 +634,28 @@ public class EamRelationManager extends RelationManager {
 
     public void setupAssetDepreciationDetail() {
 
+
+        // 费用方式
+        this.property(AssetDepreciationDetailMeta.EXPENSE_ITEM_DICT_PROP)
+                .using(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.EXPENSE_ITEM_KEY).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='eam_expense_items'");
+
+        // 财务选项
+        this.property(AssetDepreciationDetailMeta.FINANCIAL_OPTION_DICT_PROP)
+                .using(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.FINANCIAL_OPTION_KEY).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='eam_financial_options'");
+
+        //关联 使用组织
+        this.property(AssetDepreciationDetailMeta.USE_ORGANIZATION_PROP)
+                .using(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.USE_ORG_ID).join(FoxnicWeb.HRM_ORGANIZATION.ID);
+
+
+        // 关联使用人
+        this.property(AssetDepreciationDetailMeta.USE_USER_PROP)
+                .using(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.USE_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+//
+
+
         this.property(AssetDepreciationDetailMeta.ASSET_TARGET_PROP)
                 .using(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.DETAIL_ID_TARGET).join(EAMTables.EAM_ASSET.ID);
 
@@ -1722,6 +1744,17 @@ public class EamRelationManager extends RelationManager {
         this.property(AssetMeta.SUGGEST_MAINTENANCE_METHOD_DATA_PROP)
                 .using(EAMTables.EAM_ASSET.SUGGEST_MAINTENANCE_METHOD).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
                 .condition("dict_code='eam_suggest_maintenance_method'");
+
+
+        // 费用方式
+        this.property(AssetMeta.EXPENSE_ITEM_DICT_PROP)
+                .using(EAMTables.EAM_ASSET.EXPENSE_ITEM).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='eam_expense_items'");
+
+        // 财务选项
+        this.property(AssetMeta.FINANCIAL_OPTION_DICT_PROP)
+                .using(EAMTables.EAM_ASSET.FINANCIAL_OPTION).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .condition("dict_code='eam_financial_options'");
 
 
 

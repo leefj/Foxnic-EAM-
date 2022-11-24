@@ -44,7 +44,6 @@ public class EamAssetsGtr extends BaseCodeGenerator {
 //        cfg.getPoClassFile().addSimpleProperty(AssetExtFinancial.class,"assetMaintainer","维保信息","维保信息");
 //        cfg.getPoClassFile().addSimpleProperty(AssetExtEquipment.class,"assetEquipment","设备信息","设备信息");
 //        cfg.getPoClassFile().addSimpleProperty(AssetExtSoftware.class,"assetExtSoftware","软件信息","软件信息");
-
         cfg.getPoClassFile().addSimpleProperty(AssetExtData.class,"extData","扩展数据","扩展数据");
         cfg.getPoClassFile().addMapProperty(String.class,Object.class,"pcmData","PCM数据","PCM数据");
         cfg.getPoClassFile().addListProperty(CatalogAttribute.class,"catalogAttribute","自定义数据属性字段","自定义数据属性字段");
@@ -67,13 +66,16 @@ public class EamAssetsGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"assetMaintenanceStatus","维保状态","维保状态");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"suggestMaintenanceMethodData","建议维保方式","建议维保方式");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"maintenanceMethodData","维保方式","维保方式");
-
         cfg.getPoClassFile().addSimpleProperty(AssetStatus.class,"assetCycleStatus","assetCycleStatus","assetCycleStatus");
        // cfg.getPoClassFile().addSimpleProperty(Rack.class,"rack","机柜","机柜");
         cfg.getPoClassFile().addSimpleProperty(AssetRack.class,"rack","机柜","机柜");
         cfg.getPoClassFile().addSimpleProperty(ChangeInstance.class,"changeInstance","变更实例","变更实例");
         cfg.getPoClassFile().addSimpleProperty(GoodsStock.class,"goodsStock","库存物品","库存物品");
         cfg.getPoClassFile().addSimpleProperty(AssetRegion.class,"region","存放区域","存放区域");
+
+        cfg.getPoClassFile().addSimpleProperty(DictItem.class,"financialOptionDict","财务选项","财务选项");
+        cfg.getPoClassFile().addSimpleProperty(DictItem.class,"expenseItemDict","费用项目","费用项目");
+
 
         cfg.view().field(EAMTables.EAM_ASSET.NAME).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET.ASSET_NOTES).search().fuzzySearch();
@@ -83,6 +85,7 @@ public class EamAssetsGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET.MAINTENANCE_START_DATE).basic().form().label("开始时间");
         cfg.view().field(EAMTables.EAM_ASSET.MAINTENANCE_END_DATE).basic().form().label("结束时间");
         cfg.view().field(EAMTables.EAM_ASSET.MAINTENANCE_START_DATE).search().range();
+        cfg.view().field(EAMTables.EAM_ASSET.ENTRY_TIME).search().range();
         cfg.view().field(EAMTables.EAM_ASSET.MAINTENANCE_END_DATE).search().range();
         cfg.view().field(EAMTables.EAM_ASSET.DIRECTOR).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET.CONTACTS).search().fuzzySearch();
@@ -226,6 +229,24 @@ public class EamAssetsGtr extends BaseCodeGenerator {
 
 
 
+        cfg.view().field(EAMTables.EAM_ASSET.FINANCIAL_OPTION)
+                .basic().label("财务选项")
+                .form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=eam_financial_options")
+                .paging(false).filter(false).toolbar(false)
+                .valueField(DictItemMeta.CODE).
+                textField(DictItemMeta.LABEL).
+                fillWith(AssetMeta.FINANCIAL_OPTION_DICT).muliti(false);
+
+
+        cfg.view().field(EAMTables.EAM_ASSET.EXPENSE_ITEM)
+                .basic().label("费用项目")
+                .form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=eam_expense_items")
+                .paging(false).filter(false).toolbar(false)
+                .valueField(DictItemMeta.CODE).
+                textField(DictItemMeta.LABEL).
+                fillWith(AssetMeta.EXPENSE_ITEM_DICT).muliti(false);
+
+
 
         cfg.view().field(EAMTables.EAM_ASSET.RACK_ID)
                 .basic().label("机柜")
@@ -301,8 +322,8 @@ public class EamAssetsGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET.MAINTENANCE_END_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
         cfg.view().field(EAMTables.EAM_ASSET.MAINTENANCE_START_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
         cfg.view().field(EAMTables.EAM_ASSET.PURCHASE_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
+        cfg.view().field(EAMTables.EAM_ASSET.ENTRY_TIME).form().dateInput().format("yyyy-MM-dd").search().range();
         cfg.view().field(EAMTables.EAM_ASSET.ENTRY_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
-
         cfg.view().field(EAMTables.EAM_ASSET.RACK_UP_NUMBER).form().numberInput().allowNegative(false).scale(0);
         cfg.view().field(EAMTables.EAM_ASSET.RACK_DOWN_NUMBER).form().numberInput().allowNegative(false).scale(0);
         cfg.view().field(EAMTables.EAM_ASSET.ASSET_NUMBER).form().numberInput().allowNegative(false).scale(0);
@@ -331,14 +352,15 @@ public class EamAssetsGtr extends BaseCodeGenerator {
                 .form().button().chooseOrganization(true);
         cfg.view().field(EAMTables.EAM_ASSET.USE_ORGANIZATION_ID).table().fillBy("useOrganization","fullName");
 
+        cfg.view().field(EAMTables.EAM_ASSET.USE_USER_ID).table().fillBy("useUser","name");
+        cfg.view().field(EAMTables.EAM_ASSET.USE_USER_ID).form()
+                .button().chooseEmployee(true);
 
         cfg.view().field(EAMTables.EAM_ASSET.MANAGER_ID).table().fillBy("manager","name");
         cfg.view().field(EAMTables.EAM_ASSET.MANAGER_ID).form()
                 .button().chooseEmployee(true);
 
-        cfg.view().field(EAMTables.EAM_ASSET.USE_USER_ID).table().fillBy("useUser","name");
-        cfg.view().field(EAMTables.EAM_ASSET.USE_USER_ID).form()
-                .button().chooseEmployee(true);
+
 
         cfg.view().field(EAMTables.EAM_ASSET.NAME)
                 .basic().label("名称");

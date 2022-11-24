@@ -102,7 +102,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
                 }else if(data[i].status=="acting"){
                  //   fox.disableButton($('.depreciationDetail-btn').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.depreciationStart-btn').filter("[data-id='" + data[i].id + "']"), true);
+                  //  fox.disableButton($('.depreciationStart-btn').filter("[data-id='" + data[i].id + "']"), true);
                     //fox.disableButton($('.depreciationExecute-btn').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.depreciationRollback-btn').filter("[data-id='" + data[i].id + "']"), true);
                    // fox.disableButton($('.depreciationSync-btn').filter("[data-id='" + data[i].id + "']"), true);
@@ -235,7 +235,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 title: "折旧明细",
                 resize: false,
                 offset: [formTop,null],
-                area: ["80%","90%"],
+                area: ["100%","90%"],
                 type: 2,
                 id:"eam-asset-inventory-data",
                 content: '/business/eam/asset_depreciation_detail/asset_depreciation_detail_list.html?operId='+data.id,

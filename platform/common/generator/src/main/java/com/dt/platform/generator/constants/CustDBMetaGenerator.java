@@ -34,7 +34,7 @@ public class CustDBMetaGenerator {
 		DBMetaClassFile dbMetaBuilder=new DBMetaClassFile(dao,configs.getDomianProject(),this.configs.getProjectConfigs().getDomainConstantsPackage(),"CustTables");
 		dbMetaBuilder.setTableFilter(table->{
 			table=table.toLowerCase();
-			if( table.startsWith("cust_")) return true;
+			if( table.startsWith("cust2_") ) return true;
 			return false;
 		});
 		dbMetaBuilder.save(true);

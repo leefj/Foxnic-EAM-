@@ -6,4 +6,4 @@ ALTER TABLE eam_asset
 
 
 ALTER TABLE eam_asset
-    ADD COLUMN `scrap_id` varchar(50) NULL COMMENT '报废ID' AFTER `internal_control_label`;
+    ADD COLUMN `scrap_id` varchar(50) NULL COMMENT '已用期限,(月)' AFTER `internal_control_label`;

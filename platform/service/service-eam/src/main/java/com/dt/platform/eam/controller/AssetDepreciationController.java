@@ -61,7 +61,7 @@ public class AssetDepreciationController extends SuperController {
      * 添加折旧方案
      */
     @ApiOperation(value = "添加折旧方案")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "573537666012807168"),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.NAME, value = "折旧方案", required = false, dataTypeClass = String.class, example = "方案一"),
@@ -70,7 +70,9 @@ public class AssetDepreciationController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.FIRST_DEPRECIATION_DATE, value = "首次折旧时间", required = false, dataTypeClass = String.class, example = "purchase_cur_month"),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.OWN_COMPANY_ID, value = "所属公司", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "486918386278731776,486918387960647681,486918449189097473,486918029091803137,486918073320738816,486918122771582977,486918164815286273,501736778307207168,486918240887377921,501737031911604224,486918241663324161,486918242527350784,501737164271255553,501737200690397185,501737355338579969"),
-		@ApiImplicitParam(name = AssetDepreciationVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.RESIDUAL_VALUE_SELECT, value = "残值选择", required = false, dataTypeClass = String.class, example = "follow_asset")
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetDepreciationServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -85,7 +87,7 @@ public class AssetDepreciationController extends SuperController {
      * 删除折旧方案
      */
     @ApiOperation(value = "删除折旧方案")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "573537666012807168")
 	})
     @ApiOperationSupport(order = 2)
@@ -101,7 +103,7 @@ public class AssetDepreciationController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除折旧方案")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -116,7 +118,7 @@ public class AssetDepreciationController extends SuperController {
      * 更新折旧方案
      */
     @ApiOperation(value = "更新折旧方案")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "573537666012807168"),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.NAME, value = "折旧方案", required = false, dataTypeClass = String.class, example = "方案一"),
@@ -125,7 +127,9 @@ public class AssetDepreciationController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.FIRST_DEPRECIATION_DATE, value = "首次折旧时间", required = false, dataTypeClass = String.class, example = "purchase_cur_month"),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.OWN_COMPANY_ID, value = "所属公司", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "486918386278731776,486918387960647681,486918449189097473,486918029091803137,486918073320738816,486918122771582977,486918164815286273,501736778307207168,486918240887377921,501737031911604224,486918241663324161,486918242527350784,501737164271255553,501737200690397185,501737355338579969"),
-		@ApiImplicitParam(name = AssetDepreciationVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.RESIDUAL_VALUE_SELECT, value = "残值选择", required = false, dataTypeClass = String.class, example = "follow_asset")
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetDepreciationVOMeta.PAGE_INDEX, AssetDepreciationVOMeta.PAGE_SIZE, AssetDepreciationVOMeta.SEARCH_FIELD, AssetDepreciationVOMeta.FUZZY_FIELD, AssetDepreciationVOMeta.SEARCH_VALUE, AssetDepreciationVOMeta.DIRTY_FIELDS, AssetDepreciationVOMeta.SORT_FIELD, AssetDepreciationVOMeta.SORT_TYPE, AssetDepreciationVOMeta.IDS })
     @SentinelResource(value = AssetDepreciationServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -140,7 +144,7 @@ public class AssetDepreciationController extends SuperController {
      * 保存折旧方案
      */
     @ApiOperation(value = "保存折旧方案")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "573537666012807168"),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.NAME, value = "折旧方案", required = false, dataTypeClass = String.class, example = "方案一"),
@@ -149,7 +153,9 @@ public class AssetDepreciationController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.FIRST_DEPRECIATION_DATE, value = "首次折旧时间", required = false, dataTypeClass = String.class, example = "purchase_cur_month"),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.OWN_COMPANY_ID, value = "所属公司", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "486918386278731776,486918387960647681,486918449189097473,486918029091803137,486918073320738816,486918122771582977,486918164815286273,501736778307207168,486918240887377921,501737031911604224,486918241663324161,486918242527350784,501737164271255553,501737200690397185,501737355338579969"),
-		@ApiImplicitParam(name = AssetDepreciationVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.RESIDUAL_VALUE_SELECT, value = "残值选择", required = false, dataTypeClass = String.class, example = "follow_asset")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetDepreciationVOMeta.PAGE_INDEX, AssetDepreciationVOMeta.PAGE_SIZE, AssetDepreciationVOMeta.SEARCH_FIELD, AssetDepreciationVOMeta.FUZZY_FIELD, AssetDepreciationVOMeta.SEARCH_VALUE, AssetDepreciationVOMeta.DIRTY_FIELDS, AssetDepreciationVOMeta.SORT_FIELD, AssetDepreciationVOMeta.SORT_TYPE, AssetDepreciationVOMeta.IDS })
     @SentinelResource(value = AssetDepreciationServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -164,7 +170,7 @@ public class AssetDepreciationController extends SuperController {
      * 获取折旧方案
      */
     @ApiOperation(value = "获取折旧方案")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 6)
@@ -184,7 +190,7 @@ public class AssetDepreciationController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取折旧方案")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -201,7 +207,7 @@ public class AssetDepreciationController extends SuperController {
      * 查询折旧方案
      */
     @ApiOperation(value = "查询折旧方案")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "573537666012807168"),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.NAME, value = "折旧方案", required = false, dataTypeClass = String.class, example = "方案一"),
@@ -210,7 +216,9 @@ public class AssetDepreciationController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.FIRST_DEPRECIATION_DATE, value = "首次折旧时间", required = false, dataTypeClass = String.class, example = "purchase_cur_month"),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.OWN_COMPANY_ID, value = "所属公司", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "486918386278731776,486918387960647681,486918449189097473,486918029091803137,486918073320738816,486918122771582977,486918164815286273,501736778307207168,486918240887377921,501737031911604224,486918241663324161,486918242527350784,501737164271255553,501737200690397185,501737355338579969"),
-		@ApiImplicitParam(name = AssetDepreciationVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.RESIDUAL_VALUE_SELECT, value = "残值选择", required = false, dataTypeClass = String.class, example = "follow_asset")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetDepreciationVOMeta.PAGE_INDEX, AssetDepreciationVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetDepreciationServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -226,7 +234,7 @@ public class AssetDepreciationController extends SuperController {
      * 分页查询折旧方案
      */
     @ApiOperation(value = "分页查询折旧方案")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "573537666012807168"),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.NAME, value = "折旧方案", required = false, dataTypeClass = String.class, example = "方案一"),
@@ -235,7 +243,9 @@ public class AssetDepreciationController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.FIRST_DEPRECIATION_DATE, value = "首次折旧时间", required = false, dataTypeClass = String.class, example = "purchase_cur_month"),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.OWN_COMPANY_ID, value = "所属公司", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetDepreciationVOMeta.CATEGORY_ID, value = "资产分类", required = false, dataTypeClass = String.class, example = "486918386278731776,486918387960647681,486918449189097473,486918029091803137,486918073320738816,486918122771582977,486918164815286273,501736778307207168,486918240887377921,501737031911604224,486918241663324161,486918242527350784,501737164271255553,501737200690397185,501737355338579969"),
-		@ApiImplicitParam(name = AssetDepreciationVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212")
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationVOMeta.RESIDUAL_VALUE_SELECT, value = "残值选择", required = false, dataTypeClass = String.class, example = "follow_asset")
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetDepreciationServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

@@ -119,6 +119,9 @@ public enum AssetOperateEnum implements CodeTextEnum {
     EAM_DOWNLOAD_ASSET_SOFTWARE_MAINTENANCE_BILL("eam_download_asset_software_maintenance_bill" , "EAM_资产软件维保下载"),
 
 
+    EAM_ASSET_DOWNLOAD_DEPRECIATION_REPORT("eam_asset_download_depreciation_report", "资产折旧报表"),
+
+
     //单据下载
     EAM_DOWNLOAD_ASSET("eam_download_asset", "EAM_资产数据下载"),
     EAM_DOWNLOAD_ASSET_STORAGE_BILL("eam_download_asset_storage_bill", "EAM_资产入库单据下载"),
@@ -154,6 +157,7 @@ public enum AssetOperateEnum implements CodeTextEnum {
     EAM_DOWNLOAD_ASSET_PART_GOODS_OUT_BILL("eam_download_asset_part_goods_out_bill" , "EAM_资产备件库存出库单下载"),
     EAM_DOWNLOAD_ASSET_PART_GOODS_TRANFER_BILL("eam_download_asset_part_goods_tranfer_bill" , "EAM_资产备件库存转移单下载"),
     EAM_DOWNLOAD_ASSET_PART_GOODS_ADJUST_BILL("eam_download_asset_part_goods_adjust_bill" , "EAM_资产备件库存调整单下载"),
+
 
 
     //耗材

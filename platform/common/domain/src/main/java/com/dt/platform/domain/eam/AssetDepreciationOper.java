@@ -1,30 +1,39 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_ASSET_DEPRECIATION_OPER;
 import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
+import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Employee;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
-import javax.persistence.Transient;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.AssetDepreciationOperMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 折旧操作
+ * <p>折旧操作 , 数据表 eam_asset_depreciation_oper 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-03 16:09:53
- * @sign 03334B63D4CFA318A8E8B91DF291309B
+ * @since 2022-11-24 12:09:42
+ * @sign C57D86DA48956F7A82CD31FEF989B66C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_asset_depreciation_oper")
+@ApiModel(description = "折旧操作 ; 折旧操作 , 数据表 eam_asset_depreciation_oper 的PO类型")
 public class AssetDepreciationOper extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -35,43 +44,43 @@ public class AssetDepreciationOper extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "582677163120001024")
 	private String id;
 	
 	/**
 	 * 业务编号：业务编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号")
+	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "AD202205272105414")
 	private String businessCode;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "acting")
 	private String status;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "12")
 	private String name;
 	
 	/**
 	 * 折旧方案：折旧方案
 	*/
-	@ApiModelProperty(required = false,value="折旧方案" , notes = "折旧方案")
+	@ApiModelProperty(required = false,value="折旧方案" , notes = "折旧方案" , example = "573881211244515328")
 	private String depreciationId;
 	
 	/**
 	 * 折旧内容：折旧内容
 	*/
-	@ApiModelProperty(required = false,value="折旧内容" , notes = "折旧内容")
+	@ApiModelProperty(required = false,value="折旧内容" , notes = "折旧内容" , example = "12")
 	private String content;
 	
 	/**
 	 * 业务日期：业务日期
 	*/
-	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期")
+	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期" , example = "2022-05-27 12:00:00")
 	private Date businessDate;
 	
 	/**
@@ -95,61 +104,64 @@ public class AssetDepreciationOper extends Entity {
 	/**
 	 * 制单人：制单人
 	*/
-	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
+	@ApiModelProperty(required = false,value="制单人" , notes = "制单人" , example = "E001")
 	private String originatorId;
 	
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-05-27 09:11:01")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-06-27 12:08:15")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "1")
 	private Integer deleted;
+	@Transient
+	@EnumFor("deleted")
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
 	*/
-	@ApiModelProperty(required = false,value="删除人ID" , notes = "删除人ID")
+	@ApiModelProperty(required = false,value="删除人ID" , notes = "删除人ID" , example = "110588348101165911")
 	private String deleteBy;
 	
 	/**
 	 * 删除时间：删除时间
 	*/
-	@ApiModelProperty(required = false,value="删除时间" , notes = "删除时间")
+	@ApiModelProperty(required = false,value="删除时间" , notes = "删除时间" , example = "2022-06-27 12:08:15")
 	private Date deleteTime;
 	
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "3")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -495,12 +507,43 @@ public class AssetDepreciationOper extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public AssetDepreciationOper setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public AssetDepreciationOper setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -604,9 +647,9 @@ public class AssetDepreciationOper extends Entity {
 	 * @param assetSource 资产
 	 * @return 当前对象
 	*/
-	public AssetDepreciationOper addAssetSource(Asset assetSource) {
+	public AssetDepreciationOper addAssetSource(Asset... assetSource) {
 		if(this.assetSourceList==null) assetSourceList=new ArrayList<>();
-		this.assetSourceList.add(assetSource);
+		this.assetSourceList.addAll(Arrays.asList(assetSource));
 		return this;
 	}
 	
@@ -634,9 +677,9 @@ public class AssetDepreciationOper extends Entity {
 	 * @param assetSourceId 资产列表
 	 * @return 当前对象
 	*/
-	public AssetDepreciationOper addAssetSourceId(String assetSourceId) {
+	public AssetDepreciationOper addAssetSourceId(String... assetSourceId) {
 		if(this.assetSourceIds==null) assetSourceIds=new ArrayList<>();
-		this.assetSourceIds.add(assetSourceId);
+		this.assetSourceIds.addAll(Arrays.asList(assetSourceId));
 		return this;
 	}
 	
@@ -664,9 +707,9 @@ public class AssetDepreciationOper extends Entity {
 	 * @param assetTarget 资产
 	 * @return 当前对象
 	*/
-	public AssetDepreciationOper addAssetTarget(Asset assetTarget) {
+	public AssetDepreciationOper addAssetTarget(Asset... assetTarget) {
 		if(this.assetTargetList==null) assetTargetList=new ArrayList<>();
-		this.assetTargetList.add(assetTarget);
+		this.assetTargetList.addAll(Arrays.asList(assetTarget));
 		return this;
 	}
 	
@@ -694,9 +737,9 @@ public class AssetDepreciationOper extends Entity {
 	 * @param assetTargetId 资产列表
 	 * @return 当前对象
 	*/
-	public AssetDepreciationOper addAssetTargetId(String assetTargetId) {
+	public AssetDepreciationOper addAssetTargetId(String... assetTargetId) {
 		if(this.assetTargetIds==null) assetTargetIds=new ArrayList<>();
-		this.assetTargetIds.add(assetTargetId);
+		this.assetTargetIds.addAll(Arrays.asList(assetTargetId));
 		return this;
 	}
 	
@@ -724,9 +767,9 @@ public class AssetDepreciationOper extends Entity {
 	 * @param assetDepreciation 资产
 	 * @return 当前对象
 	*/
-	public AssetDepreciationOper addAssetDepreciation(Asset assetDepreciation) {
+	public AssetDepreciationOper addAssetDepreciation(Asset... assetDepreciation) {
 		if(this.assetDepreciationList==null) assetDepreciationList=new ArrayList<>();
-		this.assetDepreciationList.add(assetDepreciation);
+		this.assetDepreciationList.addAll(Arrays.asList(assetDepreciation));
 		return this;
 	}
 	
@@ -754,9 +797,9 @@ public class AssetDepreciationOper extends Entity {
 	 * @param assetDepreciationId 资产
 	 * @return 当前对象
 	*/
-	public AssetDepreciationOper addAssetDepreciationId(String assetDepreciationId) {
+	public AssetDepreciationOper addAssetDepreciationId(String... assetDepreciationId) {
 		if(this.assetDepreciationIds==null) assetDepreciationIds=new ArrayList<>();
-		this.assetDepreciationIds.add(assetDepreciationId);
+		this.assetDepreciationIds.addAll(Arrays.asList(assetDepreciationId));
 		return this;
 	}
 	
@@ -828,6 +871,63 @@ public class AssetDepreciationOper extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetDepreciationOper clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AssetDepreciationOper duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.AssetDepreciationOperMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetDepreciationOperMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setExecutionEndTime(this.getExecutionEndTime());
+		inst.setVersion(this.getVersion());
+		inst.setContent(this.getContent());
+		inst.setBusinessDate(this.getBusinessDate());
+		inst.setBusinessCode(this.getBusinessCode());
+		inst.setDepreciationId(this.getDepreciationId());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setExecutionStartTime(this.getExecutionStartTime());
+		inst.setId(this.getId());
+		inst.setOriginatorId(this.getOriginatorId());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setAssetSourceIds(this.getAssetSourceIds());
+			inst.setAssetDepreciationIds(this.getAssetDepreciationIds());
+			inst.setAssetTargetList(this.getAssetTargetList());
+			inst.setAssetDepreciationList(this.getAssetDepreciationList());
+			inst.setOriginator(this.getOriginator());
+			inst.setAssetTargetIds(this.getAssetTargetIds());
+			inst.setAssetDepreciation(this.getAssetDepreciation());
+			inst.setAssetSourceList(this.getAssetSourceList());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetDepreciationOper clone(boolean deep) {
+		return EntityContext.clone(AssetDepreciationOper.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 AssetDepreciationOper
 	 * @param assetDepreciationOperMap 包含实体信息的 Map 对象
 	 * @return AssetDepreciationOper , 转换好的的 AssetDepreciationOper 对象
@@ -835,7 +935,9 @@ public class AssetDepreciationOper extends Entity {
 	@Transient
 	public static AssetDepreciationOper createFrom(Map<String,Object> assetDepreciationOperMap) {
 		if(assetDepreciationOperMap==null) return null;
-		AssetDepreciationOper po = EntityContext.create(AssetDepreciationOper.class, assetDepreciationOperMap);
+		AssetDepreciationOper po = create();
+		EntityContext.copyProperties(po,assetDepreciationOperMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -847,7 +949,9 @@ public class AssetDepreciationOper extends Entity {
 	@Transient
 	public static AssetDepreciationOper createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AssetDepreciationOper po = EntityContext.create(AssetDepreciationOper.class,pojo);
+		AssetDepreciationOper po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -857,6 +961,130 @@ public class AssetDepreciationOper extends Entity {
 	*/
 	@Transient
 	public static AssetDepreciationOper create() {
-		return EntityContext.create(AssetDepreciationOper.class);
+		return new com.dt.platform.domain.eam.meta.AssetDepreciationOperMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(AssetDepreciationOperMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetDepreciationOperMeta.UPDATE_TIME)));
+			this.setExecutionEndTime(DataParser.parse(Date.class, map.get(AssetDepreciationOperMeta.EXECUTION_END_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetDepreciationOperMeta.VERSION)));
+			this.setContent(DataParser.parse(String.class, map.get(AssetDepreciationOperMeta.CONTENT)));
+			this.setBusinessDate(DataParser.parse(Date.class, map.get(AssetDepreciationOperMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, map.get(AssetDepreciationOperMeta.BUSINESS_CODE)));
+			this.setDepreciationId(DataParser.parse(String.class, map.get(AssetDepreciationOperMeta.DEPRECIATION_ID)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetDepreciationOperMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetDepreciationOperMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetDepreciationOperMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetDepreciationOperMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetDepreciationOperMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(AssetDepreciationOperMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetDepreciationOperMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetDepreciationOperMeta.DELETE_BY)));
+			this.setExecutionStartTime(DataParser.parse(Date.class, map.get(AssetDepreciationOperMeta.EXECUTION_START_TIME)));
+			this.setId(DataParser.parse(String.class, map.get(AssetDepreciationOperMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, map.get(AssetDepreciationOperMeta.ORIGINATOR_ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(AssetDepreciationOperMeta.STATUS)));
+			// others
+			this.setOriginator(DataParser.parse(Employee.class, map.get(AssetDepreciationOperMeta.ORIGINATOR)));
+			this.setAssetDepreciation(DataParser.parse(AssetDepreciation.class, map.get(AssetDepreciationOperMeta.ASSET_DEPRECIATION)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(AssetDepreciationOperMeta.NOTES));
+				this.setUpdateTime( (Date)map.get(AssetDepreciationOperMeta.UPDATE_TIME));
+				this.setExecutionEndTime( (Date)map.get(AssetDepreciationOperMeta.EXECUTION_END_TIME));
+				this.setVersion( (Integer)map.get(AssetDepreciationOperMeta.VERSION));
+				this.setContent( (String)map.get(AssetDepreciationOperMeta.CONTENT));
+				this.setBusinessDate( (Date)map.get(AssetDepreciationOperMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)map.get(AssetDepreciationOperMeta.BUSINESS_CODE));
+				this.setDepreciationId( (String)map.get(AssetDepreciationOperMeta.DEPRECIATION_ID));
+				this.setCreateBy( (String)map.get(AssetDepreciationOperMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AssetDepreciationOperMeta.DELETED));
+				this.setCreateTime( (Date)map.get(AssetDepreciationOperMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(AssetDepreciationOperMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AssetDepreciationOperMeta.DELETE_TIME));
+				this.setName( (String)map.get(AssetDepreciationOperMeta.NAME));
+				this.setTenantId( (String)map.get(AssetDepreciationOperMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AssetDepreciationOperMeta.DELETE_BY));
+				this.setExecutionStartTime( (Date)map.get(AssetDepreciationOperMeta.EXECUTION_START_TIME));
+				this.setId( (String)map.get(AssetDepreciationOperMeta.ID));
+				this.setOriginatorId( (String)map.get(AssetDepreciationOperMeta.ORIGINATOR_ID));
+				this.setStatus( (String)map.get(AssetDepreciationOperMeta.STATUS));
+				// others
+				this.setOriginator( (Employee)map.get(AssetDepreciationOperMeta.ORIGINATOR));
+				this.setAssetDepreciation( (AssetDepreciation)map.get(AssetDepreciationOperMeta.ASSET_DEPRECIATION));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(AssetDepreciationOperMeta.NOTES)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationOperMeta.UPDATE_TIME)));
+			this.setExecutionEndTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationOperMeta.EXECUTION_END_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetDepreciationOperMeta.VERSION)));
+			this.setContent(DataParser.parse(String.class, r.getValue(AssetDepreciationOperMeta.CONTENT)));
+			this.setBusinessDate(DataParser.parse(Date.class, r.getValue(AssetDepreciationOperMeta.BUSINESS_DATE)));
+			this.setBusinessCode(DataParser.parse(String.class, r.getValue(AssetDepreciationOperMeta.BUSINESS_CODE)));
+			this.setDepreciationId(DataParser.parse(String.class, r.getValue(AssetDepreciationOperMeta.DEPRECIATION_ID)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetDepreciationOperMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetDepreciationOperMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationOperMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetDepreciationOperMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationOperMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(AssetDepreciationOperMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetDepreciationOperMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetDepreciationOperMeta.DELETE_BY)));
+			this.setExecutionStartTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationOperMeta.EXECUTION_START_TIME)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetDepreciationOperMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, r.getValue(AssetDepreciationOperMeta.ORIGINATOR_ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(AssetDepreciationOperMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(AssetDepreciationOperMeta.NOTES));
+				this.setUpdateTime( (Date)r.getValue(AssetDepreciationOperMeta.UPDATE_TIME));
+				this.setExecutionEndTime( (Date)r.getValue(AssetDepreciationOperMeta.EXECUTION_END_TIME));
+				this.setVersion( (Integer)r.getValue(AssetDepreciationOperMeta.VERSION));
+				this.setContent( (String)r.getValue(AssetDepreciationOperMeta.CONTENT));
+				this.setBusinessDate( (Date)r.getValue(AssetDepreciationOperMeta.BUSINESS_DATE));
+				this.setBusinessCode( (String)r.getValue(AssetDepreciationOperMeta.BUSINESS_CODE));
+				this.setDepreciationId( (String)r.getValue(AssetDepreciationOperMeta.DEPRECIATION_ID));
+				this.setCreateBy( (String)r.getValue(AssetDepreciationOperMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AssetDepreciationOperMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(AssetDepreciationOperMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(AssetDepreciationOperMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AssetDepreciationOperMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(AssetDepreciationOperMeta.NAME));
+				this.setTenantId( (String)r.getValue(AssetDepreciationOperMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AssetDepreciationOperMeta.DELETE_BY));
+				this.setExecutionStartTime( (Date)r.getValue(AssetDepreciationOperMeta.EXECUTION_START_TIME));
+				this.setId( (String)r.getValue(AssetDepreciationOperMeta.ID));
+				this.setOriginatorId( (String)r.getValue(AssetDepreciationOperMeta.ORIGINATOR_ID));
+				this.setStatus( (String)r.getValue(AssetDepreciationOperMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

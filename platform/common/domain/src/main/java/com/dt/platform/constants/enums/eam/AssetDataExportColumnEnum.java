@@ -5,6 +5,7 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 public enum AssetDataExportColumnEnum implements CodeTextEnum {
 
+    //TXT(name,db_column)
     ASSET_ID("id","id" ),
     ASSET_CODE("assetCode","asset_code" ),
     ASSET_STATUS_NAME("assetStatusName","asset_status" ),
@@ -23,8 +24,11 @@ public enum AssetDataExportColumnEnum implements CodeTextEnum {
     SAFETY_LEVEL_NAME( "safetyLevelName","safety_level_code" ),
     MAINTENANCE_STATUS( "maintenanceStatusName","maintenance_status" ),
 
-    SUGGEST_MAINTENANCE_METHOD( "suggestMaintenanceMethodName","suggest_maintenance_method" ),
+    SUGGEST_MAINTENANCE_METHOD( "suggestMaintenanceMethodName","suggest_maintenance_method"),
     MAINTENANCE_METHOD( "maintenanceMethodName","maintenance_method" ),
+
+    EXPENSE_ITEM( "expenseItemName","expense_item" ),
+    FINANCIAL_OPTION( "financialOptionName","financial_option"),
 
     RACK_NAME( "rackName","rack_id" ),
 
@@ -42,12 +46,7 @@ public enum AssetDataExportColumnEnum implements CodeTextEnum {
     USE_USER_NAME_BADGE( "useUserNameBadge","use_user_name_badge" ),
 
     EQUIPMENT_STATUS_NAME( "equipmentStatusName","equipment_status" ),
-    EQUIPMENT_ENVIRONMENT_NAME( "equipmentEnvironmentName","equipment_environment_code" ),
-
-
-
-
-    ;
+    EQUIPMENT_ENVIRONMENT_NAME( "equipmentEnvironmentName","equipment_environment_code" );
 
     private String code;
     private String text;

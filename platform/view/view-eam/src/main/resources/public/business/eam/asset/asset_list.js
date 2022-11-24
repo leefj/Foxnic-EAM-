@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-13 13:10:11
+ * @since 2022-11-23 16:21:52
  */
 
 
@@ -91,7 +91,7 @@ function ListPage() {
 					,{ field: 'manufacturerId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('厂商'), templet: function (d) { return templet('manufacturerId' ,fox.joinLabel(d.manufacturer,"manufacturerName",',','','manufacturerId'),d);}}
 					,{ field: 'model', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('规格型号') , templet: function (d) { return templet('model',d.model,d);}  }
 					,{ field: 'unit', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('计量单位') , templet: function (d) { return templet('unit',d.unit,d);}  }
-					,{ field: 'serviceLife', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('使用期限(月)') , templet: function (d) { return templet('serviceLife',d.serviceLife,d);}  }
+					,{ field: 'serviceLife', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('使用期限') , templet: function (d) { return templet('serviceLife',d.serviceLife,d);}  }
 					,{ field: 'safetyLevelCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('安全等级'), templet: function (d) { return templet('safetyLevelCode' ,fox.joinLabel(d.safetyLevel,"label",',','','safetyLevelCode'),d);}}
 					,{ field: 'serialNumber', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('序列号') , templet: function (d) { return templet('serialNumber',d.serialNumber,d);}  }
 					,{ field: 'ownCompanyId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('所属公司') , templet: function (d) { return templet('ownCompanyId',fox.getProperty(d,["ownerCompany","fullName"],0,'','ownCompanyId'),d);} }
@@ -127,19 +127,23 @@ function ListPage() {
 					,{ field: 'maintenanceNotes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('维保备注') , templet: function (d) { return templet('maintenanceNotes',d.maintenanceNotes,d);}  }
 					,{ field: 'financialCategoryId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('财务分类'), templet: function (d) { return templet('financialCategoryId' ,fox.joinLabel(d.categoryFinance,"hierarchyName",',','','financialCategoryId'),d);}}
 					,{ field: 'financialCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('财务编号') , templet: function (d) { return templet('financialCode',d.financialCode,d);}  }
+					,{ field: 'financialOption', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('财务选项'), templet: function (d) { return templet('financialOption' ,fox.joinLabel(d.financialOptionDict,"label",',','','financialOption'),d);}}
+					,{ field: 'expenseItem', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('费用项目'), templet: function (d) { return templet('expenseItem' ,fox.joinLabel(d.expenseItemDict,"label",',','','expenseItem'),d);}}
 					,{ field: 'supplierId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('供应商'), templet: function (d) { return templet('supplierId' ,fox.joinLabel(d.supplier,"supplierName",',','','supplierId'),d);}}
+					,{ field: 'customerInfo', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('客户信息') , templet: function (d) { return templet('customerInfo',d.customerInfo,d);}  }
+					,{ field: 'taxAmountPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('含税总值') , templet: function (d) { return templet('taxAmountPrice',d.taxAmountPrice,d);}  }
+					,{ field: 'totalAmountPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('未税总值') , templet: function (d) { return templet('totalAmountPrice',d.totalAmountPrice,d);}  }
+					,{ field: 'purchaseUnitPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('含税单价') , templet: function (d) { return templet('purchaseUnitPrice',d.purchaseUnitPrice,d);}  }
+					,{ field: 'originalUnitPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('资产原值') , templet: function (d) { return templet('originalUnitPrice',d.originalUnitPrice,d);}  }
+					,{ field: 'navPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('资产净值') , templet: function (d) { return templet('navPrice',d.navPrice,d);}  }
+					,{ field: 'assetUsedServiceLife', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('已用期限') , templet: function (d) { return templet('assetUsedServiceLife',d.assetUsedServiceLife,d);}  }
+					,{ field: 'residualsRate', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('残值率') , templet: function (d) { return templet('residualsRate',d.residualsRate,d);}  }
+					,{ field: 'residualsPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('残值') , templet: function (d) { return templet('residualsPrice',d.residualsPrice,d);}  }
 					,{ field: 'taxAmountRate', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('税额') , templet: function (d) { return templet('taxAmountRate',d.taxAmountRate,d);}  }
-					,{ field: 'taxAmountPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('含税金额') , templet: function (d) { return templet('taxAmountPrice',d.taxAmountPrice,d);}  }
-					,{ field: 'totalAmountPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('资产总值') , templet: function (d) { return templet('totalAmountPrice',d.totalAmountPrice,d);}  }
-					,{ field: 'originalUnitPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('资产原值(单价)') , templet: function (d) { return templet('originalUnitPrice',d.originalUnitPrice,d);}  }
 					,{ field: 'currentYearDepreciation', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('本年折旧') , templet: function (d) { return templet('currentYearDepreciation',d.currentYearDepreciation,d);}  }
 					,{ field: 'depreciationYear', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧年份') , templet: function (d) { return templet('depreciationYear',d.depreciationYear,d);}  }
 					,{ field: 'accumulatedDepreciation', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('累计折旧') , templet: function (d) { return templet('accumulatedDepreciation',d.accumulatedDepreciation,d);}  }
 					,{ field: 'monthDepreciationPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('月折金额') , templet: function (d) { return templet('monthDepreciationPrice',d.monthDepreciationPrice,d);}  }
-					,{ field: 'residualsRate', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('残值率') , templet: function (d) { return templet('residualsRate',d.residualsRate,d);}  }
-					,{ field: 'residualsPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('残值') , templet: function (d) { return templet('residualsPrice',d.residualsPrice,d);}  }
-					,{ field: 'navPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('资产净值') , templet: function (d) { return templet('navPrice',d.navPrice,d);}  }
-					,{ field: 'purchaseUnitPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('采购单价') , templet: function (d) { return templet('purchaseUnitPrice',d.purchaseUnitPrice,d);}  }
 					,{ field: 'entryTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('入账时间') ,templet: function (d) { return templet('entryTime',fox.dateFormat(d.entryTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'financialNotes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('财务备注') , templet: function (d) { return templet('financialNotes',d.financialNotes,d);}  }
 					,{ field: 'equipmentCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('设备编号') , templet: function (d) { return templet('equipmentCode',d.equipmentCode,d);}  }
@@ -637,6 +641,9 @@ function ListPage() {
 						fox.showMessage(data);
                         refreshTableData();
                     } else {
+						if(data.data>0) {
+							refreshTableData();
+						}
 						fox.showMessage(data);
                     }
                 },{delayLoading:200,elms:[$("#delete-button")]});

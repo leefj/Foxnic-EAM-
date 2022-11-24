@@ -34,8 +34,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产
  * <p>资产 , 数据表 eam_asset 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-13 13:10:08
- * @sign 1EB7E5CB31984F5824165F3BC1814EDF
+ * @since 2022-11-23 16:21:50
+ * @sign 896F300663F632A578587FE7C4B5CE49
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -157,9 +157,9 @@ public class Asset extends Entity {
 	private String unit;
 	
 	/**
-	 * 使用期限(月)：使用期限(月)
+	 * 使用期限：(月)
 	*/
-	@ApiModelProperty(required = false,value="使用期限(月)" , notes = "使用期限(月)")
+	@ApiModelProperty(required = false,value="使用期限" , notes = "(月)")
 	private BigDecimal serviceLife;
 	
 	/**
@@ -379,34 +379,82 @@ public class Asset extends Entity {
 	private String financialCode;
 	
 	/**
+	 * 财务选项：财务选项
+	*/
+	@ApiModelProperty(required = false,value="财务选项" , notes = "财务选项")
+	private String financialOption;
+	
+	/**
+	 * 费用项目：费用项目
+	*/
+	@ApiModelProperty(required = false,value="费用项目" , notes = "费用项目")
+	private String expenseItem;
+	
+	/**
 	 * 资产供应商：资产供应商
 	*/
 	@ApiModelProperty(required = false,value="资产供应商" , notes = "资产供应商")
 	private String supplierId;
 	
 	/**
+	 * 客户信息：客户信息
+	*/
+	@ApiModelProperty(required = false,value="客户信息" , notes = "客户信息")
+	private String customerInfo;
+	
+	/**
+	 * 含税总值：(含税数量>2)
+	*/
+	@ApiModelProperty(required = false,value="含税总值" , notes = "(含税数量>2)")
+	private BigDecimal taxAmountPrice;
+	
+	/**
+	 * 未税总值：(数量>2)
+	*/
+	@ApiModelProperty(required = false,value="未税总值" , notes = "(数量>2)")
+	private BigDecimal totalAmountPrice;
+	
+	/**
+	 * 含税单价：(含税)
+	*/
+	@ApiModelProperty(required = false,value="含税单价" , notes = "(含税)")
+	private BigDecimal purchaseUnitPrice;
+	
+	/**
+	 * 资产原值：(未税)
+	*/
+	@ApiModelProperty(required = false,value="资产原值" , notes = "(未税)")
+	private BigDecimal originalUnitPrice;
+	
+	/**
+	 * 资产净值：(当前)
+	*/
+	@ApiModelProperty(required = false,value="资产净值" , notes = "(当前)" , example = "500.00")
+	private BigDecimal navPrice;
+	
+	/**
+	 * 已用期限：(月)
+	*/
+	@ApiModelProperty(required = false,value="已用期限" , notes = "(月)")
+	private Integer assetUsedServiceLife;
+	
+	/**
+	 * 残值率：残值率
+	*/
+	@ApiModelProperty(required = false,value="残值率" , notes = "残值率")
+	private BigDecimal residualsRate;
+	
+	/**
+	 * 残值：残值
+	*/
+	@ApiModelProperty(required = false,value="残值" , notes = "残值")
+	private BigDecimal residualsPrice;
+	
+	/**
 	 * 税额：税额
 	*/
 	@ApiModelProperty(required = false,value="税额" , notes = "税额")
 	private BigDecimal taxAmountRate;
-	
-	/**
-	 * 含税金额：含税金额
-	*/
-	@ApiModelProperty(required = false,value="含税金额" , notes = "含税金额")
-	private BigDecimal taxAmountPrice;
-	
-	/**
-	 * 资产总值：资产总值
-	*/
-	@ApiModelProperty(required = false,value="资产总值" , notes = "资产总值")
-	private BigDecimal totalAmountPrice;
-	
-	/**
-	 * 资产原值(单价)：资产原值(单价)
-	*/
-	@ApiModelProperty(required = false,value="资产原值(单价)" , notes = "资产原值(单价)")
-	private BigDecimal originalUnitPrice;
 	
 	/**
 	 * 本年折旧：本年折旧
@@ -431,30 +479,6 @@ public class Asset extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="月折金额" , notes = "月折金额")
 	private BigDecimal monthDepreciationPrice;
-	
-	/**
-	 * 残值率：残值率
-	*/
-	@ApiModelProperty(required = false,value="残值率" , notes = "残值率")
-	private BigDecimal residualsRate;
-	
-	/**
-	 * 残值：残值
-	*/
-	@ApiModelProperty(required = false,value="残值" , notes = "残值")
-	private BigDecimal residualsPrice;
-	
-	/**
-	 * 资产净值：资产净值
-	*/
-	@ApiModelProperty(required = false,value="资产净值" , notes = "资产净值" , example = "500.00")
-	private BigDecimal navPrice;
-	
-	/**
-	 * 采购单价：采购单价
-	*/
-	@ApiModelProperty(required = false,value="采购单价" , notes = "采购单价")
-	private BigDecimal purchaseUnitPrice;
 	
 	/**
 	 * 入账时间：入账时间
@@ -898,6 +922,18 @@ public class Asset extends Entity {
 	private AssetRegion region;
 	
 	/**
+	 * 财务选项：财务选项
+	*/
+	@ApiModelProperty(required = false,value="财务选项" , notes = "财务选项")
+	private DictItem financialOptionDict;
+	
+	/**
+	 * 费用项目：费用项目
+	*/
+	@ApiModelProperty(required = false,value="费用项目" , notes = "费用项目")
+	private DictItem expenseItemDict;
+	
+	/**
 	 * 获得 主键<br>
 	 * 主键
 	 * @return 主键
@@ -1240,17 +1276,17 @@ public class Asset extends Entity {
 	}
 	
 	/**
-	 * 获得 使用期限(月)<br>
-	 * 使用期限(月)
-	 * @return 使用期限(月)
+	 * 获得 使用期限<br>
+	 * (月)
+	 * @return 使用期限
 	*/
 	public BigDecimal getServiceLife() {
 		return serviceLife;
 	}
 	
 	/**
-	 * 设置 使用期限(月)
-	 * @param serviceLife 使用期限(月)
+	 * 设置 使用期限
+	 * @param serviceLife 使用期限
 	 * @return 当前对象
 	*/
 	public Asset setServiceLife(BigDecimal serviceLife) {
@@ -1943,6 +1979,44 @@ public class Asset extends Entity {
 	}
 	
 	/**
+	 * 获得 财务选项<br>
+	 * 财务选项
+	 * @return 财务选项
+	*/
+	public String getFinancialOption() {
+		return financialOption;
+	}
+	
+	/**
+	 * 设置 财务选项
+	 * @param financialOption 财务选项
+	 * @return 当前对象
+	*/
+	public Asset setFinancialOption(String financialOption) {
+		this.financialOption=financialOption;
+		return this;
+	}
+	
+	/**
+	 * 获得 费用项目<br>
+	 * 费用项目
+	 * @return 费用项目
+	*/
+	public String getExpenseItem() {
+		return expenseItem;
+	}
+	
+	/**
+	 * 设置 费用项目
+	 * @param expenseItem 费用项目
+	 * @return 当前对象
+	*/
+	public Asset setExpenseItem(String expenseItem) {
+		this.expenseItem=expenseItem;
+		return this;
+	}
+	
+	/**
 	 * 获得 资产供应商<br>
 	 * 资产供应商
 	 * @return 资产供应商
@@ -1962,6 +2036,177 @@ public class Asset extends Entity {
 	}
 	
 	/**
+	 * 获得 客户信息<br>
+	 * 客户信息
+	 * @return 客户信息
+	*/
+	public String getCustomerInfo() {
+		return customerInfo;
+	}
+	
+	/**
+	 * 设置 客户信息
+	 * @param customerInfo 客户信息
+	 * @return 当前对象
+	*/
+	public Asset setCustomerInfo(String customerInfo) {
+		this.customerInfo=customerInfo;
+		return this;
+	}
+	
+	/**
+	 * 获得 含税总值<br>
+	 * (含税数量>2)
+	 * @return 含税总值
+	*/
+	public BigDecimal getTaxAmountPrice() {
+		return taxAmountPrice;
+	}
+	
+	/**
+	 * 设置 含税总值
+	 * @param taxAmountPrice 含税总值
+	 * @return 当前对象
+	*/
+	public Asset setTaxAmountPrice(BigDecimal taxAmountPrice) {
+		this.taxAmountPrice=taxAmountPrice;
+		return this;
+	}
+	
+	/**
+	 * 获得 未税总值<br>
+	 * (数量>2)
+	 * @return 未税总值
+	*/
+	public BigDecimal getTotalAmountPrice() {
+		return totalAmountPrice;
+	}
+	
+	/**
+	 * 设置 未税总值
+	 * @param totalAmountPrice 未税总值
+	 * @return 当前对象
+	*/
+	public Asset setTotalAmountPrice(BigDecimal totalAmountPrice) {
+		this.totalAmountPrice=totalAmountPrice;
+		return this;
+	}
+	
+	/**
+	 * 获得 含税单价<br>
+	 * (含税)
+	 * @return 含税单价
+	*/
+	public BigDecimal getPurchaseUnitPrice() {
+		return purchaseUnitPrice;
+	}
+	
+	/**
+	 * 设置 含税单价
+	 * @param purchaseUnitPrice 含税单价
+	 * @return 当前对象
+	*/
+	public Asset setPurchaseUnitPrice(BigDecimal purchaseUnitPrice) {
+		this.purchaseUnitPrice=purchaseUnitPrice;
+		return this;
+	}
+	
+	/**
+	 * 获得 资产原值<br>
+	 * (未税)
+	 * @return 资产原值
+	*/
+	public BigDecimal getOriginalUnitPrice() {
+		return originalUnitPrice;
+	}
+	
+	/**
+	 * 设置 资产原值
+	 * @param originalUnitPrice 资产原值
+	 * @return 当前对象
+	*/
+	public Asset setOriginalUnitPrice(BigDecimal originalUnitPrice) {
+		this.originalUnitPrice=originalUnitPrice;
+		return this;
+	}
+	
+	/**
+	 * 获得 资产净值<br>
+	 * (当前)
+	 * @return 资产净值
+	*/
+	public BigDecimal getNavPrice() {
+		return navPrice;
+	}
+	
+	/**
+	 * 设置 资产净值
+	 * @param navPrice 资产净值
+	 * @return 当前对象
+	*/
+	public Asset setNavPrice(BigDecimal navPrice) {
+		this.navPrice=navPrice;
+		return this;
+	}
+	
+	/**
+	 * 获得 已用期限<br>
+	 * (月)
+	 * @return 已用期限
+	*/
+	public Integer getAssetUsedServiceLife() {
+		return assetUsedServiceLife;
+	}
+	
+	/**
+	 * 设置 已用期限
+	 * @param assetUsedServiceLife 已用期限
+	 * @return 当前对象
+	*/
+	public Asset setAssetUsedServiceLife(Integer assetUsedServiceLife) {
+		this.assetUsedServiceLife=assetUsedServiceLife;
+		return this;
+	}
+	
+	/**
+	 * 获得 残值率<br>
+	 * 残值率
+	 * @return 残值率
+	*/
+	public BigDecimal getResidualsRate() {
+		return residualsRate;
+	}
+	
+	/**
+	 * 设置 残值率
+	 * @param residualsRate 残值率
+	 * @return 当前对象
+	*/
+	public Asset setResidualsRate(BigDecimal residualsRate) {
+		this.residualsRate=residualsRate;
+		return this;
+	}
+	
+	/**
+	 * 获得 残值<br>
+	 * 残值
+	 * @return 残值
+	*/
+	public BigDecimal getResidualsPrice() {
+		return residualsPrice;
+	}
+	
+	/**
+	 * 设置 残值
+	 * @param residualsPrice 残值
+	 * @return 当前对象
+	*/
+	public Asset setResidualsPrice(BigDecimal residualsPrice) {
+		this.residualsPrice=residualsPrice;
+		return this;
+	}
+	
+	/**
 	 * 获得 税额<br>
 	 * 税额
 	 * @return 税额
@@ -1977,63 +2222,6 @@ public class Asset extends Entity {
 	*/
 	public Asset setTaxAmountRate(BigDecimal taxAmountRate) {
 		this.taxAmountRate=taxAmountRate;
-		return this;
-	}
-	
-	/**
-	 * 获得 含税金额<br>
-	 * 含税金额
-	 * @return 含税金额
-	*/
-	public BigDecimal getTaxAmountPrice() {
-		return taxAmountPrice;
-	}
-	
-	/**
-	 * 设置 含税金额
-	 * @param taxAmountPrice 含税金额
-	 * @return 当前对象
-	*/
-	public Asset setTaxAmountPrice(BigDecimal taxAmountPrice) {
-		this.taxAmountPrice=taxAmountPrice;
-		return this;
-	}
-	
-	/**
-	 * 获得 资产总值<br>
-	 * 资产总值
-	 * @return 资产总值
-	*/
-	public BigDecimal getTotalAmountPrice() {
-		return totalAmountPrice;
-	}
-	
-	/**
-	 * 设置 资产总值
-	 * @param totalAmountPrice 资产总值
-	 * @return 当前对象
-	*/
-	public Asset setTotalAmountPrice(BigDecimal totalAmountPrice) {
-		this.totalAmountPrice=totalAmountPrice;
-		return this;
-	}
-	
-	/**
-	 * 获得 资产原值(单价)<br>
-	 * 资产原值(单价)
-	 * @return 资产原值(单价)
-	*/
-	public BigDecimal getOriginalUnitPrice() {
-		return originalUnitPrice;
-	}
-	
-	/**
-	 * 设置 资产原值(单价)
-	 * @param originalUnitPrice 资产原值(单价)
-	 * @return 当前对象
-	*/
-	public Asset setOriginalUnitPrice(BigDecimal originalUnitPrice) {
-		this.originalUnitPrice=originalUnitPrice;
 		return this;
 	}
 	
@@ -2110,82 +2298,6 @@ public class Asset extends Entity {
 	*/
 	public Asset setMonthDepreciationPrice(BigDecimal monthDepreciationPrice) {
 		this.monthDepreciationPrice=monthDepreciationPrice;
-		return this;
-	}
-	
-	/**
-	 * 获得 残值率<br>
-	 * 残值率
-	 * @return 残值率
-	*/
-	public BigDecimal getResidualsRate() {
-		return residualsRate;
-	}
-	
-	/**
-	 * 设置 残值率
-	 * @param residualsRate 残值率
-	 * @return 当前对象
-	*/
-	public Asset setResidualsRate(BigDecimal residualsRate) {
-		this.residualsRate=residualsRate;
-		return this;
-	}
-	
-	/**
-	 * 获得 残值<br>
-	 * 残值
-	 * @return 残值
-	*/
-	public BigDecimal getResidualsPrice() {
-		return residualsPrice;
-	}
-	
-	/**
-	 * 设置 残值
-	 * @param residualsPrice 残值
-	 * @return 当前对象
-	*/
-	public Asset setResidualsPrice(BigDecimal residualsPrice) {
-		this.residualsPrice=residualsPrice;
-		return this;
-	}
-	
-	/**
-	 * 获得 资产净值<br>
-	 * 资产净值
-	 * @return 资产净值
-	*/
-	public BigDecimal getNavPrice() {
-		return navPrice;
-	}
-	
-	/**
-	 * 设置 资产净值
-	 * @param navPrice 资产净值
-	 * @return 当前对象
-	*/
-	public Asset setNavPrice(BigDecimal navPrice) {
-		this.navPrice=navPrice;
-		return this;
-	}
-	
-	/**
-	 * 获得 采购单价<br>
-	 * 采购单价
-	 * @return 采购单价
-	*/
-	public BigDecimal getPurchaseUnitPrice() {
-		return purchaseUnitPrice;
-	}
-	
-	/**
-	 * 设置 采购单价
-	 * @param purchaseUnitPrice 采购单价
-	 * @return 当前对象
-	*/
-	public Asset setPurchaseUnitPrice(BigDecimal purchaseUnitPrice) {
-		this.purchaseUnitPrice=purchaseUnitPrice;
 		return this;
 	}
 	
@@ -3629,6 +3741,44 @@ public class Asset extends Entity {
 		this.region=region;
 		return this;
 	}
+	
+	/**
+	 * 获得 财务选项<br>
+	 * 财务选项
+	 * @return 财务选项
+	*/
+	public DictItem getFinancialOptionDict() {
+		return financialOptionDict;
+	}
+	
+	/**
+	 * 设置 财务选项
+	 * @param financialOptionDict 财务选项
+	 * @return 当前对象
+	*/
+	public Asset setFinancialOptionDict(DictItem financialOptionDict) {
+		this.financialOptionDict=financialOptionDict;
+		return this;
+	}
+	
+	/**
+	 * 获得 费用项目<br>
+	 * 费用项目
+	 * @return 费用项目
+	*/
+	public DictItem getExpenseItemDict() {
+		return expenseItemDict;
+	}
+	
+	/**
+	 * 设置 费用项目
+	 * @param expenseItemDict 费用项目
+	 * @return 当前对象
+	*/
+	public Asset setExpenseItemDict(DictItem expenseItemDict) {
+		this.expenseItemDict=expenseItemDict;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -3675,6 +3825,7 @@ public class Asset extends Entity {
 	public Asset duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.AssetMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetMeta.$$proxy$$();
 		inst.setEquipmentCode(this.getEquipmentCode());
+		inst.setCustomerInfo(this.getCustomerInfo());
 		inst.setPurchaseUnitPrice(this.getPurchaseUnitPrice());
 		inst.setApprovalOpinion(this.getApprovalOpinion());
 		inst.setMaintenanceStatus(this.getMaintenanceStatus());
@@ -3699,6 +3850,7 @@ public class Asset extends Entity {
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setFinancialNotes(this.getFinancialNotes());
 		inst.setMaintenanceMethod(this.getMaintenanceMethod());
+		inst.setFinancialOption(this.getFinancialOption());
 		inst.setStatus(this.getStatus());
 		inst.setPurchaseDate(this.getPurchaseDate());
 		inst.setOwnerCode(this.getOwnerCode());
@@ -3759,12 +3911,14 @@ public class Asset extends Entity {
 		inst.setRackUpNumber(this.getRackUpNumber());
 		inst.setResidualsRate(this.getResidualsRate());
 		inst.setAssetStatus(this.getAssetStatus());
+		inst.setExpenseItem(this.getExpenseItem());
 		inst.setChsVersion(this.getChsVersion());
 		inst.setSupplierId(this.getSupplierId());
 		inst.setPurpose(this.getPurpose());
 		inst.setResidualsPrice(this.getResidualsPrice());
 		inst.setInternalControlLabel(this.getInternalControlLabel());
 		inst.setLatestApproverName(this.getLatestApproverName());
+		inst.setAssetUsedServiceLife(this.getAssetUsedServiceLife());
 		inst.setNextApproverIds(this.getNextApproverIds());
 		inst.setChsStatus(this.getChsStatus());
 		inst.setProductionDate(this.getProductionDate());
@@ -3796,8 +3950,10 @@ public class Asset extends Entity {
 			inst.setGoods(this.getGoods());
 			inst.setOriginator(this.getOriginator());
 			inst.setSource(this.getSource());
+			inst.setFinancialOptionDict(this.getFinancialOptionDict());
 			inst.setManufacturer(this.getManufacturer());
 			inst.setCatalogAttribute(this.getCatalogAttribute());
+			inst.setExpenseItemDict(this.getExpenseItemDict());
 			inst.setSupplier(this.getSupplier());
 			inst.setMaintenanceMethodData(this.getMaintenanceMethodData());
 			inst.setUseUser(this.getUseUser());
@@ -3876,6 +4032,7 @@ public class Asset extends Entity {
 		if(map==null) return false;
 		if(cast) {
 			this.setEquipmentCode(DataParser.parse(String.class, map.get(AssetMeta.EQUIPMENT_CODE)));
+			this.setCustomerInfo(DataParser.parse(String.class, map.get(AssetMeta.CUSTOMER_INFO)));
 			this.setPurchaseUnitPrice(DataParser.parse(BigDecimal.class, map.get(AssetMeta.PURCHASE_UNIT_PRICE)));
 			this.setApprovalOpinion(DataParser.parse(String.class, map.get(AssetMeta.APPROVAL_OPINION)));
 			this.setMaintenanceStatus(DataParser.parse(String.class, map.get(AssetMeta.MAINTENANCE_STATUS)));
@@ -3900,6 +4057,7 @@ public class Asset extends Entity {
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetMeta.DELETE_TIME)));
 			this.setFinancialNotes(DataParser.parse(String.class, map.get(AssetMeta.FINANCIAL_NOTES)));
 			this.setMaintenanceMethod(DataParser.parse(String.class, map.get(AssetMeta.MAINTENANCE_METHOD)));
+			this.setFinancialOption(DataParser.parse(String.class, map.get(AssetMeta.FINANCIAL_OPTION)));
 			this.setStatus(DataParser.parse(String.class, map.get(AssetMeta.STATUS)));
 			this.setPurchaseDate(DataParser.parse(Date.class, map.get(AssetMeta.PURCHASE_DATE)));
 			this.setOwnerCode(DataParser.parse(String.class, map.get(AssetMeta.OWNER_CODE)));
@@ -3960,12 +4118,14 @@ public class Asset extends Entity {
 			this.setRackUpNumber(DataParser.parse(Integer.class, map.get(AssetMeta.RACK_UP_NUMBER)));
 			this.setResidualsRate(DataParser.parse(BigDecimal.class, map.get(AssetMeta.RESIDUALS_RATE)));
 			this.setAssetStatus(DataParser.parse(String.class, map.get(AssetMeta.ASSET_STATUS)));
+			this.setExpenseItem(DataParser.parse(String.class, map.get(AssetMeta.EXPENSE_ITEM)));
 			this.setChsVersion(DataParser.parse(String.class, map.get(AssetMeta.CHS_VERSION)));
 			this.setSupplierId(DataParser.parse(String.class, map.get(AssetMeta.SUPPLIER_ID)));
 			this.setPurpose(DataParser.parse(String.class, map.get(AssetMeta.PURPOSE)));
 			this.setResidualsPrice(DataParser.parse(BigDecimal.class, map.get(AssetMeta.RESIDUALS_PRICE)));
 			this.setInternalControlLabel(DataParser.parse(String.class, map.get(AssetMeta.INTERNAL_CONTROL_LABEL)));
 			this.setLatestApproverName(DataParser.parse(String.class, map.get(AssetMeta.LATEST_APPROVER_NAME)));
+			this.setAssetUsedServiceLife(DataParser.parse(Integer.class, map.get(AssetMeta.ASSET_USED_SERVICE_LIFE)));
 			this.setNextApproverIds(DataParser.parse(String.class, map.get(AssetMeta.NEXT_APPROVER_IDS)));
 			this.setChsStatus(DataParser.parse(String.class, map.get(AssetMeta.CHS_STATUS)));
 			this.setProductionDate(DataParser.parse(Date.class, map.get(AssetMeta.PRODUCTION_DATE)));
@@ -3997,7 +4157,9 @@ public class Asset extends Entity {
 			this.setGoods(DataParser.parse(Goods.class, map.get(AssetMeta.GOODS)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(AssetMeta.ORIGINATOR)));
 			this.setSource(DataParser.parse(DictItem.class, map.get(AssetMeta.SOURCE)));
+			this.setFinancialOptionDict(DataParser.parse(DictItem.class, map.get(AssetMeta.FINANCIAL_OPTION_DICT)));
 			this.setManufacturer(DataParser.parse(Manufacturer.class, map.get(AssetMeta.MANUFACTURER)));
+			this.setExpenseItemDict(DataParser.parse(DictItem.class, map.get(AssetMeta.EXPENSE_ITEM_DICT)));
 			this.setSupplier(DataParser.parse(Supplier.class, map.get(AssetMeta.SUPPLIER)));
 			this.setMaintenanceMethodData(DataParser.parse(DictItem.class, map.get(AssetMeta.MAINTENANCE_METHOD_DATA)));
 			this.setUseUser(DataParser.parse(Employee.class, map.get(AssetMeta.USE_USER)));
@@ -4019,6 +4181,7 @@ public class Asset extends Entity {
 		} else {
 			try {
 				this.setEquipmentCode( (String)map.get(AssetMeta.EQUIPMENT_CODE));
+				this.setCustomerInfo( (String)map.get(AssetMeta.CUSTOMER_INFO));
 				this.setPurchaseUnitPrice( (BigDecimal)map.get(AssetMeta.PURCHASE_UNIT_PRICE));
 				this.setApprovalOpinion( (String)map.get(AssetMeta.APPROVAL_OPINION));
 				this.setMaintenanceStatus( (String)map.get(AssetMeta.MAINTENANCE_STATUS));
@@ -4043,6 +4206,7 @@ public class Asset extends Entity {
 				this.setDeleteTime( (Date)map.get(AssetMeta.DELETE_TIME));
 				this.setFinancialNotes( (String)map.get(AssetMeta.FINANCIAL_NOTES));
 				this.setMaintenanceMethod( (String)map.get(AssetMeta.MAINTENANCE_METHOD));
+				this.setFinancialOption( (String)map.get(AssetMeta.FINANCIAL_OPTION));
 				this.setStatus( (String)map.get(AssetMeta.STATUS));
 				this.setPurchaseDate( (Date)map.get(AssetMeta.PURCHASE_DATE));
 				this.setOwnerCode( (String)map.get(AssetMeta.OWNER_CODE));
@@ -4103,12 +4267,14 @@ public class Asset extends Entity {
 				this.setRackUpNumber( (Integer)map.get(AssetMeta.RACK_UP_NUMBER));
 				this.setResidualsRate( (BigDecimal)map.get(AssetMeta.RESIDUALS_RATE));
 				this.setAssetStatus( (String)map.get(AssetMeta.ASSET_STATUS));
+				this.setExpenseItem( (String)map.get(AssetMeta.EXPENSE_ITEM));
 				this.setChsVersion( (String)map.get(AssetMeta.CHS_VERSION));
 				this.setSupplierId( (String)map.get(AssetMeta.SUPPLIER_ID));
 				this.setPurpose( (String)map.get(AssetMeta.PURPOSE));
 				this.setResidualsPrice( (BigDecimal)map.get(AssetMeta.RESIDUALS_PRICE));
 				this.setInternalControlLabel( (String)map.get(AssetMeta.INTERNAL_CONTROL_LABEL));
 				this.setLatestApproverName( (String)map.get(AssetMeta.LATEST_APPROVER_NAME));
+				this.setAssetUsedServiceLife( (Integer)map.get(AssetMeta.ASSET_USED_SERVICE_LIFE));
 				this.setNextApproverIds( (String)map.get(AssetMeta.NEXT_APPROVER_IDS));
 				this.setChsStatus( (String)map.get(AssetMeta.CHS_STATUS));
 				this.setProductionDate( (Date)map.get(AssetMeta.PRODUCTION_DATE));
@@ -4140,7 +4306,9 @@ public class Asset extends Entity {
 				this.setGoods( (Goods)map.get(AssetMeta.GOODS));
 				this.setOriginator( (Employee)map.get(AssetMeta.ORIGINATOR));
 				this.setSource( (DictItem)map.get(AssetMeta.SOURCE));
+				this.setFinancialOptionDict( (DictItem)map.get(AssetMeta.FINANCIAL_OPTION_DICT));
 				this.setManufacturer( (Manufacturer)map.get(AssetMeta.MANUFACTURER));
+				this.setExpenseItemDict( (DictItem)map.get(AssetMeta.EXPENSE_ITEM_DICT));
 				this.setSupplier( (Supplier)map.get(AssetMeta.SUPPLIER));
 				this.setMaintenanceMethodData( (DictItem)map.get(AssetMeta.MAINTENANCE_METHOD_DATA));
 				this.setUseUser( (Employee)map.get(AssetMeta.USE_USER));
@@ -4175,6 +4343,7 @@ public class Asset extends Entity {
 		if(r==null) return false;
 		if(cast) {
 			this.setEquipmentCode(DataParser.parse(String.class, r.getValue(AssetMeta.EQUIPMENT_CODE)));
+			this.setCustomerInfo(DataParser.parse(String.class, r.getValue(AssetMeta.CUSTOMER_INFO)));
 			this.setPurchaseUnitPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.PURCHASE_UNIT_PRICE)));
 			this.setApprovalOpinion(DataParser.parse(String.class, r.getValue(AssetMeta.APPROVAL_OPINION)));
 			this.setMaintenanceStatus(DataParser.parse(String.class, r.getValue(AssetMeta.MAINTENANCE_STATUS)));
@@ -4199,6 +4368,7 @@ public class Asset extends Entity {
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetMeta.DELETE_TIME)));
 			this.setFinancialNotes(DataParser.parse(String.class, r.getValue(AssetMeta.FINANCIAL_NOTES)));
 			this.setMaintenanceMethod(DataParser.parse(String.class, r.getValue(AssetMeta.MAINTENANCE_METHOD)));
+			this.setFinancialOption(DataParser.parse(String.class, r.getValue(AssetMeta.FINANCIAL_OPTION)));
 			this.setStatus(DataParser.parse(String.class, r.getValue(AssetMeta.STATUS)));
 			this.setPurchaseDate(DataParser.parse(Date.class, r.getValue(AssetMeta.PURCHASE_DATE)));
 			this.setOwnerCode(DataParser.parse(String.class, r.getValue(AssetMeta.OWNER_CODE)));
@@ -4259,12 +4429,14 @@ public class Asset extends Entity {
 			this.setRackUpNumber(DataParser.parse(Integer.class, r.getValue(AssetMeta.RACK_UP_NUMBER)));
 			this.setResidualsRate(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.RESIDUALS_RATE)));
 			this.setAssetStatus(DataParser.parse(String.class, r.getValue(AssetMeta.ASSET_STATUS)));
+			this.setExpenseItem(DataParser.parse(String.class, r.getValue(AssetMeta.EXPENSE_ITEM)));
 			this.setChsVersion(DataParser.parse(String.class, r.getValue(AssetMeta.CHS_VERSION)));
 			this.setSupplierId(DataParser.parse(String.class, r.getValue(AssetMeta.SUPPLIER_ID)));
 			this.setPurpose(DataParser.parse(String.class, r.getValue(AssetMeta.PURPOSE)));
 			this.setResidualsPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.RESIDUALS_PRICE)));
 			this.setInternalControlLabel(DataParser.parse(String.class, r.getValue(AssetMeta.INTERNAL_CONTROL_LABEL)));
 			this.setLatestApproverName(DataParser.parse(String.class, r.getValue(AssetMeta.LATEST_APPROVER_NAME)));
+			this.setAssetUsedServiceLife(DataParser.parse(Integer.class, r.getValue(AssetMeta.ASSET_USED_SERVICE_LIFE)));
 			this.setNextApproverIds(DataParser.parse(String.class, r.getValue(AssetMeta.NEXT_APPROVER_IDS)));
 			this.setChsStatus(DataParser.parse(String.class, r.getValue(AssetMeta.CHS_STATUS)));
 			this.setProductionDate(DataParser.parse(Date.class, r.getValue(AssetMeta.PRODUCTION_DATE)));
@@ -4292,6 +4464,7 @@ public class Asset extends Entity {
 		} else {
 			try {
 				this.setEquipmentCode( (String)r.getValue(AssetMeta.EQUIPMENT_CODE));
+				this.setCustomerInfo( (String)r.getValue(AssetMeta.CUSTOMER_INFO));
 				this.setPurchaseUnitPrice( (BigDecimal)r.getValue(AssetMeta.PURCHASE_UNIT_PRICE));
 				this.setApprovalOpinion( (String)r.getValue(AssetMeta.APPROVAL_OPINION));
 				this.setMaintenanceStatus( (String)r.getValue(AssetMeta.MAINTENANCE_STATUS));
@@ -4316,6 +4489,7 @@ public class Asset extends Entity {
 				this.setDeleteTime( (Date)r.getValue(AssetMeta.DELETE_TIME));
 				this.setFinancialNotes( (String)r.getValue(AssetMeta.FINANCIAL_NOTES));
 				this.setMaintenanceMethod( (String)r.getValue(AssetMeta.MAINTENANCE_METHOD));
+				this.setFinancialOption( (String)r.getValue(AssetMeta.FINANCIAL_OPTION));
 				this.setStatus( (String)r.getValue(AssetMeta.STATUS));
 				this.setPurchaseDate( (Date)r.getValue(AssetMeta.PURCHASE_DATE));
 				this.setOwnerCode( (String)r.getValue(AssetMeta.OWNER_CODE));
@@ -4376,12 +4550,14 @@ public class Asset extends Entity {
 				this.setRackUpNumber( (Integer)r.getValue(AssetMeta.RACK_UP_NUMBER));
 				this.setResidualsRate( (BigDecimal)r.getValue(AssetMeta.RESIDUALS_RATE));
 				this.setAssetStatus( (String)r.getValue(AssetMeta.ASSET_STATUS));
+				this.setExpenseItem( (String)r.getValue(AssetMeta.EXPENSE_ITEM));
 				this.setChsVersion( (String)r.getValue(AssetMeta.CHS_VERSION));
 				this.setSupplierId( (String)r.getValue(AssetMeta.SUPPLIER_ID));
 				this.setPurpose( (String)r.getValue(AssetMeta.PURPOSE));
 				this.setResidualsPrice( (BigDecimal)r.getValue(AssetMeta.RESIDUALS_PRICE));
 				this.setInternalControlLabel( (String)r.getValue(AssetMeta.INTERNAL_CONTROL_LABEL));
 				this.setLatestApproverName( (String)r.getValue(AssetMeta.LATEST_APPROVER_NAME));
+				this.setAssetUsedServiceLife( (Integer)r.getValue(AssetMeta.ASSET_USED_SERVICE_LIFE));
 				this.setNextApproverIds( (String)r.getValue(AssetMeta.NEXT_APPROVER_IDS));
 				this.setChsStatus( (String)r.getValue(AssetMeta.CHS_STATUS));
 				this.setProductionDate( (Date)r.getValue(AssetMeta.PRODUCTION_DATE));

@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_ASSET_DEPRECIATION;
@@ -9,25 +10,31 @@ import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import org.github.foxnic.web.domain.pcm.Catalog;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.AssetDepreciationMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 折旧方案
+ * <p>折旧方案 , 数据表 eam_asset_depreciation 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-30 07:26:02
- * @sign E609DF99B005FCD76C36556FFEFDCFB0
+ * @since 2022-11-23 17:22:27
+ * @sign 43F51286C07C3885764113FA69986EC4
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_asset_depreciation")
+@ApiModel(description = "折旧方案 ; 折旧方案 , 数据表 eam_asset_depreciation 的PO类型")
 public class AssetDepreciation extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -38,43 +45,49 @@ public class AssetDepreciation extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "647736203386290176")
 	private String id;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "enable")
 	private String status;
+	
+	/**
+	 * 编码：编码
+	*/
+	@ApiModelProperty(required = false,value="编码" , notes = "编码")
+	private String code;
 	
 	/**
 	 * 折旧方案：折旧方案
 	*/
-	@ApiModelProperty(required = false,value="折旧方案" , notes = "折旧方案")
+	@ApiModelProperty(required = false,value="折旧方案" , notes = "折旧方案" , example = "CLS平均按年折旧")
 	private String name;
 	
 	/**
 	 * 折旧方式：折旧方式
 	*/
-	@ApiModelProperty(required = false,value="折旧方式" , notes = "折旧方式")
+	@ApiModelProperty(required = false,value="折旧方式" , notes = "折旧方式" , example = "average_age")
 	private String method;
 	
 	/**
 	 * 预计残值率：预计残值率
 	*/
-	@ApiModelProperty(required = false,value="预计残值率" , notes = "预计残值率")
+	@ApiModelProperty(required = false,value="预计残值率" , notes = "预计残值率" , example = "5.00")
 	private BigDecimal preResidualRate;
 	
 	/**
 	 * 残值选择：残值选择
 	*/
-	@ApiModelProperty(required = false,value="残值选择" , notes = "残值选择")
+	@ApiModelProperty(required = false,value="残值选择" , notes = "残值选择" , example = "follow_asset")
 	private String residualValueSelect;
 	
 	/**
 	 * 首次折旧时间：首次折旧时间
 	*/
-	@ApiModelProperty(required = false,value="首次折旧时间" , notes = "首次折旧时间")
+	@ApiModelProperty(required = false,value="首次折旧时间" , notes = "首次折旧时间" , example = "purchase_next_month")
 	private String firstDepreciationDate;
 	
 	/**
@@ -98,33 +111,34 @@ public class AssetDepreciation extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-11-23 09:52:25")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-11-23 05:17:20")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -142,13 +156,13 @@ public class AssetDepreciation extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -198,6 +212,25 @@ public class AssetDepreciation extends Entity {
 	*/
 	public AssetDepreciation setStatus(String status) {
 		this.status=status;
+		return this;
+	}
+	
+	/**
+	 * 获得 编码<br>
+	 * 编码
+	 * @return 编码
+	*/
+	public String getCode() {
+		return code;
+	}
+	
+	/**
+	 * 设置 编码
+	 * @param code 编码
+	 * @return 当前对象
+	*/
+	public AssetDepreciation setCode(String code) {
+		this.code=code;
 		return this;
 	}
 	
@@ -456,6 +489,7 @@ public class AssetDepreciation extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public AssetDepreciation setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -644,6 +678,57 @@ public class AssetDepreciation extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetDepreciation clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AssetDepreciation duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.AssetDepreciationMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetDepreciationMeta.$$proxy$$();
+		inst.setCode(this.getCode());
+		inst.setFirstDepreciationDate(this.getFirstDepreciationDate());
+		inst.setNotes(this.getNotes());
+		inst.setMethod(this.getMethod());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setResidualValueSelect(this.getResidualValueSelect());
+		inst.setVersion(this.getVersion());
+		inst.setOwnCompanyId(this.getOwnCompanyId());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setPreResidualRate(this.getPreResidualRate());
+		inst.setId(this.getId());
+		inst.setCategoryId(this.getCategoryId());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setCategoryIds(this.getCategoryIds());
+			inst.setCategory(this.getCategory());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetDepreciation clone(boolean deep) {
+		return EntityContext.clone(AssetDepreciation.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 AssetDepreciation
 	 * @param assetDepreciationMap 包含实体信息的 Map 对象
 	 * @return AssetDepreciation , 转换好的的 AssetDepreciation 对象
@@ -651,7 +736,9 @@ public class AssetDepreciation extends Entity {
 	@Transient
 	public static AssetDepreciation createFrom(Map<String,Object> assetDepreciationMap) {
 		if(assetDepreciationMap==null) return null;
-		AssetDepreciation po = EntityContext.create(AssetDepreciation.class, assetDepreciationMap);
+		AssetDepreciation po = create();
+		EntityContext.copyProperties(po,assetDepreciationMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -663,7 +750,9 @@ public class AssetDepreciation extends Entity {
 	@Transient
 	public static AssetDepreciation createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AssetDepreciation po = EntityContext.create(AssetDepreciation.class,pojo);
+		AssetDepreciation po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -673,6 +762,126 @@ public class AssetDepreciation extends Entity {
 	*/
 	@Transient
 	public static AssetDepreciation create() {
-		return EntityContext.create(AssetDepreciation.class);
+		return new com.dt.platform.domain.eam.meta.AssetDepreciationMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setCode(DataParser.parse(String.class, map.get(AssetDepreciationMeta.CODE)));
+			this.setFirstDepreciationDate(DataParser.parse(String.class, map.get(AssetDepreciationMeta.FIRST_DEPRECIATION_DATE)));
+			this.setNotes(DataParser.parse(String.class, map.get(AssetDepreciationMeta.NOTES)));
+			this.setMethod(DataParser.parse(String.class, map.get(AssetDepreciationMeta.METHOD)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetDepreciationMeta.UPDATE_TIME)));
+			this.setResidualValueSelect(DataParser.parse(String.class, map.get(AssetDepreciationMeta.RESIDUAL_VALUE_SELECT)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetDepreciationMeta.VERSION)));
+			this.setOwnCompanyId(DataParser.parse(String.class, map.get(AssetDepreciationMeta.OWN_COMPANY_ID)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetDepreciationMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetDepreciationMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetDepreciationMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetDepreciationMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetDepreciationMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(AssetDepreciationMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetDepreciationMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetDepreciationMeta.DELETE_BY)));
+			this.setPreResidualRate(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationMeta.PRE_RESIDUAL_RATE)));
+			this.setId(DataParser.parse(String.class, map.get(AssetDepreciationMeta.ID)));
+			this.setCategoryId(DataParser.parse(String.class, map.get(AssetDepreciationMeta.CATEGORY_ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(AssetDepreciationMeta.STATUS)));
+			// others
+			return true;
+		} else {
+			try {
+				this.setCode( (String)map.get(AssetDepreciationMeta.CODE));
+				this.setFirstDepreciationDate( (String)map.get(AssetDepreciationMeta.FIRST_DEPRECIATION_DATE));
+				this.setNotes( (String)map.get(AssetDepreciationMeta.NOTES));
+				this.setMethod( (String)map.get(AssetDepreciationMeta.METHOD));
+				this.setUpdateTime( (Date)map.get(AssetDepreciationMeta.UPDATE_TIME));
+				this.setResidualValueSelect( (String)map.get(AssetDepreciationMeta.RESIDUAL_VALUE_SELECT));
+				this.setVersion( (Integer)map.get(AssetDepreciationMeta.VERSION));
+				this.setOwnCompanyId( (String)map.get(AssetDepreciationMeta.OWN_COMPANY_ID));
+				this.setCreateBy( (String)map.get(AssetDepreciationMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AssetDepreciationMeta.DELETED));
+				this.setCreateTime( (Date)map.get(AssetDepreciationMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(AssetDepreciationMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AssetDepreciationMeta.DELETE_TIME));
+				this.setName( (String)map.get(AssetDepreciationMeta.NAME));
+				this.setTenantId( (String)map.get(AssetDepreciationMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AssetDepreciationMeta.DELETE_BY));
+				this.setPreResidualRate( (BigDecimal)map.get(AssetDepreciationMeta.PRE_RESIDUAL_RATE));
+				this.setId( (String)map.get(AssetDepreciationMeta.ID));
+				this.setCategoryId( (String)map.get(AssetDepreciationMeta.CATEGORY_ID));
+				this.setStatus( (String)map.get(AssetDepreciationMeta.STATUS));
+				// others
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setCode(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.CODE)));
+			this.setFirstDepreciationDate(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.FIRST_DEPRECIATION_DATE)));
+			this.setNotes(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.NOTES)));
+			this.setMethod(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.METHOD)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationMeta.UPDATE_TIME)));
+			this.setResidualValueSelect(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.RESIDUAL_VALUE_SELECT)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetDepreciationMeta.VERSION)));
+			this.setOwnCompanyId(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.OWN_COMPANY_ID)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetDepreciationMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.DELETE_BY)));
+			this.setPreResidualRate(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationMeta.PRE_RESIDUAL_RATE)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.ID)));
+			this.setCategoryId(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.CATEGORY_ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setCode( (String)r.getValue(AssetDepreciationMeta.CODE));
+				this.setFirstDepreciationDate( (String)r.getValue(AssetDepreciationMeta.FIRST_DEPRECIATION_DATE));
+				this.setNotes( (String)r.getValue(AssetDepreciationMeta.NOTES));
+				this.setMethod( (String)r.getValue(AssetDepreciationMeta.METHOD));
+				this.setUpdateTime( (Date)r.getValue(AssetDepreciationMeta.UPDATE_TIME));
+				this.setResidualValueSelect( (String)r.getValue(AssetDepreciationMeta.RESIDUAL_VALUE_SELECT));
+				this.setVersion( (Integer)r.getValue(AssetDepreciationMeta.VERSION));
+				this.setOwnCompanyId( (String)r.getValue(AssetDepreciationMeta.OWN_COMPANY_ID));
+				this.setCreateBy( (String)r.getValue(AssetDepreciationMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AssetDepreciationMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(AssetDepreciationMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(AssetDepreciationMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AssetDepreciationMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(AssetDepreciationMeta.NAME));
+				this.setTenantId( (String)r.getValue(AssetDepreciationMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AssetDepreciationMeta.DELETE_BY));
+				this.setPreResidualRate( (BigDecimal)r.getValue(AssetDepreciationMeta.PRE_RESIDUAL_RATE));
+				this.setId( (String)r.getValue(AssetDepreciationMeta.ID));
+				this.setCategoryId( (String)r.getValue(AssetDepreciationMeta.CATEGORY_ID));
+				this.setStatus( (String)r.getValue(AssetDepreciationMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

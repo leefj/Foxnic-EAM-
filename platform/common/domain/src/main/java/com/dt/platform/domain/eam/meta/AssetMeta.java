@@ -30,8 +30,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-13 13:10:08
- * @sign 1EB7E5CB31984F5824165F3BC1814EDF
+ * @since 2022-11-23 16:21:50
+ * @sign 896F300663F632A578587FE7C4B5CE49
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -218,14 +218,14 @@ public class AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.lang.String> UNIT_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,UNIT, java.lang.String.class, "标准型号计量单位", "标准型号计量单位", java.lang.String.class, null);
 	
 	/**
-	 * 使用期限(月) , 类型: java.math.BigDecimal
+	 * 使用期限 , (月) , 类型: java.math.BigDecimal
 	*/
 	public static final String SERVICE_LIFE="serviceLife";
 	
 	/**
-	 * 使用期限(月) , 类型: java.math.BigDecimal
+	 * 使用期限 , (月) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.math.BigDecimal> SERVICE_LIFE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,SERVICE_LIFE, java.math.BigDecimal.class, "使用期限(月)", "使用期限(月)", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.math.BigDecimal> SERVICE_LIFE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,SERVICE_LIFE, java.math.BigDecimal.class, "使用期限", "(月)", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 安全等级 , 类型: java.lang.String
@@ -588,6 +588,26 @@ public class AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.lang.String> FINANCIAL_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,FINANCIAL_CODE, java.lang.String.class, "财务编号", "财务编号", java.lang.String.class, null);
 	
 	/**
+	 * 财务选项 , 类型: java.lang.String
+	*/
+	public static final String FINANCIAL_OPTION="financialOption";
+	
+	/**
+	 * 财务选项 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.lang.String> FINANCIAL_OPTION_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,FINANCIAL_OPTION, java.lang.String.class, "财务选项", "财务选项", java.lang.String.class, null);
+	
+	/**
+	 * 费用项目 , 类型: java.lang.String
+	*/
+	public static final String EXPENSE_ITEM="expenseItem";
+	
+	/**
+	 * 费用项目 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.lang.String> EXPENSE_ITEM_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,EXPENSE_ITEM, java.lang.String.class, "费用项目", "费用项目", java.lang.String.class, null);
+	
+	/**
 	 * 资产供应商 , 类型: java.lang.String
 	*/
 	public static final String SUPPLIER_ID="supplierId";
@@ -598,6 +618,96 @@ public class AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.lang.String> SUPPLIER_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,SUPPLIER_ID, java.lang.String.class, "资产供应商", "资产供应商", java.lang.String.class, null);
 	
 	/**
+	 * 客户信息 , 类型: java.lang.String
+	*/
+	public static final String CUSTOMER_INFO="customerInfo";
+	
+	/**
+	 * 客户信息 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.lang.String> CUSTOMER_INFO_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,CUSTOMER_INFO, java.lang.String.class, "客户信息", "客户信息", java.lang.String.class, null);
+	
+	/**
+	 * 含税总值 , (含税数量>2) , 类型: java.math.BigDecimal
+	*/
+	public static final String TAX_AMOUNT_PRICE="taxAmountPrice";
+	
+	/**
+	 * 含税总值 , (含税数量>2) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.math.BigDecimal> TAX_AMOUNT_PRICE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,TAX_AMOUNT_PRICE, java.math.BigDecimal.class, "含税总值", "(含税数量>2)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 未税总值 , (数量>2) , 类型: java.math.BigDecimal
+	*/
+	public static final String TOTAL_AMOUNT_PRICE="totalAmountPrice";
+	
+	/**
+	 * 未税总值 , (数量>2) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.math.BigDecimal> TOTAL_AMOUNT_PRICE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,TOTAL_AMOUNT_PRICE, java.math.BigDecimal.class, "未税总值", "(数量>2)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 含税单价 , (含税) , 类型: java.math.BigDecimal
+	*/
+	public static final String PURCHASE_UNIT_PRICE="purchaseUnitPrice";
+	
+	/**
+	 * 含税单价 , (含税) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.math.BigDecimal> PURCHASE_UNIT_PRICE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,PURCHASE_UNIT_PRICE, java.math.BigDecimal.class, "含税单价", "(含税)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 资产原值 , (未税) , 类型: java.math.BigDecimal
+	*/
+	public static final String ORIGINAL_UNIT_PRICE="originalUnitPrice";
+	
+	/**
+	 * 资产原值 , (未税) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.math.BigDecimal> ORIGINAL_UNIT_PRICE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,ORIGINAL_UNIT_PRICE, java.math.BigDecimal.class, "资产原值", "(未税)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 资产净值 , (当前) , 类型: java.math.BigDecimal
+	*/
+	public static final String NAV_PRICE="navPrice";
+	
+	/**
+	 * 资产净值 , (当前) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.math.BigDecimal> NAV_PRICE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,NAV_PRICE, java.math.BigDecimal.class, "资产净值", "(当前)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 已用期限 , (月) , 类型: java.lang.Integer
+	*/
+	public static final String ASSET_USED_SERVICE_LIFE="assetUsedServiceLife";
+	
+	/**
+	 * 已用期限 , (月) , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.lang.Integer> ASSET_USED_SERVICE_LIFE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,ASSET_USED_SERVICE_LIFE, java.lang.Integer.class, "已用期限", "(月)", java.lang.Integer.class, null);
+	
+	/**
+	 * 残值率 , 类型: java.math.BigDecimal
+	*/
+	public static final String RESIDUALS_RATE="residualsRate";
+	
+	/**
+	 * 残值率 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.math.BigDecimal> RESIDUALS_RATE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,RESIDUALS_RATE, java.math.BigDecimal.class, "残值率", "残值率", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 残值 , 类型: java.math.BigDecimal
+	*/
+	public static final String RESIDUALS_PRICE="residualsPrice";
+	
+	/**
+	 * 残值 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.math.BigDecimal> RESIDUALS_PRICE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,RESIDUALS_PRICE, java.math.BigDecimal.class, "残值", "残值", java.math.BigDecimal.class, null);
+	
+	/**
 	 * 税额 , 类型: java.math.BigDecimal
 	*/
 	public static final String TAX_AMOUNT_RATE="taxAmountRate";
@@ -606,36 +716,6 @@ public class AssetMeta {
 	 * 税额 , 类型: java.math.BigDecimal
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.math.BigDecimal> TAX_AMOUNT_RATE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,TAX_AMOUNT_RATE, java.math.BigDecimal.class, "税额", "税额", java.math.BigDecimal.class, null);
-	
-	/**
-	 * 含税金额 , 类型: java.math.BigDecimal
-	*/
-	public static final String TAX_AMOUNT_PRICE="taxAmountPrice";
-	
-	/**
-	 * 含税金额 , 类型: java.math.BigDecimal
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.math.BigDecimal> TAX_AMOUNT_PRICE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,TAX_AMOUNT_PRICE, java.math.BigDecimal.class, "含税金额", "含税金额", java.math.BigDecimal.class, null);
-	
-	/**
-	 * 资产总值 , 类型: java.math.BigDecimal
-	*/
-	public static final String TOTAL_AMOUNT_PRICE="totalAmountPrice";
-	
-	/**
-	 * 资产总值 , 类型: java.math.BigDecimal
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.math.BigDecimal> TOTAL_AMOUNT_PRICE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,TOTAL_AMOUNT_PRICE, java.math.BigDecimal.class, "资产总值", "资产总值", java.math.BigDecimal.class, null);
-	
-	/**
-	 * 资产原值(单价) , 类型: java.math.BigDecimal
-	*/
-	public static final String ORIGINAL_UNIT_PRICE="originalUnitPrice";
-	
-	/**
-	 * 资产原值(单价) , 类型: java.math.BigDecimal
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.math.BigDecimal> ORIGINAL_UNIT_PRICE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,ORIGINAL_UNIT_PRICE, java.math.BigDecimal.class, "资产原值(单价)", "资产原值(单价)", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 本年折旧 , 类型: java.math.BigDecimal
@@ -676,46 +756,6 @@ public class AssetMeta {
 	 * 月折金额 , 类型: java.math.BigDecimal
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.math.BigDecimal> MONTH_DEPRECIATION_PRICE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,MONTH_DEPRECIATION_PRICE, java.math.BigDecimal.class, "月折金额", "月折金额", java.math.BigDecimal.class, null);
-	
-	/**
-	 * 残值率 , 类型: java.math.BigDecimal
-	*/
-	public static final String RESIDUALS_RATE="residualsRate";
-	
-	/**
-	 * 残值率 , 类型: java.math.BigDecimal
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.math.BigDecimal> RESIDUALS_RATE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,RESIDUALS_RATE, java.math.BigDecimal.class, "残值率", "残值率", java.math.BigDecimal.class, null);
-	
-	/**
-	 * 残值 , 类型: java.math.BigDecimal
-	*/
-	public static final String RESIDUALS_PRICE="residualsPrice";
-	
-	/**
-	 * 残值 , 类型: java.math.BigDecimal
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.math.BigDecimal> RESIDUALS_PRICE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,RESIDUALS_PRICE, java.math.BigDecimal.class, "残值", "残值", java.math.BigDecimal.class, null);
-	
-	/**
-	 * 资产净值 , 类型: java.math.BigDecimal
-	*/
-	public static final String NAV_PRICE="navPrice";
-	
-	/**
-	 * 资产净值 , 类型: java.math.BigDecimal
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.math.BigDecimal> NAV_PRICE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,NAV_PRICE, java.math.BigDecimal.class, "资产净值", "资产净值", java.math.BigDecimal.class, null);
-	
-	/**
-	 * 采购单价 , 类型: java.math.BigDecimal
-	*/
-	public static final String PURCHASE_UNIT_PRICE="purchaseUnitPrice";
-	
-	/**
-	 * 采购单价 , 类型: java.math.BigDecimal
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.Asset,java.math.BigDecimal> PURCHASE_UNIT_PRICE_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,PURCHASE_UNIT_PRICE, java.math.BigDecimal.class, "采购单价", "采购单价", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 入账时间 , 类型: java.util.Date
@@ -1448,9 +1488,29 @@ public class AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.Asset,com.dt.platform.domain.eam.AssetRegion> REGION_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,REGION, com.dt.platform.domain.eam.AssetRegion.class, "存放区域", "存放区域", com.dt.platform.domain.eam.AssetRegion.class, null);
 	
 	/**
+	 * 财务选项 , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final String FINANCIAL_OPTION_DICT="financialOptionDict";
+	
+	/**
+	 * 财务选项 , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,org.github.foxnic.web.domain.system.DictItem> FINANCIAL_OPTION_DICT_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,FINANCIAL_OPTION_DICT, org.github.foxnic.web.domain.system.DictItem.class, "财务选项", "财务选项", org.github.foxnic.web.domain.system.DictItem.class, null);
+	
+	/**
+	 * 费用项目 , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final String EXPENSE_ITEM_DICT="expenseItemDict";
+	
+	/**
+	 * 费用项目 , 类型: org.github.foxnic.web.domain.system.DictItem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Asset,org.github.foxnic.web.domain.system.DictItem> EXPENSE_ITEM_DICT_PROP = new BeanProperty(com.dt.platform.domain.eam.Asset.class ,EXPENSE_ITEM_DICT, org.github.foxnic.web.domain.system.DictItem.class, "费用项目", "费用项目", org.github.foxnic.web.domain.system.DictItem.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , REGION_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , MAINTENANCE_PRICE , MAINTENANCE_METHOD , SUGGEST_MAINTENANCE_METHOD , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , SUPPLIER_ID , TAX_AMOUNT_RATE , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , ORIGINAL_UNIT_PRICE , CURRENT_YEAR_DEPRECIATION , DEPRECIATION_YEAR , ACCUMULATED_DEPRECIATION , MONTH_DEPRECIATION_PRICE , RESIDUALS_RATE , RESIDUALS_PRICE , NAV_PRICE , PURCHASE_UNIT_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL2 , LABEL3 , LABEL4 , LABEL5 , BILL_ID , INTERNAL_CONTROL_LABEL , COLLECTION_ID , BORROW_ID , SCRAP_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA , EXT_DATA , PCM_DATA , CATALOG_ATTRIBUTE , POSITION , CATEGORY_FINANCE , CATEGORY , GOODS , MANUFACTURER , WAREHOUSE , USE_USER , MANAGER , ORIGINATOR , SUPPLIER , MAINTNAINER , OWNER_COMPANY , USE_ORGANIZATION , SOURCE , EQUIPMENT_ENVIRONMENT , SAFETY_LEVEL , ASSET_MAINTENANCE_STATUS , SUGGEST_MAINTENANCE_METHOD_DATA , MAINTENANCE_METHOD_DATA , ASSET_CYCLE_STATUS , RACK , CHANGE_INSTANCE , GOODS_STOCK , REGION };
+	public static final String[] $PROPS={ ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , REGION_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , MAINTENANCE_PRICE , MAINTENANCE_METHOD , SUGGEST_MAINTENANCE_METHOD , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , FINANCIAL_OPTION , EXPENSE_ITEM , SUPPLIER_ID , CUSTOMER_INFO , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , PURCHASE_UNIT_PRICE , ORIGINAL_UNIT_PRICE , NAV_PRICE , ASSET_USED_SERVICE_LIFE , RESIDUALS_RATE , RESIDUALS_PRICE , TAX_AMOUNT_RATE , CURRENT_YEAR_DEPRECIATION , DEPRECIATION_YEAR , ACCUMULATED_DEPRECIATION , MONTH_DEPRECIATION_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL2 , LABEL3 , LABEL4 , LABEL5 , BILL_ID , INTERNAL_CONTROL_LABEL , COLLECTION_ID , BORROW_ID , SCRAP_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA , EXT_DATA , PCM_DATA , CATALOG_ATTRIBUTE , POSITION , CATEGORY_FINANCE , CATEGORY , GOODS , MANUFACTURER , WAREHOUSE , USE_USER , MANAGER , ORIGINATOR , SUPPLIER , MAINTNAINER , OWNER_COMPANY , USE_ORGANIZATION , SOURCE , EQUIPMENT_ENVIRONMENT , SAFETY_LEVEL , ASSET_MAINTENANCE_STATUS , SUGGEST_MAINTENANCE_METHOD_DATA , MAINTENANCE_METHOD_DATA , ASSET_CYCLE_STATUS , RACK , CHANGE_INSTANCE , GOODS_STOCK , REGION , FINANCIAL_OPTION_DICT , EXPENSE_ITEM_DICT };
 	
 	/**
 	 * 代理类
@@ -1659,8 +1719,8 @@ public class AssetMeta {
 		}
 		
 		/**
-		 * 设置 使用期限(月)
-		 * @param serviceLife 使用期限(月)
+		 * 设置 使用期限
+		 * @param serviceLife 使用期限
 		 * @return 当前对象
 		*/
 		public Asset setServiceLife(BigDecimal serviceLife) {
@@ -2066,6 +2126,28 @@ public class AssetMeta {
 		}
 		
 		/**
+		 * 设置 财务选项
+		 * @param financialOption 财务选项
+		 * @return 当前对象
+		*/
+		public Asset setFinancialOption(String financialOption) {
+			super.change(FINANCIAL_OPTION,super.getFinancialOption(),financialOption);
+			super.setFinancialOption(financialOption);
+			return this;
+		}
+		
+		/**
+		 * 设置 费用项目
+		 * @param expenseItem 费用项目
+		 * @return 当前对象
+		*/
+		public Asset setExpenseItem(String expenseItem) {
+			super.change(EXPENSE_ITEM,super.getExpenseItem(),expenseItem);
+			super.setExpenseItem(expenseItem);
+			return this;
+		}
+		
+		/**
 		 * 设置 资产供应商
 		 * @param supplierId 资产供应商
 		 * @return 当前对象
@@ -2077,19 +2159,19 @@ public class AssetMeta {
 		}
 		
 		/**
-		 * 设置 税额
-		 * @param taxAmountRate 税额
+		 * 设置 客户信息
+		 * @param customerInfo 客户信息
 		 * @return 当前对象
 		*/
-		public Asset setTaxAmountRate(BigDecimal taxAmountRate) {
-			super.change(TAX_AMOUNT_RATE,super.getTaxAmountRate(),taxAmountRate);
-			super.setTaxAmountRate(taxAmountRate);
+		public Asset setCustomerInfo(String customerInfo) {
+			super.change(CUSTOMER_INFO,super.getCustomerInfo(),customerInfo);
+			super.setCustomerInfo(customerInfo);
 			return this;
 		}
 		
 		/**
-		 * 设置 含税金额
-		 * @param taxAmountPrice 含税金额
+		 * 设置 含税总值
+		 * @param taxAmountPrice 含税总值
 		 * @return 当前对象
 		*/
 		public Asset setTaxAmountPrice(BigDecimal taxAmountPrice) {
@@ -2099,8 +2181,8 @@ public class AssetMeta {
 		}
 		
 		/**
-		 * 设置 资产总值
-		 * @param totalAmountPrice 资产总值
+		 * 设置 未税总值
+		 * @param totalAmountPrice 未税总值
 		 * @return 当前对象
 		*/
 		public Asset setTotalAmountPrice(BigDecimal totalAmountPrice) {
@@ -2110,13 +2192,79 @@ public class AssetMeta {
 		}
 		
 		/**
-		 * 设置 资产原值(单价)
-		 * @param originalUnitPrice 资产原值(单价)
+		 * 设置 含税单价
+		 * @param purchaseUnitPrice 含税单价
+		 * @return 当前对象
+		*/
+		public Asset setPurchaseUnitPrice(BigDecimal purchaseUnitPrice) {
+			super.change(PURCHASE_UNIT_PRICE,super.getPurchaseUnitPrice(),purchaseUnitPrice);
+			super.setPurchaseUnitPrice(purchaseUnitPrice);
+			return this;
+		}
+		
+		/**
+		 * 设置 资产原值
+		 * @param originalUnitPrice 资产原值
 		 * @return 当前对象
 		*/
 		public Asset setOriginalUnitPrice(BigDecimal originalUnitPrice) {
 			super.change(ORIGINAL_UNIT_PRICE,super.getOriginalUnitPrice(),originalUnitPrice);
 			super.setOriginalUnitPrice(originalUnitPrice);
+			return this;
+		}
+		
+		/**
+		 * 设置 资产净值
+		 * @param navPrice 资产净值
+		 * @return 当前对象
+		*/
+		public Asset setNavPrice(BigDecimal navPrice) {
+			super.change(NAV_PRICE,super.getNavPrice(),navPrice);
+			super.setNavPrice(navPrice);
+			return this;
+		}
+		
+		/**
+		 * 设置 已用期限
+		 * @param assetUsedServiceLife 已用期限
+		 * @return 当前对象
+		*/
+		public Asset setAssetUsedServiceLife(Integer assetUsedServiceLife) {
+			super.change(ASSET_USED_SERVICE_LIFE,super.getAssetUsedServiceLife(),assetUsedServiceLife);
+			super.setAssetUsedServiceLife(assetUsedServiceLife);
+			return this;
+		}
+		
+		/**
+		 * 设置 残值率
+		 * @param residualsRate 残值率
+		 * @return 当前对象
+		*/
+		public Asset setResidualsRate(BigDecimal residualsRate) {
+			super.change(RESIDUALS_RATE,super.getResidualsRate(),residualsRate);
+			super.setResidualsRate(residualsRate);
+			return this;
+		}
+		
+		/**
+		 * 设置 残值
+		 * @param residualsPrice 残值
+		 * @return 当前对象
+		*/
+		public Asset setResidualsPrice(BigDecimal residualsPrice) {
+			super.change(RESIDUALS_PRICE,super.getResidualsPrice(),residualsPrice);
+			super.setResidualsPrice(residualsPrice);
+			return this;
+		}
+		
+		/**
+		 * 设置 税额
+		 * @param taxAmountRate 税额
+		 * @return 当前对象
+		*/
+		public Asset setTaxAmountRate(BigDecimal taxAmountRate) {
+			super.change(TAX_AMOUNT_RATE,super.getTaxAmountRate(),taxAmountRate);
+			super.setTaxAmountRate(taxAmountRate);
 			return this;
 		}
 		
@@ -2161,50 +2309,6 @@ public class AssetMeta {
 		public Asset setMonthDepreciationPrice(BigDecimal monthDepreciationPrice) {
 			super.change(MONTH_DEPRECIATION_PRICE,super.getMonthDepreciationPrice(),monthDepreciationPrice);
 			super.setMonthDepreciationPrice(monthDepreciationPrice);
-			return this;
-		}
-		
-		/**
-		 * 设置 残值率
-		 * @param residualsRate 残值率
-		 * @return 当前对象
-		*/
-		public Asset setResidualsRate(BigDecimal residualsRate) {
-			super.change(RESIDUALS_RATE,super.getResidualsRate(),residualsRate);
-			super.setResidualsRate(residualsRate);
-			return this;
-		}
-		
-		/**
-		 * 设置 残值
-		 * @param residualsPrice 残值
-		 * @return 当前对象
-		*/
-		public Asset setResidualsPrice(BigDecimal residualsPrice) {
-			super.change(RESIDUALS_PRICE,super.getResidualsPrice(),residualsPrice);
-			super.setResidualsPrice(residualsPrice);
-			return this;
-		}
-		
-		/**
-		 * 设置 资产净值
-		 * @param navPrice 资产净值
-		 * @return 当前对象
-		*/
-		public Asset setNavPrice(BigDecimal navPrice) {
-			super.change(NAV_PRICE,super.getNavPrice(),navPrice);
-			super.setNavPrice(navPrice);
-			return this;
-		}
-		
-		/**
-		 * 设置 采购单价
-		 * @param purchaseUnitPrice 采购单价
-		 * @return 当前对象
-		*/
-		public Asset setPurchaseUnitPrice(BigDecimal purchaseUnitPrice) {
-			super.change(PURCHASE_UNIT_PRICE,super.getPurchaseUnitPrice(),purchaseUnitPrice);
-			super.setPurchaseUnitPrice(purchaseUnitPrice);
 			return this;
 		}
 		
@@ -3010,6 +3114,28 @@ public class AssetMeta {
 			super.setRegion(region);
 			return this;
 		}
+		
+		/**
+		 * 设置 财务选项
+		 * @param financialOptionDict 财务选项
+		 * @return 当前对象
+		*/
+		public Asset setFinancialOptionDict(DictItem financialOptionDict) {
+			super.change(FINANCIAL_OPTION_DICT,super.getFinancialOptionDict(),financialOptionDict);
+			super.setFinancialOptionDict(financialOptionDict);
+			return this;
+		}
+		
+		/**
+		 * 设置 费用项目
+		 * @param expenseItemDict 费用项目
+		 * @return 当前对象
+		*/
+		public Asset setExpenseItemDict(DictItem expenseItemDict) {
+			super.change(EXPENSE_ITEM_DICT,super.getExpenseItemDict(),expenseItemDict);
+			super.setExpenseItemDict(expenseItemDict);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -3027,6 +3153,7 @@ public class AssetMeta {
 		public Asset duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setEquipmentCode(this.getEquipmentCode());
+			inst.setCustomerInfo(this.getCustomerInfo());
 			inst.setPurchaseUnitPrice(this.getPurchaseUnitPrice());
 			inst.setApprovalOpinion(this.getApprovalOpinion());
 			inst.setMaintenanceStatus(this.getMaintenanceStatus());
@@ -3051,6 +3178,7 @@ public class AssetMeta {
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setFinancialNotes(this.getFinancialNotes());
 			inst.setMaintenanceMethod(this.getMaintenanceMethod());
+			inst.setFinancialOption(this.getFinancialOption());
 			inst.setStatus(this.getStatus());
 			inst.setPurchaseDate(this.getPurchaseDate());
 			inst.setOwnerCode(this.getOwnerCode());
@@ -3111,12 +3239,14 @@ public class AssetMeta {
 			inst.setRackUpNumber(this.getRackUpNumber());
 			inst.setResidualsRate(this.getResidualsRate());
 			inst.setAssetStatus(this.getAssetStatus());
+			inst.setExpenseItem(this.getExpenseItem());
 			inst.setChsVersion(this.getChsVersion());
 			inst.setSupplierId(this.getSupplierId());
 			inst.setPurpose(this.getPurpose());
 			inst.setResidualsPrice(this.getResidualsPrice());
 			inst.setInternalControlLabel(this.getInternalControlLabel());
 			inst.setLatestApproverName(this.getLatestApproverName());
+			inst.setAssetUsedServiceLife(this.getAssetUsedServiceLife());
 			inst.setNextApproverIds(this.getNextApproverIds());
 			inst.setChsStatus(this.getChsStatus());
 			inst.setProductionDate(this.getProductionDate());
@@ -3148,8 +3278,10 @@ public class AssetMeta {
 				inst.setGoods(this.getGoods());
 				inst.setOriginator(this.getOriginator());
 				inst.setSource(this.getSource());
+				inst.setFinancialOptionDict(this.getFinancialOptionDict());
 				inst.setManufacturer(this.getManufacturer());
 				inst.setCatalogAttribute(this.getCatalogAttribute());
+				inst.setExpenseItemDict(this.getExpenseItemDict());
 				inst.setSupplier(this.getSupplier());
 				inst.setMaintenanceMethodData(this.getMaintenanceMethodData());
 				inst.setUseUser(this.getUseUser());

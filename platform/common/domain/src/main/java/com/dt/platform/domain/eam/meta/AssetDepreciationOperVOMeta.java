@@ -8,13 +8,14 @@ import java.util.Date;
 import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.AssetDepreciation;
 import org.github.foxnic.web.domain.hrm.Employee;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-03 16:09:53
- * @sign 50C92C83FC8A08F1D91DA63D4AF2FC01
+ * @since 2022-11-24 12:09:42
+ * @sign BB9297D6EE1735DBBADAAF0AB0486CA3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -809,5 +810,64 @@ public class AssetDepreciationOperVOMeta extends AssetDepreciationOperMeta {
 			super.setOriginator(originator);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AssetDepreciationOperVO clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AssetDepreciationOperVO duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNotes(this.getNotes());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setExecutionEndTime(this.getExecutionEndTime());
+			inst.setVersion(this.getVersion());
+			inst.setContent(this.getContent());
+			inst.setBusinessDate(this.getBusinessDate());
+			inst.setBusinessCode(this.getBusinessCode());
+			inst.setDepreciationId(this.getDepreciationId());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setExecutionStartTime(this.getExecutionStartTime());
+			inst.setId(this.getId());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setSearchField(this.getSearchField());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setAssetSourceIds(this.getAssetSourceIds());
+				inst.setPageSize(this.getPageSize());
+				inst.setAssetDepreciationList(this.getAssetDepreciationList());
+				inst.setOriginator(this.getOriginator());
+				inst.setAssetDepreciation(this.getAssetDepreciation());
+				inst.setAssetSourceList(this.getAssetSourceList());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setAssetDepreciationIds(this.getAssetDepreciationIds());
+				inst.setDirtyFields(this.getDirtyFields());
+				inst.setSortField(this.getSortField());
+				inst.setAssetTargetList(this.getAssetTargetList());
+				inst.setIds(this.getIds());
+				inst.setSearchValue(this.getSearchValue());
+				inst.setAssetTargetIds(this.getAssetTargetIds());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }
