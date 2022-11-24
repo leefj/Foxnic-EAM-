@@ -791,7 +791,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		if(list!=null&&list.size()>0){
 			hasAsset=true;
 		}
-		r.put("hasAsset",list);
+		r.put("hasAsset",hasAsset);
 		r.put("assetCount",list.size());
 		r.put("asset",list);
 		return r;
