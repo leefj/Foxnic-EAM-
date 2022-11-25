@@ -151,16 +151,18 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         );
         cfg.view().form().addGroup(null,
                 new Object[] {
-
                         OpsTables.OPS_DB_INFO.NOTES,
                 }
         );
         cfg.view().form().addGroup("备份信息",
                 new Object[]{
                         OpsTables.OPS_DB_INFO.BACKUP_STATUS,
+                        OpsTables.OPS_DB_INFO.BACKUP_STRATEGY,
+                        OpsTables.OPS_DB_INFO.TOOL_STRATEGY,
                 },
                 new Object[] {
-                        OpsTables.OPS_DB_INFO.BACKUP_STRATEGY,
+                        OpsTables.OPS_DB_INFO.DISASTER_RECOVERY_STRATEGY,
+                        OpsTables.OPS_DB_INFO.CLEAR_STRATEGY,
                 }
         );
 

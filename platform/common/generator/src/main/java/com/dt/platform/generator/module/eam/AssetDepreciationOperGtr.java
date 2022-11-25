@@ -80,7 +80,7 @@ public class AssetDepreciationOperGtr extends BaseCodeGenerator {
                         EAMTables.EAM_ASSET_DEPRECIATION_OPER.NOTES,
                 }
         );
-
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_OPER.DEPRECIATION_CODE).table().disable(true);
 
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_OPER.DEPRECIATION_ID)
                 .form().validate().required().form().selectBox().queryApi(AssetDepreciationServiceProxy.QUERY_PAGED_LIST)

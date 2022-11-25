@@ -1,12 +1,13 @@
 /**
  * 折旧方案 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-23 17:22:29
+ * @since 2022-11-25 14:19:00
  */
 
 function FormPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
+	
 	const moduleURL="/service-eam/eam-asset-depreciation";
 	// 表单执行操作类型：view，create，edit
 	var action=null;
@@ -121,6 +122,34 @@ function FormPage() {
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
+		//渲染 code 下拉字段
+		fox.renderSelectBox({
+			el: "code",
+			radio: true,
+			filterable: false,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("code",data.arr,data.change,data.isAdd);
 				},1);
 			},
 			//转换数据
@@ -304,6 +333,8 @@ function FormPage() {
 
 			//设置  状态 设置下拉框勾选
 			fox.setSelectValue4Enum("#status",formData.status,SELECT_STATUS_DATA);
+			//设置  编码 设置下拉框勾选
+			fox.setSelectValue4Enum("#code",formData.code,SELECT_CODE_DATA);
 			//设置  折旧方式 设置下拉框勾选
 			fox.setSelectValue4Enum("#method",formData.method,SELECT_METHOD_DATA);
 			//设置  残值选择 设置下拉框勾选
@@ -365,6 +396,8 @@ function FormPage() {
 
 		//获取 状态 下拉框的值
 		data["status"]=fox.getSelectedValue("status",false);
+		//获取 编码 下拉框的值
+		data["code"]=fox.getSelectedValue("code",false);
 		//获取 折旧方式 下拉框的值
 		data["method"]=fox.getSelectedValue("method",false);
 		//获取 残值选择 下拉框的值

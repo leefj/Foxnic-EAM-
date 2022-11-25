@@ -2,6 +2,7 @@ package com.dt.platform.generator.module.eam;
 
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
+import com.dt.platform.constants.enums.eam.AssetDepreciationCodeEnum;
 import com.dt.platform.constants.enums.eam.AssetDepreciationMethodEnum;
 import com.dt.platform.constants.enums.eam.AssetDepreciationResidualValueSelectEnum;
 import com.dt.platform.constants.enums.eam.AssetFirstDepreciationDateTypeEnum;
@@ -81,7 +82,7 @@ public class AssetDepreciationGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION.CREATE_TIME).table().disable(true);
 
-        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION.CODE).form().validate().required();
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION.CODE).form().validate().required().form().selectBox().enumType(AssetDepreciationCodeEnum.class);
 
 
         cfg.view().form().addJsVariable("ASSET_CATEGORY_DATA","[[${assetCategoryData}]]","ASSET_CATEGORY_DATA");

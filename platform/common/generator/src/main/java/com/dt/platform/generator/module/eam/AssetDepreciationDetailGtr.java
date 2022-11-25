@@ -66,8 +66,8 @@ public class AssetDepreciationDetailGtr extends BaseCodeGenerator {
                 },
 
                 new Object[]{
-                        EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.PURCHASE_DATE,
-                        EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.REGISTER_DATE,
+                        EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.ASSET_PURCHASE_DATE,
+                        EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.ASSET_REGISTER_DATE,
 
                 },
                   new Object[]{
@@ -87,9 +87,9 @@ public class AssetDepreciationDetailGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.FINANCIAL_OPTION_NAME).form().search().fuzzySearch();
 
 
-        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.PURCHASE_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
-        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.REGISTER_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
-        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.BUSINESS_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.ASSET_PURCHASE_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.ASSET_REGISTER_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
+     //   cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.BUSINESS_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
 
 
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.DEPRECIATION_METHOD).
@@ -195,28 +195,27 @@ public class AssetDepreciationDetailGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.USE_ORG_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.USE_USER_ID).table().disable(true);
 
+
 //        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.CUR_PRICE).table().disable(true);
 //        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.AFTER_PRICE).table().disable(true);
 //        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.BEFORE_PRICE).table().disable(true);
 
          cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(20);
-        cfg.view().form().addGroup(null,
-                new Object[] {
-                      //  EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.OPER_ID,
-                       // EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.DEPRECIATION_ID,
-//                        AssetDepreciationDetailMeta.ASSET_CUR_NAME,
-//                        AssetDepreciationDetailMeta.ASSET_CUR_MODEL,
-//                        AssetDepreciationDetailMeta.ASSET_CUR_CODE,
-                        EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.CUR_PRICE,
-                        EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.BEFORE_PRICE,
-                        EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.AFTER_PRICE,
-//                        AssetDepreciationDetailMeta.ASSET_CUR_PURCHASE_UNIT_PRICE,
-//                        AssetDepreciationDetailMeta.ASSET_CUR_NAV_PRICE,
-//                        AssetDepreciationDetailMeta.ASSET_BEFORE_NAV_PRICE,
-//                        AssetDepreciationDetailMeta.ASSET_AFTER_NAV_PRICE
-                }
-        );
+//        cfg.view().form().addGroup(null,
+//                new Object[] {
+//                      //  EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.OPER_ID,
+//                       // EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.DEPRECIATION_ID,
+////                        AssetDepreciationDetailMeta.ASSET_CUR_NAME,
+////                        AssetDepreciationDetailMeta.ASSET_CUR_MODEL,
+////                        AssetDepreciationDetailMeta.ASSET_CUR_CODE,
+//
+////                        AssetDepreciationDetailMeta.ASSET_CUR_PURCHASE_UNIT_PRICE,
+////                        AssetDepreciationDetailMeta.ASSET_CUR_NAV_PRICE,
+////                        AssetDepreciationDetailMeta.ASSET_BEFORE_NAV_PRICE,
+////                        AssetDepreciationDetailMeta.ASSET_AFTER_NAV_PRICE
+//                }
+//        );
 
         cfg.view().list().disableBatchDelete();
         cfg.view().list().disableModify();

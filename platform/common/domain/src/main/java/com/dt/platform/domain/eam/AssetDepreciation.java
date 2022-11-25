@@ -28,7 +28,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 折旧方案
  * <p>折旧方案 , 数据表 eam_asset_depreciation 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-23 17:22:27
+ * @since 2022-11-25 14:18:58
  * @sign 43F51286C07C3885764113FA69986EC4
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -57,13 +57,13 @@ public class AssetDepreciation extends Entity {
 	/**
 	 * 编码：编码
 	*/
-	@ApiModelProperty(required = false,value="编码" , notes = "编码")
+	@ApiModelProperty(required = false,value="编码" , notes = "编码" , example = "monthly")
 	private String code;
 	
 	/**
 	 * 折旧方案：折旧方案
 	*/
-	@ApiModelProperty(required = false,value="折旧方案" , notes = "折旧方案" , example = "CLS平均按年折旧")
+	@ApiModelProperty(required = false,value="折旧方案" , notes = "折旧方案" , example = "按月折旧")
 	private String name;
 	
 	/**
@@ -129,7 +129,7 @@ public class AssetDepreciation extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-11-23 05:17:20")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-11-24 12:17:08")
 	private Date updateTime;
 	
 	/**
@@ -156,7 +156,7 @@ public class AssetDepreciation extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "7")
 	private Integer version;
 	
 	/**

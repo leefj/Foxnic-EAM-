@@ -1,12 +1,13 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-17 19:12:07
+ * @since 2022-11-25 16:08:29
  */
 
 function FormPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
+	
 	const moduleURL="/service-ops/ops-db-info";
 	// 表单执行操作类型：view，create，edit
 	var action=null;

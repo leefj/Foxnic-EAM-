@@ -2,7 +2,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-17 19:12:07
+ * @since 2022-11-25 16:08:29
  */
  -->
  <!DOCTYPE html>
@@ -37,7 +37,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-0613-content">
+        <div class="layui-row form-row" id="random-5449-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -55,7 +55,7 @@
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('数据库名')}">数据库名</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('数据库名') }" type="text" class="layui-input"    lay-verify="|required"  />
+                        <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入'+'数据库名') }" type="text" class="layui-input"    lay-verify="|required"  />
                     </div>
                 </div>
             
@@ -108,7 +108,7 @@
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('连接端口')}">连接端口</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="dbPort" id="dbPort" name="dbPort" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('连接端口') }" type="text" class="layui-input"  />
+                        <input lay-filter="dbPort" id="dbPort" name="dbPort" th:placeholder="${ lang.translate('请输入'+'连接端口') }" type="text" class="layui-input"  />
                     </div>
                 </div>
             
@@ -116,7 +116,7 @@
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('大小(M)')}">大小(M)</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="dbSize" id="dbSize" name="dbSize" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('大小(M)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0"  value="0.0" />
+                        <input lay-filter="dbSize" id="dbSize" name="dbSize" th:placeholder="${ lang.translate('请输入'+'大小(M)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0"  value="0.0" />
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -126,7 +126,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-3465-content">
+        <div class="layui-row form-row" id="random-9490-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -136,7 +136,7 @@
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" type="text" class="layui-input"  />
+                        <input lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入'+'备注') }" type="text" class="layui-input"  />
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -145,11 +145,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-7860-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-0944-fieldset">
             <legend>备份信息</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-7860-content">
+        <div class="layui-row form-row" id="random-0944-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -162,17 +162,41 @@
                         <input input-type="radio" type="radio" name="backupStatus" lay-filter="backupStatus" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.ops.OpsDbBackupStatusEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)}">
                     </div>
                 </div>
+            
+                <!-- text_input : 备份策略 ,  backupStrategy -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('备份策略')}">备份策略</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="backupStrategy" id="backupStrategy" name="backupStrategy" th:placeholder="${ lang.translate('请输入'+'备份策略') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
+                <!-- text_input : 工具备份策略 ,  toolStrategy -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('工具备份策略')}">工具备份策略</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="toolStrategy" id="toolStrategy" name="toolStrategy" th:placeholder="${ lang.translate('请输入'+'工具备份策略') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
             <!--结束：栏次内字段循环-->
             </div>
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs6 form-column" >
 
-                <!-- text_input : 备份策略 ,  backupStrategy -->
+                <!-- text_input : 灾备策略 ,  disasterRecoveryStrategy -->
                 <div class="layui-form-item" >
-                    <div class="layui-form-label "><div th:text="${lang.translate('备份策略')}">备份策略</div></div>
+                    <div class="layui-form-label "><div th:text="${lang.translate('灾备策略')}">灾备策略</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="backupStrategy" id="backupStrategy" name="backupStrategy" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备份策略') }" type="text" class="layui-input"  />
+                        <input lay-filter="disasterRecoveryStrategy" id="disasterRecoveryStrategy" name="disasterRecoveryStrategy" th:placeholder="${ lang.translate('请输入'+'灾备策略') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
+                <!-- text_input : 清理策略 ,  clearStrategy -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('清理策略')}">清理策略</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="clearStrategy" id="clearStrategy" name="clearStrategy" th:placeholder="${ lang.translate('请输入'+'清理策略') }" type="text" class="layui-input"  />
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -181,11 +205,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-1384-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-1338-fieldset">
             <legend>用户信息</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-1384-content">
+        <div class="layui-row form-row" id="random-1338-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -195,7 +219,7 @@
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('管理员账户')}">管理员账户</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="adminUserList" id="adminUserList" name="adminUserList" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('管理员账户') }" type="text" class="layui-input"  />
+                        <input lay-filter="adminUserList" id="adminUserList" name="adminUserList" th:placeholder="${ lang.translate('请输入'+'管理员账户') }" type="text" class="layui-input"  />
                     </div>
                 </div>
             
@@ -203,7 +227,7 @@
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('其他账户')}">其他账户</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="otherUserList" id="otherUserList" name="otherUserList" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('其他账户') }" type="text" class="layui-input"  />
+                        <input lay-filter="otherUserList" id="otherUserList" name="otherUserList" th:placeholder="${ lang.translate('请输入'+'其他账户') }" type="text" class="layui-input"  />
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -216,7 +240,7 @@
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('应用账户')}">应用账户</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="appUserList" id="appUserList" name="appUserList" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('应用账户') }" type="text" class="layui-input"  />
+                        <input lay-filter="appUserList" id="appUserList" name="appUserList" th:placeholder="${ lang.translate('请输入'+'应用账户') }" type="text" class="layui-input"  />
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -226,7 +250,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-1820-content">
+        <div class="layui-row form-row" id="random-7817-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -236,7 +260,7 @@
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('凭证信息')}">凭证信息</div></div>
                     <div class="layui-input-block ">
-                        <textarea lay-filter="voucherStr" id="voucherStr" name="voucherStr" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('凭证信息') }" class="layui-textarea" style="height: 60px" ></textarea>
+                        <textarea lay-filter="voucherStr" id="voucherStr" name="voucherStr" th:placeholder="${ lang.translate('请输入'+'凭证信息') }" class="layui-textarea" style="height: 60px" ></textarea>
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -244,12 +268,12 @@
             <!--结束：栏次输入框循环-->
         </div>
          <!--开始：group 循环-->
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-2680-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-6830-fieldset">
         <legend>备份情况</legend>
         </fieldset>
-        <div class="layui-row form-row" style="text-align: center;" id="random-2680-content">
+        <div class="layui-row form-row" style="text-align: center;" id="random-6830-content">
             <div style="display: inline-block;padding-right: 8px;padding-left: 8px" class="layui-col-xs12">
-            <iframe id="random-2680-iframe" js-fn="backInfoList" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
+            <iframe id="random-6830-iframe" js-fn="backInfoList" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
             </div>
         </div>
         <!--结束：group循环-->
@@ -262,8 +286,8 @@
 
 </div>
 <div class="model-form-footer">
-    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消')}" >取消</button>
-    <button th:if="${perm.checkAnyAuth('ops_db_info:create','ops_db_info:update','ops_db_info:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存')}">保存</button>
+    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消','','form.button')}" >取消</button>
+    <button th:if="${perm.checkAnyAuth('ops_db_info:create','ops_db_info:update','ops_db_info:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存','','form.button')}">保存</button>
 </div>
 
 <script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>

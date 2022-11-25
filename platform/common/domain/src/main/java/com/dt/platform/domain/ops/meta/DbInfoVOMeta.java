@@ -16,7 +16,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-17 19:12:05
+ * @since 2022-11-25 16:08:27
  * @sign 34945B314FDD9C5B5C62D17AD6EFC0FD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -184,16 +184,6 @@ public class DbInfoVOMeta extends DbInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> DEPLOY_MODE_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,DEPLOY_MODE, java.lang.String.class, "部署模式", "部署模式", java.lang.String.class, null);
 	
 	/**
-	 * 备份策略 , 类型: java.lang.String
-	*/
-	public static final String BACKUP_STRATEGY="backupStrategy";
-	
-	/**
-	 * 备份策略 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> BACKUP_STRATEGY_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,BACKUP_STRATEGY, java.lang.String.class, "备份策略", "备份策略", java.lang.String.class, null);
-	
-	/**
 	 * 大小(M) , 类型: java.math.BigDecimal
 	*/
 	public static final String DB_SIZE="dbSize";
@@ -262,6 +252,46 @@ public class DbInfoVOMeta extends DbInfoMeta {
 	 * 连接端口 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> DB_PORT_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,DB_PORT, java.lang.String.class, "连接端口", "连接端口", java.lang.String.class, null);
+	
+	/**
+	 * 本地备份策略 , 类型: java.lang.String
+	*/
+	public static final String BACKUP_STRATEGY="backupStrategy";
+	
+	/**
+	 * 本地备份策略 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> BACKUP_STRATEGY_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,BACKUP_STRATEGY, java.lang.String.class, "本地备份策略", "本地备份策略", java.lang.String.class, null);
+	
+	/**
+	 * 工具备份策略 , 类型: java.lang.String
+	*/
+	public static final String TOOL_STRATEGY="toolStrategy";
+	
+	/**
+	 * 工具备份策略 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> TOOL_STRATEGY_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,TOOL_STRATEGY, java.lang.String.class, "工具备份策略", "工具备份策略", java.lang.String.class, null);
+	
+	/**
+	 * 灾备策略 , 类型: java.lang.String
+	*/
+	public static final String DISASTER_RECOVERY_STRATEGY="disasterRecoveryStrategy";
+	
+	/**
+	 * 灾备策略 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> DISASTER_RECOVERY_STRATEGY_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,DISASTER_RECOVERY_STRATEGY, java.lang.String.class, "灾备策略", "灾备策略", java.lang.String.class, null);
+	
+	/**
+	 * 清理策略 , 类型: java.lang.String
+	*/
+	public static final String CLEAR_STRATEGY="clearStrategy";
+	
+	/**
+	 * 清理策略 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> CLEAR_STRATEGY_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,CLEAR_STRATEGY, java.lang.String.class, "清理策略", "清理策略", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -436,7 +466,7 @@ public class DbInfoVOMeta extends DbInfoMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , BACKUP_STRATEGY , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OTHER_USER_LIST , VOUCHER_STR , DB_PORT , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , BACKUP_INFO_LIST , BACKUP_INFO_IDS , HOST , TYPE , DEPLOY_MODE_DICT , LABEL_LIST , LABEL_IDS };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OTHER_USER_LIST , VOUCHER_STR , DB_PORT , BACKUP_STRATEGY , TOOL_STRATEGY , DISASTER_RECOVERY_STRATEGY , CLEAR_STRATEGY , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , BACKUP_INFO_LIST , BACKUP_INFO_IDS , HOST , TYPE , DEPLOY_MODE_DICT , LABEL_LIST , LABEL_IDS };
 	
 	/**
 	 * 代理类
@@ -623,17 +653,6 @@ public class DbInfoVOMeta extends DbInfoMeta {
 		}
 		
 		/**
-		 * 设置 备份策略
-		 * @param backupStrategy 备份策略
-		 * @return 当前对象
-		*/
-		public DbInfo setBackupStrategy(String backupStrategy) {
-			super.change(BACKUP_STRATEGY,super.getBackupStrategy(),backupStrategy);
-			super.setBackupStrategy(backupStrategy);
-			return this;
-		}
-		
-		/**
 		 * 设置 大小(M)
 		 * @param dbSize 大小(M)
 		 * @return 当前对象
@@ -707,6 +726,50 @@ public class DbInfoVOMeta extends DbInfoMeta {
 		public DbInfo setDbPort(String dbPort) {
 			super.change(DB_PORT,super.getDbPort(),dbPort);
 			super.setDbPort(dbPort);
+			return this;
+		}
+		
+		/**
+		 * 设置 本地备份策略
+		 * @param backupStrategy 本地备份策略
+		 * @return 当前对象
+		*/
+		public DbInfo setBackupStrategy(String backupStrategy) {
+			super.change(BACKUP_STRATEGY,super.getBackupStrategy(),backupStrategy);
+			super.setBackupStrategy(backupStrategy);
+			return this;
+		}
+		
+		/**
+		 * 设置 工具备份策略
+		 * @param toolStrategy 工具备份策略
+		 * @return 当前对象
+		*/
+		public DbInfo setToolStrategy(String toolStrategy) {
+			super.change(TOOL_STRATEGY,super.getToolStrategy(),toolStrategy);
+			super.setToolStrategy(toolStrategy);
+			return this;
+		}
+		
+		/**
+		 * 设置 灾备策略
+		 * @param disasterRecoveryStrategy 灾备策略
+		 * @return 当前对象
+		*/
+		public DbInfo setDisasterRecoveryStrategy(String disasterRecoveryStrategy) {
+			super.change(DISASTER_RECOVERY_STRATEGY,super.getDisasterRecoveryStrategy(),disasterRecoveryStrategy);
+			super.setDisasterRecoveryStrategy(disasterRecoveryStrategy);
+			return this;
+		}
+		
+		/**
+		 * 设置 清理策略
+		 * @param clearStrategy 清理策略
+		 * @return 当前对象
+		*/
+		public DbInfo setClearStrategy(String clearStrategy) {
+			super.change(CLEAR_STRATEGY,super.getClearStrategy(),clearStrategy);
+			super.setClearStrategy(clearStrategy);
 			return this;
 		}
 		
@@ -921,6 +984,8 @@ public class DbInfoVOMeta extends DbInfoMeta {
 			inst.setVoucherStr(this.getVoucherStr());
 			inst.setId(this.getId());
 			inst.setAdminUserList(this.getAdminUserList());
+			inst.setDisasterRecoveryStrategy(this.getDisasterRecoveryStrategy());
+			inst.setToolStrategy(this.getToolStrategy());
 			inst.setAppUserList(this.getAppUserList());
 			inst.setDeployMode(this.getDeployMode());
 			inst.setOtherUserList(this.getOtherUserList());
@@ -928,6 +993,7 @@ public class DbInfoVOMeta extends DbInfoMeta {
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setVersion(this.getVersion());
 			inst.setDbSize(this.getDbSize());
+			inst.setClearStrategy(this.getClearStrategy());
 			inst.setDbPort(this.getDbPort());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());

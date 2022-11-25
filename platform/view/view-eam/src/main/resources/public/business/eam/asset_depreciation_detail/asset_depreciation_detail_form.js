@@ -1,7 +1,7 @@
 /**
  * 折旧明细 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-24 19:55:19
+ * @since 2022-11-25 12:22:18
  */
 
 function FormPage() {
@@ -204,6 +204,14 @@ function FormPage() {
 				return opts;
 			}
 		});
+		laydate.render({
+			elem: '#businessDate',
+			format:"yyyy-MM-dd HH:mm:ss",
+			trigger:"click",
+			done: function(value, date, endDate){
+				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("businessDate",value, date, endDate);
+			}
+		});
 		//渲染 result 下拉字段
 		fox.renderSelectBox({
 			el: "result",
@@ -231,27 +239,19 @@ function FormPage() {
 			}
 		});
 		laydate.render({
-			elem: '#purchaseDate',
+			elem: '#assetPurchaseDate',
 			format:"yyyy-MM-dd",
 			trigger:"click",
 			done: function(value, date, endDate){
-				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("purchaseDate",value, date, endDate);
+				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("assetPurchaseDate",value, date, endDate);
 			}
 		});
 		laydate.render({
-			elem: '#registerDate',
+			elem: '#assetRegisterDate',
 			format:"yyyy-MM-dd",
 			trigger:"click",
 			done: function(value, date, endDate){
-				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("registerDate",value, date, endDate);
-			}
-		});
-		laydate.render({
-			elem: '#businessDate',
-			format:"yyyy-MM-dd",
-			trigger:"click",
-			done: function(value, date, endDate){
-				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("businessDate",value, date, endDate);
+				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("assetRegisterDate",value, date, endDate);
 			}
 		});
 		//渲染 financialOptionKey 下拉字段
@@ -358,8 +358,32 @@ function FormPage() {
 
 
 
+			//设置 业务日期 显示复选框勾选
+			if(formData["businessDate"]) {
+				$("#businessDate").val(fox.dateFormat(formData["businessDate"],"yyyy-MM-dd HH:mm:ss"));
+			}
+			//设置 采购日期 显示复选框勾选
+			if(formData["assetPurchaseDate"]) {
+				$("#assetPurchaseDate").val(fox.dateFormat(formData["assetPurchaseDate"],"yyyy-MM-dd"));
+			}
+			//设置 入账日期 显示复选框勾选
+			if(formData["assetRegisterDate"]) {
+				$("#assetRegisterDate").val(fox.dateFormat(formData["assetRegisterDate"],"yyyy-MM-dd"));
+			}
 
 
+			//设置  折旧方案 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#depreciationId",formData.assetDepreciation);
+			//设置  折旧操作 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#operId",formData.assetDepreciationOper);
+			//设置  折旧方式 设置下拉框勾选
+			fox.setSelectValue4Enum("#depreciationMethod",formData.depreciationMethod,SELECT_DEPRECIATIONMETHOD_DATA);
+			//设置  折旧结果 设置下拉框勾选
+			fox.setSelectValue4Enum("#result",formData.result,SELECT_RESULT_DATA);
+			//设置  财务选项 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#financialOptionKey",formData.financialOptionDict);
+			//设置  费用项目 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#expenseItemKey",formData.expenseItemDict);
 
 			//处理fillBy
 
@@ -411,6 +435,18 @@ function FormPage() {
 
 
 
+		//获取 折旧方案 下拉框的值
+		data["depreciationId"]=fox.getSelectedValue("depreciationId",false);
+		//获取 折旧操作 下拉框的值
+		data["operId"]=fox.getSelectedValue("operId",false);
+		//获取 折旧方式 下拉框的值
+		data["depreciationMethod"]=fox.getSelectedValue("depreciationMethod",false);
+		//获取 折旧结果 下拉框的值
+		data["result"]=fox.getSelectedValue("result",false);
+		//获取 财务选项 下拉框的值
+		data["financialOptionKey"]=fox.getSelectedValue("financialOptionKey",false);
+		//获取 费用项目 下拉框的值
+		data["expenseItemKey"]=fox.getSelectedValue("expenseItemKey",false);
 
 		return data;
 	}

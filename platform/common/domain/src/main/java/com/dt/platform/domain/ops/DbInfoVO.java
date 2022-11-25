@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库VO类型
  * <p>数据库 , 数据表 ops_db_info 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-17 19:12:05
+ * @since 2022-11-25 16:08:27
  * @sign 34945B314FDD9C5B5C62D17AD6EFC0FD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -337,6 +337,8 @@ public class DbInfoVO extends DbInfo {
 		inst.setVoucherStr(this.getVoucherStr());
 		inst.setId(this.getId());
 		inst.setAdminUserList(this.getAdminUserList());
+		inst.setDisasterRecoveryStrategy(this.getDisasterRecoveryStrategy());
+		inst.setToolStrategy(this.getToolStrategy());
 		inst.setAppUserList(this.getAppUserList());
 		inst.setDeployMode(this.getDeployMode());
 		inst.setOtherUserList(this.getOtherUserList());
@@ -344,6 +346,7 @@ public class DbInfoVO extends DbInfo {
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setVersion(this.getVersion());
 		inst.setDbSize(this.getDbSize());
+		inst.setClearStrategy(this.getClearStrategy());
 		inst.setDbPort(this.getDbPort());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
@@ -438,6 +441,8 @@ public class DbInfoVO extends DbInfo {
 			this.setVoucherStr(DataParser.parse(String.class, map.get(DbInfoVOMeta.VOUCHER_STR)));
 			this.setId(DataParser.parse(String.class, map.get(DbInfoVOMeta.ID)));
 			this.setAdminUserList(DataParser.parse(String.class, map.get(DbInfoVOMeta.ADMIN_USER_LIST)));
+			this.setDisasterRecoveryStrategy(DataParser.parse(String.class, map.get(DbInfoVOMeta.DISASTER_RECOVERY_STRATEGY)));
+			this.setToolStrategy(DataParser.parse(String.class, map.get(DbInfoVOMeta.TOOL_STRATEGY)));
 			this.setAppUserList(DataParser.parse(String.class, map.get(DbInfoVOMeta.APP_USER_LIST)));
 			this.setDeployMode(DataParser.parse(String.class, map.get(DbInfoVOMeta.DEPLOY_MODE)));
 			this.setOtherUserList(DataParser.parse(String.class, map.get(DbInfoVOMeta.OTHER_USER_LIST)));
@@ -445,6 +450,7 @@ public class DbInfoVO extends DbInfo {
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(DbInfoVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(DbInfoVOMeta.VERSION)));
 			this.setDbSize(DataParser.parse(BigDecimal.class, map.get(DbInfoVOMeta.DB_SIZE)));
+			this.setClearStrategy(DataParser.parse(String.class, map.get(DbInfoVOMeta.CLEAR_STRATEGY)));
 			this.setDbPort(DataParser.parse(String.class, map.get(DbInfoVOMeta.DB_PORT)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(DbInfoVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(DbInfoVOMeta.DELETED)));
@@ -477,6 +483,8 @@ public class DbInfoVO extends DbInfo {
 				this.setVoucherStr( (String)map.get(DbInfoVOMeta.VOUCHER_STR));
 				this.setId( (String)map.get(DbInfoVOMeta.ID));
 				this.setAdminUserList( (String)map.get(DbInfoVOMeta.ADMIN_USER_LIST));
+				this.setDisasterRecoveryStrategy( (String)map.get(DbInfoVOMeta.DISASTER_RECOVERY_STRATEGY));
+				this.setToolStrategy( (String)map.get(DbInfoVOMeta.TOOL_STRATEGY));
 				this.setAppUserList( (String)map.get(DbInfoVOMeta.APP_USER_LIST));
 				this.setDeployMode( (String)map.get(DbInfoVOMeta.DEPLOY_MODE));
 				this.setOtherUserList( (String)map.get(DbInfoVOMeta.OTHER_USER_LIST));
@@ -484,6 +492,7 @@ public class DbInfoVO extends DbInfo {
 				this.setUpdateTime( (Date)map.get(DbInfoVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)map.get(DbInfoVOMeta.VERSION));
 				this.setDbSize( (BigDecimal)map.get(DbInfoVOMeta.DB_SIZE));
+				this.setClearStrategy( (String)map.get(DbInfoVOMeta.CLEAR_STRATEGY));
 				this.setDbPort( (String)map.get(DbInfoVOMeta.DB_PORT));
 				this.setCreateBy( (String)map.get(DbInfoVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(DbInfoVOMeta.DELETED));
@@ -529,6 +538,8 @@ public class DbInfoVO extends DbInfo {
 			this.setVoucherStr(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.VOUCHER_STR)));
 			this.setId(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.ID)));
 			this.setAdminUserList(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.ADMIN_USER_LIST)));
+			this.setDisasterRecoveryStrategy(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.DISASTER_RECOVERY_STRATEGY)));
+			this.setToolStrategy(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.TOOL_STRATEGY)));
 			this.setAppUserList(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.APP_USER_LIST)));
 			this.setDeployMode(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.DEPLOY_MODE)));
 			this.setOtherUserList(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.OTHER_USER_LIST)));
@@ -536,6 +547,7 @@ public class DbInfoVO extends DbInfo {
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(DbInfoVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(DbInfoVOMeta.VERSION)));
 			this.setDbSize(DataParser.parse(BigDecimal.class, r.getValue(DbInfoVOMeta.DB_SIZE)));
+			this.setClearStrategy(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.CLEAR_STRATEGY)));
 			this.setDbPort(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.DB_PORT)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(DbInfoVOMeta.DELETED)));
@@ -557,6 +569,8 @@ public class DbInfoVO extends DbInfo {
 				this.setVoucherStr( (String)r.getValue(DbInfoVOMeta.VOUCHER_STR));
 				this.setId( (String)r.getValue(DbInfoVOMeta.ID));
 				this.setAdminUserList( (String)r.getValue(DbInfoVOMeta.ADMIN_USER_LIST));
+				this.setDisasterRecoveryStrategy( (String)r.getValue(DbInfoVOMeta.DISASTER_RECOVERY_STRATEGY));
+				this.setToolStrategy( (String)r.getValue(DbInfoVOMeta.TOOL_STRATEGY));
 				this.setAppUserList( (String)r.getValue(DbInfoVOMeta.APP_USER_LIST));
 				this.setDeployMode( (String)r.getValue(DbInfoVOMeta.DEPLOY_MODE));
 				this.setOtherUserList( (String)r.getValue(DbInfoVOMeta.OTHER_USER_LIST));
@@ -564,6 +578,7 @@ public class DbInfoVO extends DbInfo {
 				this.setUpdateTime( (Date)r.getValue(DbInfoVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)r.getValue(DbInfoVOMeta.VERSION));
 				this.setDbSize( (BigDecimal)r.getValue(DbInfoVOMeta.DB_SIZE));
+				this.setClearStrategy( (String)r.getValue(DbInfoVOMeta.CLEAR_STRATEGY));
 				this.setDbPort( (String)r.getValue(DbInfoVOMeta.DB_PORT));
 				this.setCreateBy( (String)r.getValue(DbInfoVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(DbInfoVOMeta.DELETED));
