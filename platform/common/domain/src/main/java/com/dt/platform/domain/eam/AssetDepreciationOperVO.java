@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 折旧操作VO类型
  * <p>折旧操作 , 数据表 eam_asset_depreciation_oper 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-24 19:20:29
+ * @since 2022-11-25 13:45:49
  * @sign BB9297D6EE1735DBBADAAF0AB0486CA3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -328,6 +328,7 @@ public class AssetDepreciationOperVO extends AssetDepreciationOper {
 	public AssetDepreciationOperVO duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.AssetDepreciationOperVOMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetDepreciationOperVOMeta.$$proxy$$();
 		inst.setNotes(this.getNotes());
+		inst.setDepreciationCode(this.getDepreciationCode());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setExecutionEndTime(this.getExecutionEndTime());
 		inst.setVersion(this.getVersion());
@@ -425,6 +426,7 @@ public class AssetDepreciationOperVO extends AssetDepreciationOper {
 		if(map==null) return false;
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, map.get(AssetDepreciationOperVOMeta.NOTES)));
+			this.setDepreciationCode(DataParser.parse(String.class, map.get(AssetDepreciationOperVOMeta.DEPRECIATION_CODE)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetDepreciationOperVOMeta.UPDATE_TIME)));
 			this.setExecutionEndTime(DataParser.parse(Date.class, map.get(AssetDepreciationOperVOMeta.EXECUTION_END_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(AssetDepreciationOperVOMeta.VERSION)));
@@ -458,6 +460,7 @@ public class AssetDepreciationOperVO extends AssetDepreciationOper {
 		} else {
 			try {
 				this.setNotes( (String)map.get(AssetDepreciationOperVOMeta.NOTES));
+				this.setDepreciationCode( (String)map.get(AssetDepreciationOperVOMeta.DEPRECIATION_CODE));
 				this.setUpdateTime( (Date)map.get(AssetDepreciationOperVOMeta.UPDATE_TIME));
 				this.setExecutionEndTime( (Date)map.get(AssetDepreciationOperVOMeta.EXECUTION_END_TIME));
 				this.setVersion( (Integer)map.get(AssetDepreciationOperVOMeta.VERSION));
@@ -504,6 +507,7 @@ public class AssetDepreciationOperVO extends AssetDepreciationOper {
 		if(r==null) return false;
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, r.getValue(AssetDepreciationOperVOMeta.NOTES)));
+			this.setDepreciationCode(DataParser.parse(String.class, r.getValue(AssetDepreciationOperVOMeta.DEPRECIATION_CODE)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationOperVOMeta.UPDATE_TIME)));
 			this.setExecutionEndTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationOperVOMeta.EXECUTION_END_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetDepreciationOperVOMeta.VERSION)));
@@ -527,6 +531,7 @@ public class AssetDepreciationOperVO extends AssetDepreciationOper {
 		} else {
 			try {
 				this.setNotes( (String)r.getValue(AssetDepreciationOperVOMeta.NOTES));
+				this.setDepreciationCode( (String)r.getValue(AssetDepreciationOperVOMeta.DEPRECIATION_CODE));
 				this.setUpdateTime( (Date)r.getValue(AssetDepreciationOperVOMeta.UPDATE_TIME));
 				this.setExecutionEndTime( (Date)r.getValue(AssetDepreciationOperVOMeta.EXECUTION_END_TIME));
 				this.setVersion( (Integer)r.getValue(AssetDepreciationOperVOMeta.VERSION));

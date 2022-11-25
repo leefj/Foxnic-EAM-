@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-11-24 19:47:14
+ * @since 2022-11-25 13:36:46
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -536,9 +536,9 @@ public class EAMTables {
 		public static final DBField PRODUCTION_DATE = new DBField(DBDataType.DATE , "production_date","productionDate","生产日期","生产日期",false,false,true);
 		
 		/**
-		 * 启用日期
+		 * 入账日期
 		*/
-		public static final DBField REGISTER_DATE = new DBField(DBDataType.DATE , "register_date","registerDate","启用日期","启用日期",false,false,true);
+		public static final DBField REGISTER_DATE = new DBField(DBDataType.DATE , "register_date","registerDate","入账日期","入账日期",false,false,true);
 		
 		/**
 		 * RFID标签
@@ -684,6 +684,11 @@ public class EAMTables {
 		 * 已用期限,(月)
 		*/
 		public static final DBField ASSET_USED_SERVICE_LIFE = new DBField(DBDataType.DECIMAL , "asset_used_service_life","assetUsedServiceLife","已用期限","(月)",false,false,true);
+		
+		/**
+		 * 最后折旧
+		*/
+		public static final DBField DEPRECIATION_ID = new DBField(DBDataType.STRING , "depreciation_id","depreciationId","最后折旧","最后折旧",false,false,true);
 		
 		/**
 		 * 残值率
@@ -951,7 +956,7 @@ public class EAMTables {
 		public static final DBField ASSET_SELECTED_DATA = new DBField(DBDataType.STRING , "asset_selected_data","assetSelectedData","选择","选择",false,false,true);
 		
 		public EAM_ASSET() {
-			this.init($NAME,"资产" , ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , REGION_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , MAINTENANCE_PRICE , MAINTENANCE_METHOD , SUGGEST_MAINTENANCE_METHOD , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , FINANCIAL_OPTION , EXPENSE_ITEM , SUPPLIER_ID , CUSTOMER_INFO , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , PURCHASE_UNIT_PRICE , ORIGINAL_UNIT_PRICE , NAV_PRICE , ASSET_USED_SERVICE_LIFE , RESIDUALS_RATE , RESIDUALS_PRICE , TAX_AMOUNT_RATE , CURRENT_YEAR_DEPRECIATION , DEPRECIATION_YEAR , ACCUMULATED_DEPRECIATION , MONTH_DEPRECIATION_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL2 , LABEL3 , LABEL4 , LABEL5 , BILL_ID , INTERNAL_CONTROL_LABEL , COLLECTION_ID , BORROW_ID , SCRAP_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA);
+			this.init($NAME,"资产" , ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , REGION_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , MAINTENANCE_PRICE , MAINTENANCE_METHOD , SUGGEST_MAINTENANCE_METHOD , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , FINANCIAL_OPTION , EXPENSE_ITEM , SUPPLIER_ID , CUSTOMER_INFO , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , PURCHASE_UNIT_PRICE , ORIGINAL_UNIT_PRICE , NAV_PRICE , ASSET_USED_SERVICE_LIFE , DEPRECIATION_ID , RESIDUALS_RATE , RESIDUALS_PRICE , TAX_AMOUNT_RATE , CURRENT_YEAR_DEPRECIATION , DEPRECIATION_YEAR , ACCUMULATED_DEPRECIATION , MONTH_DEPRECIATION_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL2 , LABEL3 , LABEL4 , LABEL5 , BILL_ID , INTERNAL_CONTROL_LABEL , COLLECTION_ID , BORROW_ID , SCRAP_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA);
 		}
 		public static final EAM_ASSET $TABLE=new EAM_ASSET();
 	}
@@ -2824,6 +2829,116 @@ public class EAMTables {
 	}
 	
 	/**
+	 * 计算方法
+	*/
+	public static class EAM_ASSET_DEPRECIATION_CALCULATION extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "eam_asset_depreciation_calculation";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 折旧方案
+		*/
+		public static final DBField DEPRECIATION_ID = new DBField(DBDataType.STRING , "depreciation_id","depreciationId","折旧方案","折旧方案",false,false,true);
+		
+		/**
+		 * 状态
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
+		
+		/**
+		 * 规则顺序
+		*/
+		public static final DBField RULE_NUMBER = new DBField(DBDataType.INTEGER , "rule_number","ruleNumber","规则顺序","规则顺序",false,false,true);
+		
+		/**
+		 * 字段值
+		*/
+		public static final DBField COLUMN_VALUE = new DBField(DBDataType.STRING , "column_value","columnValue","字段值","字段值",false,false,true);
+		
+		/**
+		 * 字段名称
+		*/
+		public static final DBField COLUMN_NAME = new DBField(DBDataType.STRING , "column_name","columnName","字段名称","字段名称",false,false,true);
+		
+		/**
+		 * 计算类型
+		*/
+		public static final DBField CALCULATION_TYPE = new DBField(DBDataType.STRING , "calculation_type","calculationType","计算类型","计算类型",false,false,true);
+		
+		/**
+		 * 计算方法
+		*/
+		public static final DBField METHOD_CONTENT = new DBField(DBDataType.STRING , "method_content","methodContent","计算方法","计算方法",false,false,true);
+		
+		/**
+		 * 方法描述
+		*/
+		public static final DBField METHOD_CONTENT_INFO = new DBField(DBDataType.STRING , "method_content_info","methodContentInfo","方法描述","方法描述",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,false);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		/**
+		 * 租户
+		*/
+		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
+		
+		public EAM_ASSET_DEPRECIATION_CALCULATION() {
+			this.init($NAME,"计算方法" , ID , DEPRECIATION_ID , STATUS , RULE_NUMBER , COLUMN_VALUE , COLUMN_NAME , CALCULATION_TYPE , METHOD_CONTENT , METHOD_CONTENT_INFO , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+		}
+		public static final EAM_ASSET_DEPRECIATION_CALCULATION $TABLE=new EAM_ASSET_DEPRECIATION_CALCULATION();
+	}
+	
+	/**
 	 * 折旧分类
 	*/
 	public static class EAM_ASSET_DEPRECIATION_CATEGORY extends DBTable {
@@ -2919,9 +3034,19 @@ public class EAMTables {
 		public static final DBField OPER_ID = new DBField(DBDataType.STRING , "oper_id","operId","折旧操作","折旧操作",false,false,true);
 		
 		/**
+		 * 首次折旧方式
+		*/
+		public static final DBField FIRST_DEPRECIATION_DATE = new DBField(DBDataType.STRING , "first_depreciation_date","firstDepreciationDate","首次折旧方式","首次折旧方式",false,false,true);
+		
+		/**
 		 * 折旧方式
 		*/
 		public static final DBField DEPRECIATION_METHOD = new DBField(DBDataType.STRING , "depreciation_method","depreciationMethod","折旧方式","折旧方式",false,false,true);
+		
+		/**
+		 * 业务日期
+		*/
+		public static final DBField BUSINESS_DATE = new DBField(DBDataType.DATE , "business_date","businessDate","业务日期","业务日期",false,false,true);
 		
 		/**
 		 * 折旧结果
@@ -2966,42 +3091,47 @@ public class EAMTables {
 		/**
 		 * 采购日期
 		*/
-		public static final DBField PURCHASE_DATE = new DBField(DBDataType.DATE , "purchase_date","purchaseDate","采购日期","采购日期",false,false,true);
+		public static final DBField ASSET_PURCHASE_DATE = new DBField(DBDataType.DATE , "asset_purchase_date","assetPurchaseDate","采购日期","采购日期",false,false,true);
 		
 		/**
-		 * 启用日期
+		 * 入账日期
 		*/
-		public static final DBField REGISTER_DATE = new DBField(DBDataType.DATE , "register_date","registerDate","启用日期","启用日期",false,false,true);
-		
-		/**
-		 * 业务日期
-		*/
-		public static final DBField BUSINESS_DATE = new DBField(DBDataType.DATE , "business_date","businessDate","业务日期","业务日期",false,false,true);
+		public static final DBField ASSET_REGISTER_DATE = new DBField(DBDataType.DATE , "asset_register_date","assetRegisterDate","入账日期","入账日期",false,false,true);
 		
 		/**
 		 * 资产原值
 		*/
-		public static final DBField ORIGINAL_UNIT_PRICE = new DBField(DBDataType.DECIMAL , "original_unit_price","originalUnitPrice","资产原值","资产原值",false,false,true);
+		public static final DBField ASSET_ORIGINAL_UNIT_PRICE = new DBField(DBDataType.DECIMAL , "asset_original_unit_price","assetOriginalUnitPrice","资产原值","资产原值",false,false,true);
 		
 		/**
-		 * 使用寿命
+		 * 含税单价
 		*/
-		public static final DBField SERVICE_LIFE = new DBField(DBDataType.DECIMAL , "service_life","serviceLife","使用寿命","使用寿命",false,false,true);
+		public static final DBField ASSET_PURCHASE_UNIT_PRICE = new DBField(DBDataType.DECIMAL , "asset_purchase_unit_price","assetPurchaseUnitPrice","含税单价","含税单价",false,false,true);
 		
 		/**
-		 * 已用寿命
+		 * 资产净值,(当前)
 		*/
-		public static final DBField USED_SERVICE_LIFE = new DBField(DBDataType.DECIMAL , "used_service_life","usedServiceLife","已用寿命","已用寿命",false,false,true);
+		public static final DBField ASSET_ENAV_PRICE = new DBField(DBDataType.DECIMAL , "asset_enav_price","assetEnavPrice","资产净值","(当前)",false,false,true);
+		
+		/**
+		 * 税额
+		*/
+		public static final DBField ASSET_TAX_AMOUNT_RATE = new DBField(DBDataType.DECIMAL , "asset_tax_amount_rate","assetTaxAmountRate","税额","税额",false,false,true);
+		
+		/**
+		 * 可使用期限,月
+		*/
+		public static final DBField ASSET_SERVICE_LIFE = new DBField(DBDataType.DECIMAL , "asset_service_life","assetServiceLife","可使用期限","月",false,false,true);
 		
 		/**
 		 * 本期残值率
 		*/
-		public static final DBField RESIDUAL_RATE = new DBField(DBDataType.DECIMAL , "residual_rate","residualRate","本期残值率","本期残值率",false,false,true);
+		public static final DBField ASSET_REDIDUAL_RATE = new DBField(DBDataType.DECIMAL , "asset_redidual_rate","assetRedidualRate","本期残值率","本期残值率",false,false,true);
 		
 		/**
 		 * 本期残值
 		*/
-		public static final DBField REDIDUAL_PRICE = new DBField(DBDataType.DECIMAL , "redidual_price","redidualPrice","本期残值","本期残值",false,false,true);
+		public static final DBField ASSET_REDIDUAL_PRICE = new DBField(DBDataType.DECIMAL , "asset_redidual_price","assetRedidualPrice","本期残值","本期残值",false,false,true);
 		
 		/**
 		 * (期初)期初原值
@@ -3022,6 +3152,11 @@ public class EAMTables {
 		 * (期初)期初可回收净额
 		*/
 		public static final DBField S_RECOVERABLE_AMOUNT = new DBField(DBDataType.DECIMAL , "s_recoverable_amount","sRecoverableAmount","(期初)期初可回收净额","(期初)期初可回收净额",false,false,true);
+		
+		/**
+		 * 已使用期限,月
+		*/
+		public static final DBField C_USED_SERVICE_LIFE = new DBField(DBDataType.DECIMAL , "c_used_service_life","cUsedServiceLife","已使用期限","月",false,false,true);
 		
 		/**
 		 * (本期发生)原值增加
@@ -3059,9 +3194,19 @@ public class EAMTables {
 		public static final DBField E_RECOVERABLE_AMOUNT = new DBField(DBDataType.DECIMAL , "e_recoverable_amount","eRecoverableAmount","(期末)期末可回收金额","(期末)期末可回收金额",false,false,true);
 		
 		/**
+		 * 会计期间已使用期限,月
+		*/
+		public static final DBField ACCOUNTING_SERVICE_LIFE = new DBField(DBDataType.DECIMAL , "accounting_service_life","accountingServiceLife","会计期间已使用期限","月",false,false,true);
+		
+		/**
+		 * 使用人ID
+		*/
+		public static final DBField USE_USER_ID = new DBField(DBDataType.STRING , "use_user_id","useUserId","使用人ID","使用人ID",false,false,true);
+		
+		/**
 		 * 使用人
 		*/
-		public static final DBField USE_USER_ID = new DBField(DBDataType.STRING , "use_user_id","useUserId","使用人","使用人",false,false,true);
+		public static final DBField USE_USER_NAME = new DBField(DBDataType.STRING , "use_user_name","useUserName","使用人","使用人",false,false,true);
 		
 		/**
 		 * 部门ID
@@ -3099,39 +3244,14 @@ public class EAMTables {
 		public static final DBField CUSTOMER_INFO = new DBField(DBDataType.STRING , "customer_info","customerInfo","客户情况","客户情况",false,false,true);
 		
 		/**
-		 * 折旧前
+		 * 源资产
 		*/
-		public static final DBField DETAIL_ID_SOURCE = new DBField(DBDataType.STRING , "detail_id_source","detailIdSource","折旧前","折旧前",false,false,true);
+		public static final DBField DETAIL_ID_SOURCE = new DBField(DBDataType.STRING , "detail_id_source","detailIdSource","源资产","源资产",false,false,true);
 		
 		/**
-		 * 折旧后
+		 * 目标资产
 		*/
-		public static final DBField DETAIL_ID_TARGET = new DBField(DBDataType.STRING , "detail_id_target","detailIdTarget","折旧后","折旧后",false,false,true);
-		
-		/**
-		 * 采购价格
-		*/
-		public static final DBField PURCHASE_UNIT_PRICE = new DBField(DBDataType.DECIMAL , "purchase_unit_price","purchaseUnitPrice","采购价格","采购价格",false,false,true);
-		
-		/**
-		 * 本期折旧
-		*/
-		public static final DBField DEPRECIATION_PRICE = new DBField(DBDataType.DECIMAL , "depreciation_price","depreciationPrice","本期折旧","本期折旧",false,false,true);
-		
-		/**
-		 * 当前净值
-		*/
-		public static final DBField CUR_PRICE = new DBField(DBDataType.DECIMAL , "cur_price","curPrice","当前净值","当前净值",false,false,true);
-		
-		/**
-		 * 折旧前净值
-		*/
-		public static final DBField BEFORE_PRICE = new DBField(DBDataType.DECIMAL , "before_price","beforePrice","折旧前净值","折旧前净值",false,false,true);
-		
-		/**
-		 * 折旧后净值
-		*/
-		public static final DBField AFTER_PRICE = new DBField(DBDataType.DECIMAL , "after_price","afterPrice","折旧后净值","折旧后净值",false,false,true);
+		public static final DBField DETAIL_ID_TARGET = new DBField(DBDataType.STRING , "detail_id_target","detailIdTarget","目标资产","目标资产",false,false,true);
 		
 		/**
 		 * 创建人ID
@@ -3178,7 +3298,7 @@ public class EAMTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public EAM_ASSET_DEPRECIATION_DETAIL() {
-			this.init($NAME,"折旧明细" , ID , DEPRECIATION_ID , OPER_ID , DEPRECIATION_METHOD , RESULT , RESULT_DETAIL , ASSET_ID , ASSET_CATEGORY_NAME , ASSET_CODE , ASSET_NAME , ASSET_MODEL , ASSET_STATUS_NAME , PURCHASE_DATE , REGISTER_DATE , BUSINESS_DATE , ORIGINAL_UNIT_PRICE , SERVICE_LIFE , USED_SERVICE_LIFE , RESIDUAL_RATE , REDIDUAL_PRICE , S_ORIGINAL_PRICE , S_DEPRECIATION_AMOUNT , S_NAV_AMOUNT , S_RECOVERABLE_AMOUNT , C_ORIGINAL_PRICE_INCREASE , C_DEPRECIATION_AMOUNT , C_YEAR_DEPRECIATION_AMOUNT , E_ORIGINAL_PRICE , E_DEPRECIATION_AMOUNT , E_NAV_AMOUNT , E_RECOVERABLE_AMOUNT , USE_USER_ID , USE_ORG_ID , USE_ORG_NAME , FINANCIAL_OPTION_KEY , EXPENSE_ITEM_KEY , FINANCIAL_OPTION_NAME , EXPENSE_ITEM_NAME , CUSTOMER_INFO , DETAIL_ID_SOURCE , DETAIL_ID_TARGET , PURCHASE_UNIT_PRICE , DEPRECIATION_PRICE , CUR_PRICE , BEFORE_PRICE , AFTER_PRICE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"折旧明细" , ID , DEPRECIATION_ID , OPER_ID , FIRST_DEPRECIATION_DATE , DEPRECIATION_METHOD , BUSINESS_DATE , RESULT , RESULT_DETAIL , ASSET_ID , ASSET_CATEGORY_NAME , ASSET_CODE , ASSET_NAME , ASSET_MODEL , ASSET_STATUS_NAME , ASSET_PURCHASE_DATE , ASSET_REGISTER_DATE , ASSET_ORIGINAL_UNIT_PRICE , ASSET_PURCHASE_UNIT_PRICE , ASSET_ENAV_PRICE , ASSET_TAX_AMOUNT_RATE , ASSET_SERVICE_LIFE , ASSET_REDIDUAL_RATE , ASSET_REDIDUAL_PRICE , S_ORIGINAL_PRICE , S_DEPRECIATION_AMOUNT , S_NAV_AMOUNT , S_RECOVERABLE_AMOUNT , C_USED_SERVICE_LIFE , C_ORIGINAL_PRICE_INCREASE , C_DEPRECIATION_AMOUNT , C_YEAR_DEPRECIATION_AMOUNT , E_ORIGINAL_PRICE , E_DEPRECIATION_AMOUNT , E_NAV_AMOUNT , E_RECOVERABLE_AMOUNT , ACCOUNTING_SERVICE_LIFE , USE_USER_ID , USE_USER_NAME , USE_ORG_ID , USE_ORG_NAME , FINANCIAL_OPTION_KEY , EXPENSE_ITEM_KEY , FINANCIAL_OPTION_NAME , EXPENSE_ITEM_NAME , CUSTOMER_INFO , DETAIL_ID_SOURCE , DETAIL_ID_TARGET , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final EAM_ASSET_DEPRECIATION_DETAIL $TABLE=new EAM_ASSET_DEPRECIATION_DETAIL();
 	}
@@ -3324,6 +3444,11 @@ public class EAMTables {
 		public static final DBField BUSINESS_CODE = new DBField(DBDataType.STRING , "business_code","businessCode","业务编号","业务编号",false,false,true);
 		
 		/**
+		 * 折旧编码
+		*/
+		public static final DBField DEPRECIATION_CODE = new DBField(DBDataType.STRING , "depreciation_code","depreciationCode","折旧编码","折旧编码",false,false,true);
+		
+		/**
 		 * 状态
 		*/
 		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
@@ -3413,7 +3538,7 @@ public class EAMTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public EAM_ASSET_DEPRECIATION_OPER() {
-			this.init($NAME,"折旧操作" , ID , BUSINESS_CODE , STATUS , NAME , DEPRECIATION_ID , CONTENT , BUSINESS_DATE , EXECUTION_START_TIME , EXECUTION_END_TIME , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"折旧操作" , ID , BUSINESS_CODE , DEPRECIATION_CODE , STATUS , NAME , DEPRECIATION_ID , CONTENT , BUSINESS_DATE , EXECUTION_START_TIME , EXECUTION_END_TIME , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final EAM_ASSET_DEPRECIATION_OPER $TABLE=new EAM_ASSET_DEPRECIATION_OPER();
 	}

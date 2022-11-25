@@ -1,16 +1,26 @@
 #!/bin/sh
+
 prod_app_dir=/app/app
 cur_dir=$(cd `dirname $0`; pwd)
 app_dir=$cur_dir/..
 echo "cur_dir:$cur_dir"
+
+app_conf="${cur_dir}/app.conf"
+tpl_update_par_cnt=`cat $app_conf|grep -v "#"|grep APP_TPL_UPDATE=|wc -l`
+
+if [[ $tpl_update_par_cnt -eq 0 ]];then
+  tpl_update=0
+else
+  tpl_update=`cat $app_conf|grep -v "#"|grep APP_TPL_UPDATE=|awk -F "=" '{print $2}'`
+fi
+echo "tpl_update value:$tpl_update"
 
 if [[ ! -d "$prod_app_dir/app/app/lib" ]];then
   echo "directory config error"
   exit 1
 fi
 
-
-#app.jar
+#app.jar will overwrite if exist
 echo "######## start to update app.jar ##############"
 if [[ -f "$prod_app_dir/app/app/app.jar" ]];then
   cd $app_dir/app/app
@@ -25,7 +35,7 @@ echo ""
 echo ""
 
 
-#app lib
+#app lib will copy
 echo " ########start to update app.lib ##############"
 if [[ -d $prod_app_dir/app/app/lib ]];then
   rm -rf $prod_app_dir/app/app/lib/*
@@ -40,7 +50,7 @@ fi
 echo ""
 echo ""
 
-#bpm.jar
+#bpm.jar will overwrite
 echo "######## start to update bpm.jar ##############"
 if [[ -f "$prod_app_dir/app/bpm/bpm.jar" ]];then
   cd $app_dir/app/bpm
@@ -54,7 +64,7 @@ fi
 echo ""
 echo ""
 
-#sh file
+#sh file will overwrite
 echo "######## start to update script file ##############"
 cd $app_dir/bin/
 scriptFileList=`ls -rtl |grep ".sh"|awk '{print $NF}'`
@@ -71,8 +81,8 @@ ls -rtl $prod_app_dir/bin/*.sh
 
 #Tpl File
 echo "######## start to update tpl file ##############"
-tpl_update=0
 if [[ $tpl_update -eq 1 ]];then
+  echo "start to overwrite tpl file"
   if [[ -d "$prod_app_dir/app/app/upload/tpl/T001" ]];then
     t=`date +%Y%m%d_%H_%M_%S`
     mv $prod_app_dir/app/app/upload/tpl/T001 $prod_app_dir/app/app/upload/tpl/T001_$t
@@ -81,7 +91,7 @@ if [[ $tpl_update -eq 1 ]];then
     cp * $prod_app_dir/app/app/upload/tpl/T001
     ls -rtl $prod_app_dir/app/app/upload/tpl/T001
   else
-     echo "$prod_app_dir/app/app/upload/tpl/T001  error"
+     echo "$prod_app_dir/app/app/upload/tpl/T001 error"
      exit 1
   fi
 fi
@@ -90,5 +100,5 @@ fi
 #restart
 echo "######## restart app ##############"
 cd $prod_app_dir
-sh restartAll.sh
+#sh restartAll.sh
 exit 0

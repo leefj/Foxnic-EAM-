@@ -13,8 +13,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-24 19:20:29
- * @sign C57D86DA48956F7A82CD31FEF989B66C
+ * @since 2022-11-25 13:45:49
+ * @sign 44445F605D117A50154B859B0AAA01AC
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -39,6 +39,16 @@ public class AssetDepreciationOperMeta {
 	 * 业务编号 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationOper,java.lang.String> BUSINESS_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationOper.class ,BUSINESS_CODE, java.lang.String.class, "业务编号", "业务编号", java.lang.String.class, null);
+	
+	/**
+	 * 折旧编码 , 类型: java.lang.String
+	*/
+	public static final String DEPRECIATION_CODE="depreciationCode";
+	
+	/**
+	 * 折旧编码 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationOper,java.lang.String> DEPRECIATION_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationOper.class ,DEPRECIATION_CODE, java.lang.String.class, "折旧编码", "折旧编码", java.lang.String.class, null);
 	
 	/**
 	 * 状态 , 类型: java.lang.String
@@ -303,7 +313,7 @@ public class AssetDepreciationOperMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , BUSINESS_CODE , STATUS , NAME , DEPRECIATION_ID , CONTENT , BUSINESS_DATE , EXECUTION_START_TIME , EXECUTION_END_TIME , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSET_SOURCE_LIST , ASSET_SOURCE_IDS , ASSET_TARGET_LIST , ASSET_TARGET_IDS , ASSET_DEPRECIATION_LIST , ASSET_DEPRECIATION_IDS , ASSET_DEPRECIATION , ORIGINATOR };
+	public static final String[] $PROPS={ ID , BUSINESS_CODE , DEPRECIATION_CODE , STATUS , NAME , DEPRECIATION_ID , CONTENT , BUSINESS_DATE , EXECUTION_START_TIME , EXECUTION_END_TIME , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSET_SOURCE_LIST , ASSET_SOURCE_IDS , ASSET_TARGET_LIST , ASSET_TARGET_IDS , ASSET_DEPRECIATION_LIST , ASSET_DEPRECIATION_IDS , ASSET_DEPRECIATION , ORIGINATOR };
 	
 	/**
 	 * 代理类
@@ -332,6 +342,17 @@ public class AssetDepreciationOperMeta {
 		public AssetDepreciationOper setBusinessCode(String businessCode) {
 			super.change(BUSINESS_CODE,super.getBusinessCode(),businessCode);
 			super.setBusinessCode(businessCode);
+			return this;
+		}
+		
+		/**
+		 * 设置 折旧编码
+		 * @param depreciationCode 折旧编码
+		 * @return 当前对象
+		*/
+		public AssetDepreciationOper setDepreciationCode(String depreciationCode) {
+			super.change(DEPRECIATION_CODE,super.getDepreciationCode(),depreciationCode);
+			super.setDepreciationCode(depreciationCode);
 			return this;
 		}
 		
@@ -637,6 +658,7 @@ public class AssetDepreciationOperMeta {
 		public AssetDepreciationOper duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setNotes(this.getNotes());
+			inst.setDepreciationCode(this.getDepreciationCode());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setExecutionEndTime(this.getExecutionEndTime());
 			inst.setVersion(this.getVersion());

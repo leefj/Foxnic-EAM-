@@ -192,6 +192,35 @@ function FormPage() {
 		// 	}
 		// });
 
+		//渲染 code 下拉字段
+		fox.renderSelectBox({
+			el: "code",
+			radio: true,
+			filterable: false,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("code",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
+
 		//渲染 categoryId 下拉字段
 		categorySelect = xmSelect.render({
 			el: '#categoryIds',
@@ -311,6 +340,9 @@ function FormPage() {
 
 			fox.setSelectValue4Enum("#residualValueSelect",formData.residualValueSelect,SELECT_RESIDUALVALUESELECT_DATA);
 
+			//设置  编码 设置下拉框勾选
+			fox.setSelectValue4Enum("#code",formData.code,SELECT_CODE_DATA);
+
 			//设置  资产分类 设置下拉框勾选
 			// fox.setSelectValue4QueryApi("#categoryIds",formData.category);
 
@@ -382,6 +414,9 @@ function FormPage() {
 		data["firstDepreciationDate"]=fox.getSelectedValue("firstDepreciationDate",false);
 
 		data["residualValueSelect"]=fox.getSelectedValue("residualValueSelect",false);
+
+		//获取 编码 下拉框的值
+		data["code"]=fox.getSelectedValue("code",false);
 
 
 		//获取 资产分类 下拉框的值

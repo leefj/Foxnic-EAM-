@@ -1,13 +1,14 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-17 19:12:07
+ * @since 2022-11-25 16:08:28
  */
 
 
 function ListPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect;
+	
 	//模块基础路径
 	const moduleURL="/service-ops/ops-db-info";
 	var dataTable=null;
@@ -18,7 +19,7 @@ function ListPage() {
 	this.init=function(layui) {
 
      	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate;
-		table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,dropdown=layui.dropdown;;
+		table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,dropdown=layui.dropdown;
 
 		if(window.pageExt.list.beforeInit) {
 			window.pageExt.list.beforeInit();
@@ -69,7 +70,7 @@ function ListPage() {
 			var tableConfig={
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
-				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
+				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
 				url: moduleURL +'/query-paged-list',
 				height: 'full-'+(h+28),
 				limit: 50,
@@ -84,7 +85,6 @@ function ListPage() {
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('数据库状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'backupStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备份状态'), templet:function (d){ return templet('backupStatus',fox.getEnumText(RADIO_BACKUPSTATUS_DATA,d.backupStatus,'','backupStatus'),d);}}
 					,{ field: 'deployMode', align:"left",fixed:false,  hide:false, sort: false  , title: fox.translate('部署模式'), templet: function (d) { return templet('deployMode' ,fox.joinLabel(d.deployModeDict,"label",',','','deployMode'),d);}}
-					,{ field: 'backupStrategy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备份策略') , templet: function (d) { return templet('backupStrategy',d.backupStrategy,d);}  }
 					,{ field: 'dbSize', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('大小(M)') , templet: function (d) { return templet('dbSize',d.dbSize,d);}  }
 					,{ field: 'logMethod', align:"left", fixed:false, hide:false, sort: true  , title: fox.translate('日志模式'), templet:function (d){ return templet('logMethod',fox.getDictText(RADIO_LOGMETHOD_DATA,d.logMethod,'','logMethod'),d);}}
 					,{ field: 'adminUserList', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('管理员账户') , templet: function (d) { return templet('adminUserList',d.adminUserList,d);}  }
@@ -92,12 +92,16 @@ function ListPage() {
 					,{ field: 'otherUserList', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('其他账户') , templet: function (d) { return templet('otherUserList',d.otherUserList,d);}  }
 					,{ field: 'voucherStr', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('凭证信息') , templet: function (d) { return templet('voucherStr',d.voucherStr,d);}  }
 					,{ field: 'dbPort', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('连接端口') , templet: function (d) { return templet('dbPort',d.dbPort,d);}  }
+					,{ field: 'backupStrategy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备份策略') , templet: function (d) { return templet('backupStrategy',d.backupStrategy,d);}  }
+					,{ field: 'toolStrategy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('工具备份策略') , templet: function (d) { return templet('toolStrategy',d.toolStrategy,d);}  }
+					,{ field: 'disasterRecoveryStrategy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('灾备策略') , templet: function (d) { return templet('disasterRecoveryStrategy',d.disasterRecoveryStrategy,d);}  }
+					,{ field: 'clearStrategy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('清理策略') , templet: function (d) { return templet('clearStrategy',d.clearStrategy,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'resHostIp', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('IP') , templet: function (d) { return templet('resHostIp',fox.getProperty(d,["host","hostIp"],0,'','resHostIp'),d);} }
 					,{ field: 'labelIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('标签'), templet: function (d) { return templet('labelIds' ,fox.joinLabel(d.labelList,"label",',','','labelIds'),d);}}
-					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
-					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
+					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
+					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
@@ -498,9 +502,9 @@ function ListPage() {
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
 		var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
 		var title = fox.translate('数据库');
-		if(action=="create") title=fox.translate('添加')+title;
-		else if(action=="edit") title=fox.translate('修改')+title;
-		else if(action=="view") title=fox.translate('查看')+title;
+		if(action=="create") title=fox.translate('添加','','cmp:table')+title;
+		else if(action=="edit") title=fox.translate('修改','','cmp:table')+title;
+		else if(action=="view") title=fox.translate('查看','','cmp:table')+title;
 
 		admin.popupCenter({
 			title: title,

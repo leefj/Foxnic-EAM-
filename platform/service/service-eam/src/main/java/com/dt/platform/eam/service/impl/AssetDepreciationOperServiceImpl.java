@@ -5,10 +5,7 @@ import com.dt.platform.constants.enums.eam.*;
 import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.AssetDepreciationDetailMeta;
 import com.dt.platform.domain.eam.meta.AssetDepreciationOperMeta;
-import com.dt.platform.eam.service.IAssetDepreciationDetailService;
-import com.dt.platform.eam.service.IAssetDepreciationOperService;
-import com.dt.platform.eam.service.IAssetProcessRecordService;
-import com.dt.platform.eam.service.IAssetService;
+import com.dt.platform.eam.service.*;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.dt.platform.proxy.eam.AssetServiceProxy;
 import com.github.foxnic.api.error.ErrorDesc;
@@ -54,6 +51,17 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 
 
 
+	@Autowired
+	AssetDepreciationCalculationFactory assetDepreciationCalculationFactory;
+
+	@Autowired
+	IAssetDepreciationService assetDepreciationService;
+
+	private String getDepreciationCodeByOperId(){
+
+		return "";
+	}
+
 	/**
 	 * 注入DAO对象
 	 * */
@@ -87,82 +95,57 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 		return ErrorDesc.success();
 	}
 
+	private IAssetDepreciationCalculationService getAssetDepreciationCalculationService(String code){
+		AssetDepreciationCodeEnum codeEnum = null;
+		if(AssetDepreciationCodeEnum.MONTHLY.code().equals(code)){
+			codeEnum = AssetDepreciationCodeEnum.MONTHLY;
+		}
+		if(AssetDepreciationCodeEnum.TEST.code().equals(code)){
+			codeEnum = AssetDepreciationCodeEnum.TEST;
+		}
+		return assetDepreciationCalculationFactory.getService(codeEnum);
+	}
+
 	@Override
 	public Result start(String id) {
-		AssetDepreciationOper bill=this.getById(id);
-		dao().fill(bill)
-				.with(AssetDepreciationOperMeta.ASSET_DEPRECIATION)
-				.execute();
-
-
-		AssetDepreciation assetDepreciation=bill.getAssetDepreciation();
-		if(AssetDepreciationStatusEnum.ACTING.code().equals(bill.getStatus())
-			||AssetDepreciationStatusEnum.NOT_START.code().equals(bill.getStatus())
-				||AssetDepreciationStatusEnum.FAILED.code().equals(bill.getStatus())
-		){
-			System.out.println("start to collect asset data!");
-		}else{
-			return ErrorDesc.failureMessage("当前状态,不可进行本操作");
+	 	String code=getDepreciationCodeByOperId();
+		IAssetDepreciationCalculationService assetDepreciationCalculationService=this.getAssetDepreciationCalculationService(code);
+		if(assetDepreciationCalculationService==null){
+			return ErrorDesc.failureMessage("当前方案未实现,方案编码:"+code);
 		}
+		return assetDepreciationCalculationService.fillAssetData(id);
+	}
 
-		if(bill==null){
-			return ErrorDesc.failureMessage("当前折旧单据不存在,不能进行操作!");
+	@Override
+	public Result execute(String id) {
+		String code=getDepreciationCodeByOperId();
+		IAssetDepreciationCalculationService assetDepreciationCalculationService=this.getAssetDepreciationCalculationService(code);
+		if(assetDepreciationCalculationService==null){
+			return ErrorDesc.failureMessage("当前方案未实现,方案编码:"+code);
 		}
-		//删除数据
-		dao.execute("delete from eam_asset_depreciation_detail where depreciation_id=?",id);
+		return assetDepreciationCalculationService.calculation(id);
 
-		//查询折旧资产
-		AssetVO assetVO=new AssetVO();
-		assetVO.setOwnerCode(AssetOwnerCodeEnum.ASSET.code());
-		assetVO.setStatus(AssetHandleStatusEnum.COMPLETE.code());
-		assetVO.setCleanOut("0");
-		ConditionExpr expr=new ConditionExpr();
-		if(dao.queryRecord("select count(1) cnt from eam_asset_depreciation_category where deleted=0 and category_id<>'' and category_id is not null and depreciation_id=?",bill.getDepreciationId()).getInteger("cnt")>0) {
-			expr.and("category_id in (select category_id from eam_asset_depreciation_category where deleted=0 and depreciation_id='"+bill.getDepreciationId()+"')");
-		}else{
-		}
-		List<Asset> assetList=assetService.queryList(assetVO,expr);
-		//关联获取资产属性实体数据
-		assetService.joinData(assetList);
-
-
-		List<AssetDepreciationDetail> detailList=new ArrayList<>();
-		if(assetList.size()>0){
-			for(Asset asset:assetList){
-				String assetId=asset.getId();
-				AssetDepreciationDetail detail=new AssetDepreciationDetail();
-				detail.setResult(AssetDetailDepreciationResultEnum.WAIT_CALCULATE.code());
-				detail.setCurPrice(asset.getNavPrice());
-				detail.setBeforePrice(asset.getNavPrice());
-				detail.setOperId(id);
-				detail.setDepreciationMethod(assetDepreciation.getMethod());
-				detail.setDepreciationId(bill.getDepreciationId());
-				detail.setAssetId(assetId);
-				detail.setResidualRate(assetDepreciation.getPreResidualRate());
-				detail.setServiceLife(asset.getServiceLife());
-				detail.setPurchaseDate(asset.getPurchaseDate());
-				detail.setPurchaseUnitPrice(asset.getPurchaseUnitPrice());
-
-				detail.setAssetCode(asset.getAssetCode());
-				detail.setAssetName(asset.getName());
-				detail.setAssetModel(asset.getModel());
-			//	detail.setOriginalUnitPrice(asset.getOriginalUnitPrice());
-
-				asset.setId(null);
-				asset.setOwnerCode(AssetOwnerCodeEnum.ASSET_DEPRECIATION_DATA.code());
-				assetService.insert(asset);
-				detail.setDetailIdSource(asset.getId());
-				detailList.add(detail);
-			}
-		}else{
-			return ErrorDesc.failureMessage("没有资产数据需要折旧");
-		}
-		assetDepreciationDetailService.insertList(detailList);
-		AssetDepreciationOper ups=new AssetDepreciationOper();
-		ups.setId(id);
-		ups.setStatus(AssetDepreciationStatusEnum.ACTING.code());
-		super.save(ups,SaveMode.NOT_NULL_FIELDS,true);
-		return ErrorDesc.success();
+//		AssetDepreciationOper bill=this.getById(id);
+//		if(!AssetDepreciationStatusEnum.ACTING.code().equals(bill.getStatus())){
+//			return ErrorDesc.failureMessage("当前状态,不可进行本操作");
+//		}else{
+//		}
+//		AssetDepreciationDetailVO assetDepreciationDetail=new AssetDepreciationDetailVO();
+//		assetDepreciationDetail.setOperId(id);
+//		List<AssetDepreciationDetail> list=assetDepreciationDetailService.queryList(assetDepreciationDetail);
+//		if(list.size()==0){
+//			return ErrorDesc.failureMessage("没有资产数据需要折旧");
+//		}
+//		for(AssetDepreciationDetail assetDetail:list){
+//			calculateDepreciation(assetDetail);
+//			assetDepreciationDetailService.save(assetDetail,SaveMode.NOT_NULL_FIELDS,false);
+//		}
+//		AssetDepreciationOper ups=new AssetDepreciationOper();
+//		ups.setId(id);
+//		ups.setExecutionStartTime(new Date());
+//		ups.setStatus(AssetDepreciationStatusEnum.ACTING.code());
+//		super.save(ups,SaveMode.NOT_NULL_FIELDS,true);
+//		return ErrorDesc.success();
 	}
 
 	private boolean calculateDepreciation(AssetDepreciationDetail assetDetail){
@@ -178,56 +161,56 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 		Asset sourceAsset=assetDetail.getAsset();
 
 		//判断
-		Date purchaseDate=assetDetail.getPurchaseDate();
-		BigDecimal residualRate= assetDetail.getResidualRate();
-		BigDecimal serviceLife=assetDetail.getServiceLife();
-		BigDecimal beforePrice=assetDetail.getBeforePrice();
-		BigDecimal purchaseUnitPrice=assetDetail.getPurchaseUnitPrice();
-
-		if(purchaseDate==null||serviceLife==null||residualRate==null||beforePrice==null||purchaseUnitPrice==null){
-			result=AssetDetailDepreciationResultEnum.VALIDATION_FAILED.code();
-			resultDetail="采购日期、资产周期、采购价格、当前净值、残值率中有数据为空";
-			assetDetail.setResultDetail(resultDetail);
-			assetDetail.setResult(result);
-			return false;
-		}
+//		Date purchaseDate=assetDetail.getPurchaseDate();
+//		BigDecimal residualRate= assetDetail.getResidualRate();
+//		BigDecimal serviceLife=assetDetail.getServiceLife();
+//		BigDecimal beforePrice=assetDetail.getBeforePrice();
+//		BigDecimal purchaseUnitPrice=assetDetail.getPurchaseUnitPrice();
+//
+//		if(purchaseDate==null||serviceLife==null||residualRate==null||beforePrice==null||purchaseUnitPrice==null){
+//			result=AssetDetailDepreciationResultEnum.VALIDATION_FAILED.code();
+//			resultDetail="采购日期、资产周期、采购价格、当前净值、残值率中有数据为空";
+//			assetDetail.setResultDetail(resultDetail);
+//			assetDetail.setResult(result);
+//			return false;
+//		}
 
 		//小于0,大于100
-		if(residualRate.compareTo(new BigDecimal("0.00")) ==-1||residualRate.compareTo(new BigDecimal("100"))==1 ){
-			result=AssetDetailDepreciationResultEnum.VALIDATION_FAILED.code();
-			resultDetail="残值率为0到100之间";
-			assetDetail.setResultDetail(resultDetail);
-			assetDetail.setResult(result);
-			return false;
-		}
+//		if(residualRate.compareTo(new BigDecimal("0.00")) ==-1||residualRate.compareTo(new BigDecimal("100"))==1 ){
+//			result=AssetDetailDepreciationResultEnum.VALIDATION_FAILED.code();
+//			resultDetail="残值率为0到100之间";
+//			assetDetail.setResultDetail(resultDetail);
+//			assetDetail.setResult(result);
+//			return false;
+//		}
 
-		if(!(serviceLife.compareTo(new BigDecimal("0.0"))==1)){
-			result=AssetDetailDepreciationResultEnum.VALIDATION_FAILED.code();
-			resultDetail="使用周期不能为0";
-			assetDetail.setResultDetail(resultDetail);
-			assetDetail.setResult(result);
-			return false;
-		}
+//		if(!(serviceLife.compareTo(new BigDecimal("0.0"))==1)){
+//			result=AssetDetailDepreciationResultEnum.VALIDATION_FAILED.code();
+//			resultDetail="使用周期不能为0";
+//			assetDetail.setResultDetail(resultDetail);
+//			assetDetail.setResult(result);
+//			return false;
+//		}
 
 		//每月的折旧价=(采购价格-采购价格*残值率 )/12/5年限
 		//serviceLifeYear=serviceLife/12  月份/12
 		//monthDepreciationPrice= (purchaseUnitPrice-purchaseUnitPrice*residualRate/100)/12/serviceLifeYear
-		BigDecimal serviceLifeYear=serviceLife.divide(new BigDecimal("12.0"),2,BigDecimal.ROUND_HALF_DOWN).setScale(0,BigDecimal.ROUND_UP);
-		BigDecimal residualPrice= (purchaseUnitPrice.multiply(residualRate)).divide(new BigDecimal("100.0"));
-		BigDecimal purchaseUnitPricesSubtractResidualPrice=purchaseUnitPrice.subtract(residualPrice);
-		BigDecimal serviceLifeMonth=serviceLifeYear.multiply(new BigDecimal("12.00"));
-		System.out.println("beforePrice:"+beforePrice.toString());
-		System.out.println("purchaseUnitPrice:"+purchaseUnitPrice.toString());
-		System.out.println("residualPrice:"+residualPrice.toString());
-		System.out.println("serviceLife:"+serviceLife.toString());
-		System.out.println("serviceLifeYear:"+serviceLifeYear.toString());
-		System.out.println("serviceLifeMonth:"+serviceLifeMonth.toString());
-		BigDecimal monthDepreciationPrice=purchaseUnitPricesSubtractResidualPrice.divide(serviceLifeMonth,2,BigDecimal.ROUND_HALF_DOWN).setScale(2,BigDecimal.ROUND_HALF_DOWN);
-		afterPrice=beforePrice.subtract(monthDepreciationPrice);
-		if(residualRate.compareTo(new BigDecimal("0.00"))==-1){
-			result=AssetDetailDepreciationResultEnum.VALIDATION_FAILED.code();
-			resultDetail="净值为负数";
-		}
+//		BigDecimal serviceLifeYear=serviceLife.divide(new BigDecimal("12.0"),2,BigDecimal.ROUND_HALF_DOWN).setScale(0,BigDecimal.ROUND_UP);
+//		BigDecimal residualPrice= (purchaseUnitPrice.multiply(residualRate)).divide(new BigDecimal("100.0"));
+//		BigDecimal purchaseUnitPricesSubtractResidualPrice=purchaseUnitPrice.subtract(residualPrice);
+//		BigDecimal serviceLifeMonth=serviceLifeYear.multiply(new BigDecimal("12.00"));
+//		System.out.println("beforePrice:"+beforePrice.toString());
+//		System.out.println("purchaseUnitPrice:"+purchaseUnitPrice.toString());
+//		System.out.println("residualPrice:"+residualPrice.toString());
+//		System.out.println("serviceLife:"+serviceLife.toString());
+//		System.out.println("serviceLifeYear:"+serviceLifeYear.toString());
+//		System.out.println("serviceLifeMonth:"+serviceLifeMonth.toString());
+//		BigDecimal monthDepreciationPrice=purchaseUnitPricesSubtractResidualPrice.divide(serviceLifeMonth,2,BigDecimal.ROUND_HALF_DOWN).setScale(2,BigDecimal.ROUND_HALF_DOWN);
+//		afterPrice=beforePrice.subtract(monthDepreciationPrice);
+//		if(residualRate.compareTo(new BigDecimal("0.00"))==-1){
+//			result=AssetDetailDepreciationResultEnum.VALIDATION_FAILED.code();
+//			resultDetail="净值为负数";
+//		}
 		//获取target 记录
 //		System.out.println("sourceAsset,"+sourceAsset);
 //		BigDecimal targetPrice=new BigDecimal("0");
@@ -248,39 +231,12 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 		}
 		assetDetail.setResultDetail(resultDetail);
 		assetDetail.setResult(result);
-		assetDetail.setAfterPrice(afterPrice);
-		assetDetail.setDepreciationPrice(monthDepreciationPrice);
+//		assetDetail.setAfterPrice(afterPrice);
+//		assetDetail.setDepreciationPrice(monthDepreciationPrice);
 		return true;
 	//	assetDetail.setDetailIdTarget(sourceAsset.getId());
 	}
 
-	@Override
-	public Result execute(String id) {
-		AssetDepreciationOper bill=this.getById(id);
-		if(!AssetDepreciationStatusEnum.ACTING.code().equals(bill.getStatus())){
-			return ErrorDesc.failureMessage("当前状态,不可进行本操作");
-		}else{
-
-		}
-
-		AssetDepreciationDetailVO assetDepreciationDetail=new AssetDepreciationDetailVO();
-		assetDepreciationDetail.setOperId(id);
-		List<AssetDepreciationDetail> list=assetDepreciationDetailService.queryList(assetDepreciationDetail);
-		if(list.size()==0){
-			return ErrorDesc.failureMessage("没有资产数据需要折旧");
-		}
-		for(AssetDepreciationDetail assetDetail:list){
-			calculateDepreciation(assetDetail);
-			assetDepreciationDetailService.save(assetDetail,SaveMode.NOT_NULL_FIELDS,false);
-		}
-		AssetDepreciationOper ups=new AssetDepreciationOper();
-		ups.setId(id);
-		ups.setExecutionStartTime(new Date());
-		ups.setStatus(AssetDepreciationStatusEnum.ACTING.code());
-		super.save(ups,SaveMode.NOT_NULL_FIELDS,true);
-		return ErrorDesc.success();
-
-	}
 
 
 
@@ -303,21 +259,21 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 		if(dao.queryRecord("select count(1) cnt from eam_asset_depreciation_detail where deleted=0 and oper_id=? and result<>'validation_success'",id).getInteger("cnt")>0){
 			return ErrorDesc.failureMessage("有资产未通过验证");
 		}
-
-		for(AssetDepreciationDetail assetDetail:list){
-			Asset ups=new Asset();
-			ups.setNavPrice(assetDetail.getAfterPrice());
-			ups.setId(assetDetail.getAssetId());
-			assetService.save(ups,SaveMode.NOT_NULL_FIELDS,false);
-
-			AssetProcessRecord ar=new AssetProcessRecord();
-			ar.setAssetId(assetDetail.getAssetId());
-			ar.setBusinessCode(bill.getBusinessCode());
-			ar.setProcessType(AssetOperateEnum.EAM_ASSET_DEPRECIATION_OPER.code());
-			ar.setProcessdTime(new Date());
-			ar.setContent("【资产净值】由"+assetDetail.getBeforePrice()+"折旧为"+assetDetail.getAfterPrice());
-			assetProcessRecordService.insert(ar,false);
-		}
+//
+//		for(AssetDepreciationDetail assetDetail:list){
+//			Asset ups=new Asset();
+//			ups.setNavPrice(assetDetail.getAfterPrice());
+//			ups.setId(assetDetail.getAssetId());
+//			assetService.save(ups,SaveMode.NOT_NULL_FIELDS,false);
+//
+//			AssetProcessRecord ar=new AssetProcessRecord();
+//			ar.setAssetId(assetDetail.getAssetId());
+//			ar.setBusinessCode(bill.getBusinessCode());
+//			ar.setProcessType(AssetOperateEnum.EAM_ASSET_DEPRECIATION_OPER.code());
+//			ar.setProcessdTime(new Date());
+//			ar.setContent("【资产净值】由"+assetDetail.getBeforePrice()+"折旧为"+assetDetail.getAfterPrice());
+//			assetProcessRecordService.insert(ar,false);
+//		}
 
 		AssetDepreciationOper ups=new AssetDepreciationOper();
 		ups.setId(id);
@@ -343,11 +299,16 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 			assetDepreciationOper.setOriginatorId(SessionUser.getCurrent().getUser().getActivatedEmployeeId());
 		}
 
-
 		//办理情况
 		if(StringUtil.isBlank(assetDepreciationOper.getStatus())){
 			assetDepreciationOper.setStatus(AssetDepreciationStatusEnum.NOT_START.code());
 		}
+
+		if(StringUtil.isBlank(assetDepreciationOper.getDepreciationId())){
+			ErrorDesc.failureMessage("未选择具体执行的折旧方案");
+		}
+		AssetDepreciation assetDepreciation= assetDepreciationService.getById(assetDepreciationOper.getDepreciationId());
+		assetDepreciationOper.setDepreciationCode(assetDepreciation.getCode());
 
 		//登记日期
 		if(assetDepreciationOper.getBusinessDate()==null){

@@ -2,7 +2,7 @@
 /**
  * 折旧明细 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-24 19:55:18
+ * @since 2022-11-25 12:22:17
  */
  -->
  <!DOCTYPE html>
@@ -41,7 +41,9 @@
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 折旧方案 , depreciationId ,typeName=select_box, isHideInSearch=true -->
                     <!-- 折旧操作 , operId ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 首次折旧方式 , firstDepreciationDate ,typeName=text_input, isHideInSearch=true -->
                     <!-- 折旧方式 , depreciationMethod ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 业务日期 , businessDate ,typeName=date_input, isHideInSearch=true -->
                     <!-- 折旧结果明细 , resultDetail ,typeName=text_input, isHideInSearch=true -->
                     <!-- 资产 , assetId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 资产编码 , assetCode ,typeName=text_input, isHideInSearch=false -->
@@ -49,16 +51,18 @@
                         <div class="search-label-div" style=""><span th:text="${lang.translate('资产编码',null,'eam_asset_dep_detail')}" class="search-label assetCode-label">资产编码</span><span class="search-colon">:</span></div>
                         <input id="assetCode" class="layui-input search-input" style="width: 150px" type="text" />
                     </div>
-                    <!-- 业务日期 , businessDate ,typeName=date_input, isHideInSearch=true -->
-                    <!-- 资产原值 , originalUnitPrice ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 使用寿命 , serviceLife ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 已用寿命 , usedServiceLife ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 本期残值率 , residualRate ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 本期残值 , redidualPrice ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 资产原值 , assetOriginalUnitPrice ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 含税单价 , assetPurchaseUnitPrice ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 资产净值 , assetEnavPrice ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 税额 , assetTaxAmountRate ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 可使用期限 , assetServiceLife ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 本期残值率 , assetRedidualRate ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 本期残值 , assetRedidualPrice ,typeName=number_input, isHideInSearch=true -->
                     <!-- (期初)期初原值 , sOriginalPrice ,typeName=number_input, isHideInSearch=true -->
                     <!-- (期初)期初累计折旧 , sDepreciationAmount ,typeName=number_input, isHideInSearch=true -->
                     <!-- (期初)期初净值 , sNavAmount ,typeName=number_input, isHideInSearch=true -->
                     <!-- (期初)期初可回收净额 , sRecoverableAmount ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 已使用期限 , cUsedServiceLife ,typeName=number_input, isHideInSearch=true -->
                     <!-- (本期发生)原值增加 , cOriginalPriceIncrease ,typeName=number_input, isHideInSearch=true -->
                     <!-- (本期发生)本期折旧额 , cDepreciationAmount ,typeName=number_input, isHideInSearch=true -->
                     <!-- (本期发生)本年累计折旧额 , cYearDepreciationAmount ,typeName=number_input, isHideInSearch=true -->
@@ -66,18 +70,15 @@
                     <!-- (期末)期末累计折旧 , eDepreciationAmount ,typeName=number_input, isHideInSearch=true -->
                     <!-- (期末)期末净值 , eNavAmount ,typeName=number_input, isHideInSearch=true -->
                     <!-- (期末)期末可回收金额 , eRecoverableAmount ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 使用人 , useUserId ,typeName=button, isHideInSearch=true -->
+                    <!-- 会计期间已使用期限 , accountingServiceLife ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 使用人ID , useUserId ,typeName=button, isHideInSearch=true -->
+                    <!-- 使用人 , useUserName ,typeName=text_input, isHideInSearch=true -->
                     <!-- 部门ID , useOrgId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 使用部门 , useOrgName ,typeName=text_input, isHideInSearch=true -->
                     <!-- 财务选项 , financialOptionKey ,typeName=select_box, isHideInSearch=true -->
                     <!-- 费用项目 , expenseItemKey ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 折旧前 , detailIdSource ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 折旧后 , detailIdTarget ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 采购价格 , purchaseUnitPrice ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 本期折旧 , depreciationPrice ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 当前净值 , curPrice ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 折旧前净值 , beforePrice ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 折旧后净值 , afterPrice ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 源资产 , detailIdSource ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 目标资产 , detailIdTarget ,typeName=text_input, isHideInSearch=true -->
                     <!-- 资产类别 , assetCategoryName ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style=""><span th:text="${lang.translate('资产类别',null,'eam_asset_dep_detail')}" class="search-label assetCategoryName-label">资产类别</span><span class="search-colon">:</span></div>
@@ -123,19 +124,19 @@
                 </div>
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
-                    <!-- 采购日期 , purchaseDate ,typeName=date_input, isHideInSearch=false -->
+                    <!-- 采购日期 , assetPurchaseDate ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('采购日期',null,'eam_asset_dep_detail')}" class="search-label purchaseDate-label">采购日期</span><span class="search-colon">:</span></div>
-                            <input type="text" id="purchaseDate-begin" style="width: 150px" lay-verify="date" th:placeholder="${lang.translate('开始日期',null,'eam_asset_dep_detail')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('采购日期',null,'eam_asset_dep_detail')}" class="search-label assetPurchaseDate-label">采购日期</span><span class="search-colon">:</span></div>
+                            <input type="text" id="assetPurchaseDate-begin" style="width: 150px" lay-verify="date" th:placeholder="${lang.translate('开始日期',null,'eam_asset_dep_detail')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
                             <span class="search-dash">-</span>
-                            <input type="text" id="purchaseDate-end"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('结束日期',null,'eam_asset_dep_detail')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
+                            <input type="text" id="assetPurchaseDate-end"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('结束日期',null,'eam_asset_dep_detail')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
                     </div>
-                    <!-- 启用日期 , registerDate ,typeName=date_input, isHideInSearch=false -->
+                    <!-- 入账日期 , assetRegisterDate ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('启用日期',null,'eam_asset_dep_detail')}" class="search-label registerDate-label">启用日期</span><span class="search-colon">:</span></div>
-                            <input type="text" id="registerDate-begin" style="width: 150px" lay-verify="date" th:placeholder="${lang.translate('开始日期',null,'eam_asset_dep_detail')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('入账日期',null,'eam_asset_dep_detail')}" class="search-label assetRegisterDate-label">入账日期</span><span class="search-colon">:</span></div>
+                            <input type="text" id="assetRegisterDate-begin" style="width: 150px" lay-verify="date" th:placeholder="${lang.translate('开始日期',null,'eam_asset_dep_detail')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
                             <span class="search-dash">-</span>
-                            <input type="text" id="registerDate-end"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('结束日期',null,'eam_asset_dep_detail')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
+                            <input type="text" id="assetRegisterDate-end"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('结束日期',null,'eam_asset_dep_detail')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
                     </div>
 
 

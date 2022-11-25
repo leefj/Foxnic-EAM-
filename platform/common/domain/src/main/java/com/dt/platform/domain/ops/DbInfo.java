@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库
  * <p>数据库 , 数据表 ops_db_info 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-17 19:12:05
- * @sign 0CA36E4594EF4B86E95A4B519CE0001A
+ * @since 2022-11-25 16:08:27
+ * @sign 3F86DEE087C890E35E9B1A1839B9663F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -85,12 +85,6 @@ public class DbInfo extends Entity {
 	private String deployMode;
 	
 	/**
-	 * 备份策略：备份策略
-	*/
-	@ApiModelProperty(required = false,value="备份策略" , notes = "备份策略" , example = "无")
-	private String backupStrategy;
-	
-	/**
 	 * 大小(M)：大小(M)
 	*/
 	@ApiModelProperty(required = false,value="大小(M)" , notes = "大小(M)" , example = "10923.00")
@@ -131,6 +125,30 @@ public class DbInfo extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="连接端口" , notes = "连接端口")
 	private String dbPort;
+	
+	/**
+	 * 本地备份策略：本地备份策略
+	*/
+	@ApiModelProperty(required = false,value="本地备份策略" , notes = "本地备份策略" , example = "无")
+	private String backupStrategy;
+	
+	/**
+	 * 工具备份策略：工具备份策略
+	*/
+	@ApiModelProperty(required = false,value="工具备份策略" , notes = "工具备份策略")
+	private String toolStrategy;
+	
+	/**
+	 * 灾备策略：灾备策略
+	*/
+	@ApiModelProperty(required = false,value="灾备策略" , notes = "灾备策略")
+	private String disasterRecoveryStrategy;
+	
+	/**
+	 * 清理策略：清理策略
+	*/
+	@ApiModelProperty(required = false,value="清理策略" , notes = "清理策略")
+	private String clearStrategy;
 	
 	/**
 	 * 备注：备注
@@ -371,25 +389,6 @@ public class DbInfo extends Entity {
 	}
 	
 	/**
-	 * 获得 备份策略<br>
-	 * 备份策略
-	 * @return 备份策略
-	*/
-	public String getBackupStrategy() {
-		return backupStrategy;
-	}
-	
-	/**
-	 * 设置 备份策略
-	 * @param backupStrategy 备份策略
-	 * @return 当前对象
-	*/
-	public DbInfo setBackupStrategy(String backupStrategy) {
-		this.backupStrategy=backupStrategy;
-		return this;
-	}
-	
-	/**
 	 * 获得 大小(M)<br>
 	 * 大小(M)
 	 * @return 大小(M)
@@ -519,6 +518,82 @@ public class DbInfo extends Entity {
 	*/
 	public DbInfo setDbPort(String dbPort) {
 		this.dbPort=dbPort;
+		return this;
+	}
+	
+	/**
+	 * 获得 本地备份策略<br>
+	 * 本地备份策略
+	 * @return 本地备份策略
+	*/
+	public String getBackupStrategy() {
+		return backupStrategy;
+	}
+	
+	/**
+	 * 设置 本地备份策略
+	 * @param backupStrategy 本地备份策略
+	 * @return 当前对象
+	*/
+	public DbInfo setBackupStrategy(String backupStrategy) {
+		this.backupStrategy=backupStrategy;
+		return this;
+	}
+	
+	/**
+	 * 获得 工具备份策略<br>
+	 * 工具备份策略
+	 * @return 工具备份策略
+	*/
+	public String getToolStrategy() {
+		return toolStrategy;
+	}
+	
+	/**
+	 * 设置 工具备份策略
+	 * @param toolStrategy 工具备份策略
+	 * @return 当前对象
+	*/
+	public DbInfo setToolStrategy(String toolStrategy) {
+		this.toolStrategy=toolStrategy;
+		return this;
+	}
+	
+	/**
+	 * 获得 灾备策略<br>
+	 * 灾备策略
+	 * @return 灾备策略
+	*/
+	public String getDisasterRecoveryStrategy() {
+		return disasterRecoveryStrategy;
+	}
+	
+	/**
+	 * 设置 灾备策略
+	 * @param disasterRecoveryStrategy 灾备策略
+	 * @return 当前对象
+	*/
+	public DbInfo setDisasterRecoveryStrategy(String disasterRecoveryStrategy) {
+		this.disasterRecoveryStrategy=disasterRecoveryStrategy;
+		return this;
+	}
+	
+	/**
+	 * 获得 清理策略<br>
+	 * 清理策略
+	 * @return 清理策略
+	*/
+	public String getClearStrategy() {
+		return clearStrategy;
+	}
+	
+	/**
+	 * 设置 清理策略
+	 * @param clearStrategy 清理策略
+	 * @return 当前对象
+	*/
+	public DbInfo setClearStrategy(String clearStrategy) {
+		this.clearStrategy=clearStrategy;
 		return this;
 	}
 	
@@ -973,6 +1048,8 @@ public class DbInfo extends Entity {
 		inst.setVoucherStr(this.getVoucherStr());
 		inst.setId(this.getId());
 		inst.setAdminUserList(this.getAdminUserList());
+		inst.setDisasterRecoveryStrategy(this.getDisasterRecoveryStrategy());
+		inst.setToolStrategy(this.getToolStrategy());
 		inst.setAppUserList(this.getAppUserList());
 		inst.setDeployMode(this.getDeployMode());
 		inst.setOtherUserList(this.getOtherUserList());
@@ -980,6 +1057,7 @@ public class DbInfo extends Entity {
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setVersion(this.getVersion());
 		inst.setDbSize(this.getDbSize());
+		inst.setClearStrategy(this.getClearStrategy());
 		inst.setDbPort(this.getDbPort());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
@@ -1065,6 +1143,8 @@ public class DbInfo extends Entity {
 			this.setVoucherStr(DataParser.parse(String.class, map.get(DbInfoMeta.VOUCHER_STR)));
 			this.setId(DataParser.parse(String.class, map.get(DbInfoMeta.ID)));
 			this.setAdminUserList(DataParser.parse(String.class, map.get(DbInfoMeta.ADMIN_USER_LIST)));
+			this.setDisasterRecoveryStrategy(DataParser.parse(String.class, map.get(DbInfoMeta.DISASTER_RECOVERY_STRATEGY)));
+			this.setToolStrategy(DataParser.parse(String.class, map.get(DbInfoMeta.TOOL_STRATEGY)));
 			this.setAppUserList(DataParser.parse(String.class, map.get(DbInfoMeta.APP_USER_LIST)));
 			this.setDeployMode(DataParser.parse(String.class, map.get(DbInfoMeta.DEPLOY_MODE)));
 			this.setOtherUserList(DataParser.parse(String.class, map.get(DbInfoMeta.OTHER_USER_LIST)));
@@ -1072,6 +1152,7 @@ public class DbInfo extends Entity {
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(DbInfoMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(DbInfoMeta.VERSION)));
 			this.setDbSize(DataParser.parse(BigDecimal.class, map.get(DbInfoMeta.DB_SIZE)));
+			this.setClearStrategy(DataParser.parse(String.class, map.get(DbInfoMeta.CLEAR_STRATEGY)));
 			this.setDbPort(DataParser.parse(String.class, map.get(DbInfoMeta.DB_PORT)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(DbInfoMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(DbInfoMeta.DELETED)));
@@ -1097,6 +1178,8 @@ public class DbInfo extends Entity {
 				this.setVoucherStr( (String)map.get(DbInfoMeta.VOUCHER_STR));
 				this.setId( (String)map.get(DbInfoMeta.ID));
 				this.setAdminUserList( (String)map.get(DbInfoMeta.ADMIN_USER_LIST));
+				this.setDisasterRecoveryStrategy( (String)map.get(DbInfoMeta.DISASTER_RECOVERY_STRATEGY));
+				this.setToolStrategy( (String)map.get(DbInfoMeta.TOOL_STRATEGY));
 				this.setAppUserList( (String)map.get(DbInfoMeta.APP_USER_LIST));
 				this.setDeployMode( (String)map.get(DbInfoMeta.DEPLOY_MODE));
 				this.setOtherUserList( (String)map.get(DbInfoMeta.OTHER_USER_LIST));
@@ -1104,6 +1187,7 @@ public class DbInfo extends Entity {
 				this.setUpdateTime( (Date)map.get(DbInfoMeta.UPDATE_TIME));
 				this.setVersion( (Integer)map.get(DbInfoMeta.VERSION));
 				this.setDbSize( (BigDecimal)map.get(DbInfoMeta.DB_SIZE));
+				this.setClearStrategy( (String)map.get(DbInfoMeta.CLEAR_STRATEGY));
 				this.setDbPort( (String)map.get(DbInfoMeta.DB_PORT));
 				this.setCreateBy( (String)map.get(DbInfoMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(DbInfoMeta.DELETED));
@@ -1142,6 +1226,8 @@ public class DbInfo extends Entity {
 			this.setVoucherStr(DataParser.parse(String.class, r.getValue(DbInfoMeta.VOUCHER_STR)));
 			this.setId(DataParser.parse(String.class, r.getValue(DbInfoMeta.ID)));
 			this.setAdminUserList(DataParser.parse(String.class, r.getValue(DbInfoMeta.ADMIN_USER_LIST)));
+			this.setDisasterRecoveryStrategy(DataParser.parse(String.class, r.getValue(DbInfoMeta.DISASTER_RECOVERY_STRATEGY)));
+			this.setToolStrategy(DataParser.parse(String.class, r.getValue(DbInfoMeta.TOOL_STRATEGY)));
 			this.setAppUserList(DataParser.parse(String.class, r.getValue(DbInfoMeta.APP_USER_LIST)));
 			this.setDeployMode(DataParser.parse(String.class, r.getValue(DbInfoMeta.DEPLOY_MODE)));
 			this.setOtherUserList(DataParser.parse(String.class, r.getValue(DbInfoMeta.OTHER_USER_LIST)));
@@ -1149,6 +1235,7 @@ public class DbInfo extends Entity {
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(DbInfoMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(DbInfoMeta.VERSION)));
 			this.setDbSize(DataParser.parse(BigDecimal.class, r.getValue(DbInfoMeta.DB_SIZE)));
+			this.setClearStrategy(DataParser.parse(String.class, r.getValue(DbInfoMeta.CLEAR_STRATEGY)));
 			this.setDbPort(DataParser.parse(String.class, r.getValue(DbInfoMeta.DB_PORT)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(DbInfoMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(DbInfoMeta.DELETED)));
@@ -1170,6 +1257,8 @@ public class DbInfo extends Entity {
 				this.setVoucherStr( (String)r.getValue(DbInfoMeta.VOUCHER_STR));
 				this.setId( (String)r.getValue(DbInfoMeta.ID));
 				this.setAdminUserList( (String)r.getValue(DbInfoMeta.ADMIN_USER_LIST));
+				this.setDisasterRecoveryStrategy( (String)r.getValue(DbInfoMeta.DISASTER_RECOVERY_STRATEGY));
+				this.setToolStrategy( (String)r.getValue(DbInfoMeta.TOOL_STRATEGY));
 				this.setAppUserList( (String)r.getValue(DbInfoMeta.APP_USER_LIST));
 				this.setDeployMode( (String)r.getValue(DbInfoMeta.DEPLOY_MODE));
 				this.setOtherUserList( (String)r.getValue(DbInfoMeta.OTHER_USER_LIST));
@@ -1177,6 +1266,7 @@ public class DbInfo extends Entity {
 				this.setUpdateTime( (Date)r.getValue(DbInfoMeta.UPDATE_TIME));
 				this.setVersion( (Integer)r.getValue(DbInfoMeta.VERSION));
 				this.setDbSize( (BigDecimal)r.getValue(DbInfoMeta.DB_SIZE));
+				this.setClearStrategy( (String)r.getValue(DbInfoMeta.CLEAR_STRATEGY));
 				this.setDbPort( (String)r.getValue(DbInfoMeta.DB_PORT));
 				this.setCreateBy( (String)r.getValue(DbInfoMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(DbInfoMeta.DELETED));

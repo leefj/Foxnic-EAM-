@@ -27,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 折旧操作
  * <p>折旧操作 , 数据表 eam_asset_depreciation_oper 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-24 19:20:29
- * @sign C57D86DA48956F7A82CD31FEF989B66C
+ * @since 2022-11-25 13:45:49
+ * @sign 44445F605D117A50154B859B0AAA01AC
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -52,6 +52,12 @@ public class AssetDepreciationOper extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "AD202205272105414")
 	private String businessCode;
+	
+	/**
+	 * 折旧编码：折旧编码
+	*/
+	@ApiModelProperty(required = false,value="折旧编码" , notes = "折旧编码")
+	private String depreciationCode;
 	
 	/**
 	 * 状态：状态
@@ -247,6 +253,25 @@ public class AssetDepreciationOper extends Entity {
 	*/
 	public AssetDepreciationOper setBusinessCode(String businessCode) {
 		this.businessCode=businessCode;
+		return this;
+	}
+	
+	/**
+	 * 获得 折旧编码<br>
+	 * 折旧编码
+	 * @return 折旧编码
+	*/
+	public String getDepreciationCode() {
+		return depreciationCode;
+	}
+	
+	/**
+	 * 设置 折旧编码
+	 * @param depreciationCode 折旧编码
+	 * @return 当前对象
+	*/
+	public AssetDepreciationOper setDepreciationCode(String depreciationCode) {
+		this.depreciationCode=depreciationCode;
 		return this;
 	}
 	
@@ -886,6 +911,7 @@ public class AssetDepreciationOper extends Entity {
 	public AssetDepreciationOper duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.AssetDepreciationOperMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetDepreciationOperMeta.$$proxy$$();
 		inst.setNotes(this.getNotes());
+		inst.setDepreciationCode(this.getDepreciationCode());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setExecutionEndTime(this.getExecutionEndTime());
 		inst.setVersion(this.getVersion());
@@ -974,6 +1000,7 @@ public class AssetDepreciationOper extends Entity {
 		if(map==null) return false;
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, map.get(AssetDepreciationOperMeta.NOTES)));
+			this.setDepreciationCode(DataParser.parse(String.class, map.get(AssetDepreciationOperMeta.DEPRECIATION_CODE)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetDepreciationOperMeta.UPDATE_TIME)));
 			this.setExecutionEndTime(DataParser.parse(Date.class, map.get(AssetDepreciationOperMeta.EXECUTION_END_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(AssetDepreciationOperMeta.VERSION)));
@@ -1000,6 +1027,7 @@ public class AssetDepreciationOper extends Entity {
 		} else {
 			try {
 				this.setNotes( (String)map.get(AssetDepreciationOperMeta.NOTES));
+				this.setDepreciationCode( (String)map.get(AssetDepreciationOperMeta.DEPRECIATION_CODE));
 				this.setUpdateTime( (Date)map.get(AssetDepreciationOperMeta.UPDATE_TIME));
 				this.setExecutionEndTime( (Date)map.get(AssetDepreciationOperMeta.EXECUTION_END_TIME));
 				this.setVersion( (Integer)map.get(AssetDepreciationOperMeta.VERSION));
@@ -1039,6 +1067,7 @@ public class AssetDepreciationOper extends Entity {
 		if(r==null) return false;
 		if(cast) {
 			this.setNotes(DataParser.parse(String.class, r.getValue(AssetDepreciationOperMeta.NOTES)));
+			this.setDepreciationCode(DataParser.parse(String.class, r.getValue(AssetDepreciationOperMeta.DEPRECIATION_CODE)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationOperMeta.UPDATE_TIME)));
 			this.setExecutionEndTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationOperMeta.EXECUTION_END_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetDepreciationOperMeta.VERSION)));
@@ -1062,6 +1091,7 @@ public class AssetDepreciationOper extends Entity {
 		} else {
 			try {
 				this.setNotes( (String)r.getValue(AssetDepreciationOperMeta.NOTES));
+				this.setDepreciationCode( (String)r.getValue(AssetDepreciationOperMeta.DEPRECIATION_CODE));
 				this.setUpdateTime( (Date)r.getValue(AssetDepreciationOperMeta.UPDATE_TIME));
 				this.setExecutionEndTime( (Date)r.getValue(AssetDepreciationOperMeta.EXECUTION_END_TIME));
 				this.setVersion( (Integer)r.getValue(AssetDepreciationOperMeta.VERSION));

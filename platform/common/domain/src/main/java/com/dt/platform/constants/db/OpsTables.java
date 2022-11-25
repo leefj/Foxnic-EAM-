@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-11-16 10:04:33
+ * @since 2022-11-25 16:05:14
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -3790,11 +3790,6 @@ public class OpsTables {
 		public static final DBField DEPLOY_MODE = new DBField(DBDataType.STRING , "deploy_mode","deployMode","部署模式","部署模式",false,false,true);
 		
 		/**
-		 * 备份策略
-		*/
-		public static final DBField BACKUP_STRATEGY = new DBField(DBDataType.STRING , "backup_strategy","backupStrategy","备份策略","备份策略",false,false,true);
-		
-		/**
 		 * 大小(M)
 		*/
 		public static final DBField DB_SIZE = new DBField(DBDataType.DECIMAL , "db_size","dbSize","大小(M)","大小(M)",false,false,true);
@@ -3828,6 +3823,26 @@ public class OpsTables {
 		 * 连接端口
 		*/
 		public static final DBField DB_PORT = new DBField(DBDataType.STRING , "db_port","dbPort","连接端口","连接端口",false,false,true);
+		
+		/**
+		 * 本地备份策略
+		*/
+		public static final DBField BACKUP_STRATEGY = new DBField(DBDataType.STRING , "backup_strategy","backupStrategy","本地备份策略","本地备份策略",false,false,true);
+		
+		/**
+		 * 工具备份策略
+		*/
+		public static final DBField TOOL_STRATEGY = new DBField(DBDataType.STRING , "tool_strategy","toolStrategy","工具备份策略","工具备份策略",false,false,true);
+		
+		/**
+		 * 灾备策略
+		*/
+		public static final DBField DISASTER_RECOVERY_STRATEGY = new DBField(DBDataType.STRING , "disaster_recovery_strategy","disasterRecoveryStrategy","灾备策略","灾备策略",false,false,true);
+		
+		/**
+		 * 清理策略
+		*/
+		public static final DBField CLEAR_STRATEGY = new DBField(DBDataType.STRING , "clear_strategy","clearStrategy","清理策略","清理策略",false,false,true);
 		
 		/**
 		 * 备注
@@ -3879,7 +3894,7 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public OPS_DB_INFO() {
-			this.init($NAME,"数据库" , ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , BACKUP_STRATEGY , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OTHER_USER_LIST , VOUCHER_STR , DB_PORT , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"数据库" , ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OTHER_USER_LIST , VOUCHER_STR , DB_PORT , BACKUP_STRATEGY , TOOL_STRATEGY , DISASTER_RECOVERY_STRATEGY , CLEAR_STRATEGY , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_DB_INFO $TABLE=new OPS_DB_INFO();
 	}
