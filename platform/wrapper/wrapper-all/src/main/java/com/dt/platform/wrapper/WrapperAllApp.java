@@ -34,7 +34,7 @@ import org.springframework.context.annotation.ComponentScan;
 		PlatformMeta.MOBILE_PACKAGE,
 		PlatformMeta.OA_PACKAGE
 })
-@SpringBootApplication(exclude = {FeignAutoConfiguration.class})
+@SpringBootApplication
 public class WrapperAllApp {
 	public static void main(String[] args) {
 		BootApplication.run(WrapperAllApp.class, args);
