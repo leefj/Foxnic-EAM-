@@ -61,6 +61,15 @@
                     </div>
                 </div>
 
+
+    <!-- number_input : 使用期限 ,  serviceLife  -->
+    <div class="layui-form-item" >
+        <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('使用期限')}">使用期限</div><div class="layui-required">*</div></div>
+        <div class="layui-input-block layui-input-block-c1">
+            <input lay-filter="serviceLife" id="serviceLife" name="serviceLife" th:placeholder="${ lang.translate('请输入'+'使用期限') }" type="text" class="layui-input"    lay-verify="|required"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
+        </div>
+    </div>
+
                                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备注')}">备注</div></div>
                     <div class="layui-input-block layui-input-block-c1">
@@ -77,6 +86,11 @@
         </div>
 </form>
 
+<script th:inline="javascript">
+    var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
+    var VALIDATE_CONFIG={"serviceLife":{"labelInForm":"使用期限","inputType":"number_input","required":true},"categoryCode":{"labelInForm":"编码","inputType":"text_input","required":true}};
+    var AUTH_PREFIX="eam_category_finance";
+</script>
 
 <script type="text/javascript" src="/module/global.js"></script>
 <script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js"></script>

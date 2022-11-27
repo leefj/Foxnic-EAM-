@@ -36,7 +36,17 @@ public class AssetDepreciationDetailPageController extends ViewController {
 		}
 		return proxy;
 	}
-	
+
+	/**
+	 * 折旧明细 功能主页面
+	 */
+	@RequestMapping("/asset_depreciation_detail_history_list.html")
+	public String historyList(Model model,HttpServletRequest request,String assetId) {
+		model.addAttribute("assetId",assetId);
+		return prefix+"/asset_depreciation_detail_history_list";
+	}
+
+
 	/**
 	 * 折旧明细 功能主页面
 	 */

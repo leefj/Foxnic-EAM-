@@ -27,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 折旧操作
  * <p>折旧操作 , 数据表 eam_asset_depreciation_oper 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-25 13:45:49
- * @sign 44445F605D117A50154B859B0AAA01AC
+ * @since 2022-11-27 09:07:59
+ * @sign D8F7E05FD96565D17257D8CF6C2BBC00
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -44,61 +44,61 @@ public class AssetDepreciationOper extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "582677163120001024")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "648530956168200192")
 	private String id;
 	
 	/**
 	 * 业务编号：业务编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "AD202205272105414")
+	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "AD202211251411115")
 	private String businessCode;
 	
 	/**
 	 * 折旧编码：折旧编码
 	*/
-	@ApiModelProperty(required = false,value="折旧编码" , notes = "折旧编码")
+	@ApiModelProperty(required = false,value="折旧编码" , notes = "折旧编码" , example = "monthly")
 	private String depreciationCode;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "acting")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "complete")
 	private String status;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "12")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "测试")
 	private String name;
 	
 	/**
 	 * 折旧方案：折旧方案
 	*/
-	@ApiModelProperty(required = false,value="折旧方案" , notes = "折旧方案" , example = "573881211244515328")
+	@ApiModelProperty(required = false,value="折旧方案" , notes = "折旧方案" , example = "647736203386290176")
 	private String depreciationId;
 	
 	/**
 	 * 折旧内容：折旧内容
 	*/
-	@ApiModelProperty(required = false,value="折旧内容" , notes = "折旧内容" , example = "12")
+	@ApiModelProperty(required = false,value="折旧内容" , notes = "折旧内容" , example = "121212")
 	private String content;
 	
 	/**
 	 * 业务日期：业务日期
 	*/
-	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期" , example = "2022-05-27 12:00:00")
+	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期" , example = "2022-11-25 12:00:00")
 	private Date businessDate;
 	
 	/**
-	 * 执行时间：执行时间
+	 * 开始时间：开始时间
 	*/
-	@ApiModelProperty(required = false,value="执行时间" , notes = "执行时间")
+	@ApiModelProperty(required = false,value="开始时间" , notes = "开始时间")
 	private Date executionStartTime;
 	
 	/**
 	 * 结束时间：结束时间
 	*/
-	@ApiModelProperty(required = false,value="结束时间" , notes = "结束时间")
+	@ApiModelProperty(required = false,value="结束时间" , notes = "结束时间" , example = "2022-11-26 09:34:30")
 	private Date executionEndTime;
 	
 	/**
@@ -122,7 +122,7 @@ public class AssetDepreciationOper extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-05-27 09:11:01")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-11-25 02:30:29")
 	private Date createTime;
 	
 	/**
@@ -134,13 +134,13 @@ public class AssetDepreciationOper extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-06-27 12:08:15")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-11-26 09:34:30")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "1")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -149,19 +149,19 @@ public class AssetDepreciationOper extends Entity {
 	/**
 	 * 删除人ID：删除人ID
 	*/
-	@ApiModelProperty(required = false,value="删除人ID" , notes = "删除人ID" , example = "110588348101165911")
+	@ApiModelProperty(required = false,value="删除人ID" , notes = "删除人ID")
 	private String deleteBy;
 	
 	/**
 	 * 删除时间：删除时间
 	*/
-	@ApiModelProperty(required = false,value="删除时间" , notes = "删除时间" , example = "2022-06-27 12:08:15")
+	@ApiModelProperty(required = false,value="删除时间" , notes = "删除时间")
 	private Date deleteTime;
 	
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "3")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "20")
 	private Integer version;
 	
 	/**
@@ -198,7 +198,7 @@ public class AssetDepreciationOper extends Entity {
 	 * 资产：资产
 	*/
 	@ApiModelProperty(required = false,value="资产" , notes = "资产")
-	private List<Asset> assetDepreciationList;
+	private List<AssetDepreciationDetail> assetDepreciationList;
 	
 	/**
 	 * 资产：资产
@@ -371,17 +371,17 @@ public class AssetDepreciationOper extends Entity {
 	}
 	
 	/**
-	 * 获得 执行时间<br>
-	 * 执行时间
-	 * @return 执行时间
+	 * 获得 开始时间<br>
+	 * 开始时间
+	 * @return 开始时间
 	*/
 	public Date getExecutionStartTime() {
 		return executionStartTime;
 	}
 	
 	/**
-	 * 设置 执行时间
-	 * @param executionStartTime 执行时间
+	 * 设置 开始时间
+	 * @param executionStartTime 开始时间
 	 * @return 当前对象
 	*/
 	public AssetDepreciationOper setExecutionStartTime(Date executionStartTime) {
@@ -773,7 +773,7 @@ public class AssetDepreciationOper extends Entity {
 	 * 资产
 	 * @return 资产
 	*/
-	public List<Asset> getAssetDepreciationList() {
+	public List<AssetDepreciationDetail> getAssetDepreciationList() {
 		return assetDepreciationList;
 	}
 	
@@ -782,7 +782,7 @@ public class AssetDepreciationOper extends Entity {
 	 * @param assetDepreciationList 资产
 	 * @return 当前对象
 	*/
-	public AssetDepreciationOper setAssetDepreciationList(List<Asset> assetDepreciationList) {
+	public AssetDepreciationOper setAssetDepreciationList(List<AssetDepreciationDetail> assetDepreciationList) {
 		this.assetDepreciationList=assetDepreciationList;
 		return this;
 	}
@@ -792,7 +792,7 @@ public class AssetDepreciationOper extends Entity {
 	 * @param assetDepreciation 资产
 	 * @return 当前对象
 	*/
-	public AssetDepreciationOper addAssetDepreciation(Asset... assetDepreciation) {
+	public AssetDepreciationOper addAssetDepreciation(AssetDepreciationDetail... assetDepreciation) {
 		if(this.assetDepreciationList==null) assetDepreciationList=new ArrayList<>();
 		this.assetDepreciationList.addAll(Arrays.asList(assetDepreciation));
 		return this;

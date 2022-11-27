@@ -11,11 +11,14 @@ import java.util.Date;
 import java.math.BigDecimal;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
+import java.util.List;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Organization;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 import com.dt.platform.domain.eam.meta.AssetDepreciationDetailMeta;
@@ -24,16 +27,16 @@ import com.github.foxnic.sql.data.ExprRcd;
 
 
 /**
- * 折旧明细
- * <p>折旧明细 , 数据表 eam_asset_depreciation_detail 的PO类型</p>
+ * eam_asset_depreciation_detail
+ * <p>eam_asset_depreciation_detail , 数据表 eam_asset_depreciation_detail 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-25 12:22:16
- * @sign 08AEB42D8324D306A3725F639167F527
+ * @since 2022-11-27 12:23:01
+ * @sign E41F58FF78B5C651CF9AB93F47A7DC5F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_asset_depreciation_detail")
-@ApiModel(description = "折旧明细 ; 折旧明细 , 数据表 eam_asset_depreciation_detail 的PO类型")
+@ApiModel(description = "eam_asset_depreciation_detail ; eam_asset_depreciation_detail , 数据表 eam_asset_depreciation_detail 的PO类型")
 public class AssetDepreciationDetail extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -44,13 +47,13 @@ public class AssetDepreciationDetail extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "648956390479495168")
 	private String id;
 	
 	/**
 	 * 折旧方案：折旧方案
 	*/
-	@ApiModelProperty(required = false,value="折旧方案" , notes = "折旧方案")
+	@ApiModelProperty(required = false,value="折旧方案" , notes = "折旧方案" , example = "647736203386290176")
 	private String depreciationId;
 	
 	/**
@@ -62,25 +65,25 @@ public class AssetDepreciationDetail extends Entity {
 	/**
 	 * 首次折旧方式：首次折旧方式
 	*/
-	@ApiModelProperty(required = false,value="首次折旧方式" , notes = "首次折旧方式")
-	private String firstDepreciationDate;
+	@ApiModelProperty(required = false,value="首次折旧方式" , notes = "首次折旧方式" , example = "purchase_next_month")
+	private String firstDepreciationMethod;
 	
 	/**
 	 * 折旧方式：折旧方式
 	*/
-	@ApiModelProperty(required = false,value="折旧方式" , notes = "折旧方式")
+	@ApiModelProperty(required = false,value="折旧方式" , notes = "折旧方式" , example = "average_age")
 	private String depreciationMethod;
 	
 	/**
 	 * 业务日期：业务日期
 	*/
-	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期")
+	@ApiModelProperty(required = false,value="业务日期" , notes = "业务日期" , example = "2022-11-25 12:00:00")
 	private Date businessDate;
 	
 	/**
 	 * 折旧结果：折旧结果
 	*/
-	@ApiModelProperty(required = false,value="折旧结果" , notes = "折旧结果")
+	@ApiModelProperty(required = false,value="折旧结果" , notes = "折旧结果" , example = "wait_calculate")
 	private String result;
 	
 	/**
@@ -92,25 +95,43 @@ public class AssetDepreciationDetail extends Entity {
 	/**
 	 * 资产：资产
 	*/
-	@ApiModelProperty(required = false,value="资产" , notes = "资产")
+	@ApiModelProperty(required = false,value="资产" , notes = "资产" , example = "648874943362105344")
 	private String assetId;
 	
 	/**
 	 * 资产类别：资产类别
 	*/
 	@ApiModelProperty(required = false,value="资产类别" , notes = "资产类别")
+	private String assetCategoryId;
+	
+	/**
+	 * 资产类别：资产类别
+	*/
+	@ApiModelProperty(required = false,value="资产类别" , notes = "资产类别" , example = "办公设备")
 	private String assetCategoryName;
+	
+	/**
+	 * 财务分类：财务分类
+	*/
+	@ApiModelProperty(required = false,value="财务分类" , notes = "财务分类")
+	private String assetFinanceCategoryId;
+	
+	/**
+	 * 财务分类：财务分类
+	*/
+	@ApiModelProperty(required = false,value="财务分类" , notes = "财务分类")
+	private String assetFinanceCategoryName;
 	
 	/**
 	 * 资产编码：资产编码
 	*/
-	@ApiModelProperty(required = false,value="资产编码" , notes = "资产编码")
+	@ApiModelProperty(required = false,value="资产编码" , notes = "资产编码" , example = "AS2022112609345")
 	private String assetCode;
 	
 	/**
 	 * 资产名称：资产名称
 	*/
-	@ApiModelProperty(required = false,value="资产名称" , notes = "资产名称")
+	@ApiModelProperty(required = false,value="资产名称" , notes = "资产名称" , example = "001")
 	private String assetName;
 	
 	/**
@@ -122,7 +143,7 @@ public class AssetDepreciationDetail extends Entity {
 	/**
 	 * 资产状态：资产状态
 	*/
-	@ApiModelProperty(required = false,value="资产状态" , notes = "资产状态")
+	@ApiModelProperty(required = false,value="资产状态" , notes = "资产状态" , example = "idle")
 	private String assetStatusName;
 	
 	/**
@@ -134,13 +155,13 @@ public class AssetDepreciationDetail extends Entity {
 	/**
 	 * 入账日期：入账日期
 	*/
-	@ApiModelProperty(required = false,value="入账日期" , notes = "入账日期")
+	@ApiModelProperty(required = false,value="入账日期" , notes = "入账日期" , example = "2022-11-25 12:00:00")
 	private Date assetRegisterDate;
 	
 	/**
 	 * 资产原值：资产原值
 	*/
-	@ApiModelProperty(required = false,value="资产原值" , notes = "资产原值")
+	@ApiModelProperty(required = false,value="资产原值" , notes = "资产原值" , example = "7682.00")
 	private BigDecimal assetOriginalUnitPrice;
 	
 	/**
@@ -153,31 +174,31 @@ public class AssetDepreciationDetail extends Entity {
 	 * 资产净值：(当前)
 	*/
 	@ApiModelProperty(required = false,value="资产净值" , notes = "(当前)")
-	private BigDecimal assetEnavPrice;
+	private BigDecimal assetNavPrice;
 	
 	/**
 	 * 税额：税额
 	*/
-	@ApiModelProperty(required = false,value="税额" , notes = "税额")
+	@ApiModelProperty(required = false,value="税额" , notes = "税额" , example = "2.00")
 	private BigDecimal assetTaxAmountRate;
 	
 	/**
 	 * 可使用期限：月
 	*/
-	@ApiModelProperty(required = false,value="可使用期限" , notes = "月")
+	@ApiModelProperty(required = false,value="可使用期限" , notes = "月" , example = "12.00")
 	private BigDecimal assetServiceLife;
 	
 	/**
 	 * 本期残值率：本期残值率
 	*/
-	@ApiModelProperty(required = false,value="本期残值率" , notes = "本期残值率")
-	private BigDecimal assetRedidualRate;
+	@ApiModelProperty(required = false,value="本期残值率" , notes = "本期残值率" , example = "5.00")
+	private BigDecimal assetResidualsRate;
 	
 	/**
 	 * 本期残值：本期残值
 	*/
-	@ApiModelProperty(required = false,value="本期残值" , notes = "本期残值")
-	private BigDecimal assetRedidualPrice;
+	@ApiModelProperty(required = false,value="本期残值" , notes = "本期残值" , example = "0.00")
+	private BigDecimal assetResidualsPrice;
 	
 	/**
 	 * (期初)期初原值：(期初)期初原值
@@ -206,7 +227,7 @@ public class AssetDepreciationDetail extends Entity {
 	/**
 	 * 已使用期限：月
 	*/
-	@ApiModelProperty(required = false,value="已使用期限" , notes = "月")
+	@ApiModelProperty(required = false,value="已使用期限" , notes = "月" , example = "0.00")
 	private BigDecimal cUsedServiceLife;
 	
 	/**
@@ -256,6 +277,12 @@ public class AssetDepreciationDetail extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="会计期间已使用期限" , notes = "月")
 	private BigDecimal accountingServiceLife;
+	
+	/**
+	 * 首次折旧：0否,1是
+	*/
+	@ApiModelProperty(required = false,value="首次折旧" , notes = "0否,1是")
+	private String firstDepreciation;
 	
 	/**
 	 * 使用人ID：使用人ID
@@ -314,7 +341,7 @@ public class AssetDepreciationDetail extends Entity {
 	/**
 	 * 源资产：源资产
 	*/
-	@ApiModelProperty(required = false,value="源资产" , notes = "源资产")
+	@ApiModelProperty(required = false,value="源资产" , notes = "源资产" , example = "648956390253002752")
 	private String detailIdSource;
 	
 	/**
@@ -324,15 +351,27 @@ public class AssetDepreciationDetail extends Entity {
 	private String detailIdTarget;
 	
 	/**
+	 * 上次折旧单据：上次折旧单据
+	*/
+	@ApiModelProperty(required = false,value="上次折旧单据" , notes = "上次折旧单据")
+	private String lastOperId;
+	
+	/**
+	 * 上次折旧时间：上次折旧时间
+	*/
+	@ApiModelProperty(required = false,value="上次折旧时间" , notes = "上次折旧时间")
+	private Date lastOperTime;
+	
+	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = true,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = true,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-11-26 06:41:01")
 	private Date createTime;
 	
 	/**
@@ -350,7 +389,7 @@ public class AssetDepreciationDetail extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -371,13 +410,13 @@ public class AssetDepreciationDetail extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -399,10 +438,28 @@ public class AssetDepreciationDetail extends Entity {
 	private Asset asset;
 	
 	/**
+	 * 上一期折旧数据：上一期折旧数据
+	*/
+	@ApiModelProperty(required = false,value="上一期折旧数据" , notes = "上一期折旧数据")
+	private AssetDepreciationDetail lastAssetDepreciationDetail;
+	
+	/**
 	 * 方案：方案
 	*/
 	@ApiModelProperty(required = false,value="方案" , notes = "方案")
 	private AssetDepreciation assetDepreciation;
+	
+	/**
+	 * calRuleList：calRuleList
+	*/
+	@ApiModelProperty(required = false,value="calRuleList" , notes = "calRuleList")
+	private List<AssetDepreciationCalRule> calRuleList;
+	
+	/**
+	 * calRuleIds：calRuleIds
+	*/
+	@ApiModelProperty(required = false,value="calRuleIds" , notes = "calRuleIds")
+	private List<String> calRuleIds;
 	
 	/**
 	 * 操作：操作
@@ -496,17 +553,17 @@ public class AssetDepreciationDetail extends Entity {
 	 * 首次折旧方式
 	 * @return 首次折旧方式
 	*/
-	public String getFirstDepreciationDate() {
-		return firstDepreciationDate;
+	public String getFirstDepreciationMethod() {
+		return firstDepreciationMethod;
 	}
 	
 	/**
 	 * 设置 首次折旧方式
-	 * @param firstDepreciationDate 首次折旧方式
+	 * @param firstDepreciationMethod 首次折旧方式
 	 * @return 当前对象
 	*/
-	public AssetDepreciationDetail setFirstDepreciationDate(String firstDepreciationDate) {
-		this.firstDepreciationDate=firstDepreciationDate;
+	public AssetDepreciationDetail setFirstDepreciationMethod(String firstDepreciationMethod) {
+		this.firstDepreciationMethod=firstDepreciationMethod;
 		return this;
 	}
 	
@@ -610,6 +667,25 @@ public class AssetDepreciationDetail extends Entity {
 	 * 资产类别
 	 * @return 资产类别
 	*/
+	public String getAssetCategoryId() {
+		return assetCategoryId;
+	}
+	
+	/**
+	 * 设置 资产类别
+	 * @param assetCategoryId 资产类别
+	 * @return 当前对象
+	*/
+	public AssetDepreciationDetail setAssetCategoryId(String assetCategoryId) {
+		this.assetCategoryId=assetCategoryId;
+		return this;
+	}
+	
+	/**
+	 * 获得 资产类别<br>
+	 * 资产类别
+	 * @return 资产类别
+	*/
 	public String getAssetCategoryName() {
 		return assetCategoryName;
 	}
@@ -621,6 +697,44 @@ public class AssetDepreciationDetail extends Entity {
 	*/
 	public AssetDepreciationDetail setAssetCategoryName(String assetCategoryName) {
 		this.assetCategoryName=assetCategoryName;
+		return this;
+	}
+	
+	/**
+	 * 获得 财务分类<br>
+	 * 财务分类
+	 * @return 财务分类
+	*/
+	public String getAssetFinanceCategoryId() {
+		return assetFinanceCategoryId;
+	}
+	
+	/**
+	 * 设置 财务分类
+	 * @param assetFinanceCategoryId 财务分类
+	 * @return 当前对象
+	*/
+	public AssetDepreciationDetail setAssetFinanceCategoryId(String assetFinanceCategoryId) {
+		this.assetFinanceCategoryId=assetFinanceCategoryId;
+		return this;
+	}
+	
+	/**
+	 * 获得 财务分类<br>
+	 * 财务分类
+	 * @return 财务分类
+	*/
+	public String getAssetFinanceCategoryName() {
+		return assetFinanceCategoryName;
+	}
+	
+	/**
+	 * 设置 财务分类
+	 * @param assetFinanceCategoryName 财务分类
+	 * @return 当前对象
+	*/
+	public AssetDepreciationDetail setAssetFinanceCategoryName(String assetFinanceCategoryName) {
+		this.assetFinanceCategoryName=assetFinanceCategoryName;
 		return this;
 	}
 	
@@ -781,17 +895,17 @@ public class AssetDepreciationDetail extends Entity {
 	 * (当前)
 	 * @return 资产净值
 	*/
-	public BigDecimal getAssetEnavPrice() {
-		return assetEnavPrice;
+	public BigDecimal getAssetNavPrice() {
+		return assetNavPrice;
 	}
 	
 	/**
 	 * 设置 资产净值
-	 * @param assetEnavPrice 资产净值
+	 * @param assetNavPrice 资产净值
 	 * @return 当前对象
 	*/
-	public AssetDepreciationDetail setAssetEnavPrice(BigDecimal assetEnavPrice) {
-		this.assetEnavPrice=assetEnavPrice;
+	public AssetDepreciationDetail setAssetNavPrice(BigDecimal assetNavPrice) {
+		this.assetNavPrice=assetNavPrice;
 		return this;
 	}
 	
@@ -838,17 +952,17 @@ public class AssetDepreciationDetail extends Entity {
 	 * 本期残值率
 	 * @return 本期残值率
 	*/
-	public BigDecimal getAssetRedidualRate() {
-		return assetRedidualRate;
+	public BigDecimal getAssetResidualsRate() {
+		return assetResidualsRate;
 	}
 	
 	/**
 	 * 设置 本期残值率
-	 * @param assetRedidualRate 本期残值率
+	 * @param assetResidualsRate 本期残值率
 	 * @return 当前对象
 	*/
-	public AssetDepreciationDetail setAssetRedidualRate(BigDecimal assetRedidualRate) {
-		this.assetRedidualRate=assetRedidualRate;
+	public AssetDepreciationDetail setAssetResidualsRate(BigDecimal assetResidualsRate) {
+		this.assetResidualsRate=assetResidualsRate;
 		return this;
 	}
 	
@@ -857,17 +971,17 @@ public class AssetDepreciationDetail extends Entity {
 	 * 本期残值
 	 * @return 本期残值
 	*/
-	public BigDecimal getAssetRedidualPrice() {
-		return assetRedidualPrice;
+	public BigDecimal getAssetResidualsPrice() {
+		return assetResidualsPrice;
 	}
 	
 	/**
 	 * 设置 本期残值
-	 * @param assetRedidualPrice 本期残值
+	 * @param assetResidualsPrice 本期残值
 	 * @return 当前对象
 	*/
-	public AssetDepreciationDetail setAssetRedidualPrice(BigDecimal assetRedidualPrice) {
-		this.assetRedidualPrice=assetRedidualPrice;
+	public AssetDepreciationDetail setAssetResidualsPrice(BigDecimal assetResidualsPrice) {
+		this.assetResidualsPrice=assetResidualsPrice;
 		return this;
 	}
 	
@@ -1119,6 +1233,25 @@ public class AssetDepreciationDetail extends Entity {
 	}
 	
 	/**
+	 * 获得 首次折旧<br>
+	 * 0否,1是
+	 * @return 首次折旧
+	*/
+	public String getFirstDepreciation() {
+		return firstDepreciation;
+	}
+	
+	/**
+	 * 设置 首次折旧
+	 * @param firstDepreciation 首次折旧
+	 * @return 当前对象
+	*/
+	public AssetDepreciationDetail setFirstDepreciation(String firstDepreciation) {
+		this.firstDepreciation=firstDepreciation;
+		return this;
+	}
+	
+	/**
 	 * 获得 使用人ID<br>
 	 * 使用人ID
 	 * @return 使用人ID
@@ -1324,6 +1457,44 @@ public class AssetDepreciationDetail extends Entity {
 	*/
 	public AssetDepreciationDetail setDetailIdTarget(String detailIdTarget) {
 		this.detailIdTarget=detailIdTarget;
+		return this;
+	}
+	
+	/**
+	 * 获得 上次折旧单据<br>
+	 * 上次折旧单据
+	 * @return 上次折旧单据
+	*/
+	public String getLastOperId() {
+		return lastOperId;
+	}
+	
+	/**
+	 * 设置 上次折旧单据
+	 * @param lastOperId 上次折旧单据
+	 * @return 当前对象
+	*/
+	public AssetDepreciationDetail setLastOperId(String lastOperId) {
+		this.lastOperId=lastOperId;
+		return this;
+	}
+	
+	/**
+	 * 获得 上次折旧时间<br>
+	 * 上次折旧时间
+	 * @return 上次折旧时间
+	*/
+	public Date getLastOperTime() {
+		return lastOperTime;
+	}
+	
+	/**
+	 * 设置 上次折旧时间
+	 * @param lastOperTime 上次折旧时间
+	 * @return 当前对象
+	*/
+	public AssetDepreciationDetail setLastOperTime(Date lastOperTime) {
+		this.lastOperTime=lastOperTime;
 		return this;
 	}
 	
@@ -1587,6 +1758,25 @@ public class AssetDepreciationDetail extends Entity {
 	}
 	
 	/**
+	 * 获得 上一期折旧数据<br>
+	 * 上一期折旧数据
+	 * @return 上一期折旧数据
+	*/
+	public AssetDepreciationDetail getLastAssetDepreciationDetail() {
+		return lastAssetDepreciationDetail;
+	}
+	
+	/**
+	 * 设置 上一期折旧数据
+	 * @param lastAssetDepreciationDetail 上一期折旧数据
+	 * @return 当前对象
+	*/
+	public AssetDepreciationDetail setLastAssetDepreciationDetail(AssetDepreciationDetail lastAssetDepreciationDetail) {
+		this.lastAssetDepreciationDetail=lastAssetDepreciationDetail;
+		return this;
+	}
+	
+	/**
 	 * 获得 方案<br>
 	 * 方案
 	 * @return 方案
@@ -1602,6 +1792,66 @@ public class AssetDepreciationDetail extends Entity {
 	*/
 	public AssetDepreciationDetail setAssetDepreciation(AssetDepreciation assetDepreciation) {
 		this.assetDepreciation=assetDepreciation;
+		return this;
+	}
+	
+	/**
+	 * 获得 calRuleList<br>
+	 * calRuleList
+	 * @return calRuleList
+	*/
+	public List<AssetDepreciationCalRule> getCalRuleList() {
+		return calRuleList;
+	}
+	
+	/**
+	 * 设置 calRuleList
+	 * @param calRuleList calRuleList
+	 * @return 当前对象
+	*/
+	public AssetDepreciationDetail setCalRuleList(List<AssetDepreciationCalRule> calRuleList) {
+		this.calRuleList=calRuleList;
+		return this;
+	}
+	
+	/**
+	 * 添加 calRuleList
+	 * @param calRule calRuleList
+	 * @return 当前对象
+	*/
+	public AssetDepreciationDetail addCalRule(AssetDepreciationCalRule... calRule) {
+		if(this.calRuleList==null) calRuleList=new ArrayList<>();
+		this.calRuleList.addAll(Arrays.asList(calRule));
+		return this;
+	}
+	
+	/**
+	 * 获得 calRuleIds<br>
+	 * calRuleIds
+	 * @return calRuleIds
+	*/
+	public List<String> getCalRuleIds() {
+		return calRuleIds;
+	}
+	
+	/**
+	 * 设置 calRuleIds
+	 * @param calRuleIds calRuleIds
+	 * @return 当前对象
+	*/
+	public AssetDepreciationDetail setCalRuleIds(List<String> calRuleIds) {
+		this.calRuleIds=calRuleIds;
+		return this;
+	}
+	
+	/**
+	 * 添加 calRuleIds
+	 * @param calRuleId calRuleIds
+	 * @return 当前对象
+	*/
+	public AssetDepreciationDetail addCalRuleId(String... calRuleId) {
+		if(this.calRuleIds==null) calRuleIds=new ArrayList<>();
+		this.calRuleIds.addAll(Arrays.asList(calRuleId));
 		return this;
 	}
 	
@@ -1744,27 +1994,31 @@ public class AssetDepreciationDetail extends Entity {
 	@Transient
 	public AssetDepreciationDetail duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.AssetDepreciationDetailMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetDepreciationDetailMeta.$$proxy$$();
-		inst.setAssetRedidualRate(this.getAssetRedidualRate());
+		inst.setAssetResidualsRate(this.getAssetResidualsRate());
 		inst.setCUsedServiceLife(this.getCUsedServiceLife());
 		inst.setUseOrgName(this.getUseOrgName());
 		inst.setERecoverableAmount(this.getERecoverableAmount());
 		inst.setDepreciationMethod(this.getDepreciationMethod());
 		inst.setExpenseItemKey(this.getExpenseItemKey());
 		inst.setCustomerInfo(this.getCustomerInfo());
+		inst.setFirstDepreciation(this.getFirstDepreciation());
+		inst.setAssetNavPrice(this.getAssetNavPrice());
 		inst.setExpenseItemName(this.getExpenseItemName());
 		inst.setENavAmount(this.getENavAmount());
 		inst.setDetailIdSource(this.getDetailIdSource());
 		inst.setSDepreciationAmount(this.getSDepreciationAmount());
 		inst.setId(this.getId());
 		inst.setCYearDepreciationAmount(this.getCYearDepreciationAmount());
-		inst.setFirstDepreciationDate(this.getFirstDepreciationDate());
 		inst.setAssetCode(this.getAssetCode());
-		inst.setAssetEnavPrice(this.getAssetEnavPrice());
 		inst.setFinancialOptionKey(this.getFinancialOptionKey());
 		inst.setVersion(this.getVersion());
+		inst.setFirstDepreciationMethod(this.getFirstDepreciationMethod());
+		inst.setAssetFinanceCategoryName(this.getAssetFinanceCategoryName());
+		inst.setLastOperId(this.getLastOperId());
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setEDepreciationAmount(this.getEDepreciationAmount());
 		inst.setFinancialOptionName(this.getFinancialOptionName());
+		inst.setAssetCategoryId(this.getAssetCategoryId());
 		inst.setSOriginalPrice(this.getSOriginalPrice());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setAssetCategoryName(this.getAssetCategoryName());
@@ -1779,17 +2033,19 @@ public class AssetDepreciationDetail extends Entity {
 		inst.setResult(this.getResult());
 		inst.setBusinessDate(this.getBusinessDate());
 		inst.setDepreciationId(this.getDepreciationId());
+		inst.setAssetResidualsPrice(this.getAssetResidualsPrice());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setAssetId(this.getAssetId());
 		inst.setAssetServiceLife(this.getAssetServiceLife());
-		inst.setAssetRedidualPrice(this.getAssetRedidualPrice());
 		inst.setCOriginalPriceIncrease(this.getCOriginalPriceIncrease());
 		inst.setAccountingServiceLife(this.getAccountingServiceLife());
 		inst.setUseUserName(this.getUseUserName());
 		inst.setUseOrgId(this.getUseOrgId());
 		inst.setAssetModel(this.getAssetModel());
+		inst.setLastOperTime(this.getLastOperTime());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setCDepreciationAmount(this.getCDepreciationAmount());
+		inst.setAssetFinanceCategoryId(this.getAssetFinanceCategoryId());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setAssetPurchaseDate(this.getAssetPurchaseDate());
 		inst.setDeleted(this.getDeleted());
@@ -1803,11 +2059,14 @@ public class AssetDepreciationDetail extends Entity {
 		if(all) {
 			inst.setUseOrganization(this.getUseOrganization());
 			inst.setAssetTarget(this.getAssetTarget());
+			inst.setCalRuleList(this.getCalRuleList());
+			inst.setCalRuleIds(this.getCalRuleIds());
 			inst.setExpenseItemDict(this.getExpenseItemDict());
 			inst.setAssetDepreciationOper(this.getAssetDepreciationOper());
 			inst.setAssetSource(this.getAssetSource());
 			inst.setAsset(this.getAsset());
 			inst.setUseUser(this.getUseUser());
+			inst.setLastAssetDepreciationDetail(this.getLastAssetDepreciationDetail());
 			inst.setAssetDepreciation(this.getAssetDepreciation());
 			inst.setFinancialOptionDict(this.getFinancialOptionDict());
 		}
@@ -1869,27 +2128,31 @@ public class AssetDepreciationDetail extends Entity {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
-			this.setAssetRedidualRate(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationDetailMeta.ASSET_REDIDUAL_RATE)));
+			this.setAssetResidualsRate(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationDetailMeta.ASSET_RESIDUALS_RATE)));
 			this.setCUsedServiceLife(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationDetailMeta.C_USED_SERVICE_LIFE)));
 			this.setUseOrgName(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.USE_ORG_NAME)));
 			this.setERecoverableAmount(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationDetailMeta.E_RECOVERABLE_AMOUNT)));
 			this.setDepreciationMethod(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.DEPRECIATION_METHOD)));
 			this.setExpenseItemKey(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.EXPENSE_ITEM_KEY)));
 			this.setCustomerInfo(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.CUSTOMER_INFO)));
+			this.setFirstDepreciation(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.FIRST_DEPRECIATION)));
+			this.setAssetNavPrice(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationDetailMeta.ASSET_NAV_PRICE)));
 			this.setExpenseItemName(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.EXPENSE_ITEM_NAME)));
 			this.setENavAmount(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationDetailMeta.E_NAV_AMOUNT)));
 			this.setDetailIdSource(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.DETAIL_ID_SOURCE)));
 			this.setSDepreciationAmount(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationDetailMeta.S_DEPRECIATION_AMOUNT)));
 			this.setId(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.ID)));
 			this.setCYearDepreciationAmount(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationDetailMeta.C_YEAR_DEPRECIATION_AMOUNT)));
-			this.setFirstDepreciationDate(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.FIRST_DEPRECIATION_DATE)));
 			this.setAssetCode(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.ASSET_CODE)));
-			this.setAssetEnavPrice(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationDetailMeta.ASSET_ENAV_PRICE)));
 			this.setFinancialOptionKey(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.FINANCIAL_OPTION_KEY)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(AssetDepreciationDetailMeta.VERSION)));
+			this.setFirstDepreciationMethod(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.FIRST_DEPRECIATION_METHOD)));
+			this.setAssetFinanceCategoryName(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.ASSET_FINANCE_CATEGORY_NAME)));
+			this.setLastOperId(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.LAST_OPER_ID)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetDepreciationDetailMeta.DELETE_TIME)));
 			this.setEDepreciationAmount(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationDetailMeta.E_DEPRECIATION_AMOUNT)));
 			this.setFinancialOptionName(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.FINANCIAL_OPTION_NAME)));
+			this.setAssetCategoryId(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.ASSET_CATEGORY_ID)));
 			this.setSOriginalPrice(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationDetailMeta.S_ORIGINAL_PRICE)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.DELETE_BY)));
 			this.setAssetCategoryName(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.ASSET_CATEGORY_NAME)));
@@ -1904,17 +2167,19 @@ public class AssetDepreciationDetail extends Entity {
 			this.setResult(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.RESULT)));
 			this.setBusinessDate(DataParser.parse(Date.class, map.get(AssetDepreciationDetailMeta.BUSINESS_DATE)));
 			this.setDepreciationId(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.DEPRECIATION_ID)));
+			this.setAssetResidualsPrice(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationDetailMeta.ASSET_RESIDUALS_PRICE)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.UPDATE_BY)));
 			this.setAssetId(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.ASSET_ID)));
 			this.setAssetServiceLife(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationDetailMeta.ASSET_SERVICE_LIFE)));
-			this.setAssetRedidualPrice(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationDetailMeta.ASSET_REDIDUAL_PRICE)));
 			this.setCOriginalPriceIncrease(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationDetailMeta.C_ORIGINAL_PRICE_INCREASE)));
 			this.setAccountingServiceLife(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationDetailMeta.ACCOUNTING_SERVICE_LIFE)));
 			this.setUseUserName(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.USE_USER_NAME)));
 			this.setUseOrgId(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.USE_ORG_ID)));
 			this.setAssetModel(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.ASSET_MODEL)));
+			this.setLastOperTime(DataParser.parse(Date.class, map.get(AssetDepreciationDetailMeta.LAST_OPER_TIME)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetDepreciationDetailMeta.UPDATE_TIME)));
 			this.setCDepreciationAmount(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationDetailMeta.C_DEPRECIATION_AMOUNT)));
+			this.setAssetFinanceCategoryId(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.ASSET_FINANCE_CATEGORY_ID)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.CREATE_BY)));
 			this.setAssetPurchaseDate(DataParser.parse(Date.class, map.get(AssetDepreciationDetailMeta.ASSET_PURCHASE_DATE)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetDepreciationDetailMeta.DELETED)));
@@ -1933,32 +2198,37 @@ public class AssetDepreciationDetail extends Entity {
 			this.setAssetSource(DataParser.parse(Asset.class, map.get(AssetDepreciationDetailMeta.ASSET_SOURCE)));
 			this.setAsset(DataParser.parse(Asset.class, map.get(AssetDepreciationDetailMeta.ASSET)));
 			this.setUseUser(DataParser.parse(Employee.class, map.get(AssetDepreciationDetailMeta.USE_USER)));
+			this.setLastAssetDepreciationDetail(DataParser.parse(AssetDepreciationDetail.class, map.get(AssetDepreciationDetailMeta.LAST_ASSET_DEPRECIATION_DETAIL)));
 			this.setAssetDepreciation(DataParser.parse(AssetDepreciation.class, map.get(AssetDepreciationDetailMeta.ASSET_DEPRECIATION)));
 			this.setFinancialOptionDict(DataParser.parse(DictItem.class, map.get(AssetDepreciationDetailMeta.FINANCIAL_OPTION_DICT)));
 			return true;
 		} else {
 			try {
-				this.setAssetRedidualRate( (BigDecimal)map.get(AssetDepreciationDetailMeta.ASSET_REDIDUAL_RATE));
+				this.setAssetResidualsRate( (BigDecimal)map.get(AssetDepreciationDetailMeta.ASSET_RESIDUALS_RATE));
 				this.setCUsedServiceLife( (BigDecimal)map.get(AssetDepreciationDetailMeta.C_USED_SERVICE_LIFE));
 				this.setUseOrgName( (String)map.get(AssetDepreciationDetailMeta.USE_ORG_NAME));
 				this.setERecoverableAmount( (BigDecimal)map.get(AssetDepreciationDetailMeta.E_RECOVERABLE_AMOUNT));
 				this.setDepreciationMethod( (String)map.get(AssetDepreciationDetailMeta.DEPRECIATION_METHOD));
 				this.setExpenseItemKey( (String)map.get(AssetDepreciationDetailMeta.EXPENSE_ITEM_KEY));
 				this.setCustomerInfo( (String)map.get(AssetDepreciationDetailMeta.CUSTOMER_INFO));
+				this.setFirstDepreciation( (String)map.get(AssetDepreciationDetailMeta.FIRST_DEPRECIATION));
+				this.setAssetNavPrice( (BigDecimal)map.get(AssetDepreciationDetailMeta.ASSET_NAV_PRICE));
 				this.setExpenseItemName( (String)map.get(AssetDepreciationDetailMeta.EXPENSE_ITEM_NAME));
 				this.setENavAmount( (BigDecimal)map.get(AssetDepreciationDetailMeta.E_NAV_AMOUNT));
 				this.setDetailIdSource( (String)map.get(AssetDepreciationDetailMeta.DETAIL_ID_SOURCE));
 				this.setSDepreciationAmount( (BigDecimal)map.get(AssetDepreciationDetailMeta.S_DEPRECIATION_AMOUNT));
 				this.setId( (String)map.get(AssetDepreciationDetailMeta.ID));
 				this.setCYearDepreciationAmount( (BigDecimal)map.get(AssetDepreciationDetailMeta.C_YEAR_DEPRECIATION_AMOUNT));
-				this.setFirstDepreciationDate( (String)map.get(AssetDepreciationDetailMeta.FIRST_DEPRECIATION_DATE));
 				this.setAssetCode( (String)map.get(AssetDepreciationDetailMeta.ASSET_CODE));
-				this.setAssetEnavPrice( (BigDecimal)map.get(AssetDepreciationDetailMeta.ASSET_ENAV_PRICE));
 				this.setFinancialOptionKey( (String)map.get(AssetDepreciationDetailMeta.FINANCIAL_OPTION_KEY));
 				this.setVersion( (Integer)map.get(AssetDepreciationDetailMeta.VERSION));
+				this.setFirstDepreciationMethod( (String)map.get(AssetDepreciationDetailMeta.FIRST_DEPRECIATION_METHOD));
+				this.setAssetFinanceCategoryName( (String)map.get(AssetDepreciationDetailMeta.ASSET_FINANCE_CATEGORY_NAME));
+				this.setLastOperId( (String)map.get(AssetDepreciationDetailMeta.LAST_OPER_ID));
 				this.setDeleteTime( (Date)map.get(AssetDepreciationDetailMeta.DELETE_TIME));
 				this.setEDepreciationAmount( (BigDecimal)map.get(AssetDepreciationDetailMeta.E_DEPRECIATION_AMOUNT));
 				this.setFinancialOptionName( (String)map.get(AssetDepreciationDetailMeta.FINANCIAL_OPTION_NAME));
+				this.setAssetCategoryId( (String)map.get(AssetDepreciationDetailMeta.ASSET_CATEGORY_ID));
 				this.setSOriginalPrice( (BigDecimal)map.get(AssetDepreciationDetailMeta.S_ORIGINAL_PRICE));
 				this.setDeleteBy( (String)map.get(AssetDepreciationDetailMeta.DELETE_BY));
 				this.setAssetCategoryName( (String)map.get(AssetDepreciationDetailMeta.ASSET_CATEGORY_NAME));
@@ -1973,17 +2243,19 @@ public class AssetDepreciationDetail extends Entity {
 				this.setResult( (String)map.get(AssetDepreciationDetailMeta.RESULT));
 				this.setBusinessDate( (Date)map.get(AssetDepreciationDetailMeta.BUSINESS_DATE));
 				this.setDepreciationId( (String)map.get(AssetDepreciationDetailMeta.DEPRECIATION_ID));
+				this.setAssetResidualsPrice( (BigDecimal)map.get(AssetDepreciationDetailMeta.ASSET_RESIDUALS_PRICE));
 				this.setUpdateBy( (String)map.get(AssetDepreciationDetailMeta.UPDATE_BY));
 				this.setAssetId( (String)map.get(AssetDepreciationDetailMeta.ASSET_ID));
 				this.setAssetServiceLife( (BigDecimal)map.get(AssetDepreciationDetailMeta.ASSET_SERVICE_LIFE));
-				this.setAssetRedidualPrice( (BigDecimal)map.get(AssetDepreciationDetailMeta.ASSET_REDIDUAL_PRICE));
 				this.setCOriginalPriceIncrease( (BigDecimal)map.get(AssetDepreciationDetailMeta.C_ORIGINAL_PRICE_INCREASE));
 				this.setAccountingServiceLife( (BigDecimal)map.get(AssetDepreciationDetailMeta.ACCOUNTING_SERVICE_LIFE));
 				this.setUseUserName( (String)map.get(AssetDepreciationDetailMeta.USE_USER_NAME));
 				this.setUseOrgId( (String)map.get(AssetDepreciationDetailMeta.USE_ORG_ID));
 				this.setAssetModel( (String)map.get(AssetDepreciationDetailMeta.ASSET_MODEL));
+				this.setLastOperTime( (Date)map.get(AssetDepreciationDetailMeta.LAST_OPER_TIME));
 				this.setUpdateTime( (Date)map.get(AssetDepreciationDetailMeta.UPDATE_TIME));
 				this.setCDepreciationAmount( (BigDecimal)map.get(AssetDepreciationDetailMeta.C_DEPRECIATION_AMOUNT));
+				this.setAssetFinanceCategoryId( (String)map.get(AssetDepreciationDetailMeta.ASSET_FINANCE_CATEGORY_ID));
 				this.setCreateBy( (String)map.get(AssetDepreciationDetailMeta.CREATE_BY));
 				this.setAssetPurchaseDate( (Date)map.get(AssetDepreciationDetailMeta.ASSET_PURCHASE_DATE));
 				this.setDeleted( (Integer)map.get(AssetDepreciationDetailMeta.DELETED));
@@ -2002,6 +2274,7 @@ public class AssetDepreciationDetail extends Entity {
 				this.setAssetSource( (Asset)map.get(AssetDepreciationDetailMeta.ASSET_SOURCE));
 				this.setAsset( (Asset)map.get(AssetDepreciationDetailMeta.ASSET));
 				this.setUseUser( (Employee)map.get(AssetDepreciationDetailMeta.USE_USER));
+				this.setLastAssetDepreciationDetail( (AssetDepreciationDetail)map.get(AssetDepreciationDetailMeta.LAST_ASSET_DEPRECIATION_DETAIL));
 				this.setAssetDepreciation( (AssetDepreciation)map.get(AssetDepreciationDetailMeta.ASSET_DEPRECIATION));
 				this.setFinancialOptionDict( (DictItem)map.get(AssetDepreciationDetailMeta.FINANCIAL_OPTION_DICT));
 				return true;
@@ -2020,27 +2293,31 @@ public class AssetDepreciationDetail extends Entity {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
-			this.setAssetRedidualRate(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationDetailMeta.ASSET_REDIDUAL_RATE)));
+			this.setAssetResidualsRate(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationDetailMeta.ASSET_RESIDUALS_RATE)));
 			this.setCUsedServiceLife(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationDetailMeta.C_USED_SERVICE_LIFE)));
 			this.setUseOrgName(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.USE_ORG_NAME)));
 			this.setERecoverableAmount(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationDetailMeta.E_RECOVERABLE_AMOUNT)));
 			this.setDepreciationMethod(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.DEPRECIATION_METHOD)));
 			this.setExpenseItemKey(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.EXPENSE_ITEM_KEY)));
 			this.setCustomerInfo(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.CUSTOMER_INFO)));
+			this.setFirstDepreciation(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.FIRST_DEPRECIATION)));
+			this.setAssetNavPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationDetailMeta.ASSET_NAV_PRICE)));
 			this.setExpenseItemName(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.EXPENSE_ITEM_NAME)));
 			this.setENavAmount(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationDetailMeta.E_NAV_AMOUNT)));
 			this.setDetailIdSource(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.DETAIL_ID_SOURCE)));
 			this.setSDepreciationAmount(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationDetailMeta.S_DEPRECIATION_AMOUNT)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.ID)));
 			this.setCYearDepreciationAmount(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationDetailMeta.C_YEAR_DEPRECIATION_AMOUNT)));
-			this.setFirstDepreciationDate(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.FIRST_DEPRECIATION_DATE)));
 			this.setAssetCode(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.ASSET_CODE)));
-			this.setAssetEnavPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationDetailMeta.ASSET_ENAV_PRICE)));
 			this.setFinancialOptionKey(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.FINANCIAL_OPTION_KEY)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetDepreciationDetailMeta.VERSION)));
+			this.setFirstDepreciationMethod(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.FIRST_DEPRECIATION_METHOD)));
+			this.setAssetFinanceCategoryName(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.ASSET_FINANCE_CATEGORY_NAME)));
+			this.setLastOperId(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.LAST_OPER_ID)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationDetailMeta.DELETE_TIME)));
 			this.setEDepreciationAmount(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationDetailMeta.E_DEPRECIATION_AMOUNT)));
 			this.setFinancialOptionName(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.FINANCIAL_OPTION_NAME)));
+			this.setAssetCategoryId(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.ASSET_CATEGORY_ID)));
 			this.setSOriginalPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationDetailMeta.S_ORIGINAL_PRICE)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.DELETE_BY)));
 			this.setAssetCategoryName(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.ASSET_CATEGORY_NAME)));
@@ -2055,17 +2332,19 @@ public class AssetDepreciationDetail extends Entity {
 			this.setResult(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.RESULT)));
 			this.setBusinessDate(DataParser.parse(Date.class, r.getValue(AssetDepreciationDetailMeta.BUSINESS_DATE)));
 			this.setDepreciationId(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.DEPRECIATION_ID)));
+			this.setAssetResidualsPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationDetailMeta.ASSET_RESIDUALS_PRICE)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.UPDATE_BY)));
 			this.setAssetId(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.ASSET_ID)));
 			this.setAssetServiceLife(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationDetailMeta.ASSET_SERVICE_LIFE)));
-			this.setAssetRedidualPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationDetailMeta.ASSET_REDIDUAL_PRICE)));
 			this.setCOriginalPriceIncrease(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationDetailMeta.C_ORIGINAL_PRICE_INCREASE)));
 			this.setAccountingServiceLife(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationDetailMeta.ACCOUNTING_SERVICE_LIFE)));
 			this.setUseUserName(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.USE_USER_NAME)));
 			this.setUseOrgId(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.USE_ORG_ID)));
 			this.setAssetModel(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.ASSET_MODEL)));
+			this.setLastOperTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationDetailMeta.LAST_OPER_TIME)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationDetailMeta.UPDATE_TIME)));
 			this.setCDepreciationAmount(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationDetailMeta.C_DEPRECIATION_AMOUNT)));
+			this.setAssetFinanceCategoryId(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.ASSET_FINANCE_CATEGORY_ID)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.CREATE_BY)));
 			this.setAssetPurchaseDate(DataParser.parse(Date.class, r.getValue(AssetDepreciationDetailMeta.ASSET_PURCHASE_DATE)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetDepreciationDetailMeta.DELETED)));
@@ -2079,27 +2358,31 @@ public class AssetDepreciationDetail extends Entity {
 			return true;
 		} else {
 			try {
-				this.setAssetRedidualRate( (BigDecimal)r.getValue(AssetDepreciationDetailMeta.ASSET_REDIDUAL_RATE));
+				this.setAssetResidualsRate( (BigDecimal)r.getValue(AssetDepreciationDetailMeta.ASSET_RESIDUALS_RATE));
 				this.setCUsedServiceLife( (BigDecimal)r.getValue(AssetDepreciationDetailMeta.C_USED_SERVICE_LIFE));
 				this.setUseOrgName( (String)r.getValue(AssetDepreciationDetailMeta.USE_ORG_NAME));
 				this.setERecoverableAmount( (BigDecimal)r.getValue(AssetDepreciationDetailMeta.E_RECOVERABLE_AMOUNT));
 				this.setDepreciationMethod( (String)r.getValue(AssetDepreciationDetailMeta.DEPRECIATION_METHOD));
 				this.setExpenseItemKey( (String)r.getValue(AssetDepreciationDetailMeta.EXPENSE_ITEM_KEY));
 				this.setCustomerInfo( (String)r.getValue(AssetDepreciationDetailMeta.CUSTOMER_INFO));
+				this.setFirstDepreciation( (String)r.getValue(AssetDepreciationDetailMeta.FIRST_DEPRECIATION));
+				this.setAssetNavPrice( (BigDecimal)r.getValue(AssetDepreciationDetailMeta.ASSET_NAV_PRICE));
 				this.setExpenseItemName( (String)r.getValue(AssetDepreciationDetailMeta.EXPENSE_ITEM_NAME));
 				this.setENavAmount( (BigDecimal)r.getValue(AssetDepreciationDetailMeta.E_NAV_AMOUNT));
 				this.setDetailIdSource( (String)r.getValue(AssetDepreciationDetailMeta.DETAIL_ID_SOURCE));
 				this.setSDepreciationAmount( (BigDecimal)r.getValue(AssetDepreciationDetailMeta.S_DEPRECIATION_AMOUNT));
 				this.setId( (String)r.getValue(AssetDepreciationDetailMeta.ID));
 				this.setCYearDepreciationAmount( (BigDecimal)r.getValue(AssetDepreciationDetailMeta.C_YEAR_DEPRECIATION_AMOUNT));
-				this.setFirstDepreciationDate( (String)r.getValue(AssetDepreciationDetailMeta.FIRST_DEPRECIATION_DATE));
 				this.setAssetCode( (String)r.getValue(AssetDepreciationDetailMeta.ASSET_CODE));
-				this.setAssetEnavPrice( (BigDecimal)r.getValue(AssetDepreciationDetailMeta.ASSET_ENAV_PRICE));
 				this.setFinancialOptionKey( (String)r.getValue(AssetDepreciationDetailMeta.FINANCIAL_OPTION_KEY));
 				this.setVersion( (Integer)r.getValue(AssetDepreciationDetailMeta.VERSION));
+				this.setFirstDepreciationMethod( (String)r.getValue(AssetDepreciationDetailMeta.FIRST_DEPRECIATION_METHOD));
+				this.setAssetFinanceCategoryName( (String)r.getValue(AssetDepreciationDetailMeta.ASSET_FINANCE_CATEGORY_NAME));
+				this.setLastOperId( (String)r.getValue(AssetDepreciationDetailMeta.LAST_OPER_ID));
 				this.setDeleteTime( (Date)r.getValue(AssetDepreciationDetailMeta.DELETE_TIME));
 				this.setEDepreciationAmount( (BigDecimal)r.getValue(AssetDepreciationDetailMeta.E_DEPRECIATION_AMOUNT));
 				this.setFinancialOptionName( (String)r.getValue(AssetDepreciationDetailMeta.FINANCIAL_OPTION_NAME));
+				this.setAssetCategoryId( (String)r.getValue(AssetDepreciationDetailMeta.ASSET_CATEGORY_ID));
 				this.setSOriginalPrice( (BigDecimal)r.getValue(AssetDepreciationDetailMeta.S_ORIGINAL_PRICE));
 				this.setDeleteBy( (String)r.getValue(AssetDepreciationDetailMeta.DELETE_BY));
 				this.setAssetCategoryName( (String)r.getValue(AssetDepreciationDetailMeta.ASSET_CATEGORY_NAME));
@@ -2114,17 +2397,19 @@ public class AssetDepreciationDetail extends Entity {
 				this.setResult( (String)r.getValue(AssetDepreciationDetailMeta.RESULT));
 				this.setBusinessDate( (Date)r.getValue(AssetDepreciationDetailMeta.BUSINESS_DATE));
 				this.setDepreciationId( (String)r.getValue(AssetDepreciationDetailMeta.DEPRECIATION_ID));
+				this.setAssetResidualsPrice( (BigDecimal)r.getValue(AssetDepreciationDetailMeta.ASSET_RESIDUALS_PRICE));
 				this.setUpdateBy( (String)r.getValue(AssetDepreciationDetailMeta.UPDATE_BY));
 				this.setAssetId( (String)r.getValue(AssetDepreciationDetailMeta.ASSET_ID));
 				this.setAssetServiceLife( (BigDecimal)r.getValue(AssetDepreciationDetailMeta.ASSET_SERVICE_LIFE));
-				this.setAssetRedidualPrice( (BigDecimal)r.getValue(AssetDepreciationDetailMeta.ASSET_REDIDUAL_PRICE));
 				this.setCOriginalPriceIncrease( (BigDecimal)r.getValue(AssetDepreciationDetailMeta.C_ORIGINAL_PRICE_INCREASE));
 				this.setAccountingServiceLife( (BigDecimal)r.getValue(AssetDepreciationDetailMeta.ACCOUNTING_SERVICE_LIFE));
 				this.setUseUserName( (String)r.getValue(AssetDepreciationDetailMeta.USE_USER_NAME));
 				this.setUseOrgId( (String)r.getValue(AssetDepreciationDetailMeta.USE_ORG_ID));
 				this.setAssetModel( (String)r.getValue(AssetDepreciationDetailMeta.ASSET_MODEL));
+				this.setLastOperTime( (Date)r.getValue(AssetDepreciationDetailMeta.LAST_OPER_TIME));
 				this.setUpdateTime( (Date)r.getValue(AssetDepreciationDetailMeta.UPDATE_TIME));
 				this.setCDepreciationAmount( (BigDecimal)r.getValue(AssetDepreciationDetailMeta.C_DEPRECIATION_AMOUNT));
+				this.setAssetFinanceCategoryId( (String)r.getValue(AssetDepreciationDetailMeta.ASSET_FINANCE_CATEGORY_ID));
 				this.setCreateBy( (String)r.getValue(AssetDepreciationDetailMeta.CREATE_BY));
 				this.setAssetPurchaseDate( (Date)r.getValue(AssetDepreciationDetailMeta.ASSET_PURCHASE_DATE));
 				this.setDeleted( (Integer)r.getValue(AssetDepreciationDetailMeta.DELETED));

@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 折旧方案
  * <p>折旧方案 , 数据表 eam_asset_depreciation 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-25 14:18:58
- * @sign 43F51286C07C3885764113FA69986EC4
+ * @since 2022-11-27 12:24:36
+ * @sign 2167A9512830F2F86763A1931003DE0E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -85,10 +85,10 @@ public class AssetDepreciation extends Entity {
 	private String residualValueSelect;
 	
 	/**
-	 * 首次折旧时间：首次折旧时间
+	 * 首次折旧方式：首次折旧方式
 	*/
-	@ApiModelProperty(required = false,value="首次折旧时间" , notes = "首次折旧时间" , example = "purchase_next_month")
-	private String firstDepreciationDate;
+	@ApiModelProperty(required = false,value="首次折旧方式" , notes = "首次折旧方式" , example = "register_next_month")
+	private String firstDepreciationMethod;
 	
 	/**
 	 * 所属公司：所属公司
@@ -101,6 +101,12 @@ public class AssetDepreciation extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="资产分类" , notes = "资产分类")
 	private String categoryId;
+	
+	/**
+	 * 选择：选择
+	*/
+	@ApiModelProperty(required = false,value="选择" , notes = "选择")
+	private String selectedCode;
 	
 	/**
 	 * 备注：备注
@@ -129,7 +135,7 @@ public class AssetDepreciation extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-11-24 12:17:08")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-11-27 08:59:35")
 	private Date updateTime;
 	
 	/**
@@ -156,7 +162,7 @@ public class AssetDepreciation extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "7")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "9")
 	private Integer version;
 	
 	/**
@@ -176,6 +182,18 @@ public class AssetDepreciation extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="资产分类Ids" , notes = "资产分类Ids")
 	private List<String> categoryIds;
+	
+	/**
+	 * calRuleList：calRuleList
+	*/
+	@ApiModelProperty(required = false,value="calRuleList" , notes = "calRuleList")
+	private List<AssetDepreciationCalRule> calRuleList;
+	
+	/**
+	 * calRuleIds：calRuleIds
+	*/
+	@ApiModelProperty(required = false,value="calRuleIds" , notes = "calRuleIds")
+	private List<String> calRuleIds;
 	
 	/**
 	 * 获得 主键<br>
@@ -311,21 +329,21 @@ public class AssetDepreciation extends Entity {
 	}
 	
 	/**
-	 * 获得 首次折旧时间<br>
-	 * 首次折旧时间
-	 * @return 首次折旧时间
+	 * 获得 首次折旧方式<br>
+	 * 首次折旧方式
+	 * @return 首次折旧方式
 	*/
-	public String getFirstDepreciationDate() {
-		return firstDepreciationDate;
+	public String getFirstDepreciationMethod() {
+		return firstDepreciationMethod;
 	}
 	
 	/**
-	 * 设置 首次折旧时间
-	 * @param firstDepreciationDate 首次折旧时间
+	 * 设置 首次折旧方式
+	 * @param firstDepreciationMethod 首次折旧方式
 	 * @return 当前对象
 	*/
-	public AssetDepreciation setFirstDepreciationDate(String firstDepreciationDate) {
-		this.firstDepreciationDate=firstDepreciationDate;
+	public AssetDepreciation setFirstDepreciationMethod(String firstDepreciationMethod) {
+		this.firstDepreciationMethod=firstDepreciationMethod;
 		return this;
 	}
 	
@@ -364,6 +382,25 @@ public class AssetDepreciation extends Entity {
 	*/
 	public AssetDepreciation setCategoryId(String categoryId) {
 		this.categoryId=categoryId;
+		return this;
+	}
+	
+	/**
+	 * 获得 选择<br>
+	 * 选择
+	 * @return 选择
+	*/
+	public String getSelectedCode() {
+		return selectedCode;
+	}
+	
+	/**
+	 * 设置 选择
+	 * @param selectedCode 选择
+	 * @return 当前对象
+	*/
+	public AssetDepreciation setSelectedCode(String selectedCode) {
+		this.selectedCode=selectedCode;
 		return this;
 	}
 	
@@ -647,6 +684,66 @@ public class AssetDepreciation extends Entity {
 		this.categoryIds.addAll(Arrays.asList(categoryId));
 		return this;
 	}
+	
+	/**
+	 * 获得 calRuleList<br>
+	 * calRuleList
+	 * @return calRuleList
+	*/
+	public List<AssetDepreciationCalRule> getCalRuleList() {
+		return calRuleList;
+	}
+	
+	/**
+	 * 设置 calRuleList
+	 * @param calRuleList calRuleList
+	 * @return 当前对象
+	*/
+	public AssetDepreciation setCalRuleList(List<AssetDepreciationCalRule> calRuleList) {
+		this.calRuleList=calRuleList;
+		return this;
+	}
+	
+	/**
+	 * 添加 calRuleList
+	 * @param calRule calRuleList
+	 * @return 当前对象
+	*/
+	public AssetDepreciation addCalRule(AssetDepreciationCalRule... calRule) {
+		if(this.calRuleList==null) calRuleList=new ArrayList<>();
+		this.calRuleList.addAll(Arrays.asList(calRule));
+		return this;
+	}
+	
+	/**
+	 * 获得 calRuleIds<br>
+	 * calRuleIds
+	 * @return calRuleIds
+	*/
+	public List<String> getCalRuleIds() {
+		return calRuleIds;
+	}
+	
+	/**
+	 * 设置 calRuleIds
+	 * @param calRuleIds calRuleIds
+	 * @return 当前对象
+	*/
+	public AssetDepreciation setCalRuleIds(List<String> calRuleIds) {
+		this.calRuleIds=calRuleIds;
+		return this;
+	}
+	
+	/**
+	 * 添加 calRuleIds
+	 * @param calRuleId calRuleIds
+	 * @return 当前对象
+	*/
+	public AssetDepreciation addCalRuleId(String... calRuleId) {
+		if(this.calRuleIds==null) calRuleIds=new ArrayList<>();
+		this.calRuleIds.addAll(Arrays.asList(calRuleId));
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -693,12 +790,13 @@ public class AssetDepreciation extends Entity {
 	public AssetDepreciation duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.AssetDepreciationMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetDepreciationMeta.$$proxy$$();
 		inst.setCode(this.getCode());
-		inst.setFirstDepreciationDate(this.getFirstDepreciationDate());
 		inst.setNotes(this.getNotes());
 		inst.setMethod(this.getMethod());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setResidualValueSelect(this.getResidualValueSelect());
+		inst.setSelectedCode(this.getSelectedCode());
 		inst.setVersion(this.getVersion());
+		inst.setFirstDepreciationMethod(this.getFirstDepreciationMethod());
 		inst.setOwnCompanyId(this.getOwnCompanyId());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
@@ -714,6 +812,8 @@ public class AssetDepreciation extends Entity {
 		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setCategoryIds(this.getCategoryIds());
+			inst.setCalRuleList(this.getCalRuleList());
+			inst.setCalRuleIds(this.getCalRuleIds());
 			inst.setCategory(this.getCategory());
 		}
 		inst.clearModifies();
@@ -775,12 +875,13 @@ public class AssetDepreciation extends Entity {
 		if(map==null) return false;
 		if(cast) {
 			this.setCode(DataParser.parse(String.class, map.get(AssetDepreciationMeta.CODE)));
-			this.setFirstDepreciationDate(DataParser.parse(String.class, map.get(AssetDepreciationMeta.FIRST_DEPRECIATION_DATE)));
 			this.setNotes(DataParser.parse(String.class, map.get(AssetDepreciationMeta.NOTES)));
 			this.setMethod(DataParser.parse(String.class, map.get(AssetDepreciationMeta.METHOD)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetDepreciationMeta.UPDATE_TIME)));
 			this.setResidualValueSelect(DataParser.parse(String.class, map.get(AssetDepreciationMeta.RESIDUAL_VALUE_SELECT)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(AssetDepreciationMeta.SELECTED_CODE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(AssetDepreciationMeta.VERSION)));
+			this.setFirstDepreciationMethod(DataParser.parse(String.class, map.get(AssetDepreciationMeta.FIRST_DEPRECIATION_METHOD)));
 			this.setOwnCompanyId(DataParser.parse(String.class, map.get(AssetDepreciationMeta.OWN_COMPANY_ID)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(AssetDepreciationMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetDepreciationMeta.DELETED)));
@@ -799,12 +900,13 @@ public class AssetDepreciation extends Entity {
 		} else {
 			try {
 				this.setCode( (String)map.get(AssetDepreciationMeta.CODE));
-				this.setFirstDepreciationDate( (String)map.get(AssetDepreciationMeta.FIRST_DEPRECIATION_DATE));
 				this.setNotes( (String)map.get(AssetDepreciationMeta.NOTES));
 				this.setMethod( (String)map.get(AssetDepreciationMeta.METHOD));
 				this.setUpdateTime( (Date)map.get(AssetDepreciationMeta.UPDATE_TIME));
 				this.setResidualValueSelect( (String)map.get(AssetDepreciationMeta.RESIDUAL_VALUE_SELECT));
+				this.setSelectedCode( (String)map.get(AssetDepreciationMeta.SELECTED_CODE));
 				this.setVersion( (Integer)map.get(AssetDepreciationMeta.VERSION));
+				this.setFirstDepreciationMethod( (String)map.get(AssetDepreciationMeta.FIRST_DEPRECIATION_METHOD));
 				this.setOwnCompanyId( (String)map.get(AssetDepreciationMeta.OWN_COMPANY_ID));
 				this.setCreateBy( (String)map.get(AssetDepreciationMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(AssetDepreciationMeta.DELETED));
@@ -836,12 +938,13 @@ public class AssetDepreciation extends Entity {
 		if(r==null) return false;
 		if(cast) {
 			this.setCode(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.CODE)));
-			this.setFirstDepreciationDate(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.FIRST_DEPRECIATION_DATE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.NOTES)));
 			this.setMethod(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.METHOD)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationMeta.UPDATE_TIME)));
 			this.setResidualValueSelect(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.RESIDUAL_VALUE_SELECT)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.SELECTED_CODE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetDepreciationMeta.VERSION)));
+			this.setFirstDepreciationMethod(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.FIRST_DEPRECIATION_METHOD)));
 			this.setOwnCompanyId(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.OWN_COMPANY_ID)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetDepreciationMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetDepreciationMeta.DELETED)));
@@ -859,12 +962,13 @@ public class AssetDepreciation extends Entity {
 		} else {
 			try {
 				this.setCode( (String)r.getValue(AssetDepreciationMeta.CODE));
-				this.setFirstDepreciationDate( (String)r.getValue(AssetDepreciationMeta.FIRST_DEPRECIATION_DATE));
 				this.setNotes( (String)r.getValue(AssetDepreciationMeta.NOTES));
 				this.setMethod( (String)r.getValue(AssetDepreciationMeta.METHOD));
 				this.setUpdateTime( (Date)r.getValue(AssetDepreciationMeta.UPDATE_TIME));
 				this.setResidualValueSelect( (String)r.getValue(AssetDepreciationMeta.RESIDUAL_VALUE_SELECT));
+				this.setSelectedCode( (String)r.getValue(AssetDepreciationMeta.SELECTED_CODE));
 				this.setVersion( (Integer)r.getValue(AssetDepreciationMeta.VERSION));
+				this.setFirstDepreciationMethod( (String)r.getValue(AssetDepreciationMeta.FIRST_DEPRECIATION_METHOD));
 				this.setOwnCompanyId( (String)r.getValue(AssetDepreciationMeta.OWN_COMPANY_ID));
 				this.setCreateBy( (String)r.getValue(AssetDepreciationMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(AssetDepreciationMeta.DELETED));

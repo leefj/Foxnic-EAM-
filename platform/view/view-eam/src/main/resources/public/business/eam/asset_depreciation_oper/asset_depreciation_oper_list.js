@@ -1,7 +1,7 @@
 /**
  * 折旧操作 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-25 13:45:51
+ * @since 2022-11-27 09:08:00
  */
 
 
@@ -85,7 +85,7 @@ function ListPage() {
 					,{ field: 'depreciationId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧方案',null,languageContext), templet: function (d) { return templet('depreciationId' ,fox.joinLabel(d.assetDepreciation,"name",',','','depreciationId'),d);}}
 					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧内容',null,languageContext) , templet: function (d) { return templet('content',d.content,d);}  }
 					,{ field: 'businessDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('业务日期',null,languageContext) ,templet: function (d) { return templet('businessDate',fox.dateFormat(d.businessDate,"yyyy-MM-dd"),d); }  }
-					,{ field: 'executionStartTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('执行时间',null,languageContext) ,templet: function (d) { return templet('executionStartTime',fox.dateFormat(d.executionStartTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'executionStartTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('开始时间',null,languageContext) ,templet: function (d) { return templet('executionStartTime',fox.dateFormat(d.executionStartTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'executionEndTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('结束时间',null,languageContext) ,templet: function (d) { return templet('executionEndTime',fox.dateFormat(d.executionEndTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注',null,languageContext) , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人',null,languageContext) , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"],0,'','originatorId'),d);} }

@@ -16,10 +16,10 @@ import com.dt.platform.proxy.ServiceNames;
 
 /**
  * <p>
- * 折旧明细 控制器服务代理
+ * eam_asset_depreciation_detail 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-25 12:22:16
+ * @since 2022-11-27 12:23:02
  */
 @FeignClient(value = ServiceNames.EAM, contextId = AssetDepreciationDetailServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AssetDepreciationDetailServiceProxy {
@@ -40,100 +40,100 @@ public interface AssetDepreciationDetailServiceProxy {
     public static final String API_PREFIX = "/" + API_BASIC_PATH + "/" + API_CONTEXT_PATH + "/";
 
     /**
-     * 添加折旧明细
+     * 添加eam_asset_depreciation_detail
      */
     public static final String INSERT = API_PREFIX + "insert";
 
     /**
-     * 删除折旧明细
+     * 删除eam_asset_depreciation_detail
      */
     public static final String DELETE = API_PREFIX + "delete";
 
     /**
-     * 批量删除折旧明细
+     * 批量删除eam_asset_depreciation_detail
      */
     public static final String DELETE_BY_IDS = API_PREFIX + "delete-by-ids";
 
     /**
-     * 更新折旧明细
+     * 更新eam_asset_depreciation_detail
      */
     public static final String UPDATE = API_PREFIX + "update";
 
     /**
-     * 保存折旧明细
+     * 保存eam_asset_depreciation_detail
      */
     public static final String SAVE = API_PREFIX + "save";
 
     /**
-     * 获取单个折旧明细
+     * 获取单个eam_asset_depreciation_detail
      */
     public static final String GET_BY_ID = API_PREFIX + "get-by-id";
 
     /**
-     * 获取多个折旧明细
+     * 获取多个eam_asset_depreciation_detail
      */
     public static final String GET_BY_IDS = API_PREFIX + "get-by-ids";
 
     /**
-     * 查询折旧明细
+     * 查询eam_asset_depreciation_detail
      */
     public static final String QUERY_LIST = API_PREFIX + "query-list";
 
     /**
-     * 分页查询折旧明细
+     * 分页查询eam_asset_depreciation_detail
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
     /**
-     * 添加折旧明细
+     * 添加eam_asset_depreciation_detail
      */
     @RequestMapping(AssetDepreciationDetailServiceProxy.INSERT)
     Result insert(@RequestParam(name = "assetDepreciationDetailVO") AssetDepreciationDetailVO assetDepreciationDetailVO);
 
     /**
-     * 删除折旧明细
+     * 删除eam_asset_depreciation_detail
      */
     @RequestMapping(AssetDepreciationDetailServiceProxy.DELETE)
     Result deleteById(@RequestParam(name = "id") String id);
 
     /**
-     * 批量删除折旧明细
+     * 批量删除eam_asset_depreciation_detail
      */
     @RequestMapping(AssetDepreciationDetailServiceProxy.DELETE_BY_IDS)
     Result deleteByIds(@RequestParam(name = "ids") List<String> ids);
 
     /**
-     * 更新折旧明细
+     * 更新eam_asset_depreciation_detail
      */
     @RequestMapping(AssetDepreciationDetailServiceProxy.UPDATE)
     Result update(@RequestParam(name = "assetDepreciationDetailVO") AssetDepreciationDetailVO assetDepreciationDetailVO);
 
     /**
-     * 更新折旧明细
+     * 更新eam_asset_depreciation_detail
      */
     @RequestMapping(AssetDepreciationDetailServiceProxy.SAVE)
     Result save(@RequestParam(name = "assetDepreciationDetailVO") AssetDepreciationDetailVO assetDepreciationDetailVO);
 
     /**
-     * 获取折旧明细
+     * 获取eam_asset_depreciation_detail
      */
     @RequestMapping(AssetDepreciationDetailServiceProxy.GET_BY_ID)
     Result<AssetDepreciationDetail> getById(@RequestParam(name = "id") String id);
 
     /**
-     * 获取多个折旧明细
+     * 获取多个eam_asset_depreciation_detail
      */
     @RequestMapping(AssetDepreciationDetailServiceProxy.GET_BY_IDS)
     Result<List<AssetDepreciationDetail>> getByIds(@RequestParam(name = "ids") List<String> ids);
 
     /**
-     * 查询折旧明细
+     * 查询eam_asset_depreciation_detail
      */
     @RequestMapping(AssetDepreciationDetailServiceProxy.QUERY_LIST)
     Result<List<AssetDepreciationDetail>> queryList(@RequestParam(name = "sample") AssetDepreciationDetailVO sample);
 
     /**
-     * 分页查询折旧明细
+     * 分页查询eam_asset_depreciation_detail
      */
     @RequestMapping(AssetDepreciationDetailServiceProxy.QUERY_PAGED_LIST)
     Result<PagedList<AssetDepreciationDetail>> queryPagedList(@RequestParam(name = "sample") AssetDepreciationDetailVO sample);

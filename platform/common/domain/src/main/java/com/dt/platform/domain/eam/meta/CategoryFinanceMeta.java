@@ -2,6 +2,7 @@ package com.dt.platform.domain.eam.meta;
 
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.CategoryFinance;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Transient;
 
@@ -9,8 +10,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-13 10:04:46
- * @sign 0E0D1FCB5917DFA1D33049EDDC09238D
+ * @since 2022-11-27 08:06:14
+ * @sign 5F389383F67603135F5270B83765D639
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -65,6 +66,16 @@ public class CategoryFinanceMeta {
 	 * 编码 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.CategoryFinance,java.lang.String> CATEGORY_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.CategoryFinance.class ,CATEGORY_CODE, java.lang.String.class, "编码", "编码", java.lang.String.class, null);
+	
+	/**
+	 * 使用期限 , 类型: java.math.BigDecimal
+	*/
+	public static final String SERVICE_LIFE="serviceLife";
+	
+	/**
+	 * 使用期限 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.CategoryFinance,java.math.BigDecimal> SERVICE_LIFE_PROP = new BeanProperty(com.dt.platform.domain.eam.CategoryFinance.class ,SERVICE_LIFE, java.math.BigDecimal.class, "使用期限", "使用期限", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 父节点 , 类型: java.lang.String
@@ -209,7 +220,7 @@ public class CategoryFinanceMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , STATUS , CATEGORY_NAME , CATEGORY_FULLNAME , CATEGORY_CODE , PARENT_ID , SORT , HIERARCHY , HIERARCHY_NAME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ ID , STATUS , CATEGORY_NAME , CATEGORY_FULLNAME , CATEGORY_CODE , SERVICE_LIFE , PARENT_ID , SORT , HIERARCHY , HIERARCHY_NAME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
 	
 	/**
 	 * 代理类
@@ -271,6 +282,17 @@ public class CategoryFinanceMeta {
 		public CategoryFinance setCategoryCode(String categoryCode) {
 			super.change(CATEGORY_CODE,super.getCategoryCode(),categoryCode);
 			super.setCategoryCode(categoryCode);
+			return this;
+		}
+		
+		/**
+		 * 设置 使用期限
+		 * @param serviceLife 使用期限
+		 * @return 当前对象
+		*/
+		public CategoryFinance setServiceLife(BigDecimal serviceLife) {
+			super.change(SERVICE_LIFE,super.getServiceLife(),serviceLife);
+			super.setServiceLife(serviceLife);
 			return this;
 		}
 		
@@ -460,6 +482,7 @@ public class CategoryFinanceMeta {
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
+			inst.setServiceLife(this.getServiceLife());
 			inst.setId(this.getId());
 			inst.setStatus(this.getStatus());
 			inst.clearModifies();

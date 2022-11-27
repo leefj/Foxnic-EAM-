@@ -31,7 +31,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-23 16:21:50
+ * @since 2022-11-26 21:09:01
  * @sign C05127D02CE5B4FBBB8CDA17B7C59FAA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -459,14 +459,14 @@ public class AssetVOMeta extends AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.Integer> REMAIN_NUMBER_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,REMAIN_NUMBER, java.lang.Integer.class, "剩余数量", "剩余数量", java.lang.Integer.class, null);
 	
 	/**
-	 * 购置日期 , 类型: java.util.Date
+	 * 采购日期 , 类型: java.util.Date
 	*/
 	public static final String PURCHASE_DATE="purchaseDate";
 	
 	/**
-	 * 购置日期 , 类型: java.util.Date
+	 * 采购日期 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.util.Date> PURCHASE_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,PURCHASE_DATE, java.util.Date.class, "购置日期", "购置日期", java.util.Date.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.util.Date> PURCHASE_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,PURCHASE_DATE, java.util.Date.class, "采购日期", "采购日期", java.util.Date.class, null);
 	
 	/**
 	 * 生产日期 , 类型: java.util.Date
@@ -479,14 +479,14 @@ public class AssetVOMeta extends AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.util.Date> PRODUCTION_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,PRODUCTION_DATE, java.util.Date.class, "生产日期", "生产日期", java.util.Date.class, null);
 	
 	/**
-	 * 登记时间 , 类型: java.util.Date
+	 * 入账日期 , 类型: java.util.Date
 	*/
 	public static final String REGISTER_DATE="registerDate";
 	
 	/**
-	 * 登记时间 , 类型: java.util.Date
+	 * 入账日期 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.util.Date> REGISTER_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,REGISTER_DATE, java.util.Date.class, "登记时间", "登记时间", java.util.Date.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.util.Date> REGISTER_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,REGISTER_DATE, java.util.Date.class, "入账日期", "入账日期", java.util.Date.class, null);
 	
 	/**
 	 * RFID标签 , 类型: java.lang.String
@@ -769,14 +769,34 @@ public class AssetVOMeta extends AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.math.BigDecimal> NAV_PRICE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,NAV_PRICE, java.math.BigDecimal.class, "资产净值", "(当前)", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 已用期限 , (月) , 类型: java.lang.Integer
+	 * 已用期限 , (月) , 类型: java.math.BigDecimal
 	*/
 	public static final String ASSET_USED_SERVICE_LIFE="assetUsedServiceLife";
 	
 	/**
-	 * 已用期限 , (月) , 类型: java.lang.Integer
+	 * 已用期限 , (月) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.Integer> ASSET_USED_SERVICE_LIFE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,ASSET_USED_SERVICE_LIFE, java.lang.Integer.class, "已用期限", "(月)", java.lang.Integer.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.math.BigDecimal> ASSET_USED_SERVICE_LIFE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,ASSET_USED_SERVICE_LIFE, java.math.BigDecimal.class, "已用期限", "(月)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 最后折旧 , 类型: java.lang.String
+	*/
+	public static final String DEPRECIATION_ID="depreciationId";
+	
+	/**
+	 * 最后折旧 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> DEPRECIATION_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,DEPRECIATION_ID, java.lang.String.class, "最后折旧", "最后折旧", java.lang.String.class, null);
+	
+	/**
+	 * 最后折旧时间 , 类型: java.util.Date
+	*/
+	public static final String DEPRECIATION_OPER_TIME="depreciationOperTime";
+	
+	/**
+	 * 最后折旧时间 , 类型: java.util.Date
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.util.Date> DEPRECIATION_OPER_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,DEPRECIATION_OPER_TIME, java.util.Date.class, "最后折旧时间", "最后折旧时间", java.util.Date.class, null);
 	
 	/**
 	 * 残值率 , 类型: java.math.BigDecimal
@@ -849,14 +869,14 @@ public class AssetVOMeta extends AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.math.BigDecimal> MONTH_DEPRECIATION_PRICE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,MONTH_DEPRECIATION_PRICE, java.math.BigDecimal.class, "月折金额", "月折金额", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 入账时间 , 类型: java.util.Date
+	 * 登记时间 , 类型: java.util.Date
 	*/
 	public static final String ENTRY_TIME="entryTime";
 	
 	/**
-	 * 入账时间 , 类型: java.util.Date
+	 * 登记时间 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.util.Date> ENTRY_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,ENTRY_TIME, java.util.Date.class, "入账时间", "入账时间", java.util.Date.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.util.Date> ENTRY_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,ENTRY_TIME, java.util.Date.class, "登记时间", "登记时间", java.util.Date.class, null);
 	
 	/**
 	 * 财务备注 , 类型: java.lang.String
@@ -1601,7 +1621,7 @@ public class AssetVOMeta extends AssetMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , REGION_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , MAINTENANCE_PRICE , MAINTENANCE_METHOD , SUGGEST_MAINTENANCE_METHOD , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , FINANCIAL_OPTION , EXPENSE_ITEM , SUPPLIER_ID , CUSTOMER_INFO , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , PURCHASE_UNIT_PRICE , ORIGINAL_UNIT_PRICE , NAV_PRICE , ASSET_USED_SERVICE_LIFE , RESIDUALS_RATE , RESIDUALS_PRICE , TAX_AMOUNT_RATE , CURRENT_YEAR_DEPRECIATION , DEPRECIATION_YEAR , ACCUMULATED_DEPRECIATION , MONTH_DEPRECIATION_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL2 , LABEL3 , LABEL4 , LABEL5 , BILL_ID , INTERNAL_CONTROL_LABEL , COLLECTION_ID , BORROW_ID , SCRAP_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA , EXT_DATA , PCM_DATA , CATALOG_ATTRIBUTE , POSITION , CATEGORY_FINANCE , CATEGORY , GOODS , MANUFACTURER , WAREHOUSE , USE_USER , MANAGER , ORIGINATOR , SUPPLIER , MAINTNAINER , OWNER_COMPANY , USE_ORGANIZATION , SOURCE , EQUIPMENT_ENVIRONMENT , SAFETY_LEVEL , ASSET_MAINTENANCE_STATUS , SUGGEST_MAINTENANCE_METHOD_DATA , MAINTENANCE_METHOD_DATA , ASSET_CYCLE_STATUS , RACK , CHANGE_INSTANCE , GOODS_STOCK , REGION , FINANCIAL_OPTION_DICT , EXPENSE_ITEM_DICT };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , REGION_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , MAINTENANCE_PRICE , MAINTENANCE_METHOD , SUGGEST_MAINTENANCE_METHOD , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , FINANCIAL_OPTION , EXPENSE_ITEM , SUPPLIER_ID , CUSTOMER_INFO , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , PURCHASE_UNIT_PRICE , ORIGINAL_UNIT_PRICE , NAV_PRICE , ASSET_USED_SERVICE_LIFE , DEPRECIATION_ID , DEPRECIATION_OPER_TIME , RESIDUALS_RATE , RESIDUALS_PRICE , TAX_AMOUNT_RATE , CURRENT_YEAR_DEPRECIATION , DEPRECIATION_YEAR , ACCUMULATED_DEPRECIATION , MONTH_DEPRECIATION_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL2 , LABEL3 , LABEL4 , LABEL5 , BILL_ID , INTERNAL_CONTROL_LABEL , COLLECTION_ID , BORROW_ID , SCRAP_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA , EXT_DATA , PCM_DATA , CATALOG_ATTRIBUTE , POSITION , CATEGORY_FINANCE , CATEGORY , GOODS , MANUFACTURER , WAREHOUSE , USE_USER , MANAGER , ORIGINATOR , SUPPLIER , MAINTNAINER , OWNER_COMPANY , USE_ORGANIZATION , SOURCE , EQUIPMENT_ENVIRONMENT , SAFETY_LEVEL , ASSET_MAINTENANCE_STATUS , SUGGEST_MAINTENANCE_METHOD_DATA , MAINTENANCE_METHOD_DATA , ASSET_CYCLE_STATUS , RACK , CHANGE_INSTANCE , GOODS_STOCK , REGION , FINANCIAL_OPTION_DICT , EXPENSE_ITEM_DICT };
 	
 	/**
 	 * 代理类
@@ -2074,8 +2094,8 @@ public class AssetVOMeta extends AssetMeta {
 		}
 		
 		/**
-		 * 设置 购置日期
-		 * @param purchaseDate 购置日期
+		 * 设置 采购日期
+		 * @param purchaseDate 采购日期
 		 * @return 当前对象
 		*/
 		public Asset setPurchaseDate(Date purchaseDate) {
@@ -2096,8 +2116,8 @@ public class AssetVOMeta extends AssetMeta {
 		}
 		
 		/**
-		 * 设置 登记时间
-		 * @param registerDate 登记时间
+		 * 设置 入账日期
+		 * @param registerDate 入账日期
 		 * @return 当前对象
 		*/
 		public Asset setRegisterDate(Date registerDate) {
@@ -2419,9 +2439,31 @@ public class AssetVOMeta extends AssetMeta {
 		 * @param assetUsedServiceLife 已用期限
 		 * @return 当前对象
 		*/
-		public Asset setAssetUsedServiceLife(Integer assetUsedServiceLife) {
+		public Asset setAssetUsedServiceLife(BigDecimal assetUsedServiceLife) {
 			super.change(ASSET_USED_SERVICE_LIFE,super.getAssetUsedServiceLife(),assetUsedServiceLife);
 			super.setAssetUsedServiceLife(assetUsedServiceLife);
+			return this;
+		}
+		
+		/**
+		 * 设置 最后折旧
+		 * @param depreciationId 最后折旧
+		 * @return 当前对象
+		*/
+		public Asset setDepreciationId(String depreciationId) {
+			super.change(DEPRECIATION_ID,super.getDepreciationId(),depreciationId);
+			super.setDepreciationId(depreciationId);
+			return this;
+		}
+		
+		/**
+		 * 设置 最后折旧时间
+		 * @param depreciationOperTime 最后折旧时间
+		 * @return 当前对象
+		*/
+		public Asset setDepreciationOperTime(Date depreciationOperTime) {
+			super.change(DEPRECIATION_OPER_TIME,super.getDepreciationOperTime(),depreciationOperTime);
+			super.setDepreciationOperTime(depreciationOperTime);
 			return this;
 		}
 		
@@ -2503,8 +2545,8 @@ public class AssetVOMeta extends AssetMeta {
 		}
 		
 		/**
-		 * 设置 入账时间
-		 * @param entryTime 入账时间
+		 * 设置 登记时间
+		 * @param entryTime 登记时间
 		 * @return 当前对象
 		*/
 		public Asset setEntryTime(Date entryTime) {
@@ -3378,6 +3420,7 @@ public class AssetVOMeta extends AssetMeta {
 			inst.setEquipmentConf(this.getEquipmentConf());
 			inst.setAssetNotes(this.getAssetNotes());
 			inst.setOriginalUnitPrice(this.getOriginalUnitPrice());
+			inst.setDepreciationId(this.getDepreciationId());
 			inst.setPictureId(this.getPictureId());
 			inst.setSuggestMaintenanceMethod(this.getSuggestMaintenanceMethod());
 			inst.setTotalAmountPrice(this.getTotalAmountPrice());
@@ -3411,6 +3454,7 @@ public class AssetVOMeta extends AssetMeta {
 			inst.setMaintenancePrice(this.getMaintenancePrice());
 			inst.setEquipmentIp(this.getEquipmentIp());
 			inst.setMaintenanceEndDate(this.getMaintenanceEndDate());
+			inst.setDepreciationOperTime(this.getDepreciationOperTime());
 			inst.setNextApproverNames(this.getNextApproverNames());
 			inst.setAssetCode(this.getAssetCode());
 			inst.setSerialNumber(this.getSerialNumber());

@@ -14,13 +14,16 @@ public class EamAssetCategoryFinanceGtr extends BaseCodeGenerator {
     public void generateCode() throws Exception {
 
 
+        cfg.view().field(EAMTables.EAM_CATEGORY_FINANCE.SERVICE_LIFE).form().validate().required();
+        cfg.view().field(EAMTables.EAM_CATEGORY_FINANCE.CATEGORY_CODE).form().validate().required();
+
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
                 .setControllerAndAgent(WriteMode.IGNORE) //Rest
                 .setPageController(WriteMode.IGNORE) //页面控制器
-                .setFormPage(WriteMode.IGNORE) //表单HTML页
-                .setListPage(WriteMode.IGNORE); //列表HTML页
+                .setFormPage(WriteMode.WRITE_TEMP_FILE) //表单HTML页
+                .setListPage(WriteMode.WRITE_TEMP_FILE); //列表HTML页
         cfg.buildAll();
     }
     public static void main(String[] args) throws Exception {

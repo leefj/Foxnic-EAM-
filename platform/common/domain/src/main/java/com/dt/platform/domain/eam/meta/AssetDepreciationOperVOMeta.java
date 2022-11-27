@@ -6,6 +6,7 @@ import java.util.List;
 import com.dt.platform.domain.eam.AssetDepreciationOper;
 import java.util.Date;
 import com.dt.platform.domain.eam.Asset;
+import com.dt.platform.domain.eam.AssetDepreciationDetail;
 import com.dt.platform.domain.eam.AssetDepreciation;
 import org.github.foxnic.web.domain.hrm.Employee;
 import javax.persistence.Transient;
@@ -14,7 +15,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-25 13:45:49
+ * @since 2022-11-27 09:07:59
  * @sign BB9297D6EE1735DBBADAAF0AB0486CA3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -192,14 +193,14 @@ public class AssetDepreciationOperVOMeta extends AssetDepreciationOperMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationOperVO,java.util.Date> BUSINESS_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationOperVO.class ,BUSINESS_DATE, java.util.Date.class, "业务日期", "业务日期", java.util.Date.class, null);
 	
 	/**
-	 * 执行时间 , 类型: java.util.Date
+	 * 开始时间 , 类型: java.util.Date
 	*/
 	public static final String EXECUTION_START_TIME="executionStartTime";
 	
 	/**
-	 * 执行时间 , 类型: java.util.Date
+	 * 开始时间 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationOperVO,java.util.Date> EXECUTION_START_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationOperVO.class ,EXECUTION_START_TIME, java.util.Date.class, "执行时间", "执行时间", java.util.Date.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationOperVO,java.util.Date> EXECUTION_START_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationOperVO.class ,EXECUTION_START_TIME, java.util.Date.class, "开始时间", "开始时间", java.util.Date.class, null);
 	
 	/**
 	 * 结束时间 , 类型: java.util.Date
@@ -362,14 +363,14 @@ public class AssetDepreciationOperVOMeta extends AssetDepreciationOperMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationOperVO,java.lang.String> ASSET_TARGET_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationOperVO.class ,ASSET_TARGET_IDS, java.util.List.class, "资产列表", "资产列表", java.lang.String.class, null);
 	
 	/**
-	 * 资产 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	 * 资产 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.AssetDepreciationDetail
 	*/
 	public static final String ASSET_DEPRECIATION_LIST="assetDepreciationList";
 	
 	/**
-	 * 资产 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	 * 资产 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.AssetDepreciationDetail
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationOperVO,com.dt.platform.domain.eam.Asset> ASSET_DEPRECIATION_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationOperVO.class ,ASSET_DEPRECIATION_LIST, java.util.List.class, "资产", "资产", com.dt.platform.domain.eam.Asset.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationOperVO,com.dt.platform.domain.eam.AssetDepreciationDetail> ASSET_DEPRECIATION_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationOperVO.class ,ASSET_DEPRECIATION_LIST, java.util.List.class, "资产", "资产", com.dt.platform.domain.eam.AssetDepreciationDetail.class, null);
 	
 	/**
 	 * 资产 , 集合类型: LIST , 类型: java.lang.String
@@ -602,8 +603,8 @@ public class AssetDepreciationOperVOMeta extends AssetDepreciationOperMeta {
 		}
 		
 		/**
-		 * 设置 执行时间
-		 * @param executionStartTime 执行时间
+		 * 设置 开始时间
+		 * @param executionStartTime 开始时间
 		 * @return 当前对象
 		*/
 		public AssetDepreciationOper setExecutionStartTime(Date executionStartTime) {
@@ -793,7 +794,7 @@ public class AssetDepreciationOperVOMeta extends AssetDepreciationOperMeta {
 		 * @param assetDepreciationList 资产
 		 * @return 当前对象
 		*/
-		public AssetDepreciationOper setAssetDepreciationList(List<Asset> assetDepreciationList) {
+		public AssetDepreciationOper setAssetDepreciationList(List<AssetDepreciationDetail> assetDepreciationList) {
 			super.change(ASSET_DEPRECIATION_LIST,super.getAssetDepreciationList(),assetDepreciationList);
 			super.setAssetDepreciationList(assetDepreciationList);
 			return this;

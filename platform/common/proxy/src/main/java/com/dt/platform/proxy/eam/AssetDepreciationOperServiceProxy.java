@@ -120,6 +120,17 @@ public interface AssetDepreciationOperServiceProxy {
     public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
 
     /**
+     * 导出折旧数据(Excel)
+     */
+    public static final String ASSET_DOWNLOAD_DEPRECIATION_REPORT = API_PREFIX + "asset-download-depreciation-report";
+
+    /**
+     * 导出资产数据
+     */
+    public static final String QUERY_ASSET_PAGED_LIST = API_PREFIX + "query-asset-paged-list";
+
+
+    /**
      * 添加折旧操作
      */
     @RequestMapping(AssetDepreciationOperServiceProxy.INSERT)

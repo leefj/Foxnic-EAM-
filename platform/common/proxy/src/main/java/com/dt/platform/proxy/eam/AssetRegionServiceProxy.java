@@ -16,10 +16,10 @@ import com.dt.platform.proxy.ServiceNames;
 
 /**
  * <p>
- * 存放区域  控制器服务代理
+ * 存放区域 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-19 09:10:04
+ * @since 2022-11-25 22:19:46
  */
 @FeignClient(value = ServiceNames.EAM, contextId = AssetRegionServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AssetRegionServiceProxy {

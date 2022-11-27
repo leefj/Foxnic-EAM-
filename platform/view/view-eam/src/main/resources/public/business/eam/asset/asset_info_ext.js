@@ -78,9 +78,21 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     window.pageExt.list.boxWindow(data,it);
                 }else if(menu.id=="assetCopy"){
                     window.pageExt.list.assetCopy(data,it);
+                }else if(menu.id=="asssetDepreciation"){
+                    window.pageExt.list.asssetDepreciation(data,it);
                 }
             }
-
+        },
+        asssetDepreciation:function(data){
+            admin.putTempData("assetId",data.id,true);
+            var index = admin.popupCenter({
+                title: "资产折旧记录",
+                resize: false,
+                id: 'asssetDepreciation',
+                area: ["98%", "80%"],
+                type: 2,
+                content: '/business/eam/asset_depreciation_detail/asset_depreciation_detail_history_list.html?assetId='+data.id ,
+            });
         },
         assetCopy:function(data){
             var queryString="?assetId="+data.id

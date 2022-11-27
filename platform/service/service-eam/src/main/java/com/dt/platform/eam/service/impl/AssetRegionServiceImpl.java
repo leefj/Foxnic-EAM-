@@ -1,34 +1,45 @@
 package com.dt.platform.eam.service.impl;
 
+import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.github.foxnic.dao.entity.ReferCause;
+
+import com.github.foxnic.commons.collection.MapUtil;
+import java.util.Arrays;
+
+
 import com.dt.platform.domain.eam.AssetRegion;
 import com.dt.platform.domain.eam.AssetRegionVO;
-import com.dt.platform.eam.service.IAssetRegionService;
-import com.github.foxnic.api.error.ErrorDesc;
+import java.util.List;
 import com.github.foxnic.api.transter.Result;
-import com.github.foxnic.commons.busi.id.IDGenerator;
-import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.dao.data.PagedList;
-import com.github.foxnic.dao.data.SaveMode;
-import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.SuperService;
 import com.github.foxnic.dao.spec.DAO;
-import com.github.foxnic.sql.expr.ConditionExpr;
-import com.github.foxnic.sql.meta.DBField;
-import org.github.foxnic.web.framework.dao.DBConfigs;
-import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
 import java.lang.reflect.Field;
+import com.github.foxnic.commons.busi.id.IDGenerator;
+import com.github.foxnic.sql.expr.ConditionExpr;
+import com.github.foxnic.api.error.ErrorDesc;
+import com.github.foxnic.dao.excel.ExcelWriter;
+import com.github.foxnic.dao.excel.ValidateResult;
+import com.github.foxnic.dao.excel.ExcelStructure;
+import java.io.InputStream;
+import com.github.foxnic.sql.meta.DBField;
+import com.github.foxnic.dao.data.SaveMode;
+import com.github.foxnic.dao.meta.DBColumnMeta;
+import com.github.foxnic.sql.expr.Select;
+import java.util.ArrayList;
+import com.dt.platform.eam.service.IAssetRegionService;
+import org.github.foxnic.web.framework.dao.DBConfigs;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 /**
  * <p>
- * 存放区域 服务实现
+ * 存放区域服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-19 09:10:04
+ * @since 2022-11-25 22:19:46
 */
 
 
@@ -88,7 +99,7 @@ public class AssetRegionServiceImpl extends SuperService<AssetRegion> implements
 
 	
 	/**
-	 * 按主键删除 存放区域
+	 * 按主键删除存放区域
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -109,7 +120,7 @@ public class AssetRegionServiceImpl extends SuperService<AssetRegion> implements
 	}
 	
 	/**
-	 * 按主键删除 存放区域
+	 * 按主键删除存放区域
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -169,7 +180,7 @@ public class AssetRegionServiceImpl extends SuperService<AssetRegion> implements
 
 	
 	/**
-	 * 按主键更新字段 存放区域
+	 * 按主键更新存放区域
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -183,7 +194,7 @@ public class AssetRegionServiceImpl extends SuperService<AssetRegion> implements
 
 	
 	/**
-	 * 按主键获取 存放区域
+	 * 按主键获取存放区域
 	 *
 	 * @param id 主键
 	 * @return AssetRegion 数据对象
@@ -267,9 +278,6 @@ public class AssetRegionServiceImpl extends SuperService<AssetRegion> implements
 		return false;
 	}
 
-
-
-
 	/**
 	 * 批量检查引用
 	 * @param ids  检查这些ID是否又被外部表引用
@@ -280,7 +288,6 @@ public class AssetRegionServiceImpl extends SuperService<AssetRegion> implements
 		return MapUtil.asMap(ids,new ReferCause(false));
 		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
 	}
-
 
 
 

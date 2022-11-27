@@ -10,10 +10,10 @@ import com.dt.platform.proxy.eam.AssetRegionServiceProxy;
 import javax.servlet.http.HttpServletRequest;
 /**
  * <p>
- * 存放区域 模版页面控制器
+ * 存放区域模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-19 09:10:04
+ * @since 2022-11-25 22:19:46
 */
 
 @Controller("EamAssetRegionPageController")

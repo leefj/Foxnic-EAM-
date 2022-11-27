@@ -7,6 +7,7 @@ import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_CATEGORY_FINANCE;
 import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
@@ -23,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 财务分类
  * <p>财务分类 , 数据表 eam_category_finance 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-13 10:04:46
- * @sign 0E0D1FCB5917DFA1D33049EDDC09238D
+ * @since 2022-11-27 08:06:14
+ * @sign 5F389383F67603135F5270B83765D639
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -66,6 +67,12 @@ public class CategoryFinance extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="编码" , notes = "编码" , example = "房屋和建筑物")
 	private String categoryCode;
+	
+	/**
+	 * 使用期限：使用期限
+	*/
+	@ApiModelProperty(required = false,value="使用期限" , notes = "使用期限" , example = "36.00")
+	private BigDecimal serviceLife;
 	
 	/**
 	 * 父节点：父节点
@@ -118,7 +125,7 @@ public class CategoryFinance extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-06-21 12:35:20")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-11-27 08:03:45")
 	private Date updateTime;
 	
 	/**
@@ -145,7 +152,7 @@ public class CategoryFinance extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = false,value="version" , notes = "version" , example = "9")
+	@ApiModelProperty(required = false,value="version" , notes = "version" , example = "10")
 	private Integer version;
 	
 	/**
@@ -246,6 +253,25 @@ public class CategoryFinance extends Entity {
 	*/
 	public CategoryFinance setCategoryCode(String categoryCode) {
 		this.categoryCode=categoryCode;
+		return this;
+	}
+	
+	/**
+	 * 获得 使用期限<br>
+	 * 使用期限
+	 * @return 使用期限
+	*/
+	public BigDecimal getServiceLife() {
+		return serviceLife;
+	}
+	
+	/**
+	 * 设置 使用期限
+	 * @param serviceLife 使用期限
+	 * @return 当前对象
+	*/
+	public CategoryFinance setServiceLife(BigDecimal serviceLife) {
+		this.serviceLife=serviceLife;
 		return this;
 	}
 	
@@ -607,6 +633,7 @@ public class CategoryFinance extends Entity {
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
+		inst.setServiceLife(this.getServiceLife());
 		inst.setId(this.getId());
 		inst.setStatus(this.getStatus());
 		inst.clearModifies();
@@ -684,6 +711,7 @@ public class CategoryFinance extends Entity {
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(CategoryFinanceMeta.DELETE_TIME)));
 			this.setTenantId(DataParser.parse(String.class, map.get(CategoryFinanceMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(CategoryFinanceMeta.DELETE_BY)));
+			this.setServiceLife(DataParser.parse(BigDecimal.class, map.get(CategoryFinanceMeta.SERVICE_LIFE)));
 			this.setId(DataParser.parse(String.class, map.get(CategoryFinanceMeta.ID)));
 			this.setStatus(DataParser.parse(String.class, map.get(CategoryFinanceMeta.STATUS)));
 			// others
@@ -707,6 +735,7 @@ public class CategoryFinance extends Entity {
 				this.setDeleteTime( (Date)map.get(CategoryFinanceMeta.DELETE_TIME));
 				this.setTenantId( (String)map.get(CategoryFinanceMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(CategoryFinanceMeta.DELETE_BY));
+				this.setServiceLife( (BigDecimal)map.get(CategoryFinanceMeta.SERVICE_LIFE));
 				this.setId( (String)map.get(CategoryFinanceMeta.ID));
 				this.setStatus( (String)map.get(CategoryFinanceMeta.STATUS));
 				// others
@@ -743,6 +772,7 @@ public class CategoryFinance extends Entity {
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(CategoryFinanceMeta.DELETE_TIME)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(CategoryFinanceMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(CategoryFinanceMeta.DELETE_BY)));
+			this.setServiceLife(DataParser.parse(BigDecimal.class, r.getValue(CategoryFinanceMeta.SERVICE_LIFE)));
 			this.setId(DataParser.parse(String.class, r.getValue(CategoryFinanceMeta.ID)));
 			this.setStatus(DataParser.parse(String.class, r.getValue(CategoryFinanceMeta.STATUS)));
 			return true;
@@ -765,6 +795,7 @@ public class CategoryFinance extends Entity {
 				this.setDeleteTime( (Date)r.getValue(CategoryFinanceMeta.DELETE_TIME));
 				this.setTenantId( (String)r.getValue(CategoryFinanceMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(CategoryFinanceMeta.DELETE_BY));
+				this.setServiceLife( (BigDecimal)r.getValue(CategoryFinanceMeta.SERVICE_LIFE));
 				this.setId( (String)r.getValue(CategoryFinanceMeta.ID));
 				this.setStatus( (String)r.getValue(CategoryFinanceMeta.STATUS));
 				return true;

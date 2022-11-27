@@ -17,7 +17,8 @@ public enum AssetDetailDepreciationResultEnum implements CodeTextEnum {
 	VALIDATION_FAILED("validation_failed" , "验证失败"),
 	FAILED("failed" , "失败"),
 	SUCCESS("success" , "成功"),
-	WAIT_CALCULATE("wait_calculate" , "待计算")
+	WAIT_CALCULATE("wait_calculate" , "待计算"),
+	NOT_CALCULATE("not_calculate" , "不折旧"),
 	;
 	private String code;
 	private String text;

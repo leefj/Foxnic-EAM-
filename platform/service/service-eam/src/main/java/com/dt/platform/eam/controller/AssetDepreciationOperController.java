@@ -1,8 +1,29 @@
 package com.dt.platform.eam.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.OutputStream;
+import java.math.BigDecimal;
+import java.net.URLEncoder;
 import java.util.List;
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
+import com.deepoove.poi.util.PoitlIOUtils;
+import com.dt.platform.constants.enums.eam.AssetDetailDepreciationResultEnum;
+import com.dt.platform.constants.enums.eam.AssetOperateEnum;
+import com.dt.platform.constants.enums.ops.OpsOperateEnum;
 import com.dt.platform.domain.eam.*;
+import com.dt.platform.domain.eam.meta.AssetDepreciationDetailMeta;
+import com.dt.platform.domain.eam.meta.AssetDepreciationDetailVOMeta;
+import com.dt.platform.eam.service.IAssetDataService;
+import com.dt.platform.eam.service.IAssetDepreciationDetailService;
+import com.dt.platform.eam.service.IAssetService;
+import com.dt.platform.proxy.common.TplFileServiceProxy;
+import com.dt.platform.proxy.eam.AssetDepreciationDetailServiceProxy;
+import com.dt.platform.proxy.eam.AssetServiceProxy;
 import com.github.foxnic.commons.collection.CollectorUtil;
+import org.apache.commons.io.IOUtils;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.github.foxnic.web.domain.hrm.Person;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -57,6 +78,12 @@ public class AssetDepreciationOperController extends SuperController {
     @Autowired
     private IAssetDepreciationOperService assetDepreciationOperService;
 
+    @Autowired
+    private IAssetDataService assetDataService;
+
+    @Autowired
+    private IAssetDepreciationDetailService assetDepreciationDetailService;
+
     /**
      * 添加折旧操作
      */
@@ -69,7 +96,7 @@ public class AssetDepreciationOperController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.CONTENT, value = "折旧内容", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.EXECUTION_START_TIME, value = "执行时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.EXECUTION_START_TIME, value = "开始时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.EXECUTION_END_TIME, value = "结束时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
@@ -127,7 +154,7 @@ public class AssetDepreciationOperController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.CONTENT, value = "折旧内容", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.EXECUTION_START_TIME, value = "执行时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.EXECUTION_START_TIME, value = "开始时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.EXECUTION_END_TIME, value = "结束时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
@@ -154,7 +181,7 @@ public class AssetDepreciationOperController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.CONTENT, value = "折旧内容", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.EXECUTION_START_TIME, value = "执行时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.EXECUTION_START_TIME, value = "开始时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.EXECUTION_END_TIME, value = "结束时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
@@ -218,7 +245,7 @@ public class AssetDepreciationOperController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.CONTENT, value = "折旧内容", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.EXECUTION_START_TIME, value = "执行时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.EXECUTION_START_TIME, value = "开始时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.EXECUTION_END_TIME, value = "结束时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
@@ -246,7 +273,7 @@ public class AssetDepreciationOperController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.CONTENT, value = "折旧内容", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.EXECUTION_START_TIME, value = "执行时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.EXECUTION_START_TIME, value = "开始时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.EXECUTION_END_TIME, value = "结束时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetDepreciationOperVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
@@ -369,5 +396,102 @@ public class AssetDepreciationOperController extends SuperController {
         } else {
             return ErrorDesc.failure().message("导入失败").data(errors);
         }
+    }
+
+    /**
+     * 导出 Excel
+     */
+    @SentinelResource(value = AssetDepreciationOperServiceProxy.ASSET_DOWNLOAD_DEPRECIATION_REPORT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @RequestMapping(AssetDepreciationOperServiceProxy.ASSET_DOWNLOAD_DEPRECIATION_REPORT)
+    public Result assetDownloadDepreciationReport(String id, HttpServletResponse response) throws Exception {
+        // 生成 Excel 数据
+        String code = AssetOperateEnum.EAM_ASSET_DOWNLOAD_DEPRECIATION_REPORT.code();
+        InputStream inputstream = TplFileServiceProxy.api().getTplFileStreamByCode(code);
+        if (inputstream == null) {
+            return ErrorDesc.failure().message("获取模板文件失败");
+        }
+        File f = assetDataService.saveTempFile(inputstream, "TMP_" + code + ".xls");
+        Map<String, Object> map = assetDepreciationOperService.queryDepreciationAssetMap(id);
+        TemplateExportParams templateExportParams = new TemplateExportParams(f.getPath());
+        Workbook workbook = ExcelExportUtil.exportExcel(templateExportParams, map);
+        response.setCharacterEncoding("UTF-8");
+        response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("折旧资产数据.xls", "UTF-8"))));
+        response.setContentType("application/vnd.ms-excel");
+        OutputStream out = response.getOutputStream();
+        BufferedOutputStream bos = new BufferedOutputStream(out);
+        workbook.write(bos);
+        bos.flush();
+        out.flush();
+        PoitlIOUtils.closeQuietlyMulti(workbook, bos, out);
+        return ErrorDesc.success();
+    }
+
+    /**
+     * 分页查询eam_asset_depreciation_detail
+     */
+    @ApiOperation(value = "分页查询 eam_asset_depreciation_detail")
+    @ApiImplicitParams({
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "648956390479495168"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_ID, value = "折旧方案", required = false, dataTypeClass = String.class, example = "647736203386290176"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.OPER_ID, value = "折旧操作", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.FIRST_DEPRECIATION_METHOD, value = "首次折旧方式", required = false, dataTypeClass = String.class, example = "purchase_next_month"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DEPRECIATION_METHOD, value = "折旧方式", required = false, dataTypeClass = String.class, example = "average_age"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class, example = "2022-11-25 12:00:00"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESULT, value = "折旧结果", required = false, dataTypeClass = String.class, example = "wait_calculate"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.RESULT_DETAIL, value = "折旧结果明细", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_ID, value = "资产", required = false, dataTypeClass = String.class, example = "648874943362105344"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_CATEGORY_NAME, value = "资产类别", required = false, dataTypeClass = String.class, example = "办公设备"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_CODE, value = "资产编码", required = false, dataTypeClass = String.class, example = "AS2022112609345"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_NAME, value = "资产名称", required = false, dataTypeClass = String.class, example = "001"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_MODEL, value = "资产型号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_STATUS_NAME, value = "资产状态", required = false, dataTypeClass = String.class, example = "idle"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_PURCHASE_DATE, value = "采购日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_REGISTER_DATE, value = "入账日期", required = false, dataTypeClass = Date.class, example = "2022-11-25 12:00:00"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_ORIGINAL_UNIT_PRICE, value = "资产原值", required = false, dataTypeClass = BigDecimal.class, example = "7682.00"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_PURCHASE_UNIT_PRICE, value = "含税单价", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_NAV_PRICE, value = "资产净值", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_TAX_AMOUNT_RATE, value = "税额", required = false, dataTypeClass = BigDecimal.class, example = "2.00"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_SERVICE_LIFE, value = "可使用期限", required = false, dataTypeClass = BigDecimal.class, example = "12.00"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_RESIDUALS_RATE, value = "本期残值率", required = false, dataTypeClass = BigDecimal.class, example = "5.00"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_RESIDUALS_PRICE, value = "本期残值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.S_ORIGINAL_PRICE, value = "(期初)期初原值", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.S_DEPRECIATION_AMOUNT, value = "(期初)期初累计折旧", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.S_NAV_AMOUNT, value = "(期初)期初净值", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.S_RECOVERABLE_AMOUNT, value = "(期初)期初可回收净额", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.C_USED_SERVICE_LIFE, value = "已使用期限", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.C_ORIGINAL_PRICE_INCREASE, value = "(本期发生)原值增加", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.C_DEPRECIATION_AMOUNT, value = "(本期发生)本期折旧额", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.C_YEAR_DEPRECIATION_AMOUNT, value = "(本期发生)本年累计折旧额", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.E_ORIGINAL_PRICE, value = "(期末)期末原值", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.E_DEPRECIATION_AMOUNT, value = "(期末)期末累计折旧", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.E_NAV_AMOUNT, value = "(期末)期末净值", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.E_RECOVERABLE_AMOUNT, value = "(期末)期末可回收金额", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ACCOUNTING_SERVICE_LIFE, value = "会计期间已使用期限", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.FIRST_DEPRECIATION, value = "首次折旧", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.USE_USER_ID, value = "使用人ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.USE_USER_NAME, value = "使用人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.USE_ORG_ID, value = "部门ID", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.USE_ORG_NAME, value = "使用部门", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.FINANCIAL_OPTION_KEY, value = "财务选项KEY", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.EXPENSE_ITEM_KEY, value = "费用项目KEY", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.FINANCIAL_OPTION_NAME, value = "财务选项", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.EXPENSE_ITEM_NAME, value = "费用项目", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.CUSTOMER_INFO, value = "客户情况", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DETAIL_ID_SOURCE, value = "源资产", required = false, dataTypeClass = String.class, example = "648956390253002752"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.DETAIL_ID_TARGET, value = "目标资产", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.LAST_OPER_ID, value = "上次折旧单据", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.LAST_OPER_TIME, value = "上次折旧时间", required = false, dataTypeClass = Date.class)
+	})
+    @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = AssetDepreciationOperServiceProxy.QUERY_ASSET_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(AssetDepreciationOperServiceProxy.QUERY_ASSET_PAGED_LIST)
+    public Result<PagedList<AssetDepreciationDetail>> queryAssetPagedList(AssetDepreciationDetailVO sample) {
+        Result<PagedList<AssetDepreciationDetail>> result = new Result<>();
+        sample.setResult(AssetDetailDepreciationResultEnum.SUCCESS.code());
+        PagedList<AssetDepreciationDetail> list = assetDepreciationDetailService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
+        // join 关联的对象
+        assetDepreciationDetailService.dao().fill(list).with("useOrganization").with("useUser").with(AssetDepreciationDetailMeta.FINANCIAL_OPTION_DICT).with(AssetDepreciationDetailMeta.EXPENSE_ITEM_DICT).with(AssetDepreciationDetailMeta.ASSET_DEPRECIATION).with(AssetDepreciationDetailMeta.ASSET_DEPRECIATION_OPER).execute();
+        result.success(true).data(list);
+        return result;
     }
 }

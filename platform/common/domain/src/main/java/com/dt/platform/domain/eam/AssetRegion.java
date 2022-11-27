@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_ASSET_REGION;
@@ -8,21 +9,27 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.AssetRegionMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 存放区域
+ * <p>存放区域 , 数据表 eam_asset_region 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-19 09:10:04
- * @sign 95E8ABA7579DAB15F44341305C1CCCF4
+ * @since 2022-11-25 22:19:46
+ * @sign EB23695B0DA55F0DBC9227A42048B902
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_asset_region")
+@ApiModel(description = "存放区域 ; 存放区域 , 数据表 eam_asset_region 的PO类型")
 public class AssetRegion extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -52,7 +59,7 @@ public class AssetRegion extends Entity {
 	 * 编码：编码
 	*/
 	@ApiModelProperty(required = false,value="编码" , notes = "编码")
-	private String regiondCode;
+	private String regionCode;
 	
 	/**
 	 * 父节点：父节点
@@ -114,6 +121,7 @@ public class AssetRegion extends Entity {
 	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -202,17 +210,17 @@ public class AssetRegion extends Entity {
 	 * 编码
 	 * @return 编码
 	*/
-	public String getRegiondCode() {
-		return regiondCode;
+	public String getRegionCode() {
+		return regionCode;
 	}
 	
 	/**
 	 * 设置 编码
-	 * @param regiondCode 编码
+	 * @param regionCode 编码
 	 * @return 当前对象
 	*/
-	public AssetRegion setRegiondCode(String regiondCode) {
-		this.regiondCode=regiondCode;
+	public AssetRegion setRegionCode(String regionCode) {
+		this.regionCode=regionCode;
 		return this;
 	}
 	
@@ -414,6 +422,7 @@ public class AssetRegion extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public AssetRegion setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -542,6 +551,51 @@ public class AssetRegion extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetRegion clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AssetRegion duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.AssetRegionMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetRegionMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setRegionName(this.getRegionName());
+		inst.setHierarchy(this.getHierarchy());
+		inst.setHierarchyName(this.getHierarchyName());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setSort(this.getSort());
+		inst.setVersion(this.getVersion());
+		inst.setParentId(this.getParentId());
+		inst.setRegionCode(this.getRegionCode());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setStatus(this.getStatus());
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetRegion clone(boolean deep) {
+		return EntityContext.clone(AssetRegion.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 AssetRegion
 	 * @param assetRegionMap 包含实体信息的 Map 对象
 	 * @return AssetRegion , 转换好的的 AssetRegion 对象
@@ -549,7 +603,9 @@ public class AssetRegion extends Entity {
 	@Transient
 	public static AssetRegion createFrom(Map<String,Object> assetRegionMap) {
 		if(assetRegionMap==null) return null;
-		AssetRegion po = EntityContext.create(AssetRegion.class, assetRegionMap);
+		AssetRegion po = create();
+		EntityContext.copyProperties(po,assetRegionMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -561,7 +617,9 @@ public class AssetRegion extends Entity {
 	@Transient
 	public static AssetRegion createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AssetRegion po = EntityContext.create(AssetRegion.class,pojo);
+		AssetRegion po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -571,6 +629,118 @@ public class AssetRegion extends Entity {
 	*/
 	@Transient
 	public static AssetRegion create() {
-		return EntityContext.create(AssetRegion.class);
+		return new com.dt.platform.domain.eam.meta.AssetRegionMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(AssetRegionMeta.NOTES)));
+			this.setRegionName(DataParser.parse(String.class, map.get(AssetRegionMeta.REGION_NAME)));
+			this.setHierarchy(DataParser.parse(String.class, map.get(AssetRegionMeta.HIERARCHY)));
+			this.setHierarchyName(DataParser.parse(String.class, map.get(AssetRegionMeta.HIERARCHY_NAME)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetRegionMeta.UPDATE_TIME)));
+			this.setSort(DataParser.parse(Integer.class, map.get(AssetRegionMeta.SORT)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetRegionMeta.VERSION)));
+			this.setParentId(DataParser.parse(String.class, map.get(AssetRegionMeta.PARENT_ID)));
+			this.setRegionCode(DataParser.parse(String.class, map.get(AssetRegionMeta.REGION_CODE)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetRegionMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetRegionMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetRegionMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetRegionMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetRegionMeta.DELETE_TIME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetRegionMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetRegionMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AssetRegionMeta.ID)));
+			this.setStatus(DataParser.parse(String.class, map.get(AssetRegionMeta.STATUS)));
+			// others
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(AssetRegionMeta.NOTES));
+				this.setRegionName( (String)map.get(AssetRegionMeta.REGION_NAME));
+				this.setHierarchy( (String)map.get(AssetRegionMeta.HIERARCHY));
+				this.setHierarchyName( (String)map.get(AssetRegionMeta.HIERARCHY_NAME));
+				this.setUpdateTime( (Date)map.get(AssetRegionMeta.UPDATE_TIME));
+				this.setSort( (Integer)map.get(AssetRegionMeta.SORT));
+				this.setVersion( (Integer)map.get(AssetRegionMeta.VERSION));
+				this.setParentId( (String)map.get(AssetRegionMeta.PARENT_ID));
+				this.setRegionCode( (String)map.get(AssetRegionMeta.REGION_CODE));
+				this.setCreateBy( (String)map.get(AssetRegionMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AssetRegionMeta.DELETED));
+				this.setCreateTime( (Date)map.get(AssetRegionMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(AssetRegionMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AssetRegionMeta.DELETE_TIME));
+				this.setTenantId( (String)map.get(AssetRegionMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AssetRegionMeta.DELETE_BY));
+				this.setId( (String)map.get(AssetRegionMeta.ID));
+				this.setStatus( (String)map.get(AssetRegionMeta.STATUS));
+				// others
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(AssetRegionMeta.NOTES)));
+			this.setRegionName(DataParser.parse(String.class, r.getValue(AssetRegionMeta.REGION_NAME)));
+			this.setHierarchy(DataParser.parse(String.class, r.getValue(AssetRegionMeta.HIERARCHY)));
+			this.setHierarchyName(DataParser.parse(String.class, r.getValue(AssetRegionMeta.HIERARCHY_NAME)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetRegionMeta.UPDATE_TIME)));
+			this.setSort(DataParser.parse(Integer.class, r.getValue(AssetRegionMeta.SORT)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetRegionMeta.VERSION)));
+			this.setParentId(DataParser.parse(String.class, r.getValue(AssetRegionMeta.PARENT_ID)));
+			this.setRegionCode(DataParser.parse(String.class, r.getValue(AssetRegionMeta.REGION_CODE)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetRegionMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetRegionMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetRegionMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetRegionMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetRegionMeta.DELETE_TIME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetRegionMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetRegionMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetRegionMeta.ID)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(AssetRegionMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(AssetRegionMeta.NOTES));
+				this.setRegionName( (String)r.getValue(AssetRegionMeta.REGION_NAME));
+				this.setHierarchy( (String)r.getValue(AssetRegionMeta.HIERARCHY));
+				this.setHierarchyName( (String)r.getValue(AssetRegionMeta.HIERARCHY_NAME));
+				this.setUpdateTime( (Date)r.getValue(AssetRegionMeta.UPDATE_TIME));
+				this.setSort( (Integer)r.getValue(AssetRegionMeta.SORT));
+				this.setVersion( (Integer)r.getValue(AssetRegionMeta.VERSION));
+				this.setParentId( (String)r.getValue(AssetRegionMeta.PARENT_ID));
+				this.setRegionCode( (String)r.getValue(AssetRegionMeta.REGION_CODE));
+				this.setCreateBy( (String)r.getValue(AssetRegionMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AssetRegionMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(AssetRegionMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(AssetRegionMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AssetRegionMeta.DELETE_TIME));
+				this.setTenantId( (String)r.getValue(AssetRegionMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AssetRegionMeta.DELETE_BY));
+				this.setId( (String)r.getValue(AssetRegionMeta.ID));
+				this.setStatus( (String)r.getValue(AssetRegionMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }
