@@ -2,7 +2,7 @@
 /**
  * 计算方法 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-26 18:26:51
+ * @since 2022-11-27 17:04:43
  */
  -->
  <!DOCTYPE html>
@@ -53,20 +53,24 @@
                     <!-- 计算方法 , methodContent ,typeName=text_input, isHideInSearch=true -->
                     <!-- 方法描述 , methodContentInfo ,typeName=text_input, isHideInSearch=true -->
                     <!-- 返回类型 , returnType ,typeName=radio_box, isHideInSearch=true -->
+                    <!-- 备注 , notes ,typeName=text_input, isHideInSearch=true -->
                     <!-- 折旧方案 , depreciationId ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style=""><span th:text="${lang.translate('折旧方案')}" class="search-label depreciationId-label">折旧方案</span><span class="search-colon">:</span></div>
                         <div id="depreciationId" th:data="${'/service-eam/eam-asset-depreciation/query-paged-list'}" style="width:140px" extraParam="{}"></div>
                     </div>
+                    <!-- 动作 , actionCode ,typeName=radio_box, isHideInSearch=false -->
+                    <div class="search-unit">
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('动作')}" class="search-label actionCode-label">动作</span><span class="search-colon">:</span></div>
+
+
+                        <div id="actionCode" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.AssetDepreciationRuleActionCodeEnum')}" style="width:140px"></div>
+
+                    </div>
                     <!-- 字段名称 , columnName ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style=""><span th:text="${lang.translate('字段名称')}" class="search-label columnName-label">字段名称</span><span class="search-colon">:</span></div>
                         <input id="columnName" class="layui-input search-input" style="width: 140px" type="text" />
-                    </div>
-                    <!-- 备注 , notes ,typeName=text_input, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('备注')}" class="search-label notes-label">备注</span><span class="search-colon">:</span></div>
-                        <input id="notes" class="layui-input search-input" style="width: 140px" type="text" />
                     </div>
 
 
@@ -115,6 +119,7 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_ACTIONCODE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetDepreciationRuleActionCodeEnum')}]];
     var RADIO_CALCULATIONTYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetDepreciationCalculationMethodTypeEnum')}]];
     var RADIO_RETURNTYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetDepreciationCalculationReturnTypeEnum')}]];
     var AUTH_PREFIX="eam_asset_depreciation_cal_rule";

@@ -9,6 +9,7 @@ import java.util.List;
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
 import com.deepoove.poi.util.PoitlIOUtils;
+import com.dt.platform.constants.enums.eam.AssetDepreciationStatusEnum;
 import com.dt.platform.constants.enums.eam.AssetDetailDepreciationResultEnum;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
 import com.dt.platform.constants.enums.ops.OpsOperateEnum;
@@ -21,7 +22,12 @@ import com.dt.platform.eam.service.IAssetService;
 import com.dt.platform.proxy.common.TplFileServiceProxy;
 import com.dt.platform.proxy.eam.AssetDepreciationDetailServiceProxy;
 import com.dt.platform.proxy.eam.AssetServiceProxy;
+import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.CollectorUtil;
+import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.dao.data.Rcd;
+import com.github.foxnic.sql.expr.Insert;
+import com.github.foxnic.sql.expr.Update;
 import org.apache.commons.io.IOUtils;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.github.foxnic.web.domain.hrm.Person;
@@ -343,6 +349,65 @@ public class AssetDepreciationOperController extends SuperController {
     @PostMapping(AssetDepreciationOperServiceProxy.EXECUTE)
     public Result execute(String id) {
         return assetDepreciationOperService.execute(id);
+    }
+
+
+    /**
+     */
+    @ApiOperation(value = "")
+    @ApiOperationSupport(order = 13)
+    @SentinelResource(value = AssetDepreciationOperServiceProxy.ASSET_EXCLUDE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(AssetDepreciationOperServiceProxy.ASSET_EXCLUDE)
+    public Result assetExclude(List<String> ids,String operId,String mark) {
+
+        if(StringUtil.isBlank(operId)){
+            return ErrorDesc.failureMessage("折旧单据为空");
+        }
+        if(StringUtil.isBlank(ids)){
+            return ErrorDesc.failureMessage("请选择资产数据");
+        }
+        AssetDepreciationOper assetDepreciationOper=assetDepreciationOperService.getById(operId);
+        String depId=assetDepreciationOper.getDepreciationId();
+        if(AssetDepreciationStatusEnum.ACTING.code().equals(assetDepreciationOper.getStatus())){
+
+        }else{
+            return ErrorDesc.failureMessage("当前资产单据状态，不能进行该操作");
+        }
+
+        if(StringUtil.isBlank(operId)){
+            return ErrorDesc.failureMessage("折旧方案为空");
+        }
+        for(String id:ids){
+
+            AssetDepreciationDetail assetDepreciationDetail=assetDepreciationDetailService.getById(id);
+            //更新资产折旧单据中的资产数据
+            Update ups=new Update("eam_asset_depreciation_detail");
+            ups.set("result",AssetDetailDepreciationResultEnum.NOT_CALCULATE.code());
+            ups.set("result_detail",mark==null?"":mark);
+            ups.where().and("id=?",id);
+            assetDepreciationOperService.dao().execute(ups);
+
+
+            //新增排除的资产数据
+            Rcd rs=assetDepreciationOperService.dao().queryRecord("select 1 from eam_asset_depreciation_exclude where depreciation_id=? and asset_id=?",depId,assetDepreciationDetail.getAssetId());
+            if(rs==null){
+                //add
+                Insert ins=new Insert("eam_asset_depreciation_exclude");
+                ins.set("id", IDGenerator.getSnowflakeIdString());
+                ins.set("depreciation_id", depId);
+                ins.set("asset_id", assetDepreciationDetail.getAssetId());
+                ins.set("notes",mark==null?"":mark);
+                assetDepreciationOperService.dao().execute(ins);
+            }else{
+                if(!StringUtil.isBlank(mark)){
+                    Update ups1=new Update("eam_asset_depreciation_exclude");
+                    ups1.set("notes",mark==null?"":mark);
+                    ups1.where().and("depreciation_id=?",operId).and("asset_id=?",assetDepreciationDetail.getAssetId());
+                    assetDepreciationOperService.dao().execute(ups1);
+                }
+            }
+        }
+        return ErrorDesc.success();
     }
 
     /**

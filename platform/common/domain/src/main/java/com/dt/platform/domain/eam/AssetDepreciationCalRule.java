@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 计算方法
  * <p>计算方法 , 数据表 eam_asset_depreciation_cal_rule 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-26 18:26:50
- * @sign 88FD935516B177A033D8BB869E2F985A
+ * @since 2022-11-27 17:04:42
+ * @sign 028FA54B25CCA1BC8071AAAB3CBE628B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -56,6 +56,12 @@ public class AssetDepreciationCalRule extends Entity {
 	private String status;
 	
 	/**
+	 * 动作：动作
+	*/
+	@ApiModelProperty(required = false,value="动作" , notes = "动作" , example = "depreciation_normal")
+	private String actionCode;
+	
+	/**
 	 * 规则编号：规则编号
 	*/
 	@ApiModelProperty(required = false,value="规则编号" , notes = "规则编号" , example = "300")
@@ -82,7 +88,7 @@ public class AssetDepreciationCalRule extends Entity {
 	/**
 	 * 计算方法：计算方法
 	*/
-	@ApiModelProperty(required = false,value="计算方法" , notes = "计算方法" , example = "assetOriginalData.navPrice")
+	@ApiModelProperty(required = false,value="计算方法" , notes = "计算方法" , example = "asset.assetOriginalUnitPrice")
 	private String methodContent;
 	
 	/**
@@ -124,7 +130,7 @@ public class AssetDepreciationCalRule extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-11-26 06:01:52")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-11-27 08:37:08")
 	private Date updateTime;
 	
 	/**
@@ -151,7 +157,7 @@ public class AssetDepreciationCalRule extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "3")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "4")
 	private Integer version;
 	
 	/**
@@ -220,6 +226,25 @@ public class AssetDepreciationCalRule extends Entity {
 	*/
 	public AssetDepreciationCalRule setStatus(String status) {
 		this.status=status;
+		return this;
+	}
+	
+	/**
+	 * 获得 动作<br>
+	 * 动作
+	 * @return 动作
+	*/
+	public String getActionCode() {
+		return actionCode;
+	}
+	
+	/**
+	 * 设置 动作
+	 * @param actionCode 动作
+	 * @return 当前对象
+	*/
+	public AssetDepreciationCalRule setActionCode(String actionCode) {
+		this.actionCode=actionCode;
 		return this;
 	}
 	
@@ -656,6 +681,7 @@ public class AssetDepreciationCalRule extends Entity {
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
+		inst.setActionCode(this.getActionCode());
 		inst.setId(this.getId());
 		inst.setReturnType(this.getReturnType());
 		inst.setStatus(this.getStatus());
@@ -737,6 +763,7 @@ public class AssetDepreciationCalRule extends Entity {
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetDepreciationCalRuleMeta.DELETE_TIME)));
 			this.setTenantId(DataParser.parse(String.class, map.get(AssetDepreciationCalRuleMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetDepreciationCalRuleMeta.DELETE_BY)));
+			this.setActionCode(DataParser.parse(String.class, map.get(AssetDepreciationCalRuleMeta.ACTION_CODE)));
 			this.setId(DataParser.parse(String.class, map.get(AssetDepreciationCalRuleMeta.ID)));
 			this.setReturnType(DataParser.parse(String.class, map.get(AssetDepreciationCalRuleMeta.RETURN_TYPE)));
 			this.setStatus(DataParser.parse(String.class, map.get(AssetDepreciationCalRuleMeta.STATUS)));
@@ -762,6 +789,7 @@ public class AssetDepreciationCalRule extends Entity {
 				this.setDeleteTime( (Date)map.get(AssetDepreciationCalRuleMeta.DELETE_TIME));
 				this.setTenantId( (String)map.get(AssetDepreciationCalRuleMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(AssetDepreciationCalRuleMeta.DELETE_BY));
+				this.setActionCode( (String)map.get(AssetDepreciationCalRuleMeta.ACTION_CODE));
 				this.setId( (String)map.get(AssetDepreciationCalRuleMeta.ID));
 				this.setReturnType( (String)map.get(AssetDepreciationCalRuleMeta.RETURN_TYPE));
 				this.setStatus( (String)map.get(AssetDepreciationCalRuleMeta.STATUS));
@@ -800,6 +828,7 @@ public class AssetDepreciationCalRule extends Entity {
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationCalRuleMeta.DELETE_TIME)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetDepreciationCalRuleMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetDepreciationCalRuleMeta.DELETE_BY)));
+			this.setActionCode(DataParser.parse(String.class, r.getValue(AssetDepreciationCalRuleMeta.ACTION_CODE)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssetDepreciationCalRuleMeta.ID)));
 			this.setReturnType(DataParser.parse(String.class, r.getValue(AssetDepreciationCalRuleMeta.RETURN_TYPE)));
 			this.setStatus(DataParser.parse(String.class, r.getValue(AssetDepreciationCalRuleMeta.STATUS)));
@@ -823,6 +852,7 @@ public class AssetDepreciationCalRule extends Entity {
 				this.setDeleteTime( (Date)r.getValue(AssetDepreciationCalRuleMeta.DELETE_TIME));
 				this.setTenantId( (String)r.getValue(AssetDepreciationCalRuleMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(AssetDepreciationCalRuleMeta.DELETE_BY));
+				this.setActionCode( (String)r.getValue(AssetDepreciationCalRuleMeta.ACTION_CODE));
 				this.setId( (String)r.getValue(AssetDepreciationCalRuleMeta.ID));
 				this.setReturnType( (String)r.getValue(AssetDepreciationCalRuleMeta.RETURN_TYPE));
 				this.setStatus( (String)r.getValue(AssetDepreciationCalRuleMeta.STATUS));

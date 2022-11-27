@@ -1,22 +1,11 @@
 package com.dt.platform.generator.module.eam;
 
 import com.dt.platform.constants.db.EAMTables;
-import com.dt.platform.constants.enums.common.StatusEnableEnum;
-import com.dt.platform.constants.enums.eam.AssetDepreciationCalculationMethodTypeEnum;
-import com.dt.platform.constants.enums.eam.AssetDepreciationCalculationReturnTypeEnum;
-import com.dt.platform.domain.eam.AssetDepreciation;
-import com.dt.platform.domain.eam.AssetDepreciationExclude;
-import com.dt.platform.domain.eam.meta.AssetDepreciationCalRuleMeta;
-import com.dt.platform.domain.eam.meta.AssetDepreciationMeta;
-import com.dt.platform.eam.page.AssetDepreciationExcludePageController;
-import com.dt.platform.eam.page.AssetDepreciationPageController;
 import com.dt.platform.generator.config.Config;
-import com.dt.platform.proxy.eam.AssetDepreciationExcludeServiceProxy;
-import com.dt.platform.proxy.eam.AssetDepreciationServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 
-public class AssetDepreciationXcludeGtr extends BaseCodeGenerator{
-    public AssetDepreciationXcludeGtr() {
+public class AssetDepreciationExcludeGtr extends BaseCodeGenerator{
+    public AssetDepreciationExcludeGtr() {
         super(EAMTables.EAM_ASSET_DEPRECIATION_EXCLUDE.$TABLE,BASIC_CY_MENU_ID);
     }
 
@@ -51,7 +40,7 @@ public class AssetDepreciationXcludeGtr extends BaseCodeGenerator{
     }
 
     public static void main(String[] args) throws Exception {
-        AssetDepreciationXcludeGtr g=new AssetDepreciationXcludeGtr();
+        AssetDepreciationExcludeGtr g=new AssetDepreciationExcludeGtr();
         //生成代码
         g.generateCode();
         //生成菜单

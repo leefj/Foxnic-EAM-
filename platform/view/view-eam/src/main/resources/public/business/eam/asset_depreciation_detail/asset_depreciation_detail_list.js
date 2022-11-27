@@ -1,7 +1,7 @@
 /**
- * eam_asset_depreciation_detail 列表页 JS 脚本
+ * 折旧明细 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-27 12:23:03
+ * @since 2022-11-27 16:20:09
  */
 
 
@@ -167,8 +167,9 @@ function ListPage() {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
 		value.result={ inputType:"select_box", value: getSelectedValue("#result","value"), label:getSelectedValue("#result","nameStr") };
+		value.resultDetail={ inputType:"button",value: $("#resultDetail").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.assetCategoryName={ inputType:"button",value: $("#assetCategoryName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.assetFinanceCategoryName={ inputType:"button",value: $("#assetFinanceCategoryName").val()};
+		value.assetFinanceCategoryName={ inputType:"button",value: $("#assetFinanceCategoryName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.assetCode={ inputType:"button",value: $("#assetCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.assetName={ inputType:"button",value: $("#assetName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.assetModel={ inputType:"button",value: $("#assetModel").val()};
@@ -344,6 +345,9 @@ function ListPage() {
 				case 'tool-depreciation-sync':
 					window.pageExt.list.depreciationSync && window.pageExt.list.depreciationSync(selected,obj);
 					break;
+				case 'tool-depreciation-exclude':
+					window.pageExt.list.depreciationExclude && window.pageExt.list.depreciationExclude(selected,obj);
+					break;
 				case 'tool-depreciation-export':
 					window.pageExt.list.depreciationExport && window.pageExt.list.depreciationExport(selected,obj);
 					break;
@@ -374,11 +378,11 @@ function ListPage() {
 
 			var ids=getCheckedList("id");
             if(ids.length==0) {
-				top.layer.msg(fox.translate('请选择需要删除的'+'eam_asset_depreciation_detail'+"!",null,languageContext));
+				top.layer.msg(fox.translate('请选择需要删除的'+'折旧明细'+"!",null,languageContext));
             	return;
             }
             //调用批量删除接口
-			top.layer.confirm(fox.translate('确定删除已选中的'+'eam_asset_depreciation_detail'+'吗？',null,languageContext), function (i) {
+			top.layer.confirm(fox.translate('确定删除已选中的'+'折旧明细'+'吗？',null,languageContext), function (i) {
                 top.layer.close(i);
 				admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
                     if (data.success) {
@@ -440,7 +444,7 @@ function ListPage() {
 					if(!doNext) return;
 				}
 
-				top.layer.confirm(fox.translate('确定删除此'+'eam_asset_depreciation_detail'+'吗？',null,languageContext), function (i) {
+				top.layer.confirm(fox.translate('确定删除此'+'折旧明细'+'吗？',null,languageContext), function (i) {
 					top.layer.close(i);
 					admin.post(moduleURL+"/delete", { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
@@ -480,7 +484,7 @@ function ListPage() {
 		var area=admin.getTempData('eam-asset-depreciation-detail-form-area');
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
 		var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
-		var title = fox.translate('eam_asset_depreciation_detail',null,languageContext);
+		var title = fox.translate('折旧明细',null,languageContext);
 		if(action=="create") title=fox.translate('添加','','cmp:table')+title;
 		else if(action=="edit") title=fox.translate('修改','','cmp:table')+title;
 		else if(action=="view") title=fox.translate('查看','','cmp:table')+title;

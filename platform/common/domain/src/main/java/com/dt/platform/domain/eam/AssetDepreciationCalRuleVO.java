@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 计算方法VO类型
  * <p>计算方法 , 数据表 eam_asset_depreciation_cal_rule 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-26 18:26:50
+ * @since 2022-11-27 17:04:42
  * @sign 28BAA1B1146496F48E6F2C484F903CEA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -342,6 +342,7 @@ public class AssetDepreciationCalRuleVO extends AssetDepreciationCalRule {
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
+		inst.setActionCode(this.getActionCode());
 		inst.setId(this.getId());
 		inst.setReturnType(this.getReturnType());
 		inst.setStatus(this.getStatus());
@@ -432,6 +433,7 @@ public class AssetDepreciationCalRuleVO extends AssetDepreciationCalRule {
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetDepreciationCalRuleVOMeta.DELETE_TIME)));
 			this.setTenantId(DataParser.parse(String.class, map.get(AssetDepreciationCalRuleVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetDepreciationCalRuleVOMeta.DELETE_BY)));
+			this.setActionCode(DataParser.parse(String.class, map.get(AssetDepreciationCalRuleVOMeta.ACTION_CODE)));
 			this.setId(DataParser.parse(String.class, map.get(AssetDepreciationCalRuleVOMeta.ID)));
 			this.setReturnType(DataParser.parse(String.class, map.get(AssetDepreciationCalRuleVOMeta.RETURN_TYPE)));
 			this.setStatus(DataParser.parse(String.class, map.get(AssetDepreciationCalRuleVOMeta.STATUS)));
@@ -464,6 +466,7 @@ public class AssetDepreciationCalRuleVO extends AssetDepreciationCalRule {
 				this.setDeleteTime( (Date)map.get(AssetDepreciationCalRuleVOMeta.DELETE_TIME));
 				this.setTenantId( (String)map.get(AssetDepreciationCalRuleVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(AssetDepreciationCalRuleVOMeta.DELETE_BY));
+				this.setActionCode( (String)map.get(AssetDepreciationCalRuleVOMeta.ACTION_CODE));
 				this.setId( (String)map.get(AssetDepreciationCalRuleVOMeta.ID));
 				this.setReturnType( (String)map.get(AssetDepreciationCalRuleVOMeta.RETURN_TYPE));
 				this.setStatus( (String)map.get(AssetDepreciationCalRuleVOMeta.STATUS));
@@ -509,6 +512,7 @@ public class AssetDepreciationCalRuleVO extends AssetDepreciationCalRule {
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationCalRuleVOMeta.DELETE_TIME)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetDepreciationCalRuleVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetDepreciationCalRuleVOMeta.DELETE_BY)));
+			this.setActionCode(DataParser.parse(String.class, r.getValue(AssetDepreciationCalRuleVOMeta.ACTION_CODE)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssetDepreciationCalRuleVOMeta.ID)));
 			this.setReturnType(DataParser.parse(String.class, r.getValue(AssetDepreciationCalRuleVOMeta.RETURN_TYPE)));
 			this.setStatus(DataParser.parse(String.class, r.getValue(AssetDepreciationCalRuleVOMeta.STATUS)));
@@ -532,6 +536,7 @@ public class AssetDepreciationCalRuleVO extends AssetDepreciationCalRule {
 				this.setDeleteTime( (Date)r.getValue(AssetDepreciationCalRuleVOMeta.DELETE_TIME));
 				this.setTenantId( (String)r.getValue(AssetDepreciationCalRuleVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(AssetDepreciationCalRuleVOMeta.DELETE_BY));
+				this.setActionCode( (String)r.getValue(AssetDepreciationCalRuleVOMeta.ACTION_CODE));
 				this.setId( (String)r.getValue(AssetDepreciationCalRuleVOMeta.ID));
 				this.setReturnType( (String)r.getValue(AssetDepreciationCalRuleVOMeta.RETURN_TYPE));
 				this.setStatus( (String)r.getValue(AssetDepreciationCalRuleVOMeta.STATUS));

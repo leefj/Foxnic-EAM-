@@ -129,6 +129,10 @@ public interface AssetDepreciationOperServiceProxy {
      */
     public static final String QUERY_ASSET_PAGED_LIST = API_PREFIX + "query-asset-paged-list";
 
+    /**
+     * 折旧排除
+     */
+    public static final String ASSET_EXCLUDE = API_PREFIX + "asset-exclude";
 
     /**
      * 添加折旧操作

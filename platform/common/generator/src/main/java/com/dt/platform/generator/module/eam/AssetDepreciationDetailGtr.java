@@ -59,7 +59,6 @@ public class AssetDepreciationDetailGtr extends BaseCodeGenerator {
                 new Object[]{
                         EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.ASSET_CODE,
                         EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.ASSET_FINANCE_CATEGORY_NAME,
-
                         EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.ASSET_NAME,
                         EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.ASSET_MODEL,
                 },
@@ -78,6 +77,7 @@ public class AssetDepreciationDetailGtr extends BaseCodeGenerator {
                   new Object[]{
                           EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.ASSET_CATEGORY_NAME,
                           EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.RESULT,
+                          EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.RESULT_DETAIL,
                }
 
         );
@@ -86,16 +86,16 @@ public class AssetDepreciationDetailGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.ASSET_NAME).form().search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.ASSET_CATEGORY_NAME).form().search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.ASSET_NAME).form().search().fuzzySearch();
-
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.RESULT_DETAIL).form().search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.ASSET_STATUS_NAME).form().search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.CUSTOMER_INFO).form().search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.EXPENSE_ITEM_NAME).form().search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.FINANCIAL_OPTION_NAME).form().search().fuzzySearch();
-
-
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.ASSET_FINANCE_CATEGORY_NAME).form().search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.ASSET_PURCHASE_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.ASSET_REGISTER_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.BUSINESS_DATE).form().dateInput().format("yyyy-MM").search().range();
+
 
         //   cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.BUSINESS_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
 
@@ -200,6 +200,10 @@ public class AssetDepreciationDetailGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.DETAIL_ID_TARGET).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.CREATE_TIME).table().disable(true);
 
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.ACTION_CODE).table().disable(true);
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.RESULT_VALUE_FLOAT).table().disable(true);
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.RESULT_VALUE_STR).table().disable(true);
+
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.EXPENSE_ITEM_KEY).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.FINANCIAL_OPTION_KEY).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.USE_ORG_ID).table().disable(true);
@@ -263,7 +267,9 @@ public class AssetDepreciationDetailGtr extends BaseCodeGenerator {
         cfg.view().list().addToolButton("执行折旧","depreciationExecute","depreciationExecute-btn","eam_asset_depreciation_oper:execute");
        // cfg.view().list().addToolButton("回退","depreciationRollback","depreciationRollback-btn","eam_asset_depreciation_oper:rollback");
         cfg.view().list().addToolButton("同步数据","depreciationSync","depreciationSync-btn","eam_asset_depreciation_oper:sync");
+        cfg.view().list().addToolButton("折旧排除","depreciationExclude","depreciationExclude-btn","eam_asset_depreciation_oper:exclude");
         cfg.view().list().addToolButton("数据导出","depreciationExport","depreciationExport-btn","eam_asset_depreciation_oper:export");
+
 
         cfg.view().search().inputWidth(Config.searchInputWidth);
         //文件生成覆盖模式

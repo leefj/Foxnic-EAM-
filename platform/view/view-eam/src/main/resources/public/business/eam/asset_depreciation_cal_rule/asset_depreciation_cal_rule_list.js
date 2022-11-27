@@ -1,7 +1,7 @@
 /**
  * 计算方法 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-26 18:26:51
+ * @since 2022-11-27 17:04:44
  */
 
 
@@ -81,6 +81,7 @@ function ListPage() {
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'depreciationId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧方案'), templet: function (d) { return templet('depreciationId' ,fox.joinLabel(d.assetDepreciation,"name",',','','depreciationId'),d);}}
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
+					,{ field: 'actionCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('动作'), templet:function (d){ return templet('actionCode',fox.getEnumText(RADIO_ACTIONCODE_DATA,d.actionCode,'','actionCode'),d);}}
 					,{ field: 'ruleNumber', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('规则编号') , templet: function (d) { return templet('ruleNumber',d.ruleNumber,d);}  }
 					,{ field: 'columnValue', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('字段值') , templet: function (d) { return templet('columnValue',d.columnValue,d);}  }
 					,{ field: 'columnName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('字段名称') , templet: function (d) { return templet('columnName',d.columnName,d);}  }
@@ -140,8 +141,8 @@ function ListPage() {
 		var value = {};
 		value.depreciationId={ inputType:"select_box", value: getSelectedValue("#depreciationId","value") ,fillBy:["assetDepreciation"]  , label:getSelectedValue("#depreciationId","nameStr") };
 		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
+		value.actionCode={ inputType:"radio_box", value: getSelectedValue("#actionCode","value"), label:getSelectedValue("#actionCode","nameStr") };
 		value.columnName={ inputType:"button",value: $("#columnName").val()};
-		value.notes={ inputType:"button",value: $("#notes").val()};
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -221,6 +222,27 @@ function ListPage() {
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					opts.push({data:data[i],name:data[i].text,value:data[i].code});
+				}
+				return opts;
+			}
+		});
+		//渲染 actionCode 搜索框
+		fox.renderSelectBox({
+			el: "actionCode",
+			size: "small",
+			radio: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("actionCode",data.arr,data.change,data.isAdd);
 				},1);
 			},
 			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},

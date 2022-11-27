@@ -67,7 +67,6 @@ delete from eam_purchase_order_detail  where 1=1  and tenant_id='T001' ;
 delete from eam_asset_storage  where 1=1  and tenant_id='T001' ;
 delete from eam_purchase_order  where 1=1  and tenant_id='T001' ;
 -- delete from eam_asset_depreciation  where 1=1;
-delete from eam_operate where 1=1;
 delete from eam_asset_borrow_return where 1=1;
 delete from eam_asset_collection_return where 1=1;
 -- eam_asset_depreciation
