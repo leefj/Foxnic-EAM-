@@ -29,7 +29,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 top.layer.close(i);
                 admin.post(api, ps, function (r) {
                     if (r.success) {
-                        top.layer.msg(successMessage, {time: 1000});
+                        top.layer.msg(r.message, {time: 1000});
                         window.module.refreshTableData();
                     } else {
                         var errs = [];

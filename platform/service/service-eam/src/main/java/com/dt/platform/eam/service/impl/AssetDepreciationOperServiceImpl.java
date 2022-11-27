@@ -13,6 +13,7 @@ import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.bean.BeanUtil;
 import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.MapUtil;
+import com.github.foxnic.commons.concurrent.SimpleJoinForkTask;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.data.SaveMode;
@@ -168,9 +169,16 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 			return ErrorDesc.failureMessage("有资产未通过验证,请查询折旧计算结果");
 		}
 
+		long start = System.currentTimeMillis();
+		List<Asset> assetList=new ArrayList<>();
+		List<List<Asset>> assetGroupList=new ArrayList<>();
+
+		List<AssetProcessRecord> assetOperList=new ArrayList<>();
+		List<List<AssetProcessRecord>> assetOperGroupList=new ArrayList<>();
+		int batchCnt=0;
+
 		for(AssetDepreciationDetail assetDetail:list){
 			Asset ups=new Asset();
-
 			ups.setId(assetDetail.getAssetId());
 			//期末原值
 			ups.setOriginalUnitPrice(assetDetail.getEOriginalPrice());
@@ -182,17 +190,51 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 			ups.setDepreciationId(id);
 			//上次折旧时间
 			ups.setDepreciationOperTime(assetDetail.getBusinessDate());
-
-			assetService.save(ups,SaveMode.NOT_NULL_FIELDS,false);
-
 			AssetProcessRecord ar=new AssetProcessRecord();
 			ar.setAssetId(assetDetail.getAssetId());
 			ar.setBusinessCode(bill.getBusinessCode());
 			ar.setProcessType(AssetOperateEnum.EAM_ASSET_DEPRECIATION_OPER.code());
 			ar.setProcessdTime(new Date());
-			ar.setContent(" 发生资产折旧动作 ");
-			assetProcessRecordService.insert(ar,false);
+			ar.setContent("发生资产折旧动作 ");
+			//assetService.save(ups,SaveMode.NOT_NULL_FIELDS,false);
+			//assetProcessRecordService.insert(ar,false);
+			assetList.add(ups);
+			assetOperList.add(ar);
+			if(batchCnt>500){
+				assetGroupList.add(assetList);
+				assetGroupList=new ArrayList<>();
+				assetOperGroupList.add(assetOperList);
+				assetOperGroupList=new ArrayList<>();
+				batchCnt=0;
+			}
+			batchCnt++;
 		}
+		if(assetList.size()>0){
+			assetGroupList.add(assetList);
+		}
+		if(assetOperList.size()>0){
+			assetOperGroupList.add(assetOperList);
+		}
+		SimpleJoinForkTask<List<Asset> ,Result> task=new SimpleJoinForkTask<>(assetGroupList,2);
+		List<Result> rvs2=task.execute(els->{
+			System.out.println(Thread.currentThread().getName());
+			List<Result> rs2=new ArrayList<>();
+			for (List<Asset> list3 : els) {
+				rs2.add(assetService.saveList(list3,SaveMode.NOT_NULL_FIELDS));
+			}
+			return rs2;
+		});
+
+		SimpleJoinForkTask<List<AssetProcessRecord> ,Result> task2=new SimpleJoinForkTask<>(assetOperGroupList,2);
+		List<Result> rvs3=task2.execute(els->{
+			System.out.println(Thread.currentThread().getName());
+			List<Result> rs3=new ArrayList<>();
+			for (List<AssetProcessRecord> list4 : els) {
+				rs3.add(assetProcessRecordService.insertList(list4));
+			}
+			return rs3;
+		});
+
 
 		AssetDepreciationOper ups=new AssetDepreciationOper();
 		ups.setId(id);
@@ -200,7 +242,14 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 		ups.setExecutionStartTime(new Date());
 		ups.setStatus(AssetDepreciationStatusEnum.COMPLETE.code());
 		super.save(ups,SaveMode.NOT_NULL_FIELDS,true);
-		return ErrorDesc.success();
+
+		long finish = System.currentTimeMillis();
+		long cost=(finish-start)/1000L;
+		System.out.println("cal batch execute cost:"+cost);
+		Result r=new Result();
+		r.success(true);
+		r.message("同步数据完成，总共耗时:"+cost+"秒");
+		return r;
 	}
 
 
