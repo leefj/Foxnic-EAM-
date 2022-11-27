@@ -64,6 +64,29 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             var downloadUrl="/service-eam/eam-asset-depreciation-oper/asset-download-depreciation-report";
             fox.submit(downloadUrl,{id:OPER_ID});
         },
+        depreciationExclude:function (selected,obj){
+            console.log(selected);
+            console.log(obj);
+            if(selected.length==0){
+                top.layer.msg("请选择要操作的资产数据!");
+                return ;
+            }
+
+            var ps={};
+            ps.ids=selected;
+            ps.operId=OPER_ID;
+            ps.mark="折旧排除"
+            admin.post("/service-eam/eam-asset-depreciation-oper/asset-exclude", ps, function (r) {
+                if (r.success) {
+                    fox.showMessage(r);
+                    window.module.refreshTableData();
+                } else {
+                    fox.showMessage(r);
+                }
+            });
+
+        },
+
         /**
          * 列表页初始化前调用
          * */

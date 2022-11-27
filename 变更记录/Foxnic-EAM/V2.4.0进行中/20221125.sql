@@ -28,6 +28,7 @@ CREATE TABLE `eam_asset_depreciation_detail` (
                                                  `id` varchar(50) NOT NULL COMMENT '主键',
                                                  `depreciation_id` varchar(50) DEFAULT NULL COMMENT '折旧方案',
                                                  `oper_id` varchar(50) DEFAULT NULL COMMENT '折旧操作',
+                                                 `action_code` varchar(50) DEFAULT NULL COMMENT '折旧动作',
                                                  `first_depreciation_method` varchar(50) DEFAULT NULL COMMENT '首次折旧方式',
                                                  `depreciation_method` varchar(50) DEFAULT NULL COMMENT '折旧方式',
                                                  `business_date` date DEFAULT NULL COMMENT '业务日期',
@@ -86,15 +87,19 @@ CREATE TABLE `eam_asset_depreciation_detail` (
                                                  `delete_by` varchar(18) DEFAULT NULL COMMENT '删除人ID',
                                                  `delete_time` datetime DEFAULT NULL COMMENT '删除时间',
                                                  `version` int(11) NOT NULL DEFAULT '1',
-                                                 `tenant_id` varchar(18) DEFAULT NULL COMMENT '租户',
-                                                 PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
+                                                 `result_value_str` varchar(500) DEFAULT NULL COMMENT '结果字符串',
+                                                 `result_value_float` decimal(10,2) DEFAULT NULL COMMENT '结果浮点',
+                                                 PRIMARY KEY (`id`) USING BTREE,
+                                                 KEY `eam_asset_depreciation_detail_1` (`depreciation_id`),
+                                                 KEY `eam_asset_depreciation_detail_2` (`oper_id`),
+                                                 KEY `eam_asset_depreciation_detail_3` (`oper_id`,`result`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='折旧明细表';
 
 CREATE TABLE `eam_asset_depreciation_cal_rule` (
                                                    `id` varchar(50) NOT NULL COMMENT '主键',
                                                    `depreciation_id` varchar(50) DEFAULT NULL COMMENT '折旧方案',
                                                    `status` varchar(50) DEFAULT NULL COMMENT '状态',
+                                                   `action_code` varchar(50) DEFAULT NULL COMMENT '动作',
                                                    `rule_number` int(11) DEFAULT '0' COMMENT '规则编号',
                                                    `column_value` varchar(50) DEFAULT NULL COMMENT '字段值',
                                                    `column_name` varchar(50) DEFAULT NULL COMMENT '字段名称',
@@ -114,22 +119,7 @@ CREATE TABLE `eam_asset_depreciation_cal_rule` (
                                                    `tenant_id` varchar(18) DEFAULT NULL COMMENT '租户',
                                                    PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='计算方法';
-CREATE TABLE `eam_asset_depreciation_exclude` (
-                                                  `id` varchar(50) NOT NULL COMMENT '主键',
-                                                  `asset_id` varchar(100) DEFAULT NULL COMMENT '资产',
-                                                  `depreciation_id` varchar(50) DEFAULT NULL COMMENT '折旧方案',
-                                                  `notes` varchar(500) DEFAULT NULL COMMENT '备注',
-                                                  `create_by` varchar(18) DEFAULT NULL COMMENT '创建人ID',
-                                                  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-                                                  `update_by` varchar(18) DEFAULT NULL COMMENT '修改人ID',
-                                                  `update_time` datetime DEFAULT NULL COMMENT '修改时间',
-                                                  `deleted` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否已删除',
-                                                  `delete_by` varchar(18) DEFAULT NULL COMMENT '删除人ID',
-                                                  `delete_time` datetime DEFAULT NULL COMMENT '删除时间',
-                                                  `version` int(11) NOT NULL DEFAULT '1',
-                                                  `tenant_id` varchar(18) DEFAULT NULL COMMENT '租户',
-                                                  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='折旧排除';
+
 
 drop table eam_asset_depreciation;
 CREATE TABLE `eam_asset_depreciation` (
@@ -157,6 +147,23 @@ CREATE TABLE `eam_asset_depreciation` (
                                           PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='折旧方案';
 
+
+drop table eam_asset_depreciation_exclude;
+CREATE TABLE `eam_asset_depreciation_exclude` (
+                                                  `id` varchar(50) NOT NULL COMMENT '主键',
+                                                  `asset_id` varchar(100) DEFAULT NULL COMMENT '资产',
+                                                  `depreciation_id` varchar(50) DEFAULT NULL COMMENT '折旧方案',
+                                                  `notes` varchar(500) DEFAULT NULL COMMENT '备注',
+                                                  `create_by` varchar(18) DEFAULT NULL COMMENT '创建人ID',
+                                                  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+                                                  `update_by` varchar(18) DEFAULT NULL COMMENT '修改人ID',
+                                                  `update_time` datetime DEFAULT NULL COMMENT '修改时间',
+                                                  `deleted` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否已删除',
+                                                  `delete_by` varchar(18) DEFAULT NULL COMMENT '删除人ID',
+                                                  `delete_time` datetime DEFAULT NULL COMMENT '删除时间',
+                                                  `version` int(11) NOT NULL DEFAULT '1',
+                                                  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='折旧排除';
 
 -- insert eam_asset_depreciation
 INSERT INTO `eam_asset_depreciation` (`id`, `status`, `code`, `name`, `method`, `pre_residual_rate`, `residual_value_select`, `first_depreciation_method`, `own_company_id`, `category_id`, `selected_code`, `notes`, `create_by`, `create_time`, `update_by`, `update_time`, `deleted`, `delete_by`, `delete_time`, `version`, `tenant_id`)

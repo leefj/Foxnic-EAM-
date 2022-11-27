@@ -11,12 +11,13 @@ update sys_config set value='{account:"",password:"",captcha:""}'  where code='s
 update sys_config set value=0 where code='system.login.captcha.any';
 update sys_config set value='FoxnicT001' where value='system.password.default';
 update sys_config set value=0 where code='eam.assetDataPermissions';
+
 update sys_config set value=1 where code='eam.assetDirectUpdateMode';
 update sys_config set value=0 where code='eam.assetImportAssetCodeKeep';
 update sys_config set value=0 where code='eam.assetImportDataReplenish';
 update sys_config set value=0 where code='eam.assetSerialNumberIsUnique';
 update sys_config set value=0 where code='eam.assetStatusColumnDisable';
-update sys_config set value=0 where code='eam.assetDataPermissions';
+
 
 -- 协同
 update sys_menu set hidden=1 where id='616256291005792256';

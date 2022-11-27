@@ -12,7 +12,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-26 18:26:50
+ * @since 2022-11-27 17:04:42
  * @sign 28BAA1B1146496F48E6F2C484F903CEA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -138,6 +138,16 @@ public class AssetDepreciationCalRuleVOMeta extends AssetDepreciationCalRuleMeta
 	 * 状态 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationCalRuleVO,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationCalRuleVO.class ,STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
+	
+	/**
+	 * 动作 , 类型: java.lang.String
+	*/
+	public static final String ACTION_CODE="actionCode";
+	
+	/**
+	 * 动作 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationCalRuleVO,java.lang.String> ACTION_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationCalRuleVO.class ,ACTION_CODE, java.lang.String.class, "动作", "动作", java.lang.String.class, null);
 	
 	/**
 	 * 规则编号 , 类型: java.lang.Integer
@@ -322,7 +332,7 @@ public class AssetDepreciationCalRuleVOMeta extends AssetDepreciationCalRuleMeta
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , DEPRECIATION_ID , STATUS , RULE_NUMBER , COLUMN_VALUE , COLUMN_NAME , CALCULATION_TYPE , METHOD_CONTENT , METHOD_CONTENT_INFO , RETURN_TYPE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSET_DEPRECIATION };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , DEPRECIATION_ID , STATUS , ACTION_CODE , RULE_NUMBER , COLUMN_VALUE , COLUMN_NAME , CALCULATION_TYPE , METHOD_CONTENT , METHOD_CONTENT_INFO , RETURN_TYPE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSET_DEPRECIATION };
 	
 	/**
 	 * 代理类
@@ -461,6 +471,17 @@ public class AssetDepreciationCalRuleVOMeta extends AssetDepreciationCalRuleMeta
 		public AssetDepreciationCalRule setStatus(String status) {
 			super.change(STATUS,super.getStatus(),status);
 			super.setStatus(status);
+			return this;
+		}
+		
+		/**
+		 * 设置 动作
+		 * @param actionCode 动作
+		 * @return 当前对象
+		*/
+		public AssetDepreciationCalRule setActionCode(String actionCode) {
+			super.change(ACTION_CODE,super.getActionCode(),actionCode);
+			super.setActionCode(actionCode);
 			return this;
 		}
 		
@@ -693,6 +714,7 @@ public class AssetDepreciationCalRuleVOMeta extends AssetDepreciationCalRuleMeta
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
+			inst.setActionCode(this.getActionCode());
 			inst.setId(this.getId());
 			inst.setReturnType(this.getReturnType());
 			inst.setStatus(this.getStatus());

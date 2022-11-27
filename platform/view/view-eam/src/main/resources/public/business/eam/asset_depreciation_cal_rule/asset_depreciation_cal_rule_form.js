@@ -1,7 +1,7 @@
 /**
  * 计算方法 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-26 18:26:52
+ * @since 2022-11-27 17:04:44
  */
 
 function FormPage() {
@@ -147,6 +147,13 @@ function FormPage() {
 				checked.push($(this).val());
 			});
 			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("status",data,checked);
+		});
+		form.on('radio(actionCode)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=actionCode]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("actionCode",data,checked);
 		});
 		form.on('radio(calculationType)', function(data){
 			var checked=[];

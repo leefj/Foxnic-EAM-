@@ -46,6 +46,7 @@ public class AssetDepreciationOperGtr extends BaseCodeGenerator {
                 }
         );
 
+
         cfg.view().list().disableBatchDelete();
         cfg.view().list().operationColumn().addActionButton("明细","depreciationDetail","depreciationDetail-btn","eam_asset_depreciation_oper:detail");
        // cfg.view().list().operationColumn().addActionButton("导入资产","depreciationStart","depreciationStart-btn","eam_asset_depreciation_oper:start");
@@ -90,6 +91,7 @@ public class AssetDepreciationOperGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_OPER.NOTES).form().textArea().height(Config.textAreaHeight);
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_OPER.BUSINESS_DATE).form().validate().required().form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_OPER.STATUS).form().selectBox().enumType(AssetDepreciationStatusEnum.class);
+
 
 
 

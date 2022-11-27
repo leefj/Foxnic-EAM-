@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 计算方法 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-26 18:26:50
+ * @since 2022-11-27 17:04:42
  */
 @FeignClient(value = ServiceNames.EAM, contextId = AssetDepreciationCalRuleServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AssetDepreciationCalRuleServiceProxy {

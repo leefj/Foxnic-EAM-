@@ -45,7 +45,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 计算方法接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-26 18:26:50
+ * @since 2022-11-27 17:04:42
 */
 
 @InDoc
@@ -65,11 +65,12 @@ public class AssetDepreciationCalRuleController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.DEPRECIATION_ID , value = "折旧方案" , required = false , dataTypeClass=String.class , example = "647736203386290176"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.ACTION_CODE , value = "动作" , required = false , dataTypeClass=String.class , example = "depreciation_normal"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.RULE_NUMBER , value = "规则编号" , required = false , dataTypeClass=Integer.class , example = "300"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.COLUMN_VALUE , value = "字段值" , required = false , dataTypeClass=String.class , example = "s_original_price"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.COLUMN_NAME , value = "字段名称" , required = false , dataTypeClass=String.class , example = "(期初)期初原值"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.CALCULATION_TYPE , value = "计算类型" , required = false , dataTypeClass=String.class , example = "jexl_expression"),
-		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.METHOD_CONTENT , value = "计算方法" , required = false , dataTypeClass=String.class , example = "assetOriginalData.navPrice"),
+		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.METHOD_CONTENT , value = "计算方法" , required = false , dataTypeClass=String.class , example = "asset.assetOriginalUnitPrice"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.METHOD_CONTENT_INFO , value = "方法描述" , required = false , dataTypeClass=String.class , example = "(期初)期初原值=上一期期末原值"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.RETURN_TYPE , value = "返回类型" , required = false , dataTypeClass=String.class , example = "double"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
@@ -101,7 +102,7 @@ public class AssetDepreciationCalRuleController extends SuperController {
 			return this.validator().getFirstResult();
 		}
 		// 引用校验
-		ReferCause cause =  assetDepreciationCalRuleService.hasRefers(id);
+		ReferCause cause = assetDepreciationCalRuleService.hasRefers(id);
 		// 判断是否可以删除
 		this.validator().asserts(cause.hasRefer()).requireEqual("不允许删除当前记录："+cause.message(),false);
 		if(this.validator().failure()) {
@@ -175,11 +176,12 @@ public class AssetDepreciationCalRuleController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.DEPRECIATION_ID , value = "折旧方案" , required = false , dataTypeClass=String.class , example = "647736203386290176"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.ACTION_CODE , value = "动作" , required = false , dataTypeClass=String.class , example = "depreciation_normal"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.RULE_NUMBER , value = "规则编号" , required = false , dataTypeClass=Integer.class , example = "300"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.COLUMN_VALUE , value = "字段值" , required = false , dataTypeClass=String.class , example = "s_original_price"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.COLUMN_NAME , value = "字段名称" , required = false , dataTypeClass=String.class , example = "(期初)期初原值"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.CALCULATION_TYPE , value = "计算类型" , required = false , dataTypeClass=String.class , example = "jexl_expression"),
-		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.METHOD_CONTENT , value = "计算方法" , required = false , dataTypeClass=String.class , example = "assetOriginalData.navPrice"),
+		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.METHOD_CONTENT , value = "计算方法" , required = false , dataTypeClass=String.class , example = "asset.assetOriginalUnitPrice"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.METHOD_CONTENT_INFO , value = "方法描述" , required = false , dataTypeClass=String.class , example = "(期初)期初原值=上一期期末原值"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.RETURN_TYPE , value = "返回类型" , required = false , dataTypeClass=String.class , example = "double"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
@@ -202,11 +204,12 @@ public class AssetDepreciationCalRuleController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.DEPRECIATION_ID , value = "折旧方案" , required = false , dataTypeClass=String.class , example = "647736203386290176"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.ACTION_CODE , value = "动作" , required = false , dataTypeClass=String.class , example = "depreciation_normal"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.RULE_NUMBER , value = "规则编号" , required = false , dataTypeClass=Integer.class , example = "300"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.COLUMN_VALUE , value = "字段值" , required = false , dataTypeClass=String.class , example = "s_original_price"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.COLUMN_NAME , value = "字段名称" , required = false , dataTypeClass=String.class , example = "(期初)期初原值"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.CALCULATION_TYPE , value = "计算类型" , required = false , dataTypeClass=String.class , example = "jexl_expression"),
-		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.METHOD_CONTENT , value = "计算方法" , required = false , dataTypeClass=String.class , example = "assetOriginalData.navPrice"),
+		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.METHOD_CONTENT , value = "计算方法" , required = false , dataTypeClass=String.class , example = "asset.assetOriginalUnitPrice"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.METHOD_CONTENT_INFO , value = "方法描述" , required = false , dataTypeClass=String.class , example = "(期初)期初原值=上一期期末原值"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.RETURN_TYPE , value = "返回类型" , required = false , dataTypeClass=String.class , example = "double"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
@@ -270,11 +273,12 @@ public class AssetDepreciationCalRuleController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.DEPRECIATION_ID , value = "折旧方案" , required = false , dataTypeClass=String.class , example = "647736203386290176"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.ACTION_CODE , value = "动作" , required = false , dataTypeClass=String.class , example = "depreciation_normal"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.RULE_NUMBER , value = "规则编号" , required = false , dataTypeClass=Integer.class , example = "300"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.COLUMN_VALUE , value = "字段值" , required = false , dataTypeClass=String.class , example = "s_original_price"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.COLUMN_NAME , value = "字段名称" , required = false , dataTypeClass=String.class , example = "(期初)期初原值"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.CALCULATION_TYPE , value = "计算类型" , required = false , dataTypeClass=String.class , example = "jexl_expression"),
-		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.METHOD_CONTENT , value = "计算方法" , required = false , dataTypeClass=String.class , example = "assetOriginalData.navPrice"),
+		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.METHOD_CONTENT , value = "计算方法" , required = false , dataTypeClass=String.class , example = "asset.assetOriginalUnitPrice"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.METHOD_CONTENT_INFO , value = "方法描述" , required = false , dataTypeClass=String.class , example = "(期初)期初原值=上一期期末原值"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.RETURN_TYPE , value = "返回类型" , required = false , dataTypeClass=String.class , example = "double"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
@@ -298,11 +302,12 @@ public class AssetDepreciationCalRuleController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.DEPRECIATION_ID , value = "折旧方案" , required = false , dataTypeClass=String.class , example = "647736203386290176"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.ACTION_CODE , value = "动作" , required = false , dataTypeClass=String.class , example = "depreciation_normal"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.RULE_NUMBER , value = "规则编号" , required = false , dataTypeClass=Integer.class , example = "300"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.COLUMN_VALUE , value = "字段值" , required = false , dataTypeClass=String.class , example = "s_original_price"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.COLUMN_NAME , value = "字段名称" , required = false , dataTypeClass=String.class , example = "(期初)期初原值"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.CALCULATION_TYPE , value = "计算类型" , required = false , dataTypeClass=String.class , example = "jexl_expression"),
-		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.METHOD_CONTENT , value = "计算方法" , required = false , dataTypeClass=String.class , example = "assetOriginalData.navPrice"),
+		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.METHOD_CONTENT , value = "计算方法" , required = false , dataTypeClass=String.class , example = "asset.assetOriginalUnitPrice"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.METHOD_CONTENT_INFO , value = "方法描述" , required = false , dataTypeClass=String.class , example = "(期初)期初原值=上一期期末原值"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.RETURN_TYPE , value = "返回类型" , required = false , dataTypeClass=String.class , example = "double"),
 		@ApiImplicitParam(name = AssetDepreciationCalRuleVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),

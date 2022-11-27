@@ -2,7 +2,7 @@
 /**
  * 计算方法 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-26 18:26:51
+ * @since 2022-11-27 17:04:44
  */
  -->
  <!DOCTYPE html>
@@ -63,6 +63,14 @@
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block layui-input-block-c1">
                         <input input-type="radio" type="radio" name="status" lay-filter="status" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==-1)}">
+                    </div>
+                </div>
+            
+                <!-- radio_box : 动作 ,  actionCode  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('动作')}">动作</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input input-type="radio" type="radio" name="actionCode" lay-filter="actionCode" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetDepreciationRuleActionCodeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==-1)}">
                     </div>
                 </div>
             
@@ -155,9 +163,10 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_ACTIONCODE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetDepreciationRuleActionCodeEnum')}]];
     var RADIO_CALCULATIONTYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetDepreciationCalculationMethodTypeEnum')}]];
     var RADIO_RETURNTYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.AssetDepreciationCalculationReturnTypeEnum')}]];
-    var VALIDATE_CONFIG={"calculationType":{"labelInForm":"计算类型","inputType":"radio_box","required":true},"ruleNumber":{"labelInForm":"规则编号","inputType":"number_input","required":true},"columnValue":{"labelInForm":"字段值","inputType":"text_input","required":true},"returnType":{"labelInForm":"返回类型","inputType":"radio_box","required":true},"status":{"labelInForm":"状态","inputType":"radio_box","required":true},"columnName":{"labelInForm":"字段名称","inputType":"text_input","required":true}};
+    var VALIDATE_CONFIG={"calculationType":{"labelInForm":"计算类型","inputType":"radio_box","required":true},"ruleNumber":{"labelInForm":"规则编号","inputType":"number_input","required":true},"actionCode":{"labelInForm":"动作","inputType":"radio_box","required":true},"columnValue":{"labelInForm":"字段值","inputType":"text_input","required":true},"returnType":{"labelInForm":"返回类型","inputType":"radio_box","required":true},"status":{"labelInForm":"状态","inputType":"radio_box","required":true},"columnName":{"labelInForm":"字段名称","inputType":"text_input","required":true}};
     var AUTH_PREFIX="eam_asset_depreciation_cal_rule";
 
 

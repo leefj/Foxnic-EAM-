@@ -5,6 +5,7 @@ import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.eam.AssetDepreciationCalculationMethodTypeEnum;
 import com.dt.platform.constants.enums.eam.AssetDepreciationCalculationReturnTypeEnum;
+import com.dt.platform.constants.enums.eam.AssetDepreciationRuleActionCodeEnum;
 import com.dt.platform.domain.eam.AssetDepreciation;
 import com.dt.platform.domain.eam.meta.AssetDepreciationCalRuleMeta;
 import com.dt.platform.domain.eam.meta.AssetDepreciationMeta;
@@ -29,8 +30,8 @@ public class AssetDepreciationCalRuleGtr extends BaseCodeGenerator{
                 new Object[]{
                         EAMTables.EAM_ASSET_DEPRECIATION_CAL_RULE.STATUS,
                         EAMTables.EAM_ASSET_DEPRECIATION_CAL_RULE.DEPRECIATION_ID,
+                        EAMTables.EAM_ASSET_DEPRECIATION_CAL_RULE.ACTION_CODE,
                         EAMTables.EAM_ASSET_DEPRECIATION_CAL_RULE.COLUMN_NAME,
-                        EAMTables.EAM_ASSET_DEPRECIATION_CAL_RULE.NOTES,
                 }
         );
 
@@ -55,6 +56,9 @@ public class AssetDepreciationCalRuleGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_CAL_RULE.RETURN_TYPE).
                 form().validate().required().form().radioBox().enumType(AssetDepreciationCalculationReturnTypeEnum.class);
 
+
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_CAL_RULE.ACTION_CODE).
+                form().validate().required().form().radioBox().enumType(AssetDepreciationRuleActionCodeEnum.class);
 
 
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_CAL_RULE.COLUMN_NAME).

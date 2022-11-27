@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 折旧排除
  * <p>折旧排除 , 数据表 eam_asset_depreciation_exclude 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-27 12:27:35
- * @sign 0D64D1554B79323BECAD8F5399378227
+ * @since 2022-11-27 15:00:55
+ * @sign 832B5FDDFC7DB8DDBB84736E6275DF8B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -111,12 +111,6 @@ public class AssetDepreciationExclude extends Entity {
 	*/
 	@ApiModelProperty(required = true,value="version" , notes = "version")
 	private Integer version;
-	
-	/**
-	 * 租户：租户
-	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
-	private String tenantId;
 	
 	/**
 	 * 获得 主键<br>
@@ -376,25 +370,6 @@ public class AssetDepreciationExclude extends Entity {
 		this.version=version;
 		return this;
 	}
-	
-	/**
-	 * 获得 租户<br>
-	 * 租户
-	 * @return 租户
-	*/
-	public String getTenantId() {
-		return tenantId;
-	}
-	
-	/**
-	 * 设置 租户
-	 * @param tenantId 租户
-	 * @return 当前对象
-	*/
-	public AssetDepreciationExclude setTenantId(String tenantId) {
-		this.tenantId=tenantId;
-		return this;
-	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -440,19 +415,18 @@ public class AssetDepreciationExclude extends Entity {
 	@Transient
 	public AssetDepreciationExclude duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.AssetDepreciationExcludeMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetDepreciationExcludeMeta.$$proxy$$();
-		inst.setNotes(this.getNotes());
-		inst.setUpdateTime(this.getUpdateTime());
-		inst.setVersion(this.getVersion());
 		inst.setDepreciationId(this.getDepreciationId());
 		inst.setCreateBy(this.getCreateBy());
+		inst.setNotes(this.getNotes());
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setAssetId(this.getAssetId());
-		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
+		inst.setUpdateTime(this.getUpdateTime());
 		inst.setId(this.getId());
+		inst.setVersion(this.getVersion());
 		inst.clearModifies();
 		return inst;
 	}
@@ -511,36 +485,34 @@ public class AssetDepreciationExclude extends Entity {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
-			this.setNotes(DataParser.parse(String.class, map.get(AssetDepreciationExcludeMeta.NOTES)));
-			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetDepreciationExcludeMeta.UPDATE_TIME)));
-			this.setVersion(DataParser.parse(Integer.class, map.get(AssetDepreciationExcludeMeta.VERSION)));
 			this.setDepreciationId(DataParser.parse(String.class, map.get(AssetDepreciationExcludeMeta.DEPRECIATION_ID)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(AssetDepreciationExcludeMeta.CREATE_BY)));
+			this.setNotes(DataParser.parse(String.class, map.get(AssetDepreciationExcludeMeta.NOTES)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetDepreciationExcludeMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetDepreciationExcludeMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetDepreciationExcludeMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetDepreciationExcludeMeta.DELETE_TIME)));
 			this.setAssetId(DataParser.parse(String.class, map.get(AssetDepreciationExcludeMeta.ASSET_ID)));
-			this.setTenantId(DataParser.parse(String.class, map.get(AssetDepreciationExcludeMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetDepreciationExcludeMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetDepreciationExcludeMeta.UPDATE_TIME)));
 			this.setId(DataParser.parse(String.class, map.get(AssetDepreciationExcludeMeta.ID)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetDepreciationExcludeMeta.VERSION)));
 			// others
 			return true;
 		} else {
 			try {
-				this.setNotes( (String)map.get(AssetDepreciationExcludeMeta.NOTES));
-				this.setUpdateTime( (Date)map.get(AssetDepreciationExcludeMeta.UPDATE_TIME));
-				this.setVersion( (Integer)map.get(AssetDepreciationExcludeMeta.VERSION));
 				this.setDepreciationId( (String)map.get(AssetDepreciationExcludeMeta.DEPRECIATION_ID));
 				this.setCreateBy( (String)map.get(AssetDepreciationExcludeMeta.CREATE_BY));
+				this.setNotes( (String)map.get(AssetDepreciationExcludeMeta.NOTES));
 				this.setDeleted( (Integer)map.get(AssetDepreciationExcludeMeta.DELETED));
 				this.setCreateTime( (Date)map.get(AssetDepreciationExcludeMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(AssetDepreciationExcludeMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(AssetDepreciationExcludeMeta.DELETE_TIME));
 				this.setAssetId( (String)map.get(AssetDepreciationExcludeMeta.ASSET_ID));
-				this.setTenantId( (String)map.get(AssetDepreciationExcludeMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(AssetDepreciationExcludeMeta.DELETE_BY));
+				this.setUpdateTime( (Date)map.get(AssetDepreciationExcludeMeta.UPDATE_TIME));
 				this.setId( (String)map.get(AssetDepreciationExcludeMeta.ID));
+				this.setVersion( (Integer)map.get(AssetDepreciationExcludeMeta.VERSION));
 				// others
 				return true;
 			} catch (Exception e) {
@@ -558,35 +530,33 @@ public class AssetDepreciationExclude extends Entity {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
-			this.setNotes(DataParser.parse(String.class, r.getValue(AssetDepreciationExcludeMeta.NOTES)));
-			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationExcludeMeta.UPDATE_TIME)));
-			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetDepreciationExcludeMeta.VERSION)));
 			this.setDepreciationId(DataParser.parse(String.class, r.getValue(AssetDepreciationExcludeMeta.DEPRECIATION_ID)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetDepreciationExcludeMeta.CREATE_BY)));
+			this.setNotes(DataParser.parse(String.class, r.getValue(AssetDepreciationExcludeMeta.NOTES)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetDepreciationExcludeMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationExcludeMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetDepreciationExcludeMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationExcludeMeta.DELETE_TIME)));
 			this.setAssetId(DataParser.parse(String.class, r.getValue(AssetDepreciationExcludeMeta.ASSET_ID)));
-			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetDepreciationExcludeMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetDepreciationExcludeMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationExcludeMeta.UPDATE_TIME)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssetDepreciationExcludeMeta.ID)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetDepreciationExcludeMeta.VERSION)));
 			return true;
 		} else {
 			try {
-				this.setNotes( (String)r.getValue(AssetDepreciationExcludeMeta.NOTES));
-				this.setUpdateTime( (Date)r.getValue(AssetDepreciationExcludeMeta.UPDATE_TIME));
-				this.setVersion( (Integer)r.getValue(AssetDepreciationExcludeMeta.VERSION));
 				this.setDepreciationId( (String)r.getValue(AssetDepreciationExcludeMeta.DEPRECIATION_ID));
 				this.setCreateBy( (String)r.getValue(AssetDepreciationExcludeMeta.CREATE_BY));
+				this.setNotes( (String)r.getValue(AssetDepreciationExcludeMeta.NOTES));
 				this.setDeleted( (Integer)r.getValue(AssetDepreciationExcludeMeta.DELETED));
 				this.setCreateTime( (Date)r.getValue(AssetDepreciationExcludeMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(AssetDepreciationExcludeMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(AssetDepreciationExcludeMeta.DELETE_TIME));
 				this.setAssetId( (String)r.getValue(AssetDepreciationExcludeMeta.ASSET_ID));
-				this.setTenantId( (String)r.getValue(AssetDepreciationExcludeMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(AssetDepreciationExcludeMeta.DELETE_BY));
+				this.setUpdateTime( (Date)r.getValue(AssetDepreciationExcludeMeta.UPDATE_TIME));
 				this.setId( (String)r.getValue(AssetDepreciationExcludeMeta.ID));
+				this.setVersion( (Integer)r.getValue(AssetDepreciationExcludeMeta.VERSION));
 				return true;
 			} catch (Exception e) {
 				return false;

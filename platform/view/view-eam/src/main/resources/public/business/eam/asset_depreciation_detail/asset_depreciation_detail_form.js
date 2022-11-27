@@ -1,7 +1,7 @@
 /**
- * eam_asset_depreciation_detail 列表页 JS 脚本
+ * 折旧明细 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-27 12:23:04
+ * @since 2022-11-27 16:20:09
  */
 
 function FormPage() {

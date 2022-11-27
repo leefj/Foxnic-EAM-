@@ -9,8 +9,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-27 12:27:35
- * @sign 0D64D1554B79323BECAD8F5399378227
+ * @since 2022-11-27 15:00:55
+ * @sign 832B5FDDFC7DB8DDBB84736E6275DF8B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -137,19 +137,9 @@ public class AssetDepreciationExcludeMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationExclude,java.lang.Integer> VERSION_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationExclude.class ,VERSION, java.lang.Integer.class, "version", "version", java.lang.Integer.class, null);
 	
 	/**
-	 * 租户 , 类型: java.lang.String
-	*/
-	public static final String TENANT_ID="tenantId";
-	
-	/**
-	 * 租户 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationExclude,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationExclude.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
-	
-	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , ASSET_ID , DEPRECIATION_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ ID , ASSET_ID , DEPRECIATION_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
 	
 	/**
 	 * 代理类
@@ -290,17 +280,6 @@ public class AssetDepreciationExcludeMeta {
 			super.setVersion(version);
 			return this;
 		}
-		
-		/**
-		 * 设置 租户
-		 * @param tenantId 租户
-		 * @return 当前对象
-		*/
-		public AssetDepreciationExclude setTenantId(String tenantId) {
-			super.change(TENANT_ID,super.getTenantId(),tenantId);
-			super.setTenantId(tenantId);
-			return this;
-		}
 
 		/**
 		 * 克隆当前对象
@@ -317,19 +296,18 @@ public class AssetDepreciationExcludeMeta {
 		@Transient
 		public AssetDepreciationExclude duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
-			inst.setNotes(this.getNotes());
-			inst.setUpdateTime(this.getUpdateTime());
-			inst.setVersion(this.getVersion());
 			inst.setDepreciationId(this.getDepreciationId());
 			inst.setCreateBy(this.getCreateBy());
+			inst.setNotes(this.getNotes());
 			inst.setDeleted(this.getDeleted());
 			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setAssetId(this.getAssetId());
-			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
+			inst.setUpdateTime(this.getUpdateTime());
 			inst.setId(this.getId());
+			inst.setVersion(this.getVersion());
 			inst.clearModifies();
 			return inst;
 		}

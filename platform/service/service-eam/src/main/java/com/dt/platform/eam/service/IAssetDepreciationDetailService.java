@@ -21,10 +21,10 @@ import java.util.Map;
 
 /**
  * <p>
- * eam_asset_depreciation_detail服务接口
+ * 折旧明细服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-27 12:23:01
+ * @since 2022-11-27 16:20:07
 */
 
 public interface IAssetDepreciationDetailService extends  ISimpleIdService<AssetDepreciationDetail,String> {
@@ -56,7 +56,7 @@ public interface IAssetDepreciationDetailService extends  ISimpleIdService<Asset
 
 		
 	/**
-	 * 按主键删除eam_asset_depreciation_detail
+	 * 按主键删除折旧明细
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -64,7 +64,7 @@ public interface IAssetDepreciationDetailService extends  ISimpleIdService<Asset
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除eam_asset_depreciation_detail
+	 * 按主键删除折旧明细
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -87,7 +87,7 @@ public interface IAssetDepreciationDetailService extends  ISimpleIdService<Asset
 
 		
 	/**
-	 * 按主键更新eam_asset_depreciation_detail
+	 * 按主键更新折旧明细
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -157,7 +157,7 @@ public interface IAssetDepreciationDetailService extends  ISimpleIdService<Asset
 
 		
 	/**
-	 * 按主键获取eam_asset_depreciation_detail
+	 * 按主键获取折旧明细
 	 *
 	 * @param id 主键
 	 * @return AssetDepreciationDetail 数据对象

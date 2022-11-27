@@ -24,7 +24,7 @@ import java.util.Map;
  * 折旧排除服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-27 12:27:35
+ * @since 2022-11-27 15:00:55
 */
 
 public interface IAssetDepreciationExcludeService extends  ISimpleIdService<AssetDepreciationExclude,String> {
