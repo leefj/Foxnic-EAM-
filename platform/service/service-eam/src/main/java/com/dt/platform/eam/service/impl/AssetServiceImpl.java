@@ -134,7 +134,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		if(!operateService.queryAssetCodeAutoCreate()){
 			return ErrorDesc.failureMessage("当前资产编码自动生成未启用,无法使用复制的功能");
 		}
-		int limit=200;
+		int limit=8000;
 		if(number>limit){
 			return ErrorDesc.failureMessage("复制数量过大，最大不可超过"+limit);
 		}
@@ -1736,7 +1736,35 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		if(batch) {
 			try {
 				if(errors.size()==0){
-					dao().batchExecute(sqls);
+					System.out.println("执行的数据量:"+sqls.size());
+					if(sqls.size()>500){
+						List<SQL> sqlList=new ArrayList<>();
+						List<List<SQL>> groupList=new ArrayList<>();
+						int batchCnt=0;
+						for(SQL item:sqlList){
+							sqlList.add(item);
+							if(batchCnt>250){
+								groupList.add(sqlList);
+								sqlList=new ArrayList<>();
+								batchCnt=0;
+							}
+							batchCnt++;
+						}
+						if(sqlList.size()>0){
+							groupList.add(sqlList);
+						}
+						SimpleJoinForkTask<List<SQL> ,int[]> task=new SimpleJoinForkTask<>(groupList,2);
+						List<int[]> rvs2=task.execute(els->{
+							System.out.println(Thread.currentThread().getName());
+							List<int[]> rs2=new ArrayList<>();
+							for (List<SQL> list2 : els) {
+								rs2.add(dao().batchExecute(list2));
+							}
+							return rs2;
+						});
+					}else{
+						dao().batchExecute(sqls);
+					}
 					if(catalogDataList.size()>0){
 						//保存自定义数据
 						System.out.println("catalogDataList:"+catalogDataList);
@@ -1788,17 +1816,12 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				.with(AssetMeta.EXPENSE_ITEM_DICT)
 				.with(AssetMeta.FINANCIAL_OPTION_DICT)
 				.execute();
-//
-
 //		List<Employee> originators= CollectorUtil.collectList(list,Asset::getOriginator);
 //		dao().join(originators, Person.class);
-
 		List<Employee> managers= CollectorUtil.collectList(list,Asset::getManager);
 		dao().join(managers, Person.class);
-
 		List<Employee> useUser= CollectorUtil.collectList(list,Asset::getUseUser);
 		dao().join(useUser, Person.class);
-
 		return  ErrorDesc.success();
 	}
 

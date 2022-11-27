@@ -137,6 +137,7 @@ public class AssetDepreciationUtilService {
      * 执行规则集
      * */
     public Result calRules(AssetDepreciationDetail assetDepreciationDetail,String actionCode){
+        System.out.println("calRules,actionCode:"+actionCode);
         List<AssetDepreciationCalRule> ruleList=assetDepreciationDetail.getCalRuleList();
         List<AssetDepreciationCalRule> ruleList2=ruleList.stream().sorted(Comparator.comparing(AssetDepreciationCalRule::getRuleNumber)).collect(Collectors.toList());
         for(AssetDepreciationCalRule rule:ruleList2){
