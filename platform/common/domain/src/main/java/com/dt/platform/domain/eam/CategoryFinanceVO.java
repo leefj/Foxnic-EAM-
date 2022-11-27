@@ -14,6 +14,7 @@ import java.util.Map;
 import com.dt.platform.domain.eam.meta.CategoryFinanceVOMeta;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Date;
+import java.math.BigDecimal;
 import com.github.foxnic.sql.data.ExprRcd;
 
 
@@ -22,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 财务分类VO类型
  * <p>财务分类 , 数据表 eam_category_finance 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-13 10:04:46
+ * @since 2022-11-27 08:06:14
  * @sign 5D046D35527881F06B135AF181500C10
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -343,6 +344,7 @@ public class CategoryFinanceVO extends CategoryFinance {
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
+		inst.setServiceLife(this.getServiceLife());
 		inst.setId(this.getId());
 		inst.setStatus(this.getStatus());
 		if(all) {
@@ -431,6 +433,7 @@ public class CategoryFinanceVO extends CategoryFinance {
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(CategoryFinanceVOMeta.DELETE_TIME)));
 			this.setTenantId(DataParser.parse(String.class, map.get(CategoryFinanceVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(CategoryFinanceVOMeta.DELETE_BY)));
+			this.setServiceLife(DataParser.parse(BigDecimal.class, map.get(CategoryFinanceVOMeta.SERVICE_LIFE)));
 			this.setId(DataParser.parse(String.class, map.get(CategoryFinanceVOMeta.ID)));
 			this.setStatus(DataParser.parse(String.class, map.get(CategoryFinanceVOMeta.STATUS)));
 			// others
@@ -461,6 +464,7 @@ public class CategoryFinanceVO extends CategoryFinance {
 				this.setDeleteTime( (Date)map.get(CategoryFinanceVOMeta.DELETE_TIME));
 				this.setTenantId( (String)map.get(CategoryFinanceVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(CategoryFinanceVOMeta.DELETE_BY));
+				this.setServiceLife( (BigDecimal)map.get(CategoryFinanceVOMeta.SERVICE_LIFE));
 				this.setId( (String)map.get(CategoryFinanceVOMeta.ID));
 				this.setStatus( (String)map.get(CategoryFinanceVOMeta.STATUS));
 				// others
@@ -504,6 +508,7 @@ public class CategoryFinanceVO extends CategoryFinance {
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(CategoryFinanceVOMeta.DELETE_TIME)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(CategoryFinanceVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(CategoryFinanceVOMeta.DELETE_BY)));
+			this.setServiceLife(DataParser.parse(BigDecimal.class, r.getValue(CategoryFinanceVOMeta.SERVICE_LIFE)));
 			this.setId(DataParser.parse(String.class, r.getValue(CategoryFinanceVOMeta.ID)));
 			this.setStatus(DataParser.parse(String.class, r.getValue(CategoryFinanceVOMeta.STATUS)));
 			return true;
@@ -526,6 +531,7 @@ public class CategoryFinanceVO extends CategoryFinance {
 				this.setDeleteTime( (Date)r.getValue(CategoryFinanceVOMeta.DELETE_TIME));
 				this.setTenantId( (String)r.getValue(CategoryFinanceVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(CategoryFinanceVOMeta.DELETE_BY));
+				this.setServiceLife( (BigDecimal)r.getValue(CategoryFinanceVOMeta.SERVICE_LIFE));
 				this.setId( (String)r.getValue(CategoryFinanceVOMeta.ID));
 				this.setStatus( (String)r.getValue(CategoryFinanceVOMeta.STATUS));
 				return true;

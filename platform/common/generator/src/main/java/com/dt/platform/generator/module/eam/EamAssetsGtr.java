@@ -77,6 +77,7 @@ public class EamAssetsGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"expenseItemDict","费用项目","费用项目");
 
 
+
         cfg.view().field(EAMTables.EAM_ASSET.NAME).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET.ASSET_NOTES).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_ASSET.SERIAL_NUMBER).search().fuzzySearch();

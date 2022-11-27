@@ -5,8 +5,7 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 public enum AssetDepreciationMethodEnum implements CodeTextEnum {
 
-    AVERAGE_AGE("average_age" , "平均年限方法")
-    ;
+    AVERAGE_AGE("average_age" , "按月平均法");
     private String code;
     private String text;
     private AssetDepreciationMethodEnum(String code, String text)  {
@@ -17,7 +16,6 @@ public enum AssetDepreciationMethodEnum implements CodeTextEnum {
     public String code() {
         return code;
     }
-
     public String text() {
         return text;
     }

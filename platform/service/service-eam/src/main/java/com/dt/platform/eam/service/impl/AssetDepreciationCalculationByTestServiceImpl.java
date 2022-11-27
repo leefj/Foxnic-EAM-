@@ -18,7 +18,7 @@ public class AssetDepreciationCalculationByTestServiceImpl implements IAssetDepr
     }
 
     @Override
-    public Result calculation(String billId) {
+    public Result depreciationCalculation(String billId) {
         System.out.println("code:test,billId:"+billId);
         return ErrorDesc.success();
     }

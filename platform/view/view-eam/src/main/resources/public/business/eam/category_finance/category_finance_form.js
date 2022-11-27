@@ -171,9 +171,6 @@ function FormPage() {
 	function getFormData() {
 		var data=form.val("data-form");
 
-
-
-
 		return data;
 	}
 

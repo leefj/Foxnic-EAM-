@@ -59,6 +59,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         depreciationSync:function (item,obj){
             list.billOper("syncData","depreciationSync-btn",{id:OPER_ID},"已同步");
         },
+        depreciationExport:function (item,obj){
+            console.log('downloadBill',item);
+            var downloadUrl="/service-eam/eam-asset-depreciation-oper/asset-download-depreciation-report";
+            fox.submit(downloadUrl,{id:OPER_ID});
+        },
         /**
          * 列表页初始化前调用
          * */

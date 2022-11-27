@@ -138,14 +138,14 @@ function FormPage() {
 				return opts;
 			}
 		});
-		//渲染 firstDepreciationDate 下拉字段
+		//渲染 firstDepreciation 下拉字段
 		fox.renderSelectBox({
-			el: "firstDepreciationDate",
+			el: "firstDepreciationMethod",
 			radio: true,
 			filterable: false,
 			on: function(data){
 				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("firstDepreciationDate",data.arr,data.change,data.isAdd);
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("firstDepreciationMethod",data.arr,data.change,data.isAdd);
 				},1);
 			},
 			//转换数据
@@ -336,7 +336,7 @@ function FormPage() {
 			//设置  折旧方式 设置下拉框勾选
 			fox.setSelectValue4Enum("#method",formData.method,SELECT_METHOD_DATA);
 			//设置  首次折旧时间 设置下拉框勾选
-			fox.setSelectValue4Enum("#firstDepreciationDate",formData.firstDepreciationDate,SELECT_FIRSTDEPRECIATIONDATE_DATA);
+			fox.setSelectValue4Enum("#firstDepreciationMethod",formData.firstDepreciationMethod,SELECT_FIRSTDEPRECIATIONMETHOD_DATA);
 
 			fox.setSelectValue4Enum("#residualValueSelect",formData.residualValueSelect,SELECT_RESIDUALVALUESELECT_DATA);
 
@@ -411,7 +411,7 @@ function FormPage() {
 		//获取 折旧方式 下拉框的值
 		data["method"]=fox.getSelectedValue("method",false);
 		//获取 首次折旧时间 下拉框的值
-		data["firstDepreciationDate"]=fox.getSelectedValue("firstDepreciationDate",false);
+		data["firstDepreciationMethod"]=fox.getSelectedValue("firstDepreciationMethod",false);
 
 		data["residualValueSelect"]=fox.getSelectedValue("residualValueSelect",false);
 

@@ -1,7 +1,7 @@
 /**
- * 折旧明细 列表页 JS 脚本
+ * eam_asset_depreciation_detail 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-25 12:22:18
+ * @since 2022-11-27 12:23:04
  */
 
 function FormPage() {
@@ -12,7 +12,7 @@ function FormPage() {
 	// 表单执行操作类型：view，create，edit
 	var action=null;
 	var disableCreateNew=true;
-	var disableModify=true;
+	var disableModify=false;
 	var dataBeforeEdit=null;
 	const bpmIntegrateMode="none";
 	var isInProcess=QueryString.get("isInProcess");
@@ -119,8 +119,6 @@ function FormPage() {
 			filterable: true,
 			paging: true,
 			pageRemote: true,
-			layVerify: 'required',
-			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("depreciationId",data.arr,data.change,data.isAdd);
@@ -152,8 +150,6 @@ function FormPage() {
 			filterable: true,
 			paging: true,
 			pageRemote: true,
-			layVerify: 'required',
-			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("operId",data.arr,data.change,data.isAdd);
@@ -174,6 +170,32 @@ function FormPage() {
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
 					opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
+		//渲染 firstDepreciationMethod 下拉字段
+		fox.renderSelectBox({
+			el: "firstDepreciationMethod",
+			radio: true,
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("firstDepreciationMethod",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
 				}
 				return opts;
 			}
@@ -206,7 +228,7 @@ function FormPage() {
 		});
 		laydate.render({
 			elem: '#businessDate',
-			format:"yyyy-MM-dd HH:mm:ss",
+			format:"yyyy-MM",
 			trigger:"click",
 			done: function(value, date, endDate){
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("businessDate",value, date, endDate);
@@ -217,6 +239,8 @@ function FormPage() {
 			el: "result",
 			radio: true,
 			filterable: false,
+			layVerify: 'required',
+			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("result",data.arr,data.change,data.isAdd);
@@ -308,6 +332,14 @@ function FormPage() {
 				return opts;
 			}
 		});
+		laydate.render({
+			elem: '#lastOperTime',
+			format:"yyyy-MM-dd HH:mm:ss",
+			trigger:"click",
+			done: function(value, date, endDate){
+				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("lastOperTime",value, date, endDate);
+			}
+		});
 	}
 
 	/**
@@ -358,10 +390,6 @@ function FormPage() {
 
 
 
-			//设置 业务日期 显示复选框勾选
-			if(formData["businessDate"]) {
-				$("#businessDate").val(fox.dateFormat(formData["businessDate"],"yyyy-MM-dd HH:mm:ss"));
-			}
 			//设置 采购日期 显示复选框勾选
 			if(formData["assetPurchaseDate"]) {
 				$("#assetPurchaseDate").val(fox.dateFormat(formData["assetPurchaseDate"],"yyyy-MM-dd"));
@@ -372,18 +400,8 @@ function FormPage() {
 			}
 
 
-			//设置  折旧方案 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#depreciationId",formData.assetDepreciation);
-			//设置  折旧操作 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#operId",formData.assetDepreciationOper);
-			//设置  折旧方式 设置下拉框勾选
-			fox.setSelectValue4Enum("#depreciationMethod",formData.depreciationMethod,SELECT_DEPRECIATIONMETHOD_DATA);
 			//设置  折旧结果 设置下拉框勾选
 			fox.setSelectValue4Enum("#result",formData.result,SELECT_RESULT_DATA);
-			//设置  财务选项 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#financialOptionKey",formData.financialOptionDict);
-			//设置  费用项目 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#expenseItemKey",formData.expenseItemDict);
 
 			//处理fillBy
 
@@ -435,18 +453,8 @@ function FormPage() {
 
 
 
-		//获取 折旧方案 下拉框的值
-		data["depreciationId"]=fox.getSelectedValue("depreciationId",false);
-		//获取 折旧操作 下拉框的值
-		data["operId"]=fox.getSelectedValue("operId",false);
-		//获取 折旧方式 下拉框的值
-		data["depreciationMethod"]=fox.getSelectedValue("depreciationMethod",false);
 		//获取 折旧结果 下拉框的值
 		data["result"]=fox.getSelectedValue("result",false);
-		//获取 财务选项 下拉框的值
-		data["financialOptionKey"]=fox.getSelectedValue("financialOptionKey",false);
-		//获取 费用项目 下拉框的值
-		data["expenseItemKey"]=fox.getSelectedValue("expenseItemKey",false);
 
 		return data;
 	}

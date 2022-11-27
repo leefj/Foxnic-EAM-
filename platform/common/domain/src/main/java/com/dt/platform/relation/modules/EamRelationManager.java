@@ -66,6 +66,7 @@ public class EamRelationManager extends RelationManager {
         this.setupAssetDepreciationDetail();
         this.setupAssetDepreciationOper();
         this.setupAssetDepreciation();
+        this.setupAssetDepreciationCalRule();
         this.setupAssetDepreciationHistory();
 
         this.setupAssetSoftware();
@@ -672,6 +673,11 @@ public class EamRelationManager extends RelationManager {
         this.property(AssetDepreciationDetailMeta.ASSET_DEPRECIATION_OPER_PROP)
                 .using(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.OPER_ID).join(EAMTables.EAM_ASSET_DEPRECIATION_OPER.ID);
 
+        this.property(AssetDepreciationDetailMeta.CAL_RULE_LIST_PROP)
+                .using(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.DEPRECIATION_ID).join(EAMTables.EAM_ASSET_DEPRECIATION_CAL_RULE.DEPRECIATION_ID);
+
+        this.property(AssetDepreciationDetailMeta.LAST_ASSET_DEPRECIATION_DETAIL_PROP)
+                .using(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.OPER_ID).join(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.ID);
 
     }
 
@@ -686,8 +692,20 @@ public class EamRelationManager extends RelationManager {
 
     }
 
+    public void setupAssetDepreciationCalRule() {
+
+        this.property(AssetDepreciationCalRuleMeta.ASSET_DEPRECIATION_PROP)
+                .using(EAMTables.EAM_ASSET_DEPRECIATION_CAL_RULE.DEPRECIATION_ID)
+                .join(EAMTables.EAM_ASSET_DEPRECIATION.ID);
+
+    }
+
 
     public void setupAssetDepreciation() {
+
+        this.property(AssetDepreciationMeta.CAL_RULE_LIST_PROP)
+                .using(EAMTables.EAM_ASSET_DEPRECIATION.ID).join(EAMTables.EAM_ASSET_DEPRECIATION_CAL_RULE.DEPRECIATION_ID);
+
 
         // 关联资产分类
         this.property(AssetDepreciationMeta.CATEGORY_PROP)

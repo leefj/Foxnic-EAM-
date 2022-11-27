@@ -3,13 +3,14 @@ package com.dt.platform.domain.eam.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.AssetRegion;
 import java.util.Date;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-19 09:10:04
- * @sign 95E8ABA7579DAB15F44341305C1CCCF4
+ * @since 2022-11-25 22:19:46
+ * @sign EB23695B0DA55F0DBC9227A42048B902
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -48,12 +49,12 @@ public class AssetRegionMeta {
 	/**
 	 * 编码 , 类型: java.lang.String
 	*/
-	public static final String REGIOND_CODE="regiondCode";
+	public static final String REGION_CODE="regionCode";
 	
 	/**
 	 * 编码 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetRegion,java.lang.String> REGIOND_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetRegion.class ,REGIOND_CODE, java.lang.String.class, "编码", "编码", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetRegion,java.lang.String> REGION_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetRegion.class ,REGION_CODE, java.lang.String.class, "编码", "编码", java.lang.String.class, null);
 	
 	/**
 	 * 父节点 , 类型: java.lang.String
@@ -198,7 +199,7 @@ public class AssetRegionMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , STATUS , REGION_NAME , REGIOND_CODE , PARENT_ID , SORT , HIERARCHY , HIERARCHY_NAME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ ID , STATUS , REGION_NAME , REGION_CODE , PARENT_ID , SORT , HIERARCHY , HIERARCHY_NAME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
 	
 	/**
 	 * 代理类
@@ -243,12 +244,12 @@ public class AssetRegionMeta {
 		
 		/**
 		 * 设置 编码
-		 * @param regiondCode 编码
+		 * @param regionCode 编码
 		 * @return 当前对象
 		*/
-		public AssetRegion setRegiondCode(String regiondCode) {
-			super.change(REGIOND_CODE,super.getRegiondCode(),regiondCode);
-			super.setRegiondCode(regiondCode);
+		public AssetRegion setRegionCode(String regionCode) {
+			super.change(REGION_CODE,super.getRegionCode(),regionCode);
+			super.setRegionCode(regionCode);
 			return this;
 		}
 		
@@ -405,5 +406,43 @@ public class AssetRegionMeta {
 			super.setTenantId(tenantId);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AssetRegion clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AssetRegion duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNotes(this.getNotes());
+			inst.setRegionName(this.getRegionName());
+			inst.setHierarchy(this.getHierarchy());
+			inst.setHierarchyName(this.getHierarchyName());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setSort(this.getSort());
+			inst.setVersion(this.getVersion());
+			inst.setParentId(this.getParentId());
+			inst.setRegionCode(this.getRegionCode());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setStatus(this.getStatus());
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

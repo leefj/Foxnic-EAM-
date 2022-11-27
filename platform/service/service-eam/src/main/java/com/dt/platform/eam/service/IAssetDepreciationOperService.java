@@ -9,6 +9,8 @@ import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
 import java.io.InputStream;
+import java.util.Map;
+
 import com.github.foxnic.sql.expr.OrderBy;
 import com.github.foxnic.sql.meta.DBField;
 import com.github.foxnic.dao.excel.ExcelWriter;
@@ -25,6 +27,8 @@ import com.github.foxnic.dao.data.SaveMode;
 */
 
 public interface IAssetDepreciationOperService extends ISuperService<AssetDepreciationOper> {
+
+	Map<String,Object> queryDepreciationAssetMap(String operId);
 
 	Result syncData(String id);
 

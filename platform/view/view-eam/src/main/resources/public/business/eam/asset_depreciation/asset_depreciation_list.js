@@ -1,7 +1,7 @@
 /**
  * 折旧方案 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-25 14:18:59
+ * @since 2022-11-27 12:24:38
  */
 
 
@@ -85,7 +85,7 @@ function ListPage() {
 					,{ field: 'method', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧方式'), templet:function (d){ return templet('method',fox.getEnumText(SELECT_METHOD_DATA,d.method,'','method'),d);}}
 					,{ field: 'preResidualRate', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('预计残值率') , templet: function (d) { return templet('preResidualRate',d.preResidualRate,d);}  }
 					,{ field: 'residualValueSelect', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('残值选择'), templet:function (d){ return templet('residualValueSelect',fox.getEnumText(SELECT_RESIDUALVALUESELECT_DATA,d.residualValueSelect,'','residualValueSelect'),d);}}
-					,{ field: 'firstDepreciationDate', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('首次折旧时间'), templet:function (d){ return templet('firstDepreciationDate',fox.getEnumText(SELECT_FIRSTDEPRECIATIONDATE_DATA,d.firstDepreciationDate,'','firstDepreciationDate'),d);}}
+					,{ field: 'firstDepreciationMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('首次折旧方式'), templet:function (d){ return templet('firstDepreciationMethod',fox.getEnumText(SELECT_FIRSTDEPRECIATIONMETHOD_DATA,d.firstDepreciationMethod,'','firstDepreciationMethod'),d);}}
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'categoryIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('资产分类'), templet: function (d) { return templet('categoryIds' ,fox.joinLabel(d.category,"name",',','','categoryIds'),d);}}
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}

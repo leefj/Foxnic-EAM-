@@ -136,7 +136,7 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.SOURCE_ID, value = "来源", required = false, dataTypeClass = String.class, example = "[]"),
 		@ApiImplicitParam(name = AssetVOMeta.ASSET_NUMBER, value = "资产数量", required = false, dataTypeClass = Integer.class, example = "1"),
 		@ApiImplicitParam(name = AssetVOMeta.REMAIN_NUMBER, value = "剩余数量", required = false, dataTypeClass = Integer.class, example = "1"),
-		@ApiImplicitParam(name = AssetVOMeta.PURCHASE_DATE, value = "购置日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetVOMeta.PURCHASE_DATE, value = "采购日期", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetVOMeta.RFID, value = "RFID标签", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.ASSET_NOTES, value = "资产备注", required = false, dataTypeClass = String.class),
@@ -157,7 +157,7 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.RESIDUALS_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.NAV_PRICE, value = "资产净值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.PURCHASE_UNIT_PRICE, value = "含税单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-		@ApiImplicitParam(name = AssetVOMeta.ENTRY_TIME, value = "入账时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetVOMeta.ENTRY_TIME, value = "登记时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetVOMeta.FINANCIAL_NOTES, value = "财务备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.EQUIPMENT_CODE, value = "设备编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.EQUIPMENT_STATUS, value = "设备状态", required = false, dataTypeClass = String.class),
@@ -343,7 +343,7 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.REGION_ID, value = "存放区域", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.GOODS_STOCK_ID, value = "库存物品", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.PRODUCTION_DATE, value = "生产日期", required = false, dataTypeClass = Date.class, example = ""),
-		@ApiImplicitParam(name = AssetVOMeta.REGISTER_DATE, value = "登记时间", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = AssetVOMeta.REGISTER_DATE, value = "入账日期", required = false, dataTypeClass = Date.class, example = ""),
 		@ApiImplicitParam(name = AssetVOMeta.LAST_VERIFICATION_DATE, value = "最近核对日期", required = false, dataTypeClass = Date.class, example = "2022-01-06 12:00:00"),
 		@ApiImplicitParam(name = AssetVOMeta.PURPOSE, value = "用途", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.MAINTENANCE_METHOD, value = "维保方式", required = false, dataTypeClass = String.class),
@@ -380,7 +380,9 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.ASSET_USED_SERVICE_LIFE, value = "已用期限", required = false, dataTypeClass = Integer.class),
 		@ApiImplicitParam(name = AssetVOMeta.FINANCIAL_OPTION, value = "财务选项", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.EXPENSE_ITEM, value = "费用项目", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetVOMeta.CUSTOMER_INFO, value = "客户信息", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetVOMeta.CUSTOMER_INFO, value = "客户信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_ID, value = "最后折旧", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_OPER_TIME, value = "最后折旧时间", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -478,7 +480,7 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.SOURCE_ID, value = "来源", required = false, dataTypeClass = String.class, example = "[]"),
 		@ApiImplicitParam(name = AssetVOMeta.ASSET_NUMBER, value = "资产数量", required = false, dataTypeClass = Integer.class, example = "1"),
 		@ApiImplicitParam(name = AssetVOMeta.REMAIN_NUMBER, value = "剩余数量", required = false, dataTypeClass = Integer.class, example = "1"),
-		@ApiImplicitParam(name = AssetVOMeta.PURCHASE_DATE, value = "购置日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetVOMeta.PURCHASE_DATE, value = "采购日期", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetVOMeta.RFID, value = "RFID标签", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.ASSET_NOTES, value = "资产备注", required = false, dataTypeClass = String.class),
@@ -499,7 +501,7 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.RESIDUALS_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.NAV_PRICE, value = "资产净值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.PURCHASE_UNIT_PRICE, value = "含税单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-		@ApiImplicitParam(name = AssetVOMeta.ENTRY_TIME, value = "入账时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetVOMeta.ENTRY_TIME, value = "登记时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetVOMeta.FINANCIAL_NOTES, value = "财务备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.EQUIPMENT_CODE, value = "设备编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.EQUIPMENT_STATUS, value = "设备状态", required = false, dataTypeClass = String.class),
@@ -685,7 +687,7 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.REGION_ID, value = "存放区域", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.GOODS_STOCK_ID, value = "库存物品", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.PRODUCTION_DATE, value = "生产日期", required = false, dataTypeClass = Date.class, example = ""),
-		@ApiImplicitParam(name = AssetVOMeta.REGISTER_DATE, value = "登记时间", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = AssetVOMeta.REGISTER_DATE, value = "入账日期", required = false, dataTypeClass = Date.class, example = ""),
 		@ApiImplicitParam(name = AssetVOMeta.LAST_VERIFICATION_DATE, value = "最近核对日期", required = false, dataTypeClass = Date.class, example = "2022-01-06 12:00:00"),
 		@ApiImplicitParam(name = AssetVOMeta.PURPOSE, value = "用途", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.MAINTENANCE_METHOD, value = "维保方式", required = false, dataTypeClass = String.class),
@@ -722,7 +724,9 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.ASSET_USED_SERVICE_LIFE, value = "已用期限", required = false, dataTypeClass = Integer.class),
 		@ApiImplicitParam(name = AssetVOMeta.FINANCIAL_OPTION, value = "财务选项", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.EXPENSE_ITEM, value = "费用项目", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetVOMeta.CUSTOMER_INFO, value = "客户信息", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetVOMeta.CUSTOMER_INFO, value = "客户信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_ID, value = "最后折旧", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_OPER_TIME, value = "最后折旧时间", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetVOMeta.PAGE_INDEX, AssetVOMeta.PAGE_SIZE, AssetVOMeta.SEARCH_FIELD, AssetVOMeta.FUZZY_FIELD, AssetVOMeta.SEARCH_VALUE, AssetVOMeta.SORT_FIELD, AssetVOMeta.SORT_TYPE, AssetVOMeta.IDS })
     @SentinelResource(value = AssetServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -790,9 +794,9 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.SOURCE_ID, value = "来源", required = false, dataTypeClass = String.class, example = "[]"),
 		@ApiImplicitParam(name = AssetVOMeta.ASSET_NUMBER, value = "资产数量", required = false, dataTypeClass = Integer.class, example = "1"),
 		@ApiImplicitParam(name = AssetVOMeta.REMAIN_NUMBER, value = "剩余数量", required = false, dataTypeClass = Integer.class, example = "1"),
-		@ApiImplicitParam(name = AssetVOMeta.PURCHASE_DATE, value = "购置日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetVOMeta.PURCHASE_DATE, value = "采购日期", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetVOMeta.PRODUCTION_DATE, value = "生产日期", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = AssetVOMeta.REGISTER_DATE, value = "登记时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetVOMeta.REGISTER_DATE, value = "入账日期", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetVOMeta.RFID, value = "RFID标签", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.LAST_VERIFICATION_DATE, value = "最近核对日期", required = false, dataTypeClass = Date.class),
@@ -818,7 +822,7 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.RESIDUALS_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.NAV_PRICE, value = "资产净值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.PURCHASE_UNIT_PRICE, value = "含税单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-		@ApiImplicitParam(name = AssetVOMeta.ENTRY_TIME, value = "入账时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetVOMeta.ENTRY_TIME, value = "登记时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetVOMeta.FINANCIAL_NOTES, value = "财务备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.EQUIPMENT_CODE, value = "设备编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.EQUIPMENT_STATUS, value = "设备状态", required = false, dataTypeClass = String.class),
@@ -922,7 +926,9 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.ASSET_USED_SERVICE_LIFE, value = "已用期限", required = false, dataTypeClass = Integer.class),
 		@ApiImplicitParam(name = AssetVOMeta.FINANCIAL_OPTION, value = "财务选项", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.EXPENSE_ITEM, value = "费用项目", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetVOMeta.CUSTOMER_INFO, value = "客户信息", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetVOMeta.CUSTOMER_INFO, value = "客户信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_ID, value = "最后折旧", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_OPER_TIME, value = "最后折旧时间", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetVOMeta.PAGE_INDEX, AssetVOMeta.PAGE_SIZE, AssetVOMeta.SEARCH_FIELD, AssetVOMeta.FUZZY_FIELD, AssetVOMeta.SEARCH_VALUE, AssetVOMeta.SORT_FIELD, AssetVOMeta.SORT_TYPE, AssetVOMeta.IDS })
     @SentinelResource(value = AssetServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -946,11 +952,7 @@ public class AssetController extends SuperController {
     public Result<Asset> getById(String id) {
         Result<Asset> result = new Result<>();
         Asset asset = assetService.getById(id);
-        assetService.dao().fill(asset).with(AssetMeta.CATEGORY).with(AssetMeta.CATEGORY_FINANCE).with(AssetMeta.GOODS).with(AssetMeta.MANUFACTURER).with(AssetMeta.MAINTENANCE_METHOD_DATA).with(AssetMeta.SUGGEST_MAINTENANCE_METHOD_DATA).with(AssetMeta.POSITION).with(AssetMeta.MAINTNAINER).with(AssetMeta.SUPPLIER).with(AssetMeta.OWNER_COMPANY).with(AssetMeta.USE_ORGANIZATION).with(AssetMeta.MANAGER).with(AssetMeta.REGION).with(AssetMeta.USE_USER).with(AssetMeta.ORIGINATOR).with(AssetMeta.ASSET_CYCLE_STATUS).with(AssetMeta.RACK).with(AssetMeta.SOURCE).with(AssetMeta.SAFETY_LEVEL).with(AssetMeta.EQUIPMENT_ENVIRONMENT)
-				.with(AssetMeta.ASSET_MAINTENANCE_STATUS)
-				.with(AssetMeta.EXPENSE_ITEM_DICT)
-				.with(AssetMeta.FINANCIAL_OPTION_DICT)
-				.execute();
+        assetService.dao().fill(asset).with(AssetMeta.CATEGORY).with(AssetMeta.CATEGORY_FINANCE).with(AssetMeta.GOODS).with(AssetMeta.MANUFACTURER).with(AssetMeta.MAINTENANCE_METHOD_DATA).with(AssetMeta.SUGGEST_MAINTENANCE_METHOD_DATA).with(AssetMeta.POSITION).with(AssetMeta.MAINTNAINER).with(AssetMeta.SUPPLIER).with(AssetMeta.OWNER_COMPANY).with(AssetMeta.USE_ORGANIZATION).with(AssetMeta.MANAGER).with(AssetMeta.REGION).with(AssetMeta.USE_USER).with(AssetMeta.ORIGINATOR).with(AssetMeta.ASSET_CYCLE_STATUS).with(AssetMeta.RACK).with(AssetMeta.SOURCE).with(AssetMeta.SAFETY_LEVEL).with(AssetMeta.EQUIPMENT_ENVIRONMENT).with(AssetMeta.ASSET_MAINTENANCE_STATUS).with(AssetMeta.EXPENSE_ITEM_DICT).with(AssetMeta.FINANCIAL_OPTION_DICT).execute();
         assetService.dao().join(asset.getManager(), Person.class);
         assetService.dao().join(asset.getUseUser(), Person.class);
         // 加载自定义数据
@@ -1014,9 +1016,9 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.SOURCE_ID, value = "来源", required = false, dataTypeClass = String.class, example = "[]"),
 		@ApiImplicitParam(name = AssetVOMeta.ASSET_NUMBER, value = "资产数量", required = false, dataTypeClass = Integer.class, example = "1"),
 		@ApiImplicitParam(name = AssetVOMeta.REMAIN_NUMBER, value = "剩余数量", required = false, dataTypeClass = Integer.class, example = "1"),
-		@ApiImplicitParam(name = AssetVOMeta.PURCHASE_DATE, value = "购置日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetVOMeta.PURCHASE_DATE, value = "采购日期", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetVOMeta.PRODUCTION_DATE, value = "生产日期", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = AssetVOMeta.REGISTER_DATE, value = "登记时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetVOMeta.REGISTER_DATE, value = "入账日期", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetVOMeta.RFID, value = "RFID标签", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.LAST_VERIFICATION_DATE, value = "最近核对日期", required = false, dataTypeClass = Date.class),
@@ -1042,7 +1044,7 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.RESIDUALS_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.NAV_PRICE, value = "资产净值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.PURCHASE_UNIT_PRICE, value = "含税单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-		@ApiImplicitParam(name = AssetVOMeta.ENTRY_TIME, value = "入账时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetVOMeta.ENTRY_TIME, value = "登记时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetVOMeta.FINANCIAL_NOTES, value = "财务备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.EQUIPMENT_CODE, value = "设备编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.EQUIPMENT_STATUS, value = "设备状态", required = false, dataTypeClass = String.class),
@@ -1146,7 +1148,9 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.ASSET_USED_SERVICE_LIFE, value = "已用期限", required = false, dataTypeClass = Integer.class),
 		@ApiImplicitParam(name = AssetVOMeta.FINANCIAL_OPTION, value = "财务选项", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.EXPENSE_ITEM, value = "费用项目", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetVOMeta.CUSTOMER_INFO, value = "客户信息", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetVOMeta.CUSTOMER_INFO, value = "客户信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_ID, value = "最后折旧", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_OPER_TIME, value = "最后折旧时间", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetVOMeta.PAGE_INDEX, AssetVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -1194,9 +1198,9 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.SOURCE_ID, value = "来源", required = false, dataTypeClass = String.class, example = "[]"),
 		@ApiImplicitParam(name = AssetVOMeta.ASSET_NUMBER, value = "资产数量", required = false, dataTypeClass = Integer.class, example = "1"),
 		@ApiImplicitParam(name = AssetVOMeta.REMAIN_NUMBER, value = "剩余数量", required = false, dataTypeClass = Integer.class, example = "1"),
-		@ApiImplicitParam(name = AssetVOMeta.PURCHASE_DATE, value = "购置日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetVOMeta.PURCHASE_DATE, value = "采购日期", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetVOMeta.PRODUCTION_DATE, value = "生产日期", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = AssetVOMeta.REGISTER_DATE, value = "登记时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetVOMeta.REGISTER_DATE, value = "入账日期", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetVOMeta.RFID, value = "RFID标签", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.ATTACH, value = "附件", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.LAST_VERIFICATION_DATE, value = "最近核对日期", required = false, dataTypeClass = Date.class),
@@ -1222,7 +1226,7 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.RESIDUALS_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.NAV_PRICE, value = "资产净值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.PURCHASE_UNIT_PRICE, value = "含税单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-		@ApiImplicitParam(name = AssetVOMeta.ENTRY_TIME, value = "入账时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = AssetVOMeta.ENTRY_TIME, value = "登记时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = AssetVOMeta.FINANCIAL_NOTES, value = "财务备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.EQUIPMENT_CODE, value = "设备编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.EQUIPMENT_STATUS, value = "设备状态", required = false, dataTypeClass = String.class),
@@ -1326,7 +1330,9 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.ASSET_USED_SERVICE_LIFE, value = "已用期限", required = false, dataTypeClass = Integer.class),
 		@ApiImplicitParam(name = AssetVOMeta.FINANCIAL_OPTION, value = "财务选项", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.EXPENSE_ITEM, value = "费用项目", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetVOMeta.CUSTOMER_INFO, value = "客户信息", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetVOMeta.CUSTOMER_INFO, value = "客户信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_ID, value = "最后折旧", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_OPER_TIME, value = "最后折旧时间", required = false, dataTypeClass = Date.class, example = "")
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -1846,19 +1852,19 @@ public class AssetController extends SuperController {
         return result;
     }
 
-	/**
-	 * 盘点员工是否有资产
-	 */
-	@ApiOperation(value = "盘点员工是否有资产")
-	@ApiOperationSupport(order = 17)
-	@SentinelResource(value = AssetServiceProxy.QUERY_EMPLOYEE_HAVE_ASSET, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
-	@PostMapping(AssetServiceProxy.QUERY_EMPLOYEE_HAVE_ASSET)
-	public Result<JSONObject> queryEmployeeHaveAsset(String userId) {
-		Result<JSONObject> result = new Result<>();
-		JSONObject res=assetService.queryEmployeeHaveAsset(userId);
-		result.success(true).data(res);
-		return result;
-	}
+    /**
+     * 盘点员工是否有资产
+     */
+    @ApiOperation(value = "盘点员工是否有资产")
+    @ApiOperationSupport(order = 17)
+    @SentinelResource(value = AssetServiceProxy.QUERY_EMPLOYEE_HAVE_ASSET, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(AssetServiceProxy.QUERY_EMPLOYEE_HAVE_ASSET)
+    public Result<JSONObject> queryEmployeeHaveAsset(String userId) {
+        Result<JSONObject> result = new Result<>();
+        JSONObject res = assetService.queryEmployeeHaveAsset(userId);
+        result.success(true).data(res);
+        return result;
+    }
 
     /**
      * 导出 Excel 模板

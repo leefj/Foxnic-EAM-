@@ -747,7 +747,8 @@ function ListPage() {
 				var operSourceList=[
 					{"perm":"eam_asset:copy","id":"assetCopy","title": fox.translate('复制')},
 					{"perm":"eam_asset:asset-voucher","id":"assetVoucher","title":fox.translate('凭证') },
-					{"perm":"eam_asset:box","id":"assetBox","title":fox.translate('密文箱')  }
+					{"perm":"eam_asset:box","id":"assetBox","title":fox.translate('密文箱')  },
+					{"perm":"eam_asset:depreciation","id":"asssetDepreciation","title":fox.translate('折旧记录')  }
 
 				];
 				if(UPDATE_BTN){

@@ -1,24 +1,16 @@
 package com.dt.platform.generator.module.eam;
 
 import com.dt.platform.constants.db.EAMTables;
-import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.eam.AssetDepreciationStatusEnum;
 import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.AssetDepreciation;
-import com.dt.platform.domain.eam.AssetItem;
+import com.dt.platform.domain.eam.AssetDepreciationDetail;
 import com.dt.platform.domain.eam.meta.AssetDepreciationMeta;
 import com.dt.platform.domain.eam.meta.AssetDepreciationOperMeta;
-import com.dt.platform.domain.eam.meta.InspectionPlanMeta;
-import com.dt.platform.eam.page.AssetDepreciationDetailPageController;
-import com.dt.platform.eam.page.AssetDepreciationOperPageController;
 import com.dt.platform.generator.config.Config;
-import com.dt.platform.proxy.eam.AssetDepreciationDetailServiceProxy;
-import com.dt.platform.proxy.eam.AssetDepreciationOperServiceProxy;
 import com.dt.platform.proxy.eam.AssetDepreciationServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
-import org.github.foxnic.web.domain.system.meta.DictItemMeta;
-import org.github.foxnic.web.proxy.system.DictItemServiceProxy;
 
 public class AssetDepreciationOperGtr extends BaseCodeGenerator {
 
@@ -32,11 +24,12 @@ public class AssetDepreciationOperGtr extends BaseCodeGenerator {
 
         cfg.getPoClassFile().addListProperty(Asset.class,"assetSourceList","资产","资产");
         cfg.getPoClassFile().addListProperty(String.class,"assetSourceIds","资产列表","资产列表");
-
         cfg.getPoClassFile().addListProperty(Asset.class,"assetTargetList","资产","资产");
         cfg.getPoClassFile().addListProperty(String.class,"assetTargetIds","资产列表","资产列表");
-        cfg.getPoClassFile().addListProperty(Asset.class,"assetDepreciationList","资产","资产");
+
+        cfg.getPoClassFile().addListProperty(AssetDepreciationDetail.class,"assetDepreciationList","资产","资产");
         cfg.getPoClassFile().addListProperty(String.class,"assetDepreciationIds","资产","资产");
+
         cfg.getPoClassFile().addSimpleProperty(AssetDepreciation.class,"assetDepreciation","方案","方案");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
 
@@ -97,6 +90,8 @@ public class AssetDepreciationOperGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_OPER.NOTES).form().textArea().height(Config.textAreaHeight);
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_OPER.BUSINESS_DATE).form().validate().required().form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_OPER.STATUS).form().selectBox().enumType(AssetDepreciationStatusEnum.class);
+
+
 
         cfg.view().search().inputWidth(Config.searchInputWidth);
         //文件生成覆盖模式

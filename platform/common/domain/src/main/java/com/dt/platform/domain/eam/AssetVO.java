@@ -28,7 +28,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产VO类型
  * <p>资产 , 数据表 eam_asset 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-23 16:21:50
+ * @since 2022-11-26 21:09:01
  * @sign C05127D02CE5B4FBBB8CDA17B7C59FAA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -368,6 +368,7 @@ public class AssetVO extends Asset {
 		inst.setEquipmentConf(this.getEquipmentConf());
 		inst.setAssetNotes(this.getAssetNotes());
 		inst.setOriginalUnitPrice(this.getOriginalUnitPrice());
+		inst.setDepreciationId(this.getDepreciationId());
 		inst.setPictureId(this.getPictureId());
 		inst.setSuggestMaintenanceMethod(this.getSuggestMaintenanceMethod());
 		inst.setTotalAmountPrice(this.getTotalAmountPrice());
@@ -401,6 +402,7 @@ public class AssetVO extends Asset {
 		inst.setMaintenancePrice(this.getMaintenancePrice());
 		inst.setEquipmentIp(this.getEquipmentIp());
 		inst.setMaintenanceEndDate(this.getMaintenanceEndDate());
+		inst.setDepreciationOperTime(this.getDepreciationOperTime());
 		inst.setNextApproverNames(this.getNextApproverNames());
 		inst.setAssetCode(this.getAssetCode());
 		inst.setSerialNumber(this.getSerialNumber());
@@ -584,6 +586,7 @@ public class AssetVO extends Asset {
 			this.setEquipmentConf(DataParser.parse(String.class, map.get(AssetVOMeta.EQUIPMENT_CONF)));
 			this.setAssetNotes(DataParser.parse(String.class, map.get(AssetVOMeta.ASSET_NOTES)));
 			this.setOriginalUnitPrice(DataParser.parse(BigDecimal.class, map.get(AssetVOMeta.ORIGINAL_UNIT_PRICE)));
+			this.setDepreciationId(DataParser.parse(String.class, map.get(AssetVOMeta.DEPRECIATION_ID)));
 			this.setPictureId(DataParser.parse(String.class, map.get(AssetVOMeta.PICTURE_ID)));
 			this.setSuggestMaintenanceMethod(DataParser.parse(String.class, map.get(AssetVOMeta.SUGGEST_MAINTENANCE_METHOD)));
 			this.setTotalAmountPrice(DataParser.parse(BigDecimal.class, map.get(AssetVOMeta.TOTAL_AMOUNT_PRICE)));
@@ -617,6 +620,7 @@ public class AssetVO extends Asset {
 			this.setMaintenancePrice(DataParser.parse(BigDecimal.class, map.get(AssetVOMeta.MAINTENANCE_PRICE)));
 			this.setEquipmentIp(DataParser.parse(String.class, map.get(AssetVOMeta.EQUIPMENT_IP)));
 			this.setMaintenanceEndDate(DataParser.parse(Date.class, map.get(AssetVOMeta.MAINTENANCE_END_DATE)));
+			this.setDepreciationOperTime(DataParser.parse(Date.class, map.get(AssetVOMeta.DEPRECIATION_OPER_TIME)));
 			this.setNextApproverNames(DataParser.parse(String.class, map.get(AssetVOMeta.NEXT_APPROVER_NAMES)));
 			this.setAssetCode(DataParser.parse(String.class, map.get(AssetVOMeta.ASSET_CODE)));
 			this.setSerialNumber(DataParser.parse(String.class, map.get(AssetVOMeta.SERIAL_NUMBER)));
@@ -642,7 +646,7 @@ public class AssetVO extends Asset {
 			this.setResidualsPrice(DataParser.parse(BigDecimal.class, map.get(AssetVOMeta.RESIDUALS_PRICE)));
 			this.setInternalControlLabel(DataParser.parse(String.class, map.get(AssetVOMeta.INTERNAL_CONTROL_LABEL)));
 			this.setLatestApproverName(DataParser.parse(String.class, map.get(AssetVOMeta.LATEST_APPROVER_NAME)));
-			this.setAssetUsedServiceLife(DataParser.parse(Integer.class, map.get(AssetVOMeta.ASSET_USED_SERVICE_LIFE)));
+			this.setAssetUsedServiceLife(DataParser.parse(BigDecimal.class, map.get(AssetVOMeta.ASSET_USED_SERVICE_LIFE)));
 			this.setNextApproverIds(DataParser.parse(String.class, map.get(AssetVOMeta.NEXT_APPROVER_IDS)));
 			this.setChsStatus(DataParser.parse(String.class, map.get(AssetVOMeta.CHS_STATUS)));
 			this.setProductionDate(DataParser.parse(Date.class, map.get(AssetVOMeta.PRODUCTION_DATE)));
@@ -740,6 +744,7 @@ public class AssetVO extends Asset {
 				this.setEquipmentConf( (String)map.get(AssetVOMeta.EQUIPMENT_CONF));
 				this.setAssetNotes( (String)map.get(AssetVOMeta.ASSET_NOTES));
 				this.setOriginalUnitPrice( (BigDecimal)map.get(AssetVOMeta.ORIGINAL_UNIT_PRICE));
+				this.setDepreciationId( (String)map.get(AssetVOMeta.DEPRECIATION_ID));
 				this.setPictureId( (String)map.get(AssetVOMeta.PICTURE_ID));
 				this.setSuggestMaintenanceMethod( (String)map.get(AssetVOMeta.SUGGEST_MAINTENANCE_METHOD));
 				this.setTotalAmountPrice( (BigDecimal)map.get(AssetVOMeta.TOTAL_AMOUNT_PRICE));
@@ -773,6 +778,7 @@ public class AssetVO extends Asset {
 				this.setMaintenancePrice( (BigDecimal)map.get(AssetVOMeta.MAINTENANCE_PRICE));
 				this.setEquipmentIp( (String)map.get(AssetVOMeta.EQUIPMENT_IP));
 				this.setMaintenanceEndDate( (Date)map.get(AssetVOMeta.MAINTENANCE_END_DATE));
+				this.setDepreciationOperTime( (Date)map.get(AssetVOMeta.DEPRECIATION_OPER_TIME));
 				this.setNextApproverNames( (String)map.get(AssetVOMeta.NEXT_APPROVER_NAMES));
 				this.setAssetCode( (String)map.get(AssetVOMeta.ASSET_CODE));
 				this.setSerialNumber( (String)map.get(AssetVOMeta.SERIAL_NUMBER));
@@ -798,7 +804,7 @@ public class AssetVO extends Asset {
 				this.setResidualsPrice( (BigDecimal)map.get(AssetVOMeta.RESIDUALS_PRICE));
 				this.setInternalControlLabel( (String)map.get(AssetVOMeta.INTERNAL_CONTROL_LABEL));
 				this.setLatestApproverName( (String)map.get(AssetVOMeta.LATEST_APPROVER_NAME));
-				this.setAssetUsedServiceLife( (Integer)map.get(AssetVOMeta.ASSET_USED_SERVICE_LIFE));
+				this.setAssetUsedServiceLife( (BigDecimal)map.get(AssetVOMeta.ASSET_USED_SERVICE_LIFE));
 				this.setNextApproverIds( (String)map.get(AssetVOMeta.NEXT_APPROVER_IDS));
 				this.setChsStatus( (String)map.get(AssetVOMeta.CHS_STATUS));
 				this.setProductionDate( (Date)map.get(AssetVOMeta.PRODUCTION_DATE));
@@ -909,6 +915,7 @@ public class AssetVO extends Asset {
 			this.setEquipmentConf(DataParser.parse(String.class, r.getValue(AssetVOMeta.EQUIPMENT_CONF)));
 			this.setAssetNotes(DataParser.parse(String.class, r.getValue(AssetVOMeta.ASSET_NOTES)));
 			this.setOriginalUnitPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetVOMeta.ORIGINAL_UNIT_PRICE)));
+			this.setDepreciationId(DataParser.parse(String.class, r.getValue(AssetVOMeta.DEPRECIATION_ID)));
 			this.setPictureId(DataParser.parse(String.class, r.getValue(AssetVOMeta.PICTURE_ID)));
 			this.setSuggestMaintenanceMethod(DataParser.parse(String.class, r.getValue(AssetVOMeta.SUGGEST_MAINTENANCE_METHOD)));
 			this.setTotalAmountPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetVOMeta.TOTAL_AMOUNT_PRICE)));
@@ -942,6 +949,7 @@ public class AssetVO extends Asset {
 			this.setMaintenancePrice(DataParser.parse(BigDecimal.class, r.getValue(AssetVOMeta.MAINTENANCE_PRICE)));
 			this.setEquipmentIp(DataParser.parse(String.class, r.getValue(AssetVOMeta.EQUIPMENT_IP)));
 			this.setMaintenanceEndDate(DataParser.parse(Date.class, r.getValue(AssetVOMeta.MAINTENANCE_END_DATE)));
+			this.setDepreciationOperTime(DataParser.parse(Date.class, r.getValue(AssetVOMeta.DEPRECIATION_OPER_TIME)));
 			this.setNextApproverNames(DataParser.parse(String.class, r.getValue(AssetVOMeta.NEXT_APPROVER_NAMES)));
 			this.setAssetCode(DataParser.parse(String.class, r.getValue(AssetVOMeta.ASSET_CODE)));
 			this.setSerialNumber(DataParser.parse(String.class, r.getValue(AssetVOMeta.SERIAL_NUMBER)));
@@ -967,7 +975,7 @@ public class AssetVO extends Asset {
 			this.setResidualsPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetVOMeta.RESIDUALS_PRICE)));
 			this.setInternalControlLabel(DataParser.parse(String.class, r.getValue(AssetVOMeta.INTERNAL_CONTROL_LABEL)));
 			this.setLatestApproverName(DataParser.parse(String.class, r.getValue(AssetVOMeta.LATEST_APPROVER_NAME)));
-			this.setAssetUsedServiceLife(DataParser.parse(Integer.class, r.getValue(AssetVOMeta.ASSET_USED_SERVICE_LIFE)));
+			this.setAssetUsedServiceLife(DataParser.parse(BigDecimal.class, r.getValue(AssetVOMeta.ASSET_USED_SERVICE_LIFE)));
 			this.setNextApproverIds(DataParser.parse(String.class, r.getValue(AssetVOMeta.NEXT_APPROVER_IDS)));
 			this.setChsStatus(DataParser.parse(String.class, r.getValue(AssetVOMeta.CHS_STATUS)));
 			this.setProductionDate(DataParser.parse(Date.class, r.getValue(AssetVOMeta.PRODUCTION_DATE)));
@@ -1030,6 +1038,7 @@ public class AssetVO extends Asset {
 				this.setEquipmentConf( (String)r.getValue(AssetVOMeta.EQUIPMENT_CONF));
 				this.setAssetNotes( (String)r.getValue(AssetVOMeta.ASSET_NOTES));
 				this.setOriginalUnitPrice( (BigDecimal)r.getValue(AssetVOMeta.ORIGINAL_UNIT_PRICE));
+				this.setDepreciationId( (String)r.getValue(AssetVOMeta.DEPRECIATION_ID));
 				this.setPictureId( (String)r.getValue(AssetVOMeta.PICTURE_ID));
 				this.setSuggestMaintenanceMethod( (String)r.getValue(AssetVOMeta.SUGGEST_MAINTENANCE_METHOD));
 				this.setTotalAmountPrice( (BigDecimal)r.getValue(AssetVOMeta.TOTAL_AMOUNT_PRICE));
@@ -1063,6 +1072,7 @@ public class AssetVO extends Asset {
 				this.setMaintenancePrice( (BigDecimal)r.getValue(AssetVOMeta.MAINTENANCE_PRICE));
 				this.setEquipmentIp( (String)r.getValue(AssetVOMeta.EQUIPMENT_IP));
 				this.setMaintenanceEndDate( (Date)r.getValue(AssetVOMeta.MAINTENANCE_END_DATE));
+				this.setDepreciationOperTime( (Date)r.getValue(AssetVOMeta.DEPRECIATION_OPER_TIME));
 				this.setNextApproverNames( (String)r.getValue(AssetVOMeta.NEXT_APPROVER_NAMES));
 				this.setAssetCode( (String)r.getValue(AssetVOMeta.ASSET_CODE));
 				this.setSerialNumber( (String)r.getValue(AssetVOMeta.SERIAL_NUMBER));
@@ -1088,7 +1098,7 @@ public class AssetVO extends Asset {
 				this.setResidualsPrice( (BigDecimal)r.getValue(AssetVOMeta.RESIDUALS_PRICE));
 				this.setInternalControlLabel( (String)r.getValue(AssetVOMeta.INTERNAL_CONTROL_LABEL));
 				this.setLatestApproverName( (String)r.getValue(AssetVOMeta.LATEST_APPROVER_NAME));
-				this.setAssetUsedServiceLife( (Integer)r.getValue(AssetVOMeta.ASSET_USED_SERVICE_LIFE));
+				this.setAssetUsedServiceLife( (BigDecimal)r.getValue(AssetVOMeta.ASSET_USED_SERVICE_LIFE));
 				this.setNextApproverIds( (String)r.getValue(AssetVOMeta.NEXT_APPROVER_IDS));
 				this.setChsStatus( (String)r.getValue(AssetVOMeta.CHS_STATUS));
 				this.setProductionDate( (Date)r.getValue(AssetVOMeta.PRODUCTION_DATE));

@@ -1,22 +1,14 @@
 package com.dt.platform.generator.module.eam;
 
 import com.dt.platform.constants.db.EAMTables;
-import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.eam.AssetDepreciationMethodEnum;
-import com.dt.platform.constants.enums.eam.AssetFirstDepreciationDateTypeEnum;
 import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.meta.*;
-import com.dt.platform.domain.workorder.NetworkStrategyApply;
 import com.dt.platform.domain.workorder.meta.NetworkStrategyApplyMeta;
-import com.dt.platform.eam.page.AssetDepreciationHistoryPageController;
 import com.dt.platform.generator.config.Config;
-import com.dt.platform.proxy.eam.AssetDepreciationHistoryServiceProxy;
 import com.dt.platform.proxy.eam.AssetServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
-import org.github.foxnic.web.domain.pcm.Catalog;
-import org.github.foxnic.web.domain.pcm.meta.CatalogMeta;
-import org.github.foxnic.web.proxy.pcm.CatalogServiceProxy;
 
 public class AssetDepreciationHistoryGtr extends BaseCodeGenerator {
 

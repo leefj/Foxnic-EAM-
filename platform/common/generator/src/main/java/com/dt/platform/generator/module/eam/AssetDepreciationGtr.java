@@ -5,14 +5,10 @@ import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.eam.AssetDepreciationCodeEnum;
 import com.dt.platform.constants.enums.eam.AssetDepreciationMethodEnum;
 import com.dt.platform.constants.enums.eam.AssetDepreciationResidualValueSelectEnum;
-import com.dt.platform.constants.enums.eam.AssetFirstDepreciationDateTypeEnum;
-import com.dt.platform.domain.eam.Asset;
+import com.dt.platform.constants.enums.eam.AssetFirstDepreciationMethodTypeEnum;
+import com.dt.platform.domain.eam.AssetDepreciationCalRule;
 import com.dt.platform.domain.eam.meta.AssetDepreciationMeta;
-import com.dt.platform.domain.eam.meta.InventoryMeta;
-import com.dt.platform.eam.page.AssetDepreciationPageController;
 import com.dt.platform.generator.config.Config;
-import com.dt.platform.proxy.eam.AssetDepreciationServiceProxy;
-import com.dt.platform.proxy.eam.CategoryServiceProxy;
 
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.pcm.Catalog;
@@ -33,6 +29,9 @@ public class AssetDepreciationGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addListProperty(Catalog.class,"category","资产分类","资产分类");
         cfg.getPoClassFile().addListProperty(String.class,"categoryIds","资产分类Ids","资产分类Ids");
 
+        cfg.getPoClassFile().addListProperty(AssetDepreciationCalRule.class,"calRuleList","calRuleList","calRuleList");
+        cfg.getPoClassFile().addListProperty(String.class,"calRuleIds","calRuleIds","calRuleIds");
+//        cfg.getPoClassFile().addListProperty(.class,"categoryIds","资产分类Ids","资产分类Ids");
 
 
        // cfg.getPoClassFile().addListProperty(String.class,"categoryEntityIds","分类","分类");
@@ -55,9 +54,10 @@ public class AssetDepreciationGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION.RESIDUAL_VALUE_SELECT).form().validate().required().
                 form().selectBox().enumType(AssetDepreciationResidualValueSelectEnum.class);
 
-        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION.FIRST_DEPRECIATION_DATE).form().validate().required().
-                form().selectBox().enumType(AssetFirstDepreciationDateTypeEnum.class);
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION.FIRST_DEPRECIATION_METHOD).form().validate().required().
+                form().selectBox().enumType(AssetFirstDepreciationMethodTypeEnum.class);
 
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION.SELECTED_CODE).table().disable(true);
 
         cfg.view().field(AssetDepreciationMeta.CATEGORY_IDS)
                 .basic().label("资产分类")
@@ -101,7 +101,7 @@ public class AssetDepreciationGtr extends BaseCodeGenerator {
                 new Object[] {
                         EAMTables.EAM_ASSET_DEPRECIATION.RESIDUAL_VALUE_SELECT,
                         EAMTables.EAM_ASSET_DEPRECIATION.METHOD,
-                        EAMTables.EAM_ASSET_DEPRECIATION.FIRST_DEPRECIATION_DATE,
+                        EAMTables.EAM_ASSET_DEPRECIATION.FIRST_DEPRECIATION_METHOD,
                 },
                 new Object[] {
                      AssetDepreciationMeta.CATEGORY_IDS

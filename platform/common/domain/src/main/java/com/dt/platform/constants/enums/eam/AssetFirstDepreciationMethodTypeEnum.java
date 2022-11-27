@@ -3,14 +3,14 @@ package com.dt.platform.constants.enums.eam;
 import com.github.foxnic.api.constant.CodeTextEnum;
 
 
-public enum AssetFirstDepreciationDateTypeEnum implements CodeTextEnum {
+public enum AssetFirstDepreciationMethodTypeEnum implements CodeTextEnum {
 
-    PURCHASE_CUR_MONTH("purchase_cur_month" , "购买当月"),
-    PURCHASE_NEXT_MONTH("purchase_next_month" , "购买次月");
+    REGISTER_CUR_MONTH("register_cur_month" , "入账当月"),
+    REGISTER_NEXT_MONTH("register_next_month" , "入账次月");
 
     private String code;
     private String text;
-    private AssetFirstDepreciationDateTypeEnum(String code, String text)  {
+    private AssetFirstDepreciationMethodTypeEnum(String code, String text)  {
         this.code=code;
         this.text=text;
     }

@@ -34,8 +34,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产
  * <p>资产 , 数据表 eam_asset 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-23 16:21:50
- * @sign 896F300663F632A578587FE7C4B5CE49
+ * @since 2022-11-26 21:09:01
+ * @sign 631B8A3D2FEAB0A148418C45FD196B3A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -247,9 +247,9 @@ public class Asset extends Entity {
 	private Integer remainNumber;
 	
 	/**
-	 * 购置日期：购置日期
+	 * 采购日期：采购日期
 	*/
-	@ApiModelProperty(required = false,value="购置日期" , notes = "购置日期")
+	@ApiModelProperty(required = false,value="采购日期" , notes = "采购日期")
 	private Date purchaseDate;
 	
 	/**
@@ -259,9 +259,9 @@ public class Asset extends Entity {
 	private Date productionDate;
 	
 	/**
-	 * 登记时间：登记时间
+	 * 入账日期：入账日期
 	*/
-	@ApiModelProperty(required = false,value="登记时间" , notes = "登记时间")
+	@ApiModelProperty(required = false,value="入账日期" , notes = "入账日期")
 	private Date registerDate;
 	
 	/**
@@ -436,7 +436,19 @@ public class Asset extends Entity {
 	 * 已用期限：(月)
 	*/
 	@ApiModelProperty(required = false,value="已用期限" , notes = "(月)")
-	private Integer assetUsedServiceLife;
+	private BigDecimal assetUsedServiceLife;
+	
+	/**
+	 * 最后折旧：最后折旧
+	*/
+	@ApiModelProperty(required = false,value="最后折旧" , notes = "最后折旧")
+	private String depreciationId;
+	
+	/**
+	 * 最后折旧时间：最后折旧时间
+	*/
+	@ApiModelProperty(required = false,value="最后折旧时间" , notes = "最后折旧时间")
+	private Date depreciationOperTime;
 	
 	/**
 	 * 残值率：残值率
@@ -481,9 +493,9 @@ public class Asset extends Entity {
 	private BigDecimal monthDepreciationPrice;
 	
 	/**
-	 * 入账时间：入账时间
+	 * 登记时间：登记时间
 	*/
-	@ApiModelProperty(required = false,value="入账时间" , notes = "入账时间")
+	@ApiModelProperty(required = false,value="登记时间" , notes = "登记时间")
 	private Date entryTime;
 	
 	/**
@@ -1561,17 +1573,17 @@ public class Asset extends Entity {
 	}
 	
 	/**
-	 * 获得 购置日期<br>
-	 * 购置日期
-	 * @return 购置日期
+	 * 获得 采购日期<br>
+	 * 采购日期
+	 * @return 采购日期
 	*/
 	public Date getPurchaseDate() {
 		return purchaseDate;
 	}
 	
 	/**
-	 * 设置 购置日期
-	 * @param purchaseDate 购置日期
+	 * 设置 采购日期
+	 * @param purchaseDate 采购日期
 	 * @return 当前对象
 	*/
 	public Asset setPurchaseDate(Date purchaseDate) {
@@ -1599,17 +1611,17 @@ public class Asset extends Entity {
 	}
 	
 	/**
-	 * 获得 登记时间<br>
-	 * 登记时间
-	 * @return 登记时间
+	 * 获得 入账日期<br>
+	 * 入账日期
+	 * @return 入账日期
 	*/
 	public Date getRegisterDate() {
 		return registerDate;
 	}
 	
 	/**
-	 * 设置 登记时间
-	 * @param registerDate 登记时间
+	 * 设置 入账日期
+	 * @param registerDate 入账日期
 	 * @return 当前对象
 	*/
 	public Asset setRegisterDate(Date registerDate) {
@@ -2154,7 +2166,7 @@ public class Asset extends Entity {
 	 * (月)
 	 * @return 已用期限
 	*/
-	public Integer getAssetUsedServiceLife() {
+	public BigDecimal getAssetUsedServiceLife() {
 		return assetUsedServiceLife;
 	}
 	
@@ -2163,8 +2175,46 @@ public class Asset extends Entity {
 	 * @param assetUsedServiceLife 已用期限
 	 * @return 当前对象
 	*/
-	public Asset setAssetUsedServiceLife(Integer assetUsedServiceLife) {
+	public Asset setAssetUsedServiceLife(BigDecimal assetUsedServiceLife) {
 		this.assetUsedServiceLife=assetUsedServiceLife;
+		return this;
+	}
+	
+	/**
+	 * 获得 最后折旧<br>
+	 * 最后折旧
+	 * @return 最后折旧
+	*/
+	public String getDepreciationId() {
+		return depreciationId;
+	}
+	
+	/**
+	 * 设置 最后折旧
+	 * @param depreciationId 最后折旧
+	 * @return 当前对象
+	*/
+	public Asset setDepreciationId(String depreciationId) {
+		this.depreciationId=depreciationId;
+		return this;
+	}
+	
+	/**
+	 * 获得 最后折旧时间<br>
+	 * 最后折旧时间
+	 * @return 最后折旧时间
+	*/
+	public Date getDepreciationOperTime() {
+		return depreciationOperTime;
+	}
+	
+	/**
+	 * 设置 最后折旧时间
+	 * @param depreciationOperTime 最后折旧时间
+	 * @return 当前对象
+	*/
+	public Asset setDepreciationOperTime(Date depreciationOperTime) {
+		this.depreciationOperTime=depreciationOperTime;
 		return this;
 	}
 	
@@ -2302,17 +2352,17 @@ public class Asset extends Entity {
 	}
 	
 	/**
-	 * 获得 入账时间<br>
-	 * 入账时间
-	 * @return 入账时间
+	 * 获得 登记时间<br>
+	 * 登记时间
+	 * @return 登记时间
 	*/
 	public Date getEntryTime() {
 		return entryTime;
 	}
 	
 	/**
-	 * 设置 入账时间
-	 * @param entryTime 入账时间
+	 * 设置 登记时间
+	 * @param entryTime 登记时间
 	 * @return 当前对象
 	*/
 	public Asset setEntryTime(Date entryTime) {
@@ -3860,6 +3910,7 @@ public class Asset extends Entity {
 		inst.setEquipmentConf(this.getEquipmentConf());
 		inst.setAssetNotes(this.getAssetNotes());
 		inst.setOriginalUnitPrice(this.getOriginalUnitPrice());
+		inst.setDepreciationId(this.getDepreciationId());
 		inst.setPictureId(this.getPictureId());
 		inst.setSuggestMaintenanceMethod(this.getSuggestMaintenanceMethod());
 		inst.setTotalAmountPrice(this.getTotalAmountPrice());
@@ -3893,6 +3944,7 @@ public class Asset extends Entity {
 		inst.setMaintenancePrice(this.getMaintenancePrice());
 		inst.setEquipmentIp(this.getEquipmentIp());
 		inst.setMaintenanceEndDate(this.getMaintenanceEndDate());
+		inst.setDepreciationOperTime(this.getDepreciationOperTime());
 		inst.setNextApproverNames(this.getNextApproverNames());
 		inst.setAssetCode(this.getAssetCode());
 		inst.setSerialNumber(this.getSerialNumber());
@@ -4067,6 +4119,7 @@ public class Asset extends Entity {
 			this.setEquipmentConf(DataParser.parse(String.class, map.get(AssetMeta.EQUIPMENT_CONF)));
 			this.setAssetNotes(DataParser.parse(String.class, map.get(AssetMeta.ASSET_NOTES)));
 			this.setOriginalUnitPrice(DataParser.parse(BigDecimal.class, map.get(AssetMeta.ORIGINAL_UNIT_PRICE)));
+			this.setDepreciationId(DataParser.parse(String.class, map.get(AssetMeta.DEPRECIATION_ID)));
 			this.setPictureId(DataParser.parse(String.class, map.get(AssetMeta.PICTURE_ID)));
 			this.setSuggestMaintenanceMethod(DataParser.parse(String.class, map.get(AssetMeta.SUGGEST_MAINTENANCE_METHOD)));
 			this.setTotalAmountPrice(DataParser.parse(BigDecimal.class, map.get(AssetMeta.TOTAL_AMOUNT_PRICE)));
@@ -4100,6 +4153,7 @@ public class Asset extends Entity {
 			this.setMaintenancePrice(DataParser.parse(BigDecimal.class, map.get(AssetMeta.MAINTENANCE_PRICE)));
 			this.setEquipmentIp(DataParser.parse(String.class, map.get(AssetMeta.EQUIPMENT_IP)));
 			this.setMaintenanceEndDate(DataParser.parse(Date.class, map.get(AssetMeta.MAINTENANCE_END_DATE)));
+			this.setDepreciationOperTime(DataParser.parse(Date.class, map.get(AssetMeta.DEPRECIATION_OPER_TIME)));
 			this.setNextApproverNames(DataParser.parse(String.class, map.get(AssetMeta.NEXT_APPROVER_NAMES)));
 			this.setAssetCode(DataParser.parse(String.class, map.get(AssetMeta.ASSET_CODE)));
 			this.setSerialNumber(DataParser.parse(String.class, map.get(AssetMeta.SERIAL_NUMBER)));
@@ -4125,7 +4179,7 @@ public class Asset extends Entity {
 			this.setResidualsPrice(DataParser.parse(BigDecimal.class, map.get(AssetMeta.RESIDUALS_PRICE)));
 			this.setInternalControlLabel(DataParser.parse(String.class, map.get(AssetMeta.INTERNAL_CONTROL_LABEL)));
 			this.setLatestApproverName(DataParser.parse(String.class, map.get(AssetMeta.LATEST_APPROVER_NAME)));
-			this.setAssetUsedServiceLife(DataParser.parse(Integer.class, map.get(AssetMeta.ASSET_USED_SERVICE_LIFE)));
+			this.setAssetUsedServiceLife(DataParser.parse(BigDecimal.class, map.get(AssetMeta.ASSET_USED_SERVICE_LIFE)));
 			this.setNextApproverIds(DataParser.parse(String.class, map.get(AssetMeta.NEXT_APPROVER_IDS)));
 			this.setChsStatus(DataParser.parse(String.class, map.get(AssetMeta.CHS_STATUS)));
 			this.setProductionDate(DataParser.parse(Date.class, map.get(AssetMeta.PRODUCTION_DATE)));
@@ -4216,6 +4270,7 @@ public class Asset extends Entity {
 				this.setEquipmentConf( (String)map.get(AssetMeta.EQUIPMENT_CONF));
 				this.setAssetNotes( (String)map.get(AssetMeta.ASSET_NOTES));
 				this.setOriginalUnitPrice( (BigDecimal)map.get(AssetMeta.ORIGINAL_UNIT_PRICE));
+				this.setDepreciationId( (String)map.get(AssetMeta.DEPRECIATION_ID));
 				this.setPictureId( (String)map.get(AssetMeta.PICTURE_ID));
 				this.setSuggestMaintenanceMethod( (String)map.get(AssetMeta.SUGGEST_MAINTENANCE_METHOD));
 				this.setTotalAmountPrice( (BigDecimal)map.get(AssetMeta.TOTAL_AMOUNT_PRICE));
@@ -4249,6 +4304,7 @@ public class Asset extends Entity {
 				this.setMaintenancePrice( (BigDecimal)map.get(AssetMeta.MAINTENANCE_PRICE));
 				this.setEquipmentIp( (String)map.get(AssetMeta.EQUIPMENT_IP));
 				this.setMaintenanceEndDate( (Date)map.get(AssetMeta.MAINTENANCE_END_DATE));
+				this.setDepreciationOperTime( (Date)map.get(AssetMeta.DEPRECIATION_OPER_TIME));
 				this.setNextApproverNames( (String)map.get(AssetMeta.NEXT_APPROVER_NAMES));
 				this.setAssetCode( (String)map.get(AssetMeta.ASSET_CODE));
 				this.setSerialNumber( (String)map.get(AssetMeta.SERIAL_NUMBER));
@@ -4274,7 +4330,7 @@ public class Asset extends Entity {
 				this.setResidualsPrice( (BigDecimal)map.get(AssetMeta.RESIDUALS_PRICE));
 				this.setInternalControlLabel( (String)map.get(AssetMeta.INTERNAL_CONTROL_LABEL));
 				this.setLatestApproverName( (String)map.get(AssetMeta.LATEST_APPROVER_NAME));
-				this.setAssetUsedServiceLife( (Integer)map.get(AssetMeta.ASSET_USED_SERVICE_LIFE));
+				this.setAssetUsedServiceLife( (BigDecimal)map.get(AssetMeta.ASSET_USED_SERVICE_LIFE));
 				this.setNextApproverIds( (String)map.get(AssetMeta.NEXT_APPROVER_IDS));
 				this.setChsStatus( (String)map.get(AssetMeta.CHS_STATUS));
 				this.setProductionDate( (Date)map.get(AssetMeta.PRODUCTION_DATE));
@@ -4378,6 +4434,7 @@ public class Asset extends Entity {
 			this.setEquipmentConf(DataParser.parse(String.class, r.getValue(AssetMeta.EQUIPMENT_CONF)));
 			this.setAssetNotes(DataParser.parse(String.class, r.getValue(AssetMeta.ASSET_NOTES)));
 			this.setOriginalUnitPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.ORIGINAL_UNIT_PRICE)));
+			this.setDepreciationId(DataParser.parse(String.class, r.getValue(AssetMeta.DEPRECIATION_ID)));
 			this.setPictureId(DataParser.parse(String.class, r.getValue(AssetMeta.PICTURE_ID)));
 			this.setSuggestMaintenanceMethod(DataParser.parse(String.class, r.getValue(AssetMeta.SUGGEST_MAINTENANCE_METHOD)));
 			this.setTotalAmountPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.TOTAL_AMOUNT_PRICE)));
@@ -4411,6 +4468,7 @@ public class Asset extends Entity {
 			this.setMaintenancePrice(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.MAINTENANCE_PRICE)));
 			this.setEquipmentIp(DataParser.parse(String.class, r.getValue(AssetMeta.EQUIPMENT_IP)));
 			this.setMaintenanceEndDate(DataParser.parse(Date.class, r.getValue(AssetMeta.MAINTENANCE_END_DATE)));
+			this.setDepreciationOperTime(DataParser.parse(Date.class, r.getValue(AssetMeta.DEPRECIATION_OPER_TIME)));
 			this.setNextApproverNames(DataParser.parse(String.class, r.getValue(AssetMeta.NEXT_APPROVER_NAMES)));
 			this.setAssetCode(DataParser.parse(String.class, r.getValue(AssetMeta.ASSET_CODE)));
 			this.setSerialNumber(DataParser.parse(String.class, r.getValue(AssetMeta.SERIAL_NUMBER)));
@@ -4436,7 +4494,7 @@ public class Asset extends Entity {
 			this.setResidualsPrice(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.RESIDUALS_PRICE)));
 			this.setInternalControlLabel(DataParser.parse(String.class, r.getValue(AssetMeta.INTERNAL_CONTROL_LABEL)));
 			this.setLatestApproverName(DataParser.parse(String.class, r.getValue(AssetMeta.LATEST_APPROVER_NAME)));
-			this.setAssetUsedServiceLife(DataParser.parse(Integer.class, r.getValue(AssetMeta.ASSET_USED_SERVICE_LIFE)));
+			this.setAssetUsedServiceLife(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.ASSET_USED_SERVICE_LIFE)));
 			this.setNextApproverIds(DataParser.parse(String.class, r.getValue(AssetMeta.NEXT_APPROVER_IDS)));
 			this.setChsStatus(DataParser.parse(String.class, r.getValue(AssetMeta.CHS_STATUS)));
 			this.setProductionDate(DataParser.parse(Date.class, r.getValue(AssetMeta.PRODUCTION_DATE)));
@@ -4499,6 +4557,7 @@ public class Asset extends Entity {
 				this.setEquipmentConf( (String)r.getValue(AssetMeta.EQUIPMENT_CONF));
 				this.setAssetNotes( (String)r.getValue(AssetMeta.ASSET_NOTES));
 				this.setOriginalUnitPrice( (BigDecimal)r.getValue(AssetMeta.ORIGINAL_UNIT_PRICE));
+				this.setDepreciationId( (String)r.getValue(AssetMeta.DEPRECIATION_ID));
 				this.setPictureId( (String)r.getValue(AssetMeta.PICTURE_ID));
 				this.setSuggestMaintenanceMethod( (String)r.getValue(AssetMeta.SUGGEST_MAINTENANCE_METHOD));
 				this.setTotalAmountPrice( (BigDecimal)r.getValue(AssetMeta.TOTAL_AMOUNT_PRICE));
@@ -4532,6 +4591,7 @@ public class Asset extends Entity {
 				this.setMaintenancePrice( (BigDecimal)r.getValue(AssetMeta.MAINTENANCE_PRICE));
 				this.setEquipmentIp( (String)r.getValue(AssetMeta.EQUIPMENT_IP));
 				this.setMaintenanceEndDate( (Date)r.getValue(AssetMeta.MAINTENANCE_END_DATE));
+				this.setDepreciationOperTime( (Date)r.getValue(AssetMeta.DEPRECIATION_OPER_TIME));
 				this.setNextApproverNames( (String)r.getValue(AssetMeta.NEXT_APPROVER_NAMES));
 				this.setAssetCode( (String)r.getValue(AssetMeta.ASSET_CODE));
 				this.setSerialNumber( (String)r.getValue(AssetMeta.SERIAL_NUMBER));
@@ -4557,7 +4617,7 @@ public class Asset extends Entity {
 				this.setResidualsPrice( (BigDecimal)r.getValue(AssetMeta.RESIDUALS_PRICE));
 				this.setInternalControlLabel( (String)r.getValue(AssetMeta.INTERNAL_CONTROL_LABEL));
 				this.setLatestApproverName( (String)r.getValue(AssetMeta.LATEST_APPROVER_NAME));
-				this.setAssetUsedServiceLife( (Integer)r.getValue(AssetMeta.ASSET_USED_SERVICE_LIFE));
+				this.setAssetUsedServiceLife( (BigDecimal)r.getValue(AssetMeta.ASSET_USED_SERVICE_LIFE));
 				this.setNextApproverIds( (String)r.getValue(AssetMeta.NEXT_APPROVER_IDS));
 				this.setChsStatus( (String)r.getValue(AssetMeta.CHS_STATUS));
 				this.setProductionDate( (Date)r.getValue(AssetMeta.PRODUCTION_DATE));

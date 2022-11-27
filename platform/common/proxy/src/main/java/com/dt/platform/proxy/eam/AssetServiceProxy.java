@@ -159,13 +159,10 @@ public interface AssetServiceProxy {
      */
     public static final String ASSET_COPY = API_PREFIX + "asset-copy";
 
-
     /**
      * 盘点员工是否有资产
      */
     public static final String QUERY_EMPLOYEE_HAVE_ASSET = API_PREFIX + "query-employee-have-asset";
-
-
 
     /**
      * 查询QUERY_INTERNAL_CONTROL_LABEL数据
@@ -176,8 +173,7 @@ public interface AssetServiceProxy {
      * 盘点员工是否有资产
      */
     @RequestMapping(AssetServiceProxy.QUERY_EMPLOYEE_HAVE_ASSET)
-    Result<JSONObject> queryEmployeeHaveAsset(String userId);
-
+    Result<JSONObject> queryEmployeeHaveAsset(@RequestParam(name = "userId") String userId);
 
     /**
      * 查询资产新增审批
@@ -190,8 +186,6 @@ public interface AssetServiceProxy {
      */
     @RequestMapping(AssetServiceProxy.QUERY_ASSET_STATUS_LIST)
     Result<JSONArray> queryAssetStatusList(@RequestParam(name = "owner") String owner);
-
-
 
     /**
      * 添加资产
@@ -258,9 +252,6 @@ public interface AssetServiceProxy {
      */
     @RequestMapping(AssetServiceProxy.QUERY_PAGED_LIST_BY_SELECTED)
     Result<PagedList<Asset>> queryPagedListBySelected(@RequestParam(name = "sample") AssetVO sample, @RequestParam(name = "assetBusinessType") String assetBusinessType, @RequestParam(name = "assetSelectedCode") String assetSelectedCode, @RequestParam(name = "assetSearchContent") String assetSearchContent);
-
-
-
 
     /**
      * 控制器类名

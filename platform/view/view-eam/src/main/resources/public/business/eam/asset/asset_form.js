@@ -1,12 +1,13 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-23 16:21:53
+ * @since 2022-11-26 21:09:03
  */
 
 function FormPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
+	
 	const moduleURL="/service-eam/eam-asset";
 	// 表单执行操作类型：view，create，edit
 	var action=null;
@@ -731,6 +732,14 @@ function FormPage() {
 			}
 		});
 		laydate.render({
+			elem: '#depreciationOperTime',
+			format:"yyyy-MM-dd HH:mm:ss",
+			trigger:"click",
+			done: function(value, date, endDate){
+				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("depreciationOperTime",value, date, endDate);
+			}
+		});
+		laydate.render({
 			elem: '#entryTime',
 			format:"yyyy-MM-dd HH:mm:ss",
 			trigger:"click",
@@ -884,7 +893,7 @@ function FormPage() {
 
 
 
-			//设置 购置日期 显示复选框勾选
+			//设置 采购日期 显示复选框勾选
 			if(formData["purchaseDate"]) {
 				$("#purchaseDate").val(fox.dateFormat(formData["purchaseDate"],"yyyy-MM-dd"));
 			}
@@ -892,7 +901,7 @@ function FormPage() {
 			if(formData["productionDate"]) {
 				$("#productionDate").val(fox.dateFormat(formData["productionDate"],"yyyy-MM-dd HH:mm:ss"));
 			}
-			//设置 登记时间 显示复选框勾选
+			//设置 入账日期 显示复选框勾选
 			if(formData["registerDate"]) {
 				$("#registerDate").val(fox.dateFormat(formData["registerDate"],"yyyy-MM-dd HH:mm:ss"));
 			}
@@ -908,7 +917,11 @@ function FormPage() {
 			if(formData["maintenanceEndDate"]) {
 				$("#maintenanceEndDate").val(fox.dateFormat(formData["maintenanceEndDate"],"yyyy-MM-dd"));
 			}
-			//设置 入账时间 显示复选框勾选
+			//设置 最后折旧时间 显示复选框勾选
+			if(formData["depreciationOperTime"]) {
+				$("#depreciationOperTime").val(fox.dateFormat(formData["depreciationOperTime"],"yyyy-MM-dd HH:mm:ss"));
+			}
+			//设置 登记时间 显示复选框勾选
 			if(formData["entryTime"]) {
 				$("#entryTime").val(fox.dateFormat(formData["entryTime"],"yyyy-MM-dd HH:mm:ss"));
 			}

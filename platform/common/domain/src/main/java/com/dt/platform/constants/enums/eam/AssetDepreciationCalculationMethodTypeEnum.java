@@ -5,7 +5,9 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 public enum AssetDepreciationCalculationMethodTypeEnum implements CodeTextEnum {
 
-    EXPRESSION("expression" , "表达式"),
+    IDEL("idle" , "空"),
+    NOT_NULL("not_null" , "不为NULL"),
+    JEXL_EXPRESSION("jexl_expression" , "jexl表达式"),
     SCRIPT("script" , "脚本");
 
     private String code;

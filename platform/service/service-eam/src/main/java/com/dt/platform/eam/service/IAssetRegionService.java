@@ -1,5 +1,6 @@
 package com.dt.platform.eam.service;
 
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -20,10 +21,10 @@ import java.util.Map;
 
 /**
  * <p>
- * 存放区域 服务接口
+ * 存放区域服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-19 09:10:04
+ * @since 2022-11-25 22:19:46
 */
 
 public interface IAssetRegionService extends  ISimpleIdService<AssetRegion,String> {
@@ -55,7 +56,7 @@ public interface IAssetRegionService extends  ISimpleIdService<AssetRegion,Strin
 
 		
 	/**
-	 * 按主键删除 存放区域
+	 * 按主键删除存放区域
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -63,7 +64,7 @@ public interface IAssetRegionService extends  ISimpleIdService<AssetRegion,Strin
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 存放区域
+	 * 按主键删除存放区域
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -86,7 +87,7 @@ public interface IAssetRegionService extends  ISimpleIdService<AssetRegion,Strin
 
 		
 	/**
-	 * 按主键更新字段 存放区域
+	 * 按主键更新存放区域
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -156,7 +157,7 @@ public interface IAssetRegionService extends  ISimpleIdService<AssetRegion,Strin
 
 		
 	/**
-	 * 按主键获取 存放区域
+	 * 按主键获取存放区域
 	 *
 	 * @param id 主键
 	 * @return AssetRegion 数据对象

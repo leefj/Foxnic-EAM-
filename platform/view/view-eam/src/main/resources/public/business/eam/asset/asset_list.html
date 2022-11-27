@@ -2,7 +2,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-23 16:21:52
+ * @since 2022-11-26 21:09:02
  */
  -->
  <!DOCTYPE html>
@@ -63,7 +63,7 @@
                     <!-- 资产数量 , assetNumber ,typeName=number_input, isHideInSearch=true -->
                     <!-- 剩余数量 , remainNumber ,typeName=number_input, isHideInSearch=true -->
                     <!-- 生产日期 , productionDate ,typeName=date_input, isHideInSearch=true -->
-                    <!-- 登记时间 , registerDate ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 入账日期 , registerDate ,typeName=date_input, isHideInSearch=true -->
                     <!-- RFID标签 , rfid ,typeName=text_input, isHideInSearch=true -->
                     <!-- 附件 , attach ,typeName=upload, isHideInSearch=true -->
                     <!-- 最近核对日期 , lastVerificationDate ,typeName=date_input, isHideInSearch=true -->
@@ -91,6 +91,8 @@
                     <!-- 资产原值 , originalUnitPrice ,typeName=number_input, isHideInSearch=true -->
                     <!-- 资产净值 , navPrice ,typeName=number_input, isHideInSearch=true -->
                     <!-- 已用期限 , assetUsedServiceLife ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 最后折旧 , depreciationId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 最后折旧时间 , depreciationOperTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 残值率 , residualsRate ,typeName=number_input, isHideInSearch=true -->
                     <!-- 残值 , residualsPrice ,typeName=number_input, isHideInSearch=true -->
                     <!-- 税额 , taxAmountRate ,typeName=number_input, isHideInSearch=true -->
@@ -98,7 +100,7 @@
                     <!-- 折旧年份 , depreciationYear ,typeName=number_input, isHideInSearch=true -->
                     <!-- 累计折旧 , accumulatedDepreciation ,typeName=number_input, isHideInSearch=true -->
                     <!-- 月折金额 , monthDepreciationPrice ,typeName=number_input, isHideInSearch=true -->
-                    <!-- 入账时间 , entryTime ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 登记时间 , entryTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 财务备注 , financialNotes ,typeName=text_area, isHideInSearch=true -->
                     <!-- 设备编号 , equipmentCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 设备状态 , equipmentStatus ,typeName=select_box, isHideInSearch=true -->
@@ -225,9 +227,9 @@
                         <div class="search-label-div" style=""><span th:text="${lang.translate('维保商')}" class="search-label maintainerId-label">维保商</span><span class="search-colon">:</span></div>
                         <div id="maintainerId" th:data="${'/service-eam/eam-maintainer/query-list'}" style="width:140px" extraParam="{}"></div>
                     </div>
-                    <!-- 购置日期 , purchaseDate ,typeName=date_input, isHideInSearch=false -->
+                    <!-- 采购日期 , purchaseDate ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style=""><span th:text="${lang.translate('购置日期')}" class="search-label purchaseDate-label">购置日期</span><span class="search-colon">:</span></div>
+                        <div class="search-label-div" style=""><span th:text="${lang.translate('采购日期')}" class="search-label purchaseDate-label">采购日期</span><span class="search-colon">:</span></div>
                             <input type="text" id="purchaseDate-begin" style="width: 140px" lay-verify="date" th:placeholder="${lang.translate('开始日期')}" autocomplete="off" class="layui-input search-input search-date-input"  readonly >
                             <span class="search-dash">-</span>
                             <input type="text" id="purchaseDate-end"  style="width: 140px"  lay-verify="date" th:placeholder="${lang.translate('结束日期')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>

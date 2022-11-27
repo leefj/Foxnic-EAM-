@@ -6,14 +6,15 @@ import java.math.BigDecimal;
 import java.util.Date;
 import org.github.foxnic.web.domain.pcm.Catalog;
 import java.util.List;
+import com.dt.platform.domain.eam.AssetDepreciationCalRule;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-25 14:18:58
- * @sign 43F51286C07C3885764113FA69986EC4
+ * @since 2022-11-27 12:24:36
+ * @sign 2167A9512830F2F86763A1931003DE0E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -90,14 +91,14 @@ public class AssetDepreciationMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciation,java.lang.String> RESIDUAL_VALUE_SELECT_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciation.class ,RESIDUAL_VALUE_SELECT, java.lang.String.class, "残值选择", "残值选择", java.lang.String.class, null);
 	
 	/**
-	 * 首次折旧时间 , 类型: java.lang.String
+	 * 首次折旧方式 , 类型: java.lang.String
 	*/
-	public static final String FIRST_DEPRECIATION_DATE="firstDepreciationDate";
+	public static final String FIRST_DEPRECIATION_METHOD="firstDepreciationMethod";
 	
 	/**
-	 * 首次折旧时间 , 类型: java.lang.String
+	 * 首次折旧方式 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciation,java.lang.String> FIRST_DEPRECIATION_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciation.class ,FIRST_DEPRECIATION_DATE, java.lang.String.class, "首次折旧时间", "首次折旧时间", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciation,java.lang.String> FIRST_DEPRECIATION_METHOD_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciation.class ,FIRST_DEPRECIATION_METHOD, java.lang.String.class, "首次折旧方式", "首次折旧方式", java.lang.String.class, null);
 	
 	/**
 	 * 所属公司 , 类型: java.lang.String
@@ -118,6 +119,16 @@ public class AssetDepreciationMeta {
 	 * 资产分类 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciation,java.lang.String> CATEGORY_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciation.class ,CATEGORY_ID, java.lang.String.class, "资产分类", "资产分类", java.lang.String.class, null);
+	
+	/**
+	 * 选择 , 类型: java.lang.String
+	*/
+	public static final String SELECTED_CODE="selectedCode";
+	
+	/**
+	 * 选择 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciation,java.lang.String> SELECTED_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciation.class ,SELECTED_CODE, java.lang.String.class, "选择", "选择", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -240,9 +251,29 @@ public class AssetDepreciationMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciation,java.lang.String> CATEGORY_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciation.class ,CATEGORY_IDS, java.util.List.class, "资产分类Ids", "资产分类Ids", java.lang.String.class, null);
 	
 	/**
+	 * calRuleList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.AssetDepreciationCalRule
+	*/
+	public static final String CAL_RULE_LIST="calRuleList";
+	
+	/**
+	 * calRuleList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.AssetDepreciationCalRule
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciation,com.dt.platform.domain.eam.AssetDepreciationCalRule> CAL_RULE_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciation.class ,CAL_RULE_LIST, java.util.List.class, "calRuleList", "calRuleList", com.dt.platform.domain.eam.AssetDepreciationCalRule.class, null);
+	
+	/**
+	 * calRuleIds , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String CAL_RULE_IDS="calRuleIds";
+	
+	/**
+	 * calRuleIds , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciation,java.lang.String> CAL_RULE_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciation.class ,CAL_RULE_IDS, java.util.List.class, "calRuleIds", "calRuleIds", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , STATUS , CODE , NAME , METHOD , PRE_RESIDUAL_RATE , RESIDUAL_VALUE_SELECT , FIRST_DEPRECIATION_DATE , OWN_COMPANY_ID , CATEGORY_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CATEGORY , CATEGORY_IDS };
+	public static final String[] $PROPS={ ID , STATUS , CODE , NAME , METHOD , PRE_RESIDUAL_RATE , RESIDUAL_VALUE_SELECT , FIRST_DEPRECIATION_METHOD , OWN_COMPANY_ID , CATEGORY_ID , SELECTED_CODE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , CATEGORY , CATEGORY_IDS , CAL_RULE_LIST , CAL_RULE_IDS };
 	
 	/**
 	 * 代理类
@@ -330,13 +361,13 @@ public class AssetDepreciationMeta {
 		}
 		
 		/**
-		 * 设置 首次折旧时间
-		 * @param firstDepreciationDate 首次折旧时间
+		 * 设置 首次折旧方式
+		 * @param firstDepreciationMethod 首次折旧方式
 		 * @return 当前对象
 		*/
-		public AssetDepreciation setFirstDepreciationDate(String firstDepreciationDate) {
-			super.change(FIRST_DEPRECIATION_DATE,super.getFirstDepreciationDate(),firstDepreciationDate);
-			super.setFirstDepreciationDate(firstDepreciationDate);
+		public AssetDepreciation setFirstDepreciationMethod(String firstDepreciationMethod) {
+			super.change(FIRST_DEPRECIATION_METHOD,super.getFirstDepreciationMethod(),firstDepreciationMethod);
+			super.setFirstDepreciationMethod(firstDepreciationMethod);
 			return this;
 		}
 		
@@ -359,6 +390,17 @@ public class AssetDepreciationMeta {
 		public AssetDepreciation setCategoryId(String categoryId) {
 			super.change(CATEGORY_ID,super.getCategoryId(),categoryId);
 			super.setCategoryId(categoryId);
+			return this;
+		}
+		
+		/**
+		 * 设置 选择
+		 * @param selectedCode 选择
+		 * @return 当前对象
+		*/
+		public AssetDepreciation setSelectedCode(String selectedCode) {
+			super.change(SELECTED_CODE,super.getSelectedCode(),selectedCode);
+			super.setSelectedCode(selectedCode);
 			return this;
 		}
 		
@@ -493,6 +535,28 @@ public class AssetDepreciationMeta {
 			super.setCategoryIds(categoryIds);
 			return this;
 		}
+		
+		/**
+		 * 设置 calRuleList
+		 * @param calRuleList calRuleList
+		 * @return 当前对象
+		*/
+		public AssetDepreciation setCalRuleList(List<AssetDepreciationCalRule> calRuleList) {
+			super.change(CAL_RULE_LIST,super.getCalRuleList(),calRuleList);
+			super.setCalRuleList(calRuleList);
+			return this;
+		}
+		
+		/**
+		 * 设置 calRuleIds
+		 * @param calRuleIds calRuleIds
+		 * @return 当前对象
+		*/
+		public AssetDepreciation setCalRuleIds(List<String> calRuleIds) {
+			super.change(CAL_RULE_IDS,super.getCalRuleIds(),calRuleIds);
+			super.setCalRuleIds(calRuleIds);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -510,12 +574,13 @@ public class AssetDepreciationMeta {
 		public AssetDepreciation duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setCode(this.getCode());
-			inst.setFirstDepreciationDate(this.getFirstDepreciationDate());
 			inst.setNotes(this.getNotes());
 			inst.setMethod(this.getMethod());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setResidualValueSelect(this.getResidualValueSelect());
+			inst.setSelectedCode(this.getSelectedCode());
 			inst.setVersion(this.getVersion());
+			inst.setFirstDepreciationMethod(this.getFirstDepreciationMethod());
 			inst.setOwnCompanyId(this.getOwnCompanyId());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
@@ -531,6 +596,8 @@ public class AssetDepreciationMeta {
 			inst.setStatus(this.getStatus());
 			if(all) {
 				inst.setCategoryIds(this.getCategoryIds());
+				inst.setCalRuleList(this.getCalRuleList());
+				inst.setCalRuleIds(this.getCalRuleIds());
 				inst.setCategory(this.getCategory());
 			}
 			inst.clearModifies();

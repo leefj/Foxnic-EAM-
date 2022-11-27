@@ -1,5 +1,6 @@
 package com.dt.platform.eam.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 import com.dt.platform.domain.eam.Category;
 import com.github.foxnic.commons.lang.StringUtil;
@@ -61,7 +62,7 @@ public class CategoryFinanceController extends SuperController {
      * 添加财务分类
      */
     @ApiOperation(value = "添加财务分类")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.CATEGORY_NAME, value = "名称", required = false, dataTypeClass = String.class),
@@ -72,7 +73,8 @@ public class CategoryFinanceController extends SuperController {
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CategoryFinanceVOMeta.TENANT_ID, value = "租户", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = CategoryFinanceVOMeta.TENANT_ID, value = "租户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CategoryFinanceVOMeta.SERVICE_LIFE, value = "使用期限", required = false, dataTypeClass = BigDecimal.class, example = "36.00")
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = CategoryFinanceServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -107,7 +109,7 @@ public class CategoryFinanceController extends SuperController {
      * 删除财务分类
      */
     @ApiOperation(value = "删除财务分类")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 2)
@@ -129,7 +131,7 @@ public class CategoryFinanceController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除财务分类")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -144,7 +146,7 @@ public class CategoryFinanceController extends SuperController {
      * 更新财务分类
      */
     @ApiOperation(value = "更新财务分类")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.CATEGORY_NAME, value = "名称", required = false, dataTypeClass = String.class),
@@ -155,7 +157,8 @@ public class CategoryFinanceController extends SuperController {
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CategoryFinanceVOMeta.TENANT_ID, value = "租户", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = CategoryFinanceVOMeta.TENANT_ID, value = "租户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CategoryFinanceVOMeta.SERVICE_LIFE, value = "使用期限", required = false, dataTypeClass = BigDecimal.class, example = "36.00")
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { CategoryFinanceVOMeta.PAGE_INDEX, CategoryFinanceVOMeta.PAGE_SIZE, CategoryFinanceVOMeta.SEARCH_FIELD, CategoryFinanceVOMeta.FUZZY_FIELD, CategoryFinanceVOMeta.SEARCH_VALUE, CategoryFinanceVOMeta.SORT_FIELD, CategoryFinanceVOMeta.SORT_TYPE, CategoryFinanceVOMeta.IDS })
     @SentinelResource(value = CategoryFinanceServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -174,7 +177,7 @@ public class CategoryFinanceController extends SuperController {
      * 保存财务分类
      */
     @ApiOperation(value = "保存财务分类")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.CATEGORY_NAME, value = "名称", required = false, dataTypeClass = String.class),
@@ -185,7 +188,8 @@ public class CategoryFinanceController extends SuperController {
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CategoryFinanceVOMeta.TENANT_ID, value = "租户", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = CategoryFinanceVOMeta.TENANT_ID, value = "租户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CategoryFinanceVOMeta.SERVICE_LIFE, value = "使用期限", required = false, dataTypeClass = BigDecimal.class, example = "36.00")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { CategoryFinanceVOMeta.PAGE_INDEX, CategoryFinanceVOMeta.PAGE_SIZE, CategoryFinanceVOMeta.SEARCH_FIELD, CategoryFinanceVOMeta.FUZZY_FIELD, CategoryFinanceVOMeta.SEARCH_VALUE, CategoryFinanceVOMeta.SORT_FIELD, CategoryFinanceVOMeta.SORT_TYPE, CategoryFinanceVOMeta.IDS })
     @SentinelResource(value = CategoryFinanceServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -204,7 +208,7 @@ public class CategoryFinanceController extends SuperController {
      * 获取财务分类
      */
     @ApiOperation(value = "获取财务分类")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 6)
@@ -222,7 +226,7 @@ public class CategoryFinanceController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除财务分类")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -239,7 +243,7 @@ public class CategoryFinanceController extends SuperController {
      * 查询财务分类
      */
     @ApiOperation(value = "查询财务分类")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.CATEGORY_NAME, value = "名称", required = false, dataTypeClass = String.class),
@@ -250,7 +254,8 @@ public class CategoryFinanceController extends SuperController {
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CategoryFinanceVOMeta.TENANT_ID, value = "租户", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = CategoryFinanceVOMeta.TENANT_ID, value = "租户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CategoryFinanceVOMeta.SERVICE_LIFE, value = "使用期限", required = false, dataTypeClass = BigDecimal.class, example = "36.00")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { CategoryFinanceVOMeta.PAGE_INDEX, CategoryFinanceVOMeta.PAGE_SIZE })
     @SentinelResource(value = CategoryFinanceServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -266,7 +271,7 @@ public class CategoryFinanceController extends SuperController {
      * 分页查询财务分类
      */
     @ApiOperation(value = "分页查询财务分类")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.CATEGORY_NAME, value = "名称", required = false, dataTypeClass = String.class),
@@ -277,7 +282,8 @@ public class CategoryFinanceController extends SuperController {
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.HIERARCHY, value = "节点路径", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.HIERARCHY_NAME, value = "节点路径名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CategoryFinanceVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CategoryFinanceVOMeta.TENANT_ID, value = "租户", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = CategoryFinanceVOMeta.TENANT_ID, value = "租户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CategoryFinanceVOMeta.SERVICE_LIFE, value = "使用期限", required = false, dataTypeClass = BigDecimal.class, example = "36.00")
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = CategoryFinanceServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

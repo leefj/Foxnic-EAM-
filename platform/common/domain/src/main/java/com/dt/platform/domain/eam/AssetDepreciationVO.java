@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 折旧方案VO类型
  * <p>折旧方案 , 数据表 eam_asset_depreciation 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-25 14:18:58
+ * @since 2022-11-27 12:24:36
  * @sign 6ED67DFA8CB43209E521A1C25B226E71
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -328,12 +328,13 @@ public class AssetDepreciationVO extends AssetDepreciation {
 	public AssetDepreciationVO duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.AssetDepreciationVOMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetDepreciationVOMeta.$$proxy$$();
 		inst.setCode(this.getCode());
-		inst.setFirstDepreciationDate(this.getFirstDepreciationDate());
 		inst.setNotes(this.getNotes());
 		inst.setMethod(this.getMethod());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setResidualValueSelect(this.getResidualValueSelect());
+		inst.setSelectedCode(this.getSelectedCode());
 		inst.setVersion(this.getVersion());
+		inst.setFirstDepreciationMethod(this.getFirstDepreciationMethod());
 		inst.setOwnCompanyId(this.getOwnCompanyId());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
@@ -348,14 +349,16 @@ public class AssetDepreciationVO extends AssetDepreciation {
 		inst.setCategoryId(this.getCategoryId());
 		inst.setStatus(this.getStatus());
 		if(all) {
-			inst.setCategoryIds(this.getCategoryIds());
 			inst.setSearchField(this.getSearchField());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setPageSize(this.getPageSize());
+			inst.setCategoryIds(this.getCategoryIds());
+			inst.setCalRuleList(this.getCalRuleList());
+			inst.setCalRuleIds(this.getCalRuleIds());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
-			inst.setFuzzyField(this.getFuzzyField());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
-			inst.setPageSize(this.getPageSize());
 			inst.setIds(this.getIds());
 			inst.setCategory(this.getCategory());
 			inst.setSearchValue(this.getSearchValue());
@@ -419,12 +422,13 @@ public class AssetDepreciationVO extends AssetDepreciation {
 		if(map==null) return false;
 		if(cast) {
 			this.setCode(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.CODE)));
-			this.setFirstDepreciationDate(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.FIRST_DEPRECIATION_DATE)));
 			this.setNotes(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.NOTES)));
 			this.setMethod(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.METHOD)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetDepreciationVOMeta.UPDATE_TIME)));
 			this.setResidualValueSelect(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.RESIDUAL_VALUE_SELECT)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.SELECTED_CODE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(AssetDepreciationVOMeta.VERSION)));
+			this.setFirstDepreciationMethod(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.FIRST_DEPRECIATION_METHOD)));
 			this.setOwnCompanyId(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.OWN_COMPANY_ID)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetDepreciationVOMeta.DELETED)));
@@ -440,22 +444,23 @@ public class AssetDepreciationVO extends AssetDepreciation {
 			this.setStatus(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.STATUS)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.SEARCH_FIELD)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.FUZZY_FIELD)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(AssetDepreciationVOMeta.PAGE_SIZE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(AssetDepreciationVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.SORT_TYPE)));
-			this.setFuzzyField(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.FUZZY_FIELD)));
 			this.setSortField(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.SORT_FIELD)));
-			this.setPageSize(DataParser.parse(Integer.class, map.get(AssetDepreciationVOMeta.PAGE_SIZE)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(AssetDepreciationVOMeta.SEARCH_VALUE)));
 			return true;
 		} else {
 			try {
 				this.setCode( (String)map.get(AssetDepreciationVOMeta.CODE));
-				this.setFirstDepreciationDate( (String)map.get(AssetDepreciationVOMeta.FIRST_DEPRECIATION_DATE));
 				this.setNotes( (String)map.get(AssetDepreciationVOMeta.NOTES));
 				this.setMethod( (String)map.get(AssetDepreciationVOMeta.METHOD));
 				this.setUpdateTime( (Date)map.get(AssetDepreciationVOMeta.UPDATE_TIME));
 				this.setResidualValueSelect( (String)map.get(AssetDepreciationVOMeta.RESIDUAL_VALUE_SELECT));
+				this.setSelectedCode( (String)map.get(AssetDepreciationVOMeta.SELECTED_CODE));
 				this.setVersion( (Integer)map.get(AssetDepreciationVOMeta.VERSION));
+				this.setFirstDepreciationMethod( (String)map.get(AssetDepreciationVOMeta.FIRST_DEPRECIATION_METHOD));
 				this.setOwnCompanyId( (String)map.get(AssetDepreciationVOMeta.OWN_COMPANY_ID));
 				this.setCreateBy( (String)map.get(AssetDepreciationVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(AssetDepreciationVOMeta.DELETED));
@@ -471,11 +476,11 @@ public class AssetDepreciationVO extends AssetDepreciation {
 				this.setStatus( (String)map.get(AssetDepreciationVOMeta.STATUS));
 				// others
 				this.setSearchField( (String)map.get(AssetDepreciationVOMeta.SEARCH_FIELD));
+				this.setFuzzyField( (String)map.get(AssetDepreciationVOMeta.FUZZY_FIELD));
+				this.setPageSize( (Integer)map.get(AssetDepreciationVOMeta.PAGE_SIZE));
 				this.setPageIndex( (Integer)map.get(AssetDepreciationVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(AssetDepreciationVOMeta.SORT_TYPE));
-				this.setFuzzyField( (String)map.get(AssetDepreciationVOMeta.FUZZY_FIELD));
 				this.setSortField( (String)map.get(AssetDepreciationVOMeta.SORT_FIELD));
-				this.setPageSize( (Integer)map.get(AssetDepreciationVOMeta.PAGE_SIZE));
 				this.setSearchValue( (String)map.get(AssetDepreciationVOMeta.SEARCH_VALUE));
 				return true;
 			} catch (Exception e) {
@@ -494,12 +499,13 @@ public class AssetDepreciationVO extends AssetDepreciation {
 		if(r==null) return false;
 		if(cast) {
 			this.setCode(DataParser.parse(String.class, r.getValue(AssetDepreciationVOMeta.CODE)));
-			this.setFirstDepreciationDate(DataParser.parse(String.class, r.getValue(AssetDepreciationVOMeta.FIRST_DEPRECIATION_DATE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(AssetDepreciationVOMeta.NOTES)));
 			this.setMethod(DataParser.parse(String.class, r.getValue(AssetDepreciationVOMeta.METHOD)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationVOMeta.UPDATE_TIME)));
 			this.setResidualValueSelect(DataParser.parse(String.class, r.getValue(AssetDepreciationVOMeta.RESIDUAL_VALUE_SELECT)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(AssetDepreciationVOMeta.SELECTED_CODE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetDepreciationVOMeta.VERSION)));
+			this.setFirstDepreciationMethod(DataParser.parse(String.class, r.getValue(AssetDepreciationVOMeta.FIRST_DEPRECIATION_METHOD)));
 			this.setOwnCompanyId(DataParser.parse(String.class, r.getValue(AssetDepreciationVOMeta.OWN_COMPANY_ID)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetDepreciationVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetDepreciationVOMeta.DELETED)));
@@ -517,12 +523,13 @@ public class AssetDepreciationVO extends AssetDepreciation {
 		} else {
 			try {
 				this.setCode( (String)r.getValue(AssetDepreciationVOMeta.CODE));
-				this.setFirstDepreciationDate( (String)r.getValue(AssetDepreciationVOMeta.FIRST_DEPRECIATION_DATE));
 				this.setNotes( (String)r.getValue(AssetDepreciationVOMeta.NOTES));
 				this.setMethod( (String)r.getValue(AssetDepreciationVOMeta.METHOD));
 				this.setUpdateTime( (Date)r.getValue(AssetDepreciationVOMeta.UPDATE_TIME));
 				this.setResidualValueSelect( (String)r.getValue(AssetDepreciationVOMeta.RESIDUAL_VALUE_SELECT));
+				this.setSelectedCode( (String)r.getValue(AssetDepreciationVOMeta.SELECTED_CODE));
 				this.setVersion( (Integer)r.getValue(AssetDepreciationVOMeta.VERSION));
+				this.setFirstDepreciationMethod( (String)r.getValue(AssetDepreciationVOMeta.FIRST_DEPRECIATION_METHOD));
 				this.setOwnCompanyId( (String)r.getValue(AssetDepreciationVOMeta.OWN_COMPANY_ID));
 				this.setCreateBy( (String)r.getValue(AssetDepreciationVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(AssetDepreciationVOMeta.DELETED));

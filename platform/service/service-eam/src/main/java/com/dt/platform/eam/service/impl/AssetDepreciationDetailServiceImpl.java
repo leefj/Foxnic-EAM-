@@ -36,10 +36,10 @@ import java.util.Map;
 
 /**
  * <p>
- * 折旧明细服务实现
+ * eam_asset_depreciation_detail服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-25 12:22:16
+ * @since 2022-11-27 12:23:01
 */
 
 
@@ -99,7 +99,7 @@ public class AssetDepreciationDetailServiceImpl extends SuperService<AssetDeprec
 
 	
 	/**
-	 * 按主键删除折旧明细
+	 * 按主键删除eam_asset_depreciation_detail
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -120,7 +120,7 @@ public class AssetDepreciationDetailServiceImpl extends SuperService<AssetDeprec
 	}
 	
 	/**
-	 * 按主键删除折旧明细
+	 * 按主键删除eam_asset_depreciation_detail
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -180,7 +180,7 @@ public class AssetDepreciationDetailServiceImpl extends SuperService<AssetDeprec
 
 	
 	/**
-	 * 按主键更新折旧明细
+	 * 按主键更新eam_asset_depreciation_detail
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -194,7 +194,7 @@ public class AssetDepreciationDetailServiceImpl extends SuperService<AssetDeprec
 
 	
 	/**
-	 * 按主键获取折旧明细
+	 * 按主键获取eam_asset_depreciation_detail
 	 *
 	 * @param id 主键
 	 * @return AssetDepreciationDetail 数据对象
