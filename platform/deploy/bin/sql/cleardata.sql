@@ -169,6 +169,7 @@ delete from ops_person where 1=1 and tenant_id='T001' ;
 delete from ops_ip_address_range where 1=1;
 delete from ops_system_console_info where 1=1;
 
+
 delete from ops_ciphertext_history;
 delete from ops_ciphertext_box_data;
 delete from ops_ciphertext_box where deleted=1;
