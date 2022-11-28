@@ -115,7 +115,6 @@ function ListPage() {
 					importExcel : admin.checkAuth(AUTH_PREFIX+":import")?{
 						params : {ownerCode:OWNER_CODE} ,
 						callback : function(r) {
-							console.log(12345,r)
 							if(r.success) {
 								layer.msg(fox.translate('数据导入成功')+"!");
 								refreshTableData(null,null,true);
@@ -602,10 +601,16 @@ function ListPage() {
 				case 'exportMore':
 					menuSelect=selected;
 					var exportArr=[];
-					if(admin.checkAuth("eam_asset:eam_asset:import")){
-						exportArr.push({"code":"batchInsert","id":"1","title": fox.translate('资产批量入库') });
+					if(admin.checkAuth("eam_asset:batch-insert")){
+						exportArr.push({"code":"batchInsert","id":"1","title": fox.translate('在线批量导入') });
 					}
 
+					if(admin.checkAuth("eam_asset:batch-insert")){
+						exportArr.push({"code":"excelInsert","id":"1","title": fox.translate('Excel批量导入') });
+					}
+
+					//eam_asset:import
+					//eam_asset:high-export-data
 					if(admin.checkAuth("eam_asset:high-export-data")){
 						exportArr.push({"code":"highExportData","id":"2","title":  fox.translate('资产数据导出')});
 					}

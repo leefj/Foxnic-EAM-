@@ -147,8 +147,9 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
                 .with(AssetMeta.EXPENSE_ITEM_DICT)
                 .with(AssetMeta.FINANCIAL_OPTION_DICT)
                 .execute();
-        List<Employee> originators= CollectorUtil.collectList(assetList,Asset::getOriginator);
-        assetService.dao().join(originators, Person.class);
+        List<Employee> useUser= CollectorUtil.collectList(assetList,Asset::getUseUser);
+        assetService.dao().join(useUser, Person.class);
+
         //填充资产折旧明细数据，用于折旧计算
         List<AssetDepreciationDetail> detailList=new ArrayList<>();
         List<List<AssetDepreciationDetail>> groupList=new ArrayList<>();

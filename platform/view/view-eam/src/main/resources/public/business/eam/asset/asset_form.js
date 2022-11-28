@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-26 21:09:03
+ * @since 2022-11-28 12:24:53
  */
 
 function FormPage() {
@@ -458,9 +458,7 @@ function FormPage() {
 			el:"attach",
 			maxFileCount: 1,
 			displayFileName: false,
-			accept: "image",
-			acceptMime:'image/*',
-			exts:'png|jpg|bmp|gif|jpeg',
+			accept: "file",
 			afterPreview:function(elId,index,fileId,upload,fileName,fileType){
 				adjustPopup();
 				window.pageExt.form.onUploadEvent &&  window.pageExt.form.onUploadEvent({event:"afterPreview",elId:elId,index:index,fileId:fileId,upload:upload,fileName:fileName,fileType:fileType});

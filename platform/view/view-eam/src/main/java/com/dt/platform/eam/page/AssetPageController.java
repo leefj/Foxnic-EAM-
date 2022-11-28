@@ -380,6 +380,15 @@ public class AssetPageController extends ViewController {
 
 
 
+	/**
+	 * 资产 表单页面
+	 */
+	@RequestMapping("/asset_import_form.html")
+	public String importForm(Model model,HttpServletRequest request) {
+
+		return prefix+"/asset_import_form";
+	}
+
 
 	/**
 	 * 资产 功能主页面
