@@ -40,6 +40,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     window.pageExt.list.highExportData(data,null);
                 }else if(menu.code=="downloadAssetTpl"){
                     window.pageExt.list.downloadAssetTpl(data,null);
+                }else if(menu.code=="excelInsert"){
+                    window.pageExt.list.importData(data,null);
                 }
             }
             if(menu.id){
@@ -82,6 +84,17 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     window.pageExt.list.asssetDepreciation(data,it);
                 }
             }
+        },
+        importData:function(data){
+            admin.putTempData("assetId",data.id,true);
+            var index = admin.popupCenter({
+                title: "资产数据导入",
+                resize: false,
+                id: 'assetDataImport',
+                area: ["60%", "50%"],
+                type: 2,
+                content: '/business/eam/asset/asset_import_form.html',
+            });
         },
         asssetDepreciation:function(data){
             admin.putTempData("assetId",data.id,true);
@@ -214,9 +227,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             admin.putTempData('eam-asset-data-change-form-data-popup-index', index);
         },
         batchInsert:function(data,item){
-            // var ps={}
-            // admin.request("/service-eam/eam-asset-data/batch-import-asset", ps, function (attributeData) {
-            // }, "POST");
+
             var queryString=""
             var index=admin.popupCenter({
                 title: "数据导入",
@@ -301,13 +312,16 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 ps.categoryId=categoryId;
             }
             ps.ownerCode=OWNER_CODE;
-            var task=setTimeout(function(){layer.load(2);},10);
-            fox.submit(downloadUrl,ps,"post",function(){
-
-                clearTimeout(task);
-                layer.closeAll('loading');
-                console.log("execute finish");
+            var task=setTimeout(function(){layer.load(2);},50);
+            fox.submit(downloadUrl,ps,"post",function(r){
+                console.log("execute finish",r,"r");
+                if(task){
+                    clearTimeout(task);
+                    layer.closeAll('loading');
+                }
             });
+
+
         },
 
         /**
@@ -442,7 +456,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                         window.module.refreshTableData();
                     } else {
                         var errs = [];
-
                         if(r.errors&&r.errors.length>0){
                             for (var i = 0; i < r.errors.length; i++) {
                                 if (errs.indexOf(r.errors[i].message) == -1) {

@@ -1811,17 +1811,11 @@ public class AssetController extends SuperController {
             response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("资产数据.xls", "UTF-8"))));
             response.setContentType("application/vnd.ms-excel");
             // 下载
+			System.out.println("开始输出数据");
             DownloadUtil.writeToOutput(response, workbook, "资产数据.xls");
         } catch (Exception e) {
             DownloadUtil.writeDownloadError(response, e);
         }
-        // 
-        // OutputStream out = response.getOutputStream();
-        // BufferedOutputStream bos = new BufferedOutputStream(out);
-        // workbook.write(bos);
-        // bos.flush();
-        // out.flush();
-        // PoitlIOUtils.closeQuietlyMulti(workbook, bos, out);
     }
 
     /**

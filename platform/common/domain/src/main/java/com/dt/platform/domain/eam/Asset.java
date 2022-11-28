@@ -34,7 +34,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产
  * <p>资产 , 数据表 eam_asset 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-26 21:09:01
+ * @since 2022-11-28 12:24:51
  * @sign 631B8A3D2FEAB0A148418C45FD196B3A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -423,7 +423,7 @@ public class Asset extends Entity {
 	/**
 	 * 资产原值：(未税)
 	*/
-	@ApiModelProperty(required = false,value="资产原值" , notes = "(未税)")
+	@ApiModelProperty(required = false,value="资产原值" , notes = "(未税)" , example = "1000.00")
 	private BigDecimal originalUnitPrice;
 	
 	/**

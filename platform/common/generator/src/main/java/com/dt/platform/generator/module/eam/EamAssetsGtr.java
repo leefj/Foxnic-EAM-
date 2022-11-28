@@ -379,7 +379,7 @@ public class EamAssetsGtr extends BaseCodeGenerator {
                 .form().label("图片").upload().buttonLabel("选择图片").acceptSingleImage().maxFileCount(1).displayFileName(false);
 
         cfg.view().field(EAMTables.EAM_ASSET.ATTACH)
-                .form().label("附件").upload().buttonLabel("选择附件").acceptSingleImage().maxFileCount(1).displayFileName(false);
+                .form().label("附件").upload().buttonLabel("选择附件").acceptSingleFile().maxFileCount(1).displayFileName(false);
 
         cfg.view().list().operationColumn().addActionButton("变更","assetDataChange");
 

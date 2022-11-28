@@ -1053,6 +1053,8 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
     //将assetList转Map,保存dataList,categoryId过滤条件
     @Override
     public Map<String, Object> queryAssetMap(List<Asset> list,String categoryId) {
+        long start = System.currentTimeMillis();
+
         HashMap<String,String> orgMap=queryOrganizationNodes("");
         HashMap<String,String> categoryMap=queryAssetCategoryNodes("");
 
@@ -1067,86 +1069,71 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
 //                    continue;
 //                }
 //            }
-
             Map<String, Object> assetMap= BeanUtil.toMap(assetItem);
-            System.out.println("######assetMap"+BeanUtil.toJSONObject(assetItem));
+          //  System.out.println("######assetMap"+BeanUtil.toJSONObject(assetItem));
             //获取自定义属性
-            DataQueryVo vo=new DataQueryVo();
-            vo.setCatalogId(categoryId);
-            vo.setTenantId(tenantId);
-            List<String> ids=new ArrayList<>();
-            ids.add(assetItem.getId());
-            vo.setOwnerIds(ids);
-            Result itemResult=CatalogServiceProxy.api().queryData(vo);
-            if(itemResult.isSuccess()){
-                JSONArray dataArr=(JSONArray)itemResult.getData();
-                if(dataArr.size()>0){
-                    JSONObject dataObj=dataArr.getJSONObject(0);
-                    for(String key:dataObj.keySet()){
-                        assetMap.put("pcm_ext_"+key,dataObj.get(key));
-                    }
-                }
-            }
-
+           // 暂时去除自定义属性
+//            DataQueryVo vo=new DataQueryVo();
+//            vo.setCatalogId(categoryId);
+//            vo.setTenantId(tenantId);
+//            List<String> ids=new ArrayList<>();
+//            ids.add(assetItem.getId());
+//            vo.setOwnerIds(ids);
+//            Result itemResult=CatalogServiceProxy.api().queryData(vo);
+//            if(itemResult.isSuccess()){
+//                JSONArray dataArr=(JSONArray)itemResult.getData();
+//                if(dataArr.size()>0){
+//                    JSONObject dataObj=dataArr.getJSONObject(0);
+//                    for(String key:dataObj.keySet()){
+//                        assetMap.put("pcm_ext_"+key,dataObj.get(key));
+//                    }
+//                }
+//            }
             //资产状态
             if(assetItem.getAssetCycleStatus()!=null){
                 assetMap.put(AssetDataExportColumnEnum.ASSET_STATUS_NAME.code(),assetItem.getAssetCycleStatus().getName());
             }
-
             //办理状态
             CodeTextEnum vStatus= EnumUtil.parseByCode(AssetHandleStatusEnum.class,assetItem.getStatus());
             assetMap.put(AssetDataExportColumnEnum.STATUS_NAME.code(),vStatus==null?"":vStatus.text());
-
             //设备状态
             CodeTextEnum vEquipStatus= EnumUtil.parseByCode(AssetEquipmentStatusEnum.class,assetItem.getEquipmentStatus());
             assetMap.put(AssetDataExportColumnEnum.EQUIPMENT_STATUS_NAME.code(),vEquipStatus==null?"":vEquipStatus.text());
-
             //数据字典
             if(assetItem.getMaintenanceMethodData()!=null){
                 assetMap.put(AssetDataExportColumnEnum.MAINTENANCE_METHOD.code(),assetItem.getMaintenanceMethodData().getLabel());
             }
-
             if(assetItem.getExpenseItemDict()!=null){
                 assetMap.put(AssetDataExportColumnEnum.EXPENSE_ITEM.code(),assetItem.getExpenseItemDict().getLabel());
             }
-
             if(assetItem.getFinancialOptionDict()!=null){
                 assetMap.put(AssetDataExportColumnEnum.FINANCIAL_OPTION.code(),assetItem.getFinancialOptionDict().getLabel());
             }
-
-
             if(assetItem.getSource()!=null){
                 assetMap.put(AssetDataExportColumnEnum.ASSET_SOURCE_NAME.code(),assetItem.getSource().getLabel());
             }
-
             if(assetItem.getSafetyLevel()!=null){
                 assetMap.put(AssetDataExportColumnEnum.SAFETY_LEVEL_NAME.code(),assetItem.getSafetyLevel().getLabel());
             }
-
             if(assetItem.getEquipmentEnvironment()!=null){
                 assetMap.put(AssetDataExportColumnEnum.EQUIPMENT_ENVIRONMENT_NAME.code(),assetItem.getEquipmentEnvironment().getLabel());
             }
-
             if(assetItem.getAssetMaintenanceStatus()!=null){
                 assetMap.put(AssetDataExportColumnEnum.MAINTENANCE_STATUS.code(),assetItem.getAssetMaintenanceStatus().getLabel());
             }
-
             if(assetItem.getPosition()!=null){
                 // 关联出 存放位置 数据
                 assetMap.put(AssetDataExportColumnEnum.ASSET_POSITION_NAME.code(),assetItem.getPosition().getHierarchyName());
             }
-
             if(assetItem.getGoods()!=null){
                 //关联出 物品档案 数据
                 assetMap.put(AssetDataExportColumnEnum.ASSET_GOOD_NAME.code(),assetItem.getGoods().getName());
             }
-
             if(assetItem.getRack()!=null){
                 //关联出 机柜 数据
                 assetMap.put(AssetDataExportColumnEnum.RACK_NAME.code(),assetItem.getRack().getHierarchyName());
                 assetMap.put("rackCode",assetItem.getRack().getCode());
             }
-
             if(assetItem.getManufacturer()!=null){
                 //关联出 厂商 数据
                 assetMap.put(AssetDataExportColumnEnum.ASSET_MANUFACTURER_NAME.code(),assetItem.getManufacturer().getManufacturerName());
@@ -1167,35 +1154,28 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                 // 关联出 供应商 数据
                 assetMap.put(AssetDataExportColumnEnum.ASSET_SUPPLIER_NAME.code(),assetItem.getSupplier().getSupplierName());
             }
-
             String companyName=orgMap.get(assetItem.getOwnCompanyId());
             assetMap.put(AssetDataExportColumnEnum.OWN_COMPANY_NAME.code(),companyName);
-
             String orgName=orgMap.get(assetItem.getUseOrganizationId());
             assetMap.put(AssetDataExportColumnEnum.USE_ORGANIZATION_NAME.code(),orgName);
-
             String categoryName=categoryMap.get(assetItem.getCategoryId());
             assetMap.put(AssetDataExportColumnEnum.ASSET_CATEGORY_NAME.code(),categoryName);
-
             if(assetItem.getManager()!=null){
-                System.out.println("manager:"+assetItem.getManager().getBadge());
                 assetMap.put(AssetDataExportColumnEnum.MANAGER_NAME_BADGE.code(),assetItem.getManager().getNameAndBadge());
                 assetMap.put(AssetDataExportColumnEnum.MANAGER_NAME.code(),assetItem.getManager().getName());
                 assetMap.put(AssetDataExportColumnEnum.MANAGER_BADGE.code(),assetItem.getManager().getBadge());
             }
-
             if(assetItem.getUseUser()!=null){
-                System.out.println("user:"+assetItem.getUseUser().getBadge());
                 assetMap.put(AssetDataExportColumnEnum.USE_USER_NAME_BADGE.code(),assetItem.getUseUser().getNameAndBadge());
                 assetMap.put(AssetDataExportColumnEnum.USE_USER_NAME.code(),assetItem.getUseUser().getName());
                 assetMap.put(AssetDataExportColumnEnum.USE_USER_BADGE.code(),assetItem.getUseUser().getBadge());
             }
-     //     if(i<5)
             listMap.add(assetMap);
         }
-        System.out.println("#########"+listMap.size());
+        long finish = System.currentTimeMillis();
+        long cost=(finish-start)/1000L;
+        System.out.println("queryAssetMap execute cost:"+cost);
         map.put("dataList", listMap);
-   //     System.out.println(map);
         return map;
     }
 
