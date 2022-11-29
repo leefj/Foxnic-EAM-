@@ -142,9 +142,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             }
             ps.ownerCode="TPL";
             ps.businessCode="123456789";
-            var task=setTimeout(function(){layer.load(2);},10);
+
             fox.submit(downloadUrl,ps,"post",function(){
-                clearTimeout(task);
+
                 layer.closeAll('loading');
                 console.log("execute finish");
             });
@@ -312,7 +312,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 ps.categoryId=categoryId;
             }
             ps.ownerCode=OWNER_CODE;
-            // var task=setTimeout(function(){layer.load(2);},50);
             fox.submit(downloadUrl,ps,"post",function(r){
                 console.log("execute finish",r,"r");
                 layer.closeAll('loading');
