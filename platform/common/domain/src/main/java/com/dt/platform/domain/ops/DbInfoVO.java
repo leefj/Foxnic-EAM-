@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库VO类型
  * <p>数据库 , 数据表 ops_db_info 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-25 16:08:27
+ * @since 2022-11-29 22:07:25
  * @sign 34945B314FDD9C5B5C62D17AD6EFC0FD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -337,10 +337,12 @@ public class DbInfoVO extends DbInfo {
 		inst.setVoucherStr(this.getVoucherStr());
 		inst.setId(this.getId());
 		inst.setAdminUserList(this.getAdminUserList());
+		inst.setUserUseInfo(this.getUserUseInfo());
 		inst.setDisasterRecoveryStrategy(this.getDisasterRecoveryStrategy());
 		inst.setToolStrategy(this.getToolStrategy());
 		inst.setAppUserList(this.getAppUserList());
 		inst.setDeployMode(this.getDeployMode());
+		inst.setOpsUserList(this.getOpsUserList());
 		inst.setOtherUserList(this.getOtherUserList());
 		inst.setHostId(this.getHostId());
 		inst.setUpdateTime(this.getUpdateTime());
@@ -441,10 +443,12 @@ public class DbInfoVO extends DbInfo {
 			this.setVoucherStr(DataParser.parse(String.class, map.get(DbInfoVOMeta.VOUCHER_STR)));
 			this.setId(DataParser.parse(String.class, map.get(DbInfoVOMeta.ID)));
 			this.setAdminUserList(DataParser.parse(String.class, map.get(DbInfoVOMeta.ADMIN_USER_LIST)));
+			this.setUserUseInfo(DataParser.parse(String.class, map.get(DbInfoVOMeta.USER_USE_INFO)));
 			this.setDisasterRecoveryStrategy(DataParser.parse(String.class, map.get(DbInfoVOMeta.DISASTER_RECOVERY_STRATEGY)));
 			this.setToolStrategy(DataParser.parse(String.class, map.get(DbInfoVOMeta.TOOL_STRATEGY)));
 			this.setAppUserList(DataParser.parse(String.class, map.get(DbInfoVOMeta.APP_USER_LIST)));
 			this.setDeployMode(DataParser.parse(String.class, map.get(DbInfoVOMeta.DEPLOY_MODE)));
+			this.setOpsUserList(DataParser.parse(String.class, map.get(DbInfoVOMeta.OPS_USER_LIST)));
 			this.setOtherUserList(DataParser.parse(String.class, map.get(DbInfoVOMeta.OTHER_USER_LIST)));
 			this.setHostId(DataParser.parse(String.class, map.get(DbInfoVOMeta.HOST_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(DbInfoVOMeta.UPDATE_TIME)));
@@ -483,10 +487,12 @@ public class DbInfoVO extends DbInfo {
 				this.setVoucherStr( (String)map.get(DbInfoVOMeta.VOUCHER_STR));
 				this.setId( (String)map.get(DbInfoVOMeta.ID));
 				this.setAdminUserList( (String)map.get(DbInfoVOMeta.ADMIN_USER_LIST));
+				this.setUserUseInfo( (String)map.get(DbInfoVOMeta.USER_USE_INFO));
 				this.setDisasterRecoveryStrategy( (String)map.get(DbInfoVOMeta.DISASTER_RECOVERY_STRATEGY));
 				this.setToolStrategy( (String)map.get(DbInfoVOMeta.TOOL_STRATEGY));
 				this.setAppUserList( (String)map.get(DbInfoVOMeta.APP_USER_LIST));
 				this.setDeployMode( (String)map.get(DbInfoVOMeta.DEPLOY_MODE));
+				this.setOpsUserList( (String)map.get(DbInfoVOMeta.OPS_USER_LIST));
 				this.setOtherUserList( (String)map.get(DbInfoVOMeta.OTHER_USER_LIST));
 				this.setHostId( (String)map.get(DbInfoVOMeta.HOST_ID));
 				this.setUpdateTime( (Date)map.get(DbInfoVOMeta.UPDATE_TIME));
@@ -538,10 +544,12 @@ public class DbInfoVO extends DbInfo {
 			this.setVoucherStr(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.VOUCHER_STR)));
 			this.setId(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.ID)));
 			this.setAdminUserList(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.ADMIN_USER_LIST)));
+			this.setUserUseInfo(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.USER_USE_INFO)));
 			this.setDisasterRecoveryStrategy(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.DISASTER_RECOVERY_STRATEGY)));
 			this.setToolStrategy(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.TOOL_STRATEGY)));
 			this.setAppUserList(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.APP_USER_LIST)));
 			this.setDeployMode(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.DEPLOY_MODE)));
+			this.setOpsUserList(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.OPS_USER_LIST)));
 			this.setOtherUserList(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.OTHER_USER_LIST)));
 			this.setHostId(DataParser.parse(String.class, r.getValue(DbInfoVOMeta.HOST_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(DbInfoVOMeta.UPDATE_TIME)));
@@ -569,10 +577,12 @@ public class DbInfoVO extends DbInfo {
 				this.setVoucherStr( (String)r.getValue(DbInfoVOMeta.VOUCHER_STR));
 				this.setId( (String)r.getValue(DbInfoVOMeta.ID));
 				this.setAdminUserList( (String)r.getValue(DbInfoVOMeta.ADMIN_USER_LIST));
+				this.setUserUseInfo( (String)r.getValue(DbInfoVOMeta.USER_USE_INFO));
 				this.setDisasterRecoveryStrategy( (String)r.getValue(DbInfoVOMeta.DISASTER_RECOVERY_STRATEGY));
 				this.setToolStrategy( (String)r.getValue(DbInfoVOMeta.TOOL_STRATEGY));
 				this.setAppUserList( (String)r.getValue(DbInfoVOMeta.APP_USER_LIST));
 				this.setDeployMode( (String)r.getValue(DbInfoVOMeta.DEPLOY_MODE));
+				this.setOpsUserList( (String)r.getValue(DbInfoVOMeta.OPS_USER_LIST));
 				this.setOtherUserList( (String)r.getValue(DbInfoVOMeta.OTHER_USER_LIST));
 				this.setHostId( (String)r.getValue(DbInfoVOMeta.HOST_ID));
 				this.setUpdateTime( (Date)r.getValue(DbInfoVOMeta.UPDATE_TIME));

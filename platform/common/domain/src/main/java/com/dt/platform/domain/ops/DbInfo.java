@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库
  * <p>数据库 , 数据表 ops_db_info 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-25 16:08:27
- * @sign 3F86DEE087C890E35E9B1A1839B9663F
+ * @since 2022-11-29 22:07:25
+ * @sign 94D9438D9E565B04A38147E9B681ADA0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -109,10 +109,22 @@ public class DbInfo extends Entity {
 	private String appUserList;
 	
 	/**
+	 * 运维账户：运维账户
+	*/
+	@ApiModelProperty(required = false,value="运维账户" , notes = "运维账户")
+	private String opsUserList;
+	
+	/**
 	 * 其他账户：其他账户
 	*/
 	@ApiModelProperty(required = false,value="其他账户" , notes = "其他账户")
 	private String otherUserList;
+	
+	/**
+	 * 使用情况：使用情况
+	*/
+	@ApiModelProperty(required = false,value="使用情况" , notes = "使用情况")
+	private String userUseInfo;
 	
 	/**
 	 * 凭证信息：凭证信息
@@ -121,9 +133,9 @@ public class DbInfo extends Entity {
 	private String voucherStr;
 	
 	/**
-	 * 连接端口：连接端口
+	 * 服务端口：服务端口
 	*/
-	@ApiModelProperty(required = false,value="连接端口" , notes = "连接端口")
+	@ApiModelProperty(required = false,value="服务端口" , notes = "服务端口")
 	private String dbPort;
 	
 	/**
@@ -465,6 +477,25 @@ public class DbInfo extends Entity {
 	}
 	
 	/**
+	 * 获得 运维账户<br>
+	 * 运维账户
+	 * @return 运维账户
+	*/
+	public String getOpsUserList() {
+		return opsUserList;
+	}
+	
+	/**
+	 * 设置 运维账户
+	 * @param opsUserList 运维账户
+	 * @return 当前对象
+	*/
+	public DbInfo setOpsUserList(String opsUserList) {
+		this.opsUserList=opsUserList;
+		return this;
+	}
+	
+	/**
 	 * 获得 其他账户<br>
 	 * 其他账户
 	 * @return 其他账户
@@ -480,6 +511,25 @@ public class DbInfo extends Entity {
 	*/
 	public DbInfo setOtherUserList(String otherUserList) {
 		this.otherUserList=otherUserList;
+		return this;
+	}
+	
+	/**
+	 * 获得 使用情况<br>
+	 * 使用情况
+	 * @return 使用情况
+	*/
+	public String getUserUseInfo() {
+		return userUseInfo;
+	}
+	
+	/**
+	 * 设置 使用情况
+	 * @param userUseInfo 使用情况
+	 * @return 当前对象
+	*/
+	public DbInfo setUserUseInfo(String userUseInfo) {
+		this.userUseInfo=userUseInfo;
 		return this;
 	}
 	
@@ -503,17 +553,17 @@ public class DbInfo extends Entity {
 	}
 	
 	/**
-	 * 获得 连接端口<br>
-	 * 连接端口
-	 * @return 连接端口
+	 * 获得 服务端口<br>
+	 * 服务端口
+	 * @return 服务端口
 	*/
 	public String getDbPort() {
 		return dbPort;
 	}
 	
 	/**
-	 * 设置 连接端口
-	 * @param dbPort 连接端口
+	 * 设置 服务端口
+	 * @param dbPort 服务端口
 	 * @return 当前对象
 	*/
 	public DbInfo setDbPort(String dbPort) {
@@ -1048,10 +1098,12 @@ public class DbInfo extends Entity {
 		inst.setVoucherStr(this.getVoucherStr());
 		inst.setId(this.getId());
 		inst.setAdminUserList(this.getAdminUserList());
+		inst.setUserUseInfo(this.getUserUseInfo());
 		inst.setDisasterRecoveryStrategy(this.getDisasterRecoveryStrategy());
 		inst.setToolStrategy(this.getToolStrategy());
 		inst.setAppUserList(this.getAppUserList());
 		inst.setDeployMode(this.getDeployMode());
+		inst.setOpsUserList(this.getOpsUserList());
 		inst.setOtherUserList(this.getOtherUserList());
 		inst.setHostId(this.getHostId());
 		inst.setUpdateTime(this.getUpdateTime());
@@ -1143,10 +1195,12 @@ public class DbInfo extends Entity {
 			this.setVoucherStr(DataParser.parse(String.class, map.get(DbInfoMeta.VOUCHER_STR)));
 			this.setId(DataParser.parse(String.class, map.get(DbInfoMeta.ID)));
 			this.setAdminUserList(DataParser.parse(String.class, map.get(DbInfoMeta.ADMIN_USER_LIST)));
+			this.setUserUseInfo(DataParser.parse(String.class, map.get(DbInfoMeta.USER_USE_INFO)));
 			this.setDisasterRecoveryStrategy(DataParser.parse(String.class, map.get(DbInfoMeta.DISASTER_RECOVERY_STRATEGY)));
 			this.setToolStrategy(DataParser.parse(String.class, map.get(DbInfoMeta.TOOL_STRATEGY)));
 			this.setAppUserList(DataParser.parse(String.class, map.get(DbInfoMeta.APP_USER_LIST)));
 			this.setDeployMode(DataParser.parse(String.class, map.get(DbInfoMeta.DEPLOY_MODE)));
+			this.setOpsUserList(DataParser.parse(String.class, map.get(DbInfoMeta.OPS_USER_LIST)));
 			this.setOtherUserList(DataParser.parse(String.class, map.get(DbInfoMeta.OTHER_USER_LIST)));
 			this.setHostId(DataParser.parse(String.class, map.get(DbInfoMeta.HOST_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(DbInfoMeta.UPDATE_TIME)));
@@ -1178,10 +1232,12 @@ public class DbInfo extends Entity {
 				this.setVoucherStr( (String)map.get(DbInfoMeta.VOUCHER_STR));
 				this.setId( (String)map.get(DbInfoMeta.ID));
 				this.setAdminUserList( (String)map.get(DbInfoMeta.ADMIN_USER_LIST));
+				this.setUserUseInfo( (String)map.get(DbInfoMeta.USER_USE_INFO));
 				this.setDisasterRecoveryStrategy( (String)map.get(DbInfoMeta.DISASTER_RECOVERY_STRATEGY));
 				this.setToolStrategy( (String)map.get(DbInfoMeta.TOOL_STRATEGY));
 				this.setAppUserList( (String)map.get(DbInfoMeta.APP_USER_LIST));
 				this.setDeployMode( (String)map.get(DbInfoMeta.DEPLOY_MODE));
+				this.setOpsUserList( (String)map.get(DbInfoMeta.OPS_USER_LIST));
 				this.setOtherUserList( (String)map.get(DbInfoMeta.OTHER_USER_LIST));
 				this.setHostId( (String)map.get(DbInfoMeta.HOST_ID));
 				this.setUpdateTime( (Date)map.get(DbInfoMeta.UPDATE_TIME));
@@ -1226,10 +1282,12 @@ public class DbInfo extends Entity {
 			this.setVoucherStr(DataParser.parse(String.class, r.getValue(DbInfoMeta.VOUCHER_STR)));
 			this.setId(DataParser.parse(String.class, r.getValue(DbInfoMeta.ID)));
 			this.setAdminUserList(DataParser.parse(String.class, r.getValue(DbInfoMeta.ADMIN_USER_LIST)));
+			this.setUserUseInfo(DataParser.parse(String.class, r.getValue(DbInfoMeta.USER_USE_INFO)));
 			this.setDisasterRecoveryStrategy(DataParser.parse(String.class, r.getValue(DbInfoMeta.DISASTER_RECOVERY_STRATEGY)));
 			this.setToolStrategy(DataParser.parse(String.class, r.getValue(DbInfoMeta.TOOL_STRATEGY)));
 			this.setAppUserList(DataParser.parse(String.class, r.getValue(DbInfoMeta.APP_USER_LIST)));
 			this.setDeployMode(DataParser.parse(String.class, r.getValue(DbInfoMeta.DEPLOY_MODE)));
+			this.setOpsUserList(DataParser.parse(String.class, r.getValue(DbInfoMeta.OPS_USER_LIST)));
 			this.setOtherUserList(DataParser.parse(String.class, r.getValue(DbInfoMeta.OTHER_USER_LIST)));
 			this.setHostId(DataParser.parse(String.class, r.getValue(DbInfoMeta.HOST_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(DbInfoMeta.UPDATE_TIME)));
@@ -1257,10 +1315,12 @@ public class DbInfo extends Entity {
 				this.setVoucherStr( (String)r.getValue(DbInfoMeta.VOUCHER_STR));
 				this.setId( (String)r.getValue(DbInfoMeta.ID));
 				this.setAdminUserList( (String)r.getValue(DbInfoMeta.ADMIN_USER_LIST));
+				this.setUserUseInfo( (String)r.getValue(DbInfoMeta.USER_USE_INFO));
 				this.setDisasterRecoveryStrategy( (String)r.getValue(DbInfoMeta.DISASTER_RECOVERY_STRATEGY));
 				this.setToolStrategy( (String)r.getValue(DbInfoMeta.TOOL_STRATEGY));
 				this.setAppUserList( (String)r.getValue(DbInfoMeta.APP_USER_LIST));
 				this.setDeployMode( (String)r.getValue(DbInfoMeta.DEPLOY_MODE));
+				this.setOpsUserList( (String)r.getValue(DbInfoMeta.OPS_USER_LIST));
 				this.setOtherUserList( (String)r.getValue(DbInfoMeta.OTHER_USER_LIST));
 				this.setHostId( (String)r.getValue(DbInfoMeta.HOST_ID));
 				this.setUpdateTime( (Date)r.getValue(DbInfoMeta.UPDATE_TIME));
