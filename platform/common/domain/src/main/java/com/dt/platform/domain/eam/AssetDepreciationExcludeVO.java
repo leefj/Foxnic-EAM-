@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 折旧排除VO类型
  * <p>折旧排除 , 数据表 eam_asset_depreciation_exclude 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-27 15:00:55
+ * @since 2022-11-28 20:42:05
  * @sign 64616605F89329150DB2B9E4F70204DD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -339,14 +339,19 @@ public class AssetDepreciationExcludeVO extends AssetDepreciationExclude {
 		inst.setId(this.getId());
 		inst.setVersion(this.getVersion());
 		if(all) {
+			inst.setAssetCode(this.getAssetCode());
 			inst.setSearchField(this.getSearchField());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setAssetModel(this.getAssetModel());
+			inst.setPageSize(this.getPageSize());
+			inst.setAssetDepreciation(this.getAssetDepreciation());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
-			inst.setFuzzyField(this.getFuzzyField());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
-			inst.setPageSize(this.getPageSize());
+			inst.setAssetName(this.getAssetName());
 			inst.setIds(this.getIds());
+			inst.setAsset(this.getAsset());
 			inst.setSearchValue(this.getSearchValue());
 		}
 		inst.clearModifies();
@@ -420,12 +425,17 @@ public class AssetDepreciationExcludeVO extends AssetDepreciationExclude {
 			this.setId(DataParser.parse(String.class, map.get(AssetDepreciationExcludeVOMeta.ID)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(AssetDepreciationExcludeVOMeta.VERSION)));
 			// others
+			this.setAssetCode(DataParser.parse(String.class, map.get(AssetDepreciationExcludeVOMeta.ASSET_CODE)));
 			this.setSearchField(DataParser.parse(String.class, map.get(AssetDepreciationExcludeVOMeta.SEARCH_FIELD)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(AssetDepreciationExcludeVOMeta.FUZZY_FIELD)));
+			this.setAssetModel(DataParser.parse(String.class, map.get(AssetDepreciationExcludeVOMeta.ASSET_MODEL)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(AssetDepreciationExcludeVOMeta.PAGE_SIZE)));
+			this.setAssetDepreciation(DataParser.parse(AssetDepreciation.class, map.get(AssetDepreciationExcludeVOMeta.ASSET_DEPRECIATION)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(AssetDepreciationExcludeVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(AssetDepreciationExcludeVOMeta.SORT_TYPE)));
-			this.setFuzzyField(DataParser.parse(String.class, map.get(AssetDepreciationExcludeVOMeta.FUZZY_FIELD)));
 			this.setSortField(DataParser.parse(String.class, map.get(AssetDepreciationExcludeVOMeta.SORT_FIELD)));
-			this.setPageSize(DataParser.parse(Integer.class, map.get(AssetDepreciationExcludeVOMeta.PAGE_SIZE)));
+			this.setAssetName(DataParser.parse(String.class, map.get(AssetDepreciationExcludeVOMeta.ASSET_NAME)));
+			this.setAsset(DataParser.parse(Asset.class, map.get(AssetDepreciationExcludeVOMeta.ASSET)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(AssetDepreciationExcludeVOMeta.SEARCH_VALUE)));
 			return true;
 		} else {
@@ -443,12 +453,17 @@ public class AssetDepreciationExcludeVO extends AssetDepreciationExclude {
 				this.setId( (String)map.get(AssetDepreciationExcludeVOMeta.ID));
 				this.setVersion( (Integer)map.get(AssetDepreciationExcludeVOMeta.VERSION));
 				// others
+				this.setAssetCode( (String)map.get(AssetDepreciationExcludeVOMeta.ASSET_CODE));
 				this.setSearchField( (String)map.get(AssetDepreciationExcludeVOMeta.SEARCH_FIELD));
+				this.setFuzzyField( (String)map.get(AssetDepreciationExcludeVOMeta.FUZZY_FIELD));
+				this.setAssetModel( (String)map.get(AssetDepreciationExcludeVOMeta.ASSET_MODEL));
+				this.setPageSize( (Integer)map.get(AssetDepreciationExcludeVOMeta.PAGE_SIZE));
+				this.setAssetDepreciation( (AssetDepreciation)map.get(AssetDepreciationExcludeVOMeta.ASSET_DEPRECIATION));
 				this.setPageIndex( (Integer)map.get(AssetDepreciationExcludeVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(AssetDepreciationExcludeVOMeta.SORT_TYPE));
-				this.setFuzzyField( (String)map.get(AssetDepreciationExcludeVOMeta.FUZZY_FIELD));
 				this.setSortField( (String)map.get(AssetDepreciationExcludeVOMeta.SORT_FIELD));
-				this.setPageSize( (Integer)map.get(AssetDepreciationExcludeVOMeta.PAGE_SIZE));
+				this.setAssetName( (String)map.get(AssetDepreciationExcludeVOMeta.ASSET_NAME));
+				this.setAsset( (Asset)map.get(AssetDepreciationExcludeVOMeta.ASSET));
 				this.setSearchValue( (String)map.get(AssetDepreciationExcludeVOMeta.SEARCH_VALUE));
 				return true;
 			} catch (Exception e) {

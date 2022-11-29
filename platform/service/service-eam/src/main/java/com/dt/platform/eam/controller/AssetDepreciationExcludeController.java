@@ -30,6 +30,8 @@ import java.util.Map;
 import com.github.foxnic.dao.excel.ValidateResult;
 import java.io.InputStream;
 import com.dt.platform.domain.eam.meta.AssetDepreciationExcludeMeta;
+import com.dt.platform.domain.eam.AssetDepreciation;
+import com.dt.platform.domain.eam.Asset;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiImplicitParams;
@@ -44,7 +46,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 折旧排除接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-27 15:00:55
+ * @since 2022-11-28 20:42:05
 */
 
 @InDoc
@@ -61,10 +63,10 @@ public class AssetDepreciationExcludeController extends SuperController {
 	*/
 	@ApiOperation(value = "添加折旧排除")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.ASSET_ID , value = "资产" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.DEPRECIATION_ID , value = "折旧方案" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "649264051653705728"),
+		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.ASSET_ID , value = "资产" , required = false , dataTypeClass=String.class , example = "649264028098494465"),
+		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.DEPRECIATION_ID , value = "折旧方案" , required = false , dataTypeClass=String.class , example = "647736203386290176"),
+		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "折旧排除"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
 	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
@@ -82,7 +84,7 @@ public class AssetDepreciationExcludeController extends SuperController {
 	*/
 	@ApiOperation(value = "删除折旧排除")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class)
+		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "649264051653705728")
 	})
 	@ApiOperationSupport(order=2 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = AssetDepreciationExcludeServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -164,10 +166,10 @@ public class AssetDepreciationExcludeController extends SuperController {
 	*/
 	@ApiOperation(value = "更新折旧排除")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.ASSET_ID , value = "资产" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.DEPRECIATION_ID , value = "折旧方案" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "649264051653705728"),
+		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.ASSET_ID , value = "资产" , required = false , dataTypeClass=String.class , example = "649264028098494465"),
+		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.DEPRECIATION_ID , value = "折旧方案" , required = false , dataTypeClass=String.class , example = "647736203386290176"),
+		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "折旧排除"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { AssetDepreciationExcludeVOMeta.PAGE_INDEX , AssetDepreciationExcludeVOMeta.PAGE_SIZE , AssetDepreciationExcludeVOMeta.SEARCH_FIELD , AssetDepreciationExcludeVOMeta.FUZZY_FIELD , AssetDepreciationExcludeVOMeta.SEARCH_VALUE , AssetDepreciationExcludeVOMeta.DIRTY_FIELDS , AssetDepreciationExcludeVOMeta.SORT_FIELD , AssetDepreciationExcludeVOMeta.SORT_TYPE , AssetDepreciationExcludeVOMeta.IDS } )
@@ -184,10 +186,10 @@ public class AssetDepreciationExcludeController extends SuperController {
 	*/
 	@ApiOperation(value = "保存折旧排除")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.ASSET_ID , value = "资产" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.DEPRECIATION_ID , value = "折旧方案" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "649264051653705728"),
+		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.ASSET_ID , value = "资产" , required = false , dataTypeClass=String.class , example = "649264028098494465"),
+		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.DEPRECIATION_ID , value = "折旧方案" , required = false , dataTypeClass=String.class , example = "647736203386290176"),
+		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "折旧排除"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { AssetDepreciationExcludeVOMeta.PAGE_INDEX , AssetDepreciationExcludeVOMeta.PAGE_SIZE , AssetDepreciationExcludeVOMeta.SEARCH_FIELD , AssetDepreciationExcludeVOMeta.FUZZY_FIELD , AssetDepreciationExcludeVOMeta.SEARCH_VALUE , AssetDepreciationExcludeVOMeta.DIRTY_FIELDS , AssetDepreciationExcludeVOMeta.SORT_FIELD , AssetDepreciationExcludeVOMeta.SORT_TYPE , AssetDepreciationExcludeVOMeta.IDS } )
@@ -212,6 +214,11 @@ public class AssetDepreciationExcludeController extends SuperController {
 	public Result<AssetDepreciationExclude> getById(String id) {
 		Result<AssetDepreciationExclude> result=new Result<>();
 		AssetDepreciationExclude assetDepreciationExclude=assetDepreciationExcludeService.getById(id);
+		// join 关联的对象
+		assetDepreciationExcludeService.dao().fill(assetDepreciationExclude)
+			.with(AssetDepreciationExcludeMeta.ASSET_DEPRECIATION)
+			.with(AssetDepreciationExcludeMeta.ASSET)
+			.execute();
 		result.success(true).data(assetDepreciationExclude);
 		return result;
 	}
@@ -241,10 +248,10 @@ public class AssetDepreciationExcludeController extends SuperController {
 	*/
 	@ApiOperation(value = "查询折旧排除")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.ASSET_ID , value = "资产" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.DEPRECIATION_ID , value = "折旧方案" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "649264051653705728"),
+		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.ASSET_ID , value = "资产" , required = false , dataTypeClass=String.class , example = "649264028098494465"),
+		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.DEPRECIATION_ID , value = "折旧方案" , required = false , dataTypeClass=String.class , example = "647736203386290176"),
+		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "折旧排除"),
 	})
 	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { AssetDepreciationExcludeVOMeta.PAGE_INDEX , AssetDepreciationExcludeVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = AssetDepreciationExcludeServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -262,10 +269,10 @@ public class AssetDepreciationExcludeController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询折旧排除")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.ASSET_ID , value = "资产" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.DEPRECIATION_ID , value = "折旧方案" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "649264051653705728"),
+		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.ASSET_ID , value = "资产" , required = false , dataTypeClass=String.class , example = "649264028098494465"),
+		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.DEPRECIATION_ID , value = "折旧方案" , required = false , dataTypeClass=String.class , example = "647736203386290176"),
+		@ApiImplicitParam(name = AssetDepreciationExcludeVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "折旧排除"),
 	})
 	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = AssetDepreciationExcludeServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -273,6 +280,11 @@ public class AssetDepreciationExcludeController extends SuperController {
 	public Result<PagedList<AssetDepreciationExclude>> queryPagedList(AssetDepreciationExcludeVO sample) {
 		Result<PagedList<AssetDepreciationExclude>> result=new Result<>();
 		PagedList<AssetDepreciationExclude> list=assetDepreciationExcludeService.queryPagedList(sample,sample.getPageSize(),sample.getPageIndex());
+		// join 关联的对象
+		assetDepreciationExcludeService.dao().fill(list)
+			.with(AssetDepreciationExcludeMeta.ASSET_DEPRECIATION)
+			.with(AssetDepreciationExcludeMeta.ASSET)
+			.execute();
 		result.success(true).data(list);
 		return result;
 	}

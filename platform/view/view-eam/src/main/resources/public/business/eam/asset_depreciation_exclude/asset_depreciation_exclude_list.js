@@ -1,7 +1,7 @@
 /**
  * 折旧排除 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-27 15:00:56
+ * @since 2022-11-28 20:42:07
  */
 
 
@@ -79,10 +79,12 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'assetId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('资产') , templet: function (d) { return templet('assetId',d.assetId,d);}  }
-					,{ field: 'depreciationId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧方案') , templet: function (d) { return templet('depreciationId',d.depreciationId,d);}  }
+					,{ field: 'depreciationId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧方案'), templet: function (d) { return templet('depreciationId' ,fox.joinLabel(d.assetDepreciation,"name",',','','depreciationId'),d);}}
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'assetName', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('资产名称'), templet: function (d) { return templet('assetName' ,fox.joinLabel(d.asset,"name",',','','assetName'),d);}}
+					,{ field: 'assetCode', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('资产编码'), templet: function (d) { return templet('assetCode' ,fox.joinLabel(d.asset,"name",',','','assetCode'),d);}}
+					,{ field: 'assetModel', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('资产型号'), templet: function (d) { return templet('assetModel' ,fox.joinLabel(d.asset,"name",',','','assetModel'),d);}}
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -131,8 +133,8 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.depreciationId={ inputType:"button",value: $("#depreciationId").val()};
-		value.notes={ inputType:"button",value: $("#notes").val()};
+		value.depreciationId={ inputType:"select_box", value: getSelectedValue("#depreciationId","value") ,fillBy:["assetDepreciation"]  , label:getSelectedValue("#depreciationId","nameStr") };
+		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -179,6 +181,33 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
+		//渲染 depreciationId 下拉字段
+		fox.renderSelectBox({
+			el: "depreciationId",
+			radio: true,
+			size: "small",
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("depreciationId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			paging: true,
+			pageRemote: true,
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].name,value:data[i].id});
+				}
+				return opts;
+			}
+		});
 		fox.renderSearchInputs();
 		window.pageExt.list.afterSearchInputReady && window.pageExt.list.afterSearchInputReady();
 	}

@@ -1854,10 +1854,7 @@ public class AssetController extends SuperController {
     @SentinelResource(value = AssetServiceProxy.QUERY_EMPLOYEE_HAVE_ASSET, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetServiceProxy.QUERY_EMPLOYEE_HAVE_ASSET)
     public Result<JSONObject> queryEmployeeHaveAsset(String userId) {
-        Result<JSONObject> result = new Result<>();
-        JSONObject res = assetService.queryEmployeeHaveAsset(userId);
-        result.success(true).data(res);
-        return result;
+		return queryEmployeeHaveAsset(userId);
     }
 
     /**

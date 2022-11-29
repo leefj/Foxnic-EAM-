@@ -1,6 +1,7 @@
 package com.dt.platform.eam.service.impl;
 
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.deepoove.poi.data.PictureType;
@@ -784,7 +785,15 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 	}
 
 	@Override
-	public JSONObject queryEmployeeHaveAsset(String userId) {
+	public Result<JSONObject> queryEmployeeHaveAsset(String userId) {
+		if(StringUtil.isBlank(userId)){
+			return ErrorDesc.failureMessage("请输入用户ID");
+		}
+		Rcd userRs=dao.queryRecord("select 1 from hrm_employee where deleted=0 and id=?",userId);
+		if(userRs==null){
+			return ErrorDesc.failureMessage("当前用户不存在");
+		}
+		Result<JSONObject> result=new Result<>();
 		JSONObject r=new JSONObject();
 		List<Asset> list=this.queryEmployeeAsset(userId);
 		boolean hasAsset=false;
@@ -794,7 +803,8 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		r.put("hasAsset",hasAsset);
 		r.put("assetCount",list.size());
 		r.put("asset",list);
-		return r;
+		return result.success(true).data(r);
+
 	}
 
 

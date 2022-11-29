@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 折旧排除 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-27 15:00:55
+ * @since 2022-11-28 20:42:05
  */
 @FeignClient(value = ServiceNames.EAM, contextId = AssetDepreciationExcludeServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AssetDepreciationExcludeServiceProxy {

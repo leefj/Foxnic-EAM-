@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 折旧排除
  * <p>折旧排除 , 数据表 eam_asset_depreciation_exclude 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-27 15:00:55
- * @sign 832B5FDDFC7DB8DDBB84736E6275DF8B
+ * @since 2022-11-28 20:42:05
+ * @sign D4BE7365B29CEE64D914AC37CB332BC9
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -40,25 +40,25 @@ public class AssetDepreciationExclude extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "649264051653705728")
 	private String id;
 	
 	/**
 	 * 资产：资产
 	*/
-	@ApiModelProperty(required = false,value="资产" , notes = "资产")
+	@ApiModelProperty(required = false,value="资产" , notes = "资产" , example = "649264028098494465")
 	private String assetId;
 	
 	/**
 	 * 折旧方案：折旧方案
 	*/
-	@ApiModelProperty(required = false,value="折旧方案" , notes = "折旧方案")
+	@ApiModelProperty(required = false,value="折旧方案" , notes = "折旧方案" , example = "647736203386290176")
 	private String depreciationId;
 	
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "折旧排除")
 	private String notes;
 	
 	/**
@@ -88,7 +88,7 @@ public class AssetDepreciationExclude extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -109,8 +109,38 @@ public class AssetDepreciationExclude extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
+	
+	/**
+	 * 方案：方案
+	*/
+	@ApiModelProperty(required = false,value="方案" , notes = "方案")
+	private AssetDepreciation assetDepreciation;
+	
+	/**
+	 * 资产：资产
+	*/
+	@ApiModelProperty(required = false,value="资产" , notes = "资产")
+	private Asset asset;
+	
+	/**
+	 * assetCode：assetCode
+	*/
+	@ApiModelProperty(required = false,value="assetCode" , notes = "assetCode")
+	private String assetCode;
+	
+	/**
+	 * assetName：assetName
+	*/
+	@ApiModelProperty(required = false,value="assetName" , notes = "assetName")
+	private String assetName;
+	
+	/**
+	 * assetModel：assetModel
+	*/
+	@ApiModelProperty(required = false,value="assetModel" , notes = "assetModel")
+	private String assetModel;
 	
 	/**
 	 * 获得 主键<br>
@@ -370,6 +400,101 @@ public class AssetDepreciationExclude extends Entity {
 		this.version=version;
 		return this;
 	}
+	
+	/**
+	 * 获得 方案<br>
+	 * 方案
+	 * @return 方案
+	*/
+	public AssetDepreciation getAssetDepreciation() {
+		return assetDepreciation;
+	}
+	
+	/**
+	 * 设置 方案
+	 * @param assetDepreciation 方案
+	 * @return 当前对象
+	*/
+	public AssetDepreciationExclude setAssetDepreciation(AssetDepreciation assetDepreciation) {
+		this.assetDepreciation=assetDepreciation;
+		return this;
+	}
+	
+	/**
+	 * 获得 资产<br>
+	 * 资产
+	 * @return 资产
+	*/
+	public Asset getAsset() {
+		return asset;
+	}
+	
+	/**
+	 * 设置 资产
+	 * @param asset 资产
+	 * @return 当前对象
+	*/
+	public AssetDepreciationExclude setAsset(Asset asset) {
+		this.asset=asset;
+		return this;
+	}
+	
+	/**
+	 * 获得 assetCode<br>
+	 * assetCode
+	 * @return assetCode
+	*/
+	public String getAssetCode() {
+		return assetCode;
+	}
+	
+	/**
+	 * 设置 assetCode
+	 * @param assetCode assetCode
+	 * @return 当前对象
+	*/
+	public AssetDepreciationExclude setAssetCode(String assetCode) {
+		this.assetCode=assetCode;
+		return this;
+	}
+	
+	/**
+	 * 获得 assetName<br>
+	 * assetName
+	 * @return assetName
+	*/
+	public String getAssetName() {
+		return assetName;
+	}
+	
+	/**
+	 * 设置 assetName
+	 * @param assetName assetName
+	 * @return 当前对象
+	*/
+	public AssetDepreciationExclude setAssetName(String assetName) {
+		this.assetName=assetName;
+		return this;
+	}
+	
+	/**
+	 * 获得 assetModel<br>
+	 * assetModel
+	 * @return assetModel
+	*/
+	public String getAssetModel() {
+		return assetModel;
+	}
+	
+	/**
+	 * 设置 assetModel
+	 * @param assetModel assetModel
+	 * @return 当前对象
+	*/
+	public AssetDepreciationExclude setAssetModel(String assetModel) {
+		this.assetModel=assetModel;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -427,6 +552,13 @@ public class AssetDepreciationExclude extends Entity {
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setId(this.getId());
 		inst.setVersion(this.getVersion());
+		if(all) {
+			inst.setAssetCode(this.getAssetCode());
+			inst.setAssetModel(this.getAssetModel());
+			inst.setAssetName(this.getAssetName());
+			inst.setAsset(this.getAsset());
+			inst.setAssetDepreciation(this.getAssetDepreciation());
+		}
 		inst.clearModifies();
 		return inst;
 	}
@@ -498,6 +630,11 @@ public class AssetDepreciationExclude extends Entity {
 			this.setId(DataParser.parse(String.class, map.get(AssetDepreciationExcludeMeta.ID)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(AssetDepreciationExcludeMeta.VERSION)));
 			// others
+			this.setAssetCode(DataParser.parse(String.class, map.get(AssetDepreciationExcludeMeta.ASSET_CODE)));
+			this.setAssetModel(DataParser.parse(String.class, map.get(AssetDepreciationExcludeMeta.ASSET_MODEL)));
+			this.setAssetName(DataParser.parse(String.class, map.get(AssetDepreciationExcludeMeta.ASSET_NAME)));
+			this.setAsset(DataParser.parse(Asset.class, map.get(AssetDepreciationExcludeMeta.ASSET)));
+			this.setAssetDepreciation(DataParser.parse(AssetDepreciation.class, map.get(AssetDepreciationExcludeMeta.ASSET_DEPRECIATION)));
 			return true;
 		} else {
 			try {
@@ -514,6 +651,11 @@ public class AssetDepreciationExclude extends Entity {
 				this.setId( (String)map.get(AssetDepreciationExcludeMeta.ID));
 				this.setVersion( (Integer)map.get(AssetDepreciationExcludeMeta.VERSION));
 				// others
+				this.setAssetCode( (String)map.get(AssetDepreciationExcludeMeta.ASSET_CODE));
+				this.setAssetModel( (String)map.get(AssetDepreciationExcludeMeta.ASSET_MODEL));
+				this.setAssetName( (String)map.get(AssetDepreciationExcludeMeta.ASSET_NAME));
+				this.setAsset( (Asset)map.get(AssetDepreciationExcludeMeta.ASSET));
+				this.setAssetDepreciation( (AssetDepreciation)map.get(AssetDepreciationExcludeMeta.ASSET_DEPRECIATION));
 				return true;
 			} catch (Exception e) {
 				return false;

@@ -66,6 +66,7 @@ public class EamRelationManager extends RelationManager {
         this.setupAssetDepreciationDetail();
         this.setupAssetDepreciationOper();
         this.setupAssetDepreciation();
+        this.setupAssetDepreciationExclude();
         this.setupAssetDepreciationCalRule();
         this.setupAssetDepreciationHistory();
 
@@ -700,6 +701,16 @@ public class EamRelationManager extends RelationManager {
 
     }
 
+
+    public void setupAssetDepreciationExclude() {
+
+        this.property(AssetDepreciationExcludeMeta.ASSET_PROP)
+                .using(EAMTables.EAM_ASSET_DEPRECIATION_EXCLUDE.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
+
+        this.property(AssetDepreciationExcludeMeta.ASSET_DEPRECIATION_PROP)
+                .using(EAMTables.EAM_ASSET_DEPRECIATION_EXCLUDE.DEPRECIATION_ID).join(EAMTables.EAM_ASSET_DEPRECIATION.ID);
+
+    }
 
     public void setupAssetDepreciation() {
 
