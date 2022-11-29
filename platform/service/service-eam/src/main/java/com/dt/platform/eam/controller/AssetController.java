@@ -22,6 +22,7 @@ import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.dao.data.Rcd;
+import com.github.foxnic.dao.data.RcdSet;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import org.apache.commons.io.IOUtils;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -1847,14 +1848,34 @@ public class AssetController extends SuperController {
     }
 
     /**
-     * 盘点员工是否有资产
+     * 盘点员工是否有资产,传入员工工号
      */
-    @ApiOperation(value = "盘点员工是否有资产")
+    @ApiOperation(value = "盘点员工是否有资产，传入员工工号")
     @ApiOperationSupport(order = 17)
     @SentinelResource(value = AssetServiceProxy.QUERY_EMPLOYEE_HAVE_ASSET, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetServiceProxy.QUERY_EMPLOYEE_HAVE_ASSET)
-    public Result<JSONObject> queryEmployeeHaveAsset(String userId) {
-		return assetService.queryEmployeeHaveAsset(userId);
+    public Result<JSONObject> queryEmployeeHaveAsset(String userId,String employeeNumber) {
+    	String emplId="";
+    	//userId 优先
+		if(StringUtil.isBlank(userId)){
+			if(StringUtil.isBlank(employeeNumber)){
+				return ErrorDesc.failureMessage("请输入用户ID或者员工工号");
+			}else{
+				RcdSet rs=assetService.dao().query("select * from hrm_employee where deleted=0 and badge=?",employeeNumber);
+				if(rs.size()==0){
+					return ErrorDesc.failureMessage("该工号员工不存在");
+				}
+				if(rs.size()>1){
+					return ErrorDesc.failureMessage("该工号员工重复，无法获取具体的员工");
+				}
+				if(rs.size()==1){
+					emplId=rs.getRcd(0).getString("id");
+				}
+			}
+		}else{
+			emplId=userId;
+		}
+		return assetService.queryEmployeeHaveAsset(emplId);
     }
 
     /**
