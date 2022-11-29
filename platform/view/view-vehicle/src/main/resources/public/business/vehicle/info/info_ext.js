@@ -171,9 +171,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             var ps={searchField: "$composite", searchValue: JSON.stringify(value)};
             var downloadUrl="/service-vehicle/vehicle-info/export-excel"
             ps.id="123456789";
-            var task=setTimeout(function(){layer.load(2);},10);
             fox.submit(downloadUrl,ps,"post",function(){
-                clearTimeout(task);
                 layer.closeAll('loading');
             });
         },
@@ -212,10 +210,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             value.insuranceExpireDate={ inputType:"date_input", begin: $("#insuranceExpireDate-begin").val(), end: $("#insuranceExpireDate-end").val() ,matchType:"auto" };
             var ps={searchField: "$composite", searchValue: JSON.stringify(value)};
             var downloadUrl="/service-vehicle/vehicle-info/export-excel"
-            var task=setTimeout(function(){layer.load(2);},10);
+
             fox.submit(downloadUrl,ps,"post",function(){
-                clearTimeout(task);
-                layer.closeAll('loading');
                 console.log("execute finish");
             });
         },

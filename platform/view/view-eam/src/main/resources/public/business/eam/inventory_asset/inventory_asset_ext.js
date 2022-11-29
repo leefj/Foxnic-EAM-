@@ -183,11 +183,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             var downloadUrl="/service-eam/eam-inventory/download-asset";
             ps={};
             ps.inventoryId=INVENTORY_ID;
-            var task=setTimeout(function(){layer.load(2);},10);
             fox.submit(downloadUrl,ps,"post",function(){
-                clearTimeout(task);
-                layer.closeAll('loading');
-                console.log("execute finish");
             });
         },
         ending:function() {
