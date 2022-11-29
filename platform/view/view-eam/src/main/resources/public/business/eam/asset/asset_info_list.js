@@ -110,31 +110,31 @@ function ListPage() {
 				where: ps,
 				cols: [COL_DATA],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
-				footer : {
-					exportExcel : admin.checkAuth(AUTH_PREFIX+":export"),
-					importExcel : admin.checkAuth(AUTH_PREFIX+":import")?{
-						params : {ownerCode:OWNER_CODE} ,
-						callback : function(r) {
-							if(r.success) {
-								layer.msg(fox.translate('数据导入成功')+"!");
-								refreshTableData(null,null,true);
-							} else {
-								var errs = [];
-								if (r.data&&r.data.length>0) {
-									for (var i = 0; i < r.data.length; i++) {
-										if (errs.indexOf(r.data[i].message) == -1) {
-											errs.push(r.data[i].message);
-										}
-									}
-									top.layer.msg(errs.join("<br>"), {time: 2000});
-								} else {
-									top.layer.msg(r.message, {time: 2000});
-								}
-
-							}
-						}
-					}:false
-				}
+				// footer : {
+				// 	exportExcel : admin.checkAuth(AUTH_PREFIX+":export"),
+				// 	importExcel : admin.checkAuth(AUTH_PREFIX+":import")?{
+				// 		params : {ownerCode:OWNER_CODE} ,
+				// 		callback : function(r) {
+				// 			if(r.success) {
+				// 				layer.msg(fox.translate('数据导入成功')+"!");
+				// 				refreshTableData(null,null,true);
+				// 			} else {
+				// 				var errs = [];
+				// 				if (r.data&&r.data.length>0) {
+				// 					for (var i = 0; i < r.data.length; i++) {
+				// 						if (errs.indexOf(r.data[i].message) == -1) {
+				// 							errs.push(r.data[i].message);
+				// 						}
+				// 					}
+				// 					top.layer.msg(errs.join("<br>"), {time: 2000});
+				// 				} else {
+				// 					top.layer.msg(r.message, {time: 2000});
+				// 				}
+				//
+				// 			}
+				// 		}
+				// 	}:false
+				// }
 			});
 			//绑定排序事件
 			table.on('sort(data-table)', function(obj){

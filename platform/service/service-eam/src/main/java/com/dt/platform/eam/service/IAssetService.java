@@ -60,7 +60,7 @@ public interface IAssetService extends ISuperService<Asset> {
 
 	List<Map<String, Object>> getBills(List<String> ids);
 
-	JSONObject queryEmployeeHaveAsset(String userId);
+	Result<JSONObject> queryEmployeeHaveAsset(String userId);
 
 	List<Asset> queryEmployeeAsset(String userId);
 

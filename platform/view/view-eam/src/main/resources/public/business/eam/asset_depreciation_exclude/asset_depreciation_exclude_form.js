@@ -1,7 +1,7 @@
 /**
  * 折旧排除 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-27 15:00:56
+ * @since 2022-11-28 20:42:07
  */
 
 function FormPage() {
@@ -11,8 +11,8 @@ function FormPage() {
 	const moduleURL="/service-eam/eam-asset-depreciation-exclude";
 	// 表单执行操作类型：view，create，edit
 	var action=null;
-	var disableCreateNew=false;
-	var disableModify=false;
+	var disableCreateNew=true;
+	var disableModify=true;
 	var dataBeforeEdit=null;
 	const bpmIntegrateMode="none";
 	var isInProcess=QueryString.get("isInProcess");
@@ -112,6 +112,132 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
+		//渲染 depreciationId 下拉字段
+		fox.renderSelectBox({
+			el: "depreciationId",
+			radio: true,
+			filterable: true,
+			paging: true,
+			pageRemote: true,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("depreciationId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "0".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
+		//渲染 assetName 下拉字段
+		fox.renderSelectBox({
+			el: "assetName",
+			radio: true,
+			filterable: true,
+			paging: true,
+			pageRemote: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("assetName",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
+		//渲染 assetCode 下拉字段
+		fox.renderSelectBox({
+			el: "assetCode",
+			radio: true,
+			filterable: true,
+			paging: true,
+			pageRemote: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("assetCode",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
+		//渲染 assetModel 下拉字段
+		fox.renderSelectBox({
+			el: "assetModel",
+			radio: true,
+			filterable: true,
+			paging: true,
+			pageRemote: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("assetModel",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
 	}
 
 	/**
@@ -164,6 +290,14 @@ function FormPage() {
 
 
 
+			//设置  折旧方案 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#depreciationId",formData.assetDepreciation);
+			//设置  资产名称 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#assetName",formData.asset);
+			//设置  资产编码 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#assetCode",formData.asset);
+			//设置  资产型号 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#assetModel",formData.asset);
 
 			//处理fillBy
 
@@ -215,6 +349,14 @@ function FormPage() {
 
 
 
+		//获取 折旧方案 下拉框的值
+		data["depreciationId"]=fox.getSelectedValue("depreciationId",false);
+		//获取 资产名称 下拉框的值
+		data["assetName"]=fox.getSelectedValue("assetName",false);
+		//获取 资产编码 下拉框的值
+		data["assetCode"]=fox.getSelectedValue("assetCode",false);
+		//获取 资产型号 下拉框的值
+		data["assetModel"]=fox.getSelectedValue("assetModel",false);
 
 		return data;
 	}

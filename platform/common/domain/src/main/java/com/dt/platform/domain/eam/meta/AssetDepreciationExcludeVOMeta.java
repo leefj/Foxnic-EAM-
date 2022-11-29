@@ -5,13 +5,15 @@ import com.dt.platform.domain.eam.AssetDepreciationExcludeVO;
 import java.util.List;
 import com.dt.platform.domain.eam.AssetDepreciationExclude;
 import java.util.Date;
+import com.dt.platform.domain.eam.AssetDepreciation;
+import com.dt.platform.domain.eam.Asset;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-27 15:00:55
+ * @since 2022-11-28 20:42:05
  * @sign 64616605F89329150DB2B9E4F70204DD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -229,9 +231,59 @@ public class AssetDepreciationExcludeVOMeta extends AssetDepreciationExcludeMeta
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationExcludeVO,java.lang.Integer> VERSION_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationExcludeVO.class ,VERSION, java.lang.Integer.class, "version", "version", java.lang.Integer.class, null);
 	
 	/**
+	 * 方案 , 类型: com.dt.platform.domain.eam.AssetDepreciation
+	*/
+	public static final String ASSET_DEPRECIATION="assetDepreciation";
+	
+	/**
+	 * 方案 , 类型: com.dt.platform.domain.eam.AssetDepreciation
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationExcludeVO,com.dt.platform.domain.eam.AssetDepreciation> ASSET_DEPRECIATION_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationExcludeVO.class ,ASSET_DEPRECIATION, com.dt.platform.domain.eam.AssetDepreciation.class, "方案", "方案", com.dt.platform.domain.eam.AssetDepreciation.class, null);
+	
+	/**
+	 * 资产 , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final String ASSET="asset";
+	
+	/**
+	 * 资产 , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationExcludeVO,com.dt.platform.domain.eam.Asset> ASSET_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationExcludeVO.class ,ASSET, com.dt.platform.domain.eam.Asset.class, "资产", "资产", com.dt.platform.domain.eam.Asset.class, null);
+	
+	/**
+	 * assetCode , 类型: java.lang.String
+	*/
+	public static final String ASSET_CODE="assetCode";
+	
+	/**
+	 * assetCode , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationExcludeVO,java.lang.String> ASSET_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationExcludeVO.class ,ASSET_CODE, java.lang.String.class, "assetCode", "assetCode", java.lang.String.class, null);
+	
+	/**
+	 * assetName , 类型: java.lang.String
+	*/
+	public static final String ASSET_NAME="assetName";
+	
+	/**
+	 * assetName , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationExcludeVO,java.lang.String> ASSET_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationExcludeVO.class ,ASSET_NAME, java.lang.String.class, "assetName", "assetName", java.lang.String.class, null);
+	
+	/**
+	 * assetModel , 类型: java.lang.String
+	*/
+	public static final String ASSET_MODEL="assetModel";
+	
+	/**
+	 * assetModel , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationExcludeVO,java.lang.String> ASSET_MODEL_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationExcludeVO.class ,ASSET_MODEL, java.lang.String.class, "assetModel", "assetModel", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , ASSET_ID , DEPRECIATION_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , ASSET_ID , DEPRECIATION_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , ASSET_DEPRECIATION , ASSET , ASSET_CODE , ASSET_NAME , ASSET_MODEL };
 	
 	/**
 	 * 代理类
@@ -471,6 +523,61 @@ public class AssetDepreciationExcludeVOMeta extends AssetDepreciationExcludeMeta
 			super.setVersion(version);
 			return this;
 		}
+		
+		/**
+		 * 设置 方案
+		 * @param assetDepreciation 方案
+		 * @return 当前对象
+		*/
+		public AssetDepreciationExclude setAssetDepreciation(AssetDepreciation assetDepreciation) {
+			super.change(ASSET_DEPRECIATION,super.getAssetDepreciation(),assetDepreciation);
+			super.setAssetDepreciation(assetDepreciation);
+			return this;
+		}
+		
+		/**
+		 * 设置 资产
+		 * @param asset 资产
+		 * @return 当前对象
+		*/
+		public AssetDepreciationExclude setAsset(Asset asset) {
+			super.change(ASSET,super.getAsset(),asset);
+			super.setAsset(asset);
+			return this;
+		}
+		
+		/**
+		 * 设置 assetCode
+		 * @param assetCode assetCode
+		 * @return 当前对象
+		*/
+		public AssetDepreciationExclude setAssetCode(String assetCode) {
+			super.change(ASSET_CODE,super.getAssetCode(),assetCode);
+			super.setAssetCode(assetCode);
+			return this;
+		}
+		
+		/**
+		 * 设置 assetName
+		 * @param assetName assetName
+		 * @return 当前对象
+		*/
+		public AssetDepreciationExclude setAssetName(String assetName) {
+			super.change(ASSET_NAME,super.getAssetName(),assetName);
+			super.setAssetName(assetName);
+			return this;
+		}
+		
+		/**
+		 * 设置 assetModel
+		 * @param assetModel assetModel
+		 * @return 当前对象
+		*/
+		public AssetDepreciationExclude setAssetModel(String assetModel) {
+			super.change(ASSET_MODEL,super.getAssetModel(),assetModel);
+			super.setAssetModel(assetModel);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -500,14 +607,19 @@ public class AssetDepreciationExcludeVOMeta extends AssetDepreciationExcludeMeta
 			inst.setId(this.getId());
 			inst.setVersion(this.getVersion());
 			if(all) {
+				inst.setAssetCode(this.getAssetCode());
 				inst.setSearchField(this.getSearchField());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setAssetModel(this.getAssetModel());
+				inst.setPageSize(this.getPageSize());
+				inst.setAssetDepreciation(this.getAssetDepreciation());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
-				inst.setFuzzyField(this.getFuzzyField());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
-				inst.setPageSize(this.getPageSize());
 				inst.setIds(this.getIds());
+				inst.setAssetName(this.getAssetName());
+				inst.setAsset(this.getAsset());
 				inst.setSearchValue(this.getSearchValue());
 			}
 			inst.clearModifies();
