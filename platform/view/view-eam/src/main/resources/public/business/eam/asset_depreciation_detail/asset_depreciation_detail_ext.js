@@ -62,7 +62,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         depreciationExport:function (item,obj){
             console.log('downloadBill',item);
             var downloadUrl="/service-eam/eam-asset-depreciation-oper/asset-download-depreciation-report";
-            fox.submit(downloadUrl,{id:OPER_ID});
+            fox.submit(downloadUrl, {id:OPER_ID},"post",function(r){
+                console.log("execute finish",r,"r");
+                console.log("clear");
+                layer.closeAll('loading');
+            });
+            // fox.submit(downloadUrl,{id:OPER_ID});
         },
         depreciationExclude:function (selected,obj){
             console.log(selected);

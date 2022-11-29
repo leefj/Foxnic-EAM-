@@ -312,13 +312,10 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 ps.categoryId=categoryId;
             }
             ps.ownerCode=OWNER_CODE;
-            var task=setTimeout(function(){layer.load(2);},50);
+            // var task=setTimeout(function(){layer.load(2);},50);
             fox.submit(downloadUrl,ps,"post",function(r){
                 console.log("execute finish",r,"r");
-                if(task){
-                    clearTimeout(task);
-                    layer.closeAll('loading');
-                }
+                layer.closeAll('loading');
             });
 
 
