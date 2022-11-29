@@ -96,7 +96,7 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
                 .fillWith(DbInfoMeta.DEPLOY_MODE_DICT).muliti(false).defaultValue("single");
 
         cfg.view().field(OpsTables.OPS_DB_INFO.SELECTED_CODE).table().disable(true);
-        cfg.view().field(OpsTables.OPS_DB_INFO.BACKUP_STRATEGY).basic().label("备份策略");
+
         cfg.view().field(OpsTables.OPS_DB_INFO.NOTES).form().textInput();
 
         cfg.view().field(OpsTables.OPS_DB_INFO.NAME).form().validate().required();
@@ -149,14 +149,40 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
 
                 }
         );
+
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OpsTables.OPS_DB_INFO.NOTES,
                 }
         );
+
+        cfg.view().form().addGroup("用户及凭证",
+                new Object[]{
+                        OpsTables.OPS_DB_INFO.ADMIN_USER_LIST,
+                        OpsTables.OPS_DB_INFO.APP_USER_LIST,
+                },
+                new Object[] {
+                        OpsTables.OPS_DB_INFO.OPS_USER_LIST,
+                        OpsTables.OPS_DB_INFO.OTHER_USER_LIST,
+                }
+
+        );
+        cfg.view().form().addGroup(null,
+                new Object[]{
+                        OpsTables.OPS_DB_INFO.USER_USE_INFO,
+                        OpsTables.OPS_DB_INFO.VOUCHER_STR,
+                }
+        );
+
+
         cfg.view().form().addGroup("备份信息",
                 new Object[]{
                         OpsTables.OPS_DB_INFO.BACKUP_STATUS,
+                }
+        );
+
+        cfg.view().form().addGroup(null,
+                new Object[]{
                         OpsTables.OPS_DB_INFO.BACKUP_STRATEGY,
                         OpsTables.OPS_DB_INFO.TOOL_STRATEGY,
                 },
@@ -166,21 +192,6 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
                 }
         );
 
-        cfg.view().form().addGroup("用户信息",
-                new Object[]{
-                        OpsTables.OPS_DB_INFO.ADMIN_USER_LIST,
-                        OpsTables.OPS_DB_INFO.OTHER_USER_LIST,
-                },
-                new Object[] {
-                        OpsTables.OPS_DB_INFO.APP_USER_LIST,
-
-                }
-        );
-        cfg.view().form().addGroup(null,
-                new Object[]{
-                        OpsTables.OPS_DB_INFO.VOUCHER_STR,
-                }
-        );
 
 
 

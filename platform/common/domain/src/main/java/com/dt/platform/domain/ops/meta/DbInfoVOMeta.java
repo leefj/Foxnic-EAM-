@@ -16,7 +16,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-25 16:08:27
+ * @since 2022-11-29 22:07:25
  * @sign 34945B314FDD9C5B5C62D17AD6EFC0FD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -224,6 +224,16 @@ public class DbInfoVOMeta extends DbInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> APP_USER_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,APP_USER_LIST, java.lang.String.class, "应用账户", "应用账户", java.lang.String.class, null);
 	
 	/**
+	 * 运维账户 , 类型: java.lang.String
+	*/
+	public static final String OPS_USER_LIST="opsUserList";
+	
+	/**
+	 * 运维账户 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> OPS_USER_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,OPS_USER_LIST, java.lang.String.class, "运维账户", "运维账户", java.lang.String.class, null);
+	
+	/**
 	 * 其他账户 , 类型: java.lang.String
 	*/
 	public static final String OTHER_USER_LIST="otherUserList";
@@ -232,6 +242,16 @@ public class DbInfoVOMeta extends DbInfoMeta {
 	 * 其他账户 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> OTHER_USER_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,OTHER_USER_LIST, java.lang.String.class, "其他账户", "其他账户", java.lang.String.class, null);
+	
+	/**
+	 * 使用情况 , 类型: java.lang.String
+	*/
+	public static final String USER_USE_INFO="userUseInfo";
+	
+	/**
+	 * 使用情况 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> USER_USE_INFO_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,USER_USE_INFO, java.lang.String.class, "使用情况", "使用情况", java.lang.String.class, null);
 	
 	/**
 	 * 凭证信息 , 类型: java.lang.String
@@ -244,14 +264,14 @@ public class DbInfoVOMeta extends DbInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> VOUCHER_STR_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,VOUCHER_STR, java.lang.String.class, "凭证信息", "凭证信息", java.lang.String.class, null);
 	
 	/**
-	 * 连接端口 , 类型: java.lang.String
+	 * 服务端口 , 类型: java.lang.String
 	*/
 	public static final String DB_PORT="dbPort";
 	
 	/**
-	 * 连接端口 , 类型: java.lang.String
+	 * 服务端口 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> DB_PORT_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,DB_PORT, java.lang.String.class, "连接端口", "连接端口", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> DB_PORT_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,DB_PORT, java.lang.String.class, "服务端口", "服务端口", java.lang.String.class, null);
 	
 	/**
 	 * 本地备份策略 , 类型: java.lang.String
@@ -466,7 +486,7 @@ public class DbInfoVOMeta extends DbInfoMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OTHER_USER_LIST , VOUCHER_STR , DB_PORT , BACKUP_STRATEGY , TOOL_STRATEGY , DISASTER_RECOVERY_STRATEGY , CLEAR_STRATEGY , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , BACKUP_INFO_LIST , BACKUP_INFO_IDS , HOST , TYPE , DEPLOY_MODE_DICT , LABEL_LIST , LABEL_IDS };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OPS_USER_LIST , OTHER_USER_LIST , USER_USE_INFO , VOUCHER_STR , DB_PORT , BACKUP_STRATEGY , TOOL_STRATEGY , DISASTER_RECOVERY_STRATEGY , CLEAR_STRATEGY , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , BACKUP_INFO_LIST , BACKUP_INFO_IDS , HOST , TYPE , DEPLOY_MODE_DICT , LABEL_LIST , LABEL_IDS };
 	
 	/**
 	 * 代理类
@@ -697,6 +717,17 @@ public class DbInfoVOMeta extends DbInfoMeta {
 		}
 		
 		/**
+		 * 设置 运维账户
+		 * @param opsUserList 运维账户
+		 * @return 当前对象
+		*/
+		public DbInfo setOpsUserList(String opsUserList) {
+			super.change(OPS_USER_LIST,super.getOpsUserList(),opsUserList);
+			super.setOpsUserList(opsUserList);
+			return this;
+		}
+		
+		/**
 		 * 设置 其他账户
 		 * @param otherUserList 其他账户
 		 * @return 当前对象
@@ -704,6 +735,17 @@ public class DbInfoVOMeta extends DbInfoMeta {
 		public DbInfo setOtherUserList(String otherUserList) {
 			super.change(OTHER_USER_LIST,super.getOtherUserList(),otherUserList);
 			super.setOtherUserList(otherUserList);
+			return this;
+		}
+		
+		/**
+		 * 设置 使用情况
+		 * @param userUseInfo 使用情况
+		 * @return 当前对象
+		*/
+		public DbInfo setUserUseInfo(String userUseInfo) {
+			super.change(USER_USE_INFO,super.getUserUseInfo(),userUseInfo);
+			super.setUserUseInfo(userUseInfo);
 			return this;
 		}
 		
@@ -719,8 +761,8 @@ public class DbInfoVOMeta extends DbInfoMeta {
 		}
 		
 		/**
-		 * 设置 连接端口
-		 * @param dbPort 连接端口
+		 * 设置 服务端口
+		 * @param dbPort 服务端口
 		 * @return 当前对象
 		*/
 		public DbInfo setDbPort(String dbPort) {
@@ -984,10 +1026,12 @@ public class DbInfoVOMeta extends DbInfoMeta {
 			inst.setVoucherStr(this.getVoucherStr());
 			inst.setId(this.getId());
 			inst.setAdminUserList(this.getAdminUserList());
+			inst.setUserUseInfo(this.getUserUseInfo());
 			inst.setDisasterRecoveryStrategy(this.getDisasterRecoveryStrategy());
 			inst.setToolStrategy(this.getToolStrategy());
 			inst.setAppUserList(this.getAppUserList());
 			inst.setDeployMode(this.getDeployMode());
+			inst.setOpsUserList(this.getOpsUserList());
 			inst.setOtherUserList(this.getOtherUserList());
 			inst.setHostId(this.getHostId());
 			inst.setUpdateTime(this.getUpdateTime());

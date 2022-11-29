@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-11-25 16:05:14
+ * @since 2022-11-29 22:01:57
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -3810,9 +3810,19 @@ public class OpsTables {
 		public static final DBField APP_USER_LIST = new DBField(DBDataType.STRING , "app_user_list","appUserList","应用账户","应用账户",false,false,true);
 		
 		/**
+		 * 运维账户
+		*/
+		public static final DBField OPS_USER_LIST = new DBField(DBDataType.STRING , "ops_user_list","opsUserList","运维账户","运维账户",false,false,true);
+		
+		/**
 		 * 其他账户
 		*/
 		public static final DBField OTHER_USER_LIST = new DBField(DBDataType.STRING , "other_user_list","otherUserList","其他账户","其他账户",false,false,true);
+		
+		/**
+		 * 使用情况
+		*/
+		public static final DBField USER_USE_INFO = new DBField(DBDataType.STRING , "user_use_info","userUseInfo","使用情况","使用情况",false,false,true);
 		
 		/**
 		 * 凭证信息
@@ -3894,7 +3904,7 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public OPS_DB_INFO() {
-			this.init($NAME,"数据库" , ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OTHER_USER_LIST , VOUCHER_STR , DB_PORT , BACKUP_STRATEGY , TOOL_STRATEGY , DISASTER_RECOVERY_STRATEGY , CLEAR_STRATEGY , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"数据库" , ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OPS_USER_LIST , OTHER_USER_LIST , USER_USE_INFO , VOUCHER_STR , DB_PORT , BACKUP_STRATEGY , TOOL_STRATEGY , DISASTER_RECOVERY_STRATEGY , CLEAR_STRATEGY , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_DB_INFO $TABLE=new OPS_DB_INFO();
 	}

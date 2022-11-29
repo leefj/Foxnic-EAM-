@@ -77,12 +77,14 @@ public class DbInfoController extends SuperController {
 		@ApiImplicitParam(name = DbInfoVOMeta.APP_USER_LIST, value = "应用账户", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.OTHER_USER_LIST, value = "其他账户", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.VOUCHER_STR, value = "凭证信息", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DbInfoVOMeta.DB_PORT, value = "连接端口", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.DB_PORT, value = "服务端口", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = DbInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1662883885000"),
 		@ApiImplicitParam(name = DbInfoVOMeta.TOOL_STRATEGY, value = "工具备份策略", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.DISASTER_RECOVERY_STRATEGY, value = "灾备策略", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DbInfoVOMeta.CLEAR_STRATEGY, value = "清理策略", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = DbInfoVOMeta.CLEAR_STRATEGY, value = "清理策略", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.OPS_USER_LIST, value = "运维账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.USER_USE_INFO, value = "使用情况", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -190,12 +192,14 @@ public class DbInfoController extends SuperController {
 		@ApiImplicitParam(name = DbInfoVOMeta.APP_USER_LIST, value = "应用账户", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.OTHER_USER_LIST, value = "其他账户", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.VOUCHER_STR, value = "凭证信息", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DbInfoVOMeta.DB_PORT, value = "连接端口", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.DB_PORT, value = "服务端口", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = DbInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1662883885000"),
 		@ApiImplicitParam(name = DbInfoVOMeta.TOOL_STRATEGY, value = "工具备份策略", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.DISASTER_RECOVERY_STRATEGY, value = "灾备策略", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DbInfoVOMeta.CLEAR_STRATEGY, value = "清理策略", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = DbInfoVOMeta.CLEAR_STRATEGY, value = "清理策略", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.OPS_USER_LIST, value = "运维账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.USER_USE_INFO, value = "使用情况", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { DbInfoVOMeta.PAGE_INDEX, DbInfoVOMeta.PAGE_SIZE, DbInfoVOMeta.SEARCH_FIELD, DbInfoVOMeta.FUZZY_FIELD, DbInfoVOMeta.SEARCH_VALUE, DbInfoVOMeta.DIRTY_FIELDS, DbInfoVOMeta.SORT_FIELD, DbInfoVOMeta.SORT_TYPE, DbInfoVOMeta.IDS })
@@ -225,12 +229,14 @@ public class DbInfoController extends SuperController {
 		@ApiImplicitParam(name = DbInfoVOMeta.APP_USER_LIST, value = "应用账户", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.OTHER_USER_LIST, value = "其他账户", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.VOUCHER_STR, value = "凭证信息", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DbInfoVOMeta.DB_PORT, value = "连接端口", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.DB_PORT, value = "服务端口", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = DbInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1662883885000"),
 		@ApiImplicitParam(name = DbInfoVOMeta.TOOL_STRATEGY, value = "工具备份策略", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.DISASTER_RECOVERY_STRATEGY, value = "灾备策略", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DbInfoVOMeta.CLEAR_STRATEGY, value = "清理策略", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = DbInfoVOMeta.CLEAR_STRATEGY, value = "清理策略", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.OPS_USER_LIST, value = "运维账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.USER_USE_INFO, value = "使用情况", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { DbInfoVOMeta.PAGE_INDEX, DbInfoVOMeta.PAGE_SIZE, DbInfoVOMeta.SEARCH_FIELD, DbInfoVOMeta.FUZZY_FIELD, DbInfoVOMeta.SEARCH_VALUE, DbInfoVOMeta.DIRTY_FIELDS, DbInfoVOMeta.SORT_FIELD, DbInfoVOMeta.SORT_TYPE, DbInfoVOMeta.IDS })
@@ -297,12 +303,14 @@ public class DbInfoController extends SuperController {
 		@ApiImplicitParam(name = DbInfoVOMeta.APP_USER_LIST, value = "应用账户", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.OTHER_USER_LIST, value = "其他账户", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.VOUCHER_STR, value = "凭证信息", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DbInfoVOMeta.DB_PORT, value = "连接端口", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.DB_PORT, value = "服务端口", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = DbInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1662883885000"),
 		@ApiImplicitParam(name = DbInfoVOMeta.TOOL_STRATEGY, value = "工具备份策略", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.DISASTER_RECOVERY_STRATEGY, value = "灾备策略", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DbInfoVOMeta.CLEAR_STRATEGY, value = "清理策略", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = DbInfoVOMeta.CLEAR_STRATEGY, value = "清理策略", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.OPS_USER_LIST, value = "运维账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.USER_USE_INFO, value = "使用情况", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { DbInfoVOMeta.PAGE_INDEX, DbInfoVOMeta.PAGE_SIZE })
     @SentinelResource(value = DbInfoServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -333,12 +341,14 @@ public class DbInfoController extends SuperController {
 		@ApiImplicitParam(name = DbInfoVOMeta.APP_USER_LIST, value = "应用账户", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.OTHER_USER_LIST, value = "其他账户", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.VOUCHER_STR, value = "凭证信息", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DbInfoVOMeta.DB_PORT, value = "连接端口", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.DB_PORT, value = "服务端口", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = DbInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1662883885000"),
 		@ApiImplicitParam(name = DbInfoVOMeta.TOOL_STRATEGY, value = "工具备份策略", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.DISASTER_RECOVERY_STRATEGY, value = "灾备策略", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = DbInfoVOMeta.CLEAR_STRATEGY, value = "清理策略", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = DbInfoVOMeta.CLEAR_STRATEGY, value = "清理策略", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.OPS_USER_LIST, value = "运维账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.USER_USE_INFO, value = "使用情况", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = DbInfoServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

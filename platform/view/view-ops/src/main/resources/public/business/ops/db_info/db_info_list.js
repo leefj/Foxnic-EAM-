@@ -1,7 +1,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-25 16:08:28
+ * @since 2022-11-29 22:07:27
  */
 
 
@@ -89,10 +89,12 @@ function ListPage() {
 					,{ field: 'logMethod', align:"left", fixed:false, hide:false, sort: true  , title: fox.translate('日志模式'), templet:function (d){ return templet('logMethod',fox.getDictText(RADIO_LOGMETHOD_DATA,d.logMethod,'','logMethod'),d);}}
 					,{ field: 'adminUserList', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('管理员账户') , templet: function (d) { return templet('adminUserList',d.adminUserList,d);}  }
 					,{ field: 'appUserList', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('应用账户') , templet: function (d) { return templet('appUserList',d.appUserList,d);}  }
+					,{ field: 'opsUserList', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('运维账户') , templet: function (d) { return templet('opsUserList',d.opsUserList,d);}  }
 					,{ field: 'otherUserList', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('其他账户') , templet: function (d) { return templet('otherUserList',d.otherUserList,d);}  }
+					,{ field: 'userUseInfo', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('使用情况') , templet: function (d) { return templet('userUseInfo',d.userUseInfo,d);}  }
 					,{ field: 'voucherStr', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('凭证信息') , templet: function (d) { return templet('voucherStr',d.voucherStr,d);}  }
-					,{ field: 'dbPort', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('连接端口') , templet: function (d) { return templet('dbPort',d.dbPort,d);}  }
-					,{ field: 'backupStrategy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备份策略') , templet: function (d) { return templet('backupStrategy',d.backupStrategy,d);}  }
+					,{ field: 'dbPort', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('服务端口') , templet: function (d) { return templet('dbPort',d.dbPort,d);}  }
+					,{ field: 'backupStrategy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('本地备份策略') , templet: function (d) { return templet('backupStrategy',d.backupStrategy,d);}  }
 					,{ field: 'toolStrategy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('工具备份策略') , templet: function (d) { return templet('toolStrategy',d.toolStrategy,d);}  }
 					,{ field: 'disasterRecoveryStrategy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('灾备策略') , templet: function (d) { return templet('disasterRecoveryStrategy',d.disasterRecoveryStrategy,d);}  }
 					,{ field: 'clearStrategy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('清理策略') , templet: function (d) { return templet('clearStrategy',d.clearStrategy,d);}  }
