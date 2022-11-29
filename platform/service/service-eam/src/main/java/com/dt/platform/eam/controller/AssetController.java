@@ -1932,7 +1932,6 @@ public class AssetController extends SuperController {
                 System.out.println(i + ":" + errors.get(i).message);
                 msg = errors.get(i).message;
             }
-            // DownloadUtil.writeDownloadResult(response,ErrorDesc.failure().message("导入失败").data(errors));
             return ErrorDesc.failure().message(msg).data(errors);
         }
     }
