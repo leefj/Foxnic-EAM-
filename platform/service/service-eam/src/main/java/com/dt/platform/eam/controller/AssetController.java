@@ -422,7 +422,7 @@ public class AssetController extends SuperController {
         // Asset data=assetService.getById(id);
         // if(AssetHandleStatusEnum.CANCEL.code().equals(data.getStatus())
         // ||AssetHandleStatusEnum.INCOMPLETE.code().equals(data.getStatus()) ){
-        // 
+        //
         // return result;
         // }else{
         // return ErrorDesc.failureMessage("当前状态无法进行删除操作");
