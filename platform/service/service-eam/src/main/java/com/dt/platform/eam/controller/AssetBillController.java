@@ -17,6 +17,7 @@ import com.dt.platform.eam.service.*;
 import com.dt.platform.proxy.common.TplFileServiceProxy;
 import com.github.foxnic.commons.bean.BeanUtil;
 import com.github.foxnic.commons.busi.id.IDGenerator;
+import com.github.foxnic.springboot.web.DownloadUtil;
 import com.github.xiaoymin.knife4j.annotations.ApiSort;
 import io.swagger.annotations.Api;
 import org.github.foxnic.web.framework.sentinel.SentinelExceptionUtil;
@@ -577,7 +578,9 @@ public class AssetBillController extends SuperController {
         System.out.println(data.toString());
         XWPFTemplate template = XWPFTemplate.compile(inputstream).render(data);
         response.setContentType("application/msword");
-        response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("资产卡片-"+billdata.getAssetCode()+".docx", "UTF-8"))));
+        //response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("资产卡片-"+billdata.getAssetCode()+".docx", "UTF-8"))));
+        DownloadUtil.writeContentDisposition(response,"资产卡片-"+billdata.getAssetCode()+".docx");
+        DownloadUtil.writeDownloadSuccess(response);
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
         template.write(bos);

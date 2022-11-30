@@ -1808,9 +1808,9 @@ public class AssetController extends SuperController {
             TemplateExportParams templateExportParams = new TemplateExportParams(f.getPath());
             templateExportParams.setScanAllsheet(true);
             Workbook workbook = ExcelExportUtil.exportExcel(templateExportParams, map);
-            response.setCharacterEncoding("UTF-8");
-            response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("资产数据.xls", "UTF-8"))));
-            response.setContentType("application/vnd.ms-excel");
+//            response.setCharacterEncoding("UTF-8");
+//            response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("资产数据.xls", "UTF-8"))));
+//            response.setContentType("application/vnd.ms-excel");
             // 下载
 			System.out.println("开始输出数据");
             DownloadUtil.writeToOutput(response, workbook, "资产数据.xls");
