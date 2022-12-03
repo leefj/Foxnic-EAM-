@@ -1,29 +1,38 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_ASSET_LABEL_TPL;
 import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
-import java.util.List;
-import java.util.ArrayList;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.foxnic.commons.lang.DataParser;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.AssetLabelTplMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 标签模版
+ * <p>标签模版 , 数据表 eam_asset_label_tpl 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-24 08:08:21
- * @sign 013863AE6D6932B3B4734023D1415FFF
+ * @since 2022-12-02 20:48:43
+ * @sign CADACBDD190E61315D4C7F934A1BA558
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_asset_label_tpl")
+@ApiModel(description = "标签模版 ; 标签模版 , 数据表 eam_asset_label_tpl 的PO类型")
 public class AssetLabelTpl extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -34,31 +43,31 @@ public class AssetLabelTpl extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "581518887695155200")
 	private String id;
 	
 	/**
 	 * 类型：默认为1
 	*/
-	@ApiModelProperty(required = false,value="类型" , notes = "默认为1")
+	@ApiModelProperty(required = false,value="类型" , notes = "默认为1" , example = "1")
 	private String type;
 	
 	/**
 	 * 是否自定义：是否自定义
 	*/
-	@ApiModelProperty(required = false,value="是否自定义" , notes = "是否自定义")
+	@ApiModelProperty(required = false,value="是否自定义" , notes = "是否自定义" , example = "1")
 	private String isCustom;
 	
 	/**
 	 * 字段：字段
 	*/
-	@ApiModelProperty(required = false,value="字段" , notes = "字段")
+	@ApiModelProperty(required = false,value="字段" , notes = "字段" , example = "[]")
 	private String colIds;
 	
 	/**
-	 * 位置：u,d,l,r
+	 * 位置:u：d
 	*/
-	@ApiModelProperty(required = false,value="位置" , notes = "u,d,l,r")
+	@ApiModelProperty(required = false,value="位置:u" , notes = "d" , example = "d")
 	private String imagePosition;
 	
 	/**
@@ -70,19 +79,19 @@ public class AssetLabelTpl extends Entity {
 	/**
 	 * 图像显示：图像显示
 	*/
-	@ApiModelProperty(required = false,value="图像显示" , notes = "图像显示")
+	@ApiModelProperty(required = false,value="图像显示" , notes = "图像显示" , example = "1")
 	private String imageShow;
 	
 	/**
 	 * 图像label显示：图像label显示
 	*/
-	@ApiModelProperty(required = false,value="图像label显示" , notes = "图像label显示")
+	@ApiModelProperty(required = false,value="图像label显示" , notes = "图像label显示" , example = "1")
 	private String imageLabelShow;
 	
 	/**
 	 * 图像类型txm：rwm
 	*/
-	@ApiModelProperty(required = false,value="图像类型txm" , notes = "rwm")
+	@ApiModelProperty(required = false,value="图像类型txm" , notes = "rwm" , example = "txm")
 	private String imageType;
 	
 	/**
@@ -100,55 +109,58 @@ public class AssetLabelTpl extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-05-24 04:28:27")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-05-24 04:36:24")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "1")
 	private Integer deleted;
+	@Transient
+	@EnumFor("deleted")
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
 	*/
-	@ApiModelProperty(required = false,value="删除人ID" , notes = "删除人ID")
+	@ApiModelProperty(required = false,value="删除人ID" , notes = "删除人ID" , example = "110588348101165911")
 	private String deleteBy;
 	
 	/**
 	 * 删除时间：删除时间
 	*/
-	@ApiModelProperty(required = false,value="删除时间" , notes = "删除时间")
+	@ApiModelProperty(required = false,value="删除时间" , notes = "删除时间" , example = "2022-05-24 04:36:24")
 	private Date deleteTime;
 	
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -162,6 +174,12 @@ public class AssetLabelTpl extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="Column" , notes = "Column")
 	private List<AssetLabelCol> assetLabelColumnlList;
+	
+	/**
+	 * assetLabelLayout：assetLabelLayout
+	*/
+	@ApiModelProperty(required = false,value="assetLabelLayout" , notes = "assetLabelLayout")
+	private List<AssetLabelLayout> assetLabelLayoutList;
 	
 	/**
 	 * 获得 主键<br>
@@ -240,17 +258,17 @@ public class AssetLabelTpl extends Entity {
 	}
 	
 	/**
-	 * 获得 位置<br>
-	 * u,d,l,r
-	 * @return 位置
+	 * 获得 位置:u<br>
+	 * d
+	 * @return 位置:u
 	*/
 	public String getImagePosition() {
 		return imagePosition;
 	}
 	
 	/**
-	 * 设置 位置
-	 * @param imagePosition 位置
+	 * 设置 位置:u
+	 * @param imagePosition 位置:u
 	 * @return 当前对象
 	*/
 	public AssetLabelTpl setImagePosition(String imagePosition) {
@@ -458,12 +476,43 @@ public class AssetLabelTpl extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public AssetLabelTpl setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public AssetLabelTpl setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -567,9 +616,9 @@ public class AssetLabelTpl extends Entity {
 	 * @param assetLabelItem Item
 	 * @return 当前对象
 	*/
-	public AssetLabelTpl addAssetLabelItem(AssetLabelTplItem assetLabelItem) {
+	public AssetLabelTpl addAssetLabelItem(AssetLabelTplItem... assetLabelItem) {
 		if(this.assetLabelItemList==null) assetLabelItemList=new ArrayList<>();
-		this.assetLabelItemList.add(assetLabelItem);
+		this.assetLabelItemList.addAll(Arrays.asList(assetLabelItem));
 		return this;
 	}
 	
@@ -597,9 +646,39 @@ public class AssetLabelTpl extends Entity {
 	 * @param assetLabelColumnl Column
 	 * @return 当前对象
 	*/
-	public AssetLabelTpl addAssetLabelColumnl(AssetLabelCol assetLabelColumnl) {
+	public AssetLabelTpl addAssetLabelColumnl(AssetLabelCol... assetLabelColumnl) {
 		if(this.assetLabelColumnlList==null) assetLabelColumnlList=new ArrayList<>();
-		this.assetLabelColumnlList.add(assetLabelColumnl);
+		this.assetLabelColumnlList.addAll(Arrays.asList(assetLabelColumnl));
+		return this;
+	}
+	
+	/**
+	 * 获得 assetLabelLayout<br>
+	 * assetLabelLayout
+	 * @return assetLabelLayout
+	*/
+	public List<AssetLabelLayout> getAssetLabelLayoutList() {
+		return assetLabelLayoutList;
+	}
+	
+	/**
+	 * 设置 assetLabelLayout
+	 * @param assetLabelLayoutList assetLabelLayout
+	 * @return 当前对象
+	*/
+	public AssetLabelTpl setAssetLabelLayoutList(List<AssetLabelLayout> assetLabelLayoutList) {
+		this.assetLabelLayoutList=assetLabelLayoutList;
+		return this;
+	}
+	
+	/**
+	 * 添加 assetLabelLayout
+	 * @param assetLabelLayout assetLabelLayout
+	 * @return 当前对象
+	*/
+	public AssetLabelTpl addAssetLabelLayout(AssetLabelLayout... assetLabelLayout) {
+		if(this.assetLabelLayoutList==null) assetLabelLayoutList=new ArrayList<>();
+		this.assetLabelLayoutList.addAll(Arrays.asList(assetLabelLayout));
 		return this;
 	}
 
@@ -633,6 +712,58 @@ public class AssetLabelTpl extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetLabelTpl clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AssetLabelTpl duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.AssetLabelTplMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetLabelTplMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setColIds(this.getColIds());
+		inst.setImagePosition(this.getImagePosition());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setType(this.getType());
+		inst.setVersion(this.getVersion());
+		inst.setLabelFormatContent(this.getLabelFormatContent());
+		inst.setImageLabelShow(this.getImageLabelShow());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setImageColId(this.getImageColId());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setIsCustom(this.getIsCustom());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setImageType(this.getImageType());
+		inst.setImageShow(this.getImageShow());
+		if(all) {
+			inst.setAssetLabelColumnlList(this.getAssetLabelColumnlList());
+			inst.setAssetLabelItemList(this.getAssetLabelItemList());
+			inst.setAssetLabelLayoutList(this.getAssetLabelLayoutList());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetLabelTpl clone(boolean deep) {
+		return EntityContext.clone(AssetLabelTpl.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 AssetLabelTpl
 	 * @param assetLabelTplMap 包含实体信息的 Map 对象
 	 * @return AssetLabelTpl , 转换好的的 AssetLabelTpl 对象
@@ -640,7 +771,9 @@ public class AssetLabelTpl extends Entity {
 	@Transient
 	public static AssetLabelTpl createFrom(Map<String,Object> assetLabelTplMap) {
 		if(assetLabelTplMap==null) return null;
-		AssetLabelTpl po = EntityContext.create(AssetLabelTpl.class, assetLabelTplMap);
+		AssetLabelTpl po = create();
+		EntityContext.copyProperties(po,assetLabelTplMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -652,7 +785,9 @@ public class AssetLabelTpl extends Entity {
 	@Transient
 	public static AssetLabelTpl createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AssetLabelTpl po = EntityContext.create(AssetLabelTpl.class,pojo);
+		AssetLabelTpl po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -662,6 +797,126 @@ public class AssetLabelTpl extends Entity {
 	*/
 	@Transient
 	public static AssetLabelTpl create() {
-		return EntityContext.create(AssetLabelTpl.class);
+		return new com.dt.platform.domain.eam.meta.AssetLabelTplMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(AssetLabelTplMeta.NOTES)));
+			this.setColIds(DataParser.parse(String.class, map.get(AssetLabelTplMeta.COL_IDS)));
+			this.setImagePosition(DataParser.parse(String.class, map.get(AssetLabelTplMeta.IMAGE_POSITION)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetLabelTplMeta.UPDATE_TIME)));
+			this.setType(DataParser.parse(String.class, map.get(AssetLabelTplMeta.TYPE)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetLabelTplMeta.VERSION)));
+			this.setLabelFormatContent(DataParser.parse(String.class, map.get(AssetLabelTplMeta.LABEL_FORMAT_CONTENT)));
+			this.setImageLabelShow(DataParser.parse(String.class, map.get(AssetLabelTplMeta.IMAGE_LABEL_SHOW)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetLabelTplMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetLabelTplMeta.DELETED)));
+			this.setImageColId(DataParser.parse(String.class, map.get(AssetLabelTplMeta.IMAGE_COL_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetLabelTplMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetLabelTplMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetLabelTplMeta.DELETE_TIME)));
+			this.setIsCustom(DataParser.parse(String.class, map.get(AssetLabelTplMeta.IS_CUSTOM)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetLabelTplMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetLabelTplMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AssetLabelTplMeta.ID)));
+			this.setImageType(DataParser.parse(String.class, map.get(AssetLabelTplMeta.IMAGE_TYPE)));
+			this.setImageShow(DataParser.parse(String.class, map.get(AssetLabelTplMeta.IMAGE_SHOW)));
+			// others
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(AssetLabelTplMeta.NOTES));
+				this.setColIds( (String)map.get(AssetLabelTplMeta.COL_IDS));
+				this.setImagePosition( (String)map.get(AssetLabelTplMeta.IMAGE_POSITION));
+				this.setUpdateTime( (Date)map.get(AssetLabelTplMeta.UPDATE_TIME));
+				this.setType( (String)map.get(AssetLabelTplMeta.TYPE));
+				this.setVersion( (Integer)map.get(AssetLabelTplMeta.VERSION));
+				this.setLabelFormatContent( (String)map.get(AssetLabelTplMeta.LABEL_FORMAT_CONTENT));
+				this.setImageLabelShow( (String)map.get(AssetLabelTplMeta.IMAGE_LABEL_SHOW));
+				this.setCreateBy( (String)map.get(AssetLabelTplMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AssetLabelTplMeta.DELETED));
+				this.setImageColId( (String)map.get(AssetLabelTplMeta.IMAGE_COL_ID));
+				this.setCreateTime( (Date)map.get(AssetLabelTplMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(AssetLabelTplMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AssetLabelTplMeta.DELETE_TIME));
+				this.setIsCustom( (String)map.get(AssetLabelTplMeta.IS_CUSTOM));
+				this.setTenantId( (String)map.get(AssetLabelTplMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AssetLabelTplMeta.DELETE_BY));
+				this.setId( (String)map.get(AssetLabelTplMeta.ID));
+				this.setImageType( (String)map.get(AssetLabelTplMeta.IMAGE_TYPE));
+				this.setImageShow( (String)map.get(AssetLabelTplMeta.IMAGE_SHOW));
+				// others
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.NOTES)));
+			this.setColIds(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.COL_IDS)));
+			this.setImagePosition(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.IMAGE_POSITION)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetLabelTplMeta.UPDATE_TIME)));
+			this.setType(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.TYPE)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetLabelTplMeta.VERSION)));
+			this.setLabelFormatContent(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.LABEL_FORMAT_CONTENT)));
+			this.setImageLabelShow(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.IMAGE_LABEL_SHOW)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetLabelTplMeta.DELETED)));
+			this.setImageColId(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.IMAGE_COL_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetLabelTplMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetLabelTplMeta.DELETE_TIME)));
+			this.setIsCustom(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.IS_CUSTOM)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.ID)));
+			this.setImageType(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.IMAGE_TYPE)));
+			this.setImageShow(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.IMAGE_SHOW)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(AssetLabelTplMeta.NOTES));
+				this.setColIds( (String)r.getValue(AssetLabelTplMeta.COL_IDS));
+				this.setImagePosition( (String)r.getValue(AssetLabelTplMeta.IMAGE_POSITION));
+				this.setUpdateTime( (Date)r.getValue(AssetLabelTplMeta.UPDATE_TIME));
+				this.setType( (String)r.getValue(AssetLabelTplMeta.TYPE));
+				this.setVersion( (Integer)r.getValue(AssetLabelTplMeta.VERSION));
+				this.setLabelFormatContent( (String)r.getValue(AssetLabelTplMeta.LABEL_FORMAT_CONTENT));
+				this.setImageLabelShow( (String)r.getValue(AssetLabelTplMeta.IMAGE_LABEL_SHOW));
+				this.setCreateBy( (String)r.getValue(AssetLabelTplMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AssetLabelTplMeta.DELETED));
+				this.setImageColId( (String)r.getValue(AssetLabelTplMeta.IMAGE_COL_ID));
+				this.setCreateTime( (Date)r.getValue(AssetLabelTplMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(AssetLabelTplMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AssetLabelTplMeta.DELETE_TIME));
+				this.setIsCustom( (String)r.getValue(AssetLabelTplMeta.IS_CUSTOM));
+				this.setTenantId( (String)r.getValue(AssetLabelTplMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AssetLabelTplMeta.DELETE_BY));
+				this.setId( (String)r.getValue(AssetLabelTplMeta.ID));
+				this.setImageType( (String)r.getValue(AssetLabelTplMeta.IMAGE_TYPE));
+				this.setImageShow( (String)r.getValue(AssetLabelTplMeta.IMAGE_SHOW));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

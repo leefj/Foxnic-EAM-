@@ -8,7 +8,6 @@ import com.dt.platform.domain.datacenter.Rack;
 import com.dt.platform.domain.datacenter.RackVO;
 import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.*;
-import com.dt.platform.eam.common.AssetLabelPrintUtil;
 import com.dt.platform.eam.service.*;
 
 import com.dt.platform.proxy.common.TplFileServiceProxy;
@@ -96,6 +95,9 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
     @Autowired
     private IAssetLabelTplService assetLabelTplService;
 
+
+    @Autowired
+    AssetPrintLabelFactory assetPrintLabelFactory;
     /**
      * 注入DAO对象
      * */
@@ -629,13 +631,25 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         printData.setLabel(label);
         printData.setUuid(uuid);
         printData.setLabelTpl(label.getAssetTpl());
+        printData.setLabel(label);
+        AssetLabelTpl assetLabelTpl=label.getAssetTpl();
+        assetLabelService.dao().fill(assetLabelTpl).with(AssetLabelTplMeta.ASSET_LABEL_LAYOUT_LIST).execute();
+
+        printData.setAssetLabelLayoutList(assetLabelTpl.getAssetLabelLayoutList());
         printData.setAssetColumnList(label.getAssetLabelColumnList());
         printData.setAssetData(mapList);
-        boolean res=AssetLabelPrintUtil.print(printData);
-
-        if(!res){
-            return ErrorDesc.failureMessage("生成PDF失败");
+        printData.setPageSizeHeight(Float.parseFloat(label.getAssetPaper().getH().toString()));
+        printData.setPageSizeWidth(Float.parseFloat(label.getAssetPaper().getW().toString()));
+        String code=label.getAssetPaper().getActionCode();
+        AsseLabelPrintCodeEnum codeEnum = null;
+        if(AsseLabelPrintCodeEnum.NORMAL.code().equals(code)){
+            codeEnum = AsseLabelPrintCodeEnum.NORMAL;
         }
+        if(AsseLabelPrintCodeEnum.SPECIAL.code().equals(code)){
+            codeEnum = AsseLabelPrintCodeEnum.SPECIAL;
+        }
+        System.out.println("assetPrintLabelFactory.getService(codeEnum):"+assetPrintLabelFactory.getService(codeEnum));
+        Result printResult=assetPrintLabelFactory.getService(codeEnum).print(printData);
         return  ErrorDesc.success().data(uuid);
     }
 

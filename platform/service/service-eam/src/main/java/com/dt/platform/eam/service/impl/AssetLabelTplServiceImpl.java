@@ -145,7 +145,7 @@ public class AssetLabelTplServiceImpl extends SuperService<AssetLabelTpl> implem
 		AssetLabelTpl assetLabelTpl = new AssetLabelTpl();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		assetLabelTpl.setId(id);
-		assetLabelTpl.setDeleted(dao.getDBTreaty().getTrueValue());
+		assetLabelTpl.setDeleted(1);
 		assetLabelTpl.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		assetLabelTpl.setDeleteTime(new Date());
 		try {

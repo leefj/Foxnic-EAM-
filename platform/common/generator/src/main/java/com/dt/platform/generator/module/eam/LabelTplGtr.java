@@ -2,6 +2,7 @@ package com.dt.platform.generator.module.eam;
 
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.domain.eam.AssetLabelCol;
+import com.dt.platform.domain.eam.AssetLabelLayout;
 import com.dt.platform.domain.eam.AssetLabelPaper;
 import com.dt.platform.domain.eam.AssetLabelTplItem;
 import com.dt.platform.eam.page.AssetLabelTplPageController;
@@ -21,7 +22,7 @@ public class LabelTplGtr extends BaseCodeGenerator{
 
         cfg.getPoClassFile().addListProperty(AssetLabelTplItem.class,"assetLabelItemList","Item","Item");
         cfg.getPoClassFile().addListProperty(AssetLabelCol.class,"assetLabelColumnlList","Column","Column");
-
+        cfg.getPoClassFile().addListProperty(AssetLabelLayout.class,"assetLabelLayoutList","assetLabelLayout","assetLabelLayout");
 
         cfg.view().field(EAMTables.EAM_ASSET_LABEL_TPL.ID).basic().hidden(true);
         cfg.view().search().inputLayout(
@@ -52,7 +53,6 @@ public class LabelTplGtr extends BaseCodeGenerator{
         LabelTplGtr g=new LabelTplGtr();
         //生成代码
          g.generateCode();
-
 
         //生成菜单
         //  g.removeByBatchId("");

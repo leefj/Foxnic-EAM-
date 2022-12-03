@@ -2,7 +2,7 @@
 /**
  * 资产标签 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-24 13:14:51
+ * @since 2022-12-02 20:51:22
  */
  -->
  <!DOCTYPE html>
@@ -37,61 +37,53 @@
          <!--开始：group 循环-->
 
 
-
-        <div class="layui-row form-row" id="random-6916-content">
+        <div class="layui-row form-row" id="random-5582-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs6 form-column" >
 
-
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('标签宽度')}">标签宽度</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="labelWidth" id="labelWidth" name="labelWidth" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('标签宽度') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="1.0"   scale="1"  value="3.0" />
-                        </div>
+                <!-- number_input : 标签宽度(mm) ,  labelWidth  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('标签宽度(mm)')}">标签宽度(mm)</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="labelWidth" id="labelWidth" name="labelWidth" th:placeholder="${ lang.translate('请输入'+'标签宽度(mm)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="0.2"   scale="1"  value="3.0" />
                     </div>
-
-
-                <!--结束：栏次内字段循环-->
+                </div>
+            <!--结束：栏次内字段循环-->
             </div>
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs6 form-column" >
 
-
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label "><div th:text="${lang.translate('标签高度')}">标签高度</div></div>
-                        <div class="layui-input-block ">
-                            <input lay-filter="labelHeight" id="labelHeight" name="labelHeight" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('标签高度') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="1.0"   scale="1"  value="3.0" />
-                        </div>
+                <!-- number_input : 标签高度(mm) ,  labelHeight  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('标签高度(mm)')}">标签高度(mm)</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="labelHeight" id="labelHeight" name="labelHeight" th:placeholder="${ lang.translate('请输入'+'标签高度(mm)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="false" step="0.2"   scale="1"  value="3.0" />
                     </div>
-
-
-                <!--结束：栏次内字段循环-->
+                </div>
+            <!--结束：栏次内字段循环-->
             </div>
             <!--结束：栏次输入框循环-->
         </div>
          <!--开始：group 循环-->
 
 
-
-        <div class="layui-row form-row" id="random-1342-content">
+        <div class="layui-row form-row" id="random-5262-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs12 form-column"  style="padding-top: 0px" >
 
-
+                <!-- radio_box : 纸张类型 ,  paperTypeId  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('纸张类型')}">纸张类型</div></div>
                     <div class="layui-input-block ">
-                        <input input-type="radio" type="radio" name="paperTypeId" lay-filter="paperTypeId" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==-1)?'yes':'no'}">
+                        <input input-type="radio" type="radio" name="paperTypeId" lay-filter="paperTypeId" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==-1)}">
                     </div>
                 </div>
-
-
-                <!--结束：栏次内字段循环-->
+            <!--结束：栏次内字段循环-->
             </div>
             <!--结束：栏次输入框循环-->
         </div>
@@ -105,8 +97,8 @@
 
 </div>
 <div class="model-form-footer">
-    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消')}" >取消</button>
-    <button th:if="${perm.checkAnyAuth('eam_asset_label:create','eam_asset_label:update','eam_asset_label:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存')}">保存</button>
+    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消','','form.button')}" >取消</button>
+    <button th:if="${perm.checkAnyAuth('eam_asset_label:create','eam_asset_label:update','eam_asset_label:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存','','form.button')}">保存</button>
 </div>
 
 <script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
@@ -114,7 +106,6 @@
 <script type="text/javascript" src="/assets/libs/pandyle.min.js" th:src="'/assets/libs/pandyle.min.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/layui/layui.js" th:src="'/assets/libs/layui/layui.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
-
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var RADIO_PAPERTYPEID_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];

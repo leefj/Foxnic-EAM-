@@ -1,22 +1,33 @@
 package com.dt.platform.domain.eam;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import com.github.foxnic.api.model.CompositeParameter;
 import javax.persistence.Transient;
 import com.github.foxnic.commons.bean.BeanUtil;
+import com.github.foxnic.dao.entity.EntityContext;
+import com.github.foxnic.dao.entity.Entity;
+import java.util.Map;
+import com.dt.platform.domain.eam.meta.AssetLabelTplVOMeta;
+import com.github.foxnic.commons.lang.DataParser;
+import java.util.Date;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
- * 标签模版
+ * 标签模版VO类型
+ * <p>标签模版 , 数据表 eam_asset_label_tpl 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-24 08:08:21
- * @sign 2349A89FA9898FEE78C5BD4222B72031
+ * @since 2022-12-02 20:48:43
+ * @sign D96704CC31D10D7CCAC00DB5D0BE75DE
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
+@ApiModel(description = "标签模版VO类型 ; 标签模版 , 数据表 eam_asset_label_tpl 的通用VO类型" , parent = AssetLabelTpl.class)
 public class AssetLabelTplVO extends AssetLabelTpl {
 
 	private static final long serialVersionUID = 1L;
@@ -188,9 +199,9 @@ public class AssetLabelTplVO extends AssetLabelTpl {
 	 * @param dirtyField 已修改字段
 	 * @return 当前对象
 	*/
-	public AssetLabelTplVO addDirtyField(String dirtyField) {
+	public AssetLabelTplVO addDirtyField(String... dirtyField) {
 		if(this.dirtyFields==null) dirtyFields=new ArrayList<>();
-		this.dirtyFields.add(dirtyField);
+		this.dirtyFields.addAll(Arrays.asList(dirtyField));
 		return this;
 	}
 	
@@ -254,13 +265,13 @@ public class AssetLabelTplVO extends AssetLabelTpl {
 	 * @param id 主键清单
 	 * @return 当前对象
 	*/
-	public AssetLabelTplVO addId(String id) {
+	public AssetLabelTplVO addId(String... id) {
 		if(this.ids==null) ids=new ArrayList<>();
-		this.ids.add(id);
+		this.ids.addAll(Arrays.asList(id));
 		return this;
 	}
 	@Transient
-	private CompositeParameter $compositeParameter;
+	private transient CompositeParameter $compositeParameter;
 	/**
 	 * 获得解析后的复合查询参数
 	 */
@@ -269,5 +280,266 @@ public class AssetLabelTplVO extends AssetLabelTpl {
 		if($compositeParameter!=null) return  $compositeParameter;
 		$compositeParameter=new CompositeParameter(this.getSearchValue(),BeanUtil.toMap(this));
 		return  $compositeParameter;
+	}
+
+	/**
+	 * 将自己转换成指定类型的PO
+	 * @param poType  PO类型
+	 * @return AssetLabelTplVO , 转换好的 AssetLabelTplVO 对象
+	*/
+	@Transient
+	public <T extends Entity> T toPO(Class<T> poType) {
+		return EntityContext.create(poType, this);
+	}
+
+	/**
+	 * 将自己转换成任意指定类型
+	 * @param pojoType  Pojo类型
+	 * @return AssetLabelTplVO , 转换好的 PoJo 对象
+	*/
+	@Transient
+	public <T> T toPojo(Class<T> pojoType) {
+		if(Entity.class.isAssignableFrom(pojoType)) {
+			return (T)this.toPO((Class<Entity>)pojoType);
+		}
+		try {
+			T pojo=pojoType.newInstance();
+			EntityContext.copyProperties(pojo, this);
+			return pojo;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetLabelTplVO clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AssetLabelTplVO duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.AssetLabelTplVOMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetLabelTplVOMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setColIds(this.getColIds());
+		inst.setImagePosition(this.getImagePosition());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setType(this.getType());
+		inst.setVersion(this.getVersion());
+		inst.setLabelFormatContent(this.getLabelFormatContent());
+		inst.setImageLabelShow(this.getImageLabelShow());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setImageColId(this.getImageColId());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setIsCustom(this.getIsCustom());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setImageType(this.getImageType());
+		inst.setImageShow(this.getImageShow());
+		if(all) {
+			inst.setAssetLabelColumnlList(this.getAssetLabelColumnlList());
+			inst.setSearchField(this.getSearchField());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setAssetLabelItemList(this.getAssetLabelItemList());
+			inst.setAssetLabelLayoutList(this.getAssetLabelLayoutList());
+			inst.setDirtyFields(this.getDirtyFields());
+			inst.setSortField(this.getSortField());
+			inst.setPageSize(this.getPageSize());
+			inst.setIds(this.getIds());
+			inst.setSearchValue(this.getSearchValue());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetLabelTplVO clone(boolean deep) {
+		return EntityContext.clone(AssetLabelTplVO.class,this,deep);
+	}
+
+	/**
+	 * 将 Map 转换成 AssetLabelTplVO
+	 * @param assetLabelTplMap 包含实体信息的 Map 对象
+	 * @return AssetLabelTplVO , 转换好的的 AssetLabelTpl 对象
+	*/
+	@Transient
+	public static AssetLabelTplVO createFrom(Map<String,Object> assetLabelTplMap) {
+		if(assetLabelTplMap==null) return null;
+		AssetLabelTplVO vo = create();
+		EntityContext.copyProperties(vo,assetLabelTplMap);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 将 Pojo 转换成 AssetLabelTplVO
+	 * @param pojo 包含实体信息的 Pojo 对象
+	 * @return AssetLabelTplVO , 转换好的的 AssetLabelTpl 对象
+	*/
+	@Transient
+	public static AssetLabelTplVO createFrom(Object pojo) {
+		if(pojo==null) return null;
+		AssetLabelTplVO vo = create();
+		EntityContext.copyProperties(vo,pojo);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 创建一个 AssetLabelTplVO，等同于 new
+	 * @return AssetLabelTplVO 对象
+	*/
+	@Transient
+	public static AssetLabelTplVO create() {
+		return new com.dt.platform.domain.eam.meta.AssetLabelTplVOMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.NOTES)));
+			this.setColIds(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.COL_IDS)));
+			this.setImagePosition(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.IMAGE_POSITION)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetLabelTplVOMeta.UPDATE_TIME)));
+			this.setType(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.TYPE)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetLabelTplVOMeta.VERSION)));
+			this.setLabelFormatContent(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.LABEL_FORMAT_CONTENT)));
+			this.setImageLabelShow(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.IMAGE_LABEL_SHOW)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetLabelTplVOMeta.DELETED)));
+			this.setImageColId(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.IMAGE_COL_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetLabelTplVOMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetLabelTplVOMeta.DELETE_TIME)));
+			this.setIsCustom(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.IS_CUSTOM)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.ID)));
+			this.setImageType(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.IMAGE_TYPE)));
+			this.setImageShow(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.IMAGE_SHOW)));
+			// others
+			this.setSearchField(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.SEARCH_FIELD)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(AssetLabelTplVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.SORT_TYPE)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.FUZZY_FIELD)));
+			this.setSortField(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.SORT_FIELD)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(AssetLabelTplVOMeta.PAGE_SIZE)));
+			this.setSearchValue(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.SEARCH_VALUE)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(AssetLabelTplVOMeta.NOTES));
+				this.setColIds( (String)map.get(AssetLabelTplVOMeta.COL_IDS));
+				this.setImagePosition( (String)map.get(AssetLabelTplVOMeta.IMAGE_POSITION));
+				this.setUpdateTime( (Date)map.get(AssetLabelTplVOMeta.UPDATE_TIME));
+				this.setType( (String)map.get(AssetLabelTplVOMeta.TYPE));
+				this.setVersion( (Integer)map.get(AssetLabelTplVOMeta.VERSION));
+				this.setLabelFormatContent( (String)map.get(AssetLabelTplVOMeta.LABEL_FORMAT_CONTENT));
+				this.setImageLabelShow( (String)map.get(AssetLabelTplVOMeta.IMAGE_LABEL_SHOW));
+				this.setCreateBy( (String)map.get(AssetLabelTplVOMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AssetLabelTplVOMeta.DELETED));
+				this.setImageColId( (String)map.get(AssetLabelTplVOMeta.IMAGE_COL_ID));
+				this.setCreateTime( (Date)map.get(AssetLabelTplVOMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(AssetLabelTplVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AssetLabelTplVOMeta.DELETE_TIME));
+				this.setIsCustom( (String)map.get(AssetLabelTplVOMeta.IS_CUSTOM));
+				this.setTenantId( (String)map.get(AssetLabelTplVOMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AssetLabelTplVOMeta.DELETE_BY));
+				this.setId( (String)map.get(AssetLabelTplVOMeta.ID));
+				this.setImageType( (String)map.get(AssetLabelTplVOMeta.IMAGE_TYPE));
+				this.setImageShow( (String)map.get(AssetLabelTplVOMeta.IMAGE_SHOW));
+				// others
+				this.setSearchField( (String)map.get(AssetLabelTplVOMeta.SEARCH_FIELD));
+				this.setPageIndex( (Integer)map.get(AssetLabelTplVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(AssetLabelTplVOMeta.SORT_TYPE));
+				this.setFuzzyField( (String)map.get(AssetLabelTplVOMeta.FUZZY_FIELD));
+				this.setSortField( (String)map.get(AssetLabelTplVOMeta.SORT_FIELD));
+				this.setPageSize( (Integer)map.get(AssetLabelTplVOMeta.PAGE_SIZE));
+				this.setSearchValue( (String)map.get(AssetLabelTplVOMeta.SEARCH_VALUE));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.NOTES)));
+			this.setColIds(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.COL_IDS)));
+			this.setImagePosition(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.IMAGE_POSITION)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetLabelTplVOMeta.UPDATE_TIME)));
+			this.setType(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.TYPE)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetLabelTplVOMeta.VERSION)));
+			this.setLabelFormatContent(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.LABEL_FORMAT_CONTENT)));
+			this.setImageLabelShow(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.IMAGE_LABEL_SHOW)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetLabelTplVOMeta.DELETED)));
+			this.setImageColId(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.IMAGE_COL_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetLabelTplVOMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetLabelTplVOMeta.DELETE_TIME)));
+			this.setIsCustom(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.IS_CUSTOM)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.ID)));
+			this.setImageType(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.IMAGE_TYPE)));
+			this.setImageShow(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.IMAGE_SHOW)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(AssetLabelTplVOMeta.NOTES));
+				this.setColIds( (String)r.getValue(AssetLabelTplVOMeta.COL_IDS));
+				this.setImagePosition( (String)r.getValue(AssetLabelTplVOMeta.IMAGE_POSITION));
+				this.setUpdateTime( (Date)r.getValue(AssetLabelTplVOMeta.UPDATE_TIME));
+				this.setType( (String)r.getValue(AssetLabelTplVOMeta.TYPE));
+				this.setVersion( (Integer)r.getValue(AssetLabelTplVOMeta.VERSION));
+				this.setLabelFormatContent( (String)r.getValue(AssetLabelTplVOMeta.LABEL_FORMAT_CONTENT));
+				this.setImageLabelShow( (String)r.getValue(AssetLabelTplVOMeta.IMAGE_LABEL_SHOW));
+				this.setCreateBy( (String)r.getValue(AssetLabelTplVOMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AssetLabelTplVOMeta.DELETED));
+				this.setImageColId( (String)r.getValue(AssetLabelTplVOMeta.IMAGE_COL_ID));
+				this.setCreateTime( (Date)r.getValue(AssetLabelTplVOMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(AssetLabelTplVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AssetLabelTplVOMeta.DELETE_TIME));
+				this.setIsCustom( (String)r.getValue(AssetLabelTplVOMeta.IS_CUSTOM));
+				this.setTenantId( (String)r.getValue(AssetLabelTplVOMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AssetLabelTplVOMeta.DELETE_BY));
+				this.setId( (String)r.getValue(AssetLabelTplVOMeta.ID));
+				this.setImageType( (String)r.getValue(AssetLabelTplVOMeta.IMAGE_TYPE));
+				this.setImageShow( (String)r.getValue(AssetLabelTplVOMeta.IMAGE_SHOW));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

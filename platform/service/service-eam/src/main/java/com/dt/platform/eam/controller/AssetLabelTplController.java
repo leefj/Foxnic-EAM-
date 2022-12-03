@@ -72,16 +72,18 @@ public class AssetLabelTplController extends SuperController {
      * 添加标签模版
      */
     @ApiOperation(value = "添加标签模版")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "1"),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.IS_CUSTOM, value = "是否自定义", required = false, dataTypeClass = String.class, example = "0"),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.COL_IDS, value = "字段", required = false, dataTypeClass = String.class, example = "[1,2,3]"),
-		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_POSITION, value = "位置", required = false, dataTypeClass = String.class, example = "d"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_POSITION, value = "位置:u", required = false, dataTypeClass = String.class, example = "d"),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_COL_ID, value = "图像", required = false, dataTypeClass = String.class, example = "9"),
-		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_LABEL_SHOW, value = "图标显示", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_LABEL_SHOW, value = "图像label显示", required = false, dataTypeClass = String.class, example = "1"),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_FORMAT_CONTENT, value = "类型", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetLabelTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_SHOW, value = "图像显示", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_TYPE, value = "图像类型txm", required = false, dataTypeClass = String.class, example = "txm")
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetLabelTplServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -96,7 +98,7 @@ public class AssetLabelTplController extends SuperController {
      * 删除标签模版
      */
     @ApiOperation(value = "删除标签模版")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 2)
@@ -118,7 +120,7 @@ public class AssetLabelTplController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除标签模版")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -133,16 +135,18 @@ public class AssetLabelTplController extends SuperController {
      * 更新标签模版
      */
     @ApiOperation(value = "更新标签模版")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "1"),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.IS_CUSTOM, value = "是否自定义", required = false, dataTypeClass = String.class, example = "0"),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.COL_IDS, value = "字段", required = false, dataTypeClass = String.class, example = "[1,2,3]"),
-		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_POSITION, value = "位置", required = false, dataTypeClass = String.class, example = "d"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_POSITION, value = "位置:u", required = false, dataTypeClass = String.class, example = "d"),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_COL_ID, value = "图像", required = false, dataTypeClass = String.class, example = "9"),
-		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_LABEL_SHOW, value = "图标显示", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_LABEL_SHOW, value = "图像label显示", required = false, dataTypeClass = String.class, example = "1"),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_FORMAT_CONTENT, value = "类型", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetLabelTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_SHOW, value = "图像显示", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_TYPE, value = "图像类型txm", required = false, dataTypeClass = String.class, example = "txm")
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetLabelTplVOMeta.PAGE_INDEX, AssetLabelTplVOMeta.PAGE_SIZE, AssetLabelTplVOMeta.SEARCH_FIELD, AssetLabelTplVOMeta.FUZZY_FIELD, AssetLabelTplVOMeta.SEARCH_VALUE, AssetLabelTplVOMeta.DIRTY_FIELDS, AssetLabelTplVOMeta.SORT_FIELD, AssetLabelTplVOMeta.SORT_TYPE, AssetLabelTplVOMeta.IDS })
     @SentinelResource(value = AssetLabelTplServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -157,16 +161,18 @@ public class AssetLabelTplController extends SuperController {
      * 保存标签模版
      */
     @ApiOperation(value = "保存标签模版")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "1"),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.IS_CUSTOM, value = "是否自定义", required = false, dataTypeClass = String.class, example = "0"),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.COL_IDS, value = "字段", required = false, dataTypeClass = String.class, example = "[1,2,3]"),
-		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_POSITION, value = "位置", required = false, dataTypeClass = String.class, example = "d"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_POSITION, value = "位置:u", required = false, dataTypeClass = String.class, example = "d"),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_COL_ID, value = "图像", required = false, dataTypeClass = String.class, example = "9"),
-		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_LABEL_SHOW, value = "图标显示", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_LABEL_SHOW, value = "图像label显示", required = false, dataTypeClass = String.class, example = "1"),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_FORMAT_CONTENT, value = "类型", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetLabelTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_SHOW, value = "图像显示", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_TYPE, value = "图像类型txm", required = false, dataTypeClass = String.class, example = "txm")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetLabelTplVOMeta.PAGE_INDEX, AssetLabelTplVOMeta.PAGE_SIZE, AssetLabelTplVOMeta.SEARCH_FIELD, AssetLabelTplVOMeta.FUZZY_FIELD, AssetLabelTplVOMeta.SEARCH_VALUE, AssetLabelTplVOMeta.DIRTY_FIELDS, AssetLabelTplVOMeta.SORT_FIELD, AssetLabelTplVOMeta.SORT_TYPE, AssetLabelTplVOMeta.IDS })
     @SentinelResource(value = AssetLabelTplServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -181,7 +187,7 @@ public class AssetLabelTplController extends SuperController {
      * 获取标签模版
      */
     @ApiOperation(value = "获取标签模版")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 6)
@@ -199,7 +205,7 @@ public class AssetLabelTplController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取标签模版")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -216,16 +222,18 @@ public class AssetLabelTplController extends SuperController {
      * 查询标签模版
      */
     @ApiOperation(value = "查询标签模版")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "1"),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.IS_CUSTOM, value = "是否自定义", required = false, dataTypeClass = String.class, example = "0"),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.COL_IDS, value = "字段", required = false, dataTypeClass = String.class, example = "[1,2,3]"),
-		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_POSITION, value = "位置", required = false, dataTypeClass = String.class, example = "d"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_POSITION, value = "位置:u", required = false, dataTypeClass = String.class, example = "d"),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_COL_ID, value = "图像", required = false, dataTypeClass = String.class, example = "9"),
-		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_LABEL_SHOW, value = "图标显示", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_LABEL_SHOW, value = "图像label显示", required = false, dataTypeClass = String.class, example = "1"),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_FORMAT_CONTENT, value = "类型", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetLabelTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_SHOW, value = "图像显示", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_TYPE, value = "图像类型txm", required = false, dataTypeClass = String.class, example = "txm")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetLabelTplVOMeta.PAGE_INDEX, AssetLabelTplVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetLabelTplServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -249,16 +257,18 @@ public class AssetLabelTplController extends SuperController {
      * 分页查询标签模版
      */
     @ApiOperation(value = "分页查询标签模版")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class, example = "1"),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.IS_CUSTOM, value = "是否自定义", required = false, dataTypeClass = String.class, example = "0"),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.COL_IDS, value = "字段", required = false, dataTypeClass = String.class, example = "[1,2,3]"),
-		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_POSITION, value = "位置", required = false, dataTypeClass = String.class, example = "d"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_POSITION, value = "位置:u", required = false, dataTypeClass = String.class, example = "d"),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_COL_ID, value = "图像", required = false, dataTypeClass = String.class, example = "9"),
-		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_LABEL_SHOW, value = "图标显示", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_LABEL_SHOW, value = "图像label显示", required = false, dataTypeClass = String.class, example = "1"),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_FORMAT_CONTENT, value = "类型", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetLabelTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_SHOW, value = "图像显示", required = false, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_TYPE, value = "图像类型txm", required = false, dataTypeClass = String.class, example = "txm")
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetLabelTplServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

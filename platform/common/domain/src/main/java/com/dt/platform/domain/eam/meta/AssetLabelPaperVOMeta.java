@@ -4,14 +4,16 @@ import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.AssetLabelPaperVO;
 import java.util.List;
 import com.dt.platform.domain.eam.AssetLabelPaper;
+import java.math.BigDecimal;
 import java.util.Date;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-20 21:19:26
- * @sign 13FA6E5E2CF54B47B16BCDA5C868B3B1
+ * @since 2022-12-03 12:56:15
+ * @sign 2BDDCF197774EF466CE62F2138BAD1C8
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -138,6 +140,36 @@ public class AssetLabelPaperVOMeta extends AssetLabelPaperMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelPaperVO,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelPaperVO.class ,STATUS, java.lang.String.class, "是否启用", "是否启用", java.lang.String.class, null);
 	
 	/**
+	 * 长度 , 类型: java.math.BigDecimal
+	*/
+	public static final String W="w";
+	
+	/**
+	 * 长度 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelPaperVO,java.math.BigDecimal> W_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelPaperVO.class ,W, java.math.BigDecimal.class, "长度", "长度", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 宽带 , 类型: java.math.BigDecimal
+	*/
+	public static final String H="h";
+	
+	/**
+	 * 宽带 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelPaperVO,java.math.BigDecimal> H_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelPaperVO.class ,H, java.math.BigDecimal.class, "宽带", "宽带", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 实现动作 , 类型: java.lang.String
+	*/
+	public static final String ACTION_CODE="actionCode";
+	
+	/**
+	 * 实现动作 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelPaperVO,java.lang.String> ACTION_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelPaperVO.class ,ACTION_CODE, java.lang.String.class, "实现动作", "实现动作", java.lang.String.class, null);
+	
+	/**
 	 * 类型 , paper|special , 类型: java.lang.String
 	*/
 	public static final String TYPE="type";
@@ -260,7 +292,7 @@ public class AssetLabelPaperVOMeta extends AssetLabelPaperMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , NAME , STATUS , TYPE , COLUMN_NUMBER , SORT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , NAME , STATUS , W , H , ACTION_CODE , TYPE , COLUMN_NUMBER , SORT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
 	
 	/**
 	 * 代理类
@@ -403,6 +435,39 @@ public class AssetLabelPaperVOMeta extends AssetLabelPaperMeta {
 		}
 		
 		/**
+		 * 设置 长度
+		 * @param w 长度
+		 * @return 当前对象
+		*/
+		public AssetLabelPaper setW(BigDecimal w) {
+			super.change(W,super.getW(),w);
+			super.setW(w);
+			return this;
+		}
+		
+		/**
+		 * 设置 宽带
+		 * @param h 宽带
+		 * @return 当前对象
+		*/
+		public AssetLabelPaper setH(BigDecimal h) {
+			super.change(H,super.getH(),h);
+			super.setH(h);
+			return this;
+		}
+		
+		/**
+		 * 设置 实现动作
+		 * @param actionCode 实现动作
+		 * @return 当前对象
+		*/
+		public AssetLabelPaper setActionCode(String actionCode) {
+			super.change(ACTION_CODE,super.getActionCode(),actionCode);
+			super.setActionCode(actionCode);
+			return this;
+		}
+		
+		/**
 		 * 设置 类型
 		 * @param type 类型
 		 * @return 当前对象
@@ -533,5 +598,54 @@ public class AssetLabelPaperVOMeta extends AssetLabelPaperMeta {
 			super.setTenantId(tenantId);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AssetLabelPaperVO clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AssetLabelPaperVO duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setH(this.getH());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setSort(this.getSort());
+			inst.setType(this.getType());
+			inst.setVersion(this.getVersion());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setColumnNumber(this.getColumnNumber());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setW(this.getW());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setActionCode(this.getActionCode());
+			inst.setId(this.getId());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setSearchField(this.getSearchField());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setDirtyFields(this.getDirtyFields());
+				inst.setSortField(this.getSortField());
+				inst.setPageSize(this.getPageSize());
+				inst.setIds(this.getIds());
+				inst.setSearchValue(this.getSearchValue());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

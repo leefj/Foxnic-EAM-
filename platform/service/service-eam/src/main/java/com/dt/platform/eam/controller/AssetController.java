@@ -1811,8 +1811,6 @@ public class AssetController extends SuperController {
 //            response.setCharacterEncoding("UTF-8");
 //            response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("资产数据.xls", "UTF-8"))));
 //            response.setContentType("application/vnd.ms-excel");
-            // 下载
-			System.out.println("开始输出数据");
             DownloadUtil.writeToOutput(response, workbook, "资产数据.xls");
         } catch (Exception e) {
             DownloadUtil.writeDownloadError(response, e);

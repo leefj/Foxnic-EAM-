@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import com.dt.platform.domain.eam.AssetLabelPaper;
 import com.dt.platform.domain.eam.AssetLabelPaperVO;
@@ -14,10 +16,10 @@ import com.dt.platform.proxy.ServiceNames;
 
 /**
  * <p>
- * 纸张类型  控制器服务代理
+ * 纸张类型 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-20 21:19:26
+ * @since 2022-12-03 12:56:15
  */
 @FeignClient(value = ServiceNames.EAM, contextId = AssetLabelPaperServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AssetLabelPaperServiceProxy {
@@ -81,21 +83,6 @@ public interface AssetLabelPaperServiceProxy {
      * 分页查询纸张类型
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
-
-    /**
-     * 导出纸张类型数据(Excel)
-     */
-    public static final String EXPORT_EXCEL = API_PREFIX + "export-excel";
-
-    /**
-     * 下载纸张类型导入模版(Excel)
-     */
-    public static final String EXPORT_EXCEL_TEMPLATE = API_PREFIX + "export-excel-template";
-
-    /**
-     * 导入纸张类型数据(Excel)
-     */
-    public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
 
     /**
      * 添加纸张类型

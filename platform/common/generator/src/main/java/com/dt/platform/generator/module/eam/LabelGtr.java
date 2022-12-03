@@ -22,7 +22,6 @@ public class LabelGtr extends BaseCodeGenerator{
 
         cfg.getPoClassFile().addSimpleProperty(AssetLabelTpl.class,"assetTpl","模版","模版");
         cfg.getPoClassFile().addSimpleProperty(AssetLabelPaper.class,"assetPaper","纸张类型","纸张类型");
-
         cfg.getPoClassFile().addListProperty(AssetLabelCol.class,"assetLabelColumnList","ColumnList","ColumnList");
 
 

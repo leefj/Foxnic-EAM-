@@ -10,10 +10,10 @@ import com.dt.platform.proxy.eam.AssetLabelPaperServiceProxy;
 import javax.servlet.http.HttpServletRequest;
 /**
  * <p>
- * 纸张类型 模版页面控制器
+ * 纸张类型模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-20 21:19:26
+ * @since 2022-12-03 12:56:15
 */
 
 @Controller("EamAssetLabelPaperPageController")
