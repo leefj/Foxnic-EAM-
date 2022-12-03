@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_ASSET_LABEL;
@@ -8,23 +9,31 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
-import java.util.ArrayList;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.foxnic.commons.lang.DataParser;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.AssetLabelMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 资产标签
+ * <p>资产标签 , 数据表 eam_asset_label 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-24 13:14:50
- * @sign DA06D7AB218419507E702CF6F5EFC7DD
+ * @since 2022-12-02 20:51:21
+ * @sign EBB0654ADB9D4CF7C7925B4F92A81B40
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_asset_label")
+@ApiModel(description = "资产标签 ; 资产标签 , 数据表 eam_asset_label 的PO类型")
 public class AssetLabel extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -35,43 +44,43 @@ public class AssetLabel extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "1")
 	private String id;
 	
 	/**
 	 * 编码：编码
 	*/
-	@ApiModelProperty(required = true,value="编码" , notes = "编码")
+	@ApiModelProperty(required = true,value="编码" , notes = "编码" , example = "T001")
 	private String code;
 	
 	/**
 	 * 标签：标签
 	*/
-	@ApiModelProperty(required = false,value="标签" , notes = "标签")
+	@ApiModelProperty(required = false,value="标签" , notes = "标签" , example = "650449362169626624")
 	private String labelTplId;
 	
 	/**
-	 * 标签宽度：标签宽度
+	 * 标签宽度(mm)：标签宽度(mm)
 	*/
-	@ApiModelProperty(required = false,value="标签宽度" , notes = "标签宽度")
+	@ApiModelProperty(required = false,value="标签宽度(mm)" , notes = "标签宽度(mm)" , example = "8.00")
 	private BigDecimal labelWidth;
 	
 	/**
-	 * 标签高度：标签高度
+	 * 标签高度(mm)：标签高度(mm)
 	*/
-	@ApiModelProperty(required = false,value="标签高度" , notes = "标签高度")
+	@ApiModelProperty(required = false,value="标签高度(mm)" , notes = "标签高度(mm)" , example = "6.00")
 	private BigDecimal labelHeight;
 	
 	/**
-	 * 标签布局：标签布局
+	 * 标签布局(暂时不用)：标签布局(暂时不用)
 	*/
-	@ApiModelProperty(required = false,value="标签布局" , notes = "标签布局")
+	@ApiModelProperty(required = false,value="标签布局(暂时不用)" , notes = "标签布局(暂时不用)")
 	private String labelLayout;
 	
 	/**
 	 * 标签间隔：标签间隔
 	*/
-	@ApiModelProperty(required = false,value="标签间隔" , notes = "标签间隔")
+	@ApiModelProperty(required = false,value="标签间隔" , notes = "标签间隔" , example = "2.10")
 	private BigDecimal labelTableMargin;
 	
 	/**
@@ -81,15 +90,27 @@ public class AssetLabel extends Entity {
 	private Integer labelKeyFontSize;
 	
 	/**
+	 * Key宽度：Key宽度
+	*/
+	@ApiModelProperty(required = false,value="Key宽度" , notes = "Key宽度" , example = "20.00")
+	private BigDecimal labelKeyWidth;
+	
+	/**
 	 * 字体大小：字体大小
 	*/
 	@ApiModelProperty(required = false,value="字体大小" , notes = "字体大小")
 	private Integer labelValueFontSize;
 	
 	/**
+	 * 图像容器大小(mm)：图像容器大小(mm)
+	*/
+	@ApiModelProperty(required = false,value="图像容器大小(mm)" , notes = "图像容器大小(mm)")
+	private BigDecimal imageContainHeight;
+	
+	/**
 	 * 图形宽度：图形宽度
 	*/
-	@ApiModelProperty(required = false,value="图形宽度" , notes = "图形宽度")
+	@ApiModelProperty(required = false,value="图形宽度" , notes = "图形宽度" , example = "0")
 	private Integer imageWidth;
 	
 	/**
@@ -101,7 +122,7 @@ public class AssetLabel extends Entity {
 	/**
 	 * 纸张类型：纸张类型
 	*/
-	@ApiModelProperty(required = false,value="纸张类型" , notes = "纸张类型")
+	@ApiModelProperty(required = false,value="纸张类型" , notes = "纸张类型" , example = "1")
 	private String paperTypeId;
 	
 	/**
@@ -119,20 +140,23 @@ public class AssetLabel extends Entity {
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2022-12-01 08:04:03")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
+	@Transient
+	@EnumFor("deleted")
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -149,13 +173,13 @@ public class AssetLabel extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "25")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -234,17 +258,17 @@ public class AssetLabel extends Entity {
 	}
 	
 	/**
-	 * 获得 标签宽度<br>
-	 * 标签宽度
-	 * @return 标签宽度
+	 * 获得 标签宽度(mm)<br>
+	 * 标签宽度(mm)
+	 * @return 标签宽度(mm)
 	*/
 	public BigDecimal getLabelWidth() {
 		return labelWidth;
 	}
 	
 	/**
-	 * 设置 标签宽度
-	 * @param labelWidth 标签宽度
+	 * 设置 标签宽度(mm)
+	 * @param labelWidth 标签宽度(mm)
 	 * @return 当前对象
 	*/
 	public AssetLabel setLabelWidth(BigDecimal labelWidth) {
@@ -253,17 +277,17 @@ public class AssetLabel extends Entity {
 	}
 	
 	/**
-	 * 获得 标签高度<br>
-	 * 标签高度
-	 * @return 标签高度
+	 * 获得 标签高度(mm)<br>
+	 * 标签高度(mm)
+	 * @return 标签高度(mm)
 	*/
 	public BigDecimal getLabelHeight() {
 		return labelHeight;
 	}
 	
 	/**
-	 * 设置 标签高度
-	 * @param labelHeight 标签高度
+	 * 设置 标签高度(mm)
+	 * @param labelHeight 标签高度(mm)
 	 * @return 当前对象
 	*/
 	public AssetLabel setLabelHeight(BigDecimal labelHeight) {
@@ -272,17 +296,17 @@ public class AssetLabel extends Entity {
 	}
 	
 	/**
-	 * 获得 标签布局<br>
-	 * 标签布局
-	 * @return 标签布局
+	 * 获得 标签布局(暂时不用)<br>
+	 * 标签布局(暂时不用)
+	 * @return 标签布局(暂时不用)
 	*/
 	public String getLabelLayout() {
 		return labelLayout;
 	}
 	
 	/**
-	 * 设置 标签布局
-	 * @param labelLayout 标签布局
+	 * 设置 标签布局(暂时不用)
+	 * @param labelLayout 标签布局(暂时不用)
 	 * @return 当前对象
 	*/
 	public AssetLabel setLabelLayout(String labelLayout) {
@@ -329,6 +353,25 @@ public class AssetLabel extends Entity {
 	}
 	
 	/**
+	 * 获得 Key宽度<br>
+	 * Key宽度
+	 * @return Key宽度
+	*/
+	public BigDecimal getLabelKeyWidth() {
+		return labelKeyWidth;
+	}
+	
+	/**
+	 * 设置 Key宽度
+	 * @param labelKeyWidth Key宽度
+	 * @return 当前对象
+	*/
+	public AssetLabel setLabelKeyWidth(BigDecimal labelKeyWidth) {
+		this.labelKeyWidth=labelKeyWidth;
+		return this;
+	}
+	
+	/**
 	 * 获得 字体大小<br>
 	 * 字体大小
 	 * @return 字体大小
@@ -344,6 +387,25 @@ public class AssetLabel extends Entity {
 	*/
 	public AssetLabel setLabelValueFontSize(Integer labelValueFontSize) {
 		this.labelValueFontSize=labelValueFontSize;
+		return this;
+	}
+	
+	/**
+	 * 获得 图像容器大小(mm)<br>
+	 * 图像容器大小(mm)
+	 * @return 图像容器大小(mm)
+	*/
+	public BigDecimal getImageContainHeight() {
+		return imageContainHeight;
+	}
+	
+	/**
+	 * 设置 图像容器大小(mm)
+	 * @param imageContainHeight 图像容器大小(mm)
+	 * @return 当前对象
+	*/
+	public AssetLabel setImageContainHeight(BigDecimal imageContainHeight) {
+		this.imageContainHeight=imageContainHeight;
 		return this;
 	}
 	
@@ -490,12 +552,43 @@ public class AssetLabel extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public AssetLabel setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public AssetLabel setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -637,9 +730,9 @@ public class AssetLabel extends Entity {
 	 * @param assetLabelColumn ColumnList
 	 * @return 当前对象
 	*/
-	public AssetLabel addAssetLabelColumn(AssetLabelCol assetLabelColumn) {
+	public AssetLabel addAssetLabelColumn(AssetLabelCol... assetLabelColumn) {
 		if(this.assetLabelColumnList==null) assetLabelColumnList=new ArrayList<>();
-		this.assetLabelColumnList.add(assetLabelColumn);
+		this.assetLabelColumnList.addAll(Arrays.asList(assetLabelColumn));
 		return this;
 	}
 
@@ -673,6 +766,61 @@ public class AssetLabel extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetLabel clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AssetLabel duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.AssetLabelMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetLabelMeta.$$proxy$$();
+		inst.setImageWidth(this.getImageWidth());
+		inst.setCode(this.getCode());
+		inst.setLabelKeyWidth(this.getLabelKeyWidth());
+		inst.setPaperTypeId(this.getPaperTypeId());
+		inst.setLabelTplId(this.getLabelTplId());
+		inst.setLabelTableMargin(this.getLabelTableMargin());
+		inst.setLabelLayout(this.getLabelLayout());
+		inst.setImageContainHeight(this.getImageContainHeight());
+		inst.setLabelWidth(this.getLabelWidth());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setLabelValueFontSize(this.getLabelValueFontSize());
+		inst.setLabelHeight(this.getLabelHeight());
+		inst.setVersion(this.getVersion());
+		inst.setImageHeight(this.getImageHeight());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setLabelKeyFontSize(this.getLabelKeyFontSize());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		if(all) {
+			inst.setAssetLabelColumnList(this.getAssetLabelColumnList());
+			inst.setAssetTpl(this.getAssetTpl());
+			inst.setAssetPaper(this.getAssetPaper());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetLabel clone(boolean deep) {
+		return EntityContext.clone(AssetLabel.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 AssetLabel
 	 * @param assetLabelMap 包含实体信息的 Map 对象
 	 * @return AssetLabel , 转换好的的 AssetLabel 对象
@@ -680,7 +828,9 @@ public class AssetLabel extends Entity {
 	@Transient
 	public static AssetLabel createFrom(Map<String,Object> assetLabelMap) {
 		if(assetLabelMap==null) return null;
-		AssetLabel po = EntityContext.create(AssetLabel.class, assetLabelMap);
+		AssetLabel po = create();
+		EntityContext.copyProperties(po,assetLabelMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -692,7 +842,9 @@ public class AssetLabel extends Entity {
 	@Transient
 	public static AssetLabel createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AssetLabel po = EntityContext.create(AssetLabel.class,pojo);
+		AssetLabel po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -702,6 +854,142 @@ public class AssetLabel extends Entity {
 	*/
 	@Transient
 	public static AssetLabel create() {
-		return EntityContext.create(AssetLabel.class);
+		return new com.dt.platform.domain.eam.meta.AssetLabelMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setImageWidth(DataParser.parse(Integer.class, map.get(AssetLabelMeta.IMAGE_WIDTH)));
+			this.setCode(DataParser.parse(String.class, map.get(AssetLabelMeta.CODE)));
+			this.setLabelKeyWidth(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.LABEL_KEY_WIDTH)));
+			this.setPaperTypeId(DataParser.parse(String.class, map.get(AssetLabelMeta.PAPER_TYPE_ID)));
+			this.setLabelTplId(DataParser.parse(String.class, map.get(AssetLabelMeta.LABEL_TPL_ID)));
+			this.setLabelTableMargin(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.LABEL_TABLE_MARGIN)));
+			this.setLabelLayout(DataParser.parse(String.class, map.get(AssetLabelMeta.LABEL_LAYOUT)));
+			this.setImageContainHeight(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.IMAGE_CONTAIN_HEIGHT)));
+			this.setLabelWidth(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.LABEL_WIDTH)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetLabelMeta.UPDATE_TIME)));
+			this.setLabelValueFontSize(DataParser.parse(Integer.class, map.get(AssetLabelMeta.LABEL_VALUE_FONT_SIZE)));
+			this.setLabelHeight(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.LABEL_HEIGHT)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetLabelMeta.VERSION)));
+			this.setImageHeight(DataParser.parse(Integer.class, map.get(AssetLabelMeta.IMAGE_HEIGHT)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetLabelMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetLabelMeta.DELETED)));
+			this.setLabelKeyFontSize(DataParser.parse(Integer.class, map.get(AssetLabelMeta.LABEL_KEY_FONT_SIZE)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetLabelMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetLabelMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetLabelMeta.DELETE_TIME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetLabelMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetLabelMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(AssetLabelMeta.ID)));
+			// others
+			this.setAssetTpl(DataParser.parse(AssetLabelTpl.class, map.get(AssetLabelMeta.ASSET_TPL)));
+			this.setAssetPaper(DataParser.parse(AssetLabelPaper.class, map.get(AssetLabelMeta.ASSET_PAPER)));
+			return true;
+		} else {
+			try {
+				this.setImageWidth( (Integer)map.get(AssetLabelMeta.IMAGE_WIDTH));
+				this.setCode( (String)map.get(AssetLabelMeta.CODE));
+				this.setLabelKeyWidth( (BigDecimal)map.get(AssetLabelMeta.LABEL_KEY_WIDTH));
+				this.setPaperTypeId( (String)map.get(AssetLabelMeta.PAPER_TYPE_ID));
+				this.setLabelTplId( (String)map.get(AssetLabelMeta.LABEL_TPL_ID));
+				this.setLabelTableMargin( (BigDecimal)map.get(AssetLabelMeta.LABEL_TABLE_MARGIN));
+				this.setLabelLayout( (String)map.get(AssetLabelMeta.LABEL_LAYOUT));
+				this.setImageContainHeight( (BigDecimal)map.get(AssetLabelMeta.IMAGE_CONTAIN_HEIGHT));
+				this.setLabelWidth( (BigDecimal)map.get(AssetLabelMeta.LABEL_WIDTH));
+				this.setUpdateTime( (Date)map.get(AssetLabelMeta.UPDATE_TIME));
+				this.setLabelValueFontSize( (Integer)map.get(AssetLabelMeta.LABEL_VALUE_FONT_SIZE));
+				this.setLabelHeight( (BigDecimal)map.get(AssetLabelMeta.LABEL_HEIGHT));
+				this.setVersion( (Integer)map.get(AssetLabelMeta.VERSION));
+				this.setImageHeight( (Integer)map.get(AssetLabelMeta.IMAGE_HEIGHT));
+				this.setCreateBy( (String)map.get(AssetLabelMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AssetLabelMeta.DELETED));
+				this.setLabelKeyFontSize( (Integer)map.get(AssetLabelMeta.LABEL_KEY_FONT_SIZE));
+				this.setCreateTime( (Date)map.get(AssetLabelMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(AssetLabelMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AssetLabelMeta.DELETE_TIME));
+				this.setTenantId( (String)map.get(AssetLabelMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AssetLabelMeta.DELETE_BY));
+				this.setId( (String)map.get(AssetLabelMeta.ID));
+				// others
+				this.setAssetTpl( (AssetLabelTpl)map.get(AssetLabelMeta.ASSET_TPL));
+				this.setAssetPaper( (AssetLabelPaper)map.get(AssetLabelMeta.ASSET_PAPER));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setImageWidth(DataParser.parse(Integer.class, r.getValue(AssetLabelMeta.IMAGE_WIDTH)));
+			this.setCode(DataParser.parse(String.class, r.getValue(AssetLabelMeta.CODE)));
+			this.setLabelKeyWidth(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.LABEL_KEY_WIDTH)));
+			this.setPaperTypeId(DataParser.parse(String.class, r.getValue(AssetLabelMeta.PAPER_TYPE_ID)));
+			this.setLabelTplId(DataParser.parse(String.class, r.getValue(AssetLabelMeta.LABEL_TPL_ID)));
+			this.setLabelTableMargin(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.LABEL_TABLE_MARGIN)));
+			this.setLabelLayout(DataParser.parse(String.class, r.getValue(AssetLabelMeta.LABEL_LAYOUT)));
+			this.setImageContainHeight(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.IMAGE_CONTAIN_HEIGHT)));
+			this.setLabelWidth(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.LABEL_WIDTH)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetLabelMeta.UPDATE_TIME)));
+			this.setLabelValueFontSize(DataParser.parse(Integer.class, r.getValue(AssetLabelMeta.LABEL_VALUE_FONT_SIZE)));
+			this.setLabelHeight(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.LABEL_HEIGHT)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetLabelMeta.VERSION)));
+			this.setImageHeight(DataParser.parse(Integer.class, r.getValue(AssetLabelMeta.IMAGE_HEIGHT)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetLabelMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetLabelMeta.DELETED)));
+			this.setLabelKeyFontSize(DataParser.parse(Integer.class, r.getValue(AssetLabelMeta.LABEL_KEY_FONT_SIZE)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetLabelMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetLabelMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetLabelMeta.DELETE_TIME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetLabelMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetLabelMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetLabelMeta.ID)));
+			return true;
+		} else {
+			try {
+				this.setImageWidth( (Integer)r.getValue(AssetLabelMeta.IMAGE_WIDTH));
+				this.setCode( (String)r.getValue(AssetLabelMeta.CODE));
+				this.setLabelKeyWidth( (BigDecimal)r.getValue(AssetLabelMeta.LABEL_KEY_WIDTH));
+				this.setPaperTypeId( (String)r.getValue(AssetLabelMeta.PAPER_TYPE_ID));
+				this.setLabelTplId( (String)r.getValue(AssetLabelMeta.LABEL_TPL_ID));
+				this.setLabelTableMargin( (BigDecimal)r.getValue(AssetLabelMeta.LABEL_TABLE_MARGIN));
+				this.setLabelLayout( (String)r.getValue(AssetLabelMeta.LABEL_LAYOUT));
+				this.setImageContainHeight( (BigDecimal)r.getValue(AssetLabelMeta.IMAGE_CONTAIN_HEIGHT));
+				this.setLabelWidth( (BigDecimal)r.getValue(AssetLabelMeta.LABEL_WIDTH));
+				this.setUpdateTime( (Date)r.getValue(AssetLabelMeta.UPDATE_TIME));
+				this.setLabelValueFontSize( (Integer)r.getValue(AssetLabelMeta.LABEL_VALUE_FONT_SIZE));
+				this.setLabelHeight( (BigDecimal)r.getValue(AssetLabelMeta.LABEL_HEIGHT));
+				this.setVersion( (Integer)r.getValue(AssetLabelMeta.VERSION));
+				this.setImageHeight( (Integer)r.getValue(AssetLabelMeta.IMAGE_HEIGHT));
+				this.setCreateBy( (String)r.getValue(AssetLabelMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AssetLabelMeta.DELETED));
+				this.setLabelKeyFontSize( (Integer)r.getValue(AssetLabelMeta.LABEL_KEY_FONT_SIZE));
+				this.setCreateTime( (Date)r.getValue(AssetLabelMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(AssetLabelMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AssetLabelMeta.DELETE_TIME));
+				this.setTenantId( (String)r.getValue(AssetLabelMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AssetLabelMeta.DELETE_BY));
+				this.setId( (String)r.getValue(AssetLabelMeta.ID));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

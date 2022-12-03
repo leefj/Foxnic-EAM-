@@ -60,6 +60,7 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 	@Autowired
 	IAssetDepreciationOperService assetDepreciationOperService;
 
+
 	/**
 	 * 注入DAO对象
 	 * */

@@ -28,6 +28,9 @@ public class EamRelationManager extends RelationManager {
         this.setupAssetRepair();
         this.setupAssetStorage();
         this.setupAssetTranfer();
+
+
+
         this.setupScrap();
         this.setupAssetAttributeItem();
         this.setupInventoryPlan();
@@ -108,8 +111,6 @@ public class EamRelationManager extends RelationManager {
         this.setupAssetRackInfo();
         this.setupAssetMaintenanceRecord();
         this.setupAssetMaintenanceRecordUpdate();
-
-
         this.setupAssetBorrowReturn();
 
     }
@@ -494,8 +495,11 @@ public class EamRelationManager extends RelationManager {
 
         this.property(AssetLabelTplMeta.ASSET_LABEL_COLUMNL_LIST_PROP)
                 .using(EAMTables.EAM_ASSET_LABEL_TPL.ID).join(EAMTables.EAM_ASSET_LABEL_TPL_ITEM.TPL_ID)
-         .using(EAMTables.EAM_ASSET_LABEL_TPL_ITEM.COL_ID).join(EAMTables.EAM_ASSET_LABEL_COL.ID)
-      ;
+         .using(EAMTables.EAM_ASSET_LABEL_TPL_ITEM.COL_ID).join(EAMTables.EAM_ASSET_LABEL_COL.ID);
+
+        this.property(AssetLabelTplMeta.ASSET_LABEL_LAYOUT_LIST_PROP)
+                .using(EAMTables.EAM_ASSET_LABEL_TPL.ID).join(EAMTables.EAM_ASSET_LABEL_LAYOUT.TPL_ID);
+
     }
 
     public void setupAssetLabelTplItem() {

@@ -146,6 +146,7 @@ public class AssetBillController extends SuperController {
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("转移单据-"+map.get("businessCode")+".docx", "UTF-8"))));
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
+        DownloadUtil.writeDownloadSuccess(response);
         template.write(bos);
         bos.flush();
         out.flush();
@@ -167,6 +168,7 @@ public class AssetBillController extends SuperController {
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("转移单据-"+map.get("businessCode")+".docx", "UTF-8"))));
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
+        DownloadUtil.writeDownloadSuccess(response);
         template.write(bos);
         bos.flush();
         out.flush();
@@ -187,6 +189,7 @@ public class AssetBillController extends SuperController {
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("转移单据-"+map.get("businessCode")+".docx", "UTF-8"))));
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
+        DownloadUtil.writeDownloadSuccess(response);
         template.write(bos);
         bos.flush();
         out.flush();
@@ -207,6 +210,7 @@ public class AssetBillController extends SuperController {
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("转移单据-"+map.get("businessCode")+".docx", "UTF-8"))));
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
+        DownloadUtil.writeDownloadSuccess(response);
         template.write(bos);
         bos.flush();
         out.flush();
@@ -226,6 +230,9 @@ public class AssetBillController extends SuperController {
         List<Map<String,Object>> list=assetService.getBills(ids);
         OutputStream outputStream = response.getOutputStream();
         ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream);
+
+        DownloadUtil.writeDownloadSuccess(response);
+
         for(int i=0;i<list.size();i++){
             InputStream ins= TplFileServiceProxy.api().getTplFileStreamByCode(AssetOperateEnum.EAM_DOWNLOAD_ASSET_REGISTER_BILL.code());
             Map<String,Object> map=list.get(i);
@@ -257,6 +264,7 @@ public class AssetBillController extends SuperController {
         response.setContentType("application/msword");
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("转移单据-"+map.get("businessCode")+".docx", "UTF-8"))));
         OutputStream out = response.getOutputStream();
+        DownloadUtil.writeDownloadSuccess(response);
         BufferedOutputStream bos = new BufferedOutputStream(out);
         template.write(bos);
         bos.flush();
@@ -281,6 +289,7 @@ public class AssetBillController extends SuperController {
         response.setContentType("application/octet-stream");
         response.setHeader("Content-disposition","attachment;filename=\""+"asset.docx"+"\"");
         OutputStream out = response.getOutputStream();
+        DownloadUtil.writeDownloadSuccess(response);
         BufferedOutputStream bos = new BufferedOutputStream(out);
         template.write(bos);
         bos.flush();
@@ -300,6 +309,7 @@ public class AssetBillController extends SuperController {
         response.setContentType("application/msword");
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("借用单据-"+map.get("businessCode")+".docx", "UTF-8"))));
         OutputStream out = response.getOutputStream();
+        DownloadUtil.writeDownloadSuccess(response);
         BufferedOutputStream bos = new BufferedOutputStream(out);
         template.write(bos);
         bos.flush();
@@ -319,6 +329,7 @@ public class AssetBillController extends SuperController {
         response.setContentType("application/msword");
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("入库单据-"+map.get("businessCode")+".docx", "UTF-8"))));
         OutputStream out = response.getOutputStream();
+        DownloadUtil.writeDownloadSuccess(response);
         BufferedOutputStream bos = new BufferedOutputStream(out);
         template.write(bos);
         bos.flush();
@@ -340,6 +351,7 @@ public class AssetBillController extends SuperController {
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("调拨单据-"+map.get("businessCode")+".docx", "UTF-8"))));
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
+        DownloadUtil.writeDownloadSuccess(response);
         template.write(bos);
         bos.flush();
         out.flush();
@@ -358,6 +370,7 @@ public class AssetBillController extends SuperController {
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("调拨单据-"+map.get("businessCode")+".docx", "UTF-8"))));
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
+        DownloadUtil.writeDownloadSuccess(response);
         template.write(bos);
         bos.flush();
         out.flush();
@@ -377,6 +390,7 @@ public class AssetBillController extends SuperController {
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("领用单据-"+map.get("businessCode")+".docx", "UTF-8"))));
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
+        DownloadUtil.writeDownloadSuccess(response);
         template.write(bos);
         bos.flush();
         out.flush();
@@ -396,6 +410,7 @@ public class AssetBillController extends SuperController {
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("领用单据-"+billdata.getBusinessCode()+".docx", "UTF-8"))));
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
+        DownloadUtil.writeDownloadSuccess(response);
         template.write(bos);
         bos.flush();
         out.flush();
@@ -414,6 +429,7 @@ public class AssetBillController extends SuperController {
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("领用退库单据-"+map.get("businessCode")+".docx", "UTF-8"))));
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
+        DownloadUtil.writeDownloadSuccess(response);
         template.write(bos);
         bos.flush();
         out.flush();
@@ -437,6 +453,7 @@ public class AssetBillController extends SuperController {
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("领用退库单据-"+map.get("businessCode")+".docx", "UTF-8"))));
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
+        DownloadUtil.writeDownloadSuccess(response);
         template.write(bos);
         bos.flush();
         out.flush();
@@ -455,6 +472,7 @@ public class AssetBillController extends SuperController {
         response.setHeader("Content-disposition","attachment;filename=\""+"asset.docx"+"\"");
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
+        DownloadUtil.writeDownloadSuccess(response);
         template.write(bos);
         bos.flush();
         out.flush();
@@ -476,6 +494,7 @@ public class AssetBillController extends SuperController {
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("维修单据-"+map.get("businessCode")+".docx", "UTF-8"))));
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
+        DownloadUtil.writeDownloadSuccess(response);
         template.write(bos);
         bos.flush();
         out.flush();
@@ -499,6 +518,7 @@ public class AssetBillController extends SuperController {
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("维修工单-"+map.get("businessCode")+".docx", "UTF-8"))));
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
+        DownloadUtil.writeDownloadSuccess(response);
         template.write(bos);
         bos.flush();
         out.flush();
@@ -521,6 +541,7 @@ public class AssetBillController extends SuperController {
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("维修单据-"+billdata.getBusinessCode()+".docx", "UTF-8"))));
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
+        DownloadUtil.writeDownloadSuccess(response);
         template.write(bos);
         bos.flush();
         out.flush();
@@ -540,6 +561,7 @@ public class AssetBillController extends SuperController {
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("报废单据-"+map.get("businessCode")+".docx", "UTF-8"))));
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
+        DownloadUtil.writeDownloadSuccess(response);
         template.write(bos);
         bos.flush();
         out.flush();
@@ -559,6 +581,7 @@ public class AssetBillController extends SuperController {
         response.setHeader("Content-disposition","attachment;filename=\""+"asset.docx"+"\"");
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
+        DownloadUtil.writeDownloadSuccess(response);
         template.write(bos);
         bos.flush();
         out.flush();
@@ -583,6 +606,7 @@ public class AssetBillController extends SuperController {
         DownloadUtil.writeDownloadSuccess(response);
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
+        DownloadUtil.writeDownloadSuccess(response);
         template.write(bos);
         bos.flush();
         out.flush();
@@ -601,6 +625,7 @@ public class AssetBillController extends SuperController {
         response.setHeader("Content-disposition","attachment;filename=\""+"asset.docx"+"\"");
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
+        DownloadUtil.writeDownloadSuccess(response);
         template.write(bos);
         bos.flush();
         out.flush();
@@ -621,6 +646,7 @@ public class AssetBillController extends SuperController {
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("资产标签-"+billdata.getAssetCode()+".docx", "UTF-8"))));
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
+        DownloadUtil.writeDownloadSuccess(response);
         template.write(bos);
         bos.flush();
         out.flush();
@@ -637,6 +663,7 @@ public class AssetBillController extends SuperController {
         HackLoopTableRenderPolicy policy = new HackLoopTableRenderPolicy();
         List<Map<String,Object>> list=assetService.getBills(ids);
         OutputStream outputStream = response.getOutputStream();
+        DownloadUtil.writeDownloadSuccess(response);
         ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream);
         for(int i=0;i<list.size();i++){
             InputStream ins= TplFileServiceProxy.api().getTplFileStreamByCode(AssetOperateEnum.EAM_DOWNLOAD_ASSET_LABEl.code());
@@ -750,6 +777,7 @@ public class AssetBillController extends SuperController {
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("入库单据-"+map.get("businessCode")+".docx", "UTF-8"))));
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
+        DownloadUtil.writeDownloadSuccess(response);
         template.write(bos);
         bos.flush();
         out.flush();
@@ -779,6 +807,7 @@ public class AssetBillController extends SuperController {
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("出库单据-"+map.get("businessCode")+".docx", "UTF-8"))));
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
+        DownloadUtil.writeDownloadSuccess(response);
         template.write(bos);
         bos.flush();
         out.flush();
@@ -807,6 +836,7 @@ public class AssetBillController extends SuperController {
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("调拨单据-"+map.get("businessCode")+".docx", "UTF-8"))));
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
+        DownloadUtil.writeDownloadSuccess(response);
         template.write(bos);
         bos.flush();
         out.flush();
@@ -825,6 +855,7 @@ public class AssetBillController extends SuperController {
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("盘点单据.docx", "UTF-8"))));
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
+        DownloadUtil.writeDownloadSuccess(response);
         template.write(bos);
         bos.flush();
         out.flush();
@@ -843,6 +874,7 @@ public class AssetBillController extends SuperController {
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("归还单据.docx", "UTF-8"))));
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
+        DownloadUtil.writeDownloadSuccess(response);
         template.write(bos);
         bos.flush();
         out.flush();
@@ -875,6 +907,7 @@ public class AssetBillController extends SuperController {
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("调整单据-"+map.get("businessCode")+".docx", "UTF-8"))));
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
+        DownloadUtil.writeDownloadSuccess(response);
         template.write(bos);
         bos.flush();
         out.flush();

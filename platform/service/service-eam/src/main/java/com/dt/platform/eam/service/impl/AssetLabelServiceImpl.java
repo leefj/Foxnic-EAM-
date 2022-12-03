@@ -189,7 +189,7 @@ public class AssetLabelServiceImpl extends SuperService<AssetLabel> implements I
 		AssetLabel assetLabel = new AssetLabel();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		assetLabel.setId(id);
-		assetLabel.setDeleted(dao.getDBTreaty().getTrueValue());
+		assetLabel.setDeleted(1);
 		assetLabel.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		assetLabel.setDeleteTime(new Date());
 		try {

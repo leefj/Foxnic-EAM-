@@ -66,13 +66,21 @@ public class AssetLabelController extends SuperController {
      * 添加资产标签
      */
     @ApiOperation(value = "添加资产标签")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetLabelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
 		@ApiImplicitParam(name = AssetLabelVOMeta.CODE, value = "编码", required = true, dataTypeClass = String.class, example = "label"),
 		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_TPL_ID, value = "标签", required = false, dataTypeClass = String.class, example = "50"),
-		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_WIDTH, value = "标签宽度", required = false, dataTypeClass = BigDecimal.class, example = "8.00"),
-		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_HEIGHT, value = "标签高度", required = false, dataTypeClass = BigDecimal.class, example = "3.00"),
-		@ApiImplicitParam(name = AssetLabelVOMeta.PAPER_TYPE_ID, value = "纸张类型", required = false, dataTypeClass = String.class, example = "2")
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_WIDTH, value = "标签宽度(mm)", required = false, dataTypeClass = BigDecimal.class, example = "8.00"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_HEIGHT, value = "标签高度(mm)", required = false, dataTypeClass = BigDecimal.class, example = "3.00"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.PAPER_TYPE_ID, value = "纸张类型", required = false, dataTypeClass = String.class, example = "2"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_LAYOUT, value = "标签布局(暂时不用)", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_TABLE_MARGIN, value = "标签间隔", required = false, dataTypeClass = BigDecimal.class, example = "2.10"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_KEY_FONT_SIZE, value = "字体大小", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_KEY_WIDTH, value = "Key宽度", required = false, dataTypeClass = BigDecimal.class, example = "20.00"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_VALUE_FONT_SIZE, value = "字体大小", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetLabelVOMeta.IMAGE_CONTAIN_HEIGHT, value = "图像容器大小(mm)", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetLabelVOMeta.IMAGE_WIDTH, value = "图形宽度", required = false, dataTypeClass = Integer.class, example = "0"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.IMAGE_HEIGHT, value = "图形高度", required = false, dataTypeClass = Integer.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetLabelServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -87,7 +95,7 @@ public class AssetLabelController extends SuperController {
      * 删除资产标签
      */
     @ApiOperation(value = "删除资产标签")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetLabelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 2)
@@ -103,7 +111,7 @@ public class AssetLabelController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产标签")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetLabelVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -118,13 +126,21 @@ public class AssetLabelController extends SuperController {
      * 更新资产标签
      */
     @ApiOperation(value = "更新资产标签")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetLabelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
 		@ApiImplicitParam(name = AssetLabelVOMeta.CODE, value = "编码", required = true, dataTypeClass = String.class, example = "label"),
 		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_TPL_ID, value = "标签", required = false, dataTypeClass = String.class, example = "50"),
-		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_WIDTH, value = "标签宽度", required = false, dataTypeClass = BigDecimal.class, example = "8.00"),
-		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_HEIGHT, value = "标签高度", required = false, dataTypeClass = BigDecimal.class, example = "3.00"),
-		@ApiImplicitParam(name = AssetLabelVOMeta.PAPER_TYPE_ID, value = "纸张类型", required = false, dataTypeClass = String.class, example = "2")
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_WIDTH, value = "标签宽度(mm)", required = false, dataTypeClass = BigDecimal.class, example = "8.00"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_HEIGHT, value = "标签高度(mm)", required = false, dataTypeClass = BigDecimal.class, example = "3.00"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.PAPER_TYPE_ID, value = "纸张类型", required = false, dataTypeClass = String.class, example = "2"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_LAYOUT, value = "标签布局(暂时不用)", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_TABLE_MARGIN, value = "标签间隔", required = false, dataTypeClass = BigDecimal.class, example = "2.10"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_KEY_FONT_SIZE, value = "字体大小", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_KEY_WIDTH, value = "Key宽度", required = false, dataTypeClass = BigDecimal.class, example = "20.00"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_VALUE_FONT_SIZE, value = "字体大小", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetLabelVOMeta.IMAGE_CONTAIN_HEIGHT, value = "图像容器大小(mm)", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetLabelVOMeta.IMAGE_WIDTH, value = "图形宽度", required = false, dataTypeClass = Integer.class, example = "0"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.IMAGE_HEIGHT, value = "图形高度", required = false, dataTypeClass = Integer.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetLabelVOMeta.PAGE_INDEX, AssetLabelVOMeta.PAGE_SIZE, AssetLabelVOMeta.SEARCH_FIELD, AssetLabelVOMeta.FUZZY_FIELD, AssetLabelVOMeta.SEARCH_VALUE, AssetLabelVOMeta.DIRTY_FIELDS, AssetLabelVOMeta.SORT_FIELD, AssetLabelVOMeta.SORT_TYPE, AssetLabelVOMeta.IDS })
     @SentinelResource(value = AssetLabelServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -139,13 +155,21 @@ public class AssetLabelController extends SuperController {
      * 保存资产标签
      */
     @ApiOperation(value = "保存资产标签")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetLabelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
 		@ApiImplicitParam(name = AssetLabelVOMeta.CODE, value = "编码", required = true, dataTypeClass = String.class, example = "label"),
 		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_TPL_ID, value = "标签", required = false, dataTypeClass = String.class, example = "50"),
-		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_WIDTH, value = "标签宽度", required = false, dataTypeClass = BigDecimal.class, example = "8.00"),
-		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_HEIGHT, value = "标签高度", required = false, dataTypeClass = BigDecimal.class, example = "3.00"),
-		@ApiImplicitParam(name = AssetLabelVOMeta.PAPER_TYPE_ID, value = "纸张类型", required = false, dataTypeClass = String.class, example = "2")
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_WIDTH, value = "标签宽度(mm)", required = false, dataTypeClass = BigDecimal.class, example = "8.00"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_HEIGHT, value = "标签高度(mm)", required = false, dataTypeClass = BigDecimal.class, example = "3.00"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.PAPER_TYPE_ID, value = "纸张类型", required = false, dataTypeClass = String.class, example = "2"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_LAYOUT, value = "标签布局(暂时不用)", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_TABLE_MARGIN, value = "标签间隔", required = false, dataTypeClass = BigDecimal.class, example = "2.10"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_KEY_FONT_SIZE, value = "字体大小", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_KEY_WIDTH, value = "Key宽度", required = false, dataTypeClass = BigDecimal.class, example = "20.00"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_VALUE_FONT_SIZE, value = "字体大小", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetLabelVOMeta.IMAGE_CONTAIN_HEIGHT, value = "图像容器大小(mm)", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetLabelVOMeta.IMAGE_WIDTH, value = "图形宽度", required = false, dataTypeClass = Integer.class, example = "0"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.IMAGE_HEIGHT, value = "图形高度", required = false, dataTypeClass = Integer.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetLabelVOMeta.PAGE_INDEX, AssetLabelVOMeta.PAGE_SIZE, AssetLabelVOMeta.SEARCH_FIELD, AssetLabelVOMeta.FUZZY_FIELD, AssetLabelVOMeta.SEARCH_VALUE, AssetLabelVOMeta.DIRTY_FIELDS, AssetLabelVOMeta.SORT_FIELD, AssetLabelVOMeta.SORT_TYPE, AssetLabelVOMeta.IDS })
     @SentinelResource(value = AssetLabelServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -160,7 +184,7 @@ public class AssetLabelController extends SuperController {
      * 获取资产标签
      */
     @ApiOperation(value = "获取资产标签")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetLabelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 6)
@@ -178,7 +202,7 @@ public class AssetLabelController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取资产标签")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetLabelVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -195,13 +219,21 @@ public class AssetLabelController extends SuperController {
      * 查询资产标签
      */
     @ApiOperation(value = "查询资产标签")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetLabelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
 		@ApiImplicitParam(name = AssetLabelVOMeta.CODE, value = "编码", required = true, dataTypeClass = String.class, example = "label"),
 		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_TPL_ID, value = "标签", required = false, dataTypeClass = String.class, example = "50"),
-		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_WIDTH, value = "标签宽度", required = false, dataTypeClass = BigDecimal.class, example = "8.00"),
-		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_HEIGHT, value = "标签高度", required = false, dataTypeClass = BigDecimal.class, example = "3.00"),
-		@ApiImplicitParam(name = AssetLabelVOMeta.PAPER_TYPE_ID, value = "纸张类型", required = false, dataTypeClass = String.class, example = "2")
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_WIDTH, value = "标签宽度(mm)", required = false, dataTypeClass = BigDecimal.class, example = "8.00"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_HEIGHT, value = "标签高度(mm)", required = false, dataTypeClass = BigDecimal.class, example = "3.00"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.PAPER_TYPE_ID, value = "纸张类型", required = false, dataTypeClass = String.class, example = "2"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_LAYOUT, value = "标签布局(暂时不用)", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_TABLE_MARGIN, value = "标签间隔", required = false, dataTypeClass = BigDecimal.class, example = "2.10"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_KEY_FONT_SIZE, value = "字体大小", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_KEY_WIDTH, value = "Key宽度", required = false, dataTypeClass = BigDecimal.class, example = "20.00"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_VALUE_FONT_SIZE, value = "字体大小", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetLabelVOMeta.IMAGE_CONTAIN_HEIGHT, value = "图像容器大小(mm)", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetLabelVOMeta.IMAGE_WIDTH, value = "图形宽度", required = false, dataTypeClass = Integer.class, example = "0"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.IMAGE_HEIGHT, value = "图形高度", required = false, dataTypeClass = Integer.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetLabelVOMeta.PAGE_INDEX, AssetLabelVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetLabelServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -217,13 +249,21 @@ public class AssetLabelController extends SuperController {
      * 分页查询资产标签
      */
     @ApiOperation(value = "分页查询资产标签")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = AssetLabelVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
 		@ApiImplicitParam(name = AssetLabelVOMeta.CODE, value = "编码", required = true, dataTypeClass = String.class, example = "label"),
 		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_TPL_ID, value = "标签", required = false, dataTypeClass = String.class, example = "50"),
-		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_WIDTH, value = "标签宽度", required = false, dataTypeClass = BigDecimal.class, example = "8.00"),
-		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_HEIGHT, value = "标签高度", required = false, dataTypeClass = BigDecimal.class, example = "3.00"),
-		@ApiImplicitParam(name = AssetLabelVOMeta.PAPER_TYPE_ID, value = "纸张类型", required = false, dataTypeClass = String.class, example = "2")
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_WIDTH, value = "标签宽度(mm)", required = false, dataTypeClass = BigDecimal.class, example = "8.00"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_HEIGHT, value = "标签高度(mm)", required = false, dataTypeClass = BigDecimal.class, example = "3.00"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.PAPER_TYPE_ID, value = "纸张类型", required = false, dataTypeClass = String.class, example = "2"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_LAYOUT, value = "标签布局(暂时不用)", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_TABLE_MARGIN, value = "标签间隔", required = false, dataTypeClass = BigDecimal.class, example = "2.10"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_KEY_FONT_SIZE, value = "字体大小", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_KEY_WIDTH, value = "Key宽度", required = false, dataTypeClass = BigDecimal.class, example = "20.00"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.LABEL_VALUE_FONT_SIZE, value = "字体大小", required = false, dataTypeClass = Integer.class),
+		@ApiImplicitParam(name = AssetLabelVOMeta.IMAGE_CONTAIN_HEIGHT, value = "图像容器大小(mm)", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetLabelVOMeta.IMAGE_WIDTH, value = "图形宽度", required = false, dataTypeClass = Integer.class, example = "0"),
+		@ApiImplicitParam(name = AssetLabelVOMeta.IMAGE_HEIGHT, value = "图形高度", required = false, dataTypeClass = Integer.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetLabelServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

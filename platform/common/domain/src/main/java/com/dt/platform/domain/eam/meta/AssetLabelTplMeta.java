@@ -6,13 +6,15 @@ import java.util.Date;
 import com.dt.platform.domain.eam.AssetLabelTplItem;
 import java.util.List;
 import com.dt.platform.domain.eam.AssetLabelCol;
+import com.dt.platform.domain.eam.AssetLabelLayout;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-05-24 08:08:21
- * @sign 013863AE6D6932B3B4734023D1415FFF
+ * @since 2022-12-02 20:48:43
+ * @sign CADACBDD190E61315D4C7F934A1BA558
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -59,14 +61,14 @@ public class AssetLabelTplMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelTpl,java.lang.String> COL_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelTpl.class ,COL_IDS, java.lang.String.class, "字段", "字段", java.lang.String.class, null);
 	
 	/**
-	 * 位置 , u,d,l,r , 类型: java.lang.String
+	 * 位置:u , d , 类型: java.lang.String
 	*/
 	public static final String IMAGE_POSITION="imagePosition";
 	
 	/**
-	 * 位置 , u,d,l,r , 类型: java.lang.String
+	 * 位置:u , d , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelTpl,java.lang.String> IMAGE_POSITION_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelTpl.class ,IMAGE_POSITION, java.lang.String.class, "位置", "u,d,l,r", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelTpl,java.lang.String> IMAGE_POSITION_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelTpl.class ,IMAGE_POSITION, java.lang.String.class, "位置:u", "d", java.lang.String.class, null);
 	
 	/**
 	 * 图像 , 类型: java.lang.String
@@ -239,9 +241,19 @@ public class AssetLabelTplMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelTpl,com.dt.platform.domain.eam.AssetLabelCol> ASSET_LABEL_COLUMNL_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelTpl.class ,ASSET_LABEL_COLUMNL_LIST, java.util.List.class, "Column", "Column", com.dt.platform.domain.eam.AssetLabelCol.class, null);
 	
 	/**
+	 * assetLabelLayout , 集合类型: LIST , 类型: com.dt.platform.domain.eam.AssetLabelLayout
+	*/
+	public static final String ASSET_LABEL_LAYOUT_LIST="assetLabelLayoutList";
+	
+	/**
+	 * assetLabelLayout , 集合类型: LIST , 类型: com.dt.platform.domain.eam.AssetLabelLayout
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelTpl,com.dt.platform.domain.eam.AssetLabelLayout> ASSET_LABEL_LAYOUT_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelTpl.class ,ASSET_LABEL_LAYOUT_LIST, java.util.List.class, "assetLabelLayout", "assetLabelLayout", com.dt.platform.domain.eam.AssetLabelLayout.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , TYPE , IS_CUSTOM , COL_IDS , IMAGE_POSITION , IMAGE_COL_ID , IMAGE_SHOW , IMAGE_LABEL_SHOW , IMAGE_TYPE , LABEL_FORMAT_CONTENT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSET_LABEL_ITEM_LIST , ASSET_LABEL_COLUMNL_LIST };
+	public static final String[] $PROPS={ ID , TYPE , IS_CUSTOM , COL_IDS , IMAGE_POSITION , IMAGE_COL_ID , IMAGE_SHOW , IMAGE_LABEL_SHOW , IMAGE_TYPE , LABEL_FORMAT_CONTENT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSET_LABEL_ITEM_LIST , ASSET_LABEL_COLUMNL_LIST , ASSET_LABEL_LAYOUT_LIST };
 	
 	/**
 	 * 代理类
@@ -296,8 +308,8 @@ public class AssetLabelTplMeta {
 		}
 		
 		/**
-		 * 设置 位置
-		 * @param imagePosition 位置
+		 * 设置 位置:u
+		 * @param imagePosition 位置:u
 		 * @return 当前对象
 		*/
 		public AssetLabelTpl setImagePosition(String imagePosition) {
@@ -492,5 +504,61 @@ public class AssetLabelTplMeta {
 			super.setAssetLabelColumnlList(assetLabelColumnlList);
 			return this;
 		}
+		
+		/**
+		 * 设置 assetLabelLayout
+		 * @param assetLabelLayoutList assetLabelLayout
+		 * @return 当前对象
+		*/
+		public AssetLabelTpl setAssetLabelLayoutList(List<AssetLabelLayout> assetLabelLayoutList) {
+			super.change(ASSET_LABEL_LAYOUT_LIST,super.getAssetLabelLayoutList(),assetLabelLayoutList);
+			super.setAssetLabelLayoutList(assetLabelLayoutList);
+			return this;
+		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AssetLabelTpl clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AssetLabelTpl duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNotes(this.getNotes());
+			inst.setColIds(this.getColIds());
+			inst.setImagePosition(this.getImagePosition());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setType(this.getType());
+			inst.setVersion(this.getVersion());
+			inst.setLabelFormatContent(this.getLabelFormatContent());
+			inst.setImageLabelShow(this.getImageLabelShow());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setImageColId(this.getImageColId());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setIsCustom(this.getIsCustom());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setImageType(this.getImageType());
+			inst.setImageShow(this.getImageShow());
+			if(all) {
+				inst.setAssetLabelColumnlList(this.getAssetLabelColumnlList());
+				inst.setAssetLabelItemList(this.getAssetLabelItemList());
+				inst.setAssetLabelLayoutList(this.getAssetLabelLayoutList());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }
