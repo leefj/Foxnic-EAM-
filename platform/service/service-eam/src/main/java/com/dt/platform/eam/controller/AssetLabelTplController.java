@@ -1,5 +1,6 @@
 package com.dt.platform.eam.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import com.dt.platform.domain.eam.*;
@@ -83,7 +84,17 @@ public class AssetLabelTplController extends SuperController {
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_FORMAT_CONTENT, value = "类型", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_SHOW, value = "图像显示", required = false, dataTypeClass = String.class, example = "1"),
-		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_TYPE, value = "图像类型txm", required = false, dataTypeClass = String.class, example = "txm")
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_TYPE, value = "图像类型txm", required = false, dataTypeClass = String.class, example = "txm"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_TOP, value = "表格marginTop(mm)", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_BOTTOM, value = "表格marginBottom(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_LEFT, value = "表格marginLeft(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_RIGHT, value = "表格marginRight(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_MARGIN_TOP, value = "图片marginTop(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_MARGIN_BOTTOM, value = "图片marginBottom(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_MARGIN_LEFT, value = "图片marginLeft(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_MARGIN_RIGHT, value = "图片marginRight(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_WIDTH, value = "图片宽度", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_HEIGHT, value = "图片高度", required = false, dataTypeClass = BigDecimal.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetLabelTplServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -146,7 +157,17 @@ public class AssetLabelTplController extends SuperController {
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_FORMAT_CONTENT, value = "类型", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_SHOW, value = "图像显示", required = false, dataTypeClass = String.class, example = "1"),
-		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_TYPE, value = "图像类型txm", required = false, dataTypeClass = String.class, example = "txm")
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_TYPE, value = "图像类型txm", required = false, dataTypeClass = String.class, example = "txm"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_TOP, value = "表格marginTop(mm)", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_BOTTOM, value = "表格marginBottom(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_LEFT, value = "表格marginLeft(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_RIGHT, value = "表格marginRight(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_MARGIN_TOP, value = "图片marginTop(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_MARGIN_BOTTOM, value = "图片marginBottom(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_MARGIN_LEFT, value = "图片marginLeft(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_MARGIN_RIGHT, value = "图片marginRight(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_WIDTH, value = "图片宽度", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_HEIGHT, value = "图片高度", required = false, dataTypeClass = BigDecimal.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetLabelTplVOMeta.PAGE_INDEX, AssetLabelTplVOMeta.PAGE_SIZE, AssetLabelTplVOMeta.SEARCH_FIELD, AssetLabelTplVOMeta.FUZZY_FIELD, AssetLabelTplVOMeta.SEARCH_VALUE, AssetLabelTplVOMeta.DIRTY_FIELDS, AssetLabelTplVOMeta.SORT_FIELD, AssetLabelTplVOMeta.SORT_TYPE, AssetLabelTplVOMeta.IDS })
     @SentinelResource(value = AssetLabelTplServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -172,7 +193,17 @@ public class AssetLabelTplController extends SuperController {
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_FORMAT_CONTENT, value = "类型", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_SHOW, value = "图像显示", required = false, dataTypeClass = String.class, example = "1"),
-		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_TYPE, value = "图像类型txm", required = false, dataTypeClass = String.class, example = "txm")
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_TYPE, value = "图像类型txm", required = false, dataTypeClass = String.class, example = "txm"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_TOP, value = "表格marginTop(mm)", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_BOTTOM, value = "表格marginBottom(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_LEFT, value = "表格marginLeft(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_RIGHT, value = "表格marginRight(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_MARGIN_TOP, value = "图片marginTop(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_MARGIN_BOTTOM, value = "图片marginBottom(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_MARGIN_LEFT, value = "图片marginLeft(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_MARGIN_RIGHT, value = "图片marginRight(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_WIDTH, value = "图片宽度", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_HEIGHT, value = "图片高度", required = false, dataTypeClass = BigDecimal.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetLabelTplVOMeta.PAGE_INDEX, AssetLabelTplVOMeta.PAGE_SIZE, AssetLabelTplVOMeta.SEARCH_FIELD, AssetLabelTplVOMeta.FUZZY_FIELD, AssetLabelTplVOMeta.SEARCH_VALUE, AssetLabelTplVOMeta.DIRTY_FIELDS, AssetLabelTplVOMeta.SORT_FIELD, AssetLabelTplVOMeta.SORT_TYPE, AssetLabelTplVOMeta.IDS })
     @SentinelResource(value = AssetLabelTplServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -233,7 +264,17 @@ public class AssetLabelTplController extends SuperController {
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_FORMAT_CONTENT, value = "类型", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_SHOW, value = "图像显示", required = false, dataTypeClass = String.class, example = "1"),
-		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_TYPE, value = "图像类型txm", required = false, dataTypeClass = String.class, example = "txm")
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_TYPE, value = "图像类型txm", required = false, dataTypeClass = String.class, example = "txm"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_TOP, value = "表格marginTop(mm)", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_BOTTOM, value = "表格marginBottom(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_LEFT, value = "表格marginLeft(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_RIGHT, value = "表格marginRight(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_MARGIN_TOP, value = "图片marginTop(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_MARGIN_BOTTOM, value = "图片marginBottom(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_MARGIN_LEFT, value = "图片marginLeft(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_MARGIN_RIGHT, value = "图片marginRight(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_WIDTH, value = "图片宽度", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_HEIGHT, value = "图片高度", required = false, dataTypeClass = BigDecimal.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetLabelTplVOMeta.PAGE_INDEX, AssetLabelTplVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetLabelTplServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -268,7 +309,17 @@ public class AssetLabelTplController extends SuperController {
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_FORMAT_CONTENT, value = "类型", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_SHOW, value = "图像显示", required = false, dataTypeClass = String.class, example = "1"),
-		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_TYPE, value = "图像类型txm", required = false, dataTypeClass = String.class, example = "txm")
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_TYPE, value = "图像类型txm", required = false, dataTypeClass = String.class, example = "txm"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_TOP, value = "表格marginTop(mm)", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_BOTTOM, value = "表格marginBottom(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_LEFT, value = "表格marginLeft(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_RIGHT, value = "表格marginRight(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_MARGIN_TOP, value = "图片marginTop(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_MARGIN_BOTTOM, value = "图片marginBottom(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_MARGIN_LEFT, value = "图片marginLeft(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_MARGIN_RIGHT, value = "图片marginRight(mm)", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_WIDTH, value = "图片宽度", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetLabelTplVOMeta.IMAGE_HEIGHT, value = "图片高度", required = false, dataTypeClass = BigDecimal.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetLabelTplServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

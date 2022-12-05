@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-12-05 15:07:58
+ * @since 2022-12-05 22:40:36
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -5115,14 +5115,14 @@ public class EAMTables {
 		public static final DBField LABEL_TPL_ID = new DBField(DBDataType.STRING , "label_tpl_id","labelTplId","标签","标签",false,false,true);
 		
 		/**
-		 * 标签宽度(mm)
+		 * 标签宽度(cm)
 		*/
-		public static final DBField LABEL_WIDTH = new DBField(DBDataType.DECIMAL , "label_width","labelWidth","标签宽度(mm)","标签宽度(mm)",false,false,true);
+		public static final DBField LABEL_WIDTH = new DBField(DBDataType.DECIMAL , "label_width","labelWidth","标签宽度(cm)","标签宽度(cm)",false,false,true);
 		
 		/**
-		 * 标签高度(mm)
+		 * 标签高度(cm)
 		*/
-		public static final DBField LABEL_HEIGHT = new DBField(DBDataType.DECIMAL , "label_height","labelHeight","标签高度(mm)","标签高度(mm)",false,false,true);
+		public static final DBField LABEL_HEIGHT = new DBField(DBDataType.DECIMAL , "label_height","labelHeight","标签高度(cm)","标签高度(cm)",false,false,true);
 		
 		/**
 		 * 标签布局(暂时不用)
@@ -5133,6 +5133,26 @@ public class EAMTables {
 		 * 标签间隔
 		*/
 		public static final DBField LABEL_TABLE_MARGIN = new DBField(DBDataType.DECIMAL , "label_table_margin","labelTableMargin","标签间隔","标签间隔",false,false,true);
+		
+		/**
+		 * 表格marginTop(mm)
+		*/
+		public static final DBField LABEL_TABLE_MARGIN_TOP = new DBField(DBDataType.DECIMAL , "label_table_margin_top","labelTableMarginTop","表格marginTop(mm)","表格marginTop(mm)",false,false,true);
+		
+		/**
+		 * 表格marginBottom(mm)
+		*/
+		public static final DBField LABEL_TABLE_MARGIN_BOTTOM = new DBField(DBDataType.DECIMAL , "label_table_margin_bottom","labelTableMarginBottom","表格marginBottom(mm)","表格marginBottom(mm)",false,false,true);
+		
+		/**
+		 * 表格marginLeft(mm)
+		*/
+		public static final DBField LABEL_TABLE_MARGIN_LEFT = new DBField(DBDataType.DECIMAL , "label_table_margin_left","labelTableMarginLeft","表格marginLeft(mm)","表格marginLeft(mm)",false,false,true);
+		
+		/**
+		 * 表格marginRight(mm)
+		*/
+		public static final DBField LABEL_TABLE_MARGIN_RIGHT = new DBField(DBDataType.DECIMAL , "label_table_margin_right","labelTableMarginRight","表格marginRight(mm)","表格marginRight(mm)",false,false,true);
 		
 		/**
 		 * 字体大小(mm)
@@ -5150,19 +5170,19 @@ public class EAMTables {
 		public static final DBField LABEL_VALUE_FONT_SIZE = new DBField(DBDataType.DECIMAL , "label_value_font_size","labelValueFontSize","字体大小(mm)","字体大小(mm)",false,false,true);
 		
 		/**
-		 * 图像容器大小(mm)
+		 * 专用标签_图像容器大小(mm)
 		*/
-		public static final DBField IMAGE_CONTAIN_HEIGHT = new DBField(DBDataType.DECIMAL , "image_contain_height","imageContainHeight","图像容器大小(mm)","图像容器大小(mm)",false,false,true);
+		public static final DBField IMAGE_CONTAIN_HEIGHT = new DBField(DBDataType.DECIMAL , "image_contain_height","imageContainHeight","专用标签","图像容器大小(mm)",false,false,true);
 		
 		/**
-		 * 图形宽度
+		 * 专用标签_图形宽度
 		*/
-		public static final DBField IMAGE_WIDTH = new DBField(DBDataType.DECIMAL , "image_width","imageWidth","图形宽度","图形宽度",false,false,true);
+		public static final DBField IMAGE_WIDTH = new DBField(DBDataType.DECIMAL , "image_width","imageWidth","专用标签","图形宽度",false,false,true);
 		
 		/**
-		 * 图形高度
+		 * 专用标签_图形高度
 		*/
-		public static final DBField IMAGE_HEIGHT = new DBField(DBDataType.DECIMAL , "image_height","imageHeight","图形高度","图形高度",false,false,true);
+		public static final DBField IMAGE_HEIGHT = new DBField(DBDataType.DECIMAL , "image_height","imageHeight","专用标签","图形高度",false,false,true);
 		
 		/**
 		 * 图片marginTop
@@ -5173,6 +5193,16 @@ public class EAMTables {
 		 * 图片marginBottom
 		*/
 		public static final DBField IMAGE_MARGIN_BOTTOM = new DBField(DBDataType.DECIMAL , "image_margin_bottom","imageMarginBottom","图片marginBottom","图片marginBottom",false,false,true);
+		
+		/**
+		 * 图片marginLeft
+		*/
+		public static final DBField IMAGE_MARGIN_LEFT = new DBField(DBDataType.DECIMAL , "image_margin_left","imageMarginLeft","图片marginLeft","图片marginLeft",false,false,true);
+		
+		/**
+		 * 图片marginRight
+		*/
+		public static final DBField IMAGE_MARGIN_RIGHT = new DBField(DBDataType.DECIMAL , "image_margin_right","imageMarginRight","图片marginRight","图片marginRight",false,false,true);
 		
 		/**
 		 * 纸张类型
@@ -5224,7 +5254,7 @@ public class EAMTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public EAM_ASSET_LABEL() {
-			this.init($NAME,"资产标签" , ID , CODE , LABEL_TPL_ID , LABEL_WIDTH , LABEL_HEIGHT , LABEL_LAYOUT , LABEL_TABLE_MARGIN , LABEL_KEY_FONT_SIZE , LABEL_KEY_WIDTH , LABEL_VALUE_FONT_SIZE , IMAGE_CONTAIN_HEIGHT , IMAGE_WIDTH , IMAGE_HEIGHT , IMAGE_MARGIN_TOP , IMAGE_MARGIN_BOTTOM , PAPER_TYPE_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"资产标签" , ID , CODE , LABEL_TPL_ID , LABEL_WIDTH , LABEL_HEIGHT , LABEL_LAYOUT , LABEL_TABLE_MARGIN , LABEL_TABLE_MARGIN_TOP , LABEL_TABLE_MARGIN_BOTTOM , LABEL_TABLE_MARGIN_LEFT , LABEL_TABLE_MARGIN_RIGHT , LABEL_KEY_FONT_SIZE , LABEL_KEY_WIDTH , LABEL_VALUE_FONT_SIZE , IMAGE_CONTAIN_HEIGHT , IMAGE_WIDTH , IMAGE_HEIGHT , IMAGE_MARGIN_TOP , IMAGE_MARGIN_BOTTOM , IMAGE_MARGIN_LEFT , IMAGE_MARGIN_RIGHT , PAPER_TYPE_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final EAM_ASSET_LABEL $TABLE=new EAM_ASSET_LABEL();
 	}
@@ -5643,8 +5673,58 @@ public class EAMTables {
 		*/
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
+		/**
+		 * 表格marginTop(mm)
+		*/
+		public static final DBField LABEL_TABLE_MARGIN_TOP = new DBField(DBDataType.DECIMAL , "label_table_margin_top","labelTableMarginTop","表格marginTop(mm)","表格marginTop(mm)",false,false,true);
+		
+		/**
+		 * 表格marginBottom(mm)
+		*/
+		public static final DBField LABEL_TABLE_MARGIN_BOTTOM = new DBField(DBDataType.DECIMAL , "label_table_margin_bottom","labelTableMarginBottom","表格marginBottom(mm)","表格marginBottom(mm)",false,false,true);
+		
+		/**
+		 * 表格marginLeft(mm)
+		*/
+		public static final DBField LABEL_TABLE_MARGIN_LEFT = new DBField(DBDataType.DECIMAL , "label_table_margin_left","labelTableMarginLeft","表格marginLeft(mm)","表格marginLeft(mm)",false,false,true);
+		
+		/**
+		 * 表格marginRight(mm)
+		*/
+		public static final DBField LABEL_TABLE_MARGIN_RIGHT = new DBField(DBDataType.DECIMAL , "label_table_margin_right","labelTableMarginRight","表格marginRight(mm)","表格marginRight(mm)",false,false,true);
+		
+		/**
+		 * 图片marginTop(mm)
+		*/
+		public static final DBField IMAGE_MARGIN_TOP = new DBField(DBDataType.DECIMAL , "image_margin_top","imageMarginTop","图片marginTop(mm)","图片marginTop(mm)",false,false,true);
+		
+		/**
+		 * 图片marginBottom(mm)
+		*/
+		public static final DBField IMAGE_MARGIN_BOTTOM = new DBField(DBDataType.DECIMAL , "image_margin_bottom","imageMarginBottom","图片marginBottom(mm)","图片marginBottom(mm)",false,false,true);
+		
+		/**
+		 * 图片marginLeft(mm)
+		*/
+		public static final DBField IMAGE_MARGIN_LEFT = new DBField(DBDataType.DECIMAL , "image_margin_left","imageMarginLeft","图片marginLeft(mm)","图片marginLeft(mm)",false,false,true);
+		
+		/**
+		 * 图片marginRight(mm)
+		*/
+		public static final DBField IMAGE_MARGIN_RIGHT = new DBField(DBDataType.DECIMAL , "image_margin_right","imageMarginRight","图片marginRight(mm)","图片marginRight(mm)",false,false,true);
+		
+		/**
+		 * 图片宽度
+		*/
+		public static final DBField IMAGE_WIDTH = new DBField(DBDataType.DECIMAL , "image_width","imageWidth","图片宽度","图片宽度",false,false,true);
+		
+		/**
+		 * 图片高度
+		*/
+		public static final DBField IMAGE_HEIGHT = new DBField(DBDataType.DECIMAL , "image_height","imageHeight","图片高度","图片高度",false,false,true);
+		
 		public EAM_ASSET_LABEL_TPL() {
-			this.init($NAME,"标签模版" , ID , TYPE , IS_CUSTOM , COL_IDS , IMAGE_POSITION , IMAGE_COL_ID , IMAGE_SHOW , IMAGE_LABEL_SHOW , IMAGE_TYPE , LABEL_FORMAT_CONTENT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"标签模版" , ID , TYPE , IS_CUSTOM , COL_IDS , IMAGE_POSITION , IMAGE_COL_ID , IMAGE_SHOW , IMAGE_LABEL_SHOW , IMAGE_TYPE , LABEL_FORMAT_CONTENT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , LABEL_TABLE_MARGIN_TOP , LABEL_TABLE_MARGIN_BOTTOM , LABEL_TABLE_MARGIN_LEFT , LABEL_TABLE_MARGIN_RIGHT , IMAGE_MARGIN_TOP , IMAGE_MARGIN_BOTTOM , IMAGE_MARGIN_LEFT , IMAGE_MARGIN_RIGHT , IMAGE_WIDTH , IMAGE_HEIGHT);
 		}
 		public static final EAM_ASSET_LABEL_TPL $TABLE=new EAM_ASSET_LABEL_TPL();
 	}

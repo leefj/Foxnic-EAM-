@@ -27,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产标签
  * <p>资产标签 , 数据表 eam_asset_label 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-05 15:28:41
- * @sign E6EA43C486104765645A43CCB9B5C5BA
+ * @since 2022-12-05 20:04:02
+ * @sign 75BB2A11A3B182ECCF26337E5D79241B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -60,15 +60,15 @@ public class AssetLabel extends Entity {
 	private String labelTplId;
 	
 	/**
-	 * 标签宽度(mm)：标签宽度(mm)
+	 * 标签宽度(cm)：标签宽度(cm)
 	*/
-	@ApiModelProperty(required = false,value="标签宽度(mm)" , notes = "标签宽度(mm)" , example = "8.00")
+	@ApiModelProperty(required = false,value="标签宽度(cm)" , notes = "标签宽度(cm)" , example = "8.00")
 	private BigDecimal labelWidth;
 	
 	/**
-	 * 标签高度(mm)：标签高度(mm)
+	 * 标签高度(cm)：标签高度(cm)
 	*/
-	@ApiModelProperty(required = false,value="标签高度(mm)" , notes = "标签高度(mm)" , example = "6.00")
+	@ApiModelProperty(required = false,value="标签高度(cm)" , notes = "标签高度(cm)" , example = "6.00")
 	private BigDecimal labelHeight;
 	
 	/**
@@ -80,8 +80,32 @@ public class AssetLabel extends Entity {
 	/**
 	 * 标签间隔：标签间隔
 	*/
-	@ApiModelProperty(required = false,value="标签间隔" , notes = "标签间隔" , example = "2.10")
+	@ApiModelProperty(required = false,value="标签间隔" , notes = "标签间隔" , example = "1.00")
 	private BigDecimal labelTableMargin;
+	
+	/**
+	 * 图片marginTop(mm)：图片marginTop(mm)
+	*/
+	@ApiModelProperty(required = false,value="图片marginTop(mm)" , notes = "图片marginTop(mm)" , example = "0.30")
+	private BigDecimal labelTableMarginTop;
+	
+	/**
+	 * 图片marginBottom(mm)：图片marginBottom(mm)
+	*/
+	@ApiModelProperty(required = false,value="图片marginBottom(mm)" , notes = "图片marginBottom(mm)" , example = "0.00")
+	private BigDecimal labelTableMarginBottom;
+	
+	/**
+	 * 图片marginLeft(mm)：图片marginLeft(mm)
+	*/
+	@ApiModelProperty(required = false,value="图片marginLeft(mm)" , notes = "图片marginLeft(mm)" , example = "0.00")
+	private BigDecimal labelTableMarginLeft;
+	
+	/**
+	 * 图片marginRight(mm)：图片marginRight(mm)
+	*/
+	@ApiModelProperty(required = false,value="图片marginRight(mm)" , notes = "图片marginRight(mm)" , example = "0.00")
+	private BigDecimal labelTableMarginRight;
 	
 	/**
 	 * 字体大小(mm)：字体大小(mm)
@@ -122,14 +146,26 @@ public class AssetLabel extends Entity {
 	/**
 	 * 图片marginTop：图片marginTop
 	*/
-	@ApiModelProperty(required = false,value="图片marginTop" , notes = "图片marginTop" , example = "2.00")
+	@ApiModelProperty(required = false,value="图片marginTop" , notes = "图片marginTop" , example = "1.00")
 	private BigDecimal imageMarginTop;
 	
 	/**
 	 * 图片marginBottom：图片marginBottom
 	*/
-	@ApiModelProperty(required = false,value="图片marginBottom" , notes = "图片marginBottom" , example = "5.00")
+	@ApiModelProperty(required = false,value="图片marginBottom" , notes = "图片marginBottom" , example = "10.00")
 	private BigDecimal imageMarginBottom;
+	
+	/**
+	 * 图片marginLeft：图片marginLeft
+	*/
+	@ApiModelProperty(required = false,value="图片marginLeft" , notes = "图片marginLeft" , example = "0.00")
+	private BigDecimal imageMarginLeft;
+	
+	/**
+	 * 图片marginRight：图片marginRight
+	*/
+	@ApiModelProperty(required = false,value="图片marginRight" , notes = "图片marginRight" , example = "0.00")
+	private BigDecimal imageMarginRight;
 	
 	/**
 	 * 纸张类型：纸张类型
@@ -270,17 +306,17 @@ public class AssetLabel extends Entity {
 	}
 	
 	/**
-	 * 获得 标签宽度(mm)<br>
-	 * 标签宽度(mm)
-	 * @return 标签宽度(mm)
+	 * 获得 标签宽度(cm)<br>
+	 * 标签宽度(cm)
+	 * @return 标签宽度(cm)
 	*/
 	public BigDecimal getLabelWidth() {
 		return labelWidth;
 	}
 	
 	/**
-	 * 设置 标签宽度(mm)
-	 * @param labelWidth 标签宽度(mm)
+	 * 设置 标签宽度(cm)
+	 * @param labelWidth 标签宽度(cm)
 	 * @return 当前对象
 	*/
 	public AssetLabel setLabelWidth(BigDecimal labelWidth) {
@@ -289,17 +325,17 @@ public class AssetLabel extends Entity {
 	}
 	
 	/**
-	 * 获得 标签高度(mm)<br>
-	 * 标签高度(mm)
-	 * @return 标签高度(mm)
+	 * 获得 标签高度(cm)<br>
+	 * 标签高度(cm)
+	 * @return 标签高度(cm)
 	*/
 	public BigDecimal getLabelHeight() {
 		return labelHeight;
 	}
 	
 	/**
-	 * 设置 标签高度(mm)
-	 * @param labelHeight 标签高度(mm)
+	 * 设置 标签高度(cm)
+	 * @param labelHeight 标签高度(cm)
 	 * @return 当前对象
 	*/
 	public AssetLabel setLabelHeight(BigDecimal labelHeight) {
@@ -342,6 +378,82 @@ public class AssetLabel extends Entity {
 	*/
 	public AssetLabel setLabelTableMargin(BigDecimal labelTableMargin) {
 		this.labelTableMargin=labelTableMargin;
+		return this;
+	}
+	
+	/**
+	 * 获得 图片marginTop(mm)<br>
+	 * 图片marginTop(mm)
+	 * @return 图片marginTop(mm)
+	*/
+	public BigDecimal getLabelTableMarginTop() {
+		return labelTableMarginTop;
+	}
+	
+	/**
+	 * 设置 图片marginTop(mm)
+	 * @param labelTableMarginTop 图片marginTop(mm)
+	 * @return 当前对象
+	*/
+	public AssetLabel setLabelTableMarginTop(BigDecimal labelTableMarginTop) {
+		this.labelTableMarginTop=labelTableMarginTop;
+		return this;
+	}
+	
+	/**
+	 * 获得 图片marginBottom(mm)<br>
+	 * 图片marginBottom(mm)
+	 * @return 图片marginBottom(mm)
+	*/
+	public BigDecimal getLabelTableMarginBottom() {
+		return labelTableMarginBottom;
+	}
+	
+	/**
+	 * 设置 图片marginBottom(mm)
+	 * @param labelTableMarginBottom 图片marginBottom(mm)
+	 * @return 当前对象
+	*/
+	public AssetLabel setLabelTableMarginBottom(BigDecimal labelTableMarginBottom) {
+		this.labelTableMarginBottom=labelTableMarginBottom;
+		return this;
+	}
+	
+	/**
+	 * 获得 图片marginLeft(mm)<br>
+	 * 图片marginLeft(mm)
+	 * @return 图片marginLeft(mm)
+	*/
+	public BigDecimal getLabelTableMarginLeft() {
+		return labelTableMarginLeft;
+	}
+	
+	/**
+	 * 设置 图片marginLeft(mm)
+	 * @param labelTableMarginLeft 图片marginLeft(mm)
+	 * @return 当前对象
+	*/
+	public AssetLabel setLabelTableMarginLeft(BigDecimal labelTableMarginLeft) {
+		this.labelTableMarginLeft=labelTableMarginLeft;
+		return this;
+	}
+	
+	/**
+	 * 获得 图片marginRight(mm)<br>
+	 * 图片marginRight(mm)
+	 * @return 图片marginRight(mm)
+	*/
+	public BigDecimal getLabelTableMarginRight() {
+		return labelTableMarginRight;
+	}
+	
+	/**
+	 * 设置 图片marginRight(mm)
+	 * @param labelTableMarginRight 图片marginRight(mm)
+	 * @return 当前对象
+	*/
+	public AssetLabel setLabelTableMarginRight(BigDecimal labelTableMarginRight) {
+		this.labelTableMarginRight=labelTableMarginRight;
 		return this;
 	}
 	
@@ -494,6 +606,44 @@ public class AssetLabel extends Entity {
 	*/
 	public AssetLabel setImageMarginBottom(BigDecimal imageMarginBottom) {
 		this.imageMarginBottom=imageMarginBottom;
+		return this;
+	}
+	
+	/**
+	 * 获得 图片marginLeft<br>
+	 * 图片marginLeft
+	 * @return 图片marginLeft
+	*/
+	public BigDecimal getImageMarginLeft() {
+		return imageMarginLeft;
+	}
+	
+	/**
+	 * 设置 图片marginLeft
+	 * @param imageMarginLeft 图片marginLeft
+	 * @return 当前对象
+	*/
+	public AssetLabel setImageMarginLeft(BigDecimal imageMarginLeft) {
+		this.imageMarginLeft=imageMarginLeft;
+		return this;
+	}
+	
+	/**
+	 * 获得 图片marginRight<br>
+	 * 图片marginRight
+	 * @return 图片marginRight
+	*/
+	public BigDecimal getImageMarginRight() {
+		return imageMarginRight;
+	}
+	
+	/**
+	 * 设置 图片marginRight
+	 * @param imageMarginRight 图片marginRight
+	 * @return 当前对象
+	*/
+	public AssetLabel setImageMarginRight(BigDecimal imageMarginRight) {
+		this.imageMarginRight=imageMarginRight;
 		return this;
 	}
 	
@@ -830,6 +980,7 @@ public class AssetLabel extends Entity {
 	@Transient
 	public AssetLabel duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.AssetLabelMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetLabelMeta.$$proxy$$();
+		inst.setImageMarginLeft(this.getImageMarginLeft());
 		inst.setCode(this.getCode());
 		inst.setLabelKeyWidth(this.getLabelKeyWidth());
 		inst.setPaperTypeId(this.getPaperTypeId());
@@ -837,14 +988,17 @@ public class AssetLabel extends Entity {
 		inst.setLabelTableMargin(this.getLabelTableMargin());
 		inst.setLabelLayout(this.getLabelLayout());
 		inst.setLabelWidth(this.getLabelWidth());
+		inst.setLabelTableMarginLeft(this.getLabelTableMarginLeft());
 		inst.setLabelValueFontSize(this.getLabelValueFontSize());
 		inst.setImageMarginBottom(this.getImageMarginBottom());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setImageMarginTop(this.getImageMarginTop());
 		inst.setId(this.getId());
 		inst.setImageWidth(this.getImageWidth());
+		inst.setLabelTableMarginRight(this.getLabelTableMarginRight());
 		inst.setImageContainHeight(this.getImageContainHeight());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setImageMarginRight(this.getImageMarginRight());
 		inst.setLabelHeight(this.getLabelHeight());
 		inst.setVersion(this.getVersion());
 		inst.setImageHeight(this.getImageHeight());
@@ -853,8 +1007,10 @@ public class AssetLabel extends Entity {
 		inst.setLabelKeyFontSize(this.getLabelKeyFontSize());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setDeleteTime(this.getDeleteTime());
+		inst.setLabelTableMarginTop(this.getLabelTableMarginTop());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
+		inst.setLabelTableMarginBottom(this.getLabelTableMarginBottom());
 		if(all) {
 			inst.setAssetLabelColumnList(this.getAssetLabelColumnList());
 			inst.setAssetTpl(this.getAssetTpl());
@@ -918,6 +1074,7 @@ public class AssetLabel extends Entity {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
+			this.setImageMarginLeft(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.IMAGE_MARGIN_LEFT)));
 			this.setCode(DataParser.parse(String.class, map.get(AssetLabelMeta.CODE)));
 			this.setLabelKeyWidth(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.LABEL_KEY_WIDTH)));
 			this.setPaperTypeId(DataParser.parse(String.class, map.get(AssetLabelMeta.PAPER_TYPE_ID)));
@@ -925,14 +1082,17 @@ public class AssetLabel extends Entity {
 			this.setLabelTableMargin(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.LABEL_TABLE_MARGIN)));
 			this.setLabelLayout(DataParser.parse(String.class, map.get(AssetLabelMeta.LABEL_LAYOUT)));
 			this.setLabelWidth(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.LABEL_WIDTH)));
+			this.setLabelTableMarginLeft(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.LABEL_TABLE_MARGIN_LEFT)));
 			this.setLabelValueFontSize(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.LABEL_VALUE_FONT_SIZE)));
 			this.setImageMarginBottom(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.IMAGE_MARGIN_BOTTOM)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetLabelMeta.UPDATE_BY)));
 			this.setImageMarginTop(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.IMAGE_MARGIN_TOP)));
 			this.setId(DataParser.parse(String.class, map.get(AssetLabelMeta.ID)));
 			this.setImageWidth(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.IMAGE_WIDTH)));
+			this.setLabelTableMarginRight(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.LABEL_TABLE_MARGIN_RIGHT)));
 			this.setImageContainHeight(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.IMAGE_CONTAIN_HEIGHT)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetLabelMeta.UPDATE_TIME)));
+			this.setImageMarginRight(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.IMAGE_MARGIN_RIGHT)));
 			this.setLabelHeight(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.LABEL_HEIGHT)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(AssetLabelMeta.VERSION)));
 			this.setImageHeight(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.IMAGE_HEIGHT)));
@@ -941,14 +1101,17 @@ public class AssetLabel extends Entity {
 			this.setLabelKeyFontSize(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.LABEL_KEY_FONT_SIZE)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetLabelMeta.CREATE_TIME)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetLabelMeta.DELETE_TIME)));
+			this.setLabelTableMarginTop(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.LABEL_TABLE_MARGIN_TOP)));
 			this.setTenantId(DataParser.parse(String.class, map.get(AssetLabelMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetLabelMeta.DELETE_BY)));
+			this.setLabelTableMarginBottom(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.LABEL_TABLE_MARGIN_BOTTOM)));
 			// others
 			this.setAssetTpl(DataParser.parse(AssetLabelTpl.class, map.get(AssetLabelMeta.ASSET_TPL)));
 			this.setAssetPaper(DataParser.parse(AssetLabelPaper.class, map.get(AssetLabelMeta.ASSET_PAPER)));
 			return true;
 		} else {
 			try {
+				this.setImageMarginLeft( (BigDecimal)map.get(AssetLabelMeta.IMAGE_MARGIN_LEFT));
 				this.setCode( (String)map.get(AssetLabelMeta.CODE));
 				this.setLabelKeyWidth( (BigDecimal)map.get(AssetLabelMeta.LABEL_KEY_WIDTH));
 				this.setPaperTypeId( (String)map.get(AssetLabelMeta.PAPER_TYPE_ID));
@@ -956,14 +1119,17 @@ public class AssetLabel extends Entity {
 				this.setLabelTableMargin( (BigDecimal)map.get(AssetLabelMeta.LABEL_TABLE_MARGIN));
 				this.setLabelLayout( (String)map.get(AssetLabelMeta.LABEL_LAYOUT));
 				this.setLabelWidth( (BigDecimal)map.get(AssetLabelMeta.LABEL_WIDTH));
+				this.setLabelTableMarginLeft( (BigDecimal)map.get(AssetLabelMeta.LABEL_TABLE_MARGIN_LEFT));
 				this.setLabelValueFontSize( (BigDecimal)map.get(AssetLabelMeta.LABEL_VALUE_FONT_SIZE));
 				this.setImageMarginBottom( (BigDecimal)map.get(AssetLabelMeta.IMAGE_MARGIN_BOTTOM));
 				this.setUpdateBy( (String)map.get(AssetLabelMeta.UPDATE_BY));
 				this.setImageMarginTop( (BigDecimal)map.get(AssetLabelMeta.IMAGE_MARGIN_TOP));
 				this.setId( (String)map.get(AssetLabelMeta.ID));
 				this.setImageWidth( (BigDecimal)map.get(AssetLabelMeta.IMAGE_WIDTH));
+				this.setLabelTableMarginRight( (BigDecimal)map.get(AssetLabelMeta.LABEL_TABLE_MARGIN_RIGHT));
 				this.setImageContainHeight( (BigDecimal)map.get(AssetLabelMeta.IMAGE_CONTAIN_HEIGHT));
 				this.setUpdateTime( (Date)map.get(AssetLabelMeta.UPDATE_TIME));
+				this.setImageMarginRight( (BigDecimal)map.get(AssetLabelMeta.IMAGE_MARGIN_RIGHT));
 				this.setLabelHeight( (BigDecimal)map.get(AssetLabelMeta.LABEL_HEIGHT));
 				this.setVersion( (Integer)map.get(AssetLabelMeta.VERSION));
 				this.setImageHeight( (BigDecimal)map.get(AssetLabelMeta.IMAGE_HEIGHT));
@@ -972,8 +1138,10 @@ public class AssetLabel extends Entity {
 				this.setLabelKeyFontSize( (BigDecimal)map.get(AssetLabelMeta.LABEL_KEY_FONT_SIZE));
 				this.setCreateTime( (Date)map.get(AssetLabelMeta.CREATE_TIME));
 				this.setDeleteTime( (Date)map.get(AssetLabelMeta.DELETE_TIME));
+				this.setLabelTableMarginTop( (BigDecimal)map.get(AssetLabelMeta.LABEL_TABLE_MARGIN_TOP));
 				this.setTenantId( (String)map.get(AssetLabelMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(AssetLabelMeta.DELETE_BY));
+				this.setLabelTableMarginBottom( (BigDecimal)map.get(AssetLabelMeta.LABEL_TABLE_MARGIN_BOTTOM));
 				// others
 				this.setAssetTpl( (AssetLabelTpl)map.get(AssetLabelMeta.ASSET_TPL));
 				this.setAssetPaper( (AssetLabelPaper)map.get(AssetLabelMeta.ASSET_PAPER));
@@ -993,6 +1161,7 @@ public class AssetLabel extends Entity {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
+			this.setImageMarginLeft(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.IMAGE_MARGIN_LEFT)));
 			this.setCode(DataParser.parse(String.class, r.getValue(AssetLabelMeta.CODE)));
 			this.setLabelKeyWidth(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.LABEL_KEY_WIDTH)));
 			this.setPaperTypeId(DataParser.parse(String.class, r.getValue(AssetLabelMeta.PAPER_TYPE_ID)));
@@ -1000,14 +1169,17 @@ public class AssetLabel extends Entity {
 			this.setLabelTableMargin(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.LABEL_TABLE_MARGIN)));
 			this.setLabelLayout(DataParser.parse(String.class, r.getValue(AssetLabelMeta.LABEL_LAYOUT)));
 			this.setLabelWidth(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.LABEL_WIDTH)));
+			this.setLabelTableMarginLeft(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.LABEL_TABLE_MARGIN_LEFT)));
 			this.setLabelValueFontSize(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.LABEL_VALUE_FONT_SIZE)));
 			this.setImageMarginBottom(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.IMAGE_MARGIN_BOTTOM)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetLabelMeta.UPDATE_BY)));
 			this.setImageMarginTop(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.IMAGE_MARGIN_TOP)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssetLabelMeta.ID)));
 			this.setImageWidth(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.IMAGE_WIDTH)));
+			this.setLabelTableMarginRight(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.LABEL_TABLE_MARGIN_RIGHT)));
 			this.setImageContainHeight(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.IMAGE_CONTAIN_HEIGHT)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetLabelMeta.UPDATE_TIME)));
+			this.setImageMarginRight(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.IMAGE_MARGIN_RIGHT)));
 			this.setLabelHeight(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.LABEL_HEIGHT)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetLabelMeta.VERSION)));
 			this.setImageHeight(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.IMAGE_HEIGHT)));
@@ -1016,11 +1188,14 @@ public class AssetLabel extends Entity {
 			this.setLabelKeyFontSize(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.LABEL_KEY_FONT_SIZE)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetLabelMeta.CREATE_TIME)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetLabelMeta.DELETE_TIME)));
+			this.setLabelTableMarginTop(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.LABEL_TABLE_MARGIN_TOP)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetLabelMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetLabelMeta.DELETE_BY)));
+			this.setLabelTableMarginBottom(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.LABEL_TABLE_MARGIN_BOTTOM)));
 			return true;
 		} else {
 			try {
+				this.setImageMarginLeft( (BigDecimal)r.getValue(AssetLabelMeta.IMAGE_MARGIN_LEFT));
 				this.setCode( (String)r.getValue(AssetLabelMeta.CODE));
 				this.setLabelKeyWidth( (BigDecimal)r.getValue(AssetLabelMeta.LABEL_KEY_WIDTH));
 				this.setPaperTypeId( (String)r.getValue(AssetLabelMeta.PAPER_TYPE_ID));
@@ -1028,14 +1203,17 @@ public class AssetLabel extends Entity {
 				this.setLabelTableMargin( (BigDecimal)r.getValue(AssetLabelMeta.LABEL_TABLE_MARGIN));
 				this.setLabelLayout( (String)r.getValue(AssetLabelMeta.LABEL_LAYOUT));
 				this.setLabelWidth( (BigDecimal)r.getValue(AssetLabelMeta.LABEL_WIDTH));
+				this.setLabelTableMarginLeft( (BigDecimal)r.getValue(AssetLabelMeta.LABEL_TABLE_MARGIN_LEFT));
 				this.setLabelValueFontSize( (BigDecimal)r.getValue(AssetLabelMeta.LABEL_VALUE_FONT_SIZE));
 				this.setImageMarginBottom( (BigDecimal)r.getValue(AssetLabelMeta.IMAGE_MARGIN_BOTTOM));
 				this.setUpdateBy( (String)r.getValue(AssetLabelMeta.UPDATE_BY));
 				this.setImageMarginTop( (BigDecimal)r.getValue(AssetLabelMeta.IMAGE_MARGIN_TOP));
 				this.setId( (String)r.getValue(AssetLabelMeta.ID));
 				this.setImageWidth( (BigDecimal)r.getValue(AssetLabelMeta.IMAGE_WIDTH));
+				this.setLabelTableMarginRight( (BigDecimal)r.getValue(AssetLabelMeta.LABEL_TABLE_MARGIN_RIGHT));
 				this.setImageContainHeight( (BigDecimal)r.getValue(AssetLabelMeta.IMAGE_CONTAIN_HEIGHT));
 				this.setUpdateTime( (Date)r.getValue(AssetLabelMeta.UPDATE_TIME));
+				this.setImageMarginRight( (BigDecimal)r.getValue(AssetLabelMeta.IMAGE_MARGIN_RIGHT));
 				this.setLabelHeight( (BigDecimal)r.getValue(AssetLabelMeta.LABEL_HEIGHT));
 				this.setVersion( (Integer)r.getValue(AssetLabelMeta.VERSION));
 				this.setImageHeight( (BigDecimal)r.getValue(AssetLabelMeta.IMAGE_HEIGHT));
@@ -1044,8 +1222,10 @@ public class AssetLabel extends Entity {
 				this.setLabelKeyFontSize( (BigDecimal)r.getValue(AssetLabelMeta.LABEL_KEY_FONT_SIZE));
 				this.setCreateTime( (Date)r.getValue(AssetLabelMeta.CREATE_TIME));
 				this.setDeleteTime( (Date)r.getValue(AssetLabelMeta.DELETE_TIME));
+				this.setLabelTableMarginTop( (BigDecimal)r.getValue(AssetLabelMeta.LABEL_TABLE_MARGIN_TOP));
 				this.setTenantId( (String)r.getValue(AssetLabelMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(AssetLabelMeta.DELETE_BY));
+				this.setLabelTableMarginBottom( (BigDecimal)r.getValue(AssetLabelMeta.LABEL_TABLE_MARGIN_BOTTOM));
 				return true;
 			} catch (Exception e) {
 				return false;

@@ -13,6 +13,7 @@ import com.github.foxnic.dao.entity.Entity;
 import java.util.Map;
 import com.dt.platform.domain.eam.meta.AssetLabelTplVOMeta;
 import com.github.foxnic.commons.lang.DataParser;
+import java.math.BigDecimal;
 import java.util.Date;
 import com.github.foxnic.sql.data.ExprRcd;
 
@@ -22,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 标签模版VO类型
  * <p>标签模版 , 数据表 eam_asset_label_tpl 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-02 20:48:43
+ * @since 2022-12-05 22:44:11
  * @sign D96704CC31D10D7CCAC00DB5D0BE75DE
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -326,26 +327,36 @@ public class AssetLabelTplVO extends AssetLabelTpl {
 	@Transient
 	public AssetLabelTplVO duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.AssetLabelTplVOMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetLabelTplVOMeta.$$proxy$$();
+		inst.setImageMarginLeft(this.getImageMarginLeft());
 		inst.setNotes(this.getNotes());
-		inst.setColIds(this.getColIds());
-		inst.setImagePosition(this.getImagePosition());
-		inst.setUpdateTime(this.getUpdateTime());
+		inst.setLabelTableMarginLeft(this.getLabelTableMarginLeft());
 		inst.setType(this.getType());
-		inst.setVersion(this.getVersion());
 		inst.setLabelFormatContent(this.getLabelFormatContent());
-		inst.setImageLabelShow(this.getImageLabelShow());
-		inst.setCreateBy(this.getCreateBy());
-		inst.setDeleted(this.getDeleted());
+		inst.setImageMarginBottom(this.getImageMarginBottom());
 		inst.setImageColId(this.getImageColId());
-		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
-		inst.setDeleteTime(this.getDeleteTime());
-		inst.setIsCustom(this.getIsCustom());
-		inst.setTenantId(this.getTenantId());
-		inst.setDeleteBy(this.getDeleteBy());
+		inst.setImageMarginTop(this.getImageMarginTop());
 		inst.setId(this.getId());
 		inst.setImageType(this.getImageType());
 		inst.setImageShow(this.getImageShow());
+		inst.setImageWidth(this.getImageWidth());
+		inst.setLabelTableMarginRight(this.getLabelTableMarginRight());
+		inst.setColIds(this.getColIds());
+		inst.setImagePosition(this.getImagePosition());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setImageMarginRight(this.getImageMarginRight());
+		inst.setVersion(this.getVersion());
+		inst.setImageHeight(this.getImageHeight());
+		inst.setImageLabelShow(this.getImageLabelShow());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setLabelTableMarginTop(this.getLabelTableMarginTop());
+		inst.setIsCustom(this.getIsCustom());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setLabelTableMarginBottom(this.getLabelTableMarginBottom());
 		if(all) {
 			inst.setAssetLabelColumnlList(this.getAssetLabelColumnlList());
 			inst.setSearchField(this.getSearchField());
@@ -418,26 +429,36 @@ public class AssetLabelTplVO extends AssetLabelTpl {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
+			this.setImageMarginLeft(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplVOMeta.IMAGE_MARGIN_LEFT)));
 			this.setNotes(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.NOTES)));
-			this.setColIds(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.COL_IDS)));
-			this.setImagePosition(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.IMAGE_POSITION)));
-			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetLabelTplVOMeta.UPDATE_TIME)));
+			this.setLabelTableMarginLeft(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_LEFT)));
 			this.setType(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.TYPE)));
-			this.setVersion(DataParser.parse(Integer.class, map.get(AssetLabelTplVOMeta.VERSION)));
 			this.setLabelFormatContent(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.LABEL_FORMAT_CONTENT)));
-			this.setImageLabelShow(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.IMAGE_LABEL_SHOW)));
-			this.setCreateBy(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.CREATE_BY)));
-			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetLabelTplVOMeta.DELETED)));
+			this.setImageMarginBottom(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplVOMeta.IMAGE_MARGIN_BOTTOM)));
 			this.setImageColId(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.IMAGE_COL_ID)));
-			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetLabelTplVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.UPDATE_BY)));
-			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetLabelTplVOMeta.DELETE_TIME)));
-			this.setIsCustom(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.IS_CUSTOM)));
-			this.setTenantId(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.TENANT_ID)));
-			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.DELETE_BY)));
+			this.setImageMarginTop(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplVOMeta.IMAGE_MARGIN_TOP)));
 			this.setId(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.ID)));
 			this.setImageType(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.IMAGE_TYPE)));
 			this.setImageShow(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.IMAGE_SHOW)));
+			this.setImageWidth(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplVOMeta.IMAGE_WIDTH)));
+			this.setLabelTableMarginRight(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_RIGHT)));
+			this.setColIds(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.COL_IDS)));
+			this.setImagePosition(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.IMAGE_POSITION)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetLabelTplVOMeta.UPDATE_TIME)));
+			this.setImageMarginRight(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplVOMeta.IMAGE_MARGIN_RIGHT)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetLabelTplVOMeta.VERSION)));
+			this.setImageHeight(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplVOMeta.IMAGE_HEIGHT)));
+			this.setImageLabelShow(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.IMAGE_LABEL_SHOW)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetLabelTplVOMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetLabelTplVOMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetLabelTplVOMeta.DELETE_TIME)));
+			this.setLabelTableMarginTop(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_TOP)));
+			this.setIsCustom(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.IS_CUSTOM)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.DELETE_BY)));
+			this.setLabelTableMarginBottom(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_BOTTOM)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.SEARCH_FIELD)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(AssetLabelTplVOMeta.PAGE_INDEX)));
@@ -449,26 +470,36 @@ public class AssetLabelTplVO extends AssetLabelTpl {
 			return true;
 		} else {
 			try {
+				this.setImageMarginLeft( (BigDecimal)map.get(AssetLabelTplVOMeta.IMAGE_MARGIN_LEFT));
 				this.setNotes( (String)map.get(AssetLabelTplVOMeta.NOTES));
-				this.setColIds( (String)map.get(AssetLabelTplVOMeta.COL_IDS));
-				this.setImagePosition( (String)map.get(AssetLabelTplVOMeta.IMAGE_POSITION));
-				this.setUpdateTime( (Date)map.get(AssetLabelTplVOMeta.UPDATE_TIME));
+				this.setLabelTableMarginLeft( (BigDecimal)map.get(AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_LEFT));
 				this.setType( (String)map.get(AssetLabelTplVOMeta.TYPE));
-				this.setVersion( (Integer)map.get(AssetLabelTplVOMeta.VERSION));
 				this.setLabelFormatContent( (String)map.get(AssetLabelTplVOMeta.LABEL_FORMAT_CONTENT));
-				this.setImageLabelShow( (String)map.get(AssetLabelTplVOMeta.IMAGE_LABEL_SHOW));
-				this.setCreateBy( (String)map.get(AssetLabelTplVOMeta.CREATE_BY));
-				this.setDeleted( (Integer)map.get(AssetLabelTplVOMeta.DELETED));
+				this.setImageMarginBottom( (BigDecimal)map.get(AssetLabelTplVOMeta.IMAGE_MARGIN_BOTTOM));
 				this.setImageColId( (String)map.get(AssetLabelTplVOMeta.IMAGE_COL_ID));
-				this.setCreateTime( (Date)map.get(AssetLabelTplVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(AssetLabelTplVOMeta.UPDATE_BY));
-				this.setDeleteTime( (Date)map.get(AssetLabelTplVOMeta.DELETE_TIME));
-				this.setIsCustom( (String)map.get(AssetLabelTplVOMeta.IS_CUSTOM));
-				this.setTenantId( (String)map.get(AssetLabelTplVOMeta.TENANT_ID));
-				this.setDeleteBy( (String)map.get(AssetLabelTplVOMeta.DELETE_BY));
+				this.setImageMarginTop( (BigDecimal)map.get(AssetLabelTplVOMeta.IMAGE_MARGIN_TOP));
 				this.setId( (String)map.get(AssetLabelTplVOMeta.ID));
 				this.setImageType( (String)map.get(AssetLabelTplVOMeta.IMAGE_TYPE));
 				this.setImageShow( (String)map.get(AssetLabelTplVOMeta.IMAGE_SHOW));
+				this.setImageWidth( (BigDecimal)map.get(AssetLabelTplVOMeta.IMAGE_WIDTH));
+				this.setLabelTableMarginRight( (BigDecimal)map.get(AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_RIGHT));
+				this.setColIds( (String)map.get(AssetLabelTplVOMeta.COL_IDS));
+				this.setImagePosition( (String)map.get(AssetLabelTplVOMeta.IMAGE_POSITION));
+				this.setUpdateTime( (Date)map.get(AssetLabelTplVOMeta.UPDATE_TIME));
+				this.setImageMarginRight( (BigDecimal)map.get(AssetLabelTplVOMeta.IMAGE_MARGIN_RIGHT));
+				this.setVersion( (Integer)map.get(AssetLabelTplVOMeta.VERSION));
+				this.setImageHeight( (BigDecimal)map.get(AssetLabelTplVOMeta.IMAGE_HEIGHT));
+				this.setImageLabelShow( (String)map.get(AssetLabelTplVOMeta.IMAGE_LABEL_SHOW));
+				this.setCreateBy( (String)map.get(AssetLabelTplVOMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AssetLabelTplVOMeta.DELETED));
+				this.setCreateTime( (Date)map.get(AssetLabelTplVOMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)map.get(AssetLabelTplVOMeta.DELETE_TIME));
+				this.setLabelTableMarginTop( (BigDecimal)map.get(AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_TOP));
+				this.setIsCustom( (String)map.get(AssetLabelTplVOMeta.IS_CUSTOM));
+				this.setTenantId( (String)map.get(AssetLabelTplVOMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AssetLabelTplVOMeta.DELETE_BY));
+				this.setLabelTableMarginBottom( (BigDecimal)map.get(AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_BOTTOM));
 				// others
 				this.setSearchField( (String)map.get(AssetLabelTplVOMeta.SEARCH_FIELD));
 				this.setPageIndex( (Integer)map.get(AssetLabelTplVOMeta.PAGE_INDEX));
@@ -493,49 +524,69 @@ public class AssetLabelTplVO extends AssetLabelTpl {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
+			this.setImageMarginLeft(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplVOMeta.IMAGE_MARGIN_LEFT)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.NOTES)));
-			this.setColIds(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.COL_IDS)));
-			this.setImagePosition(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.IMAGE_POSITION)));
-			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetLabelTplVOMeta.UPDATE_TIME)));
+			this.setLabelTableMarginLeft(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_LEFT)));
 			this.setType(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.TYPE)));
-			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetLabelTplVOMeta.VERSION)));
 			this.setLabelFormatContent(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.LABEL_FORMAT_CONTENT)));
-			this.setImageLabelShow(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.IMAGE_LABEL_SHOW)));
-			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.CREATE_BY)));
-			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetLabelTplVOMeta.DELETED)));
+			this.setImageMarginBottom(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplVOMeta.IMAGE_MARGIN_BOTTOM)));
 			this.setImageColId(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.IMAGE_COL_ID)));
-			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetLabelTplVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.UPDATE_BY)));
-			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetLabelTplVOMeta.DELETE_TIME)));
-			this.setIsCustom(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.IS_CUSTOM)));
-			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.TENANT_ID)));
-			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.DELETE_BY)));
+			this.setImageMarginTop(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplVOMeta.IMAGE_MARGIN_TOP)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.ID)));
 			this.setImageType(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.IMAGE_TYPE)));
 			this.setImageShow(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.IMAGE_SHOW)));
+			this.setImageWidth(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplVOMeta.IMAGE_WIDTH)));
+			this.setLabelTableMarginRight(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_RIGHT)));
+			this.setColIds(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.COL_IDS)));
+			this.setImagePosition(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.IMAGE_POSITION)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetLabelTplVOMeta.UPDATE_TIME)));
+			this.setImageMarginRight(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplVOMeta.IMAGE_MARGIN_RIGHT)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetLabelTplVOMeta.VERSION)));
+			this.setImageHeight(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplVOMeta.IMAGE_HEIGHT)));
+			this.setImageLabelShow(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.IMAGE_LABEL_SHOW)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetLabelTplVOMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetLabelTplVOMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetLabelTplVOMeta.DELETE_TIME)));
+			this.setLabelTableMarginTop(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_TOP)));
+			this.setIsCustom(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.IS_CUSTOM)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.DELETE_BY)));
+			this.setLabelTableMarginBottom(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_BOTTOM)));
 			return true;
 		} else {
 			try {
+				this.setImageMarginLeft( (BigDecimal)r.getValue(AssetLabelTplVOMeta.IMAGE_MARGIN_LEFT));
 				this.setNotes( (String)r.getValue(AssetLabelTplVOMeta.NOTES));
-				this.setColIds( (String)r.getValue(AssetLabelTplVOMeta.COL_IDS));
-				this.setImagePosition( (String)r.getValue(AssetLabelTplVOMeta.IMAGE_POSITION));
-				this.setUpdateTime( (Date)r.getValue(AssetLabelTplVOMeta.UPDATE_TIME));
+				this.setLabelTableMarginLeft( (BigDecimal)r.getValue(AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_LEFT));
 				this.setType( (String)r.getValue(AssetLabelTplVOMeta.TYPE));
-				this.setVersion( (Integer)r.getValue(AssetLabelTplVOMeta.VERSION));
 				this.setLabelFormatContent( (String)r.getValue(AssetLabelTplVOMeta.LABEL_FORMAT_CONTENT));
-				this.setImageLabelShow( (String)r.getValue(AssetLabelTplVOMeta.IMAGE_LABEL_SHOW));
-				this.setCreateBy( (String)r.getValue(AssetLabelTplVOMeta.CREATE_BY));
-				this.setDeleted( (Integer)r.getValue(AssetLabelTplVOMeta.DELETED));
+				this.setImageMarginBottom( (BigDecimal)r.getValue(AssetLabelTplVOMeta.IMAGE_MARGIN_BOTTOM));
 				this.setImageColId( (String)r.getValue(AssetLabelTplVOMeta.IMAGE_COL_ID));
-				this.setCreateTime( (Date)r.getValue(AssetLabelTplVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(AssetLabelTplVOMeta.UPDATE_BY));
-				this.setDeleteTime( (Date)r.getValue(AssetLabelTplVOMeta.DELETE_TIME));
-				this.setIsCustom( (String)r.getValue(AssetLabelTplVOMeta.IS_CUSTOM));
-				this.setTenantId( (String)r.getValue(AssetLabelTplVOMeta.TENANT_ID));
-				this.setDeleteBy( (String)r.getValue(AssetLabelTplVOMeta.DELETE_BY));
+				this.setImageMarginTop( (BigDecimal)r.getValue(AssetLabelTplVOMeta.IMAGE_MARGIN_TOP));
 				this.setId( (String)r.getValue(AssetLabelTplVOMeta.ID));
 				this.setImageType( (String)r.getValue(AssetLabelTplVOMeta.IMAGE_TYPE));
 				this.setImageShow( (String)r.getValue(AssetLabelTplVOMeta.IMAGE_SHOW));
+				this.setImageWidth( (BigDecimal)r.getValue(AssetLabelTplVOMeta.IMAGE_WIDTH));
+				this.setLabelTableMarginRight( (BigDecimal)r.getValue(AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_RIGHT));
+				this.setColIds( (String)r.getValue(AssetLabelTplVOMeta.COL_IDS));
+				this.setImagePosition( (String)r.getValue(AssetLabelTplVOMeta.IMAGE_POSITION));
+				this.setUpdateTime( (Date)r.getValue(AssetLabelTplVOMeta.UPDATE_TIME));
+				this.setImageMarginRight( (BigDecimal)r.getValue(AssetLabelTplVOMeta.IMAGE_MARGIN_RIGHT));
+				this.setVersion( (Integer)r.getValue(AssetLabelTplVOMeta.VERSION));
+				this.setImageHeight( (BigDecimal)r.getValue(AssetLabelTplVOMeta.IMAGE_HEIGHT));
+				this.setImageLabelShow( (String)r.getValue(AssetLabelTplVOMeta.IMAGE_LABEL_SHOW));
+				this.setCreateBy( (String)r.getValue(AssetLabelTplVOMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AssetLabelTplVOMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(AssetLabelTplVOMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)r.getValue(AssetLabelTplVOMeta.DELETE_TIME));
+				this.setLabelTableMarginTop( (BigDecimal)r.getValue(AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_TOP));
+				this.setIsCustom( (String)r.getValue(AssetLabelTplVOMeta.IS_CUSTOM));
+				this.setTenantId( (String)r.getValue(AssetLabelTplVOMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AssetLabelTplVOMeta.DELETE_BY));
+				this.setLabelTableMarginBottom( (BigDecimal)r.getValue(AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_BOTTOM));
 				return true;
 			} catch (Exception e) {
 				return false;

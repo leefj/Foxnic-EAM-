@@ -3,6 +3,7 @@ package com.dt.platform.domain.eam.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.AssetLabelTpl;
 import java.util.Date;
+import java.math.BigDecimal;
 import com.dt.platform.domain.eam.AssetLabelTplItem;
 import java.util.List;
 import com.dt.platform.domain.eam.AssetLabelCol;
@@ -13,8 +14,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-02 20:48:43
- * @sign CADACBDD190E61315D4C7F934A1BA558
+ * @since 2022-12-05 22:44:11
+ * @sign AF9CCA3D3847BB3ACD2C94E6AD6646C9
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -221,6 +222,106 @@ public class AssetLabelTplMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelTpl,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelTpl.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
+	 * 表格marginTop(mm) , 类型: java.math.BigDecimal
+	*/
+	public static final String LABEL_TABLE_MARGIN_TOP="labelTableMarginTop";
+	
+	/**
+	 * 表格marginTop(mm) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelTpl,java.math.BigDecimal> LABEL_TABLE_MARGIN_TOP_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelTpl.class ,LABEL_TABLE_MARGIN_TOP, java.math.BigDecimal.class, "表格marginTop(mm)", "表格marginTop(mm)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 表格marginBottom(mm) , 类型: java.math.BigDecimal
+	*/
+	public static final String LABEL_TABLE_MARGIN_BOTTOM="labelTableMarginBottom";
+	
+	/**
+	 * 表格marginBottom(mm) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelTpl,java.math.BigDecimal> LABEL_TABLE_MARGIN_BOTTOM_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelTpl.class ,LABEL_TABLE_MARGIN_BOTTOM, java.math.BigDecimal.class, "表格marginBottom(mm)", "表格marginBottom(mm)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 表格marginLeft(mm) , 类型: java.math.BigDecimal
+	*/
+	public static final String LABEL_TABLE_MARGIN_LEFT="labelTableMarginLeft";
+	
+	/**
+	 * 表格marginLeft(mm) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelTpl,java.math.BigDecimal> LABEL_TABLE_MARGIN_LEFT_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelTpl.class ,LABEL_TABLE_MARGIN_LEFT, java.math.BigDecimal.class, "表格marginLeft(mm)", "表格marginLeft(mm)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 表格marginRight(mm) , 类型: java.math.BigDecimal
+	*/
+	public static final String LABEL_TABLE_MARGIN_RIGHT="labelTableMarginRight";
+	
+	/**
+	 * 表格marginRight(mm) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelTpl,java.math.BigDecimal> LABEL_TABLE_MARGIN_RIGHT_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelTpl.class ,LABEL_TABLE_MARGIN_RIGHT, java.math.BigDecimal.class, "表格marginRight(mm)", "表格marginRight(mm)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 图片marginTop(mm) , 类型: java.math.BigDecimal
+	*/
+	public static final String IMAGE_MARGIN_TOP="imageMarginTop";
+	
+	/**
+	 * 图片marginTop(mm) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelTpl,java.math.BigDecimal> IMAGE_MARGIN_TOP_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelTpl.class ,IMAGE_MARGIN_TOP, java.math.BigDecimal.class, "图片marginTop(mm)", "图片marginTop(mm)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 图片marginBottom(mm) , 类型: java.math.BigDecimal
+	*/
+	public static final String IMAGE_MARGIN_BOTTOM="imageMarginBottom";
+	
+	/**
+	 * 图片marginBottom(mm) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelTpl,java.math.BigDecimal> IMAGE_MARGIN_BOTTOM_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelTpl.class ,IMAGE_MARGIN_BOTTOM, java.math.BigDecimal.class, "图片marginBottom(mm)", "图片marginBottom(mm)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 图片marginLeft(mm) , 类型: java.math.BigDecimal
+	*/
+	public static final String IMAGE_MARGIN_LEFT="imageMarginLeft";
+	
+	/**
+	 * 图片marginLeft(mm) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelTpl,java.math.BigDecimal> IMAGE_MARGIN_LEFT_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelTpl.class ,IMAGE_MARGIN_LEFT, java.math.BigDecimal.class, "图片marginLeft(mm)", "图片marginLeft(mm)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 图片marginRight(mm) , 类型: java.math.BigDecimal
+	*/
+	public static final String IMAGE_MARGIN_RIGHT="imageMarginRight";
+	
+	/**
+	 * 图片marginRight(mm) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelTpl,java.math.BigDecimal> IMAGE_MARGIN_RIGHT_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelTpl.class ,IMAGE_MARGIN_RIGHT, java.math.BigDecimal.class, "图片marginRight(mm)", "图片marginRight(mm)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 图片宽度 , 类型: java.math.BigDecimal
+	*/
+	public static final String IMAGE_WIDTH="imageWidth";
+	
+	/**
+	 * 图片宽度 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelTpl,java.math.BigDecimal> IMAGE_WIDTH_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelTpl.class ,IMAGE_WIDTH, java.math.BigDecimal.class, "图片宽度", "图片宽度", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 图片高度 , 类型: java.math.BigDecimal
+	*/
+	public static final String IMAGE_HEIGHT="imageHeight";
+	
+	/**
+	 * 图片高度 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelTpl,java.math.BigDecimal> IMAGE_HEIGHT_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelTpl.class ,IMAGE_HEIGHT, java.math.BigDecimal.class, "图片高度", "图片高度", java.math.BigDecimal.class, null);
+	
+	/**
 	 * Item , 集合类型: LIST , 类型: com.dt.platform.domain.eam.AssetLabelTplItem
 	*/
 	public static final String ASSET_LABEL_ITEM_LIST="assetLabelItemList";
@@ -253,7 +354,7 @@ public class AssetLabelTplMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , TYPE , IS_CUSTOM , COL_IDS , IMAGE_POSITION , IMAGE_COL_ID , IMAGE_SHOW , IMAGE_LABEL_SHOW , IMAGE_TYPE , LABEL_FORMAT_CONTENT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSET_LABEL_ITEM_LIST , ASSET_LABEL_COLUMNL_LIST , ASSET_LABEL_LAYOUT_LIST };
+	public static final String[] $PROPS={ ID , TYPE , IS_CUSTOM , COL_IDS , IMAGE_POSITION , IMAGE_COL_ID , IMAGE_SHOW , IMAGE_LABEL_SHOW , IMAGE_TYPE , LABEL_FORMAT_CONTENT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , LABEL_TABLE_MARGIN_TOP , LABEL_TABLE_MARGIN_BOTTOM , LABEL_TABLE_MARGIN_LEFT , LABEL_TABLE_MARGIN_RIGHT , IMAGE_MARGIN_TOP , IMAGE_MARGIN_BOTTOM , IMAGE_MARGIN_LEFT , IMAGE_MARGIN_RIGHT , IMAGE_WIDTH , IMAGE_HEIGHT , ASSET_LABEL_ITEM_LIST , ASSET_LABEL_COLUMNL_LIST , ASSET_LABEL_LAYOUT_LIST };
 	
 	/**
 	 * 代理类
@@ -484,6 +585,116 @@ public class AssetLabelTplMeta {
 		}
 		
 		/**
+		 * 设置 表格marginTop(mm)
+		 * @param labelTableMarginTop 表格marginTop(mm)
+		 * @return 当前对象
+		*/
+		public AssetLabelTpl setLabelTableMarginTop(BigDecimal labelTableMarginTop) {
+			super.change(LABEL_TABLE_MARGIN_TOP,super.getLabelTableMarginTop(),labelTableMarginTop);
+			super.setLabelTableMarginTop(labelTableMarginTop);
+			return this;
+		}
+		
+		/**
+		 * 设置 表格marginBottom(mm)
+		 * @param labelTableMarginBottom 表格marginBottom(mm)
+		 * @return 当前对象
+		*/
+		public AssetLabelTpl setLabelTableMarginBottom(BigDecimal labelTableMarginBottom) {
+			super.change(LABEL_TABLE_MARGIN_BOTTOM,super.getLabelTableMarginBottom(),labelTableMarginBottom);
+			super.setLabelTableMarginBottom(labelTableMarginBottom);
+			return this;
+		}
+		
+		/**
+		 * 设置 表格marginLeft(mm)
+		 * @param labelTableMarginLeft 表格marginLeft(mm)
+		 * @return 当前对象
+		*/
+		public AssetLabelTpl setLabelTableMarginLeft(BigDecimal labelTableMarginLeft) {
+			super.change(LABEL_TABLE_MARGIN_LEFT,super.getLabelTableMarginLeft(),labelTableMarginLeft);
+			super.setLabelTableMarginLeft(labelTableMarginLeft);
+			return this;
+		}
+		
+		/**
+		 * 设置 表格marginRight(mm)
+		 * @param labelTableMarginRight 表格marginRight(mm)
+		 * @return 当前对象
+		*/
+		public AssetLabelTpl setLabelTableMarginRight(BigDecimal labelTableMarginRight) {
+			super.change(LABEL_TABLE_MARGIN_RIGHT,super.getLabelTableMarginRight(),labelTableMarginRight);
+			super.setLabelTableMarginRight(labelTableMarginRight);
+			return this;
+		}
+		
+		/**
+		 * 设置 图片marginTop(mm)
+		 * @param imageMarginTop 图片marginTop(mm)
+		 * @return 当前对象
+		*/
+		public AssetLabelTpl setImageMarginTop(BigDecimal imageMarginTop) {
+			super.change(IMAGE_MARGIN_TOP,super.getImageMarginTop(),imageMarginTop);
+			super.setImageMarginTop(imageMarginTop);
+			return this;
+		}
+		
+		/**
+		 * 设置 图片marginBottom(mm)
+		 * @param imageMarginBottom 图片marginBottom(mm)
+		 * @return 当前对象
+		*/
+		public AssetLabelTpl setImageMarginBottom(BigDecimal imageMarginBottom) {
+			super.change(IMAGE_MARGIN_BOTTOM,super.getImageMarginBottom(),imageMarginBottom);
+			super.setImageMarginBottom(imageMarginBottom);
+			return this;
+		}
+		
+		/**
+		 * 设置 图片marginLeft(mm)
+		 * @param imageMarginLeft 图片marginLeft(mm)
+		 * @return 当前对象
+		*/
+		public AssetLabelTpl setImageMarginLeft(BigDecimal imageMarginLeft) {
+			super.change(IMAGE_MARGIN_LEFT,super.getImageMarginLeft(),imageMarginLeft);
+			super.setImageMarginLeft(imageMarginLeft);
+			return this;
+		}
+		
+		/**
+		 * 设置 图片marginRight(mm)
+		 * @param imageMarginRight 图片marginRight(mm)
+		 * @return 当前对象
+		*/
+		public AssetLabelTpl setImageMarginRight(BigDecimal imageMarginRight) {
+			super.change(IMAGE_MARGIN_RIGHT,super.getImageMarginRight(),imageMarginRight);
+			super.setImageMarginRight(imageMarginRight);
+			return this;
+		}
+		
+		/**
+		 * 设置 图片宽度
+		 * @param imageWidth 图片宽度
+		 * @return 当前对象
+		*/
+		public AssetLabelTpl setImageWidth(BigDecimal imageWidth) {
+			super.change(IMAGE_WIDTH,super.getImageWidth(),imageWidth);
+			super.setImageWidth(imageWidth);
+			return this;
+		}
+		
+		/**
+		 * 设置 图片高度
+		 * @param imageHeight 图片高度
+		 * @return 当前对象
+		*/
+		public AssetLabelTpl setImageHeight(BigDecimal imageHeight) {
+			super.change(IMAGE_HEIGHT,super.getImageHeight(),imageHeight);
+			super.setImageHeight(imageHeight);
+			return this;
+		}
+		
+		/**
 		 * 设置 Item
 		 * @param assetLabelItemList Item
 		 * @return 当前对象
@@ -531,26 +742,36 @@ public class AssetLabelTplMeta {
 		@Transient
 		public AssetLabelTpl duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
+			inst.setImageMarginLeft(this.getImageMarginLeft());
 			inst.setNotes(this.getNotes());
-			inst.setColIds(this.getColIds());
-			inst.setImagePosition(this.getImagePosition());
-			inst.setUpdateTime(this.getUpdateTime());
+			inst.setLabelTableMarginLeft(this.getLabelTableMarginLeft());
 			inst.setType(this.getType());
-			inst.setVersion(this.getVersion());
 			inst.setLabelFormatContent(this.getLabelFormatContent());
-			inst.setImageLabelShow(this.getImageLabelShow());
-			inst.setCreateBy(this.getCreateBy());
-			inst.setDeleted(this.getDeleted());
+			inst.setImageMarginBottom(this.getImageMarginBottom());
 			inst.setImageColId(this.getImageColId());
-			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());
-			inst.setDeleteTime(this.getDeleteTime());
-			inst.setIsCustom(this.getIsCustom());
-			inst.setTenantId(this.getTenantId());
-			inst.setDeleteBy(this.getDeleteBy());
+			inst.setImageMarginTop(this.getImageMarginTop());
 			inst.setId(this.getId());
 			inst.setImageType(this.getImageType());
 			inst.setImageShow(this.getImageShow());
+			inst.setImageWidth(this.getImageWidth());
+			inst.setLabelTableMarginRight(this.getLabelTableMarginRight());
+			inst.setColIds(this.getColIds());
+			inst.setImagePosition(this.getImagePosition());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setImageMarginRight(this.getImageMarginRight());
+			inst.setVersion(this.getVersion());
+			inst.setImageHeight(this.getImageHeight());
+			inst.setImageLabelShow(this.getImageLabelShow());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setLabelTableMarginTop(this.getLabelTableMarginTop());
+			inst.setIsCustom(this.getIsCustom());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setLabelTableMarginBottom(this.getLabelTableMarginBottom());
 			if(all) {
 				inst.setAssetLabelColumnlList(this.getAssetLabelColumnlList());
 				inst.setAssetLabelItemList(this.getAssetLabelItemList());

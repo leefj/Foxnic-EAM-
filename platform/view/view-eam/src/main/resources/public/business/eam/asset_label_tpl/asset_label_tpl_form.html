@@ -2,7 +2,7 @@
 /**
  * 标签模版 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-02 20:48:45
+ * @since 2022-12-05 22:44:12
  */
  -->
  <!DOCTYPE html>
@@ -127,6 +127,86 @@
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备注')}">备注</div></div>
                     <div class="layui-input-block layui-input-block-c1">
                         <input lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入'+'备注') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
+                <!-- number_input : 表格marginTop(mm) ,  labelTableMarginTop  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('表格marginTop(mm)')}">表格marginTop(mm)</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="labelTableMarginTop" id="labelTableMarginTop" name="labelTableMarginTop" th:placeholder="${ lang.translate('请输入'+'表格marginTop(mm)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 表格marginBottom(mm) ,  labelTableMarginBottom  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('表格marginBottom(mm)')}">表格marginBottom(mm)</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="labelTableMarginBottom" id="labelTableMarginBottom" name="labelTableMarginBottom" th:placeholder="${ lang.translate('请输入'+'表格marginBottom(mm)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 表格marginLeft(mm) ,  labelTableMarginLeft  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('表格marginLeft(mm)')}">表格marginLeft(mm)</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="labelTableMarginLeft" id="labelTableMarginLeft" name="labelTableMarginLeft" th:placeholder="${ lang.translate('请输入'+'表格marginLeft(mm)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 表格marginRight(mm) ,  labelTableMarginRight  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('表格marginRight(mm)')}">表格marginRight(mm)</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="labelTableMarginRight" id="labelTableMarginRight" name="labelTableMarginRight" th:placeholder="${ lang.translate('请输入'+'表格marginRight(mm)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 图片marginTop(mm) ,  imageMarginTop  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('图片marginTop(mm)')}">图片marginTop(mm)</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="imageMarginTop" id="imageMarginTop" name="imageMarginTop" th:placeholder="${ lang.translate('请输入'+'图片marginTop(mm)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 图片marginBottom(mm) ,  imageMarginBottom  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('图片marginBottom(mm)')}">图片marginBottom(mm)</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="imageMarginBottom" id="imageMarginBottom" name="imageMarginBottom" th:placeholder="${ lang.translate('请输入'+'图片marginBottom(mm)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 图片marginLeft(mm) ,  imageMarginLeft  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('图片marginLeft(mm)')}">图片marginLeft(mm)</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="imageMarginLeft" id="imageMarginLeft" name="imageMarginLeft" th:placeholder="${ lang.translate('请输入'+'图片marginLeft(mm)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 图片marginRight(mm) ,  imageMarginRight  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('图片marginRight(mm)')}">图片marginRight(mm)</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="imageMarginRight" id="imageMarginRight" name="imageMarginRight" th:placeholder="${ lang.translate('请输入'+'图片marginRight(mm)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 图片宽度 ,  imageWidth  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('图片宽度')}">图片宽度</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="imageWidth" id="imageWidth" name="imageWidth" th:placeholder="${ lang.translate('请输入'+'图片宽度') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
+                    </div>
+                </div>
+            
+                <!-- number_input : 图片高度 ,  imageHeight  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('图片高度')}">图片高度</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="imageHeight" id="imageHeight" name="imageHeight" th:placeholder="${ lang.translate('请输入'+'图片高度') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
