@@ -14,8 +14,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-02 20:51:21
- * @sign EBB0654ADB9D4CF7C7925B4F92A81B40
+ * @since 2022-12-05 15:28:41
+ * @sign E6EA43C486104765645A43CCB9B5C5BA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -92,14 +92,14 @@ public class AssetLabelMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabel,java.math.BigDecimal> LABEL_TABLE_MARGIN_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabel.class ,LABEL_TABLE_MARGIN, java.math.BigDecimal.class, "标签间隔", "标签间隔", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 字体大小 , 类型: java.lang.Integer
+	 * 字体大小(mm) , 类型: java.math.BigDecimal
 	*/
 	public static final String LABEL_KEY_FONT_SIZE="labelKeyFontSize";
 	
 	/**
-	 * 字体大小 , 类型: java.lang.Integer
+	 * 字体大小(mm) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabel,java.lang.Integer> LABEL_KEY_FONT_SIZE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabel.class ,LABEL_KEY_FONT_SIZE, java.lang.Integer.class, "字体大小", "字体大小", java.lang.Integer.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabel,java.math.BigDecimal> LABEL_KEY_FONT_SIZE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabel.class ,LABEL_KEY_FONT_SIZE, java.math.BigDecimal.class, "字体大小(mm)", "字体大小(mm)", java.math.BigDecimal.class, null);
 	
 	/**
 	 * Key宽度 , 类型: java.math.BigDecimal
@@ -112,14 +112,14 @@ public class AssetLabelMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabel,java.math.BigDecimal> LABEL_KEY_WIDTH_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabel.class ,LABEL_KEY_WIDTH, java.math.BigDecimal.class, "Key宽度", "Key宽度", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 字体大小 , 类型: java.lang.Integer
+	 * 字体大小(mm) , 类型: java.math.BigDecimal
 	*/
 	public static final String LABEL_VALUE_FONT_SIZE="labelValueFontSize";
 	
 	/**
-	 * 字体大小 , 类型: java.lang.Integer
+	 * 字体大小(mm) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabel,java.lang.Integer> LABEL_VALUE_FONT_SIZE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabel.class ,LABEL_VALUE_FONT_SIZE, java.lang.Integer.class, "字体大小", "字体大小", java.lang.Integer.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabel,java.math.BigDecimal> LABEL_VALUE_FONT_SIZE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabel.class ,LABEL_VALUE_FONT_SIZE, java.math.BigDecimal.class, "字体大小(mm)", "字体大小(mm)", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 图像容器大小(mm) , 类型: java.math.BigDecimal
@@ -132,24 +132,44 @@ public class AssetLabelMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabel,java.math.BigDecimal> IMAGE_CONTAIN_HEIGHT_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabel.class ,IMAGE_CONTAIN_HEIGHT, java.math.BigDecimal.class, "图像容器大小(mm)", "图像容器大小(mm)", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 图形宽度 , 类型: java.lang.Integer
+	 * 图形宽度 , 类型: java.math.BigDecimal
 	*/
 	public static final String IMAGE_WIDTH="imageWidth";
 	
 	/**
-	 * 图形宽度 , 类型: java.lang.Integer
+	 * 图形宽度 , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabel,java.lang.Integer> IMAGE_WIDTH_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabel.class ,IMAGE_WIDTH, java.lang.Integer.class, "图形宽度", "图形宽度", java.lang.Integer.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabel,java.math.BigDecimal> IMAGE_WIDTH_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabel.class ,IMAGE_WIDTH, java.math.BigDecimal.class, "图形宽度", "图形宽度", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 图形高度 , 类型: java.lang.Integer
+	 * 图形高度 , 类型: java.math.BigDecimal
 	*/
 	public static final String IMAGE_HEIGHT="imageHeight";
 	
 	/**
-	 * 图形高度 , 类型: java.lang.Integer
+	 * 图形高度 , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabel,java.lang.Integer> IMAGE_HEIGHT_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabel.class ,IMAGE_HEIGHT, java.lang.Integer.class, "图形高度", "图形高度", java.lang.Integer.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabel,java.math.BigDecimal> IMAGE_HEIGHT_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabel.class ,IMAGE_HEIGHT, java.math.BigDecimal.class, "图形高度", "图形高度", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 图片marginTop , 类型: java.math.BigDecimal
+	*/
+	public static final String IMAGE_MARGIN_TOP="imageMarginTop";
+	
+	/**
+	 * 图片marginTop , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabel,java.math.BigDecimal> IMAGE_MARGIN_TOP_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabel.class ,IMAGE_MARGIN_TOP, java.math.BigDecimal.class, "图片marginTop", "图片marginTop", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 图片marginBottom , 类型: java.math.BigDecimal
+	*/
+	public static final String IMAGE_MARGIN_BOTTOM="imageMarginBottom";
+	
+	/**
+	 * 图片marginBottom , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabel,java.math.BigDecimal> IMAGE_MARGIN_BOTTOM_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabel.class ,IMAGE_MARGIN_BOTTOM, java.math.BigDecimal.class, "图片marginBottom", "图片marginBottom", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 纸张类型 , 类型: java.lang.String
@@ -284,7 +304,7 @@ public class AssetLabelMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CODE , LABEL_TPL_ID , LABEL_WIDTH , LABEL_HEIGHT , LABEL_LAYOUT , LABEL_TABLE_MARGIN , LABEL_KEY_FONT_SIZE , LABEL_KEY_WIDTH , LABEL_VALUE_FONT_SIZE , IMAGE_CONTAIN_HEIGHT , IMAGE_WIDTH , IMAGE_HEIGHT , PAPER_TYPE_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSET_TPL , ASSET_PAPER , ASSET_LABEL_COLUMN_LIST };
+	public static final String[] $PROPS={ ID , CODE , LABEL_TPL_ID , LABEL_WIDTH , LABEL_HEIGHT , LABEL_LAYOUT , LABEL_TABLE_MARGIN , LABEL_KEY_FONT_SIZE , LABEL_KEY_WIDTH , LABEL_VALUE_FONT_SIZE , IMAGE_CONTAIN_HEIGHT , IMAGE_WIDTH , IMAGE_HEIGHT , IMAGE_MARGIN_TOP , IMAGE_MARGIN_BOTTOM , PAPER_TYPE_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSET_TPL , ASSET_PAPER , ASSET_LABEL_COLUMN_LIST };
 	
 	/**
 	 * 代理类
@@ -372,11 +392,11 @@ public class AssetLabelMeta {
 		}
 		
 		/**
-		 * 设置 字体大小
-		 * @param labelKeyFontSize 字体大小
+		 * 设置 字体大小(mm)
+		 * @param labelKeyFontSize 字体大小(mm)
 		 * @return 当前对象
 		*/
-		public AssetLabel setLabelKeyFontSize(Integer labelKeyFontSize) {
+		public AssetLabel setLabelKeyFontSize(BigDecimal labelKeyFontSize) {
 			super.change(LABEL_KEY_FONT_SIZE,super.getLabelKeyFontSize(),labelKeyFontSize);
 			super.setLabelKeyFontSize(labelKeyFontSize);
 			return this;
@@ -394,11 +414,11 @@ public class AssetLabelMeta {
 		}
 		
 		/**
-		 * 设置 字体大小
-		 * @param labelValueFontSize 字体大小
+		 * 设置 字体大小(mm)
+		 * @param labelValueFontSize 字体大小(mm)
 		 * @return 当前对象
 		*/
-		public AssetLabel setLabelValueFontSize(Integer labelValueFontSize) {
+		public AssetLabel setLabelValueFontSize(BigDecimal labelValueFontSize) {
 			super.change(LABEL_VALUE_FONT_SIZE,super.getLabelValueFontSize(),labelValueFontSize);
 			super.setLabelValueFontSize(labelValueFontSize);
 			return this;
@@ -420,7 +440,7 @@ public class AssetLabelMeta {
 		 * @param imageWidth 图形宽度
 		 * @return 当前对象
 		*/
-		public AssetLabel setImageWidth(Integer imageWidth) {
+		public AssetLabel setImageWidth(BigDecimal imageWidth) {
 			super.change(IMAGE_WIDTH,super.getImageWidth(),imageWidth);
 			super.setImageWidth(imageWidth);
 			return this;
@@ -431,9 +451,31 @@ public class AssetLabelMeta {
 		 * @param imageHeight 图形高度
 		 * @return 当前对象
 		*/
-		public AssetLabel setImageHeight(Integer imageHeight) {
+		public AssetLabel setImageHeight(BigDecimal imageHeight) {
 			super.change(IMAGE_HEIGHT,super.getImageHeight(),imageHeight);
 			super.setImageHeight(imageHeight);
+			return this;
+		}
+		
+		/**
+		 * 设置 图片marginTop
+		 * @param imageMarginTop 图片marginTop
+		 * @return 当前对象
+		*/
+		public AssetLabel setImageMarginTop(BigDecimal imageMarginTop) {
+			super.change(IMAGE_MARGIN_TOP,super.getImageMarginTop(),imageMarginTop);
+			super.setImageMarginTop(imageMarginTop);
+			return this;
+		}
+		
+		/**
+		 * 设置 图片marginBottom
+		 * @param imageMarginBottom 图片marginBottom
+		 * @return 当前对象
+		*/
+		public AssetLabel setImageMarginBottom(BigDecimal imageMarginBottom) {
+			super.change(IMAGE_MARGIN_BOTTOM,super.getImageMarginBottom(),imageMarginBottom);
+			super.setImageMarginBottom(imageMarginBottom);
 			return this;
 		}
 		
@@ -595,17 +637,21 @@ public class AssetLabelMeta {
 		@Transient
 		public AssetLabel duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
-			inst.setImageWidth(this.getImageWidth());
 			inst.setCode(this.getCode());
 			inst.setLabelKeyWidth(this.getLabelKeyWidth());
 			inst.setPaperTypeId(this.getPaperTypeId());
 			inst.setLabelTplId(this.getLabelTplId());
 			inst.setLabelTableMargin(this.getLabelTableMargin());
 			inst.setLabelLayout(this.getLabelLayout());
-			inst.setImageContainHeight(this.getImageContainHeight());
 			inst.setLabelWidth(this.getLabelWidth());
-			inst.setUpdateTime(this.getUpdateTime());
 			inst.setLabelValueFontSize(this.getLabelValueFontSize());
+			inst.setImageMarginBottom(this.getImageMarginBottom());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setImageMarginTop(this.getImageMarginTop());
+			inst.setId(this.getId());
+			inst.setImageWidth(this.getImageWidth());
+			inst.setImageContainHeight(this.getImageContainHeight());
+			inst.setUpdateTime(this.getUpdateTime());
 			inst.setLabelHeight(this.getLabelHeight());
 			inst.setVersion(this.getVersion());
 			inst.setImageHeight(this.getImageHeight());
@@ -613,11 +659,9 @@ public class AssetLabelMeta {
 			inst.setDeleted(this.getDeleted());
 			inst.setLabelKeyFontSize(this.getLabelKeyFontSize());
 			inst.setCreateTime(this.getCreateTime());
-			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
-			inst.setId(this.getId());
 			if(all) {
 				inst.setAssetLabelColumnList(this.getAssetLabelColumnList());
 				inst.setAssetTpl(this.getAssetTpl());

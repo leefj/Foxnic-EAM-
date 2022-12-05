@@ -3,17 +3,13 @@ package com.dt.platform.eam.service.impl;
 
 import com.dt.platform.constants.enums.eam.AsseLabelPrintCodeEnum;
 import com.dt.platform.constants.enums.eam.AsseLabelTableCellTypeEnum;
-import com.dt.platform.constants.enums.eam.AssetDepreciationCodeEnum;
-import com.dt.platform.domain.eam.AssetLabelCol;
 import com.dt.platform.domain.eam.AssetLabelLayout;
 import com.dt.platform.domain.eam.meta.AssetLabelPrint;
-import com.dt.platform.eam.service.IAssetLabelPaperService;
 import com.dt.platform.eam.service.IAssetLabelPrintService;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.google.zxing.BarcodeFormat;
-import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
@@ -27,20 +23,17 @@ import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
-import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.element.*;
-import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.properties.*;
+import org.checkerframework.checker.tainting.qual.Untainted;
 import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Comparator;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -51,7 +44,7 @@ import java.util.stream.Collectors;
  * </p>
  * @author 金杰 , maillank@qq.com
  * @since 2021-09-09 12:26:14
-*/
+ */
 @Service("AssetLabelPrintSpecialService")
 public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 
@@ -93,20 +86,20 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 				KeyFont =PdfFontFactory.createFont("STSong-Light","UniGB-UCS2-H");
 				valueFont =PdfFontFactory.createFont("STSong-Light","UniGB-UCS2-H");
 			}
+
+			List<AssetLabelLayout> layoutList=printData.getAssetLabelLayoutList().stream().sorted(Comparator.comparing(AssetLabelLayout::getSort)).collect(Collectors.toList());
 			Float tableWidthPoint=printData.getTableWidthMM()*printData.PAGE_SIZE_A4_POINT_PER_MM;
 			Float tableHeightPoint=printData.getTableHeightMM()*printData.PAGE_SIZE_A4_POINT_PER_MM;
+			Float labelWidthPoint=printData.getPointByMM(Float.parseFloat(printData.getLabel().getLabelKeyWidth().toString()));
+			Float valueWidthPoint=(tableWidthPoint/2-labelWidthPoint);
+
+			Float imageMarginTop=printData.getPointByMM(Float.parseFloat(printData.getLabel().getImageMarginTop().toString()));
+			Float imageMarginBottom=printData.getPointByMM(Float.parseFloat(printData.getLabel().getImageMarginBottom().toString()));
 
 			//表的label value 宽度
 			PageSize pageSize =new PageSize(printData.getPageSizeWidth(),printData.getPageSizeHeight());
 			Document document = new Document(pdf, pageSize);
 			document.setMargins(0,0,0,0);
-			System.out.println("document:"+document);
-			System.out.println("print setting option list:");
-			System.out.println("print page type:"+printData.getPaperType());
-			System.out.println("print page columnNumber:"+printData.getPrintColumnNumber());
-			System.out.println("print page width(point):"+pageSize.getWidth());
-			System.out.println("print page height(point):"+pageSize.getHeight());
-
 			Div div = new Div();
 			div.setKeepTogether(true);
 			div.setWidth(UnitValue.createPercentValue(100));
@@ -115,6 +108,15 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 			div.setMargin(0);
 			div.setPadding(0);
 			Paragraph paragraphIncludeTable=null;
+
+			System.out.println("document:"+document);
+			System.out.println("print setting option list:");
+			System.out.println("print page type:"+printData.getPaperType());
+			System.out.println("print page columnNumber:"+printData.getPrintColumnNumber());
+			System.out.println("print page width(point):"+pageSize.getWidth());
+			System.out.println("print page height(point):"+pageSize.getHeight());
+
+
 			if(assetList!=null){
 				System.out.println("print asset label number:"+assetList.size());
 				for(int i=0;i<assetList.size();i++){
@@ -134,9 +136,6 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 						paragraphIncludeTable.setPaddings(0,0,0,0);
 					}
 
-					List<AssetLabelLayout> layoutList=printData.getAssetLabelLayoutList().stream().sorted(Comparator.comparing(AssetLabelLayout::getSort)).collect(Collectors.toList()); ;
-					Float labelWidthPoint=printData.getPointByMM(Float.parseFloat(printData.getLabel().getLabelKeyWidth().toString()));
-					Float valueWidthPoint=(tableWidthPoint/2-labelWidthPoint);
 					//设置表格列数
 					Table table = new Table(4);
 					//table.setFixedLayout();
@@ -165,7 +164,8 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 					System.out.println("print table margin right:"+table.getPaddingRight());
 
 					//开始绘制表格
-					Float labelSizePoint=printData.getPointByMM(Float.parseFloat(printData.getLabel().getLabelKeyFontSize().toString()));
+					Float keySizePoint=printData.getPointByMM(Float.parseFloat(printData.getLabel().getLabelKeyFontSize().toString()));
+					Float labelSizePoint=printData.getPointByMM(Float.parseFloat(printData.getLabel().getLabelValueFontSize().toString()));
 					for(int j=0;j<layoutList.size();j++){
 						AssetLabelLayout cellLayout= layoutList.get(j);
 						Float cellHeightPoint=printData.getPointByMM(Float.parseFloat(cellLayout.getRowHeight().toString()));
@@ -179,6 +179,7 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 						if(AsseLabelTableCellTypeEnum.LABEL.code().equals(layoutType)){
 							cell.setHeight(cellHeightPoint);
 							cell.setMinHeight(cellHeightPoint);
+							cell.setMaxHeight(cellHeightPoint);
 							cell.setWidth(labelWidthPoint);
 							cell.setTextAlignment(TextAlignment.CENTER);
 							cell.setHorizontalAlignment(HorizontalAlignment.CENTER);
@@ -188,26 +189,37 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 						}else if(AsseLabelTableCellTypeEnum.VALUE.code().equals(layoutType)){
 							cell.setHeight(cellHeightPoint);
 							cell.setMinHeight(cellHeightPoint);
+							cell.setMaxHeight(cellHeightPoint);
 							cell.setWidth(valueWidthPoint);
 							cell.setTextAlignment(TextAlignment.LEFT);
 							cell.setHorizontalAlignment(HorizontalAlignment.CENTER);
 							cell.setVerticalAlignment(VerticalAlignment.MIDDLE);
+						//	cell.setBackgroundColor(ColorConstants.YELLOW);
 							colValue=asset.getOrDefault(layoutCode,"").toString();
+
 						}else if(AsseLabelTableCellTypeEnum.QR_CODE.code().equals(layoutType)){
 							//如果是二维码,高度就是设置的高度
-					    	cell.setHorizontalAlignment(HorizontalAlignment.CENTER);
+//							cell.setHeight(cellHeightPoint);
+//							cell.setMinHeight(cellHeightPoint);
+							cell.setHorizontalAlignment(HorizontalAlignment.CENTER);
 							cell.setVerticalAlignment(VerticalAlignment.MIDDLE);
-							BigDecimal wBig=new BigDecimal(valueWidthPoint.toString());
-							int w=wBig.intValue();
-							BigDecimal hBig=new BigDecimal(cellHeightPoint.toString());
-							int h=hBig.intValue();
-							int v=w>h?h:w;
-							System.out.println("value width:"+wBig.toString()+",after:"+w);
-							Image img=this.createImage(AsseLabelTableCellTypeEnum.QR_CODE.code(),assetCode,v-2,v-2);
+							cell.setWidth(valueWidthPoint);
+							BigDecimal settingImageWidth=new BigDecimal(valueWidthPoint.toString());
+							int w=settingImageWidth.intValue();
+							BigDecimal cellImageWidth=new BigDecimal(cellHeightPoint.toString());
+							int h=cellImageWidth.intValue();
+							int v=w>h?w:h;
+							System.out.println(" settingImageWidth width:"+settingImageWidth.toString()+",after:"+w);
+							System.out.println("  cellImageWidth width:"+h);
+							Image img=this.createImage(AsseLabelTableCellTypeEnum.QR_CODE.code(),assetCode,v-5,v-5);
 							Paragraph p=new Paragraph();
+							p.setMarginTop(0);
+							p.setMarginTop(imageMarginTop);
+							p.setMarginBottom(imageMarginBottom);
 							p.add(img);
 							cell.add(p);
 							table.addCell(cell);
+					//		table.startNewRow();
 							continue;
 						}else if(AsseLabelTableCellTypeEnum.BAR_CODE.code().equals(layoutType)){
 							//如果是二维码,高度就是设置的高度

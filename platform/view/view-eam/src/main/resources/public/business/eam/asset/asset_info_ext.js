@@ -142,10 +142,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             }
             ps.ownerCode="TPL";
             ps.businessCode="123456789";
-
             fox.submit(downloadUrl,ps,"post",function(){
-
-                layer.closeAll('loading');
                 console.log("execute finish");
             });
         },
@@ -314,7 +311,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             ps.ownerCode=OWNER_CODE;
             fox.submit(downloadUrl,ps,"post",function(r){
                 console.log("execute finish",r,"r");
-                layer.closeAll('loading');
             });
 
 
