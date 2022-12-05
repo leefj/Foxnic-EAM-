@@ -2,11 +2,10 @@
 update sys_config set value='2.4.0' where code='system.version.code';
 update sys_config set value='PROD' where code='system.version.name';
 update sys_config set value='PROD' where code='system.version.type';
-
+update sys_config set value='PROD' where code='system.version.type';
 update sys_config set value='0' where code='system.index.portal.enable';
+update sys_config set value='0' where code='system.external.portal.enable';
 
--- update sys_config set value='DEV' where code='system.version.name';
--- update sys_config set value='DEV' where code='system.version.type';
 update sys_config set value='{account:"",password:"",captcha:""}'  where code='system.login.default';
 update sys_config set value=0 where code='system.login.captcha.any';
 update sys_config set value='FoxnicT001' where value='system.password.default';
@@ -27,11 +26,11 @@ update sys_menu set hidden=1 where id='610152549789466624';
 -- 回收站
 update sys_menu set hidden=1 where id='473612721665867776';
 -- 流程中心
---update sys_menu set hidden=1 where id='577783476611198976';
+-- update sys_menu set hidden=1 where id='577783476611198976';
 -- 工单
 update sys_menu set hidden=1 where id='472358185009676289';
 -- 知识库
---update sys_menu set hidden=1 where id='472036810977968129';
+-- update sys_menu set hidden=1 where id='472036810977968129';
 -- 合同管理
 update sys_menu set hidden=1 where id='474157822892834817';
 -- 运维

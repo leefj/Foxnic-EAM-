@@ -172,7 +172,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             var downloadUrl="/service-vehicle/vehicle-info/export-excel"
             ps.id="123456789";
             fox.submit(downloadUrl,ps,"post",function(){
-                layer.closeAll('loading');
             });
         },
         batchInsert:function(data,item){

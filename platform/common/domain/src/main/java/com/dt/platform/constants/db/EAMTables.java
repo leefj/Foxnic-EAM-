@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-12-02 20:50:44
+ * @since 2022-12-05 15:07:58
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -5135,9 +5135,9 @@ public class EAMTables {
 		public static final DBField LABEL_TABLE_MARGIN = new DBField(DBDataType.DECIMAL , "label_table_margin","labelTableMargin","标签间隔","标签间隔",false,false,true);
 		
 		/**
-		 * 字体大小
+		 * 字体大小(mm)
 		*/
-		public static final DBField LABEL_KEY_FONT_SIZE = new DBField(DBDataType.INTEGER , "label_key_font_size","labelKeyFontSize","字体大小","字体大小",false,false,true);
+		public static final DBField LABEL_KEY_FONT_SIZE = new DBField(DBDataType.DECIMAL , "label_key_font_size","labelKeyFontSize","字体大小(mm)","字体大小(mm)",false,false,true);
 		
 		/**
 		 * Key宽度
@@ -5145,9 +5145,9 @@ public class EAMTables {
 		public static final DBField LABEL_KEY_WIDTH = new DBField(DBDataType.DECIMAL , "label_key_width","labelKeyWidth","Key宽度","Key宽度",false,false,true);
 		
 		/**
-		 * 字体大小
+		 * 字体大小(mm)
 		*/
-		public static final DBField LABEL_VALUE_FONT_SIZE = new DBField(DBDataType.INTEGER , "label_value_font_size","labelValueFontSize","字体大小","字体大小",false,false,true);
+		public static final DBField LABEL_VALUE_FONT_SIZE = new DBField(DBDataType.DECIMAL , "label_value_font_size","labelValueFontSize","字体大小(mm)","字体大小(mm)",false,false,true);
 		
 		/**
 		 * 图像容器大小(mm)
@@ -5157,12 +5157,22 @@ public class EAMTables {
 		/**
 		 * 图形宽度
 		*/
-		public static final DBField IMAGE_WIDTH = new DBField(DBDataType.INTEGER , "image_width","imageWidth","图形宽度","图形宽度",false,false,true);
+		public static final DBField IMAGE_WIDTH = new DBField(DBDataType.DECIMAL , "image_width","imageWidth","图形宽度","图形宽度",false,false,true);
 		
 		/**
 		 * 图形高度
 		*/
-		public static final DBField IMAGE_HEIGHT = new DBField(DBDataType.INTEGER , "image_height","imageHeight","图形高度","图形高度",false,false,true);
+		public static final DBField IMAGE_HEIGHT = new DBField(DBDataType.DECIMAL , "image_height","imageHeight","图形高度","图形高度",false,false,true);
+		
+		/**
+		 * 图片marginTop
+		*/
+		public static final DBField IMAGE_MARGIN_TOP = new DBField(DBDataType.DECIMAL , "image_margin_top","imageMarginTop","图片marginTop","图片marginTop",false,false,true);
+		
+		/**
+		 * 图片marginBottom
+		*/
+		public static final DBField IMAGE_MARGIN_BOTTOM = new DBField(DBDataType.DECIMAL , "image_margin_bottom","imageMarginBottom","图片marginBottom","图片marginBottom",false,false,true);
 		
 		/**
 		 * 纸张类型
@@ -5214,7 +5224,7 @@ public class EAMTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public EAM_ASSET_LABEL() {
-			this.init($NAME,"资产标签" , ID , CODE , LABEL_TPL_ID , LABEL_WIDTH , LABEL_HEIGHT , LABEL_LAYOUT , LABEL_TABLE_MARGIN , LABEL_KEY_FONT_SIZE , LABEL_KEY_WIDTH , LABEL_VALUE_FONT_SIZE , IMAGE_CONTAIN_HEIGHT , IMAGE_WIDTH , IMAGE_HEIGHT , PAPER_TYPE_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"资产标签" , ID , CODE , LABEL_TPL_ID , LABEL_WIDTH , LABEL_HEIGHT , LABEL_LAYOUT , LABEL_TABLE_MARGIN , LABEL_KEY_FONT_SIZE , LABEL_KEY_WIDTH , LABEL_VALUE_FONT_SIZE , IMAGE_CONTAIN_HEIGHT , IMAGE_WIDTH , IMAGE_HEIGHT , IMAGE_MARGIN_TOP , IMAGE_MARGIN_BOTTOM , PAPER_TYPE_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final EAM_ASSET_LABEL $TABLE=new EAM_ASSET_LABEL();
 	}
@@ -5355,9 +5365,9 @@ public class EAMTables {
 		public static final DBField ROW_NUMBER = new DBField(DBDataType.INTEGER , "row_number","rowNumber","行数","行数",false,false,true);
 		
 		/**
-		 * 行高度
+		 * 行高度(mm)
 		*/
-		public static final DBField ROW_HEIGHT = new DBField(DBDataType.DECIMAL , "row_height","rowHeight","行高度","行高度",false,false,true);
+		public static final DBField ROW_HEIGHT = new DBField(DBDataType.DECIMAL , "row_height","rowHeight","行高度(mm)","行高度(mm)",false,false,true);
 		
 		/**
 		 * row_span
@@ -5445,14 +5455,14 @@ public class EAMTables {
 		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","是否启用","是否启用",false,false,true);
 		
 		/**
-		 * 长度
+		 * 长度(point)
 		*/
-		public static final DBField W = new DBField(DBDataType.DECIMAL , "w","w","长度","长度",false,false,true);
+		public static final DBField W = new DBField(DBDataType.DECIMAL , "w","w","长度(point)","长度(point)",false,false,true);
 		
 		/**
-		 * 宽带
+		 * 宽带(point)
 		*/
-		public static final DBField H = new DBField(DBDataType.DECIMAL , "h","h","宽带","宽带",false,false,true);
+		public static final DBField H = new DBField(DBDataType.DECIMAL , "h","h","宽带(point)","宽带(point)",false,false,true);
 		
 		/**
 		 * 实现动作

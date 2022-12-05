@@ -63,11 +63,7 @@ function FormPage() {
 			ps.categoryId="none"
 			ps.ownerCode="TPL";
 			ps.businessCode="123456789";
-			var task=setTimeout(function(){layer.load(2);},10);
 			fox.submit(downloadUrl,ps,"post",function(){
-				clearTimeout(task);
-				layer.closeAll('loading');
-				console.log("execute finish");
 			});
 		});
 
