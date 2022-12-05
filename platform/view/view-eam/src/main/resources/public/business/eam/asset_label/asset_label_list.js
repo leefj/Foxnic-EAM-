@@ -1,7 +1,7 @@
 /**
  * 资产标签 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-05 15:28:42
+ * @since 2022-12-05 20:04:03
  */
 
 
@@ -81,10 +81,14 @@ function ListPage() {
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编码') , templet: function (d) { return templet('code',d.code,d);}  }
 					,{ field: 'labelTplId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标签') , templet: function (d) { return templet('labelTplId',d.labelTplId,d);}  }
-					,{ field: 'labelWidth', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('标签宽度(mm)') , templet: function (d) { return templet('labelWidth',d.labelWidth,d);}  }
-					,{ field: 'labelHeight', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('标签高度(mm)') , templet: function (d) { return templet('labelHeight',d.labelHeight,d);}  }
+					,{ field: 'labelWidth', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('标签宽度(cm)') , templet: function (d) { return templet('labelWidth',d.labelWidth,d);}  }
+					,{ field: 'labelHeight', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('标签高度(cm)') , templet: function (d) { return templet('labelHeight',d.labelHeight,d);}  }
 					,{ field: 'labelLayout', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标签布局(暂时不用)') , templet: function (d) { return templet('labelLayout',d.labelLayout,d);}  }
 					,{ field: 'labelTableMargin', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('标签间隔') , templet: function (d) { return templet('labelTableMargin',d.labelTableMargin,d);}  }
+					,{ field: 'labelTableMarginTop', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图片marginTop(mm)') , templet: function (d) { return templet('labelTableMarginTop',d.labelTableMarginTop,d);}  }
+					,{ field: 'labelTableMarginBottom', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图片marginBottom(mm)') , templet: function (d) { return templet('labelTableMarginBottom',d.labelTableMarginBottom,d);}  }
+					,{ field: 'labelTableMarginLeft', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图片marginLeft(mm)') , templet: function (d) { return templet('labelTableMarginLeft',d.labelTableMarginLeft,d);}  }
+					,{ field: 'labelTableMarginRight', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图片marginRight(mm)') , templet: function (d) { return templet('labelTableMarginRight',d.labelTableMarginRight,d);}  }
 					,{ field: 'labelKeyFontSize', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('字体大小(mm)') , templet: function (d) { return templet('labelKeyFontSize',d.labelKeyFontSize,d);}  }
 					,{ field: 'labelKeyWidth', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('Key宽度') , templet: function (d) { return templet('labelKeyWidth',d.labelKeyWidth,d);}  }
 					,{ field: 'labelValueFontSize', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('字体大小(mm)') , templet: function (d) { return templet('labelValueFontSize',d.labelValueFontSize,d);}  }
@@ -93,6 +97,8 @@ function ListPage() {
 					,{ field: 'imageHeight', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图形高度') , templet: function (d) { return templet('imageHeight',d.imageHeight,d);}  }
 					,{ field: 'imageMarginTop', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图片marginTop') , templet: function (d) { return templet('imageMarginTop',d.imageMarginTop,d);}  }
 					,{ field: 'imageMarginBottom', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图片marginBottom') , templet: function (d) { return templet('imageMarginBottom',d.imageMarginBottom,d);}  }
+					,{ field: 'imageMarginLeft', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图片marginLeft') , templet: function (d) { return templet('imageMarginLeft',d.imageMarginLeft,d);}  }
+					,{ field: 'imageMarginRight', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图片marginRight') , templet: function (d) { return templet('imageMarginRight',d.imageMarginRight,d);}  }
 					,{ field: 'paperTypeId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('纸张类型'), templet:function (d){ return templet('paperTypeId',fox.getEnumText(RADIO_PAPERTYPEID_DATA,d.paperTypeId,'','paperTypeId'),d);}}
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}

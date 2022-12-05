@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
+import java.math.BigDecimal;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
@@ -26,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 标签模版
  * <p>标签模版 , 数据表 eam_asset_label_tpl 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-02 20:48:43
- * @sign CADACBDD190E61315D4C7F934A1BA558
+ * @since 2022-12-05 22:44:11
+ * @sign AF9CCA3D3847BB3ACD2C94E6AD6646C9
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -162,6 +163,66 @@ public class AssetLabelTpl extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
+	
+	/**
+	 * 表格marginTop(mm)：表格marginTop(mm)
+	*/
+	@ApiModelProperty(required = false,value="表格marginTop(mm)" , notes = "表格marginTop(mm)")
+	private BigDecimal labelTableMarginTop;
+	
+	/**
+	 * 表格marginBottom(mm)：表格marginBottom(mm)
+	*/
+	@ApiModelProperty(required = false,value="表格marginBottom(mm)" , notes = "表格marginBottom(mm)" , example = "0.00")
+	private BigDecimal labelTableMarginBottom;
+	
+	/**
+	 * 表格marginLeft(mm)：表格marginLeft(mm)
+	*/
+	@ApiModelProperty(required = false,value="表格marginLeft(mm)" , notes = "表格marginLeft(mm)" , example = "0.00")
+	private BigDecimal labelTableMarginLeft;
+	
+	/**
+	 * 表格marginRight(mm)：表格marginRight(mm)
+	*/
+	@ApiModelProperty(required = false,value="表格marginRight(mm)" , notes = "表格marginRight(mm)" , example = "0.00")
+	private BigDecimal labelTableMarginRight;
+	
+	/**
+	 * 图片marginTop(mm)：图片marginTop(mm)
+	*/
+	@ApiModelProperty(required = false,value="图片marginTop(mm)" , notes = "图片marginTop(mm)" , example = "0.00")
+	private BigDecimal imageMarginTop;
+	
+	/**
+	 * 图片marginBottom(mm)：图片marginBottom(mm)
+	*/
+	@ApiModelProperty(required = false,value="图片marginBottom(mm)" , notes = "图片marginBottom(mm)" , example = "0.00")
+	private BigDecimal imageMarginBottom;
+	
+	/**
+	 * 图片marginLeft(mm)：图片marginLeft(mm)
+	*/
+	@ApiModelProperty(required = false,value="图片marginLeft(mm)" , notes = "图片marginLeft(mm)" , example = "0.00")
+	private BigDecimal imageMarginLeft;
+	
+	/**
+	 * 图片marginRight(mm)：图片marginRight(mm)
+	*/
+	@ApiModelProperty(required = false,value="图片marginRight(mm)" , notes = "图片marginRight(mm)" , example = "0.00")
+	private BigDecimal imageMarginRight;
+	
+	/**
+	 * 图片宽度：图片宽度
+	*/
+	@ApiModelProperty(required = false,value="图片宽度" , notes = "图片宽度")
+	private BigDecimal imageWidth;
+	
+	/**
+	 * 图片高度：图片高度
+	*/
+	@ApiModelProperty(required = false,value="图片高度" , notes = "图片高度")
+	private BigDecimal imageHeight;
 	
 	/**
 	 * Item：Item
@@ -593,6 +654,196 @@ public class AssetLabelTpl extends Entity {
 	}
 	
 	/**
+	 * 获得 表格marginTop(mm)<br>
+	 * 表格marginTop(mm)
+	 * @return 表格marginTop(mm)
+	*/
+	public BigDecimal getLabelTableMarginTop() {
+		return labelTableMarginTop;
+	}
+	
+	/**
+	 * 设置 表格marginTop(mm)
+	 * @param labelTableMarginTop 表格marginTop(mm)
+	 * @return 当前对象
+	*/
+	public AssetLabelTpl setLabelTableMarginTop(BigDecimal labelTableMarginTop) {
+		this.labelTableMarginTop=labelTableMarginTop;
+		return this;
+	}
+	
+	/**
+	 * 获得 表格marginBottom(mm)<br>
+	 * 表格marginBottom(mm)
+	 * @return 表格marginBottom(mm)
+	*/
+	public BigDecimal getLabelTableMarginBottom() {
+		return labelTableMarginBottom;
+	}
+	
+	/**
+	 * 设置 表格marginBottom(mm)
+	 * @param labelTableMarginBottom 表格marginBottom(mm)
+	 * @return 当前对象
+	*/
+	public AssetLabelTpl setLabelTableMarginBottom(BigDecimal labelTableMarginBottom) {
+		this.labelTableMarginBottom=labelTableMarginBottom;
+		return this;
+	}
+	
+	/**
+	 * 获得 表格marginLeft(mm)<br>
+	 * 表格marginLeft(mm)
+	 * @return 表格marginLeft(mm)
+	*/
+	public BigDecimal getLabelTableMarginLeft() {
+		return labelTableMarginLeft;
+	}
+	
+	/**
+	 * 设置 表格marginLeft(mm)
+	 * @param labelTableMarginLeft 表格marginLeft(mm)
+	 * @return 当前对象
+	*/
+	public AssetLabelTpl setLabelTableMarginLeft(BigDecimal labelTableMarginLeft) {
+		this.labelTableMarginLeft=labelTableMarginLeft;
+		return this;
+	}
+	
+	/**
+	 * 获得 表格marginRight(mm)<br>
+	 * 表格marginRight(mm)
+	 * @return 表格marginRight(mm)
+	*/
+	public BigDecimal getLabelTableMarginRight() {
+		return labelTableMarginRight;
+	}
+	
+	/**
+	 * 设置 表格marginRight(mm)
+	 * @param labelTableMarginRight 表格marginRight(mm)
+	 * @return 当前对象
+	*/
+	public AssetLabelTpl setLabelTableMarginRight(BigDecimal labelTableMarginRight) {
+		this.labelTableMarginRight=labelTableMarginRight;
+		return this;
+	}
+	
+	/**
+	 * 获得 图片marginTop(mm)<br>
+	 * 图片marginTop(mm)
+	 * @return 图片marginTop(mm)
+	*/
+	public BigDecimal getImageMarginTop() {
+		return imageMarginTop;
+	}
+	
+	/**
+	 * 设置 图片marginTop(mm)
+	 * @param imageMarginTop 图片marginTop(mm)
+	 * @return 当前对象
+	*/
+	public AssetLabelTpl setImageMarginTop(BigDecimal imageMarginTop) {
+		this.imageMarginTop=imageMarginTop;
+		return this;
+	}
+	
+	/**
+	 * 获得 图片marginBottom(mm)<br>
+	 * 图片marginBottom(mm)
+	 * @return 图片marginBottom(mm)
+	*/
+	public BigDecimal getImageMarginBottom() {
+		return imageMarginBottom;
+	}
+	
+	/**
+	 * 设置 图片marginBottom(mm)
+	 * @param imageMarginBottom 图片marginBottom(mm)
+	 * @return 当前对象
+	*/
+	public AssetLabelTpl setImageMarginBottom(BigDecimal imageMarginBottom) {
+		this.imageMarginBottom=imageMarginBottom;
+		return this;
+	}
+	
+	/**
+	 * 获得 图片marginLeft(mm)<br>
+	 * 图片marginLeft(mm)
+	 * @return 图片marginLeft(mm)
+	*/
+	public BigDecimal getImageMarginLeft() {
+		return imageMarginLeft;
+	}
+	
+	/**
+	 * 设置 图片marginLeft(mm)
+	 * @param imageMarginLeft 图片marginLeft(mm)
+	 * @return 当前对象
+	*/
+	public AssetLabelTpl setImageMarginLeft(BigDecimal imageMarginLeft) {
+		this.imageMarginLeft=imageMarginLeft;
+		return this;
+	}
+	
+	/**
+	 * 获得 图片marginRight(mm)<br>
+	 * 图片marginRight(mm)
+	 * @return 图片marginRight(mm)
+	*/
+	public BigDecimal getImageMarginRight() {
+		return imageMarginRight;
+	}
+	
+	/**
+	 * 设置 图片marginRight(mm)
+	 * @param imageMarginRight 图片marginRight(mm)
+	 * @return 当前对象
+	*/
+	public AssetLabelTpl setImageMarginRight(BigDecimal imageMarginRight) {
+		this.imageMarginRight=imageMarginRight;
+		return this;
+	}
+	
+	/**
+	 * 获得 图片宽度<br>
+	 * 图片宽度
+	 * @return 图片宽度
+	*/
+	public BigDecimal getImageWidth() {
+		return imageWidth;
+	}
+	
+	/**
+	 * 设置 图片宽度
+	 * @param imageWidth 图片宽度
+	 * @return 当前对象
+	*/
+	public AssetLabelTpl setImageWidth(BigDecimal imageWidth) {
+		this.imageWidth=imageWidth;
+		return this;
+	}
+	
+	/**
+	 * 获得 图片高度<br>
+	 * 图片高度
+	 * @return 图片高度
+	*/
+	public BigDecimal getImageHeight() {
+		return imageHeight;
+	}
+	
+	/**
+	 * 设置 图片高度
+	 * @param imageHeight 图片高度
+	 * @return 当前对象
+	*/
+	public AssetLabelTpl setImageHeight(BigDecimal imageHeight) {
+		this.imageHeight=imageHeight;
+		return this;
+	}
+	
+	/**
 	 * 获得 Item<br>
 	 * Item
 	 * @return Item
@@ -726,26 +977,36 @@ public class AssetLabelTpl extends Entity {
 	@Transient
 	public AssetLabelTpl duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.AssetLabelTplMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetLabelTplMeta.$$proxy$$();
+		inst.setImageMarginLeft(this.getImageMarginLeft());
 		inst.setNotes(this.getNotes());
-		inst.setColIds(this.getColIds());
-		inst.setImagePosition(this.getImagePosition());
-		inst.setUpdateTime(this.getUpdateTime());
+		inst.setLabelTableMarginLeft(this.getLabelTableMarginLeft());
 		inst.setType(this.getType());
-		inst.setVersion(this.getVersion());
 		inst.setLabelFormatContent(this.getLabelFormatContent());
-		inst.setImageLabelShow(this.getImageLabelShow());
-		inst.setCreateBy(this.getCreateBy());
-		inst.setDeleted(this.getDeleted());
+		inst.setImageMarginBottom(this.getImageMarginBottom());
 		inst.setImageColId(this.getImageColId());
-		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
-		inst.setDeleteTime(this.getDeleteTime());
-		inst.setIsCustom(this.getIsCustom());
-		inst.setTenantId(this.getTenantId());
-		inst.setDeleteBy(this.getDeleteBy());
+		inst.setImageMarginTop(this.getImageMarginTop());
 		inst.setId(this.getId());
 		inst.setImageType(this.getImageType());
 		inst.setImageShow(this.getImageShow());
+		inst.setImageWidth(this.getImageWidth());
+		inst.setLabelTableMarginRight(this.getLabelTableMarginRight());
+		inst.setColIds(this.getColIds());
+		inst.setImagePosition(this.getImagePosition());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setImageMarginRight(this.getImageMarginRight());
+		inst.setVersion(this.getVersion());
+		inst.setImageHeight(this.getImageHeight());
+		inst.setImageLabelShow(this.getImageLabelShow());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setLabelTableMarginTop(this.getLabelTableMarginTop());
+		inst.setIsCustom(this.getIsCustom());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setLabelTableMarginBottom(this.getLabelTableMarginBottom());
 		if(all) {
 			inst.setAssetLabelColumnlList(this.getAssetLabelColumnlList());
 			inst.setAssetLabelItemList(this.getAssetLabelItemList());
@@ -809,50 +1070,70 @@ public class AssetLabelTpl extends Entity {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
+			this.setImageMarginLeft(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplMeta.IMAGE_MARGIN_LEFT)));
 			this.setNotes(DataParser.parse(String.class, map.get(AssetLabelTplMeta.NOTES)));
-			this.setColIds(DataParser.parse(String.class, map.get(AssetLabelTplMeta.COL_IDS)));
-			this.setImagePosition(DataParser.parse(String.class, map.get(AssetLabelTplMeta.IMAGE_POSITION)));
-			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetLabelTplMeta.UPDATE_TIME)));
+			this.setLabelTableMarginLeft(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplMeta.LABEL_TABLE_MARGIN_LEFT)));
 			this.setType(DataParser.parse(String.class, map.get(AssetLabelTplMeta.TYPE)));
-			this.setVersion(DataParser.parse(Integer.class, map.get(AssetLabelTplMeta.VERSION)));
 			this.setLabelFormatContent(DataParser.parse(String.class, map.get(AssetLabelTplMeta.LABEL_FORMAT_CONTENT)));
-			this.setImageLabelShow(DataParser.parse(String.class, map.get(AssetLabelTplMeta.IMAGE_LABEL_SHOW)));
-			this.setCreateBy(DataParser.parse(String.class, map.get(AssetLabelTplMeta.CREATE_BY)));
-			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetLabelTplMeta.DELETED)));
+			this.setImageMarginBottom(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplMeta.IMAGE_MARGIN_BOTTOM)));
 			this.setImageColId(DataParser.parse(String.class, map.get(AssetLabelTplMeta.IMAGE_COL_ID)));
-			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetLabelTplMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetLabelTplMeta.UPDATE_BY)));
-			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetLabelTplMeta.DELETE_TIME)));
-			this.setIsCustom(DataParser.parse(String.class, map.get(AssetLabelTplMeta.IS_CUSTOM)));
-			this.setTenantId(DataParser.parse(String.class, map.get(AssetLabelTplMeta.TENANT_ID)));
-			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetLabelTplMeta.DELETE_BY)));
+			this.setImageMarginTop(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplMeta.IMAGE_MARGIN_TOP)));
 			this.setId(DataParser.parse(String.class, map.get(AssetLabelTplMeta.ID)));
 			this.setImageType(DataParser.parse(String.class, map.get(AssetLabelTplMeta.IMAGE_TYPE)));
 			this.setImageShow(DataParser.parse(String.class, map.get(AssetLabelTplMeta.IMAGE_SHOW)));
+			this.setImageWidth(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplMeta.IMAGE_WIDTH)));
+			this.setLabelTableMarginRight(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplMeta.LABEL_TABLE_MARGIN_RIGHT)));
+			this.setColIds(DataParser.parse(String.class, map.get(AssetLabelTplMeta.COL_IDS)));
+			this.setImagePosition(DataParser.parse(String.class, map.get(AssetLabelTplMeta.IMAGE_POSITION)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetLabelTplMeta.UPDATE_TIME)));
+			this.setImageMarginRight(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplMeta.IMAGE_MARGIN_RIGHT)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetLabelTplMeta.VERSION)));
+			this.setImageHeight(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplMeta.IMAGE_HEIGHT)));
+			this.setImageLabelShow(DataParser.parse(String.class, map.get(AssetLabelTplMeta.IMAGE_LABEL_SHOW)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetLabelTplMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetLabelTplMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetLabelTplMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetLabelTplMeta.DELETE_TIME)));
+			this.setLabelTableMarginTop(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplMeta.LABEL_TABLE_MARGIN_TOP)));
+			this.setIsCustom(DataParser.parse(String.class, map.get(AssetLabelTplMeta.IS_CUSTOM)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetLabelTplMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetLabelTplMeta.DELETE_BY)));
+			this.setLabelTableMarginBottom(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplMeta.LABEL_TABLE_MARGIN_BOTTOM)));
 			// others
 			return true;
 		} else {
 			try {
+				this.setImageMarginLeft( (BigDecimal)map.get(AssetLabelTplMeta.IMAGE_MARGIN_LEFT));
 				this.setNotes( (String)map.get(AssetLabelTplMeta.NOTES));
-				this.setColIds( (String)map.get(AssetLabelTplMeta.COL_IDS));
-				this.setImagePosition( (String)map.get(AssetLabelTplMeta.IMAGE_POSITION));
-				this.setUpdateTime( (Date)map.get(AssetLabelTplMeta.UPDATE_TIME));
+				this.setLabelTableMarginLeft( (BigDecimal)map.get(AssetLabelTplMeta.LABEL_TABLE_MARGIN_LEFT));
 				this.setType( (String)map.get(AssetLabelTplMeta.TYPE));
-				this.setVersion( (Integer)map.get(AssetLabelTplMeta.VERSION));
 				this.setLabelFormatContent( (String)map.get(AssetLabelTplMeta.LABEL_FORMAT_CONTENT));
-				this.setImageLabelShow( (String)map.get(AssetLabelTplMeta.IMAGE_LABEL_SHOW));
-				this.setCreateBy( (String)map.get(AssetLabelTplMeta.CREATE_BY));
-				this.setDeleted( (Integer)map.get(AssetLabelTplMeta.DELETED));
+				this.setImageMarginBottom( (BigDecimal)map.get(AssetLabelTplMeta.IMAGE_MARGIN_BOTTOM));
 				this.setImageColId( (String)map.get(AssetLabelTplMeta.IMAGE_COL_ID));
-				this.setCreateTime( (Date)map.get(AssetLabelTplMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(AssetLabelTplMeta.UPDATE_BY));
-				this.setDeleteTime( (Date)map.get(AssetLabelTplMeta.DELETE_TIME));
-				this.setIsCustom( (String)map.get(AssetLabelTplMeta.IS_CUSTOM));
-				this.setTenantId( (String)map.get(AssetLabelTplMeta.TENANT_ID));
-				this.setDeleteBy( (String)map.get(AssetLabelTplMeta.DELETE_BY));
+				this.setImageMarginTop( (BigDecimal)map.get(AssetLabelTplMeta.IMAGE_MARGIN_TOP));
 				this.setId( (String)map.get(AssetLabelTplMeta.ID));
 				this.setImageType( (String)map.get(AssetLabelTplMeta.IMAGE_TYPE));
 				this.setImageShow( (String)map.get(AssetLabelTplMeta.IMAGE_SHOW));
+				this.setImageWidth( (BigDecimal)map.get(AssetLabelTplMeta.IMAGE_WIDTH));
+				this.setLabelTableMarginRight( (BigDecimal)map.get(AssetLabelTplMeta.LABEL_TABLE_MARGIN_RIGHT));
+				this.setColIds( (String)map.get(AssetLabelTplMeta.COL_IDS));
+				this.setImagePosition( (String)map.get(AssetLabelTplMeta.IMAGE_POSITION));
+				this.setUpdateTime( (Date)map.get(AssetLabelTplMeta.UPDATE_TIME));
+				this.setImageMarginRight( (BigDecimal)map.get(AssetLabelTplMeta.IMAGE_MARGIN_RIGHT));
+				this.setVersion( (Integer)map.get(AssetLabelTplMeta.VERSION));
+				this.setImageHeight( (BigDecimal)map.get(AssetLabelTplMeta.IMAGE_HEIGHT));
+				this.setImageLabelShow( (String)map.get(AssetLabelTplMeta.IMAGE_LABEL_SHOW));
+				this.setCreateBy( (String)map.get(AssetLabelTplMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AssetLabelTplMeta.DELETED));
+				this.setCreateTime( (Date)map.get(AssetLabelTplMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)map.get(AssetLabelTplMeta.DELETE_TIME));
+				this.setLabelTableMarginTop( (BigDecimal)map.get(AssetLabelTplMeta.LABEL_TABLE_MARGIN_TOP));
+				this.setIsCustom( (String)map.get(AssetLabelTplMeta.IS_CUSTOM));
+				this.setTenantId( (String)map.get(AssetLabelTplMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AssetLabelTplMeta.DELETE_BY));
+				this.setLabelTableMarginBottom( (BigDecimal)map.get(AssetLabelTplMeta.LABEL_TABLE_MARGIN_BOTTOM));
 				// others
 				return true;
 			} catch (Exception e) {
@@ -870,49 +1151,69 @@ public class AssetLabelTpl extends Entity {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
+			this.setImageMarginLeft(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplMeta.IMAGE_MARGIN_LEFT)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.NOTES)));
-			this.setColIds(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.COL_IDS)));
-			this.setImagePosition(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.IMAGE_POSITION)));
-			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetLabelTplMeta.UPDATE_TIME)));
+			this.setLabelTableMarginLeft(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplMeta.LABEL_TABLE_MARGIN_LEFT)));
 			this.setType(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.TYPE)));
-			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetLabelTplMeta.VERSION)));
 			this.setLabelFormatContent(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.LABEL_FORMAT_CONTENT)));
-			this.setImageLabelShow(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.IMAGE_LABEL_SHOW)));
-			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.CREATE_BY)));
-			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetLabelTplMeta.DELETED)));
+			this.setImageMarginBottom(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplMeta.IMAGE_MARGIN_BOTTOM)));
 			this.setImageColId(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.IMAGE_COL_ID)));
-			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetLabelTplMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.UPDATE_BY)));
-			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetLabelTplMeta.DELETE_TIME)));
-			this.setIsCustom(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.IS_CUSTOM)));
-			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.TENANT_ID)));
-			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.DELETE_BY)));
+			this.setImageMarginTop(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplMeta.IMAGE_MARGIN_TOP)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.ID)));
 			this.setImageType(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.IMAGE_TYPE)));
 			this.setImageShow(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.IMAGE_SHOW)));
+			this.setImageWidth(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplMeta.IMAGE_WIDTH)));
+			this.setLabelTableMarginRight(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplMeta.LABEL_TABLE_MARGIN_RIGHT)));
+			this.setColIds(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.COL_IDS)));
+			this.setImagePosition(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.IMAGE_POSITION)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetLabelTplMeta.UPDATE_TIME)));
+			this.setImageMarginRight(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplMeta.IMAGE_MARGIN_RIGHT)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetLabelTplMeta.VERSION)));
+			this.setImageHeight(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplMeta.IMAGE_HEIGHT)));
+			this.setImageLabelShow(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.IMAGE_LABEL_SHOW)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetLabelTplMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetLabelTplMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetLabelTplMeta.DELETE_TIME)));
+			this.setLabelTableMarginTop(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplMeta.LABEL_TABLE_MARGIN_TOP)));
+			this.setIsCustom(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.IS_CUSTOM)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.DELETE_BY)));
+			this.setLabelTableMarginBottom(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplMeta.LABEL_TABLE_MARGIN_BOTTOM)));
 			return true;
 		} else {
 			try {
+				this.setImageMarginLeft( (BigDecimal)r.getValue(AssetLabelTplMeta.IMAGE_MARGIN_LEFT));
 				this.setNotes( (String)r.getValue(AssetLabelTplMeta.NOTES));
-				this.setColIds( (String)r.getValue(AssetLabelTplMeta.COL_IDS));
-				this.setImagePosition( (String)r.getValue(AssetLabelTplMeta.IMAGE_POSITION));
-				this.setUpdateTime( (Date)r.getValue(AssetLabelTplMeta.UPDATE_TIME));
+				this.setLabelTableMarginLeft( (BigDecimal)r.getValue(AssetLabelTplMeta.LABEL_TABLE_MARGIN_LEFT));
 				this.setType( (String)r.getValue(AssetLabelTplMeta.TYPE));
-				this.setVersion( (Integer)r.getValue(AssetLabelTplMeta.VERSION));
 				this.setLabelFormatContent( (String)r.getValue(AssetLabelTplMeta.LABEL_FORMAT_CONTENT));
-				this.setImageLabelShow( (String)r.getValue(AssetLabelTplMeta.IMAGE_LABEL_SHOW));
-				this.setCreateBy( (String)r.getValue(AssetLabelTplMeta.CREATE_BY));
-				this.setDeleted( (Integer)r.getValue(AssetLabelTplMeta.DELETED));
+				this.setImageMarginBottom( (BigDecimal)r.getValue(AssetLabelTplMeta.IMAGE_MARGIN_BOTTOM));
 				this.setImageColId( (String)r.getValue(AssetLabelTplMeta.IMAGE_COL_ID));
-				this.setCreateTime( (Date)r.getValue(AssetLabelTplMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(AssetLabelTplMeta.UPDATE_BY));
-				this.setDeleteTime( (Date)r.getValue(AssetLabelTplMeta.DELETE_TIME));
-				this.setIsCustom( (String)r.getValue(AssetLabelTplMeta.IS_CUSTOM));
-				this.setTenantId( (String)r.getValue(AssetLabelTplMeta.TENANT_ID));
-				this.setDeleteBy( (String)r.getValue(AssetLabelTplMeta.DELETE_BY));
+				this.setImageMarginTop( (BigDecimal)r.getValue(AssetLabelTplMeta.IMAGE_MARGIN_TOP));
 				this.setId( (String)r.getValue(AssetLabelTplMeta.ID));
 				this.setImageType( (String)r.getValue(AssetLabelTplMeta.IMAGE_TYPE));
 				this.setImageShow( (String)r.getValue(AssetLabelTplMeta.IMAGE_SHOW));
+				this.setImageWidth( (BigDecimal)r.getValue(AssetLabelTplMeta.IMAGE_WIDTH));
+				this.setLabelTableMarginRight( (BigDecimal)r.getValue(AssetLabelTplMeta.LABEL_TABLE_MARGIN_RIGHT));
+				this.setColIds( (String)r.getValue(AssetLabelTplMeta.COL_IDS));
+				this.setImagePosition( (String)r.getValue(AssetLabelTplMeta.IMAGE_POSITION));
+				this.setUpdateTime( (Date)r.getValue(AssetLabelTplMeta.UPDATE_TIME));
+				this.setImageMarginRight( (BigDecimal)r.getValue(AssetLabelTplMeta.IMAGE_MARGIN_RIGHT));
+				this.setVersion( (Integer)r.getValue(AssetLabelTplMeta.VERSION));
+				this.setImageHeight( (BigDecimal)r.getValue(AssetLabelTplMeta.IMAGE_HEIGHT));
+				this.setImageLabelShow( (String)r.getValue(AssetLabelTplMeta.IMAGE_LABEL_SHOW));
+				this.setCreateBy( (String)r.getValue(AssetLabelTplMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AssetLabelTplMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(AssetLabelTplMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)r.getValue(AssetLabelTplMeta.DELETE_TIME));
+				this.setLabelTableMarginTop( (BigDecimal)r.getValue(AssetLabelTplMeta.LABEL_TABLE_MARGIN_TOP));
+				this.setIsCustom( (String)r.getValue(AssetLabelTplMeta.IS_CUSTOM));
+				this.setTenantId( (String)r.getValue(AssetLabelTplMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AssetLabelTplMeta.DELETE_BY));
+				this.setLabelTableMarginBottom( (BigDecimal)r.getValue(AssetLabelTplMeta.LABEL_TABLE_MARGIN_BOTTOM));
 				return true;
 			} catch (Exception e) {
 				return false;

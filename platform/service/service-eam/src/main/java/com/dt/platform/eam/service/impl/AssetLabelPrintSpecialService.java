@@ -25,9 +25,7 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.properties.*;
-import org.checkerframework.checker.tainting.qual.Untainted;
 import org.springframework.stereotype.Service;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -92,30 +90,63 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 			Float tableHeightPoint=printData.getTableHeightMM()*printData.PAGE_SIZE_A4_POINT_PER_MM;
 			Float labelWidthPoint=printData.getPointByMM(Float.parseFloat(printData.getLabel().getLabelKeyWidth().toString()));
 			Float valueWidthPoint=(tableWidthPoint/2-labelWidthPoint);
+			Float tableMarginTop=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getLabelTableMarginTop().toString()));
+			Float tableMarginBottom=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getLabelTableMarginBottom().toString()));
+			Float tableMarginLeft=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getLabelTableMarginLeft().toString()));
+			Float tableMarginRight=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getLabelTableMarginRight().toString()));
 
-			Float imageMarginTop=printData.getPointByMM(Float.parseFloat(printData.getLabel().getImageMarginTop().toString()));
-			Float imageMarginBottom=printData.getPointByMM(Float.parseFloat(printData.getLabel().getImageMarginBottom().toString()));
+			//
+			Float imageWidth=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getImageWidth().toString()));
+			Float imageHeight=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getImageHeight().toString()));
+			int imageWidthInt=imageWidth.intValue();
+			int imageHeightInt=imageHeight.intValue();
+
+		 	Float imageMarginTop=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getImageMarginTop().toString()));
+			Float imageMarginBottom=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getImageMarginBottom().toString()));
+			Float imageMarginLeft=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getImageMarginLeft().toString()));
+			Float imageMarginRight=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getImageMarginRight().toString()));
+
+			//开始绘制表格
+			Float keySizePoint=printData.getPointByMM(Float.parseFloat(printData.getLabel().getLabelKeyFontSize().toString()));
+			Float labelSizePoint=printData.getPointByMM(Float.parseFloat(printData.getLabel().getLabelValueFontSize().toString()));
 
 			//表的label value 宽度
 			PageSize pageSize =new PageSize(printData.getPageSizeWidth(),printData.getPageSizeHeight());
 			Document document = new Document(pdf, pageSize);
 			document.setMargins(0,0,0,0);
+
 			Div div = new Div();
 			div.setKeepTogether(true);
+			div.setHeight(UnitValue.createPercentValue(100));
 			div.setWidth(UnitValue.createPercentValue(100));
 			div.setHorizontalAlignment(HorizontalAlignment.CENTER);
 			div.setVerticalAlignment(VerticalAlignment.MIDDLE);
+			div.setTextAlignment(TextAlignment.CENTER);
 			div.setMargin(0);
 			div.setPadding(0);
 			Paragraph paragraphIncludeTable=null;
-
 			System.out.println("document:"+document);
 			System.out.println("print setting option list:");
 			System.out.println("print page type:"+printData.getPaperType());
 			System.out.println("print page columnNumber:"+printData.getPrintColumnNumber());
 			System.out.println("print page width(point):"+pageSize.getWidth());
 			System.out.println("print page height(point):"+pageSize.getHeight());
-
+			System.out.println("print table width(mm):"+printData.getTableWidthMM());
+			System.out.println("print table height(mm):"+printData.getTableHeightMM());
+			System.out.println("print table width point:"+tableWidthPoint);
+			System.out.println("print table height point:"+tableHeightPoint);
+			System.out.println("print table margin top:"+tableMarginTop);
+			System.out.println("print table margin bottom:"+tableMarginBottom);
+			System.out.println("print table margin left:"+tableMarginLeft);
+			System.out.println("print table margin right:"+tableMarginRight);
+			System.out.println("print table label width point:"+labelWidthPoint);
+			System.out.println("print table value width point:"+valueWidthPoint);
+			System.out.println("print image width:"+imageWidthInt);
+			System.out.println("print image height:"+imageHeight);
+			System.out.println("print image margin top:"+imageMarginTop);
+			System.out.println("print image margin bottom:"+imageMarginBottom);
+			System.out.println("print image margin left:"+imageMarginLeft);
+			System.out.println("print image margin right:"+imageMarginRight);
 
 			if(assetList!=null){
 				System.out.println("print asset label number:"+assetList.size());
@@ -125,51 +156,33 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 					System.out.println("######table asset code:"+assetCode+"######");
 					if(i%printData.getPrintColumnNumber()==0){
 						if(paragraphIncludeTable!=null){
-							System.out.println("i:"+i+",split");
+							//System.out.println("i:"+i+",split");
 							div.add(paragraphIncludeTable);
 						}
 						paragraphIncludeTable = new Paragraph();
+						paragraphIncludeTable.setWidth(UnitValue.createPercentValue(100));
+						paragraphIncludeTable.setHeight(UnitValue.createPercentValue(100));
 						paragraphIncludeTable.setTextAlignment(TextAlignment.CENTER);
 						paragraphIncludeTable.setHorizontalAlignment(HorizontalAlignment.CENTER);
 						paragraphIncludeTable.setVerticalAlignment(VerticalAlignment.MIDDLE);
 						paragraphIncludeTable.setMargins(0,0,0,0);
 						paragraphIncludeTable.setPaddings(0,0,0,0);
 					}
-
 					//设置表格列数
 					Table table = new Table(4);
-					//table.setFixedLayout();
-					table.setWidth(UnitValue.createPointValue(printData.getPointByMM(printData.getTableWidthMM())));
-					table.setHeight(UnitValue.createPointValue(printData.getPointByMM(printData.getTableHeightMM())));
+					table.setWidth(tableWidthPoint);
+					table.setHeight(tableHeightPoint);
 					table.setKeepTogether(true);
 					table.setPadding(0);
-					table.setMarginTop(0);
 					table.setMarginBottom(0);
-					table.setMarginLeft(printData.getPointByMM(printData.getTableMarginLeftMM()));
-					table.setMarginRight(printData.getPointByMM(printData.getTableMarginLeftMM()));
-					table.setMarginTop(printData.getPointByMM(printData.getTableMarginTopMM()));
-					table.setMarginBottom(printData.getPointByMM(printData.getTableMarginBottomMM()));
+					table.setMarginLeft(tableMarginLeft);
+					table.setMarginRight(tableMarginRight);
+					table.setMarginTop(tableMarginTop);
+					table.setMarginBottom(tableMarginBottom);
 					System.out.println("######table layout######");
-					System.out.println("print table width mm:"+printData.getTableWidthMM());
-					System.out.println("print table height mm:"+printData.getTableHeightMM());
-					System.out.println("print table width point:"+tableWidthPoint);
-					System.out.println("print table height point:"+tableHeightPoint);
-					System.out.println("print table width setting:"+table.getWidth());
-					System.out.println("print table height setting:"+table.getHeight());
-					System.out.println("print table label width point:"+labelWidthPoint);
-					System.out.println("print table value width point:"+valueWidthPoint);
-					System.out.println("print table margin top:"+table.getMarginTop());
-					System.out.println("print table margin bottom:"+table.getMarginBottom());
-					System.out.println("print table margin left:"+table.getPaddingLeft());
-					System.out.println("print table margin right:"+table.getPaddingRight());
-
-					//开始绘制表格
-					Float keySizePoint=printData.getPointByMM(Float.parseFloat(printData.getLabel().getLabelKeyFontSize().toString()));
-					Float labelSizePoint=printData.getPointByMM(Float.parseFloat(printData.getLabel().getLabelValueFontSize().toString()));
 					for(int j=0;j<layoutList.size();j++){
 						AssetLabelLayout cellLayout= layoutList.get(j);
 						Float cellHeightPoint=printData.getPointByMM(Float.parseFloat(cellLayout.getRowHeight().toString()));
-						System.out.println("cellHeightPoint:"+cellHeightPoint+",row_span:"+cellLayout.getRowSpan()+",col_span:"+cellLayout.getColSpan());
 						String layoutCode=cellLayout.getColCode();
 						String layoutType=cellLayout.getType();
 						Cell cell=new Cell(cellLayout.getRowSpan(),cellLayout.getColSpan());
@@ -177,6 +190,8 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 						cell.setMargin(0);
 						String colValue="";
 						if(AsseLabelTableCellTypeEnum.LABEL.code().equals(layoutType)){
+							cell.setFontSize(keySizePoint);
+							cell.setFont(KeyFont);
 							cell.setHeight(cellHeightPoint);
 							cell.setMinHeight(cellHeightPoint);
 							cell.setMaxHeight(cellHeightPoint);
@@ -187,6 +202,8 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 						//	cell.setBackgroundColor(ColorConstants.YELLOW);
 							colValue=layoutCode;
 						}else if(AsseLabelTableCellTypeEnum.VALUE.code().equals(layoutType)){
+							cell.setFontSize(labelSizePoint);
+							cell.setFont(valueFont);
 							cell.setHeight(cellHeightPoint);
 							cell.setMinHeight(cellHeightPoint);
 							cell.setMaxHeight(cellHeightPoint);
@@ -194,44 +211,37 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 							cell.setTextAlignment(TextAlignment.LEFT);
 							cell.setHorizontalAlignment(HorizontalAlignment.CENTER);
 							cell.setVerticalAlignment(VerticalAlignment.MIDDLE);
-						//	cell.setBackgroundColor(ColorConstants.YELLOW);
 							colValue=asset.getOrDefault(layoutCode,"").toString();
 
 						}else if(AsseLabelTableCellTypeEnum.QR_CODE.code().equals(layoutType)){
-							//如果是二维码,高度就是设置的高度
-//							cell.setHeight(cellHeightPoint);
-//							cell.setMinHeight(cellHeightPoint);
 							cell.setHorizontalAlignment(HorizontalAlignment.CENTER);
 							cell.setVerticalAlignment(VerticalAlignment.MIDDLE);
-							cell.setWidth(valueWidthPoint);
-							BigDecimal settingImageWidth=new BigDecimal(valueWidthPoint.toString());
-							int w=settingImageWidth.intValue();
-							BigDecimal cellImageWidth=new BigDecimal(cellHeightPoint.toString());
-							int h=cellImageWidth.intValue();
-							int v=w>h?w:h;
-							System.out.println(" settingImageWidth width:"+settingImageWidth.toString()+",after:"+w);
-							System.out.println("  cellImageWidth width:"+h);
-							Image img=this.createImage(AsseLabelTableCellTypeEnum.QR_CODE.code(),assetCode,v-5,v-5);
+							System.out.println("image current width:"+valueWidthPoint);
+							System.out.println("image setting width:"+imageWidthInt+",setting < current width value");
+							System.out.println("image setting height:"+imageHeightInt);
+							Image img=this.createImage(AsseLabelTableCellTypeEnum.QR_CODE.code(),assetCode,imageWidthInt-5,imageHeightInt-5);
 							Paragraph p=new Paragraph();
-							p.setMarginTop(0);
 							p.setMarginTop(imageMarginTop);
 							p.setMarginBottom(imageMarginBottom);
+							p.setMarginLeft(imageMarginLeft);
+							p.setMarginRight(imageMarginRight);
 							p.add(img);
 							cell.add(p);
 							table.addCell(cell);
-					//		table.startNewRow();
 							continue;
 						}else if(AsseLabelTableCellTypeEnum.BAR_CODE.code().equals(layoutType)){
-							//如果是二维码,高度就是设置的高度
+							//如果是条形码，
 							cell.setHorizontalAlignment(HorizontalAlignment.CENTER);
 							cell.setVerticalAlignment(VerticalAlignment.MIDDLE);
-							BigDecimal wBig=new BigDecimal(valueWidthPoint.toString());
-							int w=wBig.intValue();
-							BigDecimal hBig=new BigDecimal(cellHeightPoint.toString());
-							int h=hBig.intValue();
-							System.out.println("value width:"+wBig.toString()+",after:"+w);
-							Image img=this.createImage(AsseLabelTableCellTypeEnum.QR_CODE.code(),assetCode,w-2,h-2);
+							System.out.println("image setting width:"+imageWidthInt);
+							System.out.println("image setting height:"+imageHeightInt);
+							System.out.println("image current width:"+valueWidthPoint);
+							Image img=this.createImage(AsseLabelTableCellTypeEnum.BAR_CODE.code(),assetCode,imageWidthInt-5,imageHeightInt-5);
 							Paragraph p=new Paragraph();
+							p.setMarginTop(imageMarginTop);
+							p.setMarginBottom(imageMarginBottom);
+							p.setMarginLeft(imageMarginLeft);
+							p.setMarginRight(imageMarginRight);
 							p.add(img);
 							cell.add(p);
 							table.addCell(cell);
@@ -242,8 +252,7 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 						content.setProperty(Property.OVERFLOW_X, OverflowPropertyValue.VISIBLE);
 						content.setMargin(0);
 						content.setPadding(0);
-						content.setFont(KeyFont);
-						content.setFontSize(labelSizePoint);
+						content.setBold();
 						cell.add(content);
 						table.addCell(cell);
 						if(cellLayout.getSort()==40){

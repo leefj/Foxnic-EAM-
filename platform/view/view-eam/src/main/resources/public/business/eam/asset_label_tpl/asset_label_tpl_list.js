@@ -1,7 +1,7 @@
 /**
  * 标签模版 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-02 20:48:44
+ * @since 2022-12-05 22:44:12
  */
 
 
@@ -90,6 +90,16 @@ function ListPage() {
 					,{ field: 'labelFormatContent', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('类型') , templet: function (d) { return templet('labelFormatContent',d.labelFormatContent,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'labelTableMarginTop', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('表格marginTop(mm)') , templet: function (d) { return templet('labelTableMarginTop',d.labelTableMarginTop,d);}  }
+					,{ field: 'labelTableMarginBottom', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('表格marginBottom(mm)') , templet: function (d) { return templet('labelTableMarginBottom',d.labelTableMarginBottom,d);}  }
+					,{ field: 'labelTableMarginLeft', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('表格marginLeft(mm)') , templet: function (d) { return templet('labelTableMarginLeft',d.labelTableMarginLeft,d);}  }
+					,{ field: 'labelTableMarginRight', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('表格marginRight(mm)') , templet: function (d) { return templet('labelTableMarginRight',d.labelTableMarginRight,d);}  }
+					,{ field: 'imageMarginTop', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图片marginTop(mm)') , templet: function (d) { return templet('imageMarginTop',d.imageMarginTop,d);}  }
+					,{ field: 'imageMarginBottom', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图片marginBottom(mm)') , templet: function (d) { return templet('imageMarginBottom',d.imageMarginBottom,d);}  }
+					,{ field: 'imageMarginLeft', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图片marginLeft(mm)') , templet: function (d) { return templet('imageMarginLeft',d.imageMarginLeft,d);}  }
+					,{ field: 'imageMarginRight', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图片marginRight(mm)') , templet: function (d) { return templet('imageMarginRight',d.imageMarginRight,d);}  }
+					,{ field: 'imageWidth', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图片宽度') , templet: function (d) { return templet('imageWidth',d.imageWidth,d);}  }
+					,{ field: 'imageHeight', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图片高度') , templet: function (d) { return templet('imageHeight',d.imageHeight,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
