@@ -72,6 +72,7 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 			PdfFont KeyFont=null;
 			PdfFont valueFont=null;
 			String workDir=System.getProperty("user.dir");
+			System.out.println(workDir+File.separator+"bin"+File.separator+"simhei.ttf");
 			String fontPath=workDir+File.separator+"bin"+File.separator+"simhei.ttf";
 			File file = new File(fontPath);
 			if(file.exists()){
@@ -198,6 +199,8 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 							cell.setMinHeight(cellHeightPoint);
 							cell.setMaxHeight(cellHeightPoint);
 							cell.setWidth(labelWidthPoint);
+							cell.setMinWidth(labelWidthPoint);
+							cell.setMaxWidth(labelWidthPoint);
 							cell.setTextAlignment(TextAlignment.CENTER);
 							cell.setHorizontalAlignment(HorizontalAlignment.CENTER);
 							cell.setVerticalAlignment(VerticalAlignment.MIDDLE);
@@ -210,6 +213,8 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 							cell.setMinHeight(cellHeightPoint);
 							cell.setMaxHeight(cellHeightPoint);
 							cell.setWidth(valueWidthPoint);
+							cell.setMinWidth(valueWidthPoint);
+							cell.setMaxWidth(valueWidthPoint);
 							cell.setTextAlignment(TextAlignment.LEFT);
 							cell.setHorizontalAlignment(HorizontalAlignment.CENTER);
 							cell.setVerticalAlignment(VerticalAlignment.MIDDLE);
@@ -254,7 +259,7 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 						content.setProperty(Property.OVERFLOW_X, OverflowPropertyValue.VISIBLE);
 						content.setMargin(0);
 						content.setPadding(0);
-						content.setBold();
+						//content.setBold();
 						cell.add(content);
 						table.addCell(cell);
 						if(cellLayout.getSort()==40){
