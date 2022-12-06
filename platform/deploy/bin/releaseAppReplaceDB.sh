@@ -56,6 +56,7 @@ if [[ -f $tmp_dir/$file ]];then
   rm -rf $tmp_dir/$file
 fi
 mv $file $tmp_dir
+rm -rf $replace_dir
 echo "action success,file:$tmp_dir/$file"
 exit 0
 
