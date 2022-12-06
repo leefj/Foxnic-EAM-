@@ -86,29 +86,32 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 			}
 
 			List<AssetLabelLayout> layoutList=printData.getAssetLabelLayoutList().stream().sorted(Comparator.comparing(AssetLabelLayout::getSort)).collect(Collectors.toList());
+
+			//表格 宽高，标签宽度，字体，设置来自Label
 			Float tableWidthPoint=printData.getTableWidthMM()*printData.PAGE_SIZE_A4_POINT_PER_MM;
 			Float tableHeightPoint=printData.getTableHeightMM()*printData.PAGE_SIZE_A4_POINT_PER_MM;
 			Float labelWidthPoint=printData.getPointByMM(Float.parseFloat(printData.getLabel().getLabelKeyWidth().toString()));
 			Float valueWidthPoint=(tableWidthPoint/2-labelWidthPoint);
+
+			//开始绘制表格
+			Float keySizePoint=printData.getPointByMM(Float.parseFloat(printData.getLabel().getLabelKeyFontSize().toString()));
+			Float labelSizePoint=printData.getPointByMM(Float.parseFloat(printData.getLabel().getLabelValueFontSize().toString()));
+
+			//表格 来自LabelTpl
 			Float tableMarginTop=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getLabelTableMarginTop().toString()));
 			Float tableMarginBottom=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getLabelTableMarginBottom().toString()));
 			Float tableMarginLeft=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getLabelTableMarginLeft().toString()));
 			Float tableMarginRight=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getLabelTableMarginRight().toString()));
 
-			//
+			//表格 来自LabelTpl
 			Float imageWidth=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getImageWidth().toString()));
 			Float imageHeight=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getImageHeight().toString()));
 			int imageWidthInt=imageWidth.intValue();
 			int imageHeightInt=imageHeight.intValue();
-
 		 	Float imageMarginTop=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getImageMarginTop().toString()));
 			Float imageMarginBottom=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getImageMarginBottom().toString()));
 			Float imageMarginLeft=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getImageMarginLeft().toString()));
 			Float imageMarginRight=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getImageMarginRight().toString()));
-
-			//开始绘制表格
-			Float keySizePoint=printData.getPointByMM(Float.parseFloat(printData.getLabel().getLabelKeyFontSize().toString()));
-			Float labelSizePoint=printData.getPointByMM(Float.parseFloat(printData.getLabel().getLabelValueFontSize().toString()));
 
 			//表的label value 宽度
 			PageSize pageSize =new PageSize(printData.getPageSizeWidth(),printData.getPageSizeHeight());
@@ -147,7 +150,6 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 			System.out.println("print image margin bottom:"+imageMarginBottom);
 			System.out.println("print image margin left:"+imageMarginLeft);
 			System.out.println("print image margin right:"+imageMarginRight);
-
 			if(assetList!=null){
 				System.out.println("print asset label number:"+assetList.size());
 				for(int i=0;i<assetList.size();i++){
