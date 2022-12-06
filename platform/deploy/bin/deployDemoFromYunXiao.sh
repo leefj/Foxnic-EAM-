@@ -20,14 +20,13 @@ mkdir /tmp/app_yunxiao
 cd /tmp/app_yunxiao
 cp $packageFile .
 tar xvf $packageFile
-tar xvf app_release_last.tar.gz
 
-#
+echo " releaseApp.sh">>$logfile
 echo "rebuild sql"
 cd /app/app/bin
 sh releaseApp.sh /tmp/app_yunxiao/app_release_last.tar.gz
 
-
+echo "update app">>$logfile
 #sql 已更新，默认打包后在/tmp/app_release_last.tar.gz
 #再次更新程序
 t=`date +"%Y%m%d%H%M%S"`
