@@ -1801,37 +1801,41 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 
 	@Override
 	public Result joinData(List<Asset> list) {
+		System.out.println("asset joinData:"+list.size());
+		list.removeAll(Collections.singleton(null));
 		// 关联出 资产分类 数据
-		dao.fill(list).with(AssetMeta.CATEGORY)
-				.with(AssetMeta.GOODS)
-				.with(AssetMeta.MANUFACTURER)
-				.with(AssetMeta.POSITION)
-				.with(AssetMeta.MAINTNAINER)
-				.with(AssetMeta.SUPPLIER)
-				.with(AssetMeta.OWNER_COMPANY)
-				.with(AssetMeta.USE_ORGANIZATION)
-				.with(AssetMeta.MANAGER)
-				.with(AssetMeta.USE_USER)
-				.with(AssetMeta.ORIGINATOR)
-				.with(AssetMeta.RACK)
-				.with(AssetMeta.SOURCE)
-				.with(AssetMeta.REGION)
-				.with(AssetMeta.ASSET_CYCLE_STATUS)
-				.with(AssetMeta.CATEGORY_FINANCE)
-				.with(AssetMeta.SAFETY_LEVEL)
-				.with(AssetMeta.EQUIPMENT_ENVIRONMENT)
-				.with(AssetMeta.ASSET_MAINTENANCE_STATUS)
-				.with(AssetMeta.SUGGEST_MAINTENANCE_METHOD_DATA)
-				.with(AssetMeta.MAINTENANCE_METHOD_DATA)
-				.with(AssetMeta.EXPENSE_ITEM_DICT)
-				.with(AssetMeta.FINANCIAL_OPTION_DICT)
-				.execute();
-//		List<Employee> originators= CollectorUtil.collectList(list,Asset::getOriginator);
-//		dao().join(originators, Person.class);
-		List<Employee> managers= CollectorUtil.collectList(list,Asset::getManager);
-		dao().join(managers, Person.class);
-		List<Employee> useUser= CollectorUtil.collectList(list,Asset::getUseUser);
-		dao().join(useUser, Person.class);
+			dao.fill(list).with(AssetMeta.CATEGORY)
+					.with(AssetMeta.GOODS)
+					.with(AssetMeta.MANUFACTURER)
+					.with(AssetMeta.POSITION)
+					.with(AssetMeta.MAINTNAINER)
+					.with(AssetMeta.SUPPLIER)
+					.with(AssetMeta.OWNER_COMPANY)
+					.with(AssetMeta.USE_ORGANIZATION)
+					.with(AssetMeta.MANAGER)
+					.with(AssetMeta.USE_USER)
+					.with(AssetMeta.ORIGINATOR)
+					.with(AssetMeta.RACK)
+					.with(AssetMeta.SOURCE)
+					.with(AssetMeta.REGION)
+					.with(AssetMeta.ASSET_CYCLE_STATUS)
+					.with(AssetMeta.CATEGORY_FINANCE)
+					.with(AssetMeta.SAFETY_LEVEL)
+					.with(AssetMeta.EQUIPMENT_ENVIRONMENT)
+					.with(AssetMeta.ASSET_MAINTENANCE_STATUS)
+					.with(AssetMeta.SUGGEST_MAINTENANCE_METHOD_DATA)
+					.with(AssetMeta.MAINTENANCE_METHOD_DATA)
+					.with(AssetMeta.EXPENSE_ITEM_DICT)
+					.with(AssetMeta.FINANCIAL_OPTION_DICT)
+					.execute();
+	//		List<Employee> originators= CollectorUtil.collectList(list,Asset::getOriginator);
+	//		dao().join(originators, Person.class);
+
+			List<Employee> managers= CollectorUtil.collectList(list,Asset::getManager);
+			dao().join(managers, Person.class);
+			List<Employee> useUser= CollectorUtil.collectList(list,Asset::getUseUser);
+			dao().join(useUser, Person.class);
+
 		return  ErrorDesc.success();
 	}
 

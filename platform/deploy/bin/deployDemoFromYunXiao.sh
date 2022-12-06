@@ -21,7 +21,7 @@ cd /tmp/app_yunxiao
 cp $packageFile .
 tar xvf $packageFile
 
-echo " releaseApp.sh">>$logfile
+echo "releaseApp.sh">>$logfile
 echo "rebuild sql"
 cd /app/app/bin
 sh releaseApp.sh /tmp/app_yunxiao/app_release_last.tar.gz
