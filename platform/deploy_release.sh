@@ -32,8 +32,8 @@ cp -r $deploy_dir/* .
 
 version=2.4.0
 # process app.jar
-
 echo "$release_dir/app/app/lib/"
+mkdir -p $release_dir/app/app/lib/
 ls -rtl $jar_dir/lib/
 cp -r $jar_dir/lib/* $release_dir/app/app/lib/
 cp $jar_dir/wrapper-all-${version}.jar  $release_dir/app/app/app.jar

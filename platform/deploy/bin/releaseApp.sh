@@ -23,9 +23,9 @@ sh ./releaseAppReplaceDB.sh $app_release_tar /app/app/backup/db/db.tar.gz
 #默认输出位置为 /tmp/app_release_last.tar.gz
 
 ##deploy tomcat
-if [ -f "/opt/tomcat/tomcat_shopprod/webapps/upload/app_release_dev.tar.gz" ];then
-  rm -rf /opt/tomcat/tomcat_shopprod/webapps/upload/app_release_dev.tar.gz
-  cp /tmp/app_release_last.tar.gz /opt/tomcat/tomcat_shopprod/webapps/upload/app_release_dev.tar.gz
+if [ -f "/opt/tomcat/tomcat_shopprod/webapps/upload/app_dev_last.tar.gz" ];then
+  rm -rf /opt/tomcat/tomcat_shopprod/webapps/upload/app_dev_last.tar.gz
+  cp /tmp/app_release_last.tar.gz /opt/tomcat/tomcat_shopprod/webapps/upload/app_dev_last.tar.gz
 fi
 
 exit 0
