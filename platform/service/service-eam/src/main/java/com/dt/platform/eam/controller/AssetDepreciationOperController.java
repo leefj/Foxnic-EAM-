@@ -482,6 +482,7 @@ public class AssetDepreciationOperController extends SuperController {
         response.setCharacterEncoding("UTF-8");
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("折旧资产数据.xls", "UTF-8"))));
         response.setContentType("application/vnd.ms-excel");
+        DownloadUtil.writeDownloadSuccess(response);
         OutputStream out = response.getOutputStream();
         BufferedOutputStream bos = new BufferedOutputStream(out);
         workbook.write(bos);
