@@ -44,6 +44,7 @@ cp $app_release_tar .
 tar xvf $app_release_tar
 rm -rf ./bin/sql/db.tar.gz
 cp $db_tar ./bin/sql/
+
 # rm app.tar.gz
 rm -rf $file
 ## action other

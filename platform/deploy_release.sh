@@ -1,16 +1,19 @@
 #!/bin/sh
 
+release_dir="/tmp/app_deploy"
 method="local"
 hostname=""
 if [[ -n "$1" ]];then
   hostname=$1
   method="ops"
+  release_dir="/root/workspace/eam_deploy/out"
+  mkdir -p /root/workspace/eam_deploy/out
 else
   hostname=`hostname`
 fi
 echo "hostname:$hostname"
 
-release_dir="/tmp/app_deploy"
+
 cur_dir=$(cd `dirname $0`; pwd)
 conf_file=$cur_dir/app.conf
 jar_dir=`cat $conf_file|grep ${hostname}.jar_dir|awk -F "=" '{print $2}'`
