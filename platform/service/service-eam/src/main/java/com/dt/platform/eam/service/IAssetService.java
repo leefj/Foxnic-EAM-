@@ -118,6 +118,13 @@ public interface IAssetService extends ISuperService<Asset> {
 	 * @return 插入是否成功
 	 * */
 	Result insert(Asset asset);
+
+	/**
+	 * 插入实体
+	 * @param asset 实体数据
+	 * @return 插入是否成功
+	 * */
+	Result sourceInsert(Asset asset);
  
 	/**
 	 * 批量插入实体，事务内

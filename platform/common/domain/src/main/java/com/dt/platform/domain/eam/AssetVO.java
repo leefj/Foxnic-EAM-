@@ -28,7 +28,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产VO类型
  * <p>资产 , 数据表 eam_asset 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-28 12:24:51
+ * @since 2022-12-07 18:19:38
  * @sign C05127D02CE5B4FBBB8CDA17B7C59FAA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -480,6 +480,7 @@ public class AssetVO extends Asset {
 			inst.setPcmData(this.getPcmData());
 			inst.setGoodsStock(this.getGoodsStock());
 			inst.setUseOrganization(this.getUseOrganization());
+			inst.setAssetCollection(this.getAssetCollection());
 			inst.setChangeInstance(this.getChangeInstance());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
@@ -488,6 +489,7 @@ public class AssetVO extends Asset {
 			inst.setAssetMaintenanceStatus(this.getAssetMaintenanceStatus());
 			inst.setIds(this.getIds());
 			inst.setPosition(this.getPosition());
+			inst.setAssetBorrow(this.getAssetBorrow());
 			inst.setCategory(this.getCategory());
 			inst.setRegion(this.getRegion());
 			inst.setSearchValue(this.getSearchValue());
@@ -695,6 +697,7 @@ public class AssetVO extends Asset {
 			this.setWarehouse(DataParser.parse(Warehouse.class, map.get(AssetVOMeta.WAREHOUSE)));
 			this.setGoodsStock(DataParser.parse(GoodsStock.class, map.get(AssetVOMeta.GOODS_STOCK)));
 			this.setUseOrganization(DataParser.parse(Organization.class, map.get(AssetVOMeta.USE_ORGANIZATION)));
+			this.setAssetCollection(DataParser.parse(AssetCollection.class, map.get(AssetVOMeta.ASSET_COLLECTION)));
 			this.setChangeInstance(DataParser.parse(ChangeInstance.class, map.get(AssetVOMeta.CHANGE_INSTANCE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(AssetVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(AssetVOMeta.SORT_TYPE)));
@@ -702,6 +705,7 @@ public class AssetVO extends Asset {
 			this.setMaintnainer(DataParser.parse(Maintainer.class, map.get(AssetVOMeta.MAINTNAINER)));
 			this.setAssetMaintenanceStatus(DataParser.parse(DictItem.class, map.get(AssetVOMeta.ASSET_MAINTENANCE_STATUS)));
 			this.setPosition(DataParser.parse(Position.class, map.get(AssetVOMeta.POSITION)));
+			this.setAssetBorrow(DataParser.parse(AssetBorrow.class, map.get(AssetVOMeta.ASSET_BORROW)));
 			this.setCategory(DataParser.parse(Catalog.class, map.get(AssetVOMeta.CATEGORY)));
 			this.setRegion(DataParser.parse(AssetRegion.class, map.get(AssetVOMeta.REGION)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(AssetVOMeta.SEARCH_VALUE)));
@@ -853,6 +857,7 @@ public class AssetVO extends Asset {
 				this.setWarehouse( (Warehouse)map.get(AssetVOMeta.WAREHOUSE));
 				this.setGoodsStock( (GoodsStock)map.get(AssetVOMeta.GOODS_STOCK));
 				this.setUseOrganization( (Organization)map.get(AssetVOMeta.USE_ORGANIZATION));
+				this.setAssetCollection( (AssetCollection)map.get(AssetVOMeta.ASSET_COLLECTION));
 				this.setChangeInstance( (ChangeInstance)map.get(AssetVOMeta.CHANGE_INSTANCE));
 				this.setPageIndex( (Integer)map.get(AssetVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(AssetVOMeta.SORT_TYPE));
@@ -860,6 +865,7 @@ public class AssetVO extends Asset {
 				this.setMaintnainer( (Maintainer)map.get(AssetVOMeta.MAINTNAINER));
 				this.setAssetMaintenanceStatus( (DictItem)map.get(AssetVOMeta.ASSET_MAINTENANCE_STATUS));
 				this.setPosition( (Position)map.get(AssetVOMeta.POSITION));
+				this.setAssetBorrow( (AssetBorrow)map.get(AssetVOMeta.ASSET_BORROW));
 				this.setCategory( (Catalog)map.get(AssetVOMeta.CATEGORY));
 				this.setRegion( (AssetRegion)map.get(AssetVOMeta.REGION));
 				this.setSearchValue( (String)map.get(AssetVOMeta.SEARCH_VALUE));

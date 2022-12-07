@@ -28,6 +28,7 @@ import org.github.foxnic.web.domain.system.meta.DictItemMeta;
 import org.github.foxnic.web.proxy.pcm.CatalogServiceProxy;
 import org.github.foxnic.web.proxy.system.DictItemServiceProxy;
 
+
 import java.util.HashMap;
 
 
@@ -72,10 +73,10 @@ public class EamAssetsGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(ChangeInstance.class,"changeInstance","变更实例","变更实例");
         cfg.getPoClassFile().addSimpleProperty(GoodsStock.class,"goodsStock","库存物品","库存物品");
         cfg.getPoClassFile().addSimpleProperty(AssetRegion.class,"region","存放区域","存放区域");
-
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"financialOptionDict","财务选项","财务选项");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"expenseItemDict","费用项目","费用项目");
-
+        cfg.getPoClassFile().addSimpleProperty(AssetCollection.class,"assetCollection","assetCollection","assetCollection");
+        cfg.getPoClassFile().addSimpleProperty(AssetBorrow.class,"assetBorrow","assetBorrow","assetBorrow");
 
 
         cfg.view().field(EAMTables.EAM_ASSET.NAME).search().fuzzySearch();

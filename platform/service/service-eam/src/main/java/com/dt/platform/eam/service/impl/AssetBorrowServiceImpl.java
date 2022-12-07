@@ -6,8 +6,10 @@ import com.dt.platform.constants.enums.common.CodeModuleEnum;
 import com.dt.platform.constants.enums.eam.*;
 import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.AssetBorrow;
+import com.dt.platform.domain.eam.AssetCollection;
 import com.dt.platform.domain.eam.AssetItem;
 import com.dt.platform.domain.eam.meta.AssetBorrowMeta;
+import com.dt.platform.domain.eam.meta.AssetCollectionMeta;
 import com.dt.platform.eam.service.*;
 import com.dt.platform.eam.service.bpm.AssetBorrowBpmEventAdaptor;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
@@ -144,7 +146,8 @@ public class AssetBorrowServiceImpl extends SuperService<AssetBorrow> implements
 		}
 		String str="";
 		for(AssetItem item:bill.getAssetItemList()){
-			Asset asset=assetService.getById(item.getAssetId());
+			//真实资产id为flag，assetId为快照数据
+			Asset asset=assetService.getById(item.getFlag());
 			if(!AssetStatusEnum.BORROW.code().equals(asset.getAssetStatus())){
 				str=str+"资产编码"+asset.getAssetCode()+",当前状态为非借用状态,不在变更  ";
 				continue;
@@ -214,6 +217,20 @@ public class AssetBorrowServiceImpl extends SuperService<AssetBorrow> implements
 		}
 		billData.setBorrowStatus(AssetBorrowStatusEnum.BORROWED.code());
 		super.update(billData,SaveMode.NOT_NULL_FIELDS);
+
+
+		//保存快照
+		AssetBorrow afterData=getById(id);
+		join(afterData, AssetBorrowMeta.ASSET_LIST);
+		for(Asset asset:afterData.getAssetList()){
+			String oldAssetId=asset.getId();
+			String newAssetId=IDGenerator.getSnowflakeIdString();
+			asset.setId(newAssetId);
+			asset.setOwnerCode(AssetOwnerCodeEnum.ASSET_DATE_AFTER.code());
+			asset.setBorrowId(id);
+			assetService.sourceInsert(asset);
+			dao.execute("update eam_asset_item a set a.asset_id=?,flag=? where a.asset_id=? and a.handle_id=?",newAssetId,oldAssetId,oldAssetId,id);
+		}
 		return ErrorDesc.success();
 	}
 

@@ -32,8 +32,12 @@ public enum AssetOwnerCodeEnum implements CodeTextEnum {
 	ASSET_CHANGE_FINANCIAL(CodeModuleEnum.EAM_ASSET_CHANGE_FINANCIAL.code() , "EAM_资产变更-财务"),
 	ASSET_CHANGE_EQUIPMENT(CodeModuleEnum.EAM_ASSET_CHANGE_EQUIPMENT.code() , "EAM_资产变更-设备"),
 	ASSET_DEPRECIATION_DATA("asset_depreciation_data" , "资产折旧数据"),
-	ASSET_DATA_SELECTED("asset_data_selected" , "资产选择数据")
-	;
+	ASSET_DATA_SELECTED("asset_data_selected" , "资产选择数据"),
+
+
+	ASSET_DATE("asset_data" , "资产数据"),
+	ASSET_DATE_BEFORE("asset_date_before" , "资产数据"),
+	ASSET_DATE_AFTER("asset_date_after" , "资产数据");
 	private String code;
 	private String text;
 	private AssetOwnerCodeEnum(String code, String text)  {

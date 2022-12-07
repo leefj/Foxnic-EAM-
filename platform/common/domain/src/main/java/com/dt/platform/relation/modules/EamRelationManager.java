@@ -1755,6 +1755,16 @@ public class EamRelationManager extends RelationManager {
     }
     public void setupAsset() {
 
+        //领用
+        this.property(AssetMeta.ASSET_BORROW_PROP)
+                .using(EAMTables.EAM_ASSET.BORROW_ID ).join(EAMTables.EAM_ASSET_BORROW.ID);
+
+
+        //借用
+        this.property(AssetMeta.ASSET_COLLECTION_PROP)
+                .using(EAMTables.EAM_ASSET.COLLECTION_ID ).join(EAMTables.EAM_ASSET_COLLECTION.ID);
+
+
         this.property(AssetMeta.CHANGE_INSTANCE_PROP)
                 .using(EAMTables.EAM_ASSET.CHANGE_INSTANCE_ID ).join(FoxnicWeb.CHS_CHANGE_INSTANCE.ID);
 

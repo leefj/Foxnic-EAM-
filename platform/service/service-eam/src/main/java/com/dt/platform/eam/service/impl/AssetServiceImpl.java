@@ -992,6 +992,17 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 	 * @return 插入是否成功
 	 * */
 	@Override
+	public Result sourceInsert(Asset asset) {
+		return super.insert(asset);
+	}
+
+
+	/**
+	 * 插入实体
+	 * @param asset 实体数据
+	 * @return 插入是否成功
+	 * */
+	@Override
 	public Result insert(Asset asset) {
 
 //		if(StringUtil.isBlank(asset.getOwnerCode())){
@@ -1827,6 +1838,8 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 					.with(AssetMeta.MAINTENANCE_METHOD_DATA)
 					.with(AssetMeta.EXPENSE_ITEM_DICT)
 					.with(AssetMeta.FINANCIAL_OPTION_DICT)
+					.with(AssetMeta.ASSET_BORROW)
+					.with(AssetMeta.ASSET_COLLECTION)
 					.execute();
 	//		List<Employee> originators= CollectorUtil.collectList(list,Asset::getOriginator);
 	//		dao().join(originators, Person.class);
