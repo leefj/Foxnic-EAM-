@@ -1,7 +1,7 @@
 /**
  * 资产标签 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-05 20:04:03
+ * @since 2022-12-07 09:48:44
  */
 
 
@@ -80,21 +80,23 @@ function ListPage() {
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编码') , templet: function (d) { return templet('code',d.code,d);}  }
+					,{ field: 'fontType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('字体') , templet: function (d) { return templet('fontType',d.fontType,d);}  }
+					,{ field: 'fontPath', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('字体路径') , templet: function (d) { return templet('fontPath',d.fontPath,d);}  }
 					,{ field: 'labelTplId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标签') , templet: function (d) { return templet('labelTplId',d.labelTplId,d);}  }
 					,{ field: 'labelWidth', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('标签宽度(cm)') , templet: function (d) { return templet('labelWidth',d.labelWidth,d);}  }
 					,{ field: 'labelHeight', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('标签高度(cm)') , templet: function (d) { return templet('labelHeight',d.labelHeight,d);}  }
 					,{ field: 'labelLayout', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标签布局(暂时不用)') , templet: function (d) { return templet('labelLayout',d.labelLayout,d);}  }
 					,{ field: 'labelTableMargin', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('标签间隔') , templet: function (d) { return templet('labelTableMargin',d.labelTableMargin,d);}  }
-					,{ field: 'labelTableMarginTop', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图片marginTop(mm)') , templet: function (d) { return templet('labelTableMarginTop',d.labelTableMarginTop,d);}  }
-					,{ field: 'labelTableMarginBottom', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图片marginBottom(mm)') , templet: function (d) { return templet('labelTableMarginBottom',d.labelTableMarginBottom,d);}  }
-					,{ field: 'labelTableMarginLeft', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图片marginLeft(mm)') , templet: function (d) { return templet('labelTableMarginLeft',d.labelTableMarginLeft,d);}  }
-					,{ field: 'labelTableMarginRight', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图片marginRight(mm)') , templet: function (d) { return templet('labelTableMarginRight',d.labelTableMarginRight,d);}  }
+					,{ field: 'labelTableMarginTop', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('表格marginTop(mm)') , templet: function (d) { return templet('labelTableMarginTop',d.labelTableMarginTop,d);}  }
+					,{ field: 'labelTableMarginBottom', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('表格marginBottom(mm)') , templet: function (d) { return templet('labelTableMarginBottom',d.labelTableMarginBottom,d);}  }
+					,{ field: 'labelTableMarginLeft', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('表格marginLeft(mm)') , templet: function (d) { return templet('labelTableMarginLeft',d.labelTableMarginLeft,d);}  }
+					,{ field: 'labelTableMarginRight', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('表格marginRight(mm)') , templet: function (d) { return templet('labelTableMarginRight',d.labelTableMarginRight,d);}  }
 					,{ field: 'labelKeyFontSize', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('字体大小(mm)') , templet: function (d) { return templet('labelKeyFontSize',d.labelKeyFontSize,d);}  }
 					,{ field: 'labelKeyWidth', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('Key宽度') , templet: function (d) { return templet('labelKeyWidth',d.labelKeyWidth,d);}  }
 					,{ field: 'labelValueFontSize', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('字体大小(mm)') , templet: function (d) { return templet('labelValueFontSize',d.labelValueFontSize,d);}  }
-					,{ field: 'imageContainHeight', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图像容器大小(mm)') , templet: function (d) { return templet('imageContainHeight',d.imageContainHeight,d);}  }
-					,{ field: 'imageWidth', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图形宽度') , templet: function (d) { return templet('imageWidth',d.imageWidth,d);}  }
-					,{ field: 'imageHeight', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图形高度') , templet: function (d) { return templet('imageHeight',d.imageHeight,d);}  }
+					,{ field: 'imageContainHeight', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('专用标签') , templet: function (d) { return templet('imageContainHeight',d.imageContainHeight,d);}  }
+					,{ field: 'imageWidth', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('专用标签') , templet: function (d) { return templet('imageWidth',d.imageWidth,d);}  }
+					,{ field: 'imageHeight', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('专用标签') , templet: function (d) { return templet('imageHeight',d.imageHeight,d);}  }
 					,{ field: 'imageMarginTop', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图片marginTop') , templet: function (d) { return templet('imageMarginTop',d.imageMarginTop,d);}  }
 					,{ field: 'imageMarginBottom', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图片marginBottom') , templet: function (d) { return templet('imageMarginBottom',d.imageMarginBottom,d);}  }
 					,{ field: 'imageMarginLeft', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图片marginLeft') , templet: function (d) { return templet('imageMarginLeft',d.imageMarginLeft,d);}  }

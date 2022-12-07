@@ -27,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产标签
  * <p>资产标签 , 数据表 eam_asset_label 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-05 20:04:02
- * @sign 75BB2A11A3B182ECCF26337E5D79241B
+ * @since 2022-12-07 09:48:43
+ * @sign 96D2836263185E2A41E3AEC3F9B0F82F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -52,6 +52,18 @@ public class AssetLabel extends Entity {
 	*/
 	@ApiModelProperty(required = true,value="编码" , notes = "编码" , example = "T001")
 	private String code;
+	
+	/**
+	 * 字体：字体
+	*/
+	@ApiModelProperty(required = false,value="字体" , notes = "字体" , example = "MYSH")
+	private String fontType;
+	
+	/**
+	 * 字体路径：字体路径
+	*/
+	@ApiModelProperty(required = false,value="字体路径" , notes = "字体路径" , example = "/Users/lankl/IdeaProjects/eam/bin/simhei.ttf")
+	private String fontPath;
 	
 	/**
 	 * 标签：标签
@@ -84,27 +96,27 @@ public class AssetLabel extends Entity {
 	private BigDecimal labelTableMargin;
 	
 	/**
-	 * 图片marginTop(mm)：图片marginTop(mm)
+	 * 表格marginTop(mm)：表格marginTop(mm)
 	*/
-	@ApiModelProperty(required = false,value="图片marginTop(mm)" , notes = "图片marginTop(mm)" , example = "0.30")
+	@ApiModelProperty(required = false,value="表格marginTop(mm)" , notes = "表格marginTop(mm)" , example = "0.30")
 	private BigDecimal labelTableMarginTop;
 	
 	/**
-	 * 图片marginBottom(mm)：图片marginBottom(mm)
+	 * 表格marginBottom(mm)：表格marginBottom(mm)
 	*/
-	@ApiModelProperty(required = false,value="图片marginBottom(mm)" , notes = "图片marginBottom(mm)" , example = "0.00")
+	@ApiModelProperty(required = false,value="表格marginBottom(mm)" , notes = "表格marginBottom(mm)" , example = "0.00")
 	private BigDecimal labelTableMarginBottom;
 	
 	/**
-	 * 图片marginLeft(mm)：图片marginLeft(mm)
+	 * 表格marginLeft(mm)：表格marginLeft(mm)
 	*/
-	@ApiModelProperty(required = false,value="图片marginLeft(mm)" , notes = "图片marginLeft(mm)" , example = "0.00")
+	@ApiModelProperty(required = false,value="表格marginLeft(mm)" , notes = "表格marginLeft(mm)" , example = "0.00")
 	private BigDecimal labelTableMarginLeft;
 	
 	/**
-	 * 图片marginRight(mm)：图片marginRight(mm)
+	 * 表格marginRight(mm)：表格marginRight(mm)
 	*/
-	@ApiModelProperty(required = false,value="图片marginRight(mm)" , notes = "图片marginRight(mm)" , example = "0.00")
+	@ApiModelProperty(required = false,value="表格marginRight(mm)" , notes = "表格marginRight(mm)" , example = "0.00")
 	private BigDecimal labelTableMarginRight;
 	
 	/**
@@ -116,7 +128,7 @@ public class AssetLabel extends Entity {
 	/**
 	 * Key宽度：Key宽度
 	*/
-	@ApiModelProperty(required = false,value="Key宽度" , notes = "Key宽度" , example = "13.00")
+	@ApiModelProperty(required = false,value="Key宽度" , notes = "Key宽度" , example = "15.00")
 	private BigDecimal labelKeyWidth;
 	
 	/**
@@ -126,21 +138,21 @@ public class AssetLabel extends Entity {
 	private BigDecimal labelValueFontSize;
 	
 	/**
-	 * 图像容器大小(mm)：图像容器大小(mm)
+	 * 专用标签：图像容器大小(mm)
 	*/
-	@ApiModelProperty(required = false,value="图像容器大小(mm)" , notes = "图像容器大小(mm)")
+	@ApiModelProperty(required = false,value="专用标签" , notes = "图像容器大小(mm)" , example = "28.00")
 	private BigDecimal imageContainHeight;
 	
 	/**
-	 * 图形宽度：图形宽度
+	 * 专用标签：图形宽度
 	*/
-	@ApiModelProperty(required = false,value="图形宽度" , notes = "图形宽度" , example = "0.00")
+	@ApiModelProperty(required = false,value="专用标签" , notes = "图形宽度" , example = "27.00")
 	private BigDecimal imageWidth;
 	
 	/**
-	 * 图形高度：图形高度
+	 * 专用标签：图形高度
 	*/
-	@ApiModelProperty(required = false,value="图形高度" , notes = "图形高度" , example = "0.00")
+	@ApiModelProperty(required = false,value="专用标签" , notes = "图形高度" , example = "27.00")
 	private BigDecimal imageHeight;
 	
 	/**
@@ -287,6 +299,44 @@ public class AssetLabel extends Entity {
 	}
 	
 	/**
+	 * 获得 字体<br>
+	 * 字体
+	 * @return 字体
+	*/
+	public String getFontType() {
+		return fontType;
+	}
+	
+	/**
+	 * 设置 字体
+	 * @param fontType 字体
+	 * @return 当前对象
+	*/
+	public AssetLabel setFontType(String fontType) {
+		this.fontType=fontType;
+		return this;
+	}
+	
+	/**
+	 * 获得 字体路径<br>
+	 * 字体路径
+	 * @return 字体路径
+	*/
+	public String getFontPath() {
+		return fontPath;
+	}
+	
+	/**
+	 * 设置 字体路径
+	 * @param fontPath 字体路径
+	 * @return 当前对象
+	*/
+	public AssetLabel setFontPath(String fontPath) {
+		this.fontPath=fontPath;
+		return this;
+	}
+	
+	/**
 	 * 获得 标签<br>
 	 * 标签
 	 * @return 标签
@@ -382,17 +432,17 @@ public class AssetLabel extends Entity {
 	}
 	
 	/**
-	 * 获得 图片marginTop(mm)<br>
-	 * 图片marginTop(mm)
-	 * @return 图片marginTop(mm)
+	 * 获得 表格marginTop(mm)<br>
+	 * 表格marginTop(mm)
+	 * @return 表格marginTop(mm)
 	*/
 	public BigDecimal getLabelTableMarginTop() {
 		return labelTableMarginTop;
 	}
 	
 	/**
-	 * 设置 图片marginTop(mm)
-	 * @param labelTableMarginTop 图片marginTop(mm)
+	 * 设置 表格marginTop(mm)
+	 * @param labelTableMarginTop 表格marginTop(mm)
 	 * @return 当前对象
 	*/
 	public AssetLabel setLabelTableMarginTop(BigDecimal labelTableMarginTop) {
@@ -401,17 +451,17 @@ public class AssetLabel extends Entity {
 	}
 	
 	/**
-	 * 获得 图片marginBottom(mm)<br>
-	 * 图片marginBottom(mm)
-	 * @return 图片marginBottom(mm)
+	 * 获得 表格marginBottom(mm)<br>
+	 * 表格marginBottom(mm)
+	 * @return 表格marginBottom(mm)
 	*/
 	public BigDecimal getLabelTableMarginBottom() {
 		return labelTableMarginBottom;
 	}
 	
 	/**
-	 * 设置 图片marginBottom(mm)
-	 * @param labelTableMarginBottom 图片marginBottom(mm)
+	 * 设置 表格marginBottom(mm)
+	 * @param labelTableMarginBottom 表格marginBottom(mm)
 	 * @return 当前对象
 	*/
 	public AssetLabel setLabelTableMarginBottom(BigDecimal labelTableMarginBottom) {
@@ -420,17 +470,17 @@ public class AssetLabel extends Entity {
 	}
 	
 	/**
-	 * 获得 图片marginLeft(mm)<br>
-	 * 图片marginLeft(mm)
-	 * @return 图片marginLeft(mm)
+	 * 获得 表格marginLeft(mm)<br>
+	 * 表格marginLeft(mm)
+	 * @return 表格marginLeft(mm)
 	*/
 	public BigDecimal getLabelTableMarginLeft() {
 		return labelTableMarginLeft;
 	}
 	
 	/**
-	 * 设置 图片marginLeft(mm)
-	 * @param labelTableMarginLeft 图片marginLeft(mm)
+	 * 设置 表格marginLeft(mm)
+	 * @param labelTableMarginLeft 表格marginLeft(mm)
 	 * @return 当前对象
 	*/
 	public AssetLabel setLabelTableMarginLeft(BigDecimal labelTableMarginLeft) {
@@ -439,17 +489,17 @@ public class AssetLabel extends Entity {
 	}
 	
 	/**
-	 * 获得 图片marginRight(mm)<br>
-	 * 图片marginRight(mm)
-	 * @return 图片marginRight(mm)
+	 * 获得 表格marginRight(mm)<br>
+	 * 表格marginRight(mm)
+	 * @return 表格marginRight(mm)
 	*/
 	public BigDecimal getLabelTableMarginRight() {
 		return labelTableMarginRight;
 	}
 	
 	/**
-	 * 设置 图片marginRight(mm)
-	 * @param labelTableMarginRight 图片marginRight(mm)
+	 * 设置 表格marginRight(mm)
+	 * @param labelTableMarginRight 表格marginRight(mm)
 	 * @return 当前对象
 	*/
 	public AssetLabel setLabelTableMarginRight(BigDecimal labelTableMarginRight) {
@@ -515,17 +565,17 @@ public class AssetLabel extends Entity {
 	}
 	
 	/**
-	 * 获得 图像容器大小(mm)<br>
+	 * 获得 专用标签<br>
 	 * 图像容器大小(mm)
-	 * @return 图像容器大小(mm)
+	 * @return 专用标签
 	*/
 	public BigDecimal getImageContainHeight() {
 		return imageContainHeight;
 	}
 	
 	/**
-	 * 设置 图像容器大小(mm)
-	 * @param imageContainHeight 图像容器大小(mm)
+	 * 设置 专用标签
+	 * @param imageContainHeight 专用标签
 	 * @return 当前对象
 	*/
 	public AssetLabel setImageContainHeight(BigDecimal imageContainHeight) {
@@ -534,17 +584,17 @@ public class AssetLabel extends Entity {
 	}
 	
 	/**
-	 * 获得 图形宽度<br>
+	 * 获得 专用标签<br>
 	 * 图形宽度
-	 * @return 图形宽度
+	 * @return 专用标签
 	*/
 	public BigDecimal getImageWidth() {
 		return imageWidth;
 	}
 	
 	/**
-	 * 设置 图形宽度
-	 * @param imageWidth 图形宽度
+	 * 设置 专用标签
+	 * @param imageWidth 专用标签
 	 * @return 当前对象
 	*/
 	public AssetLabel setImageWidth(BigDecimal imageWidth) {
@@ -553,17 +603,17 @@ public class AssetLabel extends Entity {
 	}
 	
 	/**
-	 * 获得 图形高度<br>
+	 * 获得 专用标签<br>
 	 * 图形高度
-	 * @return 图形高度
+	 * @return 专用标签
 	*/
 	public BigDecimal getImageHeight() {
 		return imageHeight;
 	}
 	
 	/**
-	 * 设置 图形高度
-	 * @param imageHeight 图形高度
+	 * 设置 专用标签
+	 * @param imageHeight 专用标签
 	 * @return 当前对象
 	*/
 	public AssetLabel setImageHeight(BigDecimal imageHeight) {
@@ -994,7 +1044,9 @@ public class AssetLabel extends Entity {
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setImageMarginTop(this.getImageMarginTop());
 		inst.setId(this.getId());
+		inst.setFontPath(this.getFontPath());
 		inst.setImageWidth(this.getImageWidth());
+		inst.setFontType(this.getFontType());
 		inst.setLabelTableMarginRight(this.getLabelTableMarginRight());
 		inst.setImageContainHeight(this.getImageContainHeight());
 		inst.setUpdateTime(this.getUpdateTime());
@@ -1088,7 +1140,9 @@ public class AssetLabel extends Entity {
 			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetLabelMeta.UPDATE_BY)));
 			this.setImageMarginTop(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.IMAGE_MARGIN_TOP)));
 			this.setId(DataParser.parse(String.class, map.get(AssetLabelMeta.ID)));
+			this.setFontPath(DataParser.parse(String.class, map.get(AssetLabelMeta.FONT_PATH)));
 			this.setImageWidth(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.IMAGE_WIDTH)));
+			this.setFontType(DataParser.parse(String.class, map.get(AssetLabelMeta.FONT_TYPE)));
 			this.setLabelTableMarginRight(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.LABEL_TABLE_MARGIN_RIGHT)));
 			this.setImageContainHeight(DataParser.parse(BigDecimal.class, map.get(AssetLabelMeta.IMAGE_CONTAIN_HEIGHT)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetLabelMeta.UPDATE_TIME)));
@@ -1125,7 +1179,9 @@ public class AssetLabel extends Entity {
 				this.setUpdateBy( (String)map.get(AssetLabelMeta.UPDATE_BY));
 				this.setImageMarginTop( (BigDecimal)map.get(AssetLabelMeta.IMAGE_MARGIN_TOP));
 				this.setId( (String)map.get(AssetLabelMeta.ID));
+				this.setFontPath( (String)map.get(AssetLabelMeta.FONT_PATH));
 				this.setImageWidth( (BigDecimal)map.get(AssetLabelMeta.IMAGE_WIDTH));
+				this.setFontType( (String)map.get(AssetLabelMeta.FONT_TYPE));
 				this.setLabelTableMarginRight( (BigDecimal)map.get(AssetLabelMeta.LABEL_TABLE_MARGIN_RIGHT));
 				this.setImageContainHeight( (BigDecimal)map.get(AssetLabelMeta.IMAGE_CONTAIN_HEIGHT));
 				this.setUpdateTime( (Date)map.get(AssetLabelMeta.UPDATE_TIME));
@@ -1175,7 +1231,9 @@ public class AssetLabel extends Entity {
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetLabelMeta.UPDATE_BY)));
 			this.setImageMarginTop(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.IMAGE_MARGIN_TOP)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssetLabelMeta.ID)));
+			this.setFontPath(DataParser.parse(String.class, r.getValue(AssetLabelMeta.FONT_PATH)));
 			this.setImageWidth(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.IMAGE_WIDTH)));
+			this.setFontType(DataParser.parse(String.class, r.getValue(AssetLabelMeta.FONT_TYPE)));
 			this.setLabelTableMarginRight(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.LABEL_TABLE_MARGIN_RIGHT)));
 			this.setImageContainHeight(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelMeta.IMAGE_CONTAIN_HEIGHT)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetLabelMeta.UPDATE_TIME)));
@@ -1209,7 +1267,9 @@ public class AssetLabel extends Entity {
 				this.setUpdateBy( (String)r.getValue(AssetLabelMeta.UPDATE_BY));
 				this.setImageMarginTop( (BigDecimal)r.getValue(AssetLabelMeta.IMAGE_MARGIN_TOP));
 				this.setId( (String)r.getValue(AssetLabelMeta.ID));
+				this.setFontPath( (String)r.getValue(AssetLabelMeta.FONT_PATH));
 				this.setImageWidth( (BigDecimal)r.getValue(AssetLabelMeta.IMAGE_WIDTH));
+				this.setFontType( (String)r.getValue(AssetLabelMeta.FONT_TYPE));
 				this.setLabelTableMarginRight( (BigDecimal)r.getValue(AssetLabelMeta.LABEL_TABLE_MARGIN_RIGHT));
 				this.setImageContainHeight( (BigDecimal)r.getValue(AssetLabelMeta.IMAGE_CONTAIN_HEIGHT));
 				this.setUpdateTime( (Date)r.getValue(AssetLabelMeta.UPDATE_TIME));
