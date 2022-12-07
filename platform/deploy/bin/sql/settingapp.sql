@@ -17,6 +17,7 @@ update sys_config set value=0 where code='eam.assetImportDataReplenish';
 update sys_config set value=0 where code='eam.assetSerialNumberIsUnique';
 update sys_config set value=0 where code='eam.assetStatusColumnDisable';
 
+update eam_asset_label set font_path='/app/app/bin/msyh.ttf' where id='1';
 
 -- 协同
 update sys_menu set hidden=1 where id='616256291005792256';

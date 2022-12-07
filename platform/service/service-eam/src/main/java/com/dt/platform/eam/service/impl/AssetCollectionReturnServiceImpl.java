@@ -3,12 +3,12 @@ package com.dt.platform.eam.service.impl;
 
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.common.CodeModuleEnum;
-import com.dt.platform.constants.enums.eam.AssetHandleConfirmOperationEnum;
-import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
-import com.dt.platform.constants.enums.eam.AssetOperateEnum;
-import com.dt.platform.constants.enums.eam.AssetStatusEnum;
+import com.dt.platform.constants.enums.eam.*;
+import com.dt.platform.domain.eam.Asset;
+import com.dt.platform.domain.eam.AssetCollection;
 import com.dt.platform.domain.eam.AssetCollectionReturn;
 import com.dt.platform.domain.eam.AssetItem;
+import com.dt.platform.domain.eam.meta.AssetCollectionMeta;
 import com.dt.platform.domain.eam.meta.AssetCollectionReturnMeta;
 import com.dt.platform.eam.service.*;
 import com.dt.platform.eam.service.bpm.AssetCollectionReturnBpmEventAdaptor;
@@ -19,6 +19,7 @@ import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.bean.BeanUtil;
 import com.github.foxnic.commons.busi.id.IDGenerator;
+import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.commons.reflect.EnumUtil;
@@ -35,6 +36,8 @@ import com.github.foxnic.sql.expr.SQL;
 import com.github.foxnic.sql.meta.DBField;
 import org.github.foxnic.web.domain.bpm.BpmActionResult;
 import org.github.foxnic.web.domain.bpm.BpmEvent;
+import org.github.foxnic.web.domain.hrm.Employee;
+import org.github.foxnic.web.domain.hrm.Person;
 import org.github.foxnic.web.framework.bpm.BpmAssistant;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import org.github.foxnic.web.session.SessionUser;
@@ -113,12 +116,17 @@ public class AssetCollectionReturnServiceImpl extends SuperService<AssetCollecti
 
 		AssetCollectionReturn data= AssetCollectionReturnServiceProxy.api().getById(id).getData();
 		join(data, AssetCollectionReturnMeta.ASSET_LIST);
-
+		List<Asset> list=data.getAssetList();
+		if(list!=null){
+			assetService.joinData(list);
+			data.setAssetList(list);
+		}
 		Map<String, Object> map= BeanUtil.toMap(data);
 		if(data.getStatus()!=null){
 			CodeTextEnum en= EnumUtil.parseByCode(AssetHandleStatusEnum.class,data.getStatus());
 			map.put("statusName", en==null?data.getStatus():en.text());
 		}
+		System.out.println("map data:"+map);
 		return map;
 	}
 
@@ -184,7 +192,7 @@ public class AssetCollectionReturnServiceImpl extends SuperService<AssetCollecti
 		map.put("position_id",billData.getPositionId());
 		map.put("position_detail",billData.getPositionDetail());
 		map.put("use_organization_id",billData.getUseOrganizationId());
-		dao.execute("update eam_asset_item a,eam_asset b set b.collection_id='' where a.asset_id=b.id and a.handle_id=?",id);
+
 
 		HashMap<String,List<SQL>> resultMap=assetService.parseAssetChangeRecordWithChangeAsset(billData.getAssetList(),map,billData.getBusinessCode(),AssetOperateEnum.EAM_ASSET_COLLECTION_RETURN.code(),"");
 		List<SQL> updateSqls=resultMap.get("update");
@@ -195,6 +203,22 @@ public class AssetCollectionReturnServiceImpl extends SuperService<AssetCollecti
 				dao.batchExecute(sqls);
 			}
 		}
+
+		//保存快照
+		AssetCollectionReturn afterData=getById(id);
+		join(afterData, AssetCollectionMeta.ASSET_LIST);
+		for(Asset asset:afterData.getAssetList()){
+			String oldAssetId=asset.getId();
+			String newAssetId=IDGenerator.getSnowflakeIdString();
+			asset.setId(newAssetId);
+			asset.setOwnerCode(AssetOwnerCodeEnum.ASSET_DATE_AFTER.code());
+			assetService.sourceInsert(asset);
+			dao.execute("update eam_asset_item a set a.asset_id=?,flag=? where a.asset_id=? and a.handle_id=?",newAssetId,oldAssetId,oldAssetId,id);
+		}
+
+		//
+		//最后执行
+		dao.execute("update eam_asset_item a,eam_asset b set b.collection_id='' where b.owner_code='asset' and a.asset_id=b.id and a.handle_id=?",id);
 		return ErrorDesc.success();
 	}
 

@@ -3,12 +3,12 @@ package com.dt.platform.eam.service.impl;
 
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.common.CodeModuleEnum;
-import com.dt.platform.constants.enums.eam.AssetHandleConfirmOperationEnum;
-import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
-import com.dt.platform.constants.enums.eam.AssetOperateEnum;
-import com.dt.platform.constants.enums.eam.AssetStatusEnum;
+import com.dt.platform.constants.enums.eam.*;
+import com.dt.platform.domain.eam.Asset;
+import com.dt.platform.domain.eam.AssetAllocation;
 import com.dt.platform.domain.eam.AssetItem;
 import com.dt.platform.domain.eam.AssetTranfer;
+import com.dt.platform.domain.eam.meta.AssetAllocationMeta;
 import com.dt.platform.domain.eam.meta.AssetTranferMeta;
 import com.dt.platform.eam.service.*;
 import com.dt.platform.eam.service.bpm.AssetTranferBpmEventAdaptor;
@@ -192,6 +192,17 @@ public class AssetTranferServiceImpl extends SuperService<AssetTranfer> implemen
 			if(sqls.size()>0){
 				dao.batchExecute(sqls);
 			}
+		}
+		//保存快照
+		AssetTranfer afterData=getById(id);
+		join(afterData, AssetTranferMeta.ASSET_LIST);
+		for(Asset asset:afterData.getAssetList()){
+			String oldAssetId=asset.getId();
+			String newAssetId=IDGenerator.getSnowflakeIdString();
+			asset.setId(newAssetId);
+			asset.setOwnerCode(AssetOwnerCodeEnum.ASSET_DATE_AFTER.code());
+			assetService.sourceInsert(asset);
+			dao.execute("update eam_asset_item a set a.asset_id=?,flag=? where a.asset_id=? and a.handle_id=?",newAssetId,oldAssetId,oldAssetId,id);
 		}
 		return ErrorDesc.success();
 	}

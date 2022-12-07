@@ -34,8 +34,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产
  * <p>资产 , 数据表 eam_asset 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-28 12:24:51
- * @sign 631B8A3D2FEAB0A148418C45FD196B3A
+ * @since 2022-12-07 18:19:38
+ * @sign EE001FD2DFF6A8AB5FBE33BFCD3FBCE8
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -451,9 +451,9 @@ public class Asset extends Entity {
 	private Date depreciationOperTime;
 	
 	/**
-	 * 残值率：残值率
+	 * residuals_rate：residuals_rate
 	*/
-	@ApiModelProperty(required = false,value="残值率" , notes = "残值率")
+	@ApiModelProperty(required = false,value="residuals_rate" , notes = "residuals_rate")
 	private BigDecimal residualsRate;
 	
 	/**
@@ -944,6 +944,18 @@ public class Asset extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="费用项目" , notes = "费用项目")
 	private DictItem expenseItemDict;
+	
+	/**
+	 * assetCollection：assetCollection
+	*/
+	@ApiModelProperty(required = false,value="assetCollection" , notes = "assetCollection")
+	private AssetCollection assetCollection;
+	
+	/**
+	 * assetBorrow：assetBorrow
+	*/
+	@ApiModelProperty(required = false,value="assetBorrow" , notes = "assetBorrow")
+	private AssetBorrow assetBorrow;
 	
 	/**
 	 * 获得 主键<br>
@@ -2219,17 +2231,17 @@ public class Asset extends Entity {
 	}
 	
 	/**
-	 * 获得 残值率<br>
-	 * 残值率
-	 * @return 残值率
+	 * 获得 residuals_rate<br>
+	 * residuals_rate
+	 * @return residuals_rate
 	*/
 	public BigDecimal getResidualsRate() {
 		return residualsRate;
 	}
 	
 	/**
-	 * 设置 残值率
-	 * @param residualsRate 残值率
+	 * 设置 residuals_rate
+	 * @param residualsRate residuals_rate
 	 * @return 当前对象
 	*/
 	public Asset setResidualsRate(BigDecimal residualsRate) {
@@ -3829,6 +3841,44 @@ public class Asset extends Entity {
 		this.expenseItemDict=expenseItemDict;
 		return this;
 	}
+	
+	/**
+	 * 获得 assetCollection<br>
+	 * assetCollection
+	 * @return assetCollection
+	*/
+	public AssetCollection getAssetCollection() {
+		return assetCollection;
+	}
+	
+	/**
+	 * 设置 assetCollection
+	 * @param assetCollection assetCollection
+	 * @return 当前对象
+	*/
+	public Asset setAssetCollection(AssetCollection assetCollection) {
+		this.assetCollection=assetCollection;
+		return this;
+	}
+	
+	/**
+	 * 获得 assetBorrow<br>
+	 * assetBorrow
+	 * @return assetBorrow
+	*/
+	public AssetBorrow getAssetBorrow() {
+		return assetBorrow;
+	}
+	
+	/**
+	 * 设置 assetBorrow
+	 * @param assetBorrow assetBorrow
+	 * @return 当前对象
+	*/
+	public Asset setAssetBorrow(AssetBorrow assetBorrow) {
+		this.assetBorrow=assetBorrow;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -4017,11 +4067,13 @@ public class Asset extends Entity {
 			inst.setPcmData(this.getPcmData());
 			inst.setGoodsStock(this.getGoodsStock());
 			inst.setUseOrganization(this.getUseOrganization());
+			inst.setAssetCollection(this.getAssetCollection());
 			inst.setChangeInstance(this.getChangeInstance());
 			inst.setExtData(this.getExtData());
 			inst.setMaintnainer(this.getMaintnainer());
 			inst.setAssetMaintenanceStatus(this.getAssetMaintenanceStatus());
 			inst.setPosition(this.getPosition());
+			inst.setAssetBorrow(this.getAssetBorrow());
 			inst.setCategory(this.getCategory());
 			inst.setRegion(this.getRegion());
 		}
@@ -4224,11 +4276,13 @@ public class Asset extends Entity {
 			this.setWarehouse(DataParser.parse(Warehouse.class, map.get(AssetMeta.WAREHOUSE)));
 			this.setGoodsStock(DataParser.parse(GoodsStock.class, map.get(AssetMeta.GOODS_STOCK)));
 			this.setUseOrganization(DataParser.parse(Organization.class, map.get(AssetMeta.USE_ORGANIZATION)));
+			this.setAssetCollection(DataParser.parse(AssetCollection.class, map.get(AssetMeta.ASSET_COLLECTION)));
 			this.setChangeInstance(DataParser.parse(ChangeInstance.class, map.get(AssetMeta.CHANGE_INSTANCE)));
 			this.setExtData(DataParser.parse(AssetExtData.class, map.get(AssetMeta.EXT_DATA)));
 			this.setMaintnainer(DataParser.parse(Maintainer.class, map.get(AssetMeta.MAINTNAINER)));
 			this.setAssetMaintenanceStatus(DataParser.parse(DictItem.class, map.get(AssetMeta.ASSET_MAINTENANCE_STATUS)));
 			this.setPosition(DataParser.parse(Position.class, map.get(AssetMeta.POSITION)));
+			this.setAssetBorrow(DataParser.parse(AssetBorrow.class, map.get(AssetMeta.ASSET_BORROW)));
 			this.setCategory(DataParser.parse(Catalog.class, map.get(AssetMeta.CATEGORY)));
 			this.setRegion(DataParser.parse(AssetRegion.class, map.get(AssetMeta.REGION)));
 			return true;
@@ -4375,11 +4429,13 @@ public class Asset extends Entity {
 				this.setWarehouse( (Warehouse)map.get(AssetMeta.WAREHOUSE));
 				this.setGoodsStock( (GoodsStock)map.get(AssetMeta.GOODS_STOCK));
 				this.setUseOrganization( (Organization)map.get(AssetMeta.USE_ORGANIZATION));
+				this.setAssetCollection( (AssetCollection)map.get(AssetMeta.ASSET_COLLECTION));
 				this.setChangeInstance( (ChangeInstance)map.get(AssetMeta.CHANGE_INSTANCE));
 				this.setExtData( (AssetExtData)map.get(AssetMeta.EXT_DATA));
 				this.setMaintnainer( (Maintainer)map.get(AssetMeta.MAINTNAINER));
 				this.setAssetMaintenanceStatus( (DictItem)map.get(AssetMeta.ASSET_MAINTENANCE_STATUS));
 				this.setPosition( (Position)map.get(AssetMeta.POSITION));
+				this.setAssetBorrow( (AssetBorrow)map.get(AssetMeta.ASSET_BORROW));
 				this.setCategory( (Catalog)map.get(AssetMeta.CATEGORY));
 				this.setRegion( (AssetRegion)map.get(AssetMeta.REGION));
 				return true;

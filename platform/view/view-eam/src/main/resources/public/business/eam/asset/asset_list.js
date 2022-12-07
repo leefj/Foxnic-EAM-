@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-28 12:24:52
+ * @since 2022-12-07 18:19:40
  */
 
 
@@ -140,7 +140,7 @@ function ListPage() {
 					,{ field: 'assetUsedServiceLife', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('已用期限') , templet: function (d) { return templet('assetUsedServiceLife',d.assetUsedServiceLife,d);}  }
 					,{ field: 'depreciationId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('最后折旧') , templet: function (d) { return templet('depreciationId',d.depreciationId,d);}  }
 					,{ field: 'depreciationOperTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('最后折旧时间') ,templet: function (d) { return templet('depreciationOperTime',fox.dateFormat(d.depreciationOperTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'residualsRate', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('残值率') , templet: function (d) { return templet('residualsRate',d.residualsRate,d);}  }
+					,{ field: 'residualsRate', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('residuals_rate') , templet: function (d) { return templet('residualsRate',d.residualsRate,d);}  }
 					,{ field: 'residualsPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('残值') , templet: function (d) { return templet('residualsPrice',d.residualsPrice,d);}  }
 					,{ field: 'taxAmountRate', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('税额') , templet: function (d) { return templet('taxAmountRate',d.taxAmountRate,d);}  }
 					,{ field: 'currentYearDepreciation', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('本年折旧') , templet: function (d) { return templet('currentYearDepreciation',d.currentYearDepreciation,d);}  }

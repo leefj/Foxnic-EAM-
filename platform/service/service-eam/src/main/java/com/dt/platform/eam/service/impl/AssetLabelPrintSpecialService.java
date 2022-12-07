@@ -72,14 +72,12 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 			PdfFont KeyFont=null;
 			PdfFont valueFont=null;
 			String workDir=System.getProperty("user.dir");
-
 			System.out.println(workDir+File.separator+"bin"+File.separator+"simhei.ttf");
 			String fontPath=printData.getLabel().getFontPath();
 			String fontAlias=printData.getLabel().getFontType();
 			File file = new File(fontPath);
 			if(file.exists()){
 				System.out.println("pdf Font path:"+fontPath+",pdf Font:"+fontAlias);
-				//PdfFontFactory.register(fontPath,"SIM_HEI");
 				PdfFontFactory.register(fontPath,fontAlias);
 				KeyFont =PdfFontFactory.createRegisteredFont(fontAlias, PdfEncodings.IDENTITY_H);
 				valueFont =PdfFontFactory.createRegisteredFont(fontAlias,PdfEncodings.IDENTITY_H);
@@ -264,7 +262,7 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 						content.setProperty(Property.OVERFLOW_X, OverflowPropertyValue.VISIBLE);
 						content.setMargin(0);
 						content.setPadding(0);
-						content.setBold();
+						//content.setBold();
 						cell.add(content);
 						table.addCell(cell);
 						if(cellLayout.getSort()==40){

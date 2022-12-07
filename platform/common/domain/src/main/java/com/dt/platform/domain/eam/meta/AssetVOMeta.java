@@ -25,13 +25,15 @@ import com.dt.platform.domain.eam.AssetRack;
 import org.github.foxnic.web.domain.changes.ChangeInstance;
 import com.dt.platform.domain.eam.GoodsStock;
 import com.dt.platform.domain.eam.AssetRegion;
+import com.dt.platform.domain.eam.AssetCollection;
+import com.dt.platform.domain.eam.AssetBorrow;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-28 12:24:51
+ * @since 2022-12-07 18:19:38
  * @sign C05127D02CE5B4FBBB8CDA17B7C59FAA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -799,14 +801,14 @@ public class AssetVOMeta extends AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.util.Date> DEPRECIATION_OPER_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,DEPRECIATION_OPER_TIME, java.util.Date.class, "最后折旧时间", "最后折旧时间", java.util.Date.class, null);
 	
 	/**
-	 * 残值率 , 类型: java.math.BigDecimal
+	 * residuals_rate , 类型: java.math.BigDecimal
 	*/
 	public static final String RESIDUALS_RATE="residualsRate";
 	
 	/**
-	 * 残值率 , 类型: java.math.BigDecimal
+	 * residuals_rate , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.math.BigDecimal> RESIDUALS_RATE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,RESIDUALS_RATE, java.math.BigDecimal.class, "残值率", "残值率", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.math.BigDecimal> RESIDUALS_RATE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,RESIDUALS_RATE, java.math.BigDecimal.class, "residuals_rate", "residuals_rate", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 残值 , 类型: java.math.BigDecimal
@@ -1619,9 +1621,29 @@ public class AssetVOMeta extends AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,org.github.foxnic.web.domain.system.DictItem> EXPENSE_ITEM_DICT_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,EXPENSE_ITEM_DICT, org.github.foxnic.web.domain.system.DictItem.class, "费用项目", "费用项目", org.github.foxnic.web.domain.system.DictItem.class, null);
 	
 	/**
+	 * assetCollection , 类型: com.dt.platform.domain.eam.AssetCollection
+	*/
+	public static final String ASSET_COLLECTION="assetCollection";
+	
+	/**
+	 * assetCollection , 类型: com.dt.platform.domain.eam.AssetCollection
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,com.dt.platform.domain.eam.AssetCollection> ASSET_COLLECTION_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,ASSET_COLLECTION, com.dt.platform.domain.eam.AssetCollection.class, "assetCollection", "assetCollection", com.dt.platform.domain.eam.AssetCollection.class, null);
+	
+	/**
+	 * assetBorrow , 类型: com.dt.platform.domain.eam.AssetBorrow
+	*/
+	public static final String ASSET_BORROW="assetBorrow";
+	
+	/**
+	 * assetBorrow , 类型: com.dt.platform.domain.eam.AssetBorrow
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,com.dt.platform.domain.eam.AssetBorrow> ASSET_BORROW_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,ASSET_BORROW, com.dt.platform.domain.eam.AssetBorrow.class, "assetBorrow", "assetBorrow", com.dt.platform.domain.eam.AssetBorrow.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , REGION_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , MAINTENANCE_PRICE , MAINTENANCE_METHOD , SUGGEST_MAINTENANCE_METHOD , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , FINANCIAL_OPTION , EXPENSE_ITEM , SUPPLIER_ID , CUSTOMER_INFO , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , PURCHASE_UNIT_PRICE , ORIGINAL_UNIT_PRICE , NAV_PRICE , ASSET_USED_SERVICE_LIFE , DEPRECIATION_ID , DEPRECIATION_OPER_TIME , RESIDUALS_RATE , RESIDUALS_PRICE , TAX_AMOUNT_RATE , CURRENT_YEAR_DEPRECIATION , DEPRECIATION_YEAR , ACCUMULATED_DEPRECIATION , MONTH_DEPRECIATION_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL2 , LABEL3 , LABEL4 , LABEL5 , BILL_ID , INTERNAL_CONTROL_LABEL , COLLECTION_ID , BORROW_ID , SCRAP_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA , EXT_DATA , PCM_DATA , CATALOG_ATTRIBUTE , POSITION , CATEGORY_FINANCE , CATEGORY , GOODS , MANUFACTURER , WAREHOUSE , USE_USER , MANAGER , ORIGINATOR , SUPPLIER , MAINTNAINER , OWNER_COMPANY , USE_ORGANIZATION , SOURCE , EQUIPMENT_ENVIRONMENT , SAFETY_LEVEL , ASSET_MAINTENANCE_STATUS , SUGGEST_MAINTENANCE_METHOD_DATA , MAINTENANCE_METHOD_DATA , ASSET_CYCLE_STATUS , RACK , CHANGE_INSTANCE , GOODS_STOCK , REGION , FINANCIAL_OPTION_DICT , EXPENSE_ITEM_DICT };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , REGION_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , MAINTENANCE_PRICE , MAINTENANCE_METHOD , SUGGEST_MAINTENANCE_METHOD , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , FINANCIAL_OPTION , EXPENSE_ITEM , SUPPLIER_ID , CUSTOMER_INFO , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , PURCHASE_UNIT_PRICE , ORIGINAL_UNIT_PRICE , NAV_PRICE , ASSET_USED_SERVICE_LIFE , DEPRECIATION_ID , DEPRECIATION_OPER_TIME , RESIDUALS_RATE , RESIDUALS_PRICE , TAX_AMOUNT_RATE , CURRENT_YEAR_DEPRECIATION , DEPRECIATION_YEAR , ACCUMULATED_DEPRECIATION , MONTH_DEPRECIATION_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL2 , LABEL3 , LABEL4 , LABEL5 , BILL_ID , INTERNAL_CONTROL_LABEL , COLLECTION_ID , BORROW_ID , SCRAP_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA , EXT_DATA , PCM_DATA , CATALOG_ATTRIBUTE , POSITION , CATEGORY_FINANCE , CATEGORY , GOODS , MANUFACTURER , WAREHOUSE , USE_USER , MANAGER , ORIGINATOR , SUPPLIER , MAINTNAINER , OWNER_COMPANY , USE_ORGANIZATION , SOURCE , EQUIPMENT_ENVIRONMENT , SAFETY_LEVEL , ASSET_MAINTENANCE_STATUS , SUGGEST_MAINTENANCE_METHOD_DATA , MAINTENANCE_METHOD_DATA , ASSET_CYCLE_STATUS , RACK , CHANGE_INSTANCE , GOODS_STOCK , REGION , FINANCIAL_OPTION_DICT , EXPENSE_ITEM_DICT , ASSET_COLLECTION , ASSET_BORROW };
 	
 	/**
 	 * 代理类
@@ -2468,8 +2490,8 @@ public class AssetVOMeta extends AssetMeta {
 		}
 		
 		/**
-		 * 设置 残值率
-		 * @param residualsRate 残值率
+		 * 设置 residuals_rate
+		 * @param residualsRate residuals_rate
 		 * @return 当前对象
 		*/
 		public Asset setResidualsRate(BigDecimal residualsRate) {
@@ -3368,6 +3390,28 @@ public class AssetVOMeta extends AssetMeta {
 			super.setExpenseItemDict(expenseItemDict);
 			return this;
 		}
+		
+		/**
+		 * 设置 assetCollection
+		 * @param assetCollection assetCollection
+		 * @return 当前对象
+		*/
+		public Asset setAssetCollection(AssetCollection assetCollection) {
+			super.change(ASSET_COLLECTION,super.getAssetCollection(),assetCollection);
+			super.setAssetCollection(assetCollection);
+			return this;
+		}
+		
+		/**
+		 * 设置 assetBorrow
+		 * @param assetBorrow assetBorrow
+		 * @return 当前对象
+		*/
+		public Asset setAssetBorrow(AssetBorrow assetBorrow) {
+			super.change(ASSET_BORROW,super.getAssetBorrow(),assetBorrow);
+			super.setAssetBorrow(assetBorrow);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -3532,6 +3576,7 @@ public class AssetVOMeta extends AssetMeta {
 				inst.setPcmData(this.getPcmData());
 				inst.setGoodsStock(this.getGoodsStock());
 				inst.setUseOrganization(this.getUseOrganization());
+				inst.setAssetCollection(this.getAssetCollection());
 				inst.setChangeInstance(this.getChangeInstance());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
@@ -3540,6 +3585,7 @@ public class AssetVOMeta extends AssetMeta {
 				inst.setAssetMaintenanceStatus(this.getAssetMaintenanceStatus());
 				inst.setIds(this.getIds());
 				inst.setPosition(this.getPosition());
+				inst.setAssetBorrow(this.getAssetBorrow());
 				inst.setCategory(this.getCategory());
 				inst.setRegion(this.getRegion());
 				inst.setSearchValue(this.getSearchValue());

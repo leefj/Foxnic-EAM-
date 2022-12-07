@@ -155,7 +155,7 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.SUPPLIER_ID, value = "资产供应商", required = false, dataTypeClass = String.class, example = "[]"),
 		@ApiImplicitParam(name = AssetVOMeta.ORIGINAL_UNIT_PRICE, value = "资产原值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.ACCUMULATED_DEPRECIATION, value = "累计折旧", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-		@ApiImplicitParam(name = AssetVOMeta.RESIDUALS_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetVOMeta.RESIDUALS_RATE, value = "residuals_rate", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.NAV_PRICE, value = "资产净值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.PURCHASE_UNIT_PRICE, value = "含税单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.ENTRY_TIME, value = "登记时间", required = false, dataTypeClass = Date.class),
@@ -423,7 +423,7 @@ public class AssetController extends SuperController {
         // Asset data=assetService.getById(id);
         // if(AssetHandleStatusEnum.CANCEL.code().equals(data.getStatus())
         // ||AssetHandleStatusEnum.INCOMPLETE.code().equals(data.getStatus()) ){
-        //
+        // 
         // return result;
         // }else{
         // return ErrorDesc.failureMessage("当前状态无法进行删除操作");
@@ -499,7 +499,7 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.SUPPLIER_ID, value = "资产供应商", required = false, dataTypeClass = String.class, example = "[]"),
 		@ApiImplicitParam(name = AssetVOMeta.ORIGINAL_UNIT_PRICE, value = "资产原值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.ACCUMULATED_DEPRECIATION, value = "累计折旧", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-		@ApiImplicitParam(name = AssetVOMeta.RESIDUALS_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetVOMeta.RESIDUALS_RATE, value = "residuals_rate", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.NAV_PRICE, value = "资产净值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.PURCHASE_UNIT_PRICE, value = "含税单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.ENTRY_TIME, value = "登记时间", required = false, dataTypeClass = Date.class),
@@ -820,7 +820,7 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.TOTAL_AMOUNT_PRICE, value = "未税总值", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssetVOMeta.ORIGINAL_UNIT_PRICE, value = "资产原值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.ACCUMULATED_DEPRECIATION, value = "累计折旧", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-		@ApiImplicitParam(name = AssetVOMeta.RESIDUALS_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetVOMeta.RESIDUALS_RATE, value = "residuals_rate", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.NAV_PRICE, value = "资产净值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.PURCHASE_UNIT_PRICE, value = "含税单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.ENTRY_TIME, value = "登记时间", required = false, dataTypeClass = Date.class),
@@ -1042,7 +1042,7 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.TOTAL_AMOUNT_PRICE, value = "未税总值", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssetVOMeta.ORIGINAL_UNIT_PRICE, value = "资产原值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.ACCUMULATED_DEPRECIATION, value = "累计折旧", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-		@ApiImplicitParam(name = AssetVOMeta.RESIDUALS_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetVOMeta.RESIDUALS_RATE, value = "residuals_rate", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.NAV_PRICE, value = "资产净值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.PURCHASE_UNIT_PRICE, value = "含税单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.ENTRY_TIME, value = "登记时间", required = false, dataTypeClass = Date.class),
@@ -1224,7 +1224,7 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.TOTAL_AMOUNT_PRICE, value = "未税总值", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssetVOMeta.ORIGINAL_UNIT_PRICE, value = "资产原值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.ACCUMULATED_DEPRECIATION, value = "累计折旧", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-		@ApiImplicitParam(name = AssetVOMeta.RESIDUALS_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetVOMeta.RESIDUALS_RATE, value = "residuals_rate", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.NAV_PRICE, value = "资产净值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.PURCHASE_UNIT_PRICE, value = "含税单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.ENTRY_TIME, value = "登记时间", required = false, dataTypeClass = Date.class),
@@ -1808,9 +1808,9 @@ public class AssetController extends SuperController {
             TemplateExportParams templateExportParams = new TemplateExportParams(f.getPath());
             templateExportParams.setScanAllsheet(true);
             Workbook workbook = ExcelExportUtil.exportExcel(templateExportParams, map);
-//            response.setCharacterEncoding("UTF-8");
-//            response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("资产数据.xls", "UTF-8"))));
-//            response.setContentType("application/vnd.ms-excel");
+            // response.setCharacterEncoding("UTF-8");
+            // response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("资产数据.xls", "UTF-8"))));
+            // response.setContentType("application/vnd.ms-excel");
             DownloadUtil.writeToOutput(response, workbook, "资产数据.xls");
         } catch (Exception e) {
             DownloadUtil.writeDownloadError(response, e);
@@ -1852,28 +1852,28 @@ public class AssetController extends SuperController {
     @ApiOperationSupport(order = 17)
     @SentinelResource(value = AssetServiceProxy.QUERY_EMPLOYEE_HAVE_ASSET, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetServiceProxy.QUERY_EMPLOYEE_HAVE_ASSET)
-    public Result<JSONObject> queryEmployeeHaveAsset(String userId,String employeeNumber) {
-    	String emplId="";
-    	//userId 优先
-		if(StringUtil.isBlank(userId)){
-			if(StringUtil.isBlank(employeeNumber)){
-				return ErrorDesc.failureMessage("请输入用户ID或者员工工号");
-			}else{
-				RcdSet rs=assetService.dao().query("select * from hrm_employee where deleted=0 and badge=?",employeeNumber);
-				if(rs.size()==0){
-					return ErrorDesc.failureMessage("该工号员工不存在");
-				}
-				if(rs.size()>1){
-					return ErrorDesc.failureMessage("该工号员工重复，无法获取具体的员工");
-				}
-				if(rs.size()==1){
-					emplId=rs.getRcd(0).getString("id");
-				}
-			}
-		}else{
-			emplId=userId;
-		}
-		return assetService.queryEmployeeHaveAsset(emplId);
+    public Result<JSONObject> queryEmployeeHaveAsset(String userId, String employeeNumber) {
+        String emplId = "";
+        // userId 优先
+        if (StringUtil.isBlank(userId)) {
+            if (StringUtil.isBlank(employeeNumber)) {
+                return ErrorDesc.failureMessage("请输入用户ID或者员工工号");
+            } else {
+                RcdSet rs = assetService.dao().query("select * from hrm_employee where deleted=0 and badge=?", employeeNumber);
+                if (rs.size() == 0) {
+                    return ErrorDesc.failureMessage("该工号员工不存在");
+                }
+                if (rs.size() > 1) {
+                    return ErrorDesc.failureMessage("该工号员工重复，无法获取具体的员工");
+                }
+                if (rs.size() == 1) {
+                    emplId = rs.getRcd(0).getString("id");
+                }
+            }
+        } else {
+            emplId = userId;
+        }
+        return assetService.queryEmployeeHaveAsset(emplId);
     }
 
     /**
