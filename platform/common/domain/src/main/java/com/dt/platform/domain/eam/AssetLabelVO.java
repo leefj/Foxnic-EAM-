@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产标签VO类型
  * <p>资产标签 , 数据表 eam_asset_label 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-05 20:04:02
+ * @since 2022-12-07 09:48:43
  * @sign FBF616F005186112710DC3B1B46F1F4B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -341,7 +341,9 @@ public class AssetLabelVO extends AssetLabel {
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setImageMarginTop(this.getImageMarginTop());
 		inst.setId(this.getId());
+		inst.setFontPath(this.getFontPath());
 		inst.setImageWidth(this.getImageWidth());
+		inst.setFontType(this.getFontType());
 		inst.setLabelTableMarginRight(this.getLabelTableMarginRight());
 		inst.setImageContainHeight(this.getImageContainHeight());
 		inst.setUpdateTime(this.getUpdateTime());
@@ -444,7 +446,9 @@ public class AssetLabelVO extends AssetLabel {
 			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetLabelVOMeta.UPDATE_BY)));
 			this.setImageMarginTop(DataParser.parse(BigDecimal.class, map.get(AssetLabelVOMeta.IMAGE_MARGIN_TOP)));
 			this.setId(DataParser.parse(String.class, map.get(AssetLabelVOMeta.ID)));
+			this.setFontPath(DataParser.parse(String.class, map.get(AssetLabelVOMeta.FONT_PATH)));
 			this.setImageWidth(DataParser.parse(BigDecimal.class, map.get(AssetLabelVOMeta.IMAGE_WIDTH)));
+			this.setFontType(DataParser.parse(String.class, map.get(AssetLabelVOMeta.FONT_TYPE)));
 			this.setLabelTableMarginRight(DataParser.parse(BigDecimal.class, map.get(AssetLabelVOMeta.LABEL_TABLE_MARGIN_RIGHT)));
 			this.setImageContainHeight(DataParser.parse(BigDecimal.class, map.get(AssetLabelVOMeta.IMAGE_CONTAIN_HEIGHT)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetLabelVOMeta.UPDATE_TIME)));
@@ -488,7 +492,9 @@ public class AssetLabelVO extends AssetLabel {
 				this.setUpdateBy( (String)map.get(AssetLabelVOMeta.UPDATE_BY));
 				this.setImageMarginTop( (BigDecimal)map.get(AssetLabelVOMeta.IMAGE_MARGIN_TOP));
 				this.setId( (String)map.get(AssetLabelVOMeta.ID));
+				this.setFontPath( (String)map.get(AssetLabelVOMeta.FONT_PATH));
 				this.setImageWidth( (BigDecimal)map.get(AssetLabelVOMeta.IMAGE_WIDTH));
+				this.setFontType( (String)map.get(AssetLabelVOMeta.FONT_TYPE));
 				this.setLabelTableMarginRight( (BigDecimal)map.get(AssetLabelVOMeta.LABEL_TABLE_MARGIN_RIGHT));
 				this.setImageContainHeight( (BigDecimal)map.get(AssetLabelVOMeta.IMAGE_CONTAIN_HEIGHT));
 				this.setUpdateTime( (Date)map.get(AssetLabelVOMeta.UPDATE_TIME));
@@ -545,7 +551,9 @@ public class AssetLabelVO extends AssetLabel {
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetLabelVOMeta.UPDATE_BY)));
 			this.setImageMarginTop(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelVOMeta.IMAGE_MARGIN_TOP)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssetLabelVOMeta.ID)));
+			this.setFontPath(DataParser.parse(String.class, r.getValue(AssetLabelVOMeta.FONT_PATH)));
 			this.setImageWidth(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelVOMeta.IMAGE_WIDTH)));
+			this.setFontType(DataParser.parse(String.class, r.getValue(AssetLabelVOMeta.FONT_TYPE)));
 			this.setLabelTableMarginRight(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelVOMeta.LABEL_TABLE_MARGIN_RIGHT)));
 			this.setImageContainHeight(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelVOMeta.IMAGE_CONTAIN_HEIGHT)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetLabelVOMeta.UPDATE_TIME)));
@@ -579,7 +587,9 @@ public class AssetLabelVO extends AssetLabel {
 				this.setUpdateBy( (String)r.getValue(AssetLabelVOMeta.UPDATE_BY));
 				this.setImageMarginTop( (BigDecimal)r.getValue(AssetLabelVOMeta.IMAGE_MARGIN_TOP));
 				this.setId( (String)r.getValue(AssetLabelVOMeta.ID));
+				this.setFontPath( (String)r.getValue(AssetLabelVOMeta.FONT_PATH));
 				this.setImageWidth( (BigDecimal)r.getValue(AssetLabelVOMeta.IMAGE_WIDTH));
+				this.setFontType( (String)r.getValue(AssetLabelVOMeta.FONT_TYPE));
 				this.setLabelTableMarginRight( (BigDecimal)r.getValue(AssetLabelVOMeta.LABEL_TABLE_MARGIN_RIGHT));
 				this.setImageContainHeight( (BigDecimal)r.getValue(AssetLabelVOMeta.IMAGE_CONTAIN_HEIGHT));
 				this.setUpdateTime( (Date)r.getValue(AssetLabelVOMeta.UPDATE_TIME));
