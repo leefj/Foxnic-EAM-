@@ -34,29 +34,19 @@ public class EamInventoryGtr extends BaseCodeGenerator{
         System.out.println(this.getClass().getName());
 
         cfg.getPoClassFile().addListProperty(InventoryAsset.class,"inventoryAssetInfoList","盘点资产数据","盘点资产数据");
-
-
         cfg.getPoClassFile().addSimpleProperty(Integer.class,"inventoryAssetCountByNotCounted","待盘点","待盘点");
         cfg.getPoClassFile().addSimpleProperty(Integer.class,"inventoryAssetCountByCounted","已盘点","已盘点");
         cfg.getPoClassFile().addSimpleProperty(Integer.class,"inventoryAssetCountByLoss","盘亏","盘亏");
         cfg.getPoClassFile().addSimpleProperty(Integer.class,"inventoryAssetCountBySurplus","盘盈","盘盈");
         cfg.getPoClassFile().addSimpleProperty(Integer.class,"inventoryAssetCountByException","异常","异常");
-
         cfg.getPoClassFile().addListProperty(Organization.class,"ownerCompany","所属公司","所属公司");
         cfg.getPoClassFile().addListProperty(Organization.class,"useOrganization","使用公司/部门","使用公司/部门");
-
-
-
-
         cfg.getPoClassFile().addListProperty(Employee.class,"inventoryUser","盘点人员","盘点人员");
         cfg.getPoClassFile().addListProperty(String.class,"inventoryUserIds","盘点人员列表","盘点人员列表");
-
         cfg.getPoClassFile().addListProperty(Employee.class,"manager","管理人员","管理人员");
         cfg.getPoClassFile().addListProperty(String.class,"inventoryManagerIds","管理人列表","管理人列表");
-
         cfg.getPoClassFile().addListProperty(Employee.class,"director","负责人","负责人");
         cfg.getPoClassFile().addListProperty(String.class,"inventoryDirectorIds","负责人列表","负责人列表");
-
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
 
 

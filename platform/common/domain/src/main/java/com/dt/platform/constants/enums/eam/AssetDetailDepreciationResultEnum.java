@@ -20,6 +20,7 @@ public enum AssetDetailDepreciationResultEnum implements CodeTextEnum {
 	SUCCESS("success" , "成功"),
 	WAIT_CALCULATE("wait_calculate" , "待计算"),
 	NOT_CALCULATE("not_calculate" , "不折旧"),
+	DEPRECIATION_FINISHED("depreciation_finished" , "已折旧完"),
 	;
 	private String code;
 	private String text;
