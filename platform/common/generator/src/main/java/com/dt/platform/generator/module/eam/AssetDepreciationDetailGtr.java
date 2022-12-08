@@ -98,8 +98,6 @@ public class AssetDepreciationDetailGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.BUSINESS_DATE).form().dateInput().format("yyyy-MM").search().range();
 
 
-        //   cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.BUSINESS_DATE).form().dateInput().format("yyyy-MM-dd").search().range();
-
 
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.DEPRECIATION_METHOD).
                 form().selectBox().enumType(AssetDepreciationMethodEnum.class);
@@ -212,6 +210,7 @@ public class AssetDepreciationDetailGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.EXPENSE_ITEM_KEY).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.FINANCIAL_OPTION_KEY).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.USE_ORG_ID).table().disable(true);
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.MANAGER_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.USE_USER_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.LAST_OPER_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.LAST_OPER_TIME).table().disable(true);

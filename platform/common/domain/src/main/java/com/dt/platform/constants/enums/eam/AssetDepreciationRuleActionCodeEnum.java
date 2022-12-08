@@ -13,6 +13,7 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 public enum AssetDepreciationRuleActionCodeEnum implements CodeTextEnum {
 	PRECONDITIONS("preconditions" , "前置条件"),
+	DEPRECIATION_FINISH("depreciation_finish" , "已折旧完"),
 	DEPRECIATION_NORMAL("depreciation_normal" , "正常折旧"),
 	DEPRECIATION_FIRST("depreciation_first" , "首次折旧"),
 	DEPRECIATION_IDLE("depreciation_idle" , "不在折旧");

@@ -183,16 +183,17 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 			ups.setId(assetDetail.getAssetId());
 			//期末原值
 			ups.setOriginalUnitPrice(assetDetail.getEOriginalPrice());
-
 			//期末净值
 			ups.setNavPrice(assetDetail.getENavAmount());
-
 			//已使期限
 			ups.setAssetUsedServiceLife(assetDetail.getCUsedServiceLife());
 			//上次折旧单据
 			ups.setDepreciationId(id);
 			//上次折旧时间
 			ups.setDepreciationOperTime(assetDetail.getBusinessDate());
+			//折旧月份
+			ups.setAssetUsedServiceLife(assetDetail.getCUsedServiceLife());
+
 			AssetProcessRecord ar=new AssetProcessRecord();
 			ar.setAssetId(assetDetail.getAssetId());
 			ar.setBusinessCode(bill.getBusinessCode());

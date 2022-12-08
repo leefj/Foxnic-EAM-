@@ -30,8 +30,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 折旧明细
  * <p>折旧明细 , 数据表 eam_asset_depreciation_detail 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-08 11:41:35
- * @sign D5FADC90C9B0455893BAD856A10C1F59
+ * @since 2022-12-08 19:34:19
+ * @sign 2291F221C4AC0B32C7A8E657EE744479
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -189,15 +189,15 @@ public class AssetDepreciationDetail extends Entity {
 	private BigDecimal assetTaxAmountRate;
 	
 	/**
-	 * 可使用期限：月
+	 * 可使用期限(资产)：月
 	*/
-	@ApiModelProperty(required = false,value="可使用期限" , notes = "月" , example = "12.00")
+	@ApiModelProperty(required = false,value="可使用期限(资产)" , notes = "月" , example = "12.00")
 	private BigDecimal assetServiceLife;
 	
 	/**
-	 * 可使用期限：月
+	 * 可使用期限(财务)：月
 	*/
-	@ApiModelProperty(required = false,value="可使用期限" , notes = "月")
+	@ApiModelProperty(required = false,value="可使用期限(财务)" , notes = "月")
 	private BigDecimal assetFinanceServiceLife;
 	
 	/**
@@ -385,6 +385,12 @@ public class AssetDepreciationDetail extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="上次折旧时间" , notes = "上次折旧时间")
 	private Date lastOperTime;
+	
+	/**
+	 * 标签：标签
+	*/
+	@ApiModelProperty(required = false,value="标签" , notes = "标签")
+	private String label;
 	
 	/**
 	 * 创建人ID：创建人ID
@@ -984,17 +990,17 @@ public class AssetDepreciationDetail extends Entity {
 	}
 	
 	/**
-	 * 获得 可使用期限<br>
+	 * 获得 可使用期限(资产)<br>
 	 * 月
-	 * @return 可使用期限
+	 * @return 可使用期限(资产)
 	*/
 	public BigDecimal getAssetServiceLife() {
 		return assetServiceLife;
 	}
 	
 	/**
-	 * 设置 可使用期限
-	 * @param assetServiceLife 可使用期限
+	 * 设置 可使用期限(资产)
+	 * @param assetServiceLife 可使用期限(资产)
 	 * @return 当前对象
 	*/
 	public AssetDepreciationDetail setAssetServiceLife(BigDecimal assetServiceLife) {
@@ -1003,17 +1009,17 @@ public class AssetDepreciationDetail extends Entity {
 	}
 	
 	/**
-	 * 获得 可使用期限<br>
+	 * 获得 可使用期限(财务)<br>
 	 * 月
-	 * @return 可使用期限
+	 * @return 可使用期限(财务)
 	*/
 	public BigDecimal getAssetFinanceServiceLife() {
 		return assetFinanceServiceLife;
 	}
 	
 	/**
-	 * 设置 可使用期限
-	 * @param assetFinanceServiceLife 可使用期限
+	 * 设置 可使用期限(财务)
+	 * @param assetFinanceServiceLife 可使用期限(财务)
 	 * @return 当前对象
 	*/
 	public AssetDepreciationDetail setAssetFinanceServiceLife(BigDecimal assetFinanceServiceLife) {
@@ -1611,6 +1617,25 @@ public class AssetDepreciationDetail extends Entity {
 	}
 	
 	/**
+	 * 获得 标签<br>
+	 * 标签
+	 * @return 标签
+	*/
+	public String getLabel() {
+		return label;
+	}
+	
+	/**
+	 * 设置 标签
+	 * @param label 标签
+	 * @return 当前对象
+	*/
+	public AssetDepreciationDetail setLabel(String label) {
+		this.label=label;
+		return this;
+	}
+	
+	/**
 	 * 获得 创建人ID<br>
 	 * 创建人ID
 	 * @return 创建人ID
@@ -2200,6 +2225,7 @@ public class AssetDepreciationDetail extends Entity {
 		inst.setLastOperTime(this.getLastOperTime());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setManagerId(this.getManagerId());
+		inst.setLabel(this.getLabel());
 		inst.setCDepreciationAmount(this.getCDepreciationAmount());
 		inst.setAssetFinanceCategoryId(this.getAssetFinanceCategoryId());
 		inst.setCreateBy(this.getCreateBy());
@@ -2340,6 +2366,7 @@ public class AssetDepreciationDetail extends Entity {
 			this.setLastOperTime(DataParser.parse(Date.class, map.get(AssetDepreciationDetailMeta.LAST_OPER_TIME)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetDepreciationDetailMeta.UPDATE_TIME)));
 			this.setManagerId(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.MANAGER_ID)));
+			this.setLabel(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.LABEL)));
 			this.setCDepreciationAmount(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationDetailMeta.C_DEPRECIATION_AMOUNT)));
 			this.setAssetFinanceCategoryId(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.ASSET_FINANCE_CATEGORY_ID)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.CREATE_BY)));
@@ -2422,6 +2449,7 @@ public class AssetDepreciationDetail extends Entity {
 				this.setLastOperTime( (Date)map.get(AssetDepreciationDetailMeta.LAST_OPER_TIME));
 				this.setUpdateTime( (Date)map.get(AssetDepreciationDetailMeta.UPDATE_TIME));
 				this.setManagerId( (String)map.get(AssetDepreciationDetailMeta.MANAGER_ID));
+				this.setLabel( (String)map.get(AssetDepreciationDetailMeta.LABEL));
 				this.setCDepreciationAmount( (BigDecimal)map.get(AssetDepreciationDetailMeta.C_DEPRECIATION_AMOUNT));
 				this.setAssetFinanceCategoryId( (String)map.get(AssetDepreciationDetailMeta.ASSET_FINANCE_CATEGORY_ID));
 				this.setCreateBy( (String)map.get(AssetDepreciationDetailMeta.CREATE_BY));
@@ -2517,6 +2545,7 @@ public class AssetDepreciationDetail extends Entity {
 			this.setLastOperTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationDetailMeta.LAST_OPER_TIME)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationDetailMeta.UPDATE_TIME)));
 			this.setManagerId(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.MANAGER_ID)));
+			this.setLabel(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.LABEL)));
 			this.setCDepreciationAmount(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationDetailMeta.C_DEPRECIATION_AMOUNT)));
 			this.setAssetFinanceCategoryId(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.ASSET_FINANCE_CATEGORY_ID)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.CREATE_BY)));
@@ -2587,6 +2616,7 @@ public class AssetDepreciationDetail extends Entity {
 				this.setLastOperTime( (Date)r.getValue(AssetDepreciationDetailMeta.LAST_OPER_TIME));
 				this.setUpdateTime( (Date)r.getValue(AssetDepreciationDetailMeta.UPDATE_TIME));
 				this.setManagerId( (String)r.getValue(AssetDepreciationDetailMeta.MANAGER_ID));
+				this.setLabel( (String)r.getValue(AssetDepreciationDetailMeta.LABEL));
 				this.setCDepreciationAmount( (BigDecimal)r.getValue(AssetDepreciationDetailMeta.C_DEPRECIATION_AMOUNT));
 				this.setAssetFinanceCategoryId( (String)r.getValue(AssetDepreciationDetailMeta.ASSET_FINANCE_CATEGORY_ID));
 				this.setCreateBy( (String)r.getValue(AssetDepreciationDetailMeta.CREATE_BY));
