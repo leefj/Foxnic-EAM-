@@ -11,8 +11,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-06 07:04:13
- * @sign 5247E1AE4BF9316C88843561067A6DC8
+ * @since 2022-12-08 17:12:15
+ * @sign 46288E5E591D52F220A8653A7C24D06C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -97,6 +97,16 @@ public class InventoryAssetMeta {
 	 * 数据来源 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.InventoryAsset,java.lang.String> SOURCE_PROP = new BeanProperty(com.dt.platform.domain.eam.InventoryAsset.class ,SOURCE, java.lang.String.class, "数据来源", "数据来源", java.lang.String.class, null);
+	
+	/**
+	 * 标记 , 类型: java.lang.String
+	*/
+	public static final String FLAG="flag";
+	
+	/**
+	 * 标记 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InventoryAsset,java.lang.String> FLAG_PROP = new BeanProperty(com.dt.platform.domain.eam.InventoryAsset.class ,FLAG, java.lang.String.class, "标记", "标记", java.lang.String.class, null);
 	
 	/**
 	 * 操作时间 , 类型: java.util.Date
@@ -231,7 +241,7 @@ public class InventoryAssetMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , INVENTORY_ID , STATUS , ASSET_ID , OPER_EMPL_ID , ASSET_PLUS_ACTION_TYPE , ASSET_LOSS_ACTION_TYPE , SOURCE , OPER_DATE , PICTURE_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , ASSET , OPERATER };
+	public static final String[] $PROPS={ ID , INVENTORY_ID , STATUS , ASSET_ID , OPER_EMPL_ID , ASSET_PLUS_ACTION_TYPE , ASSET_LOSS_ACTION_TYPE , SOURCE , FLAG , OPER_DATE , PICTURE_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , ASSET , OPERATER };
 	
 	/**
 	 * 代理类
@@ -326,6 +336,17 @@ public class InventoryAssetMeta {
 		public InventoryAsset setSource(String source) {
 			super.change(SOURCE,super.getSource(),source);
 			super.setSource(source);
+			return this;
+		}
+		
+		/**
+		 * 设置 标记
+		 * @param flag 标记
+		 * @return 当前对象
+		*/
+		public InventoryAsset setFlag(String flag) {
+			super.change(FLAG,super.getFlag(),flag);
+			super.setFlag(flag);
 			return this;
 		}
 		
@@ -489,6 +510,7 @@ public class InventoryAssetMeta {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setAssetLossActionType(this.getAssetLossActionType());
 			inst.setOperDate(this.getOperDate());
+			inst.setFlag(this.getFlag());
 			inst.setNotes(this.getNotes());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setSource(this.getSource());
