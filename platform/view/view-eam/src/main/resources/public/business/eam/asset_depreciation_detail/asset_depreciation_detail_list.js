@@ -1,7 +1,7 @@
 /**
  * 折旧明细 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-27 16:20:09
+ * @since 2022-12-08 11:41:37
  */
 
 
@@ -97,6 +97,7 @@ function ListPage() {
 					,{ field: 'assetNavPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('资产净值',null,languageContext) , templet: function (d) { return templet('assetNavPrice',d.assetNavPrice,d);}  }
 					,{ field: 'assetTaxAmountRate', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('税额',null,languageContext) , templet: function (d) { return templet('assetTaxAmountRate',d.assetTaxAmountRate,d);}  }
 					,{ field: 'assetServiceLife', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('可使用期限',null,languageContext) , templet: function (d) { return templet('assetServiceLife',d.assetServiceLife,d);}  }
+					,{ field: 'assetFinanceServiceLife', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('可使用期限',null,languageContext) , templet: function (d) { return templet('assetFinanceServiceLife',d.assetFinanceServiceLife,d);}  }
 					,{ field: 'assetResidualsRate', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('本期残值率',null,languageContext) , templet: function (d) { return templet('assetResidualsRate',d.assetResidualsRate,d);}  }
 					,{ field: 'assetResidualsPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('本期残值',null,languageContext) , templet: function (d) { return templet('assetResidualsPrice',d.assetResidualsPrice,d);}  }
 					,{ field: 'sOriginalPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('(期初)期初原值',null,languageContext) , templet: function (d) { return templet('sOriginalPrice',d.sOriginalPrice,d);}  }
@@ -114,6 +115,8 @@ function ListPage() {
 					,{ field: 'accountingServiceLife', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('会计期间已使用期限',null,languageContext) , templet: function (d) { return templet('accountingServiceLife',d.accountingServiceLife,d);}  }
 					,{ field: 'firstDepreciation', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('首次折旧',null,languageContext) , templet: function (d) { return templet('firstDepreciation',d.firstDepreciation,d);}  }
 					,{ field: 'useUserName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('使用人',null,languageContext) , templet: function (d) { return templet('useUserName',d.useUserName,d);}  }
+					,{ field: 'managerId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('管理人员',null,languageContext) , templet: function (d) { return templet('managerId',fox.getProperty(d,["manager","name"],0,'','managerId'),d);} }
+					,{ field: 'managerName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('管理人员',null,languageContext) , templet: function (d) { return templet('managerName',d.managerName,d);}  }
 					,{ field: 'useOrgName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('使用部门',null,languageContext) , templet: function (d) { return templet('useOrgName',d.useOrgName,d);}  }
 					,{ field: 'financialOptionName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('财务选项',null,languageContext) , templet: function (d) { return templet('financialOptionName',d.financialOptionName,d);}  }
 					,{ field: 'expenseItemName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('费用项目',null,languageContext) , templet: function (d) { return templet('expenseItemName',d.expenseItemName,d);}  }

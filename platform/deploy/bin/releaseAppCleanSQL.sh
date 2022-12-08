@@ -5,9 +5,8 @@ cd $cur_dir
 
 sh backupAppDB.sh foxnic
 sh runSql.sh $app_dir/backup/db/db.sql foxnic_demo
-sh runSql.sh sql/cleardata.sql
-sh runSql.sh sql/settingapp.sql
-
+sh runSql.sh sql/cleardata.sql foxnic_demo
+#sh runSql.sh sql/settingapp.sql foxnic_demo
 sh backupAppDB.sh foxnic_demo
 
 if [[ -f "/app/app/backup/db/db.sql" ]];then

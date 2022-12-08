@@ -191,6 +191,7 @@ public class AssetDepreciationUtilService {
             if(StringUtil.isBlank(ruleContent)){
                 return ErrorDesc.failureMessage(partMsg+",计算表达式为空");
             }
+            System.out.println(partMsg+",rule:"+ruleContent);
             String result = calculationValue(ruleContent,map);
             System.out.println(partMsg+",计算结果:"+result);
             if(StringUtil.isBlank(result)||result.startsWith("err")){
@@ -211,6 +212,8 @@ public class AssetDepreciationUtilService {
         else if(AssetDepreciationCalculationMethodTypeEnum.NOT_NULL.code().equals(calType)){
             //NOT NULL 方式
             Boolean notNUll=true;
+            System.out.println("assetDepreciationDetail:"+assetDepreciationDetail+",colValue:"+colValue);
+            System.out.println(partMsg+",计算结果:"+BeanUtil.getFieldValue(assetDepreciationDetail,colValue));
             if(BeanUtil.getFieldValue(assetDepreciationDetail,colValue)==null){
                 notNUll=false;
             }

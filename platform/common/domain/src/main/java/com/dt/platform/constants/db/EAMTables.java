@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2022-12-07 09:48:12
+ * @since 2022-12-08 11:39:59
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -696,9 +696,8 @@ public class EAMTables {
 		public static final DBField DEPRECIATION_OPER_TIME = new DBField(DBDataType.DATE , "depreciation_oper_time","depreciationOperTime","最后折旧时间","最后折旧时间",false,false,true);
 		
 		/**
-		 * 残值率
 		*/
-		public static final DBField RESIDUALS_RATE = new DBField(DBDataType.DECIMAL , "residuals_rate","residualsRate","残值率","残值率",false,false,true);
+		public static final DBField RESIDUALS_RATE = new DBField(DBDataType.DECIMAL , "residuals_rate","residualsRate","residuals_rate","residuals_rate",false,false,true);
 		
 		/**
 		 * 残值
@@ -3784,6 +3783,11 @@ public class EAMTables {
 		public static final DBField ASSET_SERVICE_LIFE = new DBField(DBDataType.DECIMAL , "asset_service_life","assetServiceLife","可使用期限","月",false,false,true);
 		
 		/**
+		 * 可使用期限,月
+		*/
+		public static final DBField ASSET_FINANCE_SERVICE_LIFE = new DBField(DBDataType.DECIMAL , "asset_finance_service_life","assetFinanceServiceLife","可使用期限","月",false,false,true);
+		
+		/**
 		 * 本期残值率
 		*/
 		public static final DBField ASSET_RESIDUALS_RATE = new DBField(DBDataType.DECIMAL , "asset_residuals_rate","assetResidualsRate","本期残值率","本期残值率",false,false,true);
@@ -3872,6 +3876,16 @@ public class EAMTables {
 		 * 使用人
 		*/
 		public static final DBField USE_USER_NAME = new DBField(DBDataType.STRING , "use_user_name","useUserName","使用人","使用人",false,false,true);
+		
+		/**
+		 * 管理人员
+		*/
+		public static final DBField MANAGER_ID = new DBField(DBDataType.STRING , "manager_id","managerId","管理人员","管理人员",false,false,true);
+		
+		/**
+		 * 管理人员
+		*/
+		public static final DBField MANAGER_NAME = new DBField(DBDataType.STRING , "manager_name","managerName","管理人员","管理人员",false,false,true);
 		
 		/**
 		 * 部门ID
@@ -3978,7 +3992,7 @@ public class EAMTables {
 		public static final DBField RESULT_VALUE_FLOAT = new DBField(DBDataType.DECIMAL , "result_value_float","resultValueFloat","结果浮点","结果浮点",false,false,true);
 		
 		public EAM_ASSET_DEPRECIATION_DETAIL() {
-			this.init($NAME,"折旧明细表" , ID , DEPRECIATION_ID , OPER_ID , ACTION_CODE , FIRST_DEPRECIATION_METHOD , DEPRECIATION_METHOD , BUSINESS_DATE , RESULT , RESULT_DETAIL , ASSET_ID , ASSET_CATEGORY_ID , ASSET_CATEGORY_NAME , ASSET_FINANCE_CATEGORY_ID , ASSET_FINANCE_CATEGORY_NAME , ASSET_CODE , ASSET_NAME , ASSET_MODEL , ASSET_STATUS_NAME , ASSET_PURCHASE_DATE , ASSET_REGISTER_DATE , ASSET_ORIGINAL_UNIT_PRICE , ASSET_PURCHASE_UNIT_PRICE , ASSET_NAV_PRICE , ASSET_TAX_AMOUNT_RATE , ASSET_SERVICE_LIFE , ASSET_RESIDUALS_RATE , ASSET_RESIDUALS_PRICE , S_ORIGINAL_PRICE , S_DEPRECIATION_AMOUNT , S_NAV_AMOUNT , S_RECOVERABLE_AMOUNT , C_USED_SERVICE_LIFE , C_ORIGINAL_PRICE_INCREASE , C_DEPRECIATION_AMOUNT , C_YEAR_DEPRECIATION_AMOUNT , E_ORIGINAL_PRICE , E_DEPRECIATION_AMOUNT , E_NAV_AMOUNT , E_RECOVERABLE_AMOUNT , ACCOUNTING_SERVICE_LIFE , FIRST_DEPRECIATION , USE_USER_ID , USE_USER_NAME , USE_ORG_ID , USE_ORG_NAME , FINANCIAL_OPTION_KEY , EXPENSE_ITEM_KEY , FINANCIAL_OPTION_NAME , EXPENSE_ITEM_NAME , CUSTOMER_INFO , DETAIL_ID_SOURCE , DETAIL_ID_TARGET , LAST_OPER_ID , LAST_OPER_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , RESULT_VALUE_STR , RESULT_VALUE_FLOAT);
+			this.init($NAME,"折旧明细表" , ID , DEPRECIATION_ID , OPER_ID , ACTION_CODE , FIRST_DEPRECIATION_METHOD , DEPRECIATION_METHOD , BUSINESS_DATE , RESULT , RESULT_DETAIL , ASSET_ID , ASSET_CATEGORY_ID , ASSET_CATEGORY_NAME , ASSET_FINANCE_CATEGORY_ID , ASSET_FINANCE_CATEGORY_NAME , ASSET_CODE , ASSET_NAME , ASSET_MODEL , ASSET_STATUS_NAME , ASSET_PURCHASE_DATE , ASSET_REGISTER_DATE , ASSET_ORIGINAL_UNIT_PRICE , ASSET_PURCHASE_UNIT_PRICE , ASSET_NAV_PRICE , ASSET_TAX_AMOUNT_RATE , ASSET_SERVICE_LIFE , ASSET_FINANCE_SERVICE_LIFE , ASSET_RESIDUALS_RATE , ASSET_RESIDUALS_PRICE , S_ORIGINAL_PRICE , S_DEPRECIATION_AMOUNT , S_NAV_AMOUNT , S_RECOVERABLE_AMOUNT , C_USED_SERVICE_LIFE , C_ORIGINAL_PRICE_INCREASE , C_DEPRECIATION_AMOUNT , C_YEAR_DEPRECIATION_AMOUNT , E_ORIGINAL_PRICE , E_DEPRECIATION_AMOUNT , E_NAV_AMOUNT , E_RECOVERABLE_AMOUNT , ACCOUNTING_SERVICE_LIFE , FIRST_DEPRECIATION , USE_USER_ID , USE_USER_NAME , MANAGER_ID , MANAGER_NAME , USE_ORG_ID , USE_ORG_NAME , FINANCIAL_OPTION_KEY , EXPENSE_ITEM_KEY , FINANCIAL_OPTION_NAME , EXPENSE_ITEM_NAME , CUSTOMER_INFO , DETAIL_ID_SOURCE , DETAIL_ID_TARGET , LAST_OPER_ID , LAST_OPER_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , RESULT_VALUE_STR , RESULT_VALUE_FLOAT);
 		}
 		public static final EAM_ASSET_DEPRECIATION_DETAIL $TABLE=new EAM_ASSET_DEPRECIATION_DETAIL();
 	}
