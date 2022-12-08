@@ -248,11 +248,12 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
                     }
                 }
 
+                //不使用这个字段
                 //如果设置资产的使用期限，以财务期限为准，否则使用资产本身的
-                detail.setAssetServiceLife(asset.getServiceLife());
-                if(asset.getAssetUsedServiceLife().compareTo(detail.getAssetServiceLife())>-1){
-                    detail.setResult(AssetDetailDepreciationResultEnum.DEPRECIATION_FINISHED.code());
-                }
+//                detail.setAssetServiceLife(asset.getServiceLife());
+//                if(asset.getAssetUsedServiceLife().compareTo(detail.getAssetServiceLife())>-1){
+//                    detail.setResult(AssetDetailDepreciationResultEnum.DEPRECIATION_FINISHED.code());
+//                }
 
                 if(asset.getUseUser()!=null){
                     detail.setUseUserName(asset.getUseUser().getName());
