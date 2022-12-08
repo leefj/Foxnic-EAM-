@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 盘点明细VO类型
  * <p>盘点明细 , 数据表 eam_inventory_asset 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-06 07:04:13
- * @sign AED45A006BFCCB8364AF055579A38759
+ * @since 2022-12-08 17:12:15
+ * @sign A694483B206991F722270A248EFD64F9
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -80,6 +80,18 @@ public class InventoryAssetVO extends InventoryAsset {
 	*/
 	@ApiModelProperty(required = false,value="排序方式" , notes = "")
 	private String sortType;
+	
+	/**
+	 * 数据来源：前端指定不同的来源，后端按来源执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端按来源执行不同的逻辑")
+	private String dataOrigin;
+	
+	/**
+	 * 查询逻辑：默认and，可指定 or 
+	*/
+	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
+	private String queryLogic;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -243,6 +255,44 @@ public class InventoryAssetVO extends InventoryAsset {
 	}
 	
 	/**
+	 * 获得 数据来源<br>
+	 * 前端指定不同的来源，后端按来源执行不同的逻辑
+	 * @return 数据来源
+	*/
+	public String getDataOrigin() {
+		return dataOrigin;
+	}
+	
+	/**
+	 * 设置 数据来源
+	 * @param dataOrigin 数据来源
+	 * @return 当前对象
+	*/
+	public InventoryAssetVO setDataOrigin(String dataOrigin) {
+		this.dataOrigin=dataOrigin;
+		return this;
+	}
+	
+	/**
+	 * 获得 查询逻辑<br>
+	 * 默认and，可指定 or 
+	 * @return 查询逻辑
+	*/
+	public String getQueryLogic() {
+		return queryLogic;
+	}
+	
+	/**
+	 * 设置 查询逻辑
+	 * @param queryLogic 查询逻辑
+	 * @return 当前对象
+	*/
+	public InventoryAssetVO setQueryLogic(String queryLogic) {
+		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
 	 * 获得 主键清单<br>
 	 * 用于接收批量主键参数
 	 * @return 主键清单
@@ -329,6 +379,7 @@ public class InventoryAssetVO extends InventoryAsset {
 		com.dt.platform.domain.eam.meta.InventoryAssetVOMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.InventoryAssetVOMeta.$$proxy$$();
 		inst.setAssetLossActionType(this.getAssetLossActionType());
 		inst.setOperDate(this.getOperDate());
+		inst.setFlag(this.getFlag());
 		inst.setNotes(this.getNotes());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setSource(this.getSource());
@@ -349,13 +400,15 @@ public class InventoryAssetVO extends InventoryAsset {
 		if(all) {
 			inst.setOperater(this.getOperater());
 			inst.setSearchField(this.getSearchField());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setPageSize(this.getPageSize());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
-			inst.setFuzzyField(this.getFuzzyField());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
-			inst.setPageSize(this.getPageSize());
+			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
+			inst.setQueryLogic(this.getQueryLogic());
 			inst.setAsset(this.getAsset());
 			inst.setSearchValue(this.getSearchValue());
 		}
@@ -419,6 +472,7 @@ public class InventoryAssetVO extends InventoryAsset {
 		if(cast) {
 			this.setAssetLossActionType(DataParser.parse(String.class, map.get(InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE)));
 			this.setOperDate(DataParser.parse(Date.class, map.get(InventoryAssetVOMeta.OPER_DATE)));
+			this.setFlag(DataParser.parse(String.class, map.get(InventoryAssetVOMeta.FLAG)));
 			this.setNotes(DataParser.parse(String.class, map.get(InventoryAssetVOMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(InventoryAssetVOMeta.UPDATE_TIME)));
 			this.setSource(DataParser.parse(String.class, map.get(InventoryAssetVOMeta.SOURCE)));
@@ -439,11 +493,13 @@ public class InventoryAssetVO extends InventoryAsset {
 			// others
 			this.setOperater(DataParser.parse(Employee.class, map.get(InventoryAssetVOMeta.OPERATER)));
 			this.setSearchField(DataParser.parse(String.class, map.get(InventoryAssetVOMeta.SEARCH_FIELD)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(InventoryAssetVOMeta.FUZZY_FIELD)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(InventoryAssetVOMeta.PAGE_SIZE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(InventoryAssetVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(InventoryAssetVOMeta.SORT_TYPE)));
-			this.setFuzzyField(DataParser.parse(String.class, map.get(InventoryAssetVOMeta.FUZZY_FIELD)));
 			this.setSortField(DataParser.parse(String.class, map.get(InventoryAssetVOMeta.SORT_FIELD)));
-			this.setPageSize(DataParser.parse(Integer.class, map.get(InventoryAssetVOMeta.PAGE_SIZE)));
+			this.setDataOrigin(DataParser.parse(String.class, map.get(InventoryAssetVOMeta.DATA_ORIGIN)));
+			this.setQueryLogic(DataParser.parse(String.class, map.get(InventoryAssetVOMeta.QUERY_LOGIC)));
 			this.setAsset(DataParser.parse(Asset.class, map.get(InventoryAssetVOMeta.ASSET)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(InventoryAssetVOMeta.SEARCH_VALUE)));
 			return true;
@@ -451,6 +507,7 @@ public class InventoryAssetVO extends InventoryAsset {
 			try {
 				this.setAssetLossActionType( (String)map.get(InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE));
 				this.setOperDate( (Date)map.get(InventoryAssetVOMeta.OPER_DATE));
+				this.setFlag( (String)map.get(InventoryAssetVOMeta.FLAG));
 				this.setNotes( (String)map.get(InventoryAssetVOMeta.NOTES));
 				this.setUpdateTime( (Date)map.get(InventoryAssetVOMeta.UPDATE_TIME));
 				this.setSource( (String)map.get(InventoryAssetVOMeta.SOURCE));
@@ -471,11 +528,13 @@ public class InventoryAssetVO extends InventoryAsset {
 				// others
 				this.setOperater( (Employee)map.get(InventoryAssetVOMeta.OPERATER));
 				this.setSearchField( (String)map.get(InventoryAssetVOMeta.SEARCH_FIELD));
+				this.setFuzzyField( (String)map.get(InventoryAssetVOMeta.FUZZY_FIELD));
+				this.setPageSize( (Integer)map.get(InventoryAssetVOMeta.PAGE_SIZE));
 				this.setPageIndex( (Integer)map.get(InventoryAssetVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(InventoryAssetVOMeta.SORT_TYPE));
-				this.setFuzzyField( (String)map.get(InventoryAssetVOMeta.FUZZY_FIELD));
 				this.setSortField( (String)map.get(InventoryAssetVOMeta.SORT_FIELD));
-				this.setPageSize( (Integer)map.get(InventoryAssetVOMeta.PAGE_SIZE));
+				this.setDataOrigin( (String)map.get(InventoryAssetVOMeta.DATA_ORIGIN));
+				this.setQueryLogic( (String)map.get(InventoryAssetVOMeta.QUERY_LOGIC));
 				this.setAsset( (Asset)map.get(InventoryAssetVOMeta.ASSET));
 				this.setSearchValue( (String)map.get(InventoryAssetVOMeta.SEARCH_VALUE));
 				return true;
@@ -496,6 +555,7 @@ public class InventoryAssetVO extends InventoryAsset {
 		if(cast) {
 			this.setAssetLossActionType(DataParser.parse(String.class, r.getValue(InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE)));
 			this.setOperDate(DataParser.parse(Date.class, r.getValue(InventoryAssetVOMeta.OPER_DATE)));
+			this.setFlag(DataParser.parse(String.class, r.getValue(InventoryAssetVOMeta.FLAG)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(InventoryAssetVOMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(InventoryAssetVOMeta.UPDATE_TIME)));
 			this.setSource(DataParser.parse(String.class, r.getValue(InventoryAssetVOMeta.SOURCE)));
@@ -518,6 +578,7 @@ public class InventoryAssetVO extends InventoryAsset {
 			try {
 				this.setAssetLossActionType( (String)r.getValue(InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE));
 				this.setOperDate( (Date)r.getValue(InventoryAssetVOMeta.OPER_DATE));
+				this.setFlag( (String)r.getValue(InventoryAssetVOMeta.FLAG));
 				this.setNotes( (String)r.getValue(InventoryAssetVOMeta.NOTES));
 				this.setUpdateTime( (Date)r.getValue(InventoryAssetVOMeta.UPDATE_TIME));
 				this.setSource( (String)r.getValue(InventoryAssetVOMeta.SOURCE));

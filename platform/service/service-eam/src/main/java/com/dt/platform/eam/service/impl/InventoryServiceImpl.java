@@ -232,6 +232,7 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 		inventoryAsset.setOperDate(new Date());
 		inventoryAsset.setInventoryId(inventroyId);
 		inventoryAsset.setStatus(AssetInventoryDetailStatusEnum.SURPLUS.code());
+		inventoryAsset.setFlag(AssetInventoryDetailStatusEnum.SURPLUS.code());
 		inventoryAsset.setSource(AssetInventoryDetailDataSourceEnum.ASSET_PLUS.code());
 		inventoryAssetServiceImpl.insert(inventoryAsset,false);
 		return ErrorDesc.success();
@@ -434,8 +435,9 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 				}
 				assetProcessRecordServiceImpl.insertList(rcdsList);
 			}
+
 			//追加的盘赢数据
-			dao.execute("update eam_asset set owner_code='asset' where owner_code='inventory_asset' and id in (select asset_id from eam_inventory_asset where deleted=0 and status='surplus' and inventory_id=?)",id);
+			dao.execute("update eam_asset set owner_code='asset' where owner_code='inventory_asset' and id in (select asset_id from eam_inventory_asset where deleted=0 and source='asset_plus' and inventory_id=?)",id);
 			//更新核对时间
 			dao.execute("update eam_inventory set data_status='"+AssetInventoryDataStatusEnum.SYNC.code()+"' where id=?",id);
 			dao.execute("update eam_asset set last_verification_date=now() where id in (select  asset_id from eam_inventory_asset where deleted='0' and inventory_id=?)",id);

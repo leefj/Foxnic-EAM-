@@ -13,8 +13,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-06 07:04:13
- * @sign AED45A006BFCCB8364AF055579A38759
+ * @since 2022-12-08 17:12:15
+ * @sign A694483B206991F722270A248EFD64F9
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -99,6 +99,26 @@ public class InventoryAssetVOMeta extends InventoryAssetMeta {
 	 * 排序方式 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.InventoryAssetVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.InventoryAssetVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String DATA_ORIGIN="dataOrigin";
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InventoryAssetVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.eam.InventoryAssetVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端按来源执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final String QUERY_LOGIC="queryLogic";
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InventoryAssetVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.eam.InventoryAssetVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
 	
 	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
@@ -189,6 +209,16 @@ public class InventoryAssetVOMeta extends InventoryAssetMeta {
 	 * 数据来源 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.InventoryAssetVO,java.lang.String> SOURCE_PROP = new BeanProperty(com.dt.platform.domain.eam.InventoryAssetVO.class ,SOURCE, java.lang.String.class, "数据来源", "数据来源", java.lang.String.class, null);
+	
+	/**
+	 * 标记 , 类型: java.lang.String
+	*/
+	public static final String FLAG="flag";
+	
+	/**
+	 * 标记 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InventoryAssetVO,java.lang.String> FLAG_PROP = new BeanProperty(com.dt.platform.domain.eam.InventoryAssetVO.class ,FLAG, java.lang.String.class, "标记", "标记", java.lang.String.class, null);
 	
 	/**
 	 * 操作时间 , 类型: java.util.Date
@@ -323,7 +353,7 @@ public class InventoryAssetVOMeta extends InventoryAssetMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , INVENTORY_ID , STATUS , ASSET_ID , OPER_EMPL_ID , ASSET_PLUS_ACTION_TYPE , ASSET_LOSS_ACTION_TYPE , SOURCE , OPER_DATE , PICTURE_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , ASSET , OPERATER };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , IDS , ID , INVENTORY_ID , STATUS , ASSET_ID , OPER_EMPL_ID , ASSET_PLUS_ACTION_TYPE , ASSET_LOSS_ACTION_TYPE , SOURCE , FLAG , OPER_DATE , PICTURE_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , ASSET , OPERATER };
 	
 	/**
 	 * 代理类
@@ -418,6 +448,28 @@ public class InventoryAssetVOMeta extends InventoryAssetMeta {
 		public InventoryAssetVO setSortType(String sortType) {
 			super.change(SORT_TYPE,super.getSortType(),sortType);
 			super.setSortType(sortType);
+			return this;
+		}
+		
+		/**
+		 * 设置 数据来源
+		 * @param dataOrigin 数据来源
+		 * @return 当前对象
+		*/
+		public InventoryAssetVO setDataOrigin(String dataOrigin) {
+			super.change(DATA_ORIGIN,super.getDataOrigin(),dataOrigin);
+			super.setDataOrigin(dataOrigin);
+			return this;
+		}
+		
+		/**
+		 * 设置 查询逻辑
+		 * @param queryLogic 查询逻辑
+		 * @return 当前对象
+		*/
+		public InventoryAssetVO setQueryLogic(String queryLogic) {
+			super.change(QUERY_LOGIC,super.getQueryLogic(),queryLogic);
+			super.setQueryLogic(queryLogic);
 			return this;
 		}
 		
@@ -517,6 +569,17 @@ public class InventoryAssetVOMeta extends InventoryAssetMeta {
 		public InventoryAsset setSource(String source) {
 			super.change(SOURCE,super.getSource(),source);
 			super.setSource(source);
+			return this;
+		}
+		
+		/**
+		 * 设置 标记
+		 * @param flag 标记
+		 * @return 当前对象
+		*/
+		public InventoryAsset setFlag(String flag) {
+			super.change(FLAG,super.getFlag(),flag);
+			super.setFlag(flag);
 			return this;
 		}
 		
@@ -680,6 +743,7 @@ public class InventoryAssetVOMeta extends InventoryAssetMeta {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setAssetLossActionType(this.getAssetLossActionType());
 			inst.setOperDate(this.getOperDate());
+			inst.setFlag(this.getFlag());
 			inst.setNotes(this.getNotes());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setSource(this.getSource());
@@ -700,13 +764,15 @@ public class InventoryAssetVOMeta extends InventoryAssetMeta {
 			if(all) {
 				inst.setSearchField(this.getSearchField());
 				inst.setOperater(this.getOperater());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
-				inst.setFuzzyField(this.getFuzzyField());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
-				inst.setPageSize(this.getPageSize());
+				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
+				inst.setQueryLogic(this.getQueryLogic());
 				inst.setAsset(this.getAsset());
 				inst.setSearchValue(this.getSearchValue());
 			}

@@ -24,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 盘点明细
  * <p>盘点明细 , 数据表 eam_inventory_asset 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-06 07:04:13
- * @sign 5247E1AE4BF9316C88843561067A6DC8
+ * @since 2022-12-08 17:12:15
+ * @sign 46288E5E591D52F220A8653A7C24D06C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -85,6 +85,12 @@ public class InventoryAsset extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="数据来源" , notes = "数据来源" , example = "asset")
 	private String source;
+	
+	/**
+	 * 标记：标记
+	*/
+	@ApiModelProperty(required = false,value="标记" , notes = "标记")
+	private String flag;
 	
 	/**
 	 * 操作时间：操作时间
@@ -316,6 +322,25 @@ public class InventoryAsset extends Entity {
 	*/
 	public InventoryAsset setSource(String source) {
 		this.source=source;
+		return this;
+	}
+	
+	/**
+	 * 获得 标记<br>
+	 * 标记
+	 * @return 标记
+	*/
+	public String getFlag() {
+		return flag;
+	}
+	
+	/**
+	 * 设置 标记
+	 * @param flag 标记
+	 * @return 当前对象
+	*/
+	public InventoryAsset setFlag(String flag) {
+		this.flag=flag;
 		return this;
 	}
 	
@@ -643,6 +668,7 @@ public class InventoryAsset extends Entity {
 		com.dt.platform.domain.eam.meta.InventoryAssetMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.InventoryAssetMeta.$$proxy$$();
 		inst.setAssetLossActionType(this.getAssetLossActionType());
 		inst.setOperDate(this.getOperDate());
+		inst.setFlag(this.getFlag());
 		inst.setNotes(this.getNotes());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setSource(this.getSource());
@@ -724,6 +750,7 @@ public class InventoryAsset extends Entity {
 		if(cast) {
 			this.setAssetLossActionType(DataParser.parse(String.class, map.get(InventoryAssetMeta.ASSET_LOSS_ACTION_TYPE)));
 			this.setOperDate(DataParser.parse(Date.class, map.get(InventoryAssetMeta.OPER_DATE)));
+			this.setFlag(DataParser.parse(String.class, map.get(InventoryAssetMeta.FLAG)));
 			this.setNotes(DataParser.parse(String.class, map.get(InventoryAssetMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(InventoryAssetMeta.UPDATE_TIME)));
 			this.setSource(DataParser.parse(String.class, map.get(InventoryAssetMeta.SOURCE)));
@@ -749,6 +776,7 @@ public class InventoryAsset extends Entity {
 			try {
 				this.setAssetLossActionType( (String)map.get(InventoryAssetMeta.ASSET_LOSS_ACTION_TYPE));
 				this.setOperDate( (Date)map.get(InventoryAssetMeta.OPER_DATE));
+				this.setFlag( (String)map.get(InventoryAssetMeta.FLAG));
 				this.setNotes( (String)map.get(InventoryAssetMeta.NOTES));
 				this.setUpdateTime( (Date)map.get(InventoryAssetMeta.UPDATE_TIME));
 				this.setSource( (String)map.get(InventoryAssetMeta.SOURCE));
@@ -787,6 +815,7 @@ public class InventoryAsset extends Entity {
 		if(cast) {
 			this.setAssetLossActionType(DataParser.parse(String.class, r.getValue(InventoryAssetMeta.ASSET_LOSS_ACTION_TYPE)));
 			this.setOperDate(DataParser.parse(Date.class, r.getValue(InventoryAssetMeta.OPER_DATE)));
+			this.setFlag(DataParser.parse(String.class, r.getValue(InventoryAssetMeta.FLAG)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(InventoryAssetMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(InventoryAssetMeta.UPDATE_TIME)));
 			this.setSource(DataParser.parse(String.class, r.getValue(InventoryAssetMeta.SOURCE)));
@@ -809,6 +838,7 @@ public class InventoryAsset extends Entity {
 			try {
 				this.setAssetLossActionType( (String)r.getValue(InventoryAssetMeta.ASSET_LOSS_ACTION_TYPE));
 				this.setOperDate( (Date)r.getValue(InventoryAssetMeta.OPER_DATE));
+				this.setFlag( (String)r.getValue(InventoryAssetMeta.FLAG));
 				this.setNotes( (String)r.getValue(InventoryAssetMeta.NOTES));
 				this.setUpdateTime( (Date)r.getValue(InventoryAssetMeta.UPDATE_TIME));
 				this.setSource( (String)r.getValue(InventoryAssetMeta.SOURCE));
