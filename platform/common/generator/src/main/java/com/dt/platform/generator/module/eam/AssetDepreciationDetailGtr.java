@@ -46,6 +46,7 @@ public class AssetDepreciationDetailGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"useUser","使用人员","使用人员");
         cfg.getPoClassFile().addSimpleProperty(Organization.class,"useOrganization","使用公司/部门","使用公司/部门");
 
+        cfg.getPoClassFile().addSimpleProperty(Employee.class,"manager","管理人员","管理人员");
 
 
         //  cfg.getPoClassFile().addSimpleProperty(String.class,"assetCurPurchaseUnitPrice","采购单价","采购单价");
@@ -121,12 +122,16 @@ public class AssetDepreciationDetailGtr extends BaseCodeGenerator {
                 textField(DictItemMeta.LABEL).
                 fillWith(AssetDepreciationDetailMeta.EXPENSE_ITEM_DICT).muliti(false);
 
-        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.USE_USER_ID)
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.USE_ORG_ID)
                 .form().button().chooseOrganization(true);
-        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.USE_USER_ID).table().fillBy("useOrganization","fullName");
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.USE_ORG_ID).table().fillBy("useOrganization","fullName");
 
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.USE_USER_ID).table().fillBy("useUser","name");
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.USE_USER_ID).form()
+                .button().chooseEmployee(true);
+
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.MANAGER_ID).table().fillBy("manager","name");
+        cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.MANAGER_ID).form()
                 .button().chooseEmployee(true);
 
         cfg.view().field(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.FIRST_DEPRECIATION_METHOD).form().

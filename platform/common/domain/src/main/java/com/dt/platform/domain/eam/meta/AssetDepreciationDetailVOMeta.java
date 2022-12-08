@@ -19,7 +19,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-27 16:20:07
+ * @since 2022-12-08 11:41:35
  * @sign A99C923C580D1F59CCE2589999291802
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -367,6 +367,16 @@ public class AssetDepreciationDetailVOMeta extends AssetDepreciationDetailMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationDetailVO,java.math.BigDecimal> ASSET_SERVICE_LIFE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationDetailVO.class ,ASSET_SERVICE_LIFE, java.math.BigDecimal.class, "可使用期限", "月", java.math.BigDecimal.class, null);
 	
 	/**
+	 * 可使用期限 , 月 , 类型: java.math.BigDecimal
+	*/
+	public static final String ASSET_FINANCE_SERVICE_LIFE="assetFinanceServiceLife";
+	
+	/**
+	 * 可使用期限 , 月 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationDetailVO,java.math.BigDecimal> ASSET_FINANCE_SERVICE_LIFE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationDetailVO.class ,ASSET_FINANCE_SERVICE_LIFE, java.math.BigDecimal.class, "可使用期限", "月", java.math.BigDecimal.class, null);
+	
+	/**
 	 * 本期残值率 , 类型: java.math.BigDecimal
 	*/
 	public static final String ASSET_RESIDUALS_RATE="assetResidualsRate";
@@ -545,6 +555,26 @@ public class AssetDepreciationDetailVOMeta extends AssetDepreciationDetailMeta {
 	 * 使用人 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationDetailVO,java.lang.String> USE_USER_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationDetailVO.class ,USE_USER_NAME, java.lang.String.class, "使用人", "使用人", java.lang.String.class, null);
+	
+	/**
+	 * 管理人员 , 类型: java.lang.String
+	*/
+	public static final String MANAGER_ID="managerId";
+	
+	/**
+	 * 管理人员 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationDetailVO,java.lang.String> MANAGER_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationDetailVO.class ,MANAGER_ID, java.lang.String.class, "管理人员", "管理人员", java.lang.String.class, null);
+	
+	/**
+	 * 管理人员 , 类型: java.lang.String
+	*/
+	public static final String MANAGER_NAME="managerName";
+	
+	/**
+	 * 管理人员 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationDetailVO,java.lang.String> MANAGER_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationDetailVO.class ,MANAGER_NAME, java.lang.String.class, "管理人员", "管理人员", java.lang.String.class, null);
 	
 	/**
 	 * 部门ID , 类型: java.lang.String
@@ -877,9 +907,19 @@ public class AssetDepreciationDetailVOMeta extends AssetDepreciationDetailMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationDetailVO,org.github.foxnic.web.domain.hrm.Organization> USE_ORGANIZATION_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationDetailVO.class ,USE_ORGANIZATION, org.github.foxnic.web.domain.hrm.Organization.class, "使用公司/部门", "使用公司/部门", org.github.foxnic.web.domain.hrm.Organization.class, null);
 	
 	/**
+	 * 管理人员 , 类型: org.github.foxnic.web.domain.hrm.Employee
+	*/
+	public static final String MANAGER="manager";
+	
+	/**
+	 * 管理人员 , 类型: org.github.foxnic.web.domain.hrm.Employee
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationDetailVO,org.github.foxnic.web.domain.hrm.Employee> MANAGER_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationDetailVO.class ,MANAGER, org.github.foxnic.web.domain.hrm.Employee.class, "管理人员", "管理人员", org.github.foxnic.web.domain.hrm.Employee.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , DEPRECIATION_ID , OPER_ID , ACTION_CODE , FIRST_DEPRECIATION_METHOD , DEPRECIATION_METHOD , BUSINESS_DATE , RESULT , RESULT_DETAIL , ASSET_ID , ASSET_CATEGORY_ID , ASSET_CATEGORY_NAME , ASSET_FINANCE_CATEGORY_ID , ASSET_FINANCE_CATEGORY_NAME , ASSET_CODE , ASSET_NAME , ASSET_MODEL , ASSET_STATUS_NAME , ASSET_PURCHASE_DATE , ASSET_REGISTER_DATE , ASSET_ORIGINAL_UNIT_PRICE , ASSET_PURCHASE_UNIT_PRICE , ASSET_NAV_PRICE , ASSET_TAX_AMOUNT_RATE , ASSET_SERVICE_LIFE , ASSET_RESIDUALS_RATE , ASSET_RESIDUALS_PRICE , S_ORIGINAL_PRICE , S_DEPRECIATION_AMOUNT , S_NAV_AMOUNT , S_RECOVERABLE_AMOUNT , C_USED_SERVICE_LIFE , C_ORIGINAL_PRICE_INCREASE , C_DEPRECIATION_AMOUNT , C_YEAR_DEPRECIATION_AMOUNT , E_ORIGINAL_PRICE , E_DEPRECIATION_AMOUNT , E_NAV_AMOUNT , E_RECOVERABLE_AMOUNT , ACCOUNTING_SERVICE_LIFE , FIRST_DEPRECIATION , USE_USER_ID , USE_USER_NAME , USE_ORG_ID , USE_ORG_NAME , FINANCIAL_OPTION_KEY , EXPENSE_ITEM_KEY , FINANCIAL_OPTION_NAME , EXPENSE_ITEM_NAME , CUSTOMER_INFO , DETAIL_ID_SOURCE , DETAIL_ID_TARGET , LAST_OPER_ID , LAST_OPER_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , RESULT_VALUE_STR , RESULT_VALUE_FLOAT , ASSET_SOURCE , ASSET_TARGET , ASSET , LAST_ASSET_DEPRECIATION_DETAIL , ASSET_DEPRECIATION , CAL_RULE_LIST , CAL_RULE_IDS , ASSET_DEPRECIATION_OPER , FINANCIAL_OPTION_DICT , EXPENSE_ITEM_DICT , USE_USER , USE_ORGANIZATION };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , DEPRECIATION_ID , OPER_ID , ACTION_CODE , FIRST_DEPRECIATION_METHOD , DEPRECIATION_METHOD , BUSINESS_DATE , RESULT , RESULT_DETAIL , ASSET_ID , ASSET_CATEGORY_ID , ASSET_CATEGORY_NAME , ASSET_FINANCE_CATEGORY_ID , ASSET_FINANCE_CATEGORY_NAME , ASSET_CODE , ASSET_NAME , ASSET_MODEL , ASSET_STATUS_NAME , ASSET_PURCHASE_DATE , ASSET_REGISTER_DATE , ASSET_ORIGINAL_UNIT_PRICE , ASSET_PURCHASE_UNIT_PRICE , ASSET_NAV_PRICE , ASSET_TAX_AMOUNT_RATE , ASSET_SERVICE_LIFE , ASSET_FINANCE_SERVICE_LIFE , ASSET_RESIDUALS_RATE , ASSET_RESIDUALS_PRICE , S_ORIGINAL_PRICE , S_DEPRECIATION_AMOUNT , S_NAV_AMOUNT , S_RECOVERABLE_AMOUNT , C_USED_SERVICE_LIFE , C_ORIGINAL_PRICE_INCREASE , C_DEPRECIATION_AMOUNT , C_YEAR_DEPRECIATION_AMOUNT , E_ORIGINAL_PRICE , E_DEPRECIATION_AMOUNT , E_NAV_AMOUNT , E_RECOVERABLE_AMOUNT , ACCOUNTING_SERVICE_LIFE , FIRST_DEPRECIATION , USE_USER_ID , USE_USER_NAME , MANAGER_ID , MANAGER_NAME , USE_ORG_ID , USE_ORG_NAME , FINANCIAL_OPTION_KEY , EXPENSE_ITEM_KEY , FINANCIAL_OPTION_NAME , EXPENSE_ITEM_NAME , CUSTOMER_INFO , DETAIL_ID_SOURCE , DETAIL_ID_TARGET , LAST_OPER_ID , LAST_OPER_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , RESULT_VALUE_STR , RESULT_VALUE_FLOAT , ASSET_SOURCE , ASSET_TARGET , ASSET , LAST_ASSET_DEPRECIATION_DETAIL , ASSET_DEPRECIATION , CAL_RULE_LIST , CAL_RULE_IDS , ASSET_DEPRECIATION_OPER , FINANCIAL_OPTION_DICT , EXPENSE_ITEM_DICT , USE_USER , USE_ORGANIZATION , MANAGER };
 	
 	/**
 	 * 代理类
@@ -1264,6 +1304,17 @@ public class AssetDepreciationDetailVOMeta extends AssetDepreciationDetailMeta {
 		}
 		
 		/**
+		 * 设置 可使用期限
+		 * @param assetFinanceServiceLife 可使用期限
+		 * @return 当前对象
+		*/
+		public AssetDepreciationDetail setAssetFinanceServiceLife(BigDecimal assetFinanceServiceLife) {
+			super.change(ASSET_FINANCE_SERVICE_LIFE,super.getAssetFinanceServiceLife(),assetFinanceServiceLife);
+			super.setAssetFinanceServiceLife(assetFinanceServiceLife);
+			return this;
+		}
+		
+		/**
 		 * 设置 本期残值率
 		 * @param assetResidualsRate 本期残值率
 		 * @return 当前对象
@@ -1458,6 +1509,28 @@ public class AssetDepreciationDetailVOMeta extends AssetDepreciationDetailMeta {
 		public AssetDepreciationDetail setUseUserName(String useUserName) {
 			super.change(USE_USER_NAME,super.getUseUserName(),useUserName);
 			super.setUseUserName(useUserName);
+			return this;
+		}
+		
+		/**
+		 * 设置 管理人员
+		 * @param managerId 管理人员
+		 * @return 当前对象
+		*/
+		public AssetDepreciationDetail setManagerId(String managerId) {
+			super.change(MANAGER_ID,super.getManagerId(),managerId);
+			super.setManagerId(managerId);
+			return this;
+		}
+		
+		/**
+		 * 设置 管理人员
+		 * @param managerName 管理人员
+		 * @return 当前对象
+		*/
+		public AssetDepreciationDetail setManagerName(String managerName) {
+			super.change(MANAGER_NAME,super.getManagerName(),managerName);
+			super.setManagerName(managerName);
 			return this;
 		}
 		
@@ -1823,6 +1896,17 @@ public class AssetDepreciationDetailVOMeta extends AssetDepreciationDetailMeta {
 			super.setUseOrganization(useOrganization);
 			return this;
 		}
+		
+		/**
+		 * 设置 管理人员
+		 * @param manager 管理人员
+		 * @return 当前对象
+		*/
+		public AssetDepreciationDetail setManager(Employee manager) {
+			super.change(MANAGER,super.getManager(),manager);
+			super.setManager(manager);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -1847,6 +1931,7 @@ public class AssetDepreciationDetailVOMeta extends AssetDepreciationDetailMeta {
 			inst.setExpenseItemKey(this.getExpenseItemKey());
 			inst.setCustomerInfo(this.getCustomerInfo());
 			inst.setFirstDepreciation(this.getFirstDepreciation());
+			inst.setManagerName(this.getManagerName());
 			inst.setAssetNavPrice(this.getAssetNavPrice());
 			inst.setExpenseItemName(this.getExpenseItemName());
 			inst.setENavAmount(this.getENavAmount());
@@ -1855,6 +1940,7 @@ public class AssetDepreciationDetailVOMeta extends AssetDepreciationDetailMeta {
 			inst.setActionCode(this.getActionCode());
 			inst.setId(this.getId());
 			inst.setCYearDepreciationAmount(this.getCYearDepreciationAmount());
+			inst.setAssetFinanceServiceLife(this.getAssetFinanceServiceLife());
 			inst.setAssetCode(this.getAssetCode());
 			inst.setFinancialOptionKey(this.getFinancialOptionKey());
 			inst.setVersion(this.getVersion());
@@ -1892,6 +1978,7 @@ public class AssetDepreciationDetailVOMeta extends AssetDepreciationDetailMeta {
 			inst.setAssetModel(this.getAssetModel());
 			inst.setLastOperTime(this.getLastOperTime());
 			inst.setUpdateTime(this.getUpdateTime());
+			inst.setManagerId(this.getManagerId());
 			inst.setCDepreciationAmount(this.getCDepreciationAmount());
 			inst.setAssetFinanceCategoryId(this.getAssetFinanceCategoryId());
 			inst.setCreateBy(this.getCreateBy());
@@ -1905,6 +1992,7 @@ public class AssetDepreciationDetailVOMeta extends AssetDepreciationDetailMeta {
 			inst.setUseUserId(this.getUseUserId());
 			if(all) {
 				inst.setSearchField(this.getSearchField());
+				inst.setManager(this.getManager());
 				inst.setFuzzyField(this.getFuzzyField());
 				inst.setPageSize(this.getPageSize());
 				inst.setAssetSource(this.getAssetSource());

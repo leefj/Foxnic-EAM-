@@ -52,7 +52,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 折旧明细接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-27 16:20:08
+ * @since 2022-12-08 11:41:35
 */
 
 @InDoc
@@ -94,6 +94,7 @@ public class AssetDepreciationDetailController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_NAV_PRICE , value = "资产净值" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_TAX_AMOUNT_RATE , value = "税额" , required = false , dataTypeClass=BigDecimal.class , example = "2.00"),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_SERVICE_LIFE , value = "可使用期限" , required = false , dataTypeClass=BigDecimal.class , example = "12.00"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_FINANCE_SERVICE_LIFE , value = "可使用期限" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_RESIDUALS_RATE , value = "本期残值率" , required = false , dataTypeClass=BigDecimal.class , example = "5.00"),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_RESIDUALS_PRICE , value = "本期残值" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.S_ORIGINAL_PRICE , value = "(期初)期初原值" , required = false , dataTypeClass=BigDecimal.class),
@@ -112,6 +113,8 @@ public class AssetDepreciationDetailController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.FIRST_DEPRECIATION , value = "首次折旧" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.USE_USER_ID , value = "使用人ID" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.USE_USER_NAME , value = "使用人" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.MANAGER_ID , value = "管理人员" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.MANAGER_NAME , value = "管理人员" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.USE_ORG_ID , value = "部门ID" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.USE_ORG_NAME , value = "使用部门" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.FINANCIAL_OPTION_KEY , value = "财务选项KEY" , required = false , dataTypeClass=String.class),
@@ -249,6 +252,7 @@ public class AssetDepreciationDetailController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_NAV_PRICE , value = "资产净值" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_TAX_AMOUNT_RATE , value = "税额" , required = false , dataTypeClass=BigDecimal.class , example = "2.00"),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_SERVICE_LIFE , value = "可使用期限" , required = false , dataTypeClass=BigDecimal.class , example = "12.00"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_FINANCE_SERVICE_LIFE , value = "可使用期限" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_RESIDUALS_RATE , value = "本期残值率" , required = false , dataTypeClass=BigDecimal.class , example = "5.00"),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_RESIDUALS_PRICE , value = "本期残值" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.S_ORIGINAL_PRICE , value = "(期初)期初原值" , required = false , dataTypeClass=BigDecimal.class),
@@ -267,6 +271,8 @@ public class AssetDepreciationDetailController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.FIRST_DEPRECIATION , value = "首次折旧" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.USE_USER_ID , value = "使用人ID" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.USE_USER_NAME , value = "使用人" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.MANAGER_ID , value = "管理人员" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.MANAGER_NAME , value = "管理人员" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.USE_ORG_ID , value = "部门ID" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.USE_ORG_NAME , value = "使用部门" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.FINANCIAL_OPTION_KEY , value = "财务选项KEY" , required = false , dataTypeClass=String.class),
@@ -321,6 +327,7 @@ public class AssetDepreciationDetailController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_NAV_PRICE , value = "资产净值" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_TAX_AMOUNT_RATE , value = "税额" , required = false , dataTypeClass=BigDecimal.class , example = "2.00"),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_SERVICE_LIFE , value = "可使用期限" , required = false , dataTypeClass=BigDecimal.class , example = "12.00"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_FINANCE_SERVICE_LIFE , value = "可使用期限" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_RESIDUALS_RATE , value = "本期残值率" , required = false , dataTypeClass=BigDecimal.class , example = "5.00"),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_RESIDUALS_PRICE , value = "本期残值" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.S_ORIGINAL_PRICE , value = "(期初)期初原值" , required = false , dataTypeClass=BigDecimal.class),
@@ -339,6 +346,8 @@ public class AssetDepreciationDetailController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.FIRST_DEPRECIATION , value = "首次折旧" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.USE_USER_ID , value = "使用人ID" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.USE_USER_NAME , value = "使用人" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.MANAGER_ID , value = "管理人员" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.MANAGER_NAME , value = "管理人员" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.USE_ORG_ID , value = "部门ID" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.USE_ORG_NAME , value = "使用部门" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.FINANCIAL_OPTION_KEY , value = "财务选项KEY" , required = false , dataTypeClass=String.class),
@@ -380,6 +389,7 @@ public class AssetDepreciationDetailController extends SuperController {
 		assetDepreciationDetailService.dao().fill(assetDepreciationDetail)
 			.with("useOrganization")
 			.with("useUser")
+			.with("manager")
 			.with(AssetDepreciationDetailMeta.FINANCIAL_OPTION_DICT)
 			.with(AssetDepreciationDetailMeta.EXPENSE_ITEM_DICT)
 			.with(AssetDepreciationDetailMeta.ASSET_DEPRECIATION)
@@ -439,6 +449,7 @@ public class AssetDepreciationDetailController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_NAV_PRICE , value = "资产净值" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_TAX_AMOUNT_RATE , value = "税额" , required = false , dataTypeClass=BigDecimal.class , example = "2.00"),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_SERVICE_LIFE , value = "可使用期限" , required = false , dataTypeClass=BigDecimal.class , example = "12.00"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_FINANCE_SERVICE_LIFE , value = "可使用期限" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_RESIDUALS_RATE , value = "本期残值率" , required = false , dataTypeClass=BigDecimal.class , example = "5.00"),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_RESIDUALS_PRICE , value = "本期残值" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.S_ORIGINAL_PRICE , value = "(期初)期初原值" , required = false , dataTypeClass=BigDecimal.class),
@@ -457,6 +468,8 @@ public class AssetDepreciationDetailController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.FIRST_DEPRECIATION , value = "首次折旧" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.USE_USER_ID , value = "使用人ID" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.USE_USER_NAME , value = "使用人" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.MANAGER_ID , value = "管理人员" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.MANAGER_NAME , value = "管理人员" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.USE_ORG_ID , value = "部门ID" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.USE_ORG_NAME , value = "使用部门" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.FINANCIAL_OPTION_KEY , value = "财务选项KEY" , required = false , dataTypeClass=String.class),
@@ -512,6 +525,7 @@ public class AssetDepreciationDetailController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_NAV_PRICE , value = "资产净值" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_TAX_AMOUNT_RATE , value = "税额" , required = false , dataTypeClass=BigDecimal.class , example = "2.00"),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_SERVICE_LIFE , value = "可使用期限" , required = false , dataTypeClass=BigDecimal.class , example = "12.00"),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_FINANCE_SERVICE_LIFE , value = "可使用期限" , required = false , dataTypeClass=BigDecimal.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_RESIDUALS_RATE , value = "本期残值率" , required = false , dataTypeClass=BigDecimal.class , example = "5.00"),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.ASSET_RESIDUALS_PRICE , value = "本期残值" , required = false , dataTypeClass=BigDecimal.class , example = "0.00"),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.S_ORIGINAL_PRICE , value = "(期初)期初原值" , required = false , dataTypeClass=BigDecimal.class),
@@ -530,6 +544,8 @@ public class AssetDepreciationDetailController extends SuperController {
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.FIRST_DEPRECIATION , value = "首次折旧" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.USE_USER_ID , value = "使用人ID" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.USE_USER_NAME , value = "使用人" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.MANAGER_ID , value = "管理人员" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.MANAGER_NAME , value = "管理人员" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.USE_ORG_ID , value = "部门ID" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.USE_ORG_NAME , value = "使用部门" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = AssetDepreciationDetailVOMeta.FINANCIAL_OPTION_KEY , value = "财务选项KEY" , required = false , dataTypeClass=String.class),
@@ -554,6 +570,7 @@ public class AssetDepreciationDetailController extends SuperController {
 		assetDepreciationDetailService.dao().fill(list)
 			.with("useOrganization")
 			.with("useUser")
+			.with("manager")
 			.with(AssetDepreciationDetailMeta.FINANCIAL_OPTION_DICT)
 			.with(AssetDepreciationDetailMeta.EXPENSE_ITEM_DICT)
 			.with(AssetDepreciationDetailMeta.ASSET_DEPRECIATION)

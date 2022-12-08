@@ -661,6 +661,10 @@ public class EamRelationManager extends RelationManager {
                 .using(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.USE_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 //
 
+        this.property(AssetDepreciationDetailMeta.MANAGER_PROP)
+                .using(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.MANAGER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+//
+
 
         this.property(AssetDepreciationDetailMeta.ASSET_TARGET_PROP)
                 .using(EAMTables.EAM_ASSET_DEPRECIATION_DETAIL.DETAIL_ID_TARGET).join(EAMTables.EAM_ASSET.ID);

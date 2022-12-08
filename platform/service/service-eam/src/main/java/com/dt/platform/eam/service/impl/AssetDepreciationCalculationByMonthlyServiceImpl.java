@@ -140,8 +140,10 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
         List<Asset> assetList=assetService.queryList(assetVO,expr);
         //关联获取资产属性实体数据
         assetService.dao().fill(assetList).with(AssetMeta.CATEGORY)
+                .with(AssetMeta.OWNER_COMPANY)
                 .with(AssetMeta.USE_ORGANIZATION)
                 .with(AssetMeta.USE_USER)
+                .with(AssetMeta.MANAGER)
                 .with(AssetMeta.ASSET_CYCLE_STATUS)
                 .with(AssetMeta.CATEGORY_FINANCE)
                 .with(AssetMeta.EXPENSE_ITEM_DICT)
@@ -201,14 +203,24 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
                 if(asset.getCategory()!=null){
                     detail.setAssetCategoryName(asset.getCategory().getName());
                 }
+
+
+                detail.setAssetServiceLife(asset.getServiceLife());
+
+                //如果设置了财务期限，以财务期限为准，否则使用资产本身的
                 if(asset.getCategoryFinance()!=null){
                     detail.setAssetFinanceCategoryName(asset.getCategoryFinance().getCategoryName());
-                    //可使用期限，来自财务数据
-                    detail.setAssetServiceLife(asset.getCategoryFinance().getServiceLife());
+                    detail.setAssetFinanceServiceLife(asset.getCategoryFinance().getServiceLife());
                 }
+
                 if(asset.getUseUser()!=null){
                     detail.setUseUserName(asset.getUseUser().getName());
                 }
+
+                if(asset.getManager()!=null){
+                    detail.setManagerName(asset.getManager().getName());
+                }
+
                 if(asset.getUseOrganization()!=null){
                     detail.setUseOrgName(asset.getUseOrganization().getFullName());
                 }
@@ -314,6 +326,8 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
             Result r=calculationAsset(assetDepreciationDetail);
             if(!r.isSuccess()){
                 assetDepreciationDetailService.update(assetDepreciationDetail,SaveMode.NOT_NULL_FIELDS);
+                Logger.info("id:"+assetDepreciationDetail.getDepreciationId()+",assetDepreciationDetail result:"+assetDepreciationDetail.getResult());
+                Logger.info("id:"+assetDepreciationDetail.getDepreciationId()+",assetDepreciationDetail result detail:"+assetDepreciationDetail.getResultDetail());
                 return ErrorDesc.failureMessage("折旧计算过程中,发现部分计算报错!");
             }
             assetDepreciationDetailList.add(assetDepreciationDetail);
@@ -327,6 +341,8 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
         if(assetDepreciationDetailList.size()>0){
             groupList.add(assetDepreciationDetailList);
         }
+
+
         SimpleJoinForkTask<List<AssetDepreciationDetail> ,Result> task=new SimpleJoinForkTask<>(groupList,2);
         List<Result> rvs2=task.execute(els->{
             System.out.println(Thread.currentThread().getName());
@@ -352,15 +368,15 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
         //不在做折旧处理
         if(AssetDetailDepreciationResultEnum.NOT_CALCULATE.code().equals(assetDepreciationDetail.getResult())){
             Result depreciationIdleResult=assetDepreciationUtilService.calRules(assetDepreciationDetail,AssetDepreciationRuleActionCodeEnum.DEPRECIATION_IDLE.code());
-            Result r=new Result();
-            r.success(true);
-            if(!depreciationIdleResult.isSuccess()){
-                r.message(depreciationIdleResult.getMessage());
+            if(depreciationIdleResult.isSuccess()){
+                return depreciationIdleResult;
+            }else{
+                return depreciationIdleResult;
             }
-            return ErrorDesc.success();
         }
-        assetDepreciationDetail.setResult(AssetDetailDepreciationResultEnum.SUCCESS.code());
 
+
+        assetDepreciationDetail.setResult(AssetDetailDepreciationResultEnum.SUCCESS.code());
         Logger.info("当前折旧计算资产编号:"+assetDepreciationDetail.getAssetCode());
         //当前状态
         List<AssetDepreciationCalRule> ruleList=assetDepreciationDetail.getCalRuleList();
