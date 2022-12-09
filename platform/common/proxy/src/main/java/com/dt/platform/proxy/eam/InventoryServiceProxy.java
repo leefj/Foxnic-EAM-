@@ -159,6 +159,12 @@ public interface InventoryServiceProxy {
 
 
     /**
+     * 下载资产
+     */
+    public static final String  QUERY_ASSET_BY_INVENTORY = API_PREFIX + "query-asset-by-inventory";
+
+
+    /**
      * 添加资产盘点
      */
     @RequestMapping(InventoryServiceProxy.INSERT)

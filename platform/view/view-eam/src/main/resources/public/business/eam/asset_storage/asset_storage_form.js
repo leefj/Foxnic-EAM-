@@ -1,12 +1,13 @@
 /**
  * 资产入库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-05 14:24:20
+ * @since 2022-12-09 16:43:02
  */
 
 function FormPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
+	
 	const moduleURL="/service-eam/eam-asset-storage";
 	// 表单执行操作类型：view，create，edit
 	var action=null;

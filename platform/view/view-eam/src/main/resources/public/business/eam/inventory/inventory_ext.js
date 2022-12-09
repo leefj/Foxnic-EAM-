@@ -223,6 +223,15 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             var downloadUrl="/service-eam/eam-asset-bill/query-asset-inventory-bill";
             fox.submit(downloadUrl,{id:data.id});
         },
+        inventoryDownload:function (data,it){
+            console.log("download");
+            var downloadUrl="/service-eam/eam-inventory/download-asset";
+            ps={};
+            ps.inventoryId=data.id;
+            fox.submit(downloadUrl,ps,"post",function(){
+            });
+        },
+
         /**
          * 末尾执行
          */

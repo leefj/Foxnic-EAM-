@@ -1,6 +1,7 @@
 package com.dt.platform.eam.service;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.domain.eam.*;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
@@ -29,6 +30,8 @@ import com.github.foxnic.dao.data.SaveMode;
 public interface IInventoryService extends ISuperService<Inventory> {
 
 
+
+	Result<JSONObject>  queryAssetByInventory(String inventoryId, String assetId, String assetCode, String type);
 
 	/**
 	 * 盘点资产

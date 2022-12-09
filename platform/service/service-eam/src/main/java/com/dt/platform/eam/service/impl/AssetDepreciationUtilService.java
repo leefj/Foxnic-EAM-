@@ -154,6 +154,7 @@ public class AssetDepreciationUtilService {
             Result calRuleResult=calRuleContent(assetDepreciationDetail,rule);
             assetDepreciationDetail.setResultDetail(calRuleResult.getMessage());
             //输出
+
             if(calRuleResult.isSuccess()){
                 assetDepreciationDetail.setResult(AssetDetailDepreciationResultEnum.SUCCESS.code());
                 System.out.println(partMsg+",规则执行成功");
@@ -177,10 +178,15 @@ public class AssetDepreciationUtilService {
         String ruleContent=rule.getMethodContent();
         String partMsg="动作:"+rule.getActionCode()+",规则编号:"+rule.getRuleNumber()+",单据:"+assetDepreciationDetail.getOperId()+",列名:"+rule.getColumnName();
         System.out.println(partMsg+",动作:本规则计算开始,资产编号:"+assetDepreciationDetail.getAssetCode()+",列值:"+rule.getColumnValue()+",信息:"+rule.getMethodContentInfo());
+
          //上一起折旧数据
-        AssetDepreciationDetail lastAssetDepreciationDetail=assetDepreciationDetail.getLastAssetDepreciationDetail();
+        AssetDepreciationDetail lastAssetDepreciationDetail=null;
+        if(assetDepreciationDetail.getLastAssetDepreciationDetail()!=null){
+            lastAssetDepreciationDetail=assetDepreciationDetail.getLastAssetDepreciationDetail();
+        }
         //资产原始数据
         Asset assetOriginalData=assetDepreciationDetail.getAsset();
+
         if(AssetDepreciationCalculationMethodTypeEnum.JEXL_EXPRESSION.code().equals(calType)){
             //JEXL_EXPRESSION 表达式计算
             Map<String, Object> map = new HashMap<String, Object>();

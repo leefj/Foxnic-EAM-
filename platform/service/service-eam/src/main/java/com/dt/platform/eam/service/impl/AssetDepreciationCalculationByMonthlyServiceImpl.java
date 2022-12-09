@@ -99,6 +99,9 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
 
 
 
+    /*
+    * 导入资产填充，排除折旧部分，做个预检查
+    * */
     @Override
     public Result fillAssetData(String billId) {
         AssetDepreciationOper bill=assetDepreciationOperService.getById(billId);
@@ -118,7 +121,6 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
         }else{
             return ErrorDesc.failureMessage("当前状态,不可进行本操作");
         }
-
 
         //清空数据
         assetDepreciationOperService.dao().execute("delete from eam_asset_depreciation_detail where oper_id=?",billId);
@@ -159,7 +161,7 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
         List<Employee> managerUser= CollectorUtil.collectList(assetList,Asset::getManager);
         assetService.dao().join(managerUser, Person.class);
 
-        //获取员工扩展数据
+        /*****************获取员工扩展数据*****************/
         List<String> ids1=new ArrayList<>();
         if(useUser!=null&useUser.size()>0){
              useUser.removeAll(Collections.singleton(null));
@@ -181,11 +183,12 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
                 for(int i=0;i<array.size();i++){
                     JSONObject e=array.getJSONObject(i);
                     System.out.println("extdata:"+e.toJSONString());
-                 //   extdata:{"tenant_id":"T001","catalog_id":"649972331808030720","create_time":"2022-12-05 11:02:08.000000","owner_id":"586965217661943808","id":"652283595536203776","version":1}
                     userInfoExt.put(e.getString("owner_id"),e);
                 }
             }
         }
+        /*****************获取员工扩结束****************/
+
 
         //填充资产折旧明细数据，用于折旧计算
         List<AssetDepreciationDetail> detailList=new ArrayList<>();
@@ -227,40 +230,6 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
                 detail.setCustomerInfo(asset.getCustomerInfo());
                 detail.setDetailIdSource(asset.getId());
                 detail.setCreateBy(createBy);
-                if(asset.getAssetCycleStatus()!=null){
-                    detail.setAssetStatusName(asset.getAssetCycleStatus().getName());
-                }
-                if(asset.getCategory()!=null){
-                    detail.setAssetCategoryName(asset.getCategory().getName());
-                }
-                //已使用期限
-                if(asset.getAssetUsedServiceLife()==null){
-                    detail.setCUsedServiceLife(new BigDecimal("0"));
-                }else{
-                    detail.setCUsedServiceLife(asset.getAssetUsedServiceLife());
-                }
-                //如果设置了财务期限，以财务期限为准，否则使用资产本身的
-                if(asset.getCategoryFinance()!=null){
-                    detail.setAssetFinanceCategoryName(asset.getCategoryFinance().getCategoryName());
-                    detail.setAssetFinanceServiceLife(asset.getCategoryFinance().getServiceLife());
-                    if(asset.getAssetUsedServiceLife().compareTo(detail.getAssetFinanceServiceLife())>-1){
-                        detail.setResult(AssetDetailDepreciationResultEnum.DEPRECIATION_FINISHED.code());
-                    }
-                }
-
-                //不使用这个字段
-                //如果设置资产的使用期限，以财务期限为准，否则使用资产本身的
-//                detail.setAssetServiceLife(asset.getServiceLife());
-//                if(asset.getAssetUsedServiceLife().compareTo(detail.getAssetServiceLife())>-1){
-//                    detail.setResult(AssetDetailDepreciationResultEnum.DEPRECIATION_FINISHED.code());
-//                }
-
-                if(asset.getUseUser()!=null){
-                    detail.setUseUserName(asset.getUseUser().getName());
-                }
-                if(asset.getManager()!=null){
-                    detail.setManagerName(asset.getManager().getName());
-                }
                 if(asset.getUseOrganization()!=null){
                     detail.setUseOrgName(asset.getUseOrganization().getFullName());
                 }
@@ -270,24 +239,59 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
                 if(asset.getFinancialOptionDict()!=null){
                     detail.setFinancialOptionName(asset.getFinancialOptionDict().getLabel());
                 }
+                if(asset.getAssetCycleStatus()!=null){
+                    detail.setAssetStatusName(asset.getAssetCycleStatus().getName());
+                }
+                if(asset.getCategory()!=null){
+                    detail.setAssetCategoryName(asset.getCategory().getName());
+                }
+                //使用期限，来自资产
+                detail.setAssetServiceLife(asset.getServiceLife());
+                if(asset.getAssetUsedServiceLife()==null){
+                    detail.setCUsedServiceLife(new BigDecimal("0"));
+                }else{
+                    detail.setCUsedServiceLife(asset.getAssetUsedServiceLife());
+                }
+                //使用期限，来自财务
+                //如果设置了财务期限，以财务期限为准，否则使用资产本身的
+                if(asset.getCategoryFinance()!=null){
+                    detail.setAssetFinanceCategoryName(asset.getCategoryFinance().getCategoryName());
+                    detail.setAssetFinanceServiceLife(asset.getCategoryFinance().getServiceLife());
+//                    if(asset.getAssetUsedServiceLife().compareTo(detail.getAssetFinanceServiceLife())>-1){
+//                        detail.setResult(AssetDetailDepreciationResultEnum.DEPRECIATION_FINISHED.code());
+//                    }
+                }
+                //不使用这个字段
+                //如果设置资产的使用期限，以财务期限为准，否则使用资产本身的
+//                if(asset.getAssetUsedServiceLife().compareTo(detail.getAssetServiceLife())>-1){
+//                    detail.setResult(AssetDetailDepreciationResultEnum.DEPRECIATION_FINISHED.code());
+//                }
+                if(asset.getUseUser()!=null){
+                    detail.setUseUserName(asset.getUseUser().getName());
+                }
+                if(asset.getManager()!=null){
+                    detail.setManagerName(asset.getManager().getName());
+                }
                 /*************定制开始----重置客户信息/***************/
                 if("后台".equals(detail.getFinancialOptionName())){
                     detail.setCustomerInfo("无");
                 }
-                //加上成本中心
-                if(!StringUtil.isBlank(asset.getUseUserId())){
-                    //使用使用人员的成本中心
-                   if(userInfoExt.containsKey(asset.getUseUserId())){
-                       JSONObject ext=userInfoExt.get(asset.getUseUserId());
-                       detail.setLabel(ext.getString("cost_center"));
-                   }
-                }else{
-                    if(!StringUtil.isBlank(asset.getManagerId())){
+                //加上成本中心,并且当使用人未空时，将管理人员填到使用人地方
+                if(StringUtil.isBlank(asset.getUseUser())){
+                    if(!StringUtil.isBlank(asset.getManager())){
                         //使用使用人员的成本中心
+                        detail.setUseUserName(asset.getManager().getName());
                         if(userInfoExt.containsKey(asset.getManagerId())){
                             JSONObject ext=userInfoExt.get(asset.getManagerId());
                             detail.setLabel(ext.getString("cost_center"));
                         }
+                    }
+                }else{
+                    //使用使用人员的成本中心
+                    if(userInfoExt.containsKey(asset.getUseUserId())){
+                        JSONObject ext=userInfoExt.get(asset.getUseUserId());
+                        detail.setLabel(ext.getString("cost_center"));
+                        detail.setUseUserName(asset.getUseUser().getName());
                     }
                 }
                 /*************定制结束----重置客户信息/***************/
@@ -305,7 +309,8 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
         if(detailList.size()>0){
             groupList.add(detailList);
         }
-//      Logger.info("并行运行,并行数:"+10);
+
+        //并行插盘点数据
         SimpleJoinForkTask<List<AssetDepreciationDetail> ,Result> task=new SimpleJoinForkTask<>(groupList,2);
         List<Result> rvs=task.execute(els->{
             System.out.println(Thread.currentThread().getName());
@@ -319,16 +324,22 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
         long cost=(finish-start)/1000L;
         System.out.println("batch execute cost:"+cost);
 
-        //更新单据
+        //更新单据状态
         AssetDepreciationOper ups=new AssetDepreciationOper();
         ups.setId(billId);
         ups.setStatus(AssetDepreciationStatusEnum.ACTING.code());
         assetDepreciationOperService.save(ups, SaveMode.NOT_NULL_FIELDS,true);
+
         //折旧排除
         String sql="update eam_asset_depreciation_detail a set result='"+AssetDetailDepreciationResultEnum.NOT_CALCULATE.code()+"',result_detail='折旧排除' where (oper_id,asset_id) in (\n" +
                 "select a.oper_id,a.asset_id from eam_asset_depreciation_exclude b where a.asset_id=b.asset_id and a.deleted=0 and b.deleted=0\n" +
                 "and a.depreciation_id=b.depreciation_id and a.oper_id=?)";
+
+        //统一修改已折旧完
+
+
         assetDepreciationDetailService.dao().execute(sql,billId);
+
         Result r=new Result();
         r.success(true);
         r.message("导入成功，总共耗时:"+cost+"秒");
@@ -354,7 +365,7 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
             return ErrorDesc.failureMessage("当前折旧单据不存在,不能进行操作!");
         }
 
-        //判断当前状态不能进行输入导入
+        //判断当前状态不能进行
         if(AssetDepreciationStatusEnum.ACTING.code().equals(bill.getStatus())){
             Logger.info("start to collect asset data!");
         }else{
@@ -369,14 +380,16 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
         }else{
             return ErrorDesc.failureMessage("当前状态,不可进行本操作");
         }
+
         //获取本次折旧数据，折旧规则，上次折旧数据
         List<AssetDepreciationDetail> list=bill.getAssetDepreciationList();
         assetDepreciationDetailService.dao().fill(list)
                 .with(AssetDepreciationDetailMeta.CAL_RULE_LIST)
                 .with(AssetDepreciationDetailMeta.LAST_ASSET_DEPRECIATION_DETAIL)
                 .execute();
-        //开始遍历进行折旧计算
 
+
+        //开始遍历进行折旧计算
         List<AssetDepreciationDetail> assetDepreciationDetailList=new ArrayList<>();
         List<List<AssetDepreciationDetail>> groupList=new ArrayList<>();
         int batchCnt=0;
@@ -400,7 +413,7 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
             groupList.add(assetDepreciationDetailList);
         }
 
-
+        //开始遍历进行折旧计算
         SimpleJoinForkTask<List<AssetDepreciationDetail> ,Result> task=new SimpleJoinForkTask<>(groupList,2);
         List<Result> rvs2=task.execute(els->{
             System.out.println(Thread.currentThread().getName());
@@ -423,27 +436,8 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
    按资产进行折旧计算
     */
     private Result calculationAsset(AssetDepreciationDetail assetDepreciationDetail) {
-        //不在做折旧处理
-        if(AssetDetailDepreciationResultEnum.NOT_CALCULATE.code().equals(assetDepreciationDetail.getResult())){
-            Result depreciationIdleResult=assetDepreciationUtilService.calRules(assetDepreciationDetail,AssetDepreciationRuleActionCodeEnum.DEPRECIATION_IDLE.code());
-            if(depreciationIdleResult.isSuccess()){
-                return depreciationIdleResult;
-            }else{
-                return depreciationIdleResult;
-            }
-        }
 
-        //已完成折旧
-        if(AssetDetailDepreciationResultEnum.DEPRECIATION_FINISHED.code().equals(assetDepreciationDetail.getResult())){
-            Result depreciationIdleResult=assetDepreciationUtilService.calRules(assetDepreciationDetail,AssetDepreciationRuleActionCodeEnum.DEPRECIATION_FINISH.code());
-            if(depreciationIdleResult.isSuccess()){
-                return depreciationIdleResult;
-            }else{
-                return depreciationIdleResult;
-            }
-        }
-
-        //正常折旧
+        /*********************************判断是否有折旧规则***********************************/
         assetDepreciationDetail.setResult(AssetDetailDepreciationResultEnum.SUCCESS.code());
         Logger.info("当前折旧计算资产编号:"+assetDepreciationDetail.getAssetCode());
         //当前状态
@@ -451,18 +445,44 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
         if(ruleList==null||ruleList.size()==0){
             assetDepreciationDetail.setResult(AssetDetailDepreciationResultEnum.FAILED.code());
             assetDepreciationDetail.setResultDetail("本次折旧,没有找到折旧配置规则");
-           // assetDepreciationDetailService.update(assetDepreciationDetail, SaveMode.NOT_NULL_FIELDS);
+            // assetDepreciationDetailService.update(assetDepreciationDetail, SaveMode.NOT_NULL_FIELDS);
             return ErrorDesc.failureMessage("本次折旧,没有找到折旧配置规则");
         }
-        System.out.println("#########################################折旧计算开始#########################################");
-        //前置条件-规则定义
+
+
+        /*********************************执行前置条件***********************************/
         Result preconditionsResult=assetDepreciationUtilService.calRules(assetDepreciationDetail,AssetDepreciationRuleActionCodeEnum.PRECONDITIONS.code());
-        if(ruleList==null||ruleList.size()==0){
+        if(!preconditionsResult.isSuccess()){
             assetDepreciationDetail.setResult(AssetDetailDepreciationResultEnum.FAILED.code());
-            assetDepreciationDetail.setResultDetail(preconditionsResult.getMessage());
-           // assetDepreciationDetailService.update(assetDepreciationDetail, SaveMode.NOT_NULL_FIELDS);
+            assetDepreciationDetail.setResult(preconditionsResult.getMessage());
             return ErrorDesc.failureMessage(preconditionsResult.getMessage());
         }
+
+        /*********************************执行不折旧规则***********************************/
+        if(AssetDetailDepreciationResultEnum.NOT_CALCULATE.code().equals(assetDepreciationDetail.getResult())){
+            Result depreciationIdleResult=assetDepreciationUtilService.calRules(assetDepreciationDetail,AssetDepreciationRuleActionCodeEnum.DEPRECIATION_IDLE.code());
+            if(depreciationIdleResult.isSuccess()){
+                return depreciationIdleResult;
+            }else{
+                assetDepreciationDetail.setResult(AssetDetailDepreciationResultEnum.FAILED.code());
+                assetDepreciationDetail.setResult(depreciationIdleResult.getMessage());
+                return depreciationIdleResult;
+            }
+        }
+
+        /*********************************执行已完成折旧规则***********************************/
+        if(AssetDetailDepreciationResultEnum.DEPRECIATION_FINISHED.code().equals(assetDepreciationDetail.getResult())){
+            Result depreciationFinishResult=assetDepreciationUtilService.calRules(assetDepreciationDetail,AssetDepreciationRuleActionCodeEnum.DEPRECIATION_FINISH.code());
+            if(depreciationFinishResult.isSuccess()){
+                return depreciationFinishResult;
+            }else{
+                assetDepreciationDetail.setResult(AssetDetailDepreciationResultEnum.FAILED.code());
+                assetDepreciationDetail.setResult(depreciationFinishResult.getMessage());
+                return depreciationFinishResult;
+            }
+        }
+
+        /*********************************开始正常折旧**********************************/
         //前置条件-上次折旧时间
         if(assetDepreciationDetail.getLastOperTime()!=null){
             //不为null，说明上次做过折旧，这次做折旧时间必须大于上次(按照月份), 2022-11-25:34
@@ -473,8 +493,8 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
                 return ErrorDesc.failureMessage("本月已折旧过,请误重复操作,上次折旧时间:"+assetDepreciationDetail.getLastOperTime());
             }
         }
-        //前置条件-日期是否符合逻辑，入账日期大于启用日期 assetDepreciationDetail.getAssetRegisterDate()<=assetDepreciationDetail.getBusinessDate()
-        if("1".equals(assetDepreciationUtilService.compareDate(assetDepreciationDetail.getAssetRegisterDate(),assetDepreciationDetail.getBusinessDate()))){
+        //前置条件-日期是否符合逻辑，入账日期大于启用日期 assetDepreciationDetail.getAssetPurchaseDate()<=assetDepreciationDetail.getBusinessDate()
+        if("1".equals(assetDepreciationUtilService.compareDate(assetDepreciationDetail.getAssetPurchaseDate(),assetDepreciationDetail.getBusinessDate()))){
             assetDepreciationDetail.setResult(AssetDetailDepreciationResultEnum.FAILED.code());
             assetDepreciationDetail.setResultDetail("启用日期需要大于等于入账日期");
           //  assetDepreciationDetailService.update(assetDepreciationDetail, SaveMode.NOT_NULL_FIELDS);
@@ -483,7 +503,7 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
         //前置条件-业务日期大于上次折旧日期 assetDepreciationDetail.getBusinessDate()>assetDepreciationDetail.getLastOperTime()
         if(assetDepreciationDetail.getLastOperTime()!=null){
             if("1".equals(assetDepreciationUtilService.compareDate(assetDepreciationDetail.getBusinessDate(),assetDepreciationDetail.getLastOperTime()))){
-                System.out.println("");
+                System.out.println("前置条件-业务日期大于上次折旧日期 成功");
             }else{
                 assetDepreciationDetail.setResult(AssetDetailDepreciationResultEnum.FAILED.code());
                 assetDepreciationDetail.setResultDetail("业务日期需要大于上次折旧日期");
@@ -493,8 +513,9 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
         }
 
         //前置条件-是否首次折旧
-        String ifThisMonth=assetDepreciationUtilService.equalMonth(assetDepreciationDetail.getBusinessDate(),assetDepreciationDetail.getAssetRegisterDate());
+        String ifThisMonth=assetDepreciationUtilService.equalMonth(assetDepreciationDetail.getBusinessDate(),assetDepreciationDetail.getAssetPurchaseDate());
         if("1".equals(ifThisMonth)){
+            //执行首次折旧
             assetDepreciationUtilService.calRules(assetDepreciationDetail,AssetDepreciationRuleActionCodeEnum.DEPRECIATION_FIRST.code());
         }else{
             //正常折旧规则

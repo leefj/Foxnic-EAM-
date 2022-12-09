@@ -7,6 +7,7 @@ import java.util.List;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
+import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.eam.AssetInventoryDetailStatusEnum;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
 import com.dt.platform.domain.eam.*;
@@ -572,6 +573,17 @@ public class InventoryController extends SuperController {
         result.success(true).data(list);
         return result;
     }
+
+
+    /**
+     * 导出 Excel
+     */
+    @SentinelResource(value = InventoryServiceProxy.QUERY_ASSET_BY_INVENTORY, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @RequestMapping(InventoryServiceProxy.QUERY_ASSET_BY_INVENTORY)
+    public Result<JSONObject> queryAssetByInventory(String inventoryId, String assetId, String assetCode, String type)  {
+        return inventoryService.queryAssetByInventory(inventoryId,assetId,assetCode,type);
+    }
+
 
     /**
      * 导出 Excel

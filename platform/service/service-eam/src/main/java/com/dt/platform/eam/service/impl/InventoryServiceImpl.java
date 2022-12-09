@@ -1,6 +1,7 @@
 package com.dt.platform.eam.service.impl;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.eam.*;
 import com.dt.platform.domain.eam.Asset;
@@ -22,6 +23,8 @@ import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.commons.reflect.EnumUtil;
 import com.github.foxnic.dao.data.PagedList;
+import com.github.foxnic.dao.data.Rcd;
+import com.github.foxnic.dao.data.RcdSet;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.SuperService;
@@ -108,6 +111,65 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 		return IDGenerator.getSnowflakeIdString();
 	}
 
+
+	/**
+	 * 添加，根据 throwsException 参数抛出异常或返回 Result 对象
+	 *
+	 * @param type:full_inventory_mode,employ_inventory_mode
+	 * @param inventoryId 盘点单据
+	 * @param assetId 盘点单据
+	 * @param assetCode 盘点单据
+	 * @return 结果 , 如果失败返回 false，成功返回 true
+	 */
+	@Override
+	public Result<JSONObject> queryAssetByInventory(String inventoryId, String assetId, String assetCode, String type) {
+
+		if(StringUtil.isBlank(inventoryId)){
+			return ErrorDesc.failureMessage("盘点单据ID为空");
+		}
+		if(StringUtil.isBlank(type)){
+			return ErrorDesc.failureMessage("盘点类型为空");
+		}
+		if(StringUtil.isBlank(assetId) &&StringUtil.isBlank(assetCode)){
+			return ErrorDesc.failureMessage("资产为空");
+		}
+		//assetId如果为空，则从assetCode获取
+		String userId="";
+		String managerId="";
+		if(StringUtil.isBlank(assetId)){
+			RcdSet rs=dao.query("select * from eam_asset where asset_code=? and owner_code='asset' and deleted=0",assetCode);
+			if(rs.size()==0){
+				return ErrorDesc.failureMessage("不存在该资产,资产编号:"+assetCode);
+			}else if(rs.size()>1){
+				return ErrorDesc.failureMessage("存在重复的资产,资产编号:"+assetCode);
+			}
+			assetId=rs.getRcd(0).getString("id");
+			userId=rs.getRcd(0).getString("use_user_id");
+			managerId=rs.getRcd(0).getString("manager_id");
+		}else{
+			Rcd rs=dao.queryRecord("select * from eam_asset where id=? and owner_code='asset' and deleted=0",assetId);
+			userId=rs.getString("use_user_id");
+			managerId=rs.getString("manager_id");
+			if(rs==null){
+				return ErrorDesc.failureMessage("不存在该资产,资产ID:"+assetId);
+			}
+		}
+		//盘点是否在本次盘点清单中
+		Rcd inventoryAssetRs=dao.queryRecord("select * from eam_inventory_asset where deleted=0 and inventory_id=? and asset_id=?",inventoryId,assetId);
+		if(inventoryAssetRs==null){
+			return ErrorDesc.failureMessage("当前资产并未在本次盘点清单中");
+		}
+		if("employ_inventory_mode".equals(type)){
+			String loginUserId=SessionUser.getCurrent().getActivatedEmployeeId();
+			if(userId.equals(loginUserId)){
+				System.out.println("success");
+			}else{
+				return ErrorDesc.failureMessage("当前用户没有权限盘点本资产");
+			}
+		}
+		Result res=new Result();
+		return res.success(true).data(inventoryAssetRs.toJSONObject());
+	}
 
 	@Override
 	public Map<String, Object> queryInventoryAssetMap(String inventoryId) {

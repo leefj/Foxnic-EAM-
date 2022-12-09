@@ -430,7 +430,11 @@ function ListPage() {
 
 			}else if (layEvent === 'inventory-bill') { // 单据
 				window.pageExt.list.inventoryBill(data,this);
+			}else if (layEvent === 'inventory-download') { // 单据
+					window.pageExt.list.inventoryDownload(data,this);
 			}
+
+
 
 		});
 
