@@ -88,7 +88,6 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 	}
 
 
-
 	@Override
 	public Map<String, Object> queryDepreciationAssetMap(String operId) {
 		AssetDepreciationOper oper=assetDepreciationOperService.getById(operId);
@@ -191,8 +190,6 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 			ups.setDepreciationId(id);
 			//上次折旧时间
 			ups.setDepreciationOperTime(assetDetail.getBusinessDate());
-			//折旧月份
-			ups.setAssetUsedServiceLife(assetDetail.getCUsedServiceLife());
 
 			AssetProcessRecord ar=new AssetProcessRecord();
 			ar.setAssetId(assetDetail.getAssetId());
