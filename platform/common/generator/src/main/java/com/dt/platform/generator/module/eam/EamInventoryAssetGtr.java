@@ -28,7 +28,7 @@ public class EamInventoryAssetGtr extends BaseCodeGenerator{
 
 
         cfg.view().field(EAMTables.EAM_INVENTORY_ASSET.ID).basic().hidden(true);
-        cfg.view().field(EAMTables.EAM_INVENTORY_ASSET.PICTURE_ID).form().upload().acceptImageType().maxFileCount(6);
+        cfg.view().field(EAMTables.EAM_INVENTORY_ASSET.PICTURE_ID).form().upload().buttonLabel("选择图片").acceptImageType().maxFileCount(6);
 
         //eam_asset_change_data
         cfg.view().search().inputLayout(
