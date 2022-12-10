@@ -263,7 +263,6 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 	 */
 	@Override
 	public Result insert(AssetDepreciationOper assetDepreciationOper,boolean throwsException) {
-
 		//制单人
 		if(StringUtil.isBlank(assetDepreciationOper.getOriginatorId())){
 			assetDepreciationOper.setOriginatorId(SessionUser.getCurrent().getUser().getActivatedEmployeeId());

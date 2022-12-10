@@ -122,6 +122,7 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
             return ErrorDesc.failureMessage("当前状态,不可进行本操作");
         }
 
+
         //清空数据
         assetDepreciationOperService.dao().execute("delete from eam_asset_depreciation_detail where oper_id=?",billId);
 
@@ -144,6 +145,11 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
         //添加过滤添加-确保分类存在，正常不需要这个条件
         expr.and("category_id in (select id from pcm_catalog where deleted=0)");
 
+        String assetServiceLifeValueSource="asset";
+        Rcd assetServiceLifeValueSourceRs=assetService.dao().queryRecord("select value from sys_config where id='eam.assetServiceLifeValueSource' and code='eam.assetServiceLifeValueSource'");
+        if(assetServiceLifeValueSourceRs!=null){
+            assetServiceLifeValueSource=assetServiceLifeValueSourceRs.getString("value");
+        }
         List<Asset> assetList=assetService.queryList(assetVO,expr);
         //关联获取资产属性实体数据
         assetService.dao().fill(assetList).with(AssetMeta.CATEGORY)
@@ -188,7 +194,6 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
             }
         }
         /*****************获取员工扩结束****************/
-
 
         //填充资产折旧明细数据，用于折旧计算
         List<AssetDepreciationDetail> detailList=new ArrayList<>();
@@ -247,25 +252,28 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
                 }
                 //使用期限，来自资产
                 detail.setAssetServiceLife(asset.getServiceLife());
+                //使用期限，来自财务
+                if(asset.getCategoryFinance()!=null){
+                    detail.setAssetFinanceCategoryName(asset.getCategoryFinance().getCategoryName());
+                    detail.setAssetFinanceServiceLife(asset.getCategoryFinance().getServiceLife());
+                }
+                //已使用期限,如果没设置，则为0
                 if(asset.getAssetUsedServiceLife()==null){
                     detail.setCUsedServiceLife(new BigDecimal("0"));
                 }else{
                     detail.setCUsedServiceLife(asset.getAssetUsedServiceLife());
                 }
-                //使用期限，来自财务
-                //如果设置了财务期限，以财务期限为准，否则使用资产本身的
-                if(asset.getCategoryFinance()!=null){
-                    detail.setAssetFinanceCategoryName(asset.getCategoryFinance().getCategoryName());
-                    detail.setAssetFinanceServiceLife(asset.getCategoryFinance().getServiceLife());
-//                    if(asset.getAssetUsedServiceLife().compareTo(detail.getAssetFinanceServiceLife())>-1){
-//                        detail.setResult(AssetDetailDepreciationResultEnum.DEPRECIATION_FINISHED.code());
-//                    }
-                }
-                //不使用这个字段
                 //如果设置资产的使用期限，以财务期限为准，否则使用资产本身的
-//                if(asset.getAssetUsedServiceLife().compareTo(detail.getAssetServiceLife())>-1){
-//                    detail.setResult(AssetDetailDepreciationResultEnum.DEPRECIATION_FINISHED.code());
-//                }
+                if("asset".equals(assetServiceLifeValueSource)){
+                    if(asset.getAssetUsedServiceLife().compareTo(detail.getAssetServiceLife())>-1){
+                        detail.setResult(AssetDetailDepreciationResultEnum.DEPRECIATION_FINISHED.code());
+                    }
+                }
+                if("finance".equals(assetServiceLifeValueSource)){
+                    if(asset.getAssetUsedServiceLife().compareTo(detail.getAssetFinanceServiceLife())>-1){
+                        detail.setResult(AssetDetailDepreciationResultEnum.DEPRECIATION_FINISHED.code());
+                    }
+                }
                 if(asset.getUseUser()!=null){
                     detail.setUseUserName(asset.getUseUser().getName());
                 }
