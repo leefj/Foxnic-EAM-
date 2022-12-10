@@ -16,8 +16,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-12 11:28:25
- * @sign 393929C9F3634A82B0E4BC7632B95E12
+ * @since 2022-12-10 20:58:09
+ * @sign 01F5D2D2F6B012476BB804CB0AD5C064
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -232,6 +232,16 @@ public class InventoryMeta {
 	 * 计划编号 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.Inventory,java.lang.String> PLAN_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.Inventory.class ,PLAN_ID, java.lang.String.class, "计划编号", "计划编号", java.lang.String.class, null);
+	
+	/**
+	 * 重复盘点 , Y,N , 类型: java.lang.String
+	*/
+	public static final String INVENTORY_REPEAT="inventoryRepeat";
+	
+	/**
+	 * 重复盘点 , Y,N , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.Inventory,java.lang.String> INVENTORY_REPEAT_PROP = new BeanProperty(com.dt.platform.domain.eam.Inventory.class ,INVENTORY_REPEAT, java.lang.String.class, "重复盘点", "Y,N", java.lang.String.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -536,7 +546,7 @@ public class InventoryMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , TYPE , BUSINESS_CODE , OWNER_CODE , STATUS , NAME , INVENTORY_STATUS , DATA_STATUS , ALL_EMPLOYEE , ASSET_STATUS , CATEGORY_ID , OWN_COMPANY_ID , USE_ORGANIZATION_ID , PURCHASE_START_DATE , PURCHASE_END_DATE , START_TIME , FINISH_TIME , ORIGINATOR_ID , BUSINESS_DATE , NOTES , PLAN_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , INVENTORY_ASSET_INFO_LIST , INVENTORY_ASSET_COUNT_BY_NOT_COUNTED , INVENTORY_ASSET_COUNT_BY_COUNTED , INVENTORY_ASSET_COUNT_BY_LOSS , INVENTORY_ASSET_COUNT_BY_SURPLUS , INVENTORY_ASSET_COUNT_BY_EXCEPTION , OWNER_COMPANY , USE_ORGANIZATION , INVENTORY_USER , INVENTORY_USER_IDS , MANAGER , INVENTORY_MANAGER_IDS , DIRECTOR , INVENTORY_DIRECTOR_IDS , ORIGINATOR , POSITION , POSITION_IDS , WAREHOUSE , WAREHOUSE_IDS , CATEGORY , CATEGORY_IDS };
+	public static final String[] $PROPS={ ID , TYPE , BUSINESS_CODE , OWNER_CODE , STATUS , NAME , INVENTORY_STATUS , DATA_STATUS , ALL_EMPLOYEE , ASSET_STATUS , CATEGORY_ID , OWN_COMPANY_ID , USE_ORGANIZATION_ID , PURCHASE_START_DATE , PURCHASE_END_DATE , START_TIME , FINISH_TIME , ORIGINATOR_ID , BUSINESS_DATE , NOTES , PLAN_ID , INVENTORY_REPEAT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , INVENTORY_ASSET_INFO_LIST , INVENTORY_ASSET_COUNT_BY_NOT_COUNTED , INVENTORY_ASSET_COUNT_BY_COUNTED , INVENTORY_ASSET_COUNT_BY_LOSS , INVENTORY_ASSET_COUNT_BY_SURPLUS , INVENTORY_ASSET_COUNT_BY_EXCEPTION , OWNER_COMPANY , USE_ORGANIZATION , INVENTORY_USER , INVENTORY_USER_IDS , MANAGER , INVENTORY_MANAGER_IDS , DIRECTOR , INVENTORY_DIRECTOR_IDS , ORIGINATOR , POSITION , POSITION_IDS , WAREHOUSE , WAREHOUSE_IDS , CATEGORY , CATEGORY_IDS };
 	
 	/**
 	 * 代理类
@@ -774,6 +784,17 @@ public class InventoryMeta {
 		public Inventory setPlanId(String planId) {
 			super.change(PLAN_ID,super.getPlanId(),planId);
 			super.setPlanId(planId);
+			return this;
+		}
+		
+		/**
+		 * 设置 重复盘点
+		 * @param inventoryRepeat 重复盘点
+		 * @return 当前对象
+		*/
+		public Inventory setInventoryRepeat(String inventoryRepeat) {
+			super.change(INVENTORY_REPEAT,super.getInventoryRepeat(),inventoryRepeat);
+			super.setInventoryRepeat(inventoryRepeat);
 			return this;
 		}
 		
@@ -1126,6 +1147,7 @@ public class InventoryMeta {
 			inst.setOwnerCode(this.getOwnerCode());
 			inst.setType(this.getType());
 			inst.setAllEmployee(this.getAllEmployee());
+			inst.setInventoryRepeat(this.getInventoryRepeat());
 			inst.setBusinessDate(this.getBusinessDate());
 			inst.setBusinessCode(this.getBusinessCode());
 			inst.setUpdateBy(this.getUpdateBy());

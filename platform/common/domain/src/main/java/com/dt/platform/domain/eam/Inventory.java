@@ -29,8 +29,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产盘点
  * <p>资产盘点 , 数据表 eam_inventory 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-12 11:28:25
- * @sign 393929C9F3634A82B0E4BC7632B95E12
+ * @since 2022-12-10 20:58:09
+ * @sign 01F5D2D2F6B012476BB804CB0AD5C064
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -168,6 +168,12 @@ public class Inventory extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="计划编号" , notes = "计划编号")
 	private String planId;
+	
+	/**
+	 * 重复盘点：Y,N
+	*/
+	@ApiModelProperty(required = false,value="重复盘点" , notes = "Y,N" , example = "N")
+	private String inventoryRepeat;
 	
 	/**
 	 * 创建人ID：创建人ID
@@ -748,6 +754,25 @@ public class Inventory extends Entity {
 	*/
 	public Inventory setPlanId(String planId) {
 		this.planId=planId;
+		return this;
+	}
+	
+	/**
+	 * 获得 重复盘点<br>
+	 * Y,N
+	 * @return 重复盘点
+	*/
+	public String getInventoryRepeat() {
+		return inventoryRepeat;
+	}
+	
+	/**
+	 * 设置 重复盘点
+	 * @param inventoryRepeat 重复盘点
+	 * @return 当前对象
+	*/
+	public Inventory setInventoryRepeat(String inventoryRepeat) {
+		this.inventoryRepeat=inventoryRepeat;
 		return this;
 	}
 	
@@ -1565,6 +1590,7 @@ public class Inventory extends Entity {
 		inst.setOwnerCode(this.getOwnerCode());
 		inst.setType(this.getType());
 		inst.setAllEmployee(this.getAllEmployee());
+		inst.setInventoryRepeat(this.getInventoryRepeat());
 		inst.setBusinessDate(this.getBusinessDate());
 		inst.setBusinessCode(this.getBusinessCode());
 		inst.setUpdateBy(this.getUpdateBy());
@@ -1676,6 +1702,7 @@ public class Inventory extends Entity {
 			this.setOwnerCode(DataParser.parse(String.class, map.get(InventoryMeta.OWNER_CODE)));
 			this.setType(DataParser.parse(String.class, map.get(InventoryMeta.TYPE)));
 			this.setAllEmployee(DataParser.parse(String.class, map.get(InventoryMeta.ALL_EMPLOYEE)));
+			this.setInventoryRepeat(DataParser.parse(String.class, map.get(InventoryMeta.INVENTORY_REPEAT)));
 			this.setBusinessDate(DataParser.parse(Date.class, map.get(InventoryMeta.BUSINESS_DATE)));
 			this.setBusinessCode(DataParser.parse(String.class, map.get(InventoryMeta.BUSINESS_CODE)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(InventoryMeta.UPDATE_BY)));
@@ -1716,6 +1743,7 @@ public class Inventory extends Entity {
 				this.setOwnerCode( (String)map.get(InventoryMeta.OWNER_CODE));
 				this.setType( (String)map.get(InventoryMeta.TYPE));
 				this.setAllEmployee( (String)map.get(InventoryMeta.ALL_EMPLOYEE));
+				this.setInventoryRepeat( (String)map.get(InventoryMeta.INVENTORY_REPEAT));
 				this.setBusinessDate( (Date)map.get(InventoryMeta.BUSINESS_DATE));
 				this.setBusinessCode( (String)map.get(InventoryMeta.BUSINESS_CODE));
 				this.setUpdateBy( (String)map.get(InventoryMeta.UPDATE_BY));
@@ -1769,6 +1797,7 @@ public class Inventory extends Entity {
 			this.setOwnerCode(DataParser.parse(String.class, r.getValue(InventoryMeta.OWNER_CODE)));
 			this.setType(DataParser.parse(String.class, r.getValue(InventoryMeta.TYPE)));
 			this.setAllEmployee(DataParser.parse(String.class, r.getValue(InventoryMeta.ALL_EMPLOYEE)));
+			this.setInventoryRepeat(DataParser.parse(String.class, r.getValue(InventoryMeta.INVENTORY_REPEAT)));
 			this.setBusinessDate(DataParser.parse(Date.class, r.getValue(InventoryMeta.BUSINESS_DATE)));
 			this.setBusinessCode(DataParser.parse(String.class, r.getValue(InventoryMeta.BUSINESS_CODE)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(InventoryMeta.UPDATE_BY)));
@@ -1802,6 +1831,7 @@ public class Inventory extends Entity {
 				this.setOwnerCode( (String)r.getValue(InventoryMeta.OWNER_CODE));
 				this.setType( (String)r.getValue(InventoryMeta.TYPE));
 				this.setAllEmployee( (String)r.getValue(InventoryMeta.ALL_EMPLOYEE));
+				this.setInventoryRepeat( (String)r.getValue(InventoryMeta.INVENTORY_REPEAT));
 				this.setBusinessDate( (Date)r.getValue(InventoryMeta.BUSINESS_DATE));
 				this.setBusinessCode( (String)r.getValue(InventoryMeta.BUSINESS_CODE));
 				this.setUpdateBy( (String)r.getValue(InventoryMeta.UPDATE_BY));

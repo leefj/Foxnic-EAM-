@@ -553,7 +553,7 @@ public class AssetDepreciationOperController extends SuperController {
     @PostMapping(AssetDepreciationOperServiceProxy.QUERY_ASSET_PAGED_LIST)
     public Result<PagedList<AssetDepreciationDetail>> queryAssetPagedList(AssetDepreciationDetailVO sample) {
         Result<PagedList<AssetDepreciationDetail>> result = new Result<>();
-        sample.setResult(AssetDetailDepreciationResultEnum.SUCCESS.code());
+        //-- sample.setResult(AssetDetailDepreciationResultEnum.SUCCESS.code());
         PagedList<AssetDepreciationDetail> list = assetDepreciationDetailService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         assetDepreciationDetailService.dao().fill(list).with("useOrganization").with("useUser").with(AssetDepreciationDetailMeta.FINANCIAL_OPTION_DICT).with(AssetDepreciationDetailMeta.EXPENSE_ITEM_DICT).with(AssetDepreciationDetailMeta.ASSET_DEPRECIATION).with(AssetDepreciationDetailMeta.ASSET_DEPRECIATION_OPER).execute();

@@ -6,6 +6,7 @@ import com.dt.platform.constants.enums.eam.AssetInventoryActionStatusEnum;
 import com.dt.platform.constants.enums.eam.AssetInventoryDetailDataSourceEnum;
 import com.dt.platform.constants.enums.eam.AssetInventoryDetailStatusEnum;
 import com.dt.platform.domain.eam.Asset;
+import com.dt.platform.domain.eam.Inventory;
 import com.dt.platform.domain.eam.InventoryAsset;
 import com.dt.platform.domain.eam.Position;
 import com.dt.platform.eam.page.InventoryAssetPageController;
@@ -25,6 +26,7 @@ public class EamInventoryAssetGtr extends BaseCodeGenerator{
         //盘点明细
         cfg.getPoClassFile().addSimpleProperty(Asset.class,"asset","资产","资产");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"operater","操作人员","操作人员");
+        cfg.getPoClassFile().addSimpleProperty(Inventory.class,"inventory","inventory","inventory");
 
 
         cfg.view().field(EAMTables.EAM_INVENTORY_ASSET.ID).basic().hidden(true);

@@ -69,6 +69,20 @@ function ListPage() {
 				return value;
 			}
 
+			var templetPic=function(field,value,row) {
+				console.log(field,value)
+				if(value==null) return "";
+				var html="";
+				if(value.length>5){
+					var ids=value.split(',')
+					for(var i=0;i<ids.length;i++){
+						var id=ids[i];
+						var e="<img style=\"height:100%;\" filetype=\"image/png\" onClick=\"window.previewImage(this)\" src=\"/service-storage/sys-file/image?id="+id+"\"> ";
+						html=html+e;
+					}
+				}
+				return html;
+			}
 
 			var dataUrl=moduleURL +'/query-paged-list';
 			if(INVENTORY_MODE){
@@ -95,8 +109,8 @@ function ListPage() {
 					,{ field: 'operDate', align:"right", fixed:false, hide:false, sort: true, title: fox.translate('操作时间') ,templet: function (d) { return templet('operDate',fox.dateFormat(d.operDate,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('盘点备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'assetId', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('资产') , templet: function (d) { return templet('assetId',d.assetId,d);}  }
-
-				 	,{ field: 'assetCode', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('资产编号') , templet: function (d) { return templet('assetCode',d.asset.assetCode,d);}}
+					,{ field: 'pictureId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('盘点图片') , templet: function (d) { return templetPic('pictureId',d.pictureId,d);}  }
+					,{ field: 'assetCode', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('资产编号') , templet: function (d) { return templet('assetCode',d.asset.assetCode,d);}}
 					,{ field: 'categoryId', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('资产分类'), templet: function (d) { return templet('categoryId',fox.joinLabel(d.asset.category,"name"),d);}}
 					,{ field: 'assetStatus', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('资产状态'), templet:function (d){ return templet('assetStatus',fox.getEnumText(SELECT_ASSETSTATUS_DATA,d.asset.assetStatus),d);}}
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('名称') , templet: function (d) { return templet('name',d.asset.name,d);}  }
@@ -108,8 +122,6 @@ function ListPage() {
 					, { field: 'useUserId', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('使用人员') , templet: function (d) { return templet('useUserId',fox.getProperty(d.asset,["useUser","name"]),d);} }
 					,{ field: 'positionId', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('位置'), templet: function (d) { return templet('positionId',fox.joinLabel(d.asset.position,"hierarchyName"),d);}}
 					, { field: 'positionDetail', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('详细位置') , templet: function (d) { return templet('positionDetail',d.asset.positionDetail,d);}  }
-
-
 				//	,{ field: 'assetNotes', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('资产备注') , templet: function (d) { return templet('assetNotes',d.asset.assetNotes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true, title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}

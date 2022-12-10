@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 盘点明细VO类型
  * <p>盘点明细 , 数据表 eam_inventory_asset 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-10 09:16:12
+ * @since 2022-12-10 19:28:54
  * @sign A694483B206991F722270A248EFD64F9
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -402,6 +402,7 @@ public class InventoryAssetVO extends InventoryAsset {
 			inst.setSearchField(this.getSearchField());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setPageSize(this.getPageSize());
+			inst.setInventory(this.getInventory());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
 			inst.setDirtyFields(this.getDirtyFields());
@@ -495,6 +496,7 @@ public class InventoryAssetVO extends InventoryAsset {
 			this.setSearchField(DataParser.parse(String.class, map.get(InventoryAssetVOMeta.SEARCH_FIELD)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(InventoryAssetVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(InventoryAssetVOMeta.PAGE_SIZE)));
+			this.setInventory(DataParser.parse(Inventory.class, map.get(InventoryAssetVOMeta.INVENTORY)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(InventoryAssetVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(InventoryAssetVOMeta.SORT_TYPE)));
 			this.setSortField(DataParser.parse(String.class, map.get(InventoryAssetVOMeta.SORT_FIELD)));
@@ -530,6 +532,7 @@ public class InventoryAssetVO extends InventoryAsset {
 				this.setSearchField( (String)map.get(InventoryAssetVOMeta.SEARCH_FIELD));
 				this.setFuzzyField( (String)map.get(InventoryAssetVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(InventoryAssetVOMeta.PAGE_SIZE));
+				this.setInventory( (Inventory)map.get(InventoryAssetVOMeta.INVENTORY));
 				this.setPageIndex( (Integer)map.get(InventoryAssetVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(InventoryAssetVOMeta.SORT_TYPE));
 				this.setSortField( (String)map.get(InventoryAssetVOMeta.SORT_FIELD));

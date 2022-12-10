@@ -2,7 +2,7 @@
 /**
  * 资产入库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-09 16:43:02
+ * @since 2022-12-10 15:13:11
  */
  -->
  <!DOCTYPE html>
@@ -43,7 +43,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-4729-content">
+        <div class="layui-row form-row" id="random-9624-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -70,20 +70,20 @@
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs4 form-column" >
 
-                <!-- text_input : 供应商备注 ,  supplierInfo -->
-                <div class="layui-form-item" >
-                    <div class="layui-form-label "><div th:text="${lang.translate('供应商备注')}">供应商备注</div></div>
-                    <div class="layui-input-block ">
-                        <input lay-filter="supplierInfo" id="supplierInfo" name="supplierInfo" th:placeholder="${ lang.translate('请输入'+'供应商备注') }" type="text" class="layui-input"  />
-                    </div>
-                </div>
-            
                 <!-- button : 管理人员 ,  managerUserId  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('管理人员')}">管理人员</div></div>
                     <div class="layui-input-block ">
                         <input lay-filter="managerUserId" id="managerUserId" name="managerUserId"  type="hidden" class="layui-input"   />
                         <button id="managerUserId-button" type="button" action-type="emp-dialog" class="layui-btn   " style="width: 100%"> <i class='layui-icon layui-icon-search'></i> <span th:text="${lang.translate('请选择人员')}" th:default-label="${lang.translate('请选择人员')}">按钮文本</span></button>
+                    </div>
+                </div>
+            
+                <!-- select_box : 供应商 ,  supplierId  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('供应商')}">供应商</div></div>
+                    <div class="layui-input-block ">
+                        <div id="supplierId" input-type="select" th:data="${'/service-eam/eam-supplier/query-paged-list'}" extraParam="{}"></div>
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -115,7 +115,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-0099-content">
+        <div class="layui-row form-row" id="random-9392-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -133,12 +133,12 @@
             <!--结束：栏次输入框循环-->
         </div>
          <!--开始：group 循环-->
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-6322-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-2311-fieldset">
         <legend>资产列表</legend>
         </fieldset>
-        <div class="layui-row form-row" style="text-align: center;" id="random-6322-content">
+        <div class="layui-row form-row" style="text-align: center;" id="random-2311-content">
             <div style="display: inline-block;padding-right: 8px;padding-left: 8px" class="layui-col-xs12">
-            <iframe id="random-6322-iframe" js-fn="assetSelectList" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
+            <iframe id="random-2311-iframe" js-fn="assetSelectList" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
             </div>
         </div>
         <!--结束：group循环-->

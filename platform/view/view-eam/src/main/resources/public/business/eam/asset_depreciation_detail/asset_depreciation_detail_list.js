@@ -1,7 +1,7 @@
 /**
  * 折旧明细 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-08 19:34:21
+ * @since 2022-12-10 14:40:50
  */
 
 
@@ -82,8 +82,9 @@ function ListPage() {
 					,{ field: 'firstDepreciationMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('首次折旧方式',null,languageContext), templet:function (d){ return templet('firstDepreciationMethod',fox.getEnumText(SELECT_FIRSTDEPRECIATIONMETHOD_DATA,d.firstDepreciationMethod,'','firstDepreciationMethod'),d);}}
 					,{ field: 'depreciationMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧方式',null,languageContext), templet:function (d){ return templet('depreciationMethod',fox.getEnumText(SELECT_DEPRECIATIONMETHOD_DATA,d.depreciationMethod,'','depreciationMethod'),d);}}
 					,{ field: 'businessDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('业务日期',null,languageContext) ,templet: function (d) { return templet('businessDate',fox.dateFormat(d.businessDate,"yyyy-MM"),d); }  }
-					,{ field: 'result', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧结果',null,languageContext), templet:function (d){ return templet('result',fox.getEnumText(SELECT_RESULT_DATA,d.result,'','result'),d);}}
-					,{ field: 'resultDetail', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧结果明细',null,languageContext) , templet: function (d) { return templet('resultDetail',d.resultDetail,d);}  }
+					,{ field: 'result', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧规则',null,languageContext), templet:function (d){ return templet('result',fox.getEnumText(SELECT_RESULT_DATA,d.result,'','result'),d);}}
+					,{ field: 'resultStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('折旧结果',null,languageContext), templet:function (d){ return templet('resultStatus',fox.getEnumText(SELECT_RESULTSTATUS_DATA,d.resultStatus,'','resultStatus'),d);}}
+					,{ field: 'resultDetail', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('结果明细',null,languageContext) , templet: function (d) { return templet('resultDetail',d.resultDetail,d);}  }
 					,{ field: 'assetCategoryName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('资产类别',null,languageContext) , templet: function (d) { return templet('assetCategoryName',d.assetCategoryName,d);}  }
 					,{ field: 'assetFinanceCategoryName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('财务分类',null,languageContext) , templet: function (d) { return templet('assetFinanceCategoryName',d.assetFinanceCategoryName,d);}  }
 					,{ field: 'assetCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('资产编码',null,languageContext) , templet: function (d) { return templet('assetCode',d.assetCode,d);}  }
@@ -170,6 +171,7 @@ function ListPage() {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
 		value.result={ inputType:"select_box", value: getSelectedValue("#result","value"), label:getSelectedValue("#result","nameStr") };
+		value.resultStatus={ inputType:"select_box", value: getSelectedValue("#resultStatus","value"), label:getSelectedValue("#resultStatus","nameStr") };
 		value.resultDetail={ inputType:"button",value: $("#resultDetail").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.assetCategoryName={ inputType:"button",value: $("#assetCategoryName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.assetFinanceCategoryName={ inputType:"button",value: $("#assetFinanceCategoryName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
@@ -237,6 +239,28 @@ function ListPage() {
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("result",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					opts.push({data:data[i],name:data[i].text,value:data[i].code});
+				}
+				return opts;
+			}
+		});
+		//渲染 resultStatus 下拉字段
+		fox.renderSelectBox({
+			el: "resultStatus",
+			radio: true,
+			size: "small",
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("resultStatus",data.arr,data.change,data.isAdd);
 				},1);
 			},
 			//转换数据

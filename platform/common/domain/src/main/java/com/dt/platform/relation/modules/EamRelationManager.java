@@ -1458,6 +1458,9 @@ public class EamRelationManager extends RelationManager {
         this.property(InventoryAssetMeta.ASSET_PROP)
                 .using(EAMTables.EAM_INVENTORY_ASSET.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
 
+        this.property(InventoryAssetMeta.INVENTORY_PROP)
+                .using(EAMTables.EAM_INVENTORY_ASSET.INVENTORY_ID).join(EAMTables.EAM_INVENTORY.ID);
+
     }
 
     public void setupInventoryDirecotor(){

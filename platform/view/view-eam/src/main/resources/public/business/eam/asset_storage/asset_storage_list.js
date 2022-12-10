@@ -1,7 +1,7 @@
 /**
  * 资产入库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-09 16:43:02
+ * @since 2022-12-10 15:13:11
  */
 
 
@@ -81,6 +81,7 @@ function ListPage() {
 					,{ field: 'businessCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务编号') , templet: function (d) { return templet('businessCode',d.businessCode,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('办理状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务名称') , templet: function (d) { return templet('name',d.name,d);}  }
+					,{ field: 'supplierId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('供应商'), templet: function (d) { return templet('supplierId' ,fox.joinLabel(d.supplier,"supplierName",',','','supplierId'),d);}}
 					,{ field: 'managerUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('管理人员') , templet: function (d) { return templet('managerUserId',fox.getProperty(d,["managerUser","name"],0,'','managerUserId'),d);} }
 					,{ field: 'locationName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置信息') , templet: function (d) { return templet('locationName',d.locationName,d);}  }
 					,{ field: 'businessDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('业务日期') ,templet: function (d) { return templet('businessDate',fox.dateFormat(d.businessDate,"yyyy-MM-dd"),d); }  }
