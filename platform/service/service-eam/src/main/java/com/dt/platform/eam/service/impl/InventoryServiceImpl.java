@@ -308,13 +308,17 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 
 	@Override
 	public PagedList<InventoryAsset> queryMyAssetByEmployeeModePagedList(InventoryAsset sample,int pageSize,int pageIndex) {
+
+		String inventoryId=sample.getInventoryId();
 		if(StringUtil.isBlank(sample.getInventoryId())){
 			sample.setInventoryId("-1");
 		}
 		ConditionExpr expr=new ConditionExpr();
 		String curUserId=SessionUser.getCurrent().getUser().getActivatedEmployeeId();
 		//后续考虑是否添加 or operuser=自己
+
 		expr.and("asset_id in (select id from eam_asset where use_user_id='"+curUserId+"') or oper_empl_id='"+curUserId+"'" );
+
 		return inventoryAssetService.queryPagedList(sample,expr,pageSize,pageIndex);
 	}
 
