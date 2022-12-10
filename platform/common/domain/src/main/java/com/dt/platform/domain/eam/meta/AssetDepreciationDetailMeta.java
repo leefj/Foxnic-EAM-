@@ -18,8 +18,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-08 19:34:19
- * @sign 2291F221C4AC0B32C7A8E657EE744479
+ * @since 2022-12-10 14:40:48
+ * @sign 68AE6EB92174B775D3971C2CC734A3CB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -96,24 +96,34 @@ public class AssetDepreciationDetailMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationDetail,java.util.Date> BUSINESS_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationDetail.class ,BUSINESS_DATE, java.util.Date.class, "业务日期", "业务日期", java.util.Date.class, null);
 	
 	/**
-	 * 折旧结果 , 类型: java.lang.String
+	 * 折旧规则 , 类型: java.lang.String
 	*/
 	public static final String RESULT="result";
 	
 	/**
-	 * 折旧结果 , 类型: java.lang.String
+	 * 折旧规则 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationDetail,java.lang.String> RESULT_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationDetail.class ,RESULT, java.lang.String.class, "折旧结果", "折旧结果", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationDetail,java.lang.String> RESULT_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationDetail.class ,RESULT, java.lang.String.class, "折旧规则", "折旧规则", java.lang.String.class, null);
 	
 	/**
-	 * 折旧结果明细 , 类型: java.lang.String
+	 * 折旧结果 , 类型: java.lang.String
+	*/
+	public static final String RESULT_STATUS="resultStatus";
+	
+	/**
+	 * 折旧结果 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationDetail,java.lang.String> RESULT_STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationDetail.class ,RESULT_STATUS, java.lang.String.class, "折旧结果", "折旧结果", java.lang.String.class, null);
+	
+	/**
+	 * 结果明细 , 类型: java.lang.String
 	*/
 	public static final String RESULT_DETAIL="resultDetail";
 	
 	/**
-	 * 折旧结果明细 , 类型: java.lang.String
+	 * 结果明细 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationDetail,java.lang.String> RESULT_DETAIL_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationDetail.class ,RESULT_DETAIL, java.lang.String.class, "折旧结果明细", "折旧结果明细", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDepreciationDetail,java.lang.String> RESULT_DETAIL_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDepreciationDetail.class ,RESULT_DETAIL, java.lang.String.class, "结果明细", "结果明细", java.lang.String.class, null);
 	
 	/**
 	 * 资产 , 类型: java.lang.String
@@ -838,7 +848,7 @@ public class AssetDepreciationDetailMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , DEPRECIATION_ID , OPER_ID , ACTION_CODE , FIRST_DEPRECIATION_METHOD , DEPRECIATION_METHOD , BUSINESS_DATE , RESULT , RESULT_DETAIL , ASSET_ID , ASSET_CATEGORY_ID , ASSET_CATEGORY_NAME , ASSET_FINANCE_CATEGORY_ID , ASSET_FINANCE_CATEGORY_NAME , ASSET_CODE , ASSET_NAME , ASSET_MODEL , ASSET_STATUS_NAME , ASSET_PURCHASE_DATE , ASSET_REGISTER_DATE , ASSET_ORIGINAL_UNIT_PRICE , ASSET_PURCHASE_UNIT_PRICE , ASSET_NAV_PRICE , ASSET_TAX_AMOUNT_RATE , ASSET_SERVICE_LIFE , ASSET_FINANCE_SERVICE_LIFE , ASSET_RESIDUALS_RATE , ASSET_RESIDUALS_PRICE , S_ORIGINAL_PRICE , S_DEPRECIATION_AMOUNT , S_NAV_AMOUNT , S_RECOVERABLE_AMOUNT , C_USED_SERVICE_LIFE , C_ORIGINAL_PRICE_INCREASE , C_DEPRECIATION_AMOUNT , C_YEAR_DEPRECIATION_AMOUNT , E_ORIGINAL_PRICE , E_DEPRECIATION_AMOUNT , E_NAV_AMOUNT , E_RECOVERABLE_AMOUNT , ACCOUNTING_SERVICE_LIFE , FIRST_DEPRECIATION , USE_USER_ID , USE_USER_NAME , MANAGER_ID , MANAGER_NAME , USE_ORG_ID , USE_ORG_NAME , FINANCIAL_OPTION_KEY , EXPENSE_ITEM_KEY , FINANCIAL_OPTION_NAME , EXPENSE_ITEM_NAME , CUSTOMER_INFO , DETAIL_ID_SOURCE , DETAIL_ID_TARGET , LAST_OPER_ID , LAST_OPER_TIME , LABEL , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , RESULT_VALUE_STR , RESULT_VALUE_FLOAT , ASSET_SOURCE , ASSET_TARGET , ASSET , LAST_ASSET_DEPRECIATION_DETAIL , ASSET_DEPRECIATION , CAL_RULE_LIST , CAL_RULE_IDS , ASSET_DEPRECIATION_OPER , FINANCIAL_OPTION_DICT , EXPENSE_ITEM_DICT , USE_USER , USE_ORGANIZATION , MANAGER };
+	public static final String[] $PROPS={ ID , DEPRECIATION_ID , OPER_ID , ACTION_CODE , FIRST_DEPRECIATION_METHOD , DEPRECIATION_METHOD , BUSINESS_DATE , RESULT , RESULT_STATUS , RESULT_DETAIL , ASSET_ID , ASSET_CATEGORY_ID , ASSET_CATEGORY_NAME , ASSET_FINANCE_CATEGORY_ID , ASSET_FINANCE_CATEGORY_NAME , ASSET_CODE , ASSET_NAME , ASSET_MODEL , ASSET_STATUS_NAME , ASSET_PURCHASE_DATE , ASSET_REGISTER_DATE , ASSET_ORIGINAL_UNIT_PRICE , ASSET_PURCHASE_UNIT_PRICE , ASSET_NAV_PRICE , ASSET_TAX_AMOUNT_RATE , ASSET_SERVICE_LIFE , ASSET_FINANCE_SERVICE_LIFE , ASSET_RESIDUALS_RATE , ASSET_RESIDUALS_PRICE , S_ORIGINAL_PRICE , S_DEPRECIATION_AMOUNT , S_NAV_AMOUNT , S_RECOVERABLE_AMOUNT , C_USED_SERVICE_LIFE , C_ORIGINAL_PRICE_INCREASE , C_DEPRECIATION_AMOUNT , C_YEAR_DEPRECIATION_AMOUNT , E_ORIGINAL_PRICE , E_DEPRECIATION_AMOUNT , E_NAV_AMOUNT , E_RECOVERABLE_AMOUNT , ACCOUNTING_SERVICE_LIFE , FIRST_DEPRECIATION , USE_USER_ID , USE_USER_NAME , MANAGER_ID , MANAGER_NAME , USE_ORG_ID , USE_ORG_NAME , FINANCIAL_OPTION_KEY , EXPENSE_ITEM_KEY , FINANCIAL_OPTION_NAME , EXPENSE_ITEM_NAME , CUSTOMER_INFO , DETAIL_ID_SOURCE , DETAIL_ID_TARGET , LAST_OPER_ID , LAST_OPER_TIME , LABEL , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , RESULT_VALUE_STR , RESULT_VALUE_FLOAT , ASSET_SOURCE , ASSET_TARGET , ASSET , LAST_ASSET_DEPRECIATION_DETAIL , ASSET_DEPRECIATION , CAL_RULE_LIST , CAL_RULE_IDS , ASSET_DEPRECIATION_OPER , FINANCIAL_OPTION_DICT , EXPENSE_ITEM_DICT , USE_USER , USE_ORGANIZATION , MANAGER };
 	
 	/**
 	 * 代理类
@@ -926,8 +936,8 @@ public class AssetDepreciationDetailMeta {
 		}
 		
 		/**
-		 * 设置 折旧结果
-		 * @param result 折旧结果
+		 * 设置 折旧规则
+		 * @param result 折旧规则
 		 * @return 当前对象
 		*/
 		public AssetDepreciationDetail setResult(String result) {
@@ -937,8 +947,19 @@ public class AssetDepreciationDetailMeta {
 		}
 		
 		/**
-		 * 设置 折旧结果明细
-		 * @param resultDetail 折旧结果明细
+		 * 设置 折旧结果
+		 * @param resultStatus 折旧结果
+		 * @return 当前对象
+		*/
+		public AssetDepreciationDetail setResultStatus(String resultStatus) {
+			super.change(RESULT_STATUS,super.getResultStatus(),resultStatus);
+			super.setResultStatus(resultStatus);
+			return this;
+		}
+		
+		/**
+		 * 设置 结果明细
+		 * @param resultDetail 结果明细
 		 * @return 当前对象
 		*/
 		public AssetDepreciationDetail setResultDetail(String resultDetail) {
@@ -1812,6 +1833,7 @@ public class AssetDepreciationDetailMeta {
 			inst.setManagerId(this.getManagerId());
 			inst.setLabel(this.getLabel());
 			inst.setCDepreciationAmount(this.getCDepreciationAmount());
+			inst.setResultStatus(this.getResultStatus());
 			inst.setAssetFinanceCategoryId(this.getAssetFinanceCategoryId());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setAssetPurchaseDate(this.getAssetPurchaseDate());

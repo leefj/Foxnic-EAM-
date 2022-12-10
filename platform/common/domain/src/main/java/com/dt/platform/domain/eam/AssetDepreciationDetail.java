@@ -30,8 +30,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 折旧明细
  * <p>折旧明细 , 数据表 eam_asset_depreciation_detail 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-08 19:34:19
- * @sign 2291F221C4AC0B32C7A8E657EE744479
+ * @since 2022-12-10 14:40:48
+ * @sign 68AE6EB92174B775D3971C2CC734A3CB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -87,15 +87,21 @@ public class AssetDepreciationDetail extends Entity {
 	private Date businessDate;
 	
 	/**
-	 * 折旧结果：折旧结果
+	 * 折旧规则：折旧规则
 	*/
-	@ApiModelProperty(required = false,value="折旧结果" , notes = "折旧结果" , example = "wait_calculate")
+	@ApiModelProperty(required = false,value="折旧规则" , notes = "折旧规则" , example = "wait_calculate")
 	private String result;
 	
 	/**
-	 * 折旧结果明细：折旧结果明细
+	 * 折旧结果：折旧结果
 	*/
-	@ApiModelProperty(required = false,value="折旧结果明细" , notes = "折旧结果明细")
+	@ApiModelProperty(required = false,value="折旧结果" , notes = "折旧结果")
+	private String resultStatus;
+	
+	/**
+	 * 结果明细：结果明细
+	*/
+	@ApiModelProperty(required = false,value="结果明细" , notes = "结果明细")
 	private String resultDetail;
 	
 	/**
@@ -667,17 +673,17 @@ public class AssetDepreciationDetail extends Entity {
 	}
 	
 	/**
-	 * 获得 折旧结果<br>
-	 * 折旧结果
-	 * @return 折旧结果
+	 * 获得 折旧规则<br>
+	 * 折旧规则
+	 * @return 折旧规则
 	*/
 	public String getResult() {
 		return result;
 	}
 	
 	/**
-	 * 设置 折旧结果
-	 * @param result 折旧结果
+	 * 设置 折旧规则
+	 * @param result 折旧规则
 	 * @return 当前对象
 	*/
 	public AssetDepreciationDetail setResult(String result) {
@@ -686,17 +692,36 @@ public class AssetDepreciationDetail extends Entity {
 	}
 	
 	/**
-	 * 获得 折旧结果明细<br>
-	 * 折旧结果明细
-	 * @return 折旧结果明细
+	 * 获得 折旧结果<br>
+	 * 折旧结果
+	 * @return 折旧结果
+	*/
+	public String getResultStatus() {
+		return resultStatus;
+	}
+	
+	/**
+	 * 设置 折旧结果
+	 * @param resultStatus 折旧结果
+	 * @return 当前对象
+	*/
+	public AssetDepreciationDetail setResultStatus(String resultStatus) {
+		this.resultStatus=resultStatus;
+		return this;
+	}
+	
+	/**
+	 * 获得 结果明细<br>
+	 * 结果明细
+	 * @return 结果明细
 	*/
 	public String getResultDetail() {
 		return resultDetail;
 	}
 	
 	/**
-	 * 设置 折旧结果明细
-	 * @param resultDetail 折旧结果明细
+	 * 设置 结果明细
+	 * @param resultDetail 结果明细
 	 * @return 当前对象
 	*/
 	public AssetDepreciationDetail setResultDetail(String resultDetail) {
@@ -2227,6 +2252,7 @@ public class AssetDepreciationDetail extends Entity {
 		inst.setManagerId(this.getManagerId());
 		inst.setLabel(this.getLabel());
 		inst.setCDepreciationAmount(this.getCDepreciationAmount());
+		inst.setResultStatus(this.getResultStatus());
 		inst.setAssetFinanceCategoryId(this.getAssetFinanceCategoryId());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setAssetPurchaseDate(this.getAssetPurchaseDate());
@@ -2368,6 +2394,7 @@ public class AssetDepreciationDetail extends Entity {
 			this.setManagerId(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.MANAGER_ID)));
 			this.setLabel(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.LABEL)));
 			this.setCDepreciationAmount(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationDetailMeta.C_DEPRECIATION_AMOUNT)));
+			this.setResultStatus(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.RESULT_STATUS)));
 			this.setAssetFinanceCategoryId(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.ASSET_FINANCE_CATEGORY_ID)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(AssetDepreciationDetailMeta.CREATE_BY)));
 			this.setAssetPurchaseDate(DataParser.parse(Date.class, map.get(AssetDepreciationDetailMeta.ASSET_PURCHASE_DATE)));
@@ -2451,6 +2478,7 @@ public class AssetDepreciationDetail extends Entity {
 				this.setManagerId( (String)map.get(AssetDepreciationDetailMeta.MANAGER_ID));
 				this.setLabel( (String)map.get(AssetDepreciationDetailMeta.LABEL));
 				this.setCDepreciationAmount( (BigDecimal)map.get(AssetDepreciationDetailMeta.C_DEPRECIATION_AMOUNT));
+				this.setResultStatus( (String)map.get(AssetDepreciationDetailMeta.RESULT_STATUS));
 				this.setAssetFinanceCategoryId( (String)map.get(AssetDepreciationDetailMeta.ASSET_FINANCE_CATEGORY_ID));
 				this.setCreateBy( (String)map.get(AssetDepreciationDetailMeta.CREATE_BY));
 				this.setAssetPurchaseDate( (Date)map.get(AssetDepreciationDetailMeta.ASSET_PURCHASE_DATE));
@@ -2547,6 +2575,7 @@ public class AssetDepreciationDetail extends Entity {
 			this.setManagerId(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.MANAGER_ID)));
 			this.setLabel(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.LABEL)));
 			this.setCDepreciationAmount(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationDetailMeta.C_DEPRECIATION_AMOUNT)));
+			this.setResultStatus(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.RESULT_STATUS)));
 			this.setAssetFinanceCategoryId(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.ASSET_FINANCE_CATEGORY_ID)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailMeta.CREATE_BY)));
 			this.setAssetPurchaseDate(DataParser.parse(Date.class, r.getValue(AssetDepreciationDetailMeta.ASSET_PURCHASE_DATE)));
@@ -2618,6 +2647,7 @@ public class AssetDepreciationDetail extends Entity {
 				this.setManagerId( (String)r.getValue(AssetDepreciationDetailMeta.MANAGER_ID));
 				this.setLabel( (String)r.getValue(AssetDepreciationDetailMeta.LABEL));
 				this.setCDepreciationAmount( (BigDecimal)r.getValue(AssetDepreciationDetailMeta.C_DEPRECIATION_AMOUNT));
+				this.setResultStatus( (String)r.getValue(AssetDepreciationDetailMeta.RESULT_STATUS));
 				this.setAssetFinanceCategoryId( (String)r.getValue(AssetDepreciationDetailMeta.ASSET_FINANCE_CATEGORY_ID));
 				this.setCreateBy( (String)r.getValue(AssetDepreciationDetailMeta.CREATE_BY));
 				this.setAssetPurchaseDate( (Date)r.getValue(AssetDepreciationDetailMeta.ASSET_PURCHASE_DATE));

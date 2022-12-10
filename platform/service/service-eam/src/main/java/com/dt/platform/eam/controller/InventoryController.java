@@ -4,7 +4,6 @@ import java.io.File;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
-
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.TemplateExportParams;
 import com.alibaba.fastjson.JSONObject;
@@ -48,7 +47,6 @@ import com.github.foxnic.commons.io.StreamUtil;
 import java.util.Map;
 import com.github.foxnic.dao.excel.ValidateResult;
 import java.io.InputStream;
-
 import com.dt.platform.domain.eam.meta.InventoryMeta;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.pcm.Catalog;
@@ -91,7 +89,7 @@ public class InventoryController extends SuperController {
      * 添加资产盘点
      */
     @ApiOperation(value = "添加资产盘点")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InventoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "514089040971042816"),
 		@ApiImplicitParam(name = InventoryVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InventoryVOMeta.BUSINESS_CODE, value = "业务编码", required = false, dataTypeClass = String.class),
@@ -112,7 +110,8 @@ public class InventoryController extends SuperController {
 		@ApiImplicitParam(name = InventoryVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InventoryVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = InventoryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InventoryVOMeta.PLAN_ID, value = "计划编号", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InventoryVOMeta.PLAN_ID, value = "计划编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryVOMeta.INVENTORY_REPEAT, value = "重复盘点", required = false, dataTypeClass = String.class, example = "N")
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = InventoryServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -127,7 +126,7 @@ public class InventoryController extends SuperController {
      * 删除资产盘点
      */
     @ApiOperation(value = "删除资产盘点")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InventoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "514089040971042816")
 	})
     @ApiOperationSupport(order = 2)
@@ -143,7 +142,7 @@ public class InventoryController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除资产盘点")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InventoryVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -158,7 +157,7 @@ public class InventoryController extends SuperController {
      * 更新资产盘点
      */
     @ApiOperation(value = "更新资产盘点")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InventoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "514089040971042816"),
 		@ApiImplicitParam(name = InventoryVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InventoryVOMeta.BUSINESS_CODE, value = "业务编码", required = false, dataTypeClass = String.class),
@@ -179,7 +178,8 @@ public class InventoryController extends SuperController {
 		@ApiImplicitParam(name = InventoryVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InventoryVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = InventoryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InventoryVOMeta.PLAN_ID, value = "计划编号", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InventoryVOMeta.PLAN_ID, value = "计划编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryVOMeta.INVENTORY_REPEAT, value = "重复盘点", required = false, dataTypeClass = String.class, example = "N")
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { InventoryVOMeta.PAGE_INDEX, InventoryVOMeta.PAGE_SIZE, InventoryVOMeta.SEARCH_FIELD, InventoryVOMeta.FUZZY_FIELD, InventoryVOMeta.SEARCH_VALUE, InventoryVOMeta.DIRTY_FIELDS, InventoryVOMeta.SORT_FIELD, InventoryVOMeta.SORT_TYPE, InventoryVOMeta.IDS })
     @SentinelResource(value = InventoryServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -194,7 +194,7 @@ public class InventoryController extends SuperController {
      * 保存资产盘点
      */
     @ApiOperation(value = "保存资产盘点")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InventoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "514089040971042816"),
 		@ApiImplicitParam(name = InventoryVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InventoryVOMeta.BUSINESS_CODE, value = "业务编码", required = false, dataTypeClass = String.class),
@@ -215,7 +215,8 @@ public class InventoryController extends SuperController {
 		@ApiImplicitParam(name = InventoryVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InventoryVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = InventoryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InventoryVOMeta.PLAN_ID, value = "计划编号", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InventoryVOMeta.PLAN_ID, value = "计划编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryVOMeta.INVENTORY_REPEAT, value = "重复盘点", required = false, dataTypeClass = String.class, example = "N")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InventoryVOMeta.PAGE_INDEX, InventoryVOMeta.PAGE_SIZE, InventoryVOMeta.SEARCH_FIELD, InventoryVOMeta.FUZZY_FIELD, InventoryVOMeta.SEARCH_VALUE, InventoryVOMeta.DIRTY_FIELDS, InventoryVOMeta.SORT_FIELD, InventoryVOMeta.SORT_TYPE, InventoryVOMeta.IDS })
     @SentinelResource(value = InventoryServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -223,8 +224,6 @@ public class InventoryController extends SuperController {
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     public Result save(InventoryVO inventoryVO) {
         Result result = inventoryService.save(inventoryVO, SaveMode.DIRTY_OR_NOT_NULL_FIELDS, false);
-
-
         return result;
     }
 
@@ -232,7 +231,7 @@ public class InventoryController extends SuperController {
      * 获取资产盘点
      */
     @ApiOperation(value = "获取资产盘点")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InventoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 6)
@@ -256,7 +255,7 @@ public class InventoryController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取资产盘点")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InventoryVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -273,7 +272,7 @@ public class InventoryController extends SuperController {
      * 查询资产盘点
      */
     @ApiOperation(value = "查询资产盘点")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InventoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "514089040971042816"),
 		@ApiImplicitParam(name = InventoryVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InventoryVOMeta.BUSINESS_CODE, value = "业务编码", required = false, dataTypeClass = String.class),
@@ -294,7 +293,8 @@ public class InventoryController extends SuperController {
 		@ApiImplicitParam(name = InventoryVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InventoryVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = InventoryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InventoryVOMeta.PLAN_ID, value = "计划编号", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InventoryVOMeta.PLAN_ID, value = "计划编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryVOMeta.INVENTORY_REPEAT, value = "重复盘点", required = false, dataTypeClass = String.class, example = "N")
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InventoryVOMeta.PAGE_INDEX, InventoryVOMeta.PAGE_SIZE })
     @SentinelResource(value = InventoryServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -310,7 +310,7 @@ public class InventoryController extends SuperController {
      * 分页查询资产盘点
      */
     @ApiOperation(value = "分页查询资产盘点")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InventoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "514089040971042816"),
 		@ApiImplicitParam(name = InventoryVOMeta.TYPE, value = "类型", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InventoryVOMeta.BUSINESS_CODE, value = "业务编码", required = false, dataTypeClass = String.class),
@@ -331,7 +331,8 @@ public class InventoryController extends SuperController {
 		@ApiImplicitParam(name = InventoryVOMeta.ORIGINATOR_ID, value = "制单人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InventoryVOMeta.BUSINESS_DATE, value = "业务日期", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = InventoryVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InventoryVOMeta.PLAN_ID, value = "计划编号", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = InventoryVOMeta.PLAN_ID, value = "计划编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryVOMeta.INVENTORY_REPEAT, value = "重复盘点", required = false, dataTypeClass = String.class, example = "N")
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = InventoryServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -360,7 +361,7 @@ public class InventoryController extends SuperController {
      * 	盘点开始
      */
     @ApiOperation(value = "盘点开始")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InventoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 9)
@@ -375,7 +376,7 @@ public class InventoryController extends SuperController {
      * 	盘点取消
      */
     @ApiOperation(value = "盘点取消")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InventoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 10)
@@ -386,14 +387,13 @@ public class InventoryController extends SuperController {
         return result;
     }
 
-
     /**
      * 获取资产盘点
      */
     @ApiOperation(value = "获取资产盘点")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = InventoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
-    })
+		@ApiImplicitParam(name = InventoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6)
     @SentinelResource(value = InventoryServiceProxy.GET_BY_ID_FOR_EMPLOYEE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryServiceProxy.GET_BY_ID_FOR_EMPLOYEE)
@@ -401,39 +401,31 @@ public class InventoryController extends SuperController {
         Result<Inventory> result = new Result<>();
         Inventory inventory = inventoryService.getById(id);
         // join 关联的对象
-        inventoryService.dao().fill(inventory).
-                with(InventoryMeta.MANAGER).with(InventoryMeta.ORIGINATOR).
-                with(InventoryMeta.DIRECTOR).with(InventoryMeta.INVENTORY_USER).
-                with(InventoryMeta.CATEGORY).with(InventoryMeta.WAREHOUSE).
-                with(InventoryMeta.POSITION).execute();
+        inventoryService.dao().fill(inventory).with(InventoryMeta.MANAGER).with(InventoryMeta.ORIGINATOR).with(InventoryMeta.DIRECTOR).with(InventoryMeta.INVENTORY_USER).with(InventoryMeta.CATEGORY).with(InventoryMeta.WAREHOUSE).with(InventoryMeta.POSITION).execute();
         inventoryService.dao().join(inventory.getDirector(), Person.class);
         inventoryService.dao().join(inventory.getManager(), Person.class);
         inventoryService.dao().join(inventory.getOriginator(), Person.class);
         inventoryService.dao().join(inventory.getInventoryUser(), Person.class);
-        String userId= SessionUser.getCurrent().getActivatedEmployeeId();
-        String sql="select a.status,count(1) cnt from eam_inventory_asset a,eam_asset b \n" +
-                "where a.asset_id=b.id and a.deleted='0' and b.deleted='0'\n" +
-                "and inventory_id=?\n" +
-                "and (b.use_user_id=? or oper_empl_id=?) group by a.status";
-        RcdSet rs=inventoryService.dao().query(sql,id,userId,userId);
-        int surplus=0;
-        int loss=0;
-        int counted=0;
-        int not_counted=0;
-        int exception=0;
-        for(Rcd rcd:rs){
-            if(AssetInventoryDetailStatusEnum.SURPLUS.code().equals( rcd.getString("status"))){
-                surplus=rcd.getInteger("cnt");
-            }else if(AssetInventoryDetailStatusEnum.EXCEPTION.code().equals( rcd.getString("status"))){
-                exception=rcd.getInteger("cnt");
-            }else if(AssetInventoryDetailStatusEnum.NOT_COUNTED.code().equals( rcd.getString("status"))){
-                not_counted=rcd.getInteger("cnt");
-            }else if(AssetInventoryDetailStatusEnum.LOSS.code().equals( rcd.getString("status"))){
-                loss=rcd.getInteger("cnt");
-            }else if(AssetInventoryDetailStatusEnum.COUNTED.code().equals( rcd.getString("status"))){
-                counted=rcd.getInteger("cnt");
+        String userId = SessionUser.getCurrent().getActivatedEmployeeId();
+        String sql = "select a.status,count(1) cnt from eam_inventory_asset a,eam_asset b \n" + "where a.asset_id=b.id and a.deleted='0' and b.deleted='0'\n" + "and inventory_id=?\n" + "and (b.use_user_id=? or oper_empl_id=?) group by a.status";
+        RcdSet rs = inventoryService.dao().query(sql, id, userId, userId);
+        int surplus = 0;
+        int loss = 0;
+        int counted = 0;
+        int not_counted = 0;
+        int exception = 0;
+        for (Rcd rcd : rs) {
+            if (AssetInventoryDetailStatusEnum.SURPLUS.code().equals(rcd.getString("status"))) {
+                surplus = rcd.getInteger("cnt");
+            } else if (AssetInventoryDetailStatusEnum.EXCEPTION.code().equals(rcd.getString("status"))) {
+                exception = rcd.getInteger("cnt");
+            } else if (AssetInventoryDetailStatusEnum.NOT_COUNTED.code().equals(rcd.getString("status"))) {
+                not_counted = rcd.getInteger("cnt");
+            } else if (AssetInventoryDetailStatusEnum.LOSS.code().equals(rcd.getString("status"))) {
+                loss = rcd.getInteger("cnt");
+            } else if (AssetInventoryDetailStatusEnum.COUNTED.code().equals(rcd.getString("status"))) {
+                counted = rcd.getInteger("cnt");
             }
-
         }
         inventory.setInventoryAssetCountByException(exception);
         inventory.setInventoryAssetCountBySurplus(surplus);
@@ -443,11 +435,12 @@ public class InventoryController extends SuperController {
         result.success(true).data(inventory);
         return result;
     }
+
     /**
      * 	盘点结束
      */
     @ApiOperation(value = "盘点结束")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InventoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 11)
@@ -462,7 +455,7 @@ public class InventoryController extends SuperController {
      * 	数据同步
      */
     @ApiOperation(value = "数据同步")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InventoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 12)
@@ -477,7 +470,7 @@ public class InventoryController extends SuperController {
      * 	盘点
      */
     @ApiOperation(value = "盘点")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InventoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
 		@ApiImplicitParam(name = "assetId", value = "资产", required = true, dataTypeClass = String.class, example = "1"),
 		@ApiImplicitParam(name = "action", value = "动作", required = true, dataTypeClass = String.class, example = "loss")
@@ -490,35 +483,30 @@ public class InventoryController extends SuperController {
         return result;
     }
 
-
-
     /**
      * 	盘盈新增
      */
     @ApiOperation(value = "盘盈新增")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = InventoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
-            @ApiImplicitParam(name = "assetId", value = "资产", required = true, dataTypeClass = String.class, example = "1"),
-     })
+		@ApiImplicitParam(name = InventoryVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+		@ApiImplicitParam(name = "assetId", value = "资产", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 13)
     @SentinelResource(value = InventoryServiceProxy.ASSET_PLUS_DATA, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryServiceProxy.ASSET_PLUS_DATA)
     public Result inventoryAsset(String inventoryId, String assetId) {
-        return inventoryService.assetPlusData(inventoryId,assetId);
+        return inventoryService.assetPlusData(inventoryId, assetId);
     }
-
 
     /**
      * 	盘点全员数据
      */
     @ApiOperation(value = "盘点全员数据")
-
     @ApiOperationSupport(order = 14)
     @SentinelResource(value = InventoryServiceProxy.QUERY_ASSET_BY_EMPLOYEE_MODE_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryServiceProxy.QUERY_ASSET_BY_EMPLOYEE_MODE_PAGED_LIST)
     public Result<PagedList<Asset>> queryAssetByEmployeeModePagedList(String inventoryId) {
-        PagedList<Asset> list= inventoryService.queryAssetByEmployeeModePagedList(inventoryId);
-
+        PagedList<Asset> list = inventoryService.queryAssetByEmployeeModePagedList(inventoryId);
         Result<PagedList<Asset>> result = new Result<>();
         result.success(true).data(list);
         return result;
@@ -532,20 +520,17 @@ public class InventoryController extends SuperController {
     @SentinelResource(value = InventoryServiceProxy.QUERY_MY_ASSET_BY_EMPLOYEE_MODE_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryServiceProxy.QUERY_MY_ASSET_BY_EMPLOYEE_MODE_PAGED_LIST)
     public Result<PagedList<InventoryAsset>> queryMyAssetByEmployeeModePagedList(InventoryAssetVO sample) {
-        PagedList<InventoryAsset> list= inventoryService.queryMyAssetByEmployeeModePagedList(sample, sample.getPageSize(), sample.getPageIndex());
+        PagedList<InventoryAsset> list = inventoryService.queryMyAssetByEmployeeModePagedList(sample, sample.getPageSize(), sample.getPageIndex());
         Result<PagedList<InventoryAsset>> result = new Result<>();
         // join 关联的对象
-        inventoryAssetService.dao().fill(list).with(InventoryAssetMeta.OPERATER)
-                .with(InventoryAssetMeta.ASSET).execute();
+        inventoryAssetService.dao().fill(list).with(InventoryAssetMeta.OPERATER).with(InventoryAssetMeta.ASSET).execute();
         List<Employee> operList = CollectorUtil.collectList(list.getList(), InventoryAsset::getOperater);
         inventoryAssetService.dao().join(operList, Person.class);
         List<Asset> assetList = CollectorUtil.collectList(list.getList(), InventoryAsset::getAsset);
         assetService.joinData(assetList);
         result.success(true).data(list);
-
         return result;
     }
-
 
     /**
      * 	全员盘点
@@ -554,8 +539,8 @@ public class InventoryController extends SuperController {
     @ApiOperationSupport(order = 15)
     @SentinelResource(value = InventoryServiceProxy.QUERY_BY_EMPLOYEE_MODE_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InventoryServiceProxy.QUERY_BY_EMPLOYEE_MODE_PAGED_LIST)
-    public  Result<PagedList<Inventory>>  queryByEmployeeModePagedList(InventoryVO sample) {
-        PagedList<Inventory> list= inventoryService.queryByEmployeeModePagedList(sample, sample.getPageSize(), sample.getPageIndex());
+    public Result<PagedList<Inventory>> queryByEmployeeModePagedList(InventoryVO sample) {
+        PagedList<Inventory> list = inventoryService.queryByEmployeeModePagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         inventoryService.dao().fill(list).with(InventoryMeta.INVENTORY_ASSET_INFO_LIST).with(InventoryMeta.MANAGER).with(InventoryMeta.ORIGINATOR).with(InventoryMeta.INVENTORY_USER).with(InventoryMeta.DIRECTOR).with(InventoryMeta.CATEGORY).with(InventoryMeta.WAREHOUSE).with(InventoryMeta.POSITION).execute();
         List<List<Employee>> managerList = CollectorUtil.collectList(list.getList(), Inventory::getManager);
@@ -574,16 +559,14 @@ public class InventoryController extends SuperController {
         return result;
     }
 
-
     /**
      * 导出 Excel
      */
     @SentinelResource(value = InventoryServiceProxy.QUERY_ASSET_BY_INVENTORY, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @RequestMapping(InventoryServiceProxy.QUERY_ASSET_BY_INVENTORY)
-    public Result<JSONObject> queryAssetByInventory(String inventoryId, String assetId, String assetCode, String type)  {
-        return inventoryService.queryAssetByInventory(inventoryId,assetId,assetCode,type);
+    public Result<JSONObject> queryAssetByInventory(String inventoryId, String assetId, String assetCode, String type) {
+        return inventoryService.queryAssetByInventory(inventoryId, assetId, assetCode, type);
     }
-
 
     /**
      * 导出 Excel
@@ -622,16 +605,16 @@ public class InventoryController extends SuperController {
      */
     @SentinelResource(value = InventoryServiceProxy.DOWNLOAD_ASSET, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @RequestMapping(InventoryServiceProxy.DOWNLOAD_ASSET)
-    public void downloadAsset(HttpServletResponse response,String inventoryId) throws Exception {
+    public void downloadAsset(HttpServletResponse response, String inventoryId) throws Exception {
         try {
             // 生成 Excel 数据
-            InputStream inputstream= TplFileServiceProxy.api().getTplFileStreamByCode(AssetOperateEnum.EAM_DOWNLOAD_ASSET_INVENTORY_ASSET.code());
+            InputStream inputstream = TplFileServiceProxy.api().getTplFileStreamByCode(AssetOperateEnum.EAM_DOWNLOAD_ASSET_INVENTORY_ASSET.code());
             if (inputstream == null) {
                 Logger.info("为找到下载模版文件");
                 return;
             }
             File f = assetDataService.saveTempFile(inputstream, "tmp_download_inventory_asset_data.xls");
-            Map<String, Object> map=inventoryService.queryInventoryAssetMap(inventoryId);
+            Map<String, Object> map = inventoryService.queryInventoryAssetMap(inventoryId);
             TemplateExportParams templateExportParams = new TemplateExportParams(f.getPath());
             templateExportParams.setScanAllsheet(true);
             Workbook workbook = ExcelExportUtil.exportExcel(templateExportParams, map);

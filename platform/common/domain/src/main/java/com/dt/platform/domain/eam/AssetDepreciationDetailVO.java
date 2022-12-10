@@ -26,7 +26,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 折旧明细VO类型
  * <p>折旧明细 , 数据表 eam_asset_depreciation_detail 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-08 19:34:19
+ * @since 2022-12-10 14:40:48
  * @sign C386213B2181FC0EFABC94BB0C40B318
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -438,6 +438,7 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 		inst.setManagerId(this.getManagerId());
 		inst.setLabel(this.getLabel());
 		inst.setCDepreciationAmount(this.getCDepreciationAmount());
+		inst.setResultStatus(this.getResultStatus());
 		inst.setAssetFinanceCategoryId(this.getAssetFinanceCategoryId());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setAssetPurchaseDate(this.getAssetPurchaseDate());
@@ -590,6 +591,7 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 			this.setManagerId(DataParser.parse(String.class, map.get(AssetDepreciationDetailVOMeta.MANAGER_ID)));
 			this.setLabel(DataParser.parse(String.class, map.get(AssetDepreciationDetailVOMeta.LABEL)));
 			this.setCDepreciationAmount(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationDetailVOMeta.C_DEPRECIATION_AMOUNT)));
+			this.setResultStatus(DataParser.parse(String.class, map.get(AssetDepreciationDetailVOMeta.RESULT_STATUS)));
 			this.setAssetFinanceCategoryId(DataParser.parse(String.class, map.get(AssetDepreciationDetailVOMeta.ASSET_FINANCE_CATEGORY_ID)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(AssetDepreciationDetailVOMeta.CREATE_BY)));
 			this.setAssetPurchaseDate(DataParser.parse(Date.class, map.get(AssetDepreciationDetailVOMeta.ASSET_PURCHASE_DATE)));
@@ -682,6 +684,7 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 				this.setManagerId( (String)map.get(AssetDepreciationDetailVOMeta.MANAGER_ID));
 				this.setLabel( (String)map.get(AssetDepreciationDetailVOMeta.LABEL));
 				this.setCDepreciationAmount( (BigDecimal)map.get(AssetDepreciationDetailVOMeta.C_DEPRECIATION_AMOUNT));
+				this.setResultStatus( (String)map.get(AssetDepreciationDetailVOMeta.RESULT_STATUS));
 				this.setAssetFinanceCategoryId( (String)map.get(AssetDepreciationDetailVOMeta.ASSET_FINANCE_CATEGORY_ID));
 				this.setCreateBy( (String)map.get(AssetDepreciationDetailVOMeta.CREATE_BY));
 				this.setAssetPurchaseDate( (Date)map.get(AssetDepreciationDetailVOMeta.ASSET_PURCHASE_DATE));
@@ -787,6 +790,7 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 			this.setManagerId(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailVOMeta.MANAGER_ID)));
 			this.setLabel(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailVOMeta.LABEL)));
 			this.setCDepreciationAmount(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationDetailVOMeta.C_DEPRECIATION_AMOUNT)));
+			this.setResultStatus(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailVOMeta.RESULT_STATUS)));
 			this.setAssetFinanceCategoryId(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailVOMeta.ASSET_FINANCE_CATEGORY_ID)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailVOMeta.CREATE_BY)));
 			this.setAssetPurchaseDate(DataParser.parse(Date.class, r.getValue(AssetDepreciationDetailVOMeta.ASSET_PURCHASE_DATE)));
@@ -858,6 +862,7 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 				this.setManagerId( (String)r.getValue(AssetDepreciationDetailVOMeta.MANAGER_ID));
 				this.setLabel( (String)r.getValue(AssetDepreciationDetailVOMeta.LABEL));
 				this.setCDepreciationAmount( (BigDecimal)r.getValue(AssetDepreciationDetailVOMeta.C_DEPRECIATION_AMOUNT));
+				this.setResultStatus( (String)r.getValue(AssetDepreciationDetailVOMeta.RESULT_STATUS));
 				this.setAssetFinanceCategoryId( (String)r.getValue(AssetDepreciationDetailVOMeta.ASSET_FINANCE_CATEGORY_ID));
 				this.setCreateBy( (String)r.getValue(AssetDepreciationDetailVOMeta.CREATE_BY));
 				this.setAssetPurchaseDate( (Date)r.getValue(AssetDepreciationDetailVOMeta.ASSET_PURCHASE_DATE));

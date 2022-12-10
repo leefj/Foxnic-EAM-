@@ -60,26 +60,18 @@ public class EamInventoryGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addListProperty(Catalog.class,"category","资产分类","资产分类");
         cfg.getPoClassFile().addListProperty(String.class,"categoryIds","资产分类Ids","资产分类Ids");
 
-
-
-
         cfg.view().field(EAMTables.EAM_INVENTORY.ID).basic().hidden(true);
-
         cfg.view().field(EAMTables.EAM_INVENTORY.PLAN_ID).basic().hidden(true);
-
         cfg.view().field(EAMTables.EAM_INVENTORY.TYPE).basic().hidden(true);
-
-
         cfg.view().field(EAMTables.EAM_INVENTORY.BUSINESS_DATE).search().range();
         cfg.view().field(EAMTables.EAM_INVENTORY.START_TIME).search().range();
         cfg.view().field(EAMTables.EAM_INVENTORY.NAME).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_INVENTORY.NOTES).search().fuzzySearch();
 
-
         cfg.view().field(EAMTables.EAM_INVENTORY.STATUS).table().disable(true);
         cfg.view().field(EAMTables.EAM_INVENTORY.OWN_COMPANY_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_INVENTORY.USE_ORGANIZATION_ID).table().disable(true);
-
+        cfg.view().field(EAMTables.EAM_INVENTORY.INVENTORY_REPEAT).table().disable(true);
 
         cfg.view().field(InventoryMeta.INVENTORY_MANAGER_IDS).table().disable(true);
         cfg.view().field(InventoryMeta.INVENTORY_USER_IDS).table().disable(true);

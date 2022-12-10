@@ -141,6 +141,8 @@ public class AssetDepreciationUtilService {
         List<AssetDepreciationCalRule> ruleList=assetDepreciationDetail.getCalRuleList();
         List<AssetDepreciationCalRule> ruleList2=ruleList.stream().sorted(Comparator.comparing(AssetDepreciationCalRule::getRuleNumber)).collect(Collectors.toList());
         for(AssetDepreciationCalRule rule:ruleList2){
+            //先设置成功
+            assetDepreciationDetail.setResultStatus(AssetDetailDepreciationResultStatusEnum.SUCCESS.code());
             // 规则是否启用
             String partMsg="动作:"+rule.getActionCode()+",规则编号:"+rule.getRuleNumber()+",单据:"+assetDepreciationDetail.getOperId()+",资产编号:"+assetDepreciationDetail.getAssetCode();
             if(!actionCode.equals(rule.getActionCode())){
@@ -154,12 +156,11 @@ public class AssetDepreciationUtilService {
             Result calRuleResult=calRuleContent(assetDepreciationDetail,rule);
             assetDepreciationDetail.setResultDetail(calRuleResult.getMessage());
             //输出
-
             if(calRuleResult.isSuccess()){
-                assetDepreciationDetail.setResult(AssetDetailDepreciationResultEnum.SUCCESS.code());
+                assetDepreciationDetail.setResultStatus(AssetDetailDepreciationResultStatusEnum.SUCCESS.code());
                 System.out.println(partMsg+",规则执行成功");
             }else{
-                assetDepreciationDetail.setResult(AssetDetailDepreciationResultEnum.FAILED.code());
+                assetDepreciationDetail.setResultStatus(AssetDetailDepreciationResultStatusEnum.FAILED.code());
                 System.out.println(partMsg+",规则执行失败");
                 break;
             }

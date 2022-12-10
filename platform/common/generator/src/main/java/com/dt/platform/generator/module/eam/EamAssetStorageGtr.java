@@ -107,11 +107,11 @@ public class EamAssetStorageGtr extends BaseCodeGenerator {
 
 
 
-        cfg.view().field(EAMTables.EAM_ASSET_STORAGE.SUPPLIER_ID).table().disable();
+       // cfg.view().field(EAMTables.EAM_ASSET_STORAGE.SUPPLIER_ID).table().disable();
         cfg.view().field(EAMTables.EAM_ASSET_STORAGE.SUPPLIER_INFO).table().disable();
         cfg.view().field(EAMTables.EAM_ASSET_STORAGE.SELECTED_CODE).table().disable();
 
-        cfg.view().field(EAMTables.EAM_ASSET_STORAGE.SUPPLIER_ID).table().disable();
+      //  cfg.view().field(EAMTables.EAM_ASSET_STORAGE.SUPPLIER_ID).table().disable();
         cfg.view().field(EAMTables.EAM_ASSET_STORAGE.OWN_COMPANY_ID).table().disable();
 
       //  cfg.view().list().operationColumn().addActionButton("送审","forApproval","for-approval-button","eam_asset_storage:for-approval");
@@ -135,10 +135,8 @@ public class EamAssetStorageGtr extends BaseCodeGenerator {
 
                 },
                 new Object[] {
-                    EAMTables.EAM_ASSET_STORAGE.SUPPLIER_INFO,
                     EAMTables.EAM_ASSET_STORAGE.MANAGER_USER_ID,
-//                        EAMTables.EAM_ASSET_STORAGE.SUPPLIER_ID,
-
+                        EAMTables.EAM_ASSET_STORAGE.SUPPLIER_ID,
                 },
 //                new Object[] {
 //                        EAMTables.EAM_ASSET_STORAGE.OWN_COMPANY_ID,

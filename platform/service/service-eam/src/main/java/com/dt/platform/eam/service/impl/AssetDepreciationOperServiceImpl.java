@@ -8,6 +8,7 @@ import com.dt.platform.domain.eam.meta.AssetDepreciationOperMeta;
 import com.dt.platform.eam.service.*;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.dt.platform.proxy.eam.AssetServiceProxy;
+import com.github.foxnic.api.constant.CodeTextEnum;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.bean.BeanUtil;
@@ -15,6 +16,7 @@ import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.commons.concurrent.SimpleJoinForkTask;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.reflect.EnumUtil;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -101,6 +103,9 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 		List<Map<String, Object>> listMap = new ArrayList<Map<String, Object>>();
 		for(AssetDepreciationDetail item:list){
 			Map<String, Object> assetMap= BeanUtil.toMap(item);
+			CodeTextEnum result= EnumUtil.parseByCode(AssetDetailDepreciationResultEnum.class,item.getResult());
+			System.out.println("resultName:"+result.text());
+			assetMap.put("resultName",result==null?"":result.text());
 			listMap.add(assetMap);
 		}
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM");
@@ -154,6 +159,7 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 		AssetDepreciationOper bill=this.getById(id);
 
 		if(AssetDepreciationStatusEnum.ACTING.code().equals(bill.getStatus())){
+			System.out.println("当前状态:"+AssetDepreciationStatusEnum.ACTING.code());
 		}else{
 			return ErrorDesc.failureMessage("当前状态,不可进行本操作");
 		}
@@ -165,7 +171,8 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 			return ErrorDesc.failureMessage("没有资产数据需要折旧");
 		}
 
-		if(dao.queryRecord("select count(1) cnt from eam_asset_depreciation_detail where deleted=0 and oper_id=? and result not in ('"+AssetDetailDepreciationResultEnum.SUCCESS.code()+"','"+AssetDetailDepreciationResultEnum.NOT_CALCULATE.code()+"') ",id).getInteger("cnt")>0){
+		//不折旧，已完成折旧，折旧成功三种状态，则通过本次折旧验证
+		if(dao.queryRecord("select count(1) cnt from eam_asset_depreciation_detail where deleted=0 and oper_id=? and result_status not in ('"+AssetDetailDepreciationResultStatusEnum.SUCCESS.code()+"')",id).getInteger("cnt")>0){
 			return ErrorDesc.failureMessage("有资产未通过验证,请查询折旧计算结果");
 		}
 
@@ -294,10 +301,7 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 				assetDepreciationOper.setBusinessCode(codeResult.getData().toString());
 			}
 		}
-
-
 		Result r=super.insert(assetDepreciationOper,throwsException);
-
 		return r;
 	}
 

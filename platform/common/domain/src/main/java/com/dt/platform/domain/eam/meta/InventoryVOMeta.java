@@ -17,8 +17,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-12 11:28:25
- * @sign 135BAC98096056B53E4C9E13041936AF
+ * @since 2022-12-10 20:58:09
+ * @sign E971F667921333F851B3A0377700592E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -103,6 +103,26 @@ public class InventoryVOMeta extends InventoryMeta {
 	 * 排序方式 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.InventoryVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.InventoryVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String DATA_ORIGIN="dataOrigin";
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InventoryVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.eam.InventoryVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端按来源执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final String QUERY_LOGIC="queryLogic";
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InventoryVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.eam.InventoryVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
 	
 	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
@@ -323,6 +343,16 @@ public class InventoryVOMeta extends InventoryMeta {
 	 * 计划编号 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.InventoryVO,java.lang.String> PLAN_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InventoryVO.class ,PLAN_ID, java.lang.String.class, "计划编号", "计划编号", java.lang.String.class, null);
+	
+	/**
+	 * 重复盘点 , Y,N , 类型: java.lang.String
+	*/
+	public static final String INVENTORY_REPEAT="inventoryRepeat";
+	
+	/**
+	 * 重复盘点 , Y,N , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InventoryVO,java.lang.String> INVENTORY_REPEAT_PROP = new BeanProperty(com.dt.platform.domain.eam.InventoryVO.class ,INVENTORY_REPEAT, java.lang.String.class, "重复盘点", "Y,N", java.lang.String.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -627,7 +657,7 @@ public class InventoryVOMeta extends InventoryMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , TYPE , BUSINESS_CODE , OWNER_CODE , STATUS , NAME , INVENTORY_STATUS , DATA_STATUS , ALL_EMPLOYEE , ASSET_STATUS , CATEGORY_ID , OWN_COMPANY_ID , USE_ORGANIZATION_ID , PURCHASE_START_DATE , PURCHASE_END_DATE , START_TIME , FINISH_TIME , ORIGINATOR_ID , BUSINESS_DATE , NOTES , PLAN_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , INVENTORY_ASSET_INFO_LIST , INVENTORY_ASSET_COUNT_BY_NOT_COUNTED , INVENTORY_ASSET_COUNT_BY_COUNTED , INVENTORY_ASSET_COUNT_BY_LOSS , INVENTORY_ASSET_COUNT_BY_SURPLUS , INVENTORY_ASSET_COUNT_BY_EXCEPTION , OWNER_COMPANY , USE_ORGANIZATION , INVENTORY_USER , INVENTORY_USER_IDS , MANAGER , INVENTORY_MANAGER_IDS , DIRECTOR , INVENTORY_DIRECTOR_IDS , ORIGINATOR , POSITION , POSITION_IDS , WAREHOUSE , WAREHOUSE_IDS , CATEGORY , CATEGORY_IDS };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , IDS , ID , TYPE , BUSINESS_CODE , OWNER_CODE , STATUS , NAME , INVENTORY_STATUS , DATA_STATUS , ALL_EMPLOYEE , ASSET_STATUS , CATEGORY_ID , OWN_COMPANY_ID , USE_ORGANIZATION_ID , PURCHASE_START_DATE , PURCHASE_END_DATE , START_TIME , FINISH_TIME , ORIGINATOR_ID , BUSINESS_DATE , NOTES , PLAN_ID , INVENTORY_REPEAT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , INVENTORY_ASSET_INFO_LIST , INVENTORY_ASSET_COUNT_BY_NOT_COUNTED , INVENTORY_ASSET_COUNT_BY_COUNTED , INVENTORY_ASSET_COUNT_BY_LOSS , INVENTORY_ASSET_COUNT_BY_SURPLUS , INVENTORY_ASSET_COUNT_BY_EXCEPTION , OWNER_COMPANY , USE_ORGANIZATION , INVENTORY_USER , INVENTORY_USER_IDS , MANAGER , INVENTORY_MANAGER_IDS , DIRECTOR , INVENTORY_DIRECTOR_IDS , ORIGINATOR , POSITION , POSITION_IDS , WAREHOUSE , WAREHOUSE_IDS , CATEGORY , CATEGORY_IDS };
 	
 	/**
 	 * 代理类
@@ -722,6 +752,28 @@ public class InventoryVOMeta extends InventoryMeta {
 		public InventoryVO setSortType(String sortType) {
 			super.change(SORT_TYPE,super.getSortType(),sortType);
 			super.setSortType(sortType);
+			return this;
+		}
+		
+		/**
+		 * 设置 数据来源
+		 * @param dataOrigin 数据来源
+		 * @return 当前对象
+		*/
+		public InventoryVO setDataOrigin(String dataOrigin) {
+			super.change(DATA_ORIGIN,super.getDataOrigin(),dataOrigin);
+			super.setDataOrigin(dataOrigin);
+			return this;
+		}
+		
+		/**
+		 * 设置 查询逻辑
+		 * @param queryLogic 查询逻辑
+		 * @return 当前对象
+		*/
+		public InventoryVO setQueryLogic(String queryLogic) {
+			super.change(QUERY_LOGIC,super.getQueryLogic(),queryLogic);
+			super.setQueryLogic(queryLogic);
 			return this;
 		}
 		
@@ -964,6 +1016,17 @@ public class InventoryVOMeta extends InventoryMeta {
 		public Inventory setPlanId(String planId) {
 			super.change(PLAN_ID,super.getPlanId(),planId);
 			super.setPlanId(planId);
+			return this;
+		}
+		
+		/**
+		 * 设置 重复盘点
+		 * @param inventoryRepeat 重复盘点
+		 * @return 当前对象
+		*/
+		public Inventory setInventoryRepeat(String inventoryRepeat) {
+			super.change(INVENTORY_REPEAT,super.getInventoryRepeat(),inventoryRepeat);
+			super.setInventoryRepeat(inventoryRepeat);
 			return this;
 		}
 		
@@ -1316,6 +1379,7 @@ public class InventoryVOMeta extends InventoryMeta {
 			inst.setOwnerCode(this.getOwnerCode());
 			inst.setType(this.getType());
 			inst.setAllEmployee(this.getAllEmployee());
+			inst.setInventoryRepeat(this.getInventoryRepeat());
 			inst.setBusinessDate(this.getBusinessDate());
 			inst.setBusinessCode(this.getBusinessCode());
 			inst.setUpdateBy(this.getUpdateBy());
@@ -1359,6 +1423,8 @@ public class InventoryVOMeta extends InventoryMeta {
 				inst.setInventoryAssetCountBySurplus(this.getInventoryAssetCountBySurplus());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
+				inst.setDataOrigin(this.getDataOrigin());
+				inst.setQueryLogic(this.getQueryLogic());
 				inst.setWarehouseIds(this.getWarehouseIds());
 				inst.setManager(this.getManager());
 				inst.setDirector(this.getDirector());

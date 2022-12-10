@@ -1,12 +1,13 @@
 /**
  * 资产盘点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-12 11:28:28
+ * @since 2022-12-10 20:58:11
  */
 
 function FormPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
+	
 	const moduleURL="/service-eam/eam-inventory";
 	// 表单执行操作类型：view，create，edit
 	var action=null;

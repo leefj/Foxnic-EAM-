@@ -133,6 +133,7 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 		if(StringUtil.isBlank(assetId) &&StringUtil.isBlank(assetCode)){
 			return ErrorDesc.failureMessage("资产为空");
 		}
+
 		//assetId如果为空，则从assetCode获取
 		String userId="";
 		String managerId="";
@@ -154,18 +155,27 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 				return ErrorDesc.failureMessage("不存在该资产,资产ID:"+assetId);
 			}
 		}
+
+
 		//盘点是否在本次盘点清单中
 		Rcd inventoryAssetRs=dao.queryRecord("select * from eam_inventory_asset where deleted=0 and inventory_id=? and asset_id=?",inventoryId,assetId);
 		if(inventoryAssetRs==null){
 			return ErrorDesc.failureMessage("当前资产并未在本次盘点清单中");
 		}
+
+
 		if("employ_inventory_mode".equals(type)){
+			//员工盘点
 			String loginUserId=SessionUser.getCurrent().getActivatedEmployeeId();
 			if(userId.equals(loginUserId)){
 				System.out.println("success");
 			}else{
 				return ErrorDesc.failureMessage("当前用户没有权限盘点本资产");
 			}
+		}else if("full_inventory_mode".equals(type)){
+
+		}else{
+			return ErrorDesc.failureMessage("盘点模式错误，Type:"+type);
 		}
 		Result res=new Result();
 		return res.success(true).data(inventoryAssetRs.toJSONObject());
@@ -306,6 +316,7 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 		return this.queryPagedList(sample,pageSize,pageIndex);
 	}
 
+	/** 全员盘点搜索数据逻辑 */
 	@Override
 	public PagedList<InventoryAsset> queryMyAssetByEmployeeModePagedList(InventoryAsset sample,int pageSize,int pageIndex) {
 
@@ -315,10 +326,8 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 		}
 		ConditionExpr expr=new ConditionExpr();
 		String curUserId=SessionUser.getCurrent().getUser().getActivatedEmployeeId();
-		//后续考虑是否添加 or operuser=自己
-
-		expr.and("asset_id in (select id from eam_asset where use_user_id='"+curUserId+"') or oper_empl_id='"+curUserId+"'" );
-
+		//后续考虑是否添加
+		expr.and("asset_id in (select id from eam_asset where deleted=0 and owner_code='asset' and (use_user_id='"+curUserId+"' or manager_id='"+curUserId+"')) or oper_empl_id='"+curUserId+"'" );
 		return inventoryAssetService.queryPagedList(sample,expr,pageSize,pageIndex);
 	}
 
