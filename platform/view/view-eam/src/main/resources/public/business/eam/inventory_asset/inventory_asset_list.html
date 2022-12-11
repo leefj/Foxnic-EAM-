@@ -83,6 +83,7 @@
     <div class="layui-btn-container">
         <button th:if="${perm.checkAuth('eam_inventory_asset:delete-by-ids')}" id="delete-button" class="layui-btn icon-btn layui-btn-danger layui-btn-sm batch-delete-button " lay-event="batch-del"><i class="layui-icon">&#xe67e;</i><span th:text="${lang.translate('删除')}">删除</span></button>
         <button th:if="${perm.checkAuth('eam_inventory_asset:asset-plus')}" id="plus-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="asset-plus"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新增盘盈')}">新增盘盈</span></button>
+        <button th:if="${perm.checkAuth('eam_inventory_asset:asset-add')}" id="add-button" class="layui-btn icon-btn layui-btn-sm add-new-button " lay-event="asset-add"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新增资产')}">新增资产</span></button>
         <button th:if="${perm.checkAuth('eam_inventory_asset:download-asset')}" id="download-bill" class="layui-btn icon-btn layui-btn-sm download-asset-button " lay-event="download-asset"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('下载资产')}">下载资产</span></button>
     </div>
 </script>

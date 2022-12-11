@@ -340,6 +340,9 @@ function ListPage() {
 				case 'download-asset':
 					window.pageExt.list.downloadAsset(selected);
 					break;
+				case 'asset-add':
+					window.pageExt.list.assetAdd(selected);
+					break;
 				case 'asset-plus':
 					console.log("asset-plus start");
 					var data={};

@@ -4,6 +4,13 @@
 - 实现企业对资产的基本管理,包含对资产的登记、维修、调拨、转移等基本功能的支持，并提供对资产的耗材、库存进行管理，有完善的组织架构，非常适合中小企业的需求
 - EAM系统整体覆盖了基本的资产管理、合同管理、运维服务、运维服务、数据中心设备管理等多个模块。
 
+# Foxnic-EAM 项目构建说明
+- 当前托管的Foxnic-EAM源代码已包含所有的涉及EAM的源代码，数据库表结果也已发布，整个项目构建需要一定的开发经验。
+
+# 系统及相关文档下载地址
+- 链接: https://pan.baidu.com/s/1d6Yvszugq2fdGNEsW8ijmQ 提取码: lm6i
+- <img width="200"  src="https://images.gitee.com/uploads/images/2022/0621/084431_f977a14d_448530.png" />
+
 ### 官方网站
 - http://web.foxnicweb.com/
 - 1、QQ群:634770774
@@ -11,6 +18,7 @@
 - 企业或个人相关技术开发合作，请进群联系我们！
 - 微信群：      
   ![微信群](platform/view/view-console/src/main/resources/static/assets/images/wx.png)
+
 
 ### 系统DEMO
 - [Demo] 每天定时由阿里云效自动编译发布部署
@@ -51,9 +59,7 @@
 | 流程测试员  |nanhes|	南海鳄神|	
 
 
-### 系统及相关文档下载地址
-- 链接: https://pan.baidu.com/s/1d6Yvszugq2fdGNEsW8ijmQ 提取码: lm6i
-- <img width="200"  src="https://images.gitee.com/uploads/images/2022/0621/084431_f977a14d_448530.png" />
+
 
 
 ### 版本兼容性

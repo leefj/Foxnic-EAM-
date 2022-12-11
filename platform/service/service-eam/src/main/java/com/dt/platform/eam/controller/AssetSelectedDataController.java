@@ -2,13 +2,19 @@ package com.dt.platform.eam.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.dt.platform.constants.enums.eam.AssetInventoryDetailStatusEnum;
+import com.dt.platform.constants.enums.eam.AssetOperateEnum;
 import com.dt.platform.domain.eam.AssetItem;
 import com.dt.platform.domain.eam.AssetItemVO;
 import com.dt.platform.eam.service.IAssetItemService;
 import com.github.foxnic.commons.busi.id.IDGenerator;
+import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.dao.data.Rcd;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.dao.entity.ReferCause;
+import com.github.foxnic.sql.expr.Insert;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -242,7 +248,33 @@ public class AssetSelectedDataController extends SuperController {
     @ApiOperationSupport(order = 9)
     @SentinelResource(value = AssetSelectedDataServiceProxy.SAVE_BY_IDS, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(AssetSelectedDataServiceProxy.SAVE_BY_IDS)
-    public Result saveByIds(List<String> ids, String assetSelectedCode, String assetOwnerId) {
+    public Result saveByIds(List<String> ids, String assetSelectedCode, String assetOwnerId,String assetBusinessType) {
+
+
+        if(!StringUtil.isBlank(assetBusinessType)){
+            //如果存在
+            if(AssetOperateEnum.EAM_ASSET_INVENTORY.code().equals(assetBusinessType)){
+                //assetSelectedCode为inventory_id,批量插入新数据
+                for(int i=0;i<ids.size();i++){
+                   Rcd rs= assetItemService.dao().queryRecord("select * from eam_inventory_asset where deleted=0 and inventory_id=? and asset_id=?",assetSelectedCode,ids.get(i));
+                   if(rs==null){
+                       Insert ins=new Insert("eam_inventory_asset");
+                       ins.set("id",IDGenerator.getSnowflakeIdString());
+                       ins.setIf("inventory_id",assetSelectedCode);
+                       ins.setIf("asset_id",ids.get(i));
+                       ins.setIf("status", AssetInventoryDetailStatusEnum.NOT_COUNTED.code());
+                       ins.setIf("asset_plus_action_type","none");
+                       ins.setIf("asset_loss_action_type","none");
+                       ins.setIf("source","asset");
+                       assetItemService.dao().execute(ins);
+                   }
+                }
+                return ErrorDesc.success();
+            }
+        }
+
+
+        //存在ownerId
         if (assetOwnerId != null && assetOwnerId.length() > 0) {
             List<AssetItem> list = new ArrayList<>();
             for (int i = 0; i < ids.size(); i++) {
@@ -256,6 +288,7 @@ public class AssetSelectedDataController extends SuperController {
             }
             return assetItemService.insertList(list);
         } else {
+            //不存在ownerId
             List<AssetSelectedData> list = new ArrayList<>();
             for (int i = 0; i < ids.size(); i++) {
                 AssetSelectedData obj = new AssetSelectedData();
