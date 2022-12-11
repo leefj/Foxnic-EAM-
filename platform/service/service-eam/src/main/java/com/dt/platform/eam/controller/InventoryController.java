@@ -388,7 +388,7 @@ public class InventoryController extends SuperController {
     }
 
     /**
-     * 获取资产盘点
+     * 全员盘点的情况获取资产盘点
      */
     @ApiOperation(value = "获取资产盘点")
     @ApiImplicitParams({
@@ -407,8 +407,21 @@ public class InventoryController extends SuperController {
         inventoryService.dao().join(inventory.getOriginator(), Person.class);
         inventoryService.dao().join(inventory.getInventoryUser(), Person.class);
         String userId = SessionUser.getCurrent().getActivatedEmployeeId();
-        String sql = "select a.status,count(1) cnt from eam_inventory_asset a,eam_asset b \n" + "where a.asset_id=b.id and a.deleted='0' and b.deleted='0'\n" + "and inventory_id=?\n" + "and (b.use_user_id=? or oper_empl_id=?) group by a.status";
-        RcdSet rs = inventoryService.dao().query(sql, id, userId, userId);
+
+        //盘点是否是行政人员
+        String sql="";
+        String managerSql="select 1 from sys_busi_role a,sys_busi_role_member b where a.code='employ_inventory_manag_role' and a.id=b.role_id and a.deleted=0 and b.member_type='employee' and b.member_id=?";
+        Rcd managerRs=inventoryService.dao().queryRecord(managerSql,userId);
+        if(managerRs==null){
+            System.out.println("普通员工查询");
+            //普通员工盘点，盘点当前获取的资产是否是本人
+             sql = "select a.status,count(1) cnt from eam_inventory_asset a,eam_asset b where a.asset_id=b.id and a.deleted='0' and b.deleted='0' and a.inventory_id=? and (b.use_user_id=? or oper_empl_id=?) group by a.status";
+        }else{
+            //行政管理人员盘点，盘点当前管理人员是否是行政人员，并且资产状态为idle
+            System.out.println("管理人员查询");
+           sql="select a.status,count(1)  from eam_inventory_asset a, eam_asset b where  a.inventory_id=? and  a.asset_id=b.id and a.deleted='0' and b.deleted=0 and b.status='complete' and (b.use_user_id=? or (b.manager_id=? and b.asset_status='idle')) group by a.status";
+        }
+         RcdSet rs = inventoryService.dao().query(sql, id, userId, userId);
         int surplus = 0;
         int loss = 0;
         int counted = 0;

@@ -347,7 +347,6 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 		}else{
 			//行政管理人员盘点，盘点当前管理人员是否是行政人员，并且资产状态为idle
 			System.out.println("管理人员查询");
-			expr.and("asset_id in (select id from eam_asset where deleted=0 and status='complete' and owner_code='asset' and (use_user_id='"+curUserId+"' or (manager_id='"+curUserId+"' and asset_status='idle')) )" );
 		}
 		return inventoryAssetService.queryPagedList(sample,expr,pageSize,pageIndex);
 	}
