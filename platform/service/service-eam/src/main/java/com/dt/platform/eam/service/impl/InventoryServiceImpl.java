@@ -124,6 +124,7 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 	@Override
 	public Result<JSONObject> queryAssetByInventory(String inventoryId, String assetId, String assetCode, String type) {
 
+		Result<JSONObject> res=new Result<>();
 		if(StringUtil.isBlank(inventoryId)){
 			return ErrorDesc.failureMessage("盘点单据ID为空");
 		}
@@ -156,29 +157,39 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 			}
 		}
 
-
 		//盘点是否在本次盘点清单中
 		Rcd inventoryAssetRs=dao.queryRecord("select * from eam_inventory_asset where deleted=0 and inventory_id=? and asset_id=?",inventoryId,assetId);
 		if(inventoryAssetRs==null){
 			return ErrorDesc.failureMessage("当前资产并未在本次盘点清单中");
 		}
 
-
-		if("employ_inventory_mode".equals(type)){
-			//员工盘点
+		if(AssetInventoryModeEnum.EMPLOY_INVENTORY_MODE.code().equals(type)){
+			//全员盘点的情况
 			String loginUserId=SessionUser.getCurrent().getActivatedEmployeeId();
-			if(userId.equals(loginUserId)){
-				System.out.println("success");
+			//盘点是否是行政人员
+			String managerSql="select 1 from sys_busi_role a,sys_busi_role_member b where a.code='employ_inventory_manag_role' and a.id=b.role_id and a.deleted=0 and b.member_type='employee' and b.member_id=?";
+			Rcd managerRs=dao.queryRecord(managerSql,loginUserId);
+			if(managerRs==null){
+				//普通员工盘点，盘点当前获取的资产是否是本人
+				if(loginUserId.equals(userId)){
+					return res.success(true).data(inventoryAssetRs.toJSONObject());
+				}else{
+					return ErrorDesc.failureMessage("当前用户没有权限盘点本资产");
+				}
 			}else{
-				return ErrorDesc.failureMessage("当前用户没有权限盘点本资产");
+				//行政管理人员盘点，盘点当前管理人员是否是行政人员
+				if(loginUserId.equals(managerId)){
+					return res.success(true).data(inventoryAssetRs.toJSONObject());
+				}else{
+					return ErrorDesc.failureMessage("当前用户没有权限盘点本资产");
+				}
 			}
-		}else if("full_inventory_mode".equals(type)){
-
+		}else if(AssetInventoryModeEnum.FULL_INVENTORY_MODE.code().equals(type)){
+			return res.success(true).data(inventoryAssetRs.toJSONObject());
 		}else{
-			return ErrorDesc.failureMessage("盘点模式错误，Type:"+type);
+			return ErrorDesc.failureMessage("盘点类型错误，当前类型:"+type);
 		}
-		Result res=new Result();
-		return res.success(true).data(inventoryAssetRs.toJSONObject());
+
 	}
 
 	@Override
@@ -319,15 +330,25 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 	/** 全员盘点搜索数据逻辑 */
 	@Override
 	public PagedList<InventoryAsset> queryMyAssetByEmployeeModePagedList(InventoryAsset sample,int pageSize,int pageIndex) {
-
 		String inventoryId=sample.getInventoryId();
 		if(StringUtil.isBlank(sample.getInventoryId())){
 			sample.setInventoryId("-1");
 		}
 		ConditionExpr expr=new ConditionExpr();
 		String curUserId=SessionUser.getCurrent().getUser().getActivatedEmployeeId();
-		//后续考虑是否添加
-		expr.and("asset_id in (select id from eam_asset where deleted=0 and owner_code='asset' and (use_user_id='"+curUserId+"' or manager_id='"+curUserId+"')) or oper_empl_id='"+curUserId+"'" );
+
+		//盘点是否是行政人员
+		String managerSql="select 1 from sys_busi_role a,sys_busi_role_member b where a.code='employ_inventory_manag_role' and a.id=b.role_id and a.deleted=0 and b.member_type='employee' and b.member_id=?";
+		Rcd managerRs=dao.queryRecord(managerSql,curUserId);
+		if(managerRs==null){
+			System.out.println("普通员工查询");
+			//普通员工盘点，盘点当前获取的资产是否是本人
+			expr.and("asset_id in (select id from eam_asset where deleted=0 and owner_code='asset' and use_user_id='"+curUserId+"' ) or oper_empl_id='"+curUserId+"'" );
+		}else{
+			//行政管理人员盘点，盘点当前管理人员是否是行政人员，并且资产状态为idle
+			System.out.println("管理人员查询");
+			expr.and("asset_id in (select id from eam_asset where deleted=0 and status='complete' and owner_code='asset' and (use_user_id='"+curUserId+"' or (manager_id='"+curUserId+"' and asset_status='idle')) )" );
+		}
 		return inventoryAssetService.queryPagedList(sample,expr,pageSize,pageIndex);
 	}
 

@@ -329,7 +329,7 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
         }
 
         //并行插盘点数据
-        SimpleJoinForkTask<List<AssetDepreciationDetail> ,Result> task=new SimpleJoinForkTask<>(groupList,2);
+        SimpleJoinForkTask<List<AssetDepreciationDetail>,Result> task=new SimpleJoinForkTask<>(groupList,2);
         List<Result> rvs=task.execute(els->{
             System.out.println(Thread.currentThread().getName());
             List<Result> rs=new ArrayList<>();
