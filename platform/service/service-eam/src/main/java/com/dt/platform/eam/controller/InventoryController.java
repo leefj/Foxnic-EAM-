@@ -419,7 +419,7 @@ public class InventoryController extends SuperController {
         }else{
             //行政管理人员盘点，盘点当前管理人员是否是行政人员，并且资产状态为idle
             System.out.println("管理人员查询");
-           sql="select a.status,count(1)  from eam_inventory_asset a, eam_asset b where  a.inventory_id=? and  a.asset_id=b.id and a.deleted='0' and b.deleted=0 and b.status='complete' and (b.use_user_id=? or (b.manager_id=? and b.asset_status='idle')) group by a.status";
+           sql="select a.status,count(1) cnt from eam_inventory_asset a, eam_asset b where  a.inventory_id=? and  a.asset_id=b.id and a.deleted='0' and b.deleted=0 and b.status='complete' and (b.use_user_id=? or (b.manager_id=? and b.asset_status='idle')) group by a.status";
         }
          RcdSet rs = inventoryService.dao().query(sql, id, userId, userId);
         int surplus = 0;
