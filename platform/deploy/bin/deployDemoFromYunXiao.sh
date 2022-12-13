@@ -26,6 +26,15 @@ echo "rebuild sql"
 cd /app/app/bin
 sh releaseApp.sh /tmp/app_yunxiao/app_release_last.tar.gz
 
+# update
+if [[ -d "/opt/tomcat/tomcat_shopprod/webapps/upload" ]];then
+  cd /opt/tomcat/tomcat_shopprod/webapps/upload
+  if [[ -f "app_release_dev.tar.gz" ]];then
+    rm -rf app_dev_last.tar.gz
+  fi
+  cp /tmp/app_release_last.tar.gz app_release_dev.tar.gz
+fi
+
 echo "update app">>$logfile
 #sql 已更新，默认打包后在/tmp/app_release_last.tar.gz
 #再次更新程序
@@ -36,9 +45,18 @@ mkdir $update_dir
 cd $update_dir
 cp /tmp/app_release_last.tar.gz .
 tar xvf app_release_last.tar.gz
+
 cd bin
 sh deployAppUpdate.sh
 cd /tmp
 rm -rf  $update_dir
+
+
+
+
+rm -rf  $update_dir
+
+
+
 exit 0
 

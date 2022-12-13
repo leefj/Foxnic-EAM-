@@ -84,7 +84,6 @@ public class CodeModuleServiceImpl implements ICodeModuleService {
 	public Result generateCode2(String module){
 
 		String v="${string_fix,1011}${string_fix,-}${string_fix,1011}${string_fix,-}${number_seq,5,1011_1011_asset}";
-
 		return null;
 	}
 
