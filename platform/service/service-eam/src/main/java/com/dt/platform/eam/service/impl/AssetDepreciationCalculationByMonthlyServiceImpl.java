@@ -285,6 +285,7 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
                         detail.setResult(AssetDetailDepreciationResultEnum.DEPRECIATION_FINISHED.code());
                     }
                 }
+
                 if(asset.getUseUser()!=null){
                     detail.setUseUserName(asset.getUseUser().getName());
                 }

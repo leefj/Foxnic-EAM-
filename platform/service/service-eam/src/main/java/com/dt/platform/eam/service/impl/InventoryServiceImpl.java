@@ -352,7 +352,7 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 		if(managerRs==null){
 			System.out.println("普通员工查询");
 			//普通员工盘点，盘点当前获取的资产是否是本人
-			expr.and("asset_id in (select id from eam_asset where deleted=0 and owner_code='asset' and use_user_id='"+curUserId+"' ) or oper_empl_id='"+curUserId+"'" );
+			expr.and("asset_id in (select id from eam_asset where asset_status in (select status_code from eam_asset_status_rule_v where deleted='0' and oper_code='eam_asset_inventory_employ_mode') and deleted=0 and owner_code='asset' and use_user_id='"+curUserId+"' ) or oper_empl_id='"+curUserId+"'" );
 		}else{
 			//行政管理人员盘点，盘点当前管理人员是否是行政人员，并且资产状态为idle
 			System.out.println("管理人员查询");
