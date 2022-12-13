@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_ASSET_STATUS_RULE_V;
@@ -8,21 +9,27 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.AssetStatusRuleVMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 状态规则值
+ * <p>状态规则值 , 数据表 eam_asset_status_rule_v 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-07 07:24:55
- * @sign AC090B434F9BFCFF96AFA4F41CB8B827
+ * @since 2022-12-13 13:02:58
+ * @sign 7AB147DF240C1D58587C73E117F6315A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_asset_status_rule_v")
+@ApiModel(description = "状态规则值 ; 状态规则值 , 数据表 eam_asset_status_rule_v 的PO类型")
 public class AssetStatusRuleV extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -33,19 +40,19 @@ public class AssetStatusRuleV extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "1")
 	private String id;
 	
 	/**
 	 * 操作编码：操作编码
 	*/
-	@ApiModelProperty(required = false,value="操作编码" , notes = "操作编码")
+	@ApiModelProperty(required = false,value="操作编码" , notes = "操作编码" , example = "eam_asset_borrow")
 	private String operCode;
 	
 	/**
 	 * 状态编码：状态编码
 	*/
-	@ApiModelProperty(required = false,value="状态编码" , notes = "状态编码")
+	@ApiModelProperty(required = false,value="状态编码" , notes = "状态编码" , example = "borrow")
 	private String statusCode;
 	
 	/**
@@ -75,9 +82,10 @@ public class AssetStatusRuleV extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -95,13 +103,13 @@ public class AssetStatusRuleV extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -109,6 +117,12 @@ public class AssetStatusRuleV extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="assetCycleStatus" , notes = "assetCycleStatus")
 	private AssetStatus assetCycleStatus;
+	
+	/**
+	 * assetStatusRule：assetStatusRule
+	*/
+	@ApiModelProperty(required = false,value="assetStatusRule" , notes = "assetStatusRule")
+	private AssetStatusRule assetStatusRule;
 	
 	/**
 	 * 获得 主键<br>
@@ -270,6 +284,7 @@ public class AssetStatusRuleV extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public AssetStatusRuleV setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -386,6 +401,25 @@ public class AssetStatusRuleV extends Entity {
 		this.assetCycleStatus=assetCycleStatus;
 		return this;
 	}
+	
+	/**
+	 * 获得 assetStatusRule<br>
+	 * assetStatusRule
+	 * @return assetStatusRule
+	*/
+	public AssetStatusRule getAssetStatusRule() {
+		return assetStatusRule;
+	}
+	
+	/**
+	 * 设置 assetStatusRule
+	 * @param assetStatusRule assetStatusRule
+	 * @return 当前对象
+	*/
+	public AssetStatusRuleV setAssetStatusRule(AssetStatusRule assetStatusRule) {
+		this.assetStatusRule=assetStatusRule;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -417,6 +451,49 @@ public class AssetStatusRuleV extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetStatusRuleV clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public AssetStatusRuleV duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.AssetStatusRuleVMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.AssetStatusRuleVMeta.$$proxy$$();
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setOperCode(this.getOperCode());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setId(this.getId());
+		inst.setVersion(this.getVersion());
+		inst.setStatusCode(this.getStatusCode());
+		if(all) {
+			inst.setAssetCycleStatus(this.getAssetCycleStatus());
+			inst.setAssetStatusRule(this.getAssetStatusRule());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public AssetStatusRuleV clone(boolean deep) {
+		return EntityContext.clone(AssetStatusRuleV.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 AssetStatusRuleV
 	 * @param assetStatusRuleVMap 包含实体信息的 Map 对象
 	 * @return AssetStatusRuleV , 转换好的的 AssetStatusRuleV 对象
@@ -424,7 +501,9 @@ public class AssetStatusRuleV extends Entity {
 	@Transient
 	public static AssetStatusRuleV createFrom(Map<String,Object> assetStatusRuleVMap) {
 		if(assetStatusRuleVMap==null) return null;
-		AssetStatusRuleV po = EntityContext.create(AssetStatusRuleV.class, assetStatusRuleVMap);
+		AssetStatusRuleV po = create();
+		EntityContext.copyProperties(po,assetStatusRuleVMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -436,7 +515,9 @@ public class AssetStatusRuleV extends Entity {
 	@Transient
 	public static AssetStatusRuleV createFrom(Object pojo) {
 		if(pojo==null) return null;
-		AssetStatusRuleV po = EntityContext.create(AssetStatusRuleV.class,pojo);
+		AssetStatusRuleV po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -446,6 +527,98 @@ public class AssetStatusRuleV extends Entity {
 	*/
 	@Transient
 	public static AssetStatusRuleV create() {
-		return EntityContext.create(AssetStatusRuleV.class);
+		return new com.dt.platform.domain.eam.meta.AssetStatusRuleVMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setCreateBy(DataParser.parse(String.class, map.get(AssetStatusRuleVMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(AssetStatusRuleVMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(AssetStatusRuleVMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetStatusRuleVMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(AssetStatusRuleVMeta.DELETE_TIME)));
+			this.setOperCode(DataParser.parse(String.class, map.get(AssetStatusRuleVMeta.OPER_CODE)));
+			this.setTenantId(DataParser.parse(String.class, map.get(AssetStatusRuleVMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(AssetStatusRuleVMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetStatusRuleVMeta.UPDATE_TIME)));
+			this.setId(DataParser.parse(String.class, map.get(AssetStatusRuleVMeta.ID)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(AssetStatusRuleVMeta.VERSION)));
+			this.setStatusCode(DataParser.parse(String.class, map.get(AssetStatusRuleVMeta.STATUS_CODE)));
+			// others
+			this.setAssetCycleStatus(DataParser.parse(AssetStatus.class, map.get(AssetStatusRuleVMeta.ASSET_CYCLE_STATUS)));
+			this.setAssetStatusRule(DataParser.parse(AssetStatusRule.class, map.get(AssetStatusRuleVMeta.ASSET_STATUS_RULE)));
+			return true;
+		} else {
+			try {
+				this.setCreateBy( (String)map.get(AssetStatusRuleVMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(AssetStatusRuleVMeta.DELETED));
+				this.setCreateTime( (Date)map.get(AssetStatusRuleVMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(AssetStatusRuleVMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(AssetStatusRuleVMeta.DELETE_TIME));
+				this.setOperCode( (String)map.get(AssetStatusRuleVMeta.OPER_CODE));
+				this.setTenantId( (String)map.get(AssetStatusRuleVMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(AssetStatusRuleVMeta.DELETE_BY));
+				this.setUpdateTime( (Date)map.get(AssetStatusRuleVMeta.UPDATE_TIME));
+				this.setId( (String)map.get(AssetStatusRuleVMeta.ID));
+				this.setVersion( (Integer)map.get(AssetStatusRuleVMeta.VERSION));
+				this.setStatusCode( (String)map.get(AssetStatusRuleVMeta.STATUS_CODE));
+				// others
+				this.setAssetCycleStatus( (AssetStatus)map.get(AssetStatusRuleVMeta.ASSET_CYCLE_STATUS));
+				this.setAssetStatusRule( (AssetStatusRule)map.get(AssetStatusRuleVMeta.ASSET_STATUS_RULE));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetStatusRuleVMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(AssetStatusRuleVMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(AssetStatusRuleVMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetStatusRuleVMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(AssetStatusRuleVMeta.DELETE_TIME)));
+			this.setOperCode(DataParser.parse(String.class, r.getValue(AssetStatusRuleVMeta.OPER_CODE)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(AssetStatusRuleVMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(AssetStatusRuleVMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetStatusRuleVMeta.UPDATE_TIME)));
+			this.setId(DataParser.parse(String.class, r.getValue(AssetStatusRuleVMeta.ID)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(AssetStatusRuleVMeta.VERSION)));
+			this.setStatusCode(DataParser.parse(String.class, r.getValue(AssetStatusRuleVMeta.STATUS_CODE)));
+			return true;
+		} else {
+			try {
+				this.setCreateBy( (String)r.getValue(AssetStatusRuleVMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(AssetStatusRuleVMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(AssetStatusRuleVMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(AssetStatusRuleVMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(AssetStatusRuleVMeta.DELETE_TIME));
+				this.setOperCode( (String)r.getValue(AssetStatusRuleVMeta.OPER_CODE));
+				this.setTenantId( (String)r.getValue(AssetStatusRuleVMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(AssetStatusRuleVMeta.DELETE_BY));
+				this.setUpdateTime( (Date)r.getValue(AssetStatusRuleVMeta.UPDATE_TIME));
+				this.setId( (String)r.getValue(AssetStatusRuleVMeta.ID));
+				this.setVersion( (Integer)r.getValue(AssetStatusRuleVMeta.VERSION));
+				this.setStatusCode( (String)r.getValue(AssetStatusRuleVMeta.STATUS_CODE));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

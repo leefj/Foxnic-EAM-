@@ -263,13 +263,24 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
                 }else{
                     detail.setCUsedServiceLife(asset.getAssetUsedServiceLife());
                 }
+
                 //如果设置资产的使用期限，以财务期限为准，否则使用资产本身的
                 if("asset".equals(assetServiceLifeValueSource)){
+                    if(detail.getAssetServiceLife()==null){
+                        return ErrorDesc.failureMessage("资产使用周期(资产)为空:,资产编号:"+detail.getAssetCode());
+                    }
                     if(asset.getAssetUsedServiceLife().compareTo(detail.getAssetServiceLife())>-1){
                         detail.setResult(AssetDetailDepreciationResultEnum.DEPRECIATION_FINISHED.code());
                     }
                 }
+
                 if("finance".equals(assetServiceLifeValueSource)){
+                    if(detail.getAssetFinanceServiceLife()==null){
+                        return ErrorDesc.failureMessage("资产使用周期(财务)为空:,资产编号:"+detail.getAssetCode());
+                    }
+                    if(asset.getAssetUsedServiceLife()==null){
+                        return ErrorDesc.failureMessage("资产已使用周期为空:,资产编号:"+detail.getAssetCode());
+                    }
                     if(asset.getAssetUsedServiceLife().compareTo(detail.getAssetFinanceServiceLife())>-1){
                         detail.setResult(AssetDetailDepreciationResultEnum.DEPRECIATION_FINISHED.code());
                     }
@@ -281,6 +292,7 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
                     detail.setManagerName(asset.getManager().getName());
                 }
                 /*************定制开始----重置客户信息/***************/
+
                 //定制特殊字段
                 if("后台".equals(detail.getFinancialOptionName())){
                     detail.setCustomerInfo("无");

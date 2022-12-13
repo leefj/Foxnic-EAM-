@@ -6,13 +6,15 @@ import java.util.List;
 import com.dt.platform.domain.eam.AssetStatusRuleV;
 import java.util.Date;
 import com.dt.platform.domain.eam.AssetStatus;
+import com.dt.platform.domain.eam.AssetStatusRule;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-07 07:24:55
- * @sign 065BDD0995AED9CADC48EFB2E12B3F4F
+ * @since 2022-12-13 13:02:58
+ * @sign 6E51B43C16AC4533E6A448A39AACECFA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -97,6 +99,26 @@ public class AssetStatusRuleVVOMeta extends AssetStatusRuleVMeta {
 	 * 排序方式 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetStatusRuleVVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetStatusRuleVVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String DATA_ORIGIN="dataOrigin";
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetStatusRuleVVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetStatusRuleVVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端按来源执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final String QUERY_LOGIC="queryLogic";
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetStatusRuleVVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetStatusRuleVVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
 	
 	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
@@ -239,9 +261,19 @@ public class AssetStatusRuleVVOMeta extends AssetStatusRuleVMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetStatusRuleVVO,com.dt.platform.domain.eam.AssetStatus> ASSET_CYCLE_STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetStatusRuleVVO.class ,ASSET_CYCLE_STATUS, com.dt.platform.domain.eam.AssetStatus.class, "assetCycleStatus", "assetCycleStatus", com.dt.platform.domain.eam.AssetStatus.class, null);
 	
 	/**
+	 * assetStatusRule , 类型: com.dt.platform.domain.eam.AssetStatusRule
+	*/
+	public static final String ASSET_STATUS_RULE="assetStatusRule";
+	
+	/**
+	 * assetStatusRule , 类型: com.dt.platform.domain.eam.AssetStatusRule
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetStatusRuleVVO,com.dt.platform.domain.eam.AssetStatusRule> ASSET_STATUS_RULE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetStatusRuleVVO.class ,ASSET_STATUS_RULE, com.dt.platform.domain.eam.AssetStatusRule.class, "assetStatusRule", "assetStatusRule", com.dt.platform.domain.eam.AssetStatusRule.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , OPER_CODE , STATUS_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSET_CYCLE_STATUS };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , IDS , ID , OPER_CODE , STATUS_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSET_CYCLE_STATUS , ASSET_STATUS_RULE };
 	
 	/**
 	 * 代理类
@@ -336,6 +368,28 @@ public class AssetStatusRuleVVOMeta extends AssetStatusRuleVMeta {
 		public AssetStatusRuleVVO setSortType(String sortType) {
 			super.change(SORT_TYPE,super.getSortType(),sortType);
 			super.setSortType(sortType);
+			return this;
+		}
+		
+		/**
+		 * 设置 数据来源
+		 * @param dataOrigin 数据来源
+		 * @return 当前对象
+		*/
+		public AssetStatusRuleVVO setDataOrigin(String dataOrigin) {
+			super.change(DATA_ORIGIN,super.getDataOrigin(),dataOrigin);
+			super.setDataOrigin(dataOrigin);
+			return this;
+		}
+		
+		/**
+		 * 设置 查询逻辑
+		 * @param queryLogic 查询逻辑
+		 * @return 当前对象
+		*/
+		public AssetStatusRuleVVO setQueryLogic(String queryLogic) {
+			super.change(QUERY_LOGIC,super.getQueryLogic(),queryLogic);
+			super.setQueryLogic(queryLogic);
 			return this;
 		}
 		
@@ -492,5 +546,63 @@ public class AssetStatusRuleVVOMeta extends AssetStatusRuleVMeta {
 			super.setAssetCycleStatus(assetCycleStatus);
 			return this;
 		}
+		
+		/**
+		 * 设置 assetStatusRule
+		 * @param assetStatusRule assetStatusRule
+		 * @return 当前对象
+		*/
+		public AssetStatusRuleV setAssetStatusRule(AssetStatusRule assetStatusRule) {
+			super.change(ASSET_STATUS_RULE,super.getAssetStatusRule(),assetStatusRule);
+			super.setAssetStatusRule(assetStatusRule);
+			return this;
+		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AssetStatusRuleVVO clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AssetStatusRuleVVO duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setOperCode(this.getOperCode());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setId(this.getId());
+			inst.setVersion(this.getVersion());
+			inst.setStatusCode(this.getStatusCode());
+			if(all) {
+				inst.setSearchField(this.getSearchField());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
+				inst.setAssetStatusRule(this.getAssetStatusRule());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setDirtyFields(this.getDirtyFields());
+				inst.setSortField(this.getSortField());
+				inst.setDataOrigin(this.getDataOrigin());
+				inst.setIds(this.getIds());
+				inst.setQueryLogic(this.getQueryLogic());
+				inst.setSearchValue(this.getSearchValue());
+				inst.setAssetCycleStatus(this.getAssetCycleStatus());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

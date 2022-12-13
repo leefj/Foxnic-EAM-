@@ -1,5 +1,6 @@
 package com.dt.platform.eam.service;
 
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -20,10 +21,10 @@ import java.util.Map;
 
 /**
  * <p>
- * 状态规则值 服务接口
+ * 状态规则值服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-07 07:24:55
+ * @since 2022-12-13 13:02:58
 */
 
 public interface IAssetStatusRuleVService extends  ISimpleIdService<AssetStatusRuleV,String> {
@@ -55,7 +56,7 @@ public interface IAssetStatusRuleVService extends  ISimpleIdService<AssetStatusR
 
 		
 	/**
-	 * 按主键删除 状态规则值
+	 * 按主键删除状态规则值
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -63,7 +64,7 @@ public interface IAssetStatusRuleVService extends  ISimpleIdService<AssetStatusR
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 状态规则值
+	 * 按主键删除状态规则值
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -86,7 +87,7 @@ public interface IAssetStatusRuleVService extends  ISimpleIdService<AssetStatusR
 
 		
 	/**
-	 * 按主键更新字段 状态规则值
+	 * 按主键更新状态规则值
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -156,7 +157,7 @@ public interface IAssetStatusRuleVService extends  ISimpleIdService<AssetStatusR
 
 		
 	/**
-	 * 按主键获取 状态规则值
+	 * 按主键获取状态规则值
 	 *
 	 * @param id 主键
 	 * @return AssetStatusRuleV 数据对象

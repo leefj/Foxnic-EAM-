@@ -2,7 +2,7 @@
 /**
  * 状态规则值 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-07 07:24:56
+ * @since 2022-12-13 13:03:00
  */
  -->
  <!DOCTYPE html>
@@ -32,56 +32,48 @@
 
     <form id="data-form" lay-filter="data-form" class="layui-form model-form" style="display:none">
 
+        <input name="id" id="id"  type="hidden"/>
 
          <!--开始：group 循环-->
 
 
-
-        <div class="layui-row form-row" id="default-content">
+        <div class="layui-row form-row" id="random-4543-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs12 form-column" >
 
-                    <div class="layui-form-item" style="display: none">
-                        <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('主键')}">主键</div></div>
-                        <div class="layui-input-block layui-input-block-c1">
-                            <input lay-filter="id" id="id" name="id" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('主键') }" type="text" class="layui-input"  />
-                        </div>
+                <!-- select_box : 操作编码 ,  operCode  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('操作编码')}">操作编码</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <div id="operCode" input-type="select" th:data="${'/service-eam/eam-asset-status-rule/query-list'}" extraParam="{}"></div>
                     </div>
-
-                                    <div class="layui-form-item" >
-                        <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('操作编码')}">操作编码</div><div class="layui-required">*</div></div>
-                        <div class="layui-input-block layui-input-block-c1">
-                            <input lay-filter="operCode" id="operCode" name="operCode" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('操作编码') }" type="text" class="layui-input"    lay-verify="|required"  />
-                        </div>
+                </div>
+            
+                <!-- select_box : 状态编码 ,  statusCode  -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('状态编码')}">状态编码</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <div id="statusCode" input-type="select" th:data="${'/service-eam/eam-asset-status/query-list'}" extraParam="{}"></div>
                     </div>
-
-                
-                    <div class="layui-form-item" >
-                        <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('状态编码')}">状态编码</div><div class="layui-required">*</div></div>
-                        <div class="layui-input-block layui-input-block-c1">
-                            <div id="statusCode" input-type="select" th:data="${'/service-eam/eam-asset-status/query-list'}" extraParam="{}"></div>
-                        </div>
-                    </div>
-
-
-                <!--结束：栏次内字段循环-->
+                </div>
+            <!--结束：栏次内字段循环-->
             </div>
             <!--结束：栏次输入框循环-->
         </div>
         <!--结束：group循环-->
 
         <div style="height: 8px"></div>
-        <div style="height: 20px"></div>
+        <div style="height: 200px"></div>
 
 
     </form>
 
 </div>
 <div class="model-form-footer">
-    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消')}" >取消</button>
-    <button th:if="${perm.checkAnyAuth('eam_asset_status_rule_v:create','eam_asset_status_rule_v:update','eam_asset_status_rule_v:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存')}">保存</button>
+    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消','','form.button')}" >取消</button>
+    <button th:if="${perm.checkAnyAuth('eam_asset_status_rule_v:create','eam_asset_status_rule_v:update','eam_asset_status_rule_v:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存','','form.button')}">保存</button>
 </div>
 
 <script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
@@ -91,7 +83,7 @@
 <script type="text/javascript" src="/assets/libs/toast/js/toast.js" th:src="'/assets/libs/toast/js/toast.js?'+${cacheKey}"></script>
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
-    var VALIDATE_CONFIG={"operCode":{"labelInForm":"操作编码","inputType":"text_input","required":true},"statusCode":{"labelInForm":"状态编码","inputType":"select_box","required":true}};
+    var VALIDATE_CONFIG={"operCode":{"labelInForm":"操作编码","inputType":"select_box","required":true},"statusCode":{"labelInForm":"状态编码","inputType":"select_box","required":true}};
     var AUTH_PREFIX="eam_asset_status_rule_v";
 
 

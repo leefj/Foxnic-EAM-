@@ -185,6 +185,8 @@ public class EamRelationManager extends RelationManager {
 
 
     public void setupAssetStatusRuleV() {
+        this.property(AssetStatusRuleVMeta.ASSET_STATUS_RULE_PROP)
+                .using(EAMTables.EAM_ASSET_STATUS_RULE_V.OPER_CODE).join(EAMTables.EAM_ASSET_STATUS_RULE.OPER_CODE);
 
         this.property(AssetStatusRuleVMeta.ASSET_CYCLE_STATUS_PROP)
                 .using(EAMTables.EAM_ASSET_STATUS_RULE_V.STATUS_CODE).join(EAMTables.EAM_ASSET_STATUS.CODE);
