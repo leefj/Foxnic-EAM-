@@ -1,12 +1,13 @@
 /**
  * 状态规则值 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-07 07:24:56
+ * @since 2022-12-13 13:03:00
  */
 
 function FormPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
+	
 	const moduleURL="/service-eam/eam-asset-status-rule-v";
 	// 表单执行操作类型：view，create，edit
 	var action=null;
@@ -111,6 +112,37 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
+		//渲染 operCode 下拉字段
+		fox.renderSelectBox({
+			el: "operCode",
+			radio: true,
+			filterable: true,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("operCode",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "operCode", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "0".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].operCode,value:data[i].operCode,selected:(defaultValues.indexOf(data[i].operCode)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
 		//渲染 statusCode 下拉字段
 		fox.renderSelectBox({
 			el: "statusCode",
@@ -194,6 +226,8 @@ function FormPage() {
 
 
 
+			//设置  操作编码 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#operCode",formData.assetStatusRule);
 			//设置  状态编码 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#statusCode",formData.assetCycleStatus);
 
@@ -247,6 +281,8 @@ function FormPage() {
 
 
 
+		//获取 操作编码 下拉框的值
+		data["operCode"]=fox.getSelectedValue("operCode",false);
 		//获取 状态编码 下拉框的值
 		data["statusCode"]=fox.getSelectedValue("statusCode",false);
 

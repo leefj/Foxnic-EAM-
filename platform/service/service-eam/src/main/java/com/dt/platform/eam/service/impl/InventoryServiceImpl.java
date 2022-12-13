@@ -138,6 +138,7 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 		//assetId如果为空，则从assetCode获取
 		String userId="";
 		String managerId="";
+		String assetStatus="-1";
 		if(StringUtil.isBlank(assetId)){
 			RcdSet rs=dao.query("select * from eam_asset where asset_code=? and owner_code='asset' and deleted=0",assetCode);
 			if(rs.size()==0){
@@ -148,10 +149,12 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 			assetId=rs.getRcd(0).getString("id");
 			userId=rs.getRcd(0).getString("use_user_id");
 			managerId=rs.getRcd(0).getString("manager_id");
+			assetStatus=rs.getRcd(0).getString("asset_status","-1");
 		}else{
 			Rcd rs=dao.queryRecord("select * from eam_asset where id=? and owner_code='asset' and deleted=0",assetId);
 			userId=rs.getString("use_user_id");
 			managerId=rs.getString("manager_id");
+			assetStatus=rs.getString("asset_status","-1");
 			if(rs==null){
 				return ErrorDesc.failureMessage("不存在该资产,资产ID:"+assetId);
 			}
@@ -179,7 +182,13 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 			}else{
 				//行政管理人员盘点，盘点当前管理人员是否是行政人员
 				if(loginUserId.equals(managerId)){
-					return res.success(true).data(inventoryAssetRs.toJSONObject());
+					//管理人员，处理判断管理资产，在次判断资产状态
+					Rcd rs=dao.queryRecord("select 1 from eam_asset_status_rule_v where deleted='0' and oper_code='eam_asset_inventory_employ_mode' and status_code=?",assetStatus);
+					if(rs==null){
+						return ErrorDesc.failureMessage("当前用户没有权限盘点本资产");
+					}else{
+						return res.success(true).data(inventoryAssetRs.toJSONObject());
+					}
 				}else{
 					return ErrorDesc.failureMessage("当前用户没有权限盘点本资产");
 				}

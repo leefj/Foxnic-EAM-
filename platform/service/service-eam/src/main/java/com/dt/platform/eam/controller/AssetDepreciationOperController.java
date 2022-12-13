@@ -378,7 +378,6 @@ public class AssetDepreciationOperController extends SuperController {
             return ErrorDesc.failureMessage("折旧方案为空");
         }
         for(String id:ids){
-
             AssetDepreciationDetail assetDepreciationDetail=assetDepreciationDetailService.getById(id);
             //更新资产折旧单据中的资产数据
             Update ups=new Update("eam_asset_depreciation_detail");
@@ -386,8 +385,6 @@ public class AssetDepreciationOperController extends SuperController {
             ups.set("result_detail",mark==null?"":mark);
             ups.where().and("id=?",id);
             assetDepreciationOperService.dao().execute(ups);
-
-
             //新增排除的资产数据
             Rcd rs=assetDepreciationOperService.dao().queryRecord("select 1 from eam_asset_depreciation_exclude where depreciation_id=? and asset_id=?",depId,assetDepreciationDetail.getAssetId());
             if(rs==null){

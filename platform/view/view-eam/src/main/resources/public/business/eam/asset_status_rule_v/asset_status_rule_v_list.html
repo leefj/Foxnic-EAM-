@@ -2,7 +2,7 @@
 /**
  * 状态规则值 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-07 07:24:55
+ * @since 2022-12-13 13:02:59
  */
  -->
  <!DOCTYPE html>
@@ -39,10 +39,10 @@
                 <!-- 搜索输入区域 -->
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 操作编码 , operCode ,typeName=text_input, isHideInSearch=false -->
+                    <!-- 操作编码 , operCode ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('操作编码')}" class="search-label operCode-label">操作编码</span><span class="search-colon">:</span></div>
-                        <input id="operCode" class="layui-input search-input" style="width: 150px" type="text" />
+                        <div id="operCode" th:data="${'/service-eam/eam-asset-status-rule/query-list'}" style="width:150px" extraParam="{}"></div>
                     </div>
                     <!-- 状态编码 , statusCode ,typeName=select_box, isHideInSearch=true -->
 
@@ -53,7 +53,7 @@
 
             <!-- 按钮区域 -->
             <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">
-                <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索')}">搜索</span></button>
+                <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索','','cmp:table.search')}">搜索</span></button>
             </div>
         </div>
 
@@ -72,19 +72,19 @@
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
-        <button th:if="${perm.checkAuth('eam_asset_status_rule_v:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建')}">新建</span></button>
-        <button th:if="${perm.checkAuth('eam_asset_status_rule_v:delete-by-ids')}" id="delete-button" class="layui-btn icon-btn layui-btn-danger layui-btn-sm batch-delete-button " lay-event="batch-del"><i class="layui-icon">&#xe67e;</i><span th:text="${lang.translate('删除')}">删除</span></button>
+        <button th:if="${perm.checkAuth('eam_asset_status_rule_v:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建','','cmp:table.button')}">新建</span></button>
+        <button th:if="${perm.checkAuth('eam_asset_status_rule_v:delete-by-ids')}" id="delete-button" class="layui-btn icon-btn layui-btn-danger layui-btn-sm batch-delete-button " lay-event="batch-del"><i class="layui-icon">&#xe67e;</i><span th:text="${lang.translate('删除','','cmp:table.button')}">删除</span></button>
     </div>
 </script>
 
 <!-- 表格操作列 -->
 <script type="text/html" id="tableOperationTemplate">
 
-    <button th:if="${perm.checkAuth('eam_asset_status_rule_v:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看')}">查看</span></button>
-    <button th:if="${perm.checkAnyAuth('eam_asset_status_rule_v:update','eam_asset_status_rule_v:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('修改')}">修改</span></button>
+    <button th:if="${perm.checkAuth('eam_asset_status_rule_v:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看','','cmp:table.ops')}">查看</span></button>
+    <button th:if="${perm.checkAnyAuth('eam_asset_status_rule_v:update','eam_asset_status_rule_v:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('修改','','cmp:table.ops')}">修改</span></button>
 
 
-    <button th:if="${perm.checkAuth('eam_asset_status_rule_v:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除')}">删除</span></button>
+    <button th:if="${perm.checkAuth('eam_asset_status_rule_v:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
 
 
 </script>

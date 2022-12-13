@@ -204,8 +204,6 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 			ar.setProcessType(AssetOperateEnum.EAM_ASSET_DEPRECIATION_OPER.code());
 			ar.setProcessdTime(new Date());
 			ar.setContent("发生资产折旧动作 ");
-			//assetService.save(ups,SaveMode.NOT_NULL_FIELDS,false);
-			//assetProcessRecordService.insert(ar,false);
 			assetList.add(ups);
 			assetOperList.add(ar);
 			if(batchCnt>500){
@@ -452,6 +450,8 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 	public List<AssetDepreciationOper> queryList(AssetDepreciationOper sample) {
 		return super.queryList(sample);
 	}
+
+
 
 
 	/**

@@ -2,8 +2,11 @@ package com.dt.platform.generator.module.eam;
 
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.domain.eam.AssetStatus;
+import com.dt.platform.domain.eam.AssetStatusRule;
 import com.dt.platform.domain.eam.meta.AssetMeta;
 import com.dt.platform.domain.eam.meta.AssetStatusMeta;
+import com.dt.platform.domain.eam.meta.AssetStatusRuleMeta;
+import com.dt.platform.domain.eam.meta.AssetStatusRuleVMeta;
 import com.dt.platform.eam.page.AssetStatusRulePageController;
 import com.dt.platform.eam.page.AssetStatusRuleVPageController;
 import com.dt.platform.generator.config.Config;
@@ -26,6 +29,7 @@ public class EamAssetStatusRuleVGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addSimpleProperty(AssetStatus.class,"assetCycleStatus","assetCycleStatus","assetCycleStatus");
 
 
+        cfg.getPoClassFile().addSimpleProperty(AssetStatusRule.class,"assetStatusRule","assetStatusRule","assetStatusRule");
 
         cfg.view().search().inputLayout(
                 new Object[]{
@@ -41,16 +45,35 @@ public class EamAssetStatusRuleVGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_ASSET_STATUS_RULE_V.STATUS_CODE).form().validate().required();
 
         cfg.view().formWindow().width(Config.baseFormWidth);;
-        cfg.view().formWindow().bottomSpace(20);
+        cfg.view().formWindow().bottomSpace(200);
 
         cfg.view().list().addJsVariable("OPER_CODE","[[${operCode}]]","OPER_CODE");
+
+
+        cfg.view().field(EAMTables.EAM_ASSET_STATUS_RULE_V.OPER_CODE).form().validate().required()
+                .form().selectBox().queryApi(AssetStatusRuleServiceProxy.QUERY_LIST)
+                .paging(false).filter(true).toolbar(false)
+                .valueField(AssetStatusRuleMeta.OPER_CODE).
+                textField(AssetStatusRuleMeta.OPER_CODE).
+                fillWith(AssetStatusRuleVMeta.ASSET_STATUS_RULE).muliti(false).defaultIndex(0);
+
 
         cfg.view().field(EAMTables.EAM_ASSET_STATUS_RULE_V.STATUS_CODE).form().validate().required()
                 .form().selectBox().queryApi(AssetStatusServiceProxy.QUERY_LIST)
                 .paging(false).filter(true).toolbar(false)
                 .valueField(AssetStatusMeta.CODE).
                 textField(AssetStatusMeta.NAME).
-                fillWith(AssetMeta.ASSET_CYCLE_STATUS).muliti(false).defaultIndex(0);
+                fillWith(AssetStatusRuleVMeta.ASSET_CYCLE_STATUS).muliti(false).defaultIndex(0);
+
+        cfg.view().formWindow().width(Config.baseFormWidth);;
+        cfg.view().formWindow().bottomSpace(200);
+        cfg.view().form().addGroup(null,
+                new Object[]{
+                        EAMTables.EAM_ASSET_STATUS_RULE_V.OPER_CODE,
+                        EAMTables.EAM_ASSET_STATUS_RULE_V.STATUS_CODE
+                }
+        );
+
 
 
         //文件生成覆盖模式
@@ -60,7 +83,7 @@ public class EamAssetStatusRuleVGtr extends BaseCodeGenerator{
                 .setPageController(WriteMode.IGNORE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
-                .setExtendJsFile(WriteMode.COVER_EXISTS_FILE); //列表HTML页
+                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         cfg.buildAll();
     }
 
