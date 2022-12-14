@@ -125,7 +125,7 @@ public class AssetAlarmServiceImpl extends SuperService<Asset> implements IAsset
                 "select * from (\n" +
                 "select serial_number,count(1) cnt from \n" +
                 "(   select ifnull(i.serial_number,'')serial_number ,i.id,i.status,i.owner_code ,i.tenant_id,i.deleted from eam_asset i    ) t\n" +
-                " where deleted='0' and owner_code='asset' and tenant_id=? group by serial_number\n" +
+                " where deleted=0  and owner_code='asset' and tenant_id=? group by serial_number\n" +
                 ") t2 where  trim(serial_number) <>'' and  cnt>1";
         RcdSet rs=dao.query(sql,tenantId);
         return rs.toJSONArrayWithJSONObject();

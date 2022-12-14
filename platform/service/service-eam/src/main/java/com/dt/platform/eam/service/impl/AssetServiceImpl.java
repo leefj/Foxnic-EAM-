@@ -506,7 +506,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		JSONObject assetJsonAfter=BeanUtil.toJSONObject(assetAfter);
 
 		//获取注册的允许变更记录的字段
-		String sql="select id,code,label,value_type,value_path from eam_asset_attribute where code not in ('status','business_code','batch_code') and deleted='0' and tenant_id=?";
+		String sql="select id,code,label,value_type,value_path from eam_asset_attribute where code not in ('status','business_code','batch_code') and deleted=0 and tenant_id=?";
 		RcdSet rs=dao.query(sql,SessionUser.getCurrent().getActivatedTenantId());
 		HashMap<String,Rcd> colsMap=(HashMap<String,Rcd>)rs.getMappedRcds("code",String.class);
 		//删除不存在的

@@ -72,7 +72,7 @@ public class OperateServiceImpl extends SuperService<Operate> implements IOperat
 		if(StringUtil.isBlank(sn)){
 			return true;
 		}
-		String sql="select 1 from eam_asset where serial_number=? and tenant_id=? and owner_code=? and deleted='0'";
+		String sql="select 1 from eam_asset where serial_number=? and tenant_id=? and owner_code=? and deleted=0";
 		if(!StringUtil.isBlank(id)){
 			sql=sql+" and id<>'"+id+"'";
 		}

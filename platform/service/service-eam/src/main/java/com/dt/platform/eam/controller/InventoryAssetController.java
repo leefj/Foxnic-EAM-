@@ -328,7 +328,7 @@ public class InventoryAssetController extends SuperController {
         Result<PagedList<InventoryAsset>> result = new Result<>();
 
         ConditionExpr condition=new ConditionExpr();
-        condition.and( " asset_id in (select id from eam_asset where deleted='0')");
+        condition.and( " asset_id in (select id from eam_asset where deleted=0)");
         PagedList<InventoryAsset> list = inventoryAssetService.queryPagedList(sample, condition,sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         inventoryAssetService.dao().fill(list).with(InventoryAssetMeta.OPERATER).with(InventoryAssetMeta.ASSET).execute();

@@ -163,7 +163,7 @@ public class MonitorStatisticalDataServiceImpl extends SuperService<MonitorNode>
                 ") data_os_net_interface_flow_down,\n" +
                 "\n" +
                 "end.*\n" +
-                "from ops_monitor_node end where node_enabled='enable' and deleted='0'\n" ;
+                "from ops_monitor_node end where node_enabled='enable' and deleted=0 \n" ;
         Result<JSONObject> result=new Result<>();
         JSONObject resultData=new JSONObject();
         //统计节点个数
@@ -654,7 +654,7 @@ public class MonitorStatisticalDataServiceImpl extends SuperService<MonitorNode>
                 "in (\n" +
                 "select node_id,indicator_code,list_value_str1,max(record_time) max_record_time from (select * from ops_monitor_node_value_last where indicator_code='os.fs' and result_status='sucess') t group by node_id,indicator_code,list_value_str1\n" +
                 ")\n" +
-                "order by a.list_value_number1 desc)end limit "+top;
+                "order by a.list_value_number1 desc) end limit "+top;
         return dao.query(sql).toJSONArrayWithJSONObject();
     }
     private JSONArray queryNodeHostTopDataOsFsInodeUsed(int top,int day){
@@ -671,7 +671,7 @@ public class MonitorStatisticalDataServiceImpl extends SuperService<MonitorNode>
              //  "and b.status='online' \n" +
                 "and (node_id,indicator_code,list_value_str1,record_time) \n" +
                 "in (select node_id,indicator_code,list_value_str1,max(record_time) max_record_time from (select * from ops_monitor_node_value_last where indicator_code='os.net_interface_flow' and result_status='sucess') t group by node_id,indicator_code,list_value_str1)\n" +
-                "order by a.list_value_number1 desc)end limit "+top;
+                "order by a.list_value_number1 desc) end limit "+top;
         return dao.query(sql).toJSONArrayWithJSONObject();
     }
     private JSONArray queryNodeHostTopDataOsNetFlowDown(int top,int day){
@@ -683,7 +683,7 @@ public class MonitorStatisticalDataServiceImpl extends SuperService<MonitorNode>
              //   "and b.status='online' \n" +
                 "and (node_id,indicator_code,list_value_str1,record_time) \n" +
                 "in (select node_id,indicator_code,list_value_str1,max(record_time) max_record_time from (select * from ops_monitor_node_value_last where indicator_code='os.net_interface_flow' and result_status='sucess') t group by node_id,indicator_code,list_value_str1)\n" +
-                "order by a.list_value_number2 desc)end limit "+top;
+                "order by a.list_value_number2 desc) end limit "+top;
         return dao.query(sql).toJSONArrayWithJSONObject();
     }
 
@@ -696,7 +696,7 @@ public class MonitorStatisticalDataServiceImpl extends SuperService<MonitorNode>
               //  "and b.status='online' \n" +
                 "and (node_id,indicator_code,record_time) \n" +
                 "in (select node_id,indicator_code,max(record_time) max_record_time from (select * from ops_monitor_node_value_last where indicator_code='os.cpu' and result_status='sucess') t group by node_id,indicator_code)\n" +
-                "and cpu_idle is not null order by cpu_used desc)end limit "+top;
+                "and cpu_idle is not null order by cpu_used desc) end limit "+top;
         return dao.query(sql).toJSONArrayWithJSONObject();
     }
 
@@ -709,7 +709,7 @@ public class MonitorStatisticalDataServiceImpl extends SuperService<MonitorNode>
              //   "and b.status='online' \n" +
                 "and (node_id,indicator_code,record_time) \n" +
                 "in (select node_id,indicator_code,max(record_time) max_record_time from (select * from ops_monitor_node_value_last where indicator_code='os.load' and result_status='sucess') t group by node_id,indicator_code)\n" +
-                "order by os_load desc)end limit "+top;
+                "order by os_load desc) end limit "+top;
         return dao.query(sql).toJSONArrayWithJSONObject();
     }
 

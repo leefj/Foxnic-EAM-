@@ -140,7 +140,7 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
             Logger.info("fill catalog 0");
         }else{
             Logger.info("fill catalog expr");
-            expr.and("category_id in (select category_id from eam_asset_depreciation_category where deleted=0 and depreciation_id='" + bill.getDepreciationId() + "')");
+            expr.and("category_id in (select category_id from eam_asset_depreciation_category where deleted=0 and depreciation_id=?)",bill.getDepreciationId());
         }
         //添加过滤添加-确保分类存在，正常不需要这个条件
         expr.and("category_id in (select id from pcm_catalog where deleted=0)");

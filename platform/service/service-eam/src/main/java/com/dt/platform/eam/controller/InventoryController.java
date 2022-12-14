@@ -428,7 +428,7 @@ public class InventoryController extends SuperController {
                     "and\n" +
                     "(\n" +
                     "b.use_user_id=? or   \n" +
-                    "(b.asset_status in (select status_code from eam_asset_status_rule_v where deleted='0' and oper_code='eam_asset_inventory_employ_mode') and b.manager_id=?)\n" +
+                    "(b.asset_status in (select status_code from eam_asset_status_rule_v where deleted=0 and oper_code='eam_asset_inventory_employ_mode') and b.manager_id=?)\n" +
                     ") \n" +
                     "group by a.status";
             rs=inventoryService.dao().query(sql, id, userId, userId);

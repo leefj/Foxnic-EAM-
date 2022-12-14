@@ -190,18 +190,21 @@ function FormPage() {
 				return opts;
 			}
 		});
+
 		//渲染 assetStatus 下拉字段
 		fox.renderSelectBox({
 			el: "assetStatus",
 			radio: false,
-			filterable: false,
+			filterable: true,
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("assetStatus",data.arr,data.change,data.isAdd);
 				},1);
 			},
 			//转换数据
-			transform:function(data) {
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
 				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
 				var defaultValues=[],defaultIndexs=[];
 				if(action=="create") {
@@ -211,11 +214,40 @@ function FormPage() {
 				var opts=[];
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
-					opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					if(!data[i]) continue;
+					opts.push({data:data[i],name:data[i].name,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
 				}
 				return opts;
 			}
 		});
+		//渲染 assetStatus 下拉字段
+		// fox.renderSelectBox({
+		// 	el: "assetStatus",
+		// 	radio: false,
+		// 	filterable: false,
+		// 	on: function(data){
+		// 		setTimeout(function () {
+		// 			window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("assetStatus",data.arr,data.change,data.isAdd);
+		// 		},1);
+		// 	},
+		// 	//转换数据
+		// 	transform:function(data) {
+		// 		//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+		// 		var defaultValues=[],defaultIndexs=[];
+		// 		if(action=="create") {
+		// 			defaultValues = "".split(",");
+		// 			defaultIndexs = "".split(",");
+		// 		}
+		// 		var opts=[];
+		// 		if(!data) return opts;
+		// 		for (var i = 0; i < data.length; i++) {
+		// 			opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+		// 		}
+		// 		return opts;
+		// 	}
+		// });
+
+
 		laydate.render({
 			elem: '#purchaseStartDate',
 			format:"yyyy-MM-dd",

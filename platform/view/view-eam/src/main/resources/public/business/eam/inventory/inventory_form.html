@@ -144,7 +144,7 @@
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('资产状态')}">资产状态</div></div>
                     <div class="layui-input-block ">
-                        <div id="assetStatus" input-type="select" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.AssetStatusEnum')}" extraParam="{}"></div>
+                        <div id="assetStatus" input-type="select" th:data="${'/service-eam/eam-asset-status/query-list'}" extraParam="{}"></div>
                     </div>
                 </div>
 
