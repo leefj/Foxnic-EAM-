@@ -181,10 +181,10 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 				}
 			}else{
 				//行政管理人员盘点，盘点当前管理人员是否是行政人员
-				String sql="select id from eam_asset where id=? and deleted=0 and manager_id='"+loginUserId+"' and asset_status in (select status_code from eam_asset_status_rule_v where deleted='0' and oper_code='eam_asset_inventory_employ_mode')\n" +
+				String sql="select id from eam_asset where id=? and deleted=0 and manager_id=? and asset_status in (select status_code from eam_asset_status_rule_v where deleted=0 and oper_code='eam_asset_inventory_employ_mode')\n" +
 						"union all\n" +
-						"select id from eam_asset where deleted=0 and use_user_id='"+loginUserId+"' and id=?";
-				Rcd rs=dao.queryRecord(sql,assetId,assetId);
+						"select id from eam_asset where deleted=0 and use_user_id=? and id=?";
+				Rcd rs=dao.queryRecord(sql,assetId,loginUserId,loginUserId,assetId);
 				if(rs==null){
 					return ErrorDesc.failureMessage("当前用户没有权限盘点本资产");
 				}else{
@@ -352,14 +352,15 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 		if(managerRs==null){
 			System.out.println("普通员工盘点查询");
 			//普通员工盘点，盘点当前获取的资产是否是本人
-			expr.and("asset_id in (select id from eam_asset where deleted=0 and use_user_id='"+curUserId+"' )");
+			expr.and("asset_id in (select id from eam_asset where deleted=0 and use_user_id=?)",curUserId);
 		}else{
 			//行政管理人员盘点，盘点当前管理人员是否是行政人员，并且资产状态为idle
 			System.out.println("管理人员盘点查询");
-			String sql="select id from eam_asset where deleted=0 and manager_id='"+curUserId+"' and asset_status in (select status_code from eam_asset_status_rule_v where deleted='0' and oper_code='eam_asset_inventory_employ_mode')\n" +
+			String sql="select id from eam_asset where deleted=0 and manager_id=? and asset_status in (select status_code from eam_asset_status_rule_v where deleted=0 and oper_code='eam_asset_inventory_employ_mode')\n" +
 					"union all\n" +
-					"select id from eam_asset where deleted=0 and use_user_id='"+curUserId+"'";
-			expr.and("asset_id in ("+sql+")");
+					"select id from eam_asset where deleted=0 and use_user_id=?";
+			expr.and("asset_id in ("+sql+")",curUserId,curUserId);
+
 		}
 		return inventoryAssetService.queryPagedList(sample,expr,pageSize,pageIndex);
 	}
@@ -548,7 +549,7 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 			dao.execute("update eam_asset set owner_code='asset' where owner_code='inventory_asset' and id in (select asset_id from eam_inventory_asset where deleted=0 and source='asset_plus' and inventory_id=?)",id);
 			//更新核对时间
 			dao.execute("update eam_inventory set data_status='"+AssetInventoryDataStatusEnum.SYNC.code()+"' where id=?",id);
-			dao.execute("update eam_asset set last_verification_date=now() where id in (select  asset_id from eam_inventory_asset where deleted='0' and inventory_id=?)",id);
+			dao.execute("update eam_asset set last_verification_date=now() where id in (select  asset_id from eam_inventory_asset where deleted=0 and inventory_id=?)",id);
 
 
 		}else{

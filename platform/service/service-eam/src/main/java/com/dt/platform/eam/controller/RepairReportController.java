@@ -67,7 +67,7 @@ public class RepairReportController extends SuperController {
     @PostMapping(RepairReportServiceProxy.GROUP_REPORT)
     public Result<JSONArray> groupReport() {
         Result<JSONArray> result = new Result<>();
-        String sql = "select c.id,c.name ,count(1) order_cnt from eam_repair_order a,eam_repair_order_act b ,eam_repair_group c where a.repair_status='finish' and a.deleted='0'\n" + "and a.id=b.order_id and c.id=b.group_id\n" + "group by c.id,c.name";
+        String sql = "select c.id,c.name ,count(1) order_cnt from eam_repair_order a,eam_repair_order_act b ,eam_repair_group c where a.repair_status='finish' and a.deleted=0 and a.id=b.order_id and c.id=b.group_id group by c.id,c.name";
         RcdSet rs = assetService.dao().query(sql);
         result.data(rs.toJSONArrayWithJSONObject());
         return result;

@@ -227,7 +227,7 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
 
         //资产总数
         String sql3="select \n" +
-                "(select count(1) from eam_asset_tranfer where deleted='0' and status='approval') wait_asset_tranfer_cnt,\n" +
+                "(select count(1) from eam_asset_tranfer where deleted=0 and status='approval') wait_asset_tranfer_cnt,\n" +
                 "(select count(1) maintenance_end_cnt from eam_asset a where a.owner_code='asset' and a.deleted=0 and a.status='complete' and maintenance_end_date<date_add(curdate(),interval 30 day) )maintenance_end_cnt,\n"+
                 "(select count(1) asset_cnt from eam_asset a where a.owner_code='asset' and a.deleted=0  and a.status='complete') asset_cnt,\n" +
                 "(select IFNULL(sum(original_unit_price),0) asset_original_unit_price from eam_asset a where a.owner_code='asset' and a.deleted=0  and a.status='complete') asset_original_unit_price,\n" +
@@ -253,13 +253,13 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
         JSONObject result=new JSONObject();
 
 
-        String sql="select count(1) repair_asset_cnt from eam_asset_item where handle_id in (select id from eam_repair_order where repair_status='finish' and deleted='0') and deleted='0' ";
+        String sql="select count(1) repair_asset_cnt from eam_asset_item where handle_id in (select id from eam_repair_order where repair_status='finish' and deleted=0) and deleted=0 ";
         result.put("repairAssetCnt",dao.queryRecord(sql).getInteger("repair_asset_cnt"));
 
-        String sql11="select count(1) repairing_asset_cnt from eam_asset_item where handle_id in ( select id from eam_repair_order where repair_status in ('dispatched','repairing') and deleted='0' ) and deleted='0' ";
+        String sql11="select count(1) repairing_asset_cnt from eam_asset_item where handle_id in ( select id from eam_repair_order where repair_status in ('dispatched','repairing') and deleted=0 ) and deleted=0 ";
         result.put("repairingAssetCnt",dao.queryRecord(sql11).getInteger("repairing_asset_cnt"));
 
-        String sql111=" select count(1) repair_order_not_dispatch_cnt from eam_repair_order where repair_status in ('not_dispatch') and deleted='0'   ";
+        String sql111=" select count(1) repair_order_not_dispatch_cnt from eam_repair_order where repair_status in ('not_dispatch') and deleted=0   ";
         result.put("repairOrderNotDispatchCnt",dao.queryRecord(sql111).getInteger("repair_order_not_dispatch_cnt"));
 
         String sql2="select count(1) maintain_project_cnt from eam_maintain_task_project where task_id in (\n" +
@@ -267,17 +267,17 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
                 "and deleted='0'";
         result.put("maintainProjectCnt",dao.queryRecord(sql2).getInteger("maintain_project_cnt"));
 
-        String sql3="select count(1) inspection_task_cnt from eam_inspection_task where task_status='finish' and deleted='0'";
+        String sql3="select count(1) inspection_task_cnt from eam_inspection_task where task_status='finish' and deleted=0";
         result.put("inspectionTaskCnt",dao.queryRecord(sql3).getInteger("inspection_task_cnt"));
 
-        String sql31="select count(1) inspection_task_point_cnt from eam_inspection_task_point where task_id in (select id inspection_task_cnt from eam_inspection_task where task_status='finish' and deleted='0') and deleted='0'";
+        String sql31="select count(1) inspection_task_point_cnt from eam_inspection_task_point where task_id in (select id inspection_task_cnt from eam_inspection_task where task_status='finish' and deleted=0) and deleted=0";
         result.put("inspectionTaskPointCnt",dao.queryRecord(sql31).getInteger("inspection_task_point_cnt"));
 
-        String sql4="select (select count(1) finish_cnt from eam_repair_order where status='complete' and deleted='0' and repair_status='finish') finish_cnt,\n" +
-                "(select count(1) not_dispatch_cnt from eam_repair_order where status='complete' and deleted='0' and repair_status='not_dispatch')not_dispatch_cnt,\n" +
-                "(select count(1) wait_acceptance_cnt from eam_repair_order where status='complete' and deleted='0' and repair_status='wait_acceptance')wait_acceptance_cnt,\n" +
-                "(select count(1) dispatched_cnt from eam_repair_order where status='complete' and deleted='0' and repair_status='dispatched')dispatched_cnt,\n" +
-                "(select count(1) repairing_cnt from eam_repair_order where status='complete' and deleted='0' and repair_status='repairing')repairing_cnt";
+        String sql4="select (select count(1) finish_cnt from eam_repair_order where status='complete' and deleted=0 and repair_status='finish') finish_cnt,\n" +
+                "(select count(1) not_dispatch_cnt from eam_repair_order where status='complete' and deleted=0 and repair_status='not_dispatch')not_dispatch_cnt,\n" +
+                "(select count(1) wait_acceptance_cnt from eam_repair_order where status='complete' and deleted=0 and repair_status='wait_acceptance')wait_acceptance_cnt,\n" +
+                "(select count(1) dispatched_cnt from eam_repair_order where status='complete' and deleted=0 and repair_status='dispatched')dispatched_cnt,\n" +
+                "(select count(1) repairing_cnt from eam_repair_order where status='complete' and deleted=0 and repair_status='repairing')repairing_cnt";
         Rcd rs=dao.queryRecord(sql4);
         JSONArray repairData=new JSONArray();
         JSONObject a1=new JSONObject();
@@ -310,9 +310,9 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
 
         String sql5="\n" +
                 "select \n" +
-                "(select count(1) not_start_cnt from eam_inspection_task where task_status='not_start' and deleted='0')not_start_cnt,\n" +
-                "(select count(1) acting_cnt from eam_inspection_task where task_status='acting' and deleted='0')acting_cnt,\n" +
-                "(select count(1) finish_cnt from eam_inspection_task where task_status='finish' and deleted='0')finish_cnt\n" +
+                "(select count(1) not_start_cnt from eam_inspection_task where task_status='not_start' and deleted=0) not_start_cnt,\n" +
+                "(select count(1) acting_cnt from eam_inspection_task where task_status='acting' and deleted=0) acting_cnt,\n" +
+                "(select count(1) finish_cnt from eam_inspection_task where task_status='finish' and deleted=0) finish_cnt\n" +
                 "\n";
         Rcd rs2=dao.queryRecord(sql5);
         JSONArray inspectionData=new JSONArray();
@@ -335,7 +335,7 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
 
         String sql6="select a.name,b.project_cnt from eam_maintain_project a,(\n" +
                 "select project_id,count(1) project_cnt from eam_maintain_task_project where task_id in (\n" +
-                "select id from eam_maintain_task where status='finish' and deleted='0'\n" +
+                "select id from eam_maintain_task where status='finish' and deleted=0\n" +
                 ") and deleted=0 group by project_id)b where a.id=b.project_id\n";
 
         RcdSet rs6=dao.query(sql6);
