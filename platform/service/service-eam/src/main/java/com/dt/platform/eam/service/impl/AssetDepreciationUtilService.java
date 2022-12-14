@@ -62,18 +62,22 @@ public class AssetDepreciationUtilService {
     }
 
     public static void main(String[] args) {
-        AssetDepreciationUtilService a=new AssetDepreciationUtilService();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date date11 = null;
-        Date date22 =null;
-        try {
-              date11 = sdf.parse("2022-01-01");
-              date22 = sdf.parse("2023-12-05");
-            String t=a.usedLifeByAccountingPeriod(date11,date22);
-            System.out.println(t);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+
+        String result="3.454";
+        BigDecimal bResult = new BigDecimal(result).setScale(2,BigDecimal.ROUND_HALF_UP);
+        System.out.println(bResult);
+//        AssetDepreciationUtilService a=new AssetDepreciationUtilService();
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        Date date11 = null;
+//        Date date22 =null;
+//        try {
+//              date11 = sdf.parse("2022-01-01");
+//              date22 = sdf.parse("2023-12-05");
+//            String t=a.usedLifeByAccountingPeriod(date11,date22);
+//            System.out.println(t);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
     }
     /**
      * 月份是否一样
@@ -207,7 +211,9 @@ public class AssetDepreciationUtilService {
             //返回
             if(AssetDepreciationCalculationReturnTypeEnum.TYPE_DOUBLE.code().equals(rule.getReturnType())){
                 //double 类型
-                BigDecimal bResult = new BigDecimal(result).setScale(2,BigDecimal.ROUND_DOWN);
+                //BigDecimal.ROUND_DOWN 截取
+                //BigDecimal.ROUND_HALF_UP 进行四舍五入
+                BigDecimal bResult = new BigDecimal(result).setScale(2,BigDecimal.ROUND_HALF_UP);
                 BeanUtil.setFieldValue(assetDepreciationDetail,colValue,bResult);
                 System.out.println(partMsg+",设置值:"+BeanUtil.getFieldValue(assetDepreciationDetail,colValue,BigDecimal.class).toString());
             }else if(AssetDepreciationCalculationReturnTypeEnum.TYPE_STRING.code().equals(rule.getReturnType())){
