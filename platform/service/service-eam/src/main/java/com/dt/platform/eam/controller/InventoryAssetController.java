@@ -7,6 +7,7 @@ import com.dt.platform.domain.eam.meta.AssetMeta;
 import com.dt.platform.domain.eam.meta.InventoryMeta;
 import com.dt.platform.eam.service.IAssetService;
 import com.github.foxnic.commons.collection.CollectorUtil;
+import com.github.foxnic.sql.expr.ConditionExpr;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Person;
 import com.github.foxnic.commons.collection.CollectorUtil;
@@ -325,7 +326,10 @@ public class InventoryAssetController extends SuperController {
     @PostMapping(InventoryAssetServiceProxy.QUERY_PAGED_LIST)
     public Result<PagedList<InventoryAsset>> queryPagedList(InventoryAssetVO sample) {
         Result<PagedList<InventoryAsset>> result = new Result<>();
-        PagedList<InventoryAsset> list = inventoryAssetService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
+
+        ConditionExpr condition=new ConditionExpr();
+        condition.and( " asset_id in (select id from eam_asset where deleted='0')");
+        PagedList<InventoryAsset> list = inventoryAssetService.queryPagedList(sample, condition,sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         inventoryAssetService.dao().fill(list).with(InventoryAssetMeta.OPERATER).with(InventoryAssetMeta.ASSET).execute();
         List<Employee> operList = CollectorUtil.collectList(list.getList(), InventoryAsset::getOperater);

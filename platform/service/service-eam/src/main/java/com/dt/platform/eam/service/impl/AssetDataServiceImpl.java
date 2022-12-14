@@ -332,13 +332,19 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                     dataVer.put("hintShow",false);
                     dataVer.put("hintText","");
                     if("assetStatusName".equals(secondAssetColumn)){
-                        dataVer.put("type","dropdown");
-                        dataVer.put("value1", AssetStatusEnum.IDLE.text()+","+
-                                AssetStatusEnum.USING.text()+","+
-                                AssetStatusEnum.SCRAP.text()
-                        );
+//                        dataVer.put("type","dropdown");
+//                        dataVer.put("value1", AssetStatusEnum.IDLE.text()+","+
+//                                AssetStatusEnum.USING.text()+","+
+//                                AssetStatusEnum.SCRAP.text()
+//                        );
+//                        dataVer.put("prohibitInput",true);
+//                        dataVerification=dataVer;
                         dataVer.put("prohibitInput",true);
+                        dataVer.put("type","dropdown");
+                        List<String> value=this.dao.query("select name from eam_asset_status where deleted=0" ).getValueList("name",String.class);
+                        dataVer.put("value1",  String.join(",", value));
                         dataVerification=dataVer;
+
                     }else if("serviceLife".equals(secondAssetColumn)){
                         dataVer.put("type","number");
                         dataVer.put("type2","bw");
@@ -466,7 +472,6 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                         dataVer.put("value1",  String.join(",", value));
                         dataVerification=dataVer;
                     }
-
                     else if("expenseItemName".equals(secondAssetColumn)){
                         dataVer.put("prohibitInput",true);
                         dataVer.put("type","dropdown");
