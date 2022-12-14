@@ -181,16 +181,14 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 				}
 			}else{
 				//行政管理人员盘点，盘点当前管理人员是否是行政人员
-				if(loginUserId.equals(managerId)){
-					//管理人员，处理判断管理资产，在次判断资产状态
-					Rcd rs=dao.queryRecord("select 1 from eam_asset_status_rule_v where deleted='0' and oper_code='eam_asset_inventory_employ_mode' and status_code=?",assetStatus);
-					if(rs==null){
-						return ErrorDesc.failureMessage("当前用户没有权限盘点本资产");
-					}else{
-						return res.success(true).data(inventoryAssetRs.toJSONObject());
-					}
-				}else{
+				String sql="select id from eam_asset where id=? and deleted=0 and manager_id='"+loginUserId+"' and asset_status in (select status_code from eam_asset_status_rule_v where deleted='0' and oper_code='eam_asset_inventory_employ_mode')\n" +
+						"union all\n" +
+						"select id from eam_asset where deleted=0 and use_user_id='"+loginUserId+"' and id=?";
+				Rcd rs=dao.queryRecord(sql,assetId,assetId);
+				if(rs==null){
 					return ErrorDesc.failureMessage("当前用户没有权限盘点本资产");
+				}else{
+					return res.success(true).data(inventoryAssetRs.toJSONObject());
 				}
 			}
 		}else if(AssetInventoryModeEnum.FULL_INVENTORY_MODE.code().equals(type)){
@@ -336,26 +334,32 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 		return this.queryPagedList(sample,pageSize,pageIndex);
 	}
 
-	/** 全员盘点搜索数据逻辑 */
+	/** 全员盘点搜索数据逻辑，我的盘点接口 */
 	@Override
 	public PagedList<InventoryAsset> queryMyAssetByEmployeeModePagedList(InventoryAsset sample,int pageSize,int pageIndex) {
+		//全员盘点
 		String inventoryId=sample.getInventoryId();
 		if(StringUtil.isBlank(sample.getInventoryId())){
 			sample.setInventoryId("-1");
 		}
 		ConditionExpr expr=new ConditionExpr();
 		String curUserId=SessionUser.getCurrent().getUser().getActivatedEmployeeId();
+		expr.and(" asset_id in (select id from eam_asset where deleted=0)");
 
 		//盘点是否是行政人员
 		String managerSql="select 1 from sys_busi_role a,sys_busi_role_member b where a.code='employ_inventory_manag_role' and a.id=b.role_id and a.deleted=0 and b.member_type='employee' and b.member_id=?";
 		Rcd managerRs=dao.queryRecord(managerSql,curUserId);
 		if(managerRs==null){
-			System.out.println("普通员工查询");
+			System.out.println("普通员工盘点查询");
 			//普通员工盘点，盘点当前获取的资产是否是本人
-			expr.and("asset_id in (select id from eam_asset where asset_status in (select status_code from eam_asset_status_rule_v where deleted='0' and oper_code='eam_asset_inventory_employ_mode') and deleted=0 and owner_code='asset' and use_user_id='"+curUserId+"' ) or oper_empl_id='"+curUserId+"'" );
+			expr.and("asset_id in (select id from eam_asset where deleted=0 and use_user_id='"+curUserId+"' )");
 		}else{
 			//行政管理人员盘点，盘点当前管理人员是否是行政人员，并且资产状态为idle
-			System.out.println("管理人员查询");
+			System.out.println("管理人员盘点查询");
+			String sql="select id from eam_asset where deleted=0 and manager_id='"+curUserId+"' and asset_status in (select status_code from eam_asset_status_rule_v where deleted='0' and oper_code='eam_asset_inventory_employ_mode')\n" +
+					"union all\n" +
+					"select id from eam_asset where deleted=0 and use_user_id='"+curUserId+"'";
+			expr.and("asset_id in ("+sql+")");
 		}
 		return inventoryAssetService.queryPagedList(sample,expr,pageSize,pageIndex);
 	}

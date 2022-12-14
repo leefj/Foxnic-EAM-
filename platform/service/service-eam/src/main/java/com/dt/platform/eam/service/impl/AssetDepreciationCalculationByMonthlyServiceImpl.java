@@ -298,32 +298,50 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
                 if("后台".equals(detail.getFinancialOptionName())){
                     detail.setCustomerInfo("无");
                 }
-                //定制-员工扩展字段
-                if(StringUtil.isBlank(asset.getUseUser())){
-                    //使用人为空，则填写管理人员的成本中心
-                    if(!StringUtil.isBlank(asset.getManager())){
-                        //使用使用人员的成本中心
-                        detail.setUseUserName(asset.getManager().getName());
-                        if(userInfoExt.containsKey(asset.getManagerId())){
-                            JSONObject ext=userInfoExt.get(asset.getManagerId());
-                            detail.setLabel(ext.getString("cost_center"));
-                        }
-                    }
-                }else{
-                    //使用人员不为空，则填写使用人的
-                    if(userInfoExt.containsKey(asset.getUseUserId())){
-                        JSONObject ext=userInfoExt.get(asset.getUseUserId());
-                        detail.setLabel(ext.getString("cost_center"));
-                        detail.setUseUserName(asset.getUseUser().getName());
-                    }
-                }
-                //定制-重置使用人
-                if( AssetStatusEnum.USING.code().equals(asset.getAssetCycleStatus())){
-                    //默认有使用人，已填使用人
-                }else{
+                //定制-员工扩展字段 版本一
+//                if(StringUtil.isBlank(asset.getUseUser())){
+//                    //使用人为空，则填写管理人员的成本中心
+//                    if(!StringUtil.isBlank(asset.getManager())){
+//                        //使用使用人员的成本中心
+//                        detail.setUseUserName(asset.getManager().getName());
+//                        if(userInfoExt.containsKey(asset.getManagerId())){
+//                            JSONObject ext=userInfoExt.get(asset.getManagerId());
+//                            detail.setLabel(ext.getString("cost_center"));
+//                        }
+//                    }
+//                }else{
+//                    //使用人员不为空，则填写使用人的
+//                    if(userInfoExt.containsKey(asset.getUseUserId())){
+//                        JSONObject ext=userInfoExt.get(asset.getUseUserId());
+//                        detail.setLabel(ext.getString("cost_center"));
+//                        detail.setUseUserName(asset.getUseUser().getName());
+//                    }
+//                }
+//                //定制-重置使用人
+//                if( AssetStatusEnum.USING.code().equals(asset.getAssetCycleStatus())){
+//                    //默认有使用人，已填使用人
+//                }else{
+//                    if(asset.getManager()!=null){
+//                        detail.setUseUserName(asset.getManager().getName());
+//                    }
+//                }
+                //定制-员工扩展字段 版本二
+                String uId="";
+                if(asset.getUseUser()==null){
+                    //如果使用不存在，获取管理人员
                     if(asset.getManager()!=null){
+                        uId=asset.getManager().getId();
                         detail.setUseUserName(asset.getManager().getName());
                     }
+                }else{
+                    //如果使用人存在
+                    uId=asset.getUseUser().getId();
+                    detail.setUseUserName(asset.getUseUser().getName());
+                }
+                //设置成本中心
+                if(!StringUtil.isBlank(uId)){
+                    JSONObject ext=userInfoExt.get(uId);
+                    detail.setLabel(ext.getString("cost_center"));
                 }
                 /*************定制结束----重置客户信息/***************/
                 detailList.add(detail);
