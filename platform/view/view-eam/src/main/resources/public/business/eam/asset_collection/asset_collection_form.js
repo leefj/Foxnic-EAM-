@@ -1,12 +1,13 @@
 /**
  * 资产领用 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-10-25 19:51:28
+ * @since 2022-12-14 16:08:53
  */
 
 function FormPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
+	
 	const moduleURL="/service-eam/eam-asset-collection";
 	// 表单执行操作类型：view，create，edit
 	var action=null;
@@ -140,8 +141,6 @@ function FormPage() {
 			el: "positionId",
 			radio: true,
 			filterable: true,
-			layVerify: 'required',
-			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("positionId",data.arr,data.change,data.isAdd);
