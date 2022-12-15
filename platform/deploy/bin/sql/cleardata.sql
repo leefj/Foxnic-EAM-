@@ -76,6 +76,7 @@ delete from eam_asset_depreciation_detail  where 1=1;
 delete from eam_asset_depreciation_detail  where 1=1;
 delete from eam_asset_depreciation_exclude  where 1=1;
 
+
 -- software
 delete from eam_asset_software  where 1=1  and tenant_id='T001' ;
 delete from eam_asset_software_change  where 1=1  and tenant_id='T001' ;

@@ -1305,7 +1305,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 	public Result conditionAssetBusinessType(String businessType,String assetCodeData,ConditionExpr queryCondition){
 
 
-		if(!StringUtil.isBlank(businessType)){
+		if(businessType!=null&&"eam_asset_inventory_employ_mode".equals(businessType)){
 			//盘点的时候单独处理
 			if(StringUtil.isBlank(assetCodeData)){
 				assetCodeData="-1";
@@ -1313,7 +1313,6 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			queryCondition.and("id not in (select asset_id from eam_inventory_asset where deleted=0 and inventory_id=?)",assetCodeData);
 			return ErrorDesc.success();
 		}
-
 
 		AssetStatusRule assetStatusRule=assetStatusRuleService.queryEntity(AssetStatusRule.create().setOperCode(businessType).setStatus(StatusEnableEnum.ENABLE.code()));
 		if(assetStatusRule!=null){

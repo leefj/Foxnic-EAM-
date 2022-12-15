@@ -35,6 +35,8 @@ public enum AssetAttributeItemOwnerEnum implements CodeTextEnum {
 	//单据和资产选择，资产公共显示
 	ASSET_BILL("asset_bill" , "资产单据列表"),
 	PUBLIC_SHOW("public_show" , "公共显示列表"),
+	//在线EXCEL列
+	ASSET_ONLINE_EXCEL("asset_online_excel" , "在线EXCEL列区域"),
 	;
 
 	private String code;
