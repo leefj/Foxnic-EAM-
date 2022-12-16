@@ -19,6 +19,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
     //模块基础路径
     const moduleURL="/service-eam/eam-inventory-asset";
+    var timestamp = Date.parse(new Date());
 
     //列表页的扩展
     var list={
@@ -54,6 +55,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             }
             console.log("list:beforeInit");
         },
+
+
+
         /**
          * 表格渲染前调用
          * @param cfg 表格配置参数
@@ -183,8 +187,28 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             var downloadUrl="/service-eam/eam-inventory/download-asset";
             ps={};
             ps.inventoryId=INVENTORY_ID;
-            fox.submit(downloadUrl,ps,"post",function(){
+            fox.submit(downloadUrl,ps,"post",function(){});
+        },
+        assetAdd:function(data){
+            var ASSET_SELECTED_CODE=INVENTORY_ID;
+            var billdata={};
+            billdata.assetBusinessType="eam_asset_inventory"
+            admin.putTempData('eam-asset-select-action', "create",true);
+            admin.putTempData('eam-asset-select-data'+ASSET_SELECTED_CODE, billdata,true);
+            var formTop=2;
+            var index=admin.popupCenter({
+                title: "选择资产",
+                resize: false,
+                offset: [formTop,null],
+                area: ["80%","90%"],
+                type: 2,
+                id:"eam-asset-select-data-win",
+                content: '/business/eam/asset/asset_select_list.html?assetSelectedCode='+ASSET_SELECTED_CODE,
+                finish: function () {
+                    window.module.refreshTableData();
+                }
             });
+            admin.putTempData('eam-asset-select-data-popup-index', index);
         },
         ending:function() {
 

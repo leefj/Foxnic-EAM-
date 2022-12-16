@@ -11,23 +11,21 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 */
 
 
-public enum AssetDetailDepreciationResultEnum implements CodeTextEnum {
+public enum AssetInventoryModeEnum implements CodeTextEnum {
 
-	DEPRECIATION_NORMAL("depreciation_normal" , "正常折旧"),
-	NOT_CALCULATE("not_calculate" , "不在折旧"),
-	DEPRECIATION_FINISHED("depreciation_finished" , "已折旧完")
-	;
+	EMPLOY_INVENTORY_MODE("employ_inventory_mode" , "全员盘点"),
+	FULL_INVENTORY_MODE("full_inventory_mode" , "普通盘点");
+
 	private String code;
 	private String text;
-	private AssetDetailDepreciationResultEnum(String code, String text)  {
+
+	private AssetInventoryModeEnum(String code, String text)  {
 		this.code=code;
 		this.text=text;
 	}
-	
 	public String code() {
 		return code;
 	}
-	
 	public String text() {
 		return text;
 	}

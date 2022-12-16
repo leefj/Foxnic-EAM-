@@ -50,7 +50,7 @@ public class EamAssetStatusRuleGtr extends BaseCodeGenerator{
 
                 }, new Object[] {
                         EAMTables.EAM_ASSET_STATUS_RULE.OPER_CONDITION,
-                        }
+                }
         );
 
         cfg.view().form().addGroup(null,

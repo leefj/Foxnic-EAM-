@@ -63,11 +63,11 @@ public class MonitorDataProcessBaseServiceImpl implements IMonitorDataProcessBas
             "select t1.*,ifnull(t2.interval_time,100000000) e_interval_time from (\n" +
             "select a.id,c.monitor_tpl_code,c.code,c.interval_time,c.id indicator_id from\n" +
             "ops_monitor_node a,ops_monitor_node_tpl_item b,ops_monitor_tpl_indicator c\n" +
-            "where a.deleted='0' \n" +
+            "where a.deleted=0 \n" +
            // "and a.status='online' \n" +
             "and a.node_enabled='enable' \n"+
-            "and b.deleted='0' \n" +
-            "and c.deleted='0' \n" +
+            "and b.deleted=0 \n" +
+            "and c.deleted=0 \n" +
             "and c.status='enable' \n" +
             "and c.monitor_method='#<MONITOR_METHOD>#' \n" +
             "and a.id=b.node_id \n" +

@@ -2,7 +2,7 @@
 /**
  * 资产盘点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-12 11:28:27
+ * @since 2022-12-10 20:58:11
  */
  -->
  <!DOCTYPE html>
@@ -59,6 +59,7 @@
                     <!-- 盘点结束时间 , finishTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 制单人 , originatorId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 计划编号 , planId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 重复盘点 , inventoryRepeat ,typeName=text_input, isHideInSearch=true -->
                     <!-- 保管人 , inventoryManagerIds ,typeName=button, isHideInSearch=true -->
                     <!-- 盘点人 , inventoryUserIds ,typeName=button, isHideInSearch=true -->
                     <!-- 负责人 , inventoryDirectorIds ,typeName=button, isHideInSearch=true -->

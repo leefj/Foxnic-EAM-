@@ -2,7 +2,7 @@
 /**
  * 资产入库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-05 14:24:19
+ * @since 2022-12-10 15:13:11
  */
  -->
  <!DOCTYPE html>
@@ -94,8 +94,8 @@
 
             <!-- 按钮区域 -->
             <div id="search-area" class="layui-form toolbar search-buttons" style="opacity: 0">
-                <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索')}">搜索</span></button>
-                <button id="search-button-advance" class="layui-btn layui-btn-primary icon-btn search-button-advance"><i class="layui-icon">&#xe671;</i><span th:text="${lang.translate('更多')}">更多</span></button>
+                <button id="search-button" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>&nbsp;&nbsp;<span th:text="${lang.translate('搜索','','cmp:table.search')}">搜索</span></button>
+                <button id="search-button-advance" class="layui-btn layui-btn-primary icon-btn search-button-advance"><i class="layui-icon">&#xe671;</i><span th:text="${lang.translate('更多','','cmp:table.search')}">更多</span></button>
             </div>
         </div>
 
@@ -115,21 +115,21 @@
 <!-- 表格工具栏 -->
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
-        <button th:if="${perm.checkAuth('eam_asset_storage:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建')}">新建</span></button>
+        <button th:if="${perm.checkAuth('eam_asset_storage:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建','','cmp:table.button')}">新建</span></button>
     </div>
 </script>
 
 <!-- 表格操作列 -->
 <script type="text/html" id="tableOperationTemplate">
 
-    <button th:if="${perm.checkAuth('eam_asset_storage:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看')}">查看</span></button>
-    <button th:if="${perm.checkAnyAuth('eam_asset_storage:update','eam_asset_storage:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('修改')}">修改</span></button>
+    <button th:if="${perm.checkAuth('eam_asset_storage:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看','','cmp:table.ops')}">查看</span></button>
+    <button th:if="${perm.checkAnyAuth('eam_asset_storage:update','eam_asset_storage:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('修改','','cmp:table.ops')}">修改</span></button>
 
 
-    <button th:if="${perm.checkAuth('eam_asset_storage:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除')}">删除</span></button>
+    <button th:if="${perm.checkAuth('eam_asset_storage:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
 
-    <button th:if="${perm.checkAuth('eam_asset_storage:confirm')}"class="layui-btn layui-btn-xs  confirm-data-button " lay-event="confirm-data" data-id="{{d.id}}"><span th:text="${lang.translate('确认')}">确认</span></button>
-    <button th:if="${perm.checkAuth('eam_asset_storage:bill')}"class="layui-btn layui-btn-xs  download-bill-button " lay-event="download-bill" data-id="{{d.id}}"><span th:text="${lang.translate('单据')}">单据</span></button>
+    <button th:if="${perm.checkAuth('eam_asset_storage:confirm')}"class="layui-btn layui-btn-xs  confirm-data-button " lay-event="confirm-data" data-id="{{d.id}}"><span th:text="${lang.translate('确认','','cmp:table.ops')}">确认</span></button>
+    <button th:if="${perm.checkAuth('eam_asset_storage:bill')}"class="layui-btn layui-btn-xs  download-bill-button " lay-event="download-bill" data-id="{{d.id}}"><span th:text="${lang.translate('单据','','cmp:table.ops')}">单据</span></button>
 
 </script>
 

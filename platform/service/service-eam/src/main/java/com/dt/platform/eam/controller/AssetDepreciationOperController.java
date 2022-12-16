@@ -378,7 +378,6 @@ public class AssetDepreciationOperController extends SuperController {
             return ErrorDesc.failureMessage("折旧方案为空");
         }
         for(String id:ids){
-
             AssetDepreciationDetail assetDepreciationDetail=assetDepreciationDetailService.getById(id);
             //更新资产折旧单据中的资产数据
             Update ups=new Update("eam_asset_depreciation_detail");
@@ -386,8 +385,6 @@ public class AssetDepreciationOperController extends SuperController {
             ups.set("result_detail",mark==null?"":mark);
             ups.where().and("id=?",id);
             assetDepreciationOperService.dao().execute(ups);
-
-
             //新增排除的资产数据
             Rcd rs=assetDepreciationOperService.dao().queryRecord("select 1 from eam_asset_depreciation_exclude where depreciation_id=? and asset_id=?",depId,assetDepreciationDetail.getAssetId());
             if(rs==null){
@@ -553,7 +550,7 @@ public class AssetDepreciationOperController extends SuperController {
     @PostMapping(AssetDepreciationOperServiceProxy.QUERY_ASSET_PAGED_LIST)
     public Result<PagedList<AssetDepreciationDetail>> queryAssetPagedList(AssetDepreciationDetailVO sample) {
         Result<PagedList<AssetDepreciationDetail>> result = new Result<>();
-        sample.setResult(AssetDetailDepreciationResultEnum.SUCCESS.code());
+        //-- sample.setResult(AssetDetailDepreciationResultEnum.SUCCESS.code());
         PagedList<AssetDepreciationDetail> list = assetDepreciationDetailService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         assetDepreciationDetailService.dao().fill(list).with("useOrganization").with("useUser").with(AssetDepreciationDetailMeta.FINANCIAL_OPTION_DICT).with(AssetDepreciationDetailMeta.EXPENSE_ITEM_DICT).with(AssetDepreciationDetailMeta.ASSET_DEPRECIATION).with(AssetDepreciationDetailMeta.ASSET_DEPRECIATION_OPER).execute();

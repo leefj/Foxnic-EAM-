@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产盘点VO类型
  * <p>资产盘点 , 数据表 eam_inventory 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-12 11:28:25
- * @sign 135BAC98096056B53E4C9E13041936AF
+ * @since 2022-12-10 20:58:09
+ * @sign E971F667921333F851B3A0377700592E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -80,6 +80,18 @@ public class InventoryVO extends Inventory {
 	*/
 	@ApiModelProperty(required = false,value="排序方式" , notes = "")
 	private String sortType;
+	
+	/**
+	 * 数据来源：前端指定不同的来源，后端按来源执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端按来源执行不同的逻辑")
+	private String dataOrigin;
+	
+	/**
+	 * 查询逻辑：默认and，可指定 or 
+	*/
+	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
+	private String queryLogic;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -243,6 +255,44 @@ public class InventoryVO extends Inventory {
 	}
 	
 	/**
+	 * 获得 数据来源<br>
+	 * 前端指定不同的来源，后端按来源执行不同的逻辑
+	 * @return 数据来源
+	*/
+	public String getDataOrigin() {
+		return dataOrigin;
+	}
+	
+	/**
+	 * 设置 数据来源
+	 * @param dataOrigin 数据来源
+	 * @return 当前对象
+	*/
+	public InventoryVO setDataOrigin(String dataOrigin) {
+		this.dataOrigin=dataOrigin;
+		return this;
+	}
+	
+	/**
+	 * 获得 查询逻辑<br>
+	 * 默认and，可指定 or 
+	 * @return 查询逻辑
+	*/
+	public String getQueryLogic() {
+		return queryLogic;
+	}
+	
+	/**
+	 * 设置 查询逻辑
+	 * @param queryLogic 查询逻辑
+	 * @return 当前对象
+	*/
+	public InventoryVO setQueryLogic(String queryLogic) {
+		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
 	 * 获得 主键清单<br>
 	 * 用于接收批量主键参数
 	 * @return 主键清单
@@ -331,6 +381,7 @@ public class InventoryVO extends Inventory {
 		inst.setOwnerCode(this.getOwnerCode());
 		inst.setType(this.getType());
 		inst.setAllEmployee(this.getAllEmployee());
+		inst.setInventoryRepeat(this.getInventoryRepeat());
 		inst.setBusinessDate(this.getBusinessDate());
 		inst.setBusinessCode(this.getBusinessCode());
 		inst.setUpdateBy(this.getUpdateBy());
@@ -374,6 +425,8 @@ public class InventoryVO extends Inventory {
 			inst.setInventoryAssetCountBySurplus(this.getInventoryAssetCountBySurplus());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
+			inst.setDataOrigin(this.getDataOrigin());
+			inst.setQueryLogic(this.getQueryLogic());
 			inst.setWarehouseIds(this.getWarehouseIds());
 			inst.setManager(this.getManager());
 			inst.setDirector(this.getDirector());
@@ -451,6 +504,7 @@ public class InventoryVO extends Inventory {
 			this.setOwnerCode(DataParser.parse(String.class, map.get(InventoryVOMeta.OWNER_CODE)));
 			this.setType(DataParser.parse(String.class, map.get(InventoryVOMeta.TYPE)));
 			this.setAllEmployee(DataParser.parse(String.class, map.get(InventoryVOMeta.ALL_EMPLOYEE)));
+			this.setInventoryRepeat(DataParser.parse(String.class, map.get(InventoryVOMeta.INVENTORY_REPEAT)));
 			this.setBusinessDate(DataParser.parse(Date.class, map.get(InventoryVOMeta.BUSINESS_DATE)));
 			this.setBusinessCode(DataParser.parse(String.class, map.get(InventoryVOMeta.BUSINESS_CODE)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(InventoryVOMeta.UPDATE_BY)));
@@ -488,6 +542,8 @@ public class InventoryVO extends Inventory {
 			this.setInventoryAssetCountByNotCounted(DataParser.parse(Integer.class, map.get(InventoryVOMeta.INVENTORY_ASSET_COUNT_BY_NOT_COUNTED)));
 			this.setInventoryAssetCountBySurplus(DataParser.parse(Integer.class, map.get(InventoryVOMeta.INVENTORY_ASSET_COUNT_BY_SURPLUS)));
 			this.setSortField(DataParser.parse(String.class, map.get(InventoryVOMeta.SORT_FIELD)));
+			this.setDataOrigin(DataParser.parse(String.class, map.get(InventoryVOMeta.DATA_ORIGIN)));
+			this.setQueryLogic(DataParser.parse(String.class, map.get(InventoryVOMeta.QUERY_LOGIC)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(InventoryVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(InventoryVOMeta.SORT_TYPE)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(InventoryVOMeta.SEARCH_VALUE)));
@@ -498,6 +554,7 @@ public class InventoryVO extends Inventory {
 				this.setOwnerCode( (String)map.get(InventoryVOMeta.OWNER_CODE));
 				this.setType( (String)map.get(InventoryVOMeta.TYPE));
 				this.setAllEmployee( (String)map.get(InventoryVOMeta.ALL_EMPLOYEE));
+				this.setInventoryRepeat( (String)map.get(InventoryVOMeta.INVENTORY_REPEAT));
 				this.setBusinessDate( (Date)map.get(InventoryVOMeta.BUSINESS_DATE));
 				this.setBusinessCode( (String)map.get(InventoryVOMeta.BUSINESS_CODE));
 				this.setUpdateBy( (String)map.get(InventoryVOMeta.UPDATE_BY));
@@ -535,6 +592,8 @@ public class InventoryVO extends Inventory {
 				this.setInventoryAssetCountByNotCounted( (Integer)map.get(InventoryVOMeta.INVENTORY_ASSET_COUNT_BY_NOT_COUNTED));
 				this.setInventoryAssetCountBySurplus( (Integer)map.get(InventoryVOMeta.INVENTORY_ASSET_COUNT_BY_SURPLUS));
 				this.setSortField( (String)map.get(InventoryVOMeta.SORT_FIELD));
+				this.setDataOrigin( (String)map.get(InventoryVOMeta.DATA_ORIGIN));
+				this.setQueryLogic( (String)map.get(InventoryVOMeta.QUERY_LOGIC));
 				this.setPageIndex( (Integer)map.get(InventoryVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(InventoryVOMeta.SORT_TYPE));
 				this.setSearchValue( (String)map.get(InventoryVOMeta.SEARCH_VALUE));
@@ -558,6 +617,7 @@ public class InventoryVO extends Inventory {
 			this.setOwnerCode(DataParser.parse(String.class, r.getValue(InventoryVOMeta.OWNER_CODE)));
 			this.setType(DataParser.parse(String.class, r.getValue(InventoryVOMeta.TYPE)));
 			this.setAllEmployee(DataParser.parse(String.class, r.getValue(InventoryVOMeta.ALL_EMPLOYEE)));
+			this.setInventoryRepeat(DataParser.parse(String.class, r.getValue(InventoryVOMeta.INVENTORY_REPEAT)));
 			this.setBusinessDate(DataParser.parse(Date.class, r.getValue(InventoryVOMeta.BUSINESS_DATE)));
 			this.setBusinessCode(DataParser.parse(String.class, r.getValue(InventoryVOMeta.BUSINESS_CODE)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(InventoryVOMeta.UPDATE_BY)));
@@ -591,6 +651,7 @@ public class InventoryVO extends Inventory {
 				this.setOwnerCode( (String)r.getValue(InventoryVOMeta.OWNER_CODE));
 				this.setType( (String)r.getValue(InventoryVOMeta.TYPE));
 				this.setAllEmployee( (String)r.getValue(InventoryVOMeta.ALL_EMPLOYEE));
+				this.setInventoryRepeat( (String)r.getValue(InventoryVOMeta.INVENTORY_REPEAT));
 				this.setBusinessDate( (Date)r.getValue(InventoryVOMeta.BUSINESS_DATE));
 				this.setBusinessCode( (String)r.getValue(InventoryVOMeta.BUSINESS_CODE));
 				this.setUpdateBy( (String)r.getValue(InventoryVOMeta.UPDATE_BY));

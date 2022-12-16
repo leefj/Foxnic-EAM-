@@ -310,6 +310,7 @@ public class AssetCollectionController extends SuperController implements BpmCal
         assetCollectionService.join(list, AssetCollectionMeta.ORIGINATOR);
         List<Employee> employees = CollectorUtil.collectList(list, AssetCollection::getOriginator);
         List<Employee> useUsers = CollectorUtil.collectList(list, AssetCollection::getUseUser);
+
         assetCollectionService.dao().join(employees, Person.class);
         assetCollectionService.dao().join(useUsers, Person.class);
         result.success(true).data(list);

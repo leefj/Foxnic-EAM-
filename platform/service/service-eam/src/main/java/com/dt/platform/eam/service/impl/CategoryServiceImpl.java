@@ -94,20 +94,20 @@ public class CategoryServiceImpl extends SuperService<Category> implements ICate
 	 * */
 	@Override
 	public Result updateHierarchy(String id) {
-		Rcd category_rs = dao.queryRecord("select id,category_name categoryName,hierarchy from eam_category where deleted='0' and id=?", id);
+		Rcd category_rs = dao.queryRecord("select id,category_name categoryName,hierarchy from eam_category where deleted=0 and id=?", id);
 		String hierarchy=category_rs.getString("hierarchy");
 		String split="/";
 		String afterHierarchyName="";
 		String[] ids = hierarchy.split(split);
 		for (int i = 0; i < ids.length;i++) {
-			afterHierarchyName = afterHierarchyName + split+ dao.queryRecord("select category_name categoryName from eam_category where deleted='0' and id=?", ids[i]).getString("categoryName");
+			afterHierarchyName = afterHierarchyName + split+ dao.queryRecord("select category_name categoryName from eam_category where deleted=0 and id=?", ids[i]).getString("categoryName");
 		}
 		afterHierarchyName = afterHierarchyName.replaceFirst(split, "");
 		Update ups = new Update("eam_category");
 		ups.set("hierarchy_name", afterHierarchyName);
 		ups.where().and("id=?", id);
 		dao.execute(ups);
-		RcdSet rds = dao.query("select id,category_name categoryName,hierarchy from eam_category where deleted='0' and parent_id=?", id);
+		RcdSet rds = dao.query("select id,category_name categoryName,hierarchy from eam_category where deleted=0 and parent_id=?", id);
 		for (int j = 0; j < rds.size(); j++) {
 			updateHierarchy(rds.getRcd(j).getString("id"));
 		}

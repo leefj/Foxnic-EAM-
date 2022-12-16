@@ -1,7 +1,7 @@
 /**
  * 状态规则值 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-07 07:24:55
+ * @since 2022-12-13 12:46:38
  */
 
 layui.config({
@@ -98,7 +98,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单页面打开时，追加更多的参数信息
          * */
         makeFormQueryString:function(data,queryString,action) {
-
             return queryString;
         },
         /**

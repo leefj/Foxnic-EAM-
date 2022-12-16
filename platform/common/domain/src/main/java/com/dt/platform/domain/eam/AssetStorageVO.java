@@ -24,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产入库VO类型
  * <p>资产入库 , 数据表 eam_asset_storage 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-05 14:24:18
- * @sign 9D8042057B9479E16002A2838D622A3D
+ * @since 2022-12-10 15:13:10
+ * @sign 5E0406EEA15DF3714833BF6C4972E26C
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -81,6 +81,18 @@ public class AssetStorageVO extends AssetStorage {
 	*/
 	@ApiModelProperty(required = false,value="排序方式" , notes = "")
 	private String sortType;
+	
+	/**
+	 * 数据来源：前端指定不同的来源，后端按来源执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端按来源执行不同的逻辑")
+	private String dataOrigin;
+	
+	/**
+	 * 查询逻辑：默认and，可指定 or 
+	*/
+	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
+	private String queryLogic;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -244,6 +256,44 @@ public class AssetStorageVO extends AssetStorage {
 	}
 	
 	/**
+	 * 获得 数据来源<br>
+	 * 前端指定不同的来源，后端按来源执行不同的逻辑
+	 * @return 数据来源
+	*/
+	public String getDataOrigin() {
+		return dataOrigin;
+	}
+	
+	/**
+	 * 设置 数据来源
+	 * @param dataOrigin 数据来源
+	 * @return 当前对象
+	*/
+	public AssetStorageVO setDataOrigin(String dataOrigin) {
+		this.dataOrigin=dataOrigin;
+		return this;
+	}
+	
+	/**
+	 * 获得 查询逻辑<br>
+	 * 默认and，可指定 or 
+	 * @return 查询逻辑
+	*/
+	public String getQueryLogic() {
+		return queryLogic;
+	}
+	
+	/**
+	 * 设置 查询逻辑
+	 * @param queryLogic 查询逻辑
+	 * @return 当前对象
+	*/
+	public AssetStorageVO setQueryLogic(String queryLogic) {
+		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
 	 * 获得 主键清单<br>
 	 * 用于接收批量主键参数
 	 * @return 主键清单
@@ -368,7 +418,9 @@ public class AssetStorageVO extends AssetStorage {
 			inst.setSupplier(this.getSupplier());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
+			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
+			inst.setQueryLogic(this.getQueryLogic());
 			inst.setSearchValue(this.getSearchValue());
 		}
 		inst.clearModifies();
@@ -466,6 +518,8 @@ public class AssetStorageVO extends AssetStorage {
 			this.setSortType(DataParser.parse(String.class, map.get(AssetStorageVOMeta.SORT_TYPE)));
 			this.setSupplier(DataParser.parse(Supplier.class, map.get(AssetStorageVOMeta.SUPPLIER)));
 			this.setSortField(DataParser.parse(String.class, map.get(AssetStorageVOMeta.SORT_FIELD)));
+			this.setDataOrigin(DataParser.parse(String.class, map.get(AssetStorageVOMeta.DATA_ORIGIN)));
+			this.setQueryLogic(DataParser.parse(String.class, map.get(AssetStorageVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(AssetStorageVOMeta.SEARCH_VALUE)));
 			return true;
 		} else {
@@ -507,6 +561,8 @@ public class AssetStorageVO extends AssetStorage {
 				this.setSortType( (String)map.get(AssetStorageVOMeta.SORT_TYPE));
 				this.setSupplier( (Supplier)map.get(AssetStorageVOMeta.SUPPLIER));
 				this.setSortField( (String)map.get(AssetStorageVOMeta.SORT_FIELD));
+				this.setDataOrigin( (String)map.get(AssetStorageVOMeta.DATA_ORIGIN));
+				this.setQueryLogic( (String)map.get(AssetStorageVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(AssetStorageVOMeta.SEARCH_VALUE));
 				return true;
 			} catch (Exception e) {

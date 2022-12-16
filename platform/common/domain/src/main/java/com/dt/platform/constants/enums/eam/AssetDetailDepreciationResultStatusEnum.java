@@ -11,15 +11,15 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 */
 
 
-public enum AssetDetailDepreciationResultEnum implements CodeTextEnum {
+public enum AssetDetailDepreciationResultStatusEnum implements CodeTextEnum {
 
-	DEPRECIATION_NORMAL("depreciation_normal" , "正常折旧"),
-	NOT_CALCULATE("not_calculate" , "不在折旧"),
-	DEPRECIATION_FINISHED("depreciation_finished" , "已折旧完")
-	;
+	NOT_CALCULATED("not_calculated" , "待计算"),
+	SUCCESS("success" , "计算成功"),
+	FAILED("failed" , "计算失败");
+
 	private String code;
 	private String text;
-	private AssetDetailDepreciationResultEnum(String code, String text)  {
+	private AssetDetailDepreciationResultStatusEnum(String code, String text)  {
 		this.code=code;
 		this.text=text;
 	}

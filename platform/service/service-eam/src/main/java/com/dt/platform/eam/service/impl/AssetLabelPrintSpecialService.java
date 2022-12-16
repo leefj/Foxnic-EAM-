@@ -260,8 +260,11 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 						System.out.println("cellLayout code:"+layoutCode+",type:"+layoutType+",value:"+colValue+",rowHeightPoint:"+cellHeightPoint);
 						Paragraph content=new Paragraph(colValue);
 						content.setProperty(Property.OVERFLOW_X, OverflowPropertyValue.VISIBLE);
+						content.setProperty(Property.OVERFLOW_Y, OverflowPropertyValue.VISIBLE);
 						content.setMargin(0);
-						content.setPadding(0);
+					//	content.setBackgroundColor()
+				//		content.setBackgroundColor(ColorConstants.YELLOW);
+
 						//content.setBold();
 						cell.add(content);
 						table.addCell(cell);

@@ -99,7 +99,7 @@ public class RepairOrderActServiceImpl extends SuperService<RepairOrderAct> impl
 		RepairOrder order=repairOrderService.getById(act.getOrderId());
 		if(RepairOrderStatusEnum.DISPATCHED.code().equals(order.getRepairStatus())){
 			if(StringUtil.isBlank(userId)){
-				if(dao.query("select 1 from eam_group_user where deleted='0' and group_id=? and user_id=?",act.getGroupId(),curUserId).size()==0){
+				if(dao.query("select 1 from eam_group_user where deleted=0 and group_id=? and user_id=?",act.getGroupId(),curUserId).size()==0){
 					ErrorDesc.failureMessage("当前操作人没有在班组中，操作失败");
 				}
 				//根据班组
@@ -131,7 +131,7 @@ public class RepairOrderActServiceImpl extends SuperService<RepairOrderAct> impl
 		RepairOrder order=repairOrderService.getById(act.getOrderId());
 		if(RepairOrderStatusEnum.REPAIRING.code().equals(order.getRepairStatus())){
 			if(StringUtil.isBlank(userId)){
-				if(dao.query("select 1 from eam_group_user where deleted='0' and group_id=? and user_id=?",act.getGroupId(),curUserId).size()==0){
+				if(dao.query("select 1 from eam_group_user where deleted=0 and group_id=? and user_id=?",act.getGroupId(),curUserId).size()==0){
 					ErrorDesc.failureMessage("当前操作人没有在班组中，操作失败");
 				}
 				//根据班组
@@ -161,7 +161,7 @@ public class RepairOrderActServiceImpl extends SuperService<RepairOrderAct> impl
 						//修改维修状态
 						List<Asset> list=new ArrayList<>();
 						list.add(asset);
-						Rcd rs=dao.queryRecord("select * from eam_asset_item where deleted='0'and crd='r' and handle_id=? and asset_id=?",act.getOrderId(),asset.getId());
+						Rcd rs=dao.queryRecord("select * from eam_asset_item where deleted=0 and crd='r' and handle_id=? and asset_id=?",act.getOrderId(),asset.getId());
 						map.put("asset_status",rs.getString("before_asset_status"));
 						HashMap<String,List<SQL>> resultMap=assetService.parseAssetChangeRecordWithChangeAsset(list,map,act.getBusinessCode(),AssetOperateEnum.EAM_ASSET_REPAIR_ORDER_ACT.code(),"维修结束");
 						for(String key:resultMap.keySet()){

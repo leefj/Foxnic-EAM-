@@ -78,7 +78,7 @@ public class AssetLabelServiceImpl extends SuperService<AssetLabel> implements I
 	@Override
 	public List<AssetLabelCol> assetTplJoinTplColumn(String tplId) {
 		String sql="select c.* from eam_asset_label_tpl a,eam_asset_label_tpl_item b,eam_asset_label_col c\n" +
-				"where a.id=? and a.id=b.tpl_id and b.col_id=c.id and a.deleted='0' and b.deleted='0' and c.deleted='0' order by b.sort";
+				"where a.id=? and a.id=b.tpl_id and b.col_id=c.id and a.deleted=0 and b.deleted=0 and c.deleted=0  order by b.sort";
 		RcdSet rs=dao.query(sql,tplId);
 		List<AssetLabelCol> colList=new ArrayList<>();
 		for(int i=0;i<rs.size();i++){

@@ -4,13 +4,15 @@ import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.AssetStatusRuleV;
 import java.util.Date;
 import com.dt.platform.domain.eam.AssetStatus;
+import com.dt.platform.domain.eam.AssetStatusRule;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-07 07:24:55
- * @sign AC090B434F9BFCFF96AFA4F41CB8B827
+ * @since 2022-12-13 13:02:58
+ * @sign 7AB147DF240C1D58587C73E117F6315A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -147,9 +149,19 @@ public class AssetStatusRuleVMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetStatusRuleV,com.dt.platform.domain.eam.AssetStatus> ASSET_CYCLE_STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetStatusRuleV.class ,ASSET_CYCLE_STATUS, com.dt.platform.domain.eam.AssetStatus.class, "assetCycleStatus", "assetCycleStatus", com.dt.platform.domain.eam.AssetStatus.class, null);
 	
 	/**
+	 * assetStatusRule , 类型: com.dt.platform.domain.eam.AssetStatusRule
+	*/
+	public static final String ASSET_STATUS_RULE="assetStatusRule";
+	
+	/**
+	 * assetStatusRule , 类型: com.dt.platform.domain.eam.AssetStatusRule
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetStatusRuleV,com.dt.platform.domain.eam.AssetStatusRule> ASSET_STATUS_RULE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetStatusRuleV.class ,ASSET_STATUS_RULE, com.dt.platform.domain.eam.AssetStatusRule.class, "assetStatusRule", "assetStatusRule", com.dt.platform.domain.eam.AssetStatusRule.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , OPER_CODE , STATUS_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSET_CYCLE_STATUS };
+	public static final String[] $PROPS={ ID , OPER_CODE , STATUS_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ASSET_CYCLE_STATUS , ASSET_STATUS_RULE };
 	
 	/**
 	 * 代理类
@@ -301,5 +313,52 @@ public class AssetStatusRuleVMeta {
 			super.setAssetCycleStatus(assetCycleStatus);
 			return this;
 		}
+		
+		/**
+		 * 设置 assetStatusRule
+		 * @param assetStatusRule assetStatusRule
+		 * @return 当前对象
+		*/
+		public AssetStatusRuleV setAssetStatusRule(AssetStatusRule assetStatusRule) {
+			super.change(ASSET_STATUS_RULE,super.getAssetStatusRule(),assetStatusRule);
+			super.setAssetStatusRule(assetStatusRule);
+			return this;
+		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AssetStatusRuleV clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AssetStatusRuleV duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setOperCode(this.getOperCode());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setId(this.getId());
+			inst.setVersion(this.getVersion());
+			inst.setStatusCode(this.getStatusCode());
+			if(all) {
+				inst.setAssetCycleStatus(this.getAssetCycleStatus());
+				inst.setAssetStatusRule(this.getAssetStatusRule());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

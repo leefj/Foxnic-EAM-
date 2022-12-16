@@ -1,7 +1,7 @@
 /**
  * 折旧明细 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-08 11:41:37
+ * @since 2022-12-10 14:40:51
  */
 
 function FormPage() {
@@ -262,6 +262,32 @@ function FormPage() {
 				return opts;
 			}
 		});
+		//渲染 resultStatus 下拉字段
+		fox.renderSelectBox({
+			el: "resultStatus",
+			radio: true,
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("resultStatus",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+				}
+				return opts;
+			}
+		});
 		laydate.render({
 			elem: '#assetPurchaseDate',
 			format:"yyyy-MM-dd",
@@ -400,7 +426,7 @@ function FormPage() {
 			}
 
 
-			//设置  折旧结果 设置下拉框勾选
+			//设置  折旧规则 设置下拉框勾选
 			fox.setSelectValue4Enum("#result",formData.result,SELECT_RESULT_DATA);
 
 			//处理fillBy
@@ -453,7 +479,7 @@ function FormPage() {
 
 
 
-		//获取 折旧结果 下拉框的值
+		//获取 折旧规则 下拉框的值
 		data["result"]=fox.getSelectedValue("result",false);
 
 		return data;

@@ -26,8 +26,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 折旧明细VO类型
  * <p>折旧明细 , 数据表 eam_asset_depreciation_detail 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-08 11:41:35
- * @sign A99C923C580D1F59CCE2589999291802
+ * @since 2022-12-10 14:40:48
+ * @sign C386213B2181FC0EFABC94BB0C40B318
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -83,6 +83,18 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 	*/
 	@ApiModelProperty(required = false,value="排序方式" , notes = "")
 	private String sortType;
+	
+	/**
+	 * 数据来源：前端指定不同的来源，后端按来源执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端按来源执行不同的逻辑")
+	private String dataOrigin;
+	
+	/**
+	 * 查询逻辑：默认and，可指定 or 
+	*/
+	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
+	private String queryLogic;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -246,6 +258,44 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 	}
 	
 	/**
+	 * 获得 数据来源<br>
+	 * 前端指定不同的来源，后端按来源执行不同的逻辑
+	 * @return 数据来源
+	*/
+	public String getDataOrigin() {
+		return dataOrigin;
+	}
+	
+	/**
+	 * 设置 数据来源
+	 * @param dataOrigin 数据来源
+	 * @return 当前对象
+	*/
+	public AssetDepreciationDetailVO setDataOrigin(String dataOrigin) {
+		this.dataOrigin=dataOrigin;
+		return this;
+	}
+	
+	/**
+	 * 获得 查询逻辑<br>
+	 * 默认and，可指定 or 
+	 * @return 查询逻辑
+	*/
+	public String getQueryLogic() {
+		return queryLogic;
+	}
+	
+	/**
+	 * 设置 查询逻辑
+	 * @param queryLogic 查询逻辑
+	 * @return 当前对象
+	*/
+	public AssetDepreciationDetailVO setQueryLogic(String queryLogic) {
+		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
 	 * 获得 主键清单<br>
 	 * 用于接收批量主键参数
 	 * @return 主键清单
@@ -386,7 +436,9 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 		inst.setLastOperTime(this.getLastOperTime());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setManagerId(this.getManagerId());
+		inst.setLabel(this.getLabel());
 		inst.setCDepreciationAmount(this.getCDepreciationAmount());
+		inst.setResultStatus(this.getResultStatus());
 		inst.setAssetFinanceCategoryId(this.getAssetFinanceCategoryId());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setAssetPurchaseDate(this.getAssetPurchaseDate());
@@ -416,7 +468,9 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 			inst.setAssetDepreciationOper(this.getAssetDepreciationOper());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
+			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
+			inst.setQueryLogic(this.getQueryLogic());
 			inst.setAsset(this.getAsset());
 			inst.setUseUser(this.getUseUser());
 			inst.setSearchValue(this.getSearchValue());
@@ -535,7 +589,9 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 			this.setLastOperTime(DataParser.parse(Date.class, map.get(AssetDepreciationDetailVOMeta.LAST_OPER_TIME)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetDepreciationDetailVOMeta.UPDATE_TIME)));
 			this.setManagerId(DataParser.parse(String.class, map.get(AssetDepreciationDetailVOMeta.MANAGER_ID)));
+			this.setLabel(DataParser.parse(String.class, map.get(AssetDepreciationDetailVOMeta.LABEL)));
 			this.setCDepreciationAmount(DataParser.parse(BigDecimal.class, map.get(AssetDepreciationDetailVOMeta.C_DEPRECIATION_AMOUNT)));
+			this.setResultStatus(DataParser.parse(String.class, map.get(AssetDepreciationDetailVOMeta.RESULT_STATUS)));
 			this.setAssetFinanceCategoryId(DataParser.parse(String.class, map.get(AssetDepreciationDetailVOMeta.ASSET_FINANCE_CATEGORY_ID)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(AssetDepreciationDetailVOMeta.CREATE_BY)));
 			this.setAssetPurchaseDate(DataParser.parse(Date.class, map.get(AssetDepreciationDetailVOMeta.ASSET_PURCHASE_DATE)));
@@ -562,6 +618,8 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 			this.setSortType(DataParser.parse(String.class, map.get(AssetDepreciationDetailVOMeta.SORT_TYPE)));
 			this.setAssetDepreciationOper(DataParser.parse(AssetDepreciationOper.class, map.get(AssetDepreciationDetailVOMeta.ASSET_DEPRECIATION_OPER)));
 			this.setSortField(DataParser.parse(String.class, map.get(AssetDepreciationDetailVOMeta.SORT_FIELD)));
+			this.setDataOrigin(DataParser.parse(String.class, map.get(AssetDepreciationDetailVOMeta.DATA_ORIGIN)));
+			this.setQueryLogic(DataParser.parse(String.class, map.get(AssetDepreciationDetailVOMeta.QUERY_LOGIC)));
 			this.setAsset(DataParser.parse(Asset.class, map.get(AssetDepreciationDetailVOMeta.ASSET)));
 			this.setUseUser(DataParser.parse(Employee.class, map.get(AssetDepreciationDetailVOMeta.USE_USER)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(AssetDepreciationDetailVOMeta.SEARCH_VALUE)));
@@ -624,7 +682,9 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 				this.setLastOperTime( (Date)map.get(AssetDepreciationDetailVOMeta.LAST_OPER_TIME));
 				this.setUpdateTime( (Date)map.get(AssetDepreciationDetailVOMeta.UPDATE_TIME));
 				this.setManagerId( (String)map.get(AssetDepreciationDetailVOMeta.MANAGER_ID));
+				this.setLabel( (String)map.get(AssetDepreciationDetailVOMeta.LABEL));
 				this.setCDepreciationAmount( (BigDecimal)map.get(AssetDepreciationDetailVOMeta.C_DEPRECIATION_AMOUNT));
+				this.setResultStatus( (String)map.get(AssetDepreciationDetailVOMeta.RESULT_STATUS));
 				this.setAssetFinanceCategoryId( (String)map.get(AssetDepreciationDetailVOMeta.ASSET_FINANCE_CATEGORY_ID));
 				this.setCreateBy( (String)map.get(AssetDepreciationDetailVOMeta.CREATE_BY));
 				this.setAssetPurchaseDate( (Date)map.get(AssetDepreciationDetailVOMeta.ASSET_PURCHASE_DATE));
@@ -651,6 +711,8 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 				this.setSortType( (String)map.get(AssetDepreciationDetailVOMeta.SORT_TYPE));
 				this.setAssetDepreciationOper( (AssetDepreciationOper)map.get(AssetDepreciationDetailVOMeta.ASSET_DEPRECIATION_OPER));
 				this.setSortField( (String)map.get(AssetDepreciationDetailVOMeta.SORT_FIELD));
+				this.setDataOrigin( (String)map.get(AssetDepreciationDetailVOMeta.DATA_ORIGIN));
+				this.setQueryLogic( (String)map.get(AssetDepreciationDetailVOMeta.QUERY_LOGIC));
 				this.setAsset( (Asset)map.get(AssetDepreciationDetailVOMeta.ASSET));
 				this.setUseUser( (Employee)map.get(AssetDepreciationDetailVOMeta.USE_USER));
 				this.setSearchValue( (String)map.get(AssetDepreciationDetailVOMeta.SEARCH_VALUE));
@@ -726,7 +788,9 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 			this.setLastOperTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationDetailVOMeta.LAST_OPER_TIME)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetDepreciationDetailVOMeta.UPDATE_TIME)));
 			this.setManagerId(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailVOMeta.MANAGER_ID)));
+			this.setLabel(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailVOMeta.LABEL)));
 			this.setCDepreciationAmount(DataParser.parse(BigDecimal.class, r.getValue(AssetDepreciationDetailVOMeta.C_DEPRECIATION_AMOUNT)));
+			this.setResultStatus(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailVOMeta.RESULT_STATUS)));
 			this.setAssetFinanceCategoryId(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailVOMeta.ASSET_FINANCE_CATEGORY_ID)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(AssetDepreciationDetailVOMeta.CREATE_BY)));
 			this.setAssetPurchaseDate(DataParser.parse(Date.class, r.getValue(AssetDepreciationDetailVOMeta.ASSET_PURCHASE_DATE)));
@@ -796,7 +860,9 @@ public class AssetDepreciationDetailVO extends AssetDepreciationDetail {
 				this.setLastOperTime( (Date)r.getValue(AssetDepreciationDetailVOMeta.LAST_OPER_TIME));
 				this.setUpdateTime( (Date)r.getValue(AssetDepreciationDetailVOMeta.UPDATE_TIME));
 				this.setManagerId( (String)r.getValue(AssetDepreciationDetailVOMeta.MANAGER_ID));
+				this.setLabel( (String)r.getValue(AssetDepreciationDetailVOMeta.LABEL));
 				this.setCDepreciationAmount( (BigDecimal)r.getValue(AssetDepreciationDetailVOMeta.C_DEPRECIATION_AMOUNT));
+				this.setResultStatus( (String)r.getValue(AssetDepreciationDetailVOMeta.RESULT_STATUS));
 				this.setAssetFinanceCategoryId( (String)r.getValue(AssetDepreciationDetailVOMeta.ASSET_FINANCE_CATEGORY_ID));
 				this.setCreateBy( (String)r.getValue(AssetDepreciationDetailVOMeta.CREATE_BY));
 				this.setAssetPurchaseDate( (Date)r.getValue(AssetDepreciationDetailVOMeta.ASSET_PURCHASE_DATE));

@@ -34,29 +34,19 @@ public class EamInventoryGtr extends BaseCodeGenerator{
         System.out.println(this.getClass().getName());
 
         cfg.getPoClassFile().addListProperty(InventoryAsset.class,"inventoryAssetInfoList","盘点资产数据","盘点资产数据");
-
-
         cfg.getPoClassFile().addSimpleProperty(Integer.class,"inventoryAssetCountByNotCounted","待盘点","待盘点");
         cfg.getPoClassFile().addSimpleProperty(Integer.class,"inventoryAssetCountByCounted","已盘点","已盘点");
         cfg.getPoClassFile().addSimpleProperty(Integer.class,"inventoryAssetCountByLoss","盘亏","盘亏");
         cfg.getPoClassFile().addSimpleProperty(Integer.class,"inventoryAssetCountBySurplus","盘盈","盘盈");
         cfg.getPoClassFile().addSimpleProperty(Integer.class,"inventoryAssetCountByException","异常","异常");
-
         cfg.getPoClassFile().addListProperty(Organization.class,"ownerCompany","所属公司","所属公司");
         cfg.getPoClassFile().addListProperty(Organization.class,"useOrganization","使用公司/部门","使用公司/部门");
-
-
-
-
         cfg.getPoClassFile().addListProperty(Employee.class,"inventoryUser","盘点人员","盘点人员");
         cfg.getPoClassFile().addListProperty(String.class,"inventoryUserIds","盘点人员列表","盘点人员列表");
-
         cfg.getPoClassFile().addListProperty(Employee.class,"manager","管理人员","管理人员");
         cfg.getPoClassFile().addListProperty(String.class,"inventoryManagerIds","管理人列表","管理人列表");
-
         cfg.getPoClassFile().addListProperty(Employee.class,"director","负责人","负责人");
         cfg.getPoClassFile().addListProperty(String.class,"inventoryDirectorIds","负责人列表","负责人列表");
-
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
 
 
@@ -70,26 +60,18 @@ public class EamInventoryGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addListProperty(Catalog.class,"category","资产分类","资产分类");
         cfg.getPoClassFile().addListProperty(String.class,"categoryIds","资产分类Ids","资产分类Ids");
 
-
-
-
         cfg.view().field(EAMTables.EAM_INVENTORY.ID).basic().hidden(true);
-
         cfg.view().field(EAMTables.EAM_INVENTORY.PLAN_ID).basic().hidden(true);
-
         cfg.view().field(EAMTables.EAM_INVENTORY.TYPE).basic().hidden(true);
-
-
         cfg.view().field(EAMTables.EAM_INVENTORY.BUSINESS_DATE).search().range();
         cfg.view().field(EAMTables.EAM_INVENTORY.START_TIME).search().range();
         cfg.view().field(EAMTables.EAM_INVENTORY.NAME).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_INVENTORY.NOTES).search().fuzzySearch();
 
-
         cfg.view().field(EAMTables.EAM_INVENTORY.STATUS).table().disable(true);
         cfg.view().field(EAMTables.EAM_INVENTORY.OWN_COMPANY_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_INVENTORY.USE_ORGANIZATION_ID).table().disable(true);
-
+        cfg.view().field(EAMTables.EAM_INVENTORY.INVENTORY_REPEAT).table().disable(true);
 
         cfg.view().field(InventoryMeta.INVENTORY_MANAGER_IDS).table().disable(true);
         cfg.view().field(InventoryMeta.INVENTORY_USER_IDS).table().disable(true);

@@ -506,7 +506,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		JSONObject assetJsonAfter=BeanUtil.toJSONObject(assetAfter);
 
 		//获取注册的允许变更记录的字段
-		String sql="select id,code,label,value_type,value_path from eam_asset_attribute where code not in ('status','business_code','batch_code') and deleted='0' and tenant_id=?";
+		String sql="select id,code,label,value_type,value_path from eam_asset_attribute where code not in ('status','business_code','batch_code') and deleted=0 and tenant_id=?";
 		RcdSet rs=dao.query(sql,SessionUser.getCurrent().getActivatedTenantId());
 		HashMap<String,Rcd> colsMap=(HashMap<String,Rcd>)rs.getMappedRcds("code",String.class);
 		//删除不存在的
@@ -1302,7 +1302,18 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		return queryPagedList(sample, expr, pageSize, pageIndex);
 	}
 
-	public Result conditionAssetBusinessType(String businessType,ConditionExpr queryCondition){
+	public Result conditionAssetBusinessType(String businessType,String assetCodeData,ConditionExpr queryCondition){
+
+
+		if(businessType!=null&&"eam_asset_inventory_employ_mode".equals(businessType)){
+			//盘点的时候单独处理
+			if(StringUtil.isBlank(assetCodeData)){
+				assetCodeData="-1";
+			}
+			queryCondition.and("id not in (select asset_id from eam_inventory_asset where deleted=0 and inventory_id=?)",assetCodeData);
+			return ErrorDesc.success();
+		}
+
 		AssetStatusRule assetStatusRule=assetStatusRuleService.queryEntity(AssetStatusRule.create().setOperCode(businessType).setStatus(StatusEnableEnum.ENABLE.code()));
 		if(assetStatusRule!=null){
 			String condition=assetStatusRule.getOperCondition();
@@ -1410,7 +1421,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			sample.setStatus(AssetHandleStatusEnum.COMPLETE.code());
 			sample.setAssetStatus(AssetStatusEnum.IDLE.code());
 		}else if (AssetOwnerCodeEnum.ASSET.code().equals(sample.getOwnerCode())){
-			Result r=conditionAssetBusinessType(businessType,queryCondition);
+			Result r=conditionAssetBusinessType(businessType,assetSelectData,queryCondition);
 			if(r.isSuccess()){
 				r.getData();
 			}
@@ -1489,7 +1500,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		Result result=new Result();
 		ConditionExpr queryCondition=new ConditionExpr();
 		queryCondition.andIn("id",assetIds);
-		Result r=conditionAssetBusinessType(businessType,queryCondition);
+		Result r=conditionAssetBusinessType(businessType,"",queryCondition);
 		if(!r.isSuccess()){
 			return r;
 		}

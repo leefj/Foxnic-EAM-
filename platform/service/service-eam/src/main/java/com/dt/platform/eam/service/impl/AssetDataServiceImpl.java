@@ -203,7 +203,6 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         resData.put("frozen",frozen);
         resData.put("celldata",configObj.getJSONArray("celldata"));
         resData.put("dataVerification",dataVerification);
-        //System.out.println("resData\n"+resData);
         res.data(resData);
         return res;
     }
@@ -230,9 +229,15 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
          if(mapList!=null&&mapList.size()>0){
              dataFill=true;
          }
-
+         String sql="select b.code,a.required from eam_asset_attribute_item a,eam_asset_attribute b \n" +
+                 "where a.attribute_id=b.id \n" +
+                 "and a.owner_code='"+AssetAttributeItemOwnerEnum.ASSET_ONLINE_EXCEL.code()+"'\n" +
+                 "and a.deleted=0 \n" +
+                 "and b.deleted=0 ";
+        Map<String,String> colMap= this.dao.query(sql).getValueMap("code",String.class,"required",String.class);
         for(int i=0;i<assetColumnMetaList.size();i++){
             AssetLuckySheetColumnMeta assetColumnMeta=assetColumnMetaList.get(i);
+            System.out.println("assetColumnMeta:"+assetColumnMeta.getCol());
             JSONObject col=new JSONObject();
             col.put("r",0);
             col.put("c",i);
@@ -240,10 +245,18 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
             value.put("bl",1);
             value.put("m",assetColumnMeta.getColName());
             value.put("v",assetColumnMeta.getColName());
-            //需要验证
-            if(assetColumnMeta.getDataVerification()!=null){
-                value.put("fc","#ff00ff");
+            //必选字段颜色
+            CodeTextEnum enumValue=EnumUtil.parseByCode(AssetDataExportColumnEnum.class,assetColumnMeta.getCol());
+            if(enumValue!=null){
+                if(colMap.containsKey(enumValue.text())){
+                   if( "1".equals(colMap.getOrDefault(enumValue.text(),"-1"))){
+                       value.put("fc","#ff00ff");
+                   }
+                }
             }
+//            if(assetColumnMeta.getDataVerification()!=null){
+//                value.put("fc","#ff00ff");
+//            }
             JSONObject ct=new JSONObject();
             ct.put("fa",assetColumnMeta.getValueFormat());
             ct.put("t",assetColumnMeta.getValueType());
@@ -269,9 +282,14 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                          value.put("m","");
                          value.put("v","");
                      }
-                     //需要验证
-                     if(assetColumnMeta.getDataVerification()!=null){
-                         value.put("fc","#ff00ff");
+                     //必选字段颜色
+                     CodeTextEnum enumValue=EnumUtil.parseByCode(AssetDataExportColumnEnum.class,assetColumnMeta.getCol());
+                     if(enumValue!=null){
+                         if(colMap.containsKey(enumValue.text())){
+                             if( "1".equals(colMap.getOrDefault(enumValue.text(),"-1"))){
+                                 value.put("fc","#ff00ff");
+                             }
+                         }
                      }
                      JSONObject ct=new JSONObject();
                      ct.put("fa",assetColumnMeta.getValueFormat());
@@ -294,7 +312,6 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         ExcelStructure es=new ExcelStructure();
         //	es.setDataColumnBegin(0);
         es.setDataRowBegin(2);
-
         Short lastNum=0;
         //从模板获取属性
         Workbook workbook;
@@ -317,9 +334,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                     metaData.setColNumber(i);
                     metaData.setColName(firstAssetColumn);
                     metaData.setCol(secondAssetColumn);
-
                     System.out.println("######"+secondAssetColumn);
-                    //
                     JSONObject dataVer=new JSONObject();
                     JSONObject dataVerification=null;
                     dataVer.put("type",null);
@@ -332,13 +347,18 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                     dataVer.put("hintShow",false);
                     dataVer.put("hintText","");
                     if("assetStatusName".equals(secondAssetColumn)){
-                        dataVer.put("type","dropdown");
-                        dataVer.put("value1", AssetStatusEnum.IDLE.text()+","+
-                                AssetStatusEnum.USING.text()+","+
-                                AssetStatusEnum.SCRAP.text()
-                        );
                         dataVer.put("prohibitInput",true);
+                        dataVer.put("type","dropdown");
+                        List<String> value=this.dao.query("select name from eam_asset_status where deleted=0" ).getValueList("name",String.class);
+                        dataVer.put("value1",  String.join(",", value));
                         dataVerification=dataVer;
+//                        dataVer.put("type","number");
+//                        dataVer.put("type2","bw");
+//                        dataVer.put("value1","1");
+//                        dataVer.put("value2","1000");
+//                        dataVer.put("prohibitInput",true);
+//                        dataVerification=dataVer;
+
                     }else if("serviceLife".equals(secondAssetColumn)){
                         dataVer.put("type","number");
                         dataVer.put("type2","bw");
@@ -384,7 +404,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                         dataVer.put("type","date");
                         dataVer.put("type2","bw");
                         dataVer.put("value1","1979-01-01");
-                        dataVer.put("value2","2100-01-01");
+                        dataVer.put("value2","2200-01-01");
                         dataVer.put("prohibitInput",true);
                         dataVerification=dataVer;
                     }else if("assetSourceName".equals(secondAssetColumn)){
@@ -466,7 +486,6 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                         dataVer.put("value1",  String.join(",", value));
                         dataVerification=dataVer;
                     }
-
                     else if("expenseItemName".equals(secondAssetColumn)){
                         dataVer.put("prohibitInput",true);
                         dataVer.put("type","dropdown");
@@ -474,7 +493,6 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                         dataVer.put("value1",  String.join(",", value));
                         dataVerification=dataVer;
                     }
-
                     else if("financialOptionName".equals(secondAssetColumn)){
                         dataVer.put("prohibitInput",true);
                         dataVer.put("type","dropdown");
@@ -482,23 +500,17 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                         dataVer.put("value1",  String.join(",", value));
                         dataVerification=dataVer;
                     }
-
                     if(dataVerification!=null){
                         metaData.setDataVerification(dataVerification);
                     }
-
                     System.out.println("###metaData"+metaData);
                     list.add(metaData);
                 }
                 //追加自定义属性部分
             } catch (Exception e) {
                 Logger.debug("Excel 读取错误", e);
-
             }
         }
-
-
-
 
         return list;
     }

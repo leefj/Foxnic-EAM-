@@ -255,7 +255,7 @@ public class AssetRepairServiceImpl extends SuperService<AssetRepair> implements
 		for(Asset asset:billData.getAssetList()){
 			List<Asset> list=new ArrayList<>();
 			list.add(asset);
-			Rcd rs=dao.queryRecord("select * from eam_asset_item where deleted='0'and crd='r' and handle_id=? and asset_id=?",id,asset.getId());
+			Rcd rs=dao.queryRecord("select * from eam_asset_item where deleted=0 and crd='r' and handle_id=? and asset_id=?",id,asset.getId());
 			map.put("asset_status",rs.getString("before_asset_status"));
 			HashMap<String,List<SQL>> resultMap=assetService.parseAssetChangeRecordWithChangeAsset(list,map,billData.getBusinessCode(),AssetOperateEnum.EAM_ASSET_REPAIR.code(),"维修结束");
 			for(String key:resultMap.keySet()){

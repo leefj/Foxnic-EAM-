@@ -7,6 +7,7 @@ import com.dt.platform.domain.eam.meta.AssetMeta;
 import com.dt.platform.domain.eam.meta.InventoryMeta;
 import com.dt.platform.eam.service.IAssetService;
 import com.github.foxnic.commons.collection.CollectorUtil;
+import com.github.foxnic.sql.expr.ConditionExpr;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Person;
 import com.github.foxnic.commons.collection.CollectorUtil;
@@ -93,7 +94,7 @@ public class InventoryAssetController extends SuperController {
 		@ApiImplicitParam(name = InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE, value = "盘盈动作", required = false, dataTypeClass = String.class, example = "none"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE, value = "盘亏动作", required = false, dataTypeClass = String.class, example = "none"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.SOURCE, value = "数据来源", required = false, dataTypeClass = String.class, example = "asset"),
-		@ApiImplicitParam(name = InventoryAssetVOMeta.PICTURE_ID, value = "照片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryAssetVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.FLAG, value = "标记", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 1)
@@ -162,7 +163,7 @@ public class InventoryAssetController extends SuperController {
 		@ApiImplicitParam(name = InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE, value = "盘盈动作", required = false, dataTypeClass = String.class, example = "none"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE, value = "盘亏动作", required = false, dataTypeClass = String.class, example = "none"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.SOURCE, value = "数据来源", required = false, dataTypeClass = String.class, example = "asset"),
-		@ApiImplicitParam(name = InventoryAssetVOMeta.PICTURE_ID, value = "照片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryAssetVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.FLAG, value = "标记", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { InventoryAssetVOMeta.PAGE_INDEX, InventoryAssetVOMeta.PAGE_SIZE, InventoryAssetVOMeta.SEARCH_FIELD, InventoryAssetVOMeta.FUZZY_FIELD, InventoryAssetVOMeta.SEARCH_VALUE, InventoryAssetVOMeta.DIRTY_FIELDS, InventoryAssetVOMeta.SORT_FIELD, InventoryAssetVOMeta.SORT_TYPE, InventoryAssetVOMeta.IDS })
@@ -200,7 +201,7 @@ public class InventoryAssetController extends SuperController {
 		@ApiImplicitParam(name = InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE, value = "盘盈动作", required = false, dataTypeClass = String.class, example = "none"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE, value = "盘亏动作", required = false, dataTypeClass = String.class, example = "none"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.SOURCE, value = "数据来源", required = false, dataTypeClass = String.class, example = "asset"),
-		@ApiImplicitParam(name = InventoryAssetVOMeta.PICTURE_ID, value = "照片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryAssetVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.FLAG, value = "标记", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InventoryAssetVOMeta.PAGE_INDEX, InventoryAssetVOMeta.PAGE_SIZE, InventoryAssetVOMeta.SEARCH_FIELD, InventoryAssetVOMeta.FUZZY_FIELD, InventoryAssetVOMeta.SEARCH_VALUE, InventoryAssetVOMeta.DIRTY_FIELDS, InventoryAssetVOMeta.SORT_FIELD, InventoryAssetVOMeta.SORT_TYPE, InventoryAssetVOMeta.IDS })
@@ -226,7 +227,7 @@ public class InventoryAssetController extends SuperController {
         Result<InventoryAsset> result = new Result<>();
         InventoryAsset inventoryAsset = inventoryAssetService.getById(id);
         // join 关联的对象
-        inventoryAssetService.dao().fill(inventoryAsset).with(InventoryAssetMeta.ASSET).with(InventoryAssetMeta.OPERATER).execute();
+        inventoryAssetService.dao().fill(inventoryAsset).with(InventoryAssetMeta.ASSET).with(InventoryAssetMeta.INVENTORY).with(InventoryAssetMeta.OPERATER).execute();
         inventoryAssetService.dao().join(inventoryAsset.getOperater(), Person.class);
         assetService.dao().fill(inventoryAsset.getAsset()).with(AssetMeta.CATEGORY).with(AssetMeta.CATEGORY_FINANCE).with(AssetMeta.GOODS).with(AssetMeta.MANUFACTURER).with(AssetMeta.POSITION).with(AssetMeta.MAINTNAINER).with(AssetMeta.REGION).with(AssetMeta.SUPPLIER).with(AssetMeta.OWNER_COMPANY).with(AssetMeta.USE_ORGANIZATION).with(AssetMeta.MANAGER).with(AssetMeta.USE_USER).with(AssetMeta.ORIGINATOR).with(AssetMeta.RACK).with(AssetMeta.SOURCE).with(AssetMeta.SAFETY_LEVEL).with(AssetMeta.EQUIPMENT_ENVIRONMENT).with(AssetMeta.ASSET_MAINTENANCE_STATUS).execute();
         inventoryAssetService.dao().join(inventoryAsset.getOperater(), Person.class);
@@ -278,7 +279,7 @@ public class InventoryAssetController extends SuperController {
 		@ApiImplicitParam(name = InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE, value = "盘盈动作", required = false, dataTypeClass = String.class, example = "none"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE, value = "盘亏动作", required = false, dataTypeClass = String.class, example = "none"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.SOURCE, value = "数据来源", required = false, dataTypeClass = String.class, example = "asset"),
-		@ApiImplicitParam(name = InventoryAssetVOMeta.PICTURE_ID, value = "照片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryAssetVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.FLAG, value = "标记", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { InventoryAssetVOMeta.PAGE_INDEX, InventoryAssetVOMeta.PAGE_SIZE })
@@ -317,7 +318,7 @@ public class InventoryAssetController extends SuperController {
 		@ApiImplicitParam(name = InventoryAssetVOMeta.ASSET_PLUS_ACTION_TYPE, value = "盘盈动作", required = false, dataTypeClass = String.class, example = "none"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.ASSET_LOSS_ACTION_TYPE, value = "盘亏动作", required = false, dataTypeClass = String.class, example = "none"),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.SOURCE, value = "数据来源", required = false, dataTypeClass = String.class, example = "asset"),
-		@ApiImplicitParam(name = InventoryAssetVOMeta.PICTURE_ID, value = "照片", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InventoryAssetVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InventoryAssetVOMeta.FLAG, value = "标记", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8)
@@ -325,7 +326,10 @@ public class InventoryAssetController extends SuperController {
     @PostMapping(InventoryAssetServiceProxy.QUERY_PAGED_LIST)
     public Result<PagedList<InventoryAsset>> queryPagedList(InventoryAssetVO sample) {
         Result<PagedList<InventoryAsset>> result = new Result<>();
-        PagedList<InventoryAsset> list = inventoryAssetService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
+
+        ConditionExpr condition=new ConditionExpr();
+        condition.and( " asset_id in (select id from eam_asset where deleted=0)");
+        PagedList<InventoryAsset> list = inventoryAssetService.queryPagedList(sample, condition,sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         inventoryAssetService.dao().fill(list).with(InventoryAssetMeta.OPERATER).with(InventoryAssetMeta.ASSET).execute();
         List<Employee> operList = CollectorUtil.collectList(list.getList(), InventoryAsset::getOperater);

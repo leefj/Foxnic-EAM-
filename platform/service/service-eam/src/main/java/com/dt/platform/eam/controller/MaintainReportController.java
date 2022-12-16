@@ -64,7 +64,7 @@ public class MaintainReportController extends SuperController {
     @PostMapping(MaintainReportServiceProxy.MAINTAIN_ITEM_REPORT)
     public Result<JSONArray> maintainItemReport() {
         Result<JSONArray> result = new Result<>();
-        String sql = "select b.name,count(1) cnt from eam_maintain_task a, eam_maintain_plan b where a.status='finish' and a.deleted='0'\n" + "and a.plan_id=b.id group by b.name\n";
+        String sql = "select b.name,count(1) cnt from eam_maintain_task a, eam_maintain_plan b where a.status='finish' and a.deleted=0 and a.plan_id=b.id group by b.name";
         RcdSet rs = assetService.dao().query(sql);
         result.data(rs.toJSONArrayWithJSONObject());
         return result;

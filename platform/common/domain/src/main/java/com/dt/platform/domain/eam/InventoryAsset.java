@@ -24,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 盘点明细
  * <p>盘点明细 , 数据表 eam_inventory_asset 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-08 17:12:15
- * @sign 46288E5E591D52F220A8653A7C24D06C
+ * @since 2022-12-10 19:28:54
+ * @sign 7318B9DA33B8B1A8F83D55431F791B28
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -99,9 +99,9 @@ public class InventoryAsset extends Entity {
 	private Date operDate;
 	
 	/**
-	 * 照片：照片
+	 * 图片：图片
 	*/
-	@ApiModelProperty(required = false,value="照片" , notes = "照片")
+	@ApiModelProperty(required = false,value="图片" , notes = "图片")
 	private String pictureId;
 	
 	/**
@@ -172,6 +172,12 @@ public class InventoryAsset extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="操作人员" , notes = "操作人员")
 	private Employee operater;
+	
+	/**
+	 * inventory：inventory
+	*/
+	@ApiModelProperty(required = false,value="inventory" , notes = "inventory")
+	private Inventory inventory;
 	
 	/**
 	 * 获得 主键<br>
@@ -364,17 +370,17 @@ public class InventoryAsset extends Entity {
 	}
 	
 	/**
-	 * 获得 照片<br>
-	 * 照片
-	 * @return 照片
+	 * 获得 图片<br>
+	 * 图片
+	 * @return 图片
 	*/
 	public String getPictureId() {
 		return pictureId;
 	}
 	
 	/**
-	 * 设置 照片
-	 * @param pictureId 照片
+	 * 设置 图片
+	 * @param pictureId 图片
 	 * @return 当前对象
 	*/
 	public InventoryAsset setPictureId(String pictureId) {
@@ -621,6 +627,25 @@ public class InventoryAsset extends Entity {
 		this.operater=operater;
 		return this;
 	}
+	
+	/**
+	 * 获得 inventory<br>
+	 * inventory
+	 * @return inventory
+	*/
+	public Inventory getInventory() {
+		return inventory;
+	}
+	
+	/**
+	 * 设置 inventory
+	 * @param inventory inventory
+	 * @return 当前对象
+	*/
+	public InventoryAsset setInventory(Inventory inventory) {
+		this.inventory=inventory;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -689,6 +714,7 @@ public class InventoryAsset extends Entity {
 		if(all) {
 			inst.setOperater(this.getOperater());
 			inst.setAsset(this.getAsset());
+			inst.setInventory(this.getInventory());
 		}
 		inst.clearModifies();
 		return inst;
@@ -771,6 +797,7 @@ public class InventoryAsset extends Entity {
 			// others
 			this.setOperater(DataParser.parse(Employee.class, map.get(InventoryAssetMeta.OPERATER)));
 			this.setAsset(DataParser.parse(Asset.class, map.get(InventoryAssetMeta.ASSET)));
+			this.setInventory(DataParser.parse(Inventory.class, map.get(InventoryAssetMeta.INVENTORY)));
 			return true;
 		} else {
 			try {
@@ -797,6 +824,7 @@ public class InventoryAsset extends Entity {
 				// others
 				this.setOperater( (Employee)map.get(InventoryAssetMeta.OPERATER));
 				this.setAsset( (Asset)map.get(InventoryAssetMeta.ASSET));
+				this.setInventory( (Inventory)map.get(InventoryAssetMeta.INVENTORY));
 				return true;
 			} catch (Exception e) {
 				return false;

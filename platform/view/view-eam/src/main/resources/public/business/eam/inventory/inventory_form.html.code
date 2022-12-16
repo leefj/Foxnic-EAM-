@@ -2,7 +2,7 @@
 /**
  * 资产盘点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-11-12 11:28:28
+ * @since 2022-12-10 20:58:11
  */
  -->
  <!DOCTYPE html>
@@ -37,7 +37,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-7198-content">
+        <div class="layui-row form-row" id="random-8992-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -47,7 +47,7 @@
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('盘点名称')}">盘点名称</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
-                        <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('盘点名称') }" type="text" class="layui-input"    lay-verify="|required"  />
+                        <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入'+'盘点名称') }" type="text" class="layui-input"    lay-verify="|required"  />
                     </div>
                 </div>
             
@@ -93,7 +93,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-6746-content">
+        <div class="layui-row form-row" id="random-9570-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -103,7 +103,7 @@
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
                     <div class="layui-input-block ">
-                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('备注') }" class="layui-textarea" style="height: 120px" ></textarea>
+                        <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入'+'备注') }" class="layui-textarea" style="height: 120px" ></textarea>
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -112,11 +112,11 @@
         </div>
          <!--开始：group 循环-->
 
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-7609-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-9282-fieldset">
             <legend>盘点范围</legend>
         </fieldset>
 
-        <div class="layui-row form-row" id="random-7609-content">
+        <div class="layui-row form-row" id="random-9282-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -126,7 +126,7 @@
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('购置开始日期')}">购置开始日期</div></div>
                     <div class="layui-input-block ">
-                        <input input-type="date" lay-filter="purchaseStartDate" id="purchaseStartDate" name="purchaseStartDate"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择') +''+ lang.translate('购置开始日期') }" type="text" class="layui-input"    lay-verify=""   />
+                        <input input-type="date" lay-filter="purchaseStartDate" id="purchaseStartDate" name="purchaseStartDate"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择'+'购置开始日期') }" type="text" class="layui-input"    lay-verify=""   />
                     </div>
                 </div>
             
@@ -134,7 +134,7 @@
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('购置结束日期')}">购置结束日期</div></div>
                     <div class="layui-input-block ">
-                        <input input-type="date" lay-filter="purchaseEndDate" id="purchaseEndDate" name="purchaseEndDate"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择') +''+ lang.translate('购置结束日期') }" type="text" class="layui-input"    lay-verify=""   />
+                        <input input-type="date" lay-filter="purchaseEndDate" id="purchaseEndDate" name="purchaseEndDate"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择'+'购置结束日期') }" type="text" class="layui-input"    lay-verify=""   />
                     </div>
                 </div>
             
@@ -220,8 +220,8 @@
 
 </div>
 <div class="model-form-footer">
-    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消')}" >取消</button>
-    <button th:if="${perm.checkAnyAuth('eam_inventory:create','eam_inventory:update','eam_inventory:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存')}">保存</button>
+    <button class="layui-btn layui-btn-primary" id="cancel-button" lay-filter="cancel-button" type="button" th:text="${lang.translate('取消','','form.button')}" >取消</button>
+    <button th:if="${perm.checkAnyAuth('eam_inventory:create','eam_inventory:update','eam_inventory:save')}" class="layui-btn" style="margin-right: 15px;display: none;"  id="submit-button" lay-filter="submit-button" lay-submit th:text="${lang.translate('保存','','form.button')}">保存</button>
 </div>
 
 <script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>

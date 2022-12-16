@@ -5,14 +5,15 @@ import com.dt.platform.domain.eam.InventoryAsset;
 import java.util.Date;
 import com.dt.platform.domain.eam.Asset;
 import org.github.foxnic.web.domain.hrm.Employee;
+import com.dt.platform.domain.eam.Inventory;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-08 17:12:15
- * @sign 46288E5E591D52F220A8653A7C24D06C
+ * @since 2022-12-10 19:28:54
+ * @sign 7318B9DA33B8B1A8F83D55431F791B28
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -119,14 +120,14 @@ public class InventoryAssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InventoryAsset,java.util.Date> OPER_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.InventoryAsset.class ,OPER_DATE, java.util.Date.class, "操作时间", "操作时间", java.util.Date.class, null);
 	
 	/**
-	 * 照片 , 类型: java.lang.String
+	 * 图片 , 类型: java.lang.String
 	*/
 	public static final String PICTURE_ID="pictureId";
 	
 	/**
-	 * 照片 , 类型: java.lang.String
+	 * 图片 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InventoryAsset,java.lang.String> PICTURE_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InventoryAsset.class ,PICTURE_ID, java.lang.String.class, "照片", "照片", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.InventoryAsset,java.lang.String> PICTURE_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InventoryAsset.class ,PICTURE_ID, java.lang.String.class, "图片", "图片", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -239,9 +240,19 @@ public class InventoryAssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InventoryAsset,org.github.foxnic.web.domain.hrm.Employee> OPERATER_PROP = new BeanProperty(com.dt.platform.domain.eam.InventoryAsset.class ,OPERATER, org.github.foxnic.web.domain.hrm.Employee.class, "操作人员", "操作人员", org.github.foxnic.web.domain.hrm.Employee.class, null);
 	
 	/**
+	 * inventory , 类型: com.dt.platform.domain.eam.Inventory
+	*/
+	public static final String INVENTORY="inventory";
+	
+	/**
+	 * inventory , 类型: com.dt.platform.domain.eam.Inventory
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InventoryAsset,com.dt.platform.domain.eam.Inventory> INVENTORY_PROP = new BeanProperty(com.dt.platform.domain.eam.InventoryAsset.class ,INVENTORY, com.dt.platform.domain.eam.Inventory.class, "inventory", "inventory", com.dt.platform.domain.eam.Inventory.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , INVENTORY_ID , STATUS , ASSET_ID , OPER_EMPL_ID , ASSET_PLUS_ACTION_TYPE , ASSET_LOSS_ACTION_TYPE , SOURCE , FLAG , OPER_DATE , PICTURE_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , ASSET , OPERATER };
+	public static final String[] $PROPS={ ID , INVENTORY_ID , STATUS , ASSET_ID , OPER_EMPL_ID , ASSET_PLUS_ACTION_TYPE , ASSET_LOSS_ACTION_TYPE , SOURCE , FLAG , OPER_DATE , PICTURE_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , ASSET , OPERATER , INVENTORY };
 	
 	/**
 	 * 代理类
@@ -362,8 +373,8 @@ public class InventoryAssetMeta {
 		}
 		
 		/**
-		 * 设置 照片
-		 * @param pictureId 照片
+		 * 设置 图片
+		 * @param pictureId 图片
 		 * @return 当前对象
 		*/
 		public InventoryAsset setPictureId(String pictureId) {
@@ -492,6 +503,17 @@ public class InventoryAssetMeta {
 			super.setOperater(operater);
 			return this;
 		}
+		
+		/**
+		 * 设置 inventory
+		 * @param inventory inventory
+		 * @return 当前对象
+		*/
+		public InventoryAsset setInventory(Inventory inventory) {
+			super.change(INVENTORY,super.getInventory(),inventory);
+			super.setInventory(inventory);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -531,6 +553,7 @@ public class InventoryAssetMeta {
 			if(all) {
 				inst.setOperater(this.getOperater());
 				inst.setAsset(this.getAsset());
+				inst.setInventory(this.getInventory());
 			}
 			inst.clearModifies();
 			return inst;

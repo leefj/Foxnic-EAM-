@@ -12,6 +12,7 @@ delete from sys_role_menu where role_id not in (select id from sys_role);
 delete from sys_role_user where role_id not in (select id from sys_role);
 delete from sys_busi_role where deleted<>0;
 delete from sys_busi_role_member where role_id not in (select id from sys_busi_role);
+delete from sys_busi_role_member where 1=1;
 delete from sys_job where deleted<>0;
 delete from sys_job_log;
 delete from sys_menu where deleted=1;
@@ -74,6 +75,7 @@ delete from eam_asset_depreciation_oper  where 1=1  and tenant_id='T001' ;
 delete from eam_asset_depreciation_detail  where 1=1;
 delete from eam_asset_depreciation_detail  where 1=1;
 delete from eam_asset_depreciation_exclude  where 1=1;
+
 
 -- software
 delete from eam_asset_software  where 1=1  and tenant_id='T001' ;
