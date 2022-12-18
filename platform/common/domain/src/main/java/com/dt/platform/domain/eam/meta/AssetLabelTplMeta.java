@@ -14,8 +14,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-05 22:44:11
- * @sign AF9CCA3D3847BB3ACD2C94E6AD6646C9
+ * @since 2022-12-18 12:30:46
+ * @sign CCC6AC1FA7C53D09D210F63BCF562F07
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -262,6 +262,26 @@ public class AssetLabelTplMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelTpl,java.math.BigDecimal> LABEL_TABLE_MARGIN_RIGHT_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelTpl.class ,LABEL_TABLE_MARGIN_RIGHT, java.math.BigDecimal.class, "表格marginRight(mm)", "表格marginRight(mm)", java.math.BigDecimal.class, null);
 	
 	/**
+	 * 表格内Key是否加粗 , 类型: java.lang.String
+	*/
+	public static final String KEY_BOLD="keyBold";
+	
+	/**
+	 * 表格内Key是否加粗 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelTpl,java.lang.String> KEY_BOLD_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelTpl.class ,KEY_BOLD, java.lang.String.class, "表格内Key是否加粗", "表格内Key是否加粗", java.lang.String.class, null);
+	
+	/**
+	 * 表格内Value是否加粗 , 类型: java.lang.String
+	*/
+	public static final String VALUE_BLOD="valueBlod";
+	
+	/**
+	 * 表格内Value是否加粗 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetLabelTpl,java.lang.String> VALUE_BLOD_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetLabelTpl.class ,VALUE_BLOD, java.lang.String.class, "表格内Value是否加粗", "表格内Value是否加粗", java.lang.String.class, null);
+	
+	/**
 	 * 图片marginTop(mm) , 类型: java.math.BigDecimal
 	*/
 	public static final String IMAGE_MARGIN_TOP="imageMarginTop";
@@ -354,7 +374,7 @@ public class AssetLabelTplMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , TYPE , IS_CUSTOM , COL_IDS , IMAGE_POSITION , IMAGE_COL_ID , IMAGE_SHOW , IMAGE_LABEL_SHOW , IMAGE_TYPE , LABEL_FORMAT_CONTENT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , LABEL_TABLE_MARGIN_TOP , LABEL_TABLE_MARGIN_BOTTOM , LABEL_TABLE_MARGIN_LEFT , LABEL_TABLE_MARGIN_RIGHT , IMAGE_MARGIN_TOP , IMAGE_MARGIN_BOTTOM , IMAGE_MARGIN_LEFT , IMAGE_MARGIN_RIGHT , IMAGE_WIDTH , IMAGE_HEIGHT , ASSET_LABEL_ITEM_LIST , ASSET_LABEL_COLUMNL_LIST , ASSET_LABEL_LAYOUT_LIST };
+	public static final String[] $PROPS={ ID , TYPE , IS_CUSTOM , COL_IDS , IMAGE_POSITION , IMAGE_COL_ID , IMAGE_SHOW , IMAGE_LABEL_SHOW , IMAGE_TYPE , LABEL_FORMAT_CONTENT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , LABEL_TABLE_MARGIN_TOP , LABEL_TABLE_MARGIN_BOTTOM , LABEL_TABLE_MARGIN_LEFT , LABEL_TABLE_MARGIN_RIGHT , KEY_BOLD , VALUE_BLOD , IMAGE_MARGIN_TOP , IMAGE_MARGIN_BOTTOM , IMAGE_MARGIN_LEFT , IMAGE_MARGIN_RIGHT , IMAGE_WIDTH , IMAGE_HEIGHT , ASSET_LABEL_ITEM_LIST , ASSET_LABEL_COLUMNL_LIST , ASSET_LABEL_LAYOUT_LIST };
 	
 	/**
 	 * 代理类
@@ -629,6 +649,28 @@ public class AssetLabelTplMeta {
 		}
 		
 		/**
+		 * 设置 表格内Key是否加粗
+		 * @param keyBold 表格内Key是否加粗
+		 * @return 当前对象
+		*/
+		public AssetLabelTpl setKeyBold(String keyBold) {
+			super.change(KEY_BOLD,super.getKeyBold(),keyBold);
+			super.setKeyBold(keyBold);
+			return this;
+		}
+		
+		/**
+		 * 设置 表格内Value是否加粗
+		 * @param valueBlod 表格内Value是否加粗
+		 * @return 当前对象
+		*/
+		public AssetLabelTpl setValueBlod(String valueBlod) {
+			super.change(VALUE_BLOD,super.getValueBlod(),valueBlod);
+			super.setValueBlod(valueBlod);
+			return this;
+		}
+		
+		/**
 		 * 设置 图片marginTop(mm)
 		 * @param imageMarginTop 图片marginTop(mm)
 		 * @return 当前对象
@@ -751,11 +793,13 @@ public class AssetLabelTplMeta {
 			inst.setImageColId(this.getImageColId());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setImageMarginTop(this.getImageMarginTop());
+			inst.setKeyBold(this.getKeyBold());
 			inst.setId(this.getId());
 			inst.setImageType(this.getImageType());
 			inst.setImageShow(this.getImageShow());
 			inst.setImageWidth(this.getImageWidth());
 			inst.setLabelTableMarginRight(this.getLabelTableMarginRight());
+			inst.setValueBlod(this.getValueBlod());
 			inst.setColIds(this.getColIds());
 			inst.setImagePosition(this.getImagePosition());
 			inst.setUpdateTime(this.getUpdateTime());

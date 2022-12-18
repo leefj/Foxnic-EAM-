@@ -1,7 +1,7 @@
 /**
  * 标签模版 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-05 22:44:12
+ * @since 2022-12-18 12:30:47
  */
 
 
@@ -94,6 +94,8 @@ function ListPage() {
 					,{ field: 'labelTableMarginBottom', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('表格marginBottom(mm)') , templet: function (d) { return templet('labelTableMarginBottom',d.labelTableMarginBottom,d);}  }
 					,{ field: 'labelTableMarginLeft', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('表格marginLeft(mm)') , templet: function (d) { return templet('labelTableMarginLeft',d.labelTableMarginLeft,d);}  }
 					,{ field: 'labelTableMarginRight', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('表格marginRight(mm)') , templet: function (d) { return templet('labelTableMarginRight',d.labelTableMarginRight,d);}  }
+					,{ field: 'keyBold', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('表格内Key是否加粗') , templet: function (d) { return templet('keyBold',d.keyBold,d);}  }
+					,{ field: 'valueBlod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('表格内Value是否加粗') , templet: function (d) { return templet('valueBlod',d.valueBlod,d);}  }
 					,{ field: 'imageMarginTop', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图片marginTop(mm)') , templet: function (d) { return templet('imageMarginTop',d.imageMarginTop,d);}  }
 					,{ field: 'imageMarginBottom', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图片marginBottom(mm)') , templet: function (d) { return templet('imageMarginBottom',d.imageMarginBottom,d);}  }
 					,{ field: 'imageMarginLeft', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('图片marginLeft(mm)') , templet: function (d) { return templet('imageMarginLeft',d.imageMarginLeft,d);}  }

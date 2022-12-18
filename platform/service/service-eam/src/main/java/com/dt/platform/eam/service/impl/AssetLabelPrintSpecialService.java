@@ -121,6 +121,14 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 			Float imageMarginLeft=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getImageMarginLeft().toString()));
 			Float imageMarginRight=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getImageMarginRight().toString()));
 
+			boolean keyBold=false;
+			if(printData.getLabelTpl().getKeyBold()!=null&&"1".equals(printData.getLabelTpl().getKeyBold())){
+				keyBold=true;
+			}
+			boolean valueBold=false;
+			if(printData.getLabelTpl().getValueBlod()!=null&&"1".equals(printData.getLabelTpl().getValueBlod())){
+				valueBold=true;
+			}
 			//表的label value 宽度
 			PageSize pageSize =new PageSize(printData.getPageSizeWidth(),printData.getPageSizeHeight());
 			Document document = new Document(pdf, pageSize);
@@ -212,6 +220,9 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 							cell.setHorizontalAlignment(HorizontalAlignment.CENTER);
 							cell.setVerticalAlignment(VerticalAlignment.MIDDLE);
 						//	cell.setBackgroundColor(ColorConstants.YELLOW);
+							if(keyBold){
+								cell.setBold();
+							}
 							colValue=layoutCode;
 						}if(AsseLabelTableCellTypeEnum.TITLE.code().equals(layoutType)){
 						//	cell.setFontSize(keySizePoint);
@@ -219,12 +230,12 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 							cell.setHeight(cellHeightPoint);
 							cell.setMinHeight(cellHeightPoint);
 							cell.setMaxHeight(cellHeightPoint);
-						//	cell.setWidth(labelWidthPoint);
-						//	cell.setMinWidth(labelWidthPoint);
-						//		cell.setMaxWidth(labelWidthPoint);
 							cell.setTextAlignment(TextAlignment.CENTER);
 							cell.setHorizontalAlignment(HorizontalAlignment.CENTER);
 							cell.setVerticalAlignment(VerticalAlignment.MIDDLE);
+							if(keyBold){
+								cell.setBold();
+							}
 							colValue=layoutCode;
 						}else if(AsseLabelTableCellTypeEnum.VALUE.code().equals(layoutType)){
 							cell.setFontSize(labelSizePoint);
@@ -238,6 +249,9 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 							cell.setTextAlignment(TextAlignment.LEFT);
 							cell.setHorizontalAlignment(HorizontalAlignment.CENTER);
 							cell.setVerticalAlignment(VerticalAlignment.MIDDLE);
+							if(valueBold){
+								cell.setBold();
+							}
 							colValue=asset.getOrDefault(layoutCode,"").toString();
 
 						}else if(AsseLabelTableCellTypeEnum.QR_CODE.code().equals(layoutType)){
@@ -283,7 +297,6 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 						content.setProperty(Property.OVERFLOW_Y, OverflowPropertyValue.VISIBLE);
 						content.setMargin(0);
 						content.setPadding(0);
-					//	content.setBackgroundColor(ColorConstants.BLUE);
 						content.setHorizontalAlignment(HorizontalAlignment.CENTER);
   						content.setVerticalAlignment(VerticalAlignment.TOP);
 						cell.add(content);
