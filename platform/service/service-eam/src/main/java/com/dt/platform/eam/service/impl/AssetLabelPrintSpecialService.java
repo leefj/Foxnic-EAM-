@@ -27,6 +27,7 @@ import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.properties.*;
 import org.springframework.stereotype.Service;
 import javax.imageio.ImageIO;
+import javax.xml.bind.Element;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -86,17 +87,19 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 				System.out.println("pdf Font path:"+fontPath+" not exist!,pdf Font:STSong");
 				KeyFont =PdfFontFactory.createFont("STSong-Light","UniGB-UCS2-H");
 				valueFont =PdfFontFactory.createFont("STSong-Light","UniGB-UCS2-H");
-
 			}
 
 			List<AssetLabelLayout> layoutList=printData.getAssetLabelLayoutList().stream().sorted(Comparator.comparing(AssetLabelLayout::getSort)).collect(Collectors.toList());
-
 			//表格 宽高，标签宽度，字体，设置来自Label
-			Float tableWidthPoint=printData.getTableWidthMM()*printData.PAGE_SIZE_A4_POINT_PER_MM;
-			Float tableHeightPoint=printData.getTableHeightMM()*printData.PAGE_SIZE_A4_POINT_PER_MM;
-			Float labelWidthPoint=printData.getPointByMM(Float.parseFloat(printData.getLabel().getLabelKeyWidth().toString()));
-			Float valueWidthPoint=(tableWidthPoint/2-labelWidthPoint);
+			Float tableWidthPoint=Float.parseFloat(new BigDecimal(printData.getTableWidthMM()*printData.PAGE_SIZE_A4_POINT_PER_MM).setScale(1,BigDecimal.ROUND_DOWN).toString());
+			Float tableHeightPoint=Float.parseFloat(new BigDecimal(printData.getTableHeightMM()*printData.PAGE_SIZE_A4_POINT_PER_MM).setScale(1,BigDecimal.ROUND_DOWN).toString());
 
+			BigDecimal labelWidthPointBig=new BigDecimal(Float.parseFloat(printData.getLabel().getLabelKeyWidth().toString())*printData.PAGE_SIZE_A4_POINT_PER_MM).setScale(1,BigDecimal.ROUND_DOWN);
+			Float labelWidthPoint=Float.parseFloat(labelWidthPointBig.toString());
+			BigDecimal valueWidthPointBig=new BigDecimal(tableWidthPoint/2-labelWidthPoint ).setScale(1,BigDecimal.ROUND_DOWN);;
+			Float valueWidthPoint=Float.parseFloat(valueWidthPointBig.toString());
+			System.out.println("##1"+labelWidthPoint);
+			System.out.println("##1"+valueWidthPoint);
 			//开始绘制表格
 			Float keySizePoint=printData.getPointByMM(Float.parseFloat(printData.getLabel().getLabelKeyFontSize().toString()));
 			Float labelSizePoint=printData.getPointByMM(Float.parseFloat(printData.getLabel().getLabelValueFontSize().toString()));
@@ -112,6 +115,7 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 			Float imageHeight=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getImageHeight().toString()));
 			int imageWidthInt=imageWidth.intValue();
 			int imageHeightInt=imageHeight.intValue();
+
 		 	Float imageMarginTop=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getImageMarginTop().toString()));
 			Float imageMarginBottom=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getImageMarginBottom().toString()));
 			Float imageMarginLeft=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getImageMarginLeft().toString()));
@@ -209,6 +213,19 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 							cell.setVerticalAlignment(VerticalAlignment.MIDDLE);
 						//	cell.setBackgroundColor(ColorConstants.YELLOW);
 							colValue=layoutCode;
+						}if(AsseLabelTableCellTypeEnum.TITLE.code().equals(layoutType)){
+						//	cell.setFontSize(keySizePoint);
+							cell.setFont(KeyFont);
+							cell.setHeight(cellHeightPoint);
+							cell.setMinHeight(cellHeightPoint);
+							cell.setMaxHeight(cellHeightPoint);
+						//	cell.setWidth(labelWidthPoint);
+						//	cell.setMinWidth(labelWidthPoint);
+						//		cell.setMaxWidth(labelWidthPoint);
+							cell.setTextAlignment(TextAlignment.CENTER);
+							cell.setHorizontalAlignment(HorizontalAlignment.CENTER);
+							cell.setVerticalAlignment(VerticalAlignment.MIDDLE);
+							colValue=layoutCode;
 						}else if(AsseLabelTableCellTypeEnum.VALUE.code().equals(layoutType)){
 							cell.setFontSize(labelSizePoint);
 							cell.setFont(valueFont);
@@ -227,8 +244,10 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 							cell.setHorizontalAlignment(HorizontalAlignment.CENTER);
 							cell.setVerticalAlignment(VerticalAlignment.MIDDLE);
 							System.out.println("image current width:"+valueWidthPoint);
-							System.out.println("image setting width:"+imageWidthInt+",setting < current width value");
+							System.out.println("image setting width:"+imageWidthInt+",setting > current width value may be error");
 							System.out.println("image setting height:"+imageHeightInt);
+						//	imageWidthInt=20;
+						//	imageHeightInt=20;
 							Image img=this.createImage(AsseLabelTableCellTypeEnum.QR_CODE.code(),assetCode,imageWidthInt-5,imageHeightInt-5);
 							Paragraph p=new Paragraph();
 							p.setMarginTop(imageMarginTop);
@@ -257,19 +276,20 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 							table.addCell(cell);
 							continue;
 						}
-						System.out.println("cellLayout code:"+layoutCode+",type:"+layoutType+",value:"+colValue+",rowHeightPoint:"+cellHeightPoint);
+						System.out.println("cellLayout code:"+layoutCode+",type:"+layoutType+",value:"+colValue);
+						System.out.println("rowHeightPoint:"+cell.getHeight()+","+cellHeightPoint+",rowWidthPoint:"+cell.getWidth()+","+labelWidthPoint);
 						Paragraph content=new Paragraph(colValue);
 						content.setProperty(Property.OVERFLOW_X, OverflowPropertyValue.VISIBLE);
 						content.setProperty(Property.OVERFLOW_Y, OverflowPropertyValue.VISIBLE);
 						content.setMargin(0);
-					//	content.setBackgroundColor()
-				//		content.setBackgroundColor(ColorConstants.YELLOW);
-
-						//content.setBold();
+						content.setPadding(0);
+					//	content.setBackgroundColor(ColorConstants.BLUE);
+						content.setHorizontalAlignment(HorizontalAlignment.CENTER);
+  						content.setVerticalAlignment(VerticalAlignment.TOP);
 						cell.add(content);
 						table.addCell(cell);
 						if(cellLayout.getSort()==40){
-							table.startNewRow();
+							//table.startNewRow();
 						}
 					}
 					paragraphIncludeTable.add(table);

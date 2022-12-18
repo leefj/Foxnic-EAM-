@@ -443,6 +443,12 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                         List<String> value=this.dao.query("select label from sys_dict_item where deleted=0 and dict_code='eam_equipment_environment'" ).getValueList("label",String.class);
                         dataVer.put("value1",  String.join(",", value));
                         dataVerification=dataVer;
+                    }else if("suggestMaintenanceMethodName".equals(secondAssetColumn)){
+                        dataVer.put("prohibitInput",true);
+                        dataVer.put("type","dropdown");
+                        List<String> value=this.dao.query("select label from sys_dict_item where deleted=0 and dict_code='eam_suggest_maintenance_method'" ).getValueList("label",String.class);
+                        dataVer.put("value1",  String.join(",", value));
+                        dataVerification=dataVer;
                     }else if("assetManufacturerName".equals(secondAssetColumn)){
                         dataVer.put("prohibitInput",true);
                         dataVer.put("type","dropdown");
@@ -817,7 +823,13 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
 
 
         //日期类型
-        String[] dateColumns = {AssetMeta.MAINTENANCE_START_DATE,AssetMeta.MAINTENANCE_END_DATE,AssetMeta.PURCHASE_DATE,AssetMeta.ENTRY_TIME};
+        String[] dateColumns = {AssetMeta.MAINTENANCE_START_DATE,
+                AssetMeta.MAINTENANCE_END_DATE,
+                AssetMeta.PURCHASE_DATE,
+                AssetMeta.ENTRY_TIME,
+                AssetMeta.PRODUCTION_DATE,
+                AssetMeta.LAST_VERIFICATION_DATE,
+                AssetMeta.REGISTER_DATE};
         for(int j=0;j<dateColumns.length;j++){
             String dateColumn=dateColumns[j];
             String value=rcd.getString(BeanNameUtil.instance().depart(dateColumn));
@@ -878,7 +890,6 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                 //返回报错
                 return ErrorDesc.failureMessage("组织节点未匹配到:"+valueOwnerCompany);
             }
-
         }
 
 
@@ -1126,6 +1137,9 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
             CodeTextEnum vEquipStatus= EnumUtil.parseByCode(AssetEquipmentStatusEnum.class,assetItem.getEquipmentStatus());
             assetMap.put(AssetDataExportColumnEnum.EQUIPMENT_STATUS_NAME.code(),vEquipStatus==null?"":vEquipStatus.text());
             //数据字典
+            if(assetItem.getSuggestMaintenanceMethodData()!=null){
+                assetMap.put(AssetDataExportColumnEnum.SUGGEST_MAINTENANCE_METHOD.code(),assetItem.getSuggestMaintenanceMethodData().getLabel());
+            }
             if(assetItem.getMaintenanceMethodData()!=null){
                 assetMap.put(AssetDataExportColumnEnum.MAINTENANCE_METHOD.code(),assetItem.getMaintenanceMethodData().getLabel());
             }
