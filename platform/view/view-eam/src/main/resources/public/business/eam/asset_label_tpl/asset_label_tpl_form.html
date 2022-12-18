@@ -2,7 +2,7 @@
 /**
  * 标签模版 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-05 22:44:12
+ * @since 2022-12-18 12:30:47
  */
  -->
  <!DOCTYPE html>
@@ -159,6 +159,22 @@
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('表格marginRight(mm)')}">表格marginRight(mm)</div></div>
                     <div class="layui-input-block layui-input-block-c1">
                         <input lay-filter="labelTableMarginRight" id="labelTableMarginRight" name="labelTableMarginRight" th:placeholder="${ lang.translate('请输入'+'表格marginRight(mm)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
+                    </div>
+                </div>
+            
+                <!-- text_input : 表格内Key是否加粗 ,  keyBold -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('表格内Key是否加粗')}">表格内Key是否加粗</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="keyBold" id="keyBold" name="keyBold" th:placeholder="${ lang.translate('请输入'+'表格内Key是否加粗') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+            
+                <!-- text_input : 表格内Value是否加粗 ,  valueBlod -->
+                <div class="layui-form-item" >
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('表格内Value是否加粗')}">表格内Value是否加粗</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input lay-filter="valueBlod" id="valueBlod" name="valueBlod" th:placeholder="${ lang.translate('请输入'+'表格内Value是否加粗') }" type="text" class="layui-input"  />
                     </div>
                 </div>
             

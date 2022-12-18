@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 标签模版VO类型
  * <p>标签模版 , 数据表 eam_asset_label_tpl 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-05 22:44:11
- * @sign D96704CC31D10D7CCAC00DB5D0BE75DE
+ * @since 2022-12-18 12:30:46
+ * @sign F5A6822B6B9E651BA3A472F6A2A8ECB5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -80,6 +80,18 @@ public class AssetLabelTplVO extends AssetLabelTpl {
 	*/
 	@ApiModelProperty(required = false,value="排序方式" , notes = "")
 	private String sortType;
+	
+	/**
+	 * 数据来源：前端指定不同的来源，后端按来源执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端按来源执行不同的逻辑")
+	private String dataOrigin;
+	
+	/**
+	 * 查询逻辑：默认and，可指定 or 
+	*/
+	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
+	private String queryLogic;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -243,6 +255,44 @@ public class AssetLabelTplVO extends AssetLabelTpl {
 	}
 	
 	/**
+	 * 获得 数据来源<br>
+	 * 前端指定不同的来源，后端按来源执行不同的逻辑
+	 * @return 数据来源
+	*/
+	public String getDataOrigin() {
+		return dataOrigin;
+	}
+	
+	/**
+	 * 设置 数据来源
+	 * @param dataOrigin 数据来源
+	 * @return 当前对象
+	*/
+	public AssetLabelTplVO setDataOrigin(String dataOrigin) {
+		this.dataOrigin=dataOrigin;
+		return this;
+	}
+	
+	/**
+	 * 获得 查询逻辑<br>
+	 * 默认and，可指定 or 
+	 * @return 查询逻辑
+	*/
+	public String getQueryLogic() {
+		return queryLogic;
+	}
+	
+	/**
+	 * 设置 查询逻辑
+	 * @param queryLogic 查询逻辑
+	 * @return 当前对象
+	*/
+	public AssetLabelTplVO setQueryLogic(String queryLogic) {
+		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
 	 * 获得 主键清单<br>
 	 * 用于接收批量主键参数
 	 * @return 主键清单
@@ -336,11 +386,13 @@ public class AssetLabelTplVO extends AssetLabelTpl {
 		inst.setImageColId(this.getImageColId());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setImageMarginTop(this.getImageMarginTop());
+		inst.setKeyBold(this.getKeyBold());
 		inst.setId(this.getId());
 		inst.setImageType(this.getImageType());
 		inst.setImageShow(this.getImageShow());
 		inst.setImageWidth(this.getImageWidth());
 		inst.setLabelTableMarginRight(this.getLabelTableMarginRight());
+		inst.setValueBlod(this.getValueBlod());
 		inst.setColIds(this.getColIds());
 		inst.setImagePosition(this.getImagePosition());
 		inst.setUpdateTime(this.getUpdateTime());
@@ -358,17 +410,19 @@ public class AssetLabelTplVO extends AssetLabelTpl {
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setLabelTableMarginBottom(this.getLabelTableMarginBottom());
 		if(all) {
-			inst.setAssetLabelColumnlList(this.getAssetLabelColumnlList());
 			inst.setSearchField(this.getSearchField());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setPageSize(this.getPageSize());
+			inst.setAssetLabelColumnlList(this.getAssetLabelColumnlList());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
-			inst.setFuzzyField(this.getFuzzyField());
 			inst.setAssetLabelItemList(this.getAssetLabelItemList());
 			inst.setAssetLabelLayoutList(this.getAssetLabelLayoutList());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
-			inst.setPageSize(this.getPageSize());
+			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
+			inst.setQueryLogic(this.getQueryLogic());
 			inst.setSearchValue(this.getSearchValue());
 		}
 		inst.clearModifies();
@@ -438,11 +492,13 @@ public class AssetLabelTplVO extends AssetLabelTpl {
 			this.setImageColId(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.IMAGE_COL_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.UPDATE_BY)));
 			this.setImageMarginTop(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplVOMeta.IMAGE_MARGIN_TOP)));
+			this.setKeyBold(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.KEY_BOLD)));
 			this.setId(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.ID)));
 			this.setImageType(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.IMAGE_TYPE)));
 			this.setImageShow(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.IMAGE_SHOW)));
 			this.setImageWidth(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplVOMeta.IMAGE_WIDTH)));
 			this.setLabelTableMarginRight(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_RIGHT)));
+			this.setValueBlod(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.VALUE_BLOD)));
 			this.setColIds(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.COL_IDS)));
 			this.setImagePosition(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.IMAGE_POSITION)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetLabelTplVOMeta.UPDATE_TIME)));
@@ -461,11 +517,13 @@ public class AssetLabelTplVO extends AssetLabelTpl {
 			this.setLabelTableMarginBottom(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_BOTTOM)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.SEARCH_FIELD)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.FUZZY_FIELD)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(AssetLabelTplVOMeta.PAGE_SIZE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(AssetLabelTplVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.SORT_TYPE)));
-			this.setFuzzyField(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.FUZZY_FIELD)));
 			this.setSortField(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.SORT_FIELD)));
-			this.setPageSize(DataParser.parse(Integer.class, map.get(AssetLabelTplVOMeta.PAGE_SIZE)));
+			this.setDataOrigin(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.DATA_ORIGIN)));
+			this.setQueryLogic(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(AssetLabelTplVOMeta.SEARCH_VALUE)));
 			return true;
 		} else {
@@ -479,11 +537,13 @@ public class AssetLabelTplVO extends AssetLabelTpl {
 				this.setImageColId( (String)map.get(AssetLabelTplVOMeta.IMAGE_COL_ID));
 				this.setUpdateBy( (String)map.get(AssetLabelTplVOMeta.UPDATE_BY));
 				this.setImageMarginTop( (BigDecimal)map.get(AssetLabelTplVOMeta.IMAGE_MARGIN_TOP));
+				this.setKeyBold( (String)map.get(AssetLabelTplVOMeta.KEY_BOLD));
 				this.setId( (String)map.get(AssetLabelTplVOMeta.ID));
 				this.setImageType( (String)map.get(AssetLabelTplVOMeta.IMAGE_TYPE));
 				this.setImageShow( (String)map.get(AssetLabelTplVOMeta.IMAGE_SHOW));
 				this.setImageWidth( (BigDecimal)map.get(AssetLabelTplVOMeta.IMAGE_WIDTH));
 				this.setLabelTableMarginRight( (BigDecimal)map.get(AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_RIGHT));
+				this.setValueBlod( (String)map.get(AssetLabelTplVOMeta.VALUE_BLOD));
 				this.setColIds( (String)map.get(AssetLabelTplVOMeta.COL_IDS));
 				this.setImagePosition( (String)map.get(AssetLabelTplVOMeta.IMAGE_POSITION));
 				this.setUpdateTime( (Date)map.get(AssetLabelTplVOMeta.UPDATE_TIME));
@@ -502,11 +562,13 @@ public class AssetLabelTplVO extends AssetLabelTpl {
 				this.setLabelTableMarginBottom( (BigDecimal)map.get(AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_BOTTOM));
 				// others
 				this.setSearchField( (String)map.get(AssetLabelTplVOMeta.SEARCH_FIELD));
+				this.setFuzzyField( (String)map.get(AssetLabelTplVOMeta.FUZZY_FIELD));
+				this.setPageSize( (Integer)map.get(AssetLabelTplVOMeta.PAGE_SIZE));
 				this.setPageIndex( (Integer)map.get(AssetLabelTplVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(AssetLabelTplVOMeta.SORT_TYPE));
-				this.setFuzzyField( (String)map.get(AssetLabelTplVOMeta.FUZZY_FIELD));
 				this.setSortField( (String)map.get(AssetLabelTplVOMeta.SORT_FIELD));
-				this.setPageSize( (Integer)map.get(AssetLabelTplVOMeta.PAGE_SIZE));
+				this.setDataOrigin( (String)map.get(AssetLabelTplVOMeta.DATA_ORIGIN));
+				this.setQueryLogic( (String)map.get(AssetLabelTplVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(AssetLabelTplVOMeta.SEARCH_VALUE));
 				return true;
 			} catch (Exception e) {
@@ -533,11 +595,13 @@ public class AssetLabelTplVO extends AssetLabelTpl {
 			this.setImageColId(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.IMAGE_COL_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.UPDATE_BY)));
 			this.setImageMarginTop(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplVOMeta.IMAGE_MARGIN_TOP)));
+			this.setKeyBold(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.KEY_BOLD)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.ID)));
 			this.setImageType(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.IMAGE_TYPE)));
 			this.setImageShow(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.IMAGE_SHOW)));
 			this.setImageWidth(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplVOMeta.IMAGE_WIDTH)));
 			this.setLabelTableMarginRight(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_RIGHT)));
+			this.setValueBlod(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.VALUE_BLOD)));
 			this.setColIds(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.COL_IDS)));
 			this.setImagePosition(DataParser.parse(String.class, r.getValue(AssetLabelTplVOMeta.IMAGE_POSITION)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetLabelTplVOMeta.UPDATE_TIME)));
@@ -566,11 +630,13 @@ public class AssetLabelTplVO extends AssetLabelTpl {
 				this.setImageColId( (String)r.getValue(AssetLabelTplVOMeta.IMAGE_COL_ID));
 				this.setUpdateBy( (String)r.getValue(AssetLabelTplVOMeta.UPDATE_BY));
 				this.setImageMarginTop( (BigDecimal)r.getValue(AssetLabelTplVOMeta.IMAGE_MARGIN_TOP));
+				this.setKeyBold( (String)r.getValue(AssetLabelTplVOMeta.KEY_BOLD));
 				this.setId( (String)r.getValue(AssetLabelTplVOMeta.ID));
 				this.setImageType( (String)r.getValue(AssetLabelTplVOMeta.IMAGE_TYPE));
 				this.setImageShow( (String)r.getValue(AssetLabelTplVOMeta.IMAGE_SHOW));
 				this.setImageWidth( (BigDecimal)r.getValue(AssetLabelTplVOMeta.IMAGE_WIDTH));
 				this.setLabelTableMarginRight( (BigDecimal)r.getValue(AssetLabelTplVOMeta.LABEL_TABLE_MARGIN_RIGHT));
+				this.setValueBlod( (String)r.getValue(AssetLabelTplVOMeta.VALUE_BLOD));
 				this.setColIds( (String)r.getValue(AssetLabelTplVOMeta.COL_IDS));
 				this.setImagePosition( (String)r.getValue(AssetLabelTplVOMeta.IMAGE_POSITION));
 				this.setUpdateTime( (Date)r.getValue(AssetLabelTplVOMeta.UPDATE_TIME));

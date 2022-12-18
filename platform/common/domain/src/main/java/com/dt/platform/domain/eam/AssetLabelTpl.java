@@ -27,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 标签模版
  * <p>标签模版 , 数据表 eam_asset_label_tpl 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-05 22:44:11
- * @sign AF9CCA3D3847BB3ACD2C94E6AD6646C9
+ * @since 2022-12-18 12:30:46
+ * @sign CCC6AC1FA7C53D09D210F63BCF562F07
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -187,6 +187,18 @@ public class AssetLabelTpl extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="表格marginRight(mm)" , notes = "表格marginRight(mm)" , example = "0.00")
 	private BigDecimal labelTableMarginRight;
+	
+	/**
+	 * 表格内Key是否加粗：表格内Key是否加粗
+	*/
+	@ApiModelProperty(required = false,value="表格内Key是否加粗" , notes = "表格内Key是否加粗" , example = "0")
+	private String keyBold;
+	
+	/**
+	 * 表格内Value是否加粗：表格内Value是否加粗
+	*/
+	@ApiModelProperty(required = false,value="表格内Value是否加粗" , notes = "表格内Value是否加粗")
+	private String valueBlod;
 	
 	/**
 	 * 图片marginTop(mm)：图片marginTop(mm)
@@ -730,6 +742,44 @@ public class AssetLabelTpl extends Entity {
 	}
 	
 	/**
+	 * 获得 表格内Key是否加粗<br>
+	 * 表格内Key是否加粗
+	 * @return 表格内Key是否加粗
+	*/
+	public String getKeyBold() {
+		return keyBold;
+	}
+	
+	/**
+	 * 设置 表格内Key是否加粗
+	 * @param keyBold 表格内Key是否加粗
+	 * @return 当前对象
+	*/
+	public AssetLabelTpl setKeyBold(String keyBold) {
+		this.keyBold=keyBold;
+		return this;
+	}
+	
+	/**
+	 * 获得 表格内Value是否加粗<br>
+	 * 表格内Value是否加粗
+	 * @return 表格内Value是否加粗
+	*/
+	public String getValueBlod() {
+		return valueBlod;
+	}
+	
+	/**
+	 * 设置 表格内Value是否加粗
+	 * @param valueBlod 表格内Value是否加粗
+	 * @return 当前对象
+	*/
+	public AssetLabelTpl setValueBlod(String valueBlod) {
+		this.valueBlod=valueBlod;
+		return this;
+	}
+	
+	/**
 	 * 获得 图片marginTop(mm)<br>
 	 * 图片marginTop(mm)
 	 * @return 图片marginTop(mm)
@@ -986,11 +1036,13 @@ public class AssetLabelTpl extends Entity {
 		inst.setImageColId(this.getImageColId());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setImageMarginTop(this.getImageMarginTop());
+		inst.setKeyBold(this.getKeyBold());
 		inst.setId(this.getId());
 		inst.setImageType(this.getImageType());
 		inst.setImageShow(this.getImageShow());
 		inst.setImageWidth(this.getImageWidth());
 		inst.setLabelTableMarginRight(this.getLabelTableMarginRight());
+		inst.setValueBlod(this.getValueBlod());
 		inst.setColIds(this.getColIds());
 		inst.setImagePosition(this.getImagePosition());
 		inst.setUpdateTime(this.getUpdateTime());
@@ -1079,11 +1131,13 @@ public class AssetLabelTpl extends Entity {
 			this.setImageColId(DataParser.parse(String.class, map.get(AssetLabelTplMeta.IMAGE_COL_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetLabelTplMeta.UPDATE_BY)));
 			this.setImageMarginTop(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplMeta.IMAGE_MARGIN_TOP)));
+			this.setKeyBold(DataParser.parse(String.class, map.get(AssetLabelTplMeta.KEY_BOLD)));
 			this.setId(DataParser.parse(String.class, map.get(AssetLabelTplMeta.ID)));
 			this.setImageType(DataParser.parse(String.class, map.get(AssetLabelTplMeta.IMAGE_TYPE)));
 			this.setImageShow(DataParser.parse(String.class, map.get(AssetLabelTplMeta.IMAGE_SHOW)));
 			this.setImageWidth(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplMeta.IMAGE_WIDTH)));
 			this.setLabelTableMarginRight(DataParser.parse(BigDecimal.class, map.get(AssetLabelTplMeta.LABEL_TABLE_MARGIN_RIGHT)));
+			this.setValueBlod(DataParser.parse(String.class, map.get(AssetLabelTplMeta.VALUE_BLOD)));
 			this.setColIds(DataParser.parse(String.class, map.get(AssetLabelTplMeta.COL_IDS)));
 			this.setImagePosition(DataParser.parse(String.class, map.get(AssetLabelTplMeta.IMAGE_POSITION)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(AssetLabelTplMeta.UPDATE_TIME)));
@@ -1113,11 +1167,13 @@ public class AssetLabelTpl extends Entity {
 				this.setImageColId( (String)map.get(AssetLabelTplMeta.IMAGE_COL_ID));
 				this.setUpdateBy( (String)map.get(AssetLabelTplMeta.UPDATE_BY));
 				this.setImageMarginTop( (BigDecimal)map.get(AssetLabelTplMeta.IMAGE_MARGIN_TOP));
+				this.setKeyBold( (String)map.get(AssetLabelTplMeta.KEY_BOLD));
 				this.setId( (String)map.get(AssetLabelTplMeta.ID));
 				this.setImageType( (String)map.get(AssetLabelTplMeta.IMAGE_TYPE));
 				this.setImageShow( (String)map.get(AssetLabelTplMeta.IMAGE_SHOW));
 				this.setImageWidth( (BigDecimal)map.get(AssetLabelTplMeta.IMAGE_WIDTH));
 				this.setLabelTableMarginRight( (BigDecimal)map.get(AssetLabelTplMeta.LABEL_TABLE_MARGIN_RIGHT));
+				this.setValueBlod( (String)map.get(AssetLabelTplMeta.VALUE_BLOD));
 				this.setColIds( (String)map.get(AssetLabelTplMeta.COL_IDS));
 				this.setImagePosition( (String)map.get(AssetLabelTplMeta.IMAGE_POSITION));
 				this.setUpdateTime( (Date)map.get(AssetLabelTplMeta.UPDATE_TIME));
@@ -1160,11 +1216,13 @@ public class AssetLabelTpl extends Entity {
 			this.setImageColId(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.IMAGE_COL_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.UPDATE_BY)));
 			this.setImageMarginTop(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplMeta.IMAGE_MARGIN_TOP)));
+			this.setKeyBold(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.KEY_BOLD)));
 			this.setId(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.ID)));
 			this.setImageType(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.IMAGE_TYPE)));
 			this.setImageShow(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.IMAGE_SHOW)));
 			this.setImageWidth(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplMeta.IMAGE_WIDTH)));
 			this.setLabelTableMarginRight(DataParser.parse(BigDecimal.class, r.getValue(AssetLabelTplMeta.LABEL_TABLE_MARGIN_RIGHT)));
+			this.setValueBlod(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.VALUE_BLOD)));
 			this.setColIds(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.COL_IDS)));
 			this.setImagePosition(DataParser.parse(String.class, r.getValue(AssetLabelTplMeta.IMAGE_POSITION)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(AssetLabelTplMeta.UPDATE_TIME)));
@@ -1193,11 +1251,13 @@ public class AssetLabelTpl extends Entity {
 				this.setImageColId( (String)r.getValue(AssetLabelTplMeta.IMAGE_COL_ID));
 				this.setUpdateBy( (String)r.getValue(AssetLabelTplMeta.UPDATE_BY));
 				this.setImageMarginTop( (BigDecimal)r.getValue(AssetLabelTplMeta.IMAGE_MARGIN_TOP));
+				this.setKeyBold( (String)r.getValue(AssetLabelTplMeta.KEY_BOLD));
 				this.setId( (String)r.getValue(AssetLabelTplMeta.ID));
 				this.setImageType( (String)r.getValue(AssetLabelTplMeta.IMAGE_TYPE));
 				this.setImageShow( (String)r.getValue(AssetLabelTplMeta.IMAGE_SHOW));
 				this.setImageWidth( (BigDecimal)r.getValue(AssetLabelTplMeta.IMAGE_WIDTH));
 				this.setLabelTableMarginRight( (BigDecimal)r.getValue(AssetLabelTplMeta.LABEL_TABLE_MARGIN_RIGHT));
+				this.setValueBlod( (String)r.getValue(AssetLabelTplMeta.VALUE_BLOD));
 				this.setColIds( (String)r.getValue(AssetLabelTplMeta.COL_IDS));
 				this.setImagePosition( (String)r.getValue(AssetLabelTplMeta.IMAGE_POSITION));
 				this.setUpdateTime( (Date)r.getValue(AssetLabelTplMeta.UPDATE_TIME));
