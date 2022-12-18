@@ -28,9 +28,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             top.layer.confirm(fox.translate('确定进行该操作吗？'), function (i) {
                 top.layer.close(i);
                 admin.post(api, ps, function (r) {
+                    window.module.refreshTableData();
                     if (r.success) {
                         top.layer.msg(r.message, {time: 1000});
-                        window.module.refreshTableData();
                     } else {
                         var errs = [];
                         if(r.errors&&r.errors.length>0){

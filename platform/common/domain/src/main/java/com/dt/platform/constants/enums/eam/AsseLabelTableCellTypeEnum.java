@@ -5,6 +5,7 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 public enum AsseLabelTableCellTypeEnum implements CodeTextEnum {
 
+    TITLE("title" , "标题"),
     LABEL("label" , "标签"),
     VALUE("value" , "值"),
     QR_CODE("qr_code" , "二维码"),
