@@ -341,7 +341,9 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
                 //设置成本中心
                 if(!StringUtil.isBlank(uId)){
                     JSONObject ext=userInfoExt.get(uId);
-                    detail.setLabel(ext.getString("cost_center"));
+                    if(ext!=null){
+                        detail.setLabel(ext.getString("cost_center"));
+                    }
                 }
                 /*************定制结束----重置客户信息/***************/
                 detailList.add(detail);
