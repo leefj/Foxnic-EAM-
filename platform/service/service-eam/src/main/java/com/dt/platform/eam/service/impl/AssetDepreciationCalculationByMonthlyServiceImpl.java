@@ -188,7 +188,7 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
             if(array!=null){
                 for(int i=0;i<array.size();i++){
                     JSONObject e=array.getJSONObject(i);
-                    System.out.println("extdata:"+e.toJSONString());
+                    Logger.info("extdata:"+e.toJSONString());
                     userInfoExt.put(e.getString("owner_id"),e);
                 }
             }
@@ -343,6 +343,8 @@ public class AssetDepreciationCalculationByMonthlyServiceImpl implements IAssetD
                     JSONObject ext=userInfoExt.get(uId);
                     if(ext!=null){
                         detail.setLabel(ext.getString("cost_center"));
+                    }else{
+                        Logger.info("uId:"+uId+" is null");
                     }
                 }
                 /*************定制结束----重置客户信息/***************/
