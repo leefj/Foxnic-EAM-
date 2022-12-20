@@ -54,8 +54,8 @@ delete from eam_asset_repair where 1=1  and tenant_id='T001' ;
 delete from eam_asset_scrap where 1=1  and tenant_id='T001' ;
 delete from eam_asset_allocation where 1=1  and tenant_id='T001' ;
 delete from eam_asset_borrow where 1=1  and tenant_id='T001' ;
-delete from eam_failure_registration where 1=1  and tenant_id='T001' ;
-delete from eam_asset_borrow_return where 1=1;
+delete from eam_failure_registration where 1=1 and tenant_id='T001' ;
+delete from eam_asset_borrow_return where 1=1 and tenant_id='T001' ;
 delete from eam_asset_collection where 1=1  and tenant_id='T001' ;
 delete from eam_asset_collection_return where 1=1  and tenant_id='T001' ;
 delete from eam_asset_handle where 1=1  and tenant_id='T001' ;
@@ -68,14 +68,12 @@ delete from eam_purchase_order_detail  where 1=1  and tenant_id='T001' ;
 delete from eam_asset_storage  where 1=1  and tenant_id='T001' ;
 delete from eam_purchase_order  where 1=1  and tenant_id='T001' ;
 -- delete from eam_asset_depreciation  where 1=1;
-delete from eam_asset_borrow_return where 1=1;
-delete from eam_asset_collection_return where 1=1;
 -- eam_asset_depreciation
 delete from eam_asset_depreciation_oper  where 1=1  and tenant_id='T001' ;
 delete from eam_asset_depreciation_detail  where 1=1;
 delete from eam_asset_depreciation_detail  where 1=1;
 delete from eam_asset_depreciation_exclude  where 1=1;
-
+delete from eam_asset_maintenance_update  where 1=1;
 
 -- software
 delete from eam_asset_software  where 1=1  and tenant_id='T001' ;
@@ -143,11 +141,11 @@ delete from cont_contract where 1=1 and tenant_id='T001' ;
 delete from cont_contract_attachment where 1=1  and tenant_id='T001' ;
 delete from cont_contract_performance where 1=1  and tenant_id='T001' ;
 delete from cont_contract_signer where 1=1 and tenant_id='T001' ;
---
+
+-- maintenance
 delete from eam_asset_maintenance_record where 1=1;;
 delete from eam_asset_maintenance_record_u where 1=1;;
 delete from eam_asset_maintenance_update where 1=1;;
-
 -- other
 delete from eam_feedback where 1=1 ;
 -- job
