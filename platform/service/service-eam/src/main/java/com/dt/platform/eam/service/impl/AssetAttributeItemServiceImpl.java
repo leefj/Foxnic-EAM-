@@ -14,6 +14,7 @@ import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.entity.ReferCause;
