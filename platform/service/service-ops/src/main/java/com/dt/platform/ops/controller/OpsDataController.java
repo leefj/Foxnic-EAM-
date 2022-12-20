@@ -97,7 +97,6 @@ public class OpsDataController extends SuperController {
         }
 
         File f=opsDataService.saveTempFile(inputstream,"TMP_"+code+".xls");
-        System.out.println(f.getPath());
         Map<String,Object> map= opsDataService.queryHostMap(opsDataService.queryHostList(sample));
         TemplateExportParams templateExportParams = new TemplateExportParams(f.getPath());
         Workbook workbook = ExcelExportUtil.exportExcel(templateExportParams, map);
@@ -129,7 +128,7 @@ public class OpsDataController extends SuperController {
             return  ErrorDesc.failure().message("获取模板文件失败");
         }
         File f=opsDataService.saveTempFile(inputstream,"TMP_"+code+".xls");
-        System.out.println(f.getPath());
+
         Map<String,Object> map= opsDataService.queryInformationSystemMap(opsDataService.queryInformationSystemList(sample));
         TemplateExportParams templateExportParams = new TemplateExportParams(f.getPath());
         Workbook workbook = ExcelExportUtil.exportExcel(templateExportParams, map);
@@ -160,7 +159,7 @@ public class OpsDataController extends SuperController {
             return  ErrorDesc.failure().message("获取模板文件失败");
         }
         File f=opsDataService.saveTempFile(inputstream,"TMP_"+code+".xls");
-        System.out.println(f.getPath());
+
         Map<String,Object> map= opsDataService.queryDatabaseInstanceMap(opsDataService.queryDatabaseInstanceList(sample));
         TemplateExportParams templateExportParams = new TemplateExportParams(f.getPath());
         Workbook workbook = ExcelExportUtil.exportExcel(templateExportParams, map);

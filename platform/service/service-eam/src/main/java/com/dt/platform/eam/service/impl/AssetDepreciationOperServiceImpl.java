@@ -16,6 +16,7 @@ import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.commons.concurrent.SimpleJoinForkTask;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.commons.reflect.EnumUtil;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.data.SaveMode;
@@ -104,7 +105,7 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 		for(AssetDepreciationDetail item:list){
 			Map<String, Object> assetMap= BeanUtil.toMap(item);
 			CodeTextEnum result= EnumUtil.parseByCode(AssetDetailDepreciationResultEnum.class,item.getResult());
-			System.out.println("resultName:"+result.text());
+			Logger.info("resultName:" + result.text());
 			assetMap.put("resultName",result==null?"":result.text());
 			listMap.add(assetMap);
 		}
@@ -159,7 +160,7 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 		AssetDepreciationOper bill=this.getById(id);
 
 		if(AssetDepreciationStatusEnum.ACTING.code().equals(bill.getStatus())){
-			System.out.println("当前状态:"+AssetDepreciationStatusEnum.ACTING.code());
+			Logger.info("当前状态:"+AssetDepreciationStatusEnum.ACTING.code());
 		}else{
 			return ErrorDesc.failureMessage("当前状态,不可进行本操作");
 		}
@@ -223,7 +224,7 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 		}
 		SimpleJoinForkTask<List<Asset> ,Result> task=new SimpleJoinForkTask<>(assetGroupList,2);
 		List<Result> rvs2=task.execute(els->{
-			System.out.println(Thread.currentThread().getName());
+			Logger.info(Thread.currentThread().getName());
 			List<Result> rs2=new ArrayList<>();
 			for (List<Asset> list3 : els) {
 				rs2.add(assetService.saveList(list3,SaveMode.NOT_NULL_FIELDS));
@@ -233,7 +234,6 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 
 		SimpleJoinForkTask<List<AssetProcessRecord> ,Result> task2=new SimpleJoinForkTask<>(assetOperGroupList,2);
 		List<Result> rvs3=task2.execute(els->{
-			System.out.println(Thread.currentThread().getName());
 			List<Result> rs3=new ArrayList<>();
 			for (List<AssetProcessRecord> list4 : els) {
 				rs3.add(assetProcessRecordService.insertList(list4));
@@ -251,7 +251,7 @@ public class AssetDepreciationOperServiceImpl extends SuperService<AssetDeprecia
 
 		long finish = System.currentTimeMillis();
 		long cost=(finish-start)/1000L;
-		System.out.println("cal batch execute cost:"+cost);
+		Logger.info("cal batch execute cost:"+cost);
 		Result r=new Result();
 		r.success(true);
 		r.message("同步数据完成，总共耗时:"+cost+"秒");

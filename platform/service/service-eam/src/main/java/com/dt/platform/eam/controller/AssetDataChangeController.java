@@ -325,7 +325,6 @@ public class AssetDataChangeController extends SuperController {
     public Result<PagedList<AssetDataChange>> queryPagedList(AssetDataChangeVO sample) {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         String pageType = request.getParameter("pageType");
-        System.out.println("pageType" + pageType);
         Result<PagedList<AssetDataChange>> result = new Result<>();
         // 数据权限
         String dp = "";

@@ -13,6 +13,7 @@ import com.dt.platform.proxy.eam.OperateServiceProxy;
 import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import org.apache.commons.io.IOUtils;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -470,10 +471,10 @@ public class InfoController extends SuperController {
         if (errors == null || errors.isEmpty()) {
             return ErrorDesc.success();
         } else {
-            System.out.println("import Result:");
+            Logger.info("import Result:");
             String msg = "导入失败";
             for (int i = 0; i < errors.size(); i++) {
-                System.out.println(i + ":" + errors.get(i).message);
+                Logger.info(i + ":" + errors.get(i).message);
                 msg = errors.get(i).message;
             }
             return ErrorDesc.failure().message(msg).data(errors);

@@ -68,7 +68,7 @@ public class MonitorDataProcessScriptServiceImpl implements IMonitorDataProcessS
         // 并行执行
         List<Result> rvs=task.execute(els->{
             // 打印当前线程信息
-            System.out.println(Thread.currentThread().getName());
+            Logger.info(Thread.currentThread().getName());
             // 处理当前分到的 若干元素，此处为 5 个
             List<Result> rs=new ArrayList<>();
             for (MonitorNode node : els) {

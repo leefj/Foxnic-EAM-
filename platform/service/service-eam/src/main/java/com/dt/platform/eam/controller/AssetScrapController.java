@@ -9,6 +9,7 @@ import com.dt.platform.proxy.eam.AssetEmployeeRepairServiceProxy;
 import com.dt.platform.proxy.eam.AssetRepairServiceProxy;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
 import org.github.foxnic.web.domain.bpm.BpmActionResult;
 import org.github.foxnic.web.domain.bpm.BpmEvent;
 import org.github.foxnic.web.domain.changes.ProcessApproveVO;
@@ -373,7 +374,7 @@ public class AssetScrapController extends SuperController implements BpmCallback
         } else {
             dp = AssetOperateEnum.EAM_ASSET_SCRAP.code();
         }
-        System.out.println("pageType" + pageType + ",dp:" + dp);
+        Logger.info("pageType" + pageType + ",dp:" + dp);
         PagedList<AssetScrap> list = assetScrapService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex(), dp);
         assetScrapService.join(list, AssetScrapMeta.ORIGINATOR);
         assetScrapService.join(list, AssetScrapMeta.METHOD_DICT);

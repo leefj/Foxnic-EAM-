@@ -53,34 +53,6 @@ public class CodeModuleServiceImpl implements ICodeModuleService {
 	public DAO dao() { return dao; }
 
 
-	/**
-	 * 测试
-	 * */
-	private void test(){
-		System.out.println(parseCode("${string_fix,CODE}"));
-		System.out.println(parseCode("${string_fix,CODE}${time,yyyy}${time,mm}${time,dd}${string_fix,-}${number_rand,5}"));
-		System.out.println(parsePlaceholder("{time,yyyy}"));
-		System.out.println(parsePlaceholder("{time,mm}"));
-		System.out.println(parsePlaceholder("{time,dd}"));
-		System.out.println(parsePlaceholder("{time,hh}"));
-		System.out.println(parsePlaceholder("{time,mm}"));
-		System.out.println(parsePlaceholder("{time,ss}"));
-		System.out.println(parsePlaceholder("{string_fix,AS}"));
-		System.out.println(parsePlaceholder("{string_fix,-}"));
-		System.out.println(parsePlaceholder("{string_fix,/}"));
-		System.out.println(parsePlaceholder("{string_rand,5}"));
-		System.out.println(parsePlaceholder("{number_seq,5,asset}"));
-		System.out.println(parsePlaceholder("{number_seq,0,asset}"));
-		System.out.println("1-"+parsePlaceholder("{number_rand,1}"));
-		System.out.println(parsePlaceholder("{number_rand,2}"));
-		System.out.println(parsePlaceholder("{number_rand,3}"));
-		System.out.println(parsePlaceholder("{number_rand,5}"));
-		System.out.println(parsePlaceholder("{number_rand,8}"));
-		System.out.println(parsePlaceholder("{number_rand}"));
-	}
-
-
-
 	public Result generateCode2(String module){
 
 		String v="${string_fix,1011}${string_fix,-}${string_fix,1011}${string_fix,-}${number_seq,5,1011_1011_asset}";
@@ -121,8 +93,7 @@ public class CodeModuleServiceImpl implements ICodeModuleService {
 
 	public static void main(String[] args) {
 		String v="${org,ownOrgId}${org,ownOrgId}${string_fix,-}${busi,assetCategoryCode}${string_fix,-}${number_seq,5,asset}";
-		System.out.println(v.indexOf("org,ownOrgId"));
-		System.out.println(v.replaceAll("org,ownOrgId","string_fix,-") );
+
 	}
 
 	public Result generateCodeByData(String module,String ownOrgId,String pcmId){

@@ -55,17 +55,11 @@ public class SystemCommandExecutor {
     public static SystemCommandtResult exeCmd(String command,int timeoutSecond){
 
         StringBuilder log=new StringBuilder();
-//        String[] cmdArr=command.split(" ");
-//        for(int i=0;i< cmdArr.length;i++){
-//            System.out.println(cmdArr[i]+i);
-//        }
-        //System.out.println(command);
         ProcessBuilder processBuilder=new ProcessBuilder(command.split(" "));
         processBuilder.redirectErrorStream(true);
         Process process= null;
         int exitCode=99;
         try {
-          //  process = Runtime.getRuntime().exec(command);
             process = processBuilder.start();
             ProcessWorker processWorker=new ProcessWorker(process);
             exitCode=processWorker.getExitCode();
@@ -95,11 +89,9 @@ public class SystemCommandExecutor {
         String ass="system.cpu.util[all,user,avg1]|system.cpu.util[all,system,avg1]|system.cpu.util[all,iowait,avg1]|system.cpu.util[all,idle,avg1]";
 
 
-        String[] as =ass.split("\\|")
-                ;
-        System.out.println(as.length);
+        String[] as =ass.split("\\|");
         for(int i=0;i<as.length;i++){
-            System.out.println(as[i]);
+
         }
 
         String a="1645361756";
@@ -107,10 +99,9 @@ public class SystemCommandExecutor {
         Date date = new java.util.Date(aa*1000L);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
         String formattedDate = sdf.format(date);
-        System.out.println(formattedDate);
+
 //        String a="abcdef";
-//        System.out.println(a.replaceAll("a","1"));
-//        System.out.println(a.replaceAll("b","1"));
+
       //  SystemCommandExecutor.exeCmd("zabbix_get",2000).print();
     }
 

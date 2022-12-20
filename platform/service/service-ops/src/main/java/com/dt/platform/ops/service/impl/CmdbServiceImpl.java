@@ -235,7 +235,7 @@ public class CmdbServiceImpl extends SuperService<CmdbModel> implements ICmdbSer
 
 		JSONObject obj=new JSONObject();
 		JSONObject sourceObj=BeanUtil.toJSONObject(value);
-		System.out.println(sourceObj);
+		Logger.info(sourceObj);
 		obj.put("id",value.getId());
 		obj.put("pid",value.getPid());
 		obj.put("modelId",value.getModelId());
@@ -249,7 +249,7 @@ public class CmdbServiceImpl extends SuperService<CmdbModel> implements ICmdbSer
 			if(StatusEnableEnum.ENABLE.code().equals(attr.getStatus())){
 				String colFill=attr.getAttributeColFill();
 				String colShow=attr.getAttributeColShow();
-				System.out.println("colFill:"+colFill+",colShow:"+colShow);
+				Logger.info("colFill:"+colFill+",colShow:"+colShow);
 				if(OpsCmdbAttributeTypeEnum.STRING.code().equals(attr.getAttributeType())){
 					if(sourceObj.containsKey(colFill)){
 						obj.put(colShow,sourceObj.getString(colFill));
@@ -280,7 +280,7 @@ public class CmdbServiceImpl extends SuperService<CmdbModel> implements ICmdbSer
 		Result<JSONObject> res=new Result<>();
 		res.data(obj);
 		res.success();
-		System.out.println("obj\n"+obj.toJSONString());
+		Logger.info("obj\n"+obj.toJSONString());
 		return res;
 	}
 

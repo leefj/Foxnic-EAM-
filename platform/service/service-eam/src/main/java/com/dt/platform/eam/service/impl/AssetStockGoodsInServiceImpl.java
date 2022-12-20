@@ -256,7 +256,7 @@ public class AssetStockGoodsInServiceImpl extends SuperService<AssetStockGoodsIn
 				String stockInNumber=goods.get(i).getStockInNumber()+"";
 				String warehouseId=goods.get(i).getWarehouseId();
 				if(StringUtil.isBlank(goodsId)||StringUtil.isBlank(warehouseId)){
-					System.out.println("goodsId or warehouseId is empty");
+					Logger.info("goodsId or warehouseId is empty");
 				}else{
 					String sql="select id,goods_id from eam_goods_stock where owner_code=? and deleted=0 and tenant_id=? and goods_id=? and warehouse_id=?";
 					Rcd rs=this.dao.queryRecord(sql,ownerCode,tenantId,goodsId,warehouseId);

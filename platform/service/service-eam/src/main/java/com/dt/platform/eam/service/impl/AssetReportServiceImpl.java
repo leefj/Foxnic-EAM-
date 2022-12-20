@@ -91,7 +91,6 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
             }
         }
         result.data(resObj);
-        System.out.println(resObj);
         return result;
     }
 
@@ -566,7 +565,7 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
             }
         }
         data = rs.toJSONArrayWithJSONObject();
-        System.out.println(data);
+
         return data;
     }
 

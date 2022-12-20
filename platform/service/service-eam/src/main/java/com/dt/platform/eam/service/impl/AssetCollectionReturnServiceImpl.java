@@ -126,7 +126,6 @@ public class AssetCollectionReturnServiceImpl extends SuperService<AssetCollecti
 			CodeTextEnum en= EnumUtil.parseByCode(AssetHandleStatusEnum.class,data.getStatus());
 			map.put("statusName", en==null?data.getStatus():en.text());
 		}
-		System.out.println("map data:"+map);
 		return map;
 	}
 

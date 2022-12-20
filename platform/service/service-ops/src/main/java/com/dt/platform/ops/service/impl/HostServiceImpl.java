@@ -418,7 +418,7 @@ public class HostServiceImpl extends SuperService<Host> implements IHostService 
 
 			List<SQL> addSqls=new ArrayList<>();
 			//可在此处校验数据
-			//System.out.println("before:"+r);
+
 			Result verifyResult=opsDataService.verifyHostRecord(r,matchMap,fill);
 			if(!verifyResult.isSuccess()){
 				errors.add(new ValidateResult(null,1,verifyResult.getMessage()));
@@ -493,8 +493,8 @@ public class HostServiceImpl extends SuperService<Host> implements IHostService 
 				sql=update.getSQL();
 
 			}
-		//	System.out.println("after:"+r);
-			//System.out.println("####################ENDSQL:"+sql);
+
+
 
 		}
 
@@ -545,7 +545,7 @@ public class HostServiceImpl extends SuperService<Host> implements IHostService 
 							BeanNameUtil.instance().depart(column):
 							EnumUtil.parseByCode(OpsHostDataExportColumnEnum.class,column).text();
 
-					System.out.println(row.getCell(i)  +","+ firstRow.getCell(i)+","+column+","+rColumn);
+					Logger.info(row.getCell(i)  +","+ firstRow.getCell(i)+","+column+","+rColumn);
 					charIndex=ExcelUtil.toExcel26(i);
 					es.addColumn(charIndex,rColumn,firstRow.getCell(i).toString(), ExcelColumn.STRING_CELL_READER);
 				}

@@ -311,7 +311,7 @@ public class InfoServiceImpl extends SuperService<Info> implements IInfoService 
 			" color ,  engine_number ,  frame_number ,  driving_license ,  kilometers ,  rescue_money ,  commercial_insurance_money ,  insurance_company ,  licensing_time ,  insurance_expire_date ,  version ,  scrap_time ,  position_detail ,  pictures ,  originator_id ,  technical_parameter ,  vehicle_count ,  notes ,  create_by ,  create_time ,  update_by ,  update_time ,  deleted ,  delete_by ,  delete_time ,  tenant_id ";
 	String sql="select "+subsql+" from vehicle_info t WHERE ( ( t.deleted= 0 AND t.tenant_id= 'T001' )) ORDER BY t.create_time DESC";
 	//查询数据
-    System.out.println("#########SQL:\n"+sql);
+
 	RcdSet rs=this.dao().query(sql);
 	//写入
 	ExcelWriter ew=new ExcelWriter();
@@ -344,10 +344,10 @@ public class InfoServiceImpl extends SuperService<Info> implements IInfoService 
 				Sheet sheet=workbook.getSheetAt(0);
 				Row firstRow=sheet.getRow(0);
 				Row secondRow=sheet.getRow(1);
-				System.out.println("SheetName:"+sheet.getSheetName());
-				System.out.println("firstRow lastCellNum:"+firstRow.getLastCellNum());
-				System.out.println("lastSecondRow lastCellNum:"+secondRow.getLastCellNum());
-				System.out.println("lastSecondRow lastCellNum Value:"+secondRow.getCell(secondRow.getLastCellNum()-1));
+				Logger.info("SheetName:"+sheet.getSheetName());
+				Logger.info("firstRow lastCellNum:"+firstRow.getLastCellNum());
+				Logger.info("lastSecondRow lastCellNum:"+secondRow.getLastCellNum());
+				Logger.info("lastSecondRow lastCellNum Value:"+secondRow.getCell(secondRow.getLastCellNum()-1));
 				if(firstRow.getLastCellNum()!=secondRow.getLastCellNum()){
 					return null;
 				}
@@ -379,7 +379,7 @@ public class InfoServiceImpl extends SuperService<Info> implements IInfoService 
 						path=path+"/"+node.getNamePathArray().get(j);
 					}
 				}
-				System.out.println(node.getId()+","+path);
+				Logger.info(node.getId()+","+path);
 				map.put(node.getId(),path);
 			}
 		}
@@ -410,13 +410,11 @@ public class InfoServiceImpl extends SuperService<Info> implements IInfoService 
 		for(int i=0;i<list.size();i++){
 			Info infoItem=list.get(i);
 			Map<String, Object> infoMap= BeanUtil.toMap(infoItem);
-			System.out.println("infoMap"+BeanUtil.toJSONObject(infoMap));
 			String ownerOrgName=orgMap.get(infoItem.getOwnerOrgId());
 			infoMap.put(VehicleDataExportColumnEnum.OWNER_ORG_NAME.code(),ownerOrgName);
 			String useOrgName=orgMap.get(infoItem.getUseOrgId());
 			infoMap.put(VehicleDataExportColumnEnum.USE_ORG_NAME.code(),useOrgName);
 			if(infoItem.getUseUser()!=null){
-				System.out.println("useUser:"+infoItem.getUseUser().getBadge());
 				infoMap.put(VehicleDataExportColumnEnum.USE_USER_NAME_BADGE.code(),infoItem.getUseUser().getNameAndBadge());
 				infoMap.put(VehicleDataExportColumnEnum.USE_USER_NAME.code(),infoItem.getUseUser().getName());
 				infoMap.put(VehicleDataExportColumnEnum.USE_USER_BADGE.code(),infoItem.getUseUser().getBadge());
@@ -470,7 +468,7 @@ public class InfoServiceImpl extends SuperService<Info> implements IInfoService 
 							EnumUtil.parseByCode(VehicleDataExportColumnEnum.class,asset_column).text();
 
 					charIndex= ExcelUtil.toExcel26(i);
-					System.out.println(charIndex+","+secondRow.getCell(i)  +","+ firstRow.getCell(i)+","+asset_column+","+rAssetColumn);
+					Logger.info(charIndex+","+secondRow.getCell(i)  +","+ firstRow.getCell(i)+","+asset_column+","+rAssetColumn);
 					es.addColumn(charIndex,rAssetColumn,firstRow.getCell(i).toString(), ExcelColumn.STRING_CELL_READER);
 				}
 				//追加自定义属性部分
@@ -503,7 +501,7 @@ public class InfoServiceImpl extends SuperService<Info> implements IInfoService 
 		//装换成记录集
 		RcdSet rs=null;
 		try {
-			System.out.println("sheetIndex"+sheetIndex+","+es+"ind:"+es.getColumnReadEndIndex());
+			Logger.info("sheetIndex"+sheetIndex+","+es+"ind:"+es.getColumnReadEndIndex());
 			rs=er.read(sheetIndex,es);
 
 		} catch (Exception e) {
@@ -548,7 +546,7 @@ public class InfoServiceImpl extends SuperService<Info> implements IInfoService 
 			String valueCol=rcd.getString(col);
 			if(!StringUtil.isBlank(valueCol)){
 				if(map.containsValue(valueCol)){
-					System.out.println("dict set:"+col+","+queryMapKeyByValue(map,valueCol));
+					Logger.info("dict set:"+col+","+queryMapKeyByValue(map,valueCol));
 					rcd.setValue(col, queryMapKeyByValue(map,valueCol));
 				}else{
 					return ErrorDesc.failureMessage(notes+":"+valueCol);
@@ -606,7 +604,6 @@ public class InfoServiceImpl extends SuperService<Info> implements IInfoService 
 		}
 
 		String useUser=BeanNameUtil.instance().depart(InfoMeta.USE_USER_ID);
-		System.out.println("useUser:"+useUser);
 		String valueUseUser=rcd.getString(useUser);
 		if(!StringUtil.isBlank(valueUseUser)){
 			Result<Employee> resEmp=EmployeeServiceProxy.api().getByBadge(valueUseUser);
@@ -614,7 +611,7 @@ public class InfoServiceImpl extends SuperService<Info> implements IInfoService 
 				String empId=resEmp.getData().getId();
 				rcd.setValue(useUser,empId);
 			}else{
-				System.out.println("获取人员失败:"+resEmp.getMessage());
+				Logger.info("获取人员失败:"+resEmp.getMessage());
 				return ErrorDesc.failureMessage("使用人员不存在:"+valueUseUser);
 			}
 		}
@@ -650,8 +647,7 @@ public class InfoServiceImpl extends SuperService<Info> implements IInfoService 
 		int i=0;
 		for (Rcd r:rs.getRcdList()) {
 			i++;
-
-			System.out.println("before:"+r);
+			Logger.info("before:"+r);
 			//判断数据是插入或更新
 			if(StringUtil.isBlank(r.getString(VehicleDataExportColumnEnum.ID.text()))){
 				actionType="insert";
@@ -714,8 +710,7 @@ public class InfoServiceImpl extends SuperService<Info> implements IInfoService 
 				sql=update.getSQL();
 
 			}
-			System.out.println("after:"+r);
-			System.out.println(sql);
+			Logger.info("after:"+r);
 		}
 
 		if(batch) {

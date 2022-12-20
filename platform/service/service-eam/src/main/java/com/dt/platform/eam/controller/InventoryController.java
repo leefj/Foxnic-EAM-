@@ -414,13 +414,13 @@ public class InventoryController extends SuperController {
         Rcd managerRs=inventoryService.dao().queryRecord(managerSql,userId);
         RcdSet rs = null;
         if(managerRs==null){
-            System.out.println("普通员工查询");
+            Logger.info("普通员工查询");
             //普通员工盘点，盘点当前获取的资产是否是本人
              sql = "select a.status,count(1) cnt from eam_inventory_asset a,eam_asset b where a.asset_id=b.id and a.deleted=0 and b.deleted=0 and a.inventory_id=? and b.use_user_id=? group by a.status";
                rs=inventoryService.dao().query(sql, id, userId);
         }else{
             //行政管理人员盘点，盘点当前管理人员是否是行政人员，并且资产状态为idle
-            System.out.println("管理人员查询");
+            Logger.info("管理人员查询");
             sql="select a.status,count(1) cnt from eam_inventory_asset a, eam_asset b where a.inventory_id=? \n" +
                     "and a.asset_id=b.id \n" +
                     "and a.deleted=0 \n" +

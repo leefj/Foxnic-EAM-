@@ -232,9 +232,8 @@ public class AssetAttributeItemServiceImpl extends SuperService<AssetAttributeIt
 
 
 	private void printList(List<AssetAttributeItem> list,String type){
-		System.out.println("type:"+type+",total:"+list.size());
 		for(int i=0;i<list.size();i++){
-			System.out.println("itemId:"+list.get(i).getId()+ ",dimension:"+list.get(i).getDimension()+",code:"+list.get(i).getAttribute().getCode());
+			Logger.info("itemId:"+list.get(i).getId()+ ",dimension:"+list.get(i).getDimension()+",code:"+list.get(i).getAttribute().getCode());
 		}
 	}
 
