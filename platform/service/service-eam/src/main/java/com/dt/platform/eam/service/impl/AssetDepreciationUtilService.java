@@ -9,6 +9,7 @@ import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.bean.BeanUtil;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import org.apache.commons.jexl3.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +66,7 @@ public class AssetDepreciationUtilService {
 
         String result="3.454";
         BigDecimal bResult = new BigDecimal(result).setScale(2,BigDecimal.ROUND_HALF_UP);
-        System.out.println(bResult);
+
 //        AssetDepreciationUtilService a=new AssetDepreciationUtilService();
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 //        Date date11 = null;
@@ -74,7 +75,6 @@ public class AssetDepreciationUtilService {
 //              date11 = sdf.parse("2022-01-01");
 //              date22 = sdf.parse("2023-12-05");
 //            String t=a.usedLifeByAccountingPeriod(date11,date22);
-//            System.out.println(t);
 //        } catch (ParseException e) {
 //            e.printStackTrace();
 //        }
@@ -121,7 +121,7 @@ public class AssetDepreciationUtilService {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String d1 = sdf.format(date1);
         String d2 = sdf.format(date2);
-        System.out.println("compareDate d1:"+d1+",d2:"+d2);
+        Logger.info("compareDate d1:"+d1+",d2:"+d2);
         Date date11 = null;
         Date date22 = null;
         int v=0;
@@ -132,7 +132,7 @@ public class AssetDepreciationUtilService {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        System.out.println("compareDate reuslt:"+v);
+        Logger.info("compareDate reuslt:"+v);
         return v+"";
     }
 
@@ -141,7 +141,7 @@ public class AssetDepreciationUtilService {
      * 执行规则集
      * */
     public Result calRules(AssetDepreciationDetail assetDepreciationDetail,String actionCode){
-        System.out.println("calRules,actionCode:"+actionCode);
+        Logger.info("calRules,actionCode:"+actionCode);
         List<AssetDepreciationCalRule> ruleList=assetDepreciationDetail.getCalRuleList();
         List<AssetDepreciationCalRule> ruleList2=ruleList.stream().sorted(Comparator.comparing(AssetDepreciationCalRule::getRuleNumber)).collect(Collectors.toList());
         for(AssetDepreciationCalRule rule:ruleList2){
@@ -153,7 +153,7 @@ public class AssetDepreciationUtilService {
                 continue;
             }
             if(!StatusEnableEnum.ENABLE.code().equals(rule.getStatus())) {
-                System.out.println(partMsg+",本规则当前状态为停用");
+                Logger.info(partMsg+",本规则当前状态为停用");
                 continue;
             }
             // 执行规则
@@ -162,15 +162,15 @@ public class AssetDepreciationUtilService {
             //输出
             if(calRuleResult.isSuccess()){
                 assetDepreciationDetail.setResultStatus(AssetDetailDepreciationResultStatusEnum.SUCCESS.code());
-                System.out.println(partMsg+",规则执行成功");
+                Logger.info(partMsg+",规则执行成功");
             }else{
                 assetDepreciationDetail.setResultStatus(AssetDetailDepreciationResultStatusEnum.FAILED.code());
-                System.out.println(partMsg+",规则执行失败");
+                Logger.info(partMsg+",规则执行失败");
                 break;
             }
-            System.out.println("\n");
+            Logger.info("\n");
         }
-        System.out.println("\n");
+        Logger.info("\n");
         return ErrorDesc.success();
     }
 
@@ -182,7 +182,7 @@ public class AssetDepreciationUtilService {
         String calType=rule.getCalculationType();
         String ruleContent=rule.getMethodContent();
         String partMsg="动作:"+rule.getActionCode()+",规则编号:"+rule.getRuleNumber()+",单据:"+assetDepreciationDetail.getOperId()+",列名:"+rule.getColumnName();
-        System.out.println(partMsg+",动作:本规则计算开始,资产编号:"+assetDepreciationDetail.getAssetCode()+",列值:"+rule.getColumnValue()+",信息:"+rule.getMethodContentInfo());
+        Logger.info(partMsg+",动作:本规则计算开始,资产编号:"+assetDepreciationDetail.getAssetCode()+",列值:"+rule.getColumnValue()+",信息:"+rule.getMethodContentInfo());
 
          //上一起折旧数据
         AssetDepreciationDetail lastAssetDepreciationDetail=null;
@@ -198,13 +198,13 @@ public class AssetDepreciationUtilService {
             map.put("asset", assetDepreciationDetail);
             map.put("last", lastAssetDepreciationDetail);
             map.put("assetOriginalData", assetOriginalData);
-            System.out.println(partMsg+",字段:"+rule.getColumnValue() +",表达式:"+ruleContent);
+            Logger.info(partMsg+",字段:"+rule.getColumnValue() +",表达式:"+ruleContent);
             if(StringUtil.isBlank(ruleContent)){
                 return ErrorDesc.failureMessage(partMsg+",计算表达式为空");
             }
-            System.out.println(partMsg+",rule:"+ruleContent);
+            Logger.info(partMsg+",rule:"+ruleContent);
             String result = calculationValue(ruleContent,map);
-            System.out.println(partMsg+",计算结果:"+result);
+            Logger.info(partMsg+",计算结果:"+result);
             if(StringUtil.isBlank(result)||result.startsWith("err")){
                 return ErrorDesc.failureMessage(partMsg+",计算结果:"+result);
             }
@@ -215,31 +215,31 @@ public class AssetDepreciationUtilService {
                 //BigDecimal.ROUND_HALF_UP 进行四舍五入
                 BigDecimal bResult = new BigDecimal(result).setScale(2,BigDecimal.ROUND_HALF_UP);
                 BeanUtil.setFieldValue(assetDepreciationDetail,colValue,bResult);
-                System.out.println(partMsg+",设置值:"+BeanUtil.getFieldValue(assetDepreciationDetail,colValue,BigDecimal.class).toString());
+                Logger.info(partMsg+",设置值:"+BeanUtil.getFieldValue(assetDepreciationDetail,colValue,BigDecimal.class).toString());
             }else if(AssetDepreciationCalculationReturnTypeEnum.TYPE_STRING.code().equals(rule.getReturnType())){
                 //string 类型
                 BeanUtil.setFieldValue(assetDepreciationDetail,colValue,result);
-                System.out.println(partMsg+",设置值:"+BeanUtil.getFieldValue(assetDepreciationDetail,colValue,String.class));
+                Logger.info(partMsg+",设置值:"+BeanUtil.getFieldValue(assetDepreciationDetail,colValue,String.class));
             }
         }
         else if(AssetDepreciationCalculationMethodTypeEnum.NOT_NULL.code().equals(calType)){
             //NOT NULL 方式
             Boolean notNUll=true;
-            System.out.println("assetDepreciationDetail:"+assetDepreciationDetail+",colValue:"+colValue);
-            System.out.println(partMsg+",计算结果:"+BeanUtil.getFieldValue(assetDepreciationDetail,colValue));
+            Logger.info("assetDepreciationDetail:"+assetDepreciationDetail+",colValue:"+colValue);
+            Logger.info(partMsg+",计算结果:"+BeanUtil.getFieldValue(assetDepreciationDetail,colValue));
             if(BeanUtil.getFieldValue(assetDepreciationDetail,colValue)==null){
                 notNUll=false;
             }
-            System.out.println(partMsg+",计算结果:"+notNUll);
+            Logger.info(partMsg+",计算结果:"+notNUll);
             if(!notNUll){
                 return ErrorDesc.failureMessage("本规则计算未匹配,规则编号:"+rule.getRuleNumber()+","+rule.getColumnName()+"该值不能为空");
             }
         } else if(AssetDepreciationCalculationMethodTypeEnum.SCRIPT.code().equals(calType)){
             //SCRIPT 脚本，暂时未实现
-            System.out.println(partMsg+",本规则未实现");
+            Logger.info(partMsg+",本规则未实现");
             return ErrorDesc.failureMessage("本规则计算类型没有实现,Rule:"+rule.getRuleNumber());
         }else{
-            System.out.println(partMsg+",计算规则配置有误");
+            Logger.info(partMsg+",计算规则配置有误");
             return ErrorDesc.failureMessage("本规则计算类型设置有误,Rule:"+rule.getRuleNumber());
         }
         return ErrorDesc.success();

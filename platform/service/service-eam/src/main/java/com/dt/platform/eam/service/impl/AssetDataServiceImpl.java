@@ -31,6 +31,7 @@ import com.github.foxnic.dao.excel.ExcelStructure;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.sql.expr.ConditionExpr;
+import com.mysql.jdbc.log.Log;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -237,7 +238,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         Map<String,String> colMap= this.dao.query(sql).getValueMap("code",String.class,"required",String.class);
         for(int i=0;i<assetColumnMetaList.size();i++){
             AssetLuckySheetColumnMeta assetColumnMeta=assetColumnMetaList.get(i);
-            System.out.println("assetColumnMeta:"+assetColumnMeta.getCol());
+            Logger.info("assetColumnMeta:"+assetColumnMeta.getCol());
             JSONObject col=new JSONObject();
             col.put("r",0);
             col.put("c",i);
@@ -301,7 +302,6 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
              }
         }
          res.put("celldata",cellData);
-       //  System.out.println("parseImportExcelDataConfig:\b"+res.toJSONString());
         return res;
     }
 
@@ -322,7 +322,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                 Row firstRow=sheet.getRow(0);
                 Row secondRow=sheet.getRow(1);
                 String charIndex="";
-                System.out.println("###row:"+secondRow.getLastCellNum());
+                Logger.debug("row:"+secondRow.getLastCellNum());
                 for(int i=0;i<secondRow.getLastCellNum();i++){
                     AssetLuckySheetColumnMeta metaData=new AssetLuckySheetColumnMeta();
                     String firstAssetColumn=firstRow.getCell(i).toString();
@@ -334,7 +334,6 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                     metaData.setColNumber(i);
                     metaData.setColName(firstAssetColumn);
                     metaData.setCol(secondAssetColumn);
-                    System.out.println("######"+secondAssetColumn);
                     JSONObject dataVer=new JSONObject();
                     JSONObject dataVerification=null;
                     dataVer.put("type",null);
@@ -509,7 +508,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                     if(dataVerification!=null){
                         metaData.setDataVerification(dataVerification);
                     }
-                    System.out.println("###metaData"+metaData);
+                    Logger.info("metaData"+metaData);
                     list.add(metaData);
                 }
                 //追加自定义属性部分
@@ -550,7 +549,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                     JSONObject valueObj=valueArr.getJSONObject(j);
                     if(valueObj!=null){
                         r.createCell(j).setCellValue(valueObj.getString("m"));
-                        System.out.println("out:"+valueObj.getString("m"));
+                        Logger.info("out:"+valueObj.getString("m"));
                     }
                 }
             }
@@ -585,10 +584,10 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         if(errors==null || errors.isEmpty()) {
             return ErrorDesc.success();
         } else {
-            System.out.println("import Result:");
+            Logger.info("import Result:");
             String msg="导入失败";
             for(int i=0;i<errors.size();i++){
-                System.out.println(i+":"+errors.get(i).message);
+                Logger.info(i+":"+errors.get(i).message);
                 msg=errors.get(i).message;
             }
             return ErrorDesc.failure().message(msg).data(errors);
@@ -612,13 +611,13 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
             for( ZTreeNode node:list){
                 if("com".equals(type)){
                     if("com".equals(node.getType())){
-                       System.out.println("add");
+                        Logger.info("add");
                     }else{
                         continue;
                     }
                 }else if("org".equals(type)){
                     if("com".equals(node.getType()) || "dept".equals(node.getType())){
-                        System.out.println("add");
+                        Logger.info("add");
                     }else{
                         continue;
                     }
@@ -631,7 +630,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                         path=path+"/"+node.getNamePathArray().get(j);
                     }
                 }
-                System.out.println("node:"+node.getId()+",path:"+path+"type:"+node.getType());
+                Logger.info("node:"+node.getId()+",path:"+path+"type:"+node.getType());
                 map.put(node.getId(),path);
             }
         }
@@ -666,7 +665,6 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         if(AsseLabelPrintCodeEnum.SPECIAL.code().equals(code)){
             codeEnum = AsseLabelPrintCodeEnum.SPECIAL;
         }
-        System.out.println("assetPrintLabelFactory.getService(codeEnum):"+assetPrintLabelFactory.getService(codeEnum));
         Result printResult=assetPrintLabelFactory.getService(codeEnum).print(printData);
         return  ErrorDesc.success().data(uuid);
     }
@@ -722,7 +720,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         if(result.isSuccess()){
             List<DictItem> list=result.getData();
             for(int i=0;i<list.size();i++){
-                System.out.println(dictCode+" put data:"+list.get(i).getCode()+","+list.get(i).getLabel());
+                Logger.info(dictCode+" put data:"+list.get(i).getCode()+","+list.get(i).getLabel());
                 map.put(list.get(i).getCode(),list.get(i).getLabel());
             }
         }else{
@@ -763,9 +761,8 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
 
         String category=BeanNameUtil.instance().depart(AssetMeta.CATEGORY_ID);
         String valueCategory=rcd.getString(category);
-//        System.out.println("Rcd:"+rcd.toString());
+
 //        for (String f:rcd.getFields()){
-//            System.out.println(f+","+rcd.getString(f));
 //        }
         if(!StringUtil.isBlank(valueCategory)){
             if(categoryMap.containsValue(valueCategory.trim())){
@@ -798,7 +795,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
             HashMap<String,String> map=matchMap.get(dict);
             String col=BeanNameUtil.instance().depart(key);
             String valueCol=rcd.getString(col);
-            System.out.println("col:"+col+",valueCol:"+valueCol);
+            Logger.info("col:"+col+",valueCol:"+valueCol);
             if(!StringUtil.isBlank(valueCol)){
                 if(map.containsValue(valueCol)){
                     rcd.setValue(col,queryMapKeyByValue(map,valueCol));
@@ -902,11 +899,11 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                     String empId=resEmp.getData().getId();
                     rcd.setValue(manager,empId);
                 }else{
-                    System.out.println("获取人员失败:"+resEmp.getMessage()+",info:"+resEmp.getData());
+                    Logger.info("获取人员失败:"+resEmp.getMessage()+",info:"+resEmp.getData());
                     return ErrorDesc.failureMessage("管理人员不存在:"+valueManager);
                 }
             }else{
-                System.out.println("获取人员失败:"+resEmp.getMessage());
+                Logger.info("获取人员失败:"+resEmp.getMessage());
                 return ErrorDesc.failureMessage("管理人员不存在:"+valueManager);
             }
         }
@@ -920,11 +917,11 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                     String empId=resEmp.getData().getId();
                     rcd.setValue(useUser,empId);
                 }else{
-                    System.out.println("获取人员失败:"+",info:"+resEmp.getData());
+                    Logger.info("获取人员失败:"+",info:"+resEmp.getData());
                     return ErrorDesc.failureMessage("使用人员不存在:"+valueUseUser);
                 }
             }else{
-                System.out.println("获取人员失败:"+resEmp.getMessage());
+                Logger.info("获取人员失败:"+resEmp.getMessage());
                 return ErrorDesc.failureMessage("使用人员不存在:"+valueUseUser);
             }
         }
@@ -1107,7 +1104,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
 //                }
 //            }
             Map<String, Object> assetMap= BeanUtil.toMap(assetItem);
-          //  System.out.println("######assetMap"+BeanUtil.toJSONObject(assetItem));
+
             //获取自定义属性
            // 暂时去除自定义属性
 //            DataQueryVo vo=new DataQueryVo();
@@ -1214,7 +1211,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         }
         long finish = System.currentTimeMillis();
         long cost=(finish-start)/1000L;
-        System.out.println("queryAssetMap execute cost:"+cost);
+        Logger.info("queryAssetMap execute cost:"+cost);
         map.put("dataList", listMap);
         return map;
     }

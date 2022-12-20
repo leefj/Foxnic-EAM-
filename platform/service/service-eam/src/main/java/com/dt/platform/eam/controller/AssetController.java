@@ -21,6 +21,7 @@ import com.dt.platform.proxy.eam.OperateServiceProxy;
 import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.dao.data.Rcd;
 import com.github.foxnic.dao.data.RcdSet;
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -399,7 +400,7 @@ public class AssetController extends SuperController {
             pcmData.setOwnerId(id);
             pcmData.setCatalogId(assetVO.getCategoryId());
             pcmData.setTenantId(SessionUser.getCurrent().getActivatedTenantId());
-            System.out.println(pcmData);
+			Logger.info(pcmData);
             Result pcmResult = CatalogServiceProxy.api().saveData(pcmData);
             if (!pcmResult.isSuccess()) {
                 return pcmResult;
@@ -744,12 +745,12 @@ public class AssetController extends SuperController {
             pcmData.setOwnerId(assetVO.getId());
             pcmData.setCatalogId(assetVO.getCategoryId());
             pcmData.setTenantId(SessionUser.getCurrent().getActivatedTenantId());
-            System.out.println("update pcm data:");
-            System.out.println("getId:" + pcmData.getId());
-            System.out.println("getOwnerId:" + pcmData.getOwnerId());
-            System.out.println("getTenantId:" + pcmData.getTenantId());
-            System.out.println("getCatalogId:" + pcmData.getCatalogId());
-            System.out.println("getData:" + pcmData.getData());
+            Logger.info("update pcm data:");
+			Logger.info("getId:" + pcmData.getId());
+			Logger.info("getOwnerId:" + pcmData.getOwnerId());
+			Logger.info("getTenantId:" + pcmData.getTenantId());
+			Logger.info("getCatalogId:" + pcmData.getCatalogId());
+			Logger.info("getData:" + pcmData.getData());
             Result pcmResult = CatalogServiceProxy.api().saveData(pcmData);
             if (!pcmResult.isSuccess()) {
                 return pcmResult;
@@ -1924,10 +1925,10 @@ public class AssetController extends SuperController {
         if (errors == null || errors.isEmpty()) {
             return ErrorDesc.success();
         } else {
-            System.out.println("import Result:");
+			Logger.info("import Result:");
             String msg = "导入失败";
             for (int i = 0; i < errors.size(); i++) {
-                System.out.println(i + ":" + errors.get(i).message);
+				Logger.info(i + ":" + errors.get(i).message);
                 msg = errors.get(i).message;
             }
             return ErrorDesc.failure().message(msg).data(errors);

@@ -7,6 +7,7 @@ import com.dt.platform.constants.enums.common.StatusValidEnum;
 import com.dt.platform.domain.eam.AssetBorrow;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.commons.collection.CollectorUtil;
+import com.github.foxnic.commons.log.Logger;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.domain.hrm.Person;
 import org.github.foxnic.web.domain.system.DictItem;
@@ -249,7 +250,7 @@ public class VoucherPrivController extends SuperController {
         List<DictItem> dictItem_list = dictItem_result.getData();
         for (int i = 0; i < dictItem_list.size(); i++) {
             String tempType = dictItem_list.get(i).getCode();
-            System.out.println("tempType:" + tempType + ",type:" + type);
+            Logger.info("tempType:" + tempType + ",type:" + type);
             if (map.containsKey(tempType)) {
                 list.add(dictItem_list.get(i));
             }

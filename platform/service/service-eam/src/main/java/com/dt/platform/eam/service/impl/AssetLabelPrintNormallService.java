@@ -10,6 +10,7 @@ import com.dt.platform.eam.service.IAssetLabelPrintService;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.busi.id.IDGenerator;
+import com.github.foxnic.commons.log.Logger;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -60,7 +61,7 @@ public class AssetLabelPrintNormallService implements IAssetLabelPrintService {
 	 * @param data
 	 */
 	public static  BufferedImage createAssetPic(String type, String data,int w,int h) {
-		System.out.println("createAssetPic"+type+data+w+","+h);
+		Logger.info("createAssetPic"+type+data+w+","+h);
 		BarcodeFormat format = BarcodeFormat.QR_CODE;
 		if ("rwm".equals(type)) {
 			format = BarcodeFormat.QR_CODE;
@@ -86,7 +87,7 @@ public class AssetLabelPrintNormallService implements IAssetLabelPrintService {
 			List<Map<String, Object>> assetList=print.getAssetData();
 			List<AssetLabelCol> colList=print.getAssetColumnList();
 			String pdfFileName =path +File.separator+ print.getUuid()+".pdf";
-			System.out.println("pdf out file path:"+pdfFileName);
+			Logger.info("pdf out file path:"+pdfFileName);
 			PdfDocument pdf = new PdfDocument(new PdfWriter(pdfFileName));
 			//字体设置
 			PdfFont KeyFont=null;
@@ -95,14 +96,14 @@ public class AssetLabelPrintNormallService implements IAssetLabelPrintService {
 			String fontPath=workDir+File.separator+"bin"+File.separator+"simhei.ttf";
 			File file = new File(fontPath);
 			if(file.exists()){
-				System.out.println("pdf Font path:"+fontPath);
-				System.out.println("pdf Font:simhei");
+				Logger.info("pdf Font path:"+fontPath);
+				Logger.info("pdf Font:simhei");
 				PdfFontFactory.register(fontPath,"SIM_HEI");
 				KeyFont =PdfFontFactory.createRegisteredFont("SIM_HEI",PdfEncodings.IDENTITY_H);
 				valueFont =PdfFontFactory.createRegisteredFont("SIM_HEI",PdfEncodings.IDENTITY_H);
 			}else{
-				System.out.println("pdf Font path:"+fontPath+" not exist!");
-				System.out.println("pdf Font:STSong");
+				Logger.info("pdf Font path:"+fontPath+" not exist!");
+				Logger.info("pdf Font:STSong");
 				KeyFont =PdfFontFactory.createFont("STSong-Light","UniGB-UCS2-H");
 				valueFont =PdfFontFactory.createFont("STSong-Light","UniGB-UCS2-H");
 			}
@@ -113,24 +114,24 @@ public class AssetLabelPrintNormallService implements IAssetLabelPrintService {
 			Float tableValueWidthPoint=tableWidthPoint-tableKeyWidthPoint;
 			PageSize pageSize =new PageSize(print.getPageSizeWidth(),print.getPageSizeHeight());
 			Document document = new Document(pdf, pageSize);
-			System.out.println("document:"+document);
+			Logger.info("document:"+document);
 			document.setMargins(0,0,0,0);
 
 
-			System.out.println("print setting option list:");
-			System.out.println("print Page Type:"+print.getPaperType());
-			System.out.println("print Page columnNumber:"+print.getPrintColumnNumber());
-			System.out.println("print Page width(point):"+pageSize.getWidth());
-			System.out.println("print Page height(point):"+pageSize.getHeight());
-			System.out.println("print Table width(point):"+tableWidthPoint);
-			System.out.println("print Table height(point):"+tableHeightPoint);
-			System.out.println("print Table tableMarginLeft(mm):"+print.getTableMarginLeftMM());
-			System.out.println("print Table tableMarginRight(mm):"+print.getTableMarginRightMM());
-			System.out.println("print Table key width(point):"+tableKeyWidthPoint);
-			System.out.println("print Table value width(point):"+tableValueWidthPoint);
-			System.out.println("print Image show:"+print.getLabelTpl().getImageShow());
-			System.out.println("print Image type:"+print.getLabelTpl().getImageType());
-			System.out.println("print Image position:"+print.getLabelTpl().getImagePosition());
+			Logger.info("print setting option list:");
+			Logger.info("print Page Type:"+print.getPaperType());
+			Logger.info("print Page columnNumber:"+print.getPrintColumnNumber());
+			Logger.info("print Page width(point):"+pageSize.getWidth());
+			Logger.info("print Page height(point):"+pageSize.getHeight());
+			Logger.info("print Table width(point):"+tableWidthPoint);
+			Logger.info("print Table height(point):"+tableHeightPoint);
+			Logger.info("print Table tableMarginLeft(mm):"+print.getTableMarginLeftMM());
+			Logger.info("print Table tableMarginRight(mm):"+print.getTableMarginRightMM());
+			Logger.info("print Table key width(point):"+tableKeyWidthPoint);
+			Logger.info("print Table value width(point):"+tableValueWidthPoint);
+			Logger.info("print Image show:"+print.getLabelTpl().getImageShow());
+			Logger.info("print Image type:"+print.getLabelTpl().getImageType());
+			Logger.info("print Image position:"+print.getLabelTpl().getImagePosition());
 			String imageType=print.getLabelTpl().getImageType();
 
 			//div设置百分之白
@@ -142,28 +143,26 @@ public class AssetLabelPrintNormallService implements IAssetLabelPrintService {
 			// div.setBackgroundColor(ColorConstants.GREEN);
 			div.setMargin(0);
 			div.setPadding(0);
-			System.out.println("print document div width:"+div.getWidth());
-			System.out.println("print document div height:"+div.getHeight());
-			System.out.println("print document div margin top:"+div.getMarginTop());
-			System.out.println("print document div margin bottom:"+div.getMarginBottom());
-			System.out.println("print document div margin left:"+div.getPaddingLeft());
-			System.out.println("print document div margin right:"+div.getPaddingRight());
-			System.out.println("print document div padding top:"+ div.getPaddingTop());
-			System.out.println("print document div padding bottom:"+div.getPaddingBottom());
-			System.out.println("print document div padding left:"+div.getPaddingLeft());
-			System.out.println("print document div padding right:"+div.getPaddingRight());
-
+			Logger.info("print document div width:"+div.getWidth());
+			Logger.info("print document div height:"+div.getHeight());
+			Logger.info("print document div margin top:"+div.getMarginTop());
+			Logger.info("print document div margin bottom:"+div.getMarginBottom());
+			Logger.info("print document div margin left:"+div.getPaddingLeft());
+			Logger.info("print document div margin right:"+div.getPaddingRight());
+			Logger.info("print document div padding top:"+ div.getPaddingTop());
+			Logger.info("print document div padding bottom:"+div.getPaddingBottom());
+			Logger.info("print document div padding left:"+div.getPaddingLeft());
+			Logger.info("print document div padding right:"+div.getPaddingRight());
 			Paragraph paragraphIncludeTable=null;
 			if(assetList!=null){
-				System.out.println("print asset label number:"+assetList.size());
+				Logger.info("print asset label number:"+assetList.size());
 				for(int i=0;i<assetList.size();i++){
 					Map<String, Object> asset=assetList.get(i);
 					String assetId=asset.getOrDefault("id","none").toString();
 					String assetCode=asset.getOrDefault("assetCode","none").toString();
-					System.out.println("i%print.getPrintColumnNumber():"+i%print.getPrintColumnNumber());
+					Logger.info("i%print.getPrintColumnNumber():"+i%print.getPrintColumnNumber());
 					if(i%print.getPrintColumnNumber()==0){
 						if(paragraphIncludeTable!=null){
-							System.out.println("i:"+i+",split");
 							div.add(paragraphIncludeTable);
 						}
 						paragraphIncludeTable = new Paragraph();
@@ -189,28 +188,28 @@ public class AssetLabelPrintNormallService implements IAssetLabelPrintService {
 //					table.setMarginLeft(print.getPointByMM(print.getTableMarginLeftMM()));
 //					table.setMarginRight(print.getPointByMM(print.getTableMarginLeftMM()));
 					table.setWidth(UnitValue.createPointValue(print.getPointByMM(print.getTableWidthMM())));
-					System.out.println("######table layout######");
-					System.out.println("print table width mm:"+print.getTableWidthMM());
-					System.out.println("print table height mm:"+print.getTableHeightMM());
-					System.out.println("print table width:"+table.getWidth());
-					System.out.println("print table height:"+table.getHeight());
-					System.out.println("print table margin top:"+table.getMarginTop());
-					System.out.println("print table margin bottom:"+table.getMarginBottom());
-					System.out.println("print table margin left:"+table.getPaddingLeft());
-					System.out.println("print table margin right:"+table.getPaddingRight());
-					System.out.println("print table padding top:"+ table.getPaddingTop());
-					System.out.println("print table padding bottom:"+table.getPaddingBottom());
-					System.out.println("print table padding left:"+table.getPaddingLeft());
-					System.out.println("print table padding right:"+table.getPaddingRight());
+					Logger.info("######table layout######");
+					Logger.info("print table width mm:"+print.getTableWidthMM());
+					Logger.info("print table height mm:"+print.getTableHeightMM());
+					Logger.info("print table width:"+table.getWidth());
+					Logger.info("print table height:"+table.getHeight());
+					Logger.info("print table margin top:"+table.getMarginTop());
+					Logger.info("print table margin bottom:"+table.getMarginBottom());
+					Logger.info("print table margin left:"+table.getPaddingLeft());
+					Logger.info("print table margin right:"+table.getPaddingRight());
+					Logger.info("print table padding top:"+ table.getPaddingTop());
+					Logger.info("print table padding bottom:"+table.getPaddingBottom());
+					Logger.info("print table padding left:"+table.getPaddingLeft());
+					Logger.info("print table padding right:"+table.getPaddingRight());
 					Cell imageCell=null;
 					Cell imageLabelCell=null;
 
 					float imageContainerHeight=print.getPointByMM(21);
 					float labelHeight=(print.getPageSizeHeight()-imageContainerHeight)/colList.size();
-					System.out.println("pageSize height:"+print.getPageSizeHeight());
-					System.out.println("setting height:"+labelHeight);
-					System.out.println("size number:"+colList.size());
-					System.out.println("image container height:"+imageContainerHeight);
+					Logger.info("pageSize height:"+print.getPageSizeHeight());
+					Logger.info("setting height:"+labelHeight);
+					Logger.info("size number:"+colList.size());
+					Logger.info("image container height:"+imageContainerHeight);
 
 					if("1".equals(print.getLabelTpl().getImageShow())){
 						//图像
@@ -218,7 +217,7 @@ public class AssetLabelPrintNormallService implements IAssetLabelPrintService {
 						File imageFile = new File(path +File.separator+ assetId+".jpg");
 						/////////////////图像生成开始
 						ImageIO.write(buffImg,"jpg",imageFile);
-						System.out.println(path + assetId+".jpg");
+						Logger.info(path + assetId+".jpg");
 						Image img=new Image(ImageDataFactory.create(path +File.separator+ assetId+".jpg"));
 						if("rwm".equals(imageType)){
 							img.setHeight(imageContainerHeight-10);
@@ -293,10 +292,10 @@ public class AssetLabelPrintNormallService implements IAssetLabelPrintService {
 						vP.setProperty(Property.OVERFLOW_X, OverflowPropertyValue.VISIBLE);
 						table.addCell(keyCell);
 						table.addCell(valueCell);
-						System.out.println("keyCell width:"+keyCell.getWidth());
-						System.out.println("keyCell height:"+keyCell.getHeight());
-						System.out.println("valueCell width:"+valueCell.getWidth());
-						System.out.println("valueCell height:"+valueCell.getHeight());
+						Logger.info("keyCell width:"+keyCell.getWidth());
+						Logger.info("keyCell height:"+keyCell.getHeight());
+						Logger.info("valueCell width:"+valueCell.getWidth());
+						Logger.info("valueCell height:"+valueCell.getHeight());
 					}
 
 					//图像
@@ -355,7 +354,7 @@ public class AssetLabelPrintNormallService implements IAssetLabelPrintService {
 		//图像
 		String uid= IDGenerator.getSnowflakeIdString();
 		String path = System.getProperty("java.io.tmpdir");
-		System.out.println("iamgeType:"+imageType+",w:"+w+",h:"+h+",path:"+path + uid+".jpg");
+		Logger.info("iamgeType:"+imageType+",w:"+w+",h:"+h+",path:"+path + uid+".jpg");
 		BarcodeFormat format = BarcodeFormat.QR_CODE;
 		if(AsseLabelTableCellTypeEnum.QR_CODE.code().equals(imageType)){
 			format = BarcodeFormat.QR_CODE;
@@ -387,8 +386,8 @@ public class AssetLabelPrintNormallService implements IAssetLabelPrintService {
 		img.setBackgroundColor(ColorConstants.BLUE);
 		img.setMargins(0,0,0,0);
 		img.setPaddings(0,0,0,0);
-		System.out.println("image finish,width:"+img.getWidth()+",height:"+img.getWidth());
-		System.out.println("image finish,image width:"+img.getImageWidth()+",image height:"+img.getImageHeight());
+		Logger.info("image finish,width:"+img.getWidth()+",height:"+img.getWidth());
+		Logger.info("image finish,image width:"+img.getImageWidth()+",image height:"+img.getImageHeight());
 		return img;
 	}
 

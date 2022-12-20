@@ -1,6 +1,7 @@
 package com.dt.platform.ops.service.impl.ops;
 
 import ch.ethz.ssh2.*;
+import com.github.foxnic.commons.log.Logger;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -57,7 +58,7 @@ public class RemoteShellExecutor {
 
 		public String[] replyToChallenge(String s, String instruction, int numPrompts, String[] arg3, boolean[] arg4) {
 			final String[] result2 = new String[numPrompts];
-			System.out.println("numPrompts:" + numPrompts);
+
 			if (numPrompts > 0) {
 				Arrays.fill(result2, password);
 			}
@@ -76,7 +77,7 @@ public class RemoteShellExecutor {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			// e.printStackTrace();
-			System.out.println("authenticateWithPassword failed,try to authenticateWithKeyboardInteractive");
+			Logger.info("authenticateWithPassword failed,try to authenticateWithKeyboardInteractive");
 		}
 		if (result) {
 			return result;
@@ -91,7 +92,7 @@ public class RemoteShellExecutor {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			// e.printStackTrace();
-			System.out.println("authenticateWithKeyboardInteractive failed.");
+			Logger.info("authenticateWithKeyboardInteractive failed.");
 		}
 		return loginSuccess;
 

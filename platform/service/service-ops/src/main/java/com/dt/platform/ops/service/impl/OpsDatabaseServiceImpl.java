@@ -194,14 +194,14 @@ public class OpsDatabaseServiceImpl extends SuperService<DbInfo> implements IOps
 
 	@Override
 	public Result<JSONObject> queryDatabaseData(String codes) {
-		System.out.println("process codes:"+codes);
+		Logger.info("process codes:"+codes);
 		JSONObject result=new JSONObject();
 		String[] codeArr=codes.split(",");
 		for(int i=0;i<codeArr.length;i++){
-			System.out.println("process data:"+codeArr[i]);
+			Logger.info("process data:"+codeArr[i]);
 			result.put(codeArr[i],queryDatabaseDataByCode(codeArr[i]));
 		}
-		System.out.println(result);
+		Logger.info("result:\n"+result);
 		Result<JSONObject> r=new Result<>();
 		r.data(result);
 		r.success();

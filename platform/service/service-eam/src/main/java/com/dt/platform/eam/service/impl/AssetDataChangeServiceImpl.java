@@ -333,9 +333,7 @@ public class AssetDataChangeServiceImpl extends SuperService<AssetDataChange> im
 		}
 		RcdSet colsRs=dao.query(sql);
 		List<String> colsList=colsRs.getValueList("code",String.class);
-		System.out.println("colList:"+colsList);
 		for(String col:dataRcd.getOwnerSet().getFields()){
-			System.out.println("\n"+col+"\nrcd column "+col+" before value:"+dataRcd.getString(col));
 			if(col.equals("business_code")
 					||col.equals("proc_id")
 					||col.equals("status")
@@ -362,22 +360,17 @@ public class AssetDataChangeServiceImpl extends SuperService<AssetDataChange> im
 					||col.equals("approval_opinion")
 					||col.equals("internal_control_label")){
 				dataRcd.setValue(col,null);
-				System.out.println("rcd column "+col+" after value:"+dataRcd.getString(col));
 				continue;
 			}
 			if(colsList.contains(col)){
 				String value=dataRcd.getString(col);
-				System.out.println("col:"+col+",exist");
 				if(value==null||"".equals(value)){
-					System.out.println("col:"+col+" to set null");
 					dataRcd.setValue(col,null);
 				}
 			}else{
-				System.out.println("col "+col+",not exist");
-				System.out.println("col:"+col+" to set null");
+
 				dataRcd.setValue(col,null);
 			}
-			System.out.println(col+"rcd column "+col+" after value:"+dataRcd.getString(col));
 		}
 		return extractDataChangeValue(dataRcd);
 	}

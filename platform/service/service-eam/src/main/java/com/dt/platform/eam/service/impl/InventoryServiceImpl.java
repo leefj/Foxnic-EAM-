@@ -21,6 +21,7 @@ import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.commons.reflect.EnumUtil;
 import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.data.Rcd;
@@ -242,9 +243,7 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 		List<Map<String, Object>> listMap = new ArrayList<Map<String, Object>>();
 		for(int i=0;i<list.size();i++){
 			InventoryAsset assetItem=list.get(i);
-			System.out.println("######inventoryAssetMap"+BeanUtil.toJSONObject(assetItem));
 			Map<String, Object> assetMap= BeanUtil.toMap(assetItem);
-
 			if(assetItem.getStatus()!=null){
 				CodeTextEnum statusName= EnumUtil.parseByCode(AssetInventoryDetailStatusEnum.class,assetItem.getStatus());
 				assetMap.put("statusName",statusName.text());
@@ -252,7 +251,6 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 
 
 			if(assetItem.getOperater()!=null){
-				System.out.println("oper:"+assetItem.getOperater().getBadge());
 				assetMap.put("assetWithOperUserNameAndBadge",assetItem.getOperater().getNameAndBadge());
 				assetMap.put("assetWithOperUserName",assetItem.getOperater().getName());
 				assetMap.put("assetWithOperUserBadge",assetItem.getOperater().getBadge());
@@ -283,13 +281,13 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 					assetMap.put("assetWithAssetPositionName",asset.getPosition().getHierarchyName());
 				}
 				if(asset.getManager()!=null){
-					System.out.println("manager:"+asset.getManager().getBadge());
+
 					assetMap.put("assetWithManagerNameAndBadge",asset.getManager().getNameAndBadge());
 					assetMap.put("assetWithManagerName",asset.getManager().getName());
 					assetMap.put("assetWithManagerBadge",asset.getManager().getBadge());
 				}
 				if(asset.getUseUser()!=null){
-					System.out.println("user:"+asset.getUseUser().getBadge());
+
 					assetMap.put("assetWithUseUserNameAndBadge",asset.getUseUser().getNameAndBadge());
 					assetMap.put("assetWithUseUserName",asset.getUseUser().getName());
 					assetMap.put("assetWithUseUserNameBadge",asset.getUseUser().getBadge());
@@ -298,7 +296,7 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 			listMap.add(assetMap);
 		}
 		map.put("dataList", listMap);
-		System.out.println("map data:\n"+map);
+
 		return map;
 	}
 
@@ -350,12 +348,12 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 		String managerSql="select 1 from sys_busi_role a,sys_busi_role_member b where a.code='employ_inventory_manag_role' and a.id=b.role_id and a.deleted=0 and b.member_type='employee' and b.member_id=?";
 		Rcd managerRs=dao.queryRecord(managerSql,curUserId);
 		if(managerRs==null){
-			System.out.println("普通员工盘点查询");
+			Logger.info("普通员工盘点查询");
 			//普通员工盘点，盘点当前获取的资产是否是本人
 			expr.and("asset_id in (select id from eam_asset where deleted=0 and use_user_id=?)",curUserId);
 		}else{
 			//行政管理人员盘点，盘点当前管理人员是否是行政人员，并且资产状态为idle
-			System.out.println("管理人员盘点查询");
+			Logger.info("管理人员盘点查询");
 			String sql="select id from eam_asset where deleted=0 and manager_id=? and asset_status in (select status_code from eam_asset_status_rule_v where deleted=0 and oper_code='eam_asset_inventory_employ_mode')\n" +
 					"union all\n" +
 					"select id from eam_asset where deleted=0 and use_user_id=?";
@@ -466,7 +464,7 @@ public class InventoryServiceImpl extends SuperService<Inventory> implements IIn
 			}
 		}
 
-		System.out.println("盘点初始化获取资产数据SQL\n"+sql);
+		Logger.info("盘点初始化获取资产数据SQL\n"+sql);
 		dao.execute(sql);
 		return ErrorDesc.success();
 	}

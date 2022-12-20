@@ -301,7 +301,7 @@ public class InformationSystemServiceImpl extends SuperService<InformationSystem
 		List<SQL> sqls=new ArrayList<>();
 		for (Rcd r : rs) {
 			//可在此处校验数据
-			System.out.println("before:"+r);
+			Logger.info("before:"+r);
 
 			Result verifyResult=opsDataService.verifyISRecord(r,matchMap,fill);
 			if(!verifyResult.isSuccess()){
@@ -353,8 +353,8 @@ public class InformationSystemServiceImpl extends SuperService<InformationSystem
 				sql=update.getSQL();
 
 			}
-			System.out.println("after:"+r);
-			System.out.println(sql);
+			Logger.info("after:"+r);
+			Logger.info(sql);
 		}
 
 		if(batch) {
@@ -399,7 +399,7 @@ public class InformationSystemServiceImpl extends SuperService<InformationSystem
 							BeanNameUtil.instance().depart(column):
 							EnumUtil.parseByCode(OpsISDataExportColumnEnum.class,column).text();
 
-					System.out.println(row.getCell(i)  +","+ firstRow.getCell(i)+","+column+rColumn);
+					Logger.info(row.getCell(i)  +","+ firstRow.getCell(i)+","+column+rColumn);
 					charIndex=ExcelUtil.toExcel26(i);
 					es.addColumn(charIndex,rColumn,firstRow.getCell(i).toString(), ExcelColumn.STRING_CELL_READER);
 				}

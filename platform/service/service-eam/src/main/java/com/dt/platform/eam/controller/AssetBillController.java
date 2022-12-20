@@ -404,7 +404,6 @@ public class AssetBillController extends SuperController {
         AssetCollection billdata=assetCollectionService.getById(id);
         Map<String,Object> data=new HashMap<String,Object>();
         data=BeanUtil.toMap(billdata);
-        System.out.println(data.toString());
         XWPFTemplate template = XWPFTemplate.compile(inputstream).render(data);
         response.setContentType("application/msword");
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("领用单据-"+billdata.getBusinessCode()+".docx", "UTF-8"))));
@@ -535,7 +534,6 @@ public class AssetBillController extends SuperController {
         AssetRepair billdata=assetRepairService.getById(id);
         Map<String,Object> data=new HashMap<String,Object>();
         data=BeanUtil.toMap(billdata);
-        System.out.println(data.toString());
         XWPFTemplate template = XWPFTemplate.compile(inputstream).render(data);
         response.setContentType("application/msword");
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("维修单据-"+billdata.getBusinessCode()+".docx", "UTF-8"))));
@@ -598,7 +596,6 @@ public class AssetBillController extends SuperController {
         Asset billdata=assetService.getById(id);
         Map<String,Object> data=new HashMap<String,Object>();
         data=BeanUtil.toMap(billdata);
-        System.out.println(data.toString());
         XWPFTemplate template = XWPFTemplate.compile(inputstream).render(data);
         response.setContentType("application/msword");
         //response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("资产卡片-"+billdata.getAssetCode()+".docx", "UTF-8"))));
@@ -640,7 +637,6 @@ public class AssetBillController extends SuperController {
         Asset billdata=assetService.getById(id);
         Map<String,Object> data=new HashMap<String,Object>();
         data=BeanUtil.toMap(billdata);
-        System.out.println(data.toString());
         XWPFTemplate template = XWPFTemplate.compile(inputstream).render(data);
         response.setContentType("application/msword");
         response.setHeader("Content-Disposition", "attachment;filename=".concat(String.valueOf(URLEncoder.encode("资产标签-"+billdata.getAssetCode()+".docx", "UTF-8"))));
@@ -668,7 +664,6 @@ public class AssetBillController extends SuperController {
         for(int i=0;i<list.size();i++){
             InputStream ins= TplFileServiceProxy.api().getTplFileStreamByCode(AssetOperateEnum.EAM_DOWNLOAD_ASSET_LABEl.code());
             Map<String,Object> map=list.get(i);
-            System.out.println(map.toString());
             XWPFTemplate template = XWPFTemplate.compile( ins ).render(map);
             String assetCode=map.getOrDefault("assetCode", IDGenerator.getSnowflakeIdString()).toString();
             ZipEntry entry = new ZipEntry( assetCode+ ".docx");

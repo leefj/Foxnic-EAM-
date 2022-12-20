@@ -1,16 +1,12 @@
 package com.dt.platform.generator.module.eam;
 
 import com.dt.platform.constants.db.EAMTables;
-import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
-import com.dt.platform.domain.eam.AssetProcessRecord;
-import com.dt.platform.eam.page.AssetProcessRecordPageController;
 import com.dt.platform.generator.config.Config;
-import com.dt.platform.proxy.eam.AssetProcessRecordServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 
-public class EamProcessRecord extends BaseCodeGenerator{
-    public EamProcessRecord() {
+public class EamProcessRecordGtr extends BaseCodeGenerator{
+    public EamProcessRecordGtr() {
         super(EAMTables.EAM_ASSET_PROCESS_RECORD.$TABLE,BASIC_DATA_MENU_ID);
     }
 
@@ -69,7 +65,7 @@ public class EamProcessRecord extends BaseCodeGenerator{
     }
 
     public static void main(String[] args) throws Exception {
-        EamProcessRecord g=new EamProcessRecord();
+        EamProcessRecordGtr g=new EamProcessRecordGtr();
         //生成代码
          g.generateCode();
         //g.generateMenu(AssetProcessRecordServiceProxy.class, AssetProcessRecordPageController.class);

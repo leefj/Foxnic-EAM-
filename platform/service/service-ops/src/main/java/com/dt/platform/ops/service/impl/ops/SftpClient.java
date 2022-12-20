@@ -3,6 +3,7 @@ package com.dt.platform.ops.service.impl.ops;
 import ch.ethz.ssh2.*;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
+import com.github.foxnic.commons.log.Logger;
 
 
 import java.io.*;
@@ -39,7 +40,7 @@ public class SftpClient {
 
 		public String[] replyToChallenge(String s, String instruction, int numPrompts, String[] arg3, boolean[] arg4) {
 			final String[] result2 = new String[numPrompts];
-			System.out.println("numPrompts:" + numPrompts);
+			Logger.info("numPrompts:" + numPrompts);
 			if (numPrompts > 0) {
 				Arrays.fill(result2, machine.getPassword());
 			}
@@ -62,13 +63,13 @@ public class SftpClient {
 				initCatalogs(client.canonicalPath("."));
 				return result;
 			}else{
-				System.out.println("authenticateWithPassword failed");
+				Logger.info("authenticateWithPassword failed");
 			}
 		} catch (IOException e) {
-			System.out.println("authenticateWithPassword failed,try to authenticateWithKeyboardInteractive");
+			Logger.info("authenticateWithPassword failed,try to authenticateWithKeyboardInteractive");
 		}
 		boolean loginSuccess = false;
-		System.out.println("try UsernamePasswordInteractiveCallback");
+		Logger.info("try UsernamePasswordInteractiveCallback");
 		try{
 			UsernamePasswordInteractiveCallback il = new UsernamePasswordInteractiveCallback();
 			conn = new Connection(machine.getHostname(), machine.getPort());
@@ -80,7 +81,7 @@ public class SftpClient {
 				return loginSuccess;
 			}
 		} catch (IOException e) {
-			System.out.println("authenticateWithKeyboardInteractive failed.");
+			Logger.info("authenticateWithKeyboardInteractive failed.");
 		}
 		return loginSuccess;
 	}
@@ -203,7 +204,7 @@ public class SftpClient {
 					break;
 				client.write(handle, count, b, 0, len);
 				count += len;
-				System.out.println("	"+fileName + " {\"percent\":\"" + df.format((double) count / totalSize * 100)
+				Logger.info("	"+fileName + " {\"percent\":\"" + df.format((double) count / totalSize * 100)
 						+ "%\",\"num\":\"" + (int) ((double) count / totalSize) + "\"}");
 				if (session != null) {
 					session.put("	progress", "{\"percent\":\"" + df.format((double) count / totalSize * 100)
@@ -244,7 +245,7 @@ public class SftpClient {
 
 		boolean uploadFlag=true;
 		String msg="上传失败";
-		System.out.println("start to upload file,file:"+file.getAbsolutePath()+",fileName:"+fileName);
+		Logger.info("start to upload file,file:"+file.getAbsolutePath()+",fileName:"+fileName);
 		if (file == null)
 			return ErrorDesc.failureMessage("文件为空");
 		FileInputStream fis = null;
@@ -263,7 +264,7 @@ public class SftpClient {
 					break;
 				client.write(handle, count, b, 0, len);
 				count += len;
-				System.out.println("	"+fileName + " {\"percent\":\"" + df.format((double) count / totalSize * 100)
+				Logger.info("	"+fileName + " {\"percent\":\"" + df.format((double) count / totalSize * 100)
 						+ "%\",\"num\":\"" + (int) ((double) count / totalSize) + "\"}");
 				if (session != null) {
 					session.put("	progress", "{\"percent\":\"" + df.format((double) count / totalSize * 100)

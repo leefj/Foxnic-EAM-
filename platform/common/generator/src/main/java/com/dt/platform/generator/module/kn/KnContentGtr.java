@@ -37,7 +37,6 @@ public class KnContentGtr extends BaseCodeGenerator {
 
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
-      //  System.out.println("111");
      //  cfg.getPoClassFile().addSimpleProperty(Grade.class,"grade","知识分级","知识分级");
         cfg.getPoClassFile().addSimpleProperty(Category.class,"category","知识分类","知识分类");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"editor","编辑人","编辑人");

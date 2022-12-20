@@ -12,6 +12,7 @@ import com.dt.platform.constants.enums.eam.AssetOperateEnum;
 import com.dt.platform.constants.enums.ops.OpsOperateEnum;
 import com.dt.platform.ops.service.IOpsDataService;
 import com.dt.platform.proxy.common.TplFileServiceProxy;
+import com.github.foxnic.commons.log.Logger;
 import org.apache.commons.io.IOUtils;
 import org.apache.poi.ss.usermodel.Workbook;
 import com.github.foxnic.commons.collection.CollectorUtil;
@@ -451,9 +452,9 @@ public class HostController extends SuperController {
         if (errors == null || errors.isEmpty()) {
             return ErrorDesc.success();
         } else {
-            System.out.println("import Result:");
+            Logger.info("import Result:");
             for (int i = 0; i < errors.size(); i++) {
-                System.out.println(i + ":" + errors.get(i).message);
+                Logger.info(i + ":" + errors.get(i).message);
             }
             return ErrorDesc.failure().message("导入失败").data(errors);
         }

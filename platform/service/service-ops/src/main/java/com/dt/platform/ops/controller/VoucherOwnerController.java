@@ -82,7 +82,7 @@ public class VoucherOwnerController extends SuperController {
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     public Result insert(VoucherOwnerVO voucherOwnerVO) {
         String employeeId = this.getSessionUser().getUser().getActivatedEmployeeId();
-        System.out.println("employeeId" + employeeId);
+
         Result verify_result = voucherPrivService.verifyUserPermissions(voucherOwnerVO.getCategoryCode(), employeeId);
         if (!verify_result.isSuccess()) {
             return verify_result;

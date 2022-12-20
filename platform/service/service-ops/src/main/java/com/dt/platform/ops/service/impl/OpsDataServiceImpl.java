@@ -438,14 +438,14 @@ public class OpsDataServiceImpl extends SuperService<Host> implements IOpsDataSe
 
 	@Override
 	public Result<JSONObject> queryHostData(String codes) {
-		System.out.println("process codes:"+codes);
+
 		JSONObject result=new JSONObject();
 		String[] codeArr=codes.split(",");
 		for(int i=0;i<codeArr.length;i++){
-			System.out.println("process data:"+codeArr[i]);
+
 			result.put(codeArr[i],queryHostDataByCode(codeArr[i]));
 		}
-		System.out.println(result);
+
 		Result<JSONObject> r=new Result<>();
 		r.data(result);
 		r.success();
@@ -734,7 +734,7 @@ public class OpsDataServiceImpl extends SuperService<Host> implements IOpsDataSe
 
 		String valueBackupMethod=rcd.getString(BeanNameUtil.instance().depart(HostMeta.HOST_BACKUP_METHOD));
 		String dictCode="ops_host_backup_method";
-		System.out.println("dict:"+valueBackupMethod);
+
 //		if(!StringUtil.isBlank(valueBackupMethod)){
 //			if(backupMethodMap.containsValue(valueBackupMethod)){
 //				String key=getMapKey(backupMethodMap,valueBackupMethod);

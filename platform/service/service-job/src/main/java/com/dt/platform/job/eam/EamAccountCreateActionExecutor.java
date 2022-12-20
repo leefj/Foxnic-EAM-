@@ -132,7 +132,6 @@ public class EamAccountCreateActionExecutor implements JobExecutor {
                     for(int m=0;m<ids.length;m++){
                         idsStr[m]=ids[m].toString();
                     }
-                    System.out.println("######617804446981685248"+idsStr);
                     vo.addRoleId(idsStr);
                     UserServiceProxy.api().update(vo);
                 }

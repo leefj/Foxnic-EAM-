@@ -292,7 +292,6 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		Logger.info("并行运行,并行数:"+cnt);
 		SimpleJoinForkTask<Asset,Integer> task=new SimpleJoinForkTask<>(assetBefore,cnt);
 		List<Integer> rvs=task.execute(els->{
-			System.out.println(Thread.currentThread().getName());
 			HashMap<String,List<SQL>> data=parseAssetChangeRecordWithChangeAsset(els,changeMap,businessCode,operType,notes);
 			List<SQL> sqls1=data.get("change");
 			List<SQL> sqls2=data.get("update");
@@ -315,8 +314,8 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		DBTreaty dbTreaty= dao().getDBTreaty();
 		HashMap<String,SQL> data=new HashMap<>();
 		JSONObject assetJsonBefore=BeanUtil.toJSONObject(assetBefore);
-		System.out.println("assetJsonBefore:\n"+assetJsonBefore);
-		System.out.println("assetJsonAfter:\n"+assetJsonAfter);
+		Logger.info("assetJsonBefore:\n"+assetJsonBefore);
+		Logger.info("assetJsonAfter:\n"+assetJsonAfter);
 		Update ups=new Update("eam_asset");
 		String ct="";
 		String useUserId="";
@@ -1189,7 +1188,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			}
 		}
 
-		System.out.println("##############set save :"+asset.getOwnCompanyId());
+		Logger.info("##############set save :"+asset.getOwnCompanyId());
 
 		Result r=super.update(asset , mode);
 		return r;
@@ -1505,8 +1504,8 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 			return r;
 		}
 		List<Asset> list=queryList(queryCondition);
-		System.out.println("current selected asset size:"+assetIds.size());
-		System.out.println("match asset size:"+list.size());
+		Logger.info("current selected asset size:"+assetIds.size());
+		Logger.info("match asset size:"+list.size());
 		if(list.size()!=assetIds.size()){
 			return ErrorDesc.failure().message("当前选择的资产中部分状态异常");
 		}
@@ -1581,7 +1580,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		int i=0;
 		for (Rcd r:rs.getRcdList()) {
 			i++;
-			System.out.println("before asset data:"+r);
+			Logger.info("before asset data:"+r);
 			//判断数据是插入或更新
 			if(StringUtil.isBlank(r.getString(AssetDataExportColumnEnum.ASSET_ID.text()))){
 				actionType="insert";
@@ -1761,14 +1760,13 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 				sql=update.getSQL();
 
 			}
-			System.out.println("after:"+r);
-			System.out.println(sql);
+			Logger.info("after:"+r);
 		}
 
 		if(batch) {
 			try {
 				if(errors.size()==0){
-					System.out.println("执行的数据量:"+sqls.size());
+					Logger.info("执行的数据量:"+sqls.size());
 					if(sqls.size()>500){
 						List<SQL> sqlList=new ArrayList<>();
 						List<List<SQL>> groupList=new ArrayList<>();
@@ -1787,7 +1785,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 						}
 						SimpleJoinForkTask<List<SQL> ,int[]> task=new SimpleJoinForkTask<>(groupList,2);
 						List<int[]> rvs2=task.execute(els->{
-							System.out.println(Thread.currentThread().getName());
+							Logger.info(Thread.currentThread().getName());
 							List<int[]> rs2=new ArrayList<>();
 							for (List<SQL> list2 : els) {
 								rs2.add(dao().batchExecute(list2));
@@ -1799,14 +1797,14 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 					}
 					if(catalogDataList.size()>0){
 						//保存自定义数据
-						System.out.println("catalogDataList:"+catalogDataList);
+						Logger.info("catalogDataList:"+catalogDataList);
 						CatalogServiceProxy.api().saveDataList(catalogDataList);
 						for(CatalogData data:catalogDataList){
-							System.out.println("getId"+data.getId());
-							System.out.println("getOwnerId"+data.getOwnerId());
-							System.out.println("getTenantId"+data.getTenantId());
-							System.out.println("getCatalogId"+data.getCatalogId());
-							System.out.println("getData"+data.getData());
+							Logger.info("getId"+data.getId());
+							Logger.info("getOwnerId"+data.getOwnerId());
+							Logger.info("getTenantId"+data.getTenantId());
+							Logger.info("getCatalogId"+data.getCatalogId());
+							Logger.info("getData"+data.getData());
 						}
 					}
 				}
@@ -1823,7 +1821,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 
 	@Override
 	public Result joinData(List<Asset> list) {
-		System.out.println("asset joinData:"+list.size());
+		Logger.info("asset joinData:"+list.size());
 		list.removeAll(Collections.singleton(null));
 		// 关联出 资产分类 数据
 			dao.fill(list).with(AssetMeta.CATEGORY)
@@ -1891,7 +1889,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		//装换成记录集
 		RcdSet rs=null;
 		try {
-			System.out.println("sheetIndex"+sheetIndex+","+es+"ind:"+es.getColumnReadEndIndex());
+			Logger.info("sheetIndex"+sheetIndex+","+es+"ind:"+es.getColumnReadEndIndex());
 			rs=er.read(sheetIndex,es);
 
 		} catch (Exception e) {
@@ -1921,10 +1919,10 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 //              }
 				Row firstRow=sheet.getRow(0);
 				Row secondRow=sheet.getRow(1);
-				System.out.println("SheetName:"+sheet.getSheetName());
-				System.out.println("firstRow lastCellNum:"+firstRow.getLastCellNum());
-				System.out.println("lastSecondRow lastCellNum:"+secondRow.getLastCellNum());
-				System.out.println("lastSecondRow lastCellNum Value:"+secondRow.getCell(secondRow.getLastCellNum()-1));
+				Logger.info("SheetName:"+sheet.getSheetName());
+				Logger.info("firstRow lastCellNum:"+firstRow.getLastCellNum());
+				Logger.info("lastSecondRow lastCellNum:"+secondRow.getLastCellNum());
+				Logger.info("lastSecondRow lastCellNum Value:"+secondRow.getCell(secondRow.getLastCellNum()-1));
 				if(firstRow.getLastCellNum()!=secondRow.getLastCellNum()){
 					return null;
 				}
@@ -2064,10 +2062,10 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 							EnumUtil.parseByCode(AssetDataExportColumnEnum.class,asset_column).text();
 
 
-					System.out.println("asset_column:"+asset_column+",rAssetColumn:"+rAssetColumn);
+					Logger.info("asset_column:"+asset_column+",rAssetColumn:"+rAssetColumn);
 					charIndex=ExcelUtil.toExcel26(i);
-					System.out.println("cell:"+charIndex+","+secondRow.getCell(i)  +","+ firstRow.getCell(i)+","+asset_column+","+rAssetColumn);
-					System.out.println("addColumn:"+rAssetColumn+","+firstRow.getCell(i).toString()+ ","+ExcelColumn.STRING_CELL_READER);
+					Logger.info("cell:"+charIndex+","+secondRow.getCell(i)  +","+ firstRow.getCell(i)+","+asset_column+","+rAssetColumn);
+					Logger.info("addColumn:"+rAssetColumn+","+firstRow.getCell(i).toString()+ ","+ExcelColumn.STRING_CELL_READER);
 					es.addColumn(charIndex,rAssetColumn,firstRow.getCell(i).toString(), ExcelColumn.STRING_CELL_READER);
 				}
 				//追加自定义属性部分
@@ -2078,7 +2076,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		}
 
 		HashMap<String,List<CatalogAttribute>> map=getPcmExtAttribute(dataInputStream);
-		System.out.println("pcm_ext_map:"+map);
+		Logger.info("pcm_ext_map:"+map);
 		List<CatalogAttribute> list=new ArrayList<>();
 		for(String key:map.keySet()){
 			list=map.get(key);
@@ -2088,7 +2086,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 		for(int i=0;i<list.size();i++){
 			CatalogAttribute attribute=list.get(i);
 			charIndex=ExcelUtil.toExcel26(lastNum+i);
-			System.out.println(charIndex+",自定义属性:"+attribute.getShortName()+","+ attribute.getField());
+			Logger.info(charIndex+",自定义属性:"+attribute.getShortName()+","+ attribute.getField());
 			es.addColumn(charIndex,attribute.getField(),attribute.getShortName(), ExcelColumn.STRING_CELL_READER);
 
 		}

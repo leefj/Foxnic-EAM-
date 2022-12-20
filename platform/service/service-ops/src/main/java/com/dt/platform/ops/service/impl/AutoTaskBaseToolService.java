@@ -216,30 +216,30 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
 
 
 
-        System.out.println("###########Action Start,ip:"+node.getIp()+" #########");
-        System.out.println("method:"+method);
-        System.out.println("taskId:"+taskId);
-        System.out.println("mLogId:"+mLogId);
-        System.out.println("nodeName:"+node.getName());
-        System.out.println("nodeIp:"+node.getIp());
+       Logger.info("###########Action Start,ip:"+node.getIp()+" #########");
+       Logger.info("method:"+method);
+       Logger.info("taskId:"+taskId);
+       Logger.info("mLogId:"+mLogId);
+       Logger.info("nodeName:"+node.getName());
+       Logger.info("nodeIp:"+node.getIp());
         //替换变量参数
-        System.out.println("globalVars:\n"+vars);
-        System.out.println("currentNodeVars:\n"+currentNodeVars);
+       Logger.info("globalVars:\n"+vars);
+       Logger.info("currentNodeVars:\n"+currentNodeVars);
         String ct=action.getExecuteContent();
         for (String key : vars.keySet()) {
             JSONObject keyObject= (JSONObject) vars.get(key);
-            System.out.println("keyObject:"+keyObject);
+           Logger.info("keyObject:"+keyObject);
             String gValue=keyObject.getString("value");
             String value=currentNodeVars.getOrDefault(key,gValue);
-            System.out.println("replace var,key:"+key+",value:"+value+",gvalue:"+gValue);
+           Logger.info("replace var,key:"+key+",value:"+value+",gvalue:"+gValue);
             String t=ct.replaceAll("<##"+key+"##>",value);
             ct=t;
         }
 
         String t= ct.replaceAll("<##ip##>",node.getIp());
         ct=t;
-        System.out.println("replace var,key:ip,value:"+node.getIp());
-        System.out.println("execute Content:\n"+ct);
+       Logger.info("replace var,key:ip,value:"+node.getIp());
+       Logger.info("execute Content:\n"+ct);
         if(METHOD_EXECUTE.equals(method)){
             //#############create exe file #############
             String execFileName="ops_"+mLogId+"_"+node.getId();
@@ -249,7 +249,7 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
             BufferedReader bufferedReader = null;
             BufferedWriter bufferedWriter = null;
             try {
-                System.out.println("create temp main execute file,file:"+execFileNameWithSuffix);
+               Logger.info("create temp main execute file,file:"+execFileNameWithSuffix);
                 executeTmpFile = File.createTempFile(execFileName, ".sh");
                 execFileFullName=executeTmpFile.getAbsolutePath();
                 bufferedReader = new BufferedReader(new StringReader(ct));
@@ -262,10 +262,10 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
                 bufferedWriter.flush();
                 bufferedReader.close();
                 bufferedWriter.close();
-                System.out.println("create temp main execute file success,file:"+execFileFullName);
+               Logger.info("create temp main execute file success,file:"+execFileFullName);
             } catch (IOException e) {
                 String msg="create temp main execute file failed,file:"+execFileFullName;
-                System.out.println(msg);
+               Logger.info(msg);
                 e.printStackTrace();
                 recordTaskLogFailed(log,msg);
                 return ErrorDesc.failureMessage(msg);
@@ -289,7 +289,7 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
                     sftp.deleteFile(execFileNameWithSuffix);
                 }
             } catch (IOException ee) {
-                System.out.println("delete temp execute file error,detail:"+ee.getMessage());
+               Logger.info("delete temp execute file error,detail:"+ee.getMessage());
             }
             Result uploadExeFileR= sftp.uploadFile(executeTmpFile, execFileNameWithSuffix, null);
             if(!uploadExeFileR.success()){
@@ -332,7 +332,7 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
                         sftp.deleteFile(fn);
                     }
                 } catch (IOException ee) {
-                    System.out.println("delete script file error,detail:"+ee.getMessage());
+                   Logger.info("delete script file error,detail:"+ee.getMessage());
                 }
 
                 Result uploadScritR=sftp.uploadFile(file, fn, null);
@@ -380,7 +380,7 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
                             sftp.deleteFile(fn);
                         }
                     } catch (IOException ee) {
-                        System.out.println("delete file error,detail:"+ee.getMessage());
+                       Logger.info("delete file error,detail:"+ee.getMessage());
                     }
                     Result uploadFileR=sftp.uploadFile(file, fn, null);
                     if(!uploadFileR.isSuccess()){
@@ -390,7 +390,7 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
 
                 }
             }else{
-                System.out.println("file upload status:"+ action.getFileStatus());
+               Logger.info("file upload status:"+ action.getFileStatus());
             }
             //#############execute #############
             RemoteShellExecutor executor = new RemoteShellExecutor(node.getIp(),node.getUserName(),
@@ -417,7 +417,7 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
         }else if (METHOD_VIEW.equals(method)){
 
         }
-        System.out.println("###########Action Finish,ip:"+node.getIp()+" #########");
+       Logger.info("###########Action Finish,ip:"+node.getIp()+" #########");
 
 
         //执行
@@ -495,7 +495,7 @@ public class AutoTaskBaseToolService implements IAutoTaskToolService{
 
         //检查method
         if(method.equals(METHOD_EXECUTE) || method.equals(METHOD_VIEW)||method.equals(METHOD_CHECK)){
-            System.out.println("success");
+           Logger.info("success");
         }else{
             String msg="检查参数不符合要求";
             recordTaskMLogFailed(taskMainLog,msg);
