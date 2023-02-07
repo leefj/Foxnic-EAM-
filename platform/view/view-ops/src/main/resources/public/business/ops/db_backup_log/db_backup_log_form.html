@@ -13,7 +13,7 @@
     <meta charset="utf-8"/>
 	<title th:text="${lang.translate('备份日志')}">备份日志</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
-    <link th:if(theme.ico!="null") rel="icon" th:href="theme.ico" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
     <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
@@ -50,7 +50,7 @@
                         <input lay-filter="uid" id="uid" name="uid" th:placeholder="${ lang.translate('请输入'+'UID') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 数据库实例 ,  dbId -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('数据库实例')}">数据库实例</div></div>
@@ -58,7 +58,7 @@
                         <input lay-filter="dbId" id="dbId" name="dbId" th:placeholder="${ lang.translate('请输入'+'数据库实例') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : IP ,  ip -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('IP')}">IP</div></div>
@@ -66,7 +66,7 @@
                         <input lay-filter="ip" id="ip" name="ip" th:placeholder="${ lang.translate('请输入'+'IP') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 名称 ,  dbName -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('名称')}">名称</div></div>
@@ -74,7 +74,7 @@
                         <input lay-filter="dbName" id="dbName" name="dbName" th:placeholder="${ lang.translate('请输入'+'名称') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 动作 ,  action -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('动作')}">动作</div></div>
@@ -82,7 +82,7 @@
                         <input lay-filter="action" id="action" name="action" th:placeholder="${ lang.translate('请输入'+'动作') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 状态 ,  status -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('状态')}">状态</div></div>
@@ -90,7 +90,7 @@
                         <input lay-filter="status" id="status" name="status" th:placeholder="${ lang.translate('请输入'+'状态') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 结果 ,  result -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('结果')}">结果</div></div>
@@ -98,7 +98,7 @@
                         <input lay-filter="result" id="result" name="result" th:placeholder="${ lang.translate('请输入'+'结果') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- date_input : 开始时间 ,  stime  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('开始时间')}">开始时间</div></div>
@@ -106,7 +106,7 @@
                         <input input-type="date" lay-filter="stime" id="stime" name="stime"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择'+'开始时间') }" type="text" class="layui-input"   />
                     </div>
                 </div>
-            
+
                 <!-- date_input : 结束时间 ,  etime  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('结束时间')}">结束时间</div></div>
@@ -114,7 +114,7 @@
                         <input input-type="date" lay-filter="etime" id="etime" name="etime"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择'+'结束时间') }" type="text" class="layui-input"   />
                     </div>
                 </div>
-            
+
                 <!-- text_area : 原始数据 ,  source  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('原始数据')}">原始数据</div></div>
@@ -122,7 +122,7 @@
                         <textarea lay-filter="source" id="source" name="source" th:placeholder="${ lang.translate('请输入'+'原始数据') }" class="layui-textarea" style="height: 120px" ></textarea>
                     </div>
                 </div>
-            
+
                 <!-- date_input : 记录时间 ,  recordTime  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('记录时间')}">记录时间</div></div>
@@ -130,7 +130,7 @@
                         <input input-type="date" lay-filter="recordTime" id="recordTime" name="recordTime"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择'+'记录时间') }" type="text" class="layui-input"   />
                     </div>
                 </div>
-            
+
                 <!-- select_box : 处理状态 ,  processed  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('处理状态')}">处理状态</div></div>
@@ -138,7 +138,7 @@
                         <div id="processed" input-type="select" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.OpsDbBackupLogProcessedEnum')}" extraParam="{}"></div>
                     </div>
                 </div>
-            
+
                 <!-- text_area : 处理结果 ,  processResult  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('处理结果')}">处理结果</div></div>
@@ -146,7 +146,7 @@
                         <textarea lay-filter="processResult" id="processResult" name="processResult" th:placeholder="${ lang.translate('请输入'+'处理结果') }" class="layui-textarea" style="height: 120px" ></textarea>
                     </div>
                 </div>
-            
+
                 <!-- date_input : 处理时间 ,  lastProcessTime  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('处理时间')}">处理时间</div></div>

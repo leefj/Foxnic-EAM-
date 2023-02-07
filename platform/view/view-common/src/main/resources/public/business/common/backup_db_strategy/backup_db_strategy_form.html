@@ -13,7 +13,7 @@
     <meta charset="utf-8"/>
 	<title th:text="${lang.translate('备份策略')}">备份策略</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
-    <link th:if(theme.ico!="null") rel="icon" th:href="theme.ico" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
     <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
@@ -50,7 +50,7 @@
                         <input input-type="radio" type="radio" name="status" lay-filter="status" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==-1)}">
                     </div>
                 </div>
-            
+
                 <!-- text_input : 备份路径 ,  dataPath -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备份路径')}">备份路径</div><div class="layui-required">*</div></div>
@@ -58,7 +58,7 @@
                         <input lay-filter="dataPath" id="dataPath" name="dataPath" th:placeholder="${ lang.translate('请输入'+'备份路径') }" type="text" class="layui-input"    lay-verify="|required"  />
                     </div>
                 </div>
-            
+
                 <!-- number_input : 备份保留 ,  dataKeep  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备份保留')}">备份保留</div></div>
@@ -66,7 +66,7 @@
                         <input lay-filter="dataKeep" id="dataKeep" name="dataKeep" th:placeholder="${ lang.translate('请输入'+'备份保留') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 备注 ,  notes -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备注')}">备注</div></div>

@@ -13,7 +13,7 @@
     <meta charset="utf-8"/>
 	<title th:text="${lang.translate('软件介质')}">软件介质</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
-    <link th:if(theme.ico!="null") rel="icon" th:href="theme.ico" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
     <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
@@ -50,7 +50,7 @@
                         <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入'+'名称') }" type="text" class="layui-input"    lay-verify="|required"  />
                     </div>
                 </div>
-            
+
                 <!-- radio_box : 状态 ,  status  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
@@ -58,7 +58,7 @@
                         <input input-type="radio" type="radio" name="status" lay-filter="status" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==-1)}">
                     </div>
                 </div>
-            
+
                 <!-- text_input : 编码 ,  code -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('编码')}">编码</div></div>
@@ -66,7 +66,7 @@
                         <input lay-filter="code" id="code" name="code" th:placeholder="${ lang.translate('请输入'+'编码') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- select_box : 类型 ,  type  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('类型')}">类型</div><div class="layui-required">*</div></div>
@@ -83,7 +83,7 @@
                         <div class="layui-upload-list" id="fileId-file-list"></div>
                     </div>
                 </div>
-            
+
                 <!-- text_area : 备注 ,  notes  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备注')}">备注</div></div>

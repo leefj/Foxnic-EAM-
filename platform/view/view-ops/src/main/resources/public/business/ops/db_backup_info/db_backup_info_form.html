@@ -13,7 +13,7 @@
     <meta charset="utf-8"/>
 	<title th:text="${lang.translate('数据库备份')}">数据库备份</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
-    <link th:if(theme.ico!="null") rel="icon" th:href="theme.ico" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
     <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
@@ -53,7 +53,7 @@
                         <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入'+'名称') }" type="text" class="layui-input"    lay-verify="|required"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : UID ,  uid -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('UID')}">UID</div></div>
@@ -61,7 +61,7 @@
                         <input lay-filter="uid" id="uid" name="uid" th:placeholder="${ lang.translate('请输入'+'UID') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- radio_box : 备份类型 ,  backupType  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('备份类型')}">备份类型</div><div class="layui-required">*</div></div>
@@ -69,7 +69,7 @@
                         <input input-type="radio" type="radio" name="backupType" lay-filter="backupType" th:each="e,stat:${dict.toArray('ops_db_backup_type')}" th:value="${e.code}" th:title="${e.text}"  th:checked="${(e.code=='' || stat.index==0)}">
                     </div>
                 </div>
-            
+
                 <!-- select_box : 备份方式 ,  backupMethod  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('备份方式')}">备份方式</div><div class="layui-required">*</div></div>
@@ -90,7 +90,7 @@
                         <input input-type="radio" type="radio" name="status" lay-filter="status" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.ops.OpsDbStatusEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)}">
                     </div>
                 </div>
-            
+
                 <!-- text_input : 备份策略 ,  backupStrategy -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('备份策略')}">备份策略</div></div>
@@ -98,7 +98,7 @@
                         <input lay-filter="backupStrategy" id="backupStrategy" name="backupStrategy" th:placeholder="${ lang.translate('请输入'+'备份策略') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 备份保留时长 ,  backupDatakeep -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('备份保留时长')}">备份保留时长</div></div>
@@ -149,7 +149,7 @@
                         <div id="backupResult" input-type="select" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.OpsDbBackupResultEnum')}" extraParam="{}"></div>
                     </div>
                 </div>
-            
+
                 <!-- number_input : 备份大小 ,  backupSize  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('备份大小')}">备份大小</div></div>
@@ -170,7 +170,7 @@
                         <input lay-filter="backupSource" id="backupSource" name="backupSource" th:placeholder="${ lang.translate('请输入'+'备份来源') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- date_input : 上次备份 ,  backupTime  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('上次备份')}">上次备份</div></div>

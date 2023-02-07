@@ -13,7 +13,7 @@
     <meta charset="utf-8"/>
 	<title th:text="${lang.translate('人员合同')}">人员合同</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
-    <link th:if(theme.ico!="null") rel="icon" th:href="theme.ico" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
     <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
@@ -76,7 +76,7 @@
                         <input lay-filter="businessCode" id="businessCode" name="businessCode" th:placeholder="${ lang.translate('请输入'+'合同编号') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- select_box : 合同类型 ,  type  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('合同类型')}">合同类型</div><div class="layui-required">*</div></div>
@@ -84,7 +84,7 @@
                         <div id="type" input-type="select" th:data="${'/service-system/sys-dict-item/query-list?dictCode=hr_contract_type'}" extraParam="{}"></div>
                     </div>
                 </div>
-            
+
                 <!-- select_box : 签约方 ,  contractPartyId  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('签约方')}">签约方</div><div class="layui-required">*</div></div>
@@ -105,7 +105,7 @@
                         <input input-type="radio" type="radio" name="status" lay-filter="status" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.hr.ContractStatusEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==-1)}">
                     </div>
                 </div>
-            
+
                 <!-- number_input : 合同期限 ,  contractDuration  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('合同期限')}">合同期限</div></div>
@@ -126,7 +126,7 @@
                         <div id="contractYear" input-type="select" th:data="${'/service-system/sys-dict-item/query-list?dictCode=hr_contract_year'}" extraParam="{}"></div>
                     </div>
                 </div>
-            
+
                 <!-- radio_box : 是否转正 ,  transferToRegular  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('是否转正')}">是否转正</div><div class="layui-required">*</div></div>

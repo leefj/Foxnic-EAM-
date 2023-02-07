@@ -13,7 +13,7 @@
     <meta charset="utf-8"/>
 	<title th:text="${lang.translate('资产')}">资产</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
-    <link th:if(theme.ico!="null") rel="icon" th:href="theme.ico" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
     <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
@@ -49,7 +49,7 @@
                         <input lay-filter="id" id="id" name="id" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('主键') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 处理 ,  handleId -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('处理')}">处理</div></div>
@@ -57,7 +57,7 @@
                         <input lay-filter="handleId" id="handleId" name="handleId" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('处理') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 资产 ,  assetId -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('资产')}">资产</div></div>
@@ -65,7 +65,7 @@
                         <input lay-filter="assetId" id="assetId" name="assetId" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('资产') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 资产使用人 ,  beforeUseUserId -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('资产使用人')}">资产使用人</div></div>
@@ -73,7 +73,7 @@
                         <input lay-filter="beforeUseUserId" id="beforeUseUserId" name="beforeUseUserId" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('资产使用人') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 资产状态 ,  beforeAssetStatus -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('资产状态')}">资产状态</div></div>
@@ -81,7 +81,7 @@
                         <input lay-filter="beforeAssetStatus" id="beforeAssetStatus" name="beforeAssetStatus" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('资产状态') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 标记 ,  flag -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('标记')}">标记</div></div>
@@ -89,7 +89,7 @@
                         <input lay-filter="flag" id="flag" name="flag" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('标记') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 修改标记 ,  crd -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('修改标记')}">修改标记</div></div>
@@ -97,7 +97,7 @@
                         <input lay-filter="crd" id="crd" name="crd" th:placeholder="${ lang.translate('请输入') +''+ lang.translate('修改标记') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 选择 ,  selectedCode -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('选择')}">选择</div></div>

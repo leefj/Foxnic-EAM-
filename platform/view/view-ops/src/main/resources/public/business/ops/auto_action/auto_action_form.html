@@ -13,7 +13,7 @@
     <meta charset="utf-8"/>
 	<title th:text="${lang.translate('执行任务')}">执行任务</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
-    <link th:if(theme.ico!="null") rel="icon" th:href="theme.ico" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
     <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
@@ -51,7 +51,7 @@
                         </div>
                     </div>
 
-                
+
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
@@ -60,7 +60,7 @@
                 </div>
 
 
-                
+
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('类型')}">类型</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
@@ -96,7 +96,7 @@
                         </div>
                     </div>
 
-                
+
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('节点数量')}">节点数量</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
@@ -105,7 +105,7 @@
                 </div>
 
 
-                
+
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('执行工具')}">执行工具</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
@@ -114,7 +114,7 @@
                 </div>
 
 
-                
+
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('介质状态')}">介质状态</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
@@ -184,7 +184,7 @@
                 </div>
 
 
-                
+
                     <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('配置内容')}">配置内容</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
@@ -193,7 +193,7 @@
                 </div>
 
 
-                
+
                     <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('配置例子')}">配置例子</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
@@ -202,7 +202,7 @@
                 </div>
 
 
-                
+
                     <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('执行内容')}">执行内容</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
