@@ -13,7 +13,7 @@
     <meta charset="utf-8"/>
 	<title th:text="${lang.translate('计算方法')}">计算方法</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
-    <link th:if(theme.ico!="null") rel="icon" th:href="theme.ico" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
     <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
@@ -49,7 +49,7 @@
                         <input lay-filter="id" id="id" name="id" th:placeholder="${ lang.translate('请输入'+'主键') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- select_box : 折旧方案 ,  depreciationId  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('折旧方案')}">折旧方案</div></div>
@@ -57,7 +57,7 @@
                         <div id="depreciationId" input-type="select" th:data="${'/service-eam/eam-asset-depreciation/query-paged-list'}" extraParam="{}"></div>
                     </div>
                 </div>
-            
+
                 <!-- radio_box : 状态 ,  status  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
@@ -65,7 +65,7 @@
                         <input input-type="radio" type="radio" name="status" lay-filter="status" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==-1)}">
                     </div>
                 </div>
-            
+
                 <!-- radio_box : 动作 ,  actionCode  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('动作')}">动作</div><div class="layui-required">*</div></div>
@@ -73,7 +73,7 @@
                         <input input-type="radio" type="radio" name="actionCode" lay-filter="actionCode" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetDepreciationRuleActionCodeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==-1)}">
                     </div>
                 </div>
-            
+
                 <!-- number_input : 规则编号 ,  ruleNumber  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('规则编号')}">规则编号</div><div class="layui-required">*</div></div>
@@ -81,7 +81,7 @@
                         <input lay-filter="ruleNumber" id="ruleNumber" name="ruleNumber" th:placeholder="${ lang.translate('请输入'+'规则编号') }" type="text" class="layui-input"    lay-verify="|required"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 字段值 ,  columnValue -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('字段值')}">字段值</div><div class="layui-required">*</div></div>
@@ -89,7 +89,7 @@
                         <input lay-filter="columnValue" id="columnValue" name="columnValue" th:placeholder="${ lang.translate('请输入'+'字段值') }" type="text" class="layui-input"    lay-verify="|required"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 字段名称 ,  columnName -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('字段名称')}">字段名称</div><div class="layui-required">*</div></div>
@@ -97,7 +97,7 @@
                         <input lay-filter="columnName" id="columnName" name="columnName" th:placeholder="${ lang.translate('请输入'+'字段名称') }" type="text" class="layui-input"    lay-verify="|required"  />
                     </div>
                 </div>
-            
+
                 <!-- radio_box : 计算类型 ,  calculationType  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('计算类型')}">计算类型</div><div class="layui-required">*</div></div>
@@ -105,7 +105,7 @@
                         <input input-type="radio" type="radio" name="calculationType" lay-filter="calculationType" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetDepreciationCalculationMethodTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==-1)}">
                     </div>
                 </div>
-            
+
                 <!-- text_input : 计算方法 ,  methodContent -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('计算方法')}">计算方法</div></div>
@@ -113,7 +113,7 @@
                         <input lay-filter="methodContent" id="methodContent" name="methodContent" th:placeholder="${ lang.translate('请输入'+'计算方法') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 方法描述 ,  methodContentInfo -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('方法描述')}">方法描述</div></div>
@@ -121,7 +121,7 @@
                         <input lay-filter="methodContentInfo" id="methodContentInfo" name="methodContentInfo" th:placeholder="${ lang.translate('请输入'+'方法描述') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- radio_box : 返回类型 ,  returnType  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('返回类型')}">返回类型</div><div class="layui-required">*</div></div>
@@ -129,7 +129,7 @@
                         <input input-type="radio" type="radio" name="returnType" lay-filter="returnType" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.eam.AssetDepreciationCalculationReturnTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==-1)}">
                     </div>
                 </div>
-            
+
                 <!-- text_input : 备注 ,  notes -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备注')}">备注</div></div>

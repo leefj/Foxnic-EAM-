@@ -13,7 +13,7 @@
     <meta charset="utf-8"/>
 	<title th:text="${lang.translate('人员分工')}">人员分工</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
-    <link th:if(theme.ico!="null") rel="icon" th:href="theme.ico" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
     <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
@@ -51,7 +51,7 @@
                         <button id="userId-button" type="button" action-type="emp-dialog" class="layui-btn   " style="width: 100%"> <i class='layui-icon layui-icon-search'></i> <span th:text="${lang.translate('请选择人员')}" th:default-label="${lang.translate('请选择人员')}">按钮文本</span></button>
                     </div>
                 </div>
-            
+
                 <!-- radio_box : 状态 ,  status  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
@@ -72,7 +72,7 @@
                         <div id="owner" input-type="select" th:data="${'/service-system/sys-dict-item/query-list?dictCode=ops_person_owner'}" extraParam="{}"></div>
                     </div>
                 </div>
-            
+
                 <!-- text_input : 岗位 ,  pos -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('岗位')}">岗位</div><div class="layui-required">*</div></div>
@@ -100,7 +100,7 @@
                         <textarea lay-filter="responsibleContent" id="responsibleContent" name="responsibleContent" th:placeholder="${ lang.translate('请输入'+'负责内容') }" class="layui-textarea" style="height: 150px" ></textarea>
                     </div>
                 </div>
-            
+
                 <!-- text_area : 工作内容 ,  jobContent  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('工作内容')}">工作内容</div></div>
@@ -108,7 +108,7 @@
                         <textarea lay-filter="jobContent" id="jobContent" name="jobContent" th:placeholder="${ lang.translate('请输入'+'工作内容') }" class="layui-textarea" style="height: 150px" ></textarea>
                     </div>
                 </div>
-            
+
                 <!-- text_area : 备注 ,  notes  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('备注')}">备注</div></div>
@@ -116,7 +116,7 @@
                         <textarea lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入'+'备注') }" class="layui-textarea" style="height: 150px" ></textarea>
                     </div>
                 </div>
-            
+
                 <!-- number_input : 排序 ,  sort  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('排序')}">排序</div></div>

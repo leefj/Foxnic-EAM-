@@ -13,7 +13,7 @@
     <meta charset="utf-8"/>
 	<title th:text="${lang.translate('主机')}">主机</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
-    <link th:if(theme.ico!="null") rel="icon" th:href="theme.ico" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
     <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
@@ -53,7 +53,7 @@
                         <input lay-filter="hostName" id="hostName" name="hostName" th:placeholder="${ lang.translate('请输入'+'名称') }" type="text" class="layui-input"    lay-verify="|required"  />
                     </div>
                 </div>
-            
+
                 <!-- radio_box : 主机状态 ,  status  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('主机状态')}">主机状态</div><div class="layui-required">*</div></div>
@@ -61,7 +61,7 @@
                         <input input-type="radio" type="radio" name="status" lay-filter="status" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.ops.HostStatusEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)}">
                     </div>
                 </div>
-            
+
                 <!-- select_box : 主机类型 ,  hostType  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('主机类型')}">主机类型</div><div class="layui-required">*</div></div>
@@ -82,7 +82,7 @@
                         <div id="systemId" input-type="select" th:data="${'/service-ops/ops-information-system/query-list'}" extraParam="{}"></div>
                     </div>
                 </div>
-            
+
                 <!-- select_box : 所在环境 ,  environment  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('所在环境')}">所在环境</div></div>
@@ -90,7 +90,7 @@
                         <div id="environment" input-type="select" th:data="${dict.toArray('ops_environment')}" extraParam="{}"></div>
                     </div>
                 </div>
-            
+
                 <!-- text_input : 负责人 ,  directorUsername -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('负责人')}">负责人</div></div>
@@ -111,7 +111,7 @@
                         <div id="positionId" input-type="select" th:data="${'/service-ops/ops-host-position/query-list'}" extraParam="{}"></div>
                     </div>
                 </div>
-            
+
                 <!-- date_input : 上线时间 ,  onlineTime  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('上线时间')}">上线时间</div></div>
@@ -119,7 +119,7 @@
                         <input input-type="date" lay-filter="onlineTime" id="onlineTime" name="onlineTime"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择'+'上线时间') }" type="text" class="layui-input"    lay-verify=""   />
                     </div>
                 </div>
-            
+
                 <!-- date_input : 下线时间 ,  offlineTime  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('下线时间')}">下线时间</div></div>
@@ -150,7 +150,7 @@
                         <input lay-filter="hostCpu" id="hostCpu" name="hostCpu" th:placeholder="${ lang.translate('请输入'+'CPU') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
                     </div>
                 </div>
-            
+
                 <!-- number_input : 内存 ,  hostMemory  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('内存')}">内存</div></div>
@@ -171,7 +171,7 @@
                         <input lay-filter="hostIp" id="hostIp" name="hostIp" th:placeholder="${ lang.translate('请输入'+'物理IP') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 虚拟VIP ,  hostVip -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('虚拟VIP')}">虚拟VIP</div></div>
@@ -192,7 +192,7 @@
                         <input lay-filter="hostIpv6" id="hostIpv6" name="hostIpv6" th:placeholder="${ lang.translate('请输入'+'IPV6') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 其他配置 ,  hostConf -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('其他配置')}">其他配置</div></div>
@@ -292,7 +292,7 @@
                         <input lay-filter="userAppUsed" id="userAppUsed" name="userAppUsed" th:placeholder="${ lang.translate('请输入'+'应用使用用户') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 运维操作用户 ,  userOpsOper -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('运维操作用户')}">运维操作用户</div></div>
@@ -313,7 +313,7 @@
                         <input lay-filter="userDbAdmin" id="userDbAdmin" name="userDbAdmin" th:placeholder="${ lang.translate('请输入'+'数据库管理员') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 数据库使用用户 ,  userDbUsed -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('数据库使用用户')}">数据库使用用户</div></div>

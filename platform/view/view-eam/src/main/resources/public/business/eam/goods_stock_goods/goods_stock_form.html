@@ -13,7 +13,7 @@
     <meta charset="utf-8"/>
 	<title th:text="${lang.translate('库存物品')}">库存物品</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
-    <link th:if(theme.ico!="null") rel="icon" th:href="theme.ico" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
     <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
@@ -53,7 +53,7 @@
                     </div>
 
 
-                
+
                     <div class="layui-form-item" >
                         <div class="layui-form-label "><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
                         <div class="layui-input-block ">
@@ -104,7 +104,7 @@
                     </div>
 
 
-                
+
                     <div class="layui-form-item" >
                         <div class="layui-form-label "><div th:text="${lang.translate('品牌')}">品牌</div><div class="layui-required">*</div></div>
                         <div class="layui-input-block ">
@@ -156,7 +156,7 @@
                     </div>
 
 
-                
+
                     <div class="layui-form-item" >
                         <div class="layui-form-label "><div th:text="${lang.translate('安全库存上限')}">安全库存上限</div></div>
                         <div class="layui-input-block ">
@@ -180,7 +180,7 @@
                     </div>
 
 
-                
+
                     <div class="layui-form-item" >
                         <div class="layui-form-label "><div th:text="${lang.translate('默认单价')}">默认单价</div></div>
                         <div class="layui-input-block ">
@@ -212,7 +212,7 @@
                 </div>
 
 
-                
+
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('图片')}">图片</div></div>
                     <div class="layui-upload layui-input-block ">
@@ -258,7 +258,7 @@
     var ASSET_CATEGORY_DATA =  [[${assetCategoryData}]];
 
     var CATEGORY_CODE = [[${categoryCode}]] ;
-    
+
     // OWNER_CODE
     var OWNER_CODE = [[${ownerCode}]] ;
 

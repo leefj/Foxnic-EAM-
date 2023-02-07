@@ -13,7 +13,7 @@
     <meta charset="utf-8"/>
 	<title th:text="${lang.translate('备份记录')}">备份记录</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
-    <link th:if(theme.ico!="null") rel="icon" th:href="theme.ico" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
     <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
@@ -50,7 +50,7 @@
                         <input lay-filter="dbName" id="dbName" name="dbName" th:placeholder="${ lang.translate('请输入'+'名称') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- radio_box : 状态 ,  status  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('状态')}">状态</div></div>
@@ -58,7 +58,7 @@
                         <input input-type="radio" type="radio" name="status" lay-filter="status" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.BackupStatusEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==-1)}">
                     </div>
                 </div>
-            
+
                 <!-- text_input : 备份文件 ,  fileRoute -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备份文件')}">备份文件</div></div>
@@ -66,7 +66,7 @@
                         <input lay-filter="fileRoute" id="fileRoute" name="fileRoute" th:placeholder="${ lang.translate('请输入'+'备份文件') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_area : 内容 ,  content  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('内容')}">内容</div></div>
@@ -74,7 +74,7 @@
                         <textarea lay-filter="content" id="content" name="content" th:placeholder="${ lang.translate('请输入'+'内容') }" class="layui-textarea" style="height: 120px" ></textarea>
                     </div>
                 </div>
-            
+
                 <!-- date_input : 开始时间 ,  startTime  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('开始时间')}">开始时间</div></div>
@@ -82,7 +82,7 @@
                         <input input-type="date" lay-filter="startTime" id="startTime" name="startTime"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择'+'开始时间') }" type="text" class="layui-input"   />
                     </div>
                 </div>
-            
+
                 <!-- date_input : 结束时间 ,  endTime  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('结束时间')}">结束时间</div></div>
@@ -90,7 +90,7 @@
                         <input input-type="date" lay-filter="endTime" id="endTime" name="endTime"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择'+'结束时间') }" type="text" class="layui-input"   />
                     </div>
                 </div>
-            
+
                 <!-- date_input : 失效日期 ,  invalidTime  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('失效日期')}">失效日期</div></div>
@@ -98,7 +98,7 @@
                         <input input-type="date" lay-filter="invalidTime" id="invalidTime" name="invalidTime"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择'+'失效日期') }" type="text" class="layui-input"   />
                     </div>
                 </div>
-            
+
                 <!-- text_area : 备注 ,  notes  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备注')}">备注</div></div>

@@ -13,7 +13,7 @@
     <meta charset="utf-8"/>
 	<title th:text="${lang.translate('资产报修')}">资产报修</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
-    <link th:if(theme.ico!="null") rel="icon" th:href="theme.ico" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
     <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
@@ -130,7 +130,7 @@
                 </div>
 
 
-                
+
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('图片')}">图片</div></div>
                     <div class="layui-upload layui-input-block ">
@@ -181,7 +181,7 @@
     var VALIDATE_CONFIG={"actualFinishDate":{"date":true,"labelInForm":"实际完成日期","inputType":"date_input"},"name":{"labelInForm":"业务名称","inputType":"text_input","required":true},"planFinishDate":{"date":true,"labelInForm":"计划完成日期","inputType":"date_input"},"content":{"labelInForm":"报修内容","inputType":"text_area","required":true}};
     var AUTH_PREFIX="eam_asset_repair";
 
-    //  
+    //
     var ASSET_DEFAULT_OWN_COMPANY = [[${assetDefaultOwnCompany}]] ;
     // 单据ID
     var BILL_ID = [[${billId}]] ;

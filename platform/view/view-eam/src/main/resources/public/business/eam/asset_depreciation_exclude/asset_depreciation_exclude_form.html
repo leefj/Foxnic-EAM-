@@ -13,7 +13,7 @@
     <meta charset="utf-8"/>
 	<title th:text="${lang.translate('折旧排除')}">折旧排除</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
-    <link th:if(theme.ico!="null") rel="icon" th:href="theme.ico" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
     <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
@@ -49,7 +49,7 @@
                         <input lay-filter="id" id="id" name="id" th:placeholder="${ lang.translate('请输入'+'主键') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 资产 ,  assetId -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('资产')}">资产</div></div>
@@ -57,7 +57,7 @@
                         <input lay-filter="assetId" id="assetId" name="assetId" th:placeholder="${ lang.translate('请输入'+'资产') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- select_box : 折旧方案 ,  depreciationId  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('折旧方案')}">折旧方案</div><div class="layui-required">*</div></div>
@@ -65,7 +65,7 @@
                         <div id="depreciationId" input-type="select" th:data="${'/service-eam/eam-asset-depreciation/query-paged-list'}" extraParam="{}"></div>
                     </div>
                 </div>
-            
+
                 <!-- text_input : 备注 ,  notes -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备注')}">备注</div></div>
@@ -73,7 +73,7 @@
                         <input lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入'+'备注') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- select_box : 资产名称 ,  assetName  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('资产名称')}">资产名称</div></div>
@@ -81,7 +81,7 @@
                         <div id="assetName" input-type="select" th:data="${'/service-eam/eam-asset/query-paged-list'}" extraParam="{}"></div>
                     </div>
                 </div>
-            
+
                 <!-- select_box : 资产编码 ,  assetCode  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('资产编码')}">资产编码</div></div>
@@ -89,7 +89,7 @@
                         <div id="assetCode" input-type="select" th:data="${'/service-eam/eam-asset/query-paged-list'}" extraParam="{}"></div>
                     </div>
                 </div>
-            
+
                 <!-- select_box : 资产型号 ,  assetModel  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('资产型号')}">资产型号</div></div>

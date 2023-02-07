@@ -13,7 +13,7 @@
     <meta charset="utf-8"/>
 	<title th:text="${lang.translate('数据库')}">数据库</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
-    <link th:if(theme.ico!="null") rel="icon" th:href="theme.ico" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
     <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
@@ -50,7 +50,7 @@
                         <div id="hostId" input-type="select" th:data="${'/service-ops/ops-host/query-paged-list'}" extraParam="{}"></div>
                     </div>
                 </div>
-            
+
                 <!-- text_input : 数据库名 ,  name -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('数据库名')}">数据库名</div><div class="layui-required">*</div></div>
@@ -58,7 +58,7 @@
                         <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入'+'数据库名') }" type="text" class="layui-input"    lay-verify="|required"  />
                     </div>
                 </div>
-            
+
                 <!-- radio_box : 数据库状态 ,  status  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('数据库状态')}">数据库状态</div><div class="layui-required">*</div></div>
@@ -66,7 +66,7 @@
                         <input input-type="radio" type="radio" name="status" lay-filter="status" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.ops.OpsDbStatusEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)}">
                     </div>
                 </div>
-            
+
                 <!-- select_box : 库类型 ,  typeId  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('库类型')}">库类型</div><div class="layui-required">*</div></div>
@@ -74,7 +74,7 @@
                         <div id="typeId" input-type="select" th:data="${'/service-ops/ops-service-info/query-paged-list?groupId=db'}" extraParam="{}"></div>
                     </div>
                 </div>
-            
+
                 <!-- select_box : 标签 ,  labelIds  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('标签')}">标签</div></div>
@@ -95,7 +95,7 @@
                         <div id="deployMode" input-type="select" th:data="${'/service-system/sys-dict-item/query-list?dictCode=ops_db_deploy_mode'}" extraParam="{}"></div>
                     </div>
                 </div>
-            
+
                 <!-- radio_box : 日志模式 ,  logMethod  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('日志模式')}">日志模式</div><div class="layui-required">*</div></div>
@@ -103,7 +103,7 @@
                         <input input-type="radio" type="radio" name="logMethod" lay-filter="logMethod" th:each="e,stat:${dict.toArray('ops_db_log_method')}" th:value="${e.code}" th:title="${e.text}"  th:checked="${(e.code=='' || stat.index==0)}">
                     </div>
                 </div>
-            
+
                 <!-- text_input : 服务端口 ,  dbPort -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('服务端口')}">服务端口</div></div>
@@ -111,7 +111,7 @@
                         <input lay-filter="dbPort" id="dbPort" name="dbPort" th:placeholder="${ lang.translate('请输入'+'服务端口') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- number_input : 大小(M) ,  dbSize  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('大小(M)')}">大小(M)</div></div>
@@ -162,7 +162,7 @@
                         <input lay-filter="adminUserList" id="adminUserList" name="adminUserList" th:placeholder="${ lang.translate('请输入'+'管理员账户') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 应用账户 ,  appUserList -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('应用账户')}">应用账户</div></div>
@@ -183,7 +183,7 @@
                         <input lay-filter="opsUserList" id="opsUserList" name="opsUserList" th:placeholder="${ lang.translate('请输入'+'运维账户') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 其他账户 ,  otherUserList -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('其他账户')}">其他账户</div></div>
@@ -211,7 +211,7 @@
                         <input lay-filter="userUseInfo" id="userUseInfo" name="userUseInfo" th:placeholder="${ lang.translate('请输入'+'使用情况') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_area : 凭证信息 ,  voucherStr  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('凭证信息')}">凭证信息</div></div>
@@ -219,7 +219,7 @@
                         <textarea lay-filter="voucherStr" id="voucherStr" name="voucherStr" th:placeholder="${ lang.translate('请输入'+'凭证信息') }" class="layui-textarea" style="height: 100px" ></textarea>
                     </div>
                 </div>
-            
+
                 <!-- text_area : 用户备注 ,  userInfo  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('用户备注')}">用户备注</div></div>
@@ -283,7 +283,7 @@
                         <input lay-filter="backupStrategy" id="backupStrategy" name="backupStrategy" th:placeholder="${ lang.translate('请输入'+'本地备份策略') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 工具备份策略 ,  toolStrategy -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('工具备份策略')}">工具备份策略</div></div>
@@ -304,7 +304,7 @@
                         <input lay-filter="disasterRecoveryStrategy" id="disasterRecoveryStrategy" name="disasterRecoveryStrategy" th:placeholder="${ lang.translate('请输入'+'灾备策略') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 清理策略 ,  clearStrategy -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('清理策略')}">清理策略</div></div>

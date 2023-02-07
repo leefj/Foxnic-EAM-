@@ -13,7 +13,7 @@
     <meta charset="utf-8"/>
 	<title th:text="${lang.translate('标签布局')}">标签布局</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
-    <link th:if(theme.ico!="null") rel="icon" th:href="theme.ico" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
     <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
@@ -49,7 +49,7 @@
                         <input lay-filter="id" id="id" name="id" th:placeholder="${ lang.translate('请输入'+'主键') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 模版 ,  tplId -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('模版')}">模版</div></div>
@@ -57,7 +57,7 @@
                         <input lay-filter="tplId" id="tplId" name="tplId" th:placeholder="${ lang.translate('请输入'+'模版') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 字段ID ,  colId -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('字段ID')}">字段ID</div></div>
@@ -65,7 +65,7 @@
                         <input lay-filter="colId" id="colId" name="colId" th:placeholder="${ lang.translate('请输入'+'字段ID') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 字段编码 ,  colCode -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('字段编码')}">字段编码</div></div>
@@ -73,7 +73,7 @@
                         <input lay-filter="colCode" id="colCode" name="colCode" th:placeholder="${ lang.translate('请输入'+'字段编码') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- select_box : 类型 ,  type  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('类型')}">类型</div><div class="layui-required">*</div></div>
@@ -81,7 +81,7 @@
                         <div id="type" input-type="select" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.AsseLabelTableCellTypeEnum')}" extraParam="{}"></div>
                     </div>
                 </div>
-            
+
                 <!-- number_input : 行数 ,  rowNumber  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('行数')}">行数</div></div>
@@ -89,7 +89,7 @@
                         <input lay-filter="rowNumber" id="rowNumber" name="rowNumber" th:placeholder="${ lang.translate('请输入'+'行数') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
                     </div>
                 </div>
-            
+
                 <!-- number_input : 行高度 ,  rowHeight  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('行高度')}">行高度</div></div>
@@ -97,7 +97,7 @@
                         <input lay-filter="rowHeight" id="rowHeight" name="rowHeight" th:placeholder="${ lang.translate('请输入'+'行高度') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
                     </div>
                 </div>
-            
+
                 <!-- number_input : row ,  rowSpan  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('row')}">row</div></div>
@@ -105,7 +105,7 @@
                         <input lay-filter="rowSpan" id="rowSpan" name="rowSpan" th:placeholder="${ lang.translate('请输入'+'row') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
                     </div>
                 </div>
-            
+
                 <!-- number_input : col ,  colSpan  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('col')}">col</div></div>
@@ -113,7 +113,7 @@
                         <input lay-filter="colSpan" id="colSpan" name="colSpan" th:placeholder="${ lang.translate('请输入'+'col') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="true" decimal="false" allow-negative="true" step="1.0"   scale="0" />
                     </div>
                 </div>
-            
+
                 <!-- number_input : 顺序 ,  sort  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('顺序')}">顺序</div></div>

@@ -13,7 +13,7 @@
     <meta charset="utf-8"/>
 	<title th:text="${lang.translate('标签模版')}">标签模版</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
-    <link th:if(theme.ico!="null") rel="icon" th:href="theme.ico" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
     <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
@@ -49,7 +49,7 @@
                         <input lay-filter="id" id="id" name="id" th:placeholder="${ lang.translate('请输入'+'主键') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 类型 ,  type -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('类型')}">类型</div></div>
@@ -57,7 +57,7 @@
                         <input lay-filter="type" id="type" name="type" th:placeholder="${ lang.translate('请输入'+'类型') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 是否自定义 ,  isCustom -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('是否自定义')}">是否自定义</div></div>
@@ -65,7 +65,7 @@
                         <input lay-filter="isCustom" id="isCustom" name="isCustom" th:placeholder="${ lang.translate('请输入'+'是否自定义') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_area : 字段 ,  colIds  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('字段')}">字段</div></div>
@@ -73,7 +73,7 @@
                         <textarea lay-filter="colIds" id="colIds" name="colIds" th:placeholder="${ lang.translate('请输入'+'字段') }" class="layui-textarea" style="height: 120px" ></textarea>
                     </div>
                 </div>
-            
+
                 <!-- text_input : 位置:u ,  imagePosition -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('位置:u')}">位置:u</div></div>
@@ -81,7 +81,7 @@
                         <input lay-filter="imagePosition" id="imagePosition" name="imagePosition" th:placeholder="${ lang.translate('请输入'+'位置:u') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 图像 ,  imageColId -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('图像')}">图像</div></div>
@@ -89,7 +89,7 @@
                         <input lay-filter="imageColId" id="imageColId" name="imageColId" th:placeholder="${ lang.translate('请输入'+'图像') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 图像显示 ,  imageShow -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('图像显示')}">图像显示</div></div>
@@ -97,7 +97,7 @@
                         <input lay-filter="imageShow" id="imageShow" name="imageShow" th:placeholder="${ lang.translate('请输入'+'图像显示') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 图像label显示 ,  imageLabelShow -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('图像label显示')}">图像label显示</div></div>
@@ -105,7 +105,7 @@
                         <input lay-filter="imageLabelShow" id="imageLabelShow" name="imageLabelShow" th:placeholder="${ lang.translate('请输入'+'图像label显示') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 图像类型txm ,  imageType -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('图像类型txm')}">图像类型txm</div></div>
@@ -113,7 +113,7 @@
                         <input lay-filter="imageType" id="imageType" name="imageType" th:placeholder="${ lang.translate('请输入'+'图像类型txm') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_area : 类型 ,  labelFormatContent  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('类型')}">类型</div></div>
@@ -121,7 +121,7 @@
                         <textarea lay-filter="labelFormatContent" id="labelFormatContent" name="labelFormatContent" th:placeholder="${ lang.translate('请输入'+'类型') }" class="layui-textarea" style="height: 120px" ></textarea>
                     </div>
                 </div>
-            
+
                 <!-- text_input : 备注 ,  notes -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('备注')}">备注</div></div>
@@ -129,7 +129,7 @@
                         <input lay-filter="notes" id="notes" name="notes" th:placeholder="${ lang.translate('请输入'+'备注') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- number_input : 表格marginTop(mm) ,  labelTableMarginTop  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('表格marginTop(mm)')}">表格marginTop(mm)</div></div>
@@ -137,7 +137,7 @@
                         <input lay-filter="labelTableMarginTop" id="labelTableMarginTop" name="labelTableMarginTop" th:placeholder="${ lang.translate('请输入'+'表格marginTop(mm)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
                     </div>
                 </div>
-            
+
                 <!-- number_input : 表格marginBottom(mm) ,  labelTableMarginBottom  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('表格marginBottom(mm)')}">表格marginBottom(mm)</div></div>
@@ -145,7 +145,7 @@
                         <input lay-filter="labelTableMarginBottom" id="labelTableMarginBottom" name="labelTableMarginBottom" th:placeholder="${ lang.translate('请输入'+'表格marginBottom(mm)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
                     </div>
                 </div>
-            
+
                 <!-- number_input : 表格marginLeft(mm) ,  labelTableMarginLeft  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('表格marginLeft(mm)')}">表格marginLeft(mm)</div></div>
@@ -153,7 +153,7 @@
                         <input lay-filter="labelTableMarginLeft" id="labelTableMarginLeft" name="labelTableMarginLeft" th:placeholder="${ lang.translate('请输入'+'表格marginLeft(mm)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
                     </div>
                 </div>
-            
+
                 <!-- number_input : 表格marginRight(mm) ,  labelTableMarginRight  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('表格marginRight(mm)')}">表格marginRight(mm)</div></div>
@@ -161,7 +161,7 @@
                         <input lay-filter="labelTableMarginRight" id="labelTableMarginRight" name="labelTableMarginRight" th:placeholder="${ lang.translate('请输入'+'表格marginRight(mm)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 表格内Key是否加粗 ,  keyBold -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('表格内Key是否加粗')}">表格内Key是否加粗</div></div>
@@ -169,7 +169,7 @@
                         <input lay-filter="keyBold" id="keyBold" name="keyBold" th:placeholder="${ lang.translate('请输入'+'表格内Key是否加粗') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- text_input : 表格内Value是否加粗 ,  valueBlod -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('表格内Value是否加粗')}">表格内Value是否加粗</div></div>
@@ -177,7 +177,7 @@
                         <input lay-filter="valueBlod" id="valueBlod" name="valueBlod" th:placeholder="${ lang.translate('请输入'+'表格内Value是否加粗') }" type="text" class="layui-input"  />
                     </div>
                 </div>
-            
+
                 <!-- number_input : 图片marginTop(mm) ,  imageMarginTop  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('图片marginTop(mm)')}">图片marginTop(mm)</div></div>
@@ -185,7 +185,7 @@
                         <input lay-filter="imageMarginTop" id="imageMarginTop" name="imageMarginTop" th:placeholder="${ lang.translate('请输入'+'图片marginTop(mm)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
                     </div>
                 </div>
-            
+
                 <!-- number_input : 图片marginBottom(mm) ,  imageMarginBottom  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('图片marginBottom(mm)')}">图片marginBottom(mm)</div></div>
@@ -193,7 +193,7 @@
                         <input lay-filter="imageMarginBottom" id="imageMarginBottom" name="imageMarginBottom" th:placeholder="${ lang.translate('请输入'+'图片marginBottom(mm)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
                     </div>
                 </div>
-            
+
                 <!-- number_input : 图片marginLeft(mm) ,  imageMarginLeft  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('图片marginLeft(mm)')}">图片marginLeft(mm)</div></div>
@@ -201,7 +201,7 @@
                         <input lay-filter="imageMarginLeft" id="imageMarginLeft" name="imageMarginLeft" th:placeholder="${ lang.translate('请输入'+'图片marginLeft(mm)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
                     </div>
                 </div>
-            
+
                 <!-- number_input : 图片marginRight(mm) ,  imageMarginRight  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('图片marginRight(mm)')}">图片marginRight(mm)</div></div>
@@ -209,7 +209,7 @@
                         <input lay-filter="imageMarginRight" id="imageMarginRight" name="imageMarginRight" th:placeholder="${ lang.translate('请输入'+'图片marginRight(mm)') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
                     </div>
                 </div>
-            
+
                 <!-- number_input : 图片宽度 ,  imageWidth  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('图片宽度')}">图片宽度</div></div>
@@ -217,7 +217,7 @@
                         <input lay-filter="imageWidth" id="imageWidth" name="imageWidth" th:placeholder="${ lang.translate('请输入'+'图片宽度') }" type="text" class="layui-input"   autocomplete="off" input-type="number_input" integer="false" decimal="true" allow-negative="true" step="1.0"   scale="0" />
                     </div>
                 </div>
-            
+
                 <!-- number_input : 图片高度 ,  imageHeight  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('图片高度')}">图片高度</div></div>

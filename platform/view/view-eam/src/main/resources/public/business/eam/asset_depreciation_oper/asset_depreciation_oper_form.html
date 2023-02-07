@@ -13,7 +13,7 @@
     <meta charset="utf-8"/>
 	<title th:text="${lang.translate('折旧操作',null,'eam_dep_oper')}">折旧操作</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
-    <link th:if(theme.ico!="null") rel="icon" th:href="theme.ico" type="image/vnd.microsoft.icon">
+    <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/assets/libs/layui/css/layui.css" th:href="'/assets/libs/layui/css/layui.css?'+${cacheKey}"/>
     <link rel="stylesheet" href="/assets/css/admin.css" th:href="'/assets/css/admin.css?'+${cacheKey}"/>
@@ -96,7 +96,7 @@
                         <textarea lay-filter="content" id="content" name="content" th:placeholder="${ lang.translate('请输入'+'折旧内容',null,'eam_dep_oper') }" class="layui-textarea" style="height: 120px" ></textarea>
                     </div>
                 </div>
-            
+
                 <!-- text_area : 备注 ,  notes  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('备注',null,'eam_dep_oper')}">备注</div></div>
