@@ -1,7 +1,6 @@
 package com.dt.platform.domain.ops;
 
 import com.github.foxnic.dao.entity.Entity;
-import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.OpsTables.OPS_DB_BACKUP_INFO;
@@ -10,27 +9,22 @@ import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Transient;
-import com.github.foxnic.api.swagger.EnumFor;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
-import com.dt.platform.domain.ops.meta.DbBackupInfoMeta;
-import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 数据库备份
- * <p>数据库备份 , 数据表 ops_db_backup_info 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-31 22:15:26
- * @sign 2837A8E8E5F4E2BEF8925213308DAB89
+ * @since 2022-09-13 20:38:56
+ * @sign 3B9D39BE6BFC255D0389F62AE85A4F86
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "ops_db_backup_info")
-@ApiModel(description = "数据库备份 ; 数据库备份 , 数据表 ops_db_backup_info 的PO类型")
 public class DbBackupInfo extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -41,20 +35,14 @@ public class DbBackupInfo extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "621369753377701888")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键")
 	private String id;
 	
 	/**
 	 * 数据库：数据库
 	*/
-	@ApiModelProperty(required = false,value="数据库" , notes = "数据库" , example = "621350881815691264")
+	@ApiModelProperty(required = false,value="数据库" , notes = "数据库")
 	private String databaseId;
-	
-	/**
-	 * UID：UID
-	*/
-	@ApiModelProperty(required = false,value="UID" , notes = "UID")
-	private String uid;
 	
 	/**
 	 * 名称：名称
@@ -65,7 +53,7 @@ public class DbBackupInfo extends Entity {
 	/**
 	 * 备份状态：备份状态
 	*/
-	@ApiModelProperty(required = false,value="备份状态" , notes = "备份状态" , example = "online")
+	@ApiModelProperty(required = false,value="备份状态" , notes = "备份状态")
 	private String status;
 	
 	/**
@@ -77,13 +65,13 @@ public class DbBackupInfo extends Entity {
 	/**
 	 * 备份类型：备份类型
 	*/
-	@ApiModelProperty(required = false,value="备份类型" , notes = "备份类型" , example = "physical")
+	@ApiModelProperty(required = false,value="备份类型" , notes = "备份类型")
 	private String backupType;
 	
 	/**
 	 * 备份方式：备份方式
 	*/
-	@ApiModelProperty(required = false,value="备份方式" , notes = "备份方式" , example = "full")
+	@ApiModelProperty(required = false,value="备份方式" , notes = "备份方式")
 	private String backupMethod;
 	
 	/**
@@ -107,7 +95,7 @@ public class DbBackupInfo extends Entity {
 	/**
 	 * 备份大小：备份大小
 	*/
-	@ApiModelProperty(required = false,value="备份大小" , notes = "备份大小" , example = "0.00")
+	@ApiModelProperty(required = false,value="备份大小" , notes = "备份大小")
 	private BigDecimal backupSize;
 	
 	/**
@@ -131,7 +119,7 @@ public class DbBackupInfo extends Entity {
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "12")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注")
 	private String notes;
 	
 	/**
@@ -143,13 +131,13 @@ public class DbBackupInfo extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-09-11 03:41:34")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
 	private Date createTime;
 	
 	/**
@@ -167,10 +155,9 @@ public class DbBackupInfo extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = false,value="是否已删除" , notes = "是否已删除" , example = "0")
+	@ApiModelProperty(required = false,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
 	@Transient
-	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -188,7 +175,7 @@ public class DbBackupInfo extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
+	@ApiModelProperty(required = true,value="version" , notes = "version")
 	private Integer version;
 	
 	/**
@@ -244,25 +231,6 @@ public class DbBackupInfo extends Entity {
 	*/
 	public DbBackupInfo setDatabaseId(String databaseId) {
 		this.databaseId=databaseId;
-		return this;
-	}
-	
-	/**
-	 * 获得 UID<br>
-	 * UID
-	 * @return UID
-	*/
-	public String getUid() {
-		return uid;
-	}
-	
-	/**
-	 * 设置 UID
-	 * @param uid UID
-	 * @return 当前对象
-	*/
-	public DbBackupInfo setUid(String uid) {
-		this.uid=uid;
 		return this;
 	}
 	
@@ -817,25 +785,24 @@ public class DbBackupInfo extends Entity {
 	public DbBackupInfo duplicate(boolean all) {
 		com.dt.platform.domain.ops.meta.DbBackupInfoMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.DbBackupInfoMeta.$$proxy$$();
 		inst.setNotes(this.getNotes());
+		inst.setUpdateTime(this.getUpdateTime());
 		inst.setStorage(this.getStorage());
 		inst.setSelectedCode(this.getSelectedCode());
+		inst.setVersion(this.getVersion());
 		inst.setBackupDatakeep(this.getBackupDatakeep());
 		inst.setBackupType(this.getBackupType());
-		inst.setUid(this.getUid());
-		inst.setBackupStrategy(this.getBackupStrategy());
-		inst.setUpdateBy(this.getUpdateBy());
-		inst.setId(this.getId());
-		inst.setDatabaseId(this.getDatabaseId());
-		inst.setUpdateTime(this.getUpdateTime());
-		inst.setVersion(this.getVersion());
 		inst.setBackupSize(this.getBackupSize());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
+		inst.setBackupStrategy(this.getBackupStrategy());
 		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setName(this.getName());
 		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
 		inst.setBackupMethod(this.getBackupMethod());
+		inst.setDatabaseId(this.getDatabaseId());
 		inst.setBackupTime(this.getBackupTime());
 		inst.setBackupResultCt(this.getBackupResultCt());
 		inst.setStatus(this.getStatus());
@@ -893,151 +860,5 @@ public class DbBackupInfo extends Entity {
 	@Transient
 	public static DbBackupInfo create() {
 		return new com.dt.platform.domain.ops.meta.DbBackupInfoMeta.$$proxy$$();
-	}
-
-	/**
-	 * 从 Map 读取
-	 * @param map 记录数据
-	 * @param cast 是否用 DataParser 进行类型转换
-	 * @return  是否读取成功
-	*/
-	public boolean read(Map<String, Object> map,boolean cast) {
-		if(map==null) return false;
-		if(cast) {
-			this.setNotes(DataParser.parse(String.class, map.get(DbBackupInfoMeta.NOTES)));
-			this.setStorage(DataParser.parse(String.class, map.get(DbBackupInfoMeta.STORAGE)));
-			this.setSelectedCode(DataParser.parse(String.class, map.get(DbBackupInfoMeta.SELECTED_CODE)));
-			this.setBackupDatakeep(DataParser.parse(String.class, map.get(DbBackupInfoMeta.BACKUP_DATAKEEP)));
-			this.setBackupType(DataParser.parse(String.class, map.get(DbBackupInfoMeta.BACKUP_TYPE)));
-			this.setUid(DataParser.parse(String.class, map.get(DbBackupInfoMeta.UID)));
-			this.setBackupStrategy(DataParser.parse(String.class, map.get(DbBackupInfoMeta.BACKUP_STRATEGY)));
-			this.setUpdateBy(DataParser.parse(String.class, map.get(DbBackupInfoMeta.UPDATE_BY)));
-			this.setId(DataParser.parse(String.class, map.get(DbBackupInfoMeta.ID)));
-			this.setDatabaseId(DataParser.parse(String.class, map.get(DbBackupInfoMeta.DATABASE_ID)));
-			this.setUpdateTime(DataParser.parse(Date.class, map.get(DbBackupInfoMeta.UPDATE_TIME)));
-			this.setVersion(DataParser.parse(Integer.class, map.get(DbBackupInfoMeta.VERSION)));
-			this.setBackupSize(DataParser.parse(BigDecimal.class, map.get(DbBackupInfoMeta.BACKUP_SIZE)));
-			this.setCreateBy(DataParser.parse(String.class, map.get(DbBackupInfoMeta.CREATE_BY)));
-			this.setDeleted(DataParser.parse(Integer.class, map.get(DbBackupInfoMeta.DELETED)));
-			this.setCreateTime(DataParser.parse(Date.class, map.get(DbBackupInfoMeta.CREATE_TIME)));
-			this.setDeleteTime(DataParser.parse(Date.class, map.get(DbBackupInfoMeta.DELETE_TIME)));
-			this.setName(DataParser.parse(String.class, map.get(DbBackupInfoMeta.NAME)));
-			this.setDeleteBy(DataParser.parse(String.class, map.get(DbBackupInfoMeta.DELETE_BY)));
-			this.setBackupMethod(DataParser.parse(String.class, map.get(DbBackupInfoMeta.BACKUP_METHOD)));
-			this.setBackupTime(DataParser.parse(Date.class, map.get(DbBackupInfoMeta.BACKUP_TIME)));
-			this.setBackupResultCt(DataParser.parse(String.class, map.get(DbBackupInfoMeta.BACKUP_RESULT_CT)));
-			this.setStatus(DataParser.parse(String.class, map.get(DbBackupInfoMeta.STATUS)));
-			this.setBackupResult(DataParser.parse(String.class, map.get(DbBackupInfoMeta.BACKUP_RESULT)));
-			this.setBackupSource(DataParser.parse(String.class, map.get(DbBackupInfoMeta.BACKUP_SOURCE)));
-			// others
-			this.setHost(DataParser.parse(Host.class, map.get(DbBackupInfoMeta.HOST)));
-			this.setDbType(DataParser.parse(ServiceInfo.class, map.get(DbBackupInfoMeta.DB_TYPE)));
-			this.setDb(DataParser.parse(DbInfo.class, map.get(DbBackupInfoMeta.DB)));
-			return true;
-		} else {
-			try {
-				this.setNotes( (String)map.get(DbBackupInfoMeta.NOTES));
-				this.setStorage( (String)map.get(DbBackupInfoMeta.STORAGE));
-				this.setSelectedCode( (String)map.get(DbBackupInfoMeta.SELECTED_CODE));
-				this.setBackupDatakeep( (String)map.get(DbBackupInfoMeta.BACKUP_DATAKEEP));
-				this.setBackupType( (String)map.get(DbBackupInfoMeta.BACKUP_TYPE));
-				this.setUid( (String)map.get(DbBackupInfoMeta.UID));
-				this.setBackupStrategy( (String)map.get(DbBackupInfoMeta.BACKUP_STRATEGY));
-				this.setUpdateBy( (String)map.get(DbBackupInfoMeta.UPDATE_BY));
-				this.setId( (String)map.get(DbBackupInfoMeta.ID));
-				this.setDatabaseId( (String)map.get(DbBackupInfoMeta.DATABASE_ID));
-				this.setUpdateTime( (Date)map.get(DbBackupInfoMeta.UPDATE_TIME));
-				this.setVersion( (Integer)map.get(DbBackupInfoMeta.VERSION));
-				this.setBackupSize( (BigDecimal)map.get(DbBackupInfoMeta.BACKUP_SIZE));
-				this.setCreateBy( (String)map.get(DbBackupInfoMeta.CREATE_BY));
-				this.setDeleted( (Integer)map.get(DbBackupInfoMeta.DELETED));
-				this.setCreateTime( (Date)map.get(DbBackupInfoMeta.CREATE_TIME));
-				this.setDeleteTime( (Date)map.get(DbBackupInfoMeta.DELETE_TIME));
-				this.setName( (String)map.get(DbBackupInfoMeta.NAME));
-				this.setDeleteBy( (String)map.get(DbBackupInfoMeta.DELETE_BY));
-				this.setBackupMethod( (String)map.get(DbBackupInfoMeta.BACKUP_METHOD));
-				this.setBackupTime( (Date)map.get(DbBackupInfoMeta.BACKUP_TIME));
-				this.setBackupResultCt( (String)map.get(DbBackupInfoMeta.BACKUP_RESULT_CT));
-				this.setStatus( (String)map.get(DbBackupInfoMeta.STATUS));
-				this.setBackupResult( (String)map.get(DbBackupInfoMeta.BACKUP_RESULT));
-				this.setBackupSource( (String)map.get(DbBackupInfoMeta.BACKUP_SOURCE));
-				// others
-				this.setHost( (Host)map.get(DbBackupInfoMeta.HOST));
-				this.setDbType( (ServiceInfo)map.get(DbBackupInfoMeta.DB_TYPE));
-				this.setDb( (DbInfo)map.get(DbBackupInfoMeta.DB));
-				return true;
-			} catch (Exception e) {
-				return false;
-			}
-		}
-	}
-
-	/**
-	 * 从 Map 读取
-	 * @param r 记录数据
-	 * @param cast 是否用 DataParser 进行类型转换
-	 * @return  是否读取成功
-	*/
-	public boolean read(ExprRcd r,boolean cast) {
-		if(r==null) return false;
-		if(cast) {
-			this.setNotes(DataParser.parse(String.class, r.getValue(DbBackupInfoMeta.NOTES)));
-			this.setStorage(DataParser.parse(String.class, r.getValue(DbBackupInfoMeta.STORAGE)));
-			this.setSelectedCode(DataParser.parse(String.class, r.getValue(DbBackupInfoMeta.SELECTED_CODE)));
-			this.setBackupDatakeep(DataParser.parse(String.class, r.getValue(DbBackupInfoMeta.BACKUP_DATAKEEP)));
-			this.setBackupType(DataParser.parse(String.class, r.getValue(DbBackupInfoMeta.BACKUP_TYPE)));
-			this.setUid(DataParser.parse(String.class, r.getValue(DbBackupInfoMeta.UID)));
-			this.setBackupStrategy(DataParser.parse(String.class, r.getValue(DbBackupInfoMeta.BACKUP_STRATEGY)));
-			this.setUpdateBy(DataParser.parse(String.class, r.getValue(DbBackupInfoMeta.UPDATE_BY)));
-			this.setId(DataParser.parse(String.class, r.getValue(DbBackupInfoMeta.ID)));
-			this.setDatabaseId(DataParser.parse(String.class, r.getValue(DbBackupInfoMeta.DATABASE_ID)));
-			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(DbBackupInfoMeta.UPDATE_TIME)));
-			this.setVersion(DataParser.parse(Integer.class, r.getValue(DbBackupInfoMeta.VERSION)));
-			this.setBackupSize(DataParser.parse(BigDecimal.class, r.getValue(DbBackupInfoMeta.BACKUP_SIZE)));
-			this.setCreateBy(DataParser.parse(String.class, r.getValue(DbBackupInfoMeta.CREATE_BY)));
-			this.setDeleted(DataParser.parse(Integer.class, r.getValue(DbBackupInfoMeta.DELETED)));
-			this.setCreateTime(DataParser.parse(Date.class, r.getValue(DbBackupInfoMeta.CREATE_TIME)));
-			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(DbBackupInfoMeta.DELETE_TIME)));
-			this.setName(DataParser.parse(String.class, r.getValue(DbBackupInfoMeta.NAME)));
-			this.setDeleteBy(DataParser.parse(String.class, r.getValue(DbBackupInfoMeta.DELETE_BY)));
-			this.setBackupMethod(DataParser.parse(String.class, r.getValue(DbBackupInfoMeta.BACKUP_METHOD)));
-			this.setBackupTime(DataParser.parse(Date.class, r.getValue(DbBackupInfoMeta.BACKUP_TIME)));
-			this.setBackupResultCt(DataParser.parse(String.class, r.getValue(DbBackupInfoMeta.BACKUP_RESULT_CT)));
-			this.setStatus(DataParser.parse(String.class, r.getValue(DbBackupInfoMeta.STATUS)));
-			this.setBackupResult(DataParser.parse(String.class, r.getValue(DbBackupInfoMeta.BACKUP_RESULT)));
-			this.setBackupSource(DataParser.parse(String.class, r.getValue(DbBackupInfoMeta.BACKUP_SOURCE)));
-			return true;
-		} else {
-			try {
-				this.setNotes( (String)r.getValue(DbBackupInfoMeta.NOTES));
-				this.setStorage( (String)r.getValue(DbBackupInfoMeta.STORAGE));
-				this.setSelectedCode( (String)r.getValue(DbBackupInfoMeta.SELECTED_CODE));
-				this.setBackupDatakeep( (String)r.getValue(DbBackupInfoMeta.BACKUP_DATAKEEP));
-				this.setBackupType( (String)r.getValue(DbBackupInfoMeta.BACKUP_TYPE));
-				this.setUid( (String)r.getValue(DbBackupInfoMeta.UID));
-				this.setBackupStrategy( (String)r.getValue(DbBackupInfoMeta.BACKUP_STRATEGY));
-				this.setUpdateBy( (String)r.getValue(DbBackupInfoMeta.UPDATE_BY));
-				this.setId( (String)r.getValue(DbBackupInfoMeta.ID));
-				this.setDatabaseId( (String)r.getValue(DbBackupInfoMeta.DATABASE_ID));
-				this.setUpdateTime( (Date)r.getValue(DbBackupInfoMeta.UPDATE_TIME));
-				this.setVersion( (Integer)r.getValue(DbBackupInfoMeta.VERSION));
-				this.setBackupSize( (BigDecimal)r.getValue(DbBackupInfoMeta.BACKUP_SIZE));
-				this.setCreateBy( (String)r.getValue(DbBackupInfoMeta.CREATE_BY));
-				this.setDeleted( (Integer)r.getValue(DbBackupInfoMeta.DELETED));
-				this.setCreateTime( (Date)r.getValue(DbBackupInfoMeta.CREATE_TIME));
-				this.setDeleteTime( (Date)r.getValue(DbBackupInfoMeta.DELETE_TIME));
-				this.setName( (String)r.getValue(DbBackupInfoMeta.NAME));
-				this.setDeleteBy( (String)r.getValue(DbBackupInfoMeta.DELETE_BY));
-				this.setBackupMethod( (String)r.getValue(DbBackupInfoMeta.BACKUP_METHOD));
-				this.setBackupTime( (Date)r.getValue(DbBackupInfoMeta.BACKUP_TIME));
-				this.setBackupResultCt( (String)r.getValue(DbBackupInfoMeta.BACKUP_RESULT_CT));
-				this.setStatus( (String)r.getValue(DbBackupInfoMeta.STATUS));
-				this.setBackupResult( (String)r.getValue(DbBackupInfoMeta.BACKUP_RESULT));
-				this.setBackupSource( (String)r.getValue(DbBackupInfoMeta.BACKUP_SOURCE));
-				return true;
-			} catch (Exception e) {
-				return false;
-			}
-		}
 	}
 }

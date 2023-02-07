@@ -2,20 +2,15 @@ package com.dt.platform.ops.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.dt.platform.domain.ops.CiphertextBoxData;
 import com.dt.platform.domain.ops.DbInfo;
 import com.dt.platform.domain.ops.DbInfoVO;
-import com.dt.platform.ops.service.ICiphertextBoxDataService;
-import com.dt.platform.ops.service.ICiphertextBoxService;
 import com.dt.platform.ops.service.IDbInfoService;
 import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.commons.lang.StringUtil;
-import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.dao.data.PagedList;
-import com.github.foxnic.dao.data.Rcd;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.SuperService;
@@ -24,7 +19,6 @@ import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.sql.expr.Insert;
 import com.github.foxnic.sql.meta.DBField;
 import org.github.foxnic.web.framework.dao.DBConfigs;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -56,13 +50,6 @@ public class DbInfoServiceImpl extends SuperService<DbInfo> implements IDbInfoSe
 	 * */
 	public DAO dao() { return dao; }
 
-	@Autowired
-	private ICiphertextBoxDataService ciphertextBoxDataService;
-
-
-	@Autowired
-	private ICiphertextBoxService ciphertextBoxService;
-
 
 
 	@Override
@@ -79,14 +66,10 @@ public class DbInfoServiceImpl extends SuperService<DbInfo> implements IDbInfoSe
 	 */
 	@Override
 	public Result insert(DbInfo dbInfo,boolean throwsException) {
-		String voucher=dbInfo.getVoucherStr();
-		dbInfo.setVoucherStr("");
 		Result r=super.insert(dbInfo,throwsException);
-
 		if(r.isSuccess()){
 			dao.execute("update ops_db_backup_info set database_id=? where selected_code=?",dbInfo.getId(),dbInfo.getSelectedCode());
 			dao.execute("delete from ops_db_info_label where db_id=?",dbInfo.getId());
-			dao.execute("delete from ops_db_data_loc where db_info_id=?",dbInfo.getId());
 			if(dbInfo.getLabelIds()!=null){
 				for(String labelId:dbInfo.getLabelIds()){
 					Insert ins=new Insert("ops_db_info_label");
@@ -94,57 +77,6 @@ public class DbInfoServiceImpl extends SuperService<DbInfo> implements IDbInfoSe
 					ins.set("db_id",dbInfo.getId());
 					ins.set("label",labelId);
 					dao.execute(ins);
-				}
-			}
-
-			if(dbInfo.getDataLocIds()!=null){
-				for(String value:dbInfo.getDataLocIds()){
-					Insert ins=new Insert("ops_db_data_loc");
-					ins.set("id",IDGenerator.getSnowflakeIdString());
-					ins.set("db_info_id",dbInfo.getId());
-					ins.set("loc_id",value);
-					dao.execute(ins);
-				}
-			}
-
-
-			//凭证保存密文，只有当首次没有密文时，才生效
-			if(!StringUtil.isBlank(voucher)){
-				//密文箱是否已存在
-				if(dao.queryRecord("select 1 from ops_ciphertext_box_data where deleted=0 and box_type='database_instance' and source_id=?",dbInfo.getId())==null){
-					//密码箱没有密文数据，首次保存
-					CiphertextBoxData box=new CiphertextBoxData();
-					box.setBoxType("database_instance");
-					box.setSourceId(dbInfo.getId());
-					box.setPlaintext(voucher);
-					ciphertextBoxDataService.insert(box,false);
-					Logger.info("密码箱没有密文数据，首次保存");
-				}else{
-					Logger.info("密码箱已有密文数据，不在保存");
-				}
-			}
-
-			//遍历-测试期间
-			ConditionExpr expr=new ConditionExpr();
-			expr.and("length(voucher_str)>0 and id not in (select source_id from ops_ciphertext_box_data where box_type='database_instance' and deleted=0)");
-			List<DbInfo> list=queryList(expr);
-			System.out.println("sum:"+list.size());
-			for(int i=0;i<list.size();i++){
-				System.out.println("###1"+i);
-				DbInfo info=list.get(i);
-				if(!StringUtil.isBlank(info.getVoucherStr())){
-					//密文箱是否已存在
-					if(dao.queryRecord("select 1 from ops_ciphertext_box_data where deleted=0 and box_type='database_instance' and source_id=?",info.getId())==null){
-						//密码箱没有密文数据，首次保存
-						CiphertextBoxData box=new CiphertextBoxData();
-						box.setBoxType("database_instance");
-						box.setSourceId(info.getId());
-						box.setPlaintext(info.getVoucherStr());
-						ciphertextBoxDataService.insert(box,false);
-						Logger.info("密码箱没有密文数据，首次保存");
-					}else{
-						Logger.info("密码箱已有密文数据，不在保存");
-					}
 				}
 			}
 		}
@@ -243,24 +175,9 @@ public class DbInfoServiceImpl extends SuperService<DbInfo> implements IDbInfoSe
 	 * */
 	@Override
 	public Result update(DbInfo dbInfo , SaveMode mode,boolean throwsException) {
-
-		String voucher=dbInfo.getVoucherStr();
-
-		boolean hasPriv=false;
-		if(ciphertextBoxService.userEnDePermByBoxType("database_instance")){
-			hasPriv=true;
-		}
-		if(hasPriv){
-			if("没有解密权限，不能查看".equals(voucher) ){
-				voucher="";
-			}
-		}else{
-			voucher="";
-		}
 		Result r=super.update(dbInfo , mode , throwsException);
 		if(r.isSuccess()){
 			dao.execute("delete from ops_db_info_label where db_id=?",dbInfo.getId());
-			dao.execute("delete from ops_db_data_loc where db_info_id=?",dbInfo.getId());
 			if(dbInfo.getLabelIds()!=null){
 				for(String labelId:dbInfo.getLabelIds()){
 					Insert ins=new Insert("ops_db_info_label");
@@ -270,38 +187,6 @@ public class DbInfoServiceImpl extends SuperService<DbInfo> implements IDbInfoSe
 					dao.execute(ins);
 				}
 			}
-
-			if(dbInfo.getDataLocIds()!=null){
-				for(String value:dbInfo.getDataLocIds()){
-					Insert ins=new Insert("ops_db_data_loc");
-					ins.set("id",IDGenerator.getSnowflakeIdString());
-					ins.set("db_info_id",dbInfo.getId());
-					ins.set("loc_id",value);
-					dao.execute(ins);
-				}
-			}
-
-			//凭证保存密文，只有当首次没有密文时，才生效
-			if(!StringUtil.isBlank(voucher)){
-				Rcd rs=dao.queryRecord("select * from ops_ciphertext_box_data where deleted=0 and box_type='database_instance' and source_id=?",dbInfo.getId());
-				if(rs==null){
-					//密码箱没有密文数据，首次保存
-					CiphertextBoxData box=new CiphertextBoxData();
-					box.setBoxType("database_instance");
-					box.setSourceId(dbInfo.getId());
-					box.setPlaintext(voucher);
-					ciphertextBoxDataService.insert(box,false);
-					Logger.info("密码箱没有密文数据，首次保存");
-				}else{
-					CiphertextBoxData box=new CiphertextBoxData();
-					box.setId(rs.getString("id"));
-					box.setSourceId(dbInfo.getId());
-					box.setPlaintext(voucher);
-					ciphertextBoxDataService.update(box,SaveMode.NOT_NULL_FIELDS,false);
-					Logger.info("密码箱已有密文数据，更新数据");
-				}
-			}
-
 		}
 
 		return r;
@@ -347,25 +232,7 @@ public class DbInfoServiceImpl extends SuperService<DbInfo> implements IDbInfoSe
 		DbInfo sample = new DbInfo();
 		if(id==null) throw new IllegalArgumentException("id 不允许为 null ");
 		sample.setId(id);
-
-		DbInfo info=dao.queryEntity(sample);
-
-		boolean hasPriv=false;
-		if(ciphertextBoxService.userEnDePermByBoxType("database_instance")){
-			hasPriv=true;
-		}
-		if(hasPriv){
-			Rcd rs=dao.queryRecord("select * from ops_ciphertext_box_data where deleted=0 and box_type='database_instance' and source_id=?",id);
-			if(rs==null){
-				info.setVoucherStr("");
-			}else{
-				info.setVoucherStr(ciphertextBoxDataService.getById(rs.getString("id")).getPlaintext());
-			}
-		}else{
-			info.setVoucherStr("没有解密权限，不能查看");
-		}
-
-		return info;
+		return dao.queryEntity(sample);
 	}
 
 	/**
@@ -416,8 +283,6 @@ public class DbInfoServiceImpl extends SuperService<DbInfo> implements IDbInfoSe
 		JSONObject searchObj=null;
 		JSONObject labelIdsObj=null;
 		JSONArray labelIdsValueArr=null;
-		JSONObject typeIdsObj=null;
-		JSONArray typeIdsValueArr=null;
 		if(!StringUtil.isBlank(searchValue)){
 			searchObj=JSONObject.parseObject(searchValue);
 			if(searchObj.containsKey("labelIds")){
@@ -426,23 +291,6 @@ public class DbInfoServiceImpl extends SuperService<DbInfo> implements IDbInfoSe
 					labelIdsValueArr=labelIdsObj.getJSONArray("value");
 				}
 			}
-			if(searchObj.containsKey("dbTypeIds")){
-				typeIdsObj=searchObj.getJSONObject("dbTypeIds");
-				if(typeIdsObj.containsKey("value")){
-					typeIdsValueArr=typeIdsObj.getJSONArray("value");
-				}
-			}
-		}
-		if(typeIdsValueArr!=null&&typeIdsValueArr.size()>0){
-			String labels="";
-			for(int i=0;i<typeIdsValueArr.size();i++){
-				if(i==0){
-					labels=labels+"'"+typeIdsValueArr.get(i)+"'";
-				}else{
-					labels=labels+",'"+typeIdsValueArr.get(i)+"'";
-				}
-			}
-			expr.and("type_id in (select id from ops_service_info where deleted=0 and service_category_id in ("+labels+"))");
 		}
 		if(labelIdsValueArr!=null&&labelIdsValueArr.size()>0){
 			String labels="";
@@ -455,8 +303,6 @@ public class DbInfoServiceImpl extends SuperService<DbInfo> implements IDbInfoSe
 			}
 			expr.and("id in (select db_id from ops_db_info_label where label in ("+labels+") and deleted=0 )");
 		}
-		//排除主机设置
-		expr.and("host_id not in (select host_id from ops_host_ex_by_db where deleted=0)");
 		return super.queryPagedList(sample, expr,pageSize, pageIndex);
 	}
 

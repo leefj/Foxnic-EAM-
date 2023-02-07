@@ -64,7 +64,7 @@ function ListPage() {
 				defaultToolbar: ['filter', 'print','exports',{title: '刷新数据',layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
 				url: moduleURL +'/query-database-data',
 				height: 'full-'+(h+28),
-				limit: 1000,
+				limit: 50,
 				page:false,
 				where: ps,
 				cols: [[

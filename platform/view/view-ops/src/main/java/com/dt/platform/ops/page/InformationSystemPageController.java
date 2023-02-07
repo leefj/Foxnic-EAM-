@@ -46,15 +46,6 @@ public class InformationSystemPageController extends ViewController {
 	}
 
 	/**
-	 * 信息系统 功能主页面
-	 */
-	@RequestMapping("/information_system_public_list.html")
-	public String publicList(Model model,HttpServletRequest request) {
-		return prefix+"/information_system_public_list";
-	}
-
-
-	/**
 	 * 信息系统 表单页面
 	 */
 	@RequestMapping("/information_system_form.html")

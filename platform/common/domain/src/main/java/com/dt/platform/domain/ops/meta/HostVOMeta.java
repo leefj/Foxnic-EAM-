@@ -17,8 +17,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-18 11:19:27
- * @sign F07C13ABD65C13FE1F53CCD7CE6DBBE5
+ * @since 2022-09-11 20:19:45
+ * @sign 4A61AD62FCD184D8234182AAF95C61FB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -103,26 +103,6 @@ public class HostVOMeta extends HostMeta {
 	 * 排序方式 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.HostVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.HostVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
-	
-	/**
-	 * 数据来源 , 前端指定不同的来源，后端按来源执行不同的逻辑 , 类型: java.lang.String
-	*/
-	public static final String DATA_ORIGIN="dataOrigin";
-	
-	/**
-	 * 数据来源 , 前端指定不同的来源，后端按来源执行不同的逻辑 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.HostVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.ops.HostVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端按来源执行不同的逻辑", java.lang.String.class, null);
-	
-	/**
-	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
-	*/
-	public static final String QUERY_LOGIC="queryLogic";
-	
-	/**
-	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.HostVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.ops.HostVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
 	
 	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
@@ -283,16 +263,6 @@ public class HostVOMeta extends HostMeta {
 	 * 其他配置 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.HostVO,java.lang.String> HOST_CONF_PROP = new BeanProperty(com.dt.platform.domain.ops.HostVO.class ,HOST_CONF, java.lang.String.class, "其他配置", "其他配置", java.lang.String.class, null);
-	
-	/**
-	 * 端口列表 , 类型: java.lang.String
-	*/
-	public static final String PORT_LIST="portList";
-	
-	/**
-	 * 端口列表 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.HostVO,java.lang.String> PORT_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.HostVO.class ,PORT_LIST, java.lang.String.class, "端口列表", "端口列表", java.lang.String.class, null);
 	
 	/**
 	 * 系统管理员 , 类型: java.lang.String
@@ -637,7 +607,7 @@ public class HostVOMeta extends HostMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , IDS , ID , SYSTEM_ID , HOST_TYPE , STATUS , HOST_NAME , HOST_IP , HOST_VIP , HOST_IPV6 , ENVIRONMENT , POSITION_ID , MONITOR_STATUS , DIRECTOR_USERNAME , HOST_MEMORY , HOST_CPU , HOST_CONF , PORT_LIST , USER_OS_ADMIN , USER_DB_ADMIN , USER_DB_USED , USER_APP_USED , USER_OPS_OPER , USER_OTHER , PASSWORD_STRATEGY_ID , HOST_BACKUP_METHOD , HOST_BACKUP_INFO , OFFLINE_TIME , ONLINE_TIME , ARCH , LABELS , HOST_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , VOUCHER_LIST , VOUCHER_IDS , INFO_SYSTEM , POSITION , HOST_DB_LIST , HOST_DB_IDS , HOST_MIDDLEWARE_LIST , HOST_MIDDLEWARE_IDS , HOST_OS_LIST , HOST_OS_IDS , BACKUP_METHOD };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , SYSTEM_ID , HOST_TYPE , STATUS , HOST_NAME , HOST_IP , HOST_VIP , HOST_IPV6 , ENVIRONMENT , POSITION_ID , MONITOR_STATUS , DIRECTOR_USERNAME , HOST_MEMORY , HOST_CPU , HOST_CONF , USER_OS_ADMIN , USER_DB_ADMIN , USER_DB_USED , USER_APP_USED , USER_OPS_OPER , USER_OTHER , PASSWORD_STRATEGY_ID , HOST_BACKUP_METHOD , HOST_BACKUP_INFO , OFFLINE_TIME , ONLINE_TIME , ARCH , LABELS , HOST_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , VOUCHER_LIST , VOUCHER_IDS , INFO_SYSTEM , POSITION , HOST_DB_LIST , HOST_DB_IDS , HOST_MIDDLEWARE_LIST , HOST_MIDDLEWARE_IDS , HOST_OS_LIST , HOST_OS_IDS , BACKUP_METHOD };
 	
 	/**
 	 * 代理类
@@ -732,28 +702,6 @@ public class HostVOMeta extends HostMeta {
 		public HostVO setSortType(String sortType) {
 			super.change(SORT_TYPE,super.getSortType(),sortType);
 			super.setSortType(sortType);
-			return this;
-		}
-		
-		/**
-		 * 设置 数据来源
-		 * @param dataOrigin 数据来源
-		 * @return 当前对象
-		*/
-		public HostVO setDataOrigin(String dataOrigin) {
-			super.change(DATA_ORIGIN,super.getDataOrigin(),dataOrigin);
-			super.setDataOrigin(dataOrigin);
-			return this;
-		}
-		
-		/**
-		 * 设置 查询逻辑
-		 * @param queryLogic 查询逻辑
-		 * @return 当前对象
-		*/
-		public HostVO setQueryLogic(String queryLogic) {
-			super.change(QUERY_LOGIC,super.getQueryLogic(),queryLogic);
-			super.setQueryLogic(queryLogic);
 			return this;
 		}
 		
@@ -930,17 +878,6 @@ public class HostVOMeta extends HostMeta {
 		public Host setHostConf(String hostConf) {
 			super.change(HOST_CONF,super.getHostConf(),hostConf);
 			super.setHostConf(hostConf);
-			return this;
-		}
-		
-		/**
-		 * 设置 端口列表
-		 * @param portList 端口列表
-		 * @return 当前对象
-		*/
-		public Host setPortList(String portList) {
-			super.change(PORT_LIST,super.getPortList(),portList);
-			super.setPortList(portList);
 			return this;
 		}
 		
@@ -1341,7 +1278,6 @@ public class HostVOMeta extends HostMeta {
 			inst.setUserOsAdmin(this.getUserOsAdmin());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setHostType(this.getHostType());
-			inst.setPortList(this.getPortList());
 			inst.setOnlineTime(this.getOnlineTime());
 			inst.setOfflineTime(this.getOfflineTime());
 			inst.setId(this.getId());
@@ -1388,9 +1324,7 @@ public class HostVOMeta extends HostMeta {
 				inst.setSortType(this.getSortType());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
-				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
-				inst.setQueryLogic(this.getQueryLogic());
 				inst.setPosition(this.getPosition());
 				inst.setBackupMethod(this.getBackupMethod());
 				inst.setSearchValue(this.getSearchValue());

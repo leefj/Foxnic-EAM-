@@ -16,8 +16,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-18 11:19:27
- * @sign 76B9736ACA102F60F73F8A0282D331CA
+ * @since 2022-09-11 20:19:45
+ * @sign BFD357054C7D3CA664167A9FBF69E988
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -172,16 +172,6 @@ public class HostMeta {
 	 * 其他配置 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.Host,java.lang.String> HOST_CONF_PROP = new BeanProperty(com.dt.platform.domain.ops.Host.class ,HOST_CONF, java.lang.String.class, "其他配置", "其他配置", java.lang.String.class, null);
-	
-	/**
-	 * 端口列表 , 类型: java.lang.String
-	*/
-	public static final String PORT_LIST="portList";
-	
-	/**
-	 * 端口列表 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.Host,java.lang.String> PORT_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.Host.class ,PORT_LIST, java.lang.String.class, "端口列表", "端口列表", java.lang.String.class, null);
 	
 	/**
 	 * 系统管理员 , 类型: java.lang.String
@@ -526,7 +516,7 @@ public class HostMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , SYSTEM_ID , HOST_TYPE , STATUS , HOST_NAME , HOST_IP , HOST_VIP , HOST_IPV6 , ENVIRONMENT , POSITION_ID , MONITOR_STATUS , DIRECTOR_USERNAME , HOST_MEMORY , HOST_CPU , HOST_CONF , PORT_LIST , USER_OS_ADMIN , USER_DB_ADMIN , USER_DB_USED , USER_APP_USED , USER_OPS_OPER , USER_OTHER , PASSWORD_STRATEGY_ID , HOST_BACKUP_METHOD , HOST_BACKUP_INFO , OFFLINE_TIME , ONLINE_TIME , ARCH , LABELS , HOST_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , VOUCHER_LIST , VOUCHER_IDS , INFO_SYSTEM , POSITION , HOST_DB_LIST , HOST_DB_IDS , HOST_MIDDLEWARE_LIST , HOST_MIDDLEWARE_IDS , HOST_OS_LIST , HOST_OS_IDS , BACKUP_METHOD };
+	public static final String[] $PROPS={ ID , SYSTEM_ID , HOST_TYPE , STATUS , HOST_NAME , HOST_IP , HOST_VIP , HOST_IPV6 , ENVIRONMENT , POSITION_ID , MONITOR_STATUS , DIRECTOR_USERNAME , HOST_MEMORY , HOST_CPU , HOST_CONF , USER_OS_ADMIN , USER_DB_ADMIN , USER_DB_USED , USER_APP_USED , USER_OPS_OPER , USER_OTHER , PASSWORD_STRATEGY_ID , HOST_BACKUP_METHOD , HOST_BACKUP_INFO , OFFLINE_TIME , ONLINE_TIME , ARCH , LABELS , HOST_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , VOUCHER_LIST , VOUCHER_IDS , INFO_SYSTEM , POSITION , HOST_DB_LIST , HOST_DB_IDS , HOST_MIDDLEWARE_LIST , HOST_MIDDLEWARE_IDS , HOST_OS_LIST , HOST_OS_IDS , BACKUP_METHOD };
 	
 	/**
 	 * 代理类
@@ -698,17 +688,6 @@ public class HostMeta {
 		public Host setHostConf(String hostConf) {
 			super.change(HOST_CONF,super.getHostConf(),hostConf);
 			super.setHostConf(hostConf);
-			return this;
-		}
-		
-		/**
-		 * 设置 端口列表
-		 * @param portList 端口列表
-		 * @return 当前对象
-		*/
-		public Host setPortList(String portList) {
-			super.change(PORT_LIST,super.getPortList(),portList);
-			super.setPortList(portList);
 			return this;
 		}
 		
@@ -1109,7 +1088,6 @@ public class HostMeta {
 			inst.setUserOsAdmin(this.getUserOsAdmin());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setHostType(this.getHostType());
-			inst.setPortList(this.getPortList());
 			inst.setOnlineTime(this.getOnlineTime());
 			inst.setOfflineTime(this.getOfflineTime());
 			inst.setId(this.getId());

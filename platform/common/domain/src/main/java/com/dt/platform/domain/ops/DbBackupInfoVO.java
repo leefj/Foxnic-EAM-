@@ -1,6 +1,5 @@
 package com.dt.platform.domain.ops;
 
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import java.util.ArrayList;
@@ -11,24 +10,17 @@ import com.github.foxnic.commons.bean.BeanUtil;
 import com.github.foxnic.dao.entity.EntityContext;
 import com.github.foxnic.dao.entity.Entity;
 import java.util.Map;
-import com.dt.platform.domain.ops.meta.DbBackupInfoVOMeta;
-import com.github.foxnic.commons.lang.DataParser;
-import java.util.Date;
-import java.math.BigDecimal;
-import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
- * 数据库备份VO类型
- * <p>数据库备份 , 数据表 ops_db_backup_info 的通用VO类型</p>
+ * 数据库备份
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-31 22:15:26
- * @sign 55DC0293DB9696189044F24BB2EE2CFC
+ * @since 2022-09-13 20:38:56
+ * @sign D91BDED1B2CE4F9EDEDD65BCA4971921
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
-@ApiModel(description = "数据库备份VO类型 ; 数据库备份 , 数据表 ops_db_backup_info 的通用VO类型" , parent = DbBackupInfo.class)
 public class DbBackupInfoVO extends DbBackupInfo {
 
 	private static final long serialVersionUID = 1L;
@@ -80,18 +72,6 @@ public class DbBackupInfoVO extends DbBackupInfo {
 	*/
 	@ApiModelProperty(required = false,value="排序方式" , notes = "")
 	private String sortType;
-	
-	/**
-	 * 数据来源：前端指定不同的来源，后端按来源执行不同的逻辑
-	*/
-	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端按来源执行不同的逻辑")
-	private String dataOrigin;
-	
-	/**
-	 * 查询逻辑：默认and，可指定 or 
-	*/
-	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
-	private String queryLogic;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -255,44 +235,6 @@ public class DbBackupInfoVO extends DbBackupInfo {
 	}
 	
 	/**
-	 * 获得 数据来源<br>
-	 * 前端指定不同的来源，后端按来源执行不同的逻辑
-	 * @return 数据来源
-	*/
-	public String getDataOrigin() {
-		return dataOrigin;
-	}
-	
-	/**
-	 * 设置 数据来源
-	 * @param dataOrigin 数据来源
-	 * @return 当前对象
-	*/
-	public DbBackupInfoVO setDataOrigin(String dataOrigin) {
-		this.dataOrigin=dataOrigin;
-		return this;
-	}
-	
-	/**
-	 * 获得 查询逻辑<br>
-	 * 默认and，可指定 or 
-	 * @return 查询逻辑
-	*/
-	public String getQueryLogic() {
-		return queryLogic;
-	}
-	
-	/**
-	 * 设置 查询逻辑
-	 * @param queryLogic 查询逻辑
-	 * @return 当前对象
-	*/
-	public DbBackupInfoVO setQueryLogic(String queryLogic) {
-		this.queryLogic=queryLogic;
-		return this;
-	}
-	
-	/**
 	 * 获得 主键清单<br>
 	 * 用于接收批量主键参数
 	 * @return 主键清单
@@ -378,25 +320,24 @@ public class DbBackupInfoVO extends DbBackupInfo {
 	public DbBackupInfoVO duplicate(boolean all) {
 		com.dt.platform.domain.ops.meta.DbBackupInfoVOMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.DbBackupInfoVOMeta.$$proxy$$();
 		inst.setNotes(this.getNotes());
+		inst.setUpdateTime(this.getUpdateTime());
 		inst.setStorage(this.getStorage());
 		inst.setSelectedCode(this.getSelectedCode());
+		inst.setVersion(this.getVersion());
 		inst.setBackupDatakeep(this.getBackupDatakeep());
 		inst.setBackupType(this.getBackupType());
-		inst.setUid(this.getUid());
-		inst.setBackupStrategy(this.getBackupStrategy());
-		inst.setUpdateBy(this.getUpdateBy());
-		inst.setId(this.getId());
-		inst.setDatabaseId(this.getDatabaseId());
-		inst.setUpdateTime(this.getUpdateTime());
-		inst.setVersion(this.getVersion());
 		inst.setBackupSize(this.getBackupSize());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
+		inst.setBackupStrategy(this.getBackupStrategy());
 		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
 		inst.setName(this.getName());
 		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
 		inst.setBackupMethod(this.getBackupMethod());
+		inst.setDatabaseId(this.getDatabaseId());
 		inst.setBackupTime(this.getBackupTime());
 		inst.setBackupResultCt(this.getBackupResultCt());
 		inst.setStatus(this.getStatus());
@@ -404,17 +345,15 @@ public class DbBackupInfoVO extends DbBackupInfo {
 		inst.setBackupSource(this.getBackupSource());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
-			inst.setFuzzyField(this.getFuzzyField());
-			inst.setDbType(this.getDbType());
-			inst.setPageSize(this.getPageSize());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
+			inst.setFuzzyField(this.getFuzzyField());
 			inst.setHost(this.getHost());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
-			inst.setDataOrigin(this.getDataOrigin());
+			inst.setDbType(this.getDbType());
+			inst.setPageSize(this.getPageSize());
 			inst.setIds(this.getIds());
-			inst.setQueryLogic(this.getQueryLogic());
 			inst.setSearchValue(this.getSearchValue());
 			inst.setDb(this.getDb());
 		}
@@ -465,169 +404,5 @@ public class DbBackupInfoVO extends DbBackupInfo {
 	@Transient
 	public static DbBackupInfoVO create() {
 		return new com.dt.platform.domain.ops.meta.DbBackupInfoVOMeta.$$proxy$$();
-	}
-
-	/**
-	 * 从 Map 读取
-	 * @param map 记录数据
-	 * @param cast 是否用 DataParser 进行类型转换
-	 * @return  是否读取成功
-	*/
-	public boolean read(Map<String, Object> map,boolean cast) {
-		if(map==null) return false;
-		if(cast) {
-			this.setNotes(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.NOTES)));
-			this.setStorage(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.STORAGE)));
-			this.setSelectedCode(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.SELECTED_CODE)));
-			this.setBackupDatakeep(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.BACKUP_DATAKEEP)));
-			this.setBackupType(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.BACKUP_TYPE)));
-			this.setUid(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.UID)));
-			this.setBackupStrategy(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.BACKUP_STRATEGY)));
-			this.setUpdateBy(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.UPDATE_BY)));
-			this.setId(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.ID)));
-			this.setDatabaseId(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.DATABASE_ID)));
-			this.setUpdateTime(DataParser.parse(Date.class, map.get(DbBackupInfoVOMeta.UPDATE_TIME)));
-			this.setVersion(DataParser.parse(Integer.class, map.get(DbBackupInfoVOMeta.VERSION)));
-			this.setBackupSize(DataParser.parse(BigDecimal.class, map.get(DbBackupInfoVOMeta.BACKUP_SIZE)));
-			this.setCreateBy(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.CREATE_BY)));
-			this.setDeleted(DataParser.parse(Integer.class, map.get(DbBackupInfoVOMeta.DELETED)));
-			this.setCreateTime(DataParser.parse(Date.class, map.get(DbBackupInfoVOMeta.CREATE_TIME)));
-			this.setDeleteTime(DataParser.parse(Date.class, map.get(DbBackupInfoVOMeta.DELETE_TIME)));
-			this.setName(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.NAME)));
-			this.setDeleteBy(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.DELETE_BY)));
-			this.setBackupMethod(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.BACKUP_METHOD)));
-			this.setBackupTime(DataParser.parse(Date.class, map.get(DbBackupInfoVOMeta.BACKUP_TIME)));
-			this.setBackupResultCt(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.BACKUP_RESULT_CT)));
-			this.setStatus(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.STATUS)));
-			this.setBackupResult(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.BACKUP_RESULT)));
-			this.setBackupSource(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.BACKUP_SOURCE)));
-			// others
-			this.setSearchField(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.SEARCH_FIELD)));
-			this.setFuzzyField(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.FUZZY_FIELD)));
-			this.setDbType(DataParser.parse(ServiceInfo.class, map.get(DbBackupInfoVOMeta.DB_TYPE)));
-			this.setPageSize(DataParser.parse(Integer.class, map.get(DbBackupInfoVOMeta.PAGE_SIZE)));
-			this.setPageIndex(DataParser.parse(Integer.class, map.get(DbBackupInfoVOMeta.PAGE_INDEX)));
-			this.setSortType(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.SORT_TYPE)));
-			this.setHost(DataParser.parse(Host.class, map.get(DbBackupInfoVOMeta.HOST)));
-			this.setSortField(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.SORT_FIELD)));
-			this.setDataOrigin(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.DATA_ORIGIN)));
-			this.setQueryLogic(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.QUERY_LOGIC)));
-			this.setSearchValue(DataParser.parse(String.class, map.get(DbBackupInfoVOMeta.SEARCH_VALUE)));
-			this.setDb(DataParser.parse(DbInfo.class, map.get(DbBackupInfoVOMeta.DB)));
-			return true;
-		} else {
-			try {
-				this.setNotes( (String)map.get(DbBackupInfoVOMeta.NOTES));
-				this.setStorage( (String)map.get(DbBackupInfoVOMeta.STORAGE));
-				this.setSelectedCode( (String)map.get(DbBackupInfoVOMeta.SELECTED_CODE));
-				this.setBackupDatakeep( (String)map.get(DbBackupInfoVOMeta.BACKUP_DATAKEEP));
-				this.setBackupType( (String)map.get(DbBackupInfoVOMeta.BACKUP_TYPE));
-				this.setUid( (String)map.get(DbBackupInfoVOMeta.UID));
-				this.setBackupStrategy( (String)map.get(DbBackupInfoVOMeta.BACKUP_STRATEGY));
-				this.setUpdateBy( (String)map.get(DbBackupInfoVOMeta.UPDATE_BY));
-				this.setId( (String)map.get(DbBackupInfoVOMeta.ID));
-				this.setDatabaseId( (String)map.get(DbBackupInfoVOMeta.DATABASE_ID));
-				this.setUpdateTime( (Date)map.get(DbBackupInfoVOMeta.UPDATE_TIME));
-				this.setVersion( (Integer)map.get(DbBackupInfoVOMeta.VERSION));
-				this.setBackupSize( (BigDecimal)map.get(DbBackupInfoVOMeta.BACKUP_SIZE));
-				this.setCreateBy( (String)map.get(DbBackupInfoVOMeta.CREATE_BY));
-				this.setDeleted( (Integer)map.get(DbBackupInfoVOMeta.DELETED));
-				this.setCreateTime( (Date)map.get(DbBackupInfoVOMeta.CREATE_TIME));
-				this.setDeleteTime( (Date)map.get(DbBackupInfoVOMeta.DELETE_TIME));
-				this.setName( (String)map.get(DbBackupInfoVOMeta.NAME));
-				this.setDeleteBy( (String)map.get(DbBackupInfoVOMeta.DELETE_BY));
-				this.setBackupMethod( (String)map.get(DbBackupInfoVOMeta.BACKUP_METHOD));
-				this.setBackupTime( (Date)map.get(DbBackupInfoVOMeta.BACKUP_TIME));
-				this.setBackupResultCt( (String)map.get(DbBackupInfoVOMeta.BACKUP_RESULT_CT));
-				this.setStatus( (String)map.get(DbBackupInfoVOMeta.STATUS));
-				this.setBackupResult( (String)map.get(DbBackupInfoVOMeta.BACKUP_RESULT));
-				this.setBackupSource( (String)map.get(DbBackupInfoVOMeta.BACKUP_SOURCE));
-				// others
-				this.setSearchField( (String)map.get(DbBackupInfoVOMeta.SEARCH_FIELD));
-				this.setFuzzyField( (String)map.get(DbBackupInfoVOMeta.FUZZY_FIELD));
-				this.setDbType( (ServiceInfo)map.get(DbBackupInfoVOMeta.DB_TYPE));
-				this.setPageSize( (Integer)map.get(DbBackupInfoVOMeta.PAGE_SIZE));
-				this.setPageIndex( (Integer)map.get(DbBackupInfoVOMeta.PAGE_INDEX));
-				this.setSortType( (String)map.get(DbBackupInfoVOMeta.SORT_TYPE));
-				this.setHost( (Host)map.get(DbBackupInfoVOMeta.HOST));
-				this.setSortField( (String)map.get(DbBackupInfoVOMeta.SORT_FIELD));
-				this.setDataOrigin( (String)map.get(DbBackupInfoVOMeta.DATA_ORIGIN));
-				this.setQueryLogic( (String)map.get(DbBackupInfoVOMeta.QUERY_LOGIC));
-				this.setSearchValue( (String)map.get(DbBackupInfoVOMeta.SEARCH_VALUE));
-				this.setDb( (DbInfo)map.get(DbBackupInfoVOMeta.DB));
-				return true;
-			} catch (Exception e) {
-				return false;
-			}
-		}
-	}
-
-	/**
-	 * 从 Map 读取
-	 * @param r 记录数据
-	 * @param cast 是否用 DataParser 进行类型转换
-	 * @return  是否读取成功
-	*/
-	public boolean read(ExprRcd r,boolean cast) {
-		if(r==null) return false;
-		if(cast) {
-			this.setNotes(DataParser.parse(String.class, r.getValue(DbBackupInfoVOMeta.NOTES)));
-			this.setStorage(DataParser.parse(String.class, r.getValue(DbBackupInfoVOMeta.STORAGE)));
-			this.setSelectedCode(DataParser.parse(String.class, r.getValue(DbBackupInfoVOMeta.SELECTED_CODE)));
-			this.setBackupDatakeep(DataParser.parse(String.class, r.getValue(DbBackupInfoVOMeta.BACKUP_DATAKEEP)));
-			this.setBackupType(DataParser.parse(String.class, r.getValue(DbBackupInfoVOMeta.BACKUP_TYPE)));
-			this.setUid(DataParser.parse(String.class, r.getValue(DbBackupInfoVOMeta.UID)));
-			this.setBackupStrategy(DataParser.parse(String.class, r.getValue(DbBackupInfoVOMeta.BACKUP_STRATEGY)));
-			this.setUpdateBy(DataParser.parse(String.class, r.getValue(DbBackupInfoVOMeta.UPDATE_BY)));
-			this.setId(DataParser.parse(String.class, r.getValue(DbBackupInfoVOMeta.ID)));
-			this.setDatabaseId(DataParser.parse(String.class, r.getValue(DbBackupInfoVOMeta.DATABASE_ID)));
-			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(DbBackupInfoVOMeta.UPDATE_TIME)));
-			this.setVersion(DataParser.parse(Integer.class, r.getValue(DbBackupInfoVOMeta.VERSION)));
-			this.setBackupSize(DataParser.parse(BigDecimal.class, r.getValue(DbBackupInfoVOMeta.BACKUP_SIZE)));
-			this.setCreateBy(DataParser.parse(String.class, r.getValue(DbBackupInfoVOMeta.CREATE_BY)));
-			this.setDeleted(DataParser.parse(Integer.class, r.getValue(DbBackupInfoVOMeta.DELETED)));
-			this.setCreateTime(DataParser.parse(Date.class, r.getValue(DbBackupInfoVOMeta.CREATE_TIME)));
-			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(DbBackupInfoVOMeta.DELETE_TIME)));
-			this.setName(DataParser.parse(String.class, r.getValue(DbBackupInfoVOMeta.NAME)));
-			this.setDeleteBy(DataParser.parse(String.class, r.getValue(DbBackupInfoVOMeta.DELETE_BY)));
-			this.setBackupMethod(DataParser.parse(String.class, r.getValue(DbBackupInfoVOMeta.BACKUP_METHOD)));
-			this.setBackupTime(DataParser.parse(Date.class, r.getValue(DbBackupInfoVOMeta.BACKUP_TIME)));
-			this.setBackupResultCt(DataParser.parse(String.class, r.getValue(DbBackupInfoVOMeta.BACKUP_RESULT_CT)));
-			this.setStatus(DataParser.parse(String.class, r.getValue(DbBackupInfoVOMeta.STATUS)));
-			this.setBackupResult(DataParser.parse(String.class, r.getValue(DbBackupInfoVOMeta.BACKUP_RESULT)));
-			this.setBackupSource(DataParser.parse(String.class, r.getValue(DbBackupInfoVOMeta.BACKUP_SOURCE)));
-			return true;
-		} else {
-			try {
-				this.setNotes( (String)r.getValue(DbBackupInfoVOMeta.NOTES));
-				this.setStorage( (String)r.getValue(DbBackupInfoVOMeta.STORAGE));
-				this.setSelectedCode( (String)r.getValue(DbBackupInfoVOMeta.SELECTED_CODE));
-				this.setBackupDatakeep( (String)r.getValue(DbBackupInfoVOMeta.BACKUP_DATAKEEP));
-				this.setBackupType( (String)r.getValue(DbBackupInfoVOMeta.BACKUP_TYPE));
-				this.setUid( (String)r.getValue(DbBackupInfoVOMeta.UID));
-				this.setBackupStrategy( (String)r.getValue(DbBackupInfoVOMeta.BACKUP_STRATEGY));
-				this.setUpdateBy( (String)r.getValue(DbBackupInfoVOMeta.UPDATE_BY));
-				this.setId( (String)r.getValue(DbBackupInfoVOMeta.ID));
-				this.setDatabaseId( (String)r.getValue(DbBackupInfoVOMeta.DATABASE_ID));
-				this.setUpdateTime( (Date)r.getValue(DbBackupInfoVOMeta.UPDATE_TIME));
-				this.setVersion( (Integer)r.getValue(DbBackupInfoVOMeta.VERSION));
-				this.setBackupSize( (BigDecimal)r.getValue(DbBackupInfoVOMeta.BACKUP_SIZE));
-				this.setCreateBy( (String)r.getValue(DbBackupInfoVOMeta.CREATE_BY));
-				this.setDeleted( (Integer)r.getValue(DbBackupInfoVOMeta.DELETED));
-				this.setCreateTime( (Date)r.getValue(DbBackupInfoVOMeta.CREATE_TIME));
-				this.setDeleteTime( (Date)r.getValue(DbBackupInfoVOMeta.DELETE_TIME));
-				this.setName( (String)r.getValue(DbBackupInfoVOMeta.NAME));
-				this.setDeleteBy( (String)r.getValue(DbBackupInfoVOMeta.DELETE_BY));
-				this.setBackupMethod( (String)r.getValue(DbBackupInfoVOMeta.BACKUP_METHOD));
-				this.setBackupTime( (Date)r.getValue(DbBackupInfoVOMeta.BACKUP_TIME));
-				this.setBackupResultCt( (String)r.getValue(DbBackupInfoVOMeta.BACKUP_RESULT_CT));
-				this.setStatus( (String)r.getValue(DbBackupInfoVOMeta.STATUS));
-				this.setBackupResult( (String)r.getValue(DbBackupInfoVOMeta.BACKUP_RESULT));
-				this.setBackupSource( (String)r.getValue(DbBackupInfoVOMeta.BACKUP_SOURCE));
-				return true;
-			} catch (Exception e) {
-				return false;
-			}
-		}
 	}
 }

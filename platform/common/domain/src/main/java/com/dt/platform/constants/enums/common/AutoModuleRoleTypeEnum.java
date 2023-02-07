@@ -5,7 +5,7 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 public enum AutoModuleRoleTypeEnum implements CodeTextEnum {
 
     ROLE("role" , "功能角色"),
-    BUSI_ROLE("busi_role" , "业务角色")
+    BUSI_ROLE("busi_role" , "功能角色")
     ;
 
 

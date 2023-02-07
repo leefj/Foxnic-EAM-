@@ -1,13 +1,12 @@
 /**
  * 主机 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-18 11:19:29
+ * @since 2022-09-11 20:19:48
  */
 
 function FormPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
-	
 	const moduleURL="/service-ops/ops-host";
 	// 表单执行操作类型：view，create，edit
 	var action=null;

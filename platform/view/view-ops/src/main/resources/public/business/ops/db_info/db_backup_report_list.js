@@ -5,20 +5,16 @@
  */
 
 function ListPage() {
-	var settings,admin,form,table,layer,util,fox,upload;
-	var echarts;
+	var settings,admin,table,layer,util,fox,upload,xmSelect,echarts;
 
 	const moduleURL="/service-ops/ops-database";
-	var dataTable=null;
-	var sort=null;
 	//模块基础路径
 	/**
 	 * 入口函数，初始化
 	 */
 	this.init=function(layui) {
-		admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate;
-		table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,dropdown=layui.dropdown;
-
+		admin = layui.admin,settings = layui.settings,upload = layui.upload,laydate= layui.laydate;
+		table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,dropdown=layui.dropdown;;
 		echarts=layui.echarts;
 
 		var backup_result_dist_show = echarts.init(document.getElementById('backup_result_dist_show'));
@@ -26,13 +22,11 @@ function ListPage() {
 
 		var task=setTimeout(function(){layer.load(2);},1000);
 		var ps={};
-		ps.code="backup_count,task_count,backup_result_dist,backup_task_setting_none_count,db_backup_info_today"
+		ps.code="backup_count,task_count,backup_result_dist,backup_task_setting_none_count"
 		admin.request(moduleURL+"/query-database-data", ps, function (data) {
 			clearTimeout(task);
 			layer.closeAll('loading');
 			if(data.success){
-
-
 				var assetData=data.data;
 				if(assetData.backup_count&&assetData.backup_count.count>0){
 					$("#backup_count").html(assetData.backup_count.count);
@@ -44,13 +38,6 @@ function ListPage() {
 
 				if(assetData.backup_task_setting_none_count&&assetData.backup_task_setting_none_count.count>0){
 					$("#backup_task_setting_none_count").html(assetData.backup_task_setting_none_count.count);
-				}
-				if(assetData.db_backup_info_today&&assetData.db_backup_info_today.data) {
-					var d = assetData.db_backup_info_today.data;
-					$("#backupNoneCount").html(d.backupNoneCount);
-					$("#backupSuccessCount").html(d.backupSuccessCount);
-					$("#backupFailedCount").html(d.backupFailedCount);
-					$("#backupDataSize").html(d.backupDataSize);
 				}
 
 
@@ -129,7 +116,6 @@ function ListPage() {
 
 				var db_backup_time_top_data=assetData.db_backup_time_top;
 				var defColor=['#8095FE','#D9E0E3','#7DD699','#F8CE52','#EF9590'];
-
 				var optionchart3 = {
 					color: defColor,
 					title: {
@@ -248,96 +234,15 @@ function ListPage() {
 		});
 
 
-
-
-		 renderTable();
 	}
-
-
-
-	function renderTable() {
-		// $(window).resize(function() {
-		// 	fox.adjustSearchElement();
-		// });
-		// fox.adjustSearchElement();
-		//
-		var marginTop=$(".search-bar").height()+$(".search-bar").css("padding-top")+$(".search-bar").css("padding-bottom")
-		$("#table-area").css("margin-top",marginTop+"px");
-		//
-		function renderTableInternal() {
-
-			var ps={searchField: "$composite"};
-			var contitions={};
-
-
-			ps.code="db_backup_info_detail_list";
-			var templet=window.pageExt.list.templet;
-			if(templet==null) {
-				templet=function(field,value,row) {
-					if(value==null) return "";
-					return value;
-				}
-			}
-			var h=$(".search-bar").height();
-			var tableConfig={
-				elem: '#data-table',
-			//	toolbar: '#toolbarTemplate',
-			//	defaultToolbar: ['filter',{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
-				url: moduleURL +'/query-database-data',
-				height: 'full-'+(h+28),
-				limit: 1000,
-				where: ps,
-				cols: [[
-					{ fixed: 'left',type: 'numbers' }
-					,{ field: 'hostName', align:"left",fixed:false,  hide:false, sort: true  , title: '主机名' , templet: function (d) { return templet('hostName',d.hostName,d);}  }
-					,{ field: 'hostIp', align:"left",fixed:false,  hide:false, sort: true  , title: '主机IP', templet: function (d) { return templet('hostIp',d.hostIp,d);}  }
-					,{ field: 'dbInfoName', align:"left",fixed:false,  hide:false, sort: true  , title: '数据库名' , templet: function (d) { return templet('dbInfoName',d.dbInfoName,d);}  }
-					,{ field: 'backupSize', align:"left",fixed:false,  hide:false, sort: true  , title: '备份大小', templet: function (d) { return templet('backupSize',d.backupSize,d);}  }
-					,{ field: 'backupStime', align:"left",fixed:false,  hide:false, sort: true  , title: '备份开始时间', templet: function (d) { return templet('backupStime',d.backupStime,d);}  }
-					,{ field: 'backupEtime', align:"left",fixed:false,  hide:false, sort: true  , title: '备份结束时间' , templet: function (d) { return templet('backupEtime',d.backupEtime,d);}  }
-					,{ field: 'backupResult', align:"left",fixed:false,  hide:false, sort: true  , title: '备份结果', templet: function (d) { return templet('backupResult',d.backupResult,d);}  }
-				]],
-				parseData:function(res){
-					console.log("parese res:",res);
-					var d=res.data.db_backup_info_detail_list.data;
-					return {
-						"code": res.code == "00" ? 0 : -1, //解析接口状态
-						"msg": res.message, //解析提示文本
-						"count": d.length, //解析数据长度
-						"data": d //解析数据列表
-					};
-				},
-				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
-				footer : {
-				}
-			};
-			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
-			dataTable=fox.renderTable(tableConfig);
-			//绑定排序事件
-			table.on('sort(data-table)', function(obj){
-				refreshTableData(obj.sortField,obj.type);
-			});
-			window.pageExt.list.afterTableRender && window.pageExt.list.afterTableRender();
-		}
-		setTimeout(renderTableInternal,1);
-	};
-
 
 };
 
-layui.use(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','laydate','dropdown'],function() {
+
+layui.use(['echarts', 'util', 'settings','admin'],function() {
 	var task=setInterval(function (){
 		if(!window["pageExt"]) return;
 		clearInterval(task);
 		(new ListPage()).init(layui);
 	},1);
 });
-
-//
-// layui.use(['echarts', 'util', 'settings','admin'],function() {
-// 	var task=setInterval(function (){
-// 		if(!window["pageExt"]) return;
-// 		clearInterval(task);
-// 		(new ListPage()).init(layui);
-// 	},1);
-// });

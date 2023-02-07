@@ -14,12 +14,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     //列表页的扩展
     var list={
 
-        beforeTableRender:function (cfg){
-            cfg.defaultToolbar= ['filter', 'print','exports',{title: '刷新数据',layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}];
-            cfg.limit=500;
-            console.log("list:beforeTableRender",cfg);
-        },
-
         /**
          * 查询前调用
          * */

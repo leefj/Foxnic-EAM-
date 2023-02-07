@@ -57,37 +57,9 @@ public class OpsRelationManager extends RelationManager {
         this.setupOpsCmdbAttribute();
         this.setupOpsCmdbModel();
         this.setupOpsCmdbModelValue();
-        this.setupSoftwareMedia();
-
-        this.setupPersonnelDivision();
-
-        this.setupPublicContent();
 
     }
 
-    public void setupPersonnelDivision() {
-        this.property(PersonnelDivisionMeta.OWNER_DATA_PROP)
-                .using(OpsTables.OPS_PERSONNEL_DIVISION.OWNER).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
-                .condition("dict_code='ops_person_owner'");
-
-        this.property(PersonnelDivisionMeta.USER_PROP)
-                .using(OpsTables.OPS_PERSONNEL_DIVISION.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
-
-    }
-
-    public void setupPublicContent() {
-        this.property(PublicContentMeta.TYPE_DATA_PROP)
-                .using(OpsTables.OPS_PUBLIC_CONTENT.TYPE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
-                .condition("dict_code='ops_public_list_type'");
-    }
-
-
-
-    public void setupSoftwareMedia() {
-        this.property(SoftwareMediaMeta.TYPE_DATA_PROP)
-                .using(OpsTables.OPS_SOFTWARE_MEDIA.TYPE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
-                .condition("dict_code='ops_software_media'");
-    }
 
     public void setupOpsCmdbModel() {
 
@@ -200,13 +172,6 @@ public class OpsRelationManager extends RelationManager {
                 .using(OpsTables.OPS_DB_INFO.DEPLOY_MODE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
                 .condition("dict_code='ops_db_deploy_mode'");
 
-        this.property(DbInfoMeta.DATA_LOC_DATA_PROP)
-                .using(OpsTables.OPS_DB_INFO.ID).join(OpsTables.OPS_DB_DATA_LOC.DB_INFO_ID)
-                .using(OpsTables.OPS_DB_DATA_LOC.LOC_ID).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
-                .condition("dict_code='ops_db_data_loc'");
-
-
-
         this.property(DbInfoMeta.BACKUP_INFO_LIST_PROP)
                 .using(OpsTables.OPS_DB_INFO.ID).join(OpsTables.OPS_DB_BACKUP_INFO.DATABASE_ID);
 
@@ -215,9 +180,6 @@ public class OpsRelationManager extends RelationManager {
 
         this.property(DbInfoMeta.TYPE_PROP)
                 .using(OpsTables.OPS_DB_INFO.TYPE_ID).join(OpsTables.OPS_SERVICE_INFO.ID);
-
-        this.property(DbInfoMeta.CIPHERTEXT_BOX_DATA_PROP)
-                .using(OpsTables.OPS_DB_INFO.ID).join(OpsTables.OPS_CIPHERTEXT_BOX_DATA.SOURCE_ID);
 
     }
 

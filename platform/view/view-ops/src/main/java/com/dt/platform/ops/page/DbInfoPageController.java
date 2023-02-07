@@ -70,15 +70,6 @@ public class DbInfoPageController extends ViewController {
 		return prefix+"/db_info_list";
 	}
 
-
-	/**
-	 * 数据库 功能主页面
-	 */
-	@RequestMapping("/db_info_public_list.html")
-	public String publicList(Model model,HttpServletRequest request) {
-		return prefix+"/db_info_public_list";
-	}
-
 	/**
 	 * 数据库 表单页面
 	 */
@@ -86,15 +77,4 @@ public class DbInfoPageController extends ViewController {
 	public String form(Model model,HttpServletRequest request , String id) {
 		return prefix+"/db_info_form";
 	}
-
-
-	/**
-	 * 数据库 功能主页面
-	 */
-	@RequestMapping("/db_backup_detail_list.html")
-	public String detailList(Model model,HttpServletRequest request) {
-		return prefix+"/db_backup_detail_list";
-	}
-
-
 }

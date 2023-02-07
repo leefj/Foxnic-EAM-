@@ -1,7 +1,6 @@
 package com.dt.platform.domain.ops;
 
 import com.github.foxnic.dao.entity.Entity;
-import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.OpsTables.OPS_HOST;
@@ -10,7 +9,6 @@ import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Transient;
-import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
 import org.github.foxnic.web.domain.system.DictItem;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -19,22 +17,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
-import com.dt.platform.domain.ops.meta.HostMeta;
-import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 主机
- * <p>主机 , 数据表 ops_host 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-18 11:19:27
- * @sign 76B9736ACA102F60F73F8A0282D331CA
+ * @since 2022-09-11 20:19:45
+ * @sign BFD357054C7D3CA664167A9FBF69E988
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "ops_host")
-@ApiModel(description = "主机 ; 主机 , 数据表 ops_host 的PO类型")
 public class Host extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -45,31 +39,31 @@ public class Host extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "599359342004666368")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键")
 	private String id;
 	
 	/**
 	 * 信息系统：信息系统
 	*/
-	@ApiModelProperty(required = false,value="信息系统" , notes = "信息系统" , example = "599359261440475136")
+	@ApiModelProperty(required = false,value="信息系统" , notes = "信息系统")
 	private String systemId;
 	
 	/**
 	 * 主机类型：主机类型
 	*/
-	@ApiModelProperty(required = false,value="主机类型" , notes = "主机类型" , example = "office")
+	@ApiModelProperty(required = false,value="主机类型" , notes = "主机类型")
 	private String hostType;
 	
 	/**
 	 * 主机状态：主机状态
 	*/
-	@ApiModelProperty(required = false,value="主机状态" , notes = "主机状态" , example = "1")
+	@ApiModelProperty(required = false,value="主机状态" , notes = "主机状态")
 	private String status;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "1212")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称")
 	private String hostName;
 	
 	/**
@@ -93,7 +87,7 @@ public class Host extends Entity {
 	/**
 	 * 运行环境：运行环境
 	*/
-	@ApiModelProperty(required = false,value="运行环境" , notes = "运行环境" , example = "prod")
+	@ApiModelProperty(required = false,value="运行环境" , notes = "运行环境")
 	private String environment;
 	
 	/**
@@ -105,7 +99,7 @@ public class Host extends Entity {
 	/**
 	 * 监控状态：监控状态
 	*/
-	@ApiModelProperty(required = false,value="监控状态" , notes = "监控状态" , example = "1")
+	@ApiModelProperty(required = false,value="监控状态" , notes = "监控状态")
 	private String monitorStatus;
 	
 	/**
@@ -131,12 +125,6 @@ public class Host extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="其他配置" , notes = "其他配置")
 	private String hostConf;
-	
-	/**
-	 * 端口列表：端口列表
-	*/
-	@ApiModelProperty(required = false,value="端口列表" , notes = "端口列表")
-	private String portList;
 	
 	/**
 	 * 系统管理员：系统管理员
@@ -201,13 +189,13 @@ public class Host extends Entity {
 	/**
 	 * 上线时间：上线时间
 	*/
-	@ApiModelProperty(required = false,value="上线时间" , notes = "上线时间" , example = "2022-07-12 12:00:00")
+	@ApiModelProperty(required = false,value="上线时间" , notes = "上线时间")
 	private Date onlineTime;
 	
 	/**
 	 * 是否归档：是否归档
 	*/
-	@ApiModelProperty(required = false,value="是否归档" , notes = "是否归档" , example = "0")
+	@ApiModelProperty(required = false,value="是否归档" , notes = "是否归档")
 	private String arch;
 	
 	/**
@@ -225,13 +213,13 @@ public class Host extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-07-12 10:00:03")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
 	private Date createTime;
 	
 	/**
@@ -249,10 +237,9 @@ public class Host extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = false,value="是否已删除" , notes = "是否已删除" , example = "1")
+	@ApiModelProperty(required = false,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
 	@Transient
-	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -270,13 +257,13 @@ public class Host extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
+	@ApiModelProperty(required = true,value="version" , notes = "version")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户")
 	private String tenantId;
 	
 	/**
@@ -627,25 +614,6 @@ public class Host extends Entity {
 	*/
 	public Host setHostConf(String hostConf) {
 		this.hostConf=hostConf;
-		return this;
-	}
-	
-	/**
-	 * 获得 端口列表<br>
-	 * 端口列表
-	 * @return 端口列表
-	*/
-	public String getPortList() {
-		return portList;
-	}
-	
-	/**
-	 * 设置 端口列表
-	 * @param portList 端口列表
-	 * @return 当前对象
-	*/
-	public Host setPortList(String portList) {
-		this.portList=portList;
 		return this;
 	}
 	
@@ -1466,7 +1434,6 @@ public class Host extends Entity {
 		inst.setUserOsAdmin(this.getUserOsAdmin());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setHostType(this.getHostType());
-		inst.setPortList(this.getPortList());
 		inst.setOnlineTime(this.getOnlineTime());
 		inst.setOfflineTime(this.getOfflineTime());
 		inst.setId(this.getId());
@@ -1557,207 +1524,5 @@ public class Host extends Entity {
 	@Transient
 	public static Host create() {
 		return new com.dt.platform.domain.ops.meta.HostMeta.$$proxy$$();
-	}
-
-	/**
-	 * 从 Map 读取
-	 * @param map 记录数据
-	 * @param cast 是否用 DataParser 进行类型转换
-	 * @return  是否读取成功
-	*/
-	public boolean read(Map<String, Object> map,boolean cast) {
-		if(map==null) return false;
-		if(cast) {
-			this.setHostName(DataParser.parse(String.class, map.get(HostMeta.HOST_NAME)));
-			this.setUserDbUsed(DataParser.parse(String.class, map.get(HostMeta.USER_DB_USED)));
-			this.setUserDbAdmin(DataParser.parse(String.class, map.get(HostMeta.USER_DB_ADMIN)));
-			this.setPasswordStrategyId(DataParser.parse(String.class, map.get(HostMeta.PASSWORD_STRATEGY_ID)));
-			this.setDirectorUsername(DataParser.parse(String.class, map.get(HostMeta.DIRECTOR_USERNAME)));
-			this.setUserOsAdmin(DataParser.parse(String.class, map.get(HostMeta.USER_OS_ADMIN)));
-			this.setUpdateBy(DataParser.parse(String.class, map.get(HostMeta.UPDATE_BY)));
-			this.setHostType(DataParser.parse(String.class, map.get(HostMeta.HOST_TYPE)));
-			this.setPortList(DataParser.parse(String.class, map.get(HostMeta.PORT_LIST)));
-			this.setOnlineTime(DataParser.parse(Date.class, map.get(HostMeta.ONLINE_TIME)));
-			this.setOfflineTime(DataParser.parse(Date.class, map.get(HostMeta.OFFLINE_TIME)));
-			this.setId(DataParser.parse(String.class, map.get(HostMeta.ID)));
-			this.setHostCpu(DataParser.parse(BigDecimal.class, map.get(HostMeta.HOST_CPU)));
-			this.setUserAppUsed(DataParser.parse(String.class, map.get(HostMeta.USER_APP_USED)));
-			this.setUserOther(DataParser.parse(String.class, map.get(HostMeta.USER_OTHER)));
-			this.setHostBackupInfo(DataParser.parse(String.class, map.get(HostMeta.HOST_BACKUP_INFO)));
-			this.setSystemId(DataParser.parse(String.class, map.get(HostMeta.SYSTEM_ID)));
-			this.setHostConf(DataParser.parse(String.class, map.get(HostMeta.HOST_CONF)));
-			this.setHostBackupMethod(DataParser.parse(String.class, map.get(HostMeta.HOST_BACKUP_METHOD)));
-			this.setHostIp(DataParser.parse(String.class, map.get(HostMeta.HOST_IP)));
-			this.setHostVip(DataParser.parse(String.class, map.get(HostMeta.HOST_VIP)));
-			this.setHostMemory(DataParser.parse(BigDecimal.class, map.get(HostMeta.HOST_MEMORY)));
-			this.setUpdateTime(DataParser.parse(Date.class, map.get(HostMeta.UPDATE_TIME)));
-			this.setVersion(DataParser.parse(Integer.class, map.get(HostMeta.VERSION)));
-			this.setLabels(DataParser.parse(String.class, map.get(HostMeta.LABELS)));
-			this.setEnvironment(DataParser.parse(String.class, map.get(HostMeta.ENVIRONMENT)));
-			this.setCreateBy(DataParser.parse(String.class, map.get(HostMeta.CREATE_BY)));
-			this.setDeleted(DataParser.parse(Integer.class, map.get(HostMeta.DELETED)));
-			this.setPositionId(DataParser.parse(String.class, map.get(HostMeta.POSITION_ID)));
-			this.setHostNotes(DataParser.parse(String.class, map.get(HostMeta.HOST_NOTES)));
-			this.setCreateTime(DataParser.parse(Date.class, map.get(HostMeta.CREATE_TIME)));
-			this.setDeleteTime(DataParser.parse(Date.class, map.get(HostMeta.DELETE_TIME)));
-			this.setTenantId(DataParser.parse(String.class, map.get(HostMeta.TENANT_ID)));
-			this.setDeleteBy(DataParser.parse(String.class, map.get(HostMeta.DELETE_BY)));
-			this.setUserOpsOper(DataParser.parse(String.class, map.get(HostMeta.USER_OPS_OPER)));
-			this.setArch(DataParser.parse(String.class, map.get(HostMeta.ARCH)));
-			this.setMonitorStatus(DataParser.parse(String.class, map.get(HostMeta.MONITOR_STATUS)));
-			this.setStatus(DataParser.parse(String.class, map.get(HostMeta.STATUS)));
-			this.setHostIpv6(DataParser.parse(String.class, map.get(HostMeta.HOST_IPV6)));
-			// others
-			this.setInfoSystem(DataParser.parse(InformationSystem.class, map.get(HostMeta.INFO_SYSTEM)));
-			this.setPosition(DataParser.parse(HostPosition.class, map.get(HostMeta.POSITION)));
-			this.setBackupMethod(DataParser.parse(DictItem.class, map.get(HostMeta.BACKUP_METHOD)));
-			return true;
-		} else {
-			try {
-				this.setHostName( (String)map.get(HostMeta.HOST_NAME));
-				this.setUserDbUsed( (String)map.get(HostMeta.USER_DB_USED));
-				this.setUserDbAdmin( (String)map.get(HostMeta.USER_DB_ADMIN));
-				this.setPasswordStrategyId( (String)map.get(HostMeta.PASSWORD_STRATEGY_ID));
-				this.setDirectorUsername( (String)map.get(HostMeta.DIRECTOR_USERNAME));
-				this.setUserOsAdmin( (String)map.get(HostMeta.USER_OS_ADMIN));
-				this.setUpdateBy( (String)map.get(HostMeta.UPDATE_BY));
-				this.setHostType( (String)map.get(HostMeta.HOST_TYPE));
-				this.setPortList( (String)map.get(HostMeta.PORT_LIST));
-				this.setOnlineTime( (Date)map.get(HostMeta.ONLINE_TIME));
-				this.setOfflineTime( (Date)map.get(HostMeta.OFFLINE_TIME));
-				this.setId( (String)map.get(HostMeta.ID));
-				this.setHostCpu( (BigDecimal)map.get(HostMeta.HOST_CPU));
-				this.setUserAppUsed( (String)map.get(HostMeta.USER_APP_USED));
-				this.setUserOther( (String)map.get(HostMeta.USER_OTHER));
-				this.setHostBackupInfo( (String)map.get(HostMeta.HOST_BACKUP_INFO));
-				this.setSystemId( (String)map.get(HostMeta.SYSTEM_ID));
-				this.setHostConf( (String)map.get(HostMeta.HOST_CONF));
-				this.setHostBackupMethod( (String)map.get(HostMeta.HOST_BACKUP_METHOD));
-				this.setHostIp( (String)map.get(HostMeta.HOST_IP));
-				this.setHostVip( (String)map.get(HostMeta.HOST_VIP));
-				this.setHostMemory( (BigDecimal)map.get(HostMeta.HOST_MEMORY));
-				this.setUpdateTime( (Date)map.get(HostMeta.UPDATE_TIME));
-				this.setVersion( (Integer)map.get(HostMeta.VERSION));
-				this.setLabels( (String)map.get(HostMeta.LABELS));
-				this.setEnvironment( (String)map.get(HostMeta.ENVIRONMENT));
-				this.setCreateBy( (String)map.get(HostMeta.CREATE_BY));
-				this.setDeleted( (Integer)map.get(HostMeta.DELETED));
-				this.setPositionId( (String)map.get(HostMeta.POSITION_ID));
-				this.setHostNotes( (String)map.get(HostMeta.HOST_NOTES));
-				this.setCreateTime( (Date)map.get(HostMeta.CREATE_TIME));
-				this.setDeleteTime( (Date)map.get(HostMeta.DELETE_TIME));
-				this.setTenantId( (String)map.get(HostMeta.TENANT_ID));
-				this.setDeleteBy( (String)map.get(HostMeta.DELETE_BY));
-				this.setUserOpsOper( (String)map.get(HostMeta.USER_OPS_OPER));
-				this.setArch( (String)map.get(HostMeta.ARCH));
-				this.setMonitorStatus( (String)map.get(HostMeta.MONITOR_STATUS));
-				this.setStatus( (String)map.get(HostMeta.STATUS));
-				this.setHostIpv6( (String)map.get(HostMeta.HOST_IPV6));
-				// others
-				this.setInfoSystem( (InformationSystem)map.get(HostMeta.INFO_SYSTEM));
-				this.setPosition( (HostPosition)map.get(HostMeta.POSITION));
-				this.setBackupMethod( (DictItem)map.get(HostMeta.BACKUP_METHOD));
-				return true;
-			} catch (Exception e) {
-				return false;
-			}
-		}
-	}
-
-	/**
-	 * 从 Map 读取
-	 * @param r 记录数据
-	 * @param cast 是否用 DataParser 进行类型转换
-	 * @return  是否读取成功
-	*/
-	public boolean read(ExprRcd r,boolean cast) {
-		if(r==null) return false;
-		if(cast) {
-			this.setHostName(DataParser.parse(String.class, r.getValue(HostMeta.HOST_NAME)));
-			this.setUserDbUsed(DataParser.parse(String.class, r.getValue(HostMeta.USER_DB_USED)));
-			this.setUserDbAdmin(DataParser.parse(String.class, r.getValue(HostMeta.USER_DB_ADMIN)));
-			this.setPasswordStrategyId(DataParser.parse(String.class, r.getValue(HostMeta.PASSWORD_STRATEGY_ID)));
-			this.setDirectorUsername(DataParser.parse(String.class, r.getValue(HostMeta.DIRECTOR_USERNAME)));
-			this.setUserOsAdmin(DataParser.parse(String.class, r.getValue(HostMeta.USER_OS_ADMIN)));
-			this.setUpdateBy(DataParser.parse(String.class, r.getValue(HostMeta.UPDATE_BY)));
-			this.setHostType(DataParser.parse(String.class, r.getValue(HostMeta.HOST_TYPE)));
-			this.setPortList(DataParser.parse(String.class, r.getValue(HostMeta.PORT_LIST)));
-			this.setOnlineTime(DataParser.parse(Date.class, r.getValue(HostMeta.ONLINE_TIME)));
-			this.setOfflineTime(DataParser.parse(Date.class, r.getValue(HostMeta.OFFLINE_TIME)));
-			this.setId(DataParser.parse(String.class, r.getValue(HostMeta.ID)));
-			this.setHostCpu(DataParser.parse(BigDecimal.class, r.getValue(HostMeta.HOST_CPU)));
-			this.setUserAppUsed(DataParser.parse(String.class, r.getValue(HostMeta.USER_APP_USED)));
-			this.setUserOther(DataParser.parse(String.class, r.getValue(HostMeta.USER_OTHER)));
-			this.setHostBackupInfo(DataParser.parse(String.class, r.getValue(HostMeta.HOST_BACKUP_INFO)));
-			this.setSystemId(DataParser.parse(String.class, r.getValue(HostMeta.SYSTEM_ID)));
-			this.setHostConf(DataParser.parse(String.class, r.getValue(HostMeta.HOST_CONF)));
-			this.setHostBackupMethod(DataParser.parse(String.class, r.getValue(HostMeta.HOST_BACKUP_METHOD)));
-			this.setHostIp(DataParser.parse(String.class, r.getValue(HostMeta.HOST_IP)));
-			this.setHostVip(DataParser.parse(String.class, r.getValue(HostMeta.HOST_VIP)));
-			this.setHostMemory(DataParser.parse(BigDecimal.class, r.getValue(HostMeta.HOST_MEMORY)));
-			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(HostMeta.UPDATE_TIME)));
-			this.setVersion(DataParser.parse(Integer.class, r.getValue(HostMeta.VERSION)));
-			this.setLabels(DataParser.parse(String.class, r.getValue(HostMeta.LABELS)));
-			this.setEnvironment(DataParser.parse(String.class, r.getValue(HostMeta.ENVIRONMENT)));
-			this.setCreateBy(DataParser.parse(String.class, r.getValue(HostMeta.CREATE_BY)));
-			this.setDeleted(DataParser.parse(Integer.class, r.getValue(HostMeta.DELETED)));
-			this.setPositionId(DataParser.parse(String.class, r.getValue(HostMeta.POSITION_ID)));
-			this.setHostNotes(DataParser.parse(String.class, r.getValue(HostMeta.HOST_NOTES)));
-			this.setCreateTime(DataParser.parse(Date.class, r.getValue(HostMeta.CREATE_TIME)));
-			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(HostMeta.DELETE_TIME)));
-			this.setTenantId(DataParser.parse(String.class, r.getValue(HostMeta.TENANT_ID)));
-			this.setDeleteBy(DataParser.parse(String.class, r.getValue(HostMeta.DELETE_BY)));
-			this.setUserOpsOper(DataParser.parse(String.class, r.getValue(HostMeta.USER_OPS_OPER)));
-			this.setArch(DataParser.parse(String.class, r.getValue(HostMeta.ARCH)));
-			this.setMonitorStatus(DataParser.parse(String.class, r.getValue(HostMeta.MONITOR_STATUS)));
-			this.setStatus(DataParser.parse(String.class, r.getValue(HostMeta.STATUS)));
-			this.setHostIpv6(DataParser.parse(String.class, r.getValue(HostMeta.HOST_IPV6)));
-			return true;
-		} else {
-			try {
-				this.setHostName( (String)r.getValue(HostMeta.HOST_NAME));
-				this.setUserDbUsed( (String)r.getValue(HostMeta.USER_DB_USED));
-				this.setUserDbAdmin( (String)r.getValue(HostMeta.USER_DB_ADMIN));
-				this.setPasswordStrategyId( (String)r.getValue(HostMeta.PASSWORD_STRATEGY_ID));
-				this.setDirectorUsername( (String)r.getValue(HostMeta.DIRECTOR_USERNAME));
-				this.setUserOsAdmin( (String)r.getValue(HostMeta.USER_OS_ADMIN));
-				this.setUpdateBy( (String)r.getValue(HostMeta.UPDATE_BY));
-				this.setHostType( (String)r.getValue(HostMeta.HOST_TYPE));
-				this.setPortList( (String)r.getValue(HostMeta.PORT_LIST));
-				this.setOnlineTime( (Date)r.getValue(HostMeta.ONLINE_TIME));
-				this.setOfflineTime( (Date)r.getValue(HostMeta.OFFLINE_TIME));
-				this.setId( (String)r.getValue(HostMeta.ID));
-				this.setHostCpu( (BigDecimal)r.getValue(HostMeta.HOST_CPU));
-				this.setUserAppUsed( (String)r.getValue(HostMeta.USER_APP_USED));
-				this.setUserOther( (String)r.getValue(HostMeta.USER_OTHER));
-				this.setHostBackupInfo( (String)r.getValue(HostMeta.HOST_BACKUP_INFO));
-				this.setSystemId( (String)r.getValue(HostMeta.SYSTEM_ID));
-				this.setHostConf( (String)r.getValue(HostMeta.HOST_CONF));
-				this.setHostBackupMethod( (String)r.getValue(HostMeta.HOST_BACKUP_METHOD));
-				this.setHostIp( (String)r.getValue(HostMeta.HOST_IP));
-				this.setHostVip( (String)r.getValue(HostMeta.HOST_VIP));
-				this.setHostMemory( (BigDecimal)r.getValue(HostMeta.HOST_MEMORY));
-				this.setUpdateTime( (Date)r.getValue(HostMeta.UPDATE_TIME));
-				this.setVersion( (Integer)r.getValue(HostMeta.VERSION));
-				this.setLabels( (String)r.getValue(HostMeta.LABELS));
-				this.setEnvironment( (String)r.getValue(HostMeta.ENVIRONMENT));
-				this.setCreateBy( (String)r.getValue(HostMeta.CREATE_BY));
-				this.setDeleted( (Integer)r.getValue(HostMeta.DELETED));
-				this.setPositionId( (String)r.getValue(HostMeta.POSITION_ID));
-				this.setHostNotes( (String)r.getValue(HostMeta.HOST_NOTES));
-				this.setCreateTime( (Date)r.getValue(HostMeta.CREATE_TIME));
-				this.setDeleteTime( (Date)r.getValue(HostMeta.DELETE_TIME));
-				this.setTenantId( (String)r.getValue(HostMeta.TENANT_ID));
-				this.setDeleteBy( (String)r.getValue(HostMeta.DELETE_BY));
-				this.setUserOpsOper( (String)r.getValue(HostMeta.USER_OPS_OPER));
-				this.setArch( (String)r.getValue(HostMeta.ARCH));
-				this.setMonitorStatus( (String)r.getValue(HostMeta.MONITOR_STATUS));
-				this.setStatus( (String)r.getValue(HostMeta.STATUS));
-				this.setHostIpv6( (String)r.getValue(HostMeta.HOST_IPV6));
-				return true;
-			} catch (Exception e) {
-				return false;
-			}
-		}
 	}
 }

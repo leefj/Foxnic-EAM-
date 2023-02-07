@@ -155,17 +155,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
-            console.log(menu.id);
-            if(menu.id=="backup"){
-                this.openBackupWindow(data,it);
-            }else if (menu.id=="box"){
-                this.boxWindow(data,it);
-            }
-        },
-        dbSearch:function (selected,obj){
-            console.log("go to search!");
-            window.open("/business/ops/db_info/db_info_public_list.html")
-
         },
         openBackupWindow:function (data, it){
             admin.putTempData("ownerId",data.id,true);
@@ -284,23 +273,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单数据填充前
          * */
         beforeDataFill:function (data) {
-
-
-            var boxType="database_instance";
-            admin.post("/service-ops/ops-ciphertext-box/user-en-de-perm-by-boxtype", {boxType:boxType}, function (rrr) {
-                if (rrr.success) {
-                    if(rrr.data=="false"){
-                        var e=$("#voucherStr");
-                        if(e){
-                            e.attr("readonly","readonly");
-                            e.css("background","#ccc");
-                            e.attr("placeholder","没有权限操作该字段。");
-                        }
-                    }
-                } else {
-                    layer.msg("请求异常", {icon: 2, time: 1000});
-                }
-            });
             console.log('beforeDataFill',data);
         },
         /**
@@ -382,7 +354,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             ifr.height("400px");
             var selectedCode=timestamp;
             var q="?selectedCode="+selectedCode+"&pageType="+actionType
-            if(data&&data.id){
+            if(data.id){
                 q=q+"&dbId="+data.id;
             }else{
                 q=q+"&dbId="+timestamp;

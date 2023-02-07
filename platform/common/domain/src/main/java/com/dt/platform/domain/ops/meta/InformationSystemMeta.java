@@ -7,13 +7,12 @@ import com.dt.platform.domain.ops.Voucher;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.system.DictItem;
-import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-02-03 16:00:36
+ * @since 2022-09-02 07:36:05
  * @sign 2CDDB9AB8C1C930E074CD97490FD7AB1
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -935,70 +934,5 @@ public class InformationSystemMeta {
 			super.setInfoSystemGrade(infoSystemGrade);
 			return this;
 		}
-
-		/**
-		 * 克隆当前对象
-		*/
-		@Transient
-		public InformationSystem clone() {
-			return duplicate(true);
-		}
-
-		/**
-		 * 复制当前对象
-		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
-		*/
-		@Transient
-		public InformationSystem duplicate(boolean all) {
-			$$proxy$$ inst=new $$proxy$$();
-			inst.setSameplaceBacupInfo(this.getSameplaceBacupInfo());
-			inst.setArchMethod(this.getArchMethod());
-			inst.setNotes(this.getNotes());
-			inst.setAppInfo(this.getAppInfo());
-			inst.setPid(this.getPid());
-			inst.setDevMethod(this.getDevMethod());
-			inst.setTechnicalContact(this.getTechnicalContact());
-			inst.setOsInfo(this.getOsInfo());
-			inst.setHardwareInfo(this.getHardwareInfo());
-			inst.setUpdateBy(this.getUpdateBy());
-			inst.setId(this.getId());
-			inst.setBackupInfo(this.getBackupInfo());
-			inst.setDbInfo(this.getDbInfo());
-			inst.setDiffplaceBackupInfo(this.getDiffplaceBackupInfo());
-			inst.setAddress(this.getAddress());
-			inst.setBelongOrgId(this.getBelongOrgId());
-			inst.setProfile(this.getProfile());
-			inst.setBusinessContact(this.getBusinessContact());
-			inst.setUpdateTime(this.getUpdateTime());
-			inst.setRto(this.getRto());
-			inst.setVersion(this.getVersion());
-			inst.setLabels(this.getLabels());
-			inst.setOnlineDate(this.getOnlineDate());
-			inst.setRpo(this.getRpo());
-			inst.setCreateBy(this.getCreateBy());
-			inst.setOfflineDate(this.getOfflineDate());
-			inst.setDeleted(this.getDeleted());
-			inst.setOpsMethod(this.getOpsMethod());
-			inst.setLastdrillDate(this.getLastdrillDate());
-			inst.setCreateTime(this.getCreateTime());
-			inst.setDeleteTime(this.getDeleteTime());
-			inst.setGrade(this.getGrade());
-			inst.setName(this.getName());
-			inst.setTenantId(this.getTenantId());
-			inst.setDeleteBy(this.getDeleteBy());
-			inst.setStatus(this.getStatus());
-			if(all) {
-				inst.setInfoSystemStatus(this.getInfoSystemStatus());
-				inst.setVoucherList(this.getVoucherList());
-				inst.setInfoSystemDevMethod(this.getInfoSystemDevMethod());
-				inst.setInfoSystemGrade(this.getInfoSystemGrade());
-				inst.setBelongOrganization(this.getBelongOrganization());
-				inst.setInfoSystemOpsMethod(this.getInfoSystemOpsMethod());
-				inst.setVoucherIds(this.getVoucherIds());
-			}
-			inst.clearModifies();
-			return inst;
-		}
-
 	}
 }

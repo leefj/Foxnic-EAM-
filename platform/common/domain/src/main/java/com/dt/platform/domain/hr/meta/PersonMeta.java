@@ -3,21 +3,14 @@ package com.dt.platform.domain.hr.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.hr.Person;
 import java.util.Date;
-import com.dt.platform.domain.hr.Position;
-import com.dt.platform.domain.hr.Rank;
-import com.dt.platform.domain.hr.ProfessionalLevel;
-import org.github.foxnic.web.domain.system.DictItem;
-import org.github.foxnic.web.domain.hrm.Employee;
-import com.dt.platform.domain.hr.PersonCert;
-import java.util.List;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 15:16:03
- * @sign A3FA30FB0D756148C5198532D0520F4B
+ * @since 2022-09-17 07:13:41
+ * @sign 058736AB980AC9194929B4567EAFDDE4
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -32,6 +25,16 @@ public class PersonMeta {
 	 * 主键 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
+	
+	/**
+	 * 员工 , 类型: java.lang.String
+	*/
+	public static final String EMPLOY_ID="employId";
+	
+	/**
+	 * 员工 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> EMPLOY_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,EMPLOY_ID, java.lang.String.class, "员工", "员工", java.lang.String.class, null);
 	
 	/**
 	 * 工号 , 类型: java.lang.String
@@ -464,16 +467,6 @@ public class PersonMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> PERSON_PICTURE_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,PERSON_PICTURE_ID, java.lang.String.class, "照片", "照片", java.lang.String.class, null);
 	
 	/**
-	 * 员工 , 类型: java.lang.String
-	*/
-	public static final String EMPLOYEE_ID="employeeId";
-	
-	/**
-	 * 员工 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> EMPLOYEE_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,EMPLOYEE_ID, java.lang.String.class, "员工", "员工", java.lang.String.class, null);
-	
-	/**
 	 * 附件 , 类型: java.lang.String
 	*/
 	public static final String FILE_ID="fileId";
@@ -482,36 +475,6 @@ public class PersonMeta {
 	 * 附件 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> FILE_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,FILE_ID, java.lang.String.class, "附件", "附件", java.lang.String.class, null);
-	
-	/**
-	 * 合同周期 , 类型: java.lang.String
-	*/
-	public static final String CONTRACT_DURATION="contractDuration";
-	
-	/**
-	 * 合同周期 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> CONTRACT_DURATION_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,CONTRACT_DURATION, java.lang.String.class, "合同周期", "合同周期", java.lang.String.class, null);
-	
-	/**
-	 * 合同开始时间 , 类型: java.util.Date
-	*/
-	public static final String CONTRACT_START_DATE="contractStartDate";
-	
-	/**
-	 * 合同开始时间 , 类型: java.util.Date
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.util.Date> CONTRACT_START_DATE_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,CONTRACT_START_DATE, java.util.Date.class, "合同开始时间", "合同开始时间", java.util.Date.class, null);
-	
-	/**
-	 * 合同结束时间 , 类型: java.util.Date
-	*/
-	public static final String CONTRACT_FINISH_DATE="contractFinishDate";
-	
-	/**
-	 * 合同结束时间 , 类型: java.util.Date
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.util.Date> CONTRACT_FINISH_DATE_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,CONTRACT_FINISH_DATE, java.util.Date.class, "合同结束时间", "合同结束时间", java.util.Date.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -614,119 +577,9 @@ public class PersonMeta {
 	public static final BeanProperty<com.dt.platform.domain.hr.Person,java.lang.String> TENANT_ID_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,TENANT_ID, java.lang.String.class, "租户", "租户", java.lang.String.class, null);
 	
 	/**
-	 * position , 类型: com.dt.platform.domain.hr.Position
-	*/
-	public static final String POSITION="position";
-	
-	/**
-	 * position , 类型: com.dt.platform.domain.hr.Position
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.Person,com.dt.platform.domain.hr.Position> POSITION_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,POSITION, com.dt.platform.domain.hr.Position.class, "position", "position", com.dt.platform.domain.hr.Position.class, null);
-	
-	/**
-	 * rank , 类型: com.dt.platform.domain.hr.Rank
-	*/
-	public static final String RANK="rank";
-	
-	/**
-	 * rank , 类型: com.dt.platform.domain.hr.Rank
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.Person,com.dt.platform.domain.hr.Rank> RANK_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,RANK, com.dt.platform.domain.hr.Rank.class, "rank", "rank", com.dt.platform.domain.hr.Rank.class, null);
-	
-	/**
-	 * professionalLevel , 类型: com.dt.platform.domain.hr.ProfessionalLevel
-	*/
-	public static final String PROFESSIONAL_LEVEL="professionalLevel";
-	
-	/**
-	 * professionalLevel , 类型: com.dt.platform.domain.hr.ProfessionalLevel
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.Person,com.dt.platform.domain.hr.ProfessionalLevel> PROFESSIONAL_LEVEL_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,PROFESSIONAL_LEVEL, com.dt.platform.domain.hr.ProfessionalLevel.class, "professionalLevel", "professionalLevel", com.dt.platform.domain.hr.ProfessionalLevel.class, null);
-	
-	/**
-	 * bloodTypeDict , 类型: org.github.foxnic.web.domain.system.DictItem
-	*/
-	public static final String BLOOD_TYPE_DICT="bloodTypeDict";
-	
-	/**
-	 * bloodTypeDict , 类型: org.github.foxnic.web.domain.system.DictItem
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.Person,org.github.foxnic.web.domain.system.DictItem> BLOOD_TYPE_DICT_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,BLOOD_TYPE_DICT, org.github.foxnic.web.domain.system.DictItem.class, "bloodTypeDict", "bloodTypeDict", org.github.foxnic.web.domain.system.DictItem.class, null);
-	
-	/**
-	 * sexDict , 类型: org.github.foxnic.web.domain.system.DictItem
-	*/
-	public static final String SEX_DICT="sexDict";
-	
-	/**
-	 * sexDict , 类型: org.github.foxnic.web.domain.system.DictItem
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.Person,org.github.foxnic.web.domain.system.DictItem> SEX_DICT_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,SEX_DICT, org.github.foxnic.web.domain.system.DictItem.class, "sexDict", "sexDict", org.github.foxnic.web.domain.system.DictItem.class, null);
-	
-	/**
-	 * maritalStatusDict , 类型: org.github.foxnic.web.domain.system.DictItem
-	*/
-	public static final String MARITAL_STATUS_DICT="maritalStatusDict";
-	
-	/**
-	 * maritalStatusDict , 类型: org.github.foxnic.web.domain.system.DictItem
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.Person,org.github.foxnic.web.domain.system.DictItem> MARITAL_STATUS_DICT_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,MARITAL_STATUS_DICT, org.github.foxnic.web.domain.system.DictItem.class, "maritalStatusDict", "maritalStatusDict", org.github.foxnic.web.domain.system.DictItem.class, null);
-	
-	/**
-	 * employeeOwnerType , 类型: org.github.foxnic.web.domain.system.DictItem
-	*/
-	public static final String EMPLOYEE_OWNER_TYPE_DICT="employeeOwnerTypeDict";
-	
-	/**
-	 * employeeOwnerType , 类型: org.github.foxnic.web.domain.system.DictItem
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.Person,org.github.foxnic.web.domain.system.DictItem> EMPLOYEE_OWNER_TYPE_DICT_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,EMPLOYEE_OWNER_TYPE_DICT, org.github.foxnic.web.domain.system.DictItem.class, "employeeOwnerType", "employeeOwnerType", org.github.foxnic.web.domain.system.DictItem.class, null);
-	
-	/**
-	 * educationData , 类型: org.github.foxnic.web.domain.system.DictItem
-	*/
-	public static final String EDUCATION_DATA="educationData";
-	
-	/**
-	 * educationData , 类型: org.github.foxnic.web.domain.system.DictItem
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.Person,org.github.foxnic.web.domain.system.DictItem> EDUCATION_DATA_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,EDUCATION_DATA, org.github.foxnic.web.domain.system.DictItem.class, "educationData", "educationData", org.github.foxnic.web.domain.system.DictItem.class, null);
-	
-	/**
-	 * politicCountenanceData , 类型: org.github.foxnic.web.domain.system.DictItem
-	*/
-	public static final String POLITIC_COUNTENANCE_DATA="politicCountenanceData";
-	
-	/**
-	 * politicCountenanceData , 类型: org.github.foxnic.web.domain.system.DictItem
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.Person,org.github.foxnic.web.domain.system.DictItem> POLITIC_COUNTENANCE_DATA_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,POLITIC_COUNTENANCE_DATA, org.github.foxnic.web.domain.system.DictItem.class, "politicCountenanceData", "politicCountenanceData", org.github.foxnic.web.domain.system.DictItem.class, null);
-	
-	/**
-	 * employee , 类型: org.github.foxnic.web.domain.hrm.Employee
-	*/
-	public static final String EMPLOYEE="employee";
-	
-	/**
-	 * employee , 类型: org.github.foxnic.web.domain.hrm.Employee
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.Person,org.github.foxnic.web.domain.hrm.Employee> EMPLOYEE_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,EMPLOYEE, org.github.foxnic.web.domain.hrm.Employee.class, "employee", "employee", org.github.foxnic.web.domain.hrm.Employee.class, null);
-	
-	/**
-	 * personCertList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.PersonCert
-	*/
-	public static final String PERSON_CERT_LIST="personCertList";
-	
-	/**
-	 * personCertList , 集合类型: LIST , 类型: com.dt.platform.domain.hr.PersonCert
-	*/
-	public static final BeanProperty<com.dt.platform.domain.hr.Person,com.dt.platform.domain.hr.PersonCert> PERSON_CERT_LIST_PROP = new BeanProperty(com.dt.platform.domain.hr.Person.class ,PERSON_CERT_LIST, java.util.List.class, "personCertList", "personCertList", com.dt.platform.domain.hr.PersonCert.class, null);
-	
-	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , JOB_NUMBER , NAME , SEX_CODE , BIRTHDAY , NATIVE_PLACE_CODE , NATION_CODE , MARITAL_STATUS , EMPLOYEE_STATUS , EMPLOYEE_TYPE_CODE , IDENTITY_CARD , CONTACT_INFORMATION , EMAIL , EMERGENCY_CONTACT , EMERGENCY_CONTACT_NO , HOME_ADDRESS , WEIXIN_ID , EDUCATION_CODE , GRADUATION_SCHOOL , MAJOR , GRADUATION_DATE , FOREIGN_LANGUAGE , FOREIGN_LANGUAGE_LEVEL , COMPUTER_ABILITY , COMPUTER_LEVEL , POLITIC_COUNTENANCE_CODE , JOIN_PART_DATE , BLOOD_TYPE , BODY_HEIGHT , BODY_WEIGHT , EMPLOYMENT_DATE , EMPLOYMENT_CONFIRM_DATE , FIRST_EMPLOYMENT_DATE , FIRST_WORK_DATE , ORG_ID , POSITION_CODE , EMPLOYEE_TITLE_CODE , RANK_CODE , WORK_KIND_CODE , LEAVE_DATE , LEAVE_RESON , PAYROLL_CARD_BANK_CODE , PAYROLL_CARD , PERSON_PICTURE_ID , EMPLOYEE_ID , FILE_ID , CONTRACT_DURATION , CONTRACT_START_DATE , CONTRACT_FINISH_DATE , NOTE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , POSITION , RANK , PROFESSIONAL_LEVEL , BLOOD_TYPE_DICT , SEX_DICT , MARITAL_STATUS_DICT , EMPLOYEE_OWNER_TYPE_DICT , EDUCATION_DATA , POLITIC_COUNTENANCE_DATA , EMPLOYEE , PERSON_CERT_LIST };
+	public static final String[] $PROPS={ ID , EMPLOY_ID , JOB_NUMBER , NAME , SEX_CODE , BIRTHDAY , NATIVE_PLACE_CODE , NATION_CODE , MARITAL_STATUS , EMPLOYEE_STATUS , EMPLOYEE_TYPE_CODE , IDENTITY_CARD , CONTACT_INFORMATION , EMAIL , EMERGENCY_CONTACT , EMERGENCY_CONTACT_NO , HOME_ADDRESS , WEIXIN_ID , EDUCATION_CODE , GRADUATION_SCHOOL , MAJOR , GRADUATION_DATE , FOREIGN_LANGUAGE , FOREIGN_LANGUAGE_LEVEL , COMPUTER_ABILITY , COMPUTER_LEVEL , POLITIC_COUNTENANCE_CODE , JOIN_PART_DATE , BLOOD_TYPE , BODY_HEIGHT , BODY_WEIGHT , EMPLOYMENT_DATE , EMPLOYMENT_CONFIRM_DATE , FIRST_EMPLOYMENT_DATE , FIRST_WORK_DATE , ORG_ID , POSITION_CODE , EMPLOYEE_TITLE_CODE , RANK_CODE , WORK_KIND_CODE , LEAVE_DATE , LEAVE_RESON , PAYROLL_CARD_BANK_CODE , PAYROLL_CARD , PERSON_PICTURE_ID , FILE_ID , NOTE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID };
 	
 	/**
 	 * 代理类
@@ -744,6 +597,17 @@ public class PersonMeta {
 		public Person setId(String id) {
 			super.change(ID,super.getId(),id);
 			super.setId(id);
+			return this;
+		}
+		
+		/**
+		 * 设置 员工
+		 * @param employId 员工
+		 * @return 当前对象
+		*/
+		public Person setEmployId(String employId) {
+			super.change(EMPLOY_ID,super.getEmployId(),employId);
+			super.setEmployId(employId);
 			return this;
 		}
 		
@@ -1221,17 +1085,6 @@ public class PersonMeta {
 		}
 		
 		/**
-		 * 设置 员工
-		 * @param employeeId 员工
-		 * @return 当前对象
-		*/
-		public Person setEmployeeId(String employeeId) {
-			super.change(EMPLOYEE_ID,super.getEmployeeId(),employeeId);
-			super.setEmployeeId(employeeId);
-			return this;
-		}
-		
-		/**
 		 * 设置 附件
 		 * @param fileId 附件
 		 * @return 当前对象
@@ -1239,39 +1092,6 @@ public class PersonMeta {
 		public Person setFileId(String fileId) {
 			super.change(FILE_ID,super.getFileId(),fileId);
 			super.setFileId(fileId);
-			return this;
-		}
-		
-		/**
-		 * 设置 合同周期
-		 * @param contractDuration 合同周期
-		 * @return 当前对象
-		*/
-		public Person setContractDuration(String contractDuration) {
-			super.change(CONTRACT_DURATION,super.getContractDuration(),contractDuration);
-			super.setContractDuration(contractDuration);
-			return this;
-		}
-		
-		/**
-		 * 设置 合同开始时间
-		 * @param contractStartDate 合同开始时间
-		 * @return 当前对象
-		*/
-		public Person setContractStartDate(Date contractStartDate) {
-			super.change(CONTRACT_START_DATE,super.getContractStartDate(),contractStartDate);
-			super.setContractStartDate(contractStartDate);
-			return this;
-		}
-		
-		/**
-		 * 设置 合同结束时间
-		 * @param contractFinishDate 合同结束时间
-		 * @return 当前对象
-		*/
-		public Person setContractFinishDate(Date contractFinishDate) {
-			super.change(CONTRACT_FINISH_DATE,super.getContractFinishDate(),contractFinishDate);
-			super.setContractFinishDate(contractFinishDate);
 			return this;
 		}
 		
@@ -1384,127 +1204,6 @@ public class PersonMeta {
 			super.setTenantId(tenantId);
 			return this;
 		}
-		
-		/**
-		 * 设置 position
-		 * @param position position
-		 * @return 当前对象
-		*/
-		public Person setPosition(Position position) {
-			super.change(POSITION,super.getPosition(),position);
-			super.setPosition(position);
-			return this;
-		}
-		
-		/**
-		 * 设置 rank
-		 * @param rank rank
-		 * @return 当前对象
-		*/
-		public Person setRank(Rank rank) {
-			super.change(RANK,super.getRank(),rank);
-			super.setRank(rank);
-			return this;
-		}
-		
-		/**
-		 * 设置 professionalLevel
-		 * @param professionalLevel professionalLevel
-		 * @return 当前对象
-		*/
-		public Person setProfessionalLevel(ProfessionalLevel professionalLevel) {
-			super.change(PROFESSIONAL_LEVEL,super.getProfessionalLevel(),professionalLevel);
-			super.setProfessionalLevel(professionalLevel);
-			return this;
-		}
-		
-		/**
-		 * 设置 bloodTypeDict
-		 * @param bloodTypeDict bloodTypeDict
-		 * @return 当前对象
-		*/
-		public Person setBloodTypeDict(DictItem bloodTypeDict) {
-			super.change(BLOOD_TYPE_DICT,super.getBloodTypeDict(),bloodTypeDict);
-			super.setBloodTypeDict(bloodTypeDict);
-			return this;
-		}
-		
-		/**
-		 * 设置 sexDict
-		 * @param sexDict sexDict
-		 * @return 当前对象
-		*/
-		public Person setSexDict(DictItem sexDict) {
-			super.change(SEX_DICT,super.getSexDict(),sexDict);
-			super.setSexDict(sexDict);
-			return this;
-		}
-		
-		/**
-		 * 设置 maritalStatusDict
-		 * @param maritalStatusDict maritalStatusDict
-		 * @return 当前对象
-		*/
-		public Person setMaritalStatusDict(DictItem maritalStatusDict) {
-			super.change(MARITAL_STATUS_DICT,super.getMaritalStatusDict(),maritalStatusDict);
-			super.setMaritalStatusDict(maritalStatusDict);
-			return this;
-		}
-		
-		/**
-		 * 设置 employeeOwnerType
-		 * @param employeeOwnerTypeDict employeeOwnerType
-		 * @return 当前对象
-		*/
-		public Person setEmployeeOwnerTypeDict(DictItem employeeOwnerTypeDict) {
-			super.change(EMPLOYEE_OWNER_TYPE_DICT,super.getEmployeeOwnerTypeDict(),employeeOwnerTypeDict);
-			super.setEmployeeOwnerTypeDict(employeeOwnerTypeDict);
-			return this;
-		}
-		
-		/**
-		 * 设置 educationData
-		 * @param educationData educationData
-		 * @return 当前对象
-		*/
-		public Person setEducationData(DictItem educationData) {
-			super.change(EDUCATION_DATA,super.getEducationData(),educationData);
-			super.setEducationData(educationData);
-			return this;
-		}
-		
-		/**
-		 * 设置 politicCountenanceData
-		 * @param politicCountenanceData politicCountenanceData
-		 * @return 当前对象
-		*/
-		public Person setPoliticCountenanceData(DictItem politicCountenanceData) {
-			super.change(POLITIC_COUNTENANCE_DATA,super.getPoliticCountenanceData(),politicCountenanceData);
-			super.setPoliticCountenanceData(politicCountenanceData);
-			return this;
-		}
-		
-		/**
-		 * 设置 employee
-		 * @param employee employee
-		 * @return 当前对象
-		*/
-		public Person setEmployee(Employee employee) {
-			super.change(EMPLOYEE,super.getEmployee(),employee);
-			super.setEmployee(employee);
-			return this;
-		}
-		
-		/**
-		 * 设置 personCertList
-		 * @param personCertList personCertList
-		 * @return 当前对象
-		*/
-		public Person setPersonCertList(List<PersonCert> personCertList) {
-			super.change(PERSON_CERT_LIST,super.getPersonCertList(),personCertList);
-			super.setPersonCertList(personCertList);
-			return this;
-		}
 
 		/**
 		 * 克隆当前对象
@@ -1536,7 +1235,6 @@ public class PersonMeta {
 			inst.setEmergencyContact(this.getEmergencyContact());
 			inst.setGraduationSchool(this.getGraduationSchool());
 			inst.setEmploymentDate(this.getEmploymentDate());
-			inst.setContractStartDate(this.getContractStartDate());
 			inst.setIdentityCard(this.getIdentityCard());
 			inst.setVersion(this.getVersion());
 			inst.setDeleteTime(this.getDeleteTime());
@@ -1549,8 +1247,6 @@ public class PersonMeta {
 			inst.setFileId(this.getFileId());
 			inst.setBirthday(this.getBirthday());
 			inst.setNote(this.getNote());
-			inst.setContractDuration(this.getContractDuration());
-			inst.setContractFinishDate(this.getContractFinishDate());
 			inst.setBodyHeight(this.getBodyHeight());
 			inst.setPositionCode(this.getPositionCode());
 			inst.setEducationCode(this.getEducationCode());
@@ -1565,8 +1261,8 @@ public class PersonMeta {
 			inst.setFirstWorkDate(this.getFirstWorkDate());
 			inst.setPayrollCard(this.getPayrollCard());
 			inst.setWeixinId(this.getWeixinId());
-			inst.setEmployeeId(this.getEmployeeId());
 			inst.setUpdateTime(this.getUpdateTime());
+			inst.setEmployId(this.getEmployId());
 			inst.setJoinPartDate(this.getJoinPartDate());
 			inst.setLeaveReson(this.getLeaveReson());
 			inst.setSexCode(this.getSexCode());
@@ -1580,19 +1276,6 @@ public class PersonMeta {
 			inst.setTenantId(this.getTenantId());
 			inst.setPoliticCountenanceCode(this.getPoliticCountenanceCode());
 			inst.setBodyWeight(this.getBodyWeight());
-			if(all) {
-				inst.setBloodTypeDict(this.getBloodTypeDict());
-				inst.setPersonCertList(this.getPersonCertList());
-				inst.setPoliticCountenanceData(this.getPoliticCountenanceData());
-				inst.setProfessionalLevel(this.getProfessionalLevel());
-				inst.setRank(this.getRank());
-				inst.setEmployeeOwnerTypeDict(this.getEmployeeOwnerTypeDict());
-				inst.setPosition(this.getPosition());
-				inst.setEmployee(this.getEmployee());
-				inst.setSexDict(this.getSexDict());
-				inst.setEducationData(this.getEducationData());
-				inst.setMaritalStatusDict(this.getMaritalStatusDict());
-			}
 			inst.clearModifies();
 			return inst;
 		}

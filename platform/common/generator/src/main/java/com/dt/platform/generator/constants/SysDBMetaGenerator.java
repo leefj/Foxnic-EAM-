@@ -35,11 +35,7 @@ public class SysDBMetaGenerator {
 		dbMetaBuilder.setTableFilter(table->{
 			table=table.toLowerCase();
 			if( table.startsWith("sys_licence_switch")
-					||table.startsWith("sys_backup_db_strategy")
-					||table.startsWith("sys_backup_db")
-					||table.startsWith("sys_auto_")
 					||table.startsWith("sys_auto_module")
-					||table.startsWith("sys_node_load")
 					||table.startsWith("sys_auto_role") ) return true;
 			return false;
 		});

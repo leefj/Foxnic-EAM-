@@ -116,7 +116,6 @@ public class OpsDbInfoBackupGtr extends BaseCodeGenerator{
         cfg.view().form().addGroup("基本信息",
                 new Object[] {
                         OpsTables.OPS_DB_BACKUP_INFO.NAME,
-                        OpsTables.OPS_DB_BACKUP_INFO.UID,
                         OpsTables.OPS_DB_BACKUP_INFO.BACKUP_TYPE,
                         OpsTables.OPS_DB_BACKUP_INFO.BACKUP_METHOD,
                 },
@@ -133,10 +132,15 @@ public class OpsDbInfoBackupGtr extends BaseCodeGenerator{
                 }
 
         );
-cfg.view().form().addGroup("备份信息",
+
+
+
+        cfg.view().form().addGroup("备份信息",
                 new Object[] {
                         OpsTables.OPS_DB_BACKUP_INFO.BACKUP_RESULT,
                         OpsTables.OPS_DB_BACKUP_INFO.BACKUP_SIZE,
+
+
                 },
                 new Object[] {
                         OpsTables.OPS_DB_BACKUP_INFO.BACKUP_SOURCE,
@@ -149,6 +153,11 @@ cfg.view().form().addGroup("备份信息",
                         OpsTables.OPS_DB_BACKUP_INFO.BACKUP_RESULT_CT,
                 }
         );
+
+
+
+
+
 
 
 

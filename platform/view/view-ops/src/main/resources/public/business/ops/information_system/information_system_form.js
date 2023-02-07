@@ -1,13 +1,12 @@
 /**
  * 信息系统 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-02-03 16:00:38
+ * @since 2022-09-02 07:36:07
  */
 
 function FormPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
-	
 	const moduleURL="/service-ops/ops-information-system";
 	// 表单执行操作类型：view，create，edit
 	var action=null;

@@ -1,7 +1,6 @@
 package com.dt.platform.domain.hr;
 
 import com.github.foxnic.dao.entity.Entity;
-import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.HrTables.HR_PERSON;
@@ -9,32 +8,22 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
-import com.github.foxnic.api.swagger.EnumFor;
-import org.github.foxnic.web.domain.system.DictItem;
-import org.github.foxnic.web.domain.hrm.Employee;
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
-import com.dt.platform.domain.hr.meta.PersonMeta;
-import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 人员信息
- * <p>人员信息 , 数据表 hr_person 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 15:16:03
- * @sign A3FA30FB0D756148C5198532D0520F4B
+ * @since 2022-09-17 07:13:41
+ * @sign 058736AB980AC9194929B4567EAFDDE4
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "hr_person")
-@ApiModel(description = "人员信息 ; 人员信息 , 数据表 hr_person 的PO类型")
 public class Person extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -47,6 +36,12 @@ public class Person extends Entity {
 	@Id
 	@ApiModelProperty(required = true,value="主键" , notes = "主键")
 	private String id;
+	
+	/**
+	 * 员工：员工
+	*/
+	@ApiModelProperty(required = false,value="员工" , notes = "员工")
+	private String employId;
 	
 	/**
 	 * 工号：工号
@@ -307,34 +302,10 @@ public class Person extends Entity {
 	private String personPictureId;
 	
 	/**
-	 * 员工：员工
-	*/
-	@ApiModelProperty(required = false,value="员工" , notes = "员工")
-	private String employeeId;
-	
-	/**
 	 * 附件：附件
 	*/
 	@ApiModelProperty(required = false,value="附件" , notes = "附件")
 	private String fileId;
-	
-	/**
-	 * 合同周期：合同周期
-	*/
-	@ApiModelProperty(required = true,value="合同周期" , notes = "合同周期")
-	private String contractDuration;
-	
-	/**
-	 * 合同开始时间：合同开始时间
-	*/
-	@ApiModelProperty(required = true,value="合同开始时间" , notes = "合同开始时间")
-	private Date contractStartDate;
-	
-	/**
-	 * 合同结束时间：合同结束时间
-	*/
-	@ApiModelProperty(required = true,value="合同结束时间" , notes = "合同结束时间")
-	private Date contractFinishDate;
 	
 	/**
 	 * 备注：备注
@@ -372,7 +343,6 @@ public class Person extends Entity {
 	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
 	@Transient
-	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -400,72 +370,6 @@ public class Person extends Entity {
 	private String tenantId;
 	
 	/**
-	 * position：position
-	*/
-	@ApiModelProperty(required = false,value="position" , notes = "position")
-	private Position position;
-	
-	/**
-	 * rank：rank
-	*/
-	@ApiModelProperty(required = false,value="rank" , notes = "rank")
-	private Rank rank;
-	
-	/**
-	 * professionalLevel：professionalLevel
-	*/
-	@ApiModelProperty(required = false,value="professionalLevel" , notes = "professionalLevel")
-	private ProfessionalLevel professionalLevel;
-	
-	/**
-	 * bloodTypeDict：bloodTypeDict
-	*/
-	@ApiModelProperty(required = false,value="bloodTypeDict" , notes = "bloodTypeDict")
-	private DictItem bloodTypeDict;
-	
-	/**
-	 * sexDict：sexDict
-	*/
-	@ApiModelProperty(required = false,value="sexDict" , notes = "sexDict")
-	private DictItem sexDict;
-	
-	/**
-	 * maritalStatusDict：maritalStatusDict
-	*/
-	@ApiModelProperty(required = false,value="maritalStatusDict" , notes = "maritalStatusDict")
-	private DictItem maritalStatusDict;
-	
-	/**
-	 * employeeOwnerType：employeeOwnerType
-	*/
-	@ApiModelProperty(required = false,value="employeeOwnerType" , notes = "employeeOwnerType")
-	private DictItem employeeOwnerTypeDict;
-	
-	/**
-	 * educationData：educationData
-	*/
-	@ApiModelProperty(required = false,value="educationData" , notes = "educationData")
-	private DictItem educationData;
-	
-	/**
-	 * politicCountenanceData：politicCountenanceData
-	*/
-	@ApiModelProperty(required = false,value="politicCountenanceData" , notes = "politicCountenanceData")
-	private DictItem politicCountenanceData;
-	
-	/**
-	 * employee：employee
-	*/
-	@ApiModelProperty(required = false,value="employee" , notes = "employee")
-	private Employee employee;
-	
-	/**
-	 * personCertList：personCertList
-	*/
-	@ApiModelProperty(required = false,value="personCertList" , notes = "personCertList")
-	private List<PersonCert> personCertList;
-	
-	/**
 	 * 获得 主键<br>
 	 * 主键
 	 * @return 主键
@@ -481,6 +385,25 @@ public class Person extends Entity {
 	*/
 	public Person setId(String id) {
 		this.id=id;
+		return this;
+	}
+	
+	/**
+	 * 获得 员工<br>
+	 * 员工
+	 * @return 员工
+	*/
+	public String getEmployId() {
+		return employId;
+	}
+	
+	/**
+	 * 设置 员工
+	 * @param employId 员工
+	 * @return 当前对象
+	*/
+	public Person setEmployId(String employId) {
+		this.employId=employId;
 		return this;
 	}
 	
@@ -1302,25 +1225,6 @@ public class Person extends Entity {
 	}
 	
 	/**
-	 * 获得 员工<br>
-	 * 员工
-	 * @return 员工
-	*/
-	public String getEmployeeId() {
-		return employeeId;
-	}
-	
-	/**
-	 * 设置 员工
-	 * @param employeeId 员工
-	 * @return 当前对象
-	*/
-	public Person setEmployeeId(String employeeId) {
-		this.employeeId=employeeId;
-		return this;
-	}
-	
-	/**
 	 * 获得 附件<br>
 	 * 附件
 	 * @return 附件
@@ -1336,63 +1240,6 @@ public class Person extends Entity {
 	*/
 	public Person setFileId(String fileId) {
 		this.fileId=fileId;
-		return this;
-	}
-	
-	/**
-	 * 获得 合同周期<br>
-	 * 合同周期
-	 * @return 合同周期
-	*/
-	public String getContractDuration() {
-		return contractDuration;
-	}
-	
-	/**
-	 * 设置 合同周期
-	 * @param contractDuration 合同周期
-	 * @return 当前对象
-	*/
-	public Person setContractDuration(String contractDuration) {
-		this.contractDuration=contractDuration;
-		return this;
-	}
-	
-	/**
-	 * 获得 合同开始时间<br>
-	 * 合同开始时间
-	 * @return 合同开始时间
-	*/
-	public Date getContractStartDate() {
-		return contractStartDate;
-	}
-	
-	/**
-	 * 设置 合同开始时间
-	 * @param contractStartDate 合同开始时间
-	 * @return 当前对象
-	*/
-	public Person setContractStartDate(Date contractStartDate) {
-		this.contractStartDate=contractStartDate;
-		return this;
-	}
-	
-	/**
-	 * 获得 合同结束时间<br>
-	 * 合同结束时间
-	 * @return 合同结束时间
-	*/
-	public Date getContractFinishDate() {
-		return contractFinishDate;
-	}
-	
-	/**
-	 * 设置 合同结束时间
-	 * @param contractFinishDate 合同结束时间
-	 * @return 当前对象
-	*/
-	public Person setContractFinishDate(Date contractFinishDate) {
-		this.contractFinishDate=contractFinishDate;
 		return this;
 	}
 	
@@ -1616,226 +1463,6 @@ public class Person extends Entity {
 		this.tenantId=tenantId;
 		return this;
 	}
-	
-	/**
-	 * 获得 position<br>
-	 * position
-	 * @return position
-	*/
-	public Position getPosition() {
-		return position;
-	}
-	
-	/**
-	 * 设置 position
-	 * @param position position
-	 * @return 当前对象
-	*/
-	public Person setPosition(Position position) {
-		this.position=position;
-		return this;
-	}
-	
-	/**
-	 * 获得 rank<br>
-	 * rank
-	 * @return rank
-	*/
-	public Rank getRank() {
-		return rank;
-	}
-	
-	/**
-	 * 设置 rank
-	 * @param rank rank
-	 * @return 当前对象
-	*/
-	public Person setRank(Rank rank) {
-		this.rank=rank;
-		return this;
-	}
-	
-	/**
-	 * 获得 professionalLevel<br>
-	 * professionalLevel
-	 * @return professionalLevel
-	*/
-	public ProfessionalLevel getProfessionalLevel() {
-		return professionalLevel;
-	}
-	
-	/**
-	 * 设置 professionalLevel
-	 * @param professionalLevel professionalLevel
-	 * @return 当前对象
-	*/
-	public Person setProfessionalLevel(ProfessionalLevel professionalLevel) {
-		this.professionalLevel=professionalLevel;
-		return this;
-	}
-	
-	/**
-	 * 获得 bloodTypeDict<br>
-	 * bloodTypeDict
-	 * @return bloodTypeDict
-	*/
-	public DictItem getBloodTypeDict() {
-		return bloodTypeDict;
-	}
-	
-	/**
-	 * 设置 bloodTypeDict
-	 * @param bloodTypeDict bloodTypeDict
-	 * @return 当前对象
-	*/
-	public Person setBloodTypeDict(DictItem bloodTypeDict) {
-		this.bloodTypeDict=bloodTypeDict;
-		return this;
-	}
-	
-	/**
-	 * 获得 sexDict<br>
-	 * sexDict
-	 * @return sexDict
-	*/
-	public DictItem getSexDict() {
-		return sexDict;
-	}
-	
-	/**
-	 * 设置 sexDict
-	 * @param sexDict sexDict
-	 * @return 当前对象
-	*/
-	public Person setSexDict(DictItem sexDict) {
-		this.sexDict=sexDict;
-		return this;
-	}
-	
-	/**
-	 * 获得 maritalStatusDict<br>
-	 * maritalStatusDict
-	 * @return maritalStatusDict
-	*/
-	public DictItem getMaritalStatusDict() {
-		return maritalStatusDict;
-	}
-	
-	/**
-	 * 设置 maritalStatusDict
-	 * @param maritalStatusDict maritalStatusDict
-	 * @return 当前对象
-	*/
-	public Person setMaritalStatusDict(DictItem maritalStatusDict) {
-		this.maritalStatusDict=maritalStatusDict;
-		return this;
-	}
-	
-	/**
-	 * 获得 employeeOwnerType<br>
-	 * employeeOwnerType
-	 * @return employeeOwnerType
-	*/
-	public DictItem getEmployeeOwnerTypeDict() {
-		return employeeOwnerTypeDict;
-	}
-	
-	/**
-	 * 设置 employeeOwnerType
-	 * @param employeeOwnerTypeDict employeeOwnerType
-	 * @return 当前对象
-	*/
-	public Person setEmployeeOwnerTypeDict(DictItem employeeOwnerTypeDict) {
-		this.employeeOwnerTypeDict=employeeOwnerTypeDict;
-		return this;
-	}
-	
-	/**
-	 * 获得 educationData<br>
-	 * educationData
-	 * @return educationData
-	*/
-	public DictItem getEducationData() {
-		return educationData;
-	}
-	
-	/**
-	 * 设置 educationData
-	 * @param educationData educationData
-	 * @return 当前对象
-	*/
-	public Person setEducationData(DictItem educationData) {
-		this.educationData=educationData;
-		return this;
-	}
-	
-	/**
-	 * 获得 politicCountenanceData<br>
-	 * politicCountenanceData
-	 * @return politicCountenanceData
-	*/
-	public DictItem getPoliticCountenanceData() {
-		return politicCountenanceData;
-	}
-	
-	/**
-	 * 设置 politicCountenanceData
-	 * @param politicCountenanceData politicCountenanceData
-	 * @return 当前对象
-	*/
-	public Person setPoliticCountenanceData(DictItem politicCountenanceData) {
-		this.politicCountenanceData=politicCountenanceData;
-		return this;
-	}
-	
-	/**
-	 * 获得 employee<br>
-	 * employee
-	 * @return employee
-	*/
-	public Employee getEmployee() {
-		return employee;
-	}
-	
-	/**
-	 * 设置 employee
-	 * @param employee employee
-	 * @return 当前对象
-	*/
-	public Person setEmployee(Employee employee) {
-		this.employee=employee;
-		return this;
-	}
-	
-	/**
-	 * 获得 personCertList<br>
-	 * personCertList
-	 * @return personCertList
-	*/
-	public List<PersonCert> getPersonCertList() {
-		return personCertList;
-	}
-	
-	/**
-	 * 设置 personCertList
-	 * @param personCertList personCertList
-	 * @return 当前对象
-	*/
-	public Person setPersonCertList(List<PersonCert> personCertList) {
-		this.personCertList=personCertList;
-		return this;
-	}
-	
-	/**
-	 * 添加 personCertList
-	 * @param personCert personCertList
-	 * @return 当前对象
-	*/
-	public Person addPersonCert(PersonCert... personCert) {
-		if(this.personCertList==null) personCertList=new ArrayList<>();
-		this.personCertList.addAll(Arrays.asList(personCert));
-		return this;
-	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -1896,7 +1523,6 @@ public class Person extends Entity {
 		inst.setEmergencyContact(this.getEmergencyContact());
 		inst.setGraduationSchool(this.getGraduationSchool());
 		inst.setEmploymentDate(this.getEmploymentDate());
-		inst.setContractStartDate(this.getContractStartDate());
 		inst.setIdentityCard(this.getIdentityCard());
 		inst.setVersion(this.getVersion());
 		inst.setDeleteTime(this.getDeleteTime());
@@ -1909,8 +1535,6 @@ public class Person extends Entity {
 		inst.setFileId(this.getFileId());
 		inst.setBirthday(this.getBirthday());
 		inst.setNote(this.getNote());
-		inst.setContractDuration(this.getContractDuration());
-		inst.setContractFinishDate(this.getContractFinishDate());
 		inst.setBodyHeight(this.getBodyHeight());
 		inst.setPositionCode(this.getPositionCode());
 		inst.setEducationCode(this.getEducationCode());
@@ -1925,8 +1549,8 @@ public class Person extends Entity {
 		inst.setFirstWorkDate(this.getFirstWorkDate());
 		inst.setPayrollCard(this.getPayrollCard());
 		inst.setWeixinId(this.getWeixinId());
-		inst.setEmployeeId(this.getEmployeeId());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setEmployId(this.getEmployId());
 		inst.setJoinPartDate(this.getJoinPartDate());
 		inst.setLeaveReson(this.getLeaveReson());
 		inst.setSexCode(this.getSexCode());
@@ -1940,19 +1564,6 @@ public class Person extends Entity {
 		inst.setTenantId(this.getTenantId());
 		inst.setPoliticCountenanceCode(this.getPoliticCountenanceCode());
 		inst.setBodyWeight(this.getBodyWeight());
-		if(all) {
-			inst.setBloodTypeDict(this.getBloodTypeDict());
-			inst.setPersonCertList(this.getPersonCertList());
-			inst.setPoliticCountenanceData(this.getPoliticCountenanceData());
-			inst.setProfessionalLevel(this.getProfessionalLevel());
-			inst.setRank(this.getRank());
-			inst.setEmployeeOwnerTypeDict(this.getEmployeeOwnerTypeDict());
-			inst.setPosition(this.getPosition());
-			inst.setEmployee(this.getEmployee());
-			inst.setSexDict(this.getSexDict());
-			inst.setEducationData(this.getEducationData());
-			inst.setMaritalStatusDict(this.getMaritalStatusDict());
-		}
 		inst.clearModifies();
 		return inst;
 	}
@@ -2000,301 +1611,5 @@ public class Person extends Entity {
 	@Transient
 	public static Person create() {
 		return new com.dt.platform.domain.hr.meta.PersonMeta.$$proxy$$();
-	}
-
-	/**
-	 * 从 Map 读取
-	 * @param map 记录数据
-	 * @param cast 是否用 DataParser 进行类型转换
-	 * @return  是否读取成功
-	*/
-	public boolean read(Map<String, Object> map,boolean cast) {
-		if(map==null) return false;
-		if(cast) {
-			this.setRankCode(DataParser.parse(String.class, map.get(PersonMeta.RANK_CODE)));
-			this.setEmergencyContactNo(DataParser.parse(String.class, map.get(PersonMeta.EMERGENCY_CONTACT_NO)));
-			this.setEmploymentConfirmDate(DataParser.parse(Date.class, map.get(PersonMeta.EMPLOYMENT_CONFIRM_DATE)));
-			this.setNativePlaceCode(DataParser.parse(String.class, map.get(PersonMeta.NATIVE_PLACE_CODE)));
-			this.setMajor(DataParser.parse(String.class, map.get(PersonMeta.MAJOR)));
-			this.setComputerLevel(DataParser.parse(String.class, map.get(PersonMeta.COMPUTER_LEVEL)));
-			this.setWorkKindCode(DataParser.parse(String.class, map.get(PersonMeta.WORK_KIND_CODE)));
-			this.setId(DataParser.parse(String.class, map.get(PersonMeta.ID)));
-			this.setPayrollCardBankCode(DataParser.parse(String.class, map.get(PersonMeta.PAYROLL_CARD_BANK_CODE)));
-			this.setHomeAddress(DataParser.parse(String.class, map.get(PersonMeta.HOME_ADDRESS)));
-			this.setEmployeeTitleCode(DataParser.parse(String.class, map.get(PersonMeta.EMPLOYEE_TITLE_CODE)));
-			this.setForeignLanguageLevel(DataParser.parse(String.class, map.get(PersonMeta.FOREIGN_LANGUAGE_LEVEL)));
-			this.setEmergencyContact(DataParser.parse(String.class, map.get(PersonMeta.EMERGENCY_CONTACT)));
-			this.setGraduationSchool(DataParser.parse(String.class, map.get(PersonMeta.GRADUATION_SCHOOL)));
-			this.setEmploymentDate(DataParser.parse(Date.class, map.get(PersonMeta.EMPLOYMENT_DATE)));
-			this.setContractStartDate(DataParser.parse(Date.class, map.get(PersonMeta.CONTRACT_START_DATE)));
-			this.setIdentityCard(DataParser.parse(String.class, map.get(PersonMeta.IDENTITY_CARD)));
-			this.setVersion(DataParser.parse(Integer.class, map.get(PersonMeta.VERSION)));
-			this.setDeleteTime(DataParser.parse(Date.class, map.get(PersonMeta.DELETE_TIME)));
-			this.setName(DataParser.parse(String.class, map.get(PersonMeta.NAME)));
-			this.setForeignLanguage(DataParser.parse(String.class, map.get(PersonMeta.FOREIGN_LANGUAGE)));
-			this.setFirstEmploymentDate(DataParser.parse(Date.class, map.get(PersonMeta.FIRST_EMPLOYMENT_DATE)));
-			this.setDeleteBy(DataParser.parse(String.class, map.get(PersonMeta.DELETE_BY)));
-			this.setJobNumber(DataParser.parse(String.class, map.get(PersonMeta.JOB_NUMBER)));
-			this.setMaritalStatus(DataParser.parse(String.class, map.get(PersonMeta.MARITAL_STATUS)));
-			this.setFileId(DataParser.parse(String.class, map.get(PersonMeta.FILE_ID)));
-			this.setBirthday(DataParser.parse(Date.class, map.get(PersonMeta.BIRTHDAY)));
-			this.setNote(DataParser.parse(String.class, map.get(PersonMeta.NOTE)));
-			this.setContractDuration(DataParser.parse(String.class, map.get(PersonMeta.CONTRACT_DURATION)));
-			this.setContractFinishDate(DataParser.parse(Date.class, map.get(PersonMeta.CONTRACT_FINISH_DATE)));
-			this.setBodyHeight(DataParser.parse(Integer.class, map.get(PersonMeta.BODY_HEIGHT)));
-			this.setPositionCode(DataParser.parse(String.class, map.get(PersonMeta.POSITION_CODE)));
-			this.setEducationCode(DataParser.parse(String.class, map.get(PersonMeta.EDUCATION_CODE)));
-			this.setComputerAbility(DataParser.parse(String.class, map.get(PersonMeta.COMPUTER_ABILITY)));
-			this.setBloodType(DataParser.parse(String.class, map.get(PersonMeta.BLOOD_TYPE)));
-			this.setEmployeeStatus(DataParser.parse(String.class, map.get(PersonMeta.EMPLOYEE_STATUS)));
-			this.setOrgId(DataParser.parse(String.class, map.get(PersonMeta.ORG_ID)));
-			this.setUpdateBy(DataParser.parse(String.class, map.get(PersonMeta.UPDATE_BY)));
-			this.setPersonPictureId(DataParser.parse(String.class, map.get(PersonMeta.PERSON_PICTURE_ID)));
-			this.setEmail(DataParser.parse(String.class, map.get(PersonMeta.EMAIL)));
-			this.setNationCode(DataParser.parse(String.class, map.get(PersonMeta.NATION_CODE)));
-			this.setFirstWorkDate(DataParser.parse(Date.class, map.get(PersonMeta.FIRST_WORK_DATE)));
-			this.setPayrollCard(DataParser.parse(String.class, map.get(PersonMeta.PAYROLL_CARD)));
-			this.setWeixinId(DataParser.parse(String.class, map.get(PersonMeta.WEIXIN_ID)));
-			this.setEmployeeId(DataParser.parse(String.class, map.get(PersonMeta.EMPLOYEE_ID)));
-			this.setUpdateTime(DataParser.parse(Date.class, map.get(PersonMeta.UPDATE_TIME)));
-			this.setJoinPartDate(DataParser.parse(Date.class, map.get(PersonMeta.JOIN_PART_DATE)));
-			this.setLeaveReson(DataParser.parse(String.class, map.get(PersonMeta.LEAVE_RESON)));
-			this.setSexCode(DataParser.parse(String.class, map.get(PersonMeta.SEX_CODE)));
-			this.setCreateBy(DataParser.parse(String.class, map.get(PersonMeta.CREATE_BY)));
-			this.setContactInformation(DataParser.parse(String.class, map.get(PersonMeta.CONTACT_INFORMATION)));
-			this.setDeleted(DataParser.parse(Integer.class, map.get(PersonMeta.DELETED)));
-			this.setGraduationDate(DataParser.parse(Date.class, map.get(PersonMeta.GRADUATION_DATE)));
-			this.setCreateTime(DataParser.parse(Date.class, map.get(PersonMeta.CREATE_TIME)));
-			this.setEmployeeTypeCode(DataParser.parse(String.class, map.get(PersonMeta.EMPLOYEE_TYPE_CODE)));
-			this.setLeaveDate(DataParser.parse(Date.class, map.get(PersonMeta.LEAVE_DATE)));
-			this.setTenantId(DataParser.parse(String.class, map.get(PersonMeta.TENANT_ID)));
-			this.setPoliticCountenanceCode(DataParser.parse(String.class, map.get(PersonMeta.POLITIC_COUNTENANCE_CODE)));
-			this.setBodyWeight(DataParser.parse(Integer.class, map.get(PersonMeta.BODY_WEIGHT)));
-			// others
-			this.setBloodTypeDict(DataParser.parse(DictItem.class, map.get(PersonMeta.BLOOD_TYPE_DICT)));
-			this.setPoliticCountenanceData(DataParser.parse(DictItem.class, map.get(PersonMeta.POLITIC_COUNTENANCE_DATA)));
-			this.setProfessionalLevel(DataParser.parse(ProfessionalLevel.class, map.get(PersonMeta.PROFESSIONAL_LEVEL)));
-			this.setRank(DataParser.parse(Rank.class, map.get(PersonMeta.RANK)));
-			this.setEmployeeOwnerTypeDict(DataParser.parse(DictItem.class, map.get(PersonMeta.EMPLOYEE_OWNER_TYPE_DICT)));
-			this.setPosition(DataParser.parse(Position.class, map.get(PersonMeta.POSITION)));
-			this.setEmployee(DataParser.parse(Employee.class, map.get(PersonMeta.EMPLOYEE)));
-			this.setSexDict(DataParser.parse(DictItem.class, map.get(PersonMeta.SEX_DICT)));
-			this.setEducationData(DataParser.parse(DictItem.class, map.get(PersonMeta.EDUCATION_DATA)));
-			this.setMaritalStatusDict(DataParser.parse(DictItem.class, map.get(PersonMeta.MARITAL_STATUS_DICT)));
-			return true;
-		} else {
-			try {
-				this.setRankCode( (String)map.get(PersonMeta.RANK_CODE));
-				this.setEmergencyContactNo( (String)map.get(PersonMeta.EMERGENCY_CONTACT_NO));
-				this.setEmploymentConfirmDate( (Date)map.get(PersonMeta.EMPLOYMENT_CONFIRM_DATE));
-				this.setNativePlaceCode( (String)map.get(PersonMeta.NATIVE_PLACE_CODE));
-				this.setMajor( (String)map.get(PersonMeta.MAJOR));
-				this.setComputerLevel( (String)map.get(PersonMeta.COMPUTER_LEVEL));
-				this.setWorkKindCode( (String)map.get(PersonMeta.WORK_KIND_CODE));
-				this.setId( (String)map.get(PersonMeta.ID));
-				this.setPayrollCardBankCode( (String)map.get(PersonMeta.PAYROLL_CARD_BANK_CODE));
-				this.setHomeAddress( (String)map.get(PersonMeta.HOME_ADDRESS));
-				this.setEmployeeTitleCode( (String)map.get(PersonMeta.EMPLOYEE_TITLE_CODE));
-				this.setForeignLanguageLevel( (String)map.get(PersonMeta.FOREIGN_LANGUAGE_LEVEL));
-				this.setEmergencyContact( (String)map.get(PersonMeta.EMERGENCY_CONTACT));
-				this.setGraduationSchool( (String)map.get(PersonMeta.GRADUATION_SCHOOL));
-				this.setEmploymentDate( (Date)map.get(PersonMeta.EMPLOYMENT_DATE));
-				this.setContractStartDate( (Date)map.get(PersonMeta.CONTRACT_START_DATE));
-				this.setIdentityCard( (String)map.get(PersonMeta.IDENTITY_CARD));
-				this.setVersion( (Integer)map.get(PersonMeta.VERSION));
-				this.setDeleteTime( (Date)map.get(PersonMeta.DELETE_TIME));
-				this.setName( (String)map.get(PersonMeta.NAME));
-				this.setForeignLanguage( (String)map.get(PersonMeta.FOREIGN_LANGUAGE));
-				this.setFirstEmploymentDate( (Date)map.get(PersonMeta.FIRST_EMPLOYMENT_DATE));
-				this.setDeleteBy( (String)map.get(PersonMeta.DELETE_BY));
-				this.setJobNumber( (String)map.get(PersonMeta.JOB_NUMBER));
-				this.setMaritalStatus( (String)map.get(PersonMeta.MARITAL_STATUS));
-				this.setFileId( (String)map.get(PersonMeta.FILE_ID));
-				this.setBirthday( (Date)map.get(PersonMeta.BIRTHDAY));
-				this.setNote( (String)map.get(PersonMeta.NOTE));
-				this.setContractDuration( (String)map.get(PersonMeta.CONTRACT_DURATION));
-				this.setContractFinishDate( (Date)map.get(PersonMeta.CONTRACT_FINISH_DATE));
-				this.setBodyHeight( (Integer)map.get(PersonMeta.BODY_HEIGHT));
-				this.setPositionCode( (String)map.get(PersonMeta.POSITION_CODE));
-				this.setEducationCode( (String)map.get(PersonMeta.EDUCATION_CODE));
-				this.setComputerAbility( (String)map.get(PersonMeta.COMPUTER_ABILITY));
-				this.setBloodType( (String)map.get(PersonMeta.BLOOD_TYPE));
-				this.setEmployeeStatus( (String)map.get(PersonMeta.EMPLOYEE_STATUS));
-				this.setOrgId( (String)map.get(PersonMeta.ORG_ID));
-				this.setUpdateBy( (String)map.get(PersonMeta.UPDATE_BY));
-				this.setPersonPictureId( (String)map.get(PersonMeta.PERSON_PICTURE_ID));
-				this.setEmail( (String)map.get(PersonMeta.EMAIL));
-				this.setNationCode( (String)map.get(PersonMeta.NATION_CODE));
-				this.setFirstWorkDate( (Date)map.get(PersonMeta.FIRST_WORK_DATE));
-				this.setPayrollCard( (String)map.get(PersonMeta.PAYROLL_CARD));
-				this.setWeixinId( (String)map.get(PersonMeta.WEIXIN_ID));
-				this.setEmployeeId( (String)map.get(PersonMeta.EMPLOYEE_ID));
-				this.setUpdateTime( (Date)map.get(PersonMeta.UPDATE_TIME));
-				this.setJoinPartDate( (Date)map.get(PersonMeta.JOIN_PART_DATE));
-				this.setLeaveReson( (String)map.get(PersonMeta.LEAVE_RESON));
-				this.setSexCode( (String)map.get(PersonMeta.SEX_CODE));
-				this.setCreateBy( (String)map.get(PersonMeta.CREATE_BY));
-				this.setContactInformation( (String)map.get(PersonMeta.CONTACT_INFORMATION));
-				this.setDeleted( (Integer)map.get(PersonMeta.DELETED));
-				this.setGraduationDate( (Date)map.get(PersonMeta.GRADUATION_DATE));
-				this.setCreateTime( (Date)map.get(PersonMeta.CREATE_TIME));
-				this.setEmployeeTypeCode( (String)map.get(PersonMeta.EMPLOYEE_TYPE_CODE));
-				this.setLeaveDate( (Date)map.get(PersonMeta.LEAVE_DATE));
-				this.setTenantId( (String)map.get(PersonMeta.TENANT_ID));
-				this.setPoliticCountenanceCode( (String)map.get(PersonMeta.POLITIC_COUNTENANCE_CODE));
-				this.setBodyWeight( (Integer)map.get(PersonMeta.BODY_WEIGHT));
-				// others
-				this.setBloodTypeDict( (DictItem)map.get(PersonMeta.BLOOD_TYPE_DICT));
-				this.setPoliticCountenanceData( (DictItem)map.get(PersonMeta.POLITIC_COUNTENANCE_DATA));
-				this.setProfessionalLevel( (ProfessionalLevel)map.get(PersonMeta.PROFESSIONAL_LEVEL));
-				this.setRank( (Rank)map.get(PersonMeta.RANK));
-				this.setEmployeeOwnerTypeDict( (DictItem)map.get(PersonMeta.EMPLOYEE_OWNER_TYPE_DICT));
-				this.setPosition( (Position)map.get(PersonMeta.POSITION));
-				this.setEmployee( (Employee)map.get(PersonMeta.EMPLOYEE));
-				this.setSexDict( (DictItem)map.get(PersonMeta.SEX_DICT));
-				this.setEducationData( (DictItem)map.get(PersonMeta.EDUCATION_DATA));
-				this.setMaritalStatusDict( (DictItem)map.get(PersonMeta.MARITAL_STATUS_DICT));
-				return true;
-			} catch (Exception e) {
-				return false;
-			}
-		}
-	}
-
-	/**
-	 * 从 Map 读取
-	 * @param r 记录数据
-	 * @param cast 是否用 DataParser 进行类型转换
-	 * @return  是否读取成功
-	*/
-	public boolean read(ExprRcd r,boolean cast) {
-		if(r==null) return false;
-		if(cast) {
-			this.setRankCode(DataParser.parse(String.class, r.getValue(PersonMeta.RANK_CODE)));
-			this.setEmergencyContactNo(DataParser.parse(String.class, r.getValue(PersonMeta.EMERGENCY_CONTACT_NO)));
-			this.setEmploymentConfirmDate(DataParser.parse(Date.class, r.getValue(PersonMeta.EMPLOYMENT_CONFIRM_DATE)));
-			this.setNativePlaceCode(DataParser.parse(String.class, r.getValue(PersonMeta.NATIVE_PLACE_CODE)));
-			this.setMajor(DataParser.parse(String.class, r.getValue(PersonMeta.MAJOR)));
-			this.setComputerLevel(DataParser.parse(String.class, r.getValue(PersonMeta.COMPUTER_LEVEL)));
-			this.setWorkKindCode(DataParser.parse(String.class, r.getValue(PersonMeta.WORK_KIND_CODE)));
-			this.setId(DataParser.parse(String.class, r.getValue(PersonMeta.ID)));
-			this.setPayrollCardBankCode(DataParser.parse(String.class, r.getValue(PersonMeta.PAYROLL_CARD_BANK_CODE)));
-			this.setHomeAddress(DataParser.parse(String.class, r.getValue(PersonMeta.HOME_ADDRESS)));
-			this.setEmployeeTitleCode(DataParser.parse(String.class, r.getValue(PersonMeta.EMPLOYEE_TITLE_CODE)));
-			this.setForeignLanguageLevel(DataParser.parse(String.class, r.getValue(PersonMeta.FOREIGN_LANGUAGE_LEVEL)));
-			this.setEmergencyContact(DataParser.parse(String.class, r.getValue(PersonMeta.EMERGENCY_CONTACT)));
-			this.setGraduationSchool(DataParser.parse(String.class, r.getValue(PersonMeta.GRADUATION_SCHOOL)));
-			this.setEmploymentDate(DataParser.parse(Date.class, r.getValue(PersonMeta.EMPLOYMENT_DATE)));
-			this.setContractStartDate(DataParser.parse(Date.class, r.getValue(PersonMeta.CONTRACT_START_DATE)));
-			this.setIdentityCard(DataParser.parse(String.class, r.getValue(PersonMeta.IDENTITY_CARD)));
-			this.setVersion(DataParser.parse(Integer.class, r.getValue(PersonMeta.VERSION)));
-			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(PersonMeta.DELETE_TIME)));
-			this.setName(DataParser.parse(String.class, r.getValue(PersonMeta.NAME)));
-			this.setForeignLanguage(DataParser.parse(String.class, r.getValue(PersonMeta.FOREIGN_LANGUAGE)));
-			this.setFirstEmploymentDate(DataParser.parse(Date.class, r.getValue(PersonMeta.FIRST_EMPLOYMENT_DATE)));
-			this.setDeleteBy(DataParser.parse(String.class, r.getValue(PersonMeta.DELETE_BY)));
-			this.setJobNumber(DataParser.parse(String.class, r.getValue(PersonMeta.JOB_NUMBER)));
-			this.setMaritalStatus(DataParser.parse(String.class, r.getValue(PersonMeta.MARITAL_STATUS)));
-			this.setFileId(DataParser.parse(String.class, r.getValue(PersonMeta.FILE_ID)));
-			this.setBirthday(DataParser.parse(Date.class, r.getValue(PersonMeta.BIRTHDAY)));
-			this.setNote(DataParser.parse(String.class, r.getValue(PersonMeta.NOTE)));
-			this.setContractDuration(DataParser.parse(String.class, r.getValue(PersonMeta.CONTRACT_DURATION)));
-			this.setContractFinishDate(DataParser.parse(Date.class, r.getValue(PersonMeta.CONTRACT_FINISH_DATE)));
-			this.setBodyHeight(DataParser.parse(Integer.class, r.getValue(PersonMeta.BODY_HEIGHT)));
-			this.setPositionCode(DataParser.parse(String.class, r.getValue(PersonMeta.POSITION_CODE)));
-			this.setEducationCode(DataParser.parse(String.class, r.getValue(PersonMeta.EDUCATION_CODE)));
-			this.setComputerAbility(DataParser.parse(String.class, r.getValue(PersonMeta.COMPUTER_ABILITY)));
-			this.setBloodType(DataParser.parse(String.class, r.getValue(PersonMeta.BLOOD_TYPE)));
-			this.setEmployeeStatus(DataParser.parse(String.class, r.getValue(PersonMeta.EMPLOYEE_STATUS)));
-			this.setOrgId(DataParser.parse(String.class, r.getValue(PersonMeta.ORG_ID)));
-			this.setUpdateBy(DataParser.parse(String.class, r.getValue(PersonMeta.UPDATE_BY)));
-			this.setPersonPictureId(DataParser.parse(String.class, r.getValue(PersonMeta.PERSON_PICTURE_ID)));
-			this.setEmail(DataParser.parse(String.class, r.getValue(PersonMeta.EMAIL)));
-			this.setNationCode(DataParser.parse(String.class, r.getValue(PersonMeta.NATION_CODE)));
-			this.setFirstWorkDate(DataParser.parse(Date.class, r.getValue(PersonMeta.FIRST_WORK_DATE)));
-			this.setPayrollCard(DataParser.parse(String.class, r.getValue(PersonMeta.PAYROLL_CARD)));
-			this.setWeixinId(DataParser.parse(String.class, r.getValue(PersonMeta.WEIXIN_ID)));
-			this.setEmployeeId(DataParser.parse(String.class, r.getValue(PersonMeta.EMPLOYEE_ID)));
-			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(PersonMeta.UPDATE_TIME)));
-			this.setJoinPartDate(DataParser.parse(Date.class, r.getValue(PersonMeta.JOIN_PART_DATE)));
-			this.setLeaveReson(DataParser.parse(String.class, r.getValue(PersonMeta.LEAVE_RESON)));
-			this.setSexCode(DataParser.parse(String.class, r.getValue(PersonMeta.SEX_CODE)));
-			this.setCreateBy(DataParser.parse(String.class, r.getValue(PersonMeta.CREATE_BY)));
-			this.setContactInformation(DataParser.parse(String.class, r.getValue(PersonMeta.CONTACT_INFORMATION)));
-			this.setDeleted(DataParser.parse(Integer.class, r.getValue(PersonMeta.DELETED)));
-			this.setGraduationDate(DataParser.parse(Date.class, r.getValue(PersonMeta.GRADUATION_DATE)));
-			this.setCreateTime(DataParser.parse(Date.class, r.getValue(PersonMeta.CREATE_TIME)));
-			this.setEmployeeTypeCode(DataParser.parse(String.class, r.getValue(PersonMeta.EMPLOYEE_TYPE_CODE)));
-			this.setLeaveDate(DataParser.parse(Date.class, r.getValue(PersonMeta.LEAVE_DATE)));
-			this.setTenantId(DataParser.parse(String.class, r.getValue(PersonMeta.TENANT_ID)));
-			this.setPoliticCountenanceCode(DataParser.parse(String.class, r.getValue(PersonMeta.POLITIC_COUNTENANCE_CODE)));
-			this.setBodyWeight(DataParser.parse(Integer.class, r.getValue(PersonMeta.BODY_WEIGHT)));
-			return true;
-		} else {
-			try {
-				this.setRankCode( (String)r.getValue(PersonMeta.RANK_CODE));
-				this.setEmergencyContactNo( (String)r.getValue(PersonMeta.EMERGENCY_CONTACT_NO));
-				this.setEmploymentConfirmDate( (Date)r.getValue(PersonMeta.EMPLOYMENT_CONFIRM_DATE));
-				this.setNativePlaceCode( (String)r.getValue(PersonMeta.NATIVE_PLACE_CODE));
-				this.setMajor( (String)r.getValue(PersonMeta.MAJOR));
-				this.setComputerLevel( (String)r.getValue(PersonMeta.COMPUTER_LEVEL));
-				this.setWorkKindCode( (String)r.getValue(PersonMeta.WORK_KIND_CODE));
-				this.setId( (String)r.getValue(PersonMeta.ID));
-				this.setPayrollCardBankCode( (String)r.getValue(PersonMeta.PAYROLL_CARD_BANK_CODE));
-				this.setHomeAddress( (String)r.getValue(PersonMeta.HOME_ADDRESS));
-				this.setEmployeeTitleCode( (String)r.getValue(PersonMeta.EMPLOYEE_TITLE_CODE));
-				this.setForeignLanguageLevel( (String)r.getValue(PersonMeta.FOREIGN_LANGUAGE_LEVEL));
-				this.setEmergencyContact( (String)r.getValue(PersonMeta.EMERGENCY_CONTACT));
-				this.setGraduationSchool( (String)r.getValue(PersonMeta.GRADUATION_SCHOOL));
-				this.setEmploymentDate( (Date)r.getValue(PersonMeta.EMPLOYMENT_DATE));
-				this.setContractStartDate( (Date)r.getValue(PersonMeta.CONTRACT_START_DATE));
-				this.setIdentityCard( (String)r.getValue(PersonMeta.IDENTITY_CARD));
-				this.setVersion( (Integer)r.getValue(PersonMeta.VERSION));
-				this.setDeleteTime( (Date)r.getValue(PersonMeta.DELETE_TIME));
-				this.setName( (String)r.getValue(PersonMeta.NAME));
-				this.setForeignLanguage( (String)r.getValue(PersonMeta.FOREIGN_LANGUAGE));
-				this.setFirstEmploymentDate( (Date)r.getValue(PersonMeta.FIRST_EMPLOYMENT_DATE));
-				this.setDeleteBy( (String)r.getValue(PersonMeta.DELETE_BY));
-				this.setJobNumber( (String)r.getValue(PersonMeta.JOB_NUMBER));
-				this.setMaritalStatus( (String)r.getValue(PersonMeta.MARITAL_STATUS));
-				this.setFileId( (String)r.getValue(PersonMeta.FILE_ID));
-				this.setBirthday( (Date)r.getValue(PersonMeta.BIRTHDAY));
-				this.setNote( (String)r.getValue(PersonMeta.NOTE));
-				this.setContractDuration( (String)r.getValue(PersonMeta.CONTRACT_DURATION));
-				this.setContractFinishDate( (Date)r.getValue(PersonMeta.CONTRACT_FINISH_DATE));
-				this.setBodyHeight( (Integer)r.getValue(PersonMeta.BODY_HEIGHT));
-				this.setPositionCode( (String)r.getValue(PersonMeta.POSITION_CODE));
-				this.setEducationCode( (String)r.getValue(PersonMeta.EDUCATION_CODE));
-				this.setComputerAbility( (String)r.getValue(PersonMeta.COMPUTER_ABILITY));
-				this.setBloodType( (String)r.getValue(PersonMeta.BLOOD_TYPE));
-				this.setEmployeeStatus( (String)r.getValue(PersonMeta.EMPLOYEE_STATUS));
-				this.setOrgId( (String)r.getValue(PersonMeta.ORG_ID));
-				this.setUpdateBy( (String)r.getValue(PersonMeta.UPDATE_BY));
-				this.setPersonPictureId( (String)r.getValue(PersonMeta.PERSON_PICTURE_ID));
-				this.setEmail( (String)r.getValue(PersonMeta.EMAIL));
-				this.setNationCode( (String)r.getValue(PersonMeta.NATION_CODE));
-				this.setFirstWorkDate( (Date)r.getValue(PersonMeta.FIRST_WORK_DATE));
-				this.setPayrollCard( (String)r.getValue(PersonMeta.PAYROLL_CARD));
-				this.setWeixinId( (String)r.getValue(PersonMeta.WEIXIN_ID));
-				this.setEmployeeId( (String)r.getValue(PersonMeta.EMPLOYEE_ID));
-				this.setUpdateTime( (Date)r.getValue(PersonMeta.UPDATE_TIME));
-				this.setJoinPartDate( (Date)r.getValue(PersonMeta.JOIN_PART_DATE));
-				this.setLeaveReson( (String)r.getValue(PersonMeta.LEAVE_RESON));
-				this.setSexCode( (String)r.getValue(PersonMeta.SEX_CODE));
-				this.setCreateBy( (String)r.getValue(PersonMeta.CREATE_BY));
-				this.setContactInformation( (String)r.getValue(PersonMeta.CONTACT_INFORMATION));
-				this.setDeleted( (Integer)r.getValue(PersonMeta.DELETED));
-				this.setGraduationDate( (Date)r.getValue(PersonMeta.GRADUATION_DATE));
-				this.setCreateTime( (Date)r.getValue(PersonMeta.CREATE_TIME));
-				this.setEmployeeTypeCode( (String)r.getValue(PersonMeta.EMPLOYEE_TYPE_CODE));
-				this.setLeaveDate( (Date)r.getValue(PersonMeta.LEAVE_DATE));
-				this.setTenantId( (String)r.getValue(PersonMeta.TENANT_ID));
-				this.setPoliticCountenanceCode( (String)r.getValue(PersonMeta.POLITIC_COUNTENANCE_CODE));
-				this.setBodyWeight( (Integer)r.getValue(PersonMeta.BODY_WEIGHT));
-				return true;
-			} catch (Exception e) {
-				return false;
-			}
-		}
 	}
 }

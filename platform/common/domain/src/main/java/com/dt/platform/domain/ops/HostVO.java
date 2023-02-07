@@ -1,6 +1,5 @@
 package com.dt.platform.domain.ops;
 
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import java.util.ArrayList;
@@ -11,25 +10,17 @@ import com.github.foxnic.commons.bean.BeanUtil;
 import com.github.foxnic.dao.entity.EntityContext;
 import com.github.foxnic.dao.entity.Entity;
 import java.util.Map;
-import com.dt.platform.domain.ops.meta.HostVOMeta;
-import com.github.foxnic.commons.lang.DataParser;
-import java.util.Date;
-import java.math.BigDecimal;
-import org.github.foxnic.web.domain.system.DictItem;
-import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
- * 主机VO类型
- * <p>主机 , 数据表 ops_host 的通用VO类型</p>
+ * 主机
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-18 11:19:27
- * @sign F07C13ABD65C13FE1F53CCD7CE6DBBE5
+ * @since 2022-09-11 20:19:45
+ * @sign 4A61AD62FCD184D8234182AAF95C61FB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
-@ApiModel(description = "主机VO类型 ; 主机 , 数据表 ops_host 的通用VO类型" , parent = Host.class)
 public class HostVO extends Host {
 
 	private static final long serialVersionUID = 1L;
@@ -81,18 +72,6 @@ public class HostVO extends Host {
 	*/
 	@ApiModelProperty(required = false,value="排序方式" , notes = "")
 	private String sortType;
-	
-	/**
-	 * 数据来源：前端指定不同的来源，后端按来源执行不同的逻辑
-	*/
-	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端按来源执行不同的逻辑")
-	private String dataOrigin;
-	
-	/**
-	 * 查询逻辑：默认and，可指定 or 
-	*/
-	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
-	private String queryLogic;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -256,44 +235,6 @@ public class HostVO extends Host {
 	}
 	
 	/**
-	 * 获得 数据来源<br>
-	 * 前端指定不同的来源，后端按来源执行不同的逻辑
-	 * @return 数据来源
-	*/
-	public String getDataOrigin() {
-		return dataOrigin;
-	}
-	
-	/**
-	 * 设置 数据来源
-	 * @param dataOrigin 数据来源
-	 * @return 当前对象
-	*/
-	public HostVO setDataOrigin(String dataOrigin) {
-		this.dataOrigin=dataOrigin;
-		return this;
-	}
-	
-	/**
-	 * 获得 查询逻辑<br>
-	 * 默认and，可指定 or 
-	 * @return 查询逻辑
-	*/
-	public String getQueryLogic() {
-		return queryLogic;
-	}
-	
-	/**
-	 * 设置 查询逻辑
-	 * @param queryLogic 查询逻辑
-	 * @return 当前对象
-	*/
-	public HostVO setQueryLogic(String queryLogic) {
-		this.queryLogic=queryLogic;
-		return this;
-	}
-	
-	/**
 	 * 获得 主键清单<br>
 	 * 用于接收批量主键参数
 	 * @return 主键清单
@@ -386,7 +327,6 @@ public class HostVO extends Host {
 		inst.setUserOsAdmin(this.getUserOsAdmin());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setHostType(this.getHostType());
-		inst.setPortList(this.getPortList());
 		inst.setOnlineTime(this.getOnlineTime());
 		inst.setOfflineTime(this.getOfflineTime());
 		inst.setId(this.getId());
@@ -433,9 +373,7 @@ public class HostVO extends Host {
 			inst.setSortType(this.getSortType());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
-			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
-			inst.setQueryLogic(this.getQueryLogic());
 			inst.setPosition(this.getPosition());
 			inst.setBackupMethod(this.getBackupMethod());
 			inst.setSearchValue(this.getSearchValue());
@@ -488,225 +426,5 @@ public class HostVO extends Host {
 	@Transient
 	public static HostVO create() {
 		return new com.dt.platform.domain.ops.meta.HostVOMeta.$$proxy$$();
-	}
-
-	/**
-	 * 从 Map 读取
-	 * @param map 记录数据
-	 * @param cast 是否用 DataParser 进行类型转换
-	 * @return  是否读取成功
-	*/
-	public boolean read(Map<String, Object> map,boolean cast) {
-		if(map==null) return false;
-		if(cast) {
-			this.setHostName(DataParser.parse(String.class, map.get(HostVOMeta.HOST_NAME)));
-			this.setUserDbUsed(DataParser.parse(String.class, map.get(HostVOMeta.USER_DB_USED)));
-			this.setUserDbAdmin(DataParser.parse(String.class, map.get(HostVOMeta.USER_DB_ADMIN)));
-			this.setPasswordStrategyId(DataParser.parse(String.class, map.get(HostVOMeta.PASSWORD_STRATEGY_ID)));
-			this.setDirectorUsername(DataParser.parse(String.class, map.get(HostVOMeta.DIRECTOR_USERNAME)));
-			this.setUserOsAdmin(DataParser.parse(String.class, map.get(HostVOMeta.USER_OS_ADMIN)));
-			this.setUpdateBy(DataParser.parse(String.class, map.get(HostVOMeta.UPDATE_BY)));
-			this.setHostType(DataParser.parse(String.class, map.get(HostVOMeta.HOST_TYPE)));
-			this.setPortList(DataParser.parse(String.class, map.get(HostVOMeta.PORT_LIST)));
-			this.setOnlineTime(DataParser.parse(Date.class, map.get(HostVOMeta.ONLINE_TIME)));
-			this.setOfflineTime(DataParser.parse(Date.class, map.get(HostVOMeta.OFFLINE_TIME)));
-			this.setId(DataParser.parse(String.class, map.get(HostVOMeta.ID)));
-			this.setHostCpu(DataParser.parse(BigDecimal.class, map.get(HostVOMeta.HOST_CPU)));
-			this.setUserAppUsed(DataParser.parse(String.class, map.get(HostVOMeta.USER_APP_USED)));
-			this.setUserOther(DataParser.parse(String.class, map.get(HostVOMeta.USER_OTHER)));
-			this.setHostBackupInfo(DataParser.parse(String.class, map.get(HostVOMeta.HOST_BACKUP_INFO)));
-			this.setSystemId(DataParser.parse(String.class, map.get(HostVOMeta.SYSTEM_ID)));
-			this.setHostConf(DataParser.parse(String.class, map.get(HostVOMeta.HOST_CONF)));
-			this.setHostBackupMethod(DataParser.parse(String.class, map.get(HostVOMeta.HOST_BACKUP_METHOD)));
-			this.setHostIp(DataParser.parse(String.class, map.get(HostVOMeta.HOST_IP)));
-			this.setHostVip(DataParser.parse(String.class, map.get(HostVOMeta.HOST_VIP)));
-			this.setHostMemory(DataParser.parse(BigDecimal.class, map.get(HostVOMeta.HOST_MEMORY)));
-			this.setUpdateTime(DataParser.parse(Date.class, map.get(HostVOMeta.UPDATE_TIME)));
-			this.setVersion(DataParser.parse(Integer.class, map.get(HostVOMeta.VERSION)));
-			this.setLabels(DataParser.parse(String.class, map.get(HostVOMeta.LABELS)));
-			this.setEnvironment(DataParser.parse(String.class, map.get(HostVOMeta.ENVIRONMENT)));
-			this.setCreateBy(DataParser.parse(String.class, map.get(HostVOMeta.CREATE_BY)));
-			this.setDeleted(DataParser.parse(Integer.class, map.get(HostVOMeta.DELETED)));
-			this.setPositionId(DataParser.parse(String.class, map.get(HostVOMeta.POSITION_ID)));
-			this.setHostNotes(DataParser.parse(String.class, map.get(HostVOMeta.HOST_NOTES)));
-			this.setCreateTime(DataParser.parse(Date.class, map.get(HostVOMeta.CREATE_TIME)));
-			this.setDeleteTime(DataParser.parse(Date.class, map.get(HostVOMeta.DELETE_TIME)));
-			this.setTenantId(DataParser.parse(String.class, map.get(HostVOMeta.TENANT_ID)));
-			this.setDeleteBy(DataParser.parse(String.class, map.get(HostVOMeta.DELETE_BY)));
-			this.setUserOpsOper(DataParser.parse(String.class, map.get(HostVOMeta.USER_OPS_OPER)));
-			this.setArch(DataParser.parse(String.class, map.get(HostVOMeta.ARCH)));
-			this.setMonitorStatus(DataParser.parse(String.class, map.get(HostVOMeta.MONITOR_STATUS)));
-			this.setStatus(DataParser.parse(String.class, map.get(HostVOMeta.STATUS)));
-			this.setHostIpv6(DataParser.parse(String.class, map.get(HostVOMeta.HOST_IPV6)));
-			// others
-			this.setSearchField(DataParser.parse(String.class, map.get(HostVOMeta.SEARCH_FIELD)));
-			this.setFuzzyField(DataParser.parse(String.class, map.get(HostVOMeta.FUZZY_FIELD)));
-			this.setInfoSystem(DataParser.parse(InformationSystem.class, map.get(HostVOMeta.INFO_SYSTEM)));
-			this.setPageSize(DataParser.parse(Integer.class, map.get(HostVOMeta.PAGE_SIZE)));
-			this.setPageIndex(DataParser.parse(Integer.class, map.get(HostVOMeta.PAGE_INDEX)));
-			this.setSortType(DataParser.parse(String.class, map.get(HostVOMeta.SORT_TYPE)));
-			this.setSortField(DataParser.parse(String.class, map.get(HostVOMeta.SORT_FIELD)));
-			this.setDataOrigin(DataParser.parse(String.class, map.get(HostVOMeta.DATA_ORIGIN)));
-			this.setQueryLogic(DataParser.parse(String.class, map.get(HostVOMeta.QUERY_LOGIC)));
-			this.setPosition(DataParser.parse(HostPosition.class, map.get(HostVOMeta.POSITION)));
-			this.setBackupMethod(DataParser.parse(DictItem.class, map.get(HostVOMeta.BACKUP_METHOD)));
-			this.setSearchValue(DataParser.parse(String.class, map.get(HostVOMeta.SEARCH_VALUE)));
-			return true;
-		} else {
-			try {
-				this.setHostName( (String)map.get(HostVOMeta.HOST_NAME));
-				this.setUserDbUsed( (String)map.get(HostVOMeta.USER_DB_USED));
-				this.setUserDbAdmin( (String)map.get(HostVOMeta.USER_DB_ADMIN));
-				this.setPasswordStrategyId( (String)map.get(HostVOMeta.PASSWORD_STRATEGY_ID));
-				this.setDirectorUsername( (String)map.get(HostVOMeta.DIRECTOR_USERNAME));
-				this.setUserOsAdmin( (String)map.get(HostVOMeta.USER_OS_ADMIN));
-				this.setUpdateBy( (String)map.get(HostVOMeta.UPDATE_BY));
-				this.setHostType( (String)map.get(HostVOMeta.HOST_TYPE));
-				this.setPortList( (String)map.get(HostVOMeta.PORT_LIST));
-				this.setOnlineTime( (Date)map.get(HostVOMeta.ONLINE_TIME));
-				this.setOfflineTime( (Date)map.get(HostVOMeta.OFFLINE_TIME));
-				this.setId( (String)map.get(HostVOMeta.ID));
-				this.setHostCpu( (BigDecimal)map.get(HostVOMeta.HOST_CPU));
-				this.setUserAppUsed( (String)map.get(HostVOMeta.USER_APP_USED));
-				this.setUserOther( (String)map.get(HostVOMeta.USER_OTHER));
-				this.setHostBackupInfo( (String)map.get(HostVOMeta.HOST_BACKUP_INFO));
-				this.setSystemId( (String)map.get(HostVOMeta.SYSTEM_ID));
-				this.setHostConf( (String)map.get(HostVOMeta.HOST_CONF));
-				this.setHostBackupMethod( (String)map.get(HostVOMeta.HOST_BACKUP_METHOD));
-				this.setHostIp( (String)map.get(HostVOMeta.HOST_IP));
-				this.setHostVip( (String)map.get(HostVOMeta.HOST_VIP));
-				this.setHostMemory( (BigDecimal)map.get(HostVOMeta.HOST_MEMORY));
-				this.setUpdateTime( (Date)map.get(HostVOMeta.UPDATE_TIME));
-				this.setVersion( (Integer)map.get(HostVOMeta.VERSION));
-				this.setLabels( (String)map.get(HostVOMeta.LABELS));
-				this.setEnvironment( (String)map.get(HostVOMeta.ENVIRONMENT));
-				this.setCreateBy( (String)map.get(HostVOMeta.CREATE_BY));
-				this.setDeleted( (Integer)map.get(HostVOMeta.DELETED));
-				this.setPositionId( (String)map.get(HostVOMeta.POSITION_ID));
-				this.setHostNotes( (String)map.get(HostVOMeta.HOST_NOTES));
-				this.setCreateTime( (Date)map.get(HostVOMeta.CREATE_TIME));
-				this.setDeleteTime( (Date)map.get(HostVOMeta.DELETE_TIME));
-				this.setTenantId( (String)map.get(HostVOMeta.TENANT_ID));
-				this.setDeleteBy( (String)map.get(HostVOMeta.DELETE_BY));
-				this.setUserOpsOper( (String)map.get(HostVOMeta.USER_OPS_OPER));
-				this.setArch( (String)map.get(HostVOMeta.ARCH));
-				this.setMonitorStatus( (String)map.get(HostVOMeta.MONITOR_STATUS));
-				this.setStatus( (String)map.get(HostVOMeta.STATUS));
-				this.setHostIpv6( (String)map.get(HostVOMeta.HOST_IPV6));
-				// others
-				this.setSearchField( (String)map.get(HostVOMeta.SEARCH_FIELD));
-				this.setFuzzyField( (String)map.get(HostVOMeta.FUZZY_FIELD));
-				this.setInfoSystem( (InformationSystem)map.get(HostVOMeta.INFO_SYSTEM));
-				this.setPageSize( (Integer)map.get(HostVOMeta.PAGE_SIZE));
-				this.setPageIndex( (Integer)map.get(HostVOMeta.PAGE_INDEX));
-				this.setSortType( (String)map.get(HostVOMeta.SORT_TYPE));
-				this.setSortField( (String)map.get(HostVOMeta.SORT_FIELD));
-				this.setDataOrigin( (String)map.get(HostVOMeta.DATA_ORIGIN));
-				this.setQueryLogic( (String)map.get(HostVOMeta.QUERY_LOGIC));
-				this.setPosition( (HostPosition)map.get(HostVOMeta.POSITION));
-				this.setBackupMethod( (DictItem)map.get(HostVOMeta.BACKUP_METHOD));
-				this.setSearchValue( (String)map.get(HostVOMeta.SEARCH_VALUE));
-				return true;
-			} catch (Exception e) {
-				return false;
-			}
-		}
-	}
-
-	/**
-	 * 从 Map 读取
-	 * @param r 记录数据
-	 * @param cast 是否用 DataParser 进行类型转换
-	 * @return  是否读取成功
-	*/
-	public boolean read(ExprRcd r,boolean cast) {
-		if(r==null) return false;
-		if(cast) {
-			this.setHostName(DataParser.parse(String.class, r.getValue(HostVOMeta.HOST_NAME)));
-			this.setUserDbUsed(DataParser.parse(String.class, r.getValue(HostVOMeta.USER_DB_USED)));
-			this.setUserDbAdmin(DataParser.parse(String.class, r.getValue(HostVOMeta.USER_DB_ADMIN)));
-			this.setPasswordStrategyId(DataParser.parse(String.class, r.getValue(HostVOMeta.PASSWORD_STRATEGY_ID)));
-			this.setDirectorUsername(DataParser.parse(String.class, r.getValue(HostVOMeta.DIRECTOR_USERNAME)));
-			this.setUserOsAdmin(DataParser.parse(String.class, r.getValue(HostVOMeta.USER_OS_ADMIN)));
-			this.setUpdateBy(DataParser.parse(String.class, r.getValue(HostVOMeta.UPDATE_BY)));
-			this.setHostType(DataParser.parse(String.class, r.getValue(HostVOMeta.HOST_TYPE)));
-			this.setPortList(DataParser.parse(String.class, r.getValue(HostVOMeta.PORT_LIST)));
-			this.setOnlineTime(DataParser.parse(Date.class, r.getValue(HostVOMeta.ONLINE_TIME)));
-			this.setOfflineTime(DataParser.parse(Date.class, r.getValue(HostVOMeta.OFFLINE_TIME)));
-			this.setId(DataParser.parse(String.class, r.getValue(HostVOMeta.ID)));
-			this.setHostCpu(DataParser.parse(BigDecimal.class, r.getValue(HostVOMeta.HOST_CPU)));
-			this.setUserAppUsed(DataParser.parse(String.class, r.getValue(HostVOMeta.USER_APP_USED)));
-			this.setUserOther(DataParser.parse(String.class, r.getValue(HostVOMeta.USER_OTHER)));
-			this.setHostBackupInfo(DataParser.parse(String.class, r.getValue(HostVOMeta.HOST_BACKUP_INFO)));
-			this.setSystemId(DataParser.parse(String.class, r.getValue(HostVOMeta.SYSTEM_ID)));
-			this.setHostConf(DataParser.parse(String.class, r.getValue(HostVOMeta.HOST_CONF)));
-			this.setHostBackupMethod(DataParser.parse(String.class, r.getValue(HostVOMeta.HOST_BACKUP_METHOD)));
-			this.setHostIp(DataParser.parse(String.class, r.getValue(HostVOMeta.HOST_IP)));
-			this.setHostVip(DataParser.parse(String.class, r.getValue(HostVOMeta.HOST_VIP)));
-			this.setHostMemory(DataParser.parse(BigDecimal.class, r.getValue(HostVOMeta.HOST_MEMORY)));
-			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(HostVOMeta.UPDATE_TIME)));
-			this.setVersion(DataParser.parse(Integer.class, r.getValue(HostVOMeta.VERSION)));
-			this.setLabels(DataParser.parse(String.class, r.getValue(HostVOMeta.LABELS)));
-			this.setEnvironment(DataParser.parse(String.class, r.getValue(HostVOMeta.ENVIRONMENT)));
-			this.setCreateBy(DataParser.parse(String.class, r.getValue(HostVOMeta.CREATE_BY)));
-			this.setDeleted(DataParser.parse(Integer.class, r.getValue(HostVOMeta.DELETED)));
-			this.setPositionId(DataParser.parse(String.class, r.getValue(HostVOMeta.POSITION_ID)));
-			this.setHostNotes(DataParser.parse(String.class, r.getValue(HostVOMeta.HOST_NOTES)));
-			this.setCreateTime(DataParser.parse(Date.class, r.getValue(HostVOMeta.CREATE_TIME)));
-			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(HostVOMeta.DELETE_TIME)));
-			this.setTenantId(DataParser.parse(String.class, r.getValue(HostVOMeta.TENANT_ID)));
-			this.setDeleteBy(DataParser.parse(String.class, r.getValue(HostVOMeta.DELETE_BY)));
-			this.setUserOpsOper(DataParser.parse(String.class, r.getValue(HostVOMeta.USER_OPS_OPER)));
-			this.setArch(DataParser.parse(String.class, r.getValue(HostVOMeta.ARCH)));
-			this.setMonitorStatus(DataParser.parse(String.class, r.getValue(HostVOMeta.MONITOR_STATUS)));
-			this.setStatus(DataParser.parse(String.class, r.getValue(HostVOMeta.STATUS)));
-			this.setHostIpv6(DataParser.parse(String.class, r.getValue(HostVOMeta.HOST_IPV6)));
-			return true;
-		} else {
-			try {
-				this.setHostName( (String)r.getValue(HostVOMeta.HOST_NAME));
-				this.setUserDbUsed( (String)r.getValue(HostVOMeta.USER_DB_USED));
-				this.setUserDbAdmin( (String)r.getValue(HostVOMeta.USER_DB_ADMIN));
-				this.setPasswordStrategyId( (String)r.getValue(HostVOMeta.PASSWORD_STRATEGY_ID));
-				this.setDirectorUsername( (String)r.getValue(HostVOMeta.DIRECTOR_USERNAME));
-				this.setUserOsAdmin( (String)r.getValue(HostVOMeta.USER_OS_ADMIN));
-				this.setUpdateBy( (String)r.getValue(HostVOMeta.UPDATE_BY));
-				this.setHostType( (String)r.getValue(HostVOMeta.HOST_TYPE));
-				this.setPortList( (String)r.getValue(HostVOMeta.PORT_LIST));
-				this.setOnlineTime( (Date)r.getValue(HostVOMeta.ONLINE_TIME));
-				this.setOfflineTime( (Date)r.getValue(HostVOMeta.OFFLINE_TIME));
-				this.setId( (String)r.getValue(HostVOMeta.ID));
-				this.setHostCpu( (BigDecimal)r.getValue(HostVOMeta.HOST_CPU));
-				this.setUserAppUsed( (String)r.getValue(HostVOMeta.USER_APP_USED));
-				this.setUserOther( (String)r.getValue(HostVOMeta.USER_OTHER));
-				this.setHostBackupInfo( (String)r.getValue(HostVOMeta.HOST_BACKUP_INFO));
-				this.setSystemId( (String)r.getValue(HostVOMeta.SYSTEM_ID));
-				this.setHostConf( (String)r.getValue(HostVOMeta.HOST_CONF));
-				this.setHostBackupMethod( (String)r.getValue(HostVOMeta.HOST_BACKUP_METHOD));
-				this.setHostIp( (String)r.getValue(HostVOMeta.HOST_IP));
-				this.setHostVip( (String)r.getValue(HostVOMeta.HOST_VIP));
-				this.setHostMemory( (BigDecimal)r.getValue(HostVOMeta.HOST_MEMORY));
-				this.setUpdateTime( (Date)r.getValue(HostVOMeta.UPDATE_TIME));
-				this.setVersion( (Integer)r.getValue(HostVOMeta.VERSION));
-				this.setLabels( (String)r.getValue(HostVOMeta.LABELS));
-				this.setEnvironment( (String)r.getValue(HostVOMeta.ENVIRONMENT));
-				this.setCreateBy( (String)r.getValue(HostVOMeta.CREATE_BY));
-				this.setDeleted( (Integer)r.getValue(HostVOMeta.DELETED));
-				this.setPositionId( (String)r.getValue(HostVOMeta.POSITION_ID));
-				this.setHostNotes( (String)r.getValue(HostVOMeta.HOST_NOTES));
-				this.setCreateTime( (Date)r.getValue(HostVOMeta.CREATE_TIME));
-				this.setDeleteTime( (Date)r.getValue(HostVOMeta.DELETE_TIME));
-				this.setTenantId( (String)r.getValue(HostVOMeta.TENANT_ID));
-				this.setDeleteBy( (String)r.getValue(HostVOMeta.DELETE_BY));
-				this.setUserOpsOper( (String)r.getValue(HostVOMeta.USER_OPS_OPER));
-				this.setArch( (String)r.getValue(HostVOMeta.ARCH));
-				this.setMonitorStatus( (String)r.getValue(HostVOMeta.MONITOR_STATUS));
-				this.setStatus( (String)r.getValue(HostVOMeta.STATUS));
-				this.setHostIpv6( (String)r.getValue(HostVOMeta.HOST_IPV6));
-				return true;
-			} catch (Exception e) {
-				return false;
-			}
-		}
 	}
 }

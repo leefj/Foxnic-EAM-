@@ -15,8 +15,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-31 22:15:26
- * @sign 55DC0293DB9696189044F24BB2EE2CFC
+ * @since 2022-09-13 20:38:56
+ * @sign D91BDED1B2CE4F9EDEDD65BCA4971921
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -103,26 +103,6 @@ public class DbBackupInfoVOMeta extends DbBackupInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.DbBackupInfoVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.DbBackupInfoVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
 	
 	/**
-	 * 数据来源 , 前端指定不同的来源，后端按来源执行不同的逻辑 , 类型: java.lang.String
-	*/
-	public static final String DATA_ORIGIN="dataOrigin";
-	
-	/**
-	 * 数据来源 , 前端指定不同的来源，后端按来源执行不同的逻辑 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbBackupInfoVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.ops.DbBackupInfoVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端按来源执行不同的逻辑", java.lang.String.class, null);
-	
-	/**
-	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
-	*/
-	public static final String QUERY_LOGIC="queryLogic";
-	
-	/**
-	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbBackupInfoVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.ops.DbBackupInfoVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
-	
-	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
 	*/
 	public static final String IDS="ids";
@@ -151,16 +131,6 @@ public class DbBackupInfoVOMeta extends DbBackupInfoMeta {
 	 * 数据库 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.DbBackupInfoVO,java.lang.String> DATABASE_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.DbBackupInfoVO.class ,DATABASE_ID, java.lang.String.class, "数据库", "数据库", java.lang.String.class, null);
-	
-	/**
-	 * UID , 类型: java.lang.String
-	*/
-	public static final String UID="uid";
-	
-	/**
-	 * UID , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbBackupInfoVO,java.lang.String> UID_PROP = new BeanProperty(com.dt.platform.domain.ops.DbBackupInfoVO.class ,UID, java.lang.String.class, "UID", "UID", java.lang.String.class, null);
 	
 	/**
 	 * 名称 , 类型: java.lang.String
@@ -415,7 +385,7 @@ public class DbBackupInfoVOMeta extends DbBackupInfoMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , IDS , ID , DATABASE_ID , UID , NAME , STATUS , BACKUP_STRATEGY , BACKUP_TYPE , BACKUP_METHOD , BACKUP_DATAKEEP , BACKUP_RESULT , BACKUP_SOURCE , BACKUP_SIZE , BACKUP_TIME , BACKUP_RESULT_CT , STORAGE , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , HOST , DB , DB_TYPE };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , DATABASE_ID , NAME , STATUS , BACKUP_STRATEGY , BACKUP_TYPE , BACKUP_METHOD , BACKUP_DATAKEEP , BACKUP_RESULT , BACKUP_SOURCE , BACKUP_SIZE , BACKUP_TIME , BACKUP_RESULT_CT , STORAGE , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , HOST , DB , DB_TYPE };
 	
 	/**
 	 * 代理类
@@ -514,28 +484,6 @@ public class DbBackupInfoVOMeta extends DbBackupInfoMeta {
 		}
 		
 		/**
-		 * 设置 数据来源
-		 * @param dataOrigin 数据来源
-		 * @return 当前对象
-		*/
-		public DbBackupInfoVO setDataOrigin(String dataOrigin) {
-			super.change(DATA_ORIGIN,super.getDataOrigin(),dataOrigin);
-			super.setDataOrigin(dataOrigin);
-			return this;
-		}
-		
-		/**
-		 * 设置 查询逻辑
-		 * @param queryLogic 查询逻辑
-		 * @return 当前对象
-		*/
-		public DbBackupInfoVO setQueryLogic(String queryLogic) {
-			super.change(QUERY_LOGIC,super.getQueryLogic(),queryLogic);
-			super.setQueryLogic(queryLogic);
-			return this;
-		}
-		
-		/**
 		 * 设置 主键清单
 		 * @param ids 主键清单
 		 * @return 当前对象
@@ -565,17 +513,6 @@ public class DbBackupInfoVOMeta extends DbBackupInfoMeta {
 		public DbBackupInfo setDatabaseId(String databaseId) {
 			super.change(DATABASE_ID,super.getDatabaseId(),databaseId);
 			super.setDatabaseId(databaseId);
-			return this;
-		}
-		
-		/**
-		 * 设置 UID
-		 * @param uid UID
-		 * @return 当前对象
-		*/
-		public DbBackupInfo setUid(String uid) {
-			super.change(UID,super.getUid(),uid);
-			super.setUid(uid);
 			return this;
 		}
 		
@@ -870,25 +807,24 @@ public class DbBackupInfoVOMeta extends DbBackupInfoMeta {
 		public DbBackupInfoVO duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setNotes(this.getNotes());
+			inst.setUpdateTime(this.getUpdateTime());
 			inst.setStorage(this.getStorage());
 			inst.setSelectedCode(this.getSelectedCode());
+			inst.setVersion(this.getVersion());
 			inst.setBackupDatakeep(this.getBackupDatakeep());
 			inst.setBackupType(this.getBackupType());
-			inst.setUid(this.getUid());
-			inst.setBackupStrategy(this.getBackupStrategy());
-			inst.setUpdateBy(this.getUpdateBy());
-			inst.setId(this.getId());
-			inst.setDatabaseId(this.getDatabaseId());
-			inst.setUpdateTime(this.getUpdateTime());
-			inst.setVersion(this.getVersion());
 			inst.setBackupSize(this.getBackupSize());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
+			inst.setBackupStrategy(this.getBackupStrategy());
 			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setName(this.getName());
 			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
 			inst.setBackupMethod(this.getBackupMethod());
+			inst.setDatabaseId(this.getDatabaseId());
 			inst.setBackupTime(this.getBackupTime());
 			inst.setBackupResultCt(this.getBackupResultCt());
 			inst.setStatus(this.getStatus());
@@ -896,17 +832,15 @@ public class DbBackupInfoVOMeta extends DbBackupInfoMeta {
 			inst.setBackupSource(this.getBackupSource());
 			if(all) {
 				inst.setSearchField(this.getSearchField());
-				inst.setFuzzyField(this.getFuzzyField());
-				inst.setPageSize(this.getPageSize());
-				inst.setDbType(this.getDbType());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
+				inst.setFuzzyField(this.getFuzzyField());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
 				inst.setHost(this.getHost());
-				inst.setDataOrigin(this.getDataOrigin());
+				inst.setPageSize(this.getPageSize());
 				inst.setIds(this.getIds());
-				inst.setQueryLogic(this.getQueryLogic());
+				inst.setDbType(this.getDbType());
 				inst.setSearchValue(this.getSearchValue());
 				inst.setDb(this.getDb());
 			}

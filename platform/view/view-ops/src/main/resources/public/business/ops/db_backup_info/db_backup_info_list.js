@@ -1,14 +1,13 @@
 /**
  * 数据库备份 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-31 22:15:28
+ * @since 2022-09-13 20:38:57
  */
 
 
 function ListPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect;
-	
 	//模块基础路径
 	const moduleURL="/service-ops/ops-db-backup-info";
 	var dataTable=null;
@@ -19,7 +18,7 @@ function ListPage() {
 	this.init=function(layui) {
 
      	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate;
-		table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,dropdown=layui.dropdown;
+		table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,dropdown=layui.dropdown;;
 
 		if(window.pageExt.list.beforeInit) {
 			window.pageExt.list.beforeInit();
@@ -70,7 +69,7 @@ function ListPage() {
 			var tableConfig={
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
-				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
+				defaultToolbar: ['filter', 'print',{title: '刷新数据',layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
 				url: moduleURL +'/query-paged-list',
 				height: 'full-'+(h+28),
 				limit: 50,
@@ -79,7 +78,6 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'uid', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('UID') , templet: function (d) { return templet('uid',d.uid,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备份状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'backupStrategy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备份策略') , templet: function (d) { return templet('backupStrategy',d.backupStrategy,d);}  }
@@ -98,8 +96,8 @@ function ListPage() {
 					,{ field: 'resHostName', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('主机名') , templet: function (d) { return templet('resHostName',fox.getProperty(d,["host","hostName"],0,'','resHostName'),d);} }
 					,{ field: 'resDbName', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('数据库') , templet: function (d) { return templet('resDbName',fox.getProperty(d,["db","name"],0,'','resDbName'),d);} }
 					,{ field: 'resDbTypeName', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('数据库类型') , templet: function (d) { return templet('resDbTypeName',fox.getProperty(d,["dbType","name"],0,'','resDbTypeName'),d);} }
-					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
-					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
+					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
+					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
@@ -326,7 +324,7 @@ function ListPage() {
         function openCreateFrom() {
         	//设置新增是初始化数据
         	var data={};
-			admin.putTempData('ops-db-backup-info-form-data-form-notExistAction', "create",true);
+			admin.putTempData('ops-db-backup-info-form-data-form-action', "create",true);
             showEditForm(data);
         };
 
@@ -340,11 +338,11 @@ function ListPage() {
 
 			var ids=getCheckedList("id");
             if(ids.length==0) {
-				top.layer.msg(fox.translate('请选择需要删除的'+'数据库备份'+"!"));
+				top.layer.msg(fox.translate('请选择需要删除的')+fox.translate('数据库备份')+"!");
             	return;
             }
             //调用批量删除接口
-			top.layer.confirm(fox.translate('确定删除已选中的'+'数据库备份'+'吗？'), function (i) {
+			top.layer.confirm(fox.translate('确定删除已选中的')+fox.translate('数据库备份')+fox.translate('吗？'), function (i) {
                 top.layer.close(i);
 				admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
                     if (data.success) {
@@ -355,9 +353,6 @@ function ListPage() {
 						fox.showMessage(data);
                         refreshTableData();
                     } else {
-						if(data.data>0) {
-							refreshTableData();
-						}
 						fox.showMessage(data);
                     }
                 },{delayLoading:200,elms:[$("#delete-button")]});
@@ -379,11 +374,11 @@ function ListPage() {
 				if(!doNext) return;
 			}
 
-			admin.putTempData('ops-db-backup-info-form-data-form-notExistAction', "",true);
+			admin.putTempData('ops-db-backup-info-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
 				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
 					if(data.success) {
-						admin.putTempData('ops-db-backup-info-form-data-form-notExistAction', "edit",true);
+						admin.putTempData('ops-db-backup-info-form-data-form-action', "edit",true);
 						showEditForm(data.data);
 					} else {
 						 fox.showMessage(data);
@@ -392,7 +387,7 @@ function ListPage() {
 			} else if (layEvent === 'view') { // 查看
 				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
 					if(data.success) {
-						admin.putTempData('ops-db-backup-info-form-data-form-notExistAction', "view",true);
+						admin.putTempData('ops-db-backup-info-form-data-form-action', "view",true);
 						showEditForm(data.data);
 					} else {
 						fox.showMessage(data);
@@ -406,7 +401,7 @@ function ListPage() {
 					if(!doNext) return;
 				}
 
-				top.layer.confirm(fox.translate('确定删除此'+'数据库备份'+'吗？'), function (i) {
+				top.layer.confirm(fox.translate('确定删除此')+fox.translate('数据库备份')+fox.translate('吗？'), function (i) {
 					top.layer.close(i);
 					admin.post(moduleURL+"/delete", { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
@@ -436,20 +431,20 @@ function ListPage() {
 			var doNext=window.pageExt.list.beforeEdit(data);
 			if(!doNext) return;
 		}
-		var notExistAction=admin.getTempData('ops-db-backup-info-form-data-form-notExistAction');
+		var action=admin.getTempData('ops-db-backup-info-form-data-form-action');
 		var queryString="";
 		if(data && data.id) queryString='id=' + data.id;
 		if(window.pageExt.list.makeFormQueryString) {
-			queryString=window.pageExt.list.makeFormQueryString(data,queryString,notExistAction);
+			queryString=window.pageExt.list.makeFormQueryString(data,queryString,action);
 		}
 		admin.putTempData('ops-db-backup-info-form-data', data);
 		var area=admin.getTempData('ops-db-backup-info-form-area');
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
 		var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
 		var title = fox.translate('数据库备份');
-		if(notExistAction=="create") title=fox.translate('添加','','cmp:table')+title;
-		else if(notExistAction=="edit") title=fox.translate('修改','','cmp:table')+title;
-		else if(notExistAction=="view") title=fox.translate('查看','','cmp:table')+title;
+		if(action=="create") title=fox.translate('添加')+title;
+		else if(action=="edit") title=fox.translate('修改')+title;
+		else if(action=="view") title=fox.translate('查看')+title;
 
 		admin.popupCenter({
 			title: title,
@@ -460,10 +455,10 @@ function ListPage() {
 			id:"ops-db-backup-info-form-data-win",
 			content: '/business/ops/db_backup_info/db_backup_info_form.html' + (queryString?("?"+queryString):""),
 			finish: function () {
-				if(notExistAction=="create") {
+				if(action=="create") {
 					refreshTableData();
 				}
-				if(notExistAction=="edit") {
+				if(action=="edit") {
 					false?refreshTableData():refreshRowData(data,true);
 				}
 			}

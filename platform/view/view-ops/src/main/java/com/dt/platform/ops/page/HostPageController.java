@@ -45,15 +45,6 @@ public class HostPageController extends ViewController {
 		return prefix+"/host_report_list";
 	}
 
-
-	/**
-	 * 主机 功能主页面
-	 */
-	@RequestMapping("/host_public_list.html")
-	public String publicList(Model model,HttpServletRequest request) {
-		return prefix+"/host_public_list";
-	}
-
 	/**
 	 * 主机 功能主页面
 	 */

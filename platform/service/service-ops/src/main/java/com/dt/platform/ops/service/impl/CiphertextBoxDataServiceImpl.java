@@ -247,7 +247,7 @@ public class CiphertextBoxDataServiceImpl extends SuperService<CiphertextBoxData
 		CiphertextHistory saveData=new CiphertextHistory();
 		saveData.setEncryptionContent(ciphertext);
 		saveData.setSourceValue(sourceBoxData.getId());
-		saveData.setBoxType(sourceBoxData.getBoxType());
+		saveData.setBoxType(OpsCiphertextTypeEnum.DATABASE.code());
 		saveData.setType(OpsCiphertextHistoryDataTypeEnum.CIPHERTEXT_BOX_DATA.code());
 		ciphertextHistoryService.insert(saveData);
 		Result r=super.update(ciphertextBoxData , mode , throwsException);

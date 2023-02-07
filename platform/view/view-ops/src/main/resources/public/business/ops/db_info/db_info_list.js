@@ -1,7 +1,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-19 19:44:19
+ * @since 2022-11-29 22:07:27
  */
 
 
@@ -92,19 +92,16 @@ function ListPage() {
 					,{ field: 'opsUserList', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('运维账户') , templet: function (d) { return templet('opsUserList',d.opsUserList,d);}  }
 					,{ field: 'otherUserList', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('其他账户') , templet: function (d) { return templet('otherUserList',d.otherUserList,d);}  }
 					,{ field: 'userUseInfo', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('使用情况') , templet: function (d) { return templet('userUseInfo',d.userUseInfo,d);}  }
-					,{ field: 'userInfo', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('用户备注') , templet: function (d) { return templet('userInfo',d.userInfo,d);}  }
 					,{ field: 'voucherStr', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('凭证信息') , templet: function (d) { return templet('voucherStr',d.voucherStr,d);}  }
 					,{ field: 'dbPort', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('服务端口') , templet: function (d) { return templet('dbPort',d.dbPort,d);}  }
 					,{ field: 'backupStrategy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('本地备份策略') , templet: function (d) { return templet('backupStrategy',d.backupStrategy,d);}  }
 					,{ field: 'toolStrategy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('工具备份策略') , templet: function (d) { return templet('toolStrategy',d.toolStrategy,d);}  }
 					,{ field: 'disasterRecoveryStrategy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('灾备策略') , templet: function (d) { return templet('disasterRecoveryStrategy',d.disasterRecoveryStrategy,d);}  }
 					,{ field: 'clearStrategy', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('清理策略') , templet: function (d) { return templet('clearStrategy',d.clearStrategy,d);}  }
-					,{ field: 'backupInfo', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备份备注') , templet: function (d) { return templet('backupInfo',d.backupInfo,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'resHostIp', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('IP') , templet: function (d) { return templet('resHostIp',fox.getProperty(d,["host","hostIp"],0,'','resHostIp'),d);} }
 					,{ field: 'labelIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('标签'), templet: function (d) { return templet('labelIds' ,fox.joinLabel(d.labelList,"label",',','','labelIds'),d);}}
-					,{ field: 'dataLocIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('数据存放'), templet: function (d) { return templet('dataLocIds' ,fox.joinLabel(d.dataLocData,"label",',','','dataLocIds'),d);}}
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -157,10 +154,8 @@ function ListPage() {
 		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		value.backupStatus={ inputType:"radio_box", value: getSelectedValue("#backupStatus","value"), label:getSelectedValue("#backupStatus","nameStr") };
 		value.deployMode={ inputType:"select_box", value: getSelectedValue("#deployMode","value") ,fillBy:["deployModeDict"]  , label:getSelectedValue("#deployMode","nameStr") };
-		value.dataLoc={ inputType:"button",value: $("#dataLoc").val()};
 		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.createTime={ inputType:"date_input", begin: $("#createTime-begin").val(), end: $("#createTime-end").val() ,matchType:"auto" };
-		value.dbTypeIds={ inputType:"select_box", value: getSelectedValue("#dbTypeIds","value") ,fillBy:["dbTypeList"]  , label:getSelectedValue("#dbTypeIds","nameStr") };
 		value.labelIds={ inputType:"select_box", value: getSelectedValue("#labelIds","value") ,fillBy:["labelList"]  , label:getSelectedValue("#labelIds","nameStr") };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
@@ -293,29 +288,6 @@ function ListPage() {
 				},1);
 			}
 		});
-		//渲染 dbTypeIds 下拉字段
-		fox.renderSelectBox({
-			el: "dbTypeIds",
-			radio: true,
-			size: "small",
-			filterable: false,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("dbTypeIds",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					opts.push({data:data[i],name:data[i].name,value:data[i].id});
-				}
-				return opts;
-			}
-		});
 		//渲染 labelIds 下拉字段
 		fox.renderSelectBox({
 			el: "labelIds",
@@ -391,9 +363,6 @@ function ListPage() {
 					break;
 				case 'batch-del':
 					batchDelete(selected);
-					break;
-				case 'tool-db-search':
-					window.pageExt.list.dbSearch && window.pageExt.list.dbSearch(selected,obj);
 					break;
 				case 'refresh-data':
 					refreshTableData();
@@ -505,27 +474,11 @@ function ListPage() {
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
 			}
-			else if(obj.event === 'ops-more'){
-				//更多下拉菜单
-				var  items = [{"perm":"ops_db_info:backup","id":"backup","title":"备份记录"},{"perm":"ops_db_info:box","id":"box","title":"密文箱"},{"perm":"ops_db_info:boxhistory","id":"boxhistory","title":"密文历史"}];
-				items=items.filter(function (item,i,arr){
-					if(!item.perm) return true;
-					else return admin.checkAuth(item.perm);
-				});
-				dropdown.render({
-					elem: this
-					,show: true //外部事件触发即显示
-					,data: items
-					,click: function(menu, othis){
-						if(menu.perm && !admin.checkAuth(menu.perm)) {
-							top.layer.msg(fox.translate('缺少操作权限','','cmp:table'), {icon: 2, time: 1500});
-							return;
-						}
-						window.pageExt.list.moreAction && window.pageExt.list.moreAction(menu,data, othis);
-					}
-					,align: 'right'
-					,style: 'box-shadow: 1px 1px 10px rgb(0 0 0 / 12%);'
-				});
+			else if (layEvent === 'open-backup-window') { // 备份记录
+				window.pageExt.list.openBackupWindow(data,this);
+			}
+			else if (layEvent === 'box-window') { // 密文箱
+				window.pageExt.list.boxWindow(data,this);
 			}
 			
 		});

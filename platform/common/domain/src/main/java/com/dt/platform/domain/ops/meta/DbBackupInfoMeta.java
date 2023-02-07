@@ -13,8 +13,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-31 22:15:26
- * @sign 2837A8E8E5F4E2BEF8925213308DAB89
+ * @since 2022-09-13 20:38:56
+ * @sign 3B9D39BE6BFC255D0389F62AE85A4F86
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -39,16 +39,6 @@ public class DbBackupInfoMeta {
 	 * 数据库 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.DbBackupInfo,java.lang.String> DATABASE_ID_PROP = new BeanProperty(com.dt.platform.domain.ops.DbBackupInfo.class ,DATABASE_ID, java.lang.String.class, "数据库", "数据库", java.lang.String.class, null);
-	
-	/**
-	 * UID , 类型: java.lang.String
-	*/
-	public static final String UID="uid";
-	
-	/**
-	 * UID , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbBackupInfo,java.lang.String> UID_PROP = new BeanProperty(com.dt.platform.domain.ops.DbBackupInfo.class ,UID, java.lang.String.class, "UID", "UID", java.lang.String.class, null);
 	
 	/**
 	 * 名称 , 类型: java.lang.String
@@ -303,7 +293,7 @@ public class DbBackupInfoMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , DATABASE_ID , UID , NAME , STATUS , BACKUP_STRATEGY , BACKUP_TYPE , BACKUP_METHOD , BACKUP_DATAKEEP , BACKUP_RESULT , BACKUP_SOURCE , BACKUP_SIZE , BACKUP_TIME , BACKUP_RESULT_CT , STORAGE , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , HOST , DB , DB_TYPE };
+	public static final String[] $PROPS={ ID , DATABASE_ID , NAME , STATUS , BACKUP_STRATEGY , BACKUP_TYPE , BACKUP_METHOD , BACKUP_DATAKEEP , BACKUP_RESULT , BACKUP_SOURCE , BACKUP_SIZE , BACKUP_TIME , BACKUP_RESULT_CT , STORAGE , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , HOST , DB , DB_TYPE };
 	
 	/**
 	 * 代理类
@@ -332,17 +322,6 @@ public class DbBackupInfoMeta {
 		public DbBackupInfo setDatabaseId(String databaseId) {
 			super.change(DATABASE_ID,super.getDatabaseId(),databaseId);
 			super.setDatabaseId(databaseId);
-			return this;
-		}
-		
-		/**
-		 * 设置 UID
-		 * @param uid UID
-		 * @return 当前对象
-		*/
-		public DbBackupInfo setUid(String uid) {
-			super.change(UID,super.getUid(),uid);
-			super.setUid(uid);
 			return this;
 		}
 		
@@ -637,25 +616,24 @@ public class DbBackupInfoMeta {
 		public DbBackupInfo duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setNotes(this.getNotes());
+			inst.setUpdateTime(this.getUpdateTime());
 			inst.setStorage(this.getStorage());
 			inst.setSelectedCode(this.getSelectedCode());
+			inst.setVersion(this.getVersion());
 			inst.setBackupDatakeep(this.getBackupDatakeep());
 			inst.setBackupType(this.getBackupType());
-			inst.setUid(this.getUid());
-			inst.setBackupStrategy(this.getBackupStrategy());
-			inst.setUpdateBy(this.getUpdateBy());
-			inst.setId(this.getId());
-			inst.setDatabaseId(this.getDatabaseId());
-			inst.setUpdateTime(this.getUpdateTime());
-			inst.setVersion(this.getVersion());
 			inst.setBackupSize(this.getBackupSize());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
+			inst.setBackupStrategy(this.getBackupStrategy());
 			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
 			inst.setName(this.getName());
 			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
 			inst.setBackupMethod(this.getBackupMethod());
+			inst.setDatabaseId(this.getDatabaseId());
 			inst.setBackupTime(this.getBackupTime());
 			inst.setBackupResultCt(this.getBackupResultCt());
 			inst.setStatus(this.getStatus());

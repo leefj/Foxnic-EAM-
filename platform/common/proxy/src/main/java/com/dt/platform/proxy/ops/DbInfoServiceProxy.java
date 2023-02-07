@@ -85,11 +85,6 @@ public interface DbInfoServiceProxy {
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
     /**
-     * 分页查询数据库
-     */
-    public static final String PUBLIC_QUERY_PAGED_LIST = API_PREFIX + "public-query-paged-list";
-
-    /**
      * 添加数据库
      */
     @RequestMapping(DbInfoServiceProxy.INSERT)

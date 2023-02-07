@@ -10,16 +10,14 @@ import com.dt.platform.domain.ops.DbBackupInfo;
 import com.dt.platform.domain.ops.Host;
 import com.dt.platform.domain.ops.ServiceInfo;
 import org.github.foxnic.web.domain.system.DictItem;
-import com.dt.platform.domain.ops.CiphertextBoxData;
-import com.dt.platform.domain.ops.ServiceCategory;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-19 19:44:18
- * @sign 62DFC6503B8B14397E15FD04C9DAC032
+ * @since 2022-11-29 22:07:25
+ * @sign 34945B314FDD9C5B5C62D17AD6EFC0FD
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -104,26 +102,6 @@ public class DbInfoVOMeta extends DbInfoMeta {
 	 * 排序方式 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
-	
-	/**
-	 * 数据来源 , 前端指定不同的来源，后端按来源执行不同的逻辑 , 类型: java.lang.String
-	*/
-	public static final String DATA_ORIGIN="dataOrigin";
-	
-	/**
-	 * 数据来源 , 前端指定不同的来源，后端按来源执行不同的逻辑 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端按来源执行不同的逻辑", java.lang.String.class, null);
-	
-	/**
-	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
-	*/
-	public static final String QUERY_LOGIC="queryLogic";
-	
-	/**
-	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
 	
 	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
@@ -276,16 +254,6 @@ public class DbInfoVOMeta extends DbInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> USER_USE_INFO_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,USER_USE_INFO, java.lang.String.class, "使用情况", "使用情况", java.lang.String.class, null);
 	
 	/**
-	 * 用户备注 , 类型: java.lang.String
-	*/
-	public static final String USER_INFO="userInfo";
-	
-	/**
-	 * 用户备注 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> USER_INFO_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,USER_INFO, java.lang.String.class, "用户备注", "用户备注", java.lang.String.class, null);
-	
-	/**
 	 * 凭证信息 , 类型: java.lang.String
 	*/
 	public static final String VOUCHER_STR="voucherStr";
@@ -304,16 +272,6 @@ public class DbInfoVOMeta extends DbInfoMeta {
 	 * 服务端口 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> DB_PORT_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,DB_PORT, java.lang.String.class, "服务端口", "服务端口", java.lang.String.class, null);
-	
-	/**
-	 * 数据存放 , 类型: java.lang.String
-	*/
-	public static final String DATA_LOC="dataLoc";
-	
-	/**
-	 * 数据存放 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> DATA_LOC_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,DATA_LOC, java.lang.String.class, "数据存放", "数据存放", java.lang.String.class, null);
 	
 	/**
 	 * 本地备份策略 , 类型: java.lang.String
@@ -354,16 +312,6 @@ public class DbInfoVOMeta extends DbInfoMeta {
 	 * 清理策略 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> CLEAR_STRATEGY_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,CLEAR_STRATEGY, java.lang.String.class, "清理策略", "清理策略", java.lang.String.class, null);
-	
-	/**
-	 * 备份备注 , 类型: java.lang.String
-	*/
-	public static final String BACKUP_INFO="backupInfo";
-	
-	/**
-	 * 备份备注 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> BACKUP_INFO_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,BACKUP_INFO, java.lang.String.class, "备份备注", "备份备注", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -536,59 +484,9 @@ public class DbInfoVOMeta extends DbInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> LABEL_IDS_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,LABEL_IDS, java.util.List.class, "labelIds", "labelIds", java.lang.String.class, null);
 	
 	/**
-	 * dataLocData , 集合类型: LIST , 类型: org.github.foxnic.web.domain.system.DictItem
-	*/
-	public static final String DATA_LOC_DATA="dataLocData";
-	
-	/**
-	 * dataLocData , 集合类型: LIST , 类型: org.github.foxnic.web.domain.system.DictItem
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,org.github.foxnic.web.domain.system.DictItem> DATA_LOC_DATA_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,DATA_LOC_DATA, java.util.List.class, "dataLocData", "dataLocData", org.github.foxnic.web.domain.system.DictItem.class, null);
-	
-	/**
-	 * dataLocIds , 集合类型: LIST , 类型: java.lang.String
-	*/
-	public static final String DATA_LOC_IDS="dataLocIds";
-	
-	/**
-	 * dataLocIds , 集合类型: LIST , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> DATA_LOC_IDS_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,DATA_LOC_IDS, java.util.List.class, "dataLocIds", "dataLocIds", java.lang.String.class, null);
-	
-	/**
-	 * ciphertextBoxData , 类型: com.dt.platform.domain.ops.CiphertextBoxData
-	*/
-	public static final String CIPHERTEXT_BOX_DATA="ciphertextBoxData";
-	
-	/**
-	 * ciphertextBoxData , 类型: com.dt.platform.domain.ops.CiphertextBoxData
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,com.dt.platform.domain.ops.CiphertextBoxData> CIPHERTEXT_BOX_DATA_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,CIPHERTEXT_BOX_DATA, com.dt.platform.domain.ops.CiphertextBoxData.class, "ciphertextBoxData", "ciphertextBoxData", com.dt.platform.domain.ops.CiphertextBoxData.class, null);
-	
-	/**
-	 * dbTypeList , 集合类型: LIST , 类型: com.dt.platform.domain.ops.ServiceCategory
-	*/
-	public static final String DB_TYPE_LIST="dbTypeList";
-	
-	/**
-	 * dbTypeList , 集合类型: LIST , 类型: com.dt.platform.domain.ops.ServiceCategory
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,com.dt.platform.domain.ops.ServiceCategory> DB_TYPE_LIST_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,DB_TYPE_LIST, java.util.List.class, "dbTypeList", "dbTypeList", com.dt.platform.domain.ops.ServiceCategory.class, null);
-	
-	/**
-	 * dbTypeIds , 集合类型: LIST , 类型: java.lang.String
-	*/
-	public static final String DB_TYPE_IDS="dbTypeIds";
-	
-	/**
-	 * dbTypeIds , 集合类型: LIST , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> DB_TYPE_IDS_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,DB_TYPE_IDS, java.util.List.class, "dbTypeIds", "dbTypeIds", java.lang.String.class, null);
-	
-	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , IDS , ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OPS_USER_LIST , OTHER_USER_LIST , USER_USE_INFO , USER_INFO , VOUCHER_STR , DB_PORT , DATA_LOC , BACKUP_STRATEGY , TOOL_STRATEGY , DISASTER_RECOVERY_STRATEGY , CLEAR_STRATEGY , BACKUP_INFO , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , BACKUP_INFO_LIST , BACKUP_INFO_IDS , HOST , TYPE , DEPLOY_MODE_DICT , LABEL_LIST , LABEL_IDS , DATA_LOC_DATA , DATA_LOC_IDS , CIPHERTEXT_BOX_DATA , DB_TYPE_LIST , DB_TYPE_IDS };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OPS_USER_LIST , OTHER_USER_LIST , USER_USE_INFO , VOUCHER_STR , DB_PORT , BACKUP_STRATEGY , TOOL_STRATEGY , DISASTER_RECOVERY_STRATEGY , CLEAR_STRATEGY , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , BACKUP_INFO_LIST , BACKUP_INFO_IDS , HOST , TYPE , DEPLOY_MODE_DICT , LABEL_LIST , LABEL_IDS };
 	
 	/**
 	 * 代理类
@@ -683,28 +581,6 @@ public class DbInfoVOMeta extends DbInfoMeta {
 		public DbInfoVO setSortType(String sortType) {
 			super.change(SORT_TYPE,super.getSortType(),sortType);
 			super.setSortType(sortType);
-			return this;
-		}
-		
-		/**
-		 * 设置 数据来源
-		 * @param dataOrigin 数据来源
-		 * @return 当前对象
-		*/
-		public DbInfoVO setDataOrigin(String dataOrigin) {
-			super.change(DATA_ORIGIN,super.getDataOrigin(),dataOrigin);
-			super.setDataOrigin(dataOrigin);
-			return this;
-		}
-		
-		/**
-		 * 设置 查询逻辑
-		 * @param queryLogic 查询逻辑
-		 * @return 当前对象
-		*/
-		public DbInfoVO setQueryLogic(String queryLogic) {
-			super.change(QUERY_LOGIC,super.getQueryLogic(),queryLogic);
-			super.setQueryLogic(queryLogic);
 			return this;
 		}
 		
@@ -874,17 +750,6 @@ public class DbInfoVOMeta extends DbInfoMeta {
 		}
 		
 		/**
-		 * 设置 用户备注
-		 * @param userInfo 用户备注
-		 * @return 当前对象
-		*/
-		public DbInfo setUserInfo(String userInfo) {
-			super.change(USER_INFO,super.getUserInfo(),userInfo);
-			super.setUserInfo(userInfo);
-			return this;
-		}
-		
-		/**
 		 * 设置 凭证信息
 		 * @param voucherStr 凭证信息
 		 * @return 当前对象
@@ -903,17 +768,6 @@ public class DbInfoVOMeta extends DbInfoMeta {
 		public DbInfo setDbPort(String dbPort) {
 			super.change(DB_PORT,super.getDbPort(),dbPort);
 			super.setDbPort(dbPort);
-			return this;
-		}
-		
-		/**
-		 * 设置 数据存放
-		 * @param dataLoc 数据存放
-		 * @return 当前对象
-		*/
-		public DbInfo setDataLoc(String dataLoc) {
-			super.change(DATA_LOC,super.getDataLoc(),dataLoc);
-			super.setDataLoc(dataLoc);
 			return this;
 		}
 		
@@ -958,17 +812,6 @@ public class DbInfoVOMeta extends DbInfoMeta {
 		public DbInfo setClearStrategy(String clearStrategy) {
 			super.change(CLEAR_STRATEGY,super.getClearStrategy(),clearStrategy);
 			super.setClearStrategy(clearStrategy);
-			return this;
-		}
-		
-		/**
-		 * 设置 备份备注
-		 * @param backupInfo 备份备注
-		 * @return 当前对象
-		*/
-		public DbInfo setBackupInfo(String backupInfo) {
-			super.change(BACKUP_INFO,super.getBackupInfo(),backupInfo);
-			super.setBackupInfo(backupInfo);
 			return this;
 		}
 		
@@ -1158,61 +1001,6 @@ public class DbInfoVOMeta extends DbInfoMeta {
 			super.setLabelIds(labelIds);
 			return this;
 		}
-		
-		/**
-		 * 设置 dataLocData
-		 * @param dataLocData dataLocData
-		 * @return 当前对象
-		*/
-		public DbInfo setDataLocData(List<DictItem> dataLocData) {
-			super.change(DATA_LOC_DATA,super.getDataLocData(),dataLocData);
-			super.setDataLocData(dataLocData);
-			return this;
-		}
-		
-		/**
-		 * 设置 dataLocIds
-		 * @param dataLocIds dataLocIds
-		 * @return 当前对象
-		*/
-		public DbInfo setDataLocIds(List<String> dataLocIds) {
-			super.change(DATA_LOC_IDS,super.getDataLocIds(),dataLocIds);
-			super.setDataLocIds(dataLocIds);
-			return this;
-		}
-		
-		/**
-		 * 设置 ciphertextBoxData
-		 * @param ciphertextBoxData ciphertextBoxData
-		 * @return 当前对象
-		*/
-		public DbInfo setCiphertextBoxData(CiphertextBoxData ciphertextBoxData) {
-			super.change(CIPHERTEXT_BOX_DATA,super.getCiphertextBoxData(),ciphertextBoxData);
-			super.setCiphertextBoxData(ciphertextBoxData);
-			return this;
-		}
-		
-		/**
-		 * 设置 dbTypeList
-		 * @param dbTypeList dbTypeList
-		 * @return 当前对象
-		*/
-		public DbInfo setDbTypeList(List<ServiceCategory> dbTypeList) {
-			super.change(DB_TYPE_LIST,super.getDbTypeList(),dbTypeList);
-			super.setDbTypeList(dbTypeList);
-			return this;
-		}
-		
-		/**
-		 * 设置 dbTypeIds
-		 * @param dbTypeIds dbTypeIds
-		 * @return 当前对象
-		*/
-		public DbInfo setDbTypeIds(List<String> dbTypeIds) {
-			super.change(DB_TYPE_IDS,super.getDbTypeIds(),dbTypeIds);
-			super.setDbTypeIds(dbTypeIds);
-			return this;
-		}
 
 		/**
 		 * 克隆当前对象
@@ -1229,7 +1017,6 @@ public class DbInfoVOMeta extends DbInfoMeta {
 		@Transient
 		public DbInfoVO duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
-			inst.setUserInfo(this.getUserInfo());
 			inst.setNotes(this.getNotes());
 			inst.setLogMethod(this.getLogMethod());
 			inst.setSelectedCode(this.getSelectedCode());
@@ -1239,7 +1026,6 @@ public class DbInfoVOMeta extends DbInfoMeta {
 			inst.setVoucherStr(this.getVoucherStr());
 			inst.setId(this.getId());
 			inst.setAdminUserList(this.getAdminUserList());
-			inst.setBackupInfo(this.getBackupInfo());
 			inst.setUserUseInfo(this.getUserUseInfo());
 			inst.setDisasterRecoveryStrategy(this.getDisasterRecoveryStrategy());
 			inst.setToolStrategy(this.getToolStrategy());
@@ -1254,7 +1040,6 @@ public class DbInfoVOMeta extends DbInfoMeta {
 			inst.setClearStrategy(this.getClearStrategy());
 			inst.setDbPort(this.getDbPort());
 			inst.setCreateBy(this.getCreateBy());
-			inst.setDataLoc(this.getDataLoc());
 			inst.setDeleted(this.getDeleted());
 			inst.setCreateTime(this.getCreateTime());
 			inst.setDeleteTime(this.getDeleteTime());
@@ -1268,24 +1053,17 @@ public class DbInfoVOMeta extends DbInfoMeta {
 				inst.setBackupInfoList(this.getBackupInfoList());
 				inst.setPageSize(this.getPageSize());
 				inst.setType(this.getType());
-				inst.setDbTypeIds(this.getDbTypeIds());
 				inst.setLabelList(this.getLabelList());
 				inst.setLabelIds(this.getLabelIds());
-				inst.setDataLocData(this.getDataLocData());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
 				inst.setHost(this.getHost());
-				inst.setDataOrigin(this.getDataOrigin());
 				inst.setIds(this.getIds());
-				inst.setQueryLogic(this.getQueryLogic());
 				inst.setBackupInfoIds(this.getBackupInfoIds());
 				inst.setDeployModeDict(this.getDeployModeDict());
 				inst.setSearchValue(this.getSearchValue());
-				inst.setDataLocIds(this.getDataLocIds());
-				inst.setCiphertextBoxData(this.getCiphertextBoxData());
-				inst.setDbTypeList(this.getDbTypeList());
 			}
 			inst.clearModifies();
 			return inst;

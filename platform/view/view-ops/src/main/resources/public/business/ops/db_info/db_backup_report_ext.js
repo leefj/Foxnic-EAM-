@@ -8,15 +8,13 @@ layui.config({
 	dir: layuiPath,
 	base: '/module/'
 }).extend({
-	echarts: 'echarts/echarts',
-	xmSelect: 'xm-select/xm-select',
-	foxnicUpload: 'upload/foxnic-upload'
+	echarts: 'echarts/echarts'
 })
 //
 layui.define(['echarts', 'util', 'settings', 'admin'],function () {
 
 	var admin = layui.admin,settings = layui.settings,upload = layui.upload,laydate= layui.laydate,dropdown=layui.dropdown;
-	echarts=layui.echarts, table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,foxup=layui.foxnicUpload;
+	echarts=layui.echarts, table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload;
 
 
 	//列表页的扩展

@@ -1,7 +1,6 @@
 package com.dt.platform.domain.ops;
 
 import com.github.foxnic.dao.entity.Entity;
-import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.OpsTables.OPS_INFORMATION_SYSTEM;
@@ -9,32 +8,26 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
-import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.system.DictItem;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
-import com.dt.platform.domain.ops.meta.InformationSystemMeta;
-import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 信息系统
- * <p>信息系统 , 数据表 ops_information_system 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-02-03 16:00:36
+ * @since 2022-09-02 07:36:05
  * @sign 2CDDB9AB8C1C930E074CD97490FD7AB1
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "ops_information_system")
-@ApiModel(description = "信息系统 ; 信息系统 , 数据表 ops_information_system 的PO类型")
 public class InformationSystem extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -45,7 +38,7 @@ public class InformationSystem extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "599359261440475136")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键")
 	private String id;
 	
 	/**
@@ -57,7 +50,7 @@ public class InformationSystem extends Entity {
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "测试")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称")
 	private String name;
 	
 	/**
@@ -69,7 +62,7 @@ public class InformationSystem extends Entity {
 	/**
 	 * 当前状态：当前状态
 	*/
-	@ApiModelProperty(required = false,value="当前状态" , notes = "当前状态" , example = "offline")
+	@ApiModelProperty(required = false,value="当前状态" , notes = "当前状态")
 	private String status;
 	
 	/**
@@ -117,7 +110,7 @@ public class InformationSystem extends Entity {
 	/**
 	 * 上线时间：上线时间
 	*/
-	@ApiModelProperty(required = false,value="上线时间" , notes = "上线时间" , example = "2022-07-12 12:00:00")
+	@ApiModelProperty(required = false,value="上线时间" , notes = "上线时间")
 	private Date onlineDate;
 	
 	/**
@@ -207,13 +200,13 @@ public class InformationSystem extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-07-12 09:59:43")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
 	private Date createTime;
 	
 	/**
@@ -231,10 +224,9 @@ public class InformationSystem extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "1")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
 	@Transient
-	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -252,13 +244,13 @@ public class InformationSystem extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
+	@ApiModelProperty(required = true,value="version" , notes = "version")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户")
 	private String tenantId;
 	
 	/**
@@ -919,7 +911,6 @@ public class InformationSystem extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
-	@JsonProperty("deleted")
 	public InformationSystem setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -1207,63 +1198,7 @@ public class InformationSystem extends Entity {
 	*/
 	@Transient
 	public InformationSystem clone() {
-		return duplicate(true);
-	}
-
-	/**
-	 * 复制当前对象
-	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
-	*/
-	@Transient
-	public InformationSystem duplicate(boolean all) {
-		com.dt.platform.domain.ops.meta.InformationSystemMeta.$$proxy$$ inst = new com.dt.platform.domain.ops.meta.InformationSystemMeta.$$proxy$$();
-		inst.setSameplaceBacupInfo(this.getSameplaceBacupInfo());
-		inst.setArchMethod(this.getArchMethod());
-		inst.setNotes(this.getNotes());
-		inst.setAppInfo(this.getAppInfo());
-		inst.setPid(this.getPid());
-		inst.setDevMethod(this.getDevMethod());
-		inst.setTechnicalContact(this.getTechnicalContact());
-		inst.setOsInfo(this.getOsInfo());
-		inst.setHardwareInfo(this.getHardwareInfo());
-		inst.setUpdateBy(this.getUpdateBy());
-		inst.setId(this.getId());
-		inst.setBackupInfo(this.getBackupInfo());
-		inst.setDbInfo(this.getDbInfo());
-		inst.setDiffplaceBackupInfo(this.getDiffplaceBackupInfo());
-		inst.setAddress(this.getAddress());
-		inst.setBelongOrgId(this.getBelongOrgId());
-		inst.setProfile(this.getProfile());
-		inst.setBusinessContact(this.getBusinessContact());
-		inst.setUpdateTime(this.getUpdateTime());
-		inst.setRto(this.getRto());
-		inst.setVersion(this.getVersion());
-		inst.setLabels(this.getLabels());
-		inst.setOnlineDate(this.getOnlineDate());
-		inst.setRpo(this.getRpo());
-		inst.setCreateBy(this.getCreateBy());
-		inst.setOfflineDate(this.getOfflineDate());
-		inst.setDeleted(this.getDeleted());
-		inst.setOpsMethod(this.getOpsMethod());
-		inst.setLastdrillDate(this.getLastdrillDate());
-		inst.setCreateTime(this.getCreateTime());
-		inst.setDeleteTime(this.getDeleteTime());
-		inst.setGrade(this.getGrade());
-		inst.setName(this.getName());
-		inst.setTenantId(this.getTenantId());
-		inst.setDeleteBy(this.getDeleteBy());
-		inst.setStatus(this.getStatus());
-		if(all) {
-			inst.setInfoSystemStatus(this.getInfoSystemStatus());
-			inst.setVoucherList(this.getVoucherList());
-			inst.setInfoSystemDevMethod(this.getInfoSystemDevMethod());
-			inst.setInfoSystemGrade(this.getInfoSystemGrade());
-			inst.setBelongOrganization(this.getBelongOrganization());
-			inst.setInfoSystemOpsMethod(this.getInfoSystemOpsMethod());
-			inst.setVoucherIds(this.getVoucherIds());
-		}
-		inst.clearModifies();
-		return inst;
+		return EntityContext.clone(InformationSystem.class,this);
 	}
 
 	/**
@@ -1282,9 +1217,7 @@ public class InformationSystem extends Entity {
 	@Transient
 	public static InformationSystem createFrom(Map<String,Object> informationSystemMap) {
 		if(informationSystemMap==null) return null;
-		InformationSystem po = create();
-		EntityContext.copyProperties(po,informationSystemMap);
-		po.clearModifies();
+		InformationSystem po = EntityContext.create(InformationSystem.class, informationSystemMap);
 		return po;
 	}
 
@@ -1296,9 +1229,7 @@ public class InformationSystem extends Entity {
 	@Transient
 	public static InformationSystem createFrom(Object pojo) {
 		if(pojo==null) return null;
-		InformationSystem po = create();
-		EntityContext.copyProperties(po,pojo);
-		po.clearModifies();
+		InformationSystem po = EntityContext.create(InformationSystem.class,pojo);
 		return po;
 	}
 
@@ -1308,200 +1239,6 @@ public class InformationSystem extends Entity {
 	*/
 	@Transient
 	public static InformationSystem create() {
-		return new com.dt.platform.domain.ops.meta.InformationSystemMeta.$$proxy$$();
-	}
-
-	/**
-	 * 从 Map 读取
-	 * @param map 记录数据
-	 * @param cast 是否用 DataParser 进行类型转换
-	 * @return  是否读取成功
-	*/
-	public boolean read(Map<String, Object> map,boolean cast) {
-		if(map==null) return false;
-		if(cast) {
-			this.setSameplaceBacupInfo(DataParser.parse(String.class, map.get(InformationSystemMeta.SAMEPLACE_BACUP_INFO)));
-			this.setArchMethod(DataParser.parse(String.class, map.get(InformationSystemMeta.ARCH_METHOD)));
-			this.setNotes(DataParser.parse(String.class, map.get(InformationSystemMeta.NOTES)));
-			this.setAppInfo(DataParser.parse(String.class, map.get(InformationSystemMeta.APP_INFO)));
-			this.setPid(DataParser.parse(String.class, map.get(InformationSystemMeta.PID)));
-			this.setDevMethod(DataParser.parse(String.class, map.get(InformationSystemMeta.DEV_METHOD)));
-			this.setTechnicalContact(DataParser.parse(String.class, map.get(InformationSystemMeta.TECHNICAL_CONTACT)));
-			this.setOsInfo(DataParser.parse(String.class, map.get(InformationSystemMeta.OS_INFO)));
-			this.setHardwareInfo(DataParser.parse(String.class, map.get(InformationSystemMeta.HARDWARE_INFO)));
-			this.setUpdateBy(DataParser.parse(String.class, map.get(InformationSystemMeta.UPDATE_BY)));
-			this.setId(DataParser.parse(String.class, map.get(InformationSystemMeta.ID)));
-			this.setBackupInfo(DataParser.parse(String.class, map.get(InformationSystemMeta.BACKUP_INFO)));
-			this.setDbInfo(DataParser.parse(String.class, map.get(InformationSystemMeta.DB_INFO)));
-			this.setDiffplaceBackupInfo(DataParser.parse(String.class, map.get(InformationSystemMeta.DIFFPLACE_BACKUP_INFO)));
-			this.setAddress(DataParser.parse(String.class, map.get(InformationSystemMeta.ADDRESS)));
-			this.setBelongOrgId(DataParser.parse(String.class, map.get(InformationSystemMeta.BELONG_ORG_ID)));
-			this.setProfile(DataParser.parse(String.class, map.get(InformationSystemMeta.PROFILE)));
-			this.setBusinessContact(DataParser.parse(String.class, map.get(InformationSystemMeta.BUSINESS_CONTACT)));
-			this.setUpdateTime(DataParser.parse(Date.class, map.get(InformationSystemMeta.UPDATE_TIME)));
-			this.setRto(DataParser.parse(String.class, map.get(InformationSystemMeta.RTO)));
-			this.setVersion(DataParser.parse(Integer.class, map.get(InformationSystemMeta.VERSION)));
-			this.setLabels(DataParser.parse(String.class, map.get(InformationSystemMeta.LABELS)));
-			this.setOnlineDate(DataParser.parse(Date.class, map.get(InformationSystemMeta.ONLINE_DATE)));
-			this.setRpo(DataParser.parse(String.class, map.get(InformationSystemMeta.RPO)));
-			this.setCreateBy(DataParser.parse(String.class, map.get(InformationSystemMeta.CREATE_BY)));
-			this.setOfflineDate(DataParser.parse(Date.class, map.get(InformationSystemMeta.OFFLINE_DATE)));
-			this.setDeleted(DataParser.parse(Integer.class, map.get(InformationSystemMeta.DELETED)));
-			this.setOpsMethod(DataParser.parse(String.class, map.get(InformationSystemMeta.OPS_METHOD)));
-			this.setLastdrillDate(DataParser.parse(Date.class, map.get(InformationSystemMeta.LASTDRILL_DATE)));
-			this.setCreateTime(DataParser.parse(Date.class, map.get(InformationSystemMeta.CREATE_TIME)));
-			this.setDeleteTime(DataParser.parse(Date.class, map.get(InformationSystemMeta.DELETE_TIME)));
-			this.setGrade(DataParser.parse(String.class, map.get(InformationSystemMeta.GRADE)));
-			this.setName(DataParser.parse(String.class, map.get(InformationSystemMeta.NAME)));
-			this.setTenantId(DataParser.parse(String.class, map.get(InformationSystemMeta.TENANT_ID)));
-			this.setDeleteBy(DataParser.parse(String.class, map.get(InformationSystemMeta.DELETE_BY)));
-			this.setStatus(DataParser.parse(String.class, map.get(InformationSystemMeta.STATUS)));
-			// others
-			this.setInfoSystemStatus(DataParser.parse(DictItem.class, map.get(InformationSystemMeta.INFO_SYSTEM_STATUS)));
-			this.setInfoSystemDevMethod(DataParser.parse(DictItem.class, map.get(InformationSystemMeta.INFO_SYSTEM_DEV_METHOD)));
-			this.setInfoSystemGrade(DataParser.parse(DictItem.class, map.get(InformationSystemMeta.INFO_SYSTEM_GRADE)));
-			this.setBelongOrganization(DataParser.parse(Organization.class, map.get(InformationSystemMeta.BELONG_ORGANIZATION)));
-			this.setInfoSystemOpsMethod(DataParser.parse(DictItem.class, map.get(InformationSystemMeta.INFO_SYSTEM_OPS_METHOD)));
-			return true;
-		} else {
-			try {
-				this.setSameplaceBacupInfo( (String)map.get(InformationSystemMeta.SAMEPLACE_BACUP_INFO));
-				this.setArchMethod( (String)map.get(InformationSystemMeta.ARCH_METHOD));
-				this.setNotes( (String)map.get(InformationSystemMeta.NOTES));
-				this.setAppInfo( (String)map.get(InformationSystemMeta.APP_INFO));
-				this.setPid( (String)map.get(InformationSystemMeta.PID));
-				this.setDevMethod( (String)map.get(InformationSystemMeta.DEV_METHOD));
-				this.setTechnicalContact( (String)map.get(InformationSystemMeta.TECHNICAL_CONTACT));
-				this.setOsInfo( (String)map.get(InformationSystemMeta.OS_INFO));
-				this.setHardwareInfo( (String)map.get(InformationSystemMeta.HARDWARE_INFO));
-				this.setUpdateBy( (String)map.get(InformationSystemMeta.UPDATE_BY));
-				this.setId( (String)map.get(InformationSystemMeta.ID));
-				this.setBackupInfo( (String)map.get(InformationSystemMeta.BACKUP_INFO));
-				this.setDbInfo( (String)map.get(InformationSystemMeta.DB_INFO));
-				this.setDiffplaceBackupInfo( (String)map.get(InformationSystemMeta.DIFFPLACE_BACKUP_INFO));
-				this.setAddress( (String)map.get(InformationSystemMeta.ADDRESS));
-				this.setBelongOrgId( (String)map.get(InformationSystemMeta.BELONG_ORG_ID));
-				this.setProfile( (String)map.get(InformationSystemMeta.PROFILE));
-				this.setBusinessContact( (String)map.get(InformationSystemMeta.BUSINESS_CONTACT));
-				this.setUpdateTime( (Date)map.get(InformationSystemMeta.UPDATE_TIME));
-				this.setRto( (String)map.get(InformationSystemMeta.RTO));
-				this.setVersion( (Integer)map.get(InformationSystemMeta.VERSION));
-				this.setLabels( (String)map.get(InformationSystemMeta.LABELS));
-				this.setOnlineDate( (Date)map.get(InformationSystemMeta.ONLINE_DATE));
-				this.setRpo( (String)map.get(InformationSystemMeta.RPO));
-				this.setCreateBy( (String)map.get(InformationSystemMeta.CREATE_BY));
-				this.setOfflineDate( (Date)map.get(InformationSystemMeta.OFFLINE_DATE));
-				this.setDeleted( (Integer)map.get(InformationSystemMeta.DELETED));
-				this.setOpsMethod( (String)map.get(InformationSystemMeta.OPS_METHOD));
-				this.setLastdrillDate( (Date)map.get(InformationSystemMeta.LASTDRILL_DATE));
-				this.setCreateTime( (Date)map.get(InformationSystemMeta.CREATE_TIME));
-				this.setDeleteTime( (Date)map.get(InformationSystemMeta.DELETE_TIME));
-				this.setGrade( (String)map.get(InformationSystemMeta.GRADE));
-				this.setName( (String)map.get(InformationSystemMeta.NAME));
-				this.setTenantId( (String)map.get(InformationSystemMeta.TENANT_ID));
-				this.setDeleteBy( (String)map.get(InformationSystemMeta.DELETE_BY));
-				this.setStatus( (String)map.get(InformationSystemMeta.STATUS));
-				// others
-				this.setInfoSystemStatus( (DictItem)map.get(InformationSystemMeta.INFO_SYSTEM_STATUS));
-				this.setInfoSystemDevMethod( (DictItem)map.get(InformationSystemMeta.INFO_SYSTEM_DEV_METHOD));
-				this.setInfoSystemGrade( (DictItem)map.get(InformationSystemMeta.INFO_SYSTEM_GRADE));
-				this.setBelongOrganization( (Organization)map.get(InformationSystemMeta.BELONG_ORGANIZATION));
-				this.setInfoSystemOpsMethod( (DictItem)map.get(InformationSystemMeta.INFO_SYSTEM_OPS_METHOD));
-				return true;
-			} catch (Exception e) {
-				return false;
-			}
-		}
-	}
-
-	/**
-	 * 从 Map 读取
-	 * @param r 记录数据
-	 * @param cast 是否用 DataParser 进行类型转换
-	 * @return  是否读取成功
-	*/
-	public boolean read(ExprRcd r,boolean cast) {
-		if(r==null) return false;
-		if(cast) {
-			this.setSameplaceBacupInfo(DataParser.parse(String.class, r.getValue(InformationSystemMeta.SAMEPLACE_BACUP_INFO)));
-			this.setArchMethod(DataParser.parse(String.class, r.getValue(InformationSystemMeta.ARCH_METHOD)));
-			this.setNotes(DataParser.parse(String.class, r.getValue(InformationSystemMeta.NOTES)));
-			this.setAppInfo(DataParser.parse(String.class, r.getValue(InformationSystemMeta.APP_INFO)));
-			this.setPid(DataParser.parse(String.class, r.getValue(InformationSystemMeta.PID)));
-			this.setDevMethod(DataParser.parse(String.class, r.getValue(InformationSystemMeta.DEV_METHOD)));
-			this.setTechnicalContact(DataParser.parse(String.class, r.getValue(InformationSystemMeta.TECHNICAL_CONTACT)));
-			this.setOsInfo(DataParser.parse(String.class, r.getValue(InformationSystemMeta.OS_INFO)));
-			this.setHardwareInfo(DataParser.parse(String.class, r.getValue(InformationSystemMeta.HARDWARE_INFO)));
-			this.setUpdateBy(DataParser.parse(String.class, r.getValue(InformationSystemMeta.UPDATE_BY)));
-			this.setId(DataParser.parse(String.class, r.getValue(InformationSystemMeta.ID)));
-			this.setBackupInfo(DataParser.parse(String.class, r.getValue(InformationSystemMeta.BACKUP_INFO)));
-			this.setDbInfo(DataParser.parse(String.class, r.getValue(InformationSystemMeta.DB_INFO)));
-			this.setDiffplaceBackupInfo(DataParser.parse(String.class, r.getValue(InformationSystemMeta.DIFFPLACE_BACKUP_INFO)));
-			this.setAddress(DataParser.parse(String.class, r.getValue(InformationSystemMeta.ADDRESS)));
-			this.setBelongOrgId(DataParser.parse(String.class, r.getValue(InformationSystemMeta.BELONG_ORG_ID)));
-			this.setProfile(DataParser.parse(String.class, r.getValue(InformationSystemMeta.PROFILE)));
-			this.setBusinessContact(DataParser.parse(String.class, r.getValue(InformationSystemMeta.BUSINESS_CONTACT)));
-			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(InformationSystemMeta.UPDATE_TIME)));
-			this.setRto(DataParser.parse(String.class, r.getValue(InformationSystemMeta.RTO)));
-			this.setVersion(DataParser.parse(Integer.class, r.getValue(InformationSystemMeta.VERSION)));
-			this.setLabels(DataParser.parse(String.class, r.getValue(InformationSystemMeta.LABELS)));
-			this.setOnlineDate(DataParser.parse(Date.class, r.getValue(InformationSystemMeta.ONLINE_DATE)));
-			this.setRpo(DataParser.parse(String.class, r.getValue(InformationSystemMeta.RPO)));
-			this.setCreateBy(DataParser.parse(String.class, r.getValue(InformationSystemMeta.CREATE_BY)));
-			this.setOfflineDate(DataParser.parse(Date.class, r.getValue(InformationSystemMeta.OFFLINE_DATE)));
-			this.setDeleted(DataParser.parse(Integer.class, r.getValue(InformationSystemMeta.DELETED)));
-			this.setOpsMethod(DataParser.parse(String.class, r.getValue(InformationSystemMeta.OPS_METHOD)));
-			this.setLastdrillDate(DataParser.parse(Date.class, r.getValue(InformationSystemMeta.LASTDRILL_DATE)));
-			this.setCreateTime(DataParser.parse(Date.class, r.getValue(InformationSystemMeta.CREATE_TIME)));
-			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(InformationSystemMeta.DELETE_TIME)));
-			this.setGrade(DataParser.parse(String.class, r.getValue(InformationSystemMeta.GRADE)));
-			this.setName(DataParser.parse(String.class, r.getValue(InformationSystemMeta.NAME)));
-			this.setTenantId(DataParser.parse(String.class, r.getValue(InformationSystemMeta.TENANT_ID)));
-			this.setDeleteBy(DataParser.parse(String.class, r.getValue(InformationSystemMeta.DELETE_BY)));
-			this.setStatus(DataParser.parse(String.class, r.getValue(InformationSystemMeta.STATUS)));
-			return true;
-		} else {
-			try {
-				this.setSameplaceBacupInfo( (String)r.getValue(InformationSystemMeta.SAMEPLACE_BACUP_INFO));
-				this.setArchMethod( (String)r.getValue(InformationSystemMeta.ARCH_METHOD));
-				this.setNotes( (String)r.getValue(InformationSystemMeta.NOTES));
-				this.setAppInfo( (String)r.getValue(InformationSystemMeta.APP_INFO));
-				this.setPid( (String)r.getValue(InformationSystemMeta.PID));
-				this.setDevMethod( (String)r.getValue(InformationSystemMeta.DEV_METHOD));
-				this.setTechnicalContact( (String)r.getValue(InformationSystemMeta.TECHNICAL_CONTACT));
-				this.setOsInfo( (String)r.getValue(InformationSystemMeta.OS_INFO));
-				this.setHardwareInfo( (String)r.getValue(InformationSystemMeta.HARDWARE_INFO));
-				this.setUpdateBy( (String)r.getValue(InformationSystemMeta.UPDATE_BY));
-				this.setId( (String)r.getValue(InformationSystemMeta.ID));
-				this.setBackupInfo( (String)r.getValue(InformationSystemMeta.BACKUP_INFO));
-				this.setDbInfo( (String)r.getValue(InformationSystemMeta.DB_INFO));
-				this.setDiffplaceBackupInfo( (String)r.getValue(InformationSystemMeta.DIFFPLACE_BACKUP_INFO));
-				this.setAddress( (String)r.getValue(InformationSystemMeta.ADDRESS));
-				this.setBelongOrgId( (String)r.getValue(InformationSystemMeta.BELONG_ORG_ID));
-				this.setProfile( (String)r.getValue(InformationSystemMeta.PROFILE));
-				this.setBusinessContact( (String)r.getValue(InformationSystemMeta.BUSINESS_CONTACT));
-				this.setUpdateTime( (Date)r.getValue(InformationSystemMeta.UPDATE_TIME));
-				this.setRto( (String)r.getValue(InformationSystemMeta.RTO));
-				this.setVersion( (Integer)r.getValue(InformationSystemMeta.VERSION));
-				this.setLabels( (String)r.getValue(InformationSystemMeta.LABELS));
-				this.setOnlineDate( (Date)r.getValue(InformationSystemMeta.ONLINE_DATE));
-				this.setRpo( (String)r.getValue(InformationSystemMeta.RPO));
-				this.setCreateBy( (String)r.getValue(InformationSystemMeta.CREATE_BY));
-				this.setOfflineDate( (Date)r.getValue(InformationSystemMeta.OFFLINE_DATE));
-				this.setDeleted( (Integer)r.getValue(InformationSystemMeta.DELETED));
-				this.setOpsMethod( (String)r.getValue(InformationSystemMeta.OPS_METHOD));
-				this.setLastdrillDate( (Date)r.getValue(InformationSystemMeta.LASTDRILL_DATE));
-				this.setCreateTime( (Date)r.getValue(InformationSystemMeta.CREATE_TIME));
-				this.setDeleteTime( (Date)r.getValue(InformationSystemMeta.DELETE_TIME));
-				this.setGrade( (String)r.getValue(InformationSystemMeta.GRADE));
-				this.setName( (String)r.getValue(InformationSystemMeta.NAME));
-				this.setTenantId( (String)r.getValue(InformationSystemMeta.TENANT_ID));
-				this.setDeleteBy( (String)r.getValue(InformationSystemMeta.DELETE_BY));
-				this.setStatus( (String)r.getValue(InformationSystemMeta.STATUS));
-				return true;
-			} catch (Exception e) {
-				return false;
-			}
-		}
+		return EntityContext.create(InformationSystem.class);
 	}
 }

@@ -468,10 +468,8 @@ public class AssetPageController extends ViewController {
 				categoryId=catalogList.get(0).getId();
 				CatalogVO catalog2=new CatalogVO();
 				catalog2.setParentId(categoryId);
-				System.out.println("categoryId:"+categoryId);
 				catalog2.setIsLoadAllDescendants(1);
 				Result<List<ZTreeNode>> treeResult=CatalogServiceProxy.api().queryNodes(catalog2);
-				System.out.println("assetCategoryData:"+treeResult);
 				model.addAttribute("assetCategoryData",treeResult.getData());
 			}
 		}

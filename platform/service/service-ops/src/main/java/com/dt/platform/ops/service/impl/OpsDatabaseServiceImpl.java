@@ -1,7 +1,6 @@
 package com.dt.platform.ops.service.impl;
 
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.ops.OpsDbBackupResultEnum;
@@ -17,7 +16,6 @@ import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.commons.lang.StringUtil;
 import com.github.foxnic.commons.log.Logger;
 import com.github.foxnic.dao.data.Rcd;
-import com.github.foxnic.dao.data.RcdSet;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.SuperService;
@@ -87,8 +85,6 @@ public class OpsDatabaseServiceImpl extends SuperService<DbInfo> implements IOps
 	public static String DB_BACKUP_COUNT_TREND="backup_count_trend";
 	public static String DB_BACKUP_FAILED_COUNT_TREND="backup_failed_count_trend";
 	public static String DB_BACKUP_TIME_TOP="db_backup_time_top";
-	public static String DB_BACKUP_INFO_DETAIL_LIST="db_backup_info_detail_list";
-	public static String DB_BACKUP_INFO_TODAY="db_backup_info_today";
 
 
 	/*数据库类型定义数据*/
@@ -149,18 +145,6 @@ public class OpsDatabaseServiceImpl extends SuperService<DbInfo> implements IOps
 			")T1,\n" +
 			"("+dbBackupInfoSql+")T2\n" +
 			"where T1.database_id=T2.id\n";
-
-	/*数据库最近备份情况*/
-	public String dbBackupInfoDetailListSql="select * from (\n" +
-			"select a.id db_info_id,b.host_name,b.host_ip,a.name db_info_name,a.status db_status,backup_status db_backup_status \n" +
-			"from ops_db_info a,ops_host b\n" +
-			"where a.host_id=b.id and a.deleted=0 and b.deleted=0\n" +
-			"and a.status='online'\n" +
-			")aa\n" +
-			"left join(\n" +
-			"select * from ops_db_backup_record c where (db_id,create_time) in ((select db_id,max(create_time) max_backup_stime from ops_db_backup_record where backup_stime> subdate(now(),30) and deleted=0 group by db_id))\n" +
-			")cc\n" +
-			"on aa.db_info_id=cc.db_id order by backup_stime";
 
 
 	/*当前实现以dbBkId识别为主*/
@@ -310,6 +294,7 @@ public class OpsDatabaseServiceImpl extends SuperService<DbInfo> implements IOps
 				}else if(OpsDbBackupResultEnum.NOT_START.code().equals(name)){
 					name=OpsDbBackupResultEnum.NOT_START.text();
 				}
+
 				pie.put("name",name);
 				pie.put("value",data.getJSONObject(i).getInteger("cnt"));
 				pieData.add(pie);
@@ -362,51 +347,10 @@ public class OpsDatabaseServiceImpl extends SuperService<DbInfo> implements IOps
 			}
 			result.put("labelList",labelList);
 			result.put("dataList",dataList);
-		}else if(DB_BACKUP_INFO_DETAIL_LIST.equals(code)){
-			JSONArray data=queryDbBackupInfoDetailList();
-			result.put("data",data);
-		}else if(DB_BACKUP_INFO_TODAY.equals(code)){
-			JSONObject data=dbBackupInfoToday();
-			result.put("data",data);
 		}
+
 		return result;
 	}
-
-	private JSONObject dbBackupInfoToday(){
-
-		String sql="select ifnull(backup_result,'none')backup_result,count(1) cnt from (\n" +
-				"" +dbBackupInfoDetailListSql+") end where 1=1 \n" +
-				"and end.backup_stime>DATE_FORMAT(CURDATE(),'%Y-%m-%d %H:%i:%s')\n" +
-				"group by backup_result";
-		RcdSet rs=dao.query(sql);
-		JSONObject res=new JSONObject();
-		int successCnt=0;
-		int failedCnt=0;
-		int noneCnt=0;
-		String backupDataSiz="0";
-		for(int i=0;i<rs.size();i++){
-			if("success".equals(rs.getRcd(i).getString("backup_result"))){
-				successCnt=rs.getRcd(i).getInteger("cnt");
-			}else if("failed".equals(rs.getRcd(i).getString("backup_result"))){
-				failedCnt=rs.getRcd(i).getInteger("cnt");
-			}else if("none".equals(rs.getRcd(i).getString("backup_result"))){
-				noneCnt=rs.getRcd(i).getInteger("cnt");
-			}
-		}
-
-		res.put("backupSuccessCount",successCnt);
-		res.put("backupFailedCount",failedCnt);
-		res.put("backupNoneCount",noneCnt);
-		res.put("backupDataSize",backupDataSiz);
-		return res;
-	}
-
-
-	//**
-	private JSONArray queryDbBackupInfoDetailList(){
-		return dao.query(dbBackupInfoDetailListSql).toJSONArrayWithJSONObject();
-	}
-
 	private JSONObject queryDbBackupTaskSettingNoneCount(){
 		String sql=dbBackupInfoSql+ " and a.id not in (select database_id from ops_db_backup_info where deleted=0)";
 		String sql1="select count(1) cnt from ("+sql+") tab";
@@ -431,7 +375,6 @@ public class OpsDatabaseServiceImpl extends SuperService<DbInfo> implements IOps
 				"and a.backup_stime>STR_TO_DATE(date_format(now()-10000000,'%Y-%m-%d'),'%Y-%m-%d') \n" +
 				")tab order by diff_minute desc \n" +
 				")endTable limit 50";
-
 		return dao.query(sql).toJSONArrayWithJSONObject();
 	}
 	/*

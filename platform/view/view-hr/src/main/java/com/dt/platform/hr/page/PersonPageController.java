@@ -10,10 +10,10 @@ import com.dt.platform.proxy.hr.PersonServiceProxy;
 import javax.servlet.http.HttpServletRequest;
 /**
  * <p>
- * 人员信息模版页面控制器
+ * 人员信息 模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-15 15:16:04
+ * @since 2022-09-17 07:13:42
 */
 
 @Controller("HrPersonPageController")

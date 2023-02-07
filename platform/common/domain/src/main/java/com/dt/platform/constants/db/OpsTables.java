@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-02-04 16:00:18
+ * @since 2022-11-29 22:01:57
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -3520,11 +3520,6 @@ public class OpsTables {
 		public static final DBField DATABASE_ID = new DBField(DBDataType.STRING , "database_id","databaseId","数据库","数据库",false,false,true);
 		
 		/**
-		 * UID
-		*/
-		public static final DBField UID = new DBField(DBDataType.STRING , "uid","uid","UID","UID",false,false,true);
-		
-		/**
 		 * 名称
 		*/
 		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
@@ -3634,154 +3629,9 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public OPS_DB_BACKUP_INFO() {
-			this.init($NAME,"数据库备份" , ID , DATABASE_ID , UID , NAME , STATUS , BACKUP_STRATEGY , BACKUP_TYPE , BACKUP_METHOD , BACKUP_DATAKEEP , BACKUP_RESULT , BACKUP_SOURCE , BACKUP_SIZE , BACKUP_TIME , BACKUP_RESULT_CT , STORAGE , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"数据库备份" , ID , DATABASE_ID , NAME , STATUS , BACKUP_STRATEGY , BACKUP_TYPE , BACKUP_METHOD , BACKUP_DATAKEEP , BACKUP_RESULT , BACKUP_SOURCE , BACKUP_SIZE , BACKUP_TIME , BACKUP_RESULT_CT , STORAGE , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_DB_BACKUP_INFO $TABLE=new OPS_DB_BACKUP_INFO();
-	}
-	
-	/**
-	 * 备份日志
-	*/
-	public static class OPS_DB_BACKUP_LOG extends DBTable {
-		
-		/**
-		 * 表名
-		*/
-		public static final String $NAME = "ops_db_backup_log";
-		
-		/**
-		 * 主键
-		*/
-		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
-		
-		/**
-		 * UID
-		*/
-		public static final DBField UID = new DBField(DBDataType.STRING , "uid","uid","UID","UID",false,false,true);
-		
-		/**
-		 * 数据库实例
-		*/
-		public static final DBField DB_ID = new DBField(DBDataType.STRING , "db_id","dbId","数据库实例","数据库实例",false,false,true);
-		
-		/**
-		 * IP
-		*/
-		public static final DBField IP = new DBField(DBDataType.STRING , "ip","ip","IP","IP",false,false,true);
-		
-		/**
-		 * 名称
-		*/
-		public static final DBField DB_NAME = new DBField(DBDataType.STRING , "db_name","dbName","名称","名称",false,false,true);
-		
-		/**
-		 * 动作
-		*/
-		public static final DBField ACTION = new DBField(DBDataType.STRING , "action","action","动作","动作",false,false,true);
-		
-		/**
-		 * 状态
-		*/
-		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
-		
-		/**
-		 * 方式
-		*/
-		public static final DBField METHOD = new DBField(DBDataType.STRING , "method","method","方式","方式",false,false,true);
-		
-		/**
-		 * 结果
-		*/
-		public static final DBField RESULT = new DBField(DBDataType.STRING , "result","result","结果","结果",false,false,true);
-		
-		/**
-		 * 开始时间
-		*/
-		public static final DBField STIME = new DBField(DBDataType.DATE , "stime","stime","开始时间","开始时间",false,false,true);
-		
-		/**
-		 * 结束时间
-		*/
-		public static final DBField ETIME = new DBField(DBDataType.DATE , "etime","etime","结束时间","结束时间",false,false,true);
-		
-		/**
-		 * 大小
-		*/
-		public static final DBField SIZE = new DBField(DBDataType.DECIMAL , "size","size","大小","大小",false,false,true);
-		
-		/**
-		 * 备注
-		*/
-		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
-		
-		/**
-		 * 记录时间
-		*/
-		public static final DBField RECORD_TIME = new DBField(DBDataType.DATE , "record_time","recordTime","记录时间","记录时间",false,false,true);
-		
-		/**
-		 * 原始数据
-		*/
-		public static final DBField SOURCE = new DBField(DBDataType.STRING , "source","source","原始数据","原始数据",false,false,true);
-		
-		/**
-		 * 处理状态
-		*/
-		public static final DBField PROCESSED = new DBField(DBDataType.STRING , "processed","processed","处理状态","处理状态",false,false,true);
-		
-		/**
-		 * 处理结果
-		*/
-		public static final DBField PROCESS_RESULT = new DBField(DBDataType.STRING , "process_result","processResult","处理结果","处理结果",false,false,true);
-		
-		/**
-		 * 处理时间
-		*/
-		public static final DBField LAST_PROCESS_TIME = new DBField(DBDataType.DATE , "last_process_time","lastProcessTime","处理时间","处理时间",false,false,true);
-		
-		/**
-		 * 创建人ID
-		*/
-		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
-		
-		/**
-		 * 创建时间
-		*/
-		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
-		
-		/**
-		 * 修改人ID
-		*/
-		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
-		
-		/**
-		 * 修改时间
-		*/
-		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
-		
-		/**
-		 * 是否已删除
-		*/
-		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,true);
-		
-		/**
-		 * 删除人ID
-		*/
-		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
-		
-		/**
-		 * 删除时间
-		*/
-		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
-		
-		/**
-		*/
-		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
-		
-		public OPS_DB_BACKUP_LOG() {
-			this.init($NAME,"备份日志" , ID , UID , DB_ID , IP , DB_NAME , ACTION , STATUS , METHOD , RESULT , STIME , ETIME , SIZE , NOTES , RECORD_TIME , SOURCE , PROCESSED , PROCESS_RESULT , LAST_PROCESS_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
-		}
-		public static final OPS_DB_BACKUP_LOG $TABLE=new OPS_DB_BACKUP_LOG();
 	}
 	
 	/**
@@ -3895,76 +3745,6 @@ public class OpsTables {
 	}
 	
 	/**
-	 * 数据库存放位置
-	*/
-	public static class OPS_DB_DATA_LOC extends DBTable {
-		
-		/**
-		 * 表名
-		*/
-		public static final String $NAME = "ops_db_data_loc";
-		
-		/**
-		 * 主键
-		*/
-		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
-		
-		/**
-		 * 存放位置
-		*/
-		public static final DBField LOC_ID = new DBField(DBDataType.STRING , "loc_id","locId","存放位置","存放位置",false,false,true);
-		
-		/**
-		 * 数据库
-		*/
-		public static final DBField DB_INFO_ID = new DBField(DBDataType.STRING , "db_info_id","dbInfoId","数据库","数据库",false,false,true);
-		
-		/**
-		 * 创建人ID
-		*/
-		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
-		
-		/**
-		 * 创建时间
-		*/
-		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
-		
-		/**
-		 * 修改人ID
-		*/
-		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
-		
-		/**
-		 * 修改时间
-		*/
-		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
-		
-		/**
-		 * 是否已删除
-		*/
-		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,true);
-		
-		/**
-		 * 删除人ID
-		*/
-		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
-		
-		/**
-		 * 删除时间
-		*/
-		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
-		
-		/**
-		*/
-		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
-		
-		public OPS_DB_DATA_LOC() {
-			this.init($NAME,"数据库存放位置" , ID , LOC_ID , DB_INFO_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
-		}
-		public static final OPS_DB_DATA_LOC $TABLE=new OPS_DB_DATA_LOC();
-	}
-	
-	/**
 	 * 数据库
 	*/
 	public static class OPS_DB_INFO extends DBTable {
@@ -4045,24 +3825,14 @@ public class OpsTables {
 		public static final DBField USER_USE_INFO = new DBField(DBDataType.STRING , "user_use_info","userUseInfo","使用情况","使用情况",false,false,true);
 		
 		/**
-		 * 用户备注
-		*/
-		public static final DBField USER_INFO = new DBField(DBDataType.STRING , "user_info","userInfo","用户备注","用户备注",false,false,true);
-		
-		/**
 		 * 凭证信息
 		*/
 		public static final DBField VOUCHER_STR = new DBField(DBDataType.STRING , "voucher_str","voucherStr","凭证信息","凭证信息",false,false,true);
 		
 		/**
-		 * 服务端口
+		 * 连接端口
 		*/
-		public static final DBField DB_PORT = new DBField(DBDataType.STRING , "db_port","dbPort","服务端口","服务端口",false,false,true);
-		
-		/**
-		 * 数据存放
-		*/
-		public static final DBField DATA_LOC = new DBField(DBDataType.STRING , "data_loc","dataLoc","数据存放","数据存放",false,false,true);
+		public static final DBField DB_PORT = new DBField(DBDataType.STRING , "db_port","dbPort","连接端口","连接端口",false,false,true);
 		
 		/**
 		 * 本地备份策略
@@ -4083,11 +3853,6 @@ public class OpsTables {
 		 * 清理策略
 		*/
 		public static final DBField CLEAR_STRATEGY = new DBField(DBDataType.STRING , "clear_strategy","clearStrategy","清理策略","清理策略",false,false,true);
-		
-		/**
-		 * 备份备注
-		*/
-		public static final DBField BACKUP_INFO = new DBField(DBDataType.STRING , "backup_info","backupInfo","备份备注","备份备注",false,false,true);
 		
 		/**
 		 * 备注
@@ -4139,7 +3904,7 @@ public class OpsTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public OPS_DB_INFO() {
-			this.init($NAME,"数据库" , ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OPS_USER_LIST , OTHER_USER_LIST , USER_USE_INFO , USER_INFO , VOUCHER_STR , DB_PORT , DATA_LOC , BACKUP_STRATEGY , TOOL_STRATEGY , DISASTER_RECOVERY_STRATEGY , CLEAR_STRATEGY , BACKUP_INFO , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"数据库" , ID , HOST_ID , TYPE_ID , NAME , STATUS , BACKUP_STATUS , DEPLOY_MODE , DB_SIZE , LOG_METHOD , ADMIN_USER_LIST , APP_USER_LIST , OPS_USER_LIST , OTHER_USER_LIST , USER_USE_INFO , VOUCHER_STR , DB_PORT , BACKUP_STRATEGY , TOOL_STRATEGY , DISASTER_RECOVERY_STRATEGY , CLEAR_STRATEGY , NOTES , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final OPS_DB_INFO $TABLE=new OPS_DB_INFO();
 	}
@@ -4550,11 +4315,6 @@ public class OpsTables {
 		public static final DBField HOST_CONF = new DBField(DBDataType.STRING , "host_conf","hostConf","其他配置","其他配置",false,false,true);
 		
 		/**
-		 * 端口列表
-		*/
-		public static final DBField PORT_LIST = new DBField(DBDataType.STRING , "port_list","portList","端口列表","端口列表",false,false,true);
-		
-		/**
 		 * 系统管理员
 		*/
 		public static final DBField USER_OS_ADMIN = new DBField(DBDataType.STRING , "user_os_admin","userOsAdmin","系统管理员","系统管理员",false,false,true);
@@ -4669,7 +4429,7 @@ public class OpsTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public OPS_HOST() {
-			this.init($NAME,"主机" , ID , SYSTEM_ID , HOST_TYPE , STATUS , HOST_NAME , HOST_IP , HOST_VIP , HOST_IPV6 , ENVIRONMENT , POSITION_ID , MONITOR_STATUS , DIRECTOR_USERNAME , HOST_MEMORY , HOST_CPU , HOST_CONF , PORT_LIST , USER_OS_ADMIN , USER_DB_ADMIN , USER_DB_USED , USER_APP_USED , USER_OPS_OPER , USER_OTHER , PASSWORD_STRATEGY_ID , HOST_BACKUP_METHOD , HOST_BACKUP_INFO , OFFLINE_TIME , ONLINE_TIME , ARCH , LABELS , HOST_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"主机" , ID , SYSTEM_ID , HOST_TYPE , STATUS , HOST_NAME , HOST_IP , HOST_VIP , HOST_IPV6 , ENVIRONMENT , POSITION_ID , MONITOR_STATUS , DIRECTOR_USERNAME , HOST_MEMORY , HOST_CPU , HOST_CONF , USER_OS_ADMIN , USER_DB_ADMIN , USER_DB_USED , USER_APP_USED , USER_OPS_OPER , USER_OTHER , PASSWORD_STRATEGY_ID , HOST_BACKUP_METHOD , HOST_BACKUP_INFO , OFFLINE_TIME , ONLINE_TIME , ARCH , LABELS , HOST_NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final OPS_HOST $TABLE=new OPS_HOST();
 	}
@@ -9206,201 +8966,6 @@ public class OpsTables {
 	}
 	
 	/**
-	 * 人员分工
-	*/
-	public static class OPS_PERSONNEL_DIVISION extends DBTable {
-		
-		/**
-		 * 表名
-		*/
-		public static final String $NAME = "ops_personnel_division";
-		
-		/**
-		 * 主键
-		*/
-		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
-		
-		/**
-		 * 状态
-		*/
-		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
-		
-		/**
-		 * 所属
-		*/
-		public static final DBField OWNER = new DBField(DBDataType.STRING , "owner","owner","所属","所属",false,false,true);
-		
-		/**
-		 * 用户
-		*/
-		public static final DBField USER_ID = new DBField(DBDataType.STRING , "user_id","userId","用户","用户",false,false,true);
-		
-		/**
-		 * 岗位
-		*/
-		public static final DBField POS = new DBField(DBDataType.STRING , "pos","pos","岗位","岗位",false,false,true);
-		
-		/**
-		 * 负责内容
-		*/
-		public static final DBField RESPONSIBLE_CONTENT = new DBField(DBDataType.STRING , "responsible_content","responsibleContent","负责内容","负责内容",false,false,true);
-		
-		/**
-		 * 工作内容
-		*/
-		public static final DBField JOB_CONTENT = new DBField(DBDataType.STRING , "job_content","jobContent","工作内容","工作内容",false,false,true);
-		
-		/**
-		 * 备注
-		*/
-		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
-		
-		/**
-		 * 排序
-		*/
-		public static final DBField SORT = new DBField(DBDataType.INTEGER , "sort","sort","排序","排序",false,false,true);
-		
-		/**
-		 * 创建人ID
-		*/
-		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
-		
-		/**
-		 * 创建时间
-		*/
-		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
-		
-		/**
-		 * 修改人ID
-		*/
-		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
-		
-		/**
-		 * 修改时间
-		*/
-		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
-		
-		/**
-		 * 是否已删除
-		*/
-		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,true);
-		
-		/**
-		 * 删除人ID
-		*/
-		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
-		
-		/**
-		 * 删除时间
-		*/
-		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
-		
-		/**
-		*/
-		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
-		
-		public OPS_PERSONNEL_DIVISION() {
-			this.init($NAME,"人员分工" , ID , STATUS , OWNER , USER_ID , POS , RESPONSIBLE_CONTENT , JOB_CONTENT , NOTES , SORT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
-		}
-		public static final OPS_PERSONNEL_DIVISION $TABLE=new OPS_PERSONNEL_DIVISION();
-	}
-	
-	/**
-	 * 开放列表
-	*/
-	public static class OPS_PUBLIC_CONTENT extends DBTable {
-		
-		/**
-		 * 表名
-		*/
-		public static final String $NAME = "ops_public_content";
-		
-		/**
-		 * 主键
-		*/
-		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
-		
-		/**
-		 * 状态
-		*/
-		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
-		
-		/**
-		 * 类型
-		*/
-		public static final DBField TYPE = new DBField(DBDataType.STRING , "type","type","类型","类型",false,false,true);
-		
-		/**
-		 * 名称
-		*/
-		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
-		
-		/**
-		 * 地址
-		*/
-		public static final DBField ADDRESS = new DBField(DBDataType.STRING , "address","address","地址","地址",false,false,true);
-		
-		/**
-		 * 文件
-		*/
-		public static final DBField FILES = new DBField(DBDataType.STRING , "files","files","文件","文件",false,false,true);
-		
-		/**
-		 * 备注
-		*/
-		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
-		
-		/**
-		 * 排序
-		*/
-		public static final DBField SORT = new DBField(DBDataType.INTEGER , "sort","sort","排序","排序",false,false,true);
-		
-		/**
-		 * 创建人ID
-		*/
-		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
-		
-		/**
-		 * 创建时间
-		*/
-		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
-		
-		/**
-		 * 修改人ID
-		*/
-		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
-		
-		/**
-		 * 修改时间
-		*/
-		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
-		
-		/**
-		 * 是否已删除
-		*/
-		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,true);
-		
-		/**
-		 * 删除人ID
-		*/
-		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
-		
-		/**
-		 * 删除时间
-		*/
-		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
-		
-		/**
-		*/
-		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
-		
-		public OPS_PUBLIC_CONTENT() {
-			this.init($NAME,"开放列表" , ID , STATUS , TYPE , NAME , ADDRESS , FILES , NOTES , SORT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
-		}
-		public static final OPS_PUBLIC_CONTENT $TABLE=new OPS_PUBLIC_CONTENT();
-	}
-	
-	/**
 	 * 安全基线
 	*/
 	public static class OPS_SAFETY_BASELINE extends DBTable {
@@ -10009,101 +9574,6 @@ public class OpsTables {
 			this.init($NAME,"软件基线版本" , ID , SOFTWARE_TYPE_ID , NAME , SOFTWARE_VERSION , PATCH_INFO , STATUS , USAGE_SCENARIOS , FILE_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final OPS_SOFTWARE_BASE_VERSION $TABLE=new OPS_SOFTWARE_BASE_VERSION();
-	}
-	
-	/**
-	 * 介质
-	*/
-	public static class OPS_SOFTWARE_MEDIA extends DBTable {
-		
-		/**
-		 * 表名
-		*/
-		public static final String $NAME = "ops_software_media";
-		
-		/**
-		 * 主键
-		*/
-		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
-		
-		/**
-		 * 编码
-		*/
-		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","编码","编码",false,false,true);
-		
-		/**
-		 * 名称
-		*/
-		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
-		
-		/**
-		 * 类型
-		*/
-		public static final DBField TYPE = new DBField(DBDataType.STRING , "type","type","类型","类型",false,false,true);
-		
-		/**
-		 * 状态
-		*/
-		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
-		
-		/**
-		 * 文件
-		*/
-		public static final DBField FILE_ID = new DBField(DBDataType.STRING , "file_id","fileId","文件","文件",false,false,true);
-		
-		/**
-		 * 备注
-		*/
-		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
-		
-		/**
-		 * 修改时间
-		*/
-		public static final DBField REC_TIME = new DBField(DBDataType.DATE , "rec_time","recTime","修改时间","修改时间",false,false,true);
-		
-		/**
-		 * 创建人ID
-		*/
-		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
-		
-		/**
-		 * 创建时间
-		*/
-		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
-		
-		/**
-		 * 修改人ID
-		*/
-		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
-		
-		/**
-		 * 修改时间
-		*/
-		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
-		
-		/**
-		 * 是否已删除
-		*/
-		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
-		
-		/**
-		 * 删除人ID
-		*/
-		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
-		
-		/**
-		 * 删除时间
-		*/
-		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
-		
-		/**
-		*/
-		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
-		
-		public OPS_SOFTWARE_MEDIA() {
-			this.init($NAME,"介质" , ID , CODE , NAME , TYPE , STATUS , FILE_ID , NOTES , REC_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
-		}
-		public static final OPS_SOFTWARE_MEDIA $TABLE=new OPS_SOFTWARE_MEDIA();
 	}
 	
 	/**

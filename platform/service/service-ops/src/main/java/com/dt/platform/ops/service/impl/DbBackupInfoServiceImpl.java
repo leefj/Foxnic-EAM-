@@ -1,45 +1,34 @@
 package com.dt.platform.ops.service.impl;
 
-import javax.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import com.github.foxnic.dao.entity.ReferCause;
-
-import com.github.foxnic.commons.collection.MapUtil;
-import java.util.Arrays;
-
-
 import com.dt.platform.domain.ops.DbBackupInfo;
 import com.dt.platform.domain.ops.DbBackupInfoVO;
-import java.util.List;
+import com.dt.platform.ops.service.IDbBackupInfoService;
+import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.api.transter.Result;
+import com.github.foxnic.commons.busi.id.IDGenerator;
+import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.dao.data.PagedList;
+import com.github.foxnic.dao.data.SaveMode;
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.SuperService;
 import com.github.foxnic.dao.spec.DAO;
-import java.lang.reflect.Field;
-import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.sql.expr.ConditionExpr;
-import com.github.foxnic.api.error.ErrorDesc;
-import com.github.foxnic.dao.excel.ExcelWriter;
-import com.github.foxnic.dao.excel.ValidateResult;
-import com.github.foxnic.dao.excel.ExcelStructure;
-import java.io.InputStream;
 import com.github.foxnic.sql.meta.DBField;
-import com.github.foxnic.dao.data.SaveMode;
-import com.github.foxnic.dao.meta.DBColumnMeta;
-import com.github.foxnic.sql.expr.Select;
-import java.util.ArrayList;
-import com.dt.platform.ops.service.IDbBackupInfoService;
 import org.github.foxnic.web.framework.dao.DBConfigs;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.lang.reflect.Field;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
  * <p>
- * 数据库备份服务实现
+ * 数据库备份 服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-31 22:15:26
+ * @since 2022-09-13 20:38:56
 */
 
 
@@ -99,7 +88,7 @@ public class DbBackupInfoServiceImpl extends SuperService<DbBackupInfo> implemen
 
 	
 	/**
-	 * 按主键删除数据库备份
+	 * 按主键删除 数据库备份
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -120,7 +109,7 @@ public class DbBackupInfoServiceImpl extends SuperService<DbBackupInfo> implemen
 	}
 	
 	/**
-	 * 按主键删除数据库备份
+	 * 按主键删除 数据库备份
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -180,7 +169,7 @@ public class DbBackupInfoServiceImpl extends SuperService<DbBackupInfo> implemen
 
 	
 	/**
-	 * 按主键更新数据库备份
+	 * 按主键更新字段 数据库备份
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -194,7 +183,7 @@ public class DbBackupInfoServiceImpl extends SuperService<DbBackupInfo> implemen
 
 	
 	/**
-	 * 按主键获取数据库备份
+	 * 按主键获取 数据库备份
 	 *
 	 * @param id 主键
 	 * @return DbBackupInfo 数据对象
@@ -278,6 +267,9 @@ public class DbBackupInfoServiceImpl extends SuperService<DbBackupInfo> implemen
 		return false;
 	}
 
+
+
+
 	/**
 	 * 批量检查引用
 	 * @param ids  检查这些ID是否又被外部表引用
@@ -288,6 +280,7 @@ public class DbBackupInfoServiceImpl extends SuperService<DbBackupInfo> implemen
 		return MapUtil.asMap(ids,new ReferCause(false));
 		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
 	}
+
 
 
 

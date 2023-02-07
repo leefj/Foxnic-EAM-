@@ -8,18 +8,21 @@ import com.dt.platform.constants.enums.ops.MonitorWarnProcessStatusEnum;
 import com.dt.platform.constants.enums.ops.OpsDbBackupStatusEnum;
 import com.dt.platform.constants.enums.ops.OpsDbStatusEnum;
 import com.dt.platform.domain.eam.meta.AssetMeta;
-import com.dt.platform.domain.ops.*;
+import com.dt.platform.domain.ops.DbBackupInfo;
+import com.dt.platform.domain.ops.Host;
+import com.dt.platform.domain.ops.ServiceInfo;
 import com.dt.platform.domain.ops.meta.*;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.ops.page.DbInfoPageController;
 import com.dt.platform.ops.page.ServiceGroupPageController;
-import com.dt.platform.proxy.ops.*;
+import com.dt.platform.proxy.ops.DbInfoServiceProxy;
+import com.dt.platform.proxy.ops.HostServiceProxy;
+import com.dt.platform.proxy.ops.ServiceGroupServiceProxy;
+import com.dt.platform.proxy.ops.ServiceInfoServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.system.meta.DictItemMeta;
 import org.github.foxnic.web.proxy.system.DictItemServiceProxy;
-
-import javax.xml.ws.Service;
 
 public class OpsDbInfoGtr extends BaseCodeGenerator{
 
@@ -39,13 +42,7 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"deployModeDict","deployModeDict","deployModeDict");
         cfg.getPoClassFile().addListProperty(DictItem.class,"labelList","labelList","labelList");
         cfg.getPoClassFile().addListProperty(String.class,"labelIds","labelIds","labelIds");
-        cfg.getPoClassFile().addListProperty(DictItem.class,"dataLocData","dataLocData","dataLocData");
-        cfg.getPoClassFile().addListProperty(String.class,"dataLocIds","dataLocIds","dataLocIds");
 
-
-        cfg.getPoClassFile().addSimpleProperty(CiphertextBoxData.class,"ciphertextBoxData","ciphertextBoxData","ciphertextBoxData");
-        cfg.getPoClassFile().addListProperty(ServiceCategory.class,"dbTypeList","dbTypeList","dbTypeList");
-        cfg.getPoClassFile().addListProperty(String.class,"dbTypeIds","dbTypeIds","dbTypeIds");
 
         cfg.view().field(OpsTables.OPS_DB_INFO.NAME).search().fuzzySearch();
         cfg.view().field(OpsTables.OPS_DB_INFO.NOTES).search().fuzzySearch();
@@ -53,22 +50,17 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.view().field(OpsTables.OPS_DB_INFO.ID).basic().hidden(true);
         cfg.view().search().inputLayout(
                 new Object[]{
-                        DbInfoMeta.DB_TYPE_IDS,
-                        OpsTables.OPS_DB_INFO.STATUS,
                         DbInfoMeta.LABEL_IDS,
+                        OpsTables.OPS_DB_INFO.STATUS,
+                        OpsTables.OPS_DB_INFO.BACKUP_STATUS,
                         OpsTables.OPS_DB_INFO.NAME,
                 },
                 new Object[]{
-                        OpsTables.OPS_DB_INFO.BACKUP_STATUS,
                         OpsTables.OPS_DB_INFO.DEPLOY_MODE,
-                        OpsTables.OPS_DB_INFO.DATA_LOC,
-
-                },
-                new Object[]{
-                        OpsTables.OPS_DB_INFO.NOTES,
                         OpsTables.OPS_DB_INFO.CREATE_TIME,
-                }
+                        OpsTables.OPS_DB_INFO.NOTES,
 
+                }
         );
 
         cfg.view().search().labelWidth(1,Config.searchLabelWidth+20);
@@ -76,8 +68,6 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.view().search().labelWidth(3,Config.searchLabelWidth+20);
         cfg.view().search().labelWidth(4,Config.searchLabelWidth+20);
         cfg.view().search().inputWidth(Config.searchInputWidth);
-
-
 
         cfg.view().search().rowsDisplay(1);
         cfg.view().field(OpsTables.OPS_DB_INFO.HOST_ID)
@@ -87,7 +77,6 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
                 .valueField(HostMeta.ID).textField(HostMeta.HOST_NAME)
                 .toolbar(false).paging(true)
                 .fillWith(DbInfoMeta.HOST).muliti(false).defaultIndex(0);
-
 
         cfg.view().field(OpsTables.OPS_DB_INFO.TYPE_ID)
                 .basic().label("库类型")
@@ -106,25 +95,15 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
                 .toolbar(false).paging(false)
                 .fillWith(DbInfoMeta.DEPLOY_MODE_DICT).muliti(false).defaultValue("single");
 
-
-        cfg.view().field(DbInfoMeta.DB_TYPE_IDS).table().disable(true);
-
         cfg.view().field(OpsTables.OPS_DB_INFO.SELECTED_CODE).table().disable(true);
 
         cfg.view().field(OpsTables.OPS_DB_INFO.NOTES).form().textInput();
-
-        cfg.view().field(OpsTables.OPS_DB_INFO.DATA_LOC).table().disable(true);
-
-        cfg.view().field(OpsTables.OPS_DB_INFO.VOUCHER_STR).form().textArea().height(100);
-        cfg.view().field(OpsTables.OPS_DB_INFO.USER_INFO).form().textArea().height(100);
-        cfg.view().field(OpsTables.OPS_DB_INFO.BACKUP_INFO).form().textArea().height(100);
-
 
         cfg.view().field(OpsTables.OPS_DB_INFO.NAME).form().validate().required();
         cfg.view().field(OpsTables.OPS_DB_INFO.DB_SIZE).form().numberInput().defaultValue(0.0).integer();
         cfg.view().field(OpsTables.OPS_DB_INFO.STATUS).form().validate().required().form()
                  .radioBox().enumType(OpsDbStatusEnum.class).defaultIndex(0);
-
+        cfg.view().field(OpsTables.OPS_DB_INFO.VOUCHER_STR).form().textArea().height(60);
         cfg.view().field(OpsTables.OPS_DB_INFO.BACKUP_STATUS).form().validate().required().form()
                 .radioBox().enumType(OpsDbBackupStatusEnum.class).defaultIndex(0);
 
@@ -141,30 +120,11 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
                 .table().sort(false)
                 .form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=ops_db_label")
                                .paging(false).filter(false).toolbar(false)
+                .valueField(ServiceInfoMeta.ID).textField(ServiceInfoMeta.NAME)
                 .toolbar(false).paging(false)
                         .valueField(DictItemMeta.CODE).
                         textField(DictItemMeta.LABEL).
                 fillWith(DbInfoMeta.LABEL_LIST).muliti(true);
-
-        cfg.view().field(DbInfoMeta.DB_TYPE_IDS)
-                .basic().label("数据库类型")
-                .table().sort(false)
-                .form().selectBox().queryApi(ServiceCategoryServiceProxy.QUERY_LIST+"?groupId=db")
-                .paging(false).filter(false).toolbar(false)
-                .valueField(ServiceCategoryMeta.ID).textField(ServiceCategoryMeta.NAME)
-                .toolbar(false).paging(false).
-                fillWith(DbInfoMeta.DB_TYPE_LIST).muliti(false);
-
-
-
-
-        cfg.view().field(DbInfoMeta.DATA_LOC_IDS)
-                .basic().label("数据存放")
-                .table().sort(false)
-                .form().selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=ops_db_data_loc")
-                .valueField(DictItemMeta.CODE).textField(DictItemMeta.LABEL)
-                .toolbar(false).paging(false)
-                .fillWith(DbInfoMeta.DATA_LOC_DATA).muliti(true);
 
 
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
@@ -211,18 +171,13 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
                 new Object[]{
                         OpsTables.OPS_DB_INFO.USER_USE_INFO,
                         OpsTables.OPS_DB_INFO.VOUCHER_STR,
-                        OpsTables.OPS_DB_INFO.USER_INFO,
                 }
         );
-
 
 
         cfg.view().form().addGroup("备份信息",
                 new Object[]{
                         OpsTables.OPS_DB_INFO.BACKUP_STATUS,
-                },
-                new Object[]{
-                        DbInfoMeta.DATA_LOC_IDS,
                 }
         );
 
@@ -238,22 +193,17 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         );
 
 
-        cfg.view().form().addGroup(null,
-                new Object[]{
-                        OpsTables.OPS_DB_INFO.BACKUP_INFO,
-                }
-        );
 
 
-        cfg.view().list().addToolButton("搜索","dbSearch",null,"ops_db_info:dbSearch");
 
-//        cfg.view().list().operationColumn().addActionButton("备份记录","openBackupWindow",null,"ops_db_info:backup");
-//        cfg.view().list().operationColumn().addActionButton("密文箱","boxWindow",null,"ops_db_info:box");
-        cfg.view().list().operationColumn().addActionMenu("backup","备份记录","ops_db_info:backup");
-        cfg.view().list().operationColumn().addActionMenu("box","密文箱","ops_db_info:box");
-        cfg.view().list().operationColumn().addActionMenu("boxhistory","密文历史","ops_db_info:boxhistory");
+        cfg.view().list().operationColumn().addActionButton("备份记录","openBackupWindow",null,"ops_db_info:backup");
+        cfg.view().list().operationColumn().addActionButton("密文箱","boxWindow",null,"ops_db_info:box");
+
 
         cfg.view().form().addPage("备份情况","backInfoList");
+
+
+
       //  cfg.view().list().operationColumn().addActionButton("备份记录","backupRecord","backupRecord","ops_auto_task:check");
 
         //文件生成覆盖模式

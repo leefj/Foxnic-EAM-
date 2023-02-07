@@ -1,6 +1,5 @@
 package com.dt.platform.ops.service;
 
-import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -21,10 +20,10 @@ import java.util.Map;
 
 /**
  * <p>
- * 数据库备份服务接口
+ * 数据库备份 服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-31 22:15:26
+ * @since 2022-09-13 20:38:56
 */
 
 public interface IDbBackupInfoService extends  ISimpleIdService<DbBackupInfo,String> {
@@ -56,7 +55,7 @@ public interface IDbBackupInfoService extends  ISimpleIdService<DbBackupInfo,Str
 
 		
 	/**
-	 * 按主键删除数据库备份
+	 * 按主键删除 数据库备份
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -64,7 +63,7 @@ public interface IDbBackupInfoService extends  ISimpleIdService<DbBackupInfo,Str
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除数据库备份
+	 * 按主键删除 数据库备份
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -87,7 +86,7 @@ public interface IDbBackupInfoService extends  ISimpleIdService<DbBackupInfo,Str
 
 		
 	/**
-	 * 按主键更新数据库备份
+	 * 按主键更新字段 数据库备份
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -157,7 +156,7 @@ public interface IDbBackupInfoService extends  ISimpleIdService<DbBackupInfo,Str
 
 		
 	/**
-	 * 按主键获取数据库备份
+	 * 按主键获取 数据库备份
 	 *
 	 * @param id 主键
 	 * @return DbBackupInfo 数据对象
