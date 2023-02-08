@@ -133,6 +133,12 @@
 [Foxnic-Samples](https://gitee.com/LeeFJ/foxnic-samples)
 
 ## EAM系统安装部署
+### 部署环境
+- 1、Linux
+- 2、Windows
+- 3、Mac
+- 4、Docker
+
 ### 实施方案
 - 1、传统方式:传统单体架构方式打包部署
 - 2、微服务:拆分成独立微服务方式部署
