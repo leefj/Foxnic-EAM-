@@ -197,7 +197,7 @@ curl -L 'http://resource.rainbooow.com/appInstallFull.sh'|bash
 
 
 ## 系统演示预览
-![输入图片说明](https://images.gitee.com/uploads/images/2021/1213/212929_46438369_448530.jpeg "1.jpg")
+![输入图片说明](resource/image.png)
 ![输入图片说明](https://images.gitee.com/uploads/images/2022/0513/115529_b00ce19a_448530.png "WechatIMG3.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/1213/213230_1ba469f5_448530.png "屏幕截图.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/1213/213258_8d970535_448530.png "屏幕截图.png")
