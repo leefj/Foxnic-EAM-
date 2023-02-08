@@ -125,6 +125,9 @@
 - 2、B站资料集合 https://space.bilibili.com/1796475412
 - 3、知乎视频资料集合 https://www.zhihu.com/people/leefj/zvideos
 - 4、知乎文档集合 https://www.zhihu.com/people/leefj/posts
+- 5、掘金文档集合 https://juejin.cn/user/1733305500198087
+- 6、HL文档集合 https://www.helloworld.net/0035361323
+
 
 ### 二次开发示例项目
 [Foxnic-Samples](https://gitee.com/LeeFJ/foxnic-samples)
