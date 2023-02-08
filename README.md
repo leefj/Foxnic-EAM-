@@ -149,8 +149,8 @@
 - 2、应用直接运行部署:应用JAR和SQL包来源:https://gitee.com/lank/platform/releases
 
 
-### EAM系统部署的视频介绍
-- 1、待录制
+### EAM系统部署的介绍
+- 1、[指引文档](http://http://foxnicweb.com/docs/doc.html#1,5)
 
 
 ### 方案一 一键安装Foxnic-EAM
