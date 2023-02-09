@@ -1,11 +1,11 @@
-package com.dt.platform.contract.authority;
+package com.dt.platform.hr.authority;
 
 
 import org.github.foxnic.web.framework.module.ModuleAuthority;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ContractAuthority extends ModuleAuthority {
+public class HrAuthority extends ModuleAuthority {
 
     /**
      * 返回最顶层菜单的权限Key
@@ -13,8 +13,7 @@ public class ContractAuthority extends ModuleAuthority {
     @Override
     public String[] getAuthorities() {
         return new String[] {
-                // 合同管理
-                "contract"
+                "hr"
         };
     }
 }
