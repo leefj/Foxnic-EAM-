@@ -6,13 +6,14 @@ import java.math.BigDecimal;
 import java.util.Date;
 import com.dt.platform.domain.knowledgebase.Category;
 import org.github.foxnic.web.domain.hrm.Employee;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2021-11-16 21:14:29
- * @sign AA818F2416E29EAA21A2CAC601827860
+ * @since 2023-02-11 18:39:15
+ * @sign 30F2687A1B5B2CB90AD4B41D00FAD0EF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -576,5 +577,53 @@ public class ContentMeta {
 			super.setEditor(editor);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public Content clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public Content duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setKeyWords(this.getKeyWords());
+			inst.setEditorId(this.getEditorId());
+			inst.setGradeId(this.getGradeId());
+			inst.setNotes(this.getNotes());
+			inst.setProfile(this.getProfile());
+			inst.setDisplay(this.getDisplay());
+			inst.setLinkAddress(this.getLinkAddress());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setLabel(this.getLabel());
+			inst.setTitle(this.getTitle());
+			inst.setVersion(this.getVersion());
+			inst.setContent(this.getContent());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setReviewCount(this.getReviewCount());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setAttach(this.getAttach());
+			inst.setContentType(this.getContentType());
+			inst.setCategoryId(this.getCategoryId());
+			if(all) {
+				inst.setEditor(this.getEditor());
+				inst.setCategory(this.getCategory());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

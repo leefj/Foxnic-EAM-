@@ -1,7 +1,7 @@
 /**
- * 人员分工 列表页 JS 脚本
+ * 软件基线版本 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-02-04 13:59:54
+ * @since 2022-11-03 07:34:19
  */
 
 layui.config({
@@ -18,7 +18,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload;
 
     //模块基础路径
-    const moduleURL="/service-ops/ops-personnel-division";
+    const moduleURL="/service-ops/ops-software-base-version";
 
 
     //列表页的扩展
@@ -28,21 +28,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeInit:function () {
             console.log("list:beforeInit");
-        },
-        /**
-         * 按事件名称移除表格按钮栏的按钮
-         * */
-        removeOperationButtonByEvent(event) {
-            var template=$("#tableOperationTemplate");
-            var content=template.text();
-            content=content.split("\n");
-            var buttons=[]
-            for (let i = 0; i < content.length ; i++) {
-                if(content[i] && content[i].indexOf("lay-event=\""+event+"\"")==-1) {
-                    buttons.push(content[i]);
-                }
-            }
-            template.text(buttons.join("\n"))
         },
         /**
          * 表格渲染前调用
@@ -93,6 +78,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeQuery:function (conditions,param,location) {
             console.log('beforeQuery',conditions,param,location);
+            conditions.status={"inputType":"select_box","value":["effect"],"label":"生效"};
             return true;
         },
         /**
@@ -165,11 +151,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
-        },
-        review:function (selected,obj){
-            console.log("to review")
-            window.open("./personnel_division_public_list.html");
-
         },
         /**
          * 末尾执行

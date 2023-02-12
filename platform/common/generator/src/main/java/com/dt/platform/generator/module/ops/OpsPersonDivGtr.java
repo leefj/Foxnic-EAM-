@@ -115,6 +115,8 @@ public class OpsPersonDivGtr extends BaseCodeGenerator{
 
         );
 
+        cfg.view().list().addToolButton("预览","review","review","ops_personnel_division:review");
+
         //文件生成覆盖模式
         cfg.overrides()
                 .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口

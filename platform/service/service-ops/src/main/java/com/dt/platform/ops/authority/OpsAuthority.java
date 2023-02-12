@@ -13,7 +13,7 @@ public class OpsAuthority extends ModuleAuthority {
     @Override
     public String[] getAuthorities() {
         return new String[] {
-                "ops"
+                "ops","zbx"
         };
     }
 }

@@ -5,6 +5,8 @@ delete from sys_tenant where id<>'T001';
 update sys_tenant set valid=1 where id='T001';
 delete from sys_dict where deleted<>0;
 delete from sys_dict_item where deleted<>0;
+update sys_dict set create_time=now();
+update sys_dict_item set create_time=now();
 delete from sys_config where deleted<>0;
 delete from sys_role where deleted<>0;
 delete from sys_role where name like '测试%';
@@ -24,7 +26,7 @@ delete from sys_code_attr where deleted=1;
 delete from sys_code_register where deleted=1;
 delete from sys_code_rule where deleted=1;
 delete from sys_tpl_file where deleted=1;
-
+delete from sys_backup_db where 1=1;
 
 -- system time
 -- update sys_config set create_time=null,create_by=null;
@@ -176,6 +178,9 @@ delete from ops_ciphertext_conf where deleted=1;
 delete from ops_ciphertext_conf where user_id<>'E001';
 
 delete from ops_db_info where 1=1;
+delete from ops_db_backup_record where 1=1;
+delete from ops_db_backup_log where 1=1;
+
 
 
 -- ops_certificate
@@ -235,14 +240,15 @@ delete from hrm_employee_position  where deleted=1;
 delete from hrm_favourite_group  where deleted=1;
 delete from hrm_favourite_group_item  where deleted=1;
 
-update hrm_person set deleted=2 where id in ( select t.person_id from hrm_employee t WHERE t.company_id= '002' AND exists(select 1 from hrm_position p,hrm_employee_position ep,hrm_organization org where org.id=p.org_id and p.id=ep.position_id and ep.employee_id=t.id and ep.deleted=0 and p.deleted=0 and (org.hierarchy like '586963971924295680/%' or p.org_id= '586963971924295680' )) AND ( ( t.deleted= 0 AND t.tenant_id= 'T001' )));
-delete from sys_user where id in( select c.user_id from sys_user_tenant c where c.employee_id in (select h.id from hrm_employee h where h.person_id in (select cc.id from hrm_person cc  where cc.deleted=2)));
-delete from sys_user_tenant where employee_id in (select id from hrm_employee where person_id in (select id from hrm_person where deleted=2));
 
-delete from hrm_employee where person_id in (select id from hrm_person where deleted=2);
-delete from hrm_person where deleted=2;
-delete from hrm_organization where id='586963971924295680';
-delete from hrm_organization where id='500994919175819264';
+
+-- update hrm_person set deleted=2 where id in ( select t.person_id from hrm_employee t WHERE t.company_id= '002' AND exists(select 1 from hrm_position p,hrm_employee_position ep,hrm_organization org where org.id=p.org_id and p.id=ep.position_id and ep.employee_id=t.id and ep.deleted=0 and p.deleted=0 and (org.hierarchy like '586963971924295680/%' or p.org_id= '586963971924295680' )) AND ( ( t.deleted= 0 AND t.tenant_id= 'T001' )));
+-- delete from sys_user where id in( select c.user_id from sys_user_tenant c where c.employee_id in (select h.id from hrm_employee h where h.person_id in (select cc.id from hrm_person cc  where cc.deleted=2)));
+-- delete from sys_user_tenant where employee_id in (select id from hrm_employee where person_id in (select id from hrm_person where deleted=2));
+-- delete from hrm_employee where person_id in (select id from hrm_person where deleted=2);
+-- delete from hrm_person where deleted=2;
+-- delete from hrm_organization where id='586963971924295680';
+-- delete from hrm_organization where id='500994919175819264';
 
 
 delete from hr_person  where deleted=1;

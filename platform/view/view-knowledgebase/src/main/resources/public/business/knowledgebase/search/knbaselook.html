@@ -130,9 +130,11 @@
                     $("#ct").html(rdata.content);
                     $("#split").html("<hr>")
                     if(rdata.attach&&rdata.attach.length>0){
-                        var attachhtml='附件:<a href=\"../../../../api/file/filedown.do?id="+rdata.attach+"\">下载</a>'
+                        console.log(rdata);
+                        var attachhtml='附件:<a href=\"../../../../service-storage/sys-file/download?inline=0&id='+rdata.attach+'\">下载</a>'
                         $("#attach").html(attachhtml);
                     }
+                //http://127.0.0.1:8089
                 }else{
                     $("#title").html("加载数据失败")
                     alert("获取数据失败!");

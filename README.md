@@ -32,17 +32,36 @@
 - [Demo] 流程测试账号,统一密码 fx9090
 - ----------------------------------------------------------------- 
 - [Demo]-------------Foxnic-EAM 资产管理账户-------------
-- [Demo]管理员eamadmin fx9090
-- [Demo]员工eamuser fx9090
-- [Demo]查询eamquery fx9090
+- [Demo]管理员:eamadmin fx9090
+- [Demo]员工1:eamuser1 fx9090
+- [Demo]员工2:eamuser2 fx9090
+- [Demo]查询:eamquery fx9090
+  
+
 - [Demo]-------------Foxnic-KN 知识库账户-------------
-- [Demo]管理员knadmin fx9090
-- [Demo]员工knuser fx9090
+- [Demo]管理员:knadmin fx9090
+- [Demo]查询:knquery fx9090
+ 
+-
 - [Demo]-------------Foxnic-OPS 运维账户-------------
-- [Demo]管理员opsadmin fx9090
-- [Demo]员工opsuser fx9090
-- [Demo]查询opsquery fx9090
-- ----------------------------------------------------------------- 
+- [Demo]管理员:opsadmin fx9090
+- [Demo]查询:opsquery fx9090
+
+
+- [Demo]-------------Foxnic-OPS-MONITOR 监控-------------
+- [Demo]管理员:opsmonitoradmin fx9090
+- [Demo]查询:opsmonitorquery fx9090
+
+
+- [Demo]-------------Foxnic-Contract合同(开发中)-------------
+- [Demo]管理员:contractadmin fx9090
+- [Demo]查询:contractquery fx9090
+
+
+
+opsmonitorquery
+- --------------------------------------
+--------------------------- 
 
 
 | 类型 | 账户  | 姓名  |

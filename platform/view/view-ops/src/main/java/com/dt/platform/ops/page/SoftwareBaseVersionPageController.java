@@ -46,6 +46,15 @@ public class SoftwareBaseVersionPageController extends ViewController {
 	}
 
 	/**
+	 * 软件基线版本 功能主页面
+	 */
+	@RequestMapping("/software_base_version_public_list.html")
+	public String publicList(Model model,HttpServletRequest request) {
+		return prefix+"/software_base_version_public_list";
+	}
+
+
+	/**
 	 * 软件基线版本 表单页面
 	 */
 	@RequestMapping("/software_base_version_form.html")

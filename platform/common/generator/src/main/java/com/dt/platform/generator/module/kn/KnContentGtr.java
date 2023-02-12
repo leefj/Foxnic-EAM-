@@ -67,7 +67,7 @@ public class KnContentGtr extends BaseCodeGenerator {
         cfg.view().field(KnTables.KN_CONTENT.LABEL).table().disable(true);
         cfg.view().field(KnTables.KN_CONTENT.EDITOR_ID).table().disable(true);
         cfg.view().field(KnTables.KN_CONTENT.ATTACH)
-                .form().upload().acceptExts("doc","zip","xlsx","rar","docx","txt","svg").maxFileCount(1);
+                .form().upload().acceptAllType().maxFileCount(1);
 
 //        cfg.view().field(KnTables.KN_CONTENT.GRADE_ID)
 //                .form().validate().required().form().selectBox().dict(DictEnum.KN_GRADE).defaultIndex(0);;

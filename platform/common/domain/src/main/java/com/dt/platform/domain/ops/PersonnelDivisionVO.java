@@ -24,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员分工VO类型
  * <p>人员分工 , 数据表 ops_personnel_division 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-02-04 18:12:48
- * @sign C3495B731223550D2F55F405D8FEC9F3
+ * @since 2023-02-11 20:39:58
+ * @sign 3BA4182588DF8420B1233C8731F25291
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -83,9 +83,9 @@ public class PersonnelDivisionVO extends PersonnelDivision {
 	private String sortType;
 	
 	/**
-	 * 数据来源：前端指定不同的来源，后端按来源执行不同的逻辑
+	 * 数据来源：前端指定不同的来源，后端可按来源执行不同的逻辑
 	*/
-	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端按来源执行不同的逻辑")
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端可按来源执行不同的逻辑")
 	private String dataOrigin;
 	
 	/**
@@ -93,6 +93,12 @@ public class PersonnelDivisionVO extends PersonnelDivision {
 	*/
 	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
 	private String queryLogic;
+	
+	/**
+	 * 请求动作：前端指定不同的Action，后端可Action执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="请求动作" , notes = "前端指定不同的Action，后端可Action执行不同的逻辑")
+	private String requestAction;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -257,7 +263,7 @@ public class PersonnelDivisionVO extends PersonnelDivision {
 	
 	/**
 	 * 获得 数据来源<br>
-	 * 前端指定不同的来源，后端按来源执行不同的逻辑
+	 * 前端指定不同的来源，后端可按来源执行不同的逻辑
 	 * @return 数据来源
 	*/
 	public String getDataOrigin() {
@@ -290,6 +296,25 @@ public class PersonnelDivisionVO extends PersonnelDivision {
 	*/
 	public PersonnelDivisionVO setQueryLogic(String queryLogic) {
 		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
+	 * 获得 请求动作<br>
+	 * 前端指定不同的Action，后端可Action执行不同的逻辑
+	 * @return 请求动作
+	*/
+	public String getRequestAction() {
+		return requestAction;
+	}
+	
+	/**
+	 * 设置 请求动作
+	 * @param requestAction 请求动作
+	 * @return 当前对象
+	*/
+	public PersonnelDivisionVO setRequestAction(String requestAction) {
+		this.requestAction=requestAction;
 		return this;
 	}
 	
@@ -397,6 +422,7 @@ public class PersonnelDivisionVO extends PersonnelDivision {
 		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
+			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setPageSize(this.getPageSize());
 			inst.setPageIndex(this.getPageIndex());
@@ -487,6 +513,7 @@ public class PersonnelDivisionVO extends PersonnelDivision {
 			this.setStatus(DataParser.parse(String.class, map.get(PersonnelDivisionVOMeta.STATUS)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(PersonnelDivisionVOMeta.SEARCH_FIELD)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(PersonnelDivisionVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(PersonnelDivisionVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(PersonnelDivisionVOMeta.PAGE_SIZE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(PersonnelDivisionVOMeta.PAGE_INDEX)));
@@ -519,6 +546,7 @@ public class PersonnelDivisionVO extends PersonnelDivision {
 				this.setStatus( (String)map.get(PersonnelDivisionVOMeta.STATUS));
 				// others
 				this.setSearchField( (String)map.get(PersonnelDivisionVOMeta.SEARCH_FIELD));
+				this.setRequestAction( (String)map.get(PersonnelDivisionVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(PersonnelDivisionVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(PersonnelDivisionVOMeta.PAGE_SIZE));
 				this.setPageIndex( (Integer)map.get(PersonnelDivisionVOMeta.PAGE_INDEX));

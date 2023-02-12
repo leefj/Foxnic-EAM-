@@ -25,7 +25,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 人员分工
  * <p>人员分工 , 数据表 ops_personnel_division 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-02-04 18:12:48
+ * @since 2023-02-11 20:39:58
  * @sign 0032BADDAD5811889AD0B644278D7AF6
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -66,19 +66,19 @@ public class PersonnelDivision extends Entity {
 	/**
 	 * 岗位：岗位
 	*/
-	@ApiModelProperty(required = false,value="岗位" , notes = "岗位" , example = "12")
+	@ApiModelProperty(required = false,value="岗位" , notes = "岗位" , example = "综合管理")
 	private String pos;
 	
 	/**
 	 * 负责内容：负责内容
 	*/
-	@ApiModelProperty(required = false,value="负责内容" , notes = "负责内容" , example = "1212adf adf adf  adf  adf  ")
+	@ApiModelProperty(required = false,value="负责内容" , notes = "负责内容" , example = "1、负责XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX 2、负责XXXXXXXXXXXXXXXXX...")
 	private String responsibleContent;
 	
 	/**
 	 * 工作内容：工作内容
 	*/
-	@ApiModelProperty(required = false,value="工作内容" , notes = "工作内容" , example = "1212")
+	@ApiModelProperty(required = false,value="工作内容" , notes = "工作内容" , example = "1、负责XX 2、负责XX 3、负责XX 4、负责XxXXX  ")
 	private String jobContent;
 	
 	/**
@@ -90,7 +90,7 @@ public class PersonnelDivision extends Entity {
 	/**
 	 * 排序：排序
 	*/
-	@ApiModelProperty(required = false,value="排序" , notes = "排序")
+	@ApiModelProperty(required = false,value="排序" , notes = "排序" , example = "0")
 	private Integer sort;
 	
 	/**
@@ -114,7 +114,7 @@ public class PersonnelDivision extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-02-04 03:25:28")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-02-04 07:12:21")
 	private Date updateTime;
 	
 	/**
@@ -141,7 +141,7 @@ public class PersonnelDivision extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "6")
 	private Integer version;
 	
 	/**
