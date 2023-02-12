@@ -1,6 +1,7 @@
 package com.dt.platform.domain.knowledgebase;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.KnTables.KN_CONTENT;
@@ -8,22 +9,29 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
-import org.github.foxnic.web.domain.hrm.Employee;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
+import org.github.foxnic.web.domain.hrm.Employee;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.knowledgebase.meta.ContentMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 知识库内容
+ * <p>知识库内容 , 数据表 kn_content 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-11-16 21:14:29
- * @sign AA818F2416E29EAA21A2CAC601827860
+ * @since 2023-02-11 18:39:15
+ * @sign 30F2687A1B5B2CB90AD4B41D00FAD0EF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "kn_content")
+@ApiModel(description = "知识库内容 ; 知识库内容 , 数据表 kn_content 的PO类型")
 public class Content extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -34,25 +42,25 @@ public class Content extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "600002621410902016")
 	private String id;
 	
 	/**
 	 * 分类：分类
 	*/
-	@ApiModelProperty(required = false,value="分类" , notes = "分类")
+	@ApiModelProperty(required = false,value="分类" , notes = "分类" , example = "483565311677702144")
 	private String categoryId;
 	
 	/**
 	 * 标题：标题
 	*/
-	@ApiModelProperty(required = false,value="标题" , notes = "标题")
+	@ApiModelProperty(required = false,value="标题" , notes = "标题" , example = "这是测试")
 	private String title;
 	
 	/**
 	 * 简介：简介
 	*/
-	@ApiModelProperty(required = false,value="简介" , notes = "简介")
+	@ApiModelProperty(required = false,value="简介" , notes = "简介" , example = "这是测试")
 	private String profile;
 	
 	/**
@@ -70,19 +78,19 @@ public class Content extends Entity {
 	/**
 	 * 知识内容：知识内容
 	*/
-	@ApiModelProperty(required = false,value="知识内容" , notes = "知识内容")
+	@ApiModelProperty(required = false,value="知识内容" , notes = "知识内容" , example = "<p>这是测试</p>")
 	private String content;
 	
 	/**
 	 * 内容类型：内容类型
 	*/
-	@ApiModelProperty(required = false,value="内容类型" , notes = "内容类型")
+	@ApiModelProperty(required = false,value="内容类型" , notes = "内容类型" , example = "article")
 	private String contentType;
 	
 	/**
 	 * 阅读数：阅读数
 	*/
-	@ApiModelProperty(required = false,value="阅读数" , notes = "阅读数")
+	@ApiModelProperty(required = false,value="阅读数" , notes = "阅读数" , example = "0")
 	private BigDecimal reviewCount;
 	
 	/**
@@ -94,7 +102,7 @@ public class Content extends Entity {
 	/**
 	 * 是否显示：是否显示
 	*/
-	@ApiModelProperty(required = false,value="是否显示" , notes = "是否显示")
+	@ApiModelProperty(required = false,value="是否显示" , notes = "是否显示" , example = "1")
 	private Integer display;
 	
 	/**
@@ -106,7 +114,7 @@ public class Content extends Entity {
 	/**
 	 * 等级：等级
 	*/
-	@ApiModelProperty(required = false,value="等级" , notes = "等级")
+	@ApiModelProperty(required = false,value="等级" , notes = "等级" , example = "level1")
 	private String gradeId;
 	
 	/**
@@ -124,13 +132,13 @@ public class Content extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2022-07-14 04:36:12")
 	private Date createTime;
 	
 	/**
@@ -148,8 +156,11 @@ public class Content extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
+	@Transient
+	@EnumFor("deleted")
+	private Boolean deletedBool;
 	
 	/**
 	 * 删除人ID：删除人ID
@@ -166,13 +177,13 @@ public class Content extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = false,value="version" , notes = "version")
+	@ApiModelProperty(required = false,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -558,12 +569,43 @@ public class Content extends Entity {
 	}
 	
 	/**
+	 * 获得 是否已删除 的投影属性<br>
+	 * 等价于 getDeleted 方法，获得对应的枚举类型
+	 * @return 是否已删除
+	*/
+	@Transient
+	public Boolean isDeleted() {
+		if(this.deletedBool==null) {
+			this.deletedBool=DataParser.parseBoolean(deleted);
+		}
+		return this.deletedBool ;
+	}
+	
+	/**
 	 * 设置 是否已删除
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public Content setDeleted(Integer deleted) {
 		this.deleted=deleted;
+		this.deletedBool=DataParser.parseBoolean(deleted);
+		return this;
+	}
+	
+	/**
+	 * 设置 是否已删除的投影属性，等同于设置 是否已删除
+	 * @param deletedBool 是否已删除
+	 * @return 当前对象
+	*/
+	@Transient
+	public Content setDeleted(Boolean deletedBool) {
+		if(deletedBool==null) {
+			this.deleted=null;
+		} else {
+			this.deleted=deletedBool?1:0;
+		}
+		this.deletedBool=deletedBool;
 		return this;
 	}
 	
@@ -711,6 +753,61 @@ public class Content extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public Content clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public Content duplicate(boolean all) {
+		com.dt.platform.domain.knowledgebase.meta.ContentMeta.$$proxy$$ inst = new com.dt.platform.domain.knowledgebase.meta.ContentMeta.$$proxy$$();
+		inst.setKeyWords(this.getKeyWords());
+		inst.setEditorId(this.getEditorId());
+		inst.setGradeId(this.getGradeId());
+		inst.setNotes(this.getNotes());
+		inst.setProfile(this.getProfile());
+		inst.setDisplay(this.getDisplay());
+		inst.setLinkAddress(this.getLinkAddress());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setLabel(this.getLabel());
+		inst.setTitle(this.getTitle());
+		inst.setVersion(this.getVersion());
+		inst.setContent(this.getContent());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setReviewCount(this.getReviewCount());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setId(this.getId());
+		inst.setAttach(this.getAttach());
+		inst.setContentType(this.getContentType());
+		inst.setCategoryId(this.getCategoryId());
+		if(all) {
+			inst.setEditor(this.getEditor());
+			inst.setCategory(this.getCategory());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public Content clone(boolean deep) {
+		return EntityContext.clone(Content.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 Content
 	 * @param contentMap 包含实体信息的 Map 对象
 	 * @return Content , 转换好的的 Content 对象
@@ -718,7 +815,9 @@ public class Content extends Entity {
 	@Transient
 	public static Content createFrom(Map<String,Object> contentMap) {
 		if(contentMap==null) return null;
-		Content po = EntityContext.create(Content.class, contentMap);
+		Content po = create();
+		EntityContext.copyProperties(po,contentMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -730,7 +829,9 @@ public class Content extends Entity {
 	@Transient
 	public static Content createFrom(Object pojo) {
 		if(pojo==null) return null;
-		Content po = EntityContext.create(Content.class,pojo);
+		Content po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -740,6 +841,146 @@ public class Content extends Entity {
 	*/
 	@Transient
 	public static Content create() {
-		return EntityContext.create(Content.class);
+		return new com.dt.platform.domain.knowledgebase.meta.ContentMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setKeyWords(DataParser.parse(String.class, map.get(ContentMeta.KEY_WORDS)));
+			this.setEditorId(DataParser.parse(String.class, map.get(ContentMeta.EDITOR_ID)));
+			this.setGradeId(DataParser.parse(String.class, map.get(ContentMeta.GRADE_ID)));
+			this.setNotes(DataParser.parse(String.class, map.get(ContentMeta.NOTES)));
+			this.setProfile(DataParser.parse(String.class, map.get(ContentMeta.PROFILE)));
+			this.setDisplay(DataParser.parse(Integer.class, map.get(ContentMeta.DISPLAY)));
+			this.setLinkAddress(DataParser.parse(String.class, map.get(ContentMeta.LINK_ADDRESS)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(ContentMeta.UPDATE_TIME)));
+			this.setLabel(DataParser.parse(String.class, map.get(ContentMeta.LABEL)));
+			this.setTitle(DataParser.parse(String.class, map.get(ContentMeta.TITLE)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(ContentMeta.VERSION)));
+			this.setContent(DataParser.parse(String.class, map.get(ContentMeta.CONTENT)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(ContentMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(ContentMeta.DELETED)));
+			this.setReviewCount(DataParser.parse(BigDecimal.class, map.get(ContentMeta.REVIEW_COUNT)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(ContentMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(ContentMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(ContentMeta.DELETE_TIME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(ContentMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(ContentMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, map.get(ContentMeta.ID)));
+			this.setAttach(DataParser.parse(String.class, map.get(ContentMeta.ATTACH)));
+			this.setContentType(DataParser.parse(String.class, map.get(ContentMeta.CONTENT_TYPE)));
+			this.setCategoryId(DataParser.parse(String.class, map.get(ContentMeta.CATEGORY_ID)));
+			// others
+			this.setEditor(DataParser.parse(Employee.class, map.get(ContentMeta.EDITOR)));
+			this.setCategory(DataParser.parse(Category.class, map.get(ContentMeta.CATEGORY)));
+			return true;
+		} else {
+			try {
+				this.setKeyWords( (String)map.get(ContentMeta.KEY_WORDS));
+				this.setEditorId( (String)map.get(ContentMeta.EDITOR_ID));
+				this.setGradeId( (String)map.get(ContentMeta.GRADE_ID));
+				this.setNotes( (String)map.get(ContentMeta.NOTES));
+				this.setProfile( (String)map.get(ContentMeta.PROFILE));
+				this.setDisplay( (Integer)map.get(ContentMeta.DISPLAY));
+				this.setLinkAddress( (String)map.get(ContentMeta.LINK_ADDRESS));
+				this.setUpdateTime( (Date)map.get(ContentMeta.UPDATE_TIME));
+				this.setLabel( (String)map.get(ContentMeta.LABEL));
+				this.setTitle( (String)map.get(ContentMeta.TITLE));
+				this.setVersion( (Integer)map.get(ContentMeta.VERSION));
+				this.setContent( (String)map.get(ContentMeta.CONTENT));
+				this.setCreateBy( (String)map.get(ContentMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(ContentMeta.DELETED));
+				this.setReviewCount( (BigDecimal)map.get(ContentMeta.REVIEW_COUNT));
+				this.setCreateTime( (Date)map.get(ContentMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(ContentMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(ContentMeta.DELETE_TIME));
+				this.setTenantId( (String)map.get(ContentMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(ContentMeta.DELETE_BY));
+				this.setId( (String)map.get(ContentMeta.ID));
+				this.setAttach( (String)map.get(ContentMeta.ATTACH));
+				this.setContentType( (String)map.get(ContentMeta.CONTENT_TYPE));
+				this.setCategoryId( (String)map.get(ContentMeta.CATEGORY_ID));
+				// others
+				this.setEditor( (Employee)map.get(ContentMeta.EDITOR));
+				this.setCategory( (Category)map.get(ContentMeta.CATEGORY));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setKeyWords(DataParser.parse(String.class, r.getValue(ContentMeta.KEY_WORDS)));
+			this.setEditorId(DataParser.parse(String.class, r.getValue(ContentMeta.EDITOR_ID)));
+			this.setGradeId(DataParser.parse(String.class, r.getValue(ContentMeta.GRADE_ID)));
+			this.setNotes(DataParser.parse(String.class, r.getValue(ContentMeta.NOTES)));
+			this.setProfile(DataParser.parse(String.class, r.getValue(ContentMeta.PROFILE)));
+			this.setDisplay(DataParser.parse(Integer.class, r.getValue(ContentMeta.DISPLAY)));
+			this.setLinkAddress(DataParser.parse(String.class, r.getValue(ContentMeta.LINK_ADDRESS)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(ContentMeta.UPDATE_TIME)));
+			this.setLabel(DataParser.parse(String.class, r.getValue(ContentMeta.LABEL)));
+			this.setTitle(DataParser.parse(String.class, r.getValue(ContentMeta.TITLE)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(ContentMeta.VERSION)));
+			this.setContent(DataParser.parse(String.class, r.getValue(ContentMeta.CONTENT)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(ContentMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(ContentMeta.DELETED)));
+			this.setReviewCount(DataParser.parse(BigDecimal.class, r.getValue(ContentMeta.REVIEW_COUNT)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(ContentMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(ContentMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(ContentMeta.DELETE_TIME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(ContentMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(ContentMeta.DELETE_BY)));
+			this.setId(DataParser.parse(String.class, r.getValue(ContentMeta.ID)));
+			this.setAttach(DataParser.parse(String.class, r.getValue(ContentMeta.ATTACH)));
+			this.setContentType(DataParser.parse(String.class, r.getValue(ContentMeta.CONTENT_TYPE)));
+			this.setCategoryId(DataParser.parse(String.class, r.getValue(ContentMeta.CATEGORY_ID)));
+			return true;
+		} else {
+			try {
+				this.setKeyWords( (String)r.getValue(ContentMeta.KEY_WORDS));
+				this.setEditorId( (String)r.getValue(ContentMeta.EDITOR_ID));
+				this.setGradeId( (String)r.getValue(ContentMeta.GRADE_ID));
+				this.setNotes( (String)r.getValue(ContentMeta.NOTES));
+				this.setProfile( (String)r.getValue(ContentMeta.PROFILE));
+				this.setDisplay( (Integer)r.getValue(ContentMeta.DISPLAY));
+				this.setLinkAddress( (String)r.getValue(ContentMeta.LINK_ADDRESS));
+				this.setUpdateTime( (Date)r.getValue(ContentMeta.UPDATE_TIME));
+				this.setLabel( (String)r.getValue(ContentMeta.LABEL));
+				this.setTitle( (String)r.getValue(ContentMeta.TITLE));
+				this.setVersion( (Integer)r.getValue(ContentMeta.VERSION));
+				this.setContent( (String)r.getValue(ContentMeta.CONTENT));
+				this.setCreateBy( (String)r.getValue(ContentMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(ContentMeta.DELETED));
+				this.setReviewCount( (BigDecimal)r.getValue(ContentMeta.REVIEW_COUNT));
+				this.setCreateTime( (Date)r.getValue(ContentMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(ContentMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(ContentMeta.DELETE_TIME));
+				this.setTenantId( (String)r.getValue(ContentMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(ContentMeta.DELETE_BY));
+				this.setId( (String)r.getValue(ContentMeta.ID));
+				this.setAttach( (String)r.getValue(ContentMeta.ATTACH));
+				this.setContentType( (String)r.getValue(ContentMeta.CONTENT_TYPE));
+				this.setCategoryId( (String)r.getValue(ContentMeta.CATEGORY_ID));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

@@ -1,5 +1,7 @@
 package com.dt.platform.knowledgebase.service;
 
+import com.github.foxnic.dao.entity.ReferCause;
+import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
@@ -15,16 +17,18 @@ import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ExcelStructure;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.data.SaveMode;
+import java.util.Map;
 
 /**
  * <p>
- * 知识库内容 服务接口
+ * 知识库内容服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2021-11-16 21:14:30
+ * @since 2023-02-11 18:39:15
 */
 
-public interface IContentService extends ISuperService<Content> {
+public interface IContentService extends  ISimpleIdService<Content,String> {
+
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
@@ -52,7 +56,7 @@ public interface IContentService extends ISuperService<Content> {
 
 		
 	/**
-	 * 按主键删除 知识库内容
+	 * 按主键删除知识库内容
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -60,7 +64,7 @@ public interface IContentService extends ISuperService<Content> {
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 知识库内容
+	 * 按主键删除知识库内容
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -83,7 +87,7 @@ public interface IContentService extends ISuperService<Content> {
 
 		
 	/**
-	 * 按主键更新字段 知识库内容
+	 * 按主键更新知识库内容
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -144,7 +148,7 @@ public interface IContentService extends ISuperService<Content> {
 	Result saveList(List<Content> contentList , SaveMode mode);
 
 	/**
-	 * 检查实体中的数据字段是否已经存在
+	 * 检查实体中的数据字段是否已经存在 . 判断 主键值不同，但指定字段的值相同的记录是否存在
 	 * @param content  实体对象
 	 * @param field  字段清单，至少指定一个
 	 * @return 是否已经存在
@@ -153,7 +157,7 @@ public interface IContentService extends ISuperService<Content> {
 
 		
 	/**
-	 * 按主键获取 知识库内容
+	 * 按主键获取知识库内容
 	 *
 	 * @param id 主键
 	 * @return Content 数据对象
@@ -161,19 +165,27 @@ public interface IContentService extends ISuperService<Content> {
 	Content getById(String id);
 
 	/**
-	 * 检查实体中的数据字段是否已经存在
+	 * 按 id 获取多个对象
 	 * @param ids  主键清单
 	 * @return 实体集
 	 * */
-	List<Content> getByIds(List<String> ids);
+	List<Content> queryListByIds(List<String> ids);
 
 	/**
-	 * 检查 角色 是否已经存在
+	 * 按 id 列表查询 Map
+	 * @param ids  主键清单
+	 * */
+	Map<String, Content> queryMapByIds(List<String> ids);
+
+
+
+	/**
+	 * 检查 实体 是否已经存在 , 判断 主键值不同，但指定字段的值相同的记录是否存在
 	 *
 	 * @param content 数据对象
 	 * @return 判断结果
 	 */
-	Result<Content> checkExists(Content content);
+	Boolean checkExists(Content content);
 
 	/**
 	 * 根据实体数构建默认的条件表达式, 不支持 Join 其它表
@@ -195,7 +207,7 @@ public interface IContentService extends ISuperService<Content> {
 	 * @param sample  查询条件
 	 * @return 查询结果
 	 * */
-	List<Content> queryList(Content sample);
+	List<Content> queryList(ContentVO sample);
 
 	/**
 	 * 查询实体集合，默认情况下，字符串使用模糊匹配，非字符串使用精确匹配
@@ -236,7 +248,7 @@ public interface IContentService extends ISuperService<Content> {
 	 * @param pageIndex 页码
 	 * @return 查询结果
 	 * */
-	PagedList<Content> queryPagedList(Content sample,int pageSize,int pageIndex);
+	PagedList<Content> queryPagedList(ContentVO sample,int pageSize,int pageIndex);
 
 	/**
 	 * 分页查询实体集
@@ -290,28 +302,8 @@ public interface IContentService extends ISuperService<Content> {
 	 * */
 	<T> List<T> queryValues(DBField field, Class<T> type, String condition,Object... ps);
 
-	/**
-	 * 导出 Excel
-	 * */
-	ExcelWriter exportExcel(Content sample);
 
-	/**
-	 * 导出用于数据导入的 Excel 模版
-	 * */
-	ExcelWriter  exportExcelTemplate();
 
-	/**
-	 * 构建 Excel 结构
-	 * @param  isForExport 是否用于数据导出
-	 * @return   ExcelStructure
-	 * */
-	ExcelStructure buildExcelStructure(boolean isForExport);
-
-	/**
-	 * 导入 Excel 数据
-	 * @return  错误信息，成功时返回 null
-	 * */
-	List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch);
 
 
 }

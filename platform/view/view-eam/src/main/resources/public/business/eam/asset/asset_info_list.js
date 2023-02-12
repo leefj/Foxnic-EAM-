@@ -587,6 +587,8 @@ function ListPage() {
 					if(admin.checkAuth("eam_asset:print-pdf")){
 						exportArr.push({"code":"labelCard","id":"2","title":  fox.translate('打印资产标签') });
 					}
+
+
 					dropdown.render({
 						elem: this
 						,show: true //外部事件触发即显示
@@ -753,9 +755,12 @@ function ListPage() {
 					{"perm":"eam_asset:copy","id":"assetCopy","title": fox.translate('复制')},
 					{"perm":"eam_asset:asset-voucher","id":"assetVoucher","title":fox.translate('凭证') },
 					{"perm":"eam_asset:box","id":"assetBox","title":fox.translate('密文箱')  },
-					{"perm":"eam_asset:depreciation","id":"asssetDepreciation","title":fox.translate('折旧记录')  }
-
+					{"perm":"eam_asset:depreciation","id":"asssetDepreciation","title":fox.translate('折旧记录')  },
+					{"perm":"eam_asset:rwm","id":"rwm","title":fox.translate('二维码')  }
 				];
+
+
+
 				if(UPDATE_BTN){
 					operList.push({"perm":"updateBtn","id":"updateBtn","title":fox.translate('修改')})
 				}

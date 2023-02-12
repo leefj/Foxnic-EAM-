@@ -2,7 +2,7 @@
 /**
  * 人员分工 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-02-04 18:12:49
+ * @since 2023-02-11 20:39:59
  */
  -->
  <!DOCTYPE html>
@@ -97,6 +97,7 @@
 <script type="text/html" id="toolbarTemplate">
     <div class="layui-btn-container">
         <button th:if="${perm.checkAuth('ops_personnel_division:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建','','cmp:table.button')}">新建</span></button>
+        <button id="review"  th:if="${perm.checkAuth('ops_personnel_division:review')}"class="layui-btn icon-btn layui-btn-sm  review " lay-event="tool-review"><span th:text="${lang.translate('预览','','cmp:table.button')}">预览</span></button>
     </div>
 </script>
 

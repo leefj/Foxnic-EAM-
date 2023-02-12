@@ -1,31 +1,24 @@
 /**
- * 人员分工 列表页 JS 脚本
+ * 软件基线版本 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-02-11 20:40:00
+ * @since 2022-11-03 07:34:19
  */
 
 
 function ListPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect;
-	
 	//模块基础路径
-	const moduleURL="/service-ops/ops-personnel-division";
-	const queryURL=moduleURL+'/query-paged-list';
-	const deleteURL=moduleURL+'/delete';
-	const batchDeleteURL=moduleURL+'/delete-by-ids';
-	const getByIdURL=moduleURL+'/get-by-id';
-	//
+	const moduleURL="/service-ops/ops-software-base-version";
 	var dataTable=null;
 	var sort=null;
-
 	/**
       * 入口函数，初始化
       */
 	this.init=function(layui) {
 
      	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate;
-		table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,dropdown=layui.dropdown;
+		table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,dropdown=layui.dropdown;;
 
 		if(window.pageExt.list.beforeInit) {
 			window.pageExt.list.beforeInit();
@@ -76,30 +69,23 @@ function ListPage() {
 			var tableConfig={
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
-				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
-				url: queryURL,
+				defaultToolbar: [],
+				url: moduleURL +'/query-paged-list',
 				height: 'full-'+(h+28),
-				limit: 50,
+				limit: 500,
 				where: ps,
 				cols: [[
-					{ fixed: 'left',type: 'numbers' },
-					{ fixed: 'left',type:'checkbox'}
-					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
-					,{ field: 'owner', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('所属'), templet: function (d) { return templet('owner' ,fox.joinLabel(d.ownerData,"label",',','','owner'),d);}}
-					,{ field: 'userId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('用户') , templet: function (d) { return templet('userId',fox.getProperty(d,["user","name"],0,'','userId'),d);} }
-					,{ field: 'pos', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('岗位') , templet: function (d) { return templet('pos',d.pos,d);}  }
-					,{ field: 'responsibleContent', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('负责内容') , templet: function (d) { return templet('responsibleContent',d.responsibleContent,d);}  }
-					,{ field: 'jobContent', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('工作内容') , templet: function (d) { return templet('jobContent',d.jobContent,d);}  }
-					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
-					,{ field: 'sort', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('排序') , templet: function (d) { return templet('sort',d.sort,d);}  }
-					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
-					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
-				]],
+					{ fixed: 'left',type: 'numbers' }
+					,{ field: 'softwareTypeId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('类型'), templet: function (d) { return templet('softwareTypeId' ,fox.joinLabel(d.softwareBaseType,"name",',','','softwareTypeId'),d);}}
+					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
+					,{ field: 'softwareVersion', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('版本') , templet: function (d) { return templet('softwareVersion',d.softwareVersion,d);}  }
+					,{ field: 'patchInfo', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('补丁') , templet: function (d) { return templet('patchInfo',d.patchInfo,d);}  }
+					//,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status,'','status'),d);}}
+					,{ field: 'usageScenarios', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('使用场景') , templet: function (d) { return templet('usageScenarios',d.usageScenarios,d);}  }
+			 	]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
-					exportExcel : false ,
-					importExcel : false 
+
 				}
 			};
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
@@ -120,7 +106,7 @@ function ListPage() {
 		var context=dataTable.getDataRowContext( { id : data.id } );
 		if(context==null) return;
 		if(remote) {
-			admin.post(getByIdURL, { id : data.id }, function (r) {
+			admin.post(moduleURL+"/get-by-id", { id : data.id }, function (r) {
 				if (r.success) {
 					data = r.data;
 					context.update(data);
@@ -141,11 +127,10 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
-		value.owner={ inputType:"select_box", value: getSelectedValue("#owner","value") ,fillBy:["ownerData"]  , label:getSelectedValue("#owner","nameStr") };
-		value.responsibleContent={ inputType:"button",value: $("#responsibleContent").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.jobContent={ inputType:"button",value: $("#jobContent").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.notes={ inputType:"button",value: $("#notes").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.softwareTypeId={ inputType:"select_box", value: getSelectedValue("#softwareTypeId","value") ,fillBy:["softwareBaseType"]  , label:getSelectedValue("#softwareTypeId","nameStr") };
+		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.softwareVersion={ inputType:"button",value: $("#softwareVersion").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.status={ inputType:"select_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -192,44 +177,19 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
-		//渲染 status 搜索框
+		//渲染 softwareTypeId 下拉字段
 		fox.renderSelectBox({
-			el: "status",
-			size: "small",
-			radio: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
-			transform:function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].text,value:data[i].code});
-					}
-				}
-				return opts;
-			}
-		});
-		//渲染 owner 下拉字段
-		fox.renderSelectBox({
-			el: "owner",
+			el: "softwareTypeId",
 			radio: true,
 			size: "small",
 			filterable: true,
 			on: function(data){
 				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("owner",data.arr,data.change,data.isAdd);
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("softwareTypeId",data.arr,data.change,data.isAdd);
 				},1);
 			},
 			//转换数据
-			searchField: "label", //请自行调整用于搜索的字段名称
+			searchField: "name", //请自行调整用于搜索的字段名称
 			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
 			transform: function(data) {
 				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
@@ -237,11 +197,29 @@ function ListPage() {
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
-					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("owner",{data:data[i],name:data[i].label,value:data[i].code},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].label,value:data[i].code});
-					}
+					opts.push({data:data[i],name:data[i].name,value:data[i].id});
+				}
+				return opts;
+			}
+		});
+		//渲染 status 下拉字段
+		fox.renderSelectBox({
+			el: "status",
+			radio: true,
+			size: "small",
+			filterable: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform:function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					opts.push({data:data[i],name:data[i].text,value:data[i].code});
 				}
 				return opts;
 			}
@@ -293,14 +271,11 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
-					admin.putTempData('ops-personnel-division-form-data', {});
+					admin.putTempData('ops-software-base-version-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
 					batchDelete(selected);
-					break;
-				case 'tool-review':
-					window.pageExt.list.review && window.pageExt.list.review(selected,obj);
 					break;
 				case 'refresh-data':
 					refreshTableData();
@@ -315,7 +290,7 @@ function ListPage() {
         function openCreateFrom() {
         	//设置新增是初始化数据
         	var data={};
-			admin.putTempData('ops-personnel-division-form-data-form-action', "create",true);
+			admin.putTempData('ops-software-base-version-form-data-form-action', "create",true);
             showEditForm(data);
         };
 
@@ -329,13 +304,13 @@ function ListPage() {
 
 			var ids=getCheckedList("id");
             if(ids.length==0) {
-				top.layer.msg(fox.translate('请选择需要删除的'+'人员分工'+"!"));
+				top.layer.msg(fox.translate('请选择需要删除的')+fox.translate('软件基线版本')+"!");
             	return;
             }
             //调用批量删除接口
-			top.layer.confirm(fox.translate('确定删除已选中的'+'人员分工'+'吗？'), function (i) {
+			top.layer.confirm(fox.translate('确定删除已选中的')+fox.translate('软件基线版本')+fox.translate('吗？'), function (i) {
                 top.layer.close(i);
-				admin.post(batchDeleteURL, { ids: ids }, function (data) {
+				admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
                     if (data.success) {
 						if(window.pageExt.list.afterBatchDelete) {
 							var doNext=window.pageExt.list.afterBatchDelete(data);
@@ -344,9 +319,6 @@ function ListPage() {
 						fox.showMessage(data);
                         refreshTableData();
                     } else {
-						if(data.data>0) {
-							refreshTableData();
-						}
 						fox.showMessage(data);
                     }
                 },{delayLoading:200,elms:[$("#delete-button")]});
@@ -368,20 +340,20 @@ function ListPage() {
 				if(!doNext) return;
 			}
 
-			admin.putTempData('ops-personnel-division-form-data-form-action', "",true);
+			admin.putTempData('ops-software-base-version-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
-				admin.post(getByIdURL, { id : data.id }, function (data) {
+				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
 					if(data.success) {
-						admin.putTempData('ops-personnel-division-form-data-form-action', "edit",true);
+						admin.putTempData('ops-software-base-version-form-data-form-action', "edit",true);
 						showEditForm(data.data);
 					} else {
 						 fox.showMessage(data);
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
-				admin.post(getByIdURL, { id : data.id }, function (data) {
+				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
 					if(data.success) {
-						admin.putTempData('ops-personnel-division-form-data-form-action', "view",true);
+						admin.putTempData('ops-software-base-version-form-data-form-action', "view",true);
 						showEditForm(data.data);
 					} else {
 						fox.showMessage(data);
@@ -395,9 +367,9 @@ function ListPage() {
 					if(!doNext) return;
 				}
 
-				top.layer.confirm(fox.translate('确定删除此'+'人员分工'+'吗？'), function (i) {
+				top.layer.confirm(fox.translate('确定删除此')+fox.translate('软件基线版本')+fox.translate('吗？'), function (i) {
 					top.layer.close(i);
-					admin.post(deleteURL, { id : data.id }, function (data) {
+					admin.post(moduleURL+"/delete", { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
 						if (data.success) {
 							if(window.pageExt.list.afterSingleDelete) {
@@ -425,20 +397,20 @@ function ListPage() {
 			var doNext=window.pageExt.list.beforeEdit(data);
 			if(!doNext) return;
 		}
-		var action=admin.getTempData('ops-personnel-division-form-data-form-action');
+		var action=admin.getTempData('ops-software-base-version-form-data-form-action');
 		var queryString="";
 		if(data && data.id) queryString='id=' + data.id;
 		if(window.pageExt.list.makeFormQueryString) {
 			queryString=window.pageExt.list.makeFormQueryString(data,queryString,action);
 		}
-		admin.putTempData('ops-personnel-division-form-data', data);
-		var area=admin.getTempData('ops-personnel-division-form-area');
+		admin.putTempData('ops-software-base-version-form-data', data);
+		var area=admin.getTempData('ops-software-base-version-form-area');
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
 		var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
-		var title = fox.translate('人员分工');
-		if(action=="create") title=fox.translate('添加','','cmp:table')+title;
-		else if(action=="edit") title=fox.translate('修改','','cmp:table')+title;
-		else if(action=="view") title=fox.translate('查看','','cmp:table')+title;
+		var title = fox.translate('软件基线版本');
+		if(action=="create") title=fox.translate('添加')+title;
+		else if(action=="edit") title=fox.translate('修改')+title;
+		else if(action=="view") title=fox.translate('查看')+title;
 
 		admin.popupCenter({
 			title: title,
@@ -446,8 +418,8 @@ function ListPage() {
 			offset: [top,null],
 			area: ["80%",height+"px"],
 			type: 2,
-			id:"ops-personnel-division-form-data-win",
-			content: '/business/ops/personnel_division/personnel_division_form.html' + (queryString?("?"+queryString):""),
+			id:"ops-software-base-version-form-data-win",
+			content: '/business/ops/software_base_version/software_base_version_form.html' + (queryString?("?"+queryString):""),
 			finish: function () {
 				if(action=="create") {
 					refreshTableData();

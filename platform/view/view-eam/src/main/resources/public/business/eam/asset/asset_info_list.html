@@ -196,7 +196,11 @@
             <table class="layui-table" th:id="(${tableId})" lay-filter="data-table"></table>
         </div>
 
+
+
     </div>
+
+
 </div>
 <script type="text/javascript" src="/module/global.js" th:src="'/module/global.js?'+${cacheKey}"></script>
 <script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
@@ -262,9 +266,15 @@
     var ATTRIBUTE_LIST_DATA =  [[${attributeListData}]];
 
 </script>
+
+<script>
+
+</script>
+
+
 <script th:src="'/business/eam/asset/asset_column_list.js?'+${cacheKey}"></script>
 <script th:src="'/business/eam/asset/asset_info_ext.js?'+${cacheKey}"></script>
 <script th:src="'/business/eam/asset/asset_info_list.js?'+${cacheKey}"></script>
-
+<script th:src="'/business/eam/asset/jquery.qrcode.min.js?'+${cacheKey}"></script>
 </body>
 </html>
