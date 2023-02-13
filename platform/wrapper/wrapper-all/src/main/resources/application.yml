@@ -137,6 +137,14 @@ foxnic:
   config:
     # 按顺序读取 profile 下的配置值，默认使用 default Profile 的配置值，如果位于靠前的 profile 已经有配置，则不再往后读取，即前面 profile 的覆盖后面的 profile ;
     profiles: default
+    # 按模块控制菜单呈现，注意在开发环境下，此配置无效。
+    module-authorities:
+      # 指定最顶层菜单的权限Key，用逗号分隔；若未指定值则忽略该规则，不做控制。
+      auth-keys:
+      # 是否在首页体现 module-authorities 控制
+      apply-index-page: true
+      # 是否在菜单树体现 module-authorities 控制，主要包括菜单管理、角色选择等。注意，此项若开启可能导致菜单权限勾选不全，建议仅在生产环境开启。
+      apply-menu-tree: false
   # 设置 API 接口
   job:
     enable: true
