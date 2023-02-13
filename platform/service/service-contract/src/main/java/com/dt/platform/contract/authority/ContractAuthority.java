@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ContractAuthority extends ModuleAuthority {
-
     /**
      * 返回最顶层菜单的权限Key
      * */
