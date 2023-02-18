@@ -11,24 +11,15 @@ import com.github.foxnic.api.constant.CodeTextEnum;
  */
 
 
-public enum OpsCiphertextTypeEnum implements CodeTextEnum {
-
-
-    DATABASE("database" , "数据库"),
-    DATABASE_INSTANCE("database_instance" , "数据库实例"),
-    DATABASE_INSTANCE_OTHER("database_instance_other" , "数据库实例_其他"),
-    OPERATING_SYSTEM("operating_system" , "操作系统"),
-    INFORMATION_SYSTEM("information_system" , "信息系统"),
-    ASSET("asset" , "资产"),
-    EQUIPMENT("equipment" , "设备"),
-    OHTER("other" , "其他")
+public enum OpsDbEnvEnum implements CodeTextEnum {
+    DEV("dev" , "开发"),
+    TEST("test" , "测试"),
+    UAT("uat" , "准生产"),
+    OTHER("other" , "其他")
     ;
-
-
-
     private String code;
     private String text;
-    private OpsCiphertextTypeEnum(String code, String text)  {
+    private OpsDbEnvEnum(String code, String text)  {
         this.code=code;
         this.text=text;
     }

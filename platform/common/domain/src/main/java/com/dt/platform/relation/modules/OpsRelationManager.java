@@ -60,8 +60,24 @@ public class OpsRelationManager extends RelationManager {
         this.setupSoftwareMedia();
 
         this.setupPersonnelDivision();
-
         this.setupPublicContent();
+
+        this.setupDbEvnInfo();
+
+    }
+    public void setupDbEvnInfo() {
+
+        this.property(DbEnvInfoMeta.CIPHERTEXT_BOX_DATA_PROP)
+                .using(OpsTables.OPS_DB_ENV_INFO.ID).join(OpsTables.OPS_CIPHERTEXT_BOX_DATA.SOURCE_ID);
+
+
+        this.property(DbEnvInfoMeta.HOST_PROP)
+                .using(OpsTables.OPS_DB_ENV_INFO.DB_INST_ID).join(OpsTables.OPS_DB_INFO.ID)
+         .using(OpsTables.OPS_DB_INFO.HOST_ID).join(OpsTables.OPS_HOST.ID);
+
+        this.property(DbEnvInfoMeta.DB_INFO_PROP)
+                .using(OpsTables.OPS_DB_ENV_INFO.DB_INST_ID).join(OpsTables.OPS_DB_INFO.ID);
+
 
     }
 

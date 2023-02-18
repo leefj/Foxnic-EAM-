@@ -2,7 +2,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-19 19:44:19
+ * @since 2023-02-13 15:46:02
  */
  -->
  <!DOCTYPE html>
@@ -70,7 +70,6 @@
 
 
                         <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.OpsDbStatusEnum')}" style="width:150px"></div>
-
                     </div>
                     <!-- 标签 , labelIds ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">
@@ -93,7 +92,6 @@
 
 
                         <div id="backupStatus" th:data="${enum.toArray('com.dt.platform.constants.enums.ops.OpsDbBackupStatusEnum')}" style="width:150px"></div>
-
                     </div>
                     <!-- 部署模式 , deployMode ,typeName=select_box, isHideInSearch=false -->
                     <div class="search-unit">

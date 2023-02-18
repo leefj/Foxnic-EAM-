@@ -1,10 +1,8 @@
 /**
- * 数据库 列表页 JS 脚本
+ * 数据库环境 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-09-10 14:39:12
+ * @since 2023-02-13 15:40:40
  */
-//   自动运行后修改下面
-//  opts.push({data:data[i],name:data[i].hostName+"-"+data[i].hostIp,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
 
 layui.config({
     dir: layuiPath,
@@ -20,9 +18,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload;
 
     //模块基础路径
-    const moduleURL="/service-ops/ops-db-info";
+    const moduleURL="/service-ops/ops-db-env-info";
 
-   var actionType=admin.getTempData('ops-db-info-form-data-form-action');
+
     //列表页的扩展
     var list={
         /**
@@ -30,6 +28,21 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeInit:function () {
             console.log("list:beforeInit");
+        },
+        /**
+         * 按事件名称移除表格按钮栏的按钮
+         * */
+        removeOperationButtonByEvent(event) {
+            var template=$("#tableOperationTemplate");
+            var content=template.text();
+            content=content.split("\n");
+            var buttons=[]
+            for (let i = 0; i < content.length ; i++) {
+                if(content[i] && content[i].indexOf("lay-event=\""+event+"\"")==-1) {
+                    buttons.push(content[i]);
+                }
+            }
+            template.text(buttons.join("\n"))
         },
         /**
          * 表格渲染前调用
@@ -82,6 +95,13 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeQuery:function (conditions,param,location) {
             console.log('beforeQuery',conditions,param,location);
+            console.log("p",param);
+            if(INST_ID){
+                if(INST_ID!="null"){
+                    param.dbInstId=INST_ID;
+                }
+            }
+            console.log("p",param);
             return true;
         },
         /**
@@ -101,7 +121,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单页面打开时，追加更多的参数信息
          * */
         makeFormQueryString:function(data,queryString,action) {
-
+            if(data.id){
+                queryString="instId="+INST_ID
+            }else{
+                queryString="id="+data.id+"&instId="+INST_ID
+            }
             return queryString;
         },
         /**
@@ -155,150 +179,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
-            console.log(menu.id);
-            if(menu.id=="backup"){
-                this.openBackupWindow(data,it);
-            }else if (menu.id=="box"){
-                this.boxWindow(data,it);
-            }else if (menu.id=="env"){
-                this.actionEnv(data,it);
-            }
-        },
-        actionEnv:function (data,it){
-            admin.putTempData("instId",data.id,true);
-            var q="?instId="+data.id;
-            var index = admin.popupCenter({
-                title: "备份记录",
-                resize: false,
-                id: 'openEnvWindow',
-                area: ["80%", "600px"],
-                type: 2,
-                content: "/business/ops/db_env_info/db_env_info_list.html"+q
-            });
-
-
-            // var action=admin.getTempData('ops-db-env-info-form-data-form-action');
-            // var q="?instId="+data.id;
-            // if(data && data.id) queryString='id=' + data.id;
-            // if(window.pageExt.list.makeFormQueryString) {
-            //     queryString=window.pageExt.list.makeFormQueryString(data,queryString,action);
-            // }
-            // admin.putTempData('ops-db-env-info-form-data', data);
-            // var area=admin.getTempData('ops-db-env-info-form-area');
-            // var height= (area && area.height) ? area.height : ($(window).height()*0.6);
-            // var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
-            // var title = fox.translate('数据库环境');
-            // if(action=="create") title=fox.translate('添加','','cmp:table')+title;
-            // else if(action=="edit") title=fox.translate('修改','','cmp:table')+title;
-            // else if(action=="view") title=fox.translate('查看','','cmp:table')+title;
-            //
-            // admin.popupCenter({
-            //     title: "环境信息",
-            //     resize: false,
-            //     offset: [top,null],
-            //     area: ["80%","600px"],
-            //     type: 2,
-            //     id:"ops-db-env-info-form-data-win",
-            //     content: '/business/ops/db_env_info/db_env_info_form.html' +q,
-            //     finish: function () {
-            //         if(action=="create") {
-            //             refreshTableData();
-            //         }
-            //         if(action=="edit") {
-            //             false?refreshTableData():refreshRowData(data,true);
-            //         }
-            //     }
-            // });
-
-
-        },
-        dbSearch:function (selected,obj){
-            console.log("go to search!");
-            window.open("/business/ops/db_info/db_info_public_list.html")
-
-        },
-        openBackupWindow:function (data, it){
-            admin.putTempData("ownerId",data.id,true);
-            var q="?dbId="+data.id;
-            var index = admin.popupCenter({
-                title: "备份记录",
-                resize: false,
-                id: 'openBackupWindow',
-                area: ["80%", "600px"],
-                type: 2,
-                content: "/business/ops/db_backup_record/db_backup_record_list.html"+q
-            });
-        },
-        showEditBoxForm:function(data,sourceId,boxType) {
-            console.log("#######showEditBoxForm#########")
-            var action="view";
-            var queryString="?boxType="+boxType+"&sourceId="+sourceId;
-            if(data&&data.id) {
-                queryString=queryString+'&id=' + data.id;
-                action="edit";
-            }else{
-                action="create";
-            }
-            admin.putTempData('ops-ciphertext-box-data-form-data-form-action', action,true);
-            admin.putTempData('ops-ciphertext-box-data-form-data', data);
-            var area=admin.getTempData('ops-ciphertext-box-data-form-area');
-            var height= (area && area.height) ? area.height : ($(window).height()*0.6);
-            var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
-            var title = fox.translate('密文数据');
-            if(action=="create") title=fox.translate('添加')+title;
-            else if(action=="edit") title=fox.translate('修改')+title;
-            else if(action=="view") title=fox.translate('查看')+title;
-
-            console.log("action"+action)
-            admin.popupCenter({
-                title: title,
-                resize: false,
-                offset: [top,null],
-                area: ["80%",height+"px"],
-                type: 2,
-                id:"ops-ciphertext-box-data-form-data-win",
-                content: '/business/ops/ciphertext_box_data/ciphertext_box_data_form.html' + queryString,
-                finish: function () {
-                }
-            });
-            },
-        boxWindow:function (data, it){
-            console.log("boxWindow",data.id);
-            var ps={};
-            ps.sourceId=data.id;
-            var boxType="database_instance";
-            admin.post("/service-ops/ops-ciphertext-box/user-en-de-perm-by-boxtype", {boxType:boxType}, function (rrr) {
-                if (rrr.success) {
-                   if(rrr.data=="false"){
-                       layer.msg("用户无加解密权限，请先配置用户权限", {icon: 2, time: 1000});
-                   }else{
-                       admin.post("/service-ops/ops-ciphertext-box-data/query-list", ps, function (rr) {
-                           if (rr.success) {
-                               var boxdata = rr.data;
-                               console.log("/service-ops/ops-ciphertext-box-data/query-list",data)
-                               if(boxdata.length==0){
-                                   var td={}
-                                   list.showEditBoxForm(td,data.id,boxType);
-                               }else if (boxdata.length==1){
-                                   admin.post("/service-ops/ops-ciphertext-box-data/get-by-id", {id:boxdata[0].id}, function (r2) {
-                                       if (r2.success) {
-                                           list.showEditBoxForm(r2.data,data.id,boxType);
-                                       } else {
-                                           layer.msg("请求异常", {icon: 2, time: 1000});
-                                       }
-                                   });
-                               }else{
-                                   layer.msg("数据异常", {icon: 2, time: 1000});
-                               }
-                           } else {
-                               layer.msg( "请求异常", {icon: 2, time: 1000});
-                           }
-                       });
-                   }
-                } else {
-                    layer.msg("请求异常", {icon: 2, time: 1000});
-                }
-            });
         },
         /**
          * 末尾执行
@@ -307,7 +187,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
         }
     }
-    var timestamp = Date.parse(new Date());
 
     //表单页的扩展
     var form={
@@ -331,23 +210,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单数据填充前
          * */
         beforeDataFill:function (data) {
-
-
-            var boxType="database_instance";
-            admin.post("/service-ops/ops-ciphertext-box/user-en-de-perm-by-boxtype", {boxType:boxType}, function (rrr) {
-                if (rrr.success) {
-                    if(rrr.data=="false"){
-                        var e=$("#voucherStr");
-                        if(e){
-                            e.attr("readonly","readonly");
-                            e.css("background","#ccc");
-                            e.attr("placeholder","没有权限操作该字段。");
-                        }
-                    }
-                } else {
-                    layer.msg("请求异常", {icon: 2, time: 1000});
-                }
-            });
             console.log('beforeDataFill',data);
         },
         /**
@@ -401,8 +263,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 数据提交前，如果返回 false，停止后续步骤的执行
          * */
         beforeSubmit:function (data) {
-            data.selectedCode=timestamp;
             console.log("beforeSubmit",data);
+            data.dbInstId=INST_ID;
             return true;
         },
         /**
@@ -419,24 +281,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log("afterSubmitt",param,result);
         },
 
-        /**
-         *  加载 备份情况
-         */
-        backInfoList:function (ifr,win,data) {
-            // debugger
-            console.log("backInfoList",ifr,data);
-            //设置 iframe 高度
-            ifr.height("400px");
-            var selectedCode=timestamp;
-            var q="?selectedCode="+selectedCode+"&pageType="+actionType
-            if(data&&data.id){
-                q=q+"&dbId="+data.id;
-            }else{
-                q=q+"&dbId="+timestamp;
-            }
-            //设置地址
-            win.location="/business/ops/db_backup_info/db_backup_info_list.html"+q;
-        },
         /**
          * 文件上传组件回调
          *  event 类型包括：
