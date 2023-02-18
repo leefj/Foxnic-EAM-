@@ -41,8 +41,7 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addListProperty(String.class,"labelIds","labelIds","labelIds");
         cfg.getPoClassFile().addListProperty(DictItem.class,"dataLocData","dataLocData","dataLocData");
         cfg.getPoClassFile().addListProperty(String.class,"dataLocIds","dataLocIds","dataLocIds");
-
-
+        
         cfg.getPoClassFile().addSimpleProperty(CiphertextBoxData.class,"ciphertextBoxData","ciphertextBoxData","ciphertextBoxData");
         cfg.getPoClassFile().addListProperty(ServiceCategory.class,"dbTypeList","dbTypeList","dbTypeList");
         cfg.getPoClassFile().addListProperty(String.class,"dbTypeIds","dbTypeIds","dbTypeIds");
@@ -252,6 +251,10 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.view().list().operationColumn().addActionMenu("backup","备份记录","ops_db_info:backup");
         cfg.view().list().operationColumn().addActionMenu("box","密文箱","ops_db_info:box");
         cfg.view().list().operationColumn().addActionMenu("boxhistory","密文历史","ops_db_info:boxhistory");
+
+
+        cfg.view().list().operationColumn().addActionMenu("env","环境信息","ops_db_info:env");
+
 
         cfg.view().form().addPage("备份情况","backInfoList");
       //  cfg.view().list().operationColumn().addActionButton("备份记录","backupRecord","backupRecord","ops_auto_task:check");

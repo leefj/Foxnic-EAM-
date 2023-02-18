@@ -28,7 +28,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库
  * <p>数据库 , 数据表 ops_db_info 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-19 19:44:18
+ * @since 2023-02-13 15:46:01
  * @sign 790D1EA176B771825B83F2223DF46E03
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -45,13 +45,13 @@ public class DbInfo extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "667999301066031104")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "677539893294923776")
 	private String id;
 	
 	/**
 	 * 主机：主机
 	*/
-	@ApiModelProperty(required = false,value="主机" , notes = "主机" , example = "607636042148745216")
+	@ApiModelProperty(required = false,value="主机" , notes = "主机")
 	private String hostId;
 	
 	/**
@@ -63,13 +63,13 @@ public class DbInfo extends Entity {
 	/**
 	 * 数据库名：数据库名
 	*/
-	@ApiModelProperty(required = false,value="数据库名" , notes = "数据库名" , example = "12345")
+	@ApiModelProperty(required = false,value="数据库名" , notes = "数据库名" , example = "1212")
 	private String name;
 	
 	/**
 	 * 数据库状态：数据库状态
 	*/
-	@ApiModelProperty(required = false,value="数据库状态" , notes = "数据库状态" , example = "online")
+	@ApiModelProperty(required = false,value="数据库状态" , notes = "数据库状态" , example = "not_onine")
 	private String status;
 	
 	/**
@@ -129,7 +129,7 @@ public class DbInfo extends Entity {
 	/**
 	 * 用户备注：用户备注
 	*/
-	@ApiModelProperty(required = false,value="用户备注" , notes = "用户备注" , example = "12121`2")
+	@ApiModelProperty(required = false,value="用户备注" , notes = "用户备注")
 	private String userInfo;
 	
 	/**
@@ -183,13 +183,13 @@ public class DbInfo extends Entity {
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "12")
 	private String notes;
 	
 	/**
 	 * 选择：选择
 	*/
-	@ApiModelProperty(required = false,value="选择" , notes = "选择" , example = "1673999448000")
+	@ApiModelProperty(required = false,value="选择" , notes = "选择" , example = "1676274092000")
 	private String selectedCode;
 	
 	/**
@@ -201,19 +201,19 @@ public class DbInfo extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-01-18 07:50:44")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-02-13 03:41:39")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-01-18 07:50:52")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
 	private Date updateTime;
 	
 	/**
@@ -240,7 +240,7 @@ public class DbInfo extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**

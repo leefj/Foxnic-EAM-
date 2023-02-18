@@ -41,12 +41,12 @@ spring:
         #driver-class-name: com.mysql.cj.jdbc.Driver
         # 5.x
         driver-class-name: com.mysql.jdbc.Driver
-#        url: ai+mCm8asbK9SNrQDk7ac29neidjdgHp2jFU7HYbZZM7XPIVnc3jn040SCi2ghsOJmvzo7Z8DsMWz0GJtHzk5fVkSVq8PVTLpt97W7e4//KN1tJ8luj3f2R4xGk6d01pnyaG7DyU2tsIMcGZTOl8T0kLJom6Izu9ePptW1UPa7MuTPWKDKUSCYKdQSv51ASxJE99hLodGgxEtGeRBhnlDigwekNCLkMQGvjVKTeDRDsro2ghN1qDTzmyCaGJQxMq
-#        username: tD5wkJAfnCt04A+Y+QN5GA==
-#        password: ODGx5F84xpWJgfRFnzAaYhViHJqrTO3uxxDZ2lRlZNk=
         url: jdbc:mysql://127.0.0.1:APP_DB_PORT/APP_DB_NAME?tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true
         username: APP_DB_USERNAME
         password: APP_DB_PASSWORD
+        #        url: jdbc:mysql://121.43.103.102:3306/foxnic?tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true
+        #        username: root
+        #        password: P@ssw
         # 启动程序时，在连接池中初始化多少个连接
         initialSize: 10
         # 连接池中最多支持多少个活动会话
@@ -137,6 +137,14 @@ foxnic:
   config:
     # 按顺序读取 profile 下的配置值，默认使用 default Profile 的配置值，如果位于靠前的 profile 已经有配置，则不再往后读取，即前面 profile 的覆盖后面的 profile ;
     profiles: default
+    # 按模块控制菜单呈现，注意在开发环境下，此配置无效。
+    module-authorities:
+      # 指定最顶层菜单的权限Key，用逗号分隔；若未指定值则忽略该规则，不做控制。
+      auth-keys:
+      # 是否在首页体现 module-authorities 控制
+      apply-index-page: true
+      # 是否在菜单树体现 module-authorities 控制，主要包括菜单管理、角色选择等。注意，此项若开启可能导致菜单权限勾选不全，建议仅在生产环境开启。
+      apply-menu-tree: false
   # 设置 API 接口
   job:
     enable: true
@@ -252,7 +260,8 @@ security:
   mode: both
   # 配置无需鉴权可以访问的地址
   # /service-storage/sys-file/upload/**,/service-storage/sys-file/image/** 移动端访问开放，后续修正
-  ignored-urls:  /service-eam/eam-asset/user-login-data,/service-storage/sys-file/upload/**,/service-storage/sys-file/image/**, /console/** , /assets/** , /pages/** , /*.ico ,/extmodule/** , /module/** ,  /**/*.css , /**/*.js , /error , /druid/**,/business/eam/user_book/**
+  #
+  ignored-urls: /share/public22.html,/service-storage/sys-file/download,/business/ops/software_media/software_media_public_list.html,/service-ops/ops-software-media/query-paged-list,/service-ops/ops-information-system/query-paged-list,/business/ops/information_system/information_system_public_list.html,/service-ops/ops-host/query-paged-list,/**/host_public_list.html,/service-ops/ops-db-info/public-query-paged-list,/**/db_info_public_list.html,/service-ops/ops-db-info/public-query-paged-list,/**/db_info_public_list.html,/service-eam/eam-asset/user-login-data , /service-storage/sys-file/upload/** , /service-storage/sys-file/image/** ,   /public.html ,/share/public.html , /console/** , /assets/** , /pages/** , /*.ico ,/extmodule/** , /module/** ,  /**/*.css , /**/*.js , /error , /druid/**,/business/eam/user_book/**
   # mode=session 时配置的登录页面
   login-page: /login.html
   # 配置登录标识的范围与优先级,可选值在 LoginIdentityType 枚举中定义
@@ -265,8 +274,10 @@ security:
     cache-type: local
     iss: felord.cn
     sub: all
+    # accessToken 超时秒数，1800秒 即 30分钟
     access-expire-seconds: 1800
-    refresh-expire-seconds: 2000
+    # refreshToken 超时秒数，3600秒 即 60分钟;28800 即 8小时
+    refresh-expire-seconds: 28800
 
 
 logging:
