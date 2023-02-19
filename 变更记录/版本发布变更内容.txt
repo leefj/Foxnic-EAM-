@@ -1,4 +1,5 @@
 Foxnic-EAM 2.6.0
+1、
 
 Foxnic-EAM 2.5.0
 1、调整参数位置
