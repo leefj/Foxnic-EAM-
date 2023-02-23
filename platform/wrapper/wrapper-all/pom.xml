@@ -238,6 +238,18 @@
             <version>${platform.version}</version>
         </dependency>
 
+        <!-- 示例模块 -->
+        <dependency>
+            <groupId>com.foxnicweb.web</groupId>
+            <artifactId>service-example</artifactId>
+            <version>${foxnic-web.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.foxnicweb.web</groupId>
+            <artifactId>view-example</artifactId>
+            <version>${foxnic-web.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
