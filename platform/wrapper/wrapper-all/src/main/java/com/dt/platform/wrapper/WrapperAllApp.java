@@ -18,6 +18,7 @@ import org.springframework.context.annotation.ComponentScan;
 		FoxnicWebMeta.SERVICE_DATA_PERM_PACKAGE,
 		FoxnicWebMeta.SERVICE_JOB_PACKAGE,
 		FoxnicWebMeta.SERVICE_DOCS_PACKAGE,
+		FoxnicWebMeta.SERVICE_EXAMPLE_PACKAGE,
 		PlatformMeta.FRAMEWORK_PACKAGE,
 		PlatformMeta.SERVICE_EAM_PACKAGE,
 		PlatformMeta.SERVICE_HR_PACKAGE,
