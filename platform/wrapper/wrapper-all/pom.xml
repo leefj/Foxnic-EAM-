@@ -172,6 +172,19 @@
             <artifactId>service-oa</artifactId>
             <version>${platform.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>service-wms</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>view-wms</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>com.dt.platform</groupId>
             <artifactId>view-oa</artifactId>

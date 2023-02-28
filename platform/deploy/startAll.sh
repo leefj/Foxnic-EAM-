@@ -6,6 +6,5 @@ sh startApp.sh
 sh startBpm.sh
 sh startJob.sh
 
-
 exit 0
 

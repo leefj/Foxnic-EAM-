@@ -99,7 +99,10 @@ public class PlatformMeta {
 	 * */
 	public static final String OA_PACKAGE=BASE_PACKAGE+".oa";
 
-
+	/**
+	 * 协调办公
+	 * */
+	public static final String WMS_PACKAGE=BASE_PACKAGE+".wms";
 
 	public static final String VERSION="2.4.0";
 

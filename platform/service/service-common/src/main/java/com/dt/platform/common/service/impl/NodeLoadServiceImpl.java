@@ -154,21 +154,25 @@ public class NodeLoadServiceImpl extends SuperService<NodeLoad> implements INode
 		JSONArray r = new JSONArray();
 		SystemInfo si = new SystemInfo();
 		OperatingSystem os = si.getOperatingSystem();
-		FileSystem fileSystem = os.getFileSystem();
-		List<OSFileStore> fsArray = fileSystem.getFileStores();
-		for (OSFileStore fs : fsArray) {
-			long free = fs.getUsableSpace();
-			long total = fs.getTotalSpace();
-			long used = total - free;
-			JSONObject e = new JSONObject();
-			e.put("DirName", fs.getMount());
-			e.put("SysTypeName", fs.getType());
-			e.put("TypeName", fs.getName());
-			e.put("Total", convertFileSize(total));
-			e.put("Free", convertFileSize(free));
-			e.put("Used", convertFileSize(used));
-			e.put("Usage", mul(div(used, total, 4), 100));
-			r.add(e);
+		try {
+			FileSystem fileSystem = os.getFileSystem();
+			List<OSFileStore> fsArray = fileSystem.getFileStores();
+			for (OSFileStore fs : fsArray) {
+				long free = fs.getUsableSpace();
+				long total = fs.getTotalSpace();
+				long used = total - free;
+				JSONObject e = new JSONObject();
+				e.put("DirName", fs.getMount());
+				e.put("SysTypeName", fs.getType());
+				e.put("TypeName", fs.getName());
+				e.put("Total", convertFileSize(total));
+				e.put("Free", convertFileSize(free));
+				e.put("Used", convertFileSize(used));
+				e.put("Usage", mul(div(used, total, 4), 100));
+				r.add(e);
+			}
+		}catch (java.lang.IllegalArgumentException excep){
+			System.out.println(excep);
 		}
 		return r;
 	}
