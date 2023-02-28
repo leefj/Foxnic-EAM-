@@ -32,6 +32,7 @@ function FormPage() {
 			disableModify=true;
 		}
 
+		disableModify=false;
 
 		for(var i=0;i<CODE_PARTS.length;i++){
 			var e={};

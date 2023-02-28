@@ -33,6 +33,7 @@ import org.springframework.context.annotation.ComponentScan;
 		PlatformMeta.VEHICLE_PACKAGE,
 		PlatformMeta.WORKORDER_PACKAGE,
 		PlatformMeta.MOBILE_PACKAGE,
+		PlatformMeta.WMS_PACKAGE,
 		PlatformMeta.OA_PACKAGE
 })
 @SpringBootApplication

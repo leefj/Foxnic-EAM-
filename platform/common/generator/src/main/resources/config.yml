@@ -171,4 +171,15 @@ applications:
     viewProjectPath: /view/view-oa
     viewPrefixPath: public/business/oa
     wrapperProjectPath: /wrapper/wrapper-all
+  #WMS
+  service-wms:
+    nacosGroup: service
+    nacosDataId: service-wms.yml
+    serviceProjectPath: /service/service-wms
+    packageName: com.dt.platform.wms
+    primaryDatasourceConfigKey: spring.datasource.druid.primary
+    microServiceNameConst: WMS
+    viewProjectPath: /view/view-wms
+    viewPrefixPath: public/business/wms
+    wrapperProjectPath: /wrapper/wrapper-all
 
