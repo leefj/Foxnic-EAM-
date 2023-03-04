@@ -3,13 +3,14 @@ package com.dt.platform.domain.vehicle.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.vehicle.MSelectItem;
 import java.util.Date;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-02 19:42:47
- * @sign DC4E3F14CD3C56B5F7D477EC42ADEF29
+ * @since 2023-03-03 07:27:11
+ * @sign 907B58F17E8A75F6A324B89A9A402F01
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -258,5 +259,36 @@ public class MSelectItemMeta {
 			super.setVersion(version);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public MSelectItem clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public MSelectItem duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setAssetId(this.getAssetId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setId(this.getId());
+			inst.setHandleId(this.getHandleId());
+			inst.setVersion(this.getVersion());
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

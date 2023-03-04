@@ -1,45 +1,53 @@
 package com.dt.platform.vehicle.service.impl;
 
-
-import com.dt.platform.constants.db.VehicleTables.VEHICLE_M_SELECT_ITEM;
-import com.dt.platform.domain.vehicle.Info;
-import com.dt.platform.domain.vehicle.MSelectItem;
-import com.dt.platform.domain.vehicle.Maintenance;
-import com.dt.platform.vehicle.service.IMSelectItemService;
-import com.github.foxnic.api.error.ErrorDesc;
-import com.github.foxnic.api.transter.Result;
-import com.github.foxnic.commons.busi.id.IDGenerator;
-import com.github.foxnic.commons.collection.MapUtil;
-import com.github.foxnic.dao.data.PagedList;
-import com.github.foxnic.dao.data.SaveMode;
+import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
+
+import com.github.foxnic.commons.collection.MapUtil;
+import java.util.Arrays;
+
+
+import com.dt.platform.domain.vehicle.MSelectItem;
+import com.dt.platform.domain.vehicle.MSelectItemVO;
+import java.util.List;
+import com.github.foxnic.api.transter.Result;
+import com.github.foxnic.dao.data.PagedList;
 import com.github.foxnic.dao.entity.SuperService;
-import com.github.foxnic.dao.excel.ExcelStructure;
+import com.github.foxnic.dao.spec.DAO;
+import java.lang.reflect.Field;
+import com.github.foxnic.commons.busi.id.IDGenerator;
+import com.github.foxnic.sql.expr.ConditionExpr;
+import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ValidateResult;
-import com.github.foxnic.dao.spec.DAO;
-import com.github.foxnic.sql.expr.ConditionExpr;
-import com.github.foxnic.sql.meta.DBField;
-import org.github.foxnic.web.framework.dao.DBConfigs;
-import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
+import com.github.foxnic.dao.excel.ExcelStructure;
 import java.io.InputStream;
-import java.lang.reflect.Field;
+import com.github.foxnic.sql.meta.DBField;
+import com.github.foxnic.dao.data.SaveMode;
+import com.github.foxnic.dao.meta.DBColumnMeta;
+import com.github.foxnic.sql.expr.Select;
+import java.util.ArrayList;
+import com.dt.platform.vehicle.service.IMSelectItemService;
+import org.github.foxnic.web.framework.dao.DBConfigs;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
+import com.dt.platform.constants.db.VehicleTables.*;
+import com.dt.platform.domain.vehicle.Maintenance;
+import com.dt.platform.domain.vehicle.Info;
 
 /**
  * <p>
- * 车辆数据 服务实现
+ * 车辆数据服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-02 19:42:47
+ * @since 2023-03-03 07:27:12
 */
 
 
 @Service("VehicleMSelectItemService")
+
 public class MSelectItemServiceImpl extends SuperService<MSelectItem> implements IMSelectItemService {
 
 	/**
@@ -95,7 +103,7 @@ public class MSelectItemServiceImpl extends SuperService<MSelectItem> implements
 
 	
 	/**
-	 * 按主键删除 车辆数据
+	 * 按主键删除车辆数据
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -116,7 +124,7 @@ public class MSelectItemServiceImpl extends SuperService<MSelectItem> implements
 	}
 	
 	/**
-	 * 按主键删除 车辆数据
+	 * 按主键删除车辆数据
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -125,7 +133,7 @@ public class MSelectItemServiceImpl extends SuperService<MSelectItem> implements
 		MSelectItem mSelectItem = new MSelectItem();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
 		mSelectItem.setId(id);
-		mSelectItem.setDeleted(dao.getDBTreaty().getTrueValue());
+		mSelectItem.setDeleted(true);
 		mSelectItem.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
 		mSelectItem.setDeleteTime(new Date());
 		try {
@@ -176,7 +184,7 @@ public class MSelectItemServiceImpl extends SuperService<MSelectItem> implements
 
 	
 	/**
-	 * 按主键更新字段 车辆数据
+	 * 按主键更新车辆数据
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -190,7 +198,7 @@ public class MSelectItemServiceImpl extends SuperService<MSelectItem> implements
 
 	
 	/**
-	 * 按主键获取 车辆数据
+	 * 按主键获取车辆数据
 	 *
 	 * @param id 主键
 	 * @return MSelectItem 数据对象
@@ -202,9 +210,22 @@ public class MSelectItemServiceImpl extends SuperService<MSelectItem> implements
 		return dao.queryEntity(sample);
 	}
 
+	/**
+	 * 等价于 queryListByIds
+	 * */
 	@Override
 	public List<MSelectItem> getByIds(List<String> ids) {
+		return this.queryListByIds(ids);
+	}
+
+	@Override
+	public List<MSelectItem> queryListByIds(List<String> ids) {
 		return super.queryListByUKeys("id",ids);
+	}
+
+	@Override
+	public Map<String, MSelectItem> queryMapByIds(List<String> ids) {
+		return super.queryMapByUKeys("id",ids, MSelectItem::getId);
 	}
 
 
@@ -216,7 +237,7 @@ public class MSelectItemServiceImpl extends SuperService<MSelectItem> implements
 	 * @return 查询结果
 	 * */
 	@Override
-	public List<MSelectItem> queryList(MSelectItem sample) {
+	public List<MSelectItem> queryList(MSelectItemVO sample) {
 		return super.queryList(sample);
 	}
 
@@ -230,7 +251,7 @@ public class MSelectItemServiceImpl extends SuperService<MSelectItem> implements
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<MSelectItem> queryPagedList(MSelectItem sample, int pageSize, int pageIndex) {
+	public PagedList<MSelectItem> queryPagedList(MSelectItemVO sample, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, pageSize, pageIndex);
 	}
 
@@ -261,22 +282,7 @@ public class MSelectItemServiceImpl extends SuperService<MSelectItem> implements
 		return false;
 	}
 
-	@Override
-	public ExcelWriter exportExcel(MSelectItem sample) {
-		return super.exportExcel(sample);
-	}
-
-	@Override
-	public ExcelWriter exportExcelTemplate() {
-		return super.exportExcelTemplate();
-	}
-
-	@Override
-	public List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch) {
-		return super.importExcel(input,sheetIndex,batch);
-	}
-
-/**
+	/**
 	 * 批量检查引用
 	 * @param ids  检查这些ID是否又被外部表引用
 	 * */
@@ -287,10 +293,7 @@ public class MSelectItemServiceImpl extends SuperService<MSelectItem> implements
 		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
 	}
 
-	@Override
-	public ExcelStructure buildExcelStructure(boolean isForExport) {
-		return super.buildExcelStructure(isForExport);
-	}
+
 
 	/**
      * 保存关系
@@ -300,5 +303,6 @@ public class MSelectItemServiceImpl extends SuperService<MSelectItem> implements
 	public void saveRelation(String handleId,List<String> assetIds) {
 		super.saveRelation(Maintenance.class,VEHICLE_M_SELECT_ITEM.HANDLE_ID,handleId,Info.class,VEHICLE_M_SELECT_ITEM.ASSET_ID,assetIds,true);
 	}
+
 
 }

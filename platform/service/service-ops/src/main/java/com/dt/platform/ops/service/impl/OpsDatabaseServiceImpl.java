@@ -154,11 +154,11 @@ public class OpsDatabaseServiceImpl extends SuperService<DbInfo> implements IOps
 	public String dbBackupInfoDetailListSql="select * from (\n" +
 			"select a.id db_info_id,b.host_name,b.host_ip,a.name db_info_name,a.status db_status,backup_status db_backup_status \n" +
 			"from ops_db_info a,ops_host b\n" +
-			"where a.host_id=b.id and a.deleted=0 and b.deleted=0\n" +
+			"where a.backup_status='backup' and a.host_id=b.id and a.deleted=0 and b.deleted=0\n" +
 			"and a.status='online'\n" +
 			")aa\n" +
 			"left join(\n" +
-			"select * from ops_db_backup_record c where (db_id,create_time) in ((select db_id,max(create_time) max_backup_stime from ops_db_backup_record where backup_stime> subdate(now(),30) and deleted=0 group by db_id))\n" +
+			"select * from ops_db_backup_record c where (db_id,backup_stime) in ((select db_id,max(backup_stime) max_backup_stime from ops_db_backup_record where backup_stime> subdate(now(),30) and deleted=0 group by db_id))\n" +
 			")cc\n" +
 			"on aa.db_info_id=cc.db_id order by backup_stime";
 
@@ -376,7 +376,7 @@ public class OpsDatabaseServiceImpl extends SuperService<DbInfo> implements IOps
 
 		String sql="select ifnull(backup_result,'none')backup_result,count(1) cnt from (\n" +
 				"" +dbBackupInfoDetailListSql+") end where 1=1 \n" +
-				"and end.backup_stime>DATE_FORMAT(CURDATE(),'%Y-%m-%d %H:%i:%s')\n" +
+				"and end.backup_result='success' and  end.backup_stime>DATE_FORMAT(CURDATE(),'%Y-%m-%d %H:%i:%s')\n" +
 				"group by backup_result";
 		RcdSet rs=dao.query(sql);
 		JSONObject res=new JSONObject();

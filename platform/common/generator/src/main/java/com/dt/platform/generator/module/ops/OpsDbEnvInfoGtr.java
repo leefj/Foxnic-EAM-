@@ -55,9 +55,9 @@ public class OpsDbEnvInfoGtr extends BaseCodeGenerator{
                 .basic().label("源IP")
                 .table().fillBy("host","hostIp");
 
-        cfg.view().field(DbEnvInfoMeta.DB_NAME)
-                .basic().label("数据库名称")
-                .table().fillBy("dbInfo","dbName");
+//        cfg.view().field(DbEnvInfoMeta.DB_NAME)
+//                .basic().label("数据库名称")
+//                .table().fillBy("dbInfo","dbName");
 
 
 

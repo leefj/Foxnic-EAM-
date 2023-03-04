@@ -3,6 +3,9 @@ package com.dt.platform.proxy.vehicle;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import com.dt.platform.domain.vehicle.MSelectItem;
 import com.dt.platform.domain.vehicle.MSelectItemVO;
@@ -10,14 +13,13 @@ import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
 import com.dt.platform.proxy.ServiceNames;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * <p>
- * 车辆数据  控制器服务代理
+ * 车辆数据 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-02 19:42:47
+ * @since 2023-03-03 07:27:12
  */
 @FeignClient(value = ServiceNames.VEHICLE, contextId = MSelectItemServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface MSelectItemServiceProxy {
@@ -81,21 +83,6 @@ public interface MSelectItemServiceProxy {
      * 分页查询车辆数据
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
-
-    /**
-     * 导出车辆数据数据(Excel)
-     */
-    public static final String EXPORT_EXCEL = API_PREFIX + "export-excel";
-
-    /**
-     * 下载车辆数据导入模版(Excel)
-     */
-    public static final String EXPORT_EXCEL_TEMPLATE = API_PREFIX + "export-excel-template";
-
-    /**
-     * 导入车辆数据数据(Excel)
-     */
-    public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
 
     /**
      * 添加车辆数据

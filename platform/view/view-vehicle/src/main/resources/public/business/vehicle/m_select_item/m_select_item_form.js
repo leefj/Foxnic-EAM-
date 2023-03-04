@@ -1,23 +1,32 @@
 /**
  * 车辆数据 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-02 19:42:48
+ * @since 2023-03-03 07:27:13
  */
 
 function FormPage() {
 
-	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup;
+	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
+	
+	// 接口地址
 	const moduleURL="/service-vehicle/vehicle-m-select-item";
+	const queryURL=moduleURL+"/get-by-id";
+	const insertURL=moduleURL+"/insert";
+	const updateURL=moduleURL+"/update";
+
 	// 表单执行操作类型：view，create，edit
 	var action=null;
 	var disableCreateNew=false;
 	var disableModify=false;
 	var dataBeforeEdit=null;
+	const bpmIntegrateMode="none";
+	var isInProcess=QueryString.get("isInProcess");
+
 	/**
       * 入口函数，初始化
       */
 	this.init=function(layui) {
-     	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload;
+     	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload,dropdown=layui.dropdown;
 		laydate = layui.laydate,table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect;
 
 		action=admin.getTempData('vehicle-m-select-item-form-data-form-action');
@@ -27,6 +36,10 @@ function FormPage() {
 		}
 		if(action=="view") {
 			disableModify=true;
+		}
+
+		if(bpmIntegrateMode=="front" && isInProcess==1) {
+			$(".model-form-footer").hide();
 		}
 
 		if(window.pageExt.form.beforeInit) {
@@ -44,7 +57,13 @@ function FormPage() {
 
 		//调整窗口的高度与位置
 		adjustPopup();
+
+
 	}
+
+
+
+
 
 	/**
 	 * 自动调节窗口高度
@@ -56,13 +75,26 @@ function FormPage() {
 			if(!doNext) return;
 		}
 
+
+
 		clearTimeout(adjustPopupTask);
 		var scroll=$(".form-container").attr("scroll");
 		if(scroll=='yes') return;
+		var prevBodyHeight=-1;
 		adjustPopupTask=setTimeout(function () {
 			var body=$("body");
 			var bodyHeight=body.height();
 			var footerHeight=$(".model-form-footer").height();
+			if(bpmIntegrateMode=="front" && isInProcess==1) {
+				var updateFormIframeHeight=admin.getVar("updateFormIframeHeight");
+				if(bodyHeight>0 && bodyHeight!=prevBodyHeight) {
+					updateFormIframeHeight && updateFormIframeHeight(bodyHeight);
+				} else {
+					setTimeout(adjustPopup,1000);
+				}
+				prevBodyHeight = bodyHeight;
+				return;
+			}
 			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'vehicle-m-select-item-form-data-win');
 			if(area==null) return;
 			admin.putTempData('vehicle-m-select-item-form-area', area);
@@ -85,6 +117,30 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
+	}
+
+	/**
+	 * 根据id填充表单
+	 * */
+	function fillFormDataByIds(ids) {
+		if(!ids) return;
+		if(ids.length==0) return;
+		var id=ids[0];
+		if(!id) return;
+		admin.post(queryURL, { id : id }, function (r) {
+			if (r.success) {
+				fillFormData(r.data)
+			} else {
+				fox.showMessage(r);
+			}
+		});
+	}
+
+	/**
+	 * 在流程提交前处理表单数据
+	 * */
+	function processFormData4Bpm (processInstanceId,param,cb) {
+		window.pageExt.form.processFormData4Bpm && window.pageExt.form.processFormData4Bpm(processInstanceId,param,cb);
 	}
 
 	/**
@@ -131,7 +187,8 @@ function FormPage() {
         setTimeout(function (){
             fm.animate({
                 opacity:'1.0'
-            },100);
+            },100,null,function (){
+				fm.css("opacity","1.0");});
         },1);
 
         //禁用编辑
@@ -171,18 +228,40 @@ function FormPage() {
 		return fox.formVerify("data-form",data,VALIDATE_CONFIG)
 	}
 
-	function saveForm(param) {
+	function saveForm(param,callback) {
+
+		if(window.pageExt.form.beforeSubmit) {
+			var doNext=window.pageExt.form.beforeSubmit(param);
+			if(!doNext) return ;
+		}
+
 		param.dirtyFields=fox.compareDirtyFields(dataBeforeEdit,param);
-		var api=moduleURL+"/"+(param.id?"update":"insert");
+		var action=param.id?"edit":"create";
+		var api=param.id?updateURL:insertURL;
 		admin.post(api, param, function (data) {
 			if (data.success) {
 				var doNext=true;
+				var pkValues=data.data;
+				if(pkValues) {
+					for (var key in pkValues) {
+						$("#"+key).val(pkValues[key]);
+					}
+				}
 				if(window.pageExt.form.betweenFormSubmitAndClose) {
 					doNext=window.pageExt.form.betweenFormSubmitAndClose(param,data);
 				}
+
+				if(callback) {
+					doNext = callback(data,action);
+				}
+
 				if(doNext) {
 					admin.finishPopupCenterById('vehicle-m-select-item-form-data-win');
 				}
+
+				// 调整状态为编辑
+				action="edit";
+
 			} else {
 				fox.showMessage(data);
 			}
@@ -190,29 +269,26 @@ function FormPage() {
 		}, {delayLoading:1000,elms:[$("#submit-button")]});
 	}
 
+	function verifyAndSaveForm(data) {
+		if(!data) data={};
+		//debugger;
+		data.field = getFormData();
+		//校验表单
+		if(!verifyForm(data.field)) return;
+		saveForm(data.field);
+		return false;
+	}
+
 	/**
       * 保存数据，表单提交事件
       */
     function bindButtonEvent() {
 
-	    form.on('submit(submit-button)', function (data) {
-	    	//debugger;
-			data.field = getFormData();
-
-			if(window.pageExt.form.beforeSubmit) {
-				var doNext=window.pageExt.form.beforeSubmit(data.field);
-				if(!doNext) return ;
-			}
-			//校验表单
-			if(!verifyForm(data.field)) return;
-
-			saveForm(data.field);
-	        return false;
-	    });
+	    form.on('submit(submit-button)', verifyAndSaveForm);
 
 
 	    //关闭窗口
-	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('vehicle-m-select-item-form-data-win'); });
+	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('vehicle-m-select-item-form-data-win',this); });
 
     }
 
@@ -220,7 +296,10 @@ function FormPage() {
 		getFormData: getFormData,
 		verifyForm: verifyForm,
 		saveForm: saveForm,
+		verifyAndSaveForm:verifyAndSaveForm,
 		fillFormData: fillFormData,
+		fillFormDataByIds:fillFormDataByIds,
+		processFormData4Bpm:processFormData4Bpm,
 		adjustPopup: adjustPopup,
 		action: action,
 		setAction: function (act) {
@@ -232,7 +311,7 @@ function FormPage() {
 
 }
 
-layui.use(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','foxnicUpload','laydate'],function() {
+layui.use(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','foxnicUpload','laydate','dropdown'],function() {
 	var task=setInterval(function (){
 		if(!window["pageExt"]) return;
 		clearInterval(task);

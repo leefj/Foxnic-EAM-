@@ -1,7 +1,7 @@
 /**
  * 数据库环境 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-02-14 08:45:56
+ * @since 2023-03-01 20:41:06
  */
 
 
@@ -92,7 +92,6 @@ function ListPage() {
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'hostName', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('主机名') , templet: function (d) { return templet('hostName',fox.getProperty(d,["host","hostName"],0,'','hostName'),d);} }
 					,{ field: 'hostIp', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('源IP') , templet: function (d) { return templet('hostIp',fox.getProperty(d,["host","hostIp"],0,'','hostIp'),d);} }
-					,{ field: 'dbName', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('数据库名称') , templet: function (d) { return templet('dbName',fox.getProperty(d,["dbInfo","dbName"],0,'','dbName'),d);} }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
