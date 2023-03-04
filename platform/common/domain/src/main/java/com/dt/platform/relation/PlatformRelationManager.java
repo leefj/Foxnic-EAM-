@@ -24,7 +24,9 @@ public class PlatformRelationManager extends RelationManager {
 				new ContractRelationManager(),
 				new MonitorRelationManager(),
 				new MobileRelationManager(),
+				new WmsRelationManager(),
 				new WorkOrderRelationManager()
+
 
 
 		);

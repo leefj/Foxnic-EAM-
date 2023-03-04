@@ -20,10 +20,7 @@ public class KnCategoryGtr extends BaseCodeGenerator {
 
 
         cfg.view().field(KnTables.KN_CATEGORY.ID).basic().hidden(true);
-
-
         cfg.view().field(KnTables.KN_CATEGORY.CATEGORY_CODE).search().hidden(true);
-
         cfg.view().field(KnTables.KN_CATEGORY.CATEGORY_NAME).search().hidden(true);
         cfg.view().field(KnTables.KN_CATEGORY.SORT).search().hidden(true);
         cfg.view().field(KnTables.KN_CATEGORY.PARENT_ID).search().hidden(true);

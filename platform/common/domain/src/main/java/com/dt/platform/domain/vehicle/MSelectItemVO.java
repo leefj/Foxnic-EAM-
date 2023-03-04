@@ -1,22 +1,33 @@
 package com.dt.platform.domain.vehicle;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import com.github.foxnic.api.model.CompositeParameter;
 import javax.persistence.Transient;
 import com.github.foxnic.commons.bean.BeanUtil;
+import com.github.foxnic.dao.entity.EntityContext;
+import com.github.foxnic.dao.entity.Entity;
+import java.util.Map;
+import com.dt.platform.domain.vehicle.meta.MSelectItemVOMeta;
+import com.github.foxnic.commons.lang.DataParser;
+import java.util.Date;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
- * 车辆数据
+ * 车辆数据VO类型
+ * <p>车辆数据 , 数据表 vehicle_m_select_item 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-04-02 19:42:47
- * @sign F95D05EC3052606404F4EAB717D5C9BE
+ * @since 2023-03-03 07:27:11
+ * @sign 4C9EA05350ADDEDEAB3C39F4AC0BCE1F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
+@ApiModel(description = "车辆数据VO类型 ; 车辆数据 , 数据表 vehicle_m_select_item 的通用VO类型" , parent = MSelectItem.class)
 public class MSelectItemVO extends MSelectItem {
 
 	private static final long serialVersionUID = 1L;
@@ -68,6 +79,24 @@ public class MSelectItemVO extends MSelectItem {
 	*/
 	@ApiModelProperty(required = false,value="排序方式" , notes = "")
 	private String sortType;
+	
+	/**
+	 * 数据来源：前端指定不同的来源，后端可按来源执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端可按来源执行不同的逻辑")
+	private String dataOrigin;
+	
+	/**
+	 * 查询逻辑：默认and，可指定 or 
+	*/
+	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
+	private String queryLogic;
+	
+	/**
+	 * 请求动作：前端指定不同的Action，后端可Action执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="请求动作" , notes = "前端指定不同的Action，后端可Action执行不同的逻辑")
+	private String requestAction;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -188,9 +217,9 @@ public class MSelectItemVO extends MSelectItem {
 	 * @param dirtyField 已修改字段
 	 * @return 当前对象
 	*/
-	public MSelectItemVO addDirtyField(String dirtyField) {
+	public MSelectItemVO addDirtyField(String... dirtyField) {
 		if(this.dirtyFields==null) dirtyFields=new ArrayList<>();
-		this.dirtyFields.add(dirtyField);
+		this.dirtyFields.addAll(Arrays.asList(dirtyField));
 		return this;
 	}
 	
@@ -231,6 +260,63 @@ public class MSelectItemVO extends MSelectItem {
 	}
 	
 	/**
+	 * 获得 数据来源<br>
+	 * 前端指定不同的来源，后端可按来源执行不同的逻辑
+	 * @return 数据来源
+	*/
+	public String getDataOrigin() {
+		return dataOrigin;
+	}
+	
+	/**
+	 * 设置 数据来源
+	 * @param dataOrigin 数据来源
+	 * @return 当前对象
+	*/
+	public MSelectItemVO setDataOrigin(String dataOrigin) {
+		this.dataOrigin=dataOrigin;
+		return this;
+	}
+	
+	/**
+	 * 获得 查询逻辑<br>
+	 * 默认and，可指定 or 
+	 * @return 查询逻辑
+	*/
+	public String getQueryLogic() {
+		return queryLogic;
+	}
+	
+	/**
+	 * 设置 查询逻辑
+	 * @param queryLogic 查询逻辑
+	 * @return 当前对象
+	*/
+	public MSelectItemVO setQueryLogic(String queryLogic) {
+		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
+	 * 获得 请求动作<br>
+	 * 前端指定不同的Action，后端可Action执行不同的逻辑
+	 * @return 请求动作
+	*/
+	public String getRequestAction() {
+		return requestAction;
+	}
+	
+	/**
+	 * 设置 请求动作
+	 * @param requestAction 请求动作
+	 * @return 当前对象
+	*/
+	public MSelectItemVO setRequestAction(String requestAction) {
+		this.requestAction=requestAction;
+		return this;
+	}
+	
+	/**
 	 * 获得 主键清单<br>
 	 * 用于接收批量主键参数
 	 * @return 主键清单
@@ -254,13 +340,13 @@ public class MSelectItemVO extends MSelectItem {
 	 * @param id 主键清单
 	 * @return 当前对象
 	*/
-	public MSelectItemVO addId(String id) {
+	public MSelectItemVO addId(String... id) {
 		if(this.ids==null) ids=new ArrayList<>();
-		this.ids.add(id);
+		this.ids.addAll(Arrays.asList(id));
 		return this;
 	}
 	@Transient
-	private CompositeParameter $compositeParameter;
+	private transient CompositeParameter $compositeParameter;
 	/**
 	 * 获得解析后的复合查询参数
 	 */
@@ -269,5 +355,227 @@ public class MSelectItemVO extends MSelectItem {
 		if($compositeParameter!=null) return  $compositeParameter;
 		$compositeParameter=new CompositeParameter(this.getSearchValue(),BeanUtil.toMap(this));
 		return  $compositeParameter;
+	}
+
+	/**
+	 * 将自己转换成指定类型的PO
+	 * @param poType  PO类型
+	 * @return MSelectItemVO , 转换好的 MSelectItemVO 对象
+	*/
+	@Transient
+	public <T extends Entity> T toPO(Class<T> poType) {
+		return EntityContext.create(poType, this);
+	}
+
+	/**
+	 * 将自己转换成任意指定类型
+	 * @param pojoType  Pojo类型
+	 * @return MSelectItemVO , 转换好的 PoJo 对象
+	*/
+	@Transient
+	public <T> T toPojo(Class<T> pojoType) {
+		if(Entity.class.isAssignableFrom(pojoType)) {
+			return (T)this.toPO((Class<Entity>)pojoType);
+		}
+		try {
+			T pojo=pojoType.newInstance();
+			EntityContext.copyProperties(pojo, this);
+			return pojo;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public MSelectItemVO clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public MSelectItemVO duplicate(boolean all) {
+		com.dt.platform.domain.vehicle.meta.MSelectItemVOMeta.$$proxy$$ inst = new com.dt.platform.domain.vehicle.meta.MSelectItemVOMeta.$$proxy$$();
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setAssetId(this.getAssetId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setId(this.getId());
+		inst.setHandleId(this.getHandleId());
+		inst.setVersion(this.getVersion());
+		if(all) {
+			inst.setSearchField(this.getSearchField());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
+			inst.setRequestAction(this.getRequestAction());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setDirtyFields(this.getDirtyFields());
+			inst.setSortField(this.getSortField());
+			inst.setPageSize(this.getPageSize());
+			inst.setDataOrigin(this.getDataOrigin());
+			inst.setIds(this.getIds());
+			inst.setQueryLogic(this.getQueryLogic());
+			inst.setSearchValue(this.getSearchValue());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public MSelectItemVO clone(boolean deep) {
+		return EntityContext.clone(MSelectItemVO.class,this,deep);
+	}
+
+	/**
+	 * 将 Map 转换成 MSelectItemVO
+	 * @param mSelectItemMap 包含实体信息的 Map 对象
+	 * @return MSelectItemVO , 转换好的的 MSelectItem 对象
+	*/
+	@Transient
+	public static MSelectItemVO createFrom(Map<String,Object> mSelectItemMap) {
+		if(mSelectItemMap==null) return null;
+		MSelectItemVO vo = create();
+		EntityContext.copyProperties(vo,mSelectItemMap);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 将 Pojo 转换成 MSelectItemVO
+	 * @param pojo 包含实体信息的 Pojo 对象
+	 * @return MSelectItemVO , 转换好的的 MSelectItem 对象
+	*/
+	@Transient
+	public static MSelectItemVO createFrom(Object pojo) {
+		if(pojo==null) return null;
+		MSelectItemVO vo = create();
+		EntityContext.copyProperties(vo,pojo);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 创建一个 MSelectItemVO，等同于 new
+	 * @return MSelectItemVO 对象
+	*/
+	@Transient
+	public static MSelectItemVO create() {
+		return new com.dt.platform.domain.vehicle.meta.MSelectItemVOMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setCreateBy(DataParser.parse(String.class, map.get(MSelectItemVOMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(MSelectItemVOMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(MSelectItemVOMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(MSelectItemVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(MSelectItemVOMeta.DELETE_TIME)));
+			this.setAssetId(DataParser.parse(String.class, map.get(MSelectItemVOMeta.ASSET_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(MSelectItemVOMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(MSelectItemVOMeta.UPDATE_TIME)));
+			this.setId(DataParser.parse(String.class, map.get(MSelectItemVOMeta.ID)));
+			this.setHandleId(DataParser.parse(String.class, map.get(MSelectItemVOMeta.HANDLE_ID)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(MSelectItemVOMeta.VERSION)));
+			// others
+			this.setSearchField(DataParser.parse(String.class, map.get(MSelectItemVOMeta.SEARCH_FIELD)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(MSelectItemVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(MSelectItemVOMeta.SORT_TYPE)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(MSelectItemVOMeta.REQUEST_ACTION)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(MSelectItemVOMeta.FUZZY_FIELD)));
+			this.setSortField(DataParser.parse(String.class, map.get(MSelectItemVOMeta.SORT_FIELD)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(MSelectItemVOMeta.PAGE_SIZE)));
+			this.setDataOrigin(DataParser.parse(String.class, map.get(MSelectItemVOMeta.DATA_ORIGIN)));
+			this.setQueryLogic(DataParser.parse(String.class, map.get(MSelectItemVOMeta.QUERY_LOGIC)));
+			this.setSearchValue(DataParser.parse(String.class, map.get(MSelectItemVOMeta.SEARCH_VALUE)));
+			return true;
+		} else {
+			try {
+				this.setCreateBy( (String)map.get(MSelectItemVOMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(MSelectItemVOMeta.DELETED));
+				this.setCreateTime( (Date)map.get(MSelectItemVOMeta.CREATE_TIME));
+				this.setUpdateBy( (String)map.get(MSelectItemVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)map.get(MSelectItemVOMeta.DELETE_TIME));
+				this.setAssetId( (String)map.get(MSelectItemVOMeta.ASSET_ID));
+				this.setDeleteBy( (String)map.get(MSelectItemVOMeta.DELETE_BY));
+				this.setUpdateTime( (Date)map.get(MSelectItemVOMeta.UPDATE_TIME));
+				this.setId( (String)map.get(MSelectItemVOMeta.ID));
+				this.setHandleId( (String)map.get(MSelectItemVOMeta.HANDLE_ID));
+				this.setVersion( (Integer)map.get(MSelectItemVOMeta.VERSION));
+				// others
+				this.setSearchField( (String)map.get(MSelectItemVOMeta.SEARCH_FIELD));
+				this.setPageIndex( (Integer)map.get(MSelectItemVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(MSelectItemVOMeta.SORT_TYPE));
+				this.setRequestAction( (String)map.get(MSelectItemVOMeta.REQUEST_ACTION));
+				this.setFuzzyField( (String)map.get(MSelectItemVOMeta.FUZZY_FIELD));
+				this.setSortField( (String)map.get(MSelectItemVOMeta.SORT_FIELD));
+				this.setPageSize( (Integer)map.get(MSelectItemVOMeta.PAGE_SIZE));
+				this.setDataOrigin( (String)map.get(MSelectItemVOMeta.DATA_ORIGIN));
+				this.setQueryLogic( (String)map.get(MSelectItemVOMeta.QUERY_LOGIC));
+				this.setSearchValue( (String)map.get(MSelectItemVOMeta.SEARCH_VALUE));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(MSelectItemVOMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(MSelectItemVOMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(MSelectItemVOMeta.CREATE_TIME)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(MSelectItemVOMeta.UPDATE_BY)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(MSelectItemVOMeta.DELETE_TIME)));
+			this.setAssetId(DataParser.parse(String.class, r.getValue(MSelectItemVOMeta.ASSET_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(MSelectItemVOMeta.DELETE_BY)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(MSelectItemVOMeta.UPDATE_TIME)));
+			this.setId(DataParser.parse(String.class, r.getValue(MSelectItemVOMeta.ID)));
+			this.setHandleId(DataParser.parse(String.class, r.getValue(MSelectItemVOMeta.HANDLE_ID)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(MSelectItemVOMeta.VERSION)));
+			return true;
+		} else {
+			try {
+				this.setCreateBy( (String)r.getValue(MSelectItemVOMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(MSelectItemVOMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(MSelectItemVOMeta.CREATE_TIME));
+				this.setUpdateBy( (String)r.getValue(MSelectItemVOMeta.UPDATE_BY));
+				this.setDeleteTime( (Date)r.getValue(MSelectItemVOMeta.DELETE_TIME));
+				this.setAssetId( (String)r.getValue(MSelectItemVOMeta.ASSET_ID));
+				this.setDeleteBy( (String)r.getValue(MSelectItemVOMeta.DELETE_BY));
+				this.setUpdateTime( (Date)r.getValue(MSelectItemVOMeta.UPDATE_TIME));
+				this.setId( (String)r.getValue(MSelectItemVOMeta.ID));
+				this.setHandleId( (String)r.getValue(MSelectItemVOMeta.HANDLE_ID));
+				this.setVersion( (Integer)r.getValue(MSelectItemVOMeta.VERSION));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

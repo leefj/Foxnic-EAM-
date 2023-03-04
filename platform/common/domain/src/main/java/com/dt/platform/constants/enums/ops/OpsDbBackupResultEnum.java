@@ -16,6 +16,7 @@ public enum OpsDbBackupResultEnum implements CodeTextEnum {
 
     SUCCESS("success" , " 成功"),
     FAILED("failed" , "失败"),
+    ACTING("acting" , "执行中"),
     NOT_START("not_start" , "未开始"),
     UNKNOW("unknow" , "未知"),
     ;
