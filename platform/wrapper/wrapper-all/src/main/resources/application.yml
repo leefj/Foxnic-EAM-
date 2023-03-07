@@ -157,12 +157,25 @@ foxnic:
     log-keep-days: 30
   storage:
     mode: disk
+    # 是否加密配置
+    encrypt:
+      enable: true
+      file:
+        windows: d:/foxnic/passwd.txt
+        mac: /Users/Shared/foxnic/passwd.txt
+        linux: /foxnic/passwd.txt
     disk:
       location:
         #在不同的环境下选择不同的路径
         windows: c:/uploads
         mac: /Users/Shared/upload
         linux: /app/app/app/app/upload
+    oss-aliyun:
+      access-key-Id: WwzbiM7QkNGkw9X0tPA/tJcb9HFyBWtXZh+1Jd0h/zA=
+      access-secret: UCYyxDXhItJRZFMApz9cZh45oUPTijVfwycIGpXnj0M=
+      end-point: oGiGbQZSuB91rdrCSBfAh8EYYtdKG95f2wiI3LdVD98=
+      public-bucket: KblbYnUiyWSxvKrTtmmVWg==
+      private-bucket: 6ptaLbXYSHWjCGFbLZckLA==
   # 设置 BPM 相关内容
   bpm:
     enable: true
