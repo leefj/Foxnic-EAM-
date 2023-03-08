@@ -30,13 +30,9 @@ spring:
       resetEnable: true
     druid:
       primary:
-        encrypt:
-          #数据库连接信息url,username,password三个属性是否加密，如果enable为true，则加密，加密因子从file指定的路径获取
-          enable: true
-          file:
-            windows: d:/foxnic/passwd.txt
-            mac: /Users/Shared/foxnic/passwd.txt
-            linux: /foxnic/passwd.txt
+        # 数据库连接信息url,username,password三个属性是否加密，如果enable为true，则加密，加密因子从file指定的路径获取
+        # 加密文件在 develop.encrypt 配置
+        encrypt: true
         # 8.x
         #driver-class-name: com.mysql.cj.jdbc.Driver
         # 5.x
@@ -157,13 +153,8 @@ foxnic:
     log-keep-days: 30
   storage:
     mode: disk
-    # 是否加密配置
-    encrypt:
-      enable: true
-      file:
-        windows: d:/foxnic/passwd.txt
-        mac: /Users/Shared/foxnic/passwd.txt
-        linux: /foxnic/passwd.txt
+    # 是否加密配置，加密文件在 develop.encrypt 配置
+    encrypt: true
     disk:
       location:
         #在不同的环境下选择不同的路径
@@ -256,16 +247,11 @@ foxnic:
   language:
     translator:
       enable: true
-      encrypt:
-        enable: true
-        file:
-          windows: d:/foxnic/passwd.txt
-          mac: /Users/Shared/foxnic/passwd.txt
-          linux: /foxnic/passwd.txt
+      # 配置是否加密，加密文件在 develop.encrypt 配置
+      encrypt: true
       baidu:
         appId: oEXl3F7Mx4VZch8pcOZGRatfDPJIGqQrMFHEnN8aMH8=
         securityKey: TyrKCb6TgvTWU78ARppPs9dCs1VrZjGRYHqGIlkZ/14=
-
 
 
 security:
@@ -329,3 +315,9 @@ develop:
     enable: true
     # 可以使用以当前项目为基础的相对路径，指定静态资源自动部署的项目目录
     projects: ../view/view-wms,../view/view-oa,../view/view-workorder,../view/view-cms,../view/view-vehicle,../view/view-customer,../view/view-contract,../view/view-knowledgebase, ../view/view-common, ../view/view-console, ../view/view-datacenter, ../view/view-eam, ../view/view-hr, ../view/view-ops, ../view/view-mobile
+  # 加密配置
+  encrypt:
+    file:
+      windows: d:/foxnic/passwd.txt
+      mac: /Users/Shared/foxnic/passwd.txt
+      linux: /foxnic/passwd.txt

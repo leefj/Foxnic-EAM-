@@ -67,19 +67,19 @@ import org.github.foxnic.web.framework.dao.DBConfigs;
 public class BackupDbServiceImpl extends SuperService<BackupDb> implements IBackupDbService {
 
 
-	@Value("${spring.datasource.druid.primary.encrypt.enable}")
+	@Value("${spring.datasource.druid.primary.encrypt}")
 	private String encryptEnable;
 
 	@Value("${spring.datasource.druid.primary.password}")
 	private String jdbcPassword;
 
-	@Value("${spring.datasource.druid.primary.encrypt.file.linux}")
+	@Value("${develop.encrypt.file.linux}")
 	private String linuxFile;
 
-	@Value("${spring.datasource.druid.primary.encrypt.file.mac}")
+	@Value("${develop.encrypt.file.mac}")
 	private String macFile;
 
-	@Value("${spring.datasource.druid.primary.encrypt.file.windows}")
+	@Value("${develop.encrypt.file.windows}")
 	private String windowFile;
 
 
@@ -87,7 +87,7 @@ public class BackupDbServiceImpl extends SuperService<BackupDb> implements IBack
 	/**
 	 * 注入DAO对象
 	 * */
-	@Resource(name=DBConfigs.PRIMARY_DAO) 
+	@Resource(name=DBConfigs.PRIMARY_DAO)
 	private DAO dao=null;
 
 	/**
@@ -510,7 +510,7 @@ public class BackupDbServiceImpl extends SuperService<BackupDb> implements IBack
 		return super.insertList(backupDbList);
 	}
 
-	
+
 	/**
 	 * 按主键删除备份记录
 	 *
@@ -531,7 +531,7 @@ public class BackupDbServiceImpl extends SuperService<BackupDb> implements IBack
 			return r;
 		}
 	}
-	
+
 	/**
 	 * 按主键删除备份记录
 	 *
@@ -591,7 +591,7 @@ public class BackupDbServiceImpl extends SuperService<BackupDb> implements IBack
 		return super.updateList(backupDbList , mode);
 	}
 
-	
+
 	/**
 	 * 按主键更新备份记录
 	 *
@@ -605,7 +605,7 @@ public class BackupDbServiceImpl extends SuperService<BackupDb> implements IBack
 		return suc>0;
 	}
 
-	
+
 	/**
 	 * 按主键获取备份记录
 	 *
