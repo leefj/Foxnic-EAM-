@@ -13,7 +13,7 @@ public class WmsAuthority extends ModuleAuthority {
     @Override
     public String[] getAuthorities() {
         return new String[] {
-                "wms","wms"
+                "wms"
         };
     }
 }

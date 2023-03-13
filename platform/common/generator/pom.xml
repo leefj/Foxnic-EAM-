@@ -125,6 +125,26 @@
 
         <dependency>
             <groupId>com.dt.platform</groupId>
+            <artifactId>service-customer</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>view-customer</artifactId>
+            <version>${platform.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
+            <artifactId>view-customer</artifactId>
+            <version>2.5.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.dt.platform</groupId>
             <artifactId>view-wms</artifactId>
             <version>${platform.version}</version>
         </dependency>
@@ -141,7 +161,6 @@
             <artifactId>view-console</artifactId>
             <version>${platform.version}</version>
         </dependency>
-
 
 
         <dependency>
