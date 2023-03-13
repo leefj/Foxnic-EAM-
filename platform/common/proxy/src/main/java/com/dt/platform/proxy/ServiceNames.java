@@ -81,4 +81,10 @@ public class ServiceNames {
 	 * 对应 bootstrap.yml 中 spring.application.name 属性
 	 * */
 	public static final String WMS="service-wms";
+
+	/**
+	 * 协同办公 <br>
+	 * 对应 bootstrap.yml 中 spring.application.name 属性
+	 * */
+	public static final String CUSTOMER="service-customer";
 }

@@ -1,5 +1,5 @@
 #!/bin/sh
-modify_date="2022/11/25"
+modify_date="2023/03/12"
 ####################################################################################
 # run:
 #   sh appInstallFull.sh
@@ -18,13 +18,28 @@ modify_date="2022/11/25"
 #   ps -ef|grep java |grep -v grep |awk '{print $2}'|xargs kill -9
 #   ps -ef|grep mysql |grep -v grep |awk '{print $2}'|xargs kill -9
 #
-#
 #                                                                 modify at $modify_date
 #                                                                 by lank
 ####################################################################################
 ################################################################  config
 echo "script version:$modify_date"
 app_version="last"
+MYSQL_PORT=3308
+MYSQL_CNF=/etc/my_plat.cnf
+MYSQL_SOCK_NAME=mysql_plat.sock
+## mysql
+app_port=8089
+db_port=$MYSQL_PORT
+db_user=root
+db_pwd=root_pwd
+db_name=foxnic
+db_host=127.0.0.1
+bpm_port=8099
+
+echo "MYSQL_PORT:$MYSQL_PORT"
+echo "MYSQL_CNF:$MYSQL_CNF"
+echo "MYSQL_SOCK_NAME:$MYSQL_SOCK_NAME"
+
 if [[ -n $1 ]];then
 	app_version=$1
 fi
@@ -48,14 +63,6 @@ mysql_dir="/app/db"
 JAVA=$java_dir/java/bin/java
 MYSQL_HOME=$mysql_dir/mysql
 MYSQL=$mysql_dir/mysql/bin/mysql
-
-## mysql
-app_port=8089
-db_port=3306
-db_user=root
-db_pwd=root_pwd
-db_name=foxnic
-db_host=127.0.0.1
 
 ################################################################ verify command,netstat
 yum -y install unzip zip telnet net-tools wget java numactl
@@ -132,6 +139,11 @@ function installJava(){
 }
 
 function installMysql(){
+
+	mkdir -p /home/mysql
+	chown mysql:mysql /home/mysql
+	chmod 755 /home/mysql
+	usermod -s /bin/bash mysql
 	echo "#############install mysql start#############"
 	if [[ ! -d $mysql_dir ]];then
 		echo "command:mkdir -p $mysql_dir"
@@ -145,12 +157,19 @@ function installMysql(){
 		clearTips
 		exit 1
 	fi
-	glibcnt=`strings /lib64/libc.so.6|grep GLIBC|grep 2.12|wc -l`
-	if [[ $glibcnt -eq 0 ]];then
-		echo "GLIBC 2.12 Match Failed"
-		clearTips
-		exit 1
-	fi
+
+  which strings
+  stringsR=$?
+  ######stringsR check
+  if [[ stringsR -eq 0 ]];then
+    glibcnt=`strings /lib64/libc.so.6|grep GLIBC|grep 2.12|wc -l`
+    if [[ $glibcnt -eq 0 ]];then
+      echo "GLIBC 2.12 Match Failed"
+      clearTips
+      exit 1
+    fi
+  fi
+
 	if [[ -d "${mysql_dir}/mysql/data" ]];then
 		echo "${mysql_dir}/mysql/data Exists Deploy Failed,Please remove it first!"
 		clearTips
@@ -259,30 +278,30 @@ innodb_flush_log_at_trx_commit=2
 EOF
   #innodb_buffer_pool_size=75%memory
 	smysqldir="/usr/local"
-	cat $mycnftmp |sed "s:${smysqldir}:${mysql_dir}:g">/etc/my.cnf
+	cat $mycnftmp |sed "s:${smysqldir}:${mysql_dir}:g">$MYSQL_CNF
 	cp $mysql_soft ${mysql_dir}/mysql
 	cd $mysql_dir/mysql
 	tar xvf $mysql_soft
 	onedir=`ls -rtl |tail -1 |awk '{print $NF}'`
 	mv $onedir/* .
 	chown -R mysql:mysql $mysql_dir/mysql
-	rm -rf /tmp/mysql.sock
-	ln -s $mysql_dir/mysql/mysql.sock /tmp/mysql.sock
-	$mysql_dir/mysql/bin/mysqld --initialize-insecure --user=mysql --basedir=$mysql_dir/mysql--datadir=$mysql_dir/mysql/data
+	rm -rf /tmp/$MYSQL_SOCK_NAME
+	ln -s $mysql_dir/mysql/mysql.sock /tmp/$MYSQL_SOCK_NAME
+	$mysql_dir/mysql/bin/mysqld  --defaults-file=$MYSQL_CNF --initialize-insecure --user=mysql --basedir=$mysql_dir/mysql --datadir=$mysql_dir/mysql/data
 	echo "start mysql command list:"
-	echo "nohup $mysql_dir/mysql/bin/mysqld_safe &"
-	su - mysql -c "nohup $mysql_dir/mysql/bin/mysqld_safe &"
+	echo "nohup $mysql_dir/mysql/bin/mysqld_safe --defaults-file=$MYSQL_CNF  &"
+	su - mysql -c "nohup $mysql_dir/mysql/bin/mysqld_safe --defaults-file=$MYSQL_CNF  &"
 	sleep 10
 	echo "use mysql;">init.sql
 	echo "update mysql.user set authentication_string=password('$db_pwd') where user='root' and Host = 'localhost';">>init.sql
 	echo "grant all privileges on *.* to 'root'@'%' identified by '$db_pwd'  WITH GRANT OPTION; ">>init.sql
 	echo "flush privileges;">>init.sql
-	$mysql_dir/mysql/bin/mysql -uroot <init.sql
+	$mysql_dir/mysql/bin/mysql -uroot  -S/tmp/$MYSQL_SOCK_NAME <init.sql
 	rm -rf init.sql
 	chmod +x /etc/rc.d/rc.local
-	chown mysql:mysql /etc/my.cnf
+	chown mysql:mysql $MYSQL_CNF
 	sed -i '/mysql/d' /etc/rc.d/rc.local
-	echo "su - mysql -c \"nohup $mysql_dir/mysql/bin/mysqld_safe &\"">> /etc/rc.d/rc.local
+	echo "su - mysql -c \"nohup $mysql_dir/mysql/bin/mysqld_safe --defaults-file=$MYSQL_CNF &\"">> /etc/rc.d/rc.local
 	chmod +x /etc/rc.d/rc.local
 	cat /etc/rc.d/rc.local
 	chown -R mysql:mysql $mysql_dir
@@ -354,20 +373,20 @@ function installApp(){
 	MYSQL_ADMIN=$mysql_dir/mysql/bin/mysqladmin
 	echo "#########start to create database"
 	echo "CREATE DATABASE $db_name DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;" > $db_create_db_file
-	db_cnt=`$MYSQL -u$db_user -p$db_pwd -e 'show databases;' 2>/dev/null|grep $db_name|wc -l `
+	db_cnt=`$MYSQL -u$db_user -p$db_pwd -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME -e 'show databases;' 2>/dev/null|grep $db_name|wc -l `
 	if [[ $db_cnt -gt 0 ]];then
 	  echo "Error|db:$db_name exist!"
 	  echo "deploy failed!"
 	  exit 1
 	fi
-	$MYSQL -u$db_user -p$db_pwd -h$db_host  < $db_create_db_file  2>/dev/null
-	tab_cnt=`$MYSQL -u$db_user -p$db_pwd $db_name -e 'show tables' 2>/dev/null |wc -l`
+	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME < $db_create_db_file  2>/dev/null
+	tab_cnt=`$MYSQL -u$db_user -p$db_pwd -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name -e 'show tables' 2>/dev/null |wc -l`
 	echo "create database success,table count:$tab_cnt"
 	echo "#########start to backup db"
-	$MYSQL_DUMP -u$db_user -p$db_pwd -h$db_host $db_name  > /tmp/db_backup.sql  2>/dev/null
+	$MYSQL_DUMP -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name  > /tmp/db_backup.sql  2>/dev/null
 	echo "#########start to load data"
-	$MYSQL -u$db_user -p$db_pwd -h$db_host $db_name < $db_sql_file  2>/dev/null
-	tab_cnt=`$MYSQL -u$db_user -p$db_pwd $db_name -e 'show tables' 2>/dev/null |wc -l`
+	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_sql_file  2>/dev/null
+	tab_cnt=`$MYSQL -u$db_user -p$db_pwd -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name -e 'show tables' 2>/dev/null |wc -l`
 	echo "load tables success,table count:$tab_cnt"
 	if [[ $tab_cnt -lt 20 ]];then
 	  echo "Error|db table count $tab_cnt"
@@ -375,13 +394,13 @@ function installApp(){
 	  exit 1
 	fi
 	echo "#########start to create procedure"
-	$MYSQL -u$db_user -p$db_pwd -h$db_host $db_name < $db_procedure_file  2>/dev/null
+	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_procedure_file  2>/dev/null
 	echo "#########start to conf upload file data"
-	$MYSQL -u$db_user -p$db_pwd -h$db_host $db_name < $db_file_conf_file  2>/dev/null
+	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_file_conf_file  2>/dev/null
 	echo "#########start to clear data "
-	$MYSQL -u$db_user -p$db_pwd -h$db_host $db_name < $db_clear_data_file  2>/dev/null
+	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_clear_data_file  2>/dev/null
 	echo "#########start to app setting data "
-	$MYSQL -u$db_user -p$db_pwd -h$db_host $db_name < $db_app_setting_file  2>/dev/null
+	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_app_setting_file  2>/dev/null
 	echo "#########start to create application.yml from $application_tpl_yml"
 	cat $application_tpl_yml>$application_yml
 	sed -i "s@APP_UPLOAD_DIR@$app_upload_dir@g"     $application_yml
@@ -422,6 +441,7 @@ function stopFirewalld(){
   fi
   systemctl disable firewalld.service
   systemctl stop firewalld.service
+
 
 }
 ##########################################################################################
@@ -527,9 +547,13 @@ if [[ -f $app_soft ]];then
 	 rm -rf $app_soft
 fi
 #app_release_last.tar.gz
+# appUrl1=http://prodshop.maimaiyouhuiquan.com/upload/$app_soft_name
+# appUrl2=http://resource.rainbooow.com/$app_soft_name
+# appUrl3=https://lank-public.oss-cn-hangzhou.aliyuncs.com/$app_soft_name
 appUrl1=http://prodshop.maimaiyouhuiquan.com/upload/$app_soft_name
-appUrl2=http://resource.rainbooow.com/$app_soft_name
-appUrl3=https://lank-public.oss-cn-hangzhou.aliyuncs.com/$app_soft_name
+appUrl2=http://prodshop.maimaiyouhuiquan.com/upload/$app_soft_name
+appUrl3=http://prodshop.maimaiyouhuiquan.com/upload/$app_soft_name
+echo "download:$appUrl1";
 cd /tmp
 appbkfile=${app_soft_name}_backup
 if [[ -f "$appbkfile" ]];then
@@ -614,23 +638,32 @@ fi
 ## install app
 installApp
 ## stop Firewalld
+
+#process firewalld
+which firewall-cmd
+firewall_cmd_r=$?
+if [[ $firewall_cmd_r -eq 0 ]];then
+  #acl rule
+  firewall-cmd --zone=public --add-port=$bpm_port/tcp --permanent
+  firewall-cmd --zone=public --add-port=$app_port/tcp --permanent
+fi
 stopFirewalld
 
 ## start app
 cd $app_dir
 sh startAll.sh
-echo "Application is starting..."
+echo "Please waiting about 25 second,application Starting.."
 sleep 20
 echo "################## install result ###################"
-echo "Install Finish"
-echo "Application can be visited about 30 second later,website:http://ip:$app_port"
-echo "App Install directory List:$mysql_dir,$app_dir"
-echo "Mysql info Port=$db_port";
-echo "Mysql info UserName=$db_user";
-echo "Mysql info Password=$db_pwd";
-echo "Login Info User:admin"
-echo "Login Info Password:123456"
-
+echo "Install finish"
+echo "Application can be visited about 30 second later"
+echo "Visit address:http://ip:$app_port"
+echo "App install directory list:$mysql_dir,$app_dir"
+echo "Mysql info port=$db_port";
+echo "Mysql info userName=$db_user";
+echo "Mysql info password=$db_pwd";
+echo "Login info user:admin"
+echo "Login info password:123456"
 #################################################################### install finish
 exit 0
 ##########################################################################################
