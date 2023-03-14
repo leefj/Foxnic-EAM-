@@ -32,17 +32,17 @@ spring:
       primary:
         # 数据库连接信息url,username,password三个属性是否加密，如果enable为true，则加密，加密因子从file指定的路径获取
         # 加密文件在 develop.encrypt 配置
-        encrypt: false
+        encrypt: true
         # 8.x
         #driver-class-name: com.mysql.cj.jdbc.Driver
         # 5.x
 #        driver-class-name: com.mysql.jdbc.Driver
-#        url: ai+mCm8asbK9SNrQDk7ac29neidjdgHp2jFU7HYbZZM7XPIVnc3jn040SCi2ghsOJmvzo7Z8DsMWz0GJtHzk5fVkSVq8PVTLpt97W7e4//KN1tJ8luj3f2R4xGk6d01pnyaG7DyU2tsIMcGZTOl8T0kLJom6Izu9ePptW1UPa7MuTPWKDKUSCYKdQSv51ASxJE99hLodGgxEtGeRBhnlDigwekNCLkMQGvjVKTeDRDsro2ghN1qDTzmyCaGJQxMq
-#        username: tD5wkJAfnCt04A+Y+QN5GA==
-#        password: ODGx5F84xpWJgfRFnzAaYhViHJqrTO3uxxDZ2lRlZNk=
-        url: jdbc:mysql://121.43.103.102:3306/foxnic?tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true
-        username: root
-        password: P@sswOracle123456
+        url: ai+mCm8asbK9SNrQDk7ac29neidjdgHp2jFU7HYbZZM7XPIVnc3jn040SCi2ghsOJmvzo7Z8DsMWz0GJtHzk5fVkSVq8PVTLpt97W7e4//KN1tJ8luj3f2R4xGk6d01pnyaG7DyU2tsIMcGZTOl8T0kLJom6Izu9ePptW1UPa7MuTPWKDKUSCYKdQSv51ASxJE99hLodGgxEtGeRBhnlDigwekNCLkMQGvjVKTeDRDsro2ghN1qDTzmyCaGJQxMq
+        username: tD5wkJAfnCt04A+Y+QN5GA==
+        password: ODGx5F84xpWJgfRFnzAaYhViHJqrTO3uxxDZ2lRlZNk=
+        #        url: jdbc:mysql://121.43.103.102:3306/foxnic?tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true
+        #        username: root
+        #        password: xxx
         # 启动程序时，在连接池中初始化多少个连接
         initialSize: 10
         # 连接池中最多支持多少个活动会话
@@ -136,7 +136,7 @@ foxnic:
     # 按模块控制菜单呈现，注意在开发环境下，此配置无效。
     module-authorities:
       # 指定最顶层菜单的权限Key，用逗号分隔；若未指定值则忽略该规则，不做控制。
-      auth-keys: changes,hr,basic_permissions,eam,docs,common,sys_file:mngr,eam_employee,eam_equipment_mgr,kb,pcm,oauth,public_resource,bpm,mobile_application,hrm,dp_rule:mngr,ops,system_config,system_ops,infrastructure,job
+      auth-keys: changes,hr,basic_permissions,eam,docs,common,sys_file:mngr,eam_employee,eam_equipment_mgr,kb,pcm,oauth,public_resource,bpm,mobile_application,dp_rule:mngr,ops,system_config,system_ops,infrastructure,job
       # 是否在首页体现 module-authorities 控制
       apply-index-page: true
       # 是否在菜单树体现 module-authorities 控制，主要包括菜单管理、角色选择等。注意，此项若开启可能导致菜单权限勾选不全，建议仅在生产环境开启。
@@ -164,7 +164,7 @@ foxnic:
     oss-aliyun:
       access-key-Id: WwzbiM7QkNGkw9X0tPA/tJcb9HFyBWtXZh+1Jd0h/zA=
       access-secret: UCYyxDXhItJRZFMApz9cZh45oUPTijVfwycIGpXnj0M=
-      end-point: oGiGbQZSuB91rdrCSBfAh8EYYtdKG95f2wiI3LdVD98=
+      end-point: oGiGbQZSuB91rdrCSBfAh8EYYtdKG95securityf2wiI3LdVD98=
       public-bucket: KblbYnUiyWSxvKrTtmmVWg==
       private-bucket: 6ptaLbXYSHWjCGFbLZckLA==
   # 设置 BPM 相关内容
@@ -260,7 +260,7 @@ security:
   # 配置无需鉴权可以访问的地址
   # /service-storage/sys-file/upload/**,/service-storage/sys-file/image/** 移动端访问开放，后续修正
   #
-  ignored-urls: /share/public22.html,/service-storage/sys-file/download,/business/ops/software_media/software_media_public_list.html,/service-ops/ops-software-media/query-paged-list,/service-ops/ops-information-system/query-paged-list,/business/ops/information_system/information_system_public_list.html,/service-ops/ops-host/query-paged-list,/**/host_public_list.html,/service-ops/ops-db-info/public-query-paged-list,/**/db_info_public_list.html,/service-ops/ops-db-info/public-query-paged-list,/**/db_info_public_list.html,/service-eam/eam-asset/user-login-data , /service-storage/sys-file/upload/** , /service-storage/sys-file/image/** ,   /public.html ,/share/public.html , /console/** , /assets/** , /pages/** , /*.ico ,/extmodule/** , /module/** ,  /**/*.css , /**/*.js , /error , /druid/**,/business/eam/user_book/**
+  ignored-urls: /share/public.html,/service-storage/sys-file/download,/business/ops/software_media/software_media_public_list.html,/service-ops/ops-software-media/query-paged-list,/service-ops/ops-information-system/query-paged-list,/business/ops/information_system/information_system_public_list.html,/service-ops/ops-host/query-paged-list,/**/host_public_list.html,/service-ops/ops-db-info/public-query-paged-list,/**/db_info_public_list.html,/service-ops/ops-db-info/public-query-paged-list,/**/db_info_public_list.html,/service-eam/eam-asset/user-login-data , /service-storage/sys-file/upload/** , /service-storage/sys-file/image/** ,   /public.html ,/share/public.html , /console/** , /assets/** , /pages/** , /*.ico ,/extmodule/** , /module/** ,  /**/*.css , /**/*.js , /error , /druid/**,/business/eam/user_book/**
   # mode=session 时配置的登录页面
   login-page: /login.html
   # 配置登录标识的范围与优先级,可选值在 LoginIdentityType 枚举中定义
