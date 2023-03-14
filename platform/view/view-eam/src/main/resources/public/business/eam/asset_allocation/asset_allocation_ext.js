@@ -320,6 +320,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             if(BILL_ID==null)BILL_ID="";
             data.assetOwnerId=BILL_ID;
             admin.putTempData('eam-asset-selected-data'+timestamp,data,true);
+            console.log("formAction",formAction);
             admin.putTempData('eam-asset-selected-action'+timestamp,formAction,true);
             win.location="/business/eam/asset/asset_selected_list.html?assetSelectedCode="+timestamp+"&pageType="+formAction;
 

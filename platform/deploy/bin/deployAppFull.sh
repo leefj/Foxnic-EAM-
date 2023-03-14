@@ -1,5 +1,5 @@
 #!/bin/sh
-modify_date="2023/03/12"
+modify_date="2023/03/15"
 ####################################################################################
 # run:
 #   sh appInstallFull.sh
@@ -20,6 +20,9 @@ modify_date="2023/03/12"
 #
 #                                                                 modify at $modify_date
 #                                                                 by lank
+# action
+#  sh deploy.sh         // app_release_last.tar.gz
+#  sh deploy.sh 2.6.0   // app_release_2.6.0.tar.gz
 ####################################################################################
 ################################################################  config
 echo "script version:$modify_date"
@@ -65,10 +68,8 @@ MYSQL_HOME=$mysql_dir/mysql
 MYSQL=$mysql_dir/mysql/bin/mysql
 
 ################################################################ verify command,netstat
-yum -y install unzip zip telnet net-tools wget java numactl
-yum -y install libaio
+yum -y install nc libaio unzip zip telnet net-tools wget java numactl
 yum -y install glibc-*
-yum -y install nc
 #strings command need it
 yum -y install binutils*base*x86_64
 #centos 8.0
@@ -90,6 +91,11 @@ fi
 app_port_cnt=`netstat -ant|grep LISTEN|grep ":$app_port"|wc -l`
 if [[ $app_port_cnt -ne 0 ]];then
 	echo "install check error,app_port:$app_port already in use."
+	exit 1
+fi
+bpm_port_cnt=`netstat -ant|grep LISTEN|grep ":$bpm_port"|wc -l`
+if [[ $bpm_port_cnt -ne 0 ]];then
+	echo "install check error,bpm_port:$bpm_port already in use."
 	exit 1
 fi
 ################################################################ Install Function
@@ -637,8 +643,8 @@ else
 fi
 ## install app
 installApp
-## stop Firewalld
 
+## stop Firewalld
 #process firewalld
 which firewall-cmd
 firewall_cmd_r=$?
@@ -648,7 +654,6 @@ if [[ $firewall_cmd_r -eq 0 ]];then
   firewall-cmd --zone=public --add-port=$app_port/tcp --permanent
 fi
 stopFirewalld
-
 ## start app
 cd $app_dir
 sh startAll.sh
@@ -657,15 +662,15 @@ sleep 20
 echo "################## install result ###################"
 echo "Install finish"
 echo "Application can be visited about 30 second later"
-echo "Visit address:http://ip:$app_port"
 echo "App install directory list:$mysql_dir,$app_dir"
-echo "Mysql info port=$db_port";
-echo "Mysql info userName=$db_user";
-echo "Mysql info password=$db_pwd";
+echo "Visit address:http://ip:$app_port"
 echo "Login info user:admin"
 echo "Login info password:123456"
-#################################################################### install finish
+echo "Mysql info port=$db_port"
+echo "Mysql info userName=$db_user"
+echo "Mysql info password=$db_pwd"
 exit 0
+#################################################################### install finish
 ##########################################################################################
 ##########################################################################################
 ##########################################################################################

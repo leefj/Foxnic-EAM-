@@ -29,6 +29,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
 
     var formAction=admin.getTempData('eam-asset-employee-apply-form-data-form-action');
+    if (typeof(formAction) == "undefined"||formAction==""){
+        formAction="view";
+    }
     var timestamp = Date.parse(new Date());
     //列表页的扩展
     var list={
@@ -40,8 +43,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 displayPriority:false,
                 displayDraftComment:false,
                 displayApprovalComment:true,
-
-
             }
         },
 
