@@ -13,7 +13,7 @@ public class CommonAuthority extends ModuleAuthority {
     @Override
     public String[] getAuthorities() {
         return new String[] {
-                "common"
+                "common_system"
         };
     }
 }
