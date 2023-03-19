@@ -17,7 +17,6 @@ public class DatacenterRelationManager extends RelationManager {
         this.setupRelations();
         this.setupProperties();
         this.setupDcRack();
-
         this.setupDcLayer();
     }
 
