@@ -38,18 +38,15 @@ db_pwd=root_pwd
 db_name=foxnic
 db_host=127.0.0.1
 bpm_port=8099
-
 echo "MYSQL_PORT:$MYSQL_PORT"
 echo "MYSQL_CNF:$MYSQL_CNF"
 echo "MYSQL_SOCK_NAME:$MYSQL_SOCK_NAME"
-
 if [[ -n $1 ]];then
 	app_version=$1
 fi
 soft_base_dir=/tmp
 mysql_soft=$soft_base_dir/mysql-5.7.37-linux-glibc2.12-x86_64.tar.gz
 mysql_soft_md5=423915249cc67bbfa75223d9753cde77
-
 app_soft_name=app_release_${app_version}.tar.gz
 app_soft=$soft_base_dir/$app_soft_name
 
@@ -58,15 +55,15 @@ java_soft=$soft_base_dir/$java_file
 java_soft_md5=913c45332b22860b096217d9952c2ea4
 java_soft_remote=1
 ## directory
-java_dir="/app/java"
-app_dir="/app/app"
-mysql_dir="/app/db"
+base_dir="/app"
+java_dir="$base_dir/java"
+app_dir="$base_dir/app"
+mysql_dir="$base_dir/db"
 
 ## command
 JAVA=$java_dir/java/bin/java
 MYSQL_HOME=$mysql_dir/mysql
 MYSQL=$mysql_dir/mysql/bin/mysql
-
 ################################################################ verify command,netstat
 yum -y install nc libaio unzip zip telnet net-tools wget java numactl
 yum -y install glibc-*
@@ -146,10 +143,7 @@ function installJava(){
 
 function installMysql(){
 
-	mkdir -p /home/mysql
-	chown mysql:mysql /home/mysql
-	chmod 755 /home/mysql
-	usermod -s /bin/bash mysql
+
 	echo "#############install mysql start#############"
 	if [[ ! -d $mysql_dir ]];then
 		echo "command:mkdir -p $mysql_dir"
@@ -184,6 +178,10 @@ function installMysql(){
 	groupadd mysql
 	useradd -r -g mysql mysql
 	mkdir -p ${mysql_dir}/mysql/data
+	mkdir -p /home/mysql
+	chown mysql:mysql /home/mysql
+	chmod 755 /home/mysql
+	usermod -s /bin/bash mysql
 	#chown -R mysql:mysql /usr/local/mysql
 	if [[ -f "/etc/my.cnf" ]];then
 		d=`date "+%Y_%m_%d_%H_%M_%S"`
