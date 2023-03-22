@@ -116,6 +116,7 @@ public class DAOConfig {
 				dp=list.get(0);
 			}
 
+			//如果没有找到数据权限，则默认使用data_perm_0为0的数据权限
 			if(dp==null){
 				RcdSet rs2= dao.query("select * from eam_asset_data_permissions where code='data_perm_0' and deleted=0");
 				List<AssetDataPermissions> list2=rs2.toEntityList(AssetDataPermissions.class);

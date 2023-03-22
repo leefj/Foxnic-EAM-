@@ -10,14 +10,16 @@ import com.github.foxnic.commons.reflect.EnumUtil;
 public enum AttachmentType implements CodeTextEnum {
 
 	/**
-	 * 合同文本
+	 * 合同附件
 	 */
-	CONTRACT_TEXT("contract_text" , "文本"),
+	CONTRACT_ATTACH("contract_attach" , "合同附近"),
 
 	/**
 	 * 交付物
 	*/
 	DELIVERABLE("deliverable" , "交付物");
+
+
 
 	private String code;
 	private String text;

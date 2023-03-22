@@ -7,21 +7,17 @@ import com.github.foxnic.commons.reflect.EnumUtil;
 /**
  * 合同签订方类型
  * */
-public enum SignerType implements CodeTextEnum {
+public enum ContractPerformanceAction implements CodeTextEnum {
 
-	/**
-	 * 企业
-	*/
-	ENTERPRISE("enterprise" , "企业"),
-	/**
-	 * 个人
-	*/
-	INDIVIDUAL("individual" , "个人")
-	;
+
+
+
+	NOT_AGREEMENT("not_agreement" , "未履约"),
+	AGREEMENT("agreement" , "已履约");
 
 	private String code;
 	private String text;
-	private SignerType(String code, String text)  {
+	private ContractPerformanceAction(String code, String text)  {
 		this.code=code;
 		this.text=text;
 	}
@@ -37,7 +33,7 @@ public enum SignerType implements CodeTextEnum {
 	/**
 	 * 从字符串转换成当前枚举类型
 	*/
-	public static SignerType parseByCode(String code) {
-		return (SignerType) EnumUtil.parseByCode(SignerType.values(),code);
+	public static ContractPerformanceAction parseByCode(String code) {
+		return (ContractPerformanceAction) EnumUtil.parseByCode(ContractPerformanceAction.values(),code);
 	}
 }
