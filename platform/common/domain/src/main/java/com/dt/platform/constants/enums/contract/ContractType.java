@@ -17,12 +17,12 @@ public enum ContractType implements CodeTextEnum {
 	/**
 	 * 子合同
 	*/
-	SUBS("subs" , "子合同"),
-
-	/**
-	 * 附加协议
-	 */
-	ADDI("addi" , "附加协议")
+	SUBS("subs" , "子合同")
+//
+//	/**
+//	 * 附加协议
+//	 */
+//	ADDI("addi" , "附加协议")
 	;
 
 	private String code;

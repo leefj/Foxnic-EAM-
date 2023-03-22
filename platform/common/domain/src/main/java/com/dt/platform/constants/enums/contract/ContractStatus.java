@@ -9,31 +9,14 @@ import com.github.foxnic.commons.reflect.EnumUtil;
  * */
 public enum ContractStatus implements CodeTextEnum {
 
-	/**
-	 * 未签约
-	*/
+
+	UNDER_DRAFTING("under_drafting" , "草拟中"),
+	UNDER_APPROVAL("under_approval" , "审核中"),
 	NOT_SIGNED("not_signed" , "未签约"),
-
-	/**
-	 * 履约中
-	*/
 	PERFORMING("performing" , "履约中"),
-
-	/**
-	 * 终止
-	 */
-	TERMINATED("terminated" , "终止"),
-
-	/**
-	 * 完成
-	 */
-	DONE("done" , "完成"),
-
-	/**
-	 * 作废
-	 */
-	ABANDONED("abandoned" , "作废")
-	;
+	DISCONTINUE("discontinue" , "中止"),
+	DONE("done" , "已完成"),
+	ABANDONED("abandoned" , "作废");
 
 	private String code;
 	private String text;
