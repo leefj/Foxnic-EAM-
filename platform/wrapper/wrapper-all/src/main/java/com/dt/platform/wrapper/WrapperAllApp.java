@@ -27,7 +27,6 @@ import org.springframework.context.annotation.ComponentScan;
 		PlatformMeta.OPS_PACKAGE,
 		PlatformMeta.COMMON_PACKAGE,
 		PlatformMeta.KNOWLEDGEBASE_PACKAGE,
-		PlatformMeta.CONTRACT_PACKAGE,
 		PlatformMeta.JOB_PACKAGE,
 		PlatformMeta.CUSTOMER_PACKAGE,
 		PlatformMeta.VEHICLE_PACKAGE,

@@ -132,11 +132,7 @@
             <artifactId>service-ops</artifactId>
             <version>${platform.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.dt.platform</groupId>
-            <artifactId>service-contract</artifactId>
-            <version>${platform.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>com.dt.platform</groupId>
             <artifactId>service-job</artifactId>
@@ -232,11 +228,7 @@
             <artifactId>view-common</artifactId>
             <version>${platform.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.dt.platform</groupId>
-            <artifactId>view-contract</artifactId>
-            <version>${platform.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>com.dt.platform</groupId>
             <artifactId>view-mobile</artifactId>

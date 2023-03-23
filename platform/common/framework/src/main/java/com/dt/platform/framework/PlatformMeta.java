@@ -56,10 +56,7 @@ public class PlatformMeta {
 	 * */
 	public static final String KNOWLEDGEBASE_PACKAGE=BASE_PACKAGE+".knowledgebase";
 
-	/**
-	 * 合同服务
-	 * */
-	public static final String CONTRACT_PACKAGE=BASE_PACKAGE+".contract";
+
 
 
 	/**

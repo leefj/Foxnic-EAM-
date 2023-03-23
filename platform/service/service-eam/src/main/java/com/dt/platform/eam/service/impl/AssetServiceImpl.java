@@ -1373,7 +1373,6 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 
 
 		String dp=applyAssetDataPermissions(sample,condition);
-
 //		ConditionExpr base=this.buildQueryCondition(sample,"t");
 //		expr.and(base);
 //		select.append(expr.startWithWhere()+" order by create_time desc");
@@ -1407,12 +1406,16 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 //			}
 //		}
 
+
+		String tabalias=this.tableAlias();
+		System.out.println("tableAlias:"+tabalias);
+		this.tableAlias();
 		//过滤资产已选数据
 		if(!StringUtil.isBlank(assetOwnerId)) {
-			queryCondition.andIf("id not in (select asset_id from eam_asset_item where deleted=0 and handle_id=?)" ,assetOwnerId);
+			queryCondition.andIf(tabalias+".id not in (select asset_id from eam_asset_item where deleted=0 and handle_id=?)" ,assetOwnerId);
 		}else{
 			if(!StringUtil.isBlank(assetSelectData)) {
-				queryCondition.andIf("id not in (select asset_id from eam_asset_selected_data where deleted=0 and asset_selected_code=?)" ,assetSelectData);
+				queryCondition.andIf(tabalias+".id not in (select asset_id from eam_asset_selected_data where deleted=0 and asset_selected_code=?)" ,assetSelectData);
 			}
 		}
 
