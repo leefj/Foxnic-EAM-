@@ -57,13 +57,6 @@
 - [Demo]管理员:contractadmin fx9090
 - [Demo]查询:contractquery fx9090
 
-
-
-opsmonitorquery
-- --------------------------------------
---------------------------- 
-
-
 | 类型 | 账户  | 姓名  |
 |---|---|---|
 | 流程管理员  |  k3 | 王军 |
@@ -75,16 +68,7 @@ opsmonitorquery
 | 流程测试员  |duanzc|	段正淳|		
 | 流程测试员  |duany|	段誉|	
 | 流程测试员  |duanyq|	段延庆|		
-| 流程测试员  |nanhes|	南海鳄神|	
-
-
-
-
-
-### 版本兼容性
-| 应用版本     |   移动端版本     |
- | ---------- | -----------  |
-| 1.0.12      | 1.0.10       |
+| 流程测试员  |nanhes|	南海鳄神|
 
 #### 最新EAM编译后的包下载(为开发同步版本，并非发布版本)
 - 1、存储过程:[下载SQL](http://foxnicweb.com/docs/chapters/base/1.1/NextVal.zip)
@@ -104,15 +88,14 @@ opsmonitorquery
 - 任务调度:Quartz 2.3.3
 - 项目管理框架: Maven 3.6、3.8
 - 运行容器:Undertow
-
 #### 前端技术栈
 - 前端组件:LayUI 2.6.8
 
-#### 开发环境
-- IDE:IntelliJ IDEA 2020.2以上
+#### 开发环境(特别注意，严格按照以下要求)
+- 开发工具:IntelliJ IDEA 2020.2以上(不要使用eclipse)
+- 数据库:Mysql 5.7.32(必须为Mysql5.7)
+- Redis:5.0.12(可选)
 - JDK:JDK 1.8.100 (小版本100以上,但仅支持1.8)
-- 数据库:Mysql 5.7.X，OceanBase数据库
-- Redis:5.1(可选)
 
 #### 系统架构图
 ![输入图片说明](https://images.gitee.com/uploads/images/2022/0407/143343_0a8f4947_448530.png "EAM.png")
