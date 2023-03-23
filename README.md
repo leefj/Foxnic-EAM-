@@ -155,38 +155,12 @@
 - 安装目录:/app
 ```
 #安装命令
-curl -L 'http://resource.rainbooow.com/appInstallFull.sh'|bash
+curl -L 'http://resource.rainbooow.com/deploy.sh'|bash
 ```
 
-
-
-
-### 方案二 Docker方式-建议作为体验使用
-- 注意点:docker 版本可用作体验版本，正式使用不推荐docker部署方式。
-- 注意点:建议第一次docker部署完后，在重启一次，可能第一次启动数据库初始化还没完成，会导致报错
-- 应用和移动端兼容列表
-
-| 应用镜像     |   
- | ---------- | 
-| 1.0.9      | 
-
-- 部署步骤
-```
-  其中镜像中1.0.9为版本号,替换相对于版本即可。
-  确保本地操作系统下/data/mysql目录的正确性,检查未冲突。
-  $docker run --name eamapp -it \
-    -e MYSQL_ROOT_PASSWORD="root_pwd" \
-    -v /data/mysql:/var/lib/mysql  \
-    -p 3306:3306 \
-    -p 8089:8089 \
-    -d docker.io/algernonking/eamapp:1.0.9 \
-    --character-set-server=utf8
-```
-
-### 方案三 应用直接部署
+### 方案而 应用直接部署
 - 详细部署方式查询git目录下的文档说明
 - 百度网盘地址，地址同上
-
 
 
 ## 系统演示预览
