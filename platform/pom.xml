@@ -39,7 +39,7 @@
         <module>./service/service-ops</module>
         <module>./service/service-common</module>
         <module>./service/service-knowledgebase</module>
-        <module>./service/service-contract</module>
+
         <module>./service/service-customer</module>
         <module>./service/service-vehicle</module>
         <module>./service/service-cms</module>
@@ -55,7 +55,7 @@
         <module>./view/view-ops</module>
         <module>./view/view-common</module>
         <module>./view/view-knowledgebase</module>
-        <module>./view/view-contract</module>
+   
         <module>./view/view-customer</module>
         <module>./view/view-vehicle</module>
         <module>./view/view-cms</module>

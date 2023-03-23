@@ -21,7 +21,7 @@ public class PlatformRelationManager extends RelationManager {
 				new OpsRelationManager(),
 				new CommonRelationManager(),
 				new DatacenterRelationManager(),
-				new ContractRelationManager(),
+
 				new MonitorRelationManager(),
 				new MobileRelationManager(),
 				new WmsRelationManager(),
