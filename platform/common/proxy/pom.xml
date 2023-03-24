@@ -24,6 +24,13 @@
             <artifactId>proxy</artifactId>
             <version>${foxnic-web.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.foxnicweb.web</groupId>
+            <artifactId>contract-proxy</artifactId>
+            <version>${foxnic-contract.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>com.dt.platform</groupId>
             <artifactId>domain</artifactId>

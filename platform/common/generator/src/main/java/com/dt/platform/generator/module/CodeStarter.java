@@ -1,10 +1,6 @@
 package com.dt.platform.generator.module;
 
 import com.dt.platform.generator.config.PlatformConfigs;
-import com.dt.platform.generator.module.contract.ContContractAttachmentConfig;
-import com.dt.platform.generator.module.contract.ContContractConfig;
-import com.dt.platform.generator.module.contract.ContContractPerformanceConfig;
-import com.dt.platform.generator.module.contract.ContContractSignerConfig;
 import com.dt.platform.proxy.ServiceNames;
 import com.github.foxnic.generator.config.ModuleContext;
 import com.github.foxnic.generator.util.ModuleCodeConfig;
@@ -23,18 +19,11 @@ public class CodeStarter extends ModuleCodeGenerator {
 
     public void initModules()
     {
-        initSystemModules();
-    }
-
-
-    private void initSystemModules() {
-
-        this.addConfig(new ContContractConfig());
-        this.addConfig(new ContContractSignerConfig());
-        this.addConfig(new ContContractAttachmentConfig());
-        this.addConfig(new ContContractPerformanceConfig());
 
     }
+
+
+
 
 
 

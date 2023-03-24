@@ -1,9 +1,7 @@
 package com.dt.platform.generator.menu;
 
-import com.dt.platform.constants.db.ContractTables;
-import com.dt.platform.contract.page.ContractSignerPageController;
 import com.dt.platform.generator.config.PlatformConfigs;
-import com.dt.platform.proxy.contract.ContractSignerServiceProxy;
+import com.foxnicweb.web.constants.db.ContractTables;
 import com.github.foxnic.commons.busi.id.IDGenerator;
 import com.github.foxnic.commons.io.FileUtil;
 import com.github.foxnic.commons.lang.StringUtil;
@@ -67,8 +65,8 @@ MenuGenerator {
 //		mg=new MenuGenerator(ContractTables.CONT_CONTRACT.$TABLE, ContractServiceProxy.class, ContractPageController.class);
 //		mg.generate("474157822892834817");
 
-		mg=new MenuGenerator(ContractTables.CONT_CONTRACT_SIGNER.$TABLE, ContractSignerServiceProxy.class, ContractSignerPageController.class);
-		mg.generate("474157822892834817");
+//		mg=new MenuGenerator(ContractTables.CONT_CONTRACT_SIGNER.$TABLE, ContractSignerServiceProxy.class, ContractSignerPageController.class);
+//		mg.generate("474157822892834817");
 
 //		mg.removeByBatchId("485743342794047488");
 

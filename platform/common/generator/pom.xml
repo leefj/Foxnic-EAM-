@@ -12,6 +12,7 @@
     <artifactId>generator</artifactId>
     <name>generator</name>
     <description>Code Generator</description>
+
     <dependencies>
         <dependency>
             <groupId>com.foxnicweb.web</groupId>
@@ -84,11 +85,7 @@
             <version>${platform.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.dt.platform</groupId>
-            <artifactId>service-contract</artifactId>
-            <version>${platform.version}</version>
-        </dependency>
+
 
 
         <dependency>
@@ -201,11 +198,6 @@
             <version>${platform.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.dt.platform</groupId>
-            <artifactId>view-contract</artifactId>
-            <version>${platform.version}</version>
-        </dependency>
 
 
         <dependency>
