@@ -2,6 +2,7 @@ package com.dt.platform.relation;
 
 import com.dt.platform.relation.modules.*;
 import com.dt.platform.relation.modules.HrmRelationManager;
+import com.foxnicweb.web.relation.modules.ContractRelationManager;
 import com.github.foxnic.dao.relation.RelationManager;
 import org.github.foxnic.web.relation.FoxnicWebRelationManager;
 import org.github.foxnic.web.relation.modules.*;
@@ -25,7 +26,10 @@ public class PlatformRelationManager extends RelationManager {
 				new MonitorRelationManager(),
 				new MobileRelationManager(),
 				new WmsRelationManager(),
-				new WorkOrderRelationManager()
+				new WorkOrderRelationManager(),
+
+				// 合同
+				new ContractRelationManager()
 
 
 

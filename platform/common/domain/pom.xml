@@ -24,6 +24,13 @@
             <artifactId>domain</artifactId>
             <version>${foxnic-web.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.foxnicweb.web</groupId>
+            <artifactId>contract-domain</artifactId>
+            <version>${foxnic-contract.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-micro-spring-boot-starter</artifactId>
