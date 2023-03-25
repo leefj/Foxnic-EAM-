@@ -143,6 +143,12 @@ delete from cont_contract where 1=1 and tenant_id='T001' ;
 delete from cont_contract_attachment where 1=1  and tenant_id='T001' ;
 delete from cont_contract_performance where 1=1  and tenant_id='T001' ;
 delete from cont_contract_signer where 1=1 and tenant_id='T001' ;
+delete from cont_contract_archive where 1=1 and tenant_id='T001' ;
+delete from cont_contract_collect where 1=1 and tenant_id='T001' ;
+delete from cont_contract_invoice where 1=1 and tenant_id='T001' ;
+delete from cont_contract_pay where 1=1 and tenant_id='T001' ;
+delete from cont_contract_collect where 1=1 and tenant_id='T001' ;
+
 
 -- maintenance
 delete from eam_asset_maintenance_record where 1=1;;

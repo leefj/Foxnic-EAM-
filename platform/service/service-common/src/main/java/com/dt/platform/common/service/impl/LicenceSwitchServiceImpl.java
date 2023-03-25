@@ -80,9 +80,9 @@ public class LicenceSwitchServiceImpl extends SuperService<LicenceSwitch> implem
 			return ErrorDesc.failureMessage("许可信息为空");
 		}
 
-		this.dao.execute("delete from sys_licence");
+		this.dao.execute("delete from sys_licence where 1=1");
 		this.dao.execute("insert into sys_licence select * from "+tTab);
-		this.dao.execute("update sys_licence_switch set status ='disable' ");
+		this.dao.execute("update sys_licence_switch set status ='disable' where 1=1");
 		this.dao.execute("update sys_licence_switch set status ='enable' where id=? ",id);
 		return ErrorDesc.success();
 	}
