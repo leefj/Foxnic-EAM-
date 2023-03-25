@@ -26,12 +26,10 @@ public class PlatformRelationManager extends RelationManager {
 				new MonitorRelationManager(),
 				new MobileRelationManager(),
 				new WmsRelationManager(),
-				new WorkOrderRelationManager(),
+				new WorkOrderRelationManager()
 
 				// 合同
-				new ContractRelationManager()
-
-
+				//new ContractRelationManager()
 
 		);
 		//启动动态刷入
