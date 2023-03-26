@@ -1,5 +1,5 @@
 -- foxnic config
-update sys_config set value='2.5.0' where code='system.version.code';
+update sys_config set value='2.6.0' where code='system.version.code';
 update sys_config set value='PROD' where code='system.version.name';
 update sys_config set value='PROD' where code='system.version.type';
 update sys_config set value='PROD' where code='system.version.type';
@@ -16,6 +16,9 @@ update sys_config set value=0 where code='eam.assetImportAssetCodeKeep';
 update sys_config set value=0 where code='eam.assetImportDataReplenish';
 update sys_config set value=0 where code='eam.assetSerialNumberIsUnique';
 update sys_config set value=0 where code='eam.assetStatusColumnDisable';
+
+update sys_config set value='固资系统' where code='system.title';
+update sys_config set value='固资系统' where code='system.login.title';
 
 update eam_asset_label set font_path='/app/app/bin/msyh.ttf' where id='1';
 
