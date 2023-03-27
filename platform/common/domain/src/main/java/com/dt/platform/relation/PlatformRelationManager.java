@@ -10,6 +10,8 @@ import org.github.foxnic.web.relation.modules.*;
 
 public class PlatformRelationManager extends RelationManager {
 
+
+
 	public PlatformRelationManager() {
 		super(
 				new FoxnicWebRelationManager(),
