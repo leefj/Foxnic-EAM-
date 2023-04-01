@@ -15,6 +15,13 @@ import java.util.List;
 public class EamRelationManager extends RelationManager {
     @Override
     protected void config() {
+
+//        定制
+        this.setupCustRepairItem();
+        this.setupCustRepairApply();
+
+
+//通用
         this.setupRelations();
         this.setupProperties();
         this.setupAssetDataPermissions();
@@ -115,6 +122,23 @@ public class EamRelationManager extends RelationManager {
 
     }
 
+
+
+    public void setupCustRepairApply() {
+
+        this.property(CCustRepairApplyMeta.PROCESS_USER_PROP)
+                .using(EAMTables.EAM_C_CUST_REPAIR_APPLY.PROCESS_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+        this.property(CCustRepairApplyMeta.REPIAR_ITEM_DATA_PROP)
+                .using(EAMTables.EAM_C_CUST_REPAIR_APPLY.ID).join(EAMTables.EAM_C_CUST_REPIAR_ITEM.REPAIR_ID);
+
+
+    }
+
+    public void setupCustRepairItem() {
+        this.property(CCustRepiarItemMeta.PROCESS_USER_PROP)
+                .using(EAMTables.EAM_C_CUST_REPIAR_ITEM.PROCESS_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+    }
 
     public void setupAssetBorrowReturn() {
 
