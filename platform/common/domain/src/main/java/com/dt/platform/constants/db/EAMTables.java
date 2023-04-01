@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-01-21 11:17:10
+ * @since 2023-04-01 22:09:12
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -3171,12 +3171,12 @@ public class EAMTables {
 		/**
 		 * 可使用期限(资产),月
 		*/
-		public static final DBField ASSET_SERVICE_LIFE = new DBField(DBDataType.DECIMAL , "asset_service_life","assetServiceLife","可使用期限(资产)","月",false,false,true);
+		public static final DBField ASSET_SERVICE_LIFE = new DBField(DBDataType.DECIMAL , "asset_service_life","assetServiceLife","可使用期限","资产),月",false,false,true);
 		
 		/**
 		 * 可使用期限(财务),月
 		*/
-		public static final DBField ASSET_FINANCE_SERVICE_LIFE = new DBField(DBDataType.DECIMAL , "asset_finance_service_life","assetFinanceServiceLife","可使用期限(财务)","月",false,false,true);
+		public static final DBField ASSET_FINANCE_SERVICE_LIFE = new DBField(DBDataType.DECIMAL , "asset_finance_service_life","assetFinanceServiceLife","可使用期限","财务),月",false,false,true);
 		
 		/**
 		 * 本期残值率
@@ -3191,22 +3191,22 @@ public class EAMTables {
 		/**
 		 * (期初)期初原值
 		*/
-		public static final DBField S_ORIGINAL_PRICE = new DBField(DBDataType.DECIMAL , "s_original_price","sOriginalPrice","(期初)期初原值","(期初)期初原值",false,false,true);
+		public static final DBField S_ORIGINAL_PRICE = new DBField(DBDataType.DECIMAL , "s_original_price","sOriginalPrice","(期初)期初原值","期初)期初原值",false,false,true);
 		
 		/**
 		 * (期初)期初累计折旧
 		*/
-		public static final DBField S_DEPRECIATION_AMOUNT = new DBField(DBDataType.DECIMAL , "s_depreciation_amount","sDepreciationAmount","(期初)期初累计折旧","(期初)期初累计折旧",false,false,true);
+		public static final DBField S_DEPRECIATION_AMOUNT = new DBField(DBDataType.DECIMAL , "s_depreciation_amount","sDepreciationAmount","(期初)期初累计折旧","期初)期初累计折旧",false,false,true);
 		
 		/**
 		 * (期初)期初净值
 		*/
-		public static final DBField S_NAV_AMOUNT = new DBField(DBDataType.DECIMAL , "s_nav_amount","sNavAmount","(期初)期初净值","(期初)期初净值",false,false,true);
+		public static final DBField S_NAV_AMOUNT = new DBField(DBDataType.DECIMAL , "s_nav_amount","sNavAmount","(期初)期初净值","期初)期初净值",false,false,true);
 		
 		/**
 		 * (期初)期初可回收净额
 		*/
-		public static final DBField S_RECOVERABLE_AMOUNT = new DBField(DBDataType.DECIMAL , "s_recoverable_amount","sRecoverableAmount","(期初)期初可回收净额","(期初)期初可回收净额",false,false,true);
+		public static final DBField S_RECOVERABLE_AMOUNT = new DBField(DBDataType.DECIMAL , "s_recoverable_amount","sRecoverableAmount","(期初)期初可回收净额","期初)期初可回收净额",false,false,true);
 		
 		/**
 		 * 已使用期限,月
@@ -3216,37 +3216,37 @@ public class EAMTables {
 		/**
 		 * (本期发生)原值增加
 		*/
-		public static final DBField C_ORIGINAL_PRICE_INCREASE = new DBField(DBDataType.DECIMAL , "c_original_price_increase","cOriginalPriceIncrease","(本期发生)原值增加","(本期发生)原值增加",false,false,true);
+		public static final DBField C_ORIGINAL_PRICE_INCREASE = new DBField(DBDataType.DECIMAL , "c_original_price_increase","cOriginalPriceIncrease","(本期发生)原值增加","本期发生)原值增加",false,false,true);
 		
 		/**
 		 * (本期发生)本期折旧额
 		*/
-		public static final DBField C_DEPRECIATION_AMOUNT = new DBField(DBDataType.DECIMAL , "c_depreciation_amount","cDepreciationAmount","(本期发生)本期折旧额","(本期发生)本期折旧额",false,false,true);
+		public static final DBField C_DEPRECIATION_AMOUNT = new DBField(DBDataType.DECIMAL , "c_depreciation_amount","cDepreciationAmount","(本期发生)本期折旧额","本期发生)本期折旧额",false,false,true);
 		
 		/**
 		 * (本期发生)本年累计折旧额
 		*/
-		public static final DBField C_YEAR_DEPRECIATION_AMOUNT = new DBField(DBDataType.DECIMAL , "c_year_depreciation_amount","cYearDepreciationAmount","(本期发生)本年累计折旧额","(本期发生)本年累计折旧额",false,false,true);
+		public static final DBField C_YEAR_DEPRECIATION_AMOUNT = new DBField(DBDataType.DECIMAL , "c_year_depreciation_amount","cYearDepreciationAmount","(本期发生)本年累计折旧额","本期发生)本年累计折旧额",false,false,true);
 		
 		/**
 		 * (期末)期末原值
 		*/
-		public static final DBField E_ORIGINAL_PRICE = new DBField(DBDataType.DECIMAL , "e_original_price","eOriginalPrice","(期末)期末原值","(期末)期末原值",false,false,true);
+		public static final DBField E_ORIGINAL_PRICE = new DBField(DBDataType.DECIMAL , "e_original_price","eOriginalPrice","(期末)期末原值","期末)期末原值",false,false,true);
 		
 		/**
 		 * (期末)期末累计折旧
 		*/
-		public static final DBField E_DEPRECIATION_AMOUNT = new DBField(DBDataType.DECIMAL , "e_depreciation_amount","eDepreciationAmount","(期末)期末累计折旧","(期末)期末累计折旧",false,false,true);
+		public static final DBField E_DEPRECIATION_AMOUNT = new DBField(DBDataType.DECIMAL , "e_depreciation_amount","eDepreciationAmount","(期末)期末累计折旧","期末)期末累计折旧",false,false,true);
 		
 		/**
 		 * (期末)期末净值
 		*/
-		public static final DBField E_NAV_AMOUNT = new DBField(DBDataType.DECIMAL , "e_nav_amount","eNavAmount","(期末)期末净值","(期末)期末净值",false,false,true);
+		public static final DBField E_NAV_AMOUNT = new DBField(DBDataType.DECIMAL , "e_nav_amount","eNavAmount","(期末)期末净值","期末)期末净值",false,false,true);
 		
 		/**
 		 * (期末)期末可回收金额
 		*/
-		public static final DBField E_RECOVERABLE_AMOUNT = new DBField(DBDataType.DECIMAL , "e_recoverable_amount","eRecoverableAmount","(期末)期末可回收金额","(期末)期末可回收金额",false,false,true);
+		public static final DBField E_RECOVERABLE_AMOUNT = new DBField(DBDataType.DECIMAL , "e_recoverable_amount","eRecoverableAmount","(期末)期末可回收金额","期末)期末可回收金额",false,false,true);
 		
 		/**
 		 * 会计期间已使用期限,月
@@ -4537,17 +4537,17 @@ public class EAMTables {
 		/**
 		 * 标签宽度(cm)
 		*/
-		public static final DBField LABEL_WIDTH = new DBField(DBDataType.DECIMAL , "label_width","labelWidth","标签宽度(cm)","标签宽度(cm)",false,false,true);
+		public static final DBField LABEL_WIDTH = new DBField(DBDataType.DECIMAL , "label_width","labelWidth","标签宽度","cm)",false,false,true);
 		
 		/**
 		 * 标签高度(cm)
 		*/
-		public static final DBField LABEL_HEIGHT = new DBField(DBDataType.DECIMAL , "label_height","labelHeight","标签高度(cm)","标签高度(cm)",false,false,true);
+		public static final DBField LABEL_HEIGHT = new DBField(DBDataType.DECIMAL , "label_height","labelHeight","标签高度","cm)",false,false,true);
 		
 		/**
 		 * 标签布局(暂时不用)
 		*/
-		public static final DBField LABEL_LAYOUT = new DBField(DBDataType.STRING , "label_layout","labelLayout","标签布局(暂时不用)","标签布局(暂时不用)",false,false,true);
+		public static final DBField LABEL_LAYOUT = new DBField(DBDataType.STRING , "label_layout","labelLayout","标签布局","暂时不用)",false,false,true);
 		
 		/**
 		 * 标签间隔
@@ -4557,27 +4557,27 @@ public class EAMTables {
 		/**
 		 * 表格marginTop(mm)
 		*/
-		public static final DBField LABEL_TABLE_MARGIN_TOP = new DBField(DBDataType.DECIMAL , "label_table_margin_top","labelTableMarginTop","表格marginTop(mm)","表格marginTop(mm)",false,false,true);
+		public static final DBField LABEL_TABLE_MARGIN_TOP = new DBField(DBDataType.DECIMAL , "label_table_margin_top","labelTableMarginTop","表格marginTop","mm)",false,false,true);
 		
 		/**
 		 * 表格marginBottom(mm)
 		*/
-		public static final DBField LABEL_TABLE_MARGIN_BOTTOM = new DBField(DBDataType.DECIMAL , "label_table_margin_bottom","labelTableMarginBottom","表格marginBottom(mm)","表格marginBottom(mm)",false,false,true);
+		public static final DBField LABEL_TABLE_MARGIN_BOTTOM = new DBField(DBDataType.DECIMAL , "label_table_margin_bottom","labelTableMarginBottom","表格marginBottom","mm)",false,false,true);
 		
 		/**
 		 * 表格marginLeft(mm)
 		*/
-		public static final DBField LABEL_TABLE_MARGIN_LEFT = new DBField(DBDataType.DECIMAL , "label_table_margin_left","labelTableMarginLeft","表格marginLeft(mm)","表格marginLeft(mm)",false,false,true);
+		public static final DBField LABEL_TABLE_MARGIN_LEFT = new DBField(DBDataType.DECIMAL , "label_table_margin_left","labelTableMarginLeft","表格marginLeft","mm)",false,false,true);
 		
 		/**
 		 * 表格marginRight(mm)
 		*/
-		public static final DBField LABEL_TABLE_MARGIN_RIGHT = new DBField(DBDataType.DECIMAL , "label_table_margin_right","labelTableMarginRight","表格marginRight(mm)","表格marginRight(mm)",false,false,true);
+		public static final DBField LABEL_TABLE_MARGIN_RIGHT = new DBField(DBDataType.DECIMAL , "label_table_margin_right","labelTableMarginRight","表格marginRight","mm)",false,false,true);
 		
 		/**
 		 * 字体大小(mm)
 		*/
-		public static final DBField LABEL_KEY_FONT_SIZE = new DBField(DBDataType.DECIMAL , "label_key_font_size","labelKeyFontSize","字体大小(mm)","字体大小(mm)",false,false,true);
+		public static final DBField LABEL_KEY_FONT_SIZE = new DBField(DBDataType.DECIMAL , "label_key_font_size","labelKeyFontSize","字体大小","mm)",false,false,true);
 		
 		/**
 		 * Key宽度
@@ -4587,7 +4587,7 @@ public class EAMTables {
 		/**
 		 * 字体大小(mm)
 		*/
-		public static final DBField LABEL_VALUE_FONT_SIZE = new DBField(DBDataType.DECIMAL , "label_value_font_size","labelValueFontSize","字体大小(mm)","字体大小(mm)",false,false,true);
+		public static final DBField LABEL_VALUE_FONT_SIZE = new DBField(DBDataType.DECIMAL , "label_value_font_size","labelValueFontSize","字体大小","mm)",false,false,true);
 		
 		/**
 		 * 专用标签_图像容器大小(mm)
@@ -4817,7 +4817,7 @@ public class EAMTables {
 		/**
 		 * 行高度(mm)
 		*/
-		public static final DBField ROW_HEIGHT = new DBField(DBDataType.DECIMAL , "row_height","rowHeight","行高度(mm)","行高度(mm)",false,false,true);
+		public static final DBField ROW_HEIGHT = new DBField(DBDataType.DECIMAL , "row_height","rowHeight","行高度","mm)",false,false,true);
 		
 		/**
 		 * row_span
@@ -4921,7 +4921,7 @@ public class EAMTables {
 		/**
 		 * 行高度(mm)
 		*/
-		public static final DBField ROW_HEIGHT = new DBField(DBDataType.DECIMAL , "row_height","rowHeight","行高度(mm)","行高度(mm)",false,false,true);
+		public static final DBField ROW_HEIGHT = new DBField(DBDataType.DECIMAL , "row_height","rowHeight","行高度","mm)",false,false,true);
 		
 		/**
 		 * row_span
@@ -5025,7 +5025,7 @@ public class EAMTables {
 		/**
 		 * 行高度(mm)
 		*/
-		public static final DBField ROW_HEIGHT = new DBField(DBDataType.DECIMAL , "row_height","rowHeight","行高度(mm)","行高度(mm)",false,false,true);
+		public static final DBField ROW_HEIGHT = new DBField(DBDataType.DECIMAL , "row_height","rowHeight","行高度","mm)",false,false,true);
 		
 		/**
 		 * row_span
@@ -5129,7 +5129,7 @@ public class EAMTables {
 		/**
 		 * 行高度(mm)
 		*/
-		public static final DBField ROW_HEIGHT = new DBField(DBDataType.DECIMAL , "row_height","rowHeight","行高度(mm)","行高度(mm)",false,false,true);
+		public static final DBField ROW_HEIGHT = new DBField(DBDataType.DECIMAL , "row_height","rowHeight","行高度","mm)",false,false,true);
 		
 		/**
 		 * row_span
@@ -5219,12 +5219,12 @@ public class EAMTables {
 		/**
 		 * 长度(point)
 		*/
-		public static final DBField W = new DBField(DBDataType.DECIMAL , "w","w","长度(point)","长度(point)",false,false,true);
+		public static final DBField W = new DBField(DBDataType.DECIMAL , "w","w","长度","point)",false,false,true);
 		
 		/**
 		 * 宽带(point)
 		*/
-		public static final DBField H = new DBField(DBDataType.DECIMAL , "h","h","宽带(point)","宽带(point)",false,false,true);
+		public static final DBField H = new DBField(DBDataType.DECIMAL , "h","h","宽带","point)",false,false,true);
 		
 		/**
 		 * 实现动作
@@ -5329,7 +5329,7 @@ public class EAMTables {
 		/**
 		 * 位置:u,d
 		*/
-		public static final DBField IMAGE_POSITION = new DBField(DBDataType.STRING , "image_position","imagePosition","位置:u","d",false,false,true);
+		public static final DBField IMAGE_POSITION = new DBField(DBDataType.STRING , "image_position","imagePosition","位置","u,d",false,false,true);
 		
 		/**
 		 * 图像
@@ -5408,22 +5408,22 @@ public class EAMTables {
 		/**
 		 * 表格marginTop(mm)
 		*/
-		public static final DBField LABEL_TABLE_MARGIN_TOP = new DBField(DBDataType.DECIMAL , "label_table_margin_top","labelTableMarginTop","表格marginTop(mm)","表格marginTop(mm)",false,false,true);
+		public static final DBField LABEL_TABLE_MARGIN_TOP = new DBField(DBDataType.DECIMAL , "label_table_margin_top","labelTableMarginTop","表格marginTop","mm)",false,false,true);
 		
 		/**
 		 * 表格marginBottom(mm)
 		*/
-		public static final DBField LABEL_TABLE_MARGIN_BOTTOM = new DBField(DBDataType.DECIMAL , "label_table_margin_bottom","labelTableMarginBottom","表格marginBottom(mm)","表格marginBottom(mm)",false,false,true);
+		public static final DBField LABEL_TABLE_MARGIN_BOTTOM = new DBField(DBDataType.DECIMAL , "label_table_margin_bottom","labelTableMarginBottom","表格marginBottom","mm)",false,false,true);
 		
 		/**
 		 * 表格marginLeft(mm)
 		*/
-		public static final DBField LABEL_TABLE_MARGIN_LEFT = new DBField(DBDataType.DECIMAL , "label_table_margin_left","labelTableMarginLeft","表格marginLeft(mm)","表格marginLeft(mm)",false,false,true);
+		public static final DBField LABEL_TABLE_MARGIN_LEFT = new DBField(DBDataType.DECIMAL , "label_table_margin_left","labelTableMarginLeft","表格marginLeft","mm)",false,false,true);
 		
 		/**
 		 * 表格marginRight(mm)
 		*/
-		public static final DBField LABEL_TABLE_MARGIN_RIGHT = new DBField(DBDataType.DECIMAL , "label_table_margin_right","labelTableMarginRight","表格marginRight(mm)","表格marginRight(mm)",false,false,true);
+		public static final DBField LABEL_TABLE_MARGIN_RIGHT = new DBField(DBDataType.DECIMAL , "label_table_margin_right","labelTableMarginRight","表格marginRight","mm)",false,false,true);
 		
 		/**
 		 * 表格内Key是否加粗
@@ -5438,22 +5438,22 @@ public class EAMTables {
 		/**
 		 * 图片marginTop(mm)
 		*/
-		public static final DBField IMAGE_MARGIN_TOP = new DBField(DBDataType.DECIMAL , "image_margin_top","imageMarginTop","图片marginTop(mm)","图片marginTop(mm)",false,false,true);
+		public static final DBField IMAGE_MARGIN_TOP = new DBField(DBDataType.DECIMAL , "image_margin_top","imageMarginTop","图片marginTop","mm)",false,false,true);
 		
 		/**
 		 * 图片marginBottom(mm)
 		*/
-		public static final DBField IMAGE_MARGIN_BOTTOM = new DBField(DBDataType.DECIMAL , "image_margin_bottom","imageMarginBottom","图片marginBottom(mm)","图片marginBottom(mm)",false,false,true);
+		public static final DBField IMAGE_MARGIN_BOTTOM = new DBField(DBDataType.DECIMAL , "image_margin_bottom","imageMarginBottom","图片marginBottom","mm)",false,false,true);
 		
 		/**
 		 * 图片marginLeft(mm)
 		*/
-		public static final DBField IMAGE_MARGIN_LEFT = new DBField(DBDataType.DECIMAL , "image_margin_left","imageMarginLeft","图片marginLeft(mm)","图片marginLeft(mm)",false,false,true);
+		public static final DBField IMAGE_MARGIN_LEFT = new DBField(DBDataType.DECIMAL , "image_margin_left","imageMarginLeft","图片marginLeft","mm)",false,false,true);
 		
 		/**
 		 * 图片marginRight(mm)
 		*/
-		public static final DBField IMAGE_MARGIN_RIGHT = new DBField(DBDataType.DECIMAL , "image_margin_right","imageMarginRight","图片marginRight(mm)","图片marginRight(mm)",false,false,true);
+		public static final DBField IMAGE_MARGIN_RIGHT = new DBField(DBDataType.DECIMAL , "image_margin_right","imageMarginRight","图片marginRight","mm)",false,false,true);
 		
 		/**
 		 * 图片宽度
@@ -10739,6 +10739,201 @@ public class EAMTables {
 	}
 	
 	/**
+	 * 报修申请
+	*/
+	public static class EAM_C_CUST_REPAIR_APPLY extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "eam_c_cust_repair_apply";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 业务编号
+		*/
+		public static final DBField BUSINESS_CODE = new DBField(DBDataType.STRING , "business_code","businessCode","业务编号","业务编号",false,false,true);
+		
+		/**
+		 * 办理状态
+		*/
+		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","办理状态","办理状态",false,false,true);
+		
+		/**
+		 * 报修标题
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","报修标题","报修标题",false,false,true);
+		
+		/**
+		 * 预期日期
+		*/
+		public static final DBField PLAN_FINISH_DATE = new DBField(DBDataType.DATE , "plan_finish_date","planFinishDate","预期日期","预期日期",false,false,true);
+		
+		/**
+		 * 报修内容
+		*/
+		public static final DBField CONTENT = new DBField(DBDataType.STRING , "content","content","报修内容","报修内容",false,false,true);
+		
+		/**
+		 * 发起人
+		*/
+		public static final DBField REPORT_USER_NAME = new DBField(DBDataType.STRING , "report_user_name","reportUserName","发起人","发起人",false,false,true);
+		
+		/**
+		 * 联系方式
+		*/
+		public static final DBField CONTACT = new DBField(DBDataType.STRING , "contact","contact","联系方式","联系方式",false,false,true);
+		
+		/**
+		 * 图片
+		*/
+		public static final DBField PICTURE_ID = new DBField(DBDataType.STRING , "picture_id","pictureId","图片","图片",false,false,true);
+		
+		/**
+		 * 处理人
+		*/
+		public static final DBField PROCESS_USER_ID = new DBField(DBDataType.STRING , "process_user_id","processUserId","处理人","处理人",false,false,true);
+		
+		/**
+		 * 发起时间
+		*/
+		public static final DBField START_DATE = new DBField(DBDataType.DATE , "start_date","startDate","发起时间","发起时间",false,false,true);
+		
+		/**
+		 * 结束时间
+		*/
+		public static final DBField FINISH_DATE = new DBField(DBDataType.DATE , "finish_date","finishDate","结束时间","结束时间",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		public EAM_C_CUST_REPAIR_APPLY() {
+			this.init($NAME,"报修申请" , ID , BUSINESS_CODE , STATUS , NAME , PLAN_FINISH_DATE , CONTENT , REPORT_USER_NAME , CONTACT , PICTURE_ID , PROCESS_USER_ID , START_DATE , FINISH_DATE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+		}
+		public static final EAM_C_CUST_REPAIR_APPLY $TABLE=new EAM_C_CUST_REPAIR_APPLY();
+	}
+	
+	/**
+	 * 内容
+	*/
+	public static class EAM_C_CUST_REPIAR_ITEM extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "eam_c_cust_repiar_item";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 报修
+		*/
+		public static final DBField REPAIR_ID = new DBField(DBDataType.STRING , "repair_id","repairId","报修","报修",false,false,true);
+		
+		/**
+		 * 处理人
+		*/
+		public static final DBField PROCESS_USER_ID = new DBField(DBDataType.STRING , "process_user_id","processUserId","处理人","处理人",false,false,true);
+		
+		/**
+		 * 内容
+		*/
+		public static final DBField CT = new DBField(DBDataType.STRING , "ct","ct","内容","内容",false,false,true);
+		
+		/**
+		 * 记录时间
+		*/
+		public static final DBField RECORD_TIME = new DBField(DBDataType.DATE , "record_time","recordTime","记录时间","记录时间",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		public EAM_C_CUST_REPIAR_ITEM() {
+			this.init($NAME,"内容" , ID , REPAIR_ID , PROCESS_USER_ID , CT , RECORD_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+		}
+		public static final EAM_C_CUST_REPIAR_ITEM $TABLE=new EAM_C_CUST_REPIAR_ITEM();
+	}
+	
+	/**
 	 * 资产分类
 	*/
 	public static class EAM_CATEGORY extends DBTable {
@@ -12163,7 +12358,7 @@ public class EAMTables {
 		/**
 		 * 时间要求(小时)
 		*/
-		public static final DBField COMPLETION_TIME = new DBField(DBDataType.DECIMAL , "completion_time","completionTime","时间要求(小时)","时间要求(小时)",false,false,true);
+		public static final DBField COMPLETION_TIME = new DBField(DBDataType.DECIMAL , "completion_time","completionTime","时间要求","小时)",false,false,true);
 		
 		/**
 		 * 超时处理
@@ -12173,7 +12368,7 @@ public class EAMTables {
 		/**
 		 * 提醒时间(小时)
 		*/
-		public static final DBField REMIND_TIME = new DBField(DBDataType.DECIMAL , "remind_time","remindTime","提醒时间(小时)","提醒时间(小时)",false,false,true);
+		public static final DBField REMIND_TIME = new DBField(DBDataType.DECIMAL , "remind_time","remindTime","提醒时间","小时)",false,false,true);
 		
 		/**
 		 * 备注
@@ -14290,7 +14485,7 @@ public class EAMTables {
 		/**
 		 * 标准工时(小时)
 		*/
-		public static final DBField BASE_COST = new DBField(DBDataType.DECIMAL , "base_cost","baseCost","标准工时(小时)","标准工时(小时)",false,false,true);
+		public static final DBField BASE_COST = new DBField(DBDataType.DECIMAL , "base_cost","baseCost","标准工时","小时)",false,false,true);
 		
 		/**
 		 * 保养周期
@@ -14675,7 +14870,7 @@ public class EAMTables {
 		/**
 		 * 标准工时(小时)
 		*/
-		public static final DBField PROJECT_BASE_COST = new DBField(DBDataType.DECIMAL , "project_base_cost","projectBaseCost","标准工时(小时)","标准工时(小时)",false,false,true);
+		public static final DBField PROJECT_BASE_COST = new DBField(DBDataType.DECIMAL , "project_base_cost","projectBaseCost","标准工时","小时)",false,false,true);
 		
 		/**
 		 * 保养手册
@@ -14690,7 +14885,7 @@ public class EAMTables {
 		/**
 		 * 标准工时(小时)
 		*/
-		public static final DBField BASE_COST = new DBField(DBDataType.DECIMAL , "base_cost","baseCost","标准工时(小时)","标准工时(小时)",false,false,true);
+		public static final DBField BASE_COST = new DBField(DBDataType.DECIMAL , "base_cost","baseCost","标准工时","小时)",false,false,true);
 		
 		/**
 		 * 开始时间
@@ -17924,37 +18119,37 @@ public class EAMTables {
 		/**
 		 * 单选框(枚举)
 		*/
-		public static final DBField RADIO_ENUM = new DBField(DBDataType.STRING , "radio_enum","radioEnum","单选框(枚举)","单选框(枚举)",false,false,true);
+		public static final DBField RADIO_ENUM = new DBField(DBDataType.STRING , "radio_enum","radioEnum","单选框","枚举)",false,false,true);
 		
 		/**
 		 * 单选框(字典)
 		*/
-		public static final DBField RADIO_DICT = new DBField(DBDataType.STRING , "radio_dict","radioDict","单选框(字典)","单选框(字典)",false,false,true);
+		public static final DBField RADIO_DICT = new DBField(DBDataType.STRING , "radio_dict","radioDict","单选框","字典)",false,false,true);
 		
 		/**
 		 * 复选框(枚举)
 		*/
-		public static final DBField CHECK_ENUM = new DBField(DBDataType.STRING , "check_enum","checkEnum","复选框(枚举)","复选框(枚举)",false,false,true);
+		public static final DBField CHECK_ENUM = new DBField(DBDataType.STRING , "check_enum","checkEnum","复选框","枚举)",false,false,true);
 		
 		/**
 		 * 复选框(字典)
 		*/
-		public static final DBField CHECK_DICT = new DBField(DBDataType.STRING , "check_dict","checkDict","复选框(字典)","复选框(字典)",false,false,true);
+		public static final DBField CHECK_DICT = new DBField(DBDataType.STRING , "check_dict","checkDict","复选框","字典)",false,false,true);
 		
 		/**
 		 * 选择框(枚举)
 		*/
-		public static final DBField SELECT_ENUM = new DBField(DBDataType.STRING , "select_enum","selectEnum","选择框(枚举)","选择框(枚举)",false,false,true);
+		public static final DBField SELECT_ENUM = new DBField(DBDataType.STRING , "select_enum","selectEnum","选择框","枚举)",false,false,true);
 		
 		/**
 		 * 选择框(字典)
 		*/
-		public static final DBField SELECT_DICT = new DBField(DBDataType.STRING , "select_dict","selectDict","选择框(字典)","选择框(字典)",false,false,true);
+		public static final DBField SELECT_DICT = new DBField(DBDataType.STRING , "select_dict","selectDict","选择框","字典)",false,false,true);
 		
 		/**
 		 * 选择框(查询)
 		*/
-		public static final DBField RESOURCE_ID = new DBField(DBDataType.STRING , "resource_id","resourceId","选择框(查询)","选择框(查询)",false,false,true);
+		public static final DBField RESOURCE_ID = new DBField(DBDataType.STRING , "resource_id","resourceId","选择框","查询)",false,false,true);
 		
 		/**
 		 * 日期

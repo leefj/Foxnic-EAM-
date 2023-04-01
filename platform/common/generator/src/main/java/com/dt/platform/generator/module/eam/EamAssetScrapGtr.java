@@ -192,7 +192,6 @@ public class EamAssetScrapGtr extends BaseCodeGenerator {
     }
     public static void main(String[] args) throws Exception {
         EamAssetScrapGtr g=new EamAssetScrapGtr();
-
         //生成代码
         g.generateCode();
         //生成菜单
