@@ -21,6 +21,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     const moduleURL="/service-eam/eam-c-cust-repair-apply";
 
 
+
     //列表页的扩展
     var list={
         /**
@@ -110,11 +111,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 }else if(data[i].status=="processing"){
                     fox.disableButton($('.receiveAction').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
+                 //   fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
                 }else if(data[i].status=="finish"){
                     fox.disableButton($('.receiveAction').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
-                    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
+                  //  fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
                 }
             }
         },
@@ -241,6 +242,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         }
     }
 
+    var form_data_report_id="";
     //表单页的扩展
     var form={
         /**
@@ -263,13 +265,60 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单数据填充前
          * */
         beforeDataFill:function (data) {
+            //reportUserId
+            form_data_report_id=data.reportUserId;
             console.log('beforeDataFill',data);
+
         },
         /**
          * 表单数据填充后
          * */
         afterDataFill:function (data) {
             console.log('afterDataFill',data);
+
+
+            if(form_data_report_id&&form_data_report_id.length>3){
+                var idsSelect=xmSelect.get('#assetIds',true);
+                var ps={useUserId:form_data_report_id,pageIndex:1,pageSize:500,ownerCode:"asset"};
+                if(data.assetList&&data.assetList.length>0){
+                    var list=data.assetList
+                    var optData=[];
+                    for(var i=0;i<list.length;i++){
+                        var e={};
+                        e.name=list[i].name;
+                        e.value=list[i].id;
+                        e.data=list[i];
+                        optData.push(e);
+                    }
+                    console.log("fill data over",optData)
+                  //  idsSelect.update({data:optData})
+                    console.log("fill data over")
+
+                }
+
+                // admin.post("/service-eam/eam-asset/query-paged-list",ps, function (r) {
+                //     if (r.success) {
+                //         console.log("result",r.data);
+                //         var list=r.data.list;
+                //         if(list&&list.length>0){
+                //             var optData=[];
+                //             for(var i=0;i<list.length;i++){
+                //                 var e={};
+                //                 e.name=list[i].name;
+                //                 e.value=list[i].id;
+                //                 e.data=list[i];
+                //                 optData.push(e);
+                //             }
+                //             console.log("fill data over",optData)
+                //             idsSelect.update({data:optData})
+                //             console.log("fill data over")
+                //         }
+                //
+                //     } else {
+                //     }
+                // });
+            }
+
         },
         /**
          * 对话框打开之前调用，如果返回 null 则不打开对话框
@@ -282,7 +331,54 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 对话框回调，表单域以及按钮 会自动改变为选中的值，此处处理额外的逻辑即可
          * */
         afterDialog:function (param,result) {
-            console.log('dialog',param,result);
+            console.log('dialog param',param);
+            console.log('dialog result',result);
+            var idsSelect=xmSelect.get('#assetIds',true);
+            if(result&&result.field=="reportUserId"){
+                //处理使用人问题
+                var currentId=""
+                if( result.selectedIds&& result.selectedIds.length>0){
+                    currentId= result.selectedIds[0];
+                }
+                console.log("beforeId:"+form_data_report_id);
+                console.log("currentId:"+currentId);
+
+                form_data_report_id=currentId;
+                if(currentId==""){
+                    idsSelect.update({data:[]});
+                    return 0;
+                }
+                console.log("start to clear data")
+                //reset asset data,query asset by ownerId;
+                idsSelect.setValue([])
+                idsSelect.update({data:[]})
+                console.log("clear data over")
+                var ps={useUserId:currentId,pageIndex:1,pageSize:500,ownerCode:"asset"};
+                admin.post("/service-eam/eam-asset/query-paged-list",ps, function (r) {
+                    if (r.success) {
+                        console.log("result",r.data);
+                        var list=r.data.list;
+                        if(list&&list.length>0){
+                            var optData=[];
+                            for(var i=0;i<list.length;i++){
+                                var e={};
+                                e.name=list[i].name;
+                                e.value=list[i].id;
+                                e.data=list[i];
+                                optData.push(e);
+                            }
+                            console.log("fill data over",optData)
+                            idsSelect.update({data:optData})
+                            console.log("fill data over")
+                        }
+                    } else {
+
+                    }
+                });
+
+
+
+            }
         },
         /**
          * 当下拉框别选择后触发

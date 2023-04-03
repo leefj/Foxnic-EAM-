@@ -1,7 +1,7 @@
 /**
  * 报修申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-03 16:26:20
+ * @since 2023-04-03 20:33:33
  */
 
 function FormPage() {
@@ -178,12 +178,12 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "assetIds",
 			radio: false,
-			filterable: true,
-			paging: true,
-			pageRemote: true,
+			filterable: false,
+			paging: false,
+			pageRemote: false,
 			on: function(data){
 				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("assetIds",data.arr,data.change,data.isAdd);
+					//window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("assetIds",data.arr,data.change,data.isAdd);
 				},1);
 			},
 			//转换数据
