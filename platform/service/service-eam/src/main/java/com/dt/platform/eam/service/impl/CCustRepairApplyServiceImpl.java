@@ -5,7 +5,9 @@ import javax.annotation.Resource;
 import com.dt.platform.constants.enums.eam.AssetHandleStatusEnum;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
 import com.dt.platform.constants.enums.eam.CCustRepairStatusEnum;
+import com.dt.platform.domain.eam.AssetItem;
 import com.dt.platform.domain.eam.CCustRepiarItem;
+import com.dt.platform.eam.service.IAssetItemService;
 import com.dt.platform.eam.service.ICCustRepiarItemService;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
 import com.github.foxnic.commons.lang.StringUtil;
@@ -69,6 +71,9 @@ public class CCustRepairApplyServiceImpl extends SuperService<CCustRepairApply> 
 	@Autowired
 	private ICCustRepiarItemService cCustRepiarItemService;
 
+	@Autowired
+	private IAssetItemService assetItemService;
+
 
 	@Override
 	public Object generateId(Field field) {
@@ -95,6 +100,17 @@ public class CCustRepairApplyServiceImpl extends SuperService<CCustRepairApply> 
 			}
 		}
 		Result r=super.insert(cCustRepairApply,throwsException);
+		if (r.isSuccess()){
+			List<String> ids=cCustRepairApply.getAssetIds();
+			if(ids!=null){
+				for(int i=0;i<ids.size();i++){
+					AssetItem item=new AssetItem();
+					item.setAssetId(ids.get(i));
+					item.setHandleId(cCustRepairApply.getId());
+					assetItemService.insert(item);
+				}
+			}
+		}
 		return r;
 	}
 
@@ -270,6 +286,18 @@ public class CCustRepairApplyServiceImpl extends SuperService<CCustRepairApply> 
 	@Override
 	public Result update(CCustRepairApply cCustRepairApply , SaveMode mode,boolean throwsException) {
 		Result r=super.update(cCustRepairApply , mode , throwsException);
+		this.dao.execute("delete from eam_asset_item where handle_id=?",cCustRepairApply.getId());
+		if (r.isSuccess()){
+			List<String> ids=cCustRepairApply.getAssetIds();
+			if(ids!=null){
+				for(int i=0;i<ids.size();i++){
+					AssetItem item=new AssetItem();
+					item.setAssetId(ids.get(i));
+					item.setHandleId(cCustRepairApply.getId());
+					assetItemService.insert(item);
+				}
+			}
+		}
 		return r;
 	}
 

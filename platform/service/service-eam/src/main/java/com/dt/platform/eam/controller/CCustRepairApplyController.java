@@ -232,8 +232,15 @@ public class CCustRepairApplyController extends SuperController {
         Result<CCustRepairApply> result = new Result<>();
         CCustRepairApply cCustRepairApply = cCustRepairApplyService.getById(id);
         // join 关联的对象
-        cCustRepairApplyService.dao().fill(cCustRepairApply).with("processUser").with(CCustRepairApplyMeta.REPIAR_ITEM_DATA).execute();
+        cCustRepairApplyService.dao().fill(cCustRepairApply).with("processUser").with(CCustRepairApplyMeta.REPIAR_ITEM_DATA)
+                .with("reportUser").with(CCustRepairApplyMeta.ASSET_LIST).execute();
+
+
+        cCustRepairApplyService.dao().join(cCustRepairApply.getReportUser(), Person.class);
+        cCustRepairApplyService.dao().join(cCustRepairApply.getProcessUser(), Person.class);
+
         List<CCustRepiarItem> list = cCustRepairApply.getRepiarItemData();
+
         cCustRepairApplyService.dao().fill(list).with("processUser").execute();
         if (list != null && list.size() > 0) {
             List<Employee> user = CollectorUtil.collectList(list, CCustRepiarItem::getProcessUser);
@@ -371,8 +378,18 @@ public class CCustRepairApplyController extends SuperController {
         Result<PagedList<CCustRepairApply>> result = new Result<>();
         PagedList<CCustRepairApply> list = cCustRepairApplyService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        cCustRepairApplyService.dao().fill(list).with("processUser").execute();
+        cCustRepairApplyService.dao().fill(list).with("processUser").
+                 with("reportUser")
+                .with(CCustRepairApplyMeta.ASSET_LIST).with(CCustRepairApplyMeta.REPIAR_ITEM_DATA).
+                execute();
+
+        List<Employee> user1 = CollectorUtil.collectList(list, CCustRepairApply::getProcessUser);
+        cCustRepairApplyService.dao().join(user1, Person.class);
+
+        List<Employee> user2 = CollectorUtil.collectList(list, CCustRepairApply::getReportUser);
+        cCustRepairApplyService.dao().join(user2, Person.class);
         result.success(true).data(list);
+
         return result;
     }
 }

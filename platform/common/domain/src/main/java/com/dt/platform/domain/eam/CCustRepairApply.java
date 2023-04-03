@@ -27,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 报修申请
  * <p>报修申请 , 数据表 eam_c_cust_repair_apply 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-03 16:26:18
- * @sign 9C4854C0CC42567E2951C4094BC8DCCB
+ * @since 2023-04-03 20:33:30
+ * @sign 00510E5368E7037799FBE4272788629E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -204,7 +204,7 @@ public class CCustRepairApply extends Entity {
 	 * 资产列表：资产列表
 	*/
 	@ApiModelProperty(required = false,value="资产列表" , notes = "资产列表")
-	private List<Asset> assetIds;
+	private List<String> assetIds;
 	
 	/**
 	 * 获得 主键<br>
@@ -758,7 +758,7 @@ public class CCustRepairApply extends Entity {
 	 * 资产列表
 	 * @return 资产列表
 	*/
-	public List<Asset> getAssetIds() {
+	public List<String> getAssetIds() {
 		return assetIds;
 	}
 	
@@ -767,7 +767,7 @@ public class CCustRepairApply extends Entity {
 	 * @param assetIds 资产列表
 	 * @return 当前对象
 	*/
-	public CCustRepairApply setAssetIds(List<Asset> assetIds) {
+	public CCustRepairApply setAssetIds(List<String> assetIds) {
 		this.assetIds=assetIds;
 		return this;
 	}
@@ -777,7 +777,7 @@ public class CCustRepairApply extends Entity {
 	 * @param assetId 资产列表
 	 * @return 当前对象
 	*/
-	public CCustRepairApply addAssetId(Asset... assetId) {
+	public CCustRepairApply addAssetId(String... assetId) {
 		if(this.assetIds==null) assetIds=new ArrayList<>();
 		this.assetIds.addAll(Arrays.asList(assetId));
 		return this;
