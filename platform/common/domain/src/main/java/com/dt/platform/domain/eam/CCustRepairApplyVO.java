@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 报修申请VO类型
  * <p>报修申请 , 数据表 eam_c_cust_repair_apply 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-01 16:32:43
+ * @since 2023-04-03 16:26:18
  * @sign 012982E9B91E0B544F134116D5324C43
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -410,9 +410,11 @@ public class CCustRepairApplyVO extends CCustRepairApply {
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
 		inst.setPictureId(this.getPictureId());
+		inst.setPos(this.getPos());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
+		inst.setReportUserId(this.getReportUserId());
 		inst.setContact(this.getContact());
 		inst.setProcessUserId(this.getProcessUserId());
 		inst.setName(this.getName());
@@ -423,11 +425,14 @@ public class CCustRepairApplyVO extends CCustRepairApply {
 		inst.setStartDate(this.getStartDate());
 		inst.setStatus(this.getStatus());
 		if(all) {
+			inst.setReportUser(this.getReportUser());
 			inst.setSearchField(this.getSearchField());
 			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setProcessUser(this.getProcessUser());
+			inst.setAssetIds(this.getAssetIds());
 			inst.setPageSize(this.getPageSize());
+			inst.setAssetList(this.getAssetList());
 			inst.setRepiarItemData(this.getRepiarItemData());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
@@ -504,9 +509,11 @@ public class CCustRepairApplyVO extends CCustRepairApply {
 			this.setCreateBy(DataParser.parse(String.class, map.get(CCustRepairApplyVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(CCustRepairApplyVOMeta.DELETED)));
 			this.setPictureId(DataParser.parse(String.class, map.get(CCustRepairApplyVOMeta.PICTURE_ID)));
+			this.setPos(DataParser.parse(String.class, map.get(CCustRepairApplyVOMeta.POS)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(CCustRepairApplyVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(CCustRepairApplyVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(CCustRepairApplyVOMeta.DELETE_TIME)));
+			this.setReportUserId(DataParser.parse(String.class, map.get(CCustRepairApplyVOMeta.REPORT_USER_ID)));
 			this.setContact(DataParser.parse(String.class, map.get(CCustRepairApplyVOMeta.CONTACT)));
 			this.setProcessUserId(DataParser.parse(String.class, map.get(CCustRepairApplyVOMeta.PROCESS_USER_ID)));
 			this.setName(DataParser.parse(String.class, map.get(CCustRepairApplyVOMeta.NAME)));
@@ -517,6 +524,7 @@ public class CCustRepairApplyVO extends CCustRepairApply {
 			this.setStartDate(DataParser.parse(Date.class, map.get(CCustRepairApplyVOMeta.START_DATE)));
 			this.setStatus(DataParser.parse(String.class, map.get(CCustRepairApplyVOMeta.STATUS)));
 			// others
+			this.setReportUser(DataParser.parse(Employee.class, map.get(CCustRepairApplyVOMeta.REPORT_USER)));
 			this.setSearchField(DataParser.parse(String.class, map.get(CCustRepairApplyVOMeta.SEARCH_FIELD)));
 			this.setRequestAction(DataParser.parse(String.class, map.get(CCustRepairApplyVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(CCustRepairApplyVOMeta.FUZZY_FIELD)));
@@ -539,9 +547,11 @@ public class CCustRepairApplyVO extends CCustRepairApply {
 				this.setCreateBy( (String)map.get(CCustRepairApplyVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(CCustRepairApplyVOMeta.DELETED));
 				this.setPictureId( (String)map.get(CCustRepairApplyVOMeta.PICTURE_ID));
+				this.setPos( (String)map.get(CCustRepairApplyVOMeta.POS));
 				this.setCreateTime( (Date)map.get(CCustRepairApplyVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(CCustRepairApplyVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(CCustRepairApplyVOMeta.DELETE_TIME));
+				this.setReportUserId( (String)map.get(CCustRepairApplyVOMeta.REPORT_USER_ID));
 				this.setContact( (String)map.get(CCustRepairApplyVOMeta.CONTACT));
 				this.setProcessUserId( (String)map.get(CCustRepairApplyVOMeta.PROCESS_USER_ID));
 				this.setName( (String)map.get(CCustRepairApplyVOMeta.NAME));
@@ -552,6 +562,7 @@ public class CCustRepairApplyVO extends CCustRepairApply {
 				this.setStartDate( (Date)map.get(CCustRepairApplyVOMeta.START_DATE));
 				this.setStatus( (String)map.get(CCustRepairApplyVOMeta.STATUS));
 				// others
+				this.setReportUser( (Employee)map.get(CCustRepairApplyVOMeta.REPORT_USER));
 				this.setSearchField( (String)map.get(CCustRepairApplyVOMeta.SEARCH_FIELD));
 				this.setRequestAction( (String)map.get(CCustRepairApplyVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(CCustRepairApplyVOMeta.FUZZY_FIELD));
@@ -587,9 +598,11 @@ public class CCustRepairApplyVO extends CCustRepairApply {
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(CCustRepairApplyVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(CCustRepairApplyVOMeta.DELETED)));
 			this.setPictureId(DataParser.parse(String.class, r.getValue(CCustRepairApplyVOMeta.PICTURE_ID)));
+			this.setPos(DataParser.parse(String.class, r.getValue(CCustRepairApplyVOMeta.POS)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(CCustRepairApplyVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(CCustRepairApplyVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(CCustRepairApplyVOMeta.DELETE_TIME)));
+			this.setReportUserId(DataParser.parse(String.class, r.getValue(CCustRepairApplyVOMeta.REPORT_USER_ID)));
 			this.setContact(DataParser.parse(String.class, r.getValue(CCustRepairApplyVOMeta.CONTACT)));
 			this.setProcessUserId(DataParser.parse(String.class, r.getValue(CCustRepairApplyVOMeta.PROCESS_USER_ID)));
 			this.setName(DataParser.parse(String.class, r.getValue(CCustRepairApplyVOMeta.NAME)));
@@ -610,9 +623,11 @@ public class CCustRepairApplyVO extends CCustRepairApply {
 				this.setCreateBy( (String)r.getValue(CCustRepairApplyVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(CCustRepairApplyVOMeta.DELETED));
 				this.setPictureId( (String)r.getValue(CCustRepairApplyVOMeta.PICTURE_ID));
+				this.setPos( (String)r.getValue(CCustRepairApplyVOMeta.POS));
 				this.setCreateTime( (Date)r.getValue(CCustRepairApplyVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(CCustRepairApplyVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(CCustRepairApplyVOMeta.DELETE_TIME));
+				this.setReportUserId( (String)r.getValue(CCustRepairApplyVOMeta.REPORT_USER_ID));
 				this.setContact( (String)r.getValue(CCustRepairApplyVOMeta.CONTACT));
 				this.setProcessUserId( (String)r.getValue(CCustRepairApplyVOMeta.PROCESS_USER_ID));
 				this.setName( (String)r.getValue(CCustRepairApplyVOMeta.NAME));

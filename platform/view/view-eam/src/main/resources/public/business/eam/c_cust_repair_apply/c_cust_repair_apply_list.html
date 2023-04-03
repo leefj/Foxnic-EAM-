@@ -2,7 +2,7 @@
 /**
  * 报修申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-01 16:32:44
+ * @since 2023-04-03 16:26:19
  */
  -->
  <!DOCTYPE html>
@@ -48,11 +48,14 @@
                         <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.CCustRepairStatusEnum')}" style="width:150px"></div>
                     </div>
                     <!-- 预期日期 , planFinishDate ,typeName=date_input, isHideInSearch=true -->
-                    <!-- 报修内容 , content ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 位置 , pos ,typeName=text_input, isHideInSearch=true -->
                     <!-- 发起人 , reportUserName ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 使用人 , reportUserId ,typeName=button, isHideInSearch=true -->
+                    <!-- 报修内容 , content ,typeName=text_area, isHideInSearch=true -->
                     <!-- 图片 , pictureId ,typeName=upload, isHideInSearch=true -->
-                    <!-- 处理人 , processUserId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 处理人 , processUserId ,typeName=button, isHideInSearch=true -->
                     <!-- 结束时间 , finishDate ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 资产 , assetIds ,typeName=select_box, isHideInSearch=true -->
                     <!-- 业务编号 , businessCode ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('业务编号')}" class="search-label businessCode-label">业务编号</span><span class="search-colon">:</span></div>
@@ -116,9 +119,12 @@
 <script type="text/html" id="tableOperationTemplate">
 
     <button th:if="${perm.checkAnyAuth('eam_c_cust_repair_apply:update','eam_c_cust_repair_apply:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('修改','','cmp:table.ops')}">修改</span></button>
+
+
     <button th:if="${perm.checkAuth('eam_c_cust_repair_apply:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
+
     <button class="layui-btn layui-btn-xs  viewFull " lay-event="view-full" data-id="{{d.id}}"><span th:text="${lang.translate('查看','','cmp:table.ops')}">查看</span></button>
-    <button th:if="${perm.checkAuth('eam_cust_repiar_receive')}" class="layui-btn layui-btn-xs  receiveAction " lay-event="receive-action" data-id="{{d.id}}"><span th:text="${lang.translate('接单','','cmp:table.ops')}">接单</span></button>
+    <button th:if="${perm.checkAuth('eam_cust_repiar_receive')}"class="layui-btn layui-btn-xs  receiveAction " lay-event="receive-action" data-id="{{d.id}}"><span th:text="${lang.translate('接单','','cmp:table.ops')}">接单</span></button>
 
 </script>
 

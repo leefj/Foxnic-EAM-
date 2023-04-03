@@ -3,14 +3,20 @@ package com.dt.platform.generator.module.eam;
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.eam.AssetCodeSeqNumberTypeEnum;
 import com.dt.platform.constants.enums.eam.CCustRepairStatusEnum;
+import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.AssetItem;
 import com.dt.platform.domain.eam.CCustRepairApply;
 import com.dt.platform.domain.eam.CCustRepiarItem;
 import com.dt.platform.domain.eam.meta.AssetBorrowMeta;
+import com.dt.platform.domain.eam.meta.AssetMeta;
 import com.dt.platform.domain.eam.meta.CCustRepairApplyMeta;
+import com.dt.platform.domain.ops.meta.HostMeta;
+import com.dt.platform.domain.ops.meta.ServiceInfoMeta;
 import com.dt.platform.eam.page.CCustRepairApplyPageController;
 import com.dt.platform.generator.config.Config;
+import com.dt.platform.proxy.eam.AssetServiceProxy;
 import com.dt.platform.proxy.eam.CCustRepairApplyServiceProxy;
+import com.dt.platform.proxy.ops.ServiceInfoServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
 
@@ -23,22 +29,34 @@ public class CRepiarGtr extends BaseCodeGenerator{
 
         System.out.println(this.getClass().getName());
 
-
         cfg.getPoClassFile().addListProperty(CCustRepiarItem.class,"repiarItemData","repiarItemData","repiarItemData");
-
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"processUser","处理人","制单人");
-
+        cfg.getPoClassFile().addSimpleProperty(Employee.class,"reportUser","发起人","发起人");
+        cfg.getPoClassFile().addListProperty(Asset.class,"assetList","资产列表","资产列表");
+        cfg.getPoClassFile().addListProperty(Asset.class,"assetIds","资产列表","资产列表");
 
         cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.ID).basic().hidden(true);
         cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.CREATE_TIME).basic().hidden(true);
         cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.PICTURE_ID).basic().hidden(true);
         cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.PROCESS_USER_ID).basic().hidden(true);
+
+
+
         cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.PROCESS_USER_ID).table().fillBy("processUser","name");
+        cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.PROCESS_USER_ID).form()
+                .button().chooseEmployee(true);
+
+
+        cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.REPORT_USER_ID).table().fillBy("reportUser","name");
+        cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.REPORT_USER_ID).form()
+                .button().chooseEmployee(true);
+
 
 
         cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.CREATE_TIME).table().disable();
         cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.PICTURE_ID).table().disable();
         cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.PROCESS_USER_ID).table().disable();
+
 
 
 
@@ -73,16 +91,25 @@ public class CRepiarGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.PLAN_FINISH_DATE).form().dateInput();
 
 
+        cfg.view().field(CCustRepairApplyMeta.ASSET_IDS)
+                .basic().label("资产")
+                .table().sort(false)
+                .form().selectBox().queryApi(AssetServiceProxy.QUERY_PAGED_LIST)
+                .valueField(AssetMeta.ID).textField(AssetMeta.NAME)
+                .toolbar(false).paging(true)
+                .fillWith(CCustRepairApplyMeta.ASSET_LIST).muliti(true);
+
+
         cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.PICTURE_ID)
                 .form().label("图片").upload().buttonLabel("图片").acceptSingleImage();
 
         cfg.view().formWindow().width("60%");;
 
 
-        cfg.view().formWindow().bottomSpace(50);
+        cfg.view().formWindow().bottomSpace(300);
 
         cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.NAME).form().validate().required();
-        cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.CONTENT).form().textArea().height(150);
+        cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.CONTENT).form().textArea().height(135);
 
       //  cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.CONTACT).form().validate().required();
       //  cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.REPORT_USER_NAME).form().validate().required();
@@ -91,7 +118,6 @@ public class CRepiarGtr extends BaseCodeGenerator{
                 new Object[] {
                         EAMTables.EAM_C_CUST_REPAIR_APPLY.NAME,
                         EAMTables.EAM_C_CUST_REPAIR_APPLY.REPORT_USER_NAME,
-
                 },
                 new Object[] {
                         EAMTables.EAM_C_CUST_REPAIR_APPLY.PLAN_FINISH_DATE,
@@ -99,13 +125,36 @@ public class CRepiarGtr extends BaseCodeGenerator{
 
                 }
         );
+
         cfg.view().form().addGroup(null,
                 new Object[] {
+                        EAMTables.EAM_C_CUST_REPAIR_APPLY.POS,
+
+
+                }
+        );
+
+        cfg.view().form().addGroup(null,
+                new Object[] {
+                        CCustRepairApplyMeta.REPORT_USER_ID,
+
+                },
+                new Object[] {
+                        CCustRepairApplyMeta.ASSET_IDS,
+                }
+        );
+        cfg.view().form().addGroup(null,
+                new Object[] {
+
+
                         EAMTables.EAM_C_CUST_REPAIR_APPLY.CONTENT,
                 }
         );
 
+
         cfg.view().list().disableFormView();
+
+
         cfg.view().list().operationColumn().addActionButton("查看","viewFull","viewFull");
         cfg.view().list().operationColumn().addActionButton("接单","receiveAction","receiveAction","eam_cust_repiar_receive");
 

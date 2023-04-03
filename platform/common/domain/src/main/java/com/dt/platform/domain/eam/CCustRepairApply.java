@@ -27,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 报修申请
  * <p>报修申请 , 数据表 eam_c_cust_repair_apply 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-01 16:32:43
- * @sign 89AD2CA1B55F1BDC6E5A6FDA70757A32
+ * @since 2023-04-03 16:26:18
+ * @sign 9C4854C0CC42567E2951C4094BC8DCCB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -72,10 +72,10 @@ public class CCustRepairApply extends Entity {
 	private Date planFinishDate;
 	
 	/**
-	 * 报修内容：报修内容
+	 * 位置：位置
 	*/
-	@ApiModelProperty(required = false,value="报修内容" , notes = "报修内容" , example = "1212adf")
-	private String content;
+	@ApiModelProperty(required = false,value="位置" , notes = "位置")
+	private String pos;
 	
 	/**
 	 * 发起人：发起人
@@ -84,10 +84,22 @@ public class CCustRepairApply extends Entity {
 	private String reportUserName;
 	
 	/**
+	 * 使用人：使用人
+	*/
+	@ApiModelProperty(required = false,value="使用人" , notes = "使用人")
+	private String reportUserId;
+	
+	/**
 	 * 联系方式：联系方式
 	*/
 	@ApiModelProperty(required = false,value="联系方式" , notes = "联系方式" , example = "14573622323")
 	private String contact;
+	
+	/**
+	 * 报修内容：报修内容
+	*/
+	@ApiModelProperty(required = false,value="报修内容" , notes = "报修内容" , example = "1212adf")
+	private String content;
 	
 	/**
 	 * 图片：图片
@@ -128,19 +140,19 @@ public class CCustRepairApply extends Entity {
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-01 05:32:22")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "1")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -149,19 +161,19 @@ public class CCustRepairApply extends Entity {
 	/**
 	 * 删除人ID：删除人ID
 	*/
-	@ApiModelProperty(required = false,value="删除人ID" , notes = "删除人ID")
+	@ApiModelProperty(required = false,value="删除人ID" , notes = "删除人ID" , example = "110588348101165911")
 	private String deleteBy;
 	
 	/**
 	 * 删除时间：删除时间
 	*/
-	@ApiModelProperty(required = false,value="删除时间" , notes = "删除时间")
+	@ApiModelProperty(required = false,value="删除时间" , notes = "删除时间" , example = "2023-04-01 05:32:22")
 	private Date deleteTime;
 	
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**
@@ -175,6 +187,24 @@ public class CCustRepairApply extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="处理人" , notes = "制单人")
 	private Employee processUser;
+	
+	/**
+	 * 发起人：发起人
+	*/
+	@ApiModelProperty(required = false,value="发起人" , notes = "发起人")
+	private Employee reportUser;
+	
+	/**
+	 * 资产列表：资产列表
+	*/
+	@ApiModelProperty(required = false,value="资产列表" , notes = "资产列表")
+	private List<Asset> assetList;
+	
+	/**
+	 * 资产列表：资产列表
+	*/
+	@ApiModelProperty(required = false,value="资产列表" , notes = "资产列表")
+	private List<Asset> assetIds;
 	
 	/**
 	 * 获得 主键<br>
@@ -272,21 +302,21 @@ public class CCustRepairApply extends Entity {
 	}
 	
 	/**
-	 * 获得 报修内容<br>
-	 * 报修内容
-	 * @return 报修内容
+	 * 获得 位置<br>
+	 * 位置
+	 * @return 位置
 	*/
-	public String getContent() {
-		return content;
+	public String getPos() {
+		return pos;
 	}
 	
 	/**
-	 * 设置 报修内容
-	 * @param content 报修内容
+	 * 设置 位置
+	 * @param pos 位置
 	 * @return 当前对象
 	*/
-	public CCustRepairApply setContent(String content) {
-		this.content=content;
+	public CCustRepairApply setPos(String pos) {
+		this.pos=pos;
 		return this;
 	}
 	
@@ -310,6 +340,25 @@ public class CCustRepairApply extends Entity {
 	}
 	
 	/**
+	 * 获得 使用人<br>
+	 * 使用人
+	 * @return 使用人
+	*/
+	public String getReportUserId() {
+		return reportUserId;
+	}
+	
+	/**
+	 * 设置 使用人
+	 * @param reportUserId 使用人
+	 * @return 当前对象
+	*/
+	public CCustRepairApply setReportUserId(String reportUserId) {
+		this.reportUserId=reportUserId;
+		return this;
+	}
+	
+	/**
 	 * 获得 联系方式<br>
 	 * 联系方式
 	 * @return 联系方式
@@ -325,6 +374,25 @@ public class CCustRepairApply extends Entity {
 	*/
 	public CCustRepairApply setContact(String contact) {
 		this.contact=contact;
+		return this;
+	}
+	
+	/**
+	 * 获得 报修内容<br>
+	 * 报修内容
+	 * @return 报修内容
+	*/
+	public String getContent() {
+		return content;
+	}
+	
+	/**
+	 * 设置 报修内容
+	 * @param content 报修内容
+	 * @return 当前对象
+	*/
+	public CCustRepairApply setContent(String content) {
+		this.content=content;
 		return this;
 	}
 	
@@ -635,6 +703,85 @@ public class CCustRepairApply extends Entity {
 		this.processUser=processUser;
 		return this;
 	}
+	
+	/**
+	 * 获得 发起人<br>
+	 * 发起人
+	 * @return 发起人
+	*/
+	public Employee getReportUser() {
+		return reportUser;
+	}
+	
+	/**
+	 * 设置 发起人
+	 * @param reportUser 发起人
+	 * @return 当前对象
+	*/
+	public CCustRepairApply setReportUser(Employee reportUser) {
+		this.reportUser=reportUser;
+		return this;
+	}
+	
+	/**
+	 * 获得 资产列表<br>
+	 * 资产列表
+	 * @return 资产列表
+	*/
+	public List<Asset> getAssetList() {
+		return assetList;
+	}
+	
+	/**
+	 * 设置 资产列表
+	 * @param assetList 资产列表
+	 * @return 当前对象
+	*/
+	public CCustRepairApply setAssetList(List<Asset> assetList) {
+		this.assetList=assetList;
+		return this;
+	}
+	
+	/**
+	 * 添加 资产列表
+	 * @param asset 资产列表
+	 * @return 当前对象
+	*/
+	public CCustRepairApply addAsset(Asset... asset) {
+		if(this.assetList==null) assetList=new ArrayList<>();
+		this.assetList.addAll(Arrays.asList(asset));
+		return this;
+	}
+	
+	/**
+	 * 获得 资产列表<br>
+	 * 资产列表
+	 * @return 资产列表
+	*/
+	public List<Asset> getAssetIds() {
+		return assetIds;
+	}
+	
+	/**
+	 * 设置 资产列表
+	 * @param assetIds 资产列表
+	 * @return 当前对象
+	*/
+	public CCustRepairApply setAssetIds(List<Asset> assetIds) {
+		this.assetIds=assetIds;
+		return this;
+	}
+	
+	/**
+	 * 添加 资产列表
+	 * @param assetId 资产列表
+	 * @return 当前对象
+	*/
+	public CCustRepairApply addAssetId(Asset... assetId) {
+		if(this.assetIds==null) assetIds=new ArrayList<>();
+		this.assetIds.addAll(Arrays.asList(assetId));
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -688,9 +835,11 @@ public class CCustRepairApply extends Entity {
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
 		inst.setPictureId(this.getPictureId());
+		inst.setPos(this.getPos());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
+		inst.setReportUserId(this.getReportUserId());
 		inst.setContact(this.getContact());
 		inst.setProcessUserId(this.getProcessUserId());
 		inst.setName(this.getName());
@@ -702,7 +851,10 @@ public class CCustRepairApply extends Entity {
 		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setRepiarItemData(this.getRepiarItemData());
+			inst.setReportUser(this.getReportUser());
 			inst.setProcessUser(this.getProcessUser());
+			inst.setAssetIds(this.getAssetIds());
+			inst.setAssetList(this.getAssetList());
 		}
 		inst.clearModifies();
 		return inst;
@@ -770,9 +922,11 @@ public class CCustRepairApply extends Entity {
 			this.setCreateBy(DataParser.parse(String.class, map.get(CCustRepairApplyMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(CCustRepairApplyMeta.DELETED)));
 			this.setPictureId(DataParser.parse(String.class, map.get(CCustRepairApplyMeta.PICTURE_ID)));
+			this.setPos(DataParser.parse(String.class, map.get(CCustRepairApplyMeta.POS)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(CCustRepairApplyMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(CCustRepairApplyMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(CCustRepairApplyMeta.DELETE_TIME)));
+			this.setReportUserId(DataParser.parse(String.class, map.get(CCustRepairApplyMeta.REPORT_USER_ID)));
 			this.setContact(DataParser.parse(String.class, map.get(CCustRepairApplyMeta.CONTACT)));
 			this.setProcessUserId(DataParser.parse(String.class, map.get(CCustRepairApplyMeta.PROCESS_USER_ID)));
 			this.setName(DataParser.parse(String.class, map.get(CCustRepairApplyMeta.NAME)));
@@ -783,6 +937,7 @@ public class CCustRepairApply extends Entity {
 			this.setStartDate(DataParser.parse(Date.class, map.get(CCustRepairApplyMeta.START_DATE)));
 			this.setStatus(DataParser.parse(String.class, map.get(CCustRepairApplyMeta.STATUS)));
 			// others
+			this.setReportUser(DataParser.parse(Employee.class, map.get(CCustRepairApplyMeta.REPORT_USER)));
 			this.setProcessUser(DataParser.parse(Employee.class, map.get(CCustRepairApplyMeta.PROCESS_USER)));
 			return true;
 		} else {
@@ -795,9 +950,11 @@ public class CCustRepairApply extends Entity {
 				this.setCreateBy( (String)map.get(CCustRepairApplyMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(CCustRepairApplyMeta.DELETED));
 				this.setPictureId( (String)map.get(CCustRepairApplyMeta.PICTURE_ID));
+				this.setPos( (String)map.get(CCustRepairApplyMeta.POS));
 				this.setCreateTime( (Date)map.get(CCustRepairApplyMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(CCustRepairApplyMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(CCustRepairApplyMeta.DELETE_TIME));
+				this.setReportUserId( (String)map.get(CCustRepairApplyMeta.REPORT_USER_ID));
 				this.setContact( (String)map.get(CCustRepairApplyMeta.CONTACT));
 				this.setProcessUserId( (String)map.get(CCustRepairApplyMeta.PROCESS_USER_ID));
 				this.setName( (String)map.get(CCustRepairApplyMeta.NAME));
@@ -808,6 +965,7 @@ public class CCustRepairApply extends Entity {
 				this.setStartDate( (Date)map.get(CCustRepairApplyMeta.START_DATE));
 				this.setStatus( (String)map.get(CCustRepairApplyMeta.STATUS));
 				// others
+				this.setReportUser( (Employee)map.get(CCustRepairApplyMeta.REPORT_USER));
 				this.setProcessUser( (Employee)map.get(CCustRepairApplyMeta.PROCESS_USER));
 				return true;
 			} catch (Exception e) {
@@ -833,9 +991,11 @@ public class CCustRepairApply extends Entity {
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(CCustRepairApplyMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(CCustRepairApplyMeta.DELETED)));
 			this.setPictureId(DataParser.parse(String.class, r.getValue(CCustRepairApplyMeta.PICTURE_ID)));
+			this.setPos(DataParser.parse(String.class, r.getValue(CCustRepairApplyMeta.POS)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(CCustRepairApplyMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(CCustRepairApplyMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(CCustRepairApplyMeta.DELETE_TIME)));
+			this.setReportUserId(DataParser.parse(String.class, r.getValue(CCustRepairApplyMeta.REPORT_USER_ID)));
 			this.setContact(DataParser.parse(String.class, r.getValue(CCustRepairApplyMeta.CONTACT)));
 			this.setProcessUserId(DataParser.parse(String.class, r.getValue(CCustRepairApplyMeta.PROCESS_USER_ID)));
 			this.setName(DataParser.parse(String.class, r.getValue(CCustRepairApplyMeta.NAME)));
@@ -856,9 +1016,11 @@ public class CCustRepairApply extends Entity {
 				this.setCreateBy( (String)r.getValue(CCustRepairApplyMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(CCustRepairApplyMeta.DELETED));
 				this.setPictureId( (String)r.getValue(CCustRepairApplyMeta.PICTURE_ID));
+				this.setPos( (String)r.getValue(CCustRepairApplyMeta.POS));
 				this.setCreateTime( (Date)r.getValue(CCustRepairApplyMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(CCustRepairApplyMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(CCustRepairApplyMeta.DELETE_TIME));
+				this.setReportUserId( (String)r.getValue(CCustRepairApplyMeta.REPORT_USER_ID));
 				this.setContact( (String)r.getValue(CCustRepairApplyMeta.CONTACT));
 				this.setProcessUserId( (String)r.getValue(CCustRepairApplyMeta.PROCESS_USER_ID));
 				this.setName( (String)r.getValue(CCustRepairApplyMeta.NAME));

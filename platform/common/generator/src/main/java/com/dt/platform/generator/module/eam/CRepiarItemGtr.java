@@ -21,6 +21,7 @@ public class CRepiarItemGtr extends BaseCodeGenerator{
 
         System.out.println(this.getClass().getName());
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"processUser","处理人","制单人");
+
         cfg.view().field(EAMTables.EAM_C_CUST_REPIAR_ITEM.PROCESS_USER_ID).table().fillBy("processUser","name");
         cfg.view().field(EAMTables.EAM_C_CUST_REPIAR_ITEM.ID).basic().hidden(true);
         cfg.view().search().disable();

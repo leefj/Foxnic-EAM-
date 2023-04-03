@@ -1,7 +1,7 @@
 /**
  * 报修申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-01 16:32:44
+ * @since 2023-04-03 16:26:20
  */
 
 function FormPage() {
@@ -174,6 +174,41 @@ function FormPage() {
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("finishDate",value, date, endDate);
 			}
 		});
+		//渲染 assetIds 下拉字段
+		fox.renderSelectBox({
+			el: "assetIds",
+			radio: false,
+			filterable: true,
+			paging: true,
+			pageRemote: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("assetIds",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("assetIds",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
 	}
 
 	/**
@@ -223,12 +258,15 @@ function FormPage() {
 
 
 
+
 			//设置 预期日期 显示复选框勾选
 			if(formData["planFinishDate"]) {
 				$("#planFinishDate").val(fox.dateFormat(formData["planFinishDate"],"yyyy-MM-dd HH:mm:ss"));
 			}
 
 
+			//设置  资产 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#assetIds",formData.assetList);
 
 			//处理fillBy
 
@@ -280,6 +318,8 @@ function FormPage() {
 
 
 
+		//获取 资产 下拉框的值
+		data["assetIds"]=fox.getSelectedValue("assetIds",true);
 
 		return data;
 	}
@@ -346,6 +386,38 @@ function FormPage() {
 
 	    form.on('submit(submit-button)', verifyAndSaveForm);
 
+		// 请选择人员对话框
+		$("#reportUserId-button").click(function(){
+				var reportUserIdDialogOptions={
+				field:"reportUserId",
+				formData:getFormData(),
+				inputEl:$("#reportUserId"),
+				buttonEl:$(this),
+				single:true,
+				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
+				root: "",
+				targetType:"emp",
+				prepose:function(param){ return window.pageExt.form.beforeDialog && window.pageExt.form.beforeDialog(param);},
+				callback:function(param,result){ window.pageExt.form.afterDialog && window.pageExt.form.afterDialog(param,result);}
+			};
+			fox.chooseEmployee(reportUserIdDialogOptions);
+		});
+		// 请选择人员对话框
+		$("#processUserId-button").click(function(){
+				var processUserIdDialogOptions={
+				field:"processUserId",
+				formData:getFormData(),
+				inputEl:$("#processUserId"),
+				buttonEl:$(this),
+				single:true,
+				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
+				root: "",
+				targetType:"emp",
+				prepose:function(param){ return window.pageExt.form.beforeDialog && window.pageExt.form.beforeDialog(param);},
+				callback:function(param,result){ window.pageExt.form.afterDialog && window.pageExt.form.afterDialog(param,result);}
+			};
+			fox.chooseEmployee(processUserIdDialogOptions);
+		});
 
 	    //关闭窗口
 	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('eam-c-cust-repair-apply-form-data-win',this); });

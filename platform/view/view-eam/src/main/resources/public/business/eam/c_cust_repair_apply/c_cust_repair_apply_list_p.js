@@ -90,6 +90,7 @@ function ListPage() {
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('报修标题') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'planFinishDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('预期日期') ,templet: function (d) { return templet('planFinishDate',fox.dateFormat(d.planFinishDate,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('报修内容') , templet: function (d) { return templet('content',d.content,d);}  }
+					,{ field: 'pos', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置') , templet: function (d) { return templet('pos',d.pos,d);}  }
 					,{ field: 'reportUserName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('发起人') , templet: function (d) { return templet('reportUserName',d.reportUserName,d);}  }
 					,{ field: 'contact', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('联系方式') , templet: function (d) { return templet('contact',d.contact,d);}  }
 					,{ field: 'startDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('发起时间') ,templet: function (d) { return templet('startDate',fox.dateFormat(d.startDate,"yyyy-MM-dd HH:mm:ss"),d); }  }
