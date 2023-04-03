@@ -6,14 +6,15 @@ import java.util.Date;
 import com.dt.platform.domain.eam.CCustRepiarItem;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Employee;
+import com.dt.platform.domain.eam.Asset;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-01 16:32:43
- * @sign 89AD2CA1B55F1BDC6E5A6FDA70757A32
+ * @since 2023-04-03 16:26:18
+ * @sign 9C4854C0CC42567E2951C4094BC8DCCB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -70,14 +71,14 @@ public class CCustRepairApplyMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.CCustRepairApply,java.util.Date> PLAN_FINISH_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustRepairApply.class ,PLAN_FINISH_DATE, java.util.Date.class, "预期日期", "预期日期", java.util.Date.class, null);
 	
 	/**
-	 * 报修内容 , 类型: java.lang.String
+	 * 位置 , 类型: java.lang.String
 	*/
-	public static final String CONTENT="content";
+	public static final String POS="pos";
 	
 	/**
-	 * 报修内容 , 类型: java.lang.String
+	 * 位置 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.CCustRepairApply,java.lang.String> CONTENT_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustRepairApply.class ,CONTENT, java.lang.String.class, "报修内容", "报修内容", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustRepairApply,java.lang.String> POS_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustRepairApply.class ,POS, java.lang.String.class, "位置", "位置", java.lang.String.class, null);
 	
 	/**
 	 * 发起人 , 类型: java.lang.String
@@ -90,6 +91,16 @@ public class CCustRepairApplyMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.CCustRepairApply,java.lang.String> REPORT_USER_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustRepairApply.class ,REPORT_USER_NAME, java.lang.String.class, "发起人", "发起人", java.lang.String.class, null);
 	
 	/**
+	 * 使用人 , 类型: java.lang.String
+	*/
+	public static final String REPORT_USER_ID="reportUserId";
+	
+	/**
+	 * 使用人 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustRepairApply,java.lang.String> REPORT_USER_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustRepairApply.class ,REPORT_USER_ID, java.lang.String.class, "使用人", "使用人", java.lang.String.class, null);
+	
+	/**
 	 * 联系方式 , 类型: java.lang.String
 	*/
 	public static final String CONTACT="contact";
@@ -98,6 +109,16 @@ public class CCustRepairApplyMeta {
 	 * 联系方式 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.CCustRepairApply,java.lang.String> CONTACT_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustRepairApply.class ,CONTACT, java.lang.String.class, "联系方式", "联系方式", java.lang.String.class, null);
+	
+	/**
+	 * 报修内容 , 类型: java.lang.String
+	*/
+	public static final String CONTENT="content";
+	
+	/**
+	 * 报修内容 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustRepairApply,java.lang.String> CONTENT_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustRepairApply.class ,CONTENT, java.lang.String.class, "报修内容", "报修内容", java.lang.String.class, null);
 	
 	/**
 	 * 图片 , 类型: java.lang.String
@@ -240,9 +261,39 @@ public class CCustRepairApplyMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.CCustRepairApply,org.github.foxnic.web.domain.hrm.Employee> PROCESS_USER_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustRepairApply.class ,PROCESS_USER, org.github.foxnic.web.domain.hrm.Employee.class, "处理人", "制单人", org.github.foxnic.web.domain.hrm.Employee.class, null);
 	
 	/**
+	 * 发起人 , 类型: org.github.foxnic.web.domain.hrm.Employee
+	*/
+	public static final String REPORT_USER="reportUser";
+	
+	/**
+	 * 发起人 , 类型: org.github.foxnic.web.domain.hrm.Employee
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustRepairApply,org.github.foxnic.web.domain.hrm.Employee> REPORT_USER_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustRepairApply.class ,REPORT_USER, org.github.foxnic.web.domain.hrm.Employee.class, "发起人", "发起人", org.github.foxnic.web.domain.hrm.Employee.class, null);
+	
+	/**
+	 * 资产列表 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final String ASSET_LIST="assetList";
+	
+	/**
+	 * 资产列表 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustRepairApply,com.dt.platform.domain.eam.Asset> ASSET_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustRepairApply.class ,ASSET_LIST, java.util.List.class, "资产列表", "资产列表", com.dt.platform.domain.eam.Asset.class, null);
+	
+	/**
+	 * 资产列表 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final String ASSET_IDS="assetIds";
+	
+	/**
+	 * 资产列表 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustRepairApply,com.dt.platform.domain.eam.Asset> ASSET_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustRepairApply.class ,ASSET_IDS, java.util.List.class, "资产列表", "资产列表", com.dt.platform.domain.eam.Asset.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , BUSINESS_CODE , STATUS , NAME , PLAN_FINISH_DATE , CONTENT , REPORT_USER_NAME , CONTACT , PICTURE_ID , PROCESS_USER_ID , START_DATE , FINISH_DATE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , REPIAR_ITEM_DATA , PROCESS_USER };
+	public static final String[] $PROPS={ ID , BUSINESS_CODE , STATUS , NAME , PLAN_FINISH_DATE , POS , REPORT_USER_NAME , REPORT_USER_ID , CONTACT , CONTENT , PICTURE_ID , PROCESS_USER_ID , START_DATE , FINISH_DATE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , REPIAR_ITEM_DATA , PROCESS_USER , REPORT_USER , ASSET_LIST , ASSET_IDS };
 	
 	/**
 	 * 代理类
@@ -308,13 +359,13 @@ public class CCustRepairApplyMeta {
 		}
 		
 		/**
-		 * 设置 报修内容
-		 * @param content 报修内容
+		 * 设置 位置
+		 * @param pos 位置
 		 * @return 当前对象
 		*/
-		public CCustRepairApply setContent(String content) {
-			super.change(CONTENT,super.getContent(),content);
-			super.setContent(content);
+		public CCustRepairApply setPos(String pos) {
+			super.change(POS,super.getPos(),pos);
+			super.setPos(pos);
 			return this;
 		}
 		
@@ -330,6 +381,17 @@ public class CCustRepairApplyMeta {
 		}
 		
 		/**
+		 * 设置 使用人
+		 * @param reportUserId 使用人
+		 * @return 当前对象
+		*/
+		public CCustRepairApply setReportUserId(String reportUserId) {
+			super.change(REPORT_USER_ID,super.getReportUserId(),reportUserId);
+			super.setReportUserId(reportUserId);
+			return this;
+		}
+		
+		/**
 		 * 设置 联系方式
 		 * @param contact 联系方式
 		 * @return 当前对象
@@ -337,6 +399,17 @@ public class CCustRepairApplyMeta {
 		public CCustRepairApply setContact(String contact) {
 			super.change(CONTACT,super.getContact(),contact);
 			super.setContact(contact);
+			return this;
+		}
+		
+		/**
+		 * 设置 报修内容
+		 * @param content 报修内容
+		 * @return 当前对象
+		*/
+		public CCustRepairApply setContent(String content) {
+			super.change(CONTENT,super.getContent(),content);
+			super.setContent(content);
 			return this;
 		}
 		
@@ -493,6 +566,39 @@ public class CCustRepairApplyMeta {
 			super.setProcessUser(processUser);
 			return this;
 		}
+		
+		/**
+		 * 设置 发起人
+		 * @param reportUser 发起人
+		 * @return 当前对象
+		*/
+		public CCustRepairApply setReportUser(Employee reportUser) {
+			super.change(REPORT_USER,super.getReportUser(),reportUser);
+			super.setReportUser(reportUser);
+			return this;
+		}
+		
+		/**
+		 * 设置 资产列表
+		 * @param assetList 资产列表
+		 * @return 当前对象
+		*/
+		public CCustRepairApply setAssetList(List<Asset> assetList) {
+			super.change(ASSET_LIST,super.getAssetList(),assetList);
+			super.setAssetList(assetList);
+			return this;
+		}
+		
+		/**
+		 * 设置 资产列表
+		 * @param assetIds 资产列表
+		 * @return 当前对象
+		*/
+		public CCustRepairApply setAssetIds(List<Asset> assetIds) {
+			super.change(ASSET_IDS,super.getAssetIds(),assetIds);
+			super.setAssetIds(assetIds);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -517,9 +623,11 @@ public class CCustRepairApplyMeta {
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
 			inst.setPictureId(this.getPictureId());
+			inst.setPos(this.getPos());
 			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
+			inst.setReportUserId(this.getReportUserId());
 			inst.setContact(this.getContact());
 			inst.setProcessUserId(this.getProcessUserId());
 			inst.setName(this.getName());
@@ -531,7 +639,10 @@ public class CCustRepairApplyMeta {
 			inst.setStatus(this.getStatus());
 			if(all) {
 				inst.setRepiarItemData(this.getRepiarItemData());
+				inst.setReportUser(this.getReportUser());
 				inst.setProcessUser(this.getProcessUser());
+				inst.setAssetIds(this.getAssetIds());
+				inst.setAssetList(this.getAssetList());
 			}
 			inst.clearModifies();
 			return inst;

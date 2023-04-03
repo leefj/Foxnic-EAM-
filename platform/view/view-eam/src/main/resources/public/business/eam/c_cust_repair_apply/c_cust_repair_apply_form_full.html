@@ -93,6 +93,13 @@
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs12 form-column"  style="padding-top: 0px" >
 
+                <div class="layui-form-item" >
+                    <div class="layui-form-label "><div th:text="${lang.translate('位置')}">位置</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="pos" id="pos" name="pos" th:placeholder="${ lang.translate('请输入'+'位置') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+
                 <!-- text_area : 报修内容 ,  content  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('报修内容')}">报修内容</div></div>

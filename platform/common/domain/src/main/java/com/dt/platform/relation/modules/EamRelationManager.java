@@ -126,18 +126,26 @@ public class EamRelationManager extends RelationManager {
 
     public void setupCustRepairApply() {
 
+        this.property(CCustRepairApplyMeta.REPORT_USER_PROP)
+                .using(EAMTables.EAM_C_CUST_REPAIR_APPLY.REPORT_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
         this.property(CCustRepairApplyMeta.PROCESS_USER_PROP)
                 .using(EAMTables.EAM_C_CUST_REPAIR_APPLY.PROCESS_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 
         this.property(CCustRepairApplyMeta.REPIAR_ITEM_DATA_PROP)
                 .using(EAMTables.EAM_C_CUST_REPAIR_APPLY.ID).join(EAMTables.EAM_C_CUST_REPIAR_ITEM.REPAIR_ID);
 
+        this.property(CCustRepairApplyMeta.ASSET_LIST_PROP)
+                .using(EAMTables.EAM_C_CUST_REPAIR_APPLY.ID).join(EAMTables.EAM_ASSET_ITEM.HANDLE_ID)
+           .using(EAMTables.EAM_ASSET_ITEM.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
 
     }
 
     public void setupCustRepairItem() {
         this.property(CCustRepiarItemMeta.PROCESS_USER_PROP)
                 .using(EAMTables.EAM_C_CUST_REPIAR_ITEM.PROCESS_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+
     }
 
     public void setupAssetBorrowReturn() {
