@@ -1,7 +1,7 @@
 /**
  * 报修申请 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-03 16:26:20
+ * @since 2023-04-03 20:33:32
  */
 
 
@@ -440,7 +440,7 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["60%",height+"px"],
+			area: ["60%","80%"],
 			type: 2,
 			id:"eam-c-cust-repair-apply-form-data-win",
 			content: '/business/eam/c_cust_repair_apply/c_cust_repair_apply_form.html' + (queryString?("?"+queryString):""),
