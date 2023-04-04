@@ -290,7 +290,13 @@ security:
     access-expire-seconds: 1800
     # refreshToken 超时秒数，3600秒 即 60分钟;28800 即 8小时
     refresh-expire-seconds: 28800
-
+  build-in:
+    # 是否显示内置账户
+    display-user: true
+    # 是否显示内置角色
+    display-role: true
+    # 是否显示内置业务角色
+    display-busi-role: true
 
 logging:
   config: classpath:logback-config.xml
