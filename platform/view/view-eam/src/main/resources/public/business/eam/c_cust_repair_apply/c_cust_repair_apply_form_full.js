@@ -176,6 +176,44 @@ function FormPage() {
 				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("finishDate",value, date, endDate);
 			}
 		});
+
+
+		//渲染 assetIds 下拉字段
+		fox.renderSelectBox({
+			el: "assetIds",
+			radio: false,
+			filterable: false,
+			paging: true,
+			pageRemote: false,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("assetIds",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "name", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("assetIds",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						//opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
+
 	}
 
 	/**
@@ -267,6 +305,8 @@ function FormPage() {
 				$("#planFinishDate").val(fox.dateFormat(formData["planFinishDate"],"yyyy-MM-dd HH:mm:ss"));
 			}
 
+			//设置  资产 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#assetIds",formData.assetList);
 
 
 			//处理fillBy
@@ -387,13 +427,16 @@ function FormPage() {
 	    //关闭窗口
 	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('eam-c-cust-repair-apply-form-data-win',this); });
 		$("#finish-button").click(function(){
-			admin.post("/service-eam/eam-c-cust-repair-apply/finish", {id:BILL_DATA.id}, function (data) {
-				if (data.success) {
-					admin.finishPopupCenterById('eam-c-cust-repair-apply-form-data-win');
-				} else {
-				}
-				fox.showMessage(data);
-			}, {delayLoading:1000,elms:[$("#submit-button")]});
+			top.layer.confirm(fox.translate('是否确认完成本次任务'), function (i) {
+				top.layer.close(i);
+				admin.post("/service-eam/eam-c-cust-repair-apply/finish", {id:BILL_DATA.id}, function (data) {
+					if (data.success) {
+						admin.finishPopupCenterById('eam-c-cust-repair-apply-form-data-win');
+					} else {
+					}
+					fox.showMessage(data);
+				}, {delayLoading:1000,elms:[$("#submit-button")]});
+			});
 		});
 
 		$("#answer-button").click(function(){

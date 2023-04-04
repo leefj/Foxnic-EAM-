@@ -307,6 +307,7 @@ public class AssetBorrowController extends SuperController implements BpmCallbac
         assetBorrowService.join(list, AssetBorrowMeta.BORROWER);
         // 关联出 制单人 数据
         assetBorrowService.join(list, AssetBorrowMeta.ORIGINATOR);
+
         List<Employee> employees = CollectorUtil.collectList(list, AssetBorrow::getOriginator);
         assetBorrowService.dao().join(employees, Person.class);
         List<Employee> borrowers = CollectorUtil.collectList(list, AssetBorrow::getBorrower);
