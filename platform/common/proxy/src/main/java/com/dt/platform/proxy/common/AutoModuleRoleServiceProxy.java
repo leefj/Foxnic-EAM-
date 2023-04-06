@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 模块角色 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-27 13:57:55
+ * @since 2023-04-04 15:14:30
  */
 @FeignClient(value = ServiceNames.COMMON, contextId = AutoModuleRoleServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface AutoModuleRoleServiceProxy {
@@ -83,6 +83,11 @@ public interface AutoModuleRoleServiceProxy {
      * 分页查询模块角色
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
+
+    /**
+     * 分页查询模块角色
+     */
+    public static final String PERMISSION_DOWNGRADE = API_PREFIX + "permission-downgrade";
 
     /**
      * 添加模块角色

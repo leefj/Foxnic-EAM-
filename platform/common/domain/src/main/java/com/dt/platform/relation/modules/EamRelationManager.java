@@ -16,10 +16,13 @@ public class EamRelationManager extends RelationManager {
     @Override
     protected void config() {
 
-//        定制
+//定制
         this.setupCustRepairItem();
         this.setupCustRepairApply();
 
+        this.setupCustInspectItem();
+        this.setupCustInspectTask();
+        this.setupCustInspectPlan();
 
 //通用
         this.setupRelations();
@@ -123,6 +126,43 @@ public class EamRelationManager extends RelationManager {
     }
 
 
+    public void setupCustInspectItem() {
+        this.property(CCustInspectItemMeta.INSPECT_USER_PROP)
+                .using(EAMTables.EAM_C_CUST_INSPECT_ITEM.INSPECT_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+        this.property(CCustInspectItemMeta.ASSET_PROP)
+                .using(EAMTables.EAM_C_CUST_INSPECT_ITEM.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
+
+    }
+    public void setupCustInspectTask() {
+        this.property(CCustInspectTaskMeta.CUST_INSPECT_TPL_PROP)
+                .using(EAMTables.EAM_C_CUST_INSPECT_TASK.TPL_ID).join(EAMTables.EAM_C_CUST_INSPECT_TPL.ID);
+
+        this.property(CCustInspectTaskMeta.LEADER_PROP)
+                .using(EAMTables.EAM_C_CUST_INSPECT_TASK.INSPECT_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+
+        this.property(CCustInspectTaskMeta.MEMBER_LIST_PROP)
+                .using(EAMTables.EAM_C_CUST_INSPECT_TASK.ID).join(EAMTables.EAM_C_CUST_INSPECT_USER_S.USER_ID);
+
+        this.property(CCustInspectTaskMeta.CUST_INSPECT_ITEM_LIST_PROP)
+                .using(EAMTables.EAM_C_CUST_INSPECT_TASK.ID).join(EAMTables.EAM_C_CUST_INSPECT_ITEM.OWNER_ID);
+
+    }
+
+    public void setupCustInspectPlan() {
+        this.property(CCustInspectPlanMeta.CUST_INSPECT_TPL_PROP)
+                .using(EAMTables.EAM_C_CUST_INSPECT_PLAN.TPL_ID).join(EAMTables.EAM_C_CUST_INSPECT_TPL.ID);
+
+        this.property(CCustInspectPlanMeta.LEADER_PROP)
+                .using(EAMTables.EAM_C_CUST_INSPECT_PLAN.INSPECT_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+
+        this.property(CCustInspectPlanMeta.MEMBER_LIST_PROP)
+                .using(EAMTables.EAM_C_CUST_INSPECT_PLAN.ID).join(EAMTables.EAM_C_CUST_INSPECT_USER_S.USER_ID);
+
+
+    }
 
     public void setupCustRepairApply() {
 
