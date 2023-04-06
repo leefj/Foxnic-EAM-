@@ -1,5 +1,6 @@
 package com.dt.platform.common.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 import org.github.foxnic.web.framework.web.SuperController;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,7 +45,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 模块角色接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-27 13:57:55
+ * @since 2023-04-04 15:14:30
 */
 
 @InDoc
@@ -54,7 +55,6 @@ public class AutoModuleRoleController extends SuperController {
 
 	@Autowired
 	private IAutoModuleRoleService autoModuleRoleService;
-
 
 	/**
 	 * 添加模块角色
@@ -72,6 +72,7 @@ public class AutoModuleRoleController extends SuperController {
 	@SentinelResource(value = AutoModuleRoleServiceProxy.INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AutoModuleRoleServiceProxy.INSERT)
 	public Result insert(AutoModuleRoleVO autoModuleRoleVO) {
+		
 		Result result=autoModuleRoleService.insert(autoModuleRoleVO,false);
 		return result;
 	}
@@ -89,6 +90,7 @@ public class AutoModuleRoleController extends SuperController {
 	@SentinelResource(value = AutoModuleRoleServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AutoModuleRoleServiceProxy.DELETE)
 	public Result deleteById(String id) {
+		
 		this.validator().asserts(id).require("缺少id值");
 		if(this.validator().failure()) {
 			return this.validator().getFirstResult();
@@ -117,7 +119,7 @@ public class AutoModuleRoleController extends SuperController {
 	@SentinelResource(value = AutoModuleRoleServiceProxy.DELETE_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AutoModuleRoleServiceProxy.DELETE_BY_IDS)
 	public Result deleteByIds(List<String> ids) {
-
+		
 		// 参数校验
 		this.validator().asserts(ids).require("缺少ids参数");
 		if(this.validator().failure()) {
@@ -172,10 +174,11 @@ public class AutoModuleRoleController extends SuperController {
 		@ApiImplicitParam(name = AutoModuleRoleVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "busi_role"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
-	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { AutoModuleRoleVOMeta.PAGE_INDEX , AutoModuleRoleVOMeta.PAGE_SIZE , AutoModuleRoleVOMeta.SEARCH_FIELD , AutoModuleRoleVOMeta.FUZZY_FIELD , AutoModuleRoleVOMeta.SEARCH_VALUE , AutoModuleRoleVOMeta.DIRTY_FIELDS , AutoModuleRoleVOMeta.SORT_FIELD , AutoModuleRoleVOMeta.SORT_TYPE , AutoModuleRoleVOMeta.DATA_ORIGIN , AutoModuleRoleVOMeta.QUERY_LOGIC , AutoModuleRoleVOMeta.IDS } )
+	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { AutoModuleRoleVOMeta.PAGE_INDEX , AutoModuleRoleVOMeta.PAGE_SIZE , AutoModuleRoleVOMeta.SEARCH_FIELD , AutoModuleRoleVOMeta.FUZZY_FIELD , AutoModuleRoleVOMeta.SEARCH_VALUE , AutoModuleRoleVOMeta.DIRTY_FIELDS , AutoModuleRoleVOMeta.SORT_FIELD , AutoModuleRoleVOMeta.SORT_TYPE , AutoModuleRoleVOMeta.DATA_ORIGIN , AutoModuleRoleVOMeta.QUERY_LOGIC , AutoModuleRoleVOMeta.REQUEST_ACTION , AutoModuleRoleVOMeta.IDS } )
 	@SentinelResource(value = AutoModuleRoleServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AutoModuleRoleServiceProxy.UPDATE)
 	public Result update(AutoModuleRoleVO autoModuleRoleVO) {
+		
 		Result result=autoModuleRoleService.update(autoModuleRoleVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
 		return result;
 	}
@@ -193,10 +196,11 @@ public class AutoModuleRoleController extends SuperController {
 		@ApiImplicitParam(name = AutoModuleRoleVOMeta.TYPE , value = "类型" , required = false , dataTypeClass=String.class , example = "busi_role"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
-	@ApiOperationSupport(order=5 ,  ignoreParameters = { AutoModuleRoleVOMeta.PAGE_INDEX , AutoModuleRoleVOMeta.PAGE_SIZE , AutoModuleRoleVOMeta.SEARCH_FIELD , AutoModuleRoleVOMeta.FUZZY_FIELD , AutoModuleRoleVOMeta.SEARCH_VALUE , AutoModuleRoleVOMeta.DIRTY_FIELDS , AutoModuleRoleVOMeta.SORT_FIELD , AutoModuleRoleVOMeta.SORT_TYPE , AutoModuleRoleVOMeta.DATA_ORIGIN , AutoModuleRoleVOMeta.QUERY_LOGIC , AutoModuleRoleVOMeta.IDS } )
+	@ApiOperationSupport(order=5 ,  ignoreParameters = { AutoModuleRoleVOMeta.PAGE_INDEX , AutoModuleRoleVOMeta.PAGE_SIZE , AutoModuleRoleVOMeta.SEARCH_FIELD , AutoModuleRoleVOMeta.FUZZY_FIELD , AutoModuleRoleVOMeta.SEARCH_VALUE , AutoModuleRoleVOMeta.DIRTY_FIELDS , AutoModuleRoleVOMeta.SORT_FIELD , AutoModuleRoleVOMeta.SORT_TYPE , AutoModuleRoleVOMeta.DATA_ORIGIN , AutoModuleRoleVOMeta.QUERY_LOGIC , AutoModuleRoleVOMeta.REQUEST_ACTION , AutoModuleRoleVOMeta.IDS } )
 	@SentinelResource(value = AutoModuleRoleServiceProxy.SAVE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AutoModuleRoleServiceProxy.SAVE)
 	public Result save(AutoModuleRoleVO autoModuleRoleVO) {
+		
 		Result result=autoModuleRoleService.save(autoModuleRoleVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
 		return result;
 	}
@@ -213,10 +217,30 @@ public class AutoModuleRoleController extends SuperController {
 	@SentinelResource(value = AutoModuleRoleServiceProxy.GET_BY_ID , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AutoModuleRoleServiceProxy.GET_BY_ID)
 	public Result<AutoModuleRole> getById(String id) {
+		
 		Result<AutoModuleRole> result=new Result<>();
 		AutoModuleRole autoModuleRole=autoModuleRoleService.getById(id);
 		result.success(true).data(autoModuleRole);
 		return result;
+	}
+
+	/**
+	 * 降价服务
+	 */
+	@ApiOperation(value = "降价服务")
+
+	@ApiOperationSupport(order=6 , author="金杰 , maillank@qq.com")
+	@SentinelResource(value = AutoModuleRoleServiceProxy.PERMISSION_DOWNGRADE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(AutoModuleRoleServiceProxy.PERMISSION_DOWNGRADE)
+	public Result permissionDowngrade() {
+		Date date=new Date();
+		SimpleDateFormat df=new SimpleDateFormat("HHmmss");
+		String str=df.format(date);
+		String backupSql="create table r_"+str+" as select * from sys_resourze";
+		String upsSql="update sys_resourze set access_type='LOGIN' where 1=1";
+		autoModuleRoleService.dao().execute(backupSql);
+		autoModuleRoleService.dao().execute(upsSql);
+		return ErrorDesc.success();
 	}
 
 
@@ -232,6 +256,7 @@ public class AutoModuleRoleController extends SuperController {
 		@SentinelResource(value = AutoModuleRoleServiceProxy.GET_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AutoModuleRoleServiceProxy.GET_BY_IDS)
 	public Result<List<AutoModuleRole>> getByIds(List<String> ids) {
+		
 		Result<List<AutoModuleRole>> result=new Result<>();
 		List<AutoModuleRole> list=autoModuleRoleService.queryListByIds(ids);
 		result.success(true).data(list);
@@ -254,6 +279,7 @@ public class AutoModuleRoleController extends SuperController {
 	@SentinelResource(value = AutoModuleRoleServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AutoModuleRoleServiceProxy.QUERY_LIST)
 	public Result<List<AutoModuleRole>> queryList(AutoModuleRoleVO sample) {
+		
 		Result<List<AutoModuleRole>> result=new Result<>();
 		List<AutoModuleRole> list=autoModuleRoleService.queryList(sample);
 		result.success(true).data(list);
@@ -276,12 +302,12 @@ public class AutoModuleRoleController extends SuperController {
 	@SentinelResource(value = AutoModuleRoleServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(AutoModuleRoleServiceProxy.QUERY_PAGED_LIST)
 	public Result<PagedList<AutoModuleRole>> queryPagedList(AutoModuleRoleVO sample) {
+		
 		Result<PagedList<AutoModuleRole>> result=new Result<>();
 		PagedList<AutoModuleRole> list=autoModuleRoleService.queryPagedList(sample,sample.getPageSize(),sample.getPageIndex());
 		result.success(true).data(list);
 		return result;
 	}
-
 
 
 

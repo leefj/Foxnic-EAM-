@@ -22,8 +22,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 模块角色VO类型
  * <p>模块角色 , 数据表 sys_auto_module_role 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-27 13:57:55
- * @sign DF2AF55A996068889E970E0868EA32CB
+ * @since 2023-04-04 15:14:30
+ * @sign 9575768C413C2548D2CF06DD55DFB1F9
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -81,9 +81,9 @@ public class AutoModuleRoleVO extends AutoModuleRole {
 	private String sortType;
 	
 	/**
-	 * 数据来源：前端指定不同的来源，后端按来源执行不同的逻辑
+	 * 数据来源：前端指定不同的来源，后端可按来源执行不同的逻辑
 	*/
-	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端按来源执行不同的逻辑")
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端可按来源执行不同的逻辑")
 	private String dataOrigin;
 	
 	/**
@@ -91,6 +91,12 @@ public class AutoModuleRoleVO extends AutoModuleRole {
 	*/
 	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
 	private String queryLogic;
+	
+	/**
+	 * 请求动作：前端指定不同的Action，后端可Action执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="请求动作" , notes = "前端指定不同的Action，后端可Action执行不同的逻辑")
+	private String requestAction;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -255,7 +261,7 @@ public class AutoModuleRoleVO extends AutoModuleRole {
 	
 	/**
 	 * 获得 数据来源<br>
-	 * 前端指定不同的来源，后端按来源执行不同的逻辑
+	 * 前端指定不同的来源，后端可按来源执行不同的逻辑
 	 * @return 数据来源
 	*/
 	public String getDataOrigin() {
@@ -288,6 +294,25 @@ public class AutoModuleRoleVO extends AutoModuleRole {
 	*/
 	public AutoModuleRoleVO setQueryLogic(String queryLogic) {
 		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
+	 * 获得 请求动作<br>
+	 * 前端指定不同的Action，后端可Action执行不同的逻辑
+	 * @return 请求动作
+	*/
+	public String getRequestAction() {
+		return requestAction;
+	}
+	
+	/**
+	 * 设置 请求动作
+	 * @param requestAction 请求动作
+	 * @return 当前对象
+	*/
+	public AutoModuleRoleVO setRequestAction(String requestAction) {
+		this.requestAction=requestAction;
 		return this;
 	}
 	
@@ -392,6 +417,7 @@ public class AutoModuleRoleVO extends AutoModuleRole {
 			inst.setSearchField(this.getSearchField());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
+			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
@@ -475,6 +501,7 @@ public class AutoModuleRoleVO extends AutoModuleRole {
 			this.setSearchField(DataParser.parse(String.class, map.get(AutoModuleRoleVOMeta.SEARCH_FIELD)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(AutoModuleRoleVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(AutoModuleRoleVOMeta.SORT_TYPE)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(AutoModuleRoleVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(AutoModuleRoleVOMeta.FUZZY_FIELD)));
 			this.setSortField(DataParser.parse(String.class, map.get(AutoModuleRoleVOMeta.SORT_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(AutoModuleRoleVOMeta.PAGE_SIZE)));
@@ -500,6 +527,7 @@ public class AutoModuleRoleVO extends AutoModuleRole {
 				this.setSearchField( (String)map.get(AutoModuleRoleVOMeta.SEARCH_FIELD));
 				this.setPageIndex( (Integer)map.get(AutoModuleRoleVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(AutoModuleRoleVOMeta.SORT_TYPE));
+				this.setRequestAction( (String)map.get(AutoModuleRoleVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(AutoModuleRoleVOMeta.FUZZY_FIELD));
 				this.setSortField( (String)map.get(AutoModuleRoleVOMeta.SORT_FIELD));
 				this.setPageSize( (Integer)map.get(AutoModuleRoleVOMeta.PAGE_SIZE));

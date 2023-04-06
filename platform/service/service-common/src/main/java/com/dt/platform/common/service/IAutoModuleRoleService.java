@@ -24,7 +24,7 @@ import java.util.Map;
  * 模块角色服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-01-27 13:57:55
+ * @since 2023-04-04 15:14:30
 */
 
 public interface IAutoModuleRoleService extends  ISimpleIdService<AutoModuleRole,String> {

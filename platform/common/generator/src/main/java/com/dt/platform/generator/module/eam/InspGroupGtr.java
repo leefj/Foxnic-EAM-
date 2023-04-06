@@ -67,7 +67,6 @@ public class InspGroupGtr extends BaseCodeGenerator {
         //        cfg.view().field(EAMTables.EAM_INVENTORY.DIRECTOR_ID).table().fillBy("manager","name");
         cfg.view().field(InspectionGroupMeta.MEMBER_IDS).basic().label("成员").form()
                 .button().chooseEmployee(false);
-
         cfg.view().field(InspectionGroupMeta.MEMBER_IDS).table().disable(true);
 
         cfg.view().list().disableBatchDelete();
