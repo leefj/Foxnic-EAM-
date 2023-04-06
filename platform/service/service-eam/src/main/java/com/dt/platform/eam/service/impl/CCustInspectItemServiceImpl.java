@@ -1,6 +1,8 @@
 package com.dt.platform.eam.service.impl;
 
 import javax.annotation.Resource;
+
+import com.dt.platform.eam.service.ICCustInspectUserSService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -52,6 +54,9 @@ public class CCustInspectItemServiceImpl extends SuperService<CCustInspectItem> 
 	@Resource(name=DBConfigs.PRIMARY_DAO) 
 	private DAO dao=null;
 
+
+
+
 	/**
 	 * 获得 DAO 对象
 	 * */
@@ -74,6 +79,7 @@ public class CCustInspectItemServiceImpl extends SuperService<CCustInspectItem> 
 	@Override
 	public Result insert(CCustInspectItem cCustInspectItem,boolean throwsException) {
 		Result r=super.insert(cCustInspectItem,throwsException);
+
 		return r;
 	}
 

@@ -41,7 +41,9 @@ public class CCustInspectItemPageController extends ViewController {
 	 * 巡检记录 功能主页面
 	 */
 	@RequestMapping("/c_cust_inspect_item_list.html")
-	public String list(Model model,HttpServletRequest request) {
+	public String list(Model model,HttpServletRequest request,String inspectId) {
+
+		model.addAttribute("inspectId",inspectId);
 		return getTemplatePath(prefix,"c_cust_inspect_item_list");
 	}
 
@@ -49,7 +51,8 @@ public class CCustInspectItemPageController extends ViewController {
 	 * 巡检记录 表单页面
 	 */
 	@RequestMapping("/c_cust_inspect_item_form.html")
-	public String form(Model model,HttpServletRequest request , String id) {
+	public String form(Model model,HttpServletRequest request , String id,String inspectId) {
+		model.addAttribute("inspectId",inspectId);
 		return getTemplatePath(prefix,"c_cust_inspect_item_form");
 	}
 }

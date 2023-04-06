@@ -1,6 +1,9 @@
 package com.dt.platform.eam.controller;
 
 import java.util.*;
+
+import com.dt.platform.domain.eam.CCustRepairApply;
+import org.github.foxnic.web.domain.hrm.Person;
 import org.github.foxnic.web.framework.web.SuperController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -249,6 +252,8 @@ public class CCustInspectItemController extends SuperController {
 		cCustInspectItemService.dao().fill(cCustInspectItem)
 			.with("inspectUser")
 			.execute();
+		cCustInspectItemService.dao().join(cCustInspectItem.getInspectUser(), Person.class);
+
 		result.success(true).data(cCustInspectItem);
 		return result;
 	}
@@ -335,6 +340,10 @@ public class CCustInspectItemController extends SuperController {
 		cCustInspectItemService.dao().fill(list)
 			.with("inspectUser")
 			.execute();
+
+		List<Employee> user1 = CollectorUtil.collectList(list, CCustInspectItem::getInspectUser);
+		cCustInspectItemService.dao().join(user1, Person.class);
+
 		result.success(true).data(list);
 		return result;
 	}
