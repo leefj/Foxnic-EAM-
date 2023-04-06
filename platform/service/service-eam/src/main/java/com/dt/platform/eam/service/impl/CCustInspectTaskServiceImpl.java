@@ -1,6 +1,8 @@
 package com.dt.platform.eam.service.impl;
 
 import javax.annotation.Resource;
+import com.dt.platform.domain.eam.CCustInspectUserS;
+import com.dt.platform.eam.service.ICCustInspectUserSService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -46,6 +48,9 @@ import java.util.Map;
 
 public class CCustInspectTaskServiceImpl extends SuperService<CCustInspectTask> implements ICCustInspectTaskService {
 
+	@Autowired
+	private ICCustInspectUserSService cCustInspectUserSService;
+
 	/**
 	 * 注入DAO对象
 	 * */
@@ -74,6 +79,15 @@ public class CCustInspectTaskServiceImpl extends SuperService<CCustInspectTask> 
 	@Override
 	public Result insert(CCustInspectTask cCustInspectTask,boolean throwsException) {
 		Result r=super.insert(cCustInspectTask,throwsException);
+		if(r.isSuccess()){
+			List<String> userIds=cCustInspectTask.getMemberIds();
+			for(String userId:userIds){
+				CCustInspectUserS u=new CCustInspectUserS();
+				u.setUserId(userId);
+				u.setOwnerId(cCustInspectTask.getId());
+				cCustInspectUserSService.insert(u,false);
+			}
+		}
 		return r;
 	}
 
@@ -164,6 +178,16 @@ public class CCustInspectTaskServiceImpl extends SuperService<CCustInspectTask> 
 	@Override
 	public Result update(CCustInspectTask cCustInspectTask , SaveMode mode,boolean throwsException) {
 		Result r=super.update(cCustInspectTask , mode , throwsException);
+		if(r.isSuccess()){
+			dao.execute("delete from eam_c_cust_inspect_user_s where owner_id=?",cCustInspectTask.getId());
+			List<String> userIds=cCustInspectTask.getMemberIds();
+			for(String userId:userIds){
+				CCustInspectUserS u=new CCustInspectUserS();
+				u.setUserId(userId);
+				u.setOwnerId(cCustInspectTask.getId());
+				cCustInspectUserSService.insert(u,false);
+			}
+		}
 		return r;
 	}
 

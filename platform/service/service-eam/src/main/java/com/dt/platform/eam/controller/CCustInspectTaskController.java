@@ -1,6 +1,9 @@
 package com.dt.platform.eam.controller;
 
 import java.util.*;
+
+import com.dt.platform.domain.eam.meta.CCustInspectItemMeta;
+import org.github.foxnic.web.domain.hrm.Person;
 import org.github.foxnic.web.framework.web.SuperController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -238,7 +241,20 @@ public class CCustInspectTaskController extends SuperController {
 		cCustInspectTaskService.dao().fill(cCustInspectTask)
 			.with("leader")
 			.with(CCustInspectTaskMeta.TPL_ID)
+				.with(CCustInspectTaskMeta.CUST_INSPECT_ITEM_LIST)
+				.with(CCustInspectTaskMeta.MEMBER_LIST)
 			.execute();
+
+		cCustInspectTaskService.dao().join(cCustInspectTask.getLeader(), Person.class);
+
+		List<Employee> user1=cCustInspectTask.getMemberList();
+		if(user1!=null&&user1.size()>0){
+			cCustInspectTaskService.dao().join(user1, Person.class);
+		}
+		List<CCustInspectItem> itemList=cCustInspectTask.getCustInspectItemList();
+		if(itemList!=null&&itemList.size()>0){
+			cCustInspectTaskService.dao().join(itemList, CCustInspectItemMeta.ASSET);
+		}
 		result.success(true).data(cCustInspectTask);
 		return result;
 	}
@@ -317,7 +333,12 @@ public class CCustInspectTaskController extends SuperController {
 		cCustInspectTaskService.dao().fill(list)
 			.with("leader")
 			.with(CCustInspectTaskMeta.TPL_ID)
+
 			.execute();
+
+		List<Employee> user1 = CollectorUtil.collectList(list, CCustInspectTask::getLeader);
+		cCustInspectTaskService.dao().join(user1, Person.class);
+
 		result.success(true).data(list);
 		return result;
 	}
