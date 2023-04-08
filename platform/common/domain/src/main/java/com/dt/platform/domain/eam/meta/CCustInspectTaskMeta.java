@@ -13,8 +13,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-06 10:32:46
- * @sign 4A19D3AC63824ACB577DE97868667F0F
+ * @since 2023-04-07 15:49:11
+ * @sign 64C1B56399C90A71829EAF33A29EA3F3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -51,14 +51,14 @@ public class CCustInspectTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectTask,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectTask.class ,STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
 	
 	/**
-	 * 巡检类型 , 类型: java.lang.String
+	 * 追加 , 类型: java.lang.String
 	*/
-	public static final String TYPE="type";
+	public static final String ACTION_ADD="actionAdd";
 	
 	/**
-	 * 巡检类型 , 类型: java.lang.String
+	 * 追加 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectTask,java.lang.String> TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectTask.class ,TYPE, java.lang.String.class, "巡检类型", "巡检类型", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectTask,java.lang.String> ACTION_ADD_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectTask.class ,ACTION_ADD, java.lang.String.class, "追加", "追加", java.lang.String.class, null);
 	
 	/**
 	 * 开始时间 , 类型: java.util.Date
@@ -263,7 +263,7 @@ public class CCustInspectTaskMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NAME , STATUS , TYPE , START_TIME , FINISH_TIME , INSPECT_USER_ID , TPL_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , CUST_INSPECT_TPL , LEADER , MEMBER_LIST , MEMBER_IDS , CUST_INSPECT_ITEM_LIST , CUST_INSPECT_ITEM_IDS };
+	public static final String[] $PROPS={ ID , NAME , STATUS , ACTION_ADD , START_TIME , FINISH_TIME , INSPECT_USER_ID , TPL_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , CUST_INSPECT_TPL , LEADER , MEMBER_LIST , MEMBER_IDS , CUST_INSPECT_ITEM_LIST , CUST_INSPECT_ITEM_IDS };
 	
 	/**
 	 * 代理类
@@ -307,13 +307,13 @@ public class CCustInspectTaskMeta {
 		}
 		
 		/**
-		 * 设置 巡检类型
-		 * @param type 巡检类型
+		 * 设置 追加
+		 * @param actionAdd 追加
 		 * @return 当前对象
 		*/
-		public CCustInspectTask setType(String type) {
-			super.change(TYPE,super.getType(),type);
-			super.setType(type);
+		public CCustInspectTask setActionAdd(String actionAdd) {
+			super.change(ACTION_ADD,super.getActionAdd(),actionAdd);
+			super.setActionAdd(actionAdd);
 			return this;
 		}
 		
@@ -555,7 +555,6 @@ public class CCustInspectTaskMeta {
 			inst.setFinishTime(this.getFinishTime());
 			inst.setNotes(this.getNotes());
 			inst.setUpdateTime(this.getUpdateTime());
-			inst.setType(this.getType());
 			inst.setVersion(this.getVersion());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
@@ -565,6 +564,7 @@ public class CCustInspectTaskMeta {
 			inst.setName(this.getName());
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
+			inst.setActionAdd(this.getActionAdd());
 			inst.setStartTime(this.getStartTime());
 			inst.setId(this.getId());
 			inst.setTplId(this.getTplId());

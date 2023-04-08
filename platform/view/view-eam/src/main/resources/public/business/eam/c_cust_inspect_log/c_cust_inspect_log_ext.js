@@ -1,7 +1,7 @@
 /**
- * 巡检任务单 列表页 JS 脚本
+ * 执行日志 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-06 10:32:47
+ * @since 2023-04-07 09:21:10
  */
 
 layui.config({
@@ -18,7 +18,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload;
 
     //模块基础路径
-    const moduleURL="/service-eam/eam-c-cust-inspect-task";
+    const moduleURL="/service-eam/eam-c-cust-inspect-log";
 
 
     //列表页的扩展
@@ -166,9 +166,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
-        assetDetail:function (data){
-            console.log('assetDetail',data);
-        },
         /**
          * 末尾执行
          */
@@ -200,21 +197,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeDataFill:function (data) {
             console.log('beforeDataFill',data);
-            var inventoryUserIds="";
-            if(data&&data.memberList){
-                for(var i=0;i<data.memberList.length;i++){
-                    if(i==0){
-                        inventoryUserIds=data.memberList[i].id;
-                    }else{
-                        inventoryUserIds=inventoryUserIds+","+data.memberList[i].id;
-                    }
-                }
-                data.memberIds=inventoryUserIds;
-
-            }else{
-                data.memberIds="";
-            }
-
         },
         /**
          * 表单数据填充后

@@ -1,5 +1,7 @@
 package com.dt.platform.eam.service;
 
+import com.dt.platform.domain.eam.CCustInspectItem;
+import com.dt.platform.domain.eam.CCustInspectItemVO;
 import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
@@ -29,6 +31,11 @@ import java.util.Map;
 
 public interface ICCustInspectTaskService extends  ISimpleIdService<CCustInspectTask,String> {
 
+	Result inspect(String taskId, String assetId,String status,String ct,String picIds);
+
+	Result finish(String id);
+
+	Result cancel(String id);
 
 	/**
 	 * 添加，如果语句错误，则抛出异常

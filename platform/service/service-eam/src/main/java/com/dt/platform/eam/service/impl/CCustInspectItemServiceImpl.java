@@ -48,14 +48,12 @@ import java.util.Map;
 
 public class CCustInspectItemServiceImpl extends SuperService<CCustInspectItem> implements ICCustInspectItemService {
 
+
 	/**
 	 * 注入DAO对象
 	 * */
 	@Resource(name=DBConfigs.PRIMARY_DAO) 
 	private DAO dao=null;
-
-
-
 
 	/**
 	 * 获得 DAO 对象

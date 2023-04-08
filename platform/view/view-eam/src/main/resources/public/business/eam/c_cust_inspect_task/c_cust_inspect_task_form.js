@@ -1,7 +1,7 @@
 /**
  * 巡检任务单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-06 10:32:48
+ * @since 2023-04-07 15:49:12
  */
 
 function FormPage() {
@@ -124,12 +124,12 @@ function FormPage() {
 			});
 			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("status",data,checked);
 		});
-		form.on('radio(type)', function(data){
+		form.on('radio(actionAdd)', function(data){
 			var checked=[];
-			$('input[type=radio][lay-filter=type]:checked').each(function() {
+			$('input[type=radio][lay-filter=actionAdd]:checked').each(function() {
 				checked.push($(this).val());
 			});
-			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("type",data,checked);
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("actionAdd",data,checked);
 		});
 		laydate.render({
 			elem: '#startTime',
@@ -154,6 +154,8 @@ function FormPage() {
 			filterable: false,
 			paging: true,
 			pageRemote: true,
+			layVerify: 'required',
+			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("tplId",data.arr,data.change,data.isAdd);
@@ -233,7 +235,7 @@ function FormPage() {
 
 
 			//设置  模版 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#tplId",formData.tplId);
+			fox.setSelectValue4QueryApi("#tplId",formData.custInspectTpl);
 
 			//处理fillBy
 

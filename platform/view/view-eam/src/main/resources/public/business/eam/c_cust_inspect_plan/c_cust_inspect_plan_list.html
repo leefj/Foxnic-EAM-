@@ -2,7 +2,7 @@
 /**
  * 巡检计划 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-06 10:34:33
+ * @since 2023-04-07 15:48:54
  */
  -->
  <!DOCTYPE html>
@@ -47,17 +47,13 @@
 
                         <div id="status" th:data="${enum.toArray('com.foxnicweb.web.constants.enums.contract.StatusEnum')}" style="width:150px"></div>
                     </div>
+                    <!-- 追加 , actionAdd ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 模版 , tplId ,typeName=select_box, isHideInSearch=true -->
                     <!-- 触发周期 , crontab ,typeName=text_input, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 上次执行时间 , lastTime ,typeName=date_input, isHideInSearch=true -->
+                    <!-- 下次执行时间 , nextTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 成员 , memberIds ,typeName=button, isHideInSearch=true -->
-                    <!-- 巡检类型 , type ,typeName=radio_box, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('巡检类型')}" class="search-label type-label">巡检类型</span><span class="search-colon">:</span></div>
-
-
-                        <div id="type" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.CCustInspectTaskTypeEnum')}" style="width:150px"></div>
-                    </div>
                     <!-- 负责人 , inspectUserId ,typeName=button, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('负责人')}" class="search-label inspectUserId-label">负责人</span><span class="search-colon">:</span></div>
@@ -117,7 +113,7 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var RADIO_STATUS_DATA = [[${enum.toArray('com.foxnicweb.web.constants.enums.contract.StatusEnum')}]];
-    var RADIO_TYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.CCustInspectTaskTypeEnum')}]];
+    var RADIO_ACTIONADD_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.CCustInspectAssetAddEnum')}]];
     var AUTH_PREFIX="eam_c_cust_inspect_plan";
 
 

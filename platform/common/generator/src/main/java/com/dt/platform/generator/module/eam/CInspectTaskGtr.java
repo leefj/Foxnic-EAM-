@@ -1,6 +1,7 @@
 package com.dt.platform.generator.module.eam;
 
 import com.dt.platform.constants.db.EAMTables;
+import com.dt.platform.constants.enums.eam.CCustInspectAssetAddEnum;
 import com.dt.platform.constants.enums.eam.CCustInspectTaskStatusEnum;
 import com.dt.platform.constants.enums.eam.CCustInspectTaskTypeEnum;
 import com.dt.platform.constants.enums.eam.CCustRepairStatusEnum;
@@ -47,7 +48,6 @@ public class CInspectTaskGtr extends BaseCodeGenerator{
         cfg.view().search().inputLayout(
                 new Object[]{
                         EAMTables.EAM_C_CUST_INSPECT_TASK.STATUS,
-                        EAMTables.EAM_C_CUST_INSPECT_TASK.TYPE,
                         EAMTables.EAM_C_CUST_INSPECT_TASK.INSPECT_USER_ID,
                         EAMTables.EAM_C_CUST_INSPECT_TASK.NAME,
                 },
@@ -62,18 +62,18 @@ public class CInspectTaskGtr extends BaseCodeGenerator{
         cfg.view().search().inputWidth(Config.searchInputWidth);
         cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_TASK.NAME).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_TASK.START_TIME).search().range();
-        cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_TASK.STATUS).form().validate().required().form().radioBox().enumType(CCustInspectTaskStatusEnum.class);
-        cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_TASK.TYPE).form().validate().required().form().radioBox().enumType(CCustInspectTaskTypeEnum.class);
+        cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_TASK.STATUS).form().radioBox().enumType(CCustInspectTaskStatusEnum.class);
+        cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_TASK.ACTION_ADD).form().validate().required().form().radioBox().enumType(CCustInspectAssetAddEnum.class).defaultIndex(1);
 
         cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_TASK.NOTES).form().textArea().height(120);
 
         cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_TASK.NOTES).table().disable();
 
         cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_TASK.TPL_ID)
-                .form().selectBox().queryApi(CCustInspectTplServiceProxy.QUERY_PAGED_LIST+"?status=valid")
+                .form().validate().required().form().selectBox().queryApi(CCustInspectTplServiceProxy.QUERY_PAGED_LIST+"?status=valid")
                 .valueField(CCustInspectTplMeta.ID).textField(CCustInspectTplMeta.NAME)
                 .toolbar(false).paging(true).filter(false)
-                .fillWith(CCustInspectTaskMeta.TPL_ID).muliti(false);
+                .fillWith(CCustInspectTaskMeta.CUST_INSPECT_TPL).muliti(false);
 
 
         cfg.view().formWindow().width("60%");;
@@ -89,13 +89,13 @@ public class CInspectTaskGtr extends BaseCodeGenerator{
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_C_CUST_INSPECT_TASK.NAME,
-                        EAMTables.EAM_C_CUST_INSPECT_TASK.STATUS,
                         EAMTables.EAM_C_CUST_INSPECT_TASK.INSPECT_USER_ID,
+                        CCustInspectTaskMeta.MEMBER_IDS
                 },
                 new Object[] {
+                        EAMTables.EAM_C_CUST_INSPECT_TASK.ACTION_ADD,
                         EAMTables.EAM_C_CUST_INSPECT_TASK.TPL_ID,
-                        EAMTables.EAM_C_CUST_INSPECT_TASK.TYPE,
-                        CCustInspectTaskMeta.MEMBER_IDS
+
                 }
         );
         cfg.view().form().addGroup(null,
@@ -106,6 +106,8 @@ public class CInspectTaskGtr extends BaseCodeGenerator{
         );
 
         cfg.view().list().operationColumn().addActionButton("巡检明细","assetDetail","assetDetail","eam_cust_inspect_assets");
+        cfg.view().list().operationColumn().addActionButton("完成","actionFinish","actionFinish","eam_cust_inspect_finish");
+        cfg.view().list().operationColumn().addActionButton("取消","actionCancel","actionCancel","eam_cust_inspect_cancel");
 
         //文件生成覆盖模式
         cfg.overrides()

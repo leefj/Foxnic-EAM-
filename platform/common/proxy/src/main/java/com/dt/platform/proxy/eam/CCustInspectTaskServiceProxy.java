@@ -84,6 +84,13 @@ public interface CCustInspectTaskServiceProxy {
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
+    public static final String INSPECT = API_PREFIX + "inspect";
+
+    public static final String CANCEL = API_PREFIX + "cancel";
+
+    public static final String FINISH = API_PREFIX + "finish";
+
+
     /**
      * 添加巡检任务单
      */

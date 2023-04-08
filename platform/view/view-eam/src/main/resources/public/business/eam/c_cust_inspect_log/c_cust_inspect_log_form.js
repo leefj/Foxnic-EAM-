@@ -1,7 +1,7 @@
 /**
- * 巡检计划 列表页 JS 脚本
+ * 执行日志 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-07 15:48:55
+ * @since 2023-04-07 09:21:11
  */
 
 function FormPage() {
@@ -9,7 +9,7 @@ function FormPage() {
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
 	
 	// 接口地址
-	const moduleURL="/service-eam/eam-c-cust-inspect-plan";
+	const moduleURL="/service-eam/eam-c-cust-inspect-log";
 	const queryURL=moduleURL+"/get-by-id";
 	const insertURL=moduleURL+"/insert";
 	const updateURL=moduleURL+"/update";
@@ -29,7 +29,7 @@ function FormPage() {
      	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload,dropdown=layui.dropdown;
 		laydate = layui.laydate,table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect;
 
-		action=admin.getTempData('eam-c-cust-inspect-plan-form-data-form-action');
+		action=admin.getTempData('eam-c-cust-inspect-log-form-data-form-action');
 		//如果没有修改和保存权限
 		if( !admin.checkAuth(AUTH_PREFIX+":update") && !admin.checkAuth(AUTH_PREFIX+":save")) {
 			disableModify=true;
@@ -43,7 +43,7 @@ function FormPage() {
 		}
 
 		if(window.pageExt.form.beforeInit) {
-			window.pageExt.form.beforeInit(action,admin.getTempData('eam-c-cust-inspect-plan-form-data'));
+			window.pageExt.form.beforeInit(action,admin.getTempData('eam-c-cust-inspect-log-form-data'));
 		}
 
 		//渲染表单组件
@@ -95,9 +95,9 @@ function FormPage() {
 				prevBodyHeight = bodyHeight;
 				return;
 			}
-			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'eam-c-cust-inspect-plan-form-data-win');
+			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'eam-c-cust-inspect-log-form-data-win');
 			if(area==null) return;
-			admin.putTempData('eam-c-cust-inspect-plan-form-area', area);
+			admin.putTempData('eam-c-cust-inspect-log-form-area', area);
 			window.adjustPopup=adjustPopup;
 			if(area.tooHeigh) {
 				var windowHeight=area.iframeHeight;
@@ -117,67 +117,12 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
-		form.on('radio(status)', function(data){
-			var checked=[];
-			$('input[type=radio][lay-filter=status]:checked').each(function() {
-				checked.push($(this).val());
-			});
-			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("status",data,checked);
-		});
-		form.on('radio(actionAdd)', function(data){
-			var checked=[];
-			$('input[type=radio][lay-filter=actionAdd]:checked').each(function() {
-				checked.push($(this).val());
-			});
-			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("actionAdd",data,checked);
-		});
-		//渲染 tplId 下拉字段
-		fox.renderSelectBox({
-			el: "tplId",
-			radio: true,
-			filterable: false,
-			paging: true,
-			pageRemote: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("tplId",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var defaultValues=[],defaultIndexs=[];
-				if(action=="create") {
-					defaultValues = "".split(",");
-					defaultIndexs = "".split(",");
-				}
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					if(window.pageExt.form.selectBoxDataTransform) {
-						opts.push(window.pageExt.form.selectBoxDataTransform("tplId",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
-					}
-				}
-				return opts;
-			}
-		});
 		laydate.render({
-			elem: '#lastTime',
+			elem: '#recTime',
 			format:"yyyy-MM-dd HH:mm:ss",
 			trigger:"click",
 			done: function(value, date, endDate){
-				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("lastTime",value, date, endDate);
-			}
-		});
-		laydate.render({
-			elem: '#nextTime',
-			format:"yyyy-MM-dd HH:mm:ss",
-			trigger:"click",
-			done: function(value, date, endDate){
-				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("nextTime",value, date, endDate);
+				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("recTime",value, date, endDate);
 			}
 		});
 	}
@@ -211,7 +156,7 @@ function FormPage() {
       */
 	function fillFormData(formData) {
 		if(!formData) {
-			formData = admin.getTempData('eam-c-cust-inspect-plan-form-data');
+			formData = admin.getTempData('eam-c-cust-inspect-log-form-data');
 		}
 
 		window.pageExt.form.beforeDataFill && window.pageExt.form.beforeDataFill(formData);
@@ -230,10 +175,12 @@ function FormPage() {
 
 
 
+			//设置 记录时间 显示复选框勾选
+			if(formData["recTime"]) {
+				$("#recTime").val(fox.dateFormat(formData["recTime"],"yyyy-MM-dd HH:mm:ss"));
+			}
 
 
-			//设置  模版 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#tplId",formData.custInspectTpl);
 
 			//处理fillBy
 
@@ -285,8 +232,6 @@ function FormPage() {
 
 
 
-		//获取 模版 下拉框的值
-		data["tplId"]=fox.getSelectedValue("tplId",false);
 
 		return data;
 	}
@@ -323,7 +268,7 @@ function FormPage() {
 				}
 
 				if(doNext) {
-					admin.finishPopupCenterById('eam-c-cust-inspect-plan-form-data-win');
+					admin.finishPopupCenterById('eam-c-cust-inspect-log-form-data-win');
 				}
 
 				// 调整状态为编辑
@@ -353,41 +298,9 @@ function FormPage() {
 
 	    form.on('submit(submit-button)', verifyAndSaveForm);
 
-		// 请选择人员对话框
-		$("#inspectUserId-button").click(function(){
-				var inspectUserIdDialogOptions={
-				field:"inspectUserId",
-				formData:getFormData(),
-				inputEl:$("#inspectUserId"),
-				buttonEl:$(this),
-				single:true,
-				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
-				root: "",
-				targetType:"emp",
-				prepose:function(param){ return window.pageExt.form.beforeDialog && window.pageExt.form.beforeDialog(param);},
-				callback:function(param,result){ window.pageExt.form.afterDialog && window.pageExt.form.afterDialog(param,result);}
-			};
-			fox.chooseEmployee(inspectUserIdDialogOptions);
-		});
-		// 请选择人员对话框
-		$("#memberIds-button").click(function(){
-				var memberIdsDialogOptions={
-				field:"memberIds",
-				formData:getFormData(),
-				inputEl:$("#memberIds"),
-				buttonEl:$(this),
-				single:false,
-				//限制浏览的范围，指定根节点 id 或 code ，优先匹配ID
-				root: "",
-				targetType:"emp",
-				prepose:function(param){ return window.pageExt.form.beforeDialog && window.pageExt.form.beforeDialog(param);},
-				callback:function(param,result){ window.pageExt.form.afterDialog && window.pageExt.form.afterDialog(param,result);}
-			};
-			fox.chooseEmployee(memberIdsDialogOptions);
-		});
 
 	    //关闭窗口
-	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('eam-c-cust-inspect-plan-form-data-win',this); });
+	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('eam-c-cust-inspect-log-form-data-win',this); });
 
     }
 

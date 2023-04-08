@@ -27,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检任务单
  * <p>巡检任务单 , 数据表 eam_c_cust_inspect_task 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-06 10:32:46
- * @sign 4A19D3AC63824ACB577DE97868667F0F
+ * @since 2023-04-07 15:49:11
+ * @sign 64C1B56399C90A71829EAF33A29EA3F3
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -44,26 +44,26 @@ public class CCustInspectTask extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "696413299843006464")
 	private String id;
 	
 	/**
 	 * 标题：标题
 	*/
-	@ApiModelProperty(required = false,value="标题" , notes = "标题")
+	@ApiModelProperty(required = false,value="标题" , notes = "标题" , example = "121212")
 	private String name;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "wait")
 	private String status;
 	
 	/**
-	 * 巡检类型：巡检类型
+	 * 追加：追加
 	*/
-	@ApiModelProperty(required = false,value="巡检类型" , notes = "巡检类型")
-	private String type;
+	@ApiModelProperty(required = false,value="追加" , notes = "追加" , example = "tpl")
+	private String actionAdd;
 	
 	/**
 	 * 开始时间：开始时间
@@ -80,13 +80,13 @@ public class CCustInspectTask extends Entity {
 	/**
 	 * 负责人：负责人
 	*/
-	@ApiModelProperty(required = false,value="负责人" , notes = "负责人")
+	@ApiModelProperty(required = false,value="负责人" , notes = "负责人" , example = "586965217661943808")
 	private String inspectUserId;
 	
 	/**
 	 * 模版：模版
 	*/
-	@ApiModelProperty(required = false,value="模版" , notes = "模版")
+	@ApiModelProperty(required = false,value="模版" , notes = "模版" , example = "696280340544618496")
 	private String tplId;
 	
 	/**
@@ -98,31 +98,31 @@ public class CCustInspectTask extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-06 05:37:49")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-07 02:13:45")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -143,13 +143,13 @@ public class CCustInspectTask extends Entity {
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "5")
 	private Integer version;
 	
 	/**
@@ -246,21 +246,21 @@ public class CCustInspectTask extends Entity {
 	}
 	
 	/**
-	 * 获得 巡检类型<br>
-	 * 巡检类型
-	 * @return 巡检类型
+	 * 获得 追加<br>
+	 * 追加
+	 * @return 追加
 	*/
-	public String getType() {
-		return type;
+	public String getActionAdd() {
+		return actionAdd;
 	}
 	
 	/**
-	 * 设置 巡检类型
-	 * @param type 巡检类型
+	 * 设置 追加
+	 * @param actionAdd 追加
 	 * @return 当前对象
 	*/
-	public CCustInspectTask setType(String type) {
-		this.type=type;
+	public CCustInspectTask setActionAdd(String actionAdd) {
+		this.actionAdd=actionAdd;
 		return this;
 	}
 	
@@ -766,7 +766,6 @@ public class CCustInspectTask extends Entity {
 		inst.setFinishTime(this.getFinishTime());
 		inst.setNotes(this.getNotes());
 		inst.setUpdateTime(this.getUpdateTime());
-		inst.setType(this.getType());
 		inst.setVersion(this.getVersion());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
@@ -776,6 +775,7 @@ public class CCustInspectTask extends Entity {
 		inst.setName(this.getName());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
+		inst.setActionAdd(this.getActionAdd());
 		inst.setStartTime(this.getStartTime());
 		inst.setId(this.getId());
 		inst.setTplId(this.getTplId());
@@ -850,7 +850,6 @@ public class CCustInspectTask extends Entity {
 			this.setFinishTime(DataParser.parse(Date.class, map.get(CCustInspectTaskMeta.FINISH_TIME)));
 			this.setNotes(DataParser.parse(String.class, map.get(CCustInspectTaskMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(CCustInspectTaskMeta.UPDATE_TIME)));
-			this.setType(DataParser.parse(String.class, map.get(CCustInspectTaskMeta.TYPE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(CCustInspectTaskMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(CCustInspectTaskMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(CCustInspectTaskMeta.DELETED)));
@@ -860,6 +859,7 @@ public class CCustInspectTask extends Entity {
 			this.setName(DataParser.parse(String.class, map.get(CCustInspectTaskMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, map.get(CCustInspectTaskMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(CCustInspectTaskMeta.DELETE_BY)));
+			this.setActionAdd(DataParser.parse(String.class, map.get(CCustInspectTaskMeta.ACTION_ADD)));
 			this.setStartTime(DataParser.parse(Date.class, map.get(CCustInspectTaskMeta.START_TIME)));
 			this.setId(DataParser.parse(String.class, map.get(CCustInspectTaskMeta.ID)));
 			this.setTplId(DataParser.parse(String.class, map.get(CCustInspectTaskMeta.TPL_ID)));
@@ -874,7 +874,6 @@ public class CCustInspectTask extends Entity {
 				this.setFinishTime( (Date)map.get(CCustInspectTaskMeta.FINISH_TIME));
 				this.setNotes( (String)map.get(CCustInspectTaskMeta.NOTES));
 				this.setUpdateTime( (Date)map.get(CCustInspectTaskMeta.UPDATE_TIME));
-				this.setType( (String)map.get(CCustInspectTaskMeta.TYPE));
 				this.setVersion( (Integer)map.get(CCustInspectTaskMeta.VERSION));
 				this.setCreateBy( (String)map.get(CCustInspectTaskMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(CCustInspectTaskMeta.DELETED));
@@ -884,6 +883,7 @@ public class CCustInspectTask extends Entity {
 				this.setName( (String)map.get(CCustInspectTaskMeta.NAME));
 				this.setTenantId( (String)map.get(CCustInspectTaskMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(CCustInspectTaskMeta.DELETE_BY));
+				this.setActionAdd( (String)map.get(CCustInspectTaskMeta.ACTION_ADD));
 				this.setStartTime( (Date)map.get(CCustInspectTaskMeta.START_TIME));
 				this.setId( (String)map.get(CCustInspectTaskMeta.ID));
 				this.setTplId( (String)map.get(CCustInspectTaskMeta.TPL_ID));
@@ -911,7 +911,6 @@ public class CCustInspectTask extends Entity {
 			this.setFinishTime(DataParser.parse(Date.class, r.getValue(CCustInspectTaskMeta.FINISH_TIME)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(CCustInspectTaskMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(CCustInspectTaskMeta.UPDATE_TIME)));
-			this.setType(DataParser.parse(String.class, r.getValue(CCustInspectTaskMeta.TYPE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(CCustInspectTaskMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(CCustInspectTaskMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(CCustInspectTaskMeta.DELETED)));
@@ -921,6 +920,7 @@ public class CCustInspectTask extends Entity {
 			this.setName(DataParser.parse(String.class, r.getValue(CCustInspectTaskMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(CCustInspectTaskMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(CCustInspectTaskMeta.DELETE_BY)));
+			this.setActionAdd(DataParser.parse(String.class, r.getValue(CCustInspectTaskMeta.ACTION_ADD)));
 			this.setStartTime(DataParser.parse(Date.class, r.getValue(CCustInspectTaskMeta.START_TIME)));
 			this.setId(DataParser.parse(String.class, r.getValue(CCustInspectTaskMeta.ID)));
 			this.setTplId(DataParser.parse(String.class, r.getValue(CCustInspectTaskMeta.TPL_ID)));
@@ -932,7 +932,6 @@ public class CCustInspectTask extends Entity {
 				this.setFinishTime( (Date)r.getValue(CCustInspectTaskMeta.FINISH_TIME));
 				this.setNotes( (String)r.getValue(CCustInspectTaskMeta.NOTES));
 				this.setUpdateTime( (Date)r.getValue(CCustInspectTaskMeta.UPDATE_TIME));
-				this.setType( (String)r.getValue(CCustInspectTaskMeta.TYPE));
 				this.setVersion( (Integer)r.getValue(CCustInspectTaskMeta.VERSION));
 				this.setCreateBy( (String)r.getValue(CCustInspectTaskMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(CCustInspectTaskMeta.DELETED));
@@ -942,6 +941,7 @@ public class CCustInspectTask extends Entity {
 				this.setName( (String)r.getValue(CCustInspectTaskMeta.NAME));
 				this.setTenantId( (String)r.getValue(CCustInspectTaskMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(CCustInspectTaskMeta.DELETE_BY));
+				this.setActionAdd( (String)r.getValue(CCustInspectTaskMeta.ACTION_ADD));
 				this.setStartTime( (Date)r.getValue(CCustInspectTaskMeta.START_TIME));
 				this.setId( (String)r.getValue(CCustInspectTaskMeta.ID));
 				this.setTplId( (String)r.getValue(CCustInspectTaskMeta.TPL_ID));

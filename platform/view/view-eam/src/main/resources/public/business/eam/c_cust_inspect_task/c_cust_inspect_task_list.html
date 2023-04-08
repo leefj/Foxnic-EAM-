@@ -2,7 +2,7 @@
 /**
  * 巡检任务单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-06 10:32:47
+ * @since 2023-04-07 15:49:12
  */
  -->
  <!DOCTYPE html>
@@ -47,17 +47,11 @@
 
                         <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.CCustInspectTaskStatusEnum')}" style="width:150px"></div>
                     </div>
+                    <!-- 追加 , actionAdd ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 完成时间 , finishTime ,typeName=date_input, isHideInSearch=true -->
                     <!-- 模版 , tplId ,typeName=select_box, isHideInSearch=true -->
                     <!-- 备注 , notes ,typeName=text_area, isHideInSearch=true -->
                     <!-- 成员 , memberIds ,typeName=button, isHideInSearch=true -->
-                    <!-- 巡检类型 , type ,typeName=radio_box, isHideInSearch=false -->
-                    <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('巡检类型')}" class="search-label type-label">巡检类型</span><span class="search-colon">:</span></div>
-
-
-                        <div id="type" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.CCustInspectTaskTypeEnum')}" style="width:150px"></div>
-                    </div>
                     <!-- 负责人 , inspectUserId ,typeName=button, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('负责人')}" class="search-label inspectUserId-label">负责人</span><span class="search-colon">:</span></div>
@@ -123,6 +117,8 @@
     <button th:if="${perm.checkAuth('eam_c_cust_inspect_task:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
 
     <button th:if="${perm.checkAuth('eam_cust_inspect_assets')}"class="layui-btn layui-btn-xs  assetDetail " lay-event="asset-detail" data-id="{{d.id}}"><span th:text="${lang.translate('巡检明细','','cmp:table.ops')}">巡检明细</span></button>
+    <button th:if="${perm.checkAuth('eam_cust_inspect_finish')}"class="layui-btn layui-btn-xs  actionFinish " lay-event="action-finish" data-id="{{d.id}}"><span th:text="${lang.translate('完成','','cmp:table.ops')}">完成</span></button>
+    <button th:if="${perm.checkAuth('eam_cust_inspect_cancel')}"class="layui-btn layui-btn-xs  actionCancel " lay-event="action-cancel" data-id="{{d.id}}"><span th:text="${lang.translate('取消','','cmp:table.ops')}">取消</span></button>
 
 </script>
 
@@ -130,7 +126,7 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.CCustInspectTaskStatusEnum')}]];
-    var RADIO_TYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.CCustInspectTaskTypeEnum')}]];
+    var RADIO_ACTIONADD_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.CCustInspectAssetAddEnum')}]];
     var AUTH_PREFIX="eam_c_cust_inspect_task";
 
 
