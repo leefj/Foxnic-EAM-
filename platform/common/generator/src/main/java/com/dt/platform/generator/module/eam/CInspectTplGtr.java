@@ -84,6 +84,6 @@ public class CInspectTplGtr extends BaseCodeGenerator{
         //生成菜单
         //  g.removeByBatchId("");
        // g.generateMenu(CodeRuleServiceProxy.class, CodeRulePageController.class);
-        g.generateMenu(CCustInspectTplServiceProxy.class, CCustInspectTplPageController.class);
+       // g.generateMenu(CCustInspectTplServiceProxy.class, CCustInspectTplPageController.class);
     }
 }
