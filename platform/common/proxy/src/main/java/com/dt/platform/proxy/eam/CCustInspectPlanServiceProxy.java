@@ -85,6 +85,18 @@ public interface CCustInspectPlanServiceProxy {
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
     /**
+     * 分页查询巡检计划
+     */
+    public static final String EXECUTE = API_PREFIX + "execute";
+
+
+    /**
+     * 执行计划
+     */
+    @RequestMapping(CCustInspectPlanServiceProxy.EXECUTE)
+    Result execute(@RequestParam(name = "id") String id,String type);
+
+    /**
      * 添加巡检计划
      */
     @RequestMapping(CCustInspectPlanServiceProxy.INSERT)

@@ -99,7 +99,14 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 查询结果渲染后调用
          * */
         afterQuery : function (data) {
+            for (var i = 0; i < data.length; i++) {
+                //如果审批中或审批通过的不允许编辑
+                if(data[i].status=="valid") {
 
+                }else if(data[i].status=="invalid"){
+                    fox.disableButton($('.actionExecute').filter("[data-id='" + data[i].id + "']"), true);
+                }
+            }
         },
         /**
          * 进一步转换 list 数据
@@ -166,6 +173,24 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
+        actionExecute:function (data, it){
+            console.log('actionExecute',data,it);
+            var bb="actionExecute";
+            var btn=$('.'+bb).filter("[data-id='" +data.id + "']");
+            var api=moduleURL+"/execute"
+            top.layer.confirm(fox.translate('确定进行生成任务单操作？'), function (i) {
+                top.layer.close(i);
+                admin.post(api, {id:data.id,type:"manual"}, function (r) {
+                    if (r.success) {
+                        window.module.refreshTableData();
+                    } else {
+                    }
+                    fox.showMessage(r);
+                }, {delayLoading: 1000, elms: [btn]});
+            });
+
+        },
+
         /**
          * 末尾执行
          */

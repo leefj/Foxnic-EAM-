@@ -63,7 +63,7 @@ public class CInspectTplGtr extends BaseCodeGenerator{
                 }
         );
 
-        cfg.view().list().operationColumn().addActionButton("资产列表","inspectAssetList","eam_cust_inspect_tpl_asset","eam_cust_inspect_tpl_asset");
+        cfg.view().list().operationColumn().addActionButton("设备列表","inspectAssetList","eam_cust_inspect_tpl_asset","eam_cust_inspect_tpl_asset");
 
 
         //文件生成覆盖模式

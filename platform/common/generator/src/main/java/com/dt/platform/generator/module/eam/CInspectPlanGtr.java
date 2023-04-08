@@ -83,8 +83,7 @@ public class CInspectPlanGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_PLAN.NAME).form().validate().required();
 
 
-
-
+        cfg.view().list().operationColumn().addActionButton("执行","actionExecute","actionExecute","eam_cust_inspect_plan_exec");
 
 
         cfg.view().form().addGroup(null,

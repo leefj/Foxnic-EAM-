@@ -92,11 +92,13 @@ public class CCustInspectTaskServiceImpl extends SuperService<CCustInspectTask> 
 		Result r=super.insert(cCustInspectTask,throwsException);
 		if(r.isSuccess()){
 			List<String> userIds=cCustInspectTask.getMemberIds();
-			for(String userId:userIds){
-				CCustInspectUserS u=new CCustInspectUserS();
-				u.setUserId(userId);
-				u.setOwnerId(cCustInspectTask.getId());
-				cCustInspectUserSService.insert(u,false);
+			if(userIds!=null){
+				for(String userId:userIds){
+					CCustInspectUserS u=new CCustInspectUserS();
+					u.setUserId(userId);
+					u.setOwnerId(cCustInspectTask.getId());
+					cCustInspectUserSService.insert(u,false);
+				}
 			}
 		}
 		return r;
@@ -264,11 +266,13 @@ public class CCustInspectTaskServiceImpl extends SuperService<CCustInspectTask> 
 		if(r.isSuccess()){
 			dao.execute("delete from eam_c_cust_inspect_user_s where owner_id=?",cCustInspectTask.getId());
 			List<String> userIds=cCustInspectTask.getMemberIds();
-			for(String userId:userIds){
-				CCustInspectUserS u=new CCustInspectUserS();
-				u.setUserId(userId);
-				u.setOwnerId(cCustInspectTask.getId());
-				cCustInspectUserSService.insert(u,false);
+			if(userIds!=null){
+				for(String userId:userIds){
+					CCustInspectUserS u=new CCustInspectUserS();
+					u.setUserId(userId);
+					u.setOwnerId(cCustInspectTask.getId());
+					cCustInspectUserSService.insert(u,false);
+				}
 			}
 		}
 		return r;

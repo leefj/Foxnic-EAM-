@@ -30,6 +30,8 @@ import java.util.Map;
 public interface ICCustInspectPlanService extends  ISimpleIdService<CCustInspectPlan,String> {
 
 
+	Result execute(String id,String type);
+
 	/**
 	 * 添加，如果语句错误，则抛出异常
 	 * @param cCustInspectPlan 数据对象
