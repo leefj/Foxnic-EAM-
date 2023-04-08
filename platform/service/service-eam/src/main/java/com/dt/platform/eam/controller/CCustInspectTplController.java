@@ -44,7 +44,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 巡检模版接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-06 06:45:02
+ * @since 2023-04-08 18:21:51
 */
 
 @InDoc
@@ -60,10 +60,10 @@ public class CCustInspectTplController extends SuperController {
 	*/
 	@ApiOperation(value = "添加巡检模版")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = CCustInspectTplVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CCustInspectTplVOMeta.NAME , value = "标题" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CCustInspectTplVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CCustInspectTplVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CCustInspectTplVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "696280340544618496"),
+		@ApiImplicitParam(name = CCustInspectTplVOMeta.NAME , value = "标题" , required = false , dataTypeClass=String.class , example = "测试巡检无效"),
+		@ApiImplicitParam(name = CCustInspectTplVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "invalid"),
+		@ApiImplicitParam(name = CCustInspectTplVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "测试"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
 	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
@@ -82,7 +82,7 @@ public class CCustInspectTplController extends SuperController {
 	*/
 	@ApiOperation(value = "删除巡检模版")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = CCustInspectTplVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class)
+		@ApiImplicitParam(name = CCustInspectTplVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "696280340544618496")
 	})
 	@ApiOperationSupport(order=2 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = CCustInspectTplServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -165,10 +165,10 @@ public class CCustInspectTplController extends SuperController {
 	*/
 	@ApiOperation(value = "更新巡检模版")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = CCustInspectTplVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CCustInspectTplVOMeta.NAME , value = "标题" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CCustInspectTplVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CCustInspectTplVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CCustInspectTplVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "696280340544618496"),
+		@ApiImplicitParam(name = CCustInspectTplVOMeta.NAME , value = "标题" , required = false , dataTypeClass=String.class , example = "测试巡检无效"),
+		@ApiImplicitParam(name = CCustInspectTplVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "invalid"),
+		@ApiImplicitParam(name = CCustInspectTplVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "测试"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { CCustInspectTplVOMeta.PAGE_INDEX , CCustInspectTplVOMeta.PAGE_SIZE , CCustInspectTplVOMeta.SEARCH_FIELD , CCustInspectTplVOMeta.FUZZY_FIELD , CCustInspectTplVOMeta.SEARCH_VALUE , CCustInspectTplVOMeta.DIRTY_FIELDS , CCustInspectTplVOMeta.SORT_FIELD , CCustInspectTplVOMeta.SORT_TYPE , CCustInspectTplVOMeta.DATA_ORIGIN , CCustInspectTplVOMeta.QUERY_LOGIC , CCustInspectTplVOMeta.REQUEST_ACTION , CCustInspectTplVOMeta.IDS } )
@@ -186,10 +186,10 @@ public class CCustInspectTplController extends SuperController {
 	*/
 	@ApiOperation(value = "保存巡检模版")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = CCustInspectTplVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CCustInspectTplVOMeta.NAME , value = "标题" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CCustInspectTplVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CCustInspectTplVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CCustInspectTplVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "696280340544618496"),
+		@ApiImplicitParam(name = CCustInspectTplVOMeta.NAME , value = "标题" , required = false , dataTypeClass=String.class , example = "测试巡检无效"),
+		@ApiImplicitParam(name = CCustInspectTplVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "invalid"),
+		@ApiImplicitParam(name = CCustInspectTplVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "测试"),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { CCustInspectTplVOMeta.PAGE_INDEX , CCustInspectTplVOMeta.PAGE_SIZE , CCustInspectTplVOMeta.SEARCH_FIELD , CCustInspectTplVOMeta.FUZZY_FIELD , CCustInspectTplVOMeta.SEARCH_VALUE , CCustInspectTplVOMeta.DIRTY_FIELDS , CCustInspectTplVOMeta.SORT_FIELD , CCustInspectTplVOMeta.SORT_TYPE , CCustInspectTplVOMeta.DATA_ORIGIN , CCustInspectTplVOMeta.QUERY_LOGIC , CCustInspectTplVOMeta.REQUEST_ACTION , CCustInspectTplVOMeta.IDS } )
@@ -246,10 +246,10 @@ public class CCustInspectTplController extends SuperController {
 	*/
 	@ApiOperation(value = "查询巡检模版")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = CCustInspectTplVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CCustInspectTplVOMeta.NAME , value = "标题" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CCustInspectTplVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CCustInspectTplVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CCustInspectTplVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "696280340544618496"),
+		@ApiImplicitParam(name = CCustInspectTplVOMeta.NAME , value = "标题" , required = false , dataTypeClass=String.class , example = "测试巡检无效"),
+		@ApiImplicitParam(name = CCustInspectTplVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "invalid"),
+		@ApiImplicitParam(name = CCustInspectTplVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "测试"),
 	})
 	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { CCustInspectTplVOMeta.PAGE_INDEX , CCustInspectTplVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = CCustInspectTplServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -268,10 +268,10 @@ public class CCustInspectTplController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询巡检模版")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = CCustInspectTplVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CCustInspectTplVOMeta.NAME , value = "标题" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CCustInspectTplVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CCustInspectTplVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = CCustInspectTplVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "696280340544618496"),
+		@ApiImplicitParam(name = CCustInspectTplVOMeta.NAME , value = "标题" , required = false , dataTypeClass=String.class , example = "测试巡检无效"),
+		@ApiImplicitParam(name = CCustInspectTplVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "invalid"),
+		@ApiImplicitParam(name = CCustInspectTplVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class , example = "测试"),
 	})
 	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = CCustInspectTplServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )

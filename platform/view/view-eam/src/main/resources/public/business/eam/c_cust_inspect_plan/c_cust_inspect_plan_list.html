@@ -2,7 +2,7 @@
 /**
  * 巡检计划 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-07 15:48:54
+ * @since 2023-04-08 17:19:09
  */
  -->
  <!DOCTYPE html>
@@ -106,6 +106,7 @@
 
     <button th:if="${perm.checkAuth('eam_c_cust_inspect_plan:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
 
+    <button th:if="${perm.checkAuth('eam_cust_inspect_plan_exec')}"class="layui-btn layui-btn-xs  actionExecute " lay-event="action-execute" data-id="{{d.id}}"><span th:text="${lang.translate('执行','','cmp:table.ops')}">执行</span></button>
 
 </script>
 

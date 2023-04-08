@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检模版VO类型
  * <p>巡检模版 , 数据表 eam_c_cust_inspect_tpl 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-06 06:45:01
+ * @since 2023-04-08 18:21:51
  * @sign 552DF5038EC6ED53A908842BEA8F247A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

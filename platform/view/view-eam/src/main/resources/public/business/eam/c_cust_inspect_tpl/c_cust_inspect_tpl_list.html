@@ -2,7 +2,7 @@
 /**
  * 巡检模版 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-06 06:45:02
+ * @since 2023-04-08 18:21:52
  */
  -->
  <!DOCTYPE html>
@@ -98,7 +98,7 @@
 
     <button th:if="${perm.checkAuth('eam_c_cust_inspect_tpl:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
 
-    <button th:if="${perm.checkAuth('eam_cust_inspect_tpl_asset')}"class="layui-btn layui-btn-xs  eam_cust_inspect_tpl_asset " lay-event="inspect-asset-list" data-id="{{d.id}}"><span th:text="${lang.translate('资产列表','','cmp:table.ops')}">资产列表</span></button>
+    <button th:if="${perm.checkAuth('eam_cust_inspect_tpl_asset')}"class="layui-btn layui-btn-xs  eam_cust_inspect_tpl_asset " lay-event="inspect-asset-list" data-id="{{d.id}}"><span th:text="${lang.translate('设备列表','','cmp:table.ops')}">设备列表</span></button>
 
 </script>
 

@@ -2,8 +2,14 @@ package com.dt.platform.eam.service.impl;
 
 import javax.annotation.Resource;
 
+import com.dt.platform.constants.enums.eam.CCustInspectTaskStatusEnum;
+import com.dt.platform.domain.eam.CCustInspectTask;
 import com.dt.platform.domain.eam.CCustInspectUserS;
+import com.dt.platform.domain.eam.meta.CCustInspectPlanMeta;
+import com.dt.platform.eam.service.ICCustInspectTaskService;
 import com.dt.platform.eam.service.ICCustInspectUserSService;
+import com.foxnicweb.web.constants.enums.contract.StatusEnum;
+import org.github.foxnic.web.domain.hrm.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -49,6 +55,10 @@ import java.util.Map;
 
 public class CCustInspectPlanServiceImpl extends SuperService<CCustInspectPlan> implements ICCustInspectPlanService {
 
+	@Autowired
+	private ICCustInspectTaskService cCustInspectTaskService;
+
+
 	/**
 	 * 注入DAO对象
 	 * */
@@ -83,15 +93,44 @@ public class CCustInspectPlanServiceImpl extends SuperService<CCustInspectPlan> 
 		Result r=super.insert(cCustInspectPlan,throwsException);
 		if(r.isSuccess()){
 			List<String> userIds=cCustInspectPlan.getMemberIds();
-			for(String userId:userIds){
-				CCustInspectUserS u=new CCustInspectUserS();
-				u.setUserId(userId);
-				u.setOwnerId(cCustInspectPlan.getId());
-				cCustInspectUserSService.insert(u,false);
+			if(userIds!=null){
+				for(String userId:userIds){
+					CCustInspectUserS u=new CCustInspectUserS();
+					u.setUserId(userId);
+					u.setOwnerId(cCustInspectPlan.getId());
+					cCustInspectUserSService.insert(u,false);
+				}
 			}
+
 		}
 
 		return r;
+	}
+
+	@Override
+	public Result execute(String id, String type) {
+		CCustInspectPlan plan=this.getById(id);
+		if(!StatusEnum.VALID.code().equals(plan.getStatus())){
+			return ErrorDesc.failureMessage("当前计划单状态无效，无法生成任务单");
+		}
+		dao().fill(plan).with("leader").with(CCustInspectPlanMeta.CUST_INSPECT_ITEM_LIST).with(CCustInspectPlanMeta.MEMBER_LIST).with(CCustInspectPlanMeta.CUST_INSPECT_TPL).execute();
+		CCustInspectTask task=new CCustInspectTask();
+		task.setStatus(CCustInspectTaskStatusEnum.WAIT.code());
+		task.setTenantId(plan.getTenantId());
+		task.setName(plan.getName());
+		task.setTplId(plan.getTplId());
+		task.setActionAdd(plan.getActionAdd());
+		task.setInspectUserId(plan.getInspectUserId());
+		List<Employee> users=plan.getMemberList();
+		List<String> userIds=new ArrayList<>();
+		if(users!=null&& users.size()>0){
+			for(Employee user:users){
+				 userIds.add(user.getId());
+			}
+		}
+		task.setMemberIds(userIds);
+		cCustInspectTaskService.insert(task,false);
+		return ErrorDesc.success();
 	}
 
 	/**
@@ -184,11 +223,13 @@ public class CCustInspectPlanServiceImpl extends SuperService<CCustInspectPlan> 
 		if(r.isSuccess()){
 			dao.execute("delete from eam_c_cust_inspect_user_s where owner_id=?",cCustInspectPlan.getId());
 			List<String> userIds=cCustInspectPlan.getMemberIds();
-			for(String userId:userIds){
-				CCustInspectUserS u=new CCustInspectUserS();
-				u.setUserId(userId);
-				u.setOwnerId(cCustInspectPlan.getId());
-				cCustInspectUserSService.insert(u,false);
+			if(userIds!=null){
+				for(String userId:userIds){
+					CCustInspectUserS u=new CCustInspectUserS();
+					u.setUserId(userId);
+					u.setOwnerId(cCustInspectPlan.getId());
+					cCustInspectUserSService.insert(u,false);
+				}
 			}
 		}
 		return r;

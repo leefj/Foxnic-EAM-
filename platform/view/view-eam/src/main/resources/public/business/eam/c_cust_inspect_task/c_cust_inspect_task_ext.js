@@ -99,6 +99,16 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 查询结果渲染后调用
          * */
         afterQuery : function (data) {
+            for (var i = 0; i < data.length; i++) {
+                //如果审批中或审批通过的不允许编辑
+                if(data[i].status=="cancel") {
+                    fox.disableButton($('.actionFinish').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.actionCancel').filter("[data-id='" + data[i].id + "']"), true);
+                }else if(data[i].status=="wait"){
+                    fox.disableButton($('.actionFinish').filter("[data-id='" + data[i].id + "']"), true);
+                }
+            }
+
 
         },
         /**
@@ -169,6 +179,40 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         assetDetail:function (data){
             console.log('assetDetail',data);
         },
+        actionFinish:function (data,it){
+            console.log('actionFinish',data);
+            var bb="actionFinish";
+            var btn=$('.'+bb).filter("[data-id='" +data.id + "']");
+            var api=moduleURL+"/finish"
+            top.layer.confirm(fox.translate('确定巡检完成吗？'), function (i) {
+                top.layer.close(i);
+                admin.post(api, {id:data.id}, function (r) {
+                    if (r.success) {
+                        window.module.refreshTableData();
+                    } else {
+                    }
+                    fox.showMessage(r);
+                }, {delayLoading: 1000, elms: [btn]});
+            });
+        },
+        actionCancel:function (data,it){
+
+            console.log('actionCancel',data,it);
+            var bb="actionCancel";
+            var btn=$('.'+bb).filter("[data-id='" +data.id + "']");
+            var api=moduleURL+"/cancel"
+            top.layer.confirm(fox.translate('确定取消吗？'), function (i) {
+                top.layer.close(i);
+                admin.post(api, {id:data.id}, function (r) {
+                    if (r.success) {
+                        window.module.refreshTableData();
+                    } else {
+                    }
+                    fox.showMessage(r);
+                }, {delayLoading: 1000, elms: [btn]});
+            });
+
+        },
         /**
          * 末尾执行
          */
@@ -176,6 +220,10 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
         }
     }
+
+
+
+
 
     //表单页的扩展
     var form={

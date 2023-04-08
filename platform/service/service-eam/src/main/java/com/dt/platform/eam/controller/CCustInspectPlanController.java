@@ -191,7 +191,7 @@ public class CCustInspectPlanController extends SuperController {
 		@ApiImplicitParam(name = CCustInspectPlanVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "696673753869844480"),
 		@ApiImplicitParam(name = CCustInspectPlanVOMeta.NAME, value = "标题", required = false, dataTypeClass = String.class, example = "12"),
 		@ApiImplicitParam(name = CCustInspectPlanVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "valid"),
-	 @ApiImplicitParam(name = CCustInspectPlanVOMeta.INSPECT_USER_ID, value = "负责人", required = false, dataTypeClass = String.class, example = "586965217661943808"),
+	    @ApiImplicitParam(name = CCustInspectPlanVOMeta.INSPECT_USER_ID, value = "负责人", required = false, dataTypeClass = String.class, example = "586965217661943808"),
 		@ApiImplicitParam(name = CCustInspectPlanVOMeta.TPL_ID, value = "模版", required = false, dataTypeClass = String.class, example = "696311000567119872"),
 		@ApiImplicitParam(name = CCustInspectPlanVOMeta.CRONTAB, value = "触发周期", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustInspectPlanVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
@@ -207,6 +207,19 @@ public class CCustInspectPlanController extends SuperController {
         Result result = cCustInspectPlanService.save(cCustInspectPlanVO, SaveMode.DIRTY_OR_NOT_NULL_FIELDS, false);
         return result;
     }
+
+
+    /**
+     * 执行
+     */
+    @ApiOperation(value = "执行")
+    @ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = CCustInspectPlanServiceProxy.EXECUTE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(CCustInspectPlanServiceProxy.EXECUTE)
+    public Result execute(String id,String type) {
+        return cCustInspectPlanService.execute(id,type);
+    }
+
 
     /**
      * 获取巡检计划

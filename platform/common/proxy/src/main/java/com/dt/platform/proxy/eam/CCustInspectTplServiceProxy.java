@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 巡检模版 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-06 06:45:02
+ * @since 2023-04-08 18:21:51
  */
 @FeignClient(value = ServiceNames.EAM, contextId = CCustInspectTplServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface CCustInspectTplServiceProxy {

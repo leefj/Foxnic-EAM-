@@ -1,7 +1,7 @@
 /**
  * 巡检模版 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-06 06:45:03
+ * @since 2023-04-08 18:21:52
  */
 
 
@@ -374,7 +374,7 @@ function ListPage() {
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
 			}
-			else if (layEvent === 'inspect-asset-list') { // 资产列表
+			else if (layEvent === 'inspect-asset-list') { // 设备列表
 				window.pageExt.list.inspectAssetList(data,this);
 			}
 			
