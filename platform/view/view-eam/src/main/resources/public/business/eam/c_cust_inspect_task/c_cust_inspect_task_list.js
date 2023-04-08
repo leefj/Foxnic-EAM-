@@ -1,7 +1,7 @@
 /**
  * 巡检任务单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-06 10:32:47
+ * @since 2023-04-07 15:49:12
  */
 
 
@@ -87,11 +87,11 @@ function ListPage() {
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标题') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
-					,{ field: 'type', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检类型'), templet:function (d){ return templet('type',fox.getEnumText(RADIO_TYPE_DATA,d.type,'','type'),d);}}
+					,{ field: 'actionAdd', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('追加'), templet:function (d){ return templet('actionAdd',fox.getEnumText(RADIO_ACTIONADD_DATA,d.actionAdd,'','actionAdd'),d);}}
 					,{ field: 'startTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('开始时间') ,templet: function (d) { return templet('startTime',fox.dateFormat(d.startTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'finishTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('完成时间') ,templet: function (d) { return templet('finishTime',fox.dateFormat(d.finishTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'inspectUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('负责人') , templet: function (d) { return templet('inspectUserId',fox.getProperty(d,["leader","name"],0,'','inspectUserId'),d);} }
-					,{ field: 'tplId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('模版'), templet: function (d) { return templet('tplId' ,fox.joinLabel(d.tplId,"name",',','','tplId'),d);}}
+					,{ field: 'tplId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('模版'), templet: function (d) { return templet('tplId' ,fox.joinLabel(d.custInspectTpl,"name",',','','tplId'),d);}}
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
@@ -143,7 +143,6 @@ function ListPage() {
 		var value = {};
 		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.status={ inputType:"radio_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
-		value.type={ inputType:"radio_box", value: getSelectedValue("#type","value"), label:getSelectedValue("#type","nameStr") };
 		value.startTime={ inputType:"date_input", begin: $("#startTime-begin").val(), end: $("#startTime-end").val() ,matchType:"auto" };
 		value.inspectUserId={ inputType:"button",value: $("#inspectUserId").val(),fillBy:["leader","name"] ,label:$("#inspectUserId-button").text() };
 		var ps={searchField:"$composite"};
@@ -210,31 +209,6 @@ function ListPage() {
 				for (var i = 0; i < data.length; i++) {
 					if(window.pageExt.list.selectBoxDataTransform) {
 						opts.push(window.pageExt.list.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].text,value:data[i].code});
-					}
-				}
-				return opts;
-			}
-		});
-		//渲染 type 搜索框
-		fox.renderSelectBox({
-			el: "type",
-			size: "small",
-			radio: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("type",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//toolbar: {show:true,showIcon:true,list:["CLEAR","REVERSE"]},
-			transform:function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("type",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
 					} else {
 						opts.push({data:data[i],name:data[i].text,value:data[i].code});
 					}
@@ -440,6 +414,12 @@ function ListPage() {
 			}
 			else if (layEvent === 'asset-detail') { // 巡检明细
 				window.pageExt.list.assetDetail(data,this);
+			}
+			else if (layEvent === 'action-finish') { // 完成
+				window.pageExt.list.actionFinish(data,this);
+			}
+			else if (layEvent === 'action-cancel') { // 取消
+				window.pageExt.list.actionCancel(data,this);
 			}
 			
 		});

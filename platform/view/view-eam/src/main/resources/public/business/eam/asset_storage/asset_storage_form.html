@@ -2,7 +2,7 @@
 /**
  * 资产入库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-18 12:30:23
+ * @since 2023-04-07 15:34:15
  */
  -->
  <!DOCTYPE html>
@@ -11,6 +11,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer">
 	<title th:text="${lang.translate('资产入库')}">资产入库</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
@@ -43,7 +44,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-4163-content">
+        <div class="layui-row form-row" id="random-4066-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -56,7 +57,7 @@
                         <input lay-filter="name" id="name" name="name" th:placeholder="${ lang.translate('请输入'+'业务名称') }" type="text" class="layui-input"    lay-verify="|required"  />
                     </div>
                 </div>
-
+            
                 <!-- date_input : 业务日期 ,  businessDate  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('业务日期')}">业务日期</div></div>
@@ -78,7 +79,7 @@
                         <button id="managerUserId-button" type="button" action-type="emp-dialog" class="layui-btn   " style="width: 100%"> <i class='layui-icon layui-icon-search'></i> <span th:text="${lang.translate('请选择人员')}" th:default-label="${lang.translate('请选择人员')}">按钮文本</span></button>
                     </div>
                 </div>
-
+            
                 <!-- select_box : 供应商 ,  supplierId  -->
                 <div class="layui-form-item" >
                     <div class="layui-form-label "><div th:text="${lang.translate('供应商')}">供应商</div></div>
@@ -115,7 +116,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-4513-content">
+        <div class="layui-row form-row" id="random-0732-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -133,12 +134,12 @@
             <!--结束：栏次输入框循环-->
         </div>
          <!--开始：group 循环-->
-        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-4421-fieldset">
+        <fieldset class="layui-elem-field layui-field-title form-group-title" id="random-9836-fieldset">
         <legend>资产列表</legend>
         </fieldset>
-        <div class="layui-row form-row" style="text-align: center;" id="random-4421-content">
+        <div class="layui-row form-row" style="text-align: center;" id="random-9836-content">
             <div style="display: inline-block;padding-right: 8px;padding-left: 8px" class="layui-col-xs12">
-            <iframe id="random-4421-iframe" js-fn="assetSelectList" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
+            <iframe id="random-9836-iframe" js-fn="assetSelectList" class="form-iframe" frameborder="0" style="width: 100%"></iframe>
             </div>
         </div>
         <!--结束：group循环-->

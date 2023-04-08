@@ -11,8 +11,8 @@ import com.github.foxnic.commons.collection.MapUtil;
 import java.util.Arrays;
 
 
-import com.dt.platform.domain.eam.CCustInspectPlan;
-import com.dt.platform.domain.eam.CCustInspectPlanVO;
+import com.dt.platform.domain.eam.CCustInspectLog;
+import com.dt.platform.domain.eam.CCustInspectLogVO;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -31,23 +31,24 @@ import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.meta.DBColumnMeta;
 import com.github.foxnic.sql.expr.Select;
 import java.util.ArrayList;
-import com.dt.platform.eam.service.ICCustInspectPlanService;
+import com.dt.platform.eam.service.ICCustInspectLogService;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import java.util.Date;
 import java.util.Map;
 
 /**
  * <p>
- * 巡检计划服务实现
+ * 执行日志服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-07 10:57:13
+ * @since 2023-04-07 09:21:10
 */
 
 
-@Service("EamCCustInspectPlanService")
+@Service("EamCCustInspectLogService")
 
-public class CCustInspectPlanServiceImpl extends SuperService<CCustInspectPlan> implements ICCustInspectPlanService {
+public class CCustInspectLogServiceImpl extends SuperService<CCustInspectLog> implements ICCustInspectLogService {
+
 
 	/**
 	 * 注入DAO对象
@@ -61,10 +62,6 @@ public class CCustInspectPlanServiceImpl extends SuperService<CCustInspectPlan> 
 	public DAO dao() { return dao; }
 
 
-	@Autowired
-	private ICCustInspectUserSService cCustInspectUserSService;
-
-
 
 	@Override
 	public Object generateId(Field field) {
@@ -74,59 +71,50 @@ public class CCustInspectPlanServiceImpl extends SuperService<CCustInspectPlan> 
 	/**
 	 * 添加，根据 throwsException 参数抛出异常或返回 Result 对象
 	 *
-	 * @param cCustInspectPlan  数据对象
+	 * @param cCustInspectLog  数据对象
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 结果 , 如果失败返回 false，成功返回 true
 	 */
 	@Override
-	public Result insert(CCustInspectPlan cCustInspectPlan,boolean throwsException) {
-		Result r=super.insert(cCustInspectPlan,throwsException);
-		if(r.isSuccess()){
-			List<String> userIds=cCustInspectPlan.getMemberIds();
-			for(String userId:userIds){
-				CCustInspectUserS u=new CCustInspectUserS();
-				u.setUserId(userId);
-				u.setOwnerId(cCustInspectPlan.getId());
-				cCustInspectUserSService.insert(u,false);
-			}
-		}
+	public Result insert(CCustInspectLog cCustInspectLog,boolean throwsException) {
+		Result r=super.insert(cCustInspectLog,throwsException);
 
 		return r;
 	}
 
 	/**
 	 * 添加，如果语句错误，则抛出异常
-	 * @param cCustInspectPlan 数据对象
+	 * @param cCustInspectLog 数据对象
 	 * @return 插入是否成功
 	 * */
 	@Override
-	public Result insert(CCustInspectPlan cCustInspectPlan) {
-		return this.insert(cCustInspectPlan,true);
+	public Result insert(CCustInspectLog cCustInspectLog) {
+		return this.insert(cCustInspectLog,true);
 	}
 
 	/**
 	 * 批量插入实体，事务内
-	 * @param cCustInspectPlanList 实体数据清单
+	 * @param cCustInspectLogList 实体数据清单
 	 * @return 插入是否成功
 	 * */
 	@Override
-	public Result insertList(List<CCustInspectPlan> cCustInspectPlanList) {
-		return super.insertList(cCustInspectPlanList);
+	public Result insertList(List<CCustInspectLog> cCustInspectLogList) {
+		return super.insertList(cCustInspectLogList);
 	}
 
 	
 	/**
-	 * 按主键删除巡检计划
+	 * 按主键删除执行日志
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
 	 */
 	public Result deleteByIdPhysical(String id) {
-		CCustInspectPlan cCustInspectPlan = new CCustInspectPlan();
+		CCustInspectLog cCustInspectLog = new CCustInspectLog();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
-		cCustInspectPlan.setId(id);
+		cCustInspectLog.setId(id);
 		try {
-			boolean suc = dao.deleteEntity(cCustInspectPlan);
+			boolean suc = dao.deleteEntity(cCustInspectLog);
 			return suc?ErrorDesc.success():ErrorDesc.failure();
 		}
 		catch(Exception e) {
@@ -137,20 +125,20 @@ public class CCustInspectPlanServiceImpl extends SuperService<CCustInspectPlan> 
 	}
 	
 	/**
-	 * 按主键删除巡检计划
+	 * 按主键删除执行日志
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
 	 */
 	public Result deleteByIdLogical(String id) {
-		CCustInspectPlan cCustInspectPlan = new CCustInspectPlan();
+		CCustInspectLog cCustInspectLog = new CCustInspectLog();
 		if(id==null) return ErrorDesc.failure().message("id 不允许为 null 。");
-		cCustInspectPlan.setId(id);
-		cCustInspectPlan.setDeleted(true);
-		cCustInspectPlan.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
-		cCustInspectPlan.setDeleteTime(new Date());
+		cCustInspectLog.setId(id);
+		cCustInspectLog.setDeleted(true);
+		cCustInspectLog.setDeleteBy((String)dao.getDBTreaty().getLoginUserId());
+		cCustInspectLog.setDeleteTime(new Date());
 		try {
-			boolean suc = dao.updateEntity(cCustInspectPlan,SaveMode.NOT_NULL_FIELDS);
+			boolean suc = dao.updateEntity(cCustInspectLog,SaveMode.NOT_NULL_FIELDS);
 			return suc?ErrorDesc.success():ErrorDesc.failure();
 		}
 		catch(Exception e) {
@@ -162,52 +150,42 @@ public class CCustInspectPlanServiceImpl extends SuperService<CCustInspectPlan> 
 
 	/**
 	 * 更新，如果执行错误，则抛出异常
-	 * @param cCustInspectPlan 数据对象
+	 * @param cCustInspectLog 数据对象
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
 	@Override
-	public Result update(CCustInspectPlan cCustInspectPlan , SaveMode mode) {
-		return this.update(cCustInspectPlan,mode,true);
+	public Result update(CCustInspectLog cCustInspectLog , SaveMode mode) {
+		return this.update(cCustInspectLog,mode,true);
 	}
 
 	/**
 	 * 更新，根据 throwsException 参数抛出异常或返回 Result 对象
-	 * @param cCustInspectPlan 数据对象
+	 * @param cCustInspectLog 数据对象
 	 * @param mode 保存模式
 	 * @param throwsException 是否抛出异常，如果不抛出异常，则返回一个失败的 Result 对象
 	 * @return 保存是否成功
 	 * */
 	@Override
-	public Result update(CCustInspectPlan cCustInspectPlan , SaveMode mode,boolean throwsException) {
-		Result r=super.update(cCustInspectPlan , mode , throwsException);
-		if(r.isSuccess()){
-			dao.execute("delete from eam_c_cust_inspect_user_s where owner_id=?",cCustInspectPlan.getId());
-			List<String> userIds=cCustInspectPlan.getMemberIds();
-			for(String userId:userIds){
-				CCustInspectUserS u=new CCustInspectUserS();
-				u.setUserId(userId);
-				u.setOwnerId(cCustInspectPlan.getId());
-				cCustInspectUserSService.insert(u,false);
-			}
-		}
+	public Result update(CCustInspectLog cCustInspectLog , SaveMode mode,boolean throwsException) {
+		Result r=super.update(cCustInspectLog , mode , throwsException);
 		return r;
 	}
 
 	/**
 	 * 更新实体集，事务内
-	 * @param cCustInspectPlanList 数据对象列表
+	 * @param cCustInspectLogList 数据对象列表
 	 * @param mode 保存模式
 	 * @return 保存是否成功
 	 * */
 	@Override
-	public Result updateList(List<CCustInspectPlan> cCustInspectPlanList , SaveMode mode) {
-		return super.updateList(cCustInspectPlanList , mode);
+	public Result updateList(List<CCustInspectLog> cCustInspectLogList , SaveMode mode) {
+		return super.updateList(cCustInspectLogList , mode);
 	}
 
 	
 	/**
-	 * 按主键更新巡检计划
+	 * 按主键更新执行日志
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -221,13 +199,13 @@ public class CCustInspectPlanServiceImpl extends SuperService<CCustInspectPlan> 
 
 	
 	/**
-	 * 按主键获取巡检计划
+	 * 按主键获取执行日志
 	 *
 	 * @param id 主键
-	 * @return CCustInspectPlan 数据对象
+	 * @return CCustInspectLog 数据对象
 	 */
-	public CCustInspectPlan getById(String id) {
-		CCustInspectPlan sample = new CCustInspectPlan();
+	public CCustInspectLog getById(String id) {
+		CCustInspectLog sample = new CCustInspectLog();
 		if(id==null) throw new IllegalArgumentException("id 不允许为 null ");
 		sample.setId(id);
 		return dao.queryEntity(sample);
@@ -237,18 +215,18 @@ public class CCustInspectPlanServiceImpl extends SuperService<CCustInspectPlan> 
 	 * 等价于 queryListByIds
 	 * */
 	@Override
-	public List<CCustInspectPlan> getByIds(List<String> ids) {
+	public List<CCustInspectLog> getByIds(List<String> ids) {
 		return this.queryListByIds(ids);
 	}
 
 	@Override
-	public List<CCustInspectPlan> queryListByIds(List<String> ids) {
+	public List<CCustInspectLog> queryListByIds(List<String> ids) {
 		return super.queryListByUKeys("id",ids);
 	}
 
 	@Override
-	public Map<String, CCustInspectPlan> queryMapByIds(List<String> ids) {
-		return super.queryMapByUKeys("id",ids, CCustInspectPlan::getId);
+	public Map<String, CCustInspectLog> queryMapByIds(List<String> ids) {
+		return super.queryMapByUKeys("id",ids, CCustInspectLog::getId);
 	}
 
 
@@ -260,7 +238,7 @@ public class CCustInspectPlanServiceImpl extends SuperService<CCustInspectPlan> 
 	 * @return 查询结果
 	 * */
 	@Override
-	public List<CCustInspectPlan> queryList(CCustInspectPlanVO sample) {
+	public List<CCustInspectLog> queryList(CCustInspectLogVO sample) {
 		return super.queryList(sample);
 	}
 
@@ -274,7 +252,7 @@ public class CCustInspectPlanServiceImpl extends SuperService<CCustInspectPlan> 
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<CCustInspectPlan> queryPagedList(CCustInspectPlanVO sample, int pageSize, int pageIndex) {
+	public PagedList<CCustInspectLog> queryPagedList(CCustInspectLogVO sample, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, pageSize, pageIndex);
 	}
 
@@ -288,19 +266,19 @@ public class CCustInspectPlanServiceImpl extends SuperService<CCustInspectPlan> 
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<CCustInspectPlan> queryPagedList(CCustInspectPlan sample, ConditionExpr condition, int pageSize, int pageIndex) {
+	public PagedList<CCustInspectLog> queryPagedList(CCustInspectLog sample, ConditionExpr condition, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, condition, pageSize, pageIndex);
 	}
 
 	/**
 	 * 检查 实体 是否已经存在 , 判断 主键值不同，但指定字段的值相同的记录是否存在
 	 *
-	 * @param cCustInspectPlan 数据对象
+	 * @param cCustInspectLog 数据对象
 	 * @return 判断结果
 	 */
-	public Boolean checkExists(CCustInspectPlan cCustInspectPlan) {
+	public Boolean checkExists(CCustInspectLog cCustInspectLog) {
 		//TDOD 此处添加判断段的代码
-		//boolean exists=super.checkExists(cCustInspectPlan, SYS_ROLE.NAME);
+		//boolean exists=super.checkExists(cCustInspectLog, SYS_ROLE.NAME);
 		//return exists;
 		return false;
 	}

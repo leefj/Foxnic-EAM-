@@ -1,7 +1,7 @@
 /**
  * 巡检计划 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-06 10:34:33
+ * @since 2023-04-07 10:57:13
  */
 
 layui.config({
@@ -197,6 +197,24 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeDataFill:function (data) {
             console.log('beforeDataFill',data);
+
+            //   positionIds inventoryManagerIds inventoryDirectorIds
+            var inventoryUserIds="";
+            if(data&&data.memberList){
+                for(var i=0;i<data.memberList.length;i++){
+                    if(i==0){
+                        inventoryUserIds=data.memberList[i].id;
+                    }else{
+                        inventoryUserIds=inventoryUserIds+","+data.memberList[i].id;
+                    }
+                }
+                data.memberIds=inventoryUserIds;
+
+            }else{
+                data.memberIds="";
+            }
+
+
         },
         /**
          * 表单数据填充后

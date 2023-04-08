@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检任务单VO类型
  * <p>巡检任务单 , 数据表 eam_c_cust_inspect_task 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-06 10:32:46
+ * @since 2023-04-07 15:49:11
  * @sign 9125A69F356A825D27922D742BDB9994
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -405,7 +405,6 @@ public class CCustInspectTaskVO extends CCustInspectTask {
 		inst.setFinishTime(this.getFinishTime());
 		inst.setNotes(this.getNotes());
 		inst.setUpdateTime(this.getUpdateTime());
-		inst.setType(this.getType());
 		inst.setVersion(this.getVersion());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
@@ -415,6 +414,7 @@ public class CCustInspectTaskVO extends CCustInspectTask {
 		inst.setName(this.getName());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
+		inst.setActionAdd(this.getActionAdd());
 		inst.setStartTime(this.getStartTime());
 		inst.setId(this.getId());
 		inst.setTplId(this.getTplId());
@@ -501,7 +501,6 @@ public class CCustInspectTaskVO extends CCustInspectTask {
 			this.setFinishTime(DataParser.parse(Date.class, map.get(CCustInspectTaskVOMeta.FINISH_TIME)));
 			this.setNotes(DataParser.parse(String.class, map.get(CCustInspectTaskVOMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(CCustInspectTaskVOMeta.UPDATE_TIME)));
-			this.setType(DataParser.parse(String.class, map.get(CCustInspectTaskVOMeta.TYPE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(CCustInspectTaskVOMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(CCustInspectTaskVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(CCustInspectTaskVOMeta.DELETED)));
@@ -511,6 +510,7 @@ public class CCustInspectTaskVO extends CCustInspectTask {
 			this.setName(DataParser.parse(String.class, map.get(CCustInspectTaskVOMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, map.get(CCustInspectTaskVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(CCustInspectTaskVOMeta.DELETE_BY)));
+			this.setActionAdd(DataParser.parse(String.class, map.get(CCustInspectTaskVOMeta.ACTION_ADD)));
 			this.setStartTime(DataParser.parse(Date.class, map.get(CCustInspectTaskVOMeta.START_TIME)));
 			this.setId(DataParser.parse(String.class, map.get(CCustInspectTaskVOMeta.ID)));
 			this.setTplId(DataParser.parse(String.class, map.get(CCustInspectTaskVOMeta.TPL_ID)));
@@ -535,7 +535,6 @@ public class CCustInspectTaskVO extends CCustInspectTask {
 				this.setFinishTime( (Date)map.get(CCustInspectTaskVOMeta.FINISH_TIME));
 				this.setNotes( (String)map.get(CCustInspectTaskVOMeta.NOTES));
 				this.setUpdateTime( (Date)map.get(CCustInspectTaskVOMeta.UPDATE_TIME));
-				this.setType( (String)map.get(CCustInspectTaskVOMeta.TYPE));
 				this.setVersion( (Integer)map.get(CCustInspectTaskVOMeta.VERSION));
 				this.setCreateBy( (String)map.get(CCustInspectTaskVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(CCustInspectTaskVOMeta.DELETED));
@@ -545,6 +544,7 @@ public class CCustInspectTaskVO extends CCustInspectTask {
 				this.setName( (String)map.get(CCustInspectTaskVOMeta.NAME));
 				this.setTenantId( (String)map.get(CCustInspectTaskVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(CCustInspectTaskVOMeta.DELETE_BY));
+				this.setActionAdd( (String)map.get(CCustInspectTaskVOMeta.ACTION_ADD));
 				this.setStartTime( (Date)map.get(CCustInspectTaskVOMeta.START_TIME));
 				this.setId( (String)map.get(CCustInspectTaskVOMeta.ID));
 				this.setTplId( (String)map.get(CCustInspectTaskVOMeta.TPL_ID));
@@ -582,7 +582,6 @@ public class CCustInspectTaskVO extends CCustInspectTask {
 			this.setFinishTime(DataParser.parse(Date.class, r.getValue(CCustInspectTaskVOMeta.FINISH_TIME)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(CCustInspectTaskVOMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(CCustInspectTaskVOMeta.UPDATE_TIME)));
-			this.setType(DataParser.parse(String.class, r.getValue(CCustInspectTaskVOMeta.TYPE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(CCustInspectTaskVOMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(CCustInspectTaskVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(CCustInspectTaskVOMeta.DELETED)));
@@ -592,6 +591,7 @@ public class CCustInspectTaskVO extends CCustInspectTask {
 			this.setName(DataParser.parse(String.class, r.getValue(CCustInspectTaskVOMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(CCustInspectTaskVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(CCustInspectTaskVOMeta.DELETE_BY)));
+			this.setActionAdd(DataParser.parse(String.class, r.getValue(CCustInspectTaskVOMeta.ACTION_ADD)));
 			this.setStartTime(DataParser.parse(Date.class, r.getValue(CCustInspectTaskVOMeta.START_TIME)));
 			this.setId(DataParser.parse(String.class, r.getValue(CCustInspectTaskVOMeta.ID)));
 			this.setTplId(DataParser.parse(String.class, r.getValue(CCustInspectTaskVOMeta.TPL_ID)));
@@ -603,7 +603,6 @@ public class CCustInspectTaskVO extends CCustInspectTask {
 				this.setFinishTime( (Date)r.getValue(CCustInspectTaskVOMeta.FINISH_TIME));
 				this.setNotes( (String)r.getValue(CCustInspectTaskVOMeta.NOTES));
 				this.setUpdateTime( (Date)r.getValue(CCustInspectTaskVOMeta.UPDATE_TIME));
-				this.setType( (String)r.getValue(CCustInspectTaskVOMeta.TYPE));
 				this.setVersion( (Integer)r.getValue(CCustInspectTaskVOMeta.VERSION));
 				this.setCreateBy( (String)r.getValue(CCustInspectTaskVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(CCustInspectTaskVOMeta.DELETED));
@@ -613,6 +612,7 @@ public class CCustInspectTaskVO extends CCustInspectTask {
 				this.setName( (String)r.getValue(CCustInspectTaskVOMeta.NAME));
 				this.setTenantId( (String)r.getValue(CCustInspectTaskVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(CCustInspectTaskVOMeta.DELETE_BY));
+				this.setActionAdd( (String)r.getValue(CCustInspectTaskVOMeta.ACTION_ADD));
 				this.setStartTime( (Date)r.getValue(CCustInspectTaskVOMeta.START_TIME));
 				this.setId( (String)r.getValue(CCustInspectTaskVOMeta.ID));
 				this.setTplId( (String)r.getValue(CCustInspectTaskVOMeta.TPL_ID));

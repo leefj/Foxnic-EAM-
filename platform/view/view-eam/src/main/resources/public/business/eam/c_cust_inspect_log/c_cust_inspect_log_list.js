@@ -1,7 +1,7 @@
 /**
- * 资产入库 列表页 JS 脚本
+ * 执行日志 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-07 15:34:15
+ * @since 2023-04-07 09:21:11
  */
 
 
@@ -10,7 +10,7 @@ function ListPage() {
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect;
 	
 	//模块基础路径
-	const moduleURL="/service-eam/eam-asset-storage";
+	const moduleURL="/service-eam/eam-c-cust-inspect-log";
 	const queryURL=moduleURL+'/query-paged-list';
 	const deleteURL=moduleURL+'/delete';
 	const batchDeleteURL=moduleURL+'/delete-by-ids';
@@ -84,17 +84,12 @@ function ListPage() {
 				cols: [[
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
-					,{ field: 'businessCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务编号') , templet: function (d) { return templet('businessCode',d.businessCode,d);}  }
-					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('办理状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status,'','status'),d);}}
-					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('业务名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'supplierId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('供应商'), templet: function (d) { return templet('supplierId' ,fox.joinLabel(d.supplier,"supplierName",',','','supplierId'),d);}}
-					,{ field: 'managerUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('管理人员') , templet: function (d) { return templet('managerUserId',fox.getProperty(d,["managerUser","name"],0,'','managerUserId'),d);} }
-					,{ field: 'locationName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置信息') , templet: function (d) { return templet('locationName',d.locationName,d);}  }
-					,{ field: 'businessDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('业务日期') ,templet: function (d) { return templet('businessDate',fox.dateFormat(d.businessDate,"yyyy-MM-dd"),d); }  }
-					,{ field: 'originatorId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('制单人') , templet: function (d) { return templet('originatorId',fox.getProperty(d,["originator","name"],0,'','originatorId'),d);} }
+					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
+					,{ field: 'planId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('计划') , templet: function (d) { return templet('planId',d.planId,d);}  }
+					,{ field: 'recTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('记录时间') ,templet: function (d) { return templet('recTime',fox.dateFormat(d.recTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
-					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 350 }
+					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
@@ -141,12 +136,7 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.businessCode={ inputType:"button",value: $("#businessCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.status={ inputType:"select_box", value: getSelectedValue("#status","value"), label:getSelectedValue("#status","nameStr") };
-		value.name={ inputType:"button",value: $("#name").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.supplierId={ inputType:"select_box", value: getSelectedValue("#supplierId","value") ,fillBy:["supplier"]  , label:getSelectedValue("#supplierId","nameStr") };
-		value.locationName={ inputType:"button",value: $("#locationName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
-		value.businessDate={ inputType:"date_input", begin: $("#businessDate-begin").val(), end: $("#businessDate-end").val() ,matchType:"auto" };
+		value.recTime={ inputType:"date_input", value: $("#recTime").val() ,matchType:"auto"};
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -193,78 +183,12 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
-		//渲染 status 下拉字段
-		fox.renderSelectBox({
-			el: "status",
-			radio: true,
-			size: "small",
-			filterable: false,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			//转换数据
-			transform:function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].text,value:data[i].code});
-					}
-				}
-				return opts;
-			}
-		});
-		//渲染 supplierId 下拉字段
-		fox.renderSelectBox({
-			el: "supplierId",
-			radio: true,
-			size: "small",
-			filterable: true,
-			on: function(data){
-				setTimeout(function () {
-					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("supplierId",data.arr,data.change,data.isAdd);
-				},1);
-			},
-			paging: true,
-			pageRemote: true,
-			//转换数据
-			searchField: "supplierName", //请自行调整用于搜索的字段名称
-			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
-			transform: function(data) {
-				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
-				var opts=[];
-				if(!data) return opts;
-				for (var i = 0; i < data.length; i++) {
-					if(!data[i]) continue;
-					if(window.pageExt.list.selectBoxDataTransform) {
-						opts.push(window.pageExt.list.selectBoxDataTransform("supplierId",{data:data[i],name:data[i].supplierName,value:data[i].id},data[i],data,i));
-					} else {
-						opts.push({data:data[i],name:data[i].supplierName,value:data[i].id});
-					}
-				}
-				return opts;
-			}
-		});
 		laydate.render({
-			elem: '#businessDate-begin',
+			elem: '#recTime',
 			trigger:"click",
 			done: function(value, date, endDate) {
 				setTimeout(function () {
-					window.pageExt.list.onDatePickerChanged && window.pageExt.list.onDatePickerChanged("businessDate",value, date, endDate);
-				},1);
-			}
-		});
-		laydate.render({
-			elem: '#businessDate-end',
-			trigger:"click",
-			done: function(value, date, endDate) {
-				setTimeout(function () {
-					window.pageExt.list.onDatePickerChanged && window.pageExt.list.onDatePickerChanged("businessDate",value, date, endDate);
+					window.pageExt.list.onDatePickerChanged && window.pageExt.list.onDatePickerChanged("recTime",value, date, endDate);
 				},1);
 			}
 		});
@@ -315,7 +239,7 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
-					admin.putTempData('eam-asset-storage-form-data', {});
+					admin.putTempData('eam-c-cust-inspect-log-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
@@ -334,7 +258,7 @@ function ListPage() {
         function openCreateFrom() {
         	//设置新增是初始化数据
         	var data={};
-			admin.putTempData('eam-asset-storage-form-data-form-action', "create",true);
+			admin.putTempData('eam-c-cust-inspect-log-form-data-form-action', "create",true);
             showEditForm(data);
         };
 
@@ -348,11 +272,11 @@ function ListPage() {
 
 			var ids=getCheckedList("id");
             if(ids.length==0) {
-				top.layer.msg(fox.translate('请选择需要删除的'+'资产入库'+"!"));
+				top.layer.msg(fox.translate('请选择需要删除的'+'执行日志'+"!"));
             	return;
             }
             //调用批量删除接口
-			top.layer.confirm(fox.translate('确定删除已选中的'+'资产入库'+'吗？'), function (i) {
+			top.layer.confirm(fox.translate('确定删除已选中的'+'执行日志'+'吗？'), function (i) {
                 top.layer.close(i);
 				admin.post(batchDeleteURL, { ids: ids }, function (data) {
                     if (data.success) {
@@ -387,11 +311,11 @@ function ListPage() {
 				if(!doNext) return;
 			}
 
-			admin.putTempData('eam-asset-storage-form-data-form-action', "",true);
+			admin.putTempData('eam-c-cust-inspect-log-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
 				admin.post(getByIdURL, { id : data.id }, function (data) {
 					if(data.success) {
-						admin.putTempData('eam-asset-storage-form-data-form-action', "edit",true);
+						admin.putTempData('eam-c-cust-inspect-log-form-data-form-action', "edit",true);
 						showEditForm(data.data);
 					} else {
 						 fox.showMessage(data);
@@ -400,7 +324,7 @@ function ListPage() {
 			} else if (layEvent === 'view') { // 查看
 				admin.post(getByIdURL, { id : data.id }, function (data) {
 					if(data.success) {
-						admin.putTempData('eam-asset-storage-form-data-form-action', "view",true);
+						admin.putTempData('eam-c-cust-inspect-log-form-data-form-action', "view",true);
 						showEditForm(data.data);
 					} else {
 						fox.showMessage(data);
@@ -414,7 +338,7 @@ function ListPage() {
 					if(!doNext) return;
 				}
 
-				top.layer.confirm(fox.translate('确定删除此'+'资产入库'+'吗？'), function (i) {
+				top.layer.confirm(fox.translate('确定删除此'+'执行日志'+'吗？'), function (i) {
 					top.layer.close(i);
 					admin.post(deleteURL, { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
@@ -431,12 +355,6 @@ function ListPage() {
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
 			}
-			else if (layEvent === 'confirm-data') { // 确认
-				window.pageExt.list.confirmData(data,this);
-			}
-			else if (layEvent === 'download-bill') { // 单据
-				window.pageExt.list.downloadBill(data,this);
-			}
 			
 		});
 
@@ -450,17 +368,17 @@ function ListPage() {
 			var doNext=window.pageExt.list.beforeEdit(data);
 			if(!doNext) return;
 		}
-		var action=admin.getTempData('eam-asset-storage-form-data-form-action');
+		var action=admin.getTempData('eam-c-cust-inspect-log-form-data-form-action');
 		var queryString="";
 		if(data && data.id) queryString='id=' + data.id;
 		if(window.pageExt.list.makeFormQueryString) {
 			queryString=window.pageExt.list.makeFormQueryString(data,queryString,action);
 		}
-		admin.putTempData('eam-asset-storage-form-data', data);
-		var area=admin.getTempData('eam-asset-storage-form-area');
+		admin.putTempData('eam-c-cust-inspect-log-form-data', data);
+		var area=admin.getTempData('eam-c-cust-inspect-log-form-area');
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
 		var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
-		var title = fox.translate('资产入库');
+		var title = fox.translate('执行日志');
 		if(action=="create") title=fox.translate('添加','','cmp:table')+title;
 		else if(action=="edit") title=fox.translate('修改','','cmp:table')+title;
 		else if(action=="view") title=fox.translate('查看','','cmp:table')+title;
@@ -469,10 +387,10 @@ function ListPage() {
 			title: title,
 			resize: false,
 			offset: [top,null],
-			area: ["100%",height+"px"],
+			area: ["60%",height+"px"],
 			type: 2,
-			id:"eam-asset-storage-form-data-win",
-			content: '/business/eam/asset_storage/asset_storage_form.html' + (queryString?("?"+queryString):""),
+			id:"eam-c-cust-inspect-log-form-data-win",
+			content: '/business/eam/c_cust_inspect_log/c_cust_inspect_log_form.html' + (queryString?("?"+queryString):""),
 			finish: function () {
 				if(action=="create") {
 					refreshTableData();

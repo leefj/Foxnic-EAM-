@@ -7,13 +7,14 @@ import com.dt.platform.domain.eam.CCustInspectPlan;
 import java.util.Date;
 import com.dt.platform.domain.eam.CCustInspectTpl;
 import org.github.foxnic.web.domain.hrm.Employee;
+import com.dt.platform.domain.eam.CCustInspectItem;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-06 10:34:32
+ * @since 2023-04-07 15:48:53
  * @sign DEE4C9109EB737707310B197D55E4466
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -171,14 +172,14 @@ public class CCustInspectPlanVOMeta extends CCustInspectPlanMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectPlanVO,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectPlanVO.class ,STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
 	
 	/**
-	 * 巡检类型 , 类型: java.lang.String
+	 * 追加 , 类型: java.lang.String
 	*/
-	public static final String TYPE="type";
+	public static final String ACTION_ADD="actionAdd";
 	
 	/**
-	 * 巡检类型 , 类型: java.lang.String
+	 * 追加 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectPlanVO,java.lang.String> TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectPlanVO.class ,TYPE, java.lang.String.class, "巡检类型", "巡检类型", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectPlanVO,java.lang.String> ACTION_ADD_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectPlanVO.class ,ACTION_ADD, java.lang.String.class, "追加", "追加", java.lang.String.class, null);
 	
 	/**
 	 * 负责人 , 类型: java.lang.String
@@ -219,6 +220,26 @@ public class CCustInspectPlanVOMeta extends CCustInspectPlanMeta {
 	 * 备注 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectPlanVO,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectPlanVO.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
+	
+	/**
+	 * 上次执行时间 , 类型: java.util.Date
+	*/
+	public static final String LAST_TIME="lastTime";
+	
+	/**
+	 * 上次执行时间 , 类型: java.util.Date
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectPlanVO,java.util.Date> LAST_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectPlanVO.class ,LAST_TIME, java.util.Date.class, "上次执行时间", "上次执行时间", java.util.Date.class, null);
+	
+	/**
+	 * 下次执行时间 , 类型: java.util.Date
+	*/
+	public static final String NEXT_TIME="nextTime";
+	
+	/**
+	 * 下次执行时间 , 类型: java.util.Date
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectPlanVO,java.util.Date> NEXT_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectPlanVO.class ,NEXT_TIME, java.util.Date.class, "下次执行时间", "下次执行时间", java.util.Date.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -351,9 +372,29 @@ public class CCustInspectPlanVOMeta extends CCustInspectPlanMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectPlanVO,java.lang.String> MEMBER_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectPlanVO.class ,MEMBER_IDS, java.util.List.class, "巡检人", "巡检人", java.lang.String.class, null);
 	
 	/**
+	 * custInspectItemList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.CCustInspectItem
+	*/
+	public static final String CUST_INSPECT_ITEM_LIST="custInspectItemList";
+	
+	/**
+	 * custInspectItemList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.CCustInspectItem
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectPlanVO,com.dt.platform.domain.eam.CCustInspectItem> CUST_INSPECT_ITEM_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectPlanVO.class ,CUST_INSPECT_ITEM_LIST, java.util.List.class, "custInspectItemList", "custInspectItemList", com.dt.platform.domain.eam.CCustInspectItem.class, null);
+	
+	/**
+	 * custInspectItemIds , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String CUST_INSPECT_ITEM_IDS="custInspectItemIds";
+	
+	/**
+	 * custInspectItemIds , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectPlanVO,java.lang.String> CUST_INSPECT_ITEM_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectPlanVO.class ,CUST_INSPECT_ITEM_IDS, java.util.List.class, "custInspectItemIds", "custInspectItemIds", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NAME , STATUS , TYPE , INSPECT_USER_ID , TPL_ID , CRONTAB , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , CUST_INSPECT_TPL , LEADER , MEMBER_LIST , MEMBER_IDS };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NAME , STATUS , ACTION_ADD , INSPECT_USER_ID , TPL_ID , CRONTAB , NOTES , LAST_TIME , NEXT_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , CUST_INSPECT_TPL , LEADER , MEMBER_LIST , MEMBER_IDS , CUST_INSPECT_ITEM_LIST , CUST_INSPECT_ITEM_IDS };
 	
 	/**
 	 * 代理类
@@ -529,13 +570,13 @@ public class CCustInspectPlanVOMeta extends CCustInspectPlanMeta {
 		}
 		
 		/**
-		 * 设置 巡检类型
-		 * @param type 巡检类型
+		 * 设置 追加
+		 * @param actionAdd 追加
 		 * @return 当前对象
 		*/
-		public CCustInspectPlan setType(String type) {
-			super.change(TYPE,super.getType(),type);
-			super.setType(type);
+		public CCustInspectPlan setActionAdd(String actionAdd) {
+			super.change(ACTION_ADD,super.getActionAdd(),actionAdd);
+			super.setActionAdd(actionAdd);
 			return this;
 		}
 		
@@ -580,6 +621,28 @@ public class CCustInspectPlanVOMeta extends CCustInspectPlanMeta {
 		public CCustInspectPlan setNotes(String notes) {
 			super.change(NOTES,super.getNotes(),notes);
 			super.setNotes(notes);
+			return this;
+		}
+		
+		/**
+		 * 设置 上次执行时间
+		 * @param lastTime 上次执行时间
+		 * @return 当前对象
+		*/
+		public CCustInspectPlan setLastTime(Date lastTime) {
+			super.change(LAST_TIME,super.getLastTime(),lastTime);
+			super.setLastTime(lastTime);
+			return this;
+		}
+		
+		/**
+		 * 设置 下次执行时间
+		 * @param nextTime 下次执行时间
+		 * @return 当前对象
+		*/
+		public CCustInspectPlan setNextTime(Date nextTime) {
+			super.change(NEXT_TIME,super.getNextTime(),nextTime);
+			super.setNextTime(nextTime);
 			return this;
 		}
 		
@@ -725,6 +788,28 @@ public class CCustInspectPlanVOMeta extends CCustInspectPlanMeta {
 			super.setMemberIds(memberIds);
 			return this;
 		}
+		
+		/**
+		 * 设置 custInspectItemList
+		 * @param custInspectItemList custInspectItemList
+		 * @return 当前对象
+		*/
+		public CCustInspectPlan setCustInspectItemList(List<CCustInspectItem> custInspectItemList) {
+			super.change(CUST_INSPECT_ITEM_LIST,super.getCustInspectItemList(),custInspectItemList);
+			super.setCustInspectItemList(custInspectItemList);
+			return this;
+		}
+		
+		/**
+		 * 设置 custInspectItemIds
+		 * @param custInspectItemIds custInspectItemIds
+		 * @return 当前对象
+		*/
+		public CCustInspectPlan setCustInspectItemIds(List<String> custInspectItemIds) {
+			super.change(CUST_INSPECT_ITEM_IDS,super.getCustInspectItemIds(),custInspectItemIds);
+			super.setCustInspectItemIds(custInspectItemIds);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -741,10 +826,11 @@ public class CCustInspectPlanVOMeta extends CCustInspectPlanMeta {
 		@Transient
 		public CCustInspectPlanVO duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
+			inst.setLastTime(this.getLastTime());
 			inst.setNotes(this.getNotes());
 			inst.setCrontab(this.getCrontab());
+			inst.setNextTime(this.getNextTime());
 			inst.setUpdateTime(this.getUpdateTime());
-			inst.setType(this.getType());
 			inst.setVersion(this.getVersion());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
@@ -754,12 +840,14 @@ public class CCustInspectPlanVOMeta extends CCustInspectPlanMeta {
 			inst.setName(this.getName());
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
+			inst.setActionAdd(this.getActionAdd());
 			inst.setId(this.getId());
 			inst.setTplId(this.getTplId());
 			inst.setInspectUserId(this.getInspectUserId());
 			inst.setStatus(this.getStatus());
 			if(all) {
 				inst.setLeader(this.getLeader());
+				inst.setCustInspectItemList(this.getCustInspectItemList());
 				inst.setSearchField(this.getSearchField());
 				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
@@ -775,6 +863,7 @@ public class CCustInspectPlanVOMeta extends CCustInspectPlanMeta {
 				inst.setSearchValue(this.getSearchValue());
 				inst.setCustInspectTpl(this.getCustInspectTpl());
 				inst.setMemberIds(this.getMemberIds());
+				inst.setCustInspectItemIds(this.getCustInspectItemIds());
 			}
 			inst.clearModifies();
 			return inst;

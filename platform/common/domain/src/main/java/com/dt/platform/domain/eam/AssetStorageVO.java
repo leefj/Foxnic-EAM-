@@ -24,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产入库VO类型
  * <p>资产入库 , 数据表 eam_asset_storage 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-18 12:30:21
- * @sign 5E0406EEA15DF3714833BF6C4972E26C
+ * @since 2023-04-07 15:34:13
+ * @sign 3AA4F2FF7FE8561DEE3ED66253416EED
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -83,9 +83,9 @@ public class AssetStorageVO extends AssetStorage {
 	private String sortType;
 	
 	/**
-	 * 数据来源：前端指定不同的来源，后端按来源执行不同的逻辑
+	 * 数据来源：前端指定不同的来源，后端可按来源执行不同的逻辑
 	*/
-	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端按来源执行不同的逻辑")
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端可按来源执行不同的逻辑")
 	private String dataOrigin;
 	
 	/**
@@ -93,6 +93,12 @@ public class AssetStorageVO extends AssetStorage {
 	*/
 	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
 	private String queryLogic;
+	
+	/**
+	 * 请求动作：前端指定不同的Action，后端可Action执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="请求动作" , notes = "前端指定不同的Action，后端可Action执行不同的逻辑")
+	private String requestAction;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -257,7 +263,7 @@ public class AssetStorageVO extends AssetStorage {
 	
 	/**
 	 * 获得 数据来源<br>
-	 * 前端指定不同的来源，后端按来源执行不同的逻辑
+	 * 前端指定不同的来源，后端可按来源执行不同的逻辑
 	 * @return 数据来源
 	*/
 	public String getDataOrigin() {
@@ -290,6 +296,25 @@ public class AssetStorageVO extends AssetStorage {
 	*/
 	public AssetStorageVO setQueryLogic(String queryLogic) {
 		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
+	 * 获得 请求动作<br>
+	 * 前端指定不同的Action，后端可Action执行不同的逻辑
+	 * @return 请求动作
+	*/
+	public String getRequestAction() {
+		return requestAction;
+	}
+	
+	/**
+	 * 设置 请求动作
+	 * @param requestAction 请求动作
+	 * @return 当前对象
+	*/
+	public AssetStorageVO setRequestAction(String requestAction) {
+		this.requestAction=requestAction;
 		return this;
 	}
 	
@@ -406,6 +431,7 @@ public class AssetStorageVO extends AssetStorage {
 		if(all) {
 			inst.setOwnerCompany(this.getOwnerCompany());
 			inst.setSearchField(this.getSearchField());
+			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setAssetIds(this.getAssetIds());
 			inst.setPageSize(this.getPageSize());
@@ -509,6 +535,7 @@ public class AssetStorageVO extends AssetStorage {
 			// others
 			this.setOwnerCompany(DataParser.parse(Organization.class, map.get(AssetStorageVOMeta.OWNER_COMPANY)));
 			this.setSearchField(DataParser.parse(String.class, map.get(AssetStorageVOMeta.SEARCH_FIELD)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(AssetStorageVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(AssetStorageVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(AssetStorageVOMeta.PAGE_SIZE)));
 			this.setOriginator(DataParser.parse(Employee.class, map.get(AssetStorageVOMeta.ORIGINATOR)));
@@ -552,6 +579,7 @@ public class AssetStorageVO extends AssetStorage {
 				// others
 				this.setOwnerCompany( (Organization)map.get(AssetStorageVOMeta.OWNER_COMPANY));
 				this.setSearchField( (String)map.get(AssetStorageVOMeta.SEARCH_FIELD));
+				this.setRequestAction( (String)map.get(AssetStorageVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(AssetStorageVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(AssetStorageVOMeta.PAGE_SIZE));
 				this.setOriginator( (Employee)map.get(AssetStorageVOMeta.ORIGINATOR));

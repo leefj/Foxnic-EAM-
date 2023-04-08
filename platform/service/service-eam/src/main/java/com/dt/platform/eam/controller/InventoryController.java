@@ -571,14 +571,18 @@ public class InventoryController extends SuperController {
         List<List<Employee>> managerList = CollectorUtil.collectList(list.getList(), Inventory::getManager);
         List<Employee> managers = managerList.stream().collect(ArrayList::new, ArrayList::addAll, ArrayList::addAll);
         inventoryService.dao().join(managers, Person.class);
+
         List<Employee> originator = CollectorUtil.collectList(list.getList(), Inventory::getOriginator);
         inventoryService.dao().join(originator, Person.class);
+
         List<List<Employee>> usersList = CollectorUtil.collectList(list.getList(), Inventory::getInventoryUser);
+
         List<Employee> users = usersList.stream().collect(ArrayList::new, ArrayList::addAll, ArrayList::addAll);
         inventoryService.dao().join(users, Person.class);
         List<List<Employee>> directorList = CollectorUtil.collectList(list.getList(), Inventory::getDirector);
         List<Employee> directors = directorList.stream().collect(ArrayList::new, ArrayList::addAll, ArrayList::addAll);
         inventoryService.dao().join(directors, Person.class);
+
         Result<PagedList<Inventory>> result = new Result<>();
         result.success(true).data(list);
         return result;

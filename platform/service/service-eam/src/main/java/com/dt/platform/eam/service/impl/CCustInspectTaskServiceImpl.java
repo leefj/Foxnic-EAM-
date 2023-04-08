@@ -1,8 +1,15 @@
 package com.dt.platform.eam.service.impl;
 
 import javax.annotation.Resource;
+
+import com.dt.platform.constants.enums.eam.CCustInspectTaskStatusEnum;
+import com.dt.platform.domain.eam.CCustInspectItem;
 import com.dt.platform.domain.eam.CCustInspectUserS;
+import com.dt.platform.domain.eam.meta.CCustInspectTaskMeta;
+import com.dt.platform.eam.service.ICCustInspectItemService;
 import com.dt.platform.eam.service.ICCustInspectUserSService;
+import org.github.foxnic.web.domain.hrm.Employee;
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -51,6 +58,10 @@ public class CCustInspectTaskServiceImpl extends SuperService<CCustInspectTask> 
 	@Autowired
 	private ICCustInspectUserSService cCustInspectUserSService;
 
+
+	@Autowired
+	private ICCustInspectItemService cCustInspectItemService;
+
 	/**
 	 * 注入DAO对象
 	 * */
@@ -89,6 +100,78 @@ public class CCustInspectTaskServiceImpl extends SuperService<CCustInspectTask> 
 			}
 		}
 		return r;
+	}
+
+	@Override
+	public Result inspect(String taskId, String assetId,String status,String ct,String picIds) {
+		CCustInspectTask task =this.getById(taskId);
+		//巡检状态
+		if(CCustInspectTaskStatusEnum.WAIT.code().equals(task.getStatus())
+		|| CCustInspectTaskStatusEnum.INSPECTING.code().equals(task.getStatus())){
+		 	System.out.println("可以进行操作");
+			if(CCustInspectTaskStatusEnum.WAIT.code().equals(task.getStatus())){
+				task.setStartTime(new Date());
+				task.setStatus(CCustInspectTaskStatusEnum.INSPECTING.code());
+				this.update(task,SaveMode.NOT_NULL_FIELDS,false);
+			}
+		}else{
+			return ErrorDesc.failureMessage("当前状态无法进行该操作");
+		}
+
+
+		//判断巡检人员,如果巡检人员为空，则所有人都可以巡检，如果有指定巡检人员，必须是选择中的巡检人员才能进行巡检
+		dao().fill(task)
+				.with("leader")
+				.with(CCustInspectTaskMeta.MEMBER_LIST)
+				.execute();
+		//判断本人是否可以进行巡检操作
+		List<Employee> userList=task.getMemberList();
+		if(userList==null&&userList.size()==0){
+			System.out.println("可以运行");
+		}else{
+			String curId= SessionUser.getCurrent().getActivatedEmployeeId();
+			String sql="select 1 from eam_c_cust_inspect_user_s where owner_id=? and user_id=?";
+			if(dao.queryRecord(sql,taskId,curId)==null){
+				return ErrorDesc.failureMessage("当前没有权限进行巡检操作");
+			}
+		}
+
+
+		//进行巡检操作cCustInspectItemService
+		CCustInspectItem itemQuery=new CCustInspectItem();
+		itemQuery.setOwnerId(taskId);
+		itemQuery.setAssetId(assetId);
+		cCustInspectItemService.queryEntity(itemQuery);
+
+
+
+
+		return ErrorDesc.success();
+	}
+
+	@Override
+	public Result finish(String id) {
+		CCustInspectTask task=this.getById(id);
+		task.getStatus();
+		if(!CCustInspectTaskStatusEnum.INSPECTING.code().equals(task.getStatus())){
+			return ErrorDesc.failureMessage("当前状态无法进行该操作");
+		}
+
+		task.setStartTime(new Date());
+		task.setStatus(CCustInspectTaskStatusEnum.FINISH.code());
+		this.update(task,SaveMode.NOT_NULL_FIELDS,false);
+		return ErrorDesc.success();
+	}
+
+	@Override
+	public Result cancel(String id) {
+		CCustInspectTask task=this.getById(id);
+		task.getStatus();
+		if(CCustInspectTaskStatusEnum.FINISH.code().equals(task.getStatus())){
+			return ErrorDesc.failureMessage("当前状态无法进行该操作");
+		}
+		dao.execute("update eam_c_cust_inspect_task set status=? where id=?",CCustInspectTaskStatusEnum.CANCEL.code(),id);
+		return ErrorDesc.success();
 	}
 
 	/**

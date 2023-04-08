@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-04-06 08:30:40
+ * @since 2023-04-07 15:34:29
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -10859,6 +10859,76 @@ public class EAMTables {
 	}
 	
 	/**
+	 * 执行日志
+	*/
+	public static class EAM_C_CUST_INSPECT_LOG extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "eam_c_cust_inspect_log";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 计划
+		*/
+		public static final DBField PLAN_ID = new DBField(DBDataType.STRING , "plan_id","planId","计划","计划",false,false,true);
+		
+		/**
+		 * 记录时间
+		*/
+		public static final DBField REC_TIME = new DBField(DBDataType.DATE , "rec_time","recTime","记录时间","记录时间",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		public EAM_C_CUST_INSPECT_LOG() {
+			this.init($NAME,"执行日志" , ID , PLAN_ID , REC_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+		}
+		public static final EAM_C_CUST_INSPECT_LOG $TABLE=new EAM_C_CUST_INSPECT_LOG();
+	}
+	
+	/**
 	 * 巡检计划
 	*/
 	public static class EAM_C_CUST_INSPECT_PLAN extends DBTable {
@@ -10884,9 +10954,9 @@ public class EAMTables {
 		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
 		
 		/**
-		 * 巡检类型
+		 * 追加
 		*/
-		public static final DBField TYPE = new DBField(DBDataType.STRING , "type","type","巡检类型","巡检类型",false,false,true);
+		public static final DBField ACTION_ADD = new DBField(DBDataType.STRING , "action_add","actionAdd","追加","追加",false,false,true);
 		
 		/**
 		 * 负责人
@@ -10907,6 +10977,16 @@ public class EAMTables {
 		 * 备注
 		*/
 		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 上次执行时间
+		*/
+		public static final DBField LAST_TIME = new DBField(DBDataType.DATE , "last_time","lastTime","上次执行时间","上次执行时间",false,false,true);
+		
+		/**
+		 * 下次执行时间
+		*/
+		public static final DBField NEXT_TIME = new DBField(DBDataType.DATE , "next_time","nextTime","下次执行时间","下次执行时间",false,false,true);
 		
 		/**
 		 * 创建人ID
@@ -10953,7 +11033,7 @@ public class EAMTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public EAM_C_CUST_INSPECT_PLAN() {
-			this.init($NAME,"巡检计划" , ID , NAME , STATUS , TYPE , INSPECT_USER_ID , TPL_ID , CRONTAB , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION);
+			this.init($NAME,"巡检计划" , ID , NAME , STATUS , ACTION_ADD , INSPECT_USER_ID , TPL_ID , CRONTAB , NOTES , LAST_TIME , NEXT_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION);
 		}
 		public static final EAM_C_CUST_INSPECT_PLAN $TABLE=new EAM_C_CUST_INSPECT_PLAN();
 	}
@@ -10984,9 +11064,9 @@ public class EAMTables {
 		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","状态","状态",false,false,true);
 		
 		/**
-		 * 巡检类型
+		 * 追加
 		*/
-		public static final DBField TYPE = new DBField(DBDataType.STRING , "type","type","巡检类型","巡检类型",false,false,true);
+		public static final DBField ACTION_ADD = new DBField(DBDataType.STRING , "action_add","actionAdd","追加","追加",false,false,true);
 		
 		/**
 		 * 开始时间
@@ -11058,7 +11138,7 @@ public class EAMTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public EAM_C_CUST_INSPECT_TASK() {
-			this.init($NAME,"巡检任务单" , ID , NAME , STATUS , TYPE , START_TIME , FINISH_TIME , INSPECT_USER_ID , TPL_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION);
+			this.init($NAME,"巡检任务单" , ID , NAME , STATUS , ACTION_ADD , START_TIME , FINISH_TIME , INSPECT_USER_ID , TPL_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION);
 		}
 		public static final EAM_C_CUST_INSPECT_TASK $TABLE=new EAM_C_CUST_INSPECT_TASK();
 	}

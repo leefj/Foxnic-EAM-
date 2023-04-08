@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检计划VO类型
  * <p>巡检计划 , 数据表 eam_c_cust_inspect_plan 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-06 10:34:32
+ * @since 2023-04-07 15:48:53
  * @sign DEE4C9109EB737707310B197D55E4466
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -402,10 +402,11 @@ public class CCustInspectPlanVO extends CCustInspectPlan {
 	@Transient
 	public CCustInspectPlanVO duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.CCustInspectPlanVOMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.CCustInspectPlanVOMeta.$$proxy$$();
+		inst.setLastTime(this.getLastTime());
 		inst.setNotes(this.getNotes());
 		inst.setCrontab(this.getCrontab());
+		inst.setNextTime(this.getNextTime());
 		inst.setUpdateTime(this.getUpdateTime());
-		inst.setType(this.getType());
 		inst.setVersion(this.getVersion());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
@@ -415,12 +416,14 @@ public class CCustInspectPlanVO extends CCustInspectPlan {
 		inst.setName(this.getName());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
+		inst.setActionAdd(this.getActionAdd());
 		inst.setId(this.getId());
 		inst.setTplId(this.getTplId());
 		inst.setInspectUserId(this.getInspectUserId());
 		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setLeader(this.getLeader());
+			inst.setCustInspectItemList(this.getCustInspectItemList());
 			inst.setSearchField(this.getSearchField());
 			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
@@ -436,6 +439,7 @@ public class CCustInspectPlanVO extends CCustInspectPlan {
 			inst.setSearchValue(this.getSearchValue());
 			inst.setCustInspectTpl(this.getCustInspectTpl());
 			inst.setMemberIds(this.getMemberIds());
+			inst.setCustInspectItemIds(this.getCustInspectItemIds());
 		}
 		inst.clearModifies();
 		return inst;
@@ -495,10 +499,11 @@ public class CCustInspectPlanVO extends CCustInspectPlan {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
+			this.setLastTime(DataParser.parse(Date.class, map.get(CCustInspectPlanVOMeta.LAST_TIME)));
 			this.setNotes(DataParser.parse(String.class, map.get(CCustInspectPlanVOMeta.NOTES)));
 			this.setCrontab(DataParser.parse(String.class, map.get(CCustInspectPlanVOMeta.CRONTAB)));
+			this.setNextTime(DataParser.parse(Date.class, map.get(CCustInspectPlanVOMeta.NEXT_TIME)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(CCustInspectPlanVOMeta.UPDATE_TIME)));
-			this.setType(DataParser.parse(String.class, map.get(CCustInspectPlanVOMeta.TYPE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(CCustInspectPlanVOMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(CCustInspectPlanVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(CCustInspectPlanVOMeta.DELETED)));
@@ -508,6 +513,7 @@ public class CCustInspectPlanVO extends CCustInspectPlan {
 			this.setName(DataParser.parse(String.class, map.get(CCustInspectPlanVOMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, map.get(CCustInspectPlanVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(CCustInspectPlanVOMeta.DELETE_BY)));
+			this.setActionAdd(DataParser.parse(String.class, map.get(CCustInspectPlanVOMeta.ACTION_ADD)));
 			this.setId(DataParser.parse(String.class, map.get(CCustInspectPlanVOMeta.ID)));
 			this.setTplId(DataParser.parse(String.class, map.get(CCustInspectPlanVOMeta.TPL_ID)));
 			this.setInspectUserId(DataParser.parse(String.class, map.get(CCustInspectPlanVOMeta.INSPECT_USER_ID)));
@@ -528,10 +534,11 @@ public class CCustInspectPlanVO extends CCustInspectPlan {
 			return true;
 		} else {
 			try {
+				this.setLastTime( (Date)map.get(CCustInspectPlanVOMeta.LAST_TIME));
 				this.setNotes( (String)map.get(CCustInspectPlanVOMeta.NOTES));
 				this.setCrontab( (String)map.get(CCustInspectPlanVOMeta.CRONTAB));
+				this.setNextTime( (Date)map.get(CCustInspectPlanVOMeta.NEXT_TIME));
 				this.setUpdateTime( (Date)map.get(CCustInspectPlanVOMeta.UPDATE_TIME));
-				this.setType( (String)map.get(CCustInspectPlanVOMeta.TYPE));
 				this.setVersion( (Integer)map.get(CCustInspectPlanVOMeta.VERSION));
 				this.setCreateBy( (String)map.get(CCustInspectPlanVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(CCustInspectPlanVOMeta.DELETED));
@@ -541,6 +548,7 @@ public class CCustInspectPlanVO extends CCustInspectPlan {
 				this.setName( (String)map.get(CCustInspectPlanVOMeta.NAME));
 				this.setTenantId( (String)map.get(CCustInspectPlanVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(CCustInspectPlanVOMeta.DELETE_BY));
+				this.setActionAdd( (String)map.get(CCustInspectPlanVOMeta.ACTION_ADD));
 				this.setId( (String)map.get(CCustInspectPlanVOMeta.ID));
 				this.setTplId( (String)map.get(CCustInspectPlanVOMeta.TPL_ID));
 				this.setInspectUserId( (String)map.get(CCustInspectPlanVOMeta.INSPECT_USER_ID));
@@ -574,10 +582,11 @@ public class CCustInspectPlanVO extends CCustInspectPlan {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
+			this.setLastTime(DataParser.parse(Date.class, r.getValue(CCustInspectPlanVOMeta.LAST_TIME)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(CCustInspectPlanVOMeta.NOTES)));
 			this.setCrontab(DataParser.parse(String.class, r.getValue(CCustInspectPlanVOMeta.CRONTAB)));
+			this.setNextTime(DataParser.parse(Date.class, r.getValue(CCustInspectPlanVOMeta.NEXT_TIME)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(CCustInspectPlanVOMeta.UPDATE_TIME)));
-			this.setType(DataParser.parse(String.class, r.getValue(CCustInspectPlanVOMeta.TYPE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(CCustInspectPlanVOMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(CCustInspectPlanVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(CCustInspectPlanVOMeta.DELETED)));
@@ -587,6 +596,7 @@ public class CCustInspectPlanVO extends CCustInspectPlan {
 			this.setName(DataParser.parse(String.class, r.getValue(CCustInspectPlanVOMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(CCustInspectPlanVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(CCustInspectPlanVOMeta.DELETE_BY)));
+			this.setActionAdd(DataParser.parse(String.class, r.getValue(CCustInspectPlanVOMeta.ACTION_ADD)));
 			this.setId(DataParser.parse(String.class, r.getValue(CCustInspectPlanVOMeta.ID)));
 			this.setTplId(DataParser.parse(String.class, r.getValue(CCustInspectPlanVOMeta.TPL_ID)));
 			this.setInspectUserId(DataParser.parse(String.class, r.getValue(CCustInspectPlanVOMeta.INSPECT_USER_ID)));
@@ -594,10 +604,11 @@ public class CCustInspectPlanVO extends CCustInspectPlan {
 			return true;
 		} else {
 			try {
+				this.setLastTime( (Date)r.getValue(CCustInspectPlanVOMeta.LAST_TIME));
 				this.setNotes( (String)r.getValue(CCustInspectPlanVOMeta.NOTES));
 				this.setCrontab( (String)r.getValue(CCustInspectPlanVOMeta.CRONTAB));
+				this.setNextTime( (Date)r.getValue(CCustInspectPlanVOMeta.NEXT_TIME));
 				this.setUpdateTime( (Date)r.getValue(CCustInspectPlanVOMeta.UPDATE_TIME));
-				this.setType( (String)r.getValue(CCustInspectPlanVOMeta.TYPE));
 				this.setVersion( (Integer)r.getValue(CCustInspectPlanVOMeta.VERSION));
 				this.setCreateBy( (String)r.getValue(CCustInspectPlanVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(CCustInspectPlanVOMeta.DELETED));
@@ -607,6 +618,7 @@ public class CCustInspectPlanVO extends CCustInspectPlan {
 				this.setName( (String)r.getValue(CCustInspectPlanVOMeta.NAME));
 				this.setTenantId( (String)r.getValue(CCustInspectPlanVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(CCustInspectPlanVOMeta.DELETE_BY));
+				this.setActionAdd( (String)r.getValue(CCustInspectPlanVOMeta.ACTION_ADD));
 				this.setId( (String)r.getValue(CCustInspectPlanVOMeta.ID));
 				this.setTplId( (String)r.getValue(CCustInspectPlanVOMeta.TPL_ID));
 				this.setInspectUserId( (String)r.getValue(CCustInspectPlanVOMeta.INSPECT_USER_ID));

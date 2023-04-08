@@ -27,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检计划
  * <p>巡检计划 , 数据表 eam_c_cust_inspect_plan 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-06 10:34:32
- * @sign 2A682596C22737CC9D20DA72B1EA77B2
+ * @since 2023-04-07 15:48:53
+ * @sign 6B1B8DEA9EB890C73DEC76967B7CE8F2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -44,79 +44,91 @@ public class CCustInspectPlan extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "696673753869844480")
 	private String id;
 	
 	/**
 	 * 标题：标题
 	*/
-	@ApiModelProperty(required = false,value="标题" , notes = "标题")
+	@ApiModelProperty(required = false,value="标题" , notes = "标题" , example = "12")
 	private String name;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "valid")
 	private String status;
 	
 	/**
-	 * 巡检类型：巡检类型
+	 * 追加：追加
 	*/
-	@ApiModelProperty(required = false,value="巡检类型" , notes = "巡检类型")
-	private String type;
+	@ApiModelProperty(required = false,value="追加" , notes = "追加" , example = "tpl")
+	private String actionAdd;
 	
 	/**
 	 * 负责人：负责人
 	*/
-	@ApiModelProperty(required = false,value="负责人" , notes = "负责人")
+	@ApiModelProperty(required = false,value="负责人" , notes = "负责人" , example = "586965217661943808")
 	private String inspectUserId;
 	
 	/**
 	 * 模版：模版
 	*/
-	@ApiModelProperty(required = false,value="模版" , notes = "模版")
+	@ApiModelProperty(required = false,value="模版" , notes = "模版" , example = "696311000567119872")
 	private String tplId;
 	
 	/**
 	 * 触发周期：触发周期
 	*/
-	@ApiModelProperty(required = false,value="触发周期" , notes = "触发周期")
+	@ApiModelProperty(required = false,value="触发周期" , notes = "触发周期" , example = "擦粉")
 	private String crontab;
 	
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "1212")
 	private String notes;
+	
+	/**
+	 * 上次执行时间：上次执行时间
+	*/
+	@ApiModelProperty(required = false,value="上次执行时间" , notes = "上次执行时间")
+	private Date lastTime;
+	
+	/**
+	 * 下次执行时间：下次执行时间
+	*/
+	@ApiModelProperty(required = false,value="下次执行时间" , notes = "下次执行时间")
+	private Date nextTime;
 	
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-07 10:52:46")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-07 02:12:04")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -137,13 +149,13 @@ public class CCustInspectPlan extends Entity {
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "14")
 	private Integer version;
 	
 	/**
@@ -169,6 +181,18 @@ public class CCustInspectPlan extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="巡检人" , notes = "巡检人")
 	private List<String> memberIds;
+	
+	/**
+	 * custInspectItemList：custInspectItemList
+	*/
+	@ApiModelProperty(required = false,value="custInspectItemList" , notes = "custInspectItemList")
+	private List<CCustInspectItem> custInspectItemList;
+	
+	/**
+	 * custInspectItemIds：custInspectItemIds
+	*/
+	@ApiModelProperty(required = false,value="custInspectItemIds" , notes = "custInspectItemIds")
+	private List<String> custInspectItemIds;
 	
 	/**
 	 * 获得 主键<br>
@@ -228,21 +252,21 @@ public class CCustInspectPlan extends Entity {
 	}
 	
 	/**
-	 * 获得 巡检类型<br>
-	 * 巡检类型
-	 * @return 巡检类型
+	 * 获得 追加<br>
+	 * 追加
+	 * @return 追加
 	*/
-	public String getType() {
-		return type;
+	public String getActionAdd() {
+		return actionAdd;
 	}
 	
 	/**
-	 * 设置 巡检类型
-	 * @param type 巡检类型
+	 * 设置 追加
+	 * @param actionAdd 追加
 	 * @return 当前对象
 	*/
-	public CCustInspectPlan setType(String type) {
-		this.type=type;
+	public CCustInspectPlan setActionAdd(String actionAdd) {
+		this.actionAdd=actionAdd;
 		return this;
 	}
 	
@@ -319,6 +343,44 @@ public class CCustInspectPlan extends Entity {
 	*/
 	public CCustInspectPlan setNotes(String notes) {
 		this.notes=notes;
+		return this;
+	}
+	
+	/**
+	 * 获得 上次执行时间<br>
+	 * 上次执行时间
+	 * @return 上次执行时间
+	*/
+	public Date getLastTime() {
+		return lastTime;
+	}
+	
+	/**
+	 * 设置 上次执行时间
+	 * @param lastTime 上次执行时间
+	 * @return 当前对象
+	*/
+	public CCustInspectPlan setLastTime(Date lastTime) {
+		this.lastTime=lastTime;
+		return this;
+	}
+	
+	/**
+	 * 获得 下次执行时间<br>
+	 * 下次执行时间
+	 * @return 下次执行时间
+	*/
+	public Date getNextTime() {
+		return nextTime;
+	}
+	
+	/**
+	 * 设置 下次执行时间
+	 * @param nextTime 下次执行时间
+	 * @return 当前对象
+	*/
+	public CCustInspectPlan setNextTime(Date nextTime) {
+		this.nextTime=nextTime;
 		return this;
 	}
 	
@@ -621,6 +683,66 @@ public class CCustInspectPlan extends Entity {
 		this.memberIds.addAll(Arrays.asList(memberId));
 		return this;
 	}
+	
+	/**
+	 * 获得 custInspectItemList<br>
+	 * custInspectItemList
+	 * @return custInspectItemList
+	*/
+	public List<CCustInspectItem> getCustInspectItemList() {
+		return custInspectItemList;
+	}
+	
+	/**
+	 * 设置 custInspectItemList
+	 * @param custInspectItemList custInspectItemList
+	 * @return 当前对象
+	*/
+	public CCustInspectPlan setCustInspectItemList(List<CCustInspectItem> custInspectItemList) {
+		this.custInspectItemList=custInspectItemList;
+		return this;
+	}
+	
+	/**
+	 * 添加 custInspectItemList
+	 * @param custInspectItem custInspectItemList
+	 * @return 当前对象
+	*/
+	public CCustInspectPlan addCustInspectItem(CCustInspectItem... custInspectItem) {
+		if(this.custInspectItemList==null) custInspectItemList=new ArrayList<>();
+		this.custInspectItemList.addAll(Arrays.asList(custInspectItem));
+		return this;
+	}
+	
+	/**
+	 * 获得 custInspectItemIds<br>
+	 * custInspectItemIds
+	 * @return custInspectItemIds
+	*/
+	public List<String> getCustInspectItemIds() {
+		return custInspectItemIds;
+	}
+	
+	/**
+	 * 设置 custInspectItemIds
+	 * @param custInspectItemIds custInspectItemIds
+	 * @return 当前对象
+	*/
+	public CCustInspectPlan setCustInspectItemIds(List<String> custInspectItemIds) {
+		this.custInspectItemIds=custInspectItemIds;
+		return this;
+	}
+	
+	/**
+	 * 添加 custInspectItemIds
+	 * @param custInspectItemId custInspectItemIds
+	 * @return 当前对象
+	*/
+	public CCustInspectPlan addCustInspectItemId(String... custInspectItemId) {
+		if(this.custInspectItemIds==null) custInspectItemIds=new ArrayList<>();
+		this.custInspectItemIds.addAll(Arrays.asList(custInspectItemId));
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -666,10 +788,11 @@ public class CCustInspectPlan extends Entity {
 	@Transient
 	public CCustInspectPlan duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.CCustInspectPlanMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.CCustInspectPlanMeta.$$proxy$$();
+		inst.setLastTime(this.getLastTime());
 		inst.setNotes(this.getNotes());
 		inst.setCrontab(this.getCrontab());
+		inst.setNextTime(this.getNextTime());
 		inst.setUpdateTime(this.getUpdateTime());
-		inst.setType(this.getType());
 		inst.setVersion(this.getVersion());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
@@ -679,15 +802,18 @@ public class CCustInspectPlan extends Entity {
 		inst.setName(this.getName());
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
+		inst.setActionAdd(this.getActionAdd());
 		inst.setId(this.getId());
 		inst.setTplId(this.getTplId());
 		inst.setInspectUserId(this.getInspectUserId());
 		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setLeader(this.getLeader());
+			inst.setCustInspectItemList(this.getCustInspectItemList());
 			inst.setMemberList(this.getMemberList());
 			inst.setCustInspectTpl(this.getCustInspectTpl());
 			inst.setMemberIds(this.getMemberIds());
+			inst.setCustInspectItemIds(this.getCustInspectItemIds());
 		}
 		inst.clearModifies();
 		return inst;
@@ -747,10 +873,11 @@ public class CCustInspectPlan extends Entity {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
+			this.setLastTime(DataParser.parse(Date.class, map.get(CCustInspectPlanMeta.LAST_TIME)));
 			this.setNotes(DataParser.parse(String.class, map.get(CCustInspectPlanMeta.NOTES)));
 			this.setCrontab(DataParser.parse(String.class, map.get(CCustInspectPlanMeta.CRONTAB)));
+			this.setNextTime(DataParser.parse(Date.class, map.get(CCustInspectPlanMeta.NEXT_TIME)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(CCustInspectPlanMeta.UPDATE_TIME)));
-			this.setType(DataParser.parse(String.class, map.get(CCustInspectPlanMeta.TYPE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(CCustInspectPlanMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(CCustInspectPlanMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(CCustInspectPlanMeta.DELETED)));
@@ -760,6 +887,7 @@ public class CCustInspectPlan extends Entity {
 			this.setName(DataParser.parse(String.class, map.get(CCustInspectPlanMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, map.get(CCustInspectPlanMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(CCustInspectPlanMeta.DELETE_BY)));
+			this.setActionAdd(DataParser.parse(String.class, map.get(CCustInspectPlanMeta.ACTION_ADD)));
 			this.setId(DataParser.parse(String.class, map.get(CCustInspectPlanMeta.ID)));
 			this.setTplId(DataParser.parse(String.class, map.get(CCustInspectPlanMeta.TPL_ID)));
 			this.setInspectUserId(DataParser.parse(String.class, map.get(CCustInspectPlanMeta.INSPECT_USER_ID)));
@@ -770,10 +898,11 @@ public class CCustInspectPlan extends Entity {
 			return true;
 		} else {
 			try {
+				this.setLastTime( (Date)map.get(CCustInspectPlanMeta.LAST_TIME));
 				this.setNotes( (String)map.get(CCustInspectPlanMeta.NOTES));
 				this.setCrontab( (String)map.get(CCustInspectPlanMeta.CRONTAB));
+				this.setNextTime( (Date)map.get(CCustInspectPlanMeta.NEXT_TIME));
 				this.setUpdateTime( (Date)map.get(CCustInspectPlanMeta.UPDATE_TIME));
-				this.setType( (String)map.get(CCustInspectPlanMeta.TYPE));
 				this.setVersion( (Integer)map.get(CCustInspectPlanMeta.VERSION));
 				this.setCreateBy( (String)map.get(CCustInspectPlanMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(CCustInspectPlanMeta.DELETED));
@@ -783,6 +912,7 @@ public class CCustInspectPlan extends Entity {
 				this.setName( (String)map.get(CCustInspectPlanMeta.NAME));
 				this.setTenantId( (String)map.get(CCustInspectPlanMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(CCustInspectPlanMeta.DELETE_BY));
+				this.setActionAdd( (String)map.get(CCustInspectPlanMeta.ACTION_ADD));
 				this.setId( (String)map.get(CCustInspectPlanMeta.ID));
 				this.setTplId( (String)map.get(CCustInspectPlanMeta.TPL_ID));
 				this.setInspectUserId( (String)map.get(CCustInspectPlanMeta.INSPECT_USER_ID));
@@ -806,10 +936,11 @@ public class CCustInspectPlan extends Entity {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
+			this.setLastTime(DataParser.parse(Date.class, r.getValue(CCustInspectPlanMeta.LAST_TIME)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(CCustInspectPlanMeta.NOTES)));
 			this.setCrontab(DataParser.parse(String.class, r.getValue(CCustInspectPlanMeta.CRONTAB)));
+			this.setNextTime(DataParser.parse(Date.class, r.getValue(CCustInspectPlanMeta.NEXT_TIME)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(CCustInspectPlanMeta.UPDATE_TIME)));
-			this.setType(DataParser.parse(String.class, r.getValue(CCustInspectPlanMeta.TYPE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(CCustInspectPlanMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(CCustInspectPlanMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(CCustInspectPlanMeta.DELETED)));
@@ -819,6 +950,7 @@ public class CCustInspectPlan extends Entity {
 			this.setName(DataParser.parse(String.class, r.getValue(CCustInspectPlanMeta.NAME)));
 			this.setTenantId(DataParser.parse(String.class, r.getValue(CCustInspectPlanMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(CCustInspectPlanMeta.DELETE_BY)));
+			this.setActionAdd(DataParser.parse(String.class, r.getValue(CCustInspectPlanMeta.ACTION_ADD)));
 			this.setId(DataParser.parse(String.class, r.getValue(CCustInspectPlanMeta.ID)));
 			this.setTplId(DataParser.parse(String.class, r.getValue(CCustInspectPlanMeta.TPL_ID)));
 			this.setInspectUserId(DataParser.parse(String.class, r.getValue(CCustInspectPlanMeta.INSPECT_USER_ID)));
@@ -826,10 +958,11 @@ public class CCustInspectPlan extends Entity {
 			return true;
 		} else {
 			try {
+				this.setLastTime( (Date)r.getValue(CCustInspectPlanMeta.LAST_TIME));
 				this.setNotes( (String)r.getValue(CCustInspectPlanMeta.NOTES));
 				this.setCrontab( (String)r.getValue(CCustInspectPlanMeta.CRONTAB));
+				this.setNextTime( (Date)r.getValue(CCustInspectPlanMeta.NEXT_TIME));
 				this.setUpdateTime( (Date)r.getValue(CCustInspectPlanMeta.UPDATE_TIME));
-				this.setType( (String)r.getValue(CCustInspectPlanMeta.TYPE));
 				this.setVersion( (Integer)r.getValue(CCustInspectPlanMeta.VERSION));
 				this.setCreateBy( (String)r.getValue(CCustInspectPlanMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(CCustInspectPlanMeta.DELETED));
@@ -839,6 +972,7 @@ public class CCustInspectPlan extends Entity {
 				this.setName( (String)r.getValue(CCustInspectPlanMeta.NAME));
 				this.setTenantId( (String)r.getValue(CCustInspectPlanMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(CCustInspectPlanMeta.DELETE_BY));
+				this.setActionAdd( (String)r.getValue(CCustInspectPlanMeta.ACTION_ADD));
 				this.setId( (String)r.getValue(CCustInspectPlanMeta.ID));
 				this.setTplId( (String)r.getValue(CCustInspectPlanMeta.TPL_ID));
 				this.setInspectUserId( (String)r.getValue(CCustInspectPlanMeta.INSPECT_USER_ID));

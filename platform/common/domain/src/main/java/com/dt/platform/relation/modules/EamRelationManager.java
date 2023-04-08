@@ -141,12 +141,13 @@ public class EamRelationManager extends RelationManager {
         this.property(CCustInspectTaskMeta.LEADER_PROP)
                 .using(EAMTables.EAM_C_CUST_INSPECT_TASK.INSPECT_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 
-
         this.property(CCustInspectTaskMeta.MEMBER_LIST_PROP)
-                .using(EAMTables.EAM_C_CUST_INSPECT_TASK.ID).join(EAMTables.EAM_C_CUST_INSPECT_USER_S.USER_ID);
+                .using(EAMTables.EAM_C_CUST_INSPECT_TASK.ID).join(EAMTables.EAM_C_CUST_INSPECT_USER_S.OWNER_ID)
+                .using(EAMTables.EAM_C_CUST_INSPECT_USER_S.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 
         this.property(CCustInspectTaskMeta.CUST_INSPECT_ITEM_LIST_PROP)
                 .using(EAMTables.EAM_C_CUST_INSPECT_TASK.ID).join(EAMTables.EAM_C_CUST_INSPECT_ITEM.OWNER_ID);
+
 
     }
 
@@ -159,7 +160,13 @@ public class EamRelationManager extends RelationManager {
 
 
         this.property(CCustInspectPlanMeta.MEMBER_LIST_PROP)
-                .using(EAMTables.EAM_C_CUST_INSPECT_PLAN.ID).join(EAMTables.EAM_C_CUST_INSPECT_USER_S.USER_ID);
+                .using(EAMTables.EAM_C_CUST_INSPECT_PLAN.ID).join(EAMTables.EAM_C_CUST_INSPECT_USER_S.OWNER_ID)
+                .using(EAMTables.EAM_C_CUST_INSPECT_USER_S.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+
+
+        this.property(CCustInspectPlanMeta.CUST_INSPECT_ITEM_LIST_PROP)
+                .using(EAMTables.EAM_C_CUST_INSPECT_PLAN.ID).join(EAMTables.EAM_C_CUST_INSPECT_ITEM.OWNER_ID);
 
 
     }
@@ -1392,9 +1399,7 @@ public class EamRelationManager extends RelationManager {
         this.property(InventoryMeta.INVENTORY_ASSET_INFO_LIST_PROP)
                 .using(EAMTables.EAM_INVENTORY.ID).join(EAMTables.EAM_INVENTORY_ASSET.INVENTORY_ID).after((tag,inventory,assets,map)->{
 
-
             HashMap<String,Integer> data= calculateInventoryAssetQuantityStatistics(assets);
-
             inventory.setInventoryAssetCountByNotCounted(data.getOrDefault(AssetInventoryDetailStatusEnum.NOT_COUNTED.code(),0));
             inventory.setInventoryAssetCountByCounted(data.getOrDefault(AssetInventoryDetailStatusEnum.COUNTED.code(),0));
             inventory.setInventoryAssetCountByLoss(data.getOrDefault(AssetInventoryDetailStatusEnum.LOSS.code(),0));
