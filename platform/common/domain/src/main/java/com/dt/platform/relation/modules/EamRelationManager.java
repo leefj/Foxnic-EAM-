@@ -23,6 +23,7 @@ public class EamRelationManager extends RelationManager {
         this.setupCustInspectItem();
         this.setupCustInspectTask();
         this.setupCustInspectPlan();
+        this.setupCustInspectTpl();
 
 //通用
         this.setupRelations();
@@ -125,6 +126,13 @@ public class EamRelationManager extends RelationManager {
 
     }
 
+    public void setupCustInspectTpl() {
+                  this.property(CCustInspectTplMeta.ASSET_LIST_PROP)
+                .using(EAMTables.EAM_C_CUST_INSPECT_TPL.ID).join(EAMTables.EAM_C_CUST_INSPECT_TPL_ASSET.OWNER_ID)
+                .using(EAMTables.EAM_C_CUST_INSPECT_TPL_ASSET.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
+
+    }
+
 
     public void setupCustInspectItem() {
         this.property(CCustInspectItemMeta.INSPECT_USER_PROP)
@@ -148,10 +156,21 @@ public class EamRelationManager extends RelationManager {
         this.property(CCustInspectTaskMeta.CUST_INSPECT_ITEM_LIST_PROP)
                 .using(EAMTables.EAM_C_CUST_INSPECT_TASK.ID).join(EAMTables.EAM_C_CUST_INSPECT_ITEM.OWNER_ID);
 
+        this.property(CCustInspectTaskMeta.ASSET_IN_TPL_LIST_PROP)
+                .using(EAMTables.EAM_C_CUST_INSPECT_TASK.TPL_ID).join(EAMTables.EAM_C_CUST_INSPECT_TPL_ASSET.OWNER_ID)
+                .using(EAMTables.EAM_C_CUST_INSPECT_TPL_ASSET.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
+
 
     }
 
     public void setupCustInspectPlan() {
+
+        this.property(CCustInspectPlanMeta.ASSET_IN_TPL_LIST_PROP)
+                .using(EAMTables.EAM_C_CUST_INSPECT_PLAN.TPL_ID).join(EAMTables.EAM_C_CUST_INSPECT_TPL_ASSET.OWNER_ID)
+          .using(EAMTables.EAM_C_CUST_INSPECT_TPL_ASSET.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
+
+
+
         this.property(CCustInspectPlanMeta.CUST_INSPECT_TPL_PROP)
                 .using(EAMTables.EAM_C_CUST_INSPECT_PLAN.TPL_ID).join(EAMTables.EAM_C_CUST_INSPECT_TPL.ID);
 

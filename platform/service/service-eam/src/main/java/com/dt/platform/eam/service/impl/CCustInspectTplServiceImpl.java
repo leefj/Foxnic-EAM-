@@ -38,7 +38,7 @@ import java.util.Map;
  * 巡检模版服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-08 18:21:51
+ * @since 2023-04-08 19:05:36
 */
 
 
@@ -75,6 +75,12 @@ public class CCustInspectTplServiceImpl extends SuperService<CCustInspectTpl> im
 	public Result insert(CCustInspectTpl cCustInspectTpl,boolean throwsException) {
 		Result r=super.insert(cCustInspectTpl,throwsException);
 		return r;
+	}
+
+	@Override
+	public Result removeAsset(String tplId, String assetId) {
+		dao.execute("delete from eam_c_cust_inspect_tpl_asset where owner_id=? and asset_id=?",tplId,assetId);
+		return ErrorDesc.success();
 	}
 
 	/**

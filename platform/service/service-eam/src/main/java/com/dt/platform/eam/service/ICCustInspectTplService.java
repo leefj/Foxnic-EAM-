@@ -24,12 +24,13 @@ import java.util.Map;
  * 巡检模版服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-08 18:21:51
+ * @since 2023-04-08 19:05:36
 */
 
 public interface ICCustInspectTplService extends  ISimpleIdService<CCustInspectTpl,String> {
 
 
+	Result removeAsset(String tplId,String assetId);
 	/**
 	 * 添加，如果语句错误，则抛出异常
 	 * @param cCustInspectTpl 数据对象

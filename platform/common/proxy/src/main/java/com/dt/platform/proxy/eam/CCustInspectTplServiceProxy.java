@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 巡检模版 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-08 18:21:51
+ * @since 2023-04-08 19:05:36
  */
 @FeignClient(value = ServiceNames.EAM, contextId = CCustInspectTplServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface CCustInspectTplServiceProxy {
@@ -83,6 +83,18 @@ public interface CCustInspectTplServiceProxy {
      * 分页查询巡检模版
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
+
+    /**
+     * 分页查询巡检模版
+     */
+    public static final String QUERY_ASSET_PAGED_LIST = API_PREFIX + "query-asset-paged-list";
+
+    /**
+     * 分页查询巡检模版
+     */
+    public static final String REMOVE_ASSET = API_PREFIX + "remove-asset";
+
+
 
     /**
      * 添加巡检模版

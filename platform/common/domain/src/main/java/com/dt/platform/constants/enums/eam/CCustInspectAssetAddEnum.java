@@ -12,7 +12,8 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 
 public enum CCustInspectAssetAddEnum implements CodeTextEnum {
-	TPL("tpl" , "模版");
+	YES("yes" , "是"),
+	NO("no" , "否");
 	private String code;
 	private String text;
 	private CCustInspectAssetAddEnum(String code, String text)  {

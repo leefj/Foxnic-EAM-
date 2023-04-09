@@ -21,6 +21,9 @@ public class CInspectItemGtr extends BaseCodeGenerator{
         System.out.println(this.getClass().getName());
 
         cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_ITEM.ID).basic().hidden(true);
+        cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_ITEM.ASSET_ID).basic().hidden(true);
+        cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_ITEM.ID).basic().hidden(true);
+        cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_ITEM.OWNER_ID).basic().hidden(true);
         cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_ITEM.PICTURE_ID).basic().hidden(true);
 
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"inspectUser","inspectUser","inspectUser");
@@ -41,6 +44,11 @@ public class CInspectItemGtr extends BaseCodeGenerator{
                 .button().chooseEmployee(true);
 
 
+        cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_ITEM.ASSET_ID).table().disable(true);
+        cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_ITEM.ID).table().disable(true);
+        cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_ITEM.OWNER_ID).table().disable(true);
+        cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_ITEM.PICTURE_ID).table().disable(true);
+
 
 
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
@@ -58,6 +66,14 @@ public class CInspectItemGtr extends BaseCodeGenerator{
         cfg.view().formWindow().bottomSpace(200);
 
         cfg.view().list().addToolButton("增加设备","assetaAdd","asset-add","eam_cust_inspect_add");
+        cfg.view().list().addToolButton("开始","actionStart","actionStart","eam_cust_inspect_start");
+
+        cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_ITEM.ASSET_CODE).form().readOnly();
+        cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_ITEM.ASSET_MODEL).form().readOnly();
+        cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_ITEM.ASSET_NAME).form().readOnly();
+        cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_ITEM.ASSET_SEQ).form().readOnly();
+
+        cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_ITEM.RECORD_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
 
         cfg.view().form().addGroup("设备记录",
                 new Object[] {

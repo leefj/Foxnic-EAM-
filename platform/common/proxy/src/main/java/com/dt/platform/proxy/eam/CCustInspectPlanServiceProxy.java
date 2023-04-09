@@ -89,12 +89,11 @@ public interface CCustInspectPlanServiceProxy {
      */
     public static final String EXECUTE = API_PREFIX + "execute";
 
-
     /**
      * 执行计划
      */
     @RequestMapping(CCustInspectPlanServiceProxy.EXECUTE)
-    Result execute(@RequestParam(name = "id") String id,String type);
+    Result execute(@RequestParam(name = "id") String id, @RequestParam(name = "type") String type);
 
     /**
      * 添加巡检计划

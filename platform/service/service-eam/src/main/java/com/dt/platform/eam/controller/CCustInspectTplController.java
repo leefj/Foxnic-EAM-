@@ -1,6 +1,14 @@
 package com.dt.platform.eam.controller;
 
+import java.math.BigDecimal;
 import java.util.*;
+
+import com.dt.platform.domain.eam.AssetVO;
+import com.dt.platform.domain.eam.meta.AssetVOMeta;
+import com.dt.platform.eam.service.IAssetService;
+import com.dt.platform.proxy.eam.AssetServiceProxy;
+import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.sql.expr.ConditionExpr;
 import org.github.foxnic.web.framework.web.SuperController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +38,7 @@ import java.util.Map;
 import com.github.foxnic.dao.excel.ValidateResult;
 import java.io.InputStream;
 import com.dt.platform.domain.eam.meta.CCustInspectTplMeta;
+import com.dt.platform.domain.eam.Asset;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiImplicitParams;
@@ -44,7 +53,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 巡检模版接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-08 18:21:51
+ * @since 2023-04-08 19:01:16
 */
 
 @InDoc
@@ -54,6 +63,9 @@ public class CCustInspectTplController extends SuperController {
 
 	@Autowired
 	private ICCustInspectTplService cCustInspectTplService;
+
+	@Autowired
+	private IAssetService assetService;
 
 	/**
 	 * 添加巡检模版
@@ -285,7 +297,35 @@ public class CCustInspectTplController extends SuperController {
 	}
 
 
+	/**
+	 * 分页查询资产
+	 */
+	@ApiOperation(value = "分页查询资产")
+	@ApiOperationSupport(order = 10)
+	@SentinelResource(value = CCustInspectTplServiceProxy.QUERY_ASSET_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+	@PostMapping(CCustInspectTplServiceProxy.QUERY_ASSET_PAGED_LIST)
+	public Result<PagedList<Asset>> queryPagedListBySelected(AssetVO sample, String insepectOwnerId) {
+		Result<PagedList<Asset>> result = new Result<>();
+		ConditionExpr queryCondition=new ConditionExpr();
+		if(StringUtil.isBlank(insepectOwnerId)){
+			insepectOwnerId="-1";
+		}
+		queryCondition.andIf("id in (select asset_id from eam_c_cust_inspect_tpl_asset where deleted=0 and owner_id=?)" ,insepectOwnerId);
+		PagedList<Asset> list= assetService.queryPagedList(sample,queryCondition,sample.getPageSize(),sample.getPageIndex());
+		assetService.joinData(list.getList());
+		result.success(true).data(list);
+		return result;
+	}
 
-
+	/**
+	 * 删除资产
+	 */
+	@ApiOperation(value = "删除资产")
+	@ApiOperationSupport(order = 10)
+	@SentinelResource(value = CCustInspectTplServiceProxy.REMOVE_ASSET, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+	@PostMapping(CCustInspectTplServiceProxy.REMOVE_ASSET)
+	public Result removeAsset(String tplId,String assetId) {
+		return cCustInspectTplService.removeAsset(tplId,assetId);
+	}
 
 }

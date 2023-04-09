@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检模版VO类型
  * <p>巡检模版 , 数据表 eam_c_cust_inspect_tpl 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-08 18:21:51
+ * @since 2023-04-08 19:05:36
  * @sign 552DF5038EC6ED53A908842BEA8F247A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -416,13 +416,15 @@ public class CCustInspectTplVO extends CCustInspectTpl {
 		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
-			inst.setPageIndex(this.getPageIndex());
-			inst.setSortType(this.getSortType());
 			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
+			inst.setAssetIds(this.getAssetIds());
+			inst.setPageSize(this.getPageSize());
+			inst.setAssetList(this.getAssetList());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
 			inst.setDirtyFields(this.getDirtyFields());
 			inst.setSortField(this.getSortField());
-			inst.setPageSize(this.getPageSize());
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
@@ -501,12 +503,12 @@ public class CCustInspectTplVO extends CCustInspectTpl {
 			this.setStatus(DataParser.parse(String.class, map.get(CCustInspectTplVOMeta.STATUS)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(CCustInspectTplVOMeta.SEARCH_FIELD)));
-			this.setPageIndex(DataParser.parse(Integer.class, map.get(CCustInspectTplVOMeta.PAGE_INDEX)));
-			this.setSortType(DataParser.parse(String.class, map.get(CCustInspectTplVOMeta.SORT_TYPE)));
 			this.setRequestAction(DataParser.parse(String.class, map.get(CCustInspectTplVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(CCustInspectTplVOMeta.FUZZY_FIELD)));
-			this.setSortField(DataParser.parse(String.class, map.get(CCustInspectTplVOMeta.SORT_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(CCustInspectTplVOMeta.PAGE_SIZE)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(CCustInspectTplVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(CCustInspectTplVOMeta.SORT_TYPE)));
+			this.setSortField(DataParser.parse(String.class, map.get(CCustInspectTplVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(CCustInspectTplVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(CCustInspectTplVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(CCustInspectTplVOMeta.SEARCH_VALUE)));
@@ -528,12 +530,12 @@ public class CCustInspectTplVO extends CCustInspectTpl {
 				this.setStatus( (String)map.get(CCustInspectTplVOMeta.STATUS));
 				// others
 				this.setSearchField( (String)map.get(CCustInspectTplVOMeta.SEARCH_FIELD));
-				this.setPageIndex( (Integer)map.get(CCustInspectTplVOMeta.PAGE_INDEX));
-				this.setSortType( (String)map.get(CCustInspectTplVOMeta.SORT_TYPE));
 				this.setRequestAction( (String)map.get(CCustInspectTplVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(CCustInspectTplVOMeta.FUZZY_FIELD));
-				this.setSortField( (String)map.get(CCustInspectTplVOMeta.SORT_FIELD));
 				this.setPageSize( (Integer)map.get(CCustInspectTplVOMeta.PAGE_SIZE));
+				this.setPageIndex( (Integer)map.get(CCustInspectTplVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(CCustInspectTplVOMeta.SORT_TYPE));
+				this.setSortField( (String)map.get(CCustInspectTplVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(CCustInspectTplVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(CCustInspectTplVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(CCustInspectTplVOMeta.SEARCH_VALUE));

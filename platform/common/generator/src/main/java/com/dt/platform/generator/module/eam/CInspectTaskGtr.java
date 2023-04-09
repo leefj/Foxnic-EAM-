@@ -27,8 +27,6 @@ public class CInspectTaskGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_TASK.ID).basic().hidden(true);
 
 
-
-
         cfg.getPoClassFile().addSimpleProperty(CCustInspectTpl.class,"custInspectTpl","custInspectTpl","custInspectTpl");
 
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"leader","leader","leader");
@@ -36,6 +34,8 @@ public class CInspectTaskGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addListProperty(Employee.class,"memberList","巡检人","巡检人");
         cfg.getPoClassFile().addListProperty(String.class,"memberIds","巡检人","巡检人");
 
+
+        cfg.getPoClassFile().addListProperty(Asset.class,"assetInTplList","assetInTplList","assetInTplList");
 
         cfg.getPoClassFile().addListProperty(CCustInspectItem.class,"custInspectItemList","custInspectItemList","custInspectItemList");
         cfg.getPoClassFile().addListProperty(String.class,"custInspectItemIds","custInspectItemIds","custInspectItemIds");
@@ -64,9 +64,7 @@ public class CInspectTaskGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_TASK.START_TIME).search().range();
         cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_TASK.STATUS).form().radioBox().enumType(CCustInspectTaskStatusEnum.class);
         cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_TASK.ACTION_ADD).form().validate().required().form().radioBox().enumType(CCustInspectAssetAddEnum.class).defaultIndex(1);
-
         cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_TASK.NOTES).form().textArea().height(120);
-
         cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_TASK.NOTES).table().disable();
 
         cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_TASK.TPL_ID)
@@ -108,6 +106,10 @@ public class CInspectTaskGtr extends BaseCodeGenerator{
         cfg.view().list().operationColumn().addActionButton("巡检明细","assetDetail","assetDetail","eam_cust_inspect_assets");
         cfg.view().list().operationColumn().addActionButton("完成","actionFinish","actionFinish","eam_cust_inspect_finish");
         cfg.view().list().operationColumn().addActionButton("取消","actionCancel","actionCancel","eam_cust_inspect_cancel");
+
+
+
+
 
         //文件生成覆盖模式
         cfg.overrides()

@@ -27,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检任务单
  * <p>巡检任务单 , 数据表 eam_c_cust_inspect_task 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-07 15:49:11
- * @sign 64C1B56399C90A71829EAF33A29EA3F3
+ * @since 2023-04-09 08:48:09
+ * @sign 37D7547B2CEE92FD088C1B024D3A2E8A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -44,13 +44,13 @@ public class CCustInspectTask extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "696413299843006464")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "697144405307424768")
 	private String id;
 	
 	/**
 	 * 标题：标题
 	*/
-	@ApiModelProperty(required = false,value="标题" , notes = "标题" , example = "121212")
+	@ApiModelProperty(required = false,value="标题" , notes = "标题" , example = "巡检计划")
 	private String name;
 	
 	/**
@@ -62,7 +62,7 @@ public class CCustInspectTask extends Entity {
 	/**
 	 * 追加：追加
 	*/
-	@ApiModelProperty(required = false,value="追加" , notes = "追加" , example = "tpl")
+	@ApiModelProperty(required = false,value="追加" , notes = "追加" , example = "yes")
 	private String actionAdd;
 	
 	/**
@@ -80,13 +80,13 @@ public class CCustInspectTask extends Entity {
 	/**
 	 * 负责人：负责人
 	*/
-	@ApiModelProperty(required = false,value="负责人" , notes = "负责人" , example = "586965217661943808")
+	@ApiModelProperty(required = false,value="负责人" , notes = "负责人" , example = "581798649571311616")
 	private String inspectUserId;
 	
 	/**
 	 * 模版：模版
 	*/
-	@ApiModelProperty(required = false,value="模版" , notes = "模版" , example = "696280340544618496")
+	@ApiModelProperty(required = false,value="模版" , notes = "模版" , example = "696311000567119872")
 	private String tplId;
 	
 	/**
@@ -104,7 +104,7 @@ public class CCustInspectTask extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-06 05:37:49")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-08 06:02:59")
 	private Date createTime;
 	
 	/**
@@ -116,7 +116,7 @@ public class CCustInspectTask extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-07 02:13:45")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-08 06:34:08")
 	private Date updateTime;
 	
 	/**
@@ -149,7 +149,7 @@ public class CCustInspectTask extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "5")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
 	private Integer version;
 	
 	/**
@@ -175,6 +175,12 @@ public class CCustInspectTask extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="巡检人" , notes = "巡检人")
 	private List<String> memberIds;
+	
+	/**
+	 * assetInTplList：assetInTplList
+	*/
+	@ApiModelProperty(required = false,value="assetInTplList" , notes = "assetInTplList")
+	private List<Asset> assetInTplList;
 	
 	/**
 	 * custInspectItemList：custInspectItemList
@@ -660,6 +666,36 @@ public class CCustInspectTask extends Entity {
 	}
 	
 	/**
+	 * 获得 assetInTplList<br>
+	 * assetInTplList
+	 * @return assetInTplList
+	*/
+	public List<Asset> getAssetInTplList() {
+		return assetInTplList;
+	}
+	
+	/**
+	 * 设置 assetInTplList
+	 * @param assetInTplList assetInTplList
+	 * @return 当前对象
+	*/
+	public CCustInspectTask setAssetInTplList(List<Asset> assetInTplList) {
+		this.assetInTplList=assetInTplList;
+		return this;
+	}
+	
+	/**
+	 * 添加 assetInTplList
+	 * @param assetInTpl assetInTplList
+	 * @return 当前对象
+	*/
+	public CCustInspectTask addAssetInTpl(Asset... assetInTpl) {
+		if(this.assetInTplList==null) assetInTplList=new ArrayList<>();
+		this.assetInTplList.addAll(Arrays.asList(assetInTpl));
+		return this;
+	}
+	
+	/**
 	 * 获得 custInspectItemList<br>
 	 * custInspectItemList
 	 * @return custInspectItemList
@@ -782,6 +818,7 @@ public class CCustInspectTask extends Entity {
 		inst.setInspectUserId(this.getInspectUserId());
 		inst.setStatus(this.getStatus());
 		if(all) {
+			inst.setAssetInTplList(this.getAssetInTplList());
 			inst.setLeader(this.getLeader());
 			inst.setCustInspectItemList(this.getCustInspectItemList());
 			inst.setMemberList(this.getMemberList());

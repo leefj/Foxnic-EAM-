@@ -20,6 +20,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     //模块基础路径
     const moduleURL="/service-eam/eam-c-cust-inspect-task";
 
+    var formAction=admin.getTempData('eam-c-cust-inspect-task-form-data-form-action');
 
     //列表页的扩展
     var list={
@@ -178,6 +179,24 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         },
         assetDetail:function (data){
             console.log('assetDetail',data);
+            var q="?inspectId="+data.id;
+            admin.popupCenter({
+                title: "巡检内容",
+                resize: false,
+                offset: [20,null],
+                area: ["80%","80%"],
+                type: 2,
+                id:"eam-c-cust-inspect-item-list-data-win",
+                content: '/business/eam/c_cust_inspect_item/c_cust_inspect_item_list.html' + q,
+                finish: function () {
+                    // if(action=="create") {
+                    //     refreshTableData();
+                    // }
+                    // if(action=="edit") {
+                    //     false?refreshTableData():refreshRowData(data,true);
+                    // }
+                }
+            });
         },
         actionFinish:function (data,it){
             console.log('actionFinish',data);
@@ -235,6 +254,10 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //var companyId=admin.getTempData("companyId");
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
             console.log("form:beforeInit")
+
+
+
+
         },
         /**
          * 窗口调节前
@@ -268,7 +291,17 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单数据填充后
          * */
         afterDataFill:function (data) {
-            console.log('afterDataFill',data);
+            console.log('afterDataFill',data)
+            if(formAction&&formAction=="create"){
+                console.log("none")
+            }else{
+                //查询
+                console.log("to set disable tpl")
+                setTimeout(function () {
+                    var tplSelect=xmSelect.get('#tplId',true);
+                    tplSelect.update({disabled:true})
+                },100);
+            }
         },
         /**
          * 对话框打开之前调用，如果返回 null 则不打开对话框

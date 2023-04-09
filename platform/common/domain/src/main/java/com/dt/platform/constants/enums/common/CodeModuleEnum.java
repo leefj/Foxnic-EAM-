@@ -50,7 +50,10 @@ public enum CodeModuleEnum implements CodeTextEnum {
 	EAM_ASSET_TRANFER("eam_asset_tranfer" , "EAM_资产单据转移"),
 	EAM_ASSET_CLEAN("eam_asset_clean" , "EAM_资产单据清理"),
 	EAM_ASSET_INVENTORY("eam_asset_inventory" , "EAM_资产数据盘点"),
+
 	EAM_EQUIPMENT_FAILURE_REGISTRATION("eam_equipment_failure_registration" , "EAM_设备故障登记"),
+
+	EAM_ASSET_CUST_INSPECT("eam_asset_cust_inspect" , "EAM_设备巡检"),
 
 
 	EAM_ASSET_MAINTAIN_PLAN("eam_asset_maintain_plan" , "EAM_资产保养方案"),

@@ -4,6 +4,7 @@ import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.eam.CCustInspectAssetAddEnum;
 import com.dt.platform.constants.enums.eam.CCustInspectTaskStatusEnum;
 import com.dt.platform.constants.enums.eam.CCustInspectTaskTypeEnum;
+import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.CCustInspectItem;
 import com.dt.platform.domain.eam.CCustInspectTpl;
 import com.dt.platform.domain.eam.meta.CCustInspectPlanMeta;
@@ -38,6 +39,7 @@ public class CInspectPlanGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addListProperty(CCustInspectItem.class,"custInspectItemList","custInspectItemList","custInspectItemList");
         cfg.getPoClassFile().addListProperty(String.class,"custInspectItemIds","custInspectItemIds","custInspectItemIds");
 
+        cfg.getPoClassFile().addListProperty(Asset.class,"assetInTplList","assetInTplList","assetInTplList");
 
 
         cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_PLAN.INSPECT_USER_ID).table().fillBy("leader","name");

@@ -3,14 +3,16 @@ package com.dt.platform.domain.eam.meta;
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.CCustInspectTpl;
 import java.util.Date;
+import com.dt.platform.domain.eam.Asset;
+import java.util.List;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-08 18:21:51
- * @sign F448C32F741AD11A2EF6220329C4E523
+ * @since 2023-04-08 19:05:36
+ * @sign 9501E54D09F3652FB324198C1B1C110B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -147,9 +149,29 @@ public class CCustInspectTplMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectTpl,java.lang.Integer> VERSION_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectTpl.class ,VERSION, java.lang.Integer.class, "version", "version", java.lang.Integer.class, null);
 	
 	/**
+	 * assetList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final String ASSET_LIST="assetList";
+	
+	/**
+	 * assetList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectTpl,com.dt.platform.domain.eam.Asset> ASSET_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectTpl.class ,ASSET_LIST, java.util.List.class, "assetList", "assetList", com.dt.platform.domain.eam.Asset.class, null);
+	
+	/**
+	 * assetIds , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String ASSET_IDS="assetIds";
+	
+	/**
+	 * assetIds , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectTpl,java.lang.String> ASSET_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectTpl.class ,ASSET_IDS, java.util.List.class, "assetIds", "assetIds", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NAME , STATUS , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION };
+	public static final String[] $PROPS={ ID , NAME , STATUS , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , ASSET_LIST , ASSET_IDS };
 	
 	/**
 	 * 代理类
@@ -301,6 +323,28 @@ public class CCustInspectTplMeta {
 			super.setVersion(version);
 			return this;
 		}
+		
+		/**
+		 * 设置 assetList
+		 * @param assetList assetList
+		 * @return 当前对象
+		*/
+		public CCustInspectTpl setAssetList(List<Asset> assetList) {
+			super.change(ASSET_LIST,super.getAssetList(),assetList);
+			super.setAssetList(assetList);
+			return this;
+		}
+		
+		/**
+		 * 设置 assetIds
+		 * @param assetIds assetIds
+		 * @return 当前对象
+		*/
+		public CCustInspectTpl setAssetIds(List<String> assetIds) {
+			super.change(ASSET_IDS,super.getAssetIds(),assetIds);
+			super.setAssetIds(assetIds);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -330,6 +374,10 @@ public class CCustInspectTplMeta {
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
 			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setAssetIds(this.getAssetIds());
+				inst.setAssetList(this.getAssetList());
+			}
 			inst.clearModifies();
 			return inst;
 		}

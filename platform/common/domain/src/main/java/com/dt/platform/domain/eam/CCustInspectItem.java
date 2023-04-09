@@ -24,7 +24,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检记录
  * <p>巡检记录 , 数据表 eam_c_cust_inspect_item 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-06 10:22:08
+ * @since 2023-04-09 10:16:20
  * @sign 1F420D583353F841779A8C89D213F2BF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -41,25 +41,25 @@ public class CCustInspectItem extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "697370899862519808")
 	private String id;
 	
 	/**
 	 * 归属：归属
 	*/
-	@ApiModelProperty(required = false,value="归属" , notes = "归属")
+	@ApiModelProperty(required = false,value="归属" , notes = "归属" , example = "697370866316476416")
 	private String ownerId;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "wait")
 	private String status;
 	
 	/**
 	 * 资产：资产
 	*/
-	@ApiModelProperty(required = false,value="资产" , notes = "资产")
+	@ApiModelProperty(required = false,value="资产" , notes = "资产" , example = "690281218771517440")
 	private String assetId;
 	
 	/**
@@ -95,13 +95,13 @@ public class CCustInspectItem extends Entity {
 	/**
 	 * 设备编号：设备编号
 	*/
-	@ApiModelProperty(required = false,value="设备编号" , notes = "设备编号")
+	@ApiModelProperty(required = false,value="设备编号" , notes = "设备编号" , example = "AS16225")
 	private String assetCode;
 	
 	/**
 	 * 设备名称：设备名称
 	*/
-	@ApiModelProperty(required = false,value="设备名称" , notes = "设备名称")
+	@ApiModelProperty(required = false,value="设备名称" , notes = "设备名称" , example = "12121212")
 	private String assetName;
 	
 	/**
@@ -119,13 +119,13 @@ public class CCustInspectItem extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-09 09:02:59")
 	private Date createTime;
 	
 	/**
@@ -143,7 +143,7 @@ public class CCustInspectItem extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -164,7 +164,7 @@ public class CCustInspectItem extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**

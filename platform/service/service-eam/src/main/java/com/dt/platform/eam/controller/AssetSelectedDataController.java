@@ -270,6 +270,19 @@ public class AssetSelectedDataController extends SuperController {
                    }
                 }
                 return ErrorDesc.success();
+            }else if(AssetOperateEnum.EAM_ASSET_CUST_INSPECT.code().equals(assetBusinessType)){
+                for(int i=0;i<ids.size();i++){
+                    Rcd rs= assetItemService.dao().queryRecord("select * from eam_c_cust_inspect_tpl_asset where deleted=0 and owner_id=? and asset_id=?",assetSelectedCode,ids.get(i));
+                    if(rs==null){
+                        Insert ins=new Insert("eam_c_cust_inspect_tpl_asset");
+                        ins.set("id",IDGenerator.getSnowflakeIdString());
+                        ins.setIf("owner_id",assetSelectedCode);
+                        ins.setIf("asset_id",ids.get(i));
+                        assetItemService.dao().execute(ins);
+                    }
+                }
+                return ErrorDesc.success();
+
             }
         }
 
