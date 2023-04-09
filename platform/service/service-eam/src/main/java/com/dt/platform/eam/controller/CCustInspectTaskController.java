@@ -234,6 +234,21 @@ public class CCustInspectTaskController extends SuperController {
     }
 
     /**
+     * 完成任务单
+     */
+    @ApiOperation(value = "开始巡检")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = CCustInspectTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+    })
+    @ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = CCustInspectTaskServiceProxy.START, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(CCustInspectTaskServiceProxy.START)
+    public Result start(String id) {
+        return cCustInspectTaskService.start(id);
+    }
+
+
+    /**
      * 巡检务单
      */
     @ApiOperation(value = "巡检务单")

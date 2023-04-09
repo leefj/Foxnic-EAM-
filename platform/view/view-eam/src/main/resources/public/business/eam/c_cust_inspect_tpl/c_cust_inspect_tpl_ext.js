@@ -1,7 +1,7 @@
 /**
  * 巡检模版 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-08 18:21:51
+ * @since 2023-04-08 19:05:37
  */
 
 layui.config({
@@ -168,6 +168,19 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         },
         inspectAssetList:function (data){
             console.log('inspectAssetList',data);
+            var q="?tplId="+data.id;
+            admin.popupCenter({
+                title: "巡检内容",
+                resize: false,
+                offset: [20,null],
+                area: ["80%","80%"],
+                type: 2,
+                id:"eam-c-cust-inspect-tpl-list-data-win",
+                content: '/business/eam/c_cust_inspect_tpl/asset_list.html' + q,
+                finish: function () {
+
+                }
+            });
         },
         /**
          * 末尾执行

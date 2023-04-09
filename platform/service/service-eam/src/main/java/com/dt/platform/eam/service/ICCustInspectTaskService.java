@@ -37,6 +37,8 @@ public interface ICCustInspectTaskService extends  ISimpleIdService<CCustInspect
 
 	Result cancel(String id);
 
+	Result start(String id);
+
 	/**
 	 * 添加，如果语句错误，则抛出异常
 	 * @param cCustInspectTask 数据对象
@@ -61,7 +63,7 @@ public interface ICCustInspectTaskService extends  ISimpleIdService<CCustInspect
 	Result insertList(List<CCustInspectTask> cCustInspectTaskList);
 
 
-		
+
 	/**
 	 * 按主键删除巡检任务单
 	 *
@@ -69,7 +71,7 @@ public interface ICCustInspectTaskService extends  ISimpleIdService<CCustInspect
 	 * @return 删除是否成功
 	 */
 	Result deleteByIdPhysical(String id);
-	
+
 	/**
 	 * 按主键删除巡检任务单
 	 *
@@ -92,7 +94,7 @@ public interface ICCustInspectTaskService extends  ISimpleIdService<CCustInspect
 	 * */
 	<T> Result deleteByIdsLogical(List<T> ids);
 
-		
+
 	/**
 	 * 按主键更新巡检任务单
 	 *
@@ -162,7 +164,7 @@ public interface ICCustInspectTaskService extends  ISimpleIdService<CCustInspect
 	 * */
 	boolean checkExists(CCustInspectTask cCustInspectTask,DBField... field);
 
-		
+
 	/**
 	 * 按主键获取巡检任务单
 	 *

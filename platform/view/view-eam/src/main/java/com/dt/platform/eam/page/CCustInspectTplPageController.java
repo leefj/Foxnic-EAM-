@@ -36,6 +36,15 @@ public class CCustInspectTplPageController extends ViewController {
 		}
 		return proxy;
 	}
+	/**
+	 * 设备 功能主页面
+	 */
+	@RequestMapping("/asset_list.html")
+	public String assetList(Model model,HttpServletRequest request,String tplId) {
+		model.addAttribute("tplId",tplId);
+		return getTemplatePath(prefix,"asset_list");
+	}
+
 
 	/**
 	 * 巡检模版 功能主页面

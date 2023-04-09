@@ -27,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检计划
  * <p>巡检计划 , 数据表 eam_c_cust_inspect_plan 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-08 17:19:07
- * @sign 6B1B8DEA9EB890C73DEC76967B7CE8F2
+ * @since 2023-04-09 08:47:59
+ * @sign 4D9D5DA869238944E812AC8C268FC552
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -50,19 +50,19 @@ public class CCustInspectPlan extends Entity {
 	/**
 	 * 标题：标题
 	*/
-	@ApiModelProperty(required = false,value="标题" , notes = "标题" , example = "12")
+	@ApiModelProperty(required = false,value="标题" , notes = "标题" , example = "巡检计划")
 	private String name;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "valid")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "invalid")
 	private String status;
 	
 	/**
 	 * 追加：追加
 	*/
-	@ApiModelProperty(required = false,value="追加" , notes = "追加" , example = "tpl")
+	@ApiModelProperty(required = false,value="追加" , notes = "追加" , example = "no")
 	private String actionAdd;
 	
 	/**
@@ -122,7 +122,7 @@ public class CCustInspectPlan extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-07 02:12:04")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-08 06:33:53")
 	private Date updateTime;
 	
 	/**
@@ -155,7 +155,7 @@ public class CCustInspectPlan extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "14")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "16")
 	private Integer version;
 	
 	/**
@@ -193,6 +193,12 @@ public class CCustInspectPlan extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="custInspectItemIds" , notes = "custInspectItemIds")
 	private List<String> custInspectItemIds;
+	
+	/**
+	 * assetInTplList：assetInTplList
+	*/
+	@ApiModelProperty(required = false,value="assetInTplList" , notes = "assetInTplList")
+	private List<Asset> assetInTplList;
 	
 	/**
 	 * 获得 主键<br>
@@ -743,6 +749,36 @@ public class CCustInspectPlan extends Entity {
 		this.custInspectItemIds.addAll(Arrays.asList(custInspectItemId));
 		return this;
 	}
+	
+	/**
+	 * 获得 assetInTplList<br>
+	 * assetInTplList
+	 * @return assetInTplList
+	*/
+	public List<Asset> getAssetInTplList() {
+		return assetInTplList;
+	}
+	
+	/**
+	 * 设置 assetInTplList
+	 * @param assetInTplList assetInTplList
+	 * @return 当前对象
+	*/
+	public CCustInspectPlan setAssetInTplList(List<Asset> assetInTplList) {
+		this.assetInTplList=assetInTplList;
+		return this;
+	}
+	
+	/**
+	 * 添加 assetInTplList
+	 * @param assetInTpl assetInTplList
+	 * @return 当前对象
+	*/
+	public CCustInspectPlan addAssetInTpl(Asset... assetInTpl) {
+		if(this.assetInTplList==null) assetInTplList=new ArrayList<>();
+		this.assetInTplList.addAll(Arrays.asList(assetInTpl));
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -808,6 +844,7 @@ public class CCustInspectPlan extends Entity {
 		inst.setInspectUserId(this.getInspectUserId());
 		inst.setStatus(this.getStatus());
 		if(all) {
+			inst.setAssetInTplList(this.getAssetInTplList());
 			inst.setLeader(this.getLeader());
 			inst.setCustInspectItemList(this.getCustInspectItemList());
 			inst.setMemberList(this.getMemberList());

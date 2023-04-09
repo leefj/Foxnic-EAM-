@@ -1,7 +1,7 @@
 /**
  * 巡检记录 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-06 10:22:09
+ * @since 2023-04-09 10:16:22
  */
 
 
@@ -84,11 +84,7 @@ function ListPage() {
 				cols: [[
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
-					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-					,{ field: 'ownerId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('归属') , templet: function (d) { return templet('ownerId',d.ownerId,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
-					,{ field: 'assetId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('资产') , templet: function (d) { return templet('assetId',d.assetId,d);}  }
-					,{ field: 'pictureId', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('图片') , templet: function (d) { return templet('pictureId',d.pictureId,d);}  }
 					,{ field: 'inspectUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检人') , templet: function (d) { return templet('inspectUserId',fox.getProperty(d,["inspectUser","name"],0,'','inspectUserId'),d);} }
 					,{ field: 'recordTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('记录时间') ,templet: function (d) { return templet('recordTime',fox.dateFormat(d.recordTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'ct', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('内容') , templet: function (d) { return templet('ct',d.ct,d);}  }
@@ -276,6 +272,9 @@ function ListPage() {
 					break;
 				case 'tool-asseta-add':
 					window.pageExt.list.assetaAdd && window.pageExt.list.assetaAdd(selected,obj);
+					break;
+				case 'tool-action-start':
+					window.pageExt.list.actionStart && window.pageExt.list.actionStart(selected,obj);
 					break;
 				case 'refresh-data':
 					refreshTableData();

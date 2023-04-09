@@ -28,6 +28,14 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeInit:function () {
             console.log("list:beforeInit");
+
+
+            var toolHtml=document.getElementById("toolbarTemplate").innerHTML;
+            toolHtml=toolHtml.replace(/lay-event="tool-asseta-add"/i, "style=\"display:none\"")
+
+          //  toolHtml=toolHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
+            document.getElementById("toolbarTemplate").innerHTML=toolHtml;
+
         },
         /**
          * 按事件名称移除表格按钮栏的按钮
@@ -93,6 +101,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeQuery:function (conditions,param,location) {
             console.log('beforeQuery',conditions,param,location);
+            param.ownerId=INSPECT_ID;
             return true;
         },
         /**
@@ -169,6 +178,25 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         assetaAdd:function (selected,it){
             console.log('assetaAdd',selected,it);
         },
+        actionStart:function (selected,it){
+            console.log('actionStart',selected,it);
+            var bb="actionStart";
+            var btn=$('.'+bb);
+            var api="/service-eam/eam-c-cust-inspect-task/start"
+            top.layer.confirm(fox.translate('确定开始吗？'), function (i) {
+                top.layer.close(i);
+                admin.post(api, {id:INSPECT_ID}, function (r) {
+                    if (r.success) {
+                       // window.module.refreshTableData();
+                    } else {
+                    }
+                    fox.showMessage(r);
+                }, {delayLoading: 1000, elms: [btn]});
+            });
+
+        },
+
+
         /**
          * 末尾执行
          */

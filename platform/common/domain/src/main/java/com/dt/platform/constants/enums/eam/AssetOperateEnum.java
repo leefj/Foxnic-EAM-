@@ -40,6 +40,7 @@ public enum AssetOperateEnum implements CodeTextEnum {
     EAM_ASSET_TRANFER(CodeModuleEnum.EAM_ASSET_TRANFER.code(), CodeModuleEnum.EAM_ASSET_TRANFER.text()),
     EAM_ASSET_CLEAN(CodeModuleEnum.EAM_ASSET_CLEAN.code(), CodeModuleEnum.EAM_ASSET_CLEAN.text()),
     EAM_ASSET_INVENTORY(CodeModuleEnum.EAM_ASSET_INVENTORY.code(), CodeModuleEnum.EAM_ASSET_INVENTORY.text()),
+    EAM_ASSET_CUST_INSPECT(CodeModuleEnum.EAM_ASSET_CUST_INSPECT.code(), CodeModuleEnum.EAM_ASSET_CUST_INSPECT.text()),
     EAM_EQUIPMENT_FAILURE_REGISTRATION(CodeModuleEnum.EAM_EQUIPMENT_FAILURE_REGISTRATION.code(), CodeModuleEnum.EAM_EQUIPMENT_FAILURE_REGISTRATION.text()),
 
 

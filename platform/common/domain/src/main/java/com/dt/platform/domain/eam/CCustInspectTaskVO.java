@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检任务单VO类型
  * <p>巡检任务单 , 数据表 eam_c_cust_inspect_task 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-07 15:49:11
+ * @since 2023-04-09 08:48:09
  * @sign 9125A69F356A825D27922D742BDB9994
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -421,6 +421,7 @@ public class CCustInspectTaskVO extends CCustInspectTask {
 		inst.setInspectUserId(this.getInspectUserId());
 		inst.setStatus(this.getStatus());
 		if(all) {
+			inst.setAssetInTplList(this.getAssetInTplList());
 			inst.setLeader(this.getLeader());
 			inst.setCustInspectItemList(this.getCustInspectItemList());
 			inst.setSearchField(this.getSearchField());

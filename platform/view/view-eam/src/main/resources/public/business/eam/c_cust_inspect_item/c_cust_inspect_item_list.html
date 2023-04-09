@@ -2,7 +2,7 @@
 /**
  * 巡检记录 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-06 10:22:09
+ * @since 2023-04-09 10:16:22
  */
  -->
  <!DOCTYPE html>
@@ -100,6 +100,7 @@
         <button th:if="${perm.checkAuth('eam_c_cust_inspect_item:create')}" id="add-button" class="layui-btn icon-btn layui-btn-sm create-new-button " lay-event="create"><i class="layui-icon">&#xe654;</i><span th:text="${lang.translate('新建','','cmp:table.button')}">新建</span></button>
         <button th:if="${perm.checkAuth('eam_c_cust_inspect_item:delete-by-ids')}" id="delete-button" class="layui-btn icon-btn layui-btn-danger layui-btn-sm batch-delete-button " lay-event="batch-del"><i class="layui-icon">&#xe67e;</i><span th:text="${lang.translate('删除','','cmp:table.button')}">删除</span></button>
         <button id="asseta-add"  th:if="${perm.checkAuth('eam_cust_inspect_add')}"class="layui-btn icon-btn layui-btn-sm  asset-add " lay-event="tool-asseta-add"><span th:text="${lang.translate('增加设备','','cmp:table.button')}">增加设备</span></button>
+        <button id="action-start"  th:if="${perm.checkAuth('eam_cust_inspect_start')}"class="layui-btn icon-btn layui-btn-sm  actionStart " lay-event="tool-action-start"><span th:text="${lang.translate('开始','','cmp:table.button')}">开始</span></button>
     </div>
 </script>
 

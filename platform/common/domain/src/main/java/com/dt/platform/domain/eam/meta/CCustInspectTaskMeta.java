@@ -6,6 +6,7 @@ import java.util.Date;
 import com.dt.platform.domain.eam.CCustInspectTpl;
 import org.github.foxnic.web.domain.hrm.Employee;
 import java.util.List;
+import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.CCustInspectItem;
 import javax.persistence.Transient;
 
@@ -13,8 +14,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-07 15:49:11
- * @sign 64C1B56399C90A71829EAF33A29EA3F3
+ * @since 2023-04-09 08:48:09
+ * @sign 37D7547B2CEE92FD088C1B024D3A2E8A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -241,6 +242,16 @@ public class CCustInspectTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectTask,java.lang.String> MEMBER_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectTask.class ,MEMBER_IDS, java.util.List.class, "巡检人", "巡检人", java.lang.String.class, null);
 	
 	/**
+	 * assetInTplList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final String ASSET_IN_TPL_LIST="assetInTplList";
+	
+	/**
+	 * assetInTplList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectTask,com.dt.platform.domain.eam.Asset> ASSET_IN_TPL_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectTask.class ,ASSET_IN_TPL_LIST, java.util.List.class, "assetInTplList", "assetInTplList", com.dt.platform.domain.eam.Asset.class, null);
+	
+	/**
 	 * custInspectItemList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.CCustInspectItem
 	*/
 	public static final String CUST_INSPECT_ITEM_LIST="custInspectItemList";
@@ -263,7 +274,7 @@ public class CCustInspectTaskMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NAME , STATUS , ACTION_ADD , START_TIME , FINISH_TIME , INSPECT_USER_ID , TPL_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , CUST_INSPECT_TPL , LEADER , MEMBER_LIST , MEMBER_IDS , CUST_INSPECT_ITEM_LIST , CUST_INSPECT_ITEM_IDS };
+	public static final String[] $PROPS={ ID , NAME , STATUS , ACTION_ADD , START_TIME , FINISH_TIME , INSPECT_USER_ID , TPL_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , CUST_INSPECT_TPL , LEADER , MEMBER_LIST , MEMBER_IDS , ASSET_IN_TPL_LIST , CUST_INSPECT_ITEM_LIST , CUST_INSPECT_ITEM_IDS };
 	
 	/**
 	 * 代理类
@@ -516,6 +527,17 @@ public class CCustInspectTaskMeta {
 		}
 		
 		/**
+		 * 设置 assetInTplList
+		 * @param assetInTplList assetInTplList
+		 * @return 当前对象
+		*/
+		public CCustInspectTask setAssetInTplList(List<Asset> assetInTplList) {
+			super.change(ASSET_IN_TPL_LIST,super.getAssetInTplList(),assetInTplList);
+			super.setAssetInTplList(assetInTplList);
+			return this;
+		}
+		
+		/**
 		 * 设置 custInspectItemList
 		 * @param custInspectItemList custInspectItemList
 		 * @return 当前对象
@@ -571,6 +593,7 @@ public class CCustInspectTaskMeta {
 			inst.setInspectUserId(this.getInspectUserId());
 			inst.setStatus(this.getStatus());
 			if(all) {
+				inst.setAssetInTplList(this.getAssetInTplList());
 				inst.setLeader(this.getLeader());
 				inst.setCustInspectItemList(this.getCustInspectItemList());
 				inst.setMemberList(this.getMemberList());

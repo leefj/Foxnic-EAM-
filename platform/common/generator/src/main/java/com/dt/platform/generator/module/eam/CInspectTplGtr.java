@@ -2,6 +2,7 @@ package com.dt.platform.generator.module.eam;
 
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.eam.CCustRepairStatusEnum;
+import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.CCustInspectTpl;
 import com.dt.platform.eam.page.CCustInspectTplPageController;
 import com.dt.platform.generator.config.Config;
@@ -20,6 +21,11 @@ public class CInspectTplGtr extends BaseCodeGenerator{
         System.out.println(this.getClass().getName());
 
         cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_TPL.ID).basic().hidden(true);
+
+
+        cfg.getPoClassFile().addListProperty(Asset.class,"assetList","assetList","assetList");
+        cfg.getPoClassFile().addListProperty(String.class,"assetIds","assetIds","assetIds");
+
 
         cfg.view().search().inputLayout(
                 new Object[]{
@@ -68,12 +74,12 @@ public class CInspectTplGtr extends BaseCodeGenerator{
 
         //文件生成覆盖模式
         cfg.overrides()
-                .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口
-                .setControllerAndAgent(WriteMode.COVER_EXISTS_FILE) //Rest
+                .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
+                .setControllerAndAgent(WriteMode.IGNORE) //Rest
                 .setPageController(WriteMode.IGNORE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)//列表HTML页
-                .setExtendJsFile(WriteMode.COVER_EXISTS_FILE); //列表HTML页
+                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         cfg.buildAll();
     }
 

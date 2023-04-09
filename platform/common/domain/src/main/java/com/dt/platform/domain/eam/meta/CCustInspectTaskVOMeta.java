@@ -7,6 +7,7 @@ import com.dt.platform.domain.eam.CCustInspectTask;
 import java.util.Date;
 import com.dt.platform.domain.eam.CCustInspectTpl;
 import org.github.foxnic.web.domain.hrm.Employee;
+import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.CCustInspectItem;
 import javax.persistence.Transient;
 
@@ -14,7 +15,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-07 15:49:11
+ * @since 2023-04-09 08:48:09
  * @sign 9125A69F356A825D27922D742BDB9994
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -362,6 +363,16 @@ public class CCustInspectTaskVOMeta extends CCustInspectTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectTaskVO,java.lang.String> MEMBER_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectTaskVO.class ,MEMBER_IDS, java.util.List.class, "巡检人", "巡检人", java.lang.String.class, null);
 	
 	/**
+	 * assetInTplList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final String ASSET_IN_TPL_LIST="assetInTplList";
+	
+	/**
+	 * assetInTplList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectTaskVO,com.dt.platform.domain.eam.Asset> ASSET_IN_TPL_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectTaskVO.class ,ASSET_IN_TPL_LIST, java.util.List.class, "assetInTplList", "assetInTplList", com.dt.platform.domain.eam.Asset.class, null);
+	
+	/**
 	 * custInspectItemList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.CCustInspectItem
 	*/
 	public static final String CUST_INSPECT_ITEM_LIST="custInspectItemList";
@@ -384,7 +395,7 @@ public class CCustInspectTaskVOMeta extends CCustInspectTaskMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NAME , STATUS , ACTION_ADD , START_TIME , FINISH_TIME , INSPECT_USER_ID , TPL_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , CUST_INSPECT_TPL , LEADER , MEMBER_LIST , MEMBER_IDS , CUST_INSPECT_ITEM_LIST , CUST_INSPECT_ITEM_IDS };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NAME , STATUS , ACTION_ADD , START_TIME , FINISH_TIME , INSPECT_USER_ID , TPL_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , CUST_INSPECT_TPL , LEADER , MEMBER_LIST , MEMBER_IDS , ASSET_IN_TPL_LIST , CUST_INSPECT_ITEM_LIST , CUST_INSPECT_ITEM_IDS };
 	
 	/**
 	 * 代理类
@@ -769,6 +780,17 @@ public class CCustInspectTaskVOMeta extends CCustInspectTaskMeta {
 		}
 		
 		/**
+		 * 设置 assetInTplList
+		 * @param assetInTplList assetInTplList
+		 * @return 当前对象
+		*/
+		public CCustInspectTask setAssetInTplList(List<Asset> assetInTplList) {
+			super.change(ASSET_IN_TPL_LIST,super.getAssetInTplList(),assetInTplList);
+			super.setAssetInTplList(assetInTplList);
+			return this;
+		}
+		
+		/**
 		 * 设置 custInspectItemList
 		 * @param custInspectItemList custInspectItemList
 		 * @return 当前对象
@@ -824,6 +846,7 @@ public class CCustInspectTaskVOMeta extends CCustInspectTaskMeta {
 			inst.setInspectUserId(this.getInspectUserId());
 			inst.setStatus(this.getStatus());
 			if(all) {
+				inst.setAssetInTplList(this.getAssetInTplList());
 				inst.setLeader(this.getLeader());
 				inst.setCustInspectItemList(this.getCustInspectItemList());
 				inst.setSearchField(this.getSearchField());

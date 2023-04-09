@@ -523,8 +523,6 @@ function ListPage() {
     	var postData=billdata;
 		postData.assetSelectedCode=ASSET_SELECTED_CODE;
     	postData.ids=getCheckedList("id");
-
-
 		if(postData.ids.length==0){
 			top.layer.msg("请选择资产", {icon: 2, time: 1500});
 			return;

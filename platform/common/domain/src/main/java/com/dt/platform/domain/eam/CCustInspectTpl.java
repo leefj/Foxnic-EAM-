@@ -10,8 +10,11 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
 import com.dt.platform.domain.eam.meta.CCustInspectTplMeta;
@@ -23,8 +26,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检模版
  * <p>巡检模版 , 数据表 eam_c_cust_inspect_tpl 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-08 18:21:51
- * @sign F448C32F741AD11A2EF6220329C4E523
+ * @since 2023-04-08 19:05:36
+ * @sign 9501E54D09F3652FB324198C1B1C110B
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -117,6 +120,18 @@ public class CCustInspectTpl extends Entity {
 	*/
 	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "4")
 	private Integer version;
+	
+	/**
+	 * assetList：assetList
+	*/
+	@ApiModelProperty(required = false,value="assetList" , notes = "assetList")
+	private List<Asset> assetList;
+	
+	/**
+	 * assetIds：assetIds
+	*/
+	@ApiModelProperty(required = false,value="assetIds" , notes = "assetIds")
+	private List<String> assetIds;
 	
 	/**
 	 * 获得 主键<br>
@@ -395,6 +410,66 @@ public class CCustInspectTpl extends Entity {
 		this.version=version;
 		return this;
 	}
+	
+	/**
+	 * 获得 assetList<br>
+	 * assetList
+	 * @return assetList
+	*/
+	public List<Asset> getAssetList() {
+		return assetList;
+	}
+	
+	/**
+	 * 设置 assetList
+	 * @param assetList assetList
+	 * @return 当前对象
+	*/
+	public CCustInspectTpl setAssetList(List<Asset> assetList) {
+		this.assetList=assetList;
+		return this;
+	}
+	
+	/**
+	 * 添加 assetList
+	 * @param asset assetList
+	 * @return 当前对象
+	*/
+	public CCustInspectTpl addAsset(Asset... asset) {
+		if(this.assetList==null) assetList=new ArrayList<>();
+		this.assetList.addAll(Arrays.asList(asset));
+		return this;
+	}
+	
+	/**
+	 * 获得 assetIds<br>
+	 * assetIds
+	 * @return assetIds
+	*/
+	public List<String> getAssetIds() {
+		return assetIds;
+	}
+	
+	/**
+	 * 设置 assetIds
+	 * @param assetIds assetIds
+	 * @return 当前对象
+	*/
+	public CCustInspectTpl setAssetIds(List<String> assetIds) {
+		this.assetIds=assetIds;
+		return this;
+	}
+	
+	/**
+	 * 添加 assetIds
+	 * @param assetId assetIds
+	 * @return 当前对象
+	*/
+	public CCustInspectTpl addAssetId(String... assetId) {
+		if(this.assetIds==null) assetIds=new ArrayList<>();
+		this.assetIds.addAll(Arrays.asList(assetId));
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -453,6 +528,10 @@ public class CCustInspectTpl extends Entity {
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
 		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setAssetIds(this.getAssetIds());
+			inst.setAssetList(this.getAssetList());
+		}
 		inst.clearModifies();
 		return inst;
 	}

@@ -7,14 +7,15 @@ import com.dt.platform.domain.eam.CCustInspectTpl;
 import org.github.foxnic.web.domain.hrm.Employee;
 import java.util.List;
 import com.dt.platform.domain.eam.CCustInspectItem;
+import com.dt.platform.domain.eam.Asset;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-08 17:19:07
- * @sign 6B1B8DEA9EB890C73DEC76967B7CE8F2
+ * @since 2023-04-09 08:47:59
+ * @sign 4D9D5DA869238944E812AC8C268FC552
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -271,9 +272,19 @@ public class CCustInspectPlanMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectPlan,java.lang.String> CUST_INSPECT_ITEM_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectPlan.class ,CUST_INSPECT_ITEM_IDS, java.util.List.class, "custInspectItemIds", "custInspectItemIds", java.lang.String.class, null);
 	
 	/**
+	 * assetInTplList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final String ASSET_IN_TPL_LIST="assetInTplList";
+	
+	/**
+	 * assetInTplList , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectPlan,com.dt.platform.domain.eam.Asset> ASSET_IN_TPL_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectPlan.class ,ASSET_IN_TPL_LIST, java.util.List.class, "assetInTplList", "assetInTplList", com.dt.platform.domain.eam.Asset.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NAME , STATUS , ACTION_ADD , INSPECT_USER_ID , TPL_ID , CRONTAB , NOTES , LAST_TIME , NEXT_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , CUST_INSPECT_TPL , LEADER , MEMBER_LIST , MEMBER_IDS , CUST_INSPECT_ITEM_LIST , CUST_INSPECT_ITEM_IDS };
+	public static final String[] $PROPS={ ID , NAME , STATUS , ACTION_ADD , INSPECT_USER_ID , TPL_ID , CRONTAB , NOTES , LAST_TIME , NEXT_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , CUST_INSPECT_TPL , LEADER , MEMBER_LIST , MEMBER_IDS , CUST_INSPECT_ITEM_LIST , CUST_INSPECT_ITEM_IDS , ASSET_IN_TPL_LIST };
 	
 	/**
 	 * 代理类
@@ -557,6 +568,17 @@ public class CCustInspectPlanMeta {
 			super.setCustInspectItemIds(custInspectItemIds);
 			return this;
 		}
+		
+		/**
+		 * 设置 assetInTplList
+		 * @param assetInTplList assetInTplList
+		 * @return 当前对象
+		*/
+		public CCustInspectPlan setAssetInTplList(List<Asset> assetInTplList) {
+			super.change(ASSET_IN_TPL_LIST,super.getAssetInTplList(),assetInTplList);
+			super.setAssetInTplList(assetInTplList);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -593,6 +615,7 @@ public class CCustInspectPlanMeta {
 			inst.setInspectUserId(this.getInspectUserId());
 			inst.setStatus(this.getStatus());
 			if(all) {
+				inst.setAssetInTplList(this.getAssetInTplList());
 				inst.setLeader(this.getLeader());
 				inst.setCustInspectItemList(this.getCustInspectItemList());
 				inst.setMemberList(this.getMemberList());
