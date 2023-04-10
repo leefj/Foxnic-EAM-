@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-04-10 11:34:48
+ * @since 2023-04-10 21:55:36
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -11489,9 +11489,9 @@ public class EAMTables {
 		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","报修标题","报修标题",false,false,true);
 		
 		/**
-		 * 预期日期
+		 * 报修时间
 		*/
-		public static final DBField PLAN_FINISH_DATE = new DBField(DBDataType.DATE , "plan_finish_date","planFinishDate","预期日期","预期日期",false,false,true);
+		public static final DBField PLAN_FINISH_DATE = new DBField(DBDataType.DATE , "plan_finish_date","planFinishDate","报修时间","报修时间",false,false,true);
 		
 		/**
 		 * 位置
@@ -11534,9 +11534,14 @@ public class EAMTables {
 		public static final DBField START_DATE = new DBField(DBDataType.DATE , "start_date","startDate","发起时间","发起时间",false,false,true);
 		
 		/**
-		 * 结束时间
+		 * 完成时间
 		*/
-		public static final DBField FINISH_DATE = new DBField(DBDataType.DATE , "finish_date","finishDate","结束时间","结束时间",false,false,true);
+		public static final DBField FINISH_DATE = new DBField(DBDataType.DATE , "finish_date","finishDate","完成时间","完成时间",false,false,true);
+		
+		/**
+		 * 处理结果
+		*/
+		public static final DBField RESULT = new DBField(DBDataType.STRING , "result","result","处理结果","处理结果",false,false,true);
 		
 		/**
 		 * 创建人ID
@@ -11578,7 +11583,7 @@ public class EAMTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public EAM_C_CUST_REPAIR_APPLY() {
-			this.init($NAME,"报修申请" , ID , BUSINESS_CODE , STATUS , NAME , PLAN_FINISH_DATE , POS , REPORT_USER_NAME , REPORT_USER_ID , CONTACT , CONTENT , PICTURE_ID , PROCESS_USER_ID , START_DATE , FINISH_DATE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"报修申请" , ID , BUSINESS_CODE , STATUS , NAME , PLAN_FINISH_DATE , POS , REPORT_USER_NAME , REPORT_USER_ID , CONTACT , CONTENT , PICTURE_ID , PROCESS_USER_ID , START_DATE , FINISH_DATE , RESULT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final EAM_C_CUST_REPAIR_APPLY $TABLE=new EAM_C_CUST_REPAIR_APPLY();
 	}

@@ -25,7 +25,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检任务VO类型
  * <p>巡检任务 , 数据表 eam_inspection_task 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-10 07:26:15
+ * @since 2023-04-10 21:43:32
  * @sign FC0E307EB7CDFD362C699424737E2FFB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -440,6 +440,7 @@ public class InspectionTaskVO extends InspectionTask {
 			inst.setInspectionTaskPointList(this.getInspectionTaskPointList());
 			inst.setPageSize(this.getPageSize());
 			inst.setInspectionTaskPointIds(this.getInspectionTaskPointIds());
+			inst.setInspectUserList(this.getInspectUserList());
 			inst.setOriginator(this.getOriginator());
 			inst.setInspectionPointIds(this.getInspectionPointIds());
 			inst.setInspectionGroup(this.getInspectionGroup());

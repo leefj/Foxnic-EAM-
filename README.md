@@ -158,7 +158,7 @@
 curl -L 'http://resource.rainbooow.com/deploy.sh'|bash
 ```
 
-### 方案而 应用直接部署
+### 方案二 应用直接部署
 - 详细部署方式查询git目录下的文档说明
 - 百度网盘地址，地址同上
 

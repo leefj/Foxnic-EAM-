@@ -27,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 报修申请
  * <p>报修申请 , 数据表 eam_c_cust_repair_apply 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-03 20:33:30
- * @sign 00510E5368E7037799FBE4272788629E
+ * @since 2023-04-10 21:55:57
+ * @sign D614BD0FC4572664F377C28CB5E998FA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -44,19 +44,19 @@ public class CCustRepairApply extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "694559038553194496")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "697140768753582080")
 	private String id;
 	
 	/**
 	 * 业务编号：业务编号
 	*/
-	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号")
+	@ApiModelProperty(required = false,value="业务编号" , notes = "业务编号" , example = "SW202304081704619")
 	private String businessCode;
 	
 	/**
 	 * 办理状态：办理状态
 	*/
-	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态")
+	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态" , example = "processing")
 	private String status;
 	
 	/**
@@ -66,21 +66,21 @@ public class CCustRepairApply extends Entity {
 	private String name;
 	
 	/**
-	 * 预期日期：预期日期
+	 * 报修时间：报修时间
 	*/
-	@ApiModelProperty(required = false,value="预期日期" , notes = "预期日期" , example = "2023-04-05 12:00:00")
+	@ApiModelProperty(required = false,value="报修时间" , notes = "报修时间")
 	private Date planFinishDate;
 	
 	/**
 	 * 位置：位置
 	*/
-	@ApiModelProperty(required = false,value="位置" , notes = "位置")
+	@ApiModelProperty(required = false,value="位置" , notes = "位置" , example = "1212121212")
 	private String pos;
 	
 	/**
 	 * 发起人：发起人
 	*/
-	@ApiModelProperty(required = false,value="发起人" , notes = "发起人" , example = "测试")
+	@ApiModelProperty(required = false,value="发起人" , notes = "发起人" , example = "12")
 	private String reportUserName;
 	
 	/**
@@ -92,13 +92,13 @@ public class CCustRepairApply extends Entity {
 	/**
 	 * 联系方式：联系方式
 	*/
-	@ApiModelProperty(required = false,value="联系方式" , notes = "联系方式" , example = "14573622323")
+	@ApiModelProperty(required = false,value="联系方式" , notes = "联系方式")
 	private String contact;
 	
 	/**
 	 * 报修内容：报修内容
 	*/
-	@ApiModelProperty(required = false,value="报修内容" , notes = "报修内容" , example = "1212adf")
+	@ApiModelProperty(required = false,value="报修内容" , notes = "报修内容")
 	private String content;
 	
 	/**
@@ -116,14 +116,20 @@ public class CCustRepairApply extends Entity {
 	/**
 	 * 发起时间：发起时间
 	*/
-	@ApiModelProperty(required = false,value="发起时间" , notes = "发起时间")
+	@ApiModelProperty(required = false,value="发起时间" , notes = "发起时间" , example = "2023-04-08 12:00:00")
 	private Date startDate;
 	
 	/**
-	 * 结束时间：结束时间
+	 * 完成时间：完成时间
 	*/
-	@ApiModelProperty(required = false,value="结束时间" , notes = "结束时间")
+	@ApiModelProperty(required = false,value="完成时间" , notes = "完成时间")
 	private Date finishDate;
+	
+	/**
+	 * 处理结果：处理结果
+	*/
+	@ApiModelProperty(required = false,value="处理结果" , notes = "处理结果")
+	private String result;
 	
 	/**
 	 * 创建人ID：创建人ID
@@ -134,7 +140,7 @@ public class CCustRepairApply extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-01 02:49:39")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-08 05:48:32")
 	private Date createTime;
 	
 	/**
@@ -146,13 +152,13 @@ public class CCustRepairApply extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-01 05:32:22")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-08 05:48:41")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "1")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -161,19 +167,19 @@ public class CCustRepairApply extends Entity {
 	/**
 	 * 删除人ID：删除人ID
 	*/
-	@ApiModelProperty(required = false,value="删除人ID" , notes = "删除人ID" , example = "110588348101165911")
+	@ApiModelProperty(required = false,value="删除人ID" , notes = "删除人ID")
 	private String deleteBy;
 	
 	/**
 	 * 删除时间：删除时间
 	*/
-	@ApiModelProperty(required = false,value="删除时间" , notes = "删除时间" , example = "2023-04-01 05:32:22")
+	@ApiModelProperty(required = false,value="删除时间" , notes = "删除时间")
 	private Date deleteTime;
 	
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
@@ -283,17 +289,17 @@ public class CCustRepairApply extends Entity {
 	}
 	
 	/**
-	 * 获得 预期日期<br>
-	 * 预期日期
-	 * @return 预期日期
+	 * 获得 报修时间<br>
+	 * 报修时间
+	 * @return 报修时间
 	*/
 	public Date getPlanFinishDate() {
 		return planFinishDate;
 	}
 	
 	/**
-	 * 设置 预期日期
-	 * @param planFinishDate 预期日期
+	 * 设置 报修时间
+	 * @param planFinishDate 报修时间
 	 * @return 当前对象
 	*/
 	public CCustRepairApply setPlanFinishDate(Date planFinishDate) {
@@ -454,21 +460,40 @@ public class CCustRepairApply extends Entity {
 	}
 	
 	/**
-	 * 获得 结束时间<br>
-	 * 结束时间
-	 * @return 结束时间
+	 * 获得 完成时间<br>
+	 * 完成时间
+	 * @return 完成时间
 	*/
 	public Date getFinishDate() {
 		return finishDate;
 	}
 	
 	/**
-	 * 设置 结束时间
-	 * @param finishDate 结束时间
+	 * 设置 完成时间
+	 * @param finishDate 完成时间
 	 * @return 当前对象
 	*/
 	public CCustRepairApply setFinishDate(Date finishDate) {
 		this.finishDate=finishDate;
+		return this;
+	}
+	
+	/**
+	 * 获得 处理结果<br>
+	 * 处理结果
+	 * @return 处理结果
+	*/
+	public String getResult() {
+		return result;
+	}
+	
+	/**
+	 * 设置 处理结果
+	 * @param result 处理结果
+	 * @return 当前对象
+	*/
+	public CCustRepairApply setResult(String result) {
+		this.result=result;
 		return this;
 	}
 	
@@ -831,6 +856,7 @@ public class CCustRepairApply extends Entity {
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setVersion(this.getVersion());
 		inst.setContent(this.getContent());
+		inst.setResult(this.getResult());
 		inst.setBusinessCode(this.getBusinessCode());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
@@ -918,6 +944,7 @@ public class CCustRepairApply extends Entity {
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(CCustRepairApplyMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(CCustRepairApplyMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, map.get(CCustRepairApplyMeta.CONTENT)));
+			this.setResult(DataParser.parse(String.class, map.get(CCustRepairApplyMeta.RESULT)));
 			this.setBusinessCode(DataParser.parse(String.class, map.get(CCustRepairApplyMeta.BUSINESS_CODE)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(CCustRepairApplyMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(CCustRepairApplyMeta.DELETED)));
@@ -946,6 +973,7 @@ public class CCustRepairApply extends Entity {
 				this.setUpdateTime( (Date)map.get(CCustRepairApplyMeta.UPDATE_TIME));
 				this.setVersion( (Integer)map.get(CCustRepairApplyMeta.VERSION));
 				this.setContent( (String)map.get(CCustRepairApplyMeta.CONTENT));
+				this.setResult( (String)map.get(CCustRepairApplyMeta.RESULT));
 				this.setBusinessCode( (String)map.get(CCustRepairApplyMeta.BUSINESS_CODE));
 				this.setCreateBy( (String)map.get(CCustRepairApplyMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(CCustRepairApplyMeta.DELETED));
@@ -987,6 +1015,7 @@ public class CCustRepairApply extends Entity {
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(CCustRepairApplyMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(CCustRepairApplyMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, r.getValue(CCustRepairApplyMeta.CONTENT)));
+			this.setResult(DataParser.parse(String.class, r.getValue(CCustRepairApplyMeta.RESULT)));
 			this.setBusinessCode(DataParser.parse(String.class, r.getValue(CCustRepairApplyMeta.BUSINESS_CODE)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(CCustRepairApplyMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(CCustRepairApplyMeta.DELETED)));
@@ -1012,6 +1041,7 @@ public class CCustRepairApply extends Entity {
 				this.setUpdateTime( (Date)r.getValue(CCustRepairApplyMeta.UPDATE_TIME));
 				this.setVersion( (Integer)r.getValue(CCustRepairApplyMeta.VERSION));
 				this.setContent( (String)r.getValue(CCustRepairApplyMeta.CONTENT));
+				this.setResult( (String)r.getValue(CCustRepairApplyMeta.RESULT));
 				this.setBusinessCode( (String)r.getValue(CCustRepairApplyMeta.BUSINESS_CODE));
 				this.setCreateBy( (String)r.getValue(CCustRepairApplyMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(CCustRepairApplyMeta.DELETED));

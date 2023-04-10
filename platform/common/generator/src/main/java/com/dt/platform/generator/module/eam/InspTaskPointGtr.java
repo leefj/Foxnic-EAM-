@@ -14,6 +14,7 @@ import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.InspectionRouteServiceProxy;
 import com.dt.platform.proxy.eam.InspectionTaskPointServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
+import org.github.foxnic.web.domain.hrm.Employee;
 
 public class InspTaskPointGtr extends BaseCodeGenerator {
 
@@ -30,6 +31,13 @@ public class InspTaskPointGtr extends BaseCodeGenerator {
 
         cfg.getPoClassFile().addSimpleProperty(InspectionRoute.class,"route","route","route");
         cfg.getPoClassFile().addSimpleProperty(InspectionTask.class,"task","task","task");
+
+        cfg.getPoClassFile().addSimpleProperty(Employee.class,"operUser","operUser","operUser");
+
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.OPER_ID).table().fillBy("operUser","name");
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.OPER_ID).form()
+                .button().chooseEmployee(true);
+
 
         cfg.view().search().inputLayout(
                 new Object[]{

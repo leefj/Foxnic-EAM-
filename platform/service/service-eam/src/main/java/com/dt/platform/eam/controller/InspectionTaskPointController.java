@@ -1,8 +1,13 @@
 package com.dt.platform.eam.controller;
 
 import java.util.List;
+
+import com.dt.platform.domain.eam.*;
+import com.dt.platform.domain.eam.meta.CCustInspectItemMeta;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.dao.entity.ReferCause;
+import org.github.foxnic.web.domain.hrm.Employee;
+import org.github.foxnic.web.domain.hrm.Person;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,8 +20,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.dt.platform.proxy.eam.InspectionTaskPointServiceProxy;
 import com.dt.platform.domain.eam.meta.InspectionTaskPointVOMeta;
-import com.dt.platform.domain.eam.InspectionTaskPoint;
-import com.dt.platform.domain.eam.InspectionTaskPointVO;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.excel.ExcelWriter;
@@ -30,7 +33,6 @@ import java.util.Map;
 import com.github.foxnic.dao.excel.ValidateResult;
 import java.io.InputStream;
 import com.dt.platform.domain.eam.meta.InspectionTaskPointMeta;
-import com.dt.platform.domain.eam.InspectionRoute;
 import io.swagger.annotations.Api;
 import com.github.xiaoymin.knife4j.annotations.ApiSort;
 import io.swagger.annotations.ApiOperation;
@@ -297,7 +299,12 @@ public class InspectionTaskPointController extends SuperController {
         Result<PagedList<InspectionTaskPoint>> result = new Result<>();
         PagedList<InspectionTaskPoint> list = inspectionTaskPointService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        inspectionTaskPointService.dao().fill(list).with(InspectionTaskPointMeta.ROUTE).execute();
+        inspectionTaskPointService.dao().fill(list)
+                .with(InspectionTaskPointMeta.ROUTE)
+                .with(InspectionTaskPointMeta.OPER_USER)
+                .execute();
+        List<Employee> user2 = CollectorUtil.collectList(list, InspectionTaskPoint::getOperUser);
+        inspectionTaskPointService.dao().join(user2, Person.class);
         result.success(true).data(list);
         return result;
     }

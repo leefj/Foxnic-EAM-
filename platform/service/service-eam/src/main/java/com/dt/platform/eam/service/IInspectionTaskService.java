@@ -32,7 +32,7 @@ public interface IInspectionTaskService extends ISuperService<InspectionTask> {
 
 	Result<JSONObject> check(String taskId, String pointCode);
 
-	Result execute(String id);
+	Result execute(String taskId,String pointCode,String status,String ct,String pics);
 
 	Result cancel(String id);
 

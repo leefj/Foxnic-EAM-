@@ -7,6 +7,7 @@ import com.dt.platform.domain.eam.meta.MaintainTaskVOMeta;
 import com.dt.platform.proxy.eam.MaintainTaskServiceProxy;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.dao.entity.ReferCause;
+import org.github.foxnic.web.domain.hrm.Person;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -304,6 +305,12 @@ public class InspectionTaskController extends SuperController {
         PagedList<InspectionTask> list = inspectionTaskService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         inspectionTaskService.dao().fill(list).with("originator").with(InspectionTaskMeta.INSPECTION_GROUP).with(InspectionTaskMeta.EXECUTOR).execute();
+
+
+        List<Employee> user2 = CollectorUtil.collectList(list, InspectionTask::getExecutor);
+        inspectionTaskService.dao().join(user2, Person.class);
+
+
         result.success(true).data(list);
         return result;
     }
@@ -330,7 +337,7 @@ public class InspectionTaskController extends SuperController {
         return inspectionTaskService.finish(id);
     }
 
-    @ApiOperation(value = "")
+    @ApiOperation(value = "巡检预检测")
     @ApiOperationSupport(order = 9)
     @SentinelResource(value = InspectionTaskServiceProxy.CHECK, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionTaskServiceProxy.CHECK)
@@ -338,17 +345,15 @@ public class InspectionTaskController extends SuperController {
         return inspectionTaskService.check(taskId,pointCode);
     }
 
+
     /**
      */
-    @ApiOperation(value = "")
-    @ApiImplicitParams({ 
-		@ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
-	})
+    @ApiOperation(value = "执行巡检")
     @ApiOperationSupport(order = 10)
     @SentinelResource(value = InspectionTaskServiceProxy.EXECUTE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionTaskServiceProxy.EXECUTE)
-    public Result execute(String id) {
-        return inspectionTaskService.execute(id);
+    public Result execute(String taskId,String pointCode,String status,String ct,String pics) {
+        return inspectionTaskService.execute(taskId, pointCode, status, ct, pics);
     }
 
     /**

@@ -96,7 +96,6 @@ public class InspPointGtr extends BaseCodeGenerator {
                         EAMTables.EAM_INSPECTION_POINT.CONTENT,
                         EAMTables.EAM_INSPECTION_POINT.NOTES,
                         EAMTables.EAM_INSPECTION_POINT.PICTURE_ID,
-
                 }
         );
 

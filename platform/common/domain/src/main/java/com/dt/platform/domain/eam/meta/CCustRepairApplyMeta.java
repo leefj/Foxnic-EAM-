@@ -13,8 +13,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-03 20:33:30
- * @sign 00510E5368E7037799FBE4272788629E
+ * @since 2023-04-10 21:55:57
+ * @sign D614BD0FC4572664F377C28CB5E998FA
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -61,14 +61,14 @@ public class CCustRepairApplyMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.CCustRepairApply,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustRepairApply.class ,NAME, java.lang.String.class, "报修标题", "报修标题", java.lang.String.class, null);
 	
 	/**
-	 * 预期日期 , 类型: java.util.Date
+	 * 报修时间 , 类型: java.util.Date
 	*/
 	public static final String PLAN_FINISH_DATE="planFinishDate";
 	
 	/**
-	 * 预期日期 , 类型: java.util.Date
+	 * 报修时间 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.CCustRepairApply,java.util.Date> PLAN_FINISH_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustRepairApply.class ,PLAN_FINISH_DATE, java.util.Date.class, "预期日期", "预期日期", java.util.Date.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustRepairApply,java.util.Date> PLAN_FINISH_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustRepairApply.class ,PLAN_FINISH_DATE, java.util.Date.class, "报修时间", "报修时间", java.util.Date.class, null);
 	
 	/**
 	 * 位置 , 类型: java.lang.String
@@ -151,14 +151,24 @@ public class CCustRepairApplyMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.CCustRepairApply,java.util.Date> START_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustRepairApply.class ,START_DATE, java.util.Date.class, "发起时间", "发起时间", java.util.Date.class, null);
 	
 	/**
-	 * 结束时间 , 类型: java.util.Date
+	 * 完成时间 , 类型: java.util.Date
 	*/
 	public static final String FINISH_DATE="finishDate";
 	
 	/**
-	 * 结束时间 , 类型: java.util.Date
+	 * 完成时间 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.CCustRepairApply,java.util.Date> FINISH_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustRepairApply.class ,FINISH_DATE, java.util.Date.class, "结束时间", "结束时间", java.util.Date.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustRepairApply,java.util.Date> FINISH_DATE_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustRepairApply.class ,FINISH_DATE, java.util.Date.class, "完成时间", "完成时间", java.util.Date.class, null);
+	
+	/**
+	 * 处理结果 , 类型: java.lang.String
+	*/
+	public static final String RESULT="result";
+	
+	/**
+	 * 处理结果 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustRepairApply,java.lang.String> RESULT_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustRepairApply.class ,RESULT, java.lang.String.class, "处理结果", "处理结果", java.lang.String.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -293,7 +303,7 @@ public class CCustRepairApplyMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , BUSINESS_CODE , STATUS , NAME , PLAN_FINISH_DATE , POS , REPORT_USER_NAME , REPORT_USER_ID , CONTACT , CONTENT , PICTURE_ID , PROCESS_USER_ID , START_DATE , FINISH_DATE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , REPIAR_ITEM_DATA , PROCESS_USER , REPORT_USER , ASSET_LIST , ASSET_IDS };
+	public static final String[] $PROPS={ ID , BUSINESS_CODE , STATUS , NAME , PLAN_FINISH_DATE , POS , REPORT_USER_NAME , REPORT_USER_ID , CONTACT , CONTENT , PICTURE_ID , PROCESS_USER_ID , START_DATE , FINISH_DATE , RESULT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , REPIAR_ITEM_DATA , PROCESS_USER , REPORT_USER , ASSET_LIST , ASSET_IDS };
 	
 	/**
 	 * 代理类
@@ -348,8 +358,8 @@ public class CCustRepairApplyMeta {
 		}
 		
 		/**
-		 * 设置 预期日期
-		 * @param planFinishDate 预期日期
+		 * 设置 报修时间
+		 * @param planFinishDate 报修时间
 		 * @return 当前对象
 		*/
 		public CCustRepairApply setPlanFinishDate(Date planFinishDate) {
@@ -447,13 +457,24 @@ public class CCustRepairApplyMeta {
 		}
 		
 		/**
-		 * 设置 结束时间
-		 * @param finishDate 结束时间
+		 * 设置 完成时间
+		 * @param finishDate 完成时间
 		 * @return 当前对象
 		*/
 		public CCustRepairApply setFinishDate(Date finishDate) {
 			super.change(FINISH_DATE,super.getFinishDate(),finishDate);
 			super.setFinishDate(finishDate);
+			return this;
+		}
+		
+		/**
+		 * 设置 处理结果
+		 * @param result 处理结果
+		 * @return 当前对象
+		*/
+		public CCustRepairApply setResult(String result) {
+			super.change(RESULT,super.getResult(),result);
+			super.setResult(result);
 			return this;
 		}
 		
@@ -619,6 +640,7 @@ public class CCustRepairApplyMeta {
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setVersion(this.getVersion());
 			inst.setContent(this.getContent());
+			inst.setResult(this.getResult());
 			inst.setBusinessCode(this.getBusinessCode());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());

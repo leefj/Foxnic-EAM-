@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 报修申请VO类型
  * <p>报修申请 , 数据表 eam_c_cust_repair_apply 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-03 20:33:30
+ * @since 2023-04-10 21:55:57
  * @sign 012982E9B91E0B544F134116D5324C43
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -406,6 +406,7 @@ public class CCustRepairApplyVO extends CCustRepairApply {
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setVersion(this.getVersion());
 		inst.setContent(this.getContent());
+		inst.setResult(this.getResult());
 		inst.setBusinessCode(this.getBusinessCode());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
@@ -505,6 +506,7 @@ public class CCustRepairApplyVO extends CCustRepairApply {
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(CCustRepairApplyVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(CCustRepairApplyVOMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, map.get(CCustRepairApplyVOMeta.CONTENT)));
+			this.setResult(DataParser.parse(String.class, map.get(CCustRepairApplyVOMeta.RESULT)));
 			this.setBusinessCode(DataParser.parse(String.class, map.get(CCustRepairApplyVOMeta.BUSINESS_CODE)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(CCustRepairApplyVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(CCustRepairApplyVOMeta.DELETED)));
@@ -543,6 +545,7 @@ public class CCustRepairApplyVO extends CCustRepairApply {
 				this.setUpdateTime( (Date)map.get(CCustRepairApplyVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)map.get(CCustRepairApplyVOMeta.VERSION));
 				this.setContent( (String)map.get(CCustRepairApplyVOMeta.CONTENT));
+				this.setResult( (String)map.get(CCustRepairApplyVOMeta.RESULT));
 				this.setBusinessCode( (String)map.get(CCustRepairApplyVOMeta.BUSINESS_CODE));
 				this.setCreateBy( (String)map.get(CCustRepairApplyVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(CCustRepairApplyVOMeta.DELETED));
@@ -594,6 +597,7 @@ public class CCustRepairApplyVO extends CCustRepairApply {
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(CCustRepairApplyVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(CCustRepairApplyVOMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, r.getValue(CCustRepairApplyVOMeta.CONTENT)));
+			this.setResult(DataParser.parse(String.class, r.getValue(CCustRepairApplyVOMeta.RESULT)));
 			this.setBusinessCode(DataParser.parse(String.class, r.getValue(CCustRepairApplyVOMeta.BUSINESS_CODE)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(CCustRepairApplyVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(CCustRepairApplyVOMeta.DELETED)));
@@ -619,6 +623,7 @@ public class CCustRepairApplyVO extends CCustRepairApply {
 				this.setUpdateTime( (Date)r.getValue(CCustRepairApplyVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)r.getValue(CCustRepairApplyVOMeta.VERSION));
 				this.setContent( (String)r.getValue(CCustRepairApplyVOMeta.CONTENT));
+				this.setResult( (String)r.getValue(CCustRepairApplyVOMeta.RESULT));
 				this.setBusinessCode( (String)r.getValue(CCustRepairApplyVOMeta.BUSINESS_CODE));
 				this.setCreateBy( (String)r.getValue(CCustRepairApplyVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(CCustRepairApplyVOMeta.DELETED));

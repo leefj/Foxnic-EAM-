@@ -3,10 +3,12 @@ package com.dt.platform.eam.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
+import com.dt.platform.constants.enums.eam.InspectionTaskPointStatusEnum;
 import com.dt.platform.constants.enums.eam.InspectionTaskStatusEnum;
 import com.dt.platform.constants.enums.eam.MaintainTaskStatusEnum;
 import com.dt.platform.domain.eam.InspectionTask;
 import com.dt.platform.domain.eam.InspectionTaskPoint;
+import com.dt.platform.domain.eam.meta.CCustInspectTaskMeta;
 import com.dt.platform.domain.eam.meta.InspectionTaskMeta;
 import com.dt.platform.eam.service.IInspectionTaskPointService;
 import com.dt.platform.eam.service.IInspectionTaskService;
@@ -25,7 +27,11 @@ import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.sql.expr.ConditionExpr;
+import com.github.foxnic.sql.expr.In;
+import com.github.foxnic.sql.expr.Update;
 import com.github.foxnic.sql.meta.DBField;
+import jdk.nashorn.internal.scripts.JO;
+import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +56,7 @@ import java.util.Map;
 
 @Service("EamInspectionTaskService")
 public class InspectionTaskServiceImpl extends SuperService<InspectionTask> implements IInspectionTaskService {
+
 
 
 	@Autowired
@@ -107,14 +114,112 @@ public class InspectionTaskServiceImpl extends SuperService<InspectionTask> impl
 
 	@Override
 	public Result<JSONObject> check(String taskId, String pointCode) {
-		return ErrorDesc.success();
+		if(StringUtil.isBlank(taskId)){
+			return ErrorDesc.failureMessage("taskId缺失");
+		}
+		if(StringUtil.isBlank(pointCode)){
+			return ErrorDesc.failureMessage("pointCode缺失");
+		}
+
+		InspectionTask task=this.getById(taskId);
+		if(task==null){
+			return ErrorDesc.failureMessage("未找到本次巡检任务");
+		}
+
+		//是否可以巡检
+		String curId= SessionUser.getCurrent().getActivatedEmployeeId();
+		//判断巡检人员,如果巡检人员为空，则所有人都可以巡检，如果有指定巡检人员，必须是选择中的巡检人员才能进行巡检
+		dao().fill(task)
+				.with(InspectionTaskMeta.INSPECT_USER_LIST)
+				.execute();
+		//判断本人是否可以进行巡检操作
+		List<Employee> userList=task.getInspectUserList();
+		if(userList==null||userList.size()==0){
+			System.out.println("可以运行");
+		}else{
+			String sql="select 1 from eam_inspection_task a,eam_inspection_group b,eam_inspection_group_user c where a.group_id=b.id and b.id=c.group_id and a.deleted=0 and a.id=? and c.user_id=?";
+			if(dao.queryRecord(sql,taskId,curId)==null){
+				return ErrorDesc.failureMessage("当前没有权限进行巡检操作");
+			}
+		}
+
+		InspectionTaskPoint pointQuery=new InspectionTaskPoint();
+		pointQuery.setTaskId(taskId);
+		pointQuery.setPointCode(pointCode);
+		List<InspectionTaskPoint> pointList= inspectionTaskPointService.queryList(pointQuery);
+		if(pointList==null&&pointList.size()==0){
+			return ErrorDesc.failureMessage("未在本次巡检任务中找到该巡检点");
+		}
+
+		if(pointList.size()>2){
+			return ErrorDesc.failureMessage("本次巡检有重复的巡检点");
+		}
+
+		JSONObject obj=new JSONObject();
+		obj.put("taskId",taskId);
+		obj.put("pointStatus",pointList.get(0).getPointStatus());
+		obj.put("pointCode",pointCode);
+		obj.put("pointName",pointList.get(0).getPointName());
+		obj.put("pointContent",pointList.get(0).getPointContent());
+		obj.put("content",pointList.get(0).getContent());
+		Result<JSONObject> result=new Result<>();
+		result.success(true);
+		result.data(obj);
+		return result;
 	}
 
 
 	@Override
-	public Result execute(String id) {
+	public Result execute(String taskId, String pointCode, String status, String ct, String pics) {
+
+		Result<JSONObject> checkResult=check(taskId,pointCode);
+		if(!checkResult.isSuccess()){
+			return checkResult;
+		}
+		String curId= SessionUser.getCurrent().getActivatedEmployeeId();
+
+
+		InspectionTask task=this.getById(taskId);
+		if(InspectionTaskStatusEnum.ACTING.code().equals(task.getTaskStatus())){
+			System.out.println("可以进行巡检");
+		}else if(InspectionTaskStatusEnum.WAIT.code().equals(task.getTaskStatus())){
+			//更新巡检状态
+			InspectionTask taskUps=new InspectionTask();
+			taskUps.setTaskStatus(InspectionTaskStatusEnum.ACTING.code());
+			taskUps.setId(taskId);
+			taskUps.setActStartTime(new Date());
+			this.update(taskUps,SaveMode.NOT_NULL_FIELDS,false);
+		 }else{
+			return ErrorDesc.failureMessage("当前巡检任务状态不能进行巡检操作");
+		}
+
+		InspectionTaskPoint pointQuery=new InspectionTaskPoint();
+		pointQuery.setTaskId(taskId);
+		pointQuery.setPointCode(pointCode);
+		List<InspectionTaskPoint> pointList= inspectionTaskPointService.queryList(pointQuery);
+		if(pointList==null&&pointList.size()==0){
+			return ErrorDesc.failureMessage("未在本次巡检任务中找到该巡检点");
+		}
+
+		if(pointList.size()>2){
+			return ErrorDesc.failureMessage("本次巡检有重复的巡检点");
+		}
+
+		String taskPointId=pointList.get(0).getId();
+		InspectionTaskPoint point=new InspectionTaskPoint();
+		point.setId(taskPointId);
+		point.setTaskId(taskId);
+		point.setPointCode(pointCode);
+		point.setOperTime(new Date());
+		point.setOperId(curId);
+		point.setPointStatus(status);
+		point.setContent(ct);
+		inspectionTaskPointService.update(point,SaveMode.NOT_NULL_FIELDS,false);
 		return ErrorDesc.success();
 	}
+
+
+
 
 	@Override
 	public Result cancel(String id) {
@@ -149,6 +254,10 @@ public class InspectionTaskServiceImpl extends SuperService<InspectionTask> impl
 		for(int i=0;i<list.size();i++){
 			InspectionTaskPoint inspectionTaskPoint=list.get(i);
 
+			if(InspectionTaskPointStatusEnum.WAIT.code().equals(inspectionTaskPoint.getPointStatus())){
+				return ErrorDesc.failureMessage("巡检点:"+inspectionTaskPoint.getPointName()+"未做巡检");
+			}
+
 			if(inspectionTaskPoint.getOperTime()==null){
 				return ErrorDesc.failureMessage("巡检点:"+inspectionTaskPoint.getPointName()+"未做巡检");
 			}else{
@@ -170,11 +279,13 @@ public class InspectionTaskServiceImpl extends SuperService<InspectionTask> impl
 		inspectionTask.setActFinishTime(maxDate);
 		inspectionTask.setTaskStatus(InspectionTaskStatusEnum.FINISH.code());
 		inspectionTask.setExecutorId(SessionUser.getCurrent().getUser().getActivatedEmployeeId());
+
 		long times = maxDate.getTime() - minDate.getTime();
 		double hours = (double) times/(60*60*1000);
 		BigDecimal a= BigDecimal.valueOf(hours);
 		double diffTime = a.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-		inspectionTask.setActTotalCost(new BigDecimal(sumDiffTime));
+		inspectionTask.setActTotalCost(new BigDecimal(diffTime));
+
 		super.update(inspectionTask,SaveMode.NOT_NULL_FIELDS,false);
 		return ErrorDesc.success();
 	}

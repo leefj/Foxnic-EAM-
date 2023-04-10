@@ -108,6 +108,8 @@ public class CRepiarGtr extends BaseCodeGenerator{
         cfg.view().formWindow().bottomSpace(300);
 
         cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.NAME).form().validate().required();
+        cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.REPORT_USER_NAME).form().validate().required();
+        cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.CONTACT).form().validate().required();
         cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.CONTENT).form().textArea().height(135);
 
       //  cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.CONTACT).form().validate().required();
@@ -144,6 +146,7 @@ public class CRepiarGtr extends BaseCodeGenerator{
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_C_CUST_REPAIR_APPLY.CONTENT,
+                        EAMTables.EAM_C_CUST_REPAIR_APPLY.RESULT,
                 }
         );
 
