@@ -102,6 +102,8 @@ public interface InspectionPlanServiceProxy {
 
     public static final String STOP = API_PREFIX + "stop";
 
+    public static final String ACTION = API_PREFIX + "action";
+
     public static final String EXECUTE = API_PREFIX + "execute";
 
 

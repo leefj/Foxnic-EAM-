@@ -46,6 +46,9 @@ public class InspTaskGtr extends BaseCodeGenerator {
 
         cfg.getPoClassFile().addSimpleProperty(InspectionGroup.class,"inspectionGroup","班组","班组");
 
+        cfg.getPoClassFile().addListProperty(Employee.class,"inspectUserList","inspectUserList","inspectUserList");
+
+
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"executor","执行人","执行人");
 
@@ -88,12 +91,17 @@ public class InspTaskGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.ORIGINATOR_ID).table().fillBy("originator","name");
 
-        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.EXECUTOR_ID)
-             .form().selectBox().queryApi(GroupUserServiceProxy.QUERY_EMPLOYEE_PERSON)
-                .paging(false).filter(false).toolbar(false)
-                .valueField("employeeId").
-                textField(PersonMeta.NAME).
-                fillWith(InspectionTaskMeta.EXECUTOR).muliti(false);
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.EXECUTOR_ID).table().fillBy("executor","name");
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.EXECUTOR_ID).form()
+                .button().chooseEmployee(true);
+
+
+//        cfg.view().field(EAMTables.EAM_INSPECTION_TASK.EXECUTOR_ID)
+//             .form().selectBox().queryApi(GroupUserServiceProxy.QUERY_EMPLOYEE_PERSON)
+//                .paging(false).filter(false).toolbar(false)
+//                .valueField("employeeId").
+//                textField(PersonMeta.NAME).
+//                fillWith(InspectionTaskMeta.EXECUTOR).muliti(false);
 
 
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK.PLAN_INSPECTION_METHOD).form()

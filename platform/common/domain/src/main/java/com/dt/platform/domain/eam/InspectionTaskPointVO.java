@@ -14,6 +14,7 @@ import java.util.Map;
 import com.dt.platform.domain.eam.meta.InspectionTaskPointVOMeta;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Date;
+import org.github.foxnic.web.domain.hrm.Employee;
 import com.github.foxnic.sql.data.ExprRcd;
 
 
@@ -22,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检点VO类型
  * <p>巡检点 , 数据表 eam_inspection_task_point 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-10 07:19:14
+ * @since 2023-04-10 21:23:33
  * @sign 651D328B81E70EC1A0B8941BD7D880C5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -443,6 +444,7 @@ public class InspectionTaskPointVO extends InspectionTaskPoint {
 			inst.setDataOrigin(this.getDataOrigin());
 			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
+			inst.setOperUser(this.getOperUser());
 			inst.setSearchValue(this.getSearchValue());
 		}
 		inst.clearModifies();
@@ -543,6 +545,7 @@ public class InspectionTaskPointVO extends InspectionTaskPoint {
 			this.setSortField(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.SORT_FIELD)));
 			this.setDataOrigin(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.QUERY_LOGIC)));
+			this.setOperUser(DataParser.parse(Employee.class, map.get(InspectionTaskPointVOMeta.OPER_USER)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(InspectionTaskPointVOMeta.SEARCH_VALUE)));
 			return true;
 		} else {
@@ -587,6 +590,7 @@ public class InspectionTaskPointVO extends InspectionTaskPoint {
 				this.setSortField( (String)map.get(InspectionTaskPointVOMeta.SORT_FIELD));
 				this.setDataOrigin( (String)map.get(InspectionTaskPointVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(InspectionTaskPointVOMeta.QUERY_LOGIC));
+				this.setOperUser( (Employee)map.get(InspectionTaskPointVOMeta.OPER_USER));
 				this.setSearchValue( (String)map.get(InspectionTaskPointVOMeta.SEARCH_VALUE));
 				return true;
 			} catch (Exception e) {

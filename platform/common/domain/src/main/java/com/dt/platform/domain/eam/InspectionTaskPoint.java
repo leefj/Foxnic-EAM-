@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
 import com.github.foxnic.api.swagger.EnumFor;
+import org.github.foxnic.web.domain.hrm.Employee;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
@@ -23,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检点
  * <p>巡检点 , 数据表 eam_inspection_task_point 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-10 07:19:14
- * @sign CA625695CAE3F496C000A43EE04AF976
+ * @since 2023-04-10 21:23:33
+ * @sign 1F65E43CA20286EFEAD8E3377EE85089
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -219,6 +220,12 @@ public class InspectionTaskPoint extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="task" , notes = "task")
 	private InspectionTask task;
+	
+	/**
+	 * operUser：operUser
+	*/
+	@ApiModelProperty(required = false,value="operUser" , notes = "operUser")
+	private Employee operUser;
 	
 	/**
 	 * 获得 主键<br>
@@ -820,6 +827,25 @@ public class InspectionTaskPoint extends Entity {
 		this.task=task;
 		return this;
 	}
+	
+	/**
+	 * 获得 operUser<br>
+	 * operUser
+	 * @return operUser
+	*/
+	public Employee getOperUser() {
+		return operUser;
+	}
+	
+	/**
+	 * 设置 operUser
+	 * @param operUser operUser
+	 * @return 当前对象
+	*/
+	public InspectionTaskPoint setOperUser(Employee operUser) {
+		this.operUser=operUser;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -896,6 +922,7 @@ public class InspectionTaskPoint extends Entity {
 		if(all) {
 			inst.setRoute(this.getRoute());
 			inst.setTask(this.getTask());
+			inst.setOperUser(this.getOperUser());
 		}
 		inst.clearModifies();
 		return inst;
@@ -986,6 +1013,7 @@ public class InspectionTaskPoint extends Entity {
 			// others
 			this.setRoute(DataParser.parse(InspectionRoute.class, map.get(InspectionTaskPointMeta.ROUTE)));
 			this.setTask(DataParser.parse(InspectionTask.class, map.get(InspectionTaskPointMeta.TASK)));
+			this.setOperUser(DataParser.parse(Employee.class, map.get(InspectionTaskPointMeta.OPER_USER)));
 			return true;
 		} else {
 			try {
@@ -1020,6 +1048,7 @@ public class InspectionTaskPoint extends Entity {
 				// others
 				this.setRoute( (InspectionRoute)map.get(InspectionTaskPointMeta.ROUTE));
 				this.setTask( (InspectionTask)map.get(InspectionTaskPointMeta.TASK));
+				this.setOperUser( (Employee)map.get(InspectionTaskPointMeta.OPER_USER));
 				return true;
 			} catch (Exception e) {
 				return false;

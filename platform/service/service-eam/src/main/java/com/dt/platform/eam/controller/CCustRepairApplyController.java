@@ -62,16 +62,17 @@ public class CCustRepairApplyController extends SuperController {
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.NAME, value = "报修标题", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CCustRepairApplyVOMeta.PLAN_FINISH_DATE, value = "预期日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CCustRepairApplyVOMeta.PLAN_FINISH_DATE, value = "报修时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.CONTENT, value = "报修内容", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.REPORT_USER_NAME, value = "发起人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.CONTACT, value = "联系方式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.PROCESS_USER_ID, value = "处理人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.START_DATE, value = "发起时间", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = CCustRepairApplyVOMeta.FINISH_DATE, value = "结束时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CCustRepairApplyVOMeta.FINISH_DATE, value = "完成时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.POS, value = "位置", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CCustRepairApplyVOMeta.REPORT_USER_ID, value = "使用人", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = CCustRepairApplyVOMeta.REPORT_USER_ID, value = "使用人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CCustRepairApplyVOMeta.RESULT, value = "处理结果", required = false, dataTypeClass = String.class, example = "")
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -169,16 +170,17 @@ public class CCustRepairApplyController extends SuperController {
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.NAME, value = "报修标题", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CCustRepairApplyVOMeta.PLAN_FINISH_DATE, value = "预期日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CCustRepairApplyVOMeta.PLAN_FINISH_DATE, value = "报修时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.CONTENT, value = "报修内容", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.REPORT_USER_NAME, value = "发起人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.CONTACT, value = "联系方式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.PROCESS_USER_ID, value = "处理人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.START_DATE, value = "发起时间", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = CCustRepairApplyVOMeta.FINISH_DATE, value = "结束时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CCustRepairApplyVOMeta.FINISH_DATE, value = "完成时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.POS, value = "位置", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CCustRepairApplyVOMeta.REPORT_USER_ID, value = "使用人", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = CCustRepairApplyVOMeta.REPORT_USER_ID, value = "使用人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CCustRepairApplyVOMeta.RESULT, value = "处理结果", required = false, dataTypeClass = String.class, example = "")
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { CCustRepairApplyVOMeta.PAGE_INDEX, CCustRepairApplyVOMeta.PAGE_SIZE, CCustRepairApplyVOMeta.SEARCH_FIELD, CCustRepairApplyVOMeta.FUZZY_FIELD, CCustRepairApplyVOMeta.SEARCH_VALUE, CCustRepairApplyVOMeta.DIRTY_FIELDS, CCustRepairApplyVOMeta.SORT_FIELD, CCustRepairApplyVOMeta.SORT_TYPE, CCustRepairApplyVOMeta.DATA_ORIGIN, CCustRepairApplyVOMeta.QUERY_LOGIC, CCustRepairApplyVOMeta.REQUEST_ACTION, CCustRepairApplyVOMeta.IDS })
@@ -198,16 +200,17 @@ public class CCustRepairApplyController extends SuperController {
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.NAME, value = "报修标题", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CCustRepairApplyVOMeta.PLAN_FINISH_DATE, value = "预期日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CCustRepairApplyVOMeta.PLAN_FINISH_DATE, value = "报修时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.CONTENT, value = "报修内容", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.REPORT_USER_NAME, value = "发起人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.CONTACT, value = "联系方式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.PROCESS_USER_ID, value = "处理人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.START_DATE, value = "发起时间", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = CCustRepairApplyVOMeta.FINISH_DATE, value = "结束时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CCustRepairApplyVOMeta.FINISH_DATE, value = "完成时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.POS, value = "位置", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CCustRepairApplyVOMeta.REPORT_USER_ID, value = "使用人", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = CCustRepairApplyVOMeta.REPORT_USER_ID, value = "使用人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CCustRepairApplyVOMeta.RESULT, value = "处理结果", required = false, dataTypeClass = String.class, example = "")
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { CCustRepairApplyVOMeta.PAGE_INDEX, CCustRepairApplyVOMeta.PAGE_SIZE, CCustRepairApplyVOMeta.SEARCH_FIELD, CCustRepairApplyVOMeta.FUZZY_FIELD, CCustRepairApplyVOMeta.SEARCH_VALUE, CCustRepairApplyVOMeta.DIRTY_FIELDS, CCustRepairApplyVOMeta.SORT_FIELD, CCustRepairApplyVOMeta.SORT_TYPE, CCustRepairApplyVOMeta.DATA_ORIGIN, CCustRepairApplyVOMeta.QUERY_LOGIC, CCustRepairApplyVOMeta.REQUEST_ACTION, CCustRepairApplyVOMeta.IDS })
@@ -232,15 +235,10 @@ public class CCustRepairApplyController extends SuperController {
         Result<CCustRepairApply> result = new Result<>();
         CCustRepairApply cCustRepairApply = cCustRepairApplyService.getById(id);
         // join 关联的对象
-        cCustRepairApplyService.dao().fill(cCustRepairApply).with("processUser").with(CCustRepairApplyMeta.REPIAR_ITEM_DATA)
-                .with("reportUser").with(CCustRepairApplyMeta.ASSET_LIST).execute();
-
-
+        cCustRepairApplyService.dao().fill(cCustRepairApply).with("processUser").with(CCustRepairApplyMeta.REPIAR_ITEM_DATA).with("reportUser").with(CCustRepairApplyMeta.ASSET_LIST).execute();
         cCustRepairApplyService.dao().join(cCustRepairApply.getReportUser(), Person.class);
         cCustRepairApplyService.dao().join(cCustRepairApply.getProcessUser(), Person.class);
-
         List<CCustRepiarItem> list = cCustRepairApply.getRepiarItemData();
-
         cCustRepairApplyService.dao().fill(list).with("processUser").execute();
         if (list != null && list.size() > 0) {
             List<Employee> user = CollectorUtil.collectList(list, CCustRepiarItem::getProcessUser);
@@ -330,16 +328,17 @@ public class CCustRepairApplyController extends SuperController {
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.NAME, value = "报修标题", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CCustRepairApplyVOMeta.PLAN_FINISH_DATE, value = "预期日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CCustRepairApplyVOMeta.PLAN_FINISH_DATE, value = "报修时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.CONTENT, value = "报修内容", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.REPORT_USER_NAME, value = "发起人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.CONTACT, value = "联系方式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.PROCESS_USER_ID, value = "处理人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.START_DATE, value = "发起时间", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = CCustRepairApplyVOMeta.FINISH_DATE, value = "结束时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CCustRepairApplyVOMeta.FINISH_DATE, value = "完成时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.POS, value = "位置", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CCustRepairApplyVOMeta.REPORT_USER_ID, value = "使用人", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = CCustRepairApplyVOMeta.REPORT_USER_ID, value = "使用人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CCustRepairApplyVOMeta.RESULT, value = "处理结果", required = false, dataTypeClass = String.class, example = "")
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { CCustRepairApplyVOMeta.PAGE_INDEX, CCustRepairApplyVOMeta.PAGE_SIZE })
     @SentinelResource(value = CCustRepairApplyServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -360,16 +359,17 @@ public class CCustRepairApplyController extends SuperController {
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.BUSINESS_CODE, value = "业务编号", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.STATUS, value = "办理状态", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.NAME, value = "报修标题", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CCustRepairApplyVOMeta.PLAN_FINISH_DATE, value = "预期日期", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CCustRepairApplyVOMeta.PLAN_FINISH_DATE, value = "报修时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.CONTENT, value = "报修内容", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.REPORT_USER_NAME, value = "发起人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.CONTACT, value = "联系方式", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.PICTURE_ID, value = "图片", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.PROCESS_USER_ID, value = "处理人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.START_DATE, value = "发起时间", required = false, dataTypeClass = Date.class),
-		@ApiImplicitParam(name = CCustRepairApplyVOMeta.FINISH_DATE, value = "结束时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CCustRepairApplyVOMeta.FINISH_DATE, value = "完成时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = CCustRepairApplyVOMeta.POS, value = "位置", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CCustRepairApplyVOMeta.REPORT_USER_ID, value = "使用人", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = CCustRepairApplyVOMeta.REPORT_USER_ID, value = "使用人", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = CCustRepairApplyVOMeta.RESULT, value = "处理结果", required = false, dataTypeClass = String.class, example = "")
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = CCustRepairApplyServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -378,18 +378,12 @@ public class CCustRepairApplyController extends SuperController {
         Result<PagedList<CCustRepairApply>> result = new Result<>();
         PagedList<CCustRepairApply> list = cCustRepairApplyService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
-        cCustRepairApplyService.dao().fill(list).with("processUser").
-                 with("reportUser")
-                .with(CCustRepairApplyMeta.ASSET_LIST).with(CCustRepairApplyMeta.REPIAR_ITEM_DATA).
-                execute();
-
+        cCustRepairApplyService.dao().fill(list).with("processUser").with("reportUser").with(CCustRepairApplyMeta.ASSET_LIST).with(CCustRepairApplyMeta.REPIAR_ITEM_DATA).execute();
         List<Employee> user1 = CollectorUtil.collectList(list, CCustRepairApply::getProcessUser);
         cCustRepairApplyService.dao().join(user1, Person.class);
-
         List<Employee> user2 = CollectorUtil.collectList(list, CCustRepairApply::getReportUser);
         cCustRepairApplyService.dao().join(user2, Person.class);
         result.success(true).data(list);
-
         return result;
     }
 }

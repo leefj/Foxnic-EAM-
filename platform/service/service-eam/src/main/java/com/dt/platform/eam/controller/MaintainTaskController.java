@@ -387,7 +387,8 @@ public class MaintainTaskController extends SuperController {
     @SentinelResource(value = MaintainTaskServiceProxy.EXECUTE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(MaintainTaskServiceProxy.EXECUTE)
     public Result execute(String id) {
-        return maintainTaskService.execute(id);
+//        return maintainTaskService.execute(id);
+        return null;
     }
 
     /**

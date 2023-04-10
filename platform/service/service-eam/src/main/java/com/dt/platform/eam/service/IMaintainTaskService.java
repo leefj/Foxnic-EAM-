@@ -34,7 +34,7 @@ public interface IMaintainTaskService extends ISuperService<MaintainTask> {
 	 */
 	Result batchCancel(List<String> ids);
 
-	Result execute(String id);
+
 
 	/**
 	 * 添加，如果语句错误，则抛出异常

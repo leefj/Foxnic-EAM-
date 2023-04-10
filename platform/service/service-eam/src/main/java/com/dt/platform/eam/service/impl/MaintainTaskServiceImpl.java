@@ -66,10 +66,6 @@ public class MaintainTaskServiceImpl extends SuperService<MaintainTask> implemen
 	public DAO dao() { return dao; }
 
 
-	@Override
-	public Result execute(String id) {
-		return ErrorDesc.success();
-	}
 
 	@Override
 	public Result cancel(String id) {
@@ -168,6 +164,7 @@ public class MaintainTaskServiceImpl extends SuperService<MaintainTask> implemen
 		}
 		return ErrorDesc.success();
 	}
+
 
 
 	@Override

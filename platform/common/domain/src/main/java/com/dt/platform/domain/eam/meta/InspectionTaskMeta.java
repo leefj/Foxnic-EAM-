@@ -17,8 +17,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-10 07:26:15
- * @sign 9AE2DDCDD09492A9B995829ABD112D78
+ * @since 2023-04-10 21:43:32
+ * @sign A7EDF25739034AA44E5829E89ADBB998
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -385,6 +385,16 @@ public class InspectionTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTask,com.dt.platform.domain.eam.InspectionGroup> INSPECTION_GROUP_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTask.class ,INSPECTION_GROUP, com.dt.platform.domain.eam.InspectionGroup.class, "班组", "班组", com.dt.platform.domain.eam.InspectionGroup.class, null);
 	
 	/**
+	 * inspectUserList , 集合类型: LIST , 类型: org.github.foxnic.web.domain.hrm.Employee
+	*/
+	public static final String INSPECT_USER_LIST="inspectUserList";
+	
+	/**
+	 * inspectUserList , 集合类型: LIST , 类型: org.github.foxnic.web.domain.hrm.Employee
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTask,org.github.foxnic.web.domain.hrm.Employee> INSPECT_USER_LIST_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTask.class ,INSPECT_USER_LIST, java.util.List.class, "inspectUserList", "inspectUserList", org.github.foxnic.web.domain.hrm.Employee.class, null);
+	
+	/**
 	 * 制单人 , 类型: org.github.foxnic.web.domain.hrm.Employee
 	*/
 	public static final String ORIGINATOR="originator";
@@ -407,7 +417,7 @@ public class InspectionTaskMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , PLAN_ID , TASK_STATUS , TASK_CODE , PLAN_CODE , PLAN_NAME , PLAN_INSPECTION_METHOD , PLAN_COMPLETION_TIME , PLAN_NOTES , GROUP_ID , EXECUTOR_ID , PLAN_START_TIME , ACT_START_TIME , ACT_FINISH_TIME , ACT_TOTAL_COST , CONTENT , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , SELECTED_CODE , INSPECTION_PLAN , INSPECTION_POINT_LIST , INSPECTION_POINT_IDS , INSPECTION_TASK_POINT_LIST , INSPECTION_TASK_POINT_IDS , TIME_DICT , INSPECTION_TYPE_DICT , INSPECTION_GROUP , ORIGINATOR , EXECUTOR };
+	public static final String[] $PROPS={ ID , PLAN_ID , TASK_STATUS , TASK_CODE , PLAN_CODE , PLAN_NAME , PLAN_INSPECTION_METHOD , PLAN_COMPLETION_TIME , PLAN_NOTES , GROUP_ID , EXECUTOR_ID , PLAN_START_TIME , ACT_START_TIME , ACT_FINISH_TIME , ACT_TOTAL_COST , CONTENT , NOTES , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , SELECTED_CODE , INSPECTION_PLAN , INSPECTION_POINT_LIST , INSPECTION_POINT_IDS , INSPECTION_TASK_POINT_LIST , INSPECTION_TASK_POINT_IDS , TIME_DICT , INSPECTION_TYPE_DICT , INSPECTION_GROUP , INSPECT_USER_LIST , ORIGINATOR , EXECUTOR };
 	
 	/**
 	 * 代理类
@@ -814,6 +824,17 @@ public class InspectionTaskMeta {
 		}
 		
 		/**
+		 * 设置 inspectUserList
+		 * @param inspectUserList inspectUserList
+		 * @return 当前对象
+		*/
+		public InspectionTask setInspectUserList(List<Employee> inspectUserList) {
+			super.change(INSPECT_USER_LIST,super.getInspectUserList(),inspectUserList);
+			super.setInspectUserList(inspectUserList);
+			return this;
+		}
+		
+		/**
 		 * 设置 制单人
 		 * @param originator 制单人
 		 * @return 当前对象
@@ -886,6 +907,7 @@ public class InspectionTaskMeta {
 				inst.setInspectionPlan(this.getInspectionPlan());
 				inst.setInspectionTaskPointList(this.getInspectionTaskPointList());
 				inst.setInspectionTaskPointIds(this.getInspectionTaskPointIds());
+				inst.setInspectUserList(this.getInspectUserList());
 				inst.setOriginator(this.getOriginator());
 				inst.setInspectionPointIds(this.getInspectionPointIds());
 				inst.setInspectionGroup(this.getInspectionGroup());

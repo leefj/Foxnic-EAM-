@@ -883,11 +883,16 @@ public class EamRelationManager extends RelationManager {
     }
     public void setupInspectionPoint() {
 
+
         this.property(InspectionPointMeta.ROUTE_PROP)
                 .using(EAMTables.EAM_INSPECTION_POINT.ROUTE_ID).join(EAMTables.EAM_INSPECTION_ROUTE.ID);
     }
 
     public void setupInspectionTaskPoint() {
+        this.property(InspectionTaskPointMeta.OPER_USER_PROP)
+                .using(EAMTables.EAM_INSPECTION_TASK_POINT.OPER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
+
+
         this.property(InspectionTaskPointMeta.ROUTE_PROP)
                 .using(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_ROUTE_ID).join(EAMTables.EAM_INSPECTION_ROUTE.ID);
 
@@ -918,7 +923,10 @@ public class EamRelationManager extends RelationManager {
         this.property(InspectionTaskMeta.INSPECTION_GROUP_PROP)
                 .using(EAMTables.EAM_INSPECTION_TASK.GROUP_ID).join(EAMTables.EAM_INSPECTION_GROUP.ID);
 
-
+        this.property(InspectionTaskMeta.INSPECT_USER_LIST_PROP)
+                .using(EAMTables.EAM_INSPECTION_TASK.GROUP_ID).join(EAMTables.EAM_INSPECTION_GROUP.ID)
+                 .using(EAMTables.EAM_INSPECTION_GROUP.ID).join(EAMTables.EAM_INSPECTION_GROUP_USER.GROUP_ID)
+                 .using(EAMTables.EAM_INSPECTION_GROUP_USER.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
     }
 
     public void setupAssetStockOut(){

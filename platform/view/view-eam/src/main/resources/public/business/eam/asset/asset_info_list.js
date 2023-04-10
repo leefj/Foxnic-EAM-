@@ -588,7 +588,6 @@ function ListPage() {
 						exportArr.push({"code":"labelCard","id":"2","title":  fox.translate('打印资产标签') });
 					}
 
-
 					dropdown.render({
 						elem: this
 						,show: true //外部事件触发即显示
