@@ -1,8 +1,8 @@
 <!--
 /**
  * 执行日志 列表页 JS 脚本
- * @author 金杰 , maillank@qq.com
- * @since 2023-04-07 09:21:11
+ * @author 李方捷 , leefangjie@qq.com
+ * @since 2023-04-10 10:17:25
  */
  -->
  <!DOCTYPE html>
@@ -38,17 +38,17 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-4903-content">
+        <div class="layui-row form-row" id="random-2967-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
             <div class="layui-col-xs12 form-column" >
 
-                <!-- date_input : 记录时间 ,  recTime  -->
+                <!-- date_input : 执行时间 ,  executeTime  -->
                 <div class="layui-form-item" >
-                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('记录时间')}">记录时间</div></div>
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('执行时间')}">执行时间</div></div>
                     <div class="layui-input-block layui-input-block-c1">
-                        <input input-type="date" lay-filter="recTime" id="recTime" name="recTime"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择'+'记录时间') }" type="text" class="layui-input"   />
+                        <input input-type="date" lay-filter="executeTime" id="executeTime" name="executeTime"  autocomplete="off"  readonly  th:placeholder="${ lang.translate('请选择'+'执行时间') }" type="text" class="layui-input"   />
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->

@@ -1,8 +1,8 @@
 <!--
 /**
  * 执行日志 列表页 JS 脚本
- * @author 金杰 , maillank@qq.com
- * @since 2023-04-07 09:21:10
+ * @author 李方捷 , leefangjie@qq.com
+ * @since 2023-04-10 10:17:18
  */
  -->
  <!DOCTYPE html>
@@ -41,11 +41,13 @@
                 <div class="layui-form toolbar search-inputs">
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 计划 , planId ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 记录时间 , recTime ,typeName=date_input, isHideInSearch=false -->
+                    <!-- 执行时间 , executeTime ,typeName=date_input, isHideInSearch=false -->
                     <div class="search-unit">
-                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('记录时间')}" class="search-label recTime-label">记录时间</span><span class="search-colon">:</span></div>
-                            <input type="text" id="recTime"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('请选择')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
+                        <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('执行时间')}" class="search-label executeTime-label">执行时间</span><span class="search-colon">:</span></div>
+                            <input type="text" id="executeTime"  style="width: 150px"  lay-verify="date" th:placeholder="${lang.translate('请选择')}" autocomplete="off" class="layui-input search-input search-date-input" readonly>
                     </div>
+                    <!-- 是否已经执行 , executed ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 执行错误 , errors ,typeName=text_input, isHideInSearch=true -->
 
 
                 </div>

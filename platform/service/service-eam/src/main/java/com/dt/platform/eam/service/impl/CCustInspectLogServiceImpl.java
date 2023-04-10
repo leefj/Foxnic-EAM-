@@ -1,9 +1,6 @@
 package com.dt.platform.eam.service.impl;
 
 import javax.annotation.Resource;
-
-import com.dt.platform.domain.eam.CCustInspectUserS;
-import com.dt.platform.eam.service.ICCustInspectUserSService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -40,15 +37,14 @@ import java.util.Map;
  * <p>
  * 执行日志服务实现
  * </p>
- * @author 金杰 , maillank@qq.com
- * @since 2023-04-07 09:21:10
+ * @author 李方捷 , leefangjie@qq.com
+ * @since 2023-04-10 10:17:17
 */
 
 
 @Service("EamCCustInspectLogService")
 
 public class CCustInspectLogServiceImpl extends SuperService<CCustInspectLog> implements ICCustInspectLogService {
-
 
 	/**
 	 * 注入DAO对象
@@ -78,7 +74,6 @@ public class CCustInspectLogServiceImpl extends SuperService<CCustInspectLog> im
 	@Override
 	public Result insert(CCustInspectLog cCustInspectLog,boolean throwsException) {
 		Result r=super.insert(cCustInspectLog,throwsException);
-
 		return r;
 	}
 

@@ -22,9 +22,9 @@ import com.github.foxnic.sql.data.ExprRcd;
 /**
  * 执行日志
  * <p>执行日志 , 数据表 eam_c_cust_inspect_log 的PO类型</p>
- * @author 金杰 , maillank@qq.com
- * @since 2023-04-07 09:21:10
- * @sign ECF871A0B650EDB4F84CA91B91786FDC
+ * @author 李方捷 , leefangjie@qq.com
+ * @since 2023-04-10 10:17:17
+ * @sign AE1B83B8311335F10D9A82C0CB0BFCC0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -50,10 +50,10 @@ public class CCustInspectLog extends Entity {
 	private String planId;
 	
 	/**
-	 * 记录时间：记录时间
+	 * 执行时间：执行时间
 	*/
-	@ApiModelProperty(required = false,value="记录时间" , notes = "记录时间")
-	private Date recTime;
+	@ApiModelProperty(required = false,value="执行时间" , notes = "执行时间")
+	private Date executeTime;
 	
 	/**
 	 * 创建人ID：创建人ID
@@ -107,6 +107,18 @@ public class CCustInspectLog extends Entity {
 	private Integer version;
 	
 	/**
+	 * 是否已经执行：是否已经执行
+	*/
+	@ApiModelProperty(required = false,value="是否已经执行" , notes = "是否已经执行")
+	private Integer executed;
+	
+	/**
+	 * 执行错误：执行错误
+	*/
+	@ApiModelProperty(required = false,value="执行错误" , notes = "执行错误")
+	private String errors;
+	
+	/**
 	 * 获得 主键<br>
 	 * 主键
 	 * @return 主键
@@ -145,21 +157,21 @@ public class CCustInspectLog extends Entity {
 	}
 	
 	/**
-	 * 获得 记录时间<br>
-	 * 记录时间
-	 * @return 记录时间
+	 * 获得 执行时间<br>
+	 * 执行时间
+	 * @return 执行时间
 	*/
-	public Date getRecTime() {
-		return recTime;
+	public Date getExecuteTime() {
+		return executeTime;
 	}
 	
 	/**
-	 * 设置 记录时间
-	 * @param recTime 记录时间
+	 * 设置 执行时间
+	 * @param executeTime 执行时间
 	 * @return 当前对象
 	*/
-	public CCustInspectLog setRecTime(Date recTime) {
-		this.recTime=recTime;
+	public CCustInspectLog setExecuteTime(Date executeTime) {
+		this.executeTime=executeTime;
 		return this;
 	}
 	
@@ -345,6 +357,44 @@ public class CCustInspectLog extends Entity {
 		this.version=version;
 		return this;
 	}
+	
+	/**
+	 * 获得 是否已经执行<br>
+	 * 是否已经执行
+	 * @return 是否已经执行
+	*/
+	public Integer getExecuted() {
+		return executed;
+	}
+	
+	/**
+	 * 设置 是否已经执行
+	 * @param executed 是否已经执行
+	 * @return 当前对象
+	*/
+	public CCustInspectLog setExecuted(Integer executed) {
+		this.executed=executed;
+		return this;
+	}
+	
+	/**
+	 * 获得 执行错误<br>
+	 * 执行错误
+	 * @return 执行错误
+	*/
+	public String getErrors() {
+		return errors;
+	}
+	
+	/**
+	 * 设置 执行错误
+	 * @param errors 执行错误
+	 * @return 当前对象
+	*/
+	public CCustInspectLog setErrors(String errors) {
+		this.errors=errors;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -390,17 +440,19 @@ public class CCustInspectLog extends Entity {
 	@Transient
 	public CCustInspectLog duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.CCustInspectLogMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.CCustInspectLogMeta.$$proxy$$();
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setExecuted(this.getExecuted());
+		inst.setVersion(this.getVersion());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
-		inst.setRecTime(this.getRecTime());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setPlanId(this.getPlanId());
-		inst.setUpdateTime(this.getUpdateTime());
 		inst.setId(this.getId());
-		inst.setVersion(this.getVersion());
+		inst.setErrors(this.getErrors());
+		inst.setExecuteTime(this.getExecuteTime());
 		inst.clearModifies();
 		return inst;
 	}
@@ -459,32 +511,36 @@ public class CCustInspectLog extends Entity {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(CCustInspectLogMeta.UPDATE_TIME)));
+			this.setExecuted(DataParser.parse(Integer.class, map.get(CCustInspectLogMeta.EXECUTED)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(CCustInspectLogMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(CCustInspectLogMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(CCustInspectLogMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(CCustInspectLogMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(CCustInspectLogMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(CCustInspectLogMeta.DELETE_TIME)));
-			this.setRecTime(DataParser.parse(Date.class, map.get(CCustInspectLogMeta.REC_TIME)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(CCustInspectLogMeta.DELETE_BY)));
 			this.setPlanId(DataParser.parse(String.class, map.get(CCustInspectLogMeta.PLAN_ID)));
-			this.setUpdateTime(DataParser.parse(Date.class, map.get(CCustInspectLogMeta.UPDATE_TIME)));
 			this.setId(DataParser.parse(String.class, map.get(CCustInspectLogMeta.ID)));
-			this.setVersion(DataParser.parse(Integer.class, map.get(CCustInspectLogMeta.VERSION)));
+			this.setErrors(DataParser.parse(String.class, map.get(CCustInspectLogMeta.ERRORS)));
+			this.setExecuteTime(DataParser.parse(Date.class, map.get(CCustInspectLogMeta.EXECUTE_TIME)));
 			// others
 			return true;
 		} else {
 			try {
+				this.setUpdateTime( (Date)map.get(CCustInspectLogMeta.UPDATE_TIME));
+				this.setExecuted( (Integer)map.get(CCustInspectLogMeta.EXECUTED));
+				this.setVersion( (Integer)map.get(CCustInspectLogMeta.VERSION));
 				this.setCreateBy( (String)map.get(CCustInspectLogMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(CCustInspectLogMeta.DELETED));
 				this.setCreateTime( (Date)map.get(CCustInspectLogMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(CCustInspectLogMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(CCustInspectLogMeta.DELETE_TIME));
-				this.setRecTime( (Date)map.get(CCustInspectLogMeta.REC_TIME));
 				this.setDeleteBy( (String)map.get(CCustInspectLogMeta.DELETE_BY));
 				this.setPlanId( (String)map.get(CCustInspectLogMeta.PLAN_ID));
-				this.setUpdateTime( (Date)map.get(CCustInspectLogMeta.UPDATE_TIME));
 				this.setId( (String)map.get(CCustInspectLogMeta.ID));
-				this.setVersion( (Integer)map.get(CCustInspectLogMeta.VERSION));
+				this.setErrors( (String)map.get(CCustInspectLogMeta.ERRORS));
+				this.setExecuteTime( (Date)map.get(CCustInspectLogMeta.EXECUTE_TIME));
 				// others
 				return true;
 			} catch (Exception e) {
@@ -502,31 +558,35 @@ public class CCustInspectLog extends Entity {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(CCustInspectLogMeta.UPDATE_TIME)));
+			this.setExecuted(DataParser.parse(Integer.class, r.getValue(CCustInspectLogMeta.EXECUTED)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(CCustInspectLogMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(CCustInspectLogMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(CCustInspectLogMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(CCustInspectLogMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(CCustInspectLogMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(CCustInspectLogMeta.DELETE_TIME)));
-			this.setRecTime(DataParser.parse(Date.class, r.getValue(CCustInspectLogMeta.REC_TIME)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(CCustInspectLogMeta.DELETE_BY)));
 			this.setPlanId(DataParser.parse(String.class, r.getValue(CCustInspectLogMeta.PLAN_ID)));
-			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(CCustInspectLogMeta.UPDATE_TIME)));
 			this.setId(DataParser.parse(String.class, r.getValue(CCustInspectLogMeta.ID)));
-			this.setVersion(DataParser.parse(Integer.class, r.getValue(CCustInspectLogMeta.VERSION)));
+			this.setErrors(DataParser.parse(String.class, r.getValue(CCustInspectLogMeta.ERRORS)));
+			this.setExecuteTime(DataParser.parse(Date.class, r.getValue(CCustInspectLogMeta.EXECUTE_TIME)));
 			return true;
 		} else {
 			try {
+				this.setUpdateTime( (Date)r.getValue(CCustInspectLogMeta.UPDATE_TIME));
+				this.setExecuted( (Integer)r.getValue(CCustInspectLogMeta.EXECUTED));
+				this.setVersion( (Integer)r.getValue(CCustInspectLogMeta.VERSION));
 				this.setCreateBy( (String)r.getValue(CCustInspectLogMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(CCustInspectLogMeta.DELETED));
 				this.setCreateTime( (Date)r.getValue(CCustInspectLogMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(CCustInspectLogMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(CCustInspectLogMeta.DELETE_TIME));
-				this.setRecTime( (Date)r.getValue(CCustInspectLogMeta.REC_TIME));
 				this.setDeleteBy( (String)r.getValue(CCustInspectLogMeta.DELETE_BY));
 				this.setPlanId( (String)r.getValue(CCustInspectLogMeta.PLAN_ID));
-				this.setUpdateTime( (Date)r.getValue(CCustInspectLogMeta.UPDATE_TIME));
 				this.setId( (String)r.getValue(CCustInspectLogMeta.ID));
-				this.setVersion( (Integer)r.getValue(CCustInspectLogMeta.VERSION));
+				this.setErrors( (String)r.getValue(CCustInspectLogMeta.ERRORS));
+				this.setExecuteTime( (Date)r.getValue(CCustInspectLogMeta.EXECUTE_TIME));
 				return true;
 			} catch (Exception e) {
 				return false;

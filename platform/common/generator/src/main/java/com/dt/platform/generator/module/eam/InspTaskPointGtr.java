@@ -60,8 +60,8 @@ public class InspTaskPointGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_POS_LONGITUDE).form().numberInput().defaultValue(0);
 
 
-        cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.STATUS).form()
-                .selectBox().enumType(InspectionTaskStatusEnum.class);
+//        cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.STATUS).form()
+//                .selectBox().enumType(InspectionTaskStatusEnum.class);
 
 
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_STATUS).form()

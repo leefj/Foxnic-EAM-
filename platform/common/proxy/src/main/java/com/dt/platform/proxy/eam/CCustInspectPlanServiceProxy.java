@@ -93,7 +93,7 @@ public interface CCustInspectPlanServiceProxy {
      * 执行计划
      */
     @RequestMapping(CCustInspectPlanServiceProxy.EXECUTE)
-    Result execute(@RequestParam(name = "id") String id, @RequestParam(name = "type") String type);
+    Result execute();
 
     /**
      * 添加巡检计划
