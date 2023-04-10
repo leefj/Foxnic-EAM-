@@ -18,8 +18,8 @@ import com.dt.platform.proxy.ServiceNames;
  * <p>
  * 执行日志 控制器服务代理
  * </p>
- * @author 金杰 , maillank@qq.com
- * @since 2023-04-07 09:21:10
+ * @author 李方捷 , leefangjie@qq.com
+ * @since 2023-04-10 10:17:17
  */
 @FeignClient(value = ServiceNames.EAM, contextId = CCustInspectLogServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface CCustInspectLogServiceProxy {

@@ -30,6 +30,7 @@ import java.util.Map;
 public interface ICCustInspectPlanService extends  ISimpleIdService<CCustInspectPlan,String> {
 
 
+	Result execute();
 	Result execute(String id,String type);
 
 	/**
@@ -56,7 +57,7 @@ public interface ICCustInspectPlanService extends  ISimpleIdService<CCustInspect
 	Result insertList(List<CCustInspectPlan> cCustInspectPlanList);
 
 
-		
+
 	/**
 	 * 按主键删除巡检计划
 	 *
@@ -64,7 +65,7 @@ public interface ICCustInspectPlanService extends  ISimpleIdService<CCustInspect
 	 * @return 删除是否成功
 	 */
 	Result deleteByIdPhysical(String id);
-	
+
 	/**
 	 * 按主键删除巡检计划
 	 *
@@ -87,7 +88,7 @@ public interface ICCustInspectPlanService extends  ISimpleIdService<CCustInspect
 	 * */
 	<T> Result deleteByIdsLogical(List<T> ids);
 
-		
+
 	/**
 	 * 按主键更新巡检计划
 	 *
@@ -157,7 +158,7 @@ public interface ICCustInspectPlanService extends  ISimpleIdService<CCustInspect
 	 * */
 	boolean checkExists(CCustInspectPlan cCustInspectPlan,DBField... field);
 
-		
+
 	/**
 	 * 按主键获取巡检计划
 	 *

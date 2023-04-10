@@ -21,8 +21,8 @@ import com.github.foxnic.sql.data.ExprRcd;
 /**
  * 执行日志VO类型
  * <p>执行日志 , 数据表 eam_c_cust_inspect_log 的通用VO类型</p>
- * @author 金杰 , maillank@qq.com
- * @since 2023-04-07 09:21:10
+ * @author 李方捷 , leefangjie@qq.com
+ * @since 2023-04-10 10:17:17
  * @sign 2C17369483C0E1EF9B711701EA5C2C9A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -401,17 +401,19 @@ public class CCustInspectLogVO extends CCustInspectLog {
 	@Transient
 	public CCustInspectLogVO duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.CCustInspectLogVOMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.CCustInspectLogVOMeta.$$proxy$$();
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setExecuted(this.getExecuted());
+		inst.setVersion(this.getVersion());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
-		inst.setRecTime(this.getRecTime());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setPlanId(this.getPlanId());
-		inst.setUpdateTime(this.getUpdateTime());
 		inst.setId(this.getId());
-		inst.setVersion(this.getVersion());
+		inst.setErrors(this.getErrors());
+		inst.setExecuteTime(this.getExecuteTime());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
 			inst.setPageIndex(this.getPageIndex());
@@ -484,17 +486,19 @@ public class CCustInspectLogVO extends CCustInspectLog {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(CCustInspectLogVOMeta.UPDATE_TIME)));
+			this.setExecuted(DataParser.parse(Integer.class, map.get(CCustInspectLogVOMeta.EXECUTED)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(CCustInspectLogVOMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(CCustInspectLogVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(CCustInspectLogVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, map.get(CCustInspectLogVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(CCustInspectLogVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(CCustInspectLogVOMeta.DELETE_TIME)));
-			this.setRecTime(DataParser.parse(Date.class, map.get(CCustInspectLogVOMeta.REC_TIME)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(CCustInspectLogVOMeta.DELETE_BY)));
 			this.setPlanId(DataParser.parse(String.class, map.get(CCustInspectLogVOMeta.PLAN_ID)));
-			this.setUpdateTime(DataParser.parse(Date.class, map.get(CCustInspectLogVOMeta.UPDATE_TIME)));
 			this.setId(DataParser.parse(String.class, map.get(CCustInspectLogVOMeta.ID)));
-			this.setVersion(DataParser.parse(Integer.class, map.get(CCustInspectLogVOMeta.VERSION)));
+			this.setErrors(DataParser.parse(String.class, map.get(CCustInspectLogVOMeta.ERRORS)));
+			this.setExecuteTime(DataParser.parse(Date.class, map.get(CCustInspectLogVOMeta.EXECUTE_TIME)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(CCustInspectLogVOMeta.SEARCH_FIELD)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(CCustInspectLogVOMeta.PAGE_INDEX)));
@@ -509,17 +513,19 @@ public class CCustInspectLogVO extends CCustInspectLog {
 			return true;
 		} else {
 			try {
+				this.setUpdateTime( (Date)map.get(CCustInspectLogVOMeta.UPDATE_TIME));
+				this.setExecuted( (Integer)map.get(CCustInspectLogVOMeta.EXECUTED));
+				this.setVersion( (Integer)map.get(CCustInspectLogVOMeta.VERSION));
 				this.setCreateBy( (String)map.get(CCustInspectLogVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(CCustInspectLogVOMeta.DELETED));
 				this.setCreateTime( (Date)map.get(CCustInspectLogVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(CCustInspectLogVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(CCustInspectLogVOMeta.DELETE_TIME));
-				this.setRecTime( (Date)map.get(CCustInspectLogVOMeta.REC_TIME));
 				this.setDeleteBy( (String)map.get(CCustInspectLogVOMeta.DELETE_BY));
 				this.setPlanId( (String)map.get(CCustInspectLogVOMeta.PLAN_ID));
-				this.setUpdateTime( (Date)map.get(CCustInspectLogVOMeta.UPDATE_TIME));
 				this.setId( (String)map.get(CCustInspectLogVOMeta.ID));
-				this.setVersion( (Integer)map.get(CCustInspectLogVOMeta.VERSION));
+				this.setErrors( (String)map.get(CCustInspectLogVOMeta.ERRORS));
+				this.setExecuteTime( (Date)map.get(CCustInspectLogVOMeta.EXECUTE_TIME));
 				// others
 				this.setSearchField( (String)map.get(CCustInspectLogVOMeta.SEARCH_FIELD));
 				this.setPageIndex( (Integer)map.get(CCustInspectLogVOMeta.PAGE_INDEX));
@@ -547,31 +553,35 @@ public class CCustInspectLogVO extends CCustInspectLog {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(CCustInspectLogVOMeta.UPDATE_TIME)));
+			this.setExecuted(DataParser.parse(Integer.class, r.getValue(CCustInspectLogVOMeta.EXECUTED)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(CCustInspectLogVOMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(CCustInspectLogVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(CCustInspectLogVOMeta.DELETED)));
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(CCustInspectLogVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(CCustInspectLogVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(CCustInspectLogVOMeta.DELETE_TIME)));
-			this.setRecTime(DataParser.parse(Date.class, r.getValue(CCustInspectLogVOMeta.REC_TIME)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(CCustInspectLogVOMeta.DELETE_BY)));
 			this.setPlanId(DataParser.parse(String.class, r.getValue(CCustInspectLogVOMeta.PLAN_ID)));
-			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(CCustInspectLogVOMeta.UPDATE_TIME)));
 			this.setId(DataParser.parse(String.class, r.getValue(CCustInspectLogVOMeta.ID)));
-			this.setVersion(DataParser.parse(Integer.class, r.getValue(CCustInspectLogVOMeta.VERSION)));
+			this.setErrors(DataParser.parse(String.class, r.getValue(CCustInspectLogVOMeta.ERRORS)));
+			this.setExecuteTime(DataParser.parse(Date.class, r.getValue(CCustInspectLogVOMeta.EXECUTE_TIME)));
 			return true;
 		} else {
 			try {
+				this.setUpdateTime( (Date)r.getValue(CCustInspectLogVOMeta.UPDATE_TIME));
+				this.setExecuted( (Integer)r.getValue(CCustInspectLogVOMeta.EXECUTED));
+				this.setVersion( (Integer)r.getValue(CCustInspectLogVOMeta.VERSION));
 				this.setCreateBy( (String)r.getValue(CCustInspectLogVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(CCustInspectLogVOMeta.DELETED));
 				this.setCreateTime( (Date)r.getValue(CCustInspectLogVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(CCustInspectLogVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(CCustInspectLogVOMeta.DELETE_TIME));
-				this.setRecTime( (Date)r.getValue(CCustInspectLogVOMeta.REC_TIME));
 				this.setDeleteBy( (String)r.getValue(CCustInspectLogVOMeta.DELETE_BY));
 				this.setPlanId( (String)r.getValue(CCustInspectLogVOMeta.PLAN_ID));
-				this.setUpdateTime( (Date)r.getValue(CCustInspectLogVOMeta.UPDATE_TIME));
 				this.setId( (String)r.getValue(CCustInspectLogVOMeta.ID));
-				this.setVersion( (Integer)r.getValue(CCustInspectLogVOMeta.VERSION));
+				this.setErrors( (String)r.getValue(CCustInspectLogVOMeta.ERRORS));
+				this.setExecuteTime( (Date)r.getValue(CCustInspectLogVOMeta.EXECUTE_TIME));
 				return true;
 			} catch (Exception e) {
 				return false;
