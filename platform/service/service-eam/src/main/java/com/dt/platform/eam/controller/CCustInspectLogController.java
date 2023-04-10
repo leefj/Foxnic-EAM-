@@ -43,8 +43,8 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * <p>
  * 执行日志接口控制器
  * </p>
- * @author 金杰 , maillank@qq.com
- * @since 2023-04-07 09:21:10
+ * @author 李方捷 , leefangjie@qq.com
+ * @since 2023-04-10 10:17:17
 */
 
 @InDoc
@@ -62,10 +62,12 @@ public class CCustInspectLogController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = CCustInspectLogVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
 		@ApiImplicitParam(name = CCustInspectLogVOMeta.PLAN_ID , value = "计划" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CCustInspectLogVOMeta.REC_TIME , value = "记录时间" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = CCustInspectLogVOMeta.EXECUTE_TIME , value = "执行时间" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = CCustInspectLogVOMeta.EXECUTED , value = "是否已经执行" , required = false , dataTypeClass=Integer.class),
+		@ApiImplicitParam(name = CCustInspectLogVOMeta.ERRORS , value = "执行错误" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
-	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
+	@ApiOperationSupport(order=1 , author="李方捷 , leefangjie@qq.com")
 	@SentinelResource(value = CCustInspectLogServiceProxy.INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CCustInspectLogServiceProxy.INSERT)
 	public Result insert(CCustInspectLogVO cCustInspectLogVO) {
@@ -83,7 +85,7 @@ public class CCustInspectLogController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = CCustInspectLogVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class)
 	})
-	@ApiOperationSupport(order=2 , author="金杰 , maillank@qq.com")
+	@ApiOperationSupport(order=2 , author="李方捷 , leefangjie@qq.com")
 	@SentinelResource(value = CCustInspectLogServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CCustInspectLogServiceProxy.DELETE)
 	public Result deleteById(String id) {
@@ -112,7 +114,7 @@ public class CCustInspectLogController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = CCustInspectLogVOMeta.IDS , value = "主键清单" , required = true , dataTypeClass=List.class , example = "[1,3,4]")
 	})
-	@ApiOperationSupport(order=3 , author="金杰 , maillank@qq.com") 
+	@ApiOperationSupport(order=3 , author="李方捷 , leefangjie@qq.com") 
 	@SentinelResource(value = CCustInspectLogServiceProxy.DELETE_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CCustInspectLogServiceProxy.DELETE_BY_IDS)
 	public Result deleteByIds(List<String> ids) {
@@ -166,10 +168,12 @@ public class CCustInspectLogController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = CCustInspectLogVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
 		@ApiImplicitParam(name = CCustInspectLogVOMeta.PLAN_ID , value = "计划" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CCustInspectLogVOMeta.REC_TIME , value = "记录时间" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = CCustInspectLogVOMeta.EXECUTE_TIME , value = "执行时间" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = CCustInspectLogVOMeta.EXECUTED , value = "是否已经执行" , required = false , dataTypeClass=Integer.class),
+		@ApiImplicitParam(name = CCustInspectLogVOMeta.ERRORS , value = "执行错误" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
-	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { CCustInspectLogVOMeta.PAGE_INDEX , CCustInspectLogVOMeta.PAGE_SIZE , CCustInspectLogVOMeta.SEARCH_FIELD , CCustInspectLogVOMeta.FUZZY_FIELD , CCustInspectLogVOMeta.SEARCH_VALUE , CCustInspectLogVOMeta.DIRTY_FIELDS , CCustInspectLogVOMeta.SORT_FIELD , CCustInspectLogVOMeta.SORT_TYPE , CCustInspectLogVOMeta.DATA_ORIGIN , CCustInspectLogVOMeta.QUERY_LOGIC , CCustInspectLogVOMeta.REQUEST_ACTION , CCustInspectLogVOMeta.IDS } )
+	@ApiOperationSupport( order=4 , author="李方捷 , leefangjie@qq.com" ,  ignoreParameters = { CCustInspectLogVOMeta.PAGE_INDEX , CCustInspectLogVOMeta.PAGE_SIZE , CCustInspectLogVOMeta.SEARCH_FIELD , CCustInspectLogVOMeta.FUZZY_FIELD , CCustInspectLogVOMeta.SEARCH_VALUE , CCustInspectLogVOMeta.DIRTY_FIELDS , CCustInspectLogVOMeta.SORT_FIELD , CCustInspectLogVOMeta.SORT_TYPE , CCustInspectLogVOMeta.DATA_ORIGIN , CCustInspectLogVOMeta.QUERY_LOGIC , CCustInspectLogVOMeta.REQUEST_ACTION , CCustInspectLogVOMeta.IDS } )
 	@SentinelResource(value = CCustInspectLogServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CCustInspectLogServiceProxy.UPDATE)
 	public Result update(CCustInspectLogVO cCustInspectLogVO) {
@@ -186,7 +190,9 @@ public class CCustInspectLogController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = CCustInspectLogVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
 		@ApiImplicitParam(name = CCustInspectLogVOMeta.PLAN_ID , value = "计划" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CCustInspectLogVOMeta.REC_TIME , value = "记录时间" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = CCustInspectLogVOMeta.EXECUTE_TIME , value = "执行时间" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = CCustInspectLogVOMeta.EXECUTED , value = "是否已经执行" , required = false , dataTypeClass=Integer.class),
+		@ApiImplicitParam(name = CCustInspectLogVOMeta.ERRORS , value = "执行错误" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { CCustInspectLogVOMeta.PAGE_INDEX , CCustInspectLogVOMeta.PAGE_SIZE , CCustInspectLogVOMeta.SEARCH_FIELD , CCustInspectLogVOMeta.FUZZY_FIELD , CCustInspectLogVOMeta.SEARCH_VALUE , CCustInspectLogVOMeta.DIRTY_FIELDS , CCustInspectLogVOMeta.SORT_FIELD , CCustInspectLogVOMeta.SORT_TYPE , CCustInspectLogVOMeta.DATA_ORIGIN , CCustInspectLogVOMeta.QUERY_LOGIC , CCustInspectLogVOMeta.REQUEST_ACTION , CCustInspectLogVOMeta.IDS } )
@@ -206,7 +212,7 @@ public class CCustInspectLogController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = CCustInspectLogVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "1"),
 	})
-	@ApiOperationSupport(order=6 , author="金杰 , maillank@qq.com")
+	@ApiOperationSupport(order=6 , author="李方捷 , leefangjie@qq.com")
 	@SentinelResource(value = CCustInspectLogServiceProxy.GET_BY_ID , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CCustInspectLogServiceProxy.GET_BY_ID)
 	public Result<CCustInspectLog> getById(String id) {
@@ -226,7 +232,7 @@ public class CCustInspectLogController extends SuperController {
 		@ApiImplicitParams({
 				@ApiImplicitParam(name = CCustInspectLogVOMeta.IDS , value = "主键清单" , required = true , dataTypeClass=List.class , example = "[1,3,4]")
 		})
-		@ApiOperationSupport(order=3 , author="金杰 , maillank@qq.com") 
+		@ApiOperationSupport(order=3 , author="李方捷 , leefangjie@qq.com") 
 		@SentinelResource(value = CCustInspectLogServiceProxy.GET_BY_IDS , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CCustInspectLogServiceProxy.GET_BY_IDS)
 	public Result<List<CCustInspectLog>> getByIds(List<String> ids) {
@@ -245,9 +251,11 @@ public class CCustInspectLogController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = CCustInspectLogVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
 		@ApiImplicitParam(name = CCustInspectLogVOMeta.PLAN_ID , value = "计划" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CCustInspectLogVOMeta.REC_TIME , value = "记录时间" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = CCustInspectLogVOMeta.EXECUTE_TIME , value = "执行时间" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = CCustInspectLogVOMeta.EXECUTED , value = "是否已经执行" , required = false , dataTypeClass=Integer.class),
+		@ApiImplicitParam(name = CCustInspectLogVOMeta.ERRORS , value = "执行错误" , required = false , dataTypeClass=String.class),
 	})
-	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { CCustInspectLogVOMeta.PAGE_INDEX , CCustInspectLogVOMeta.PAGE_SIZE } )
+	@ApiOperationSupport(order=5 , author="李方捷 , leefangjie@qq.com" ,  ignoreParameters = { CCustInspectLogVOMeta.PAGE_INDEX , CCustInspectLogVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = CCustInspectLogServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CCustInspectLogServiceProxy.QUERY_LIST)
 	public Result<List<CCustInspectLog>> queryList(CCustInspectLogVO sample) {
@@ -266,9 +274,11 @@ public class CCustInspectLogController extends SuperController {
 	@ApiImplicitParams({
 		@ApiImplicitParam(name = CCustInspectLogVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
 		@ApiImplicitParam(name = CCustInspectLogVOMeta.PLAN_ID , value = "计划" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = CCustInspectLogVOMeta.REC_TIME , value = "记录时间" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = CCustInspectLogVOMeta.EXECUTE_TIME , value = "执行时间" , required = false , dataTypeClass=Date.class),
+		@ApiImplicitParam(name = CCustInspectLogVOMeta.EXECUTED , value = "是否已经执行" , required = false , dataTypeClass=Integer.class),
+		@ApiImplicitParam(name = CCustInspectLogVOMeta.ERRORS , value = "执行错误" , required = false , dataTypeClass=String.class),
 	})
-	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
+	@ApiOperationSupport(order=8 , author="李方捷 , leefangjie@qq.com")
 	@SentinelResource(value = CCustInspectLogServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(CCustInspectLogServiceProxy.QUERY_PAGED_LIST)
 	public Result<PagedList<CCustInspectLog>> queryPagedList(CCustInspectLogVO sample) {

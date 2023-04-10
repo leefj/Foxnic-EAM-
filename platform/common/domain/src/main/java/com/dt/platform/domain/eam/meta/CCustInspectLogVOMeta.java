@@ -10,8 +10,8 @@ import javax.persistence.Transient;
 
 
 /**
- * @author 金杰 , maillank@qq.com
- * @since 2023-04-07 09:21:10
+ * @author 李方捷 , leefangjie@qq.com
+ * @since 2023-04-10 10:17:17
  * @sign 2C17369483C0E1EF9B711701EA5C2C9A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -159,14 +159,14 @@ public class CCustInspectLogVOMeta extends CCustInspectLogMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectLogVO,java.lang.String> PLAN_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectLogVO.class ,PLAN_ID, java.lang.String.class, "计划", "计划", java.lang.String.class, null);
 	
 	/**
-	 * 记录时间 , 类型: java.util.Date
+	 * 执行时间 , 类型: java.util.Date
 	*/
-	public static final String REC_TIME="recTime";
+	public static final String EXECUTE_TIME="executeTime";
 	
 	/**
-	 * 记录时间 , 类型: java.util.Date
+	 * 执行时间 , 类型: java.util.Date
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectLogVO,java.util.Date> REC_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectLogVO.class ,REC_TIME, java.util.Date.class, "记录时间", "记录时间", java.util.Date.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectLogVO,java.util.Date> EXECUTE_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectLogVO.class ,EXECUTE_TIME, java.util.Date.class, "执行时间", "执行时间", java.util.Date.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -249,9 +249,29 @@ public class CCustInspectLogVOMeta extends CCustInspectLogMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectLogVO,java.lang.Integer> VERSION_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectLogVO.class ,VERSION, java.lang.Integer.class, "version", "version", java.lang.Integer.class, null);
 	
 	/**
+	 * 是否已经执行 , 类型: java.lang.Integer
+	*/
+	public static final String EXECUTED="executed";
+	
+	/**
+	 * 是否已经执行 , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectLogVO,java.lang.Integer> EXECUTED_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectLogVO.class ,EXECUTED, java.lang.Integer.class, "是否已经执行", "是否已经执行", java.lang.Integer.class, null);
+	
+	/**
+	 * 执行错误 , 类型: java.lang.String
+	*/
+	public static final String ERRORS="errors";
+	
+	/**
+	 * 执行错误 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectLogVO,java.lang.String> ERRORS_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectLogVO.class ,ERRORS, java.lang.String.class, "执行错误", "执行错误", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , PLAN_ID , REC_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , PLAN_ID , EXECUTE_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , EXECUTED , ERRORS };
 	
 	/**
 	 * 代理类
@@ -416,13 +436,13 @@ public class CCustInspectLogVOMeta extends CCustInspectLogMeta {
 		}
 		
 		/**
-		 * 设置 记录时间
-		 * @param recTime 记录时间
+		 * 设置 执行时间
+		 * @param executeTime 执行时间
 		 * @return 当前对象
 		*/
-		public CCustInspectLog setRecTime(Date recTime) {
-			super.change(REC_TIME,super.getRecTime(),recTime);
-			super.setRecTime(recTime);
+		public CCustInspectLog setExecuteTime(Date executeTime) {
+			super.change(EXECUTE_TIME,super.getExecuteTime(),executeTime);
+			super.setExecuteTime(executeTime);
 			return this;
 		}
 		
@@ -513,6 +533,28 @@ public class CCustInspectLogVOMeta extends CCustInspectLogMeta {
 			super.setVersion(version);
 			return this;
 		}
+		
+		/**
+		 * 设置 是否已经执行
+		 * @param executed 是否已经执行
+		 * @return 当前对象
+		*/
+		public CCustInspectLog setExecuted(Integer executed) {
+			super.change(EXECUTED,super.getExecuted(),executed);
+			super.setExecuted(executed);
+			return this;
+		}
+		
+		/**
+		 * 设置 执行错误
+		 * @param errors 执行错误
+		 * @return 当前对象
+		*/
+		public CCustInspectLog setErrors(String errors) {
+			super.change(ERRORS,super.getErrors(),errors);
+			super.setErrors(errors);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -529,17 +571,19 @@ public class CCustInspectLogVOMeta extends CCustInspectLogMeta {
 		@Transient
 		public CCustInspectLogVO duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setExecuted(this.getExecuted());
+			inst.setVersion(this.getVersion());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
 			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
-			inst.setRecTime(this.getRecTime());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setPlanId(this.getPlanId());
-			inst.setUpdateTime(this.getUpdateTime());
 			inst.setId(this.getId());
-			inst.setVersion(this.getVersion());
+			inst.setErrors(this.getErrors());
+			inst.setExecuteTime(this.getExecuteTime());
 			if(all) {
 				inst.setSearchField(this.getSearchField());
 				inst.setPageIndex(this.getPageIndex());

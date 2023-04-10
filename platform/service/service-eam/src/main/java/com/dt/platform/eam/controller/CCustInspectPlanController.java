@@ -216,8 +216,8 @@ public class CCustInspectPlanController extends SuperController {
     @ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = CCustInspectPlanServiceProxy.EXECUTE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CCustInspectPlanServiceProxy.EXECUTE)
-    public Result execute(String id,String type) {
-        return cCustInspectPlanService.execute(id,type);
+    public Result execute() {
+        return cCustInspectPlanService.execute();
     }
 
 

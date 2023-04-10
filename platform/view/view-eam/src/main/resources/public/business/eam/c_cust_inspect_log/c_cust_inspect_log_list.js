@@ -1,7 +1,7 @@
 /**
  * 执行日志 列表页 JS 脚本
- * @author 金杰 , maillank@qq.com
- * @since 2023-04-07 09:21:11
+ * @author 李方捷 , leefangjie@qq.com
+ * @since 2023-04-10 10:17:21
  */
 
 
@@ -86,8 +86,10 @@ function ListPage() {
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'planId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('计划') , templet: function (d) { return templet('planId',d.planId,d);}  }
-					,{ field: 'recTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('记录时间') ,templet: function (d) { return templet('recTime',fox.dateFormat(d.recTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'executeTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('执行时间') ,templet: function (d) { return templet('executeTime',fox.dateFormat(d.executeTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'executed', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('是否已经执行') , templet: function (d) { return templet('executed',d.executed,d);}  }
+					,{ field: 'errors', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('执行错误') , templet: function (d) { return templet('errors',d.errors,d);}  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -136,7 +138,7 @@ function ListPage() {
 	function refreshTableData(sortField,sortType,reset) {
 		function getSelectedValue(id,prop) { var xm=xmSelect.get(id,true); return xm==null ? null : xm.getValue(prop);}
 		var value = {};
-		value.recTime={ inputType:"date_input", value: $("#recTime").val() ,matchType:"auto"};
+		value.executeTime={ inputType:"date_input", value: $("#executeTime").val() ,matchType:"auto"};
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -184,11 +186,11 @@ function ListPage() {
 		fox.switchSearchRow(1);
 
 		laydate.render({
-			elem: '#recTime',
+			elem: '#executeTime',
 			trigger:"click",
 			done: function(value, date, endDate) {
 				setTimeout(function () {
-					window.pageExt.list.onDatePickerChanged && window.pageExt.list.onDatePickerChanged("recTime",value, date, endDate);
+					window.pageExt.list.onDatePickerChanged && window.pageExt.list.onDatePickerChanged("executeTime",value, date, endDate);
 				},1);
 			}
 		});
