@@ -27,7 +27,7 @@ public class CInspectLogGtr extends BaseCodeGenerator{
 
         cfg.view().search().inputLayout(
                 new Object[]{
-                        EAMTables.EAM_C_CUST_INSPECT_LOG.EXECUTE_TIME,
+                      EAMTables.EAM_C_CUST_INSPECT_LOG.EXECUTE_TIME,
                 }
 
         );
@@ -40,7 +40,7 @@ public class CInspectLogGtr extends BaseCodeGenerator{
         cfg.view().formWindow().width("60%");;
         cfg.view().form().addGroup(null,
                 new Object[] {
-                        EAMTables.EAM_C_CUST_INSPECT_LOG.EXECUTE_TIME,
+                       EAMTables.EAM_C_CUST_INSPECT_LOG.EXECUTE_TIME,
                 }
         );
 
