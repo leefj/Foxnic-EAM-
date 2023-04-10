@@ -1,7 +1,7 @@
 /**
  * 执行日志 列表页 JS 脚本
- * @author 金杰 , maillank@qq.com
- * @since 2023-04-07 09:21:11
+ * @author 李方捷 , leefangjie@qq.com
+ * @since 2023-04-10 10:17:26
  */
 
 function FormPage() {
@@ -118,11 +118,11 @@ function FormPage() {
 		fox.renderFormInputs(form);
 
 		laydate.render({
-			elem: '#recTime',
+			elem: '#executeTime',
 			format:"yyyy-MM-dd HH:mm:ss",
 			trigger:"click",
 			done: function(value, date, endDate){
-				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("recTime",value, date, endDate);
+				window.pageExt.form.onDatePickerChanged && window.pageExt.form.onDatePickerChanged("executeTime",value, date, endDate);
 			}
 		});
 	}
@@ -175,9 +175,9 @@ function FormPage() {
 
 
 
-			//设置 记录时间 显示复选框勾选
-			if(formData["recTime"]) {
-				$("#recTime").val(fox.dateFormat(formData["recTime"],"yyyy-MM-dd HH:mm:ss"));
+			//设置 执行时间 显示复选框勾选
+			if(formData["executeTime"]) {
+				$("#executeTime").val(fox.dateFormat(formData["executeTime"],"yyyy-MM-dd HH:mm:ss"));
 			}
 
 

@@ -23,8 +23,8 @@ import java.util.Map;
  * <p>
  * 执行日志服务接口
  * </p>
- * @author 金杰 , maillank@qq.com
- * @since 2023-04-07 09:21:10
+ * @author 李方捷 , leefangjie@qq.com
+ * @since 2023-04-10 10:17:17
 */
 
 public interface ICCustInspectLogService extends  ISimpleIdService<CCustInspectLog,String> {

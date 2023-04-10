@@ -2,14 +2,18 @@ package com.dt.platform.eam.service.impl;
 
 import javax.annotation.Resource;
 
+import com.alibaba.fastjson.JSON;
 import com.dt.platform.constants.enums.eam.CCustInspectTaskStatusEnum;
-import com.dt.platform.domain.eam.CCustInspectTask;
-import com.dt.platform.domain.eam.CCustInspectUserS;
+import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.CCustInspectPlanMeta;
+import com.dt.platform.eam.service.ICCustInspectLogService;
 import com.dt.platform.eam.service.ICCustInspectTaskService;
 import com.dt.platform.eam.service.ICCustInspectUserSService;
 import com.foxnicweb.web.constants.enums.contract.StatusEnum;
+import com.github.foxnic.commons.lang.StringUtil;
+import com.github.foxnic.commons.log.Logger;
 import org.github.foxnic.web.domain.hrm.Employee;
+import org.quartz.CronExpression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -17,8 +21,6 @@ import com.github.foxnic.commons.collection.MapUtil;
 import java.util.Arrays;
 
 
-import com.dt.platform.domain.eam.CCustInspectPlan;
-import com.dt.platform.domain.eam.CCustInspectPlanVO;
 import java.util.List;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.PagedList;
@@ -58,11 +60,12 @@ public class CCustInspectPlanServiceImpl extends SuperService<CCustInspectPlan> 
 	@Autowired
 	private ICCustInspectTaskService cCustInspectTaskService;
 
-
+	@Autowired
+	private ICCustInspectLogService custInspectLogService;
 	/**
 	 * 注入DAO对象
 	 * */
-	@Resource(name=DBConfigs.PRIMARY_DAO) 
+	@Resource(name=DBConfigs.PRIMARY_DAO)
 	private DAO dao=null;
 
 	/**
@@ -105,6 +108,81 @@ public class CCustInspectPlanServiceImpl extends SuperService<CCustInspectPlan> 
 		}
 
 		return r;
+	}
+
+	private Date getNextExecuteTime(CCustInspectPlan plan) {
+		Date next=null;
+		try {
+			CronExpression cronExpression = new CronExpression(plan.getCrontab());
+			next=cronExpression.getNextValidTimeAfter(new Date());
+		} catch (Exception e) {
+			Logger.exception("cron "+plan.getCrontab()+" error",e);
+		}
+		return next;
+	}
+
+	private CCustInspectLog getOrCreateLog(CCustInspectPlan plan) {
+		// 获得计划的下一个执行时间点
+		Date next=getNextExecuteTime(plan);
+		// 如果表达式异常就执行下一个计划
+		if(next==null) return null;
+		// 更新下一个计划时间
+		plan.setNextTime(next);
+		this.updateDirtyFields(plan);
+
+		// 查询未执行的日志
+		List<CCustInspectLog> logs=custInspectLogService.queryList(new ConditionExpr("plan_id=? and executed!=1",plan.getId()));
+		CCustInspectLog log = null;
+		// 如果没有未执行的日志就新建一个
+		if(logs==null || logs.isEmpty()) {
+			log=new CCustInspectLog();
+			log.setPlanId(plan.getId());
+			log.setExecuteTime(plan.getNextTime());
+			log.setExecuted(0);
+			custInspectLogService.insert(log);
+			logs=custInspectLogService.queryList(new ConditionExpr("plan_id=? and executed!=1",plan.getId()));
+			// 并发执行可能存在这种情况，判断的一下
+			if(logs==null || logs.isEmpty()) {
+				return null;
+			}
+		}
+		log=logs.get(0);
+		return log;
+	}
+
+	@Override
+	public Result execute() {
+		Result result=new Result();
+		// 查询所有计划并循环
+		List<CCustInspectPlan> plans =  this.queryList(new CCustInspectPlan());
+		for (CCustInspectPlan plan : plans) {
+
+			// 理论上只有一个待执行的日志
+			CCustInspectLog log = this.getOrCreateLog(plan);
+			// 如果 long 是 null 大概率是 cron 表达式错误
+			if(log==null) continue;
+
+			// 如果预期的执行时间已经超过当前，就执行
+			if(log.getExecuteTime().getTime()<=(new Date()).getTime()) {
+				// 设置为已执行，意味着执行失败就跳过，下一次继续执行
+				log.setExecuted(1);
+				try {
+					// 执行
+					Result execResult = this.execute(plan.getId(), null);
+					// 失败时记录失败原因
+					if (!execResult.success()) {
+						log.setErrors(JSON.toJSONString(execResult));
+					}
+				} catch (Exception e) {
+					// 记录异常堆栈
+					log.setErrors(StringUtil.toString(e));
+				}
+				custInspectLogService.updateDirtyFields(log);
+				// 为下一次执行做准备，同时使界面上也能看到下次执行时间
+				this.getOrCreateLog(plan);
+			}
+		}
+		return result;
 	}
 
 	@Override
@@ -153,7 +231,7 @@ public class CCustInspectPlanServiceImpl extends SuperService<CCustInspectPlan> 
 		return super.insertList(cCustInspectPlanList);
 	}
 
-	
+
 	/**
 	 * 按主键删除巡检计划
 	 *
@@ -174,7 +252,7 @@ public class CCustInspectPlanServiceImpl extends SuperService<CCustInspectPlan> 
 			return r;
 		}
 	}
-	
+
 	/**
 	 * 按主键删除巡检计划
 	 *
@@ -246,7 +324,7 @@ public class CCustInspectPlanServiceImpl extends SuperService<CCustInspectPlan> 
 		return super.updateList(cCustInspectPlanList , mode);
 	}
 
-	
+
 	/**
 	 * 按主键更新巡检计划
 	 *
@@ -260,7 +338,7 @@ public class CCustInspectPlanServiceImpl extends SuperService<CCustInspectPlan> 
 		return suc>0;
 	}
 
-	
+
 	/**
 	 * 按主键获取巡检计划
 	 *
