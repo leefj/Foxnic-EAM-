@@ -13,11 +13,10 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 public enum InspectionTaskStatusEnum implements CodeTextEnum {
 
-	NOT_START("not_start" , "未开始"),
-	ACTING("acting" , "执行中"),
-	CANCEL("cancel" , "取消"),
-	FINISH("finish" , "已完成")
-			;
+	WAIT("wait" , "待开始"),
+	ACTING("acting" , "巡检中"),
+	FINISH("finish" , "结束"),
+	CANCEL("cancel" , "取消");
 
 	private String code;
 	private String text;

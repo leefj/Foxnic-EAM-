@@ -71,6 +71,7 @@ public interface InspectionTaskServiceProxy {
     public static final String EXECUTE = API_PREFIX + "execute";
     public static final String CANCEL = API_PREFIX + "cancel";
     public static final String FINISH = API_PREFIX + "finish";
+    public static final String CHECK = API_PREFIX + "check";
 
     /**
      * 获取多个巡检任务
@@ -101,6 +102,8 @@ public interface InspectionTaskServiceProxy {
      * 导入巡检任务数据(Excel)
      */
     public static final String IMPORT_EXCEL = API_PREFIX + "import-excel";
+
+
 
     /**
      * 添加巡检任务

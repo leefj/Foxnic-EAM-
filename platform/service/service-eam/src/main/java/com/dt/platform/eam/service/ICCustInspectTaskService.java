@@ -1,5 +1,6 @@
 package com.dt.platform.eam.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.domain.eam.CCustInspectItem;
 import com.dt.platform.domain.eam.CCustInspectItemVO;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -30,6 +31,8 @@ import java.util.Map;
 */
 
 public interface ICCustInspectTaskService extends  ISimpleIdService<CCustInspectTask,String> {
+
+	Result<JSONObject> inspectScan(String taskId, String assetCode);
 
 	Result inspect(String taskId, String assetId,String status,String ct,String picIds);
 

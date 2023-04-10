@@ -1,7 +1,7 @@
 /**
  * 巡检任务单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-09 08:48:10
+ * @since 2023-04-09 16:41:09
  */
 
 
@@ -85,6 +85,7 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
+					,{ field: 'code', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编号') , templet: function (d) { return templet('code',d.code,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标题') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'actionAdd', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('追加'), templet:function (d){ return templet('actionAdd',fox.getEnumText(RADIO_ACTIONADD_DATA,d.actionAdd,'','actionAdd'),d);}}

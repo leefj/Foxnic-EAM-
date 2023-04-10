@@ -6,13 +6,14 @@ import java.util.List;
 import com.dt.platform.domain.eam.InspectionPoint;
 import java.util.Date;
 import com.dt.platform.domain.eam.InspectionRoute;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-11 22:18:07
- * @sign 0DEB6AD5D841A3AE989F1D224CB93336
+ * @since 2023-04-10 07:22:13
+ * @sign 371CE6A618210E29DF0A57D83CAB6C81
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -99,6 +100,36 @@ public class InspectionPointVOMeta extends InspectionPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
 	
 	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String DATA_ORIGIN="dataOrigin";
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端可按来源执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final String QUERY_LOGIC="queryLogic";
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String REQUEST_ACTION="requestAction";
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointVO,java.lang.String> REQUEST_ACTION_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointVO.class ,REQUEST_ACTION, java.lang.String.class, "请求动作", "前端指定不同的Action，后端可Action执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
 	*/
 	public static final String IDS="ids";
@@ -179,14 +210,24 @@ public class InspectionPointVOMeta extends InspectionPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointVO,java.lang.String> RFID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointVO.class ,RFID, java.lang.String.class, "RFID", "RFID", java.lang.String.class, null);
 	
 	/**
-	 * 位置 , 类型: java.lang.String
+	 * 位置详情 , 类型: java.lang.String
 	*/
 	public static final String POS="pos";
 	
 	/**
+	 * 位置详情 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointVO,java.lang.String> POS_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointVO.class ,POS, java.lang.String.class, "位置详情", "位置详情", java.lang.String.class, null);
+	
+	/**
 	 * 位置 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointVO,java.lang.String> POS_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointVO.class ,POS, java.lang.String.class, "位置", "位置", java.lang.String.class, null);
+	public static final String POS_ID="posId";
+	
+	/**
+	 * 位置 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointVO,java.lang.String> POS_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointVO.class ,POS_ID, java.lang.String.class, "位置", "位置", java.lang.String.class, null);
 	
 	/**
 	 * 位置经度 , 类型: java.lang.String
@@ -209,16 +250,6 @@ public class InspectionPointVOMeta extends InspectionPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointVO,java.lang.String> POS_LATITUDE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointVO.class ,POS_LATITUDE, java.lang.String.class, "位置纬度", "位置纬度", java.lang.String.class, null);
 	
 	/**
-	 * 备注 , 类型: java.lang.String
-	*/
-	public static final String NOTES="notes";
-	
-	/**
-	 * 备注 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointVO,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointVO.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
-	
-	/**
 	 * 图片 , 类型: java.lang.String
 	*/
 	public static final String PICTURE_ID="pictureId";
@@ -227,6 +258,16 @@ public class InspectionPointVOMeta extends InspectionPointMeta {
 	 * 图片 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointVO,java.lang.String> PICTURE_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointVO.class ,PICTURE_ID, java.lang.String.class, "图片", "图片", java.lang.String.class, null);
+	
+	/**
+	 * 备注 , 类型: java.lang.String
+	*/
+	public static final String NOTES="notes";
+	
+	/**
+	 * 备注 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointVO,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointVO.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -329,19 +370,19 @@ public class InspectionPointVOMeta extends InspectionPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointVO,java.lang.Integer> VERSION_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointVO.class ,VERSION, java.lang.Integer.class, "version", "version", java.lang.Integer.class, null);
 	
 	/**
-	 * 负责人 , 类型: com.dt.platform.domain.eam.InspectionRoute
+	 * route , 类型: com.dt.platform.domain.eam.InspectionRoute
 	*/
 	public static final String ROUTE="route";
 	
 	/**
-	 * 负责人 , 类型: com.dt.platform.domain.eam.InspectionRoute
+	 * route , 类型: com.dt.platform.domain.eam.InspectionRoute
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointVO,com.dt.platform.domain.eam.InspectionRoute> ROUTE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointVO.class ,ROUTE, com.dt.platform.domain.eam.InspectionRoute.class, "负责人", "负责人", com.dt.platform.domain.eam.InspectionRoute.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPointVO,com.dt.platform.domain.eam.InspectionRoute> ROUTE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPointVO.class ,ROUTE, com.dt.platform.domain.eam.InspectionRoute.class, "route", "route", com.dt.platform.domain.eam.InspectionRoute.class, null);
 	
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , CODE , NAME , STATUS , CONTENT , ROUTE_ID , RFID , POS , POS_LONGITUDE , POS_LATITUDE , NOTES , PICTURE_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , SELECTED_CODE , VERSION , ROUTE };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , NAME , STATUS , CONTENT , ROUTE_ID , RFID , POS , POS_ID , POS_LONGITUDE , POS_LATITUDE , PICTURE_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , SELECTED_CODE , VERSION , ROUTE };
 	
 	/**
 	 * 代理类
@@ -440,6 +481,39 @@ public class InspectionPointVOMeta extends InspectionPointMeta {
 		}
 		
 		/**
+		 * 设置 数据来源
+		 * @param dataOrigin 数据来源
+		 * @return 当前对象
+		*/
+		public InspectionPointVO setDataOrigin(String dataOrigin) {
+			super.change(DATA_ORIGIN,super.getDataOrigin(),dataOrigin);
+			super.setDataOrigin(dataOrigin);
+			return this;
+		}
+		
+		/**
+		 * 设置 查询逻辑
+		 * @param queryLogic 查询逻辑
+		 * @return 当前对象
+		*/
+		public InspectionPointVO setQueryLogic(String queryLogic) {
+			super.change(QUERY_LOGIC,super.getQueryLogic(),queryLogic);
+			super.setQueryLogic(queryLogic);
+			return this;
+		}
+		
+		/**
+		 * 设置 请求动作
+		 * @param requestAction 请求动作
+		 * @return 当前对象
+		*/
+		public InspectionPointVO setRequestAction(String requestAction) {
+			super.change(REQUEST_ACTION,super.getRequestAction(),requestAction);
+			super.setRequestAction(requestAction);
+			return this;
+		}
+		
+		/**
 		 * 设置 主键清单
 		 * @param ids 主键清单
 		 * @return 当前对象
@@ -528,13 +602,24 @@ public class InspectionPointVOMeta extends InspectionPointMeta {
 		}
 		
 		/**
-		 * 设置 位置
-		 * @param pos 位置
+		 * 设置 位置详情
+		 * @param pos 位置详情
 		 * @return 当前对象
 		*/
 		public InspectionPoint setPos(String pos) {
 			super.change(POS,super.getPos(),pos);
 			super.setPos(pos);
+			return this;
+		}
+		
+		/**
+		 * 设置 位置
+		 * @param posId 位置
+		 * @return 当前对象
+		*/
+		public InspectionPoint setPosId(String posId) {
+			super.change(POS_ID,super.getPosId(),posId);
+			super.setPosId(posId);
 			return this;
 		}
 		
@@ -561,17 +646,6 @@ public class InspectionPointVOMeta extends InspectionPointMeta {
 		}
 		
 		/**
-		 * 设置 备注
-		 * @param notes 备注
-		 * @return 当前对象
-		*/
-		public InspectionPoint setNotes(String notes) {
-			super.change(NOTES,super.getNotes(),notes);
-			super.setNotes(notes);
-			return this;
-		}
-		
-		/**
 		 * 设置 图片
 		 * @param pictureId 图片
 		 * @return 当前对象
@@ -579,6 +653,17 @@ public class InspectionPointVOMeta extends InspectionPointMeta {
 		public InspectionPoint setPictureId(String pictureId) {
 			super.change(PICTURE_ID,super.getPictureId(),pictureId);
 			super.setPictureId(pictureId);
+			return this;
+		}
+		
+		/**
+		 * 设置 备注
+		 * @param notes 备注
+		 * @return 当前对象
+		*/
+		public InspectionPoint setNotes(String notes) {
+			super.change(NOTES,super.getNotes(),notes);
+			super.setNotes(notes);
 			return this;
 		}
 		
@@ -693,8 +778,8 @@ public class InspectionPointVOMeta extends InspectionPointMeta {
 		}
 		
 		/**
-		 * 设置 负责人
-		 * @param route 负责人
+		 * 设置 route
+		 * @param route route
 		 * @return 当前对象
 		*/
 		public InspectionPoint setRoute(InspectionRoute route) {
@@ -702,5 +787,63 @@ public class InspectionPointVOMeta extends InspectionPointMeta {
 			super.setRoute(route);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public InspectionPointVO clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public InspectionPointVO duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setCode(this.getCode());
+			inst.setNotes(this.getNotes());
+			inst.setPosLatitude(this.getPosLatitude());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setVersion(this.getVersion());
+			inst.setContent(this.getContent());
+			inst.setPosId(this.getPosId());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setRouteId(this.getRouteId());
+			inst.setDeleted(this.getDeleted());
+			inst.setPictureId(this.getPictureId());
+			inst.setPos(this.getPos());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setRfid(this.getRfid());
+			inst.setPosLongitude(this.getPosLongitude());
+			inst.setId(this.getId());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setSearchField(this.getSearchField());
+				inst.setRequestAction(this.getRequestAction());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
+				inst.setRoute(this.getRoute());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setDirtyFields(this.getDirtyFields());
+				inst.setSortField(this.getSortField());
+				inst.setDataOrigin(this.getDataOrigin());
+				inst.setIds(this.getIds());
+				inst.setQueryLogic(this.getQueryLogic());
+				inst.setSearchValue(this.getSearchValue());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

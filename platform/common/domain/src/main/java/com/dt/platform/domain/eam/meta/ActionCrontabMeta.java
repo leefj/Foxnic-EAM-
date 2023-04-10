@@ -4,13 +4,14 @@ import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.ActionCrontab;
 import java.util.Date;
 import com.dt.platform.domain.eam.ActionCrontabLog;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-06 21:09:25
- * @sign 9841B11A1DDC6F0DA5F10C1C52BAA430
+ * @since 2023-04-09 22:04:32
+ * @sign C49762D877C26553A889E8FCE966CAA2
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -427,5 +428,46 @@ public class ActionCrontabMeta {
 			super.setActionCrontabLog(actionCrontabLog);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public ActionCrontab clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public ActionCrontab duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNotes(this.getNotes());
+			inst.setNextExecutionTime(this.getNextExecutionTime());
+			inst.setCrontab(this.getCrontab());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setOwnerId(this.getOwnerId());
+			inst.setStartExecutionTime(this.getStartExecutionTime());
+			inst.setVersion(this.getVersion());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setId(this.getId());
+			inst.setFinishExecutionTime(this.getFinishExecutionTime());
+			inst.setLastExecutionTime(this.getLastExecutionTime());
+			if(all) {
+				inst.setActionCrontabLog(this.getActionCrontabLog());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

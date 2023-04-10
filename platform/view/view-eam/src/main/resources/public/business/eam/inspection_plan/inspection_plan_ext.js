@@ -72,6 +72,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             queryString="?ownerId="+ownerId;
             var tD={};
             openCronForm(tD,queryString,url,ps);
+
+
         }else if(formAction=="edit"){
             url="/service-eam/eam-action-crontab/get-by-id"
             admin.putTempData('eam-action-crontab-form-data-form-action', "edit",true);

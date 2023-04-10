@@ -5,13 +5,14 @@ import com.dt.platform.domain.eam.InspectionTaskPoint;
 import java.util.Date;
 import com.dt.platform.domain.eam.InspectionRoute;
 import com.dt.platform.domain.eam.InspectionTask;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-14 06:28:14
- * @sign 60EBB7903698DDDA12764F1264B2A7D8
+ * @since 2023-04-10 07:19:14
+ * @sign CA625695CAE3F496C000A43EE04AF976
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -36,16 +37,6 @@ public class InspectionTaskPointMeta {
 	 * 任务 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPoint,java.lang.String> TASK_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPoint.class ,TASK_ID, java.lang.String.class, "任务", "任务", java.lang.String.class, null);
-	
-	/**
-	 * 状态 , 类型: java.lang.String
-	*/
-	public static final String STATUS="status";
-	
-	/**
-	 * 状态 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPoint,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPoint.class ,STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
 	
 	/**
 	 * 巡检状态 , 类型: java.lang.String
@@ -128,14 +119,24 @@ public class InspectionTaskPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPoint,java.lang.String> POINT_RFID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPoint.class ,POINT_RFID, java.lang.String.class, "RFID", "RFID", java.lang.String.class, null);
 	
 	/**
-	 * 位置 , 类型: java.lang.String
+	 * 位置详情 , 类型: java.lang.String
 	*/
 	public static final String POINT_POS="pointPos";
 	
 	/**
+	 * 位置详情 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPoint,java.lang.String> POINT_POS_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPoint.class ,POINT_POS, java.lang.String.class, "位置详情", "位置详情", java.lang.String.class, null);
+	
+	/**
 	 * 位置 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPoint,java.lang.String> POINT_POS_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPoint.class ,POINT_POS, java.lang.String.class, "位置", "位置", java.lang.String.class, null);
+	public static final String POINT_POS_ID="pointPosId";
+	
+	/**
+	 * 位置 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPoint,java.lang.String> POINT_POS_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPoint.class ,POINT_POS_ID, java.lang.String.class, "位置", "位置", java.lang.String.class, null);
 	
 	/**
 	 * 位置经度 , 类型: java.lang.String
@@ -320,7 +321,7 @@ public class InspectionTaskPointMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , TASK_ID , STATUS , POINT_STATUS , OPER_TIME , CONTENT , POINT_CODE , POINT_NAME , POINT_CONTENT , POINT_ROUTE_ID , POINT_RFID , POINT_POS , POINT_POS_LONGITUDE , POINT_POS_LATITUDE , POINT_NOTES , SORT , OPER_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , SELECTED_CODE , VERSION , ROUTE , TASK };
+	public static final String[] $PROPS={ ID , TASK_ID , POINT_STATUS , OPER_TIME , CONTENT , POINT_CODE , POINT_NAME , POINT_CONTENT , POINT_ROUTE_ID , POINT_RFID , POINT_POS , POINT_POS_ID , POINT_POS_LONGITUDE , POINT_POS_LATITUDE , POINT_NOTES , SORT , OPER_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , SELECTED_CODE , VERSION , ROUTE , TASK };
 	
 	/**
 	 * 代理类
@@ -349,17 +350,6 @@ public class InspectionTaskPointMeta {
 		public InspectionTaskPoint setTaskId(String taskId) {
 			super.change(TASK_ID,super.getTaskId(),taskId);
 			super.setTaskId(taskId);
-			return this;
-		}
-		
-		/**
-		 * 设置 状态
-		 * @param status 状态
-		 * @return 当前对象
-		*/
-		public InspectionTaskPoint setStatus(String status) {
-			super.change(STATUS,super.getStatus(),status);
-			super.setStatus(status);
 			return this;
 		}
 		
@@ -452,13 +442,24 @@ public class InspectionTaskPointMeta {
 		}
 		
 		/**
-		 * 设置 位置
-		 * @param pointPos 位置
+		 * 设置 位置详情
+		 * @param pointPos 位置详情
 		 * @return 当前对象
 		*/
 		public InspectionTaskPoint setPointPos(String pointPos) {
 			super.change(POINT_POS,super.getPointPos(),pointPos);
 			super.setPointPos(pointPos);
+			return this;
+		}
+		
+		/**
+		 * 设置 位置
+		 * @param pointPosId 位置
+		 * @return 当前对象
+		*/
+		public InspectionTaskPoint setPointPosId(String pointPosId) {
+			super.change(POINT_POS_ID,super.getPointPosId(),pointPosId);
+			super.setPointPosId(pointPosId);
 			return this;
 		}
 		
@@ -659,5 +660,57 @@ public class InspectionTaskPointMeta {
 			super.setTask(task);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public InspectionTaskPoint clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public InspectionTaskPoint duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setPointRfid(this.getPointRfid());
+			inst.setNotes(this.getNotes());
+			inst.setPointName(this.getPointName());
+			inst.setOperId(this.getOperId());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setContent(this.getContent());
+			inst.setPointRouteId(this.getPointRouteId());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setPointNotes(this.getPointNotes());
+			inst.setId(this.getId());
+			inst.setPointStatus(this.getPointStatus());
+			inst.setOperTime(this.getOperTime());
+			inst.setPointCode(this.getPointCode());
+			inst.setPointContent(this.getPointContent());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setSort(this.getSort());
+			inst.setPointPos(this.getPointPos());
+			inst.setPointPosLongitude(this.getPointPosLongitude());
+			inst.setVersion(this.getVersion());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setPointPosId(this.getPointPosId());
+			inst.setPointPosLatitude(this.getPointPosLatitude());
+			inst.setTaskId(this.getTaskId());
+			if(all) {
+				inst.setRoute(this.getRoute());
+				inst.setTask(this.getTask());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

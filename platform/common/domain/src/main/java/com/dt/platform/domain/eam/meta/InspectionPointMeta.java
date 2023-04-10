@@ -4,13 +4,14 @@ import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.InspectionPoint;
 import java.util.Date;
 import com.dt.platform.domain.eam.InspectionRoute;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-11 22:18:07
- * @sign F1B99459E0D0D88A2DB1118A5F6A1DA9
+ * @since 2023-04-10 07:22:13
+ * @sign C790E9BA9FCD15CB5D4BCC7907E30EB6
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -87,14 +88,24 @@ public class InspectionPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> RFID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,RFID, java.lang.String.class, "RFID", "RFID", java.lang.String.class, null);
 	
 	/**
-	 * 位置 , 类型: java.lang.String
+	 * 位置详情 , 类型: java.lang.String
 	*/
 	public static final String POS="pos";
 	
 	/**
+	 * 位置详情 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> POS_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,POS, java.lang.String.class, "位置详情", "位置详情", java.lang.String.class, null);
+	
+	/**
 	 * 位置 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> POS_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,POS, java.lang.String.class, "位置", "位置", java.lang.String.class, null);
+	public static final String POS_ID="posId";
+	
+	/**
+	 * 位置 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> POS_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,POS_ID, java.lang.String.class, "位置", "位置", java.lang.String.class, null);
 	
 	/**
 	 * 位置经度 , 类型: java.lang.String
@@ -117,16 +128,6 @@ public class InspectionPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> POS_LATITUDE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,POS_LATITUDE, java.lang.String.class, "位置纬度", "位置纬度", java.lang.String.class, null);
 	
 	/**
-	 * 备注 , 类型: java.lang.String
-	*/
-	public static final String NOTES="notes";
-	
-	/**
-	 * 备注 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
-	
-	/**
 	 * 图片 , 类型: java.lang.String
 	*/
 	public static final String PICTURE_ID="pictureId";
@@ -135,6 +136,16 @@ public class InspectionPointMeta {
 	 * 图片 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> PICTURE_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,PICTURE_ID, java.lang.String.class, "图片", "图片", java.lang.String.class, null);
+	
+	/**
+	 * 备注 , 类型: java.lang.String
+	*/
+	public static final String NOTES="notes";
+	
+	/**
+	 * 备注 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -237,19 +248,19 @@ public class InspectionPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.Integer> VERSION_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,VERSION, java.lang.Integer.class, "version", "version", java.lang.Integer.class, null);
 	
 	/**
-	 * 负责人 , 类型: com.dt.platform.domain.eam.InspectionRoute
+	 * route , 类型: com.dt.platform.domain.eam.InspectionRoute
 	*/
 	public static final String ROUTE="route";
 	
 	/**
-	 * 负责人 , 类型: com.dt.platform.domain.eam.InspectionRoute
+	 * route , 类型: com.dt.platform.domain.eam.InspectionRoute
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,com.dt.platform.domain.eam.InspectionRoute> ROUTE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,ROUTE, com.dt.platform.domain.eam.InspectionRoute.class, "负责人", "负责人", com.dt.platform.domain.eam.InspectionRoute.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,com.dt.platform.domain.eam.InspectionRoute> ROUTE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,ROUTE, com.dt.platform.domain.eam.InspectionRoute.class, "route", "route", com.dt.platform.domain.eam.InspectionRoute.class, null);
 	
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CODE , NAME , STATUS , CONTENT , ROUTE_ID , RFID , POS , POS_LONGITUDE , POS_LATITUDE , NOTES , PICTURE_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , SELECTED_CODE , VERSION , ROUTE };
+	public static final String[] $PROPS={ ID , CODE , NAME , STATUS , CONTENT , ROUTE_ID , RFID , POS , POS_ID , POS_LONGITUDE , POS_LATITUDE , PICTURE_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , SELECTED_CODE , VERSION , ROUTE };
 	
 	/**
 	 * 代理类
@@ -337,13 +348,24 @@ public class InspectionPointMeta {
 		}
 		
 		/**
-		 * 设置 位置
-		 * @param pos 位置
+		 * 设置 位置详情
+		 * @param pos 位置详情
 		 * @return 当前对象
 		*/
 		public InspectionPoint setPos(String pos) {
 			super.change(POS,super.getPos(),pos);
 			super.setPos(pos);
+			return this;
+		}
+		
+		/**
+		 * 设置 位置
+		 * @param posId 位置
+		 * @return 当前对象
+		*/
+		public InspectionPoint setPosId(String posId) {
+			super.change(POS_ID,super.getPosId(),posId);
+			super.setPosId(posId);
 			return this;
 		}
 		
@@ -370,17 +392,6 @@ public class InspectionPointMeta {
 		}
 		
 		/**
-		 * 设置 备注
-		 * @param notes 备注
-		 * @return 当前对象
-		*/
-		public InspectionPoint setNotes(String notes) {
-			super.change(NOTES,super.getNotes(),notes);
-			super.setNotes(notes);
-			return this;
-		}
-		
-		/**
 		 * 设置 图片
 		 * @param pictureId 图片
 		 * @return 当前对象
@@ -388,6 +399,17 @@ public class InspectionPointMeta {
 		public InspectionPoint setPictureId(String pictureId) {
 			super.change(PICTURE_ID,super.getPictureId(),pictureId);
 			super.setPictureId(pictureId);
+			return this;
+		}
+		
+		/**
+		 * 设置 备注
+		 * @param notes 备注
+		 * @return 当前对象
+		*/
+		public InspectionPoint setNotes(String notes) {
+			super.change(NOTES,super.getNotes(),notes);
+			super.setNotes(notes);
 			return this;
 		}
 		
@@ -502,8 +524,8 @@ public class InspectionPointMeta {
 		}
 		
 		/**
-		 * 设置 负责人
-		 * @param route 负责人
+		 * 设置 route
+		 * @param route route
 		 * @return 当前对象
 		*/
 		public InspectionPoint setRoute(InspectionRoute route) {
@@ -511,5 +533,51 @@ public class InspectionPointMeta {
 			super.setRoute(route);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public InspectionPoint clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public InspectionPoint duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setCode(this.getCode());
+			inst.setNotes(this.getNotes());
+			inst.setPosLatitude(this.getPosLatitude());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setVersion(this.getVersion());
+			inst.setContent(this.getContent());
+			inst.setPosId(this.getPosId());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setRouteId(this.getRouteId());
+			inst.setDeleted(this.getDeleted());
+			inst.setPictureId(this.getPictureId());
+			inst.setPos(this.getPos());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setRfid(this.getRfid());
+			inst.setPosLongitude(this.getPosLongitude());
+			inst.setId(this.getId());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setRoute(this.getRoute());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

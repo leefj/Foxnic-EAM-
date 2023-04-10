@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_INSPECTION_TASK_POINT;
@@ -8,21 +9,27 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.InspectionTaskPointMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 巡检点
+ * <p>巡检点 , 数据表 eam_inspection_task_point 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-14 06:28:14
- * @sign 60EBB7903698DDDA12764F1264B2A7D8
+ * @since 2023-04-10 07:19:14
+ * @sign CA625695CAE3F496C000A43EE04AF976
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_inspection_task_point")
+@ApiModel(description = "巡检点 ; 巡检点 , 数据表 eam_inspection_task_point 的PO类型")
 public class InspectionTaskPoint extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -33,25 +40,19 @@ public class InspectionTaskPoint extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "697562178735046656")
 	private String id;
 	
 	/**
 	 * 任务：任务
 	*/
-	@ApiModelProperty(required = false,value="任务" , notes = "任务")
+	@ApiModelProperty(required = false,value="任务" , notes = "任务" , example = "697562178361753600")
 	private String taskId;
-	
-	/**
-	 * 状态：状态
-	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
-	private String status;
 	
 	/**
 	 * 巡检状态：巡检状态
 	*/
-	@ApiModelProperty(required = false,value="巡检状态" , notes = "巡检状态")
+	@ApiModelProperty(required = false,value="巡检状态" , notes = "巡检状态" , example = "normal")
 	private String pointStatus;
 	
 	/**
@@ -69,13 +70,13 @@ public class InspectionTaskPoint extends Entity {
 	/**
 	 * 编码：编码
 	*/
-	@ApiModelProperty(required = false,value="编码" , notes = "编码")
+	@ApiModelProperty(required = false,value="编码" , notes = "编码" , example = "point2")
 	private String pointCode;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "point2")
 	private String pointName;
 	
 	/**
@@ -87,7 +88,7 @@ public class InspectionTaskPoint extends Entity {
 	/**
 	 * 巡检路线：巡检路线
 	*/
-	@ApiModelProperty(required = false,value="巡检路线" , notes = "巡检路线")
+	@ApiModelProperty(required = false,value="巡检路线" , notes = "巡检路线" , example = "697560681343352832")
 	private String pointRouteId;
 	
 	/**
@@ -97,21 +98,27 @@ public class InspectionTaskPoint extends Entity {
 	private String pointRfid;
 	
 	/**
+	 * 位置详情：位置详情
+	*/
+	@ApiModelProperty(required = false,value="位置详情" , notes = "位置详情")
+	private String pointPos;
+	
+	/**
 	 * 位置：位置
 	*/
 	@ApiModelProperty(required = false,value="位置" , notes = "位置")
-	private String pointPos;
+	private String pointPosId;
 	
 	/**
 	 * 位置经度：位置经度
 	*/
-	@ApiModelProperty(required = false,value="位置经度" , notes = "位置经度")
+	@ApiModelProperty(required = false,value="位置经度" , notes = "位置经度" , example = "0.0")
 	private String pointPosLongitude;
 	
 	/**
 	 * 位置纬度：位置纬度
 	*/
-	@ApiModelProperty(required = false,value="位置纬度" , notes = "位置纬度")
+	@ApiModelProperty(required = false,value="位置纬度" , notes = "位置纬度" , example = "0.0")
 	private String pointPosLatitude;
 	
 	/**
@@ -123,7 +130,7 @@ public class InspectionTaskPoint extends Entity {
 	/**
 	 * 排序：排序
 	*/
-	@ApiModelProperty(required = false,value="排序" , notes = "排序")
+	@ApiModelProperty(required = false,value="排序" , notes = "排序" , example = "0")
 	private Integer sort;
 	
 	/**
@@ -141,13 +148,13 @@ public class InspectionTaskPoint extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-09 09:43:04")
 	private Date createTime;
 	
 	/**
@@ -165,9 +172,10 @@ public class InspectionTaskPoint extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -185,7 +193,7 @@ public class InspectionTaskPoint extends Entity {
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -197,7 +205,7 @@ public class InspectionTaskPoint extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
@@ -247,25 +255,6 @@ public class InspectionTaskPoint extends Entity {
 	*/
 	public InspectionTaskPoint setTaskId(String taskId) {
 		this.taskId=taskId;
-		return this;
-	}
-	
-	/**
-	 * 获得 状态<br>
-	 * 状态
-	 * @return 状态
-	*/
-	public String getStatus() {
-		return status;
-	}
-	
-	/**
-	 * 设置 状态
-	 * @param status 状态
-	 * @return 当前对象
-	*/
-	public InspectionTaskPoint setStatus(String status) {
-		this.status=status;
 		return this;
 	}
 	
@@ -422,21 +411,40 @@ public class InspectionTaskPoint extends Entity {
 	}
 	
 	/**
-	 * 获得 位置<br>
-	 * 位置
-	 * @return 位置
+	 * 获得 位置详情<br>
+	 * 位置详情
+	 * @return 位置详情
 	*/
 	public String getPointPos() {
 		return pointPos;
 	}
 	
 	/**
-	 * 设置 位置
-	 * @param pointPos 位置
+	 * 设置 位置详情
+	 * @param pointPos 位置详情
 	 * @return 当前对象
 	*/
 	public InspectionTaskPoint setPointPos(String pointPos) {
 		this.pointPos=pointPos;
+		return this;
+	}
+	
+	/**
+	 * 获得 位置<br>
+	 * 位置
+	 * @return 位置
+	*/
+	public String getPointPosId() {
+		return pointPosId;
+	}
+	
+	/**
+	 * 设置 位置
+	 * @param pointPosId 位置
+	 * @return 当前对象
+	*/
+	public InspectionTaskPoint setPointPosId(String pointPosId) {
+		this.pointPosId=pointPosId;
 		return this;
 	}
 	
@@ -657,6 +665,7 @@ public class InspectionTaskPoint extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public InspectionTaskPoint setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -842,6 +851,65 @@ public class InspectionTaskPoint extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public InspectionTaskPoint clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public InspectionTaskPoint duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.InspectionTaskPointMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.InspectionTaskPointMeta.$$proxy$$();
+		inst.setPointRfid(this.getPointRfid());
+		inst.setNotes(this.getNotes());
+		inst.setPointName(this.getPointName());
+		inst.setOperId(this.getOperId());
+		inst.setSelectedCode(this.getSelectedCode());
+		inst.setContent(this.getContent());
+		inst.setPointRouteId(this.getPointRouteId());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setPointNotes(this.getPointNotes());
+		inst.setId(this.getId());
+		inst.setPointStatus(this.getPointStatus());
+		inst.setOperTime(this.getOperTime());
+		inst.setPointCode(this.getPointCode());
+		inst.setPointContent(this.getPointContent());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setSort(this.getSort());
+		inst.setPointPos(this.getPointPos());
+		inst.setPointPosLongitude(this.getPointPosLongitude());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setPointPosId(this.getPointPosId());
+		inst.setPointPosLatitude(this.getPointPosLatitude());
+		inst.setTaskId(this.getTaskId());
+		if(all) {
+			inst.setRoute(this.getRoute());
+			inst.setTask(this.getTask());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public InspectionTaskPoint clone(boolean deep) {
+		return EntityContext.clone(InspectionTaskPoint.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 InspectionTaskPoint
 	 * @param inspectionTaskPointMap 包含实体信息的 Map 对象
 	 * @return InspectionTaskPoint , 转换好的的 InspectionTaskPoint 对象
@@ -849,7 +917,9 @@ public class InspectionTaskPoint extends Entity {
 	@Transient
 	public static InspectionTaskPoint createFrom(Map<String,Object> inspectionTaskPointMap) {
 		if(inspectionTaskPointMap==null) return null;
-		InspectionTaskPoint po = EntityContext.create(InspectionTaskPoint.class, inspectionTaskPointMap);
+		InspectionTaskPoint po = create();
+		EntityContext.copyProperties(po,inspectionTaskPointMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -861,7 +931,9 @@ public class InspectionTaskPoint extends Entity {
 	@Transient
 	public static InspectionTaskPoint createFrom(Object pojo) {
 		if(pojo==null) return null;
-		InspectionTaskPoint po = EntityContext.create(InspectionTaskPoint.class,pojo);
+		InspectionTaskPoint po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -871,6 +943,162 @@ public class InspectionTaskPoint extends Entity {
 	*/
 	@Transient
 	public static InspectionTaskPoint create() {
-		return EntityContext.create(InspectionTaskPoint.class);
+		return new com.dt.platform.domain.eam.meta.InspectionTaskPointMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setPointRfid(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_RFID)));
+			this.setNotes(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.NOTES)));
+			this.setPointName(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_NAME)));
+			this.setOperId(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.OPER_ID)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.CONTENT)));
+			this.setPointRouteId(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_ROUTE_ID)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.UPDATE_BY)));
+			this.setPointNotes(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_NOTES)));
+			this.setId(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.ID)));
+			this.setPointStatus(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_STATUS)));
+			this.setOperTime(DataParser.parse(Date.class, map.get(InspectionTaskPointMeta.OPER_TIME)));
+			this.setPointCode(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_CODE)));
+			this.setPointContent(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_CONTENT)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(InspectionTaskPointMeta.UPDATE_TIME)));
+			this.setSort(DataParser.parse(Integer.class, map.get(InspectionTaskPointMeta.SORT)));
+			this.setPointPos(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_POS)));
+			this.setPointPosLongitude(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_POS_LONGITUDE)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(InspectionTaskPointMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(InspectionTaskPointMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(InspectionTaskPointMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(InspectionTaskPointMeta.DELETE_TIME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.DELETE_BY)));
+			this.setPointPosId(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_POS_ID)));
+			this.setPointPosLatitude(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_POS_LATITUDE)));
+			this.setTaskId(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.TASK_ID)));
+			// others
+			this.setRoute(DataParser.parse(InspectionRoute.class, map.get(InspectionTaskPointMeta.ROUTE)));
+			this.setTask(DataParser.parse(InspectionTask.class, map.get(InspectionTaskPointMeta.TASK)));
+			return true;
+		} else {
+			try {
+				this.setPointRfid( (String)map.get(InspectionTaskPointMeta.POINT_RFID));
+				this.setNotes( (String)map.get(InspectionTaskPointMeta.NOTES));
+				this.setPointName( (String)map.get(InspectionTaskPointMeta.POINT_NAME));
+				this.setOperId( (String)map.get(InspectionTaskPointMeta.OPER_ID));
+				this.setSelectedCode( (String)map.get(InspectionTaskPointMeta.SELECTED_CODE));
+				this.setContent( (String)map.get(InspectionTaskPointMeta.CONTENT));
+				this.setPointRouteId( (String)map.get(InspectionTaskPointMeta.POINT_ROUTE_ID));
+				this.setUpdateBy( (String)map.get(InspectionTaskPointMeta.UPDATE_BY));
+				this.setPointNotes( (String)map.get(InspectionTaskPointMeta.POINT_NOTES));
+				this.setId( (String)map.get(InspectionTaskPointMeta.ID));
+				this.setPointStatus( (String)map.get(InspectionTaskPointMeta.POINT_STATUS));
+				this.setOperTime( (Date)map.get(InspectionTaskPointMeta.OPER_TIME));
+				this.setPointCode( (String)map.get(InspectionTaskPointMeta.POINT_CODE));
+				this.setPointContent( (String)map.get(InspectionTaskPointMeta.POINT_CONTENT));
+				this.setUpdateTime( (Date)map.get(InspectionTaskPointMeta.UPDATE_TIME));
+				this.setSort( (Integer)map.get(InspectionTaskPointMeta.SORT));
+				this.setPointPos( (String)map.get(InspectionTaskPointMeta.POINT_POS));
+				this.setPointPosLongitude( (String)map.get(InspectionTaskPointMeta.POINT_POS_LONGITUDE));
+				this.setVersion( (Integer)map.get(InspectionTaskPointMeta.VERSION));
+				this.setCreateBy( (String)map.get(InspectionTaskPointMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(InspectionTaskPointMeta.DELETED));
+				this.setCreateTime( (Date)map.get(InspectionTaskPointMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)map.get(InspectionTaskPointMeta.DELETE_TIME));
+				this.setTenantId( (String)map.get(InspectionTaskPointMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(InspectionTaskPointMeta.DELETE_BY));
+				this.setPointPosId( (String)map.get(InspectionTaskPointMeta.POINT_POS_ID));
+				this.setPointPosLatitude( (String)map.get(InspectionTaskPointMeta.POINT_POS_LATITUDE));
+				this.setTaskId( (String)map.get(InspectionTaskPointMeta.TASK_ID));
+				// others
+				this.setRoute( (InspectionRoute)map.get(InspectionTaskPointMeta.ROUTE));
+				this.setTask( (InspectionTask)map.get(InspectionTaskPointMeta.TASK));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setPointRfid(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_RFID)));
+			this.setNotes(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.NOTES)));
+			this.setPointName(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_NAME)));
+			this.setOperId(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.OPER_ID)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.CONTENT)));
+			this.setPointRouteId(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_ROUTE_ID)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.UPDATE_BY)));
+			this.setPointNotes(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_NOTES)));
+			this.setId(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.ID)));
+			this.setPointStatus(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_STATUS)));
+			this.setOperTime(DataParser.parse(Date.class, r.getValue(InspectionTaskPointMeta.OPER_TIME)));
+			this.setPointCode(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_CODE)));
+			this.setPointContent(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_CONTENT)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(InspectionTaskPointMeta.UPDATE_TIME)));
+			this.setSort(DataParser.parse(Integer.class, r.getValue(InspectionTaskPointMeta.SORT)));
+			this.setPointPos(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_POS)));
+			this.setPointPosLongitude(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_POS_LONGITUDE)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(InspectionTaskPointMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(InspectionTaskPointMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(InspectionTaskPointMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(InspectionTaskPointMeta.DELETE_TIME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.DELETE_BY)));
+			this.setPointPosId(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_POS_ID)));
+			this.setPointPosLatitude(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_POS_LATITUDE)));
+			this.setTaskId(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.TASK_ID)));
+			return true;
+		} else {
+			try {
+				this.setPointRfid( (String)r.getValue(InspectionTaskPointMeta.POINT_RFID));
+				this.setNotes( (String)r.getValue(InspectionTaskPointMeta.NOTES));
+				this.setPointName( (String)r.getValue(InspectionTaskPointMeta.POINT_NAME));
+				this.setOperId( (String)r.getValue(InspectionTaskPointMeta.OPER_ID));
+				this.setSelectedCode( (String)r.getValue(InspectionTaskPointMeta.SELECTED_CODE));
+				this.setContent( (String)r.getValue(InspectionTaskPointMeta.CONTENT));
+				this.setPointRouteId( (String)r.getValue(InspectionTaskPointMeta.POINT_ROUTE_ID));
+				this.setUpdateBy( (String)r.getValue(InspectionTaskPointMeta.UPDATE_BY));
+				this.setPointNotes( (String)r.getValue(InspectionTaskPointMeta.POINT_NOTES));
+				this.setId( (String)r.getValue(InspectionTaskPointMeta.ID));
+				this.setPointStatus( (String)r.getValue(InspectionTaskPointMeta.POINT_STATUS));
+				this.setOperTime( (Date)r.getValue(InspectionTaskPointMeta.OPER_TIME));
+				this.setPointCode( (String)r.getValue(InspectionTaskPointMeta.POINT_CODE));
+				this.setPointContent( (String)r.getValue(InspectionTaskPointMeta.POINT_CONTENT));
+				this.setUpdateTime( (Date)r.getValue(InspectionTaskPointMeta.UPDATE_TIME));
+				this.setSort( (Integer)r.getValue(InspectionTaskPointMeta.SORT));
+				this.setPointPos( (String)r.getValue(InspectionTaskPointMeta.POINT_POS));
+				this.setPointPosLongitude( (String)r.getValue(InspectionTaskPointMeta.POINT_POS_LONGITUDE));
+				this.setVersion( (Integer)r.getValue(InspectionTaskPointMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(InspectionTaskPointMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(InspectionTaskPointMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(InspectionTaskPointMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)r.getValue(InspectionTaskPointMeta.DELETE_TIME));
+				this.setTenantId( (String)r.getValue(InspectionTaskPointMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(InspectionTaskPointMeta.DELETE_BY));
+				this.setPointPosId( (String)r.getValue(InspectionTaskPointMeta.POINT_POS_ID));
+				this.setPointPosLatitude( (String)r.getValue(InspectionTaskPointMeta.POINT_POS_LATITUDE));
+				this.setTaskId( (String)r.getValue(InspectionTaskPointMeta.TASK_ID));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

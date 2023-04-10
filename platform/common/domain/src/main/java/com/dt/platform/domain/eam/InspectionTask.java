@@ -1,6 +1,7 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_INSPECTION_TASK;
@@ -9,26 +10,32 @@ import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.InspectionTaskMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 巡检任务
+ * <p>巡检任务 , 数据表 eam_inspection_task 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-13 21:10:48
- * @sign 576594AC61DEAF1440557F74233FD239
+ * @since 2023-04-10 07:26:15
+ * @sign 9AE2DDCDD09492A9B995829ABD112D78
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_inspection_task")
+@ApiModel(description = "巡检任务 ; 巡检任务 , 数据表 eam_inspection_task 的PO类型")
 public class InspectionTask extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -39,61 +46,61 @@ public class InspectionTask extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "697562178361753600")
 	private String id;
 	
 	/**
 	 * 巡检计划：巡检计划
 	*/
-	@ApiModelProperty(required = false,value="巡检计划" , notes = "巡检计划")
+	@ApiModelProperty(required = false,value="巡检计划" , notes = "巡检计划" , example = "697561212996550656")
 	private String planId;
 	
 	/**
 	 * 任务状态：任务状态
 	*/
-	@ApiModelProperty(required = false,value="任务状态" , notes = "任务状态")
+	@ApiModelProperty(required = false,value="任务状态" , notes = "任务状态" , example = "not_start")
 	private String taskStatus;
 	
 	/**
 	 * 任务编号：任务编号
 	*/
-	@ApiModelProperty(required = false,value="任务编号" , notes = "任务编号")
+	@ApiModelProperty(required = false,value="任务编号" , notes = "任务编号" , example = "INSPT202304092104809")
 	private String taskCode;
 	
 	/**
 	 * 巡检编码：巡检编码
 	*/
-	@ApiModelProperty(required = false,value="巡检编码" , notes = "巡检编码")
+	@ApiModelProperty(required = false,value="巡检编码" , notes = "巡检编码" , example = "INSP202304092104919")
 	private String planCode;
 	
 	/**
 	 * 巡检名称：巡检名称
 	*/
-	@ApiModelProperty(required = false,value="巡检名称" , notes = "巡检名称")
+	@ApiModelProperty(required = false,value="巡检名称" , notes = "巡检名称" , example = "模版")
 	private String planName;
 	
 	/**
 	 * 巡检顺序：巡检顺序
 	*/
-	@ApiModelProperty(required = false,value="巡检顺序" , notes = "巡检顺序")
+	@ApiModelProperty(required = false,value="巡检顺序" , notes = "巡检顺序" , example = "random")
 	private String planInspectionMethod;
 	
 	/**
 	 * 时间要求：时间要求
 	*/
-	@ApiModelProperty(required = false,value="时间要求" , notes = "时间要求")
+	@ApiModelProperty(required = false,value="时间要求" , notes = "时间要求" , example = "2.00")
 	private BigDecimal planCompletionTime;
 	
 	/**
 	 * 巡检备注：巡检备注
 	*/
-	@ApiModelProperty(required = false,value="巡检备注" , notes = "巡检备注")
+	@ApiModelProperty(required = false,value="巡检备注" , notes = "巡检备注" , example = "yujk")
 	private String planNotes;
 	
 	/**
 	 * 巡检班组：巡检班组
 	*/
-	@ApiModelProperty(required = false,value="巡检班组" , notes = "巡检班组")
+	@ApiModelProperty(required = false,value="巡检班组" , notes = "巡检班组" , example = "571667627504570368")
 	private String groupId;
 	
 	/**
@@ -105,7 +112,7 @@ public class InspectionTask extends Entity {
 	/**
 	 * 应开始时间：应开始时间
 	*/
-	@ApiModelProperty(required = false,value="应开始时间" , notes = "应开始时间")
+	@ApiModelProperty(required = false,value="应开始时间" , notes = "应开始时间" , example = "2023-04-09 09:43:03")
 	private Date planStartTime;
 	
 	/**
@@ -123,7 +130,7 @@ public class InspectionTask extends Entity {
 	/**
 	 * 实际工时：实际工时
 	*/
-	@ApiModelProperty(required = false,value="实际工时" , notes = "实际工时")
+	@ApiModelProperty(required = false,value="实际工时" , notes = "实际工时" , example = "0.00")
 	private BigDecimal actTotalCost;
 	
 	/**
@@ -147,13 +154,13 @@ public class InspectionTask extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-09 09:43:03")
 	private Date createTime;
 	
 	/**
@@ -171,9 +178,10 @@ public class InspectionTask extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -191,13 +199,13 @@ public class InspectionTask extends Entity {
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
@@ -711,6 +719,7 @@ public class InspectionTask extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public InspectionTask setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -1092,6 +1101,73 @@ public class InspectionTask extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public InspectionTask clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public InspectionTask duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.InspectionTaskMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.InspectionTaskMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setGroupId(this.getGroupId());
+		inst.setPlanName(this.getPlanName());
+		inst.setSelectedCode(this.getSelectedCode());
+		inst.setContent(this.getContent());
+		inst.setActStartTime(this.getActStartTime());
+		inst.setTaskCode(this.getTaskCode());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setPlanId(this.getPlanId());
+		inst.setId(this.getId());
+		inst.setOriginatorId(this.getOriginatorId());
+		inst.setPlanInspectionMethod(this.getPlanInspectionMethod());
+		inst.setActFinishTime(this.getActFinishTime());
+		inst.setTaskStatus(this.getTaskStatus());
+		inst.setPlanStartTime(this.getPlanStartTime());
+		inst.setExecutorId(this.getExecutorId());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setPlanCode(this.getPlanCode());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setActTotalCost(this.getActTotalCost());
+		inst.setPlanNotes(this.getPlanNotes());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setPlanCompletionTime(this.getPlanCompletionTime());
+		if(all) {
+			inst.setInspectionPointList(this.getInspectionPointList());
+			inst.setTimeDict(this.getTimeDict());
+			inst.setExecutor(this.getExecutor());
+			inst.setInspectionTypeDict(this.getInspectionTypeDict());
+			inst.setInspectionPlan(this.getInspectionPlan());
+			inst.setInspectionTaskPointList(this.getInspectionTaskPointList());
+			inst.setInspectionTaskPointIds(this.getInspectionTaskPointIds());
+			inst.setOriginator(this.getOriginator());
+			inst.setInspectionPointIds(this.getInspectionPointIds());
+			inst.setInspectionGroup(this.getInspectionGroup());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public InspectionTask clone(boolean deep) {
+		return EntityContext.clone(InspectionTask.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 InspectionTask
 	 * @param inspectionTaskMap 包含实体信息的 Map 对象
 	 * @return InspectionTask , 转换好的的 InspectionTask 对象
@@ -1099,7 +1175,9 @@ public class InspectionTask extends Entity {
 	@Transient
 	public static InspectionTask createFrom(Map<String,Object> inspectionTaskMap) {
 		if(inspectionTaskMap==null) return null;
-		InspectionTask po = EntityContext.create(InspectionTask.class, inspectionTaskMap);
+		InspectionTask po = create();
+		EntityContext.copyProperties(po,inspectionTaskMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -1111,7 +1189,9 @@ public class InspectionTask extends Entity {
 	@Transient
 	public static InspectionTask createFrom(Object pojo) {
 		if(pojo==null) return null;
-		InspectionTask po = EntityContext.create(InspectionTask.class,pojo);
+		InspectionTask po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -1121,6 +1201,170 @@ public class InspectionTask extends Entity {
 	*/
 	@Transient
 	public static InspectionTask create() {
-		return EntityContext.create(InspectionTask.class);
+		return new com.dt.platform.domain.eam.meta.InspectionTaskMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(InspectionTaskMeta.NOTES)));
+			this.setGroupId(DataParser.parse(String.class, map.get(InspectionTaskMeta.GROUP_ID)));
+			this.setPlanName(DataParser.parse(String.class, map.get(InspectionTaskMeta.PLAN_NAME)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(InspectionTaskMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, map.get(InspectionTaskMeta.CONTENT)));
+			this.setActStartTime(DataParser.parse(Date.class, map.get(InspectionTaskMeta.ACT_START_TIME)));
+			this.setTaskCode(DataParser.parse(String.class, map.get(InspectionTaskMeta.TASK_CODE)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(InspectionTaskMeta.UPDATE_BY)));
+			this.setPlanId(DataParser.parse(String.class, map.get(InspectionTaskMeta.PLAN_ID)));
+			this.setId(DataParser.parse(String.class, map.get(InspectionTaskMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, map.get(InspectionTaskMeta.ORIGINATOR_ID)));
+			this.setPlanInspectionMethod(DataParser.parse(String.class, map.get(InspectionTaskMeta.PLAN_INSPECTION_METHOD)));
+			this.setActFinishTime(DataParser.parse(Date.class, map.get(InspectionTaskMeta.ACT_FINISH_TIME)));
+			this.setTaskStatus(DataParser.parse(String.class, map.get(InspectionTaskMeta.TASK_STATUS)));
+			this.setPlanStartTime(DataParser.parse(Date.class, map.get(InspectionTaskMeta.PLAN_START_TIME)));
+			this.setExecutorId(DataParser.parse(String.class, map.get(InspectionTaskMeta.EXECUTOR_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(InspectionTaskMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(InspectionTaskMeta.VERSION)));
+			this.setPlanCode(DataParser.parse(String.class, map.get(InspectionTaskMeta.PLAN_CODE)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(InspectionTaskMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(InspectionTaskMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(InspectionTaskMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(InspectionTaskMeta.DELETE_TIME)));
+			this.setActTotalCost(DataParser.parse(BigDecimal.class, map.get(InspectionTaskMeta.ACT_TOTAL_COST)));
+			this.setPlanNotes(DataParser.parse(String.class, map.get(InspectionTaskMeta.PLAN_NOTES)));
+			this.setTenantId(DataParser.parse(String.class, map.get(InspectionTaskMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(InspectionTaskMeta.DELETE_BY)));
+			this.setPlanCompletionTime(DataParser.parse(BigDecimal.class, map.get(InspectionTaskMeta.PLAN_COMPLETION_TIME)));
+			// others
+			this.setTimeDict(DataParser.parse(DictItem.class, map.get(InspectionTaskMeta.TIME_DICT)));
+			this.setExecutor(DataParser.parse(Employee.class, map.get(InspectionTaskMeta.EXECUTOR)));
+			this.setInspectionTypeDict(DataParser.parse(DictItem.class, map.get(InspectionTaskMeta.INSPECTION_TYPE_DICT)));
+			this.setInspectionPlan(DataParser.parse(InspectionPlan.class, map.get(InspectionTaskMeta.INSPECTION_PLAN)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(InspectionTaskMeta.ORIGINATOR)));
+			this.setInspectionGroup(DataParser.parse(InspectionGroup.class, map.get(InspectionTaskMeta.INSPECTION_GROUP)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(InspectionTaskMeta.NOTES));
+				this.setGroupId( (String)map.get(InspectionTaskMeta.GROUP_ID));
+				this.setPlanName( (String)map.get(InspectionTaskMeta.PLAN_NAME));
+				this.setSelectedCode( (String)map.get(InspectionTaskMeta.SELECTED_CODE));
+				this.setContent( (String)map.get(InspectionTaskMeta.CONTENT));
+				this.setActStartTime( (Date)map.get(InspectionTaskMeta.ACT_START_TIME));
+				this.setTaskCode( (String)map.get(InspectionTaskMeta.TASK_CODE));
+				this.setUpdateBy( (String)map.get(InspectionTaskMeta.UPDATE_BY));
+				this.setPlanId( (String)map.get(InspectionTaskMeta.PLAN_ID));
+				this.setId( (String)map.get(InspectionTaskMeta.ID));
+				this.setOriginatorId( (String)map.get(InspectionTaskMeta.ORIGINATOR_ID));
+				this.setPlanInspectionMethod( (String)map.get(InspectionTaskMeta.PLAN_INSPECTION_METHOD));
+				this.setActFinishTime( (Date)map.get(InspectionTaskMeta.ACT_FINISH_TIME));
+				this.setTaskStatus( (String)map.get(InspectionTaskMeta.TASK_STATUS));
+				this.setPlanStartTime( (Date)map.get(InspectionTaskMeta.PLAN_START_TIME));
+				this.setExecutorId( (String)map.get(InspectionTaskMeta.EXECUTOR_ID));
+				this.setUpdateTime( (Date)map.get(InspectionTaskMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(InspectionTaskMeta.VERSION));
+				this.setPlanCode( (String)map.get(InspectionTaskMeta.PLAN_CODE));
+				this.setCreateBy( (String)map.get(InspectionTaskMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(InspectionTaskMeta.DELETED));
+				this.setCreateTime( (Date)map.get(InspectionTaskMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)map.get(InspectionTaskMeta.DELETE_TIME));
+				this.setActTotalCost( (BigDecimal)map.get(InspectionTaskMeta.ACT_TOTAL_COST));
+				this.setPlanNotes( (String)map.get(InspectionTaskMeta.PLAN_NOTES));
+				this.setTenantId( (String)map.get(InspectionTaskMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(InspectionTaskMeta.DELETE_BY));
+				this.setPlanCompletionTime( (BigDecimal)map.get(InspectionTaskMeta.PLAN_COMPLETION_TIME));
+				// others
+				this.setTimeDict( (DictItem)map.get(InspectionTaskMeta.TIME_DICT));
+				this.setExecutor( (Employee)map.get(InspectionTaskMeta.EXECUTOR));
+				this.setInspectionTypeDict( (DictItem)map.get(InspectionTaskMeta.INSPECTION_TYPE_DICT));
+				this.setInspectionPlan( (InspectionPlan)map.get(InspectionTaskMeta.INSPECTION_PLAN));
+				this.setOriginator( (Employee)map.get(InspectionTaskMeta.ORIGINATOR));
+				this.setInspectionGroup( (InspectionGroup)map.get(InspectionTaskMeta.INSPECTION_GROUP));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(InspectionTaskMeta.NOTES)));
+			this.setGroupId(DataParser.parse(String.class, r.getValue(InspectionTaskMeta.GROUP_ID)));
+			this.setPlanName(DataParser.parse(String.class, r.getValue(InspectionTaskMeta.PLAN_NAME)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(InspectionTaskMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, r.getValue(InspectionTaskMeta.CONTENT)));
+			this.setActStartTime(DataParser.parse(Date.class, r.getValue(InspectionTaskMeta.ACT_START_TIME)));
+			this.setTaskCode(DataParser.parse(String.class, r.getValue(InspectionTaskMeta.TASK_CODE)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(InspectionTaskMeta.UPDATE_BY)));
+			this.setPlanId(DataParser.parse(String.class, r.getValue(InspectionTaskMeta.PLAN_ID)));
+			this.setId(DataParser.parse(String.class, r.getValue(InspectionTaskMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, r.getValue(InspectionTaskMeta.ORIGINATOR_ID)));
+			this.setPlanInspectionMethod(DataParser.parse(String.class, r.getValue(InspectionTaskMeta.PLAN_INSPECTION_METHOD)));
+			this.setActFinishTime(DataParser.parse(Date.class, r.getValue(InspectionTaskMeta.ACT_FINISH_TIME)));
+			this.setTaskStatus(DataParser.parse(String.class, r.getValue(InspectionTaskMeta.TASK_STATUS)));
+			this.setPlanStartTime(DataParser.parse(Date.class, r.getValue(InspectionTaskMeta.PLAN_START_TIME)));
+			this.setExecutorId(DataParser.parse(String.class, r.getValue(InspectionTaskMeta.EXECUTOR_ID)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(InspectionTaskMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(InspectionTaskMeta.VERSION)));
+			this.setPlanCode(DataParser.parse(String.class, r.getValue(InspectionTaskMeta.PLAN_CODE)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(InspectionTaskMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(InspectionTaskMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(InspectionTaskMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(InspectionTaskMeta.DELETE_TIME)));
+			this.setActTotalCost(DataParser.parse(BigDecimal.class, r.getValue(InspectionTaskMeta.ACT_TOTAL_COST)));
+			this.setPlanNotes(DataParser.parse(String.class, r.getValue(InspectionTaskMeta.PLAN_NOTES)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(InspectionTaskMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(InspectionTaskMeta.DELETE_BY)));
+			this.setPlanCompletionTime(DataParser.parse(BigDecimal.class, r.getValue(InspectionTaskMeta.PLAN_COMPLETION_TIME)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(InspectionTaskMeta.NOTES));
+				this.setGroupId( (String)r.getValue(InspectionTaskMeta.GROUP_ID));
+				this.setPlanName( (String)r.getValue(InspectionTaskMeta.PLAN_NAME));
+				this.setSelectedCode( (String)r.getValue(InspectionTaskMeta.SELECTED_CODE));
+				this.setContent( (String)r.getValue(InspectionTaskMeta.CONTENT));
+				this.setActStartTime( (Date)r.getValue(InspectionTaskMeta.ACT_START_TIME));
+				this.setTaskCode( (String)r.getValue(InspectionTaskMeta.TASK_CODE));
+				this.setUpdateBy( (String)r.getValue(InspectionTaskMeta.UPDATE_BY));
+				this.setPlanId( (String)r.getValue(InspectionTaskMeta.PLAN_ID));
+				this.setId( (String)r.getValue(InspectionTaskMeta.ID));
+				this.setOriginatorId( (String)r.getValue(InspectionTaskMeta.ORIGINATOR_ID));
+				this.setPlanInspectionMethod( (String)r.getValue(InspectionTaskMeta.PLAN_INSPECTION_METHOD));
+				this.setActFinishTime( (Date)r.getValue(InspectionTaskMeta.ACT_FINISH_TIME));
+				this.setTaskStatus( (String)r.getValue(InspectionTaskMeta.TASK_STATUS));
+				this.setPlanStartTime( (Date)r.getValue(InspectionTaskMeta.PLAN_START_TIME));
+				this.setExecutorId( (String)r.getValue(InspectionTaskMeta.EXECUTOR_ID));
+				this.setUpdateTime( (Date)r.getValue(InspectionTaskMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(InspectionTaskMeta.VERSION));
+				this.setPlanCode( (String)r.getValue(InspectionTaskMeta.PLAN_CODE));
+				this.setCreateBy( (String)r.getValue(InspectionTaskMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(InspectionTaskMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(InspectionTaskMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)r.getValue(InspectionTaskMeta.DELETE_TIME));
+				this.setActTotalCost( (BigDecimal)r.getValue(InspectionTaskMeta.ACT_TOTAL_COST));
+				this.setPlanNotes( (String)r.getValue(InspectionTaskMeta.PLAN_NOTES));
+				this.setTenantId( (String)r.getValue(InspectionTaskMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(InspectionTaskMeta.DELETE_BY));
+				this.setPlanCompletionTime( (BigDecimal)r.getValue(InspectionTaskMeta.PLAN_COMPLETION_TIME));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

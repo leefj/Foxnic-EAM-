@@ -1,6 +1,8 @@
 package com.dt.platform.eam.service;
 
 
+import com.alibaba.fastjson.JSONObject;
+import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.sql.expr.ConditionExpr;
 import com.github.foxnic.dao.entity.ISuperService;
 import com.dt.platform.domain.eam.InspectionTask;
@@ -26,6 +28,9 @@ import java.util.Map;
 */
 
 public interface IInspectionTaskService extends ISuperService<InspectionTask> {
+
+
+	Result<JSONObject> check(String taskId, String pointCode);
 
 	Result execute(String id);
 

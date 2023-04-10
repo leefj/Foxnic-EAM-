@@ -1,6 +1,7 @@
 package com.dt.platform.eam.service.impl;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
 import com.dt.platform.constants.enums.eam.InspectionTaskStatusEnum;
 import com.dt.platform.constants.enums.eam.MaintainTaskStatusEnum;
@@ -105,6 +106,12 @@ public class InspectionTaskServiceImpl extends SuperService<InspectionTask> impl
 	}
 
 	@Override
+	public Result<JSONObject> check(String taskId, String pointCode) {
+		return ErrorDesc.success();
+	}
+
+
+	@Override
 	public Result execute(String id) {
 		return ErrorDesc.success();
 	}
@@ -141,9 +148,7 @@ public class InspectionTaskServiceImpl extends SuperService<InspectionTask> impl
 
 		for(int i=0;i<list.size();i++){
 			InspectionTaskPoint inspectionTaskPoint=list.get(i);
-			if(!InspectionTaskStatusEnum.FINISH.code().equals(inspectionTaskPoint.getStatus())){
-				return ErrorDesc.failureMessage("巡检点:"+inspectionTaskPoint.getPointName()+"未做巡检");
-			}
+
 			if(inspectionTaskPoint.getOperTime()==null){
 				return ErrorDesc.failureMessage("巡检点:"+inspectionTaskPoint.getPointName()+"未做巡检");
 			}else{

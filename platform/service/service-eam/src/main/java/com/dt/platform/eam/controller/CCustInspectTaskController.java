@@ -1,6 +1,7 @@
 package com.dt.platform.eam.controller;
 
 import java.util.*;
+import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.CCustInspectItemMeta;
 import com.dt.platform.domain.eam.meta.CCustInspectPlanMeta;
@@ -63,12 +64,13 @@ public class CCustInspectTaskController extends SuperController {
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.NAME, value = "标题", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
-		 @ApiImplicitParam(name = CCustInspectTaskVOMeta.START_TIME, value = "开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CCustInspectTaskVOMeta.START_TIME, value = "开始时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.FINISH_TIME, value = "完成时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.INSPECT_USER_ID, value = "负责人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.TPL_ID, value = "模版", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CCustInspectTaskVOMeta.ACTION_ADD, value = "追加", required = false, dataTypeClass = String.class, example = "tpl")
+		@ApiImplicitParam(name = CCustInspectTaskVOMeta.ACTION_ADD, value = "追加", required = false, dataTypeClass = String.class, example = "tpl"),
+		@ApiImplicitParam(name = CCustInspectTaskVOMeta.CODE, value = "编号", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -165,12 +167,13 @@ public class CCustInspectTaskController extends SuperController {
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.NAME, value = "标题", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
-		 @ApiImplicitParam(name = CCustInspectTaskVOMeta.START_TIME, value = "开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CCustInspectTaskVOMeta.START_TIME, value = "开始时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.FINISH_TIME, value = "完成时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.INSPECT_USER_ID, value = "负责人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.TPL_ID, value = "模版", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CCustInspectTaskVOMeta.ACTION_ADD, value = "追加", required = false, dataTypeClass = String.class, example = "tpl")
+		@ApiImplicitParam(name = CCustInspectTaskVOMeta.ACTION_ADD, value = "追加", required = false, dataTypeClass = String.class, example = "tpl"),
+		@ApiImplicitParam(name = CCustInspectTaskVOMeta.CODE, value = "编号", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { CCustInspectTaskVOMeta.PAGE_INDEX, CCustInspectTaskVOMeta.PAGE_SIZE, CCustInspectTaskVOMeta.SEARCH_FIELD, CCustInspectTaskVOMeta.FUZZY_FIELD, CCustInspectTaskVOMeta.SEARCH_VALUE, CCustInspectTaskVOMeta.DIRTY_FIELDS, CCustInspectTaskVOMeta.SORT_FIELD, CCustInspectTaskVOMeta.SORT_TYPE, CCustInspectTaskVOMeta.DATA_ORIGIN, CCustInspectTaskVOMeta.QUERY_LOGIC, CCustInspectTaskVOMeta.REQUEST_ACTION, CCustInspectTaskVOMeta.IDS })
@@ -189,12 +192,13 @@ public class CCustInspectTaskController extends SuperController {
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.NAME, value = "标题", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
-		 @ApiImplicitParam(name = CCustInspectTaskVOMeta.START_TIME, value = "开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CCustInspectTaskVOMeta.START_TIME, value = "开始时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.FINISH_TIME, value = "完成时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.INSPECT_USER_ID, value = "负责人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.TPL_ID, value = "模版", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CCustInspectTaskVOMeta.ACTION_ADD, value = "追加", required = false, dataTypeClass = String.class, example = "tpl")
+		@ApiImplicitParam(name = CCustInspectTaskVOMeta.ACTION_ADD, value = "追加", required = false, dataTypeClass = String.class, example = "tpl"),
+		@ApiImplicitParam(name = CCustInspectTaskVOMeta.CODE, value = "编号", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { CCustInspectTaskVOMeta.PAGE_INDEX, CCustInspectTaskVOMeta.PAGE_SIZE, CCustInspectTaskVOMeta.SEARCH_FIELD, CCustInspectTaskVOMeta.FUZZY_FIELD, CCustInspectTaskVOMeta.SEARCH_VALUE, CCustInspectTaskVOMeta.DIRTY_FIELDS, CCustInspectTaskVOMeta.SORT_FIELD, CCustInspectTaskVOMeta.SORT_TYPE, CCustInspectTaskVOMeta.DATA_ORIGIN, CCustInspectTaskVOMeta.QUERY_LOGIC, CCustInspectTaskVOMeta.REQUEST_ACTION, CCustInspectTaskVOMeta.IDS })
@@ -238,8 +242,8 @@ public class CCustInspectTaskController extends SuperController {
      */
     @ApiOperation(value = "开始巡检")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = CCustInspectTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
-    })
+		@ApiImplicitParam(name = CCustInspectTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+	})
     @ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = CCustInspectTaskServiceProxy.START, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CCustInspectTaskServiceProxy.START)
@@ -247,6 +251,16 @@ public class CCustInspectTaskController extends SuperController {
         return cCustInspectTaskService.start(id);
     }
 
+    /**
+     * 完成任务单
+     */
+    @ApiOperation(value = "开始巡检")
+    @ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = CCustInspectTaskServiceProxy.INSPECT_SCAN, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(CCustInspectTaskServiceProxy.INSPECT_SCAN)
+    public Result<JSONObject> inspectScan(String taskId, String assetCode) {
+        return cCustInspectTaskService.inspectScan(taskId, assetCode);
+    }
 
     /**
      * 巡检务单
@@ -313,12 +327,13 @@ public class CCustInspectTaskController extends SuperController {
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.NAME, value = "标题", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
-		 @ApiImplicitParam(name = CCustInspectTaskVOMeta.START_TIME, value = "开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CCustInspectTaskVOMeta.START_TIME, value = "开始时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.FINISH_TIME, value = "完成时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.INSPECT_USER_ID, value = "负责人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.TPL_ID, value = "模版", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CCustInspectTaskVOMeta.ACTION_ADD, value = "追加", required = false, dataTypeClass = String.class, example = "tpl")
+		@ApiImplicitParam(name = CCustInspectTaskVOMeta.ACTION_ADD, value = "追加", required = false, dataTypeClass = String.class, example = "tpl"),
+		@ApiImplicitParam(name = CCustInspectTaskVOMeta.CODE, value = "编号", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { CCustInspectTaskVOMeta.PAGE_INDEX, CCustInspectTaskVOMeta.PAGE_SIZE })
     @SentinelResource(value = CCustInspectTaskServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -338,12 +353,13 @@ public class CCustInspectTaskController extends SuperController {
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.NAME, value = "标题", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class),
-		 @ApiImplicitParam(name = CCustInspectTaskVOMeta.START_TIME, value = "开始时间", required = false, dataTypeClass = Date.class),
+		@ApiImplicitParam(name = CCustInspectTaskVOMeta.START_TIME, value = "开始时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.FINISH_TIME, value = "完成时间", required = false, dataTypeClass = Date.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.INSPECT_USER_ID, value = "负责人", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.TPL_ID, value = "模版", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = CCustInspectTaskVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = CCustInspectTaskVOMeta.ACTION_ADD, value = "追加", required = false, dataTypeClass = String.class, example = "tpl")
+		@ApiImplicitParam(name = CCustInspectTaskVOMeta.ACTION_ADD, value = "追加", required = false, dataTypeClass = String.class, example = "tpl"),
+		@ApiImplicitParam(name = CCustInspectTaskVOMeta.CODE, value = "编号", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = CCustInspectTaskServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)

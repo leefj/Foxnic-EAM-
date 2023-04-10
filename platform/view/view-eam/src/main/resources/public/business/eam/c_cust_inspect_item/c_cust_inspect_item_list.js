@@ -1,7 +1,7 @@
 /**
  * 巡检记录 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-09 10:16:22
+ * @since 2023-04-09 16:39:31
  */
 
 
@@ -88,7 +88,6 @@ function ListPage() {
 					,{ field: 'inspectUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检人') , templet: function (d) { return templet('inspectUserId',fox.getProperty(d,["inspectUser","name"],0,'','inspectUserId'),d);} }
 					,{ field: 'recordTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('记录时间') ,templet: function (d) { return templet('recordTime',fox.dateFormat(d.recordTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'ct', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('内容') , templet: function (d) { return templet('ct',d.ct,d);}  }
-					,{ field: 'pos', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置') , templet: function (d) { return templet('pos',d.pos,d);}  }
 					,{ field: 'assetCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('设备编号') , templet: function (d) { return templet('assetCode',d.assetCode,d);}  }
 					,{ field: 'assetName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('设备名称') , templet: function (d) { return templet('assetName',d.assetName,d);}  }
 					,{ field: 'assetModel', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('设备型号') , templet: function (d) { return templet('assetModel',d.assetModel,d);}  }

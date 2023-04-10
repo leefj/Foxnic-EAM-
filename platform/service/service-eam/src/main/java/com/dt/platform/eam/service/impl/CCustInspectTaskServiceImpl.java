@@ -2,12 +2,18 @@ package com.dt.platform.eam.service.impl;
 
 import javax.annotation.Resource;
 
+import com.alibaba.fastjson.JSONObject;
+import com.dt.platform.constants.enums.eam.AssetOperateEnum;
+import com.dt.platform.constants.enums.eam.CCustInspectAssetAddEnum;
 import com.dt.platform.constants.enums.eam.CCustInspectItemStatusEnum;
 import com.dt.platform.constants.enums.eam.CCustInspectTaskStatusEnum;
 import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.CCustInspectTaskMeta;
+import com.dt.platform.eam.service.IAssetService;
 import com.dt.platform.eam.service.ICCustInspectItemService;
 import com.dt.platform.eam.service.ICCustInspectUserSService;
+import com.dt.platform.proxy.common.CodeModuleServiceProxy;
+import com.github.foxnic.commons.lang.StringUtil;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,9 +62,11 @@ public class CCustInspectTaskServiceImpl extends SuperService<CCustInspectTask> 
 	@Autowired
 	private ICCustInspectUserSService cCustInspectUserSService;
 
-
 	@Autowired
 	private ICCustInspectItemService cCustInspectItemService;
+
+	@Autowired
+	private IAssetService assetService;
 
 
 	/**
@@ -88,6 +96,15 @@ public class CCustInspectTaskServiceImpl extends SuperService<CCustInspectTask> 
 	 */
 	@Override
 	public Result insert(CCustInspectTask cCustInspectTask,boolean throwsException) {
+
+		if(cCustInspectTask.getCode()==null){
+			Result codeResult= CodeModuleServiceProxy.api().generateCode(AssetOperateEnum.EAM_ASSET_SOFTWARE_INSERT.code());
+			if(!codeResult.isSuccess()){
+				return codeResult;
+			}else{
+				cCustInspectTask.setCode(codeResult.getData().toString());
+			}
+		}
 		cCustInspectTask.setStatus(CCustInspectTaskStatusEnum.WAIT.code());
 		Result r=super.insert(cCustInspectTask,throwsException);
 		if(r.isSuccess()){
@@ -121,7 +138,69 @@ public class CCustInspectTaskServiceImpl extends SuperService<CCustInspectTask> 
 	}
 
 	@Override
+	public Result<JSONObject> inspectScan(String taskId, String assetCode) {
+
+		if(StringUtil.isBlank(taskId)){
+			return ErrorDesc.failureMessage("taskId未设置");
+		}
+		CCustInspectTask task =this.getById(taskId);
+		if(task==null){
+			return ErrorDesc.failureMessage("未查询到本次巡检任务");
+		}
+		if(CCustInspectTaskStatusEnum.CANCEL.code().equals(task.getStatus())||
+				CCustInspectTaskStatusEnum.FINISH.code().equals(task.getStatus())){
+			return ErrorDesc.failureMessage("当前巡检任务已结束");
+		}
+		if(StringUtil.isBlank(assetCode)){
+			return ErrorDesc.failureMessage("二维码扫描结果为空");
+		}
+		Asset assetQuery=new Asset();
+		assetQuery.setAssetCode(assetCode);
+		assetQuery.setOwnerCode("asset");
+		List<Asset> assetList=assetService.queryList(assetQuery);
+		if(assetList==null){
+			return ErrorDesc.failureMessage("当前设备编号为找到资产");
+		}
+		if(assetList.size()==0){
+			return ErrorDesc.failureMessage("当前设备编号为找到资产");
+		}
+		if(assetList.size()>1){
+			return ErrorDesc.failureMessage("当前设备编号找到多个设备,请先在后台对设备编号进行确认");
+		}
+		String assetId=assetList.get(0).getId();
+		CCustInspectItem cCustInspectItemQuery=new CCustInspectItem();
+		cCustInspectItemQuery.setAssetId(assetId);
+		cCustInspectItemQuery.setOwnerId(taskId);
+		List<CCustInspectItem> cCustInspectItemList=cCustInspectItemService.queryList(cCustInspectItemQuery);
+
+		if(cCustInspectItemList!=null&&cCustInspectItemList.size()>1){
+			return ErrorDesc.failureMessage("当前设备编号找到多个设备,请先在后台对设备编号进行确认");
+		}
+
+		JSONObject resultObj=new JSONObject();
+		resultObj.put("assetId",assetId);
+		resultObj.put("assetCode",assetList.get(0).getAssetCode());
+		resultObj.put("assetName",assetList.get(0).getName());
+		resultObj.put("assetModel",assetList.get(0).getModel());
+		resultObj.put("taskId",taskId);
+		if(CCustInspectAssetAddEnum.YES.code().equals(task.getActionAdd())){
+			//可以追加的情况
+			resultObj.put("taskItemId",cCustInspectItemList.get(0).getId());
+		}else{
+			//不可以追加的情况
+			if(cCustInspectItemList==null||cCustInspectItemList.size()==0){
+				return ErrorDesc.failureMessage("当前设备不在本次巡检清单中");
+			}
+		}
+		Result<JSONObject> r=new Result<>();
+		r.success(true);
+		r.data(resultObj);
+		return r;
+	}
+
+	@Override
 	public Result inspect(String taskId, String assetId,String status,String ct,String picIds) {
+
 		CCustInspectTask task =this.getById(taskId);
 		//巡检状态
 		if(CCustInspectTaskStatusEnum.WAIT.code().equals(task.getStatus())
@@ -136,7 +215,7 @@ public class CCustInspectTaskServiceImpl extends SuperService<CCustInspectTask> 
 			return ErrorDesc.failureMessage("当前状态无法进行该操作");
 		}
 
-
+		String curId= SessionUser.getCurrent().getActivatedEmployeeId();
 		//判断巡检人员,如果巡检人员为空，则所有人都可以巡检，如果有指定巡检人员，必须是选择中的巡检人员才能进行巡检
 		dao().fill(task)
 				.with("leader")
@@ -144,22 +223,47 @@ public class CCustInspectTaskServiceImpl extends SuperService<CCustInspectTask> 
 				.execute();
 		//判断本人是否可以进行巡检操作
 		List<Employee> userList=task.getMemberList();
-		if(userList==null&&userList.size()==0){
+		if(userList==null||userList.size()==0){
 			System.out.println("可以运行");
 		}else{
-			String curId= SessionUser.getCurrent().getActivatedEmployeeId();
 			String sql="select 1 from eam_c_cust_inspect_user_s where owner_id=? and user_id=?";
 			if(dao.queryRecord(sql,taskId,curId)==null){
 				return ErrorDesc.failureMessage("当前没有权限进行巡检操作");
 			}
 		}
 
-
 		//进行巡检操作cCustInspectItemService
 		CCustInspectItem itemQuery=new CCustInspectItem();
 		itemQuery.setOwnerId(taskId);
 		itemQuery.setAssetId(assetId);
-		cCustInspectItemService.queryEntity(itemQuery);
+		CCustInspectItem cCustInspectItem=cCustInspectItemService.queryEntity(itemQuery);
+		if(cCustInspectItem==null){
+			if(CCustInspectAssetAddEnum.YES.code().equals(task.getActionAdd())){
+				//可以追加
+				CCustInspectItem item=new CCustInspectItem();
+				Asset asset=assetService.getById(assetId);
+				item.setOwnerId(taskId);
+				item.setAssetId(assetId);
+				item.setAssetName(asset.getName());
+				item.setAssetCode(asset.getAssetCode());
+				item.setAssetModel(asset.getModel());
+				item.setAssetSeq(asset.getSerialNumber());
+				item.setStatus(status);
+				item.setCt(ct);
+				item.setRecordTime(new Date());
+				item.setInspectUserId(curId);
+				cCustInspectItemService.insert(item,false);
+
+
+			}
+		}else{
+			cCustInspectItem.setStatus(status);
+			cCustInspectItem.setCt(ct);
+			cCustInspectItem.setRecordTime(new Date());
+			cCustInspectItem.setInspectUserId(curId);
+			cCustInspectItemService.update(cCustInspectItem,SaveMode.NOT_NULL_FIELDS);
+		}
+
 
 		return ErrorDesc.success();
 	}
@@ -173,7 +277,6 @@ public class CCustInspectTaskServiceImpl extends SuperService<CCustInspectTask> 
 		if(dao.queryRecord("select count(1) cnt from eam_c_cust_inspect_item where deleted=0 and status='wait' and owner_id=?",id).getInteger("cnt")>0){
 			return ErrorDesc.failureMessage("有未完成的巡检设备，请完成所有巡检后在进行本次巡检确认");
 		}
-
 		task.setFinishTime(new Date());
 		task.setStatus(CCustInspectTaskStatusEnum.FINISH.code());
 		this.update(task,SaveMode.NOT_NULL_FIELDS,false);

@@ -95,6 +95,15 @@ delete from eam_asset_stock_goods_in  where 1=1 and tenant_id='T001' ;
 delete from eam_asset_stock_goods_out  where 1=1 and tenant_id='T001' ;
 delete from eam_asset_stock_goods_tranfer  where 1=1 and tenant_id='T001' ;
 delete from eam_goods_stock where owner_code<>'goods';
+-- cust inspect repair
+delete from eam_c_cust_inspect_item where 1=1 ;
+delete from eam_c_cust_inspect_plan where 1=1 ;
+delete from eam_c_cust_inspect_task where 1=1 ;
+delete from eam_c_cust_inspect_tpl where 1=1 ;
+delete from eam_c_cust_inspect_tpl_asset where 1=1 ;
+delete from eam_c_cust_repair_apply where 1=1 ;
+delete from eam_c_cust_repiar_item where 1=1 ;
+
 -- inventory
 delete from eam_inventory where 1=1 and tenant_id='T001' ;
 delete from eam_inventory_asset where 1=1 ;
