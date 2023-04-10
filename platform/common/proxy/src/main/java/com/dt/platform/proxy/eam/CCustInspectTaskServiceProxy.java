@@ -92,6 +92,8 @@ public interface CCustInspectTaskServiceProxy {
 
     public static final String START = API_PREFIX + "start";
 
+    public static final String INSPECT_SCAN = API_PREFIX + "inspect-scan";
+
     /**
      * 添加巡检任务单
      */

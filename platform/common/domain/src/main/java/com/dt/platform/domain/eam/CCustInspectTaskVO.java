@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检任务单VO类型
  * <p>巡检任务单 , 数据表 eam_c_cust_inspect_task 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-09 08:48:09
+ * @since 2023-04-09 16:41:06
  * @sign 9125A69F356A825D27922D742BDB9994
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -403,6 +403,7 @@ public class CCustInspectTaskVO extends CCustInspectTask {
 	public CCustInspectTaskVO duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.CCustInspectTaskVOMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.CCustInspectTaskVOMeta.$$proxy$$();
 		inst.setFinishTime(this.getFinishTime());
+		inst.setCode(this.getCode());
 		inst.setNotes(this.getNotes());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setVersion(this.getVersion());
@@ -500,6 +501,7 @@ public class CCustInspectTaskVO extends CCustInspectTask {
 		if(map==null) return false;
 		if(cast) {
 			this.setFinishTime(DataParser.parse(Date.class, map.get(CCustInspectTaskVOMeta.FINISH_TIME)));
+			this.setCode(DataParser.parse(String.class, map.get(CCustInspectTaskVOMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, map.get(CCustInspectTaskVOMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(CCustInspectTaskVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(CCustInspectTaskVOMeta.VERSION)));
@@ -534,6 +536,7 @@ public class CCustInspectTaskVO extends CCustInspectTask {
 		} else {
 			try {
 				this.setFinishTime( (Date)map.get(CCustInspectTaskVOMeta.FINISH_TIME));
+				this.setCode( (String)map.get(CCustInspectTaskVOMeta.CODE));
 				this.setNotes( (String)map.get(CCustInspectTaskVOMeta.NOTES));
 				this.setUpdateTime( (Date)map.get(CCustInspectTaskVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)map.get(CCustInspectTaskVOMeta.VERSION));
@@ -581,6 +584,7 @@ public class CCustInspectTaskVO extends CCustInspectTask {
 		if(r==null) return false;
 		if(cast) {
 			this.setFinishTime(DataParser.parse(Date.class, r.getValue(CCustInspectTaskVOMeta.FINISH_TIME)));
+			this.setCode(DataParser.parse(String.class, r.getValue(CCustInspectTaskVOMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(CCustInspectTaskVOMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(CCustInspectTaskVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(CCustInspectTaskVOMeta.VERSION)));
@@ -602,6 +606,7 @@ public class CCustInspectTaskVO extends CCustInspectTask {
 		} else {
 			try {
 				this.setFinishTime( (Date)r.getValue(CCustInspectTaskVOMeta.FINISH_TIME));
+				this.setCode( (String)r.getValue(CCustInspectTaskVOMeta.CODE));
 				this.setNotes( (String)r.getValue(CCustInspectTaskVOMeta.NOTES));
 				this.setUpdateTime( (Date)r.getValue(CCustInspectTaskVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)r.getValue(CCustInspectTaskVOMeta.VERSION));

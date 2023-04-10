@@ -26,7 +26,6 @@ public class CInspectTaskGtr extends BaseCodeGenerator{
 
         cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_TASK.ID).basic().hidden(true);
 
-
         cfg.getPoClassFile().addSimpleProperty(CCustInspectTpl.class,"custInspectTpl","custInspectTpl","custInspectTpl");
 
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"leader","leader","leader");

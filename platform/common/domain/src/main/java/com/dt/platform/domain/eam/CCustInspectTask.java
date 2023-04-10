@@ -27,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检任务单
  * <p>巡检任务单 , 数据表 eam_c_cust_inspect_task 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-09 08:48:09
- * @sign 37D7547B2CEE92FD088C1B024D3A2E8A
+ * @since 2023-04-09 16:41:06
+ * @sign A744688E190667D3CE7697A5EF2C7F29
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -46,6 +46,12 @@ public class CCustInspectTask extends Entity {
 	@Id
 	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "697144405307424768")
 	private String id;
+	
+	/**
+	 * 编号：编号
+	*/
+	@ApiModelProperty(required = false,value="编号" , notes = "编号")
+	private String code;
 	
 	/**
 	 * 标题：标题
@@ -210,6 +216,25 @@ public class CCustInspectTask extends Entity {
 	*/
 	public CCustInspectTask setId(String id) {
 		this.id=id;
+		return this;
+	}
+	
+	/**
+	 * 获得 编号<br>
+	 * 编号
+	 * @return 编号
+	*/
+	public String getCode() {
+		return code;
+	}
+	
+	/**
+	 * 设置 编号
+	 * @param code 编号
+	 * @return 当前对象
+	*/
+	public CCustInspectTask setCode(String code) {
+		this.code=code;
 		return this;
 	}
 	
@@ -800,6 +825,7 @@ public class CCustInspectTask extends Entity {
 	public CCustInspectTask duplicate(boolean all) {
 		com.dt.platform.domain.eam.meta.CCustInspectTaskMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.CCustInspectTaskMeta.$$proxy$$();
 		inst.setFinishTime(this.getFinishTime());
+		inst.setCode(this.getCode());
 		inst.setNotes(this.getNotes());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setVersion(this.getVersion());
@@ -885,6 +911,7 @@ public class CCustInspectTask extends Entity {
 		if(map==null) return false;
 		if(cast) {
 			this.setFinishTime(DataParser.parse(Date.class, map.get(CCustInspectTaskMeta.FINISH_TIME)));
+			this.setCode(DataParser.parse(String.class, map.get(CCustInspectTaskMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, map.get(CCustInspectTaskMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(CCustInspectTaskMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(CCustInspectTaskMeta.VERSION)));
@@ -909,6 +936,7 @@ public class CCustInspectTask extends Entity {
 		} else {
 			try {
 				this.setFinishTime( (Date)map.get(CCustInspectTaskMeta.FINISH_TIME));
+				this.setCode( (String)map.get(CCustInspectTaskMeta.CODE));
 				this.setNotes( (String)map.get(CCustInspectTaskMeta.NOTES));
 				this.setUpdateTime( (Date)map.get(CCustInspectTaskMeta.UPDATE_TIME));
 				this.setVersion( (Integer)map.get(CCustInspectTaskMeta.VERSION));
@@ -946,6 +974,7 @@ public class CCustInspectTask extends Entity {
 		if(r==null) return false;
 		if(cast) {
 			this.setFinishTime(DataParser.parse(Date.class, r.getValue(CCustInspectTaskMeta.FINISH_TIME)));
+			this.setCode(DataParser.parse(String.class, r.getValue(CCustInspectTaskMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(CCustInspectTaskMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(CCustInspectTaskMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(CCustInspectTaskMeta.VERSION)));
@@ -967,6 +996,7 @@ public class CCustInspectTask extends Entity {
 		} else {
 			try {
 				this.setFinishTime( (Date)r.getValue(CCustInspectTaskMeta.FINISH_TIME));
+				this.setCode( (String)r.getValue(CCustInspectTaskMeta.CODE));
 				this.setNotes( (String)r.getValue(CCustInspectTaskMeta.NOTES));
 				this.setUpdateTime( (Date)r.getValue(CCustInspectTaskMeta.UPDATE_TIME));
 				this.setVersion( (Integer)r.getValue(CCustInspectTaskMeta.VERSION));

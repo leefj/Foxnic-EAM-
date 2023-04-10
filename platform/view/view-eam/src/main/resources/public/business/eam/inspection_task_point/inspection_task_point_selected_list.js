@@ -78,8 +78,7 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
-				    ,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status),d);}}
-					,{ field: 'pointStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检状态'), templet:function (d){ return templet('pointStatus',fox.getEnumText(SELECT_POINTSTATUS_DATA,d.pointStatus),d);}}
+				    ,{ field: 'pointStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检状态'), templet:function (d){ return templet('pointStatus',fox.getEnumText(SELECT_POINTSTATUS_DATA,d.pointStatus),d);}}
 					,{ field: 'operTime', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('操作时间') , templet: function (d) { return templet('operTime',d.operTime,d);}  }
 				     ,{ field: 'pointCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编码') , templet: function (d) { return templet('pointCode',d.pointCode,d);}  }
 					,{ field: 'pointName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('pointName',d.pointName,d);}  }

@@ -14,8 +14,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-09 08:48:09
- * @sign 37D7547B2CEE92FD088C1B024D3A2E8A
+ * @since 2023-04-09 16:41:06
+ * @sign A744688E190667D3CE7697A5EF2C7F29
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -30,6 +30,16 @@ public class CCustInspectTaskMeta {
 	 * 主键 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectTask,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectTask.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
+	
+	/**
+	 * 编号 , 类型: java.lang.String
+	*/
+	public static final String CODE="code";
+	
+	/**
+	 * 编号 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustInspectTask,java.lang.String> CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustInspectTask.class ,CODE, java.lang.String.class, "编号", "编号", java.lang.String.class, null);
 	
 	/**
 	 * 标题 , 类型: java.lang.String
@@ -274,7 +284,7 @@ public class CCustInspectTaskMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NAME , STATUS , ACTION_ADD , START_TIME , FINISH_TIME , INSPECT_USER_ID , TPL_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , CUST_INSPECT_TPL , LEADER , MEMBER_LIST , MEMBER_IDS , ASSET_IN_TPL_LIST , CUST_INSPECT_ITEM_LIST , CUST_INSPECT_ITEM_IDS };
+	public static final String[] $PROPS={ ID , CODE , NAME , STATUS , ACTION_ADD , START_TIME , FINISH_TIME , INSPECT_USER_ID , TPL_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , CUST_INSPECT_TPL , LEADER , MEMBER_LIST , MEMBER_IDS , ASSET_IN_TPL_LIST , CUST_INSPECT_ITEM_LIST , CUST_INSPECT_ITEM_IDS };
 	
 	/**
 	 * 代理类
@@ -292,6 +302,17 @@ public class CCustInspectTaskMeta {
 		public CCustInspectTask setId(String id) {
 			super.change(ID,super.getId(),id);
 			super.setId(id);
+			return this;
+		}
+		
+		/**
+		 * 设置 编号
+		 * @param code 编号
+		 * @return 当前对象
+		*/
+		public CCustInspectTask setCode(String code) {
+			super.change(CODE,super.getCode(),code);
+			super.setCode(code);
 			return this;
 		}
 		
@@ -575,6 +596,7 @@ public class CCustInspectTaskMeta {
 		public CCustInspectTask duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setFinishTime(this.getFinishTime());
+			inst.setCode(this.getCode());
 			inst.setNotes(this.getNotes());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setVersion(this.getVersion());

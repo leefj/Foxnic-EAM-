@@ -316,17 +316,17 @@ public class AssetReportServiceImpl  extends SuperService<Asset> implements IAss
         Rcd rs2=dao.queryRecord(sql5);
         JSONArray inspectionData=new JSONArray();
         JSONObject b1=new JSONObject();
-        b1.put("name", InspectionTaskStatusEnum.NOT_START.text());
+      //  b1.put("name", InspectionTaskStatusEnum.NOT_START.text());
         b1.put("value",rs2.getInteger("not_start_cnt"));
         inspectionData.add(b1);
 
         JSONObject b2=new JSONObject();
-        b2.put("name", InspectionTaskStatusEnum.ACTING.text());
+    //    b2.put("name", InspectionTaskStatusEnum.ACTING.text());
         b2.put("value",rs2.getInteger("acting_cnt"));
         inspectionData.add(b2);
 
         JSONObject b3=new JSONObject();
-        b3.put("name", InspectionTaskStatusEnum.FINISH.text());
+    //    b3.put("name", InspectionTaskStatusEnum.FINISH.text());
         b3.put("value",rs2.getInteger("finish_cnt"));
         inspectionData.add(b3);
         result.put("inspectionData",inspectionData);

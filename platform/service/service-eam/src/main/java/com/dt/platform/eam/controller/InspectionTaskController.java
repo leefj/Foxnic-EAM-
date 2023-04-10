@@ -1,6 +1,8 @@
 package com.dt.platform.eam.controller;
 
 import java.util.List;
+
+import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.domain.eam.meta.MaintainTaskVOMeta;
 import com.dt.platform.proxy.eam.MaintainTaskServiceProxy;
 import com.github.foxnic.commons.collection.CollectorUtil;
@@ -326,6 +328,14 @@ public class InspectionTaskController extends SuperController {
     @PostMapping(InspectionTaskServiceProxy.FINISH)
     public Result finish(String id) {
         return inspectionTaskService.finish(id);
+    }
+
+    @ApiOperation(value = "")
+    @ApiOperationSupport(order = 9)
+    @SentinelResource(value = InspectionTaskServiceProxy.CHECK, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(InspectionTaskServiceProxy.CHECK)
+    public Result<JSONObject> check(String taskId,String pointCode) {
+        return inspectionTaskService.check(taskId,pointCode);
     }
 
     /**

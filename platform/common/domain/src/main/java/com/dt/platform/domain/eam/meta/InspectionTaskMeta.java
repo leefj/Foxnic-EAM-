@@ -11,13 +11,14 @@ import com.dt.platform.domain.eam.InspectionTaskPoint;
 import org.github.foxnic.web.domain.system.DictItem;
 import com.dt.platform.domain.eam.InspectionGroup;
 import org.github.foxnic.web.domain.hrm.Employee;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-13 21:10:48
- * @sign 576594AC61DEAF1440557F74233FD239
+ * @since 2023-04-10 07:26:15
+ * @sign 9AE2DDCDD09492A9B995829ABD112D78
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -833,5 +834,65 @@ public class InspectionTaskMeta {
 			super.setExecutor(executor);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public InspectionTask clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public InspectionTask duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNotes(this.getNotes());
+			inst.setGroupId(this.getGroupId());
+			inst.setPlanName(this.getPlanName());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setContent(this.getContent());
+			inst.setActStartTime(this.getActStartTime());
+			inst.setTaskCode(this.getTaskCode());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setPlanId(this.getPlanId());
+			inst.setId(this.getId());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setPlanInspectionMethod(this.getPlanInspectionMethod());
+			inst.setActFinishTime(this.getActFinishTime());
+			inst.setTaskStatus(this.getTaskStatus());
+			inst.setPlanStartTime(this.getPlanStartTime());
+			inst.setExecutorId(this.getExecutorId());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setPlanCode(this.getPlanCode());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setActTotalCost(this.getActTotalCost());
+			inst.setPlanNotes(this.getPlanNotes());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setPlanCompletionTime(this.getPlanCompletionTime());
+			if(all) {
+				inst.setInspectionPointList(this.getInspectionPointList());
+				inst.setTimeDict(this.getTimeDict());
+				inst.setExecutor(this.getExecutor());
+				inst.setInspectionTypeDict(this.getInspectionTypeDict());
+				inst.setInspectionPlan(this.getInspectionPlan());
+				inst.setInspectionTaskPointList(this.getInspectionTaskPointList());
+				inst.setInspectionTaskPointIds(this.getInspectionTaskPointIds());
+				inst.setOriginator(this.getOriginator());
+				inst.setInspectionPointIds(this.getInspectionPointIds());
+				inst.setInspectionGroup(this.getInspectionGroup());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

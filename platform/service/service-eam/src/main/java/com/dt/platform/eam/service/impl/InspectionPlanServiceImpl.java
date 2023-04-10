@@ -116,8 +116,7 @@ public class InspectionPlanServiceImpl extends SuperService<InspectionPlan> impl
 			if(pointOwnerList==null&&pointOwnerList.size()==0){
 				return ErrorDesc.failureMessage("当前巡检计划未设置巡检点");
 			}
-
-			//生成计划
+			//按照计划生成任务单
 			InspectionTask task=new InspectionTask();
 			String taskId=IDGenerator.getSnowflakeIdString();
 			task.setId(taskId);
@@ -129,6 +128,7 @@ public class InspectionPlanServiceImpl extends SuperService<InspectionPlan> impl
 			task.setPlanInspectionMethod(plan.getInspectionMethod());
 			task.setPlanCompletionTime(plan.getCompletionTime());
 			task.setGroupId(plan.getGroupId());
+			task.setTaskStatus(InspectionTaskStatusEnum.WAIT.code());
 			inspectionTaskService.insert(task,false);
 			//生成巡检点
 			for(int i=0;i<pointOwnerList.size();i++){
@@ -136,13 +136,13 @@ public class InspectionPlanServiceImpl extends SuperService<InspectionPlan> impl
 				InspectionPoint point=inspectionPointService.getById(pointOwner.getPointId());
 				InspectionTaskPoint taskPoint=new InspectionTaskPoint();
 				taskPoint.setTaskId(taskId);
-				taskPoint.setStatus(InspectionTaskStatusEnum.NOT_START.code());
-				taskPoint.setPointStatus(InspectionTaskPointStatusEnum.NORMAL.code());
+				taskPoint.setPointStatus(InspectionTaskPointStatusEnum.WAIT.code());
 				taskPoint.setPointCode(point.getCode());
 				taskPoint.setPointName(point.getName());
 				taskPoint.setPointContent(point.getContent());
 				taskPoint.setPointRouteId(point.getRouteId());
 				taskPoint.setPointRfid(point.getRfid());
+				taskPoint.setPointPosId(point.getPosId());
 				taskPoint.setPointPos(point.getPos());
 				taskPoint.setPointPosLatitude(point.getPosLatitude());
 				taskPoint.setPointPosLongitude(point.getPosLongitude());
@@ -153,7 +153,6 @@ public class InspectionPlanServiceImpl extends SuperService<InspectionPlan> impl
 		}else{
 			return ErrorDesc.failureMessage("当前巡检计划状态不能生成巡检任务");
 		}
-
 
 		return ErrorDesc.success();
 	}

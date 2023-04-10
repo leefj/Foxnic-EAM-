@@ -21,6 +21,11 @@ public class ActionCrontabGtr extends BaseCodeGenerator {
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
         cfg.view().field(EAMTables.EAM_ACTION_CRONTAB.ID).basic().hidden(true);
+        cfg.view().field(EAMTables.EAM_ACTION_CRONTAB.START_EXECUTION_TIME).basic().hidden(true);
+        cfg.view().field(EAMTables.EAM_ACTION_CRONTAB.FINISH_EXECUTION_TIME).basic().hidden(true);
+        cfg.view().field(EAMTables.EAM_ACTION_CRONTAB.START_EXECUTION_TIME).table().disable(true);
+        cfg.view().field(EAMTables.EAM_ACTION_CRONTAB.FINISH_EXECUTION_TIME).table().disable(true);
+        cfg.view().field(EAMTables.EAM_ACTION_CRONTAB.ID).basic().hidden(true);
 
         cfg.getPoClassFile().addSimpleProperty(ActionCrontabLog.class,"actionCrontabLog","日志","日志");
 
@@ -37,14 +42,14 @@ public class ActionCrontabGtr extends BaseCodeGenerator {
         cfg.view().field(EAMTables.EAM_ACTION_CRONTAB.CRONTAB).form().validate().required().form().readOnly();
         cfg.view().field(EAMTables.EAM_ACTION_CRONTAB.NAME).table().disable(true);
         cfg.view().field(EAMTables.EAM_ACTION_CRONTAB.NOTES).form().textArea().height(Config.textAreaHeight);
-        cfg.view().field(EAMTables.EAM_ACTION_CRONTAB.START_EXECUTION_TIME).form().validate().required().form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
-         cfg.view().formWindow().width(Config.baseFormWidth);;
+        cfg.view().field(EAMTables.EAM_ACTION_CRONTAB.START_EXECUTION_TIME).form().dateInput().defaultNow().format("yyyy-MM-dd").search().range();
+        cfg.view().formWindow().width(Config.baseFormWidth);;
         cfg.view().formWindow().bottomSpace(300);
         cfg.view().form().addGroup(null,
-                new Object[] {
-                        EAMTables.EAM_ACTION_CRONTAB.START_EXECUTION_TIME,
-                        EAMTables.EAM_ACTION_CRONTAB.FINISH_EXECUTION_TIME,
-                },
+//                new Object[] {
+//                        EAMTables.EAM_ACTION_CRONTAB.START_EXECUTION_TIME,
+//                        EAMTables.EAM_ACTION_CRONTAB.FINISH_EXECUTION_TIME,
+//                },
                 new Object[] {
 //                        EAMTables.EAM_ACTION_CRONTAB.NAME,
                         EAMTables.EAM_ACTION_CRONTAB.CRONTAB,

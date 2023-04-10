@@ -12,7 +12,7 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 
 public enum CCustInspectItemStatusEnum implements CodeTextEnum {
-	WAIT("wait" , "未开始"),
+	WAIT("wait" , "未巡检"),
 	NORMAL("normal" , "正常"),
 	UNUSUAL("unusual" , "异常");
 	private String code;
@@ -25,7 +25,6 @@ public enum CCustInspectItemStatusEnum implements CodeTextEnum {
 	public String code() {
 		return code;
 	}
-	
 	public String text() {
 		return text;
 	}

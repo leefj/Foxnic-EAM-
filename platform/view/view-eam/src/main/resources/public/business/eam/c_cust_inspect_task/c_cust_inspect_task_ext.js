@@ -107,6 +107,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     fox.disableButton($('.actionCancel').filter("[data-id='" + data[i].id + "']"), true);
                 }else if(data[i].status=="wait"){
                     fox.disableButton($('.actionFinish').filter("[data-id='" + data[i].id + "']"), true);
+                }else if(data[i].status=="finish"){
+                    fox.disableButton($('.actionFinish').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.actionCancel').filter("[data-id='" + data[i].id + "']"), true);
                 }
             }
 

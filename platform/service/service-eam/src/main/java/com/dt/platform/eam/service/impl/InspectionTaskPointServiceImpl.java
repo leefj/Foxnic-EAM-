@@ -157,8 +157,7 @@ public class InspectionTaskPointServiceImpl extends SuperService<InspectionTaskP
 	 * */
 	@Override
 	public Result update(InspectionTaskPoint inspectionTaskPoint , SaveMode mode,boolean throwsException) {
-
-		inspectionTaskPoint.setStatus(InspectionTaskStatusEnum.FINISH.code());
+	//	inspectionTaskPoint.setStatus(InspectionTaskStatusEnum.FINISH.code());
 		Result r=super.update(inspectionTaskPoint , mode , throwsException);
 		return r;
 	}

@@ -25,6 +25,8 @@ public class CInspectItemGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_ITEM.ID).basic().hidden(true);
         cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_ITEM.OWNER_ID).basic().hidden(true);
         cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_ITEM.PICTURE_ID).basic().hidden(true);
+        cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_ITEM.POS).basic().hidden(true);
+        cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_ITEM.POS).table().disable(true);
 
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"inspectUser","inspectUser","inspectUser");
         cfg.getPoClassFile().addSimpleProperty(Asset.class,"asset","asset","asset");
