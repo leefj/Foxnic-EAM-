@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-04-10 09:36:22
+ * @since 2023-04-10 11:34:48
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -10879,9 +10879,9 @@ public class EAMTables {
 		public static final DBField PLAN_ID = new DBField(DBDataType.STRING , "plan_id","planId","计划","计划",false,false,true);
 		
 		/**
-		 * 记录时间
+		 * 执行时间
 		*/
-		public static final DBField REC_TIME = new DBField(DBDataType.DATE , "rec_time","recTime","记录时间","记录时间",false,false,true);
+		public static final DBField EXECUTE_TIME = new DBField(DBDataType.DATE , "execute_time","executeTime","执行时间","执行时间",false,false,true);
 		
 		/**
 		 * 创建人ID
@@ -10922,8 +10922,18 @@ public class EAMTables {
 		*/
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
+		/**
+		 * 是否已经执行
+		*/
+		public static final DBField EXECUTED = new DBField(DBDataType.INTEGER , "executed","executed","是否已经执行","是否已经执行",false,false,true);
+		
+		/**
+		 * 执行错误
+		*/
+		public static final DBField ERRORS = new DBField(DBDataType.STRING , "errors","errors","执行错误","执行错误",false,false,true);
+		
 		public EAM_C_CUST_INSPECT_LOG() {
-			this.init($NAME,"执行日志" , ID , PLAN_ID , REC_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"执行日志" , ID , PLAN_ID , EXECUTE_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , EXECUTED , ERRORS);
 		}
 		public static final EAM_C_CUST_INSPECT_LOG $TABLE=new EAM_C_CUST_INSPECT_LOG();
 	}
