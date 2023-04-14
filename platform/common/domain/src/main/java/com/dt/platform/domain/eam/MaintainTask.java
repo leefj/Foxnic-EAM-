@@ -1,34 +1,41 @@
 package com.dt.platform.domain.eam;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.EAMTables.EAM_MAINTAIN_TASK;
 import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
-import java.math.BigDecimal;
 import java.util.Date;
+import java.math.BigDecimal;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import java.util.List;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.eam.meta.MaintainTaskMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 保养任务
+ * <p>保养任务 , 数据表 eam_maintain_task 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-13 20:22:29
- * @sign 2FC01F3F467B509F1F36DE91372610CB
+ * @since 2023-04-14 07:30:10
+ * @sign 234089915D37B5B0886AFBFCB4AB3A0F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "eam_maintain_task")
+@ApiModel(description = "保养任务 ; 保养任务 , 数据表 eam_maintain_task 的PO类型")
 public class MaintainTask extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -39,98 +46,56 @@ public class MaintainTask extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "698202584300650496")
 	private String id;
+	
+	/**
+	 * 名称：名称
+	*/
+	@ApiModelProperty(required = false,value="名称" , notes = "名称")
+	private String name;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "acting")
 	private String status;
 	
 	/**
-	 * 逾期：逾期
+	 * 任务单据：任务单据
 	*/
-	@ApiModelProperty(required = false,value="逾期" , notes = "逾期")
-	private String overdue;
-	
-	/**
-	 * 任务编码：任务编码
-	*/
-	@ApiModelProperty(required = false,value="任务编码" , notes = "任务编码")
+	@ApiModelProperty(required = false,value="任务单据" , notes = "任务单据" , example = "MT202304111604551")
 	private String businessCode;
 	
 	/**
 	 * 方案：方案
 	*/
-	@ApiModelProperty(required = false,value="方案" , notes = "方案")
+	@ApiModelProperty(required = false,value="方案" , notes = "方案" , example = "698202515644088320")
 	private String planId;
-	
-	/**
-	 * 方案名称：方案名称
-	*/
-	@ApiModelProperty(required = false,value="方案名称" , notes = "方案名称")
-	private String planName;
-	
-	/**
-	 * 方案说明：方案说明
-	*/
-	@ApiModelProperty(required = false,value="方案说明" , notes = "方案说明")
-	private String planInfo;
-	
-	/**
-	 * 方案备注：方案备注
-	*/
-	@ApiModelProperty(required = false,value="方案备注" , notes = "方案备注")
-	private String planNotes;
 	
 	/**
 	 * 保养类型：保养类型
 	*/
-	@ApiModelProperty(required = false,value="保养类型" , notes = "保养类型")
-	private String planMaintainType;
+	@ApiModelProperty(required = false,value="保养类型" , notes = "保养类型" , example = "default")
+	private String maintainType;
 	
 	/**
-	 * 循环方式：循环方式
+	 * 执行班组：执行班组
 	*/
-	@ApiModelProperty(required = false,value="循环方式" , notes = "循环方式")
-	private String planCycleMethod;
-	
-	/**
-	 * 计划工时：计划工时
-	*/
-	@ApiModelProperty(required = false,value="计划工时" , notes = "计划工时")
-	private BigDecimal planTotalCost;
-	
-	/**
-	 * 班组：班组
-	*/
-	@ApiModelProperty(required = false,value="班组" , notes = "班组")
+	@ApiModelProperty(required = true,value="执行班组" , notes = "执行班组" , example = "698150545436704768")
 	private String groupId;
 	
 	/**
 	 * 设备：设备
 	*/
-	@ApiModelProperty(required = false,value="设备" , notes = "设备")
+	@ApiModelProperty(required = false,value="设备" , notes = "设备" , example = "690281218771517440")
 	private String assetId;
 	
 	/**
 	 * 设备名称：设备名称
 	*/
-	@ApiModelProperty(required = false,value="设备名称" , notes = "设备名称")
+	@ApiModelProperty(required = false,value="设备名称" , notes = "设备名称" , example = "这是一个测试")
 	private String assetName;
-	
-	/**
-	 * 设备型号：设备型号
-	*/
-	@ApiModelProperty(required = false,value="设备型号" , notes = "设备型号")
-	private String assetModel;
-	
-	/**
-	 * 设备状态：设备状态
-	*/
-	@ApiModelProperty(required = false,value="设备状态" , notes = "设备状态")
-	private String assetStatus;
 	
 	/**
 	 * 设备编码：设备编码
@@ -139,10 +104,34 @@ public class MaintainTask extends Entity {
 	private String assetCode;
 	
 	/**
+	 * 设备型号：设备型号
+	*/
+	@ApiModelProperty(required = false,value="设备型号" , notes = "设备型号" , example = "规格")
+	private String assetModel;
+	
+	/**
+	 * 设备状态：设备状态
+	*/
+	@ApiModelProperty(required = false,value="设备状态" , notes = "设备状态" , example = "idle")
+	private String assetStatus;
+	
+	/**
 	 * 设备序列号：设备序列号
 	*/
 	@ApiModelProperty(required = false,value="设备序列号" , notes = "设备序列号")
 	private String assetSn;
+	
+	/**
+	 * 位置：位置
+	*/
+	@ApiModelProperty(required = false,value="位置" , notes = "位置")
+	private String assetPos;
+	
+	/**
+	 * 保养结果：保养结果
+	*/
+	@ApiModelProperty(required = false,value="保养结果" , notes = "保养结果")
+	private String content;
 	
 	/**
 	 * 执行人：执行人
@@ -153,7 +142,7 @@ public class MaintainTask extends Entity {
 	/**
 	 * 应开始时间：应开始时间
 	*/
-	@ApiModelProperty(required = false,value="应开始时间" , notes = "应开始时间")
+	@ApiModelProperty(required = false,value="应开始时间" , notes = "应开始时间" , example = "2023-04-11 04:07:48")
 	private Date planStartTime;
 	
 	/**
@@ -169,10 +158,34 @@ public class MaintainTask extends Entity {
 	private Date actFinishTime;
 	
 	/**
+	 * 超时时间：超时时间
+	*/
+	@ApiModelProperty(required = false,value="超时时间" , notes = "超时时间")
+	private BigDecimal timeout;
+	
+	/**
+	 * 预计工时：预计工时
+	*/
+	@ApiModelProperty(required = false,value="预计工时" , notes = "预计工时" , example = "0.00")
+	private BigDecimal totalCost;
+	
+	/**
 	 * 实际工时：实际工时
 	*/
-	@ApiModelProperty(required = false,value="实际工时" , notes = "实际工时")
+	@ApiModelProperty(required = false,value="实际工时" , notes = "实际工时" , example = "0.00")
 	private BigDecimal actTotalCost;
+	
+	/**
+	 * 费用：元)
+	*/
+	@ApiModelProperty(required = false,value="费用" , notes = "元)")
+	private BigDecimal cost;
+	
+	/**
+	 * 逾期：逾期
+	*/
+	@ApiModelProperty(required = false,value="逾期" , notes = "逾期" , example = "normal")
+	private String overdue;
 	
 	/**
 	 * 备注：备注
@@ -195,13 +208,13 @@ public class MaintainTask extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-11 04:07:48")
 	private Date createTime;
 	
 	/**
@@ -219,9 +232,10 @@ public class MaintainTask extends Entity {
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -239,13 +253,13 @@ public class MaintainTask extends Entity {
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "1")
 	private Integer version;
 	
 	/**
@@ -282,7 +296,7 @@ public class MaintainTask extends Entity {
 	 * 方案：方案
 	*/
 	@ApiModelProperty(required = false,value="方案" , notes = "方案")
-	private MaintainPlan MaintainPlan;
+	private MaintainPlan maintainPlan;
 	
 	/**
 	 * 类型：类型
@@ -328,6 +342,25 @@ public class MaintainTask extends Entity {
 	}
 	
 	/**
+	 * 获得 名称<br>
+	 * 名称
+	 * @return 名称
+	*/
+	public String getName() {
+		return name;
+	}
+	
+	/**
+	 * 设置 名称
+	 * @param name 名称
+	 * @return 当前对象
+	*/
+	public MaintainTask setName(String name) {
+		this.name=name;
+		return this;
+	}
+	
+	/**
 	 * 获得 状态<br>
 	 * 状态
 	 * @return 状态
@@ -347,36 +380,17 @@ public class MaintainTask extends Entity {
 	}
 	
 	/**
-	 * 获得 逾期<br>
-	 * 逾期
-	 * @return 逾期
-	*/
-	public String getOverdue() {
-		return overdue;
-	}
-	
-	/**
-	 * 设置 逾期
-	 * @param overdue 逾期
-	 * @return 当前对象
-	*/
-	public MaintainTask setOverdue(String overdue) {
-		this.overdue=overdue;
-		return this;
-	}
-	
-	/**
-	 * 获得 任务编码<br>
-	 * 任务编码
-	 * @return 任务编码
+	 * 获得 任务单据<br>
+	 * 任务单据
+	 * @return 任务单据
 	*/
 	public String getBusinessCode() {
 		return businessCode;
 	}
 	
 	/**
-	 * 设置 任务编码
-	 * @param businessCode 任务编码
+	 * 设置 任务单据
+	 * @param businessCode 任务单据
 	 * @return 当前对象
 	*/
 	public MaintainTask setBusinessCode(String businessCode) {
@@ -404,131 +418,36 @@ public class MaintainTask extends Entity {
 	}
 	
 	/**
-	 * 获得 方案名称<br>
-	 * 方案名称
-	 * @return 方案名称
-	*/
-	public String getPlanName() {
-		return planName;
-	}
-	
-	/**
-	 * 设置 方案名称
-	 * @param planName 方案名称
-	 * @return 当前对象
-	*/
-	public MaintainTask setPlanName(String planName) {
-		this.planName=planName;
-		return this;
-	}
-	
-	/**
-	 * 获得 方案说明<br>
-	 * 方案说明
-	 * @return 方案说明
-	*/
-	public String getPlanInfo() {
-		return planInfo;
-	}
-	
-	/**
-	 * 设置 方案说明
-	 * @param planInfo 方案说明
-	 * @return 当前对象
-	*/
-	public MaintainTask setPlanInfo(String planInfo) {
-		this.planInfo=planInfo;
-		return this;
-	}
-	
-	/**
-	 * 获得 方案备注<br>
-	 * 方案备注
-	 * @return 方案备注
-	*/
-	public String getPlanNotes() {
-		return planNotes;
-	}
-	
-	/**
-	 * 设置 方案备注
-	 * @param planNotes 方案备注
-	 * @return 当前对象
-	*/
-	public MaintainTask setPlanNotes(String planNotes) {
-		this.planNotes=planNotes;
-		return this;
-	}
-	
-	/**
 	 * 获得 保养类型<br>
 	 * 保养类型
 	 * @return 保养类型
 	*/
-	public String getPlanMaintainType() {
-		return planMaintainType;
+	public String getMaintainType() {
+		return maintainType;
 	}
 	
 	/**
 	 * 设置 保养类型
-	 * @param planMaintainType 保养类型
+	 * @param maintainType 保养类型
 	 * @return 当前对象
 	*/
-	public MaintainTask setPlanMaintainType(String planMaintainType) {
-		this.planMaintainType=planMaintainType;
+	public MaintainTask setMaintainType(String maintainType) {
+		this.maintainType=maintainType;
 		return this;
 	}
 	
 	/**
-	 * 获得 循环方式<br>
-	 * 循环方式
-	 * @return 循环方式
-	*/
-	public String getPlanCycleMethod() {
-		return planCycleMethod;
-	}
-	
-	/**
-	 * 设置 循环方式
-	 * @param planCycleMethod 循环方式
-	 * @return 当前对象
-	*/
-	public MaintainTask setPlanCycleMethod(String planCycleMethod) {
-		this.planCycleMethod=planCycleMethod;
-		return this;
-	}
-	
-	/**
-	 * 获得 计划工时<br>
-	 * 计划工时
-	 * @return 计划工时
-	*/
-	public BigDecimal getPlanTotalCost() {
-		return planTotalCost;
-	}
-	
-	/**
-	 * 设置 计划工时
-	 * @param planTotalCost 计划工时
-	 * @return 当前对象
-	*/
-	public MaintainTask setPlanTotalCost(BigDecimal planTotalCost) {
-		this.planTotalCost=planTotalCost;
-		return this;
-	}
-	
-	/**
-	 * 获得 班组<br>
-	 * 班组
-	 * @return 班组
+	 * 获得 执行班组<br>
+	 * 执行班组
+	 * @return 执行班组
 	*/
 	public String getGroupId() {
 		return groupId;
 	}
 	
 	/**
-	 * 设置 班组
-	 * @param groupId 班组
+	 * 设置 执行班组
+	 * @param groupId 执行班组
 	 * @return 当前对象
 	*/
 	public MaintainTask setGroupId(String groupId) {
@@ -575,6 +494,25 @@ public class MaintainTask extends Entity {
 	}
 	
 	/**
+	 * 获得 设备编码<br>
+	 * 设备编码
+	 * @return 设备编码
+	*/
+	public String getAssetCode() {
+		return assetCode;
+	}
+	
+	/**
+	 * 设置 设备编码
+	 * @param assetCode 设备编码
+	 * @return 当前对象
+	*/
+	public MaintainTask setAssetCode(String assetCode) {
+		this.assetCode=assetCode;
+		return this;
+	}
+	
+	/**
 	 * 获得 设备型号<br>
 	 * 设备型号
 	 * @return 设备型号
@@ -613,25 +551,6 @@ public class MaintainTask extends Entity {
 	}
 	
 	/**
-	 * 获得 设备编码<br>
-	 * 设备编码
-	 * @return 设备编码
-	*/
-	public String getAssetCode() {
-		return assetCode;
-	}
-	
-	/**
-	 * 设置 设备编码
-	 * @param assetCode 设备编码
-	 * @return 当前对象
-	*/
-	public MaintainTask setAssetCode(String assetCode) {
-		this.assetCode=assetCode;
-		return this;
-	}
-	
-	/**
 	 * 获得 设备序列号<br>
 	 * 设备序列号
 	 * @return 设备序列号
@@ -647,6 +566,44 @@ public class MaintainTask extends Entity {
 	*/
 	public MaintainTask setAssetSn(String assetSn) {
 		this.assetSn=assetSn;
+		return this;
+	}
+	
+	/**
+	 * 获得 位置<br>
+	 * 位置
+	 * @return 位置
+	*/
+	public String getAssetPos() {
+		return assetPos;
+	}
+	
+	/**
+	 * 设置 位置
+	 * @param assetPos 位置
+	 * @return 当前对象
+	*/
+	public MaintainTask setAssetPos(String assetPos) {
+		this.assetPos=assetPos;
+		return this;
+	}
+	
+	/**
+	 * 获得 保养结果<br>
+	 * 保养结果
+	 * @return 保养结果
+	*/
+	public String getContent() {
+		return content;
+	}
+	
+	/**
+	 * 设置 保养结果
+	 * @param content 保养结果
+	 * @return 当前对象
+	*/
+	public MaintainTask setContent(String content) {
+		this.content=content;
 		return this;
 	}
 	
@@ -727,6 +684,44 @@ public class MaintainTask extends Entity {
 	}
 	
 	/**
+	 * 获得 超时时间<br>
+	 * 超时时间
+	 * @return 超时时间
+	*/
+	public BigDecimal getTimeout() {
+		return timeout;
+	}
+	
+	/**
+	 * 设置 超时时间
+	 * @param timeout 超时时间
+	 * @return 当前对象
+	*/
+	public MaintainTask setTimeout(BigDecimal timeout) {
+		this.timeout=timeout;
+		return this;
+	}
+	
+	/**
+	 * 获得 预计工时<br>
+	 * 预计工时
+	 * @return 预计工时
+	*/
+	public BigDecimal getTotalCost() {
+		return totalCost;
+	}
+	
+	/**
+	 * 设置 预计工时
+	 * @param totalCost 预计工时
+	 * @return 当前对象
+	*/
+	public MaintainTask setTotalCost(BigDecimal totalCost) {
+		this.totalCost=totalCost;
+		return this;
+	}
+	
+	/**
 	 * 获得 实际工时<br>
 	 * 实际工时
 	 * @return 实际工时
@@ -742,6 +737,44 @@ public class MaintainTask extends Entity {
 	*/
 	public MaintainTask setActTotalCost(BigDecimal actTotalCost) {
 		this.actTotalCost=actTotalCost;
+		return this;
+	}
+	
+	/**
+	 * 获得 费用<br>
+	 * 元)
+	 * @return 费用
+	*/
+	public BigDecimal getCost() {
+		return cost;
+	}
+	
+	/**
+	 * 设置 费用
+	 * @param cost 费用
+	 * @return 当前对象
+	*/
+	public MaintainTask setCost(BigDecimal cost) {
+		this.cost=cost;
+		return this;
+	}
+	
+	/**
+	 * 获得 逾期<br>
+	 * 逾期
+	 * @return 逾期
+	*/
+	public String getOverdue() {
+		return overdue;
+	}
+	
+	/**
+	 * 设置 逾期
+	 * @param overdue 逾期
+	 * @return 当前对象
+	*/
+	public MaintainTask setOverdue(String overdue) {
+		this.overdue=overdue;
 		return this;
 	}
 	
@@ -905,6 +938,7 @@ public class MaintainTask extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public MaintainTask setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -1148,16 +1182,16 @@ public class MaintainTask extends Entity {
 	 * @return 方案
 	*/
 	public MaintainPlan getMaintainPlan() {
-		return MaintainPlan;
+		return maintainPlan;
 	}
 	
 	/**
 	 * 设置 方案
-	 * @param MaintainPlan 方案
+	 * @param maintainPlan 方案
 	 * @return 当前对象
 	*/
-	public MaintainTask setMaintainPlan(MaintainPlan MaintainPlan) {
-		this.MaintainPlan=MaintainPlan;
+	public MaintainTask setMaintainPlan(MaintainPlan maintainPlan) {
+		this.maintainPlan=maintainPlan;
 		return this;
 	}
 	
@@ -1267,6 +1301,81 @@ public class MaintainTask extends Entity {
 	}
 
 	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public MaintainTask clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public MaintainTask duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.MaintainTaskMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.MaintainTaskMeta.$$proxy$$();
+		inst.setNotes(this.getNotes());
+		inst.setAssetPos(this.getAssetPos());
+		inst.setGroupId(this.getGroupId());
+		inst.setSelectedCode(this.getSelectedCode());
+		inst.setContent(this.getContent());
+		inst.setTimeout(this.getTimeout());
+		inst.setBusinessCode(this.getBusinessCode());
+		inst.setActStartTime(this.getActStartTime());
+		inst.setOverdue(this.getOverdue());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setAssetId(this.getAssetId());
+		inst.setAssetSn(this.getAssetSn());
+		inst.setPlanId(this.getPlanId());
+		inst.setId(this.getId());
+		inst.setOriginatorId(this.getOriginatorId());
+		inst.setMaintainType(this.getMaintainType());
+		inst.setActFinishTime(this.getActFinishTime());
+		inst.setAssetCode(this.getAssetCode());
+		inst.setCost(this.getCost());
+		inst.setPlanStartTime(this.getPlanStartTime());
+		inst.setExecutorId(this.getExecutorId());
+		inst.setAssetModel(this.getAssetModel());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setActTotalCost(this.getActTotalCost());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setAssetName(this.getAssetName());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setAssetStatus(this.getAssetStatus());
+		inst.setTotalCost(this.getTotalCost());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setProjectList(this.getProjectList());
+			inst.setTaskProjectList(this.getTaskProjectList());
+			inst.setMaintainPlan(this.getMaintainPlan());
+			inst.setExecutor(this.getExecutor());
+			inst.setProjectIds(this.getProjectIds());
+			inst.setTaskProjectIds(this.getTaskProjectIds());
+			inst.setOriginator(this.getOriginator());
+			inst.setAsset(this.getAsset());
+			inst.setMaintainTypeDict(this.getMaintainTypeDict());
+			inst.setMaintainGroup(this.getMaintainGroup());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public MaintainTask clone(boolean deep) {
+		return EntityContext.clone(MaintainTask.class,this,deep);
+	}
+
+	/**
 	 * 将 Map 转换成 MaintainTask
 	 * @param maintainTaskMap 包含实体信息的 Map 对象
 	 * @return MaintainTask , 转换好的的 MaintainTask 对象
@@ -1274,7 +1383,9 @@ public class MaintainTask extends Entity {
 	@Transient
 	public static MaintainTask createFrom(Map<String,Object> maintainTaskMap) {
 		if(maintainTaskMap==null) return null;
-		MaintainTask po = EntityContext.create(MaintainTask.class, maintainTaskMap);
+		MaintainTask po = create();
+		EntityContext.copyProperties(po,maintainTaskMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -1286,7 +1397,9 @@ public class MaintainTask extends Entity {
 	@Transient
 	public static MaintainTask createFrom(Object pojo) {
 		if(pojo==null) return null;
-		MaintainTask po = EntityContext.create(MaintainTask.class,pojo);
+		MaintainTask po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -1296,6 +1409,202 @@ public class MaintainTask extends Entity {
 	*/
 	@Transient
 	public static MaintainTask create() {
-		return EntityContext.create(MaintainTask.class);
+		return new com.dt.platform.domain.eam.meta.MaintainTaskMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, map.get(MaintainTaskMeta.NOTES)));
+			this.setAssetPos(DataParser.parse(String.class, map.get(MaintainTaskMeta.ASSET_POS)));
+			this.setGroupId(DataParser.parse(String.class, map.get(MaintainTaskMeta.GROUP_ID)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(MaintainTaskMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, map.get(MaintainTaskMeta.CONTENT)));
+			this.setTimeout(DataParser.parse(BigDecimal.class, map.get(MaintainTaskMeta.TIMEOUT)));
+			this.setBusinessCode(DataParser.parse(String.class, map.get(MaintainTaskMeta.BUSINESS_CODE)));
+			this.setActStartTime(DataParser.parse(Date.class, map.get(MaintainTaskMeta.ACT_START_TIME)));
+			this.setOverdue(DataParser.parse(String.class, map.get(MaintainTaskMeta.OVERDUE)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(MaintainTaskMeta.UPDATE_BY)));
+			this.setAssetId(DataParser.parse(String.class, map.get(MaintainTaskMeta.ASSET_ID)));
+			this.setAssetSn(DataParser.parse(String.class, map.get(MaintainTaskMeta.ASSET_SN)));
+			this.setPlanId(DataParser.parse(String.class, map.get(MaintainTaskMeta.PLAN_ID)));
+			this.setId(DataParser.parse(String.class, map.get(MaintainTaskMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, map.get(MaintainTaskMeta.ORIGINATOR_ID)));
+			this.setMaintainType(DataParser.parse(String.class, map.get(MaintainTaskMeta.MAINTAIN_TYPE)));
+			this.setActFinishTime(DataParser.parse(Date.class, map.get(MaintainTaskMeta.ACT_FINISH_TIME)));
+			this.setAssetCode(DataParser.parse(String.class, map.get(MaintainTaskMeta.ASSET_CODE)));
+			this.setCost(DataParser.parse(BigDecimal.class, map.get(MaintainTaskMeta.COST)));
+			this.setPlanStartTime(DataParser.parse(Date.class, map.get(MaintainTaskMeta.PLAN_START_TIME)));
+			this.setExecutorId(DataParser.parse(String.class, map.get(MaintainTaskMeta.EXECUTOR_ID)));
+			this.setAssetModel(DataParser.parse(String.class, map.get(MaintainTaskMeta.ASSET_MODEL)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(MaintainTaskMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(MaintainTaskMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(MaintainTaskMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(MaintainTaskMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(MaintainTaskMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(MaintainTaskMeta.DELETE_TIME)));
+			this.setActTotalCost(DataParser.parse(BigDecimal.class, map.get(MaintainTaskMeta.ACT_TOTAL_COST)));
+			this.setName(DataParser.parse(String.class, map.get(MaintainTaskMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(MaintainTaskMeta.TENANT_ID)));
+			this.setAssetName(DataParser.parse(String.class, map.get(MaintainTaskMeta.ASSET_NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(MaintainTaskMeta.DELETE_BY)));
+			this.setAssetStatus(DataParser.parse(String.class, map.get(MaintainTaskMeta.ASSET_STATUS)));
+			this.setTotalCost(DataParser.parse(BigDecimal.class, map.get(MaintainTaskMeta.TOTAL_COST)));
+			this.setStatus(DataParser.parse(String.class, map.get(MaintainTaskMeta.STATUS)));
+			// others
+			this.setMaintainPlan(DataParser.parse(MaintainPlan.class, map.get(MaintainTaskMeta.MAINTAIN_PLAN)));
+			this.setExecutor(DataParser.parse(Employee.class, map.get(MaintainTaskMeta.EXECUTOR)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(MaintainTaskMeta.ORIGINATOR)));
+			this.setAsset(DataParser.parse(Asset.class, map.get(MaintainTaskMeta.ASSET)));
+			this.setMaintainTypeDict(DataParser.parse(DictItem.class, map.get(MaintainTaskMeta.MAINTAIN_TYPE_DICT)));
+			this.setMaintainGroup(DataParser.parse(MaintainGroup.class, map.get(MaintainTaskMeta.MAINTAIN_GROUP)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)map.get(MaintainTaskMeta.NOTES));
+				this.setAssetPos( (String)map.get(MaintainTaskMeta.ASSET_POS));
+				this.setGroupId( (String)map.get(MaintainTaskMeta.GROUP_ID));
+				this.setSelectedCode( (String)map.get(MaintainTaskMeta.SELECTED_CODE));
+				this.setContent( (String)map.get(MaintainTaskMeta.CONTENT));
+				this.setTimeout( (BigDecimal)map.get(MaintainTaskMeta.TIMEOUT));
+				this.setBusinessCode( (String)map.get(MaintainTaskMeta.BUSINESS_CODE));
+				this.setActStartTime( (Date)map.get(MaintainTaskMeta.ACT_START_TIME));
+				this.setOverdue( (String)map.get(MaintainTaskMeta.OVERDUE));
+				this.setUpdateBy( (String)map.get(MaintainTaskMeta.UPDATE_BY));
+				this.setAssetId( (String)map.get(MaintainTaskMeta.ASSET_ID));
+				this.setAssetSn( (String)map.get(MaintainTaskMeta.ASSET_SN));
+				this.setPlanId( (String)map.get(MaintainTaskMeta.PLAN_ID));
+				this.setId( (String)map.get(MaintainTaskMeta.ID));
+				this.setOriginatorId( (String)map.get(MaintainTaskMeta.ORIGINATOR_ID));
+				this.setMaintainType( (String)map.get(MaintainTaskMeta.MAINTAIN_TYPE));
+				this.setActFinishTime( (Date)map.get(MaintainTaskMeta.ACT_FINISH_TIME));
+				this.setAssetCode( (String)map.get(MaintainTaskMeta.ASSET_CODE));
+				this.setCost( (BigDecimal)map.get(MaintainTaskMeta.COST));
+				this.setPlanStartTime( (Date)map.get(MaintainTaskMeta.PLAN_START_TIME));
+				this.setExecutorId( (String)map.get(MaintainTaskMeta.EXECUTOR_ID));
+				this.setAssetModel( (String)map.get(MaintainTaskMeta.ASSET_MODEL));
+				this.setUpdateTime( (Date)map.get(MaintainTaskMeta.UPDATE_TIME));
+				this.setVersion( (Integer)map.get(MaintainTaskMeta.VERSION));
+				this.setCreateBy( (String)map.get(MaintainTaskMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(MaintainTaskMeta.DELETED));
+				this.setCreateTime( (Date)map.get(MaintainTaskMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)map.get(MaintainTaskMeta.DELETE_TIME));
+				this.setActTotalCost( (BigDecimal)map.get(MaintainTaskMeta.ACT_TOTAL_COST));
+				this.setName( (String)map.get(MaintainTaskMeta.NAME));
+				this.setTenantId( (String)map.get(MaintainTaskMeta.TENANT_ID));
+				this.setAssetName( (String)map.get(MaintainTaskMeta.ASSET_NAME));
+				this.setDeleteBy( (String)map.get(MaintainTaskMeta.DELETE_BY));
+				this.setAssetStatus( (String)map.get(MaintainTaskMeta.ASSET_STATUS));
+				this.setTotalCost( (BigDecimal)map.get(MaintainTaskMeta.TOTAL_COST));
+				this.setStatus( (String)map.get(MaintainTaskMeta.STATUS));
+				// others
+				this.setMaintainPlan( (MaintainPlan)map.get(MaintainTaskMeta.MAINTAIN_PLAN));
+				this.setExecutor( (Employee)map.get(MaintainTaskMeta.EXECUTOR));
+				this.setOriginator( (Employee)map.get(MaintainTaskMeta.ORIGINATOR));
+				this.setAsset( (Asset)map.get(MaintainTaskMeta.ASSET));
+				this.setMaintainTypeDict( (DictItem)map.get(MaintainTaskMeta.MAINTAIN_TYPE_DICT));
+				this.setMaintainGroup( (MaintainGroup)map.get(MaintainTaskMeta.MAINTAIN_GROUP));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setNotes(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.NOTES)));
+			this.setAssetPos(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.ASSET_POS)));
+			this.setGroupId(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.GROUP_ID)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.SELECTED_CODE)));
+			this.setContent(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.CONTENT)));
+			this.setTimeout(DataParser.parse(BigDecimal.class, r.getValue(MaintainTaskMeta.TIMEOUT)));
+			this.setBusinessCode(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.BUSINESS_CODE)));
+			this.setActStartTime(DataParser.parse(Date.class, r.getValue(MaintainTaskMeta.ACT_START_TIME)));
+			this.setOverdue(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.OVERDUE)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.UPDATE_BY)));
+			this.setAssetId(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.ASSET_ID)));
+			this.setAssetSn(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.ASSET_SN)));
+			this.setPlanId(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.PLAN_ID)));
+			this.setId(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.ORIGINATOR_ID)));
+			this.setMaintainType(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.MAINTAIN_TYPE)));
+			this.setActFinishTime(DataParser.parse(Date.class, r.getValue(MaintainTaskMeta.ACT_FINISH_TIME)));
+			this.setAssetCode(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.ASSET_CODE)));
+			this.setCost(DataParser.parse(BigDecimal.class, r.getValue(MaintainTaskMeta.COST)));
+			this.setPlanStartTime(DataParser.parse(Date.class, r.getValue(MaintainTaskMeta.PLAN_START_TIME)));
+			this.setExecutorId(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.EXECUTOR_ID)));
+			this.setAssetModel(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.ASSET_MODEL)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(MaintainTaskMeta.UPDATE_TIME)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(MaintainTaskMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(MaintainTaskMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(MaintainTaskMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(MaintainTaskMeta.DELETE_TIME)));
+			this.setActTotalCost(DataParser.parse(BigDecimal.class, r.getValue(MaintainTaskMeta.ACT_TOTAL_COST)));
+			this.setName(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.TENANT_ID)));
+			this.setAssetName(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.ASSET_NAME)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.DELETE_BY)));
+			this.setAssetStatus(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.ASSET_STATUS)));
+			this.setTotalCost(DataParser.parse(BigDecimal.class, r.getValue(MaintainTaskMeta.TOTAL_COST)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(MaintainTaskMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setNotes( (String)r.getValue(MaintainTaskMeta.NOTES));
+				this.setAssetPos( (String)r.getValue(MaintainTaskMeta.ASSET_POS));
+				this.setGroupId( (String)r.getValue(MaintainTaskMeta.GROUP_ID));
+				this.setSelectedCode( (String)r.getValue(MaintainTaskMeta.SELECTED_CODE));
+				this.setContent( (String)r.getValue(MaintainTaskMeta.CONTENT));
+				this.setTimeout( (BigDecimal)r.getValue(MaintainTaskMeta.TIMEOUT));
+				this.setBusinessCode( (String)r.getValue(MaintainTaskMeta.BUSINESS_CODE));
+				this.setActStartTime( (Date)r.getValue(MaintainTaskMeta.ACT_START_TIME));
+				this.setOverdue( (String)r.getValue(MaintainTaskMeta.OVERDUE));
+				this.setUpdateBy( (String)r.getValue(MaintainTaskMeta.UPDATE_BY));
+				this.setAssetId( (String)r.getValue(MaintainTaskMeta.ASSET_ID));
+				this.setAssetSn( (String)r.getValue(MaintainTaskMeta.ASSET_SN));
+				this.setPlanId( (String)r.getValue(MaintainTaskMeta.PLAN_ID));
+				this.setId( (String)r.getValue(MaintainTaskMeta.ID));
+				this.setOriginatorId( (String)r.getValue(MaintainTaskMeta.ORIGINATOR_ID));
+				this.setMaintainType( (String)r.getValue(MaintainTaskMeta.MAINTAIN_TYPE));
+				this.setActFinishTime( (Date)r.getValue(MaintainTaskMeta.ACT_FINISH_TIME));
+				this.setAssetCode( (String)r.getValue(MaintainTaskMeta.ASSET_CODE));
+				this.setCost( (BigDecimal)r.getValue(MaintainTaskMeta.COST));
+				this.setPlanStartTime( (Date)r.getValue(MaintainTaskMeta.PLAN_START_TIME));
+				this.setExecutorId( (String)r.getValue(MaintainTaskMeta.EXECUTOR_ID));
+				this.setAssetModel( (String)r.getValue(MaintainTaskMeta.ASSET_MODEL));
+				this.setUpdateTime( (Date)r.getValue(MaintainTaskMeta.UPDATE_TIME));
+				this.setVersion( (Integer)r.getValue(MaintainTaskMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(MaintainTaskMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(MaintainTaskMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(MaintainTaskMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)r.getValue(MaintainTaskMeta.DELETE_TIME));
+				this.setActTotalCost( (BigDecimal)r.getValue(MaintainTaskMeta.ACT_TOTAL_COST));
+				this.setName( (String)r.getValue(MaintainTaskMeta.NAME));
+				this.setTenantId( (String)r.getValue(MaintainTaskMeta.TENANT_ID));
+				this.setAssetName( (String)r.getValue(MaintainTaskMeta.ASSET_NAME));
+				this.setDeleteBy( (String)r.getValue(MaintainTaskMeta.DELETE_BY));
+				this.setAssetStatus( (String)r.getValue(MaintainTaskMeta.ASSET_STATUS));
+				this.setTotalCost( (BigDecimal)r.getValue(MaintainTaskMeta.TOTAL_COST));
+				this.setStatus( (String)r.getValue(MaintainTaskMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

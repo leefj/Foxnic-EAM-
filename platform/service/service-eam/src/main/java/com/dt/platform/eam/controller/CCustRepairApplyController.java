@@ -272,8 +272,8 @@ public class CCustRepairApplyController extends SuperController {
     @ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = CCustRepairApplyServiceProxy.FINISH, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(CCustRepairApplyServiceProxy.FINISH)
-    public Result finish(String id) {
-        return cCustRepairApplyService.finish(id);
+    public Result finish(String id,String ct) {
+        return cCustRepairApplyService.finish(id,ct);
     }
 
     /**

@@ -2,14 +2,14 @@ package com.dt.platform.generator.module.eam;
 
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
+import com.dt.platform.domain.eam.Asset;
 import com.dt.platform.domain.eam.InspectionPoint;
+import com.dt.platform.domain.eam.InspectionPointPos;
 import com.dt.platform.domain.eam.InspectionRoute;
-import com.dt.platform.domain.eam.meta.InspectionPointMeta;
-import com.dt.platform.domain.eam.meta.InspectionRouteMeta;
-import com.dt.platform.domain.eam.meta.RepairCategoryMeta;
-import com.dt.platform.domain.eam.meta.RepairCategoryTplMeta;
+import com.dt.platform.domain.eam.meta.*;
 import com.dt.platform.eam.page.InspectionPointPageController;
 import com.dt.platform.generator.config.Config;
+import com.dt.platform.proxy.eam.InspectionPointPosServiceProxy;
 import com.dt.platform.proxy.eam.InspectionPointServiceProxy;
 import com.dt.platform.proxy.eam.InspectionRouteServiceProxy;
 import com.dt.platform.proxy.eam.RepairCategoryServiceProxy;
@@ -30,10 +30,13 @@ public class InspPointGtr extends BaseCodeGenerator {
 
 
         cfg.getPoClassFile().addSimpleProperty(InspectionRoute.class,"route","route","route");
+        cfg.getPoClassFile().addSimpleProperty(InspectionPointPos.class,"inspectionPointPos","inspectionPointPos","inspectionPointPos");
+
 
         cfg.view().search().inputLayout(
                 new Object[]{
                         EAMTables.EAM_INSPECTION_POINT.STATUS,
+                        EAMTables.EAM_INSPECTION_POINT.POS_ID,
                         EAMTables.EAM_INSPECTION_POINT.CODE,
                         EAMTables.EAM_INSPECTION_POINT.NAME,
                 }
@@ -70,8 +73,15 @@ public class InspPointGtr extends BaseCodeGenerator {
                 textField(InspectionRouteMeta.NAME).
                 fillWith(InspectionPointMeta.ROUTE).muliti(false).defaultIndex(0);
 
+        cfg.view().field(EAMTables.EAM_INSPECTION_POINT.POS_ID)
+                .form().selectBox().queryApi(InspectionPointPosServiceProxy.QUERY_PAGED_LIST)
+                .paging(true).filter(true).toolbar(false)
+                .valueField(InspectionPointPosMeta.ID).
+                textField(InspectionPointPosMeta.HIERARCHY_NAME).
+                fillWith(InspectionPointMeta.INSPECTION_POINT_POS).muliti(false);
 
-         cfg.view().formWindow().width(Config.baseFormWidth);;
+
+         cfg.view().formWindow().width(Config.baseFormWidth);
 
         cfg.view().list().disableBatchDelete();
         cfg.view().formWindow().bottomSpace(20);
@@ -82,13 +92,15 @@ public class InspPointGtr extends BaseCodeGenerator {
                         EAMTables.EAM_INSPECTION_POINT.NAME,
                 },
                 new Object[] {
-                        EAMTables.EAM_INSPECTION_POINT.ROUTE_ID,
                         EAMTables.EAM_INSPECTION_POINT.RFID,
-                },
-                new Object[] {
-                        EAMTables.EAM_INSPECTION_POINT.POS,
                         EAMTables.EAM_INSPECTION_POINT.POS_LONGITUDE,
                         EAMTables.EAM_INSPECTION_POINT.POS_LATITUDE,
+                },
+                new Object[] {
+                        EAMTables.EAM_INSPECTION_POINT.ROUTE_ID,
+                        EAMTables.EAM_INSPECTION_POINT.POS_ID,
+                        EAMTables.EAM_INSPECTION_POINT.POS,
+
                 }
         );
         cfg.view().form().addGroup(null,

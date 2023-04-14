@@ -90,6 +90,11 @@ public interface CCustInspectPlanServiceProxy {
     public static final String EXECUTE = API_PREFIX + "execute";
 
     /**
+     * 分页查询巡检计划
+     */
+    public static final String CREATE_TASK = API_PREFIX + "create-task";
+
+    /**
      * 执行计划
      */
     @RequestMapping(CCustInspectPlanServiceProxy.EXECUTE)

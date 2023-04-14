@@ -36,7 +36,6 @@ public class RepairOrderAcceptGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"accepter","验收人","验收人");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"resultTypeDict","结果类型","结果类型");
         cfg.getPoClassFile().addSimpleProperty(RepairCategoryTpl.class,"categoryTpl","报修故障","报修故障");
-
         cfg.getPoClassFile().addSimpleProperty(String.class,"orderName","订单名称","订单名称");
         cfg.getPoClassFile().addSimpleProperty(String.class,"orderBusinessCode","订单编号","订单编号");
 

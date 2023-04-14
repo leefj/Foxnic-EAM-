@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检点位
  * <p>巡检点位 , 数据表 eam_inspection_point_pos 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-10 09:39:30
+ * @since 2023-04-11 09:43:29
  * @sign 21AB14B0163C834E3C32A37248B81061
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -40,49 +40,49 @@ public class InspectionPointPos extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "698104226152185856")
 	private String id;
 	
 	/**
 	 * 编码：编码
 	*/
-	@ApiModelProperty(required = false,value="编码" , notes = "编码")
+	@ApiModelProperty(required = false,value="编码" , notes = "编码" , example = "L1")
 	private String code;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "楼层1")
 	private String name;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "enable")
 	private String status;
 	
 	/**
 	 * 父节点：父节点
 	*/
-	@ApiModelProperty(required = false,value="父节点" , notes = "父节点")
+	@ApiModelProperty(required = false,value="父节点" , notes = "父节点" , example = "0")
 	private String parentId;
 	
 	/**
 	 * 节点路径：节点路径
 	*/
-	@ApiModelProperty(required = false,value="节点路径" , notes = "节点路径")
+	@ApiModelProperty(required = false,value="节点路径" , notes = "节点路径" , example = "698104226152185856")
 	private String hierarchy;
 	
 	/**
 	 * 节点路径名称：节点路径名称
 	*/
-	@ApiModelProperty(required = false,value="节点路径名称" , notes = "节点路径名称")
+	@ApiModelProperty(required = false,value="节点路径名称" , notes = "节点路径名称" , example = "楼层1")
 	private String hierarchyName;
 	
 	/**
 	 * 排序：排序
 	*/
-	@ApiModelProperty(required = false,value="排序" , notes = "排序")
+	@ApiModelProperty(required = false,value="排序" , notes = "排序" , example = "9999")
 	private Integer sort;
 	
 	/**
@@ -94,31 +94,31 @@ public class InspectionPointPos extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-04-11 09:36:58")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-11 09:37:25")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -139,13 +139,13 @@ public class InspectionPointPos extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "4")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**

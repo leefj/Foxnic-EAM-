@@ -50,7 +50,7 @@ public interface IMaintainPlanService extends ISuperService<MaintainPlan> {
 	Result execute(String id);
 
 
-
+	Result createTask(String id);
 	/**
 	 * 添加，如果语句错误，则抛出异常
 	 * @param maintainPlan 数据对象

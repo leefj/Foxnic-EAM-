@@ -1,7 +1,7 @@
 /**
  * 巡检任务 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-10 21:43:34
+ * @since 2023-04-14 07:30:21
  */
 
 function FormPage() {
@@ -184,6 +184,8 @@ function FormPage() {
 			filterable: true,
 			paging: true,
 			pageRemote: true,
+			layVerify: 'required',
+			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("groupId",data.arr,data.change,data.isAdd);

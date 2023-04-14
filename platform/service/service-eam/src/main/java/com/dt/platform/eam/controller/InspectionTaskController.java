@@ -1,7 +1,6 @@
 package com.dt.platform.eam.controller;
 
 import java.util.List;
-
 import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.domain.eam.meta.MaintainTaskVOMeta;
 import com.dt.platform.proxy.eam.MaintainTaskServiceProxy;
@@ -71,11 +70,11 @@ public class InspectionTaskController extends SuperController {
      * 添加巡检任务
      */
     @ApiOperation(value = "添加巡检任务")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_ID, value = "巡检计划", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.TASK_STATUS, value = "任务状态", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionTaskVOMeta.TASK_CODE, value = "任务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.TASK_CODE, value = "任务单据", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_CODE, value = "巡检编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_NAME, value = "巡检名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_INSPECTION_METHOD, value = "巡检顺序", required = false, dataTypeClass = String.class),
@@ -105,7 +104,7 @@ public class InspectionTaskController extends SuperController {
      * 删除巡检任务
      */
     @ApiOperation(value = "删除巡检任务")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 2)
@@ -121,7 +120,7 @@ public class InspectionTaskController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量删除巡检任务")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InspectionTaskVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -136,11 +135,11 @@ public class InspectionTaskController extends SuperController {
      * 更新巡检任务
      */
     @ApiOperation(value = "更新巡检任务")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_ID, value = "巡检计划", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.TASK_STATUS, value = "任务状态", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionTaskVOMeta.TASK_CODE, value = "任务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.TASK_CODE, value = "任务单据", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_CODE, value = "巡检编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_NAME, value = "巡检名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_INSPECTION_METHOD, value = "巡检顺序", required = false, dataTypeClass = String.class),
@@ -170,11 +169,11 @@ public class InspectionTaskController extends SuperController {
      * 保存巡检任务
      */
     @ApiOperation(value = "保存巡检任务")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_ID, value = "巡检计划", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.TASK_STATUS, value = "任务状态", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionTaskVOMeta.TASK_CODE, value = "任务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.TASK_CODE, value = "任务单据", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_CODE, value = "巡检编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_NAME, value = "巡检名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_INSPECTION_METHOD, value = "巡检顺序", required = false, dataTypeClass = String.class),
@@ -204,7 +203,7 @@ public class InspectionTaskController extends SuperController {
      * 获取巡检任务
      */
     @ApiOperation(value = "获取巡检任务")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
 	})
     @ApiOperationSupport(order = 6)
@@ -224,7 +223,7 @@ public class InspectionTaskController extends SuperController {
      * 联合主键时，请自行调整实现
      */
     @ApiOperation(value = "批量获取巡检任务")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InspectionTaskVOMeta.IDS, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 3)
@@ -241,11 +240,11 @@ public class InspectionTaskController extends SuperController {
      * 查询巡检任务
      */
     @ApiOperation(value = "查询巡检任务")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_ID, value = "巡检计划", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.TASK_STATUS, value = "任务状态", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionTaskVOMeta.TASK_CODE, value = "任务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.TASK_CODE, value = "任务单据", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_CODE, value = "巡检编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_NAME, value = "巡检名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_INSPECTION_METHOD, value = "巡检顺序", required = false, dataTypeClass = String.class),
@@ -276,11 +275,11 @@ public class InspectionTaskController extends SuperController {
      * 分页查询巡检任务
      */
     @ApiOperation(value = "分页查询巡检任务")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_ID, value = "巡检计划", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.TASK_STATUS, value = "任务状态", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = InspectionTaskVOMeta.TASK_CODE, value = "任务编号", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = InspectionTaskVOMeta.TASK_CODE, value = "任务单据", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_CODE, value = "巡检编码", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_NAME, value = "巡检名称", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = InspectionTaskVOMeta.PLAN_INSPECTION_METHOD, value = "巡检顺序", required = false, dataTypeClass = String.class),
@@ -305,18 +304,14 @@ public class InspectionTaskController extends SuperController {
         PagedList<InspectionTask> list = inspectionTaskService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         inspectionTaskService.dao().fill(list).with("originator").with(InspectionTaskMeta.INSPECTION_GROUP).with(InspectionTaskMeta.EXECUTOR).execute();
-
-
         List<Employee> user2 = CollectorUtil.collectList(list, InspectionTask::getExecutor);
         inspectionTaskService.dao().join(user2, Person.class);
-
-
         result.success(true).data(list);
         return result;
     }
 
     @ApiOperation(value = "")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 9)
@@ -327,7 +322,7 @@ public class InspectionTaskController extends SuperController {
     }
 
     @ApiOperation(value = "")
-    @ApiImplicitParams({ 
+    @ApiImplicitParams({
 		@ApiImplicitParam(name = InspectionTaskVOMeta.ID, value = "主键清单", required = true, dataTypeClass = List.class, example = "[1,3,4]")
 	})
     @ApiOperationSupport(order = 9)
@@ -341,10 +336,9 @@ public class InspectionTaskController extends SuperController {
     @ApiOperationSupport(order = 9)
     @SentinelResource(value = InspectionTaskServiceProxy.CHECK, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionTaskServiceProxy.CHECK)
-    public Result<JSONObject> check(String taskId,String pointCode) {
-        return inspectionTaskService.check(taskId,pointCode);
+    public Result<JSONObject> check(String taskId, String pointCode) {
+        return inspectionTaskService.check(taskId, pointCode);
     }
-
 
     /**
      */
@@ -352,7 +346,7 @@ public class InspectionTaskController extends SuperController {
     @ApiOperationSupport(order = 10)
     @SentinelResource(value = InspectionTaskServiceProxy.EXECUTE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(InspectionTaskServiceProxy.EXECUTE)
-    public Result execute(String taskId,String pointCode,String status,String ct,String pics) {
+    public Result execute(String taskId, String pointCode, String status, String ct, String pics) {
         return inspectionTaskService.execute(taskId, pointCode, status, ct, pics);
     }
 

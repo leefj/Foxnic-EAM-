@@ -1,42 +1,49 @@
 package com.dt.platform.eam.service.impl;
 
+import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.github.foxnic.dao.entity.ReferCause;
+import com.github.foxnic.commons.collection.MapUtil;
+import java.util.Arrays;
+
 
 import com.dt.platform.domain.eam.MaintainTaskProject;
-import com.dt.platform.eam.service.IMaintainTaskProjectService;
-import com.github.foxnic.api.error.ErrorDesc;
+import com.dt.platform.domain.eam.MaintainTaskProjectVO;
+import java.util.List;
 import com.github.foxnic.api.transter.Result;
-import com.github.foxnic.commons.busi.id.IDGenerator;
-import com.github.foxnic.commons.collection.MapUtil;
 import com.github.foxnic.dao.data.PagedList;
-import com.github.foxnic.dao.data.SaveMode;
-import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.SuperService;
-import com.github.foxnic.dao.excel.ExcelStructure;
+import com.github.foxnic.dao.spec.DAO;
+import java.lang.reflect.Field;
+import com.github.foxnic.commons.busi.id.IDGenerator;
+import com.github.foxnic.sql.expr.ConditionExpr;
+import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ValidateResult;
-import com.github.foxnic.dao.spec.DAO;
-import com.github.foxnic.sql.expr.ConditionExpr;
-import com.github.foxnic.sql.meta.DBField;
-import org.github.foxnic.web.framework.dao.DBConfigs;
-import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
+import com.github.foxnic.dao.excel.ExcelStructure;
 import java.io.InputStream;
-import java.lang.reflect.Field;
+import com.github.foxnic.sql.meta.DBField;
+import com.github.foxnic.dao.data.SaveMode;
+import com.github.foxnic.dao.meta.DBColumnMeta;
+import com.github.foxnic.sql.expr.Select;
+import java.util.ArrayList;
+import com.dt.platform.eam.service.IMaintainTaskProjectService;
+import org.github.foxnic.web.framework.dao.DBConfigs;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 /**
  * <p>
- * 保养项目 服务实现
+ * 保养项目服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-09 12:22:23
+ * @since 2023-04-14 07:42:51
 */
 
 
 @Service("EamMaintainTaskProjectService")
+
 public class MaintainTaskProjectServiceImpl extends SuperService<MaintainTaskProject> implements IMaintainTaskProjectService {
 
 	/**
@@ -92,7 +99,7 @@ public class MaintainTaskProjectServiceImpl extends SuperService<MaintainTaskPro
 
 	
 	/**
-	 * 按主键删除 保养项目
+	 * 按主键删除保养项目
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -113,7 +120,7 @@ public class MaintainTaskProjectServiceImpl extends SuperService<MaintainTaskPro
 	}
 	
 	/**
-	 * 按主键删除 保养项目
+	 * 按主键删除保养项目
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -173,7 +180,7 @@ public class MaintainTaskProjectServiceImpl extends SuperService<MaintainTaskPro
 
 	
 	/**
-	 * 按主键更新字段 保养项目
+	 * 按主键更新保养项目
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -187,7 +194,7 @@ public class MaintainTaskProjectServiceImpl extends SuperService<MaintainTaskPro
 
 	
 	/**
-	 * 按主键获取 保养项目
+	 * 按主键获取保养项目
 	 *
 	 * @param id 主键
 	 * @return MaintainTaskProject 数据对象
@@ -197,6 +204,14 @@ public class MaintainTaskProjectServiceImpl extends SuperService<MaintainTaskPro
 		if(id==null) throw new IllegalArgumentException("id 不允许为 null ");
 		sample.setId(id);
 		return dao.queryEntity(sample);
+	}
+
+	/**
+	 * 等价于 queryListByIds
+	 * */
+	@Override
+	public List<MaintainTaskProject> getByIds(List<String> ids) {
+		return this.queryListByIds(ids);
 	}
 
 	@Override
@@ -218,7 +233,7 @@ public class MaintainTaskProjectServiceImpl extends SuperService<MaintainTaskPro
 	 * @return 查询结果
 	 * */
 	@Override
-	public List<MaintainTaskProject> queryList(MaintainTaskProject sample) {
+	public List<MaintainTaskProject> queryList(MaintainTaskProjectVO sample) {
 		return super.queryList(sample);
 	}
 
@@ -232,7 +247,7 @@ public class MaintainTaskProjectServiceImpl extends SuperService<MaintainTaskPro
 	 * @return 查询结果
 	 * */
 	@Override
-	public PagedList<MaintainTaskProject> queryPagedList(MaintainTaskProject sample, int pageSize, int pageIndex) {
+	public PagedList<MaintainTaskProject> queryPagedList(MaintainTaskProjectVO sample, int pageSize, int pageIndex) {
 		return super.queryPagedList(sample, pageSize, pageIndex);
 	}
 
@@ -263,22 +278,7 @@ public class MaintainTaskProjectServiceImpl extends SuperService<MaintainTaskPro
 		return false;
 	}
 
-	@Override
-	public ExcelWriter exportExcel(MaintainTaskProject sample) {
-		return super.exportExcel(sample);
-	}
-
-	@Override
-	public ExcelWriter exportExcelTemplate() {
-		return super.exportExcelTemplate();
-	}
-
-	@Override
-	public List<ValidateResult> importExcel(InputStream input,int sheetIndex,boolean batch) {
-		return super.importExcel(input,sheetIndex,batch);
-	}
-
-/**
+	/**
 	 * 批量检查引用
 	 * @param ids  检查这些ID是否又被外部表引用
 	 * */
@@ -289,10 +289,8 @@ public class MaintainTaskProjectServiceImpl extends SuperService<MaintainTaskPro
 		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
 	}
 
-	@Override
-	public ExcelStructure buildExcelStructure(boolean isForExport) {
-		return super.buildExcelStructure(isForExport);
-	}
+
+
 
 
 }

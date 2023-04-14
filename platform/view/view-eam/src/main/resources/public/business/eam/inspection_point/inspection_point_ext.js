@@ -1,7 +1,7 @@
 /**
  * 巡检点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-11 22:18:07
+ * @since 2023-04-11 20:39:37
  */
 
 layui.config({
@@ -20,6 +20,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     //模块基础路径
     const moduleURL="/service-eam/eam-inspection-point";
 
+
     //列表页的扩展
     var list={
         /**
@@ -27,6 +28,21 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeInit:function () {
             console.log("list:beforeInit");
+        },
+        /**
+         * 按事件名称移除表格按钮栏的按钮
+         * */
+        removeOperationButtonByEvent(event) {
+            var template=$("#tableOperationTemplate");
+            var content=template.text();
+            content=content.split("\n");
+            var buttons=[]
+            for (let i = 0; i < content.length ; i++) {
+                if(content[i] && content[i].indexOf("lay-event=\""+event+"\"")==-1) {
+                    buttons.push(content[i]);
+                }
+            }
+            template.text(buttons.join("\n"))
         },
         /**
          * 表格渲染前调用

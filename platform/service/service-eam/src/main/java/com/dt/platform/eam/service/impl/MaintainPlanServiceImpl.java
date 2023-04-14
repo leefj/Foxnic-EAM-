@@ -4,6 +4,7 @@ package com.dt.platform.eam.service.impl;
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.eam.*;
 import com.dt.platform.domain.eam.*;
+import com.dt.platform.domain.eam.meta.AssetMeta;
 import com.dt.platform.domain.eam.meta.MaintainPlanMeta;
 import com.dt.platform.eam.service.*;
 import com.dt.platform.proxy.common.CodeModuleServiceProxy;
@@ -118,6 +119,12 @@ public class MaintainPlanServiceImpl extends SuperService<MaintainPlan> implemen
 
 	@Override
 	public Result execute(String id) {
+
+		return ErrorDesc.success();
+	}
+
+	@Override
+	public Result createTask(String id) {
 		MaintainPlan plan=this.getById(id);
 		String status=plan.getStatus();
 		boolean run=false;
@@ -148,56 +155,59 @@ public class MaintainPlanServiceImpl extends SuperService<MaintainPlan> implemen
 			Logger.info("########## plan name:"+plan.getName()+" ###########");
 			Logger.info("########## plan trigger end ###########");
 			this.dao().fill(plan)
+					.with(MaintainPlanMeta.ASSET)
 					.with(MaintainPlanMeta.ASSET_LIST)
 					.with(MaintainPlanMeta.PROJECT_LIST)
 					.execute();
-			List<Asset> assetList=plan.getAssetList();
-		 	List<MaintainProject> projectList=plan.getProjectList();
+			Asset asset=plan.getAsset();
+			List<MaintainProject> projectList=plan.getProjectList();
+ 			if(asset==null){
+ 				return ErrorDesc.failureMessage("当前没有要保养的设备");
+			}
+			this.dao().fill(asset)
+					.with(AssetMeta.POSITION)
+					.execute();
+			//生成任务
+			MaintainTask task=new MaintainTask();
+			String taskId=IDGenerator.getSnowflakeIdString();
+			task.setId(taskId);
+			task.setName(plan.getName());
+			task.setMaintainType(plan.getMaintainType());
+			task.setPlanStartTime(new Date());
+			task.setTimeout(plan.getTimeout());
+			task.setPlanId(plan.getId());
+			task.setGroupId(plan.getGroupId());
+			task.setAssetId(asset.getId());
+			task.setAssetName(asset.getName());
+			task.setAssetModel(asset.getModel());
+			task.setAssetStatus(asset.getAssetStatus());
+			task.setAssetSn(asset.getSerialNumber());
+			task.setAssetCode(asset.getSerialNumber());
 
-			if(assetList==null||assetList.size()==0){
-				return ErrorDesc.failureMessage("请选择保养设备");
+			if(asset.getPosition()!=null){
+				task.setAssetPos(asset.getPosition().getHierarchyName());
 			}
-			//生产任务
-			for(int i=0;i<assetList.size();i++){
-				Asset asset=assetList.get(i);
-				MaintainTask task=new MaintainTask();
-				String taskId=IDGenerator.getSnowflakeIdString();
-				task.setId(taskId);
-				task.setPlanStartTime(new Date());
-				task.setPlanId(plan.getId());
-				task.setPlanInfo(plan.getInfo());
-				task.setPlanName(plan.getName());
-				task.setPlanNotes(plan.getNotes());
-				task.setPlanMaintainType(plan.getMaintainType());
-				task.setPlanCycleMethod(plan.getCycleMethod());
-				task.setPlanTotalCost(plan.getTotalCost());
-				task.setGroupId(plan.getGroupId());
-				task.setAssetId(asset.getId());
-				task.setAssetName(asset.getName());
-				task.setAssetModel(asset.getModel());
-				task.setAssetStatus(asset.getAssetStatus());
-				task.setAssetCode(asset.getSerialNumber());
-				//生产项目
-				for(int j=0;j<projectList.size();j++){
-					MaintainProject project=projectList.get(j);
-					MaintainProjectSelect sel=new MaintainProjectSelect();
-					sel.setOwnerId(taskId);
-					sel.setProjectId(project.getId());
-					maintainProjectSelectService.insert(sel);
-					MaintainTaskProject taskProject=new MaintainTaskProject();
-					taskProject.setTaskId(taskId);
-					taskProject.setProjectId(project.getId());
-					taskProject.setStatus(MaintainTaskProjectStatusEnum.UNEXECUTED.code());
-					taskProject.setProjectCode(project.getCode());
-					taskProject.setProjectName(project.getName());
-					taskProject.setProjectMaintainType(project.getMaintainType());
-					taskProject.setProjectNotes(project.getNotes());
-					taskProject.setProjectAttachId(project.getAttachId());
-					taskProject.setProjectBaseCost(project.getBaseCost());
-					maintainTaskProjectService.insert(taskProject);
-				}
-				maintainTaskService.insert(task);
+			//保养项目
+			for(int j=0;j<projectList.size();j++){
+				MaintainProject project=projectList.get(j);
+				MaintainProjectSelect sel=new MaintainProjectSelect();
+				sel.setOwnerId(taskId);
+				sel.setProjectId(project.getId());
+				maintainProjectSelectService.insert(sel);
+				MaintainTaskProject taskProject=new MaintainTaskProject();
+				taskProject.setTaskId(taskId);
+				taskProject.setProjectId(project.getId());
+				taskProject.setStatus(MaintainTaskProjectStatusEnum.UNEXECUTED.code());
+				taskProject.setProjectCode(project.getCode());
+				taskProject.setProjectName(project.getName());
+				taskProject.setProjectMaintainType(project.getMaintainType());
+				taskProject.setProjectNotes(project.getNotes());
+				taskProject.setProjectAttachId(project.getAttachId());
+				taskProject.setProjectBaseCost(project.getBaseCost());
+				maintainTaskProjectService.insert(taskProject);
 			}
+			maintainTaskService.insert(task);
+
 		}else{
 			Logger.info("########## plan not execute ###########");
 			return ErrorDesc.failureMessage("当前执行失败");

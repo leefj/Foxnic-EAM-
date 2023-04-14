@@ -29,7 +29,11 @@ public class CInspectPlanGtr extends BaseCodeGenerator{
         System.out.println(this.getClass().getName());
 
         cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_PLAN.ID).basic().hidden(true);
+        cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_PLAN.LAST_TIME).basic().hidden(true);
+        cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_PLAN.NEXT_TIME).basic().hidden(true);
 
+        cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_PLAN.LAST_TIME).table().disable(true);
+        cfg.view().field(EAMTables.EAM_C_CUST_INSPECT_PLAN.NEXT_TIME).table().disable(true);
 
 
         cfg.getPoClassFile().addSimpleProperty(CCustInspectTpl.class,"custInspectTpl","custInspectTpl","custInspectTpl");

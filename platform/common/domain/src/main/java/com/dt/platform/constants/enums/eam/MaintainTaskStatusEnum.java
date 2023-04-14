@@ -13,8 +13,8 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 public enum MaintainTaskStatusEnum implements CodeTextEnum {
 
-	NOT_START("not_start" , "未开始"),
-	ACTING("acting" , "执行中"),
+	WAIT("wait" , "待保养"),
+	ACTING("acting" , "保养中"),
 	CANCEL("cancel" , "取消"),
 	FINISH("finish" , "已完成")
 			;

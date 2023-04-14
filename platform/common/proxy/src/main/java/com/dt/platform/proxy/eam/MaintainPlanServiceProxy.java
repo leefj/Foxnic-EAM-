@@ -106,6 +106,9 @@ public interface MaintainPlanServiceProxy {
 
     public static final String EXECUTE = API_PREFIX + "execute";
 
+    public static final String CREATE_TASK = API_PREFIX + "create-task";
+
+
     @RequestMapping(MaintainPlanServiceProxy.EXECUTE)
     Result execute(@RequestParam(name = "id") String id);
 

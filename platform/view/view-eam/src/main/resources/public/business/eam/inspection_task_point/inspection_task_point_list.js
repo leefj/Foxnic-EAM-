@@ -1,7 +1,7 @@
 /**
  * 巡检点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-10 21:23:34
+ * @since 2023-04-11 12:47:55
  */
 
 
@@ -89,9 +89,9 @@ function ListPage() {
 					,{ field: 'operTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('操作时间') ,templet: function (d) { return templet('operTime',fox.dateFormat(d.operTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检结果') , templet: function (d) { return templet('content',d.content,d);}  }
 					,{ field: 'pointCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('编码') , templet: function (d) { return templet('pointCode',d.pointCode,d);}  }
-					,{ field: 'pointName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('pointName',d.pointName,d);}  }
+					,{ field: 'pointName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('检') , templet: function (d) { return templet('pointName',d.pointName,d);}  }
 					,{ field: 'pointRouteId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检路线'), templet: function (d) { return templet('pointRouteId' ,fox.joinLabel(d.route,"name",',','','pointRouteId'),d);}}
-					,{ field: 'pointPosId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置') , templet: function (d) { return templet('pointPosId',d.pointPosId,d);}  }
+					,{ field: 'pointPosId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置'), templet: function (d) { return templet('pointPosId' ,fox.joinLabel(d.inspectionPointPos,"hierarchyName",',','','pointPosId'),d);}}
 					,{ field: 'pointNotes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('pointNotes',d.pointNotes,d);}  }
 					,{ field: 'sort', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('排序') , templet: function (d) { return templet('sort',d.sort,d);}  }
 					,{ field: 'operId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('操作人') , templet: function (d) { return templet('operId',fox.getProperty(d,["operUser","name"],0,'','operId'),d);} }
@@ -146,6 +146,8 @@ function ListPage() {
 		var value = {};
 		value.pointCode={ inputType:"button",value: $("#pointCode").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
 		value.pointName={ inputType:"button",value: $("#pointName").val() ,fuzzy: true,splitValue:false,valuePrefix:"",valueSuffix:"" };
+		value.pointPos={ inputType:"button",value: $("#pointPos").val()};
+		value.pointPosId={ inputType:"select_box", value: getSelectedValue("#pointPosId","value") ,fillBy:["inspectionPointPos"]  , label:getSelectedValue("#pointPosId","nameStr") };
 		var ps={searchField:"$composite"};
 		if(window.pageExt.list.beforeQuery){
 			if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
@@ -192,6 +194,37 @@ function ListPage() {
 
 		fox.switchSearchRow(1);
 
+		//渲染 pointPosId 下拉字段
+		fox.renderSelectBox({
+			el: "pointPosId",
+			radio: true,
+			size: "small",
+			filterable: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.list.onSelectBoxChanged && window.pageExt.list.onSelectBoxChanged("pointPosId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			paging: true,
+			pageRemote: true,
+			//转换数据
+			searchField: "hierarchyName", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("pointPosId",{data:data[i],name:data[i].hierarchyName,value:data[i].id},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].hierarchyName,value:data[i].id});
+					}
+				}
+				return opts;
+			}
+		});
 		fox.renderSearchInputs();
 		window.pageExt.list.afterSearchInputReady && window.pageExt.list.afterSearchInputReady();
 	}

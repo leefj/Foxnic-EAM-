@@ -12,13 +12,14 @@ import org.github.foxnic.web.domain.system.DictItem;
 import com.dt.platform.domain.eam.MaintainGroup;
 import com.dt.platform.domain.eam.ActionCrontab;
 import org.github.foxnic.web.domain.hrm.Employee;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-09 19:37:07
- * @sign 0F738379C5B161CE0CFAC51041C6BF17
+ * @since 2023-04-12 21:34:12
+ * @sign C8E16B1999220CF1B368CB50BBEA512E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -105,6 +106,36 @@ public class MaintainPlanVOMeta extends MaintainPlanMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
 	
 	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String DATA_ORIGIN="dataOrigin";
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端可按来源执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final String QUERY_LOGIC="queryLogic";
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String REQUEST_ACTION="requestAction";
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> REQUEST_ACTION_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,REQUEST_ACTION, java.lang.String.class, "请求动作", "前端指定不同的Action，后端可Action执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
 	*/
 	public static final String IDS="ids";
@@ -153,6 +184,16 @@ public class MaintainPlanVOMeta extends MaintainPlanMeta {
 	 * 状态 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
+	
+	/**
+	 * 设备 , 类型: java.lang.String
+	*/
+	public static final String ASSET_ID="assetId";
+	
+	/**
+	 * 设备 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.lang.String> ASSET_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,ASSET_ID, java.lang.String.class, "设备", "设备", java.lang.String.class, null);
 	
 	/**
 	 * 执行班组 , 类型: java.lang.String
@@ -215,24 +256,24 @@ public class MaintainPlanVOMeta extends MaintainPlanMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.util.Date> END_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,END_TIME, java.util.Date.class, "结束时间", "结束时间", java.util.Date.class, null);
 	
 	/**
-	 * 总工时 , 类型: java.math.BigDecimal
+	 * 预计工时 , 小时) , 类型: java.math.BigDecimal
 	*/
 	public static final String TOTAL_COST="totalCost";
 	
 	/**
-	 * 总工时 , 类型: java.math.BigDecimal
+	 * 预计工时 , 小时) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.math.BigDecimal> TOTAL_COST_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,TOTAL_COST, java.math.BigDecimal.class, "总工时", "总工时", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.math.BigDecimal> TOTAL_COST_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,TOTAL_COST, java.math.BigDecimal.class, "预计工时", "小时)", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 超时时间 , 类型: java.math.BigDecimal
+	 * 超时时间 , 小时) , 类型: java.math.BigDecimal
 	*/
 	public static final String TIMEOUT="timeout";
 	
 	/**
-	 * 超时时间 , 类型: java.math.BigDecimal
+	 * 超时时间 , 小时) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.math.BigDecimal> TIMEOUT_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,TIMEOUT, java.math.BigDecimal.class, "超时时间", "超时时间", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,java.math.BigDecimal> TIMEOUT_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,TIMEOUT, java.math.BigDecimal.class, "超时时间", "小时)", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 方案说明 , 类型: java.lang.String
@@ -445,9 +486,19 @@ public class MaintainPlanVOMeta extends MaintainPlanMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,org.github.foxnic.web.domain.hrm.Employee> ORIGINATOR_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,ORIGINATOR, org.github.foxnic.web.domain.hrm.Employee.class, "制单人", "制单人", org.github.foxnic.web.domain.hrm.Employee.class, null);
 	
 	/**
+	 * asset , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final String ASSET="asset";
+	
+	/**
+	 * asset , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlanVO,com.dt.platform.domain.eam.Asset> ASSET_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlanVO.class ,ASSET, com.dt.platform.domain.eam.Asset.class, "asset", "asset", com.dt.platform.domain.eam.Asset.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , CODE , NAME , STATUS , GROUP_ID , MAINTAIN_TYPE , CYCLE_METHOD , ACTION_CYCLE_ID , START_TIME , END_TIME , TOTAL_COST , TIMEOUT , INFO , NOTES , ORIGINATOR_ID , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , ASSET_LIST , ASSET_IDS , PROJECT_LIST , PROJECT_IDS , MAINTAIN_TYPE_DICT , MAINTAIN_GROUP , ACTION_CRONTAB , ORIGINATOR };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CODE , NAME , STATUS , ASSET_ID , GROUP_ID , MAINTAIN_TYPE , CYCLE_METHOD , ACTION_CYCLE_ID , START_TIME , END_TIME , TOTAL_COST , TIMEOUT , INFO , NOTES , ORIGINATOR_ID , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , ASSET_LIST , ASSET_IDS , PROJECT_LIST , PROJECT_IDS , MAINTAIN_TYPE_DICT , MAINTAIN_GROUP , ACTION_CRONTAB , ORIGINATOR , ASSET };
 	
 	/**
 	 * 代理类
@@ -546,6 +597,39 @@ public class MaintainPlanVOMeta extends MaintainPlanMeta {
 		}
 		
 		/**
+		 * 设置 数据来源
+		 * @param dataOrigin 数据来源
+		 * @return 当前对象
+		*/
+		public MaintainPlanVO setDataOrigin(String dataOrigin) {
+			super.change(DATA_ORIGIN,super.getDataOrigin(),dataOrigin);
+			super.setDataOrigin(dataOrigin);
+			return this;
+		}
+		
+		/**
+		 * 设置 查询逻辑
+		 * @param queryLogic 查询逻辑
+		 * @return 当前对象
+		*/
+		public MaintainPlanVO setQueryLogic(String queryLogic) {
+			super.change(QUERY_LOGIC,super.getQueryLogic(),queryLogic);
+			super.setQueryLogic(queryLogic);
+			return this;
+		}
+		
+		/**
+		 * 设置 请求动作
+		 * @param requestAction 请求动作
+		 * @return 当前对象
+		*/
+		public MaintainPlanVO setRequestAction(String requestAction) {
+			super.change(REQUEST_ACTION,super.getRequestAction(),requestAction);
+			super.setRequestAction(requestAction);
+			return this;
+		}
+		
+		/**
 		 * 设置 主键清单
 		 * @param ids 主键清单
 		 * @return 当前对象
@@ -597,6 +681,17 @@ public class MaintainPlanVOMeta extends MaintainPlanMeta {
 		public MaintainPlan setStatus(String status) {
 			super.change(STATUS,super.getStatus(),status);
 			super.setStatus(status);
+			return this;
+		}
+		
+		/**
+		 * 设置 设备
+		 * @param assetId 设备
+		 * @return 当前对象
+		*/
+		public MaintainPlan setAssetId(String assetId) {
+			super.change(ASSET_ID,super.getAssetId(),assetId);
+			super.setAssetId(assetId);
 			return this;
 		}
 		
@@ -667,8 +762,8 @@ public class MaintainPlanVOMeta extends MaintainPlanMeta {
 		}
 		
 		/**
-		 * 设置 总工时
-		 * @param totalCost 总工时
+		 * 设置 预计工时
+		 * @param totalCost 预计工时
 		 * @return 当前对象
 		*/
 		public MaintainPlan setTotalCost(BigDecimal totalCost) {
@@ -918,5 +1013,85 @@ public class MaintainPlanVOMeta extends MaintainPlanMeta {
 			super.setOriginator(originator);
 			return this;
 		}
+		
+		/**
+		 * 设置 asset
+		 * @param asset asset
+		 * @return 当前对象
+		*/
+		public MaintainPlan setAsset(Asset asset) {
+			super.change(ASSET,super.getAsset(),asset);
+			super.setAsset(asset);
+			return this;
+		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public MaintainPlanVO clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public MaintainPlanVO duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setCode(this.getCode());
+			inst.setNotes(this.getNotes());
+			inst.setGroupId(this.getGroupId());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setTimeout(this.getTimeout());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setAssetId(this.getAssetId());
+			inst.setStartTime(this.getStartTime());
+			inst.setId(this.getId());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setMaintainType(this.getMaintainType());
+			inst.setInfo(this.getInfo());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setActionCycleId(this.getActionCycleId());
+			inst.setVersion(this.getVersion());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setCycleMethod(this.getCycleMethod());
+			inst.setEndTime(this.getEndTime());
+			inst.setTotalCost(this.getTotalCost());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setProjectList(this.getProjectList());
+				inst.setSearchField(this.getSearchField());
+				inst.setRequestAction(this.getRequestAction());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
+				inst.setAssetIds(this.getAssetIds());
+				inst.setProjectIds(this.getProjectIds());
+				inst.setOriginator(this.getOriginator());
+				inst.setAssetList(this.getAssetList());
+				inst.setMaintainTypeDict(this.getMaintainTypeDict());
+				inst.setActionCrontab(this.getActionCrontab());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setDirtyFields(this.getDirtyFields());
+				inst.setSortField(this.getSortField());
+				inst.setDataOrigin(this.getDataOrigin());
+				inst.setIds(this.getIds());
+				inst.setQueryLogic(this.getQueryLogic());
+				inst.setAsset(this.getAsset());
+				inst.setSearchValue(this.getSearchValue());
+				inst.setMaintainGroup(this.getMaintainGroup());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

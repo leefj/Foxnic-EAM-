@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检点VO类型
  * <p>巡检点 , 数据表 eam_inspection_point 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-10 07:22:13
+ * @since 2023-04-11 20:39:36
  * @sign 371CE6A618210E29DF0A57D83CAB6C81
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -429,6 +429,7 @@ public class InspectionPointVO extends InspectionPoint {
 			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setPageSize(this.getPageSize());
+			inst.setInspectionPointPos(this.getInspectionPointPos());
 			inst.setRoute(this.getRoute());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
@@ -525,6 +526,7 @@ public class InspectionPointVO extends InspectionPoint {
 			this.setRequestAction(DataParser.parse(String.class, map.get(InspectionPointVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(InspectionPointVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(InspectionPointVOMeta.PAGE_SIZE)));
+			this.setInspectionPointPos(DataParser.parse(InspectionPointPos.class, map.get(InspectionPointVOMeta.INSPECTION_POINT_POS)));
 			this.setRoute(DataParser.parse(InspectionRoute.class, map.get(InspectionPointVOMeta.ROUTE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(InspectionPointVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(InspectionPointVOMeta.SORT_TYPE)));
@@ -563,6 +565,7 @@ public class InspectionPointVO extends InspectionPoint {
 				this.setRequestAction( (String)map.get(InspectionPointVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(InspectionPointVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(InspectionPointVOMeta.PAGE_SIZE));
+				this.setInspectionPointPos( (InspectionPointPos)map.get(InspectionPointVOMeta.INSPECTION_POINT_POS));
 				this.setRoute( (InspectionRoute)map.get(InspectionPointVOMeta.ROUTE));
 				this.setPageIndex( (Integer)map.get(InspectionPointVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(InspectionPointVOMeta.SORT_TYPE));

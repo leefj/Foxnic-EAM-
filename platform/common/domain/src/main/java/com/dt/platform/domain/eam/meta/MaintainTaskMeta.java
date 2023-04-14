@@ -2,8 +2,8 @@ package com.dt.platform.domain.eam.meta;
 
 import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.MaintainTask;
-import java.math.BigDecimal;
 import java.util.Date;
+import java.math.BigDecimal;
 import com.dt.platform.domain.eam.MaintainProject;
 import java.util.List;
 import com.dt.platform.domain.eam.MaintainTaskProject;
@@ -12,13 +12,14 @@ import com.dt.platform.domain.eam.MaintainPlan;
 import org.github.foxnic.web.domain.system.DictItem;
 import com.dt.platform.domain.eam.MaintainGroup;
 import org.github.foxnic.web.domain.hrm.Employee;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-13 20:22:29
- * @sign 2FC01F3F467B509F1F36DE91372610CB
+ * @since 2023-04-14 07:30:10
+ * @sign 234089915D37B5B0886AFBFCB4AB3A0F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -35,6 +36,16 @@ public class MaintainTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
 	
 	/**
+	 * 名称 , 类型: java.lang.String
+	*/
+	public static final String NAME="name";
+	
+	/**
+	 * 名称 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
+	
+	/**
 	 * 状态 , 类型: java.lang.String
 	*/
 	public static final String STATUS="status";
@@ -45,24 +56,14 @@ public class MaintainTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
 	
 	/**
-	 * 逾期 , 类型: java.lang.String
-	*/
-	public static final String OVERDUE="overdue";
-	
-	/**
-	 * 逾期 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.lang.String> OVERDUE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,OVERDUE, java.lang.String.class, "逾期", "逾期", java.lang.String.class, null);
-	
-	/**
-	 * 任务编码 , 类型: java.lang.String
+	 * 任务单据 , 类型: java.lang.String
 	*/
 	public static final String BUSINESS_CODE="businessCode";
 	
 	/**
-	 * 任务编码 , 类型: java.lang.String
+	 * 任务单据 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.lang.String> BUSINESS_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,BUSINESS_CODE, java.lang.String.class, "任务编码", "任务编码", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.lang.String> BUSINESS_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,BUSINESS_CODE, java.lang.String.class, "任务单据", "任务单据", java.lang.String.class, null);
 	
 	/**
 	 * 方案 , 类型: java.lang.String
@@ -75,74 +76,24 @@ public class MaintainTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.lang.String> PLAN_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,PLAN_ID, java.lang.String.class, "方案", "方案", java.lang.String.class, null);
 	
 	/**
-	 * 方案名称 , 类型: java.lang.String
+	 * 保养类型 , 类型: java.lang.String
 	*/
-	public static final String PLAN_NAME="planName";
-	
-	/**
-	 * 方案名称 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.lang.String> PLAN_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,PLAN_NAME, java.lang.String.class, "方案名称", "方案名称", java.lang.String.class, null);
-	
-	/**
-	 * 方案说明 , 类型: java.lang.String
-	*/
-	public static final String PLAN_INFO="planInfo";
-	
-	/**
-	 * 方案说明 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.lang.String> PLAN_INFO_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,PLAN_INFO, java.lang.String.class, "方案说明", "方案说明", java.lang.String.class, null);
-	
-	/**
-	 * 方案备注 , 类型: java.lang.String
-	*/
-	public static final String PLAN_NOTES="planNotes";
-	
-	/**
-	 * 方案备注 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.lang.String> PLAN_NOTES_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,PLAN_NOTES, java.lang.String.class, "方案备注", "方案备注", java.lang.String.class, null);
+	public static final String MAINTAIN_TYPE="maintainType";
 	
 	/**
 	 * 保养类型 , 类型: java.lang.String
 	*/
-	public static final String PLAN_MAINTAIN_TYPE="planMaintainType";
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.lang.String> MAINTAIN_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,MAINTAIN_TYPE, java.lang.String.class, "保养类型", "保养类型", java.lang.String.class, null);
 	
 	/**
-	 * 保养类型 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.lang.String> PLAN_MAINTAIN_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,PLAN_MAINTAIN_TYPE, java.lang.String.class, "保养类型", "保养类型", java.lang.String.class, null);
-	
-	/**
-	 * 循环方式 , 类型: java.lang.String
-	*/
-	public static final String PLAN_CYCLE_METHOD="planCycleMethod";
-	
-	/**
-	 * 循环方式 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.lang.String> PLAN_CYCLE_METHOD_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,PLAN_CYCLE_METHOD, java.lang.String.class, "循环方式", "循环方式", java.lang.String.class, null);
-	
-	/**
-	 * 计划工时 , 类型: java.math.BigDecimal
-	*/
-	public static final String PLAN_TOTAL_COST="planTotalCost";
-	
-	/**
-	 * 计划工时 , 类型: java.math.BigDecimal
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.math.BigDecimal> PLAN_TOTAL_COST_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,PLAN_TOTAL_COST, java.math.BigDecimal.class, "计划工时", "计划工时", java.math.BigDecimal.class, null);
-	
-	/**
-	 * 班组 , 类型: java.lang.String
+	 * 执行班组 , 类型: java.lang.String
 	*/
 	public static final String GROUP_ID="groupId";
 	
 	/**
-	 * 班组 , 类型: java.lang.String
+	 * 执行班组 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.lang.String> GROUP_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,GROUP_ID, java.lang.String.class, "班组", "班组", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.lang.String> GROUP_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,GROUP_ID, java.lang.String.class, "执行班组", "执行班组", java.lang.String.class, null);
 	
 	/**
 	 * 设备 , 类型: java.lang.String
@@ -165,6 +116,16 @@ public class MaintainTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.lang.String> ASSET_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,ASSET_NAME, java.lang.String.class, "设备名称", "设备名称", java.lang.String.class, null);
 	
 	/**
+	 * 设备编码 , 类型: java.lang.String
+	*/
+	public static final String ASSET_CODE="assetCode";
+	
+	/**
+	 * 设备编码 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.lang.String> ASSET_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,ASSET_CODE, java.lang.String.class, "设备编码", "设备编码", java.lang.String.class, null);
+	
+	/**
 	 * 设备型号 , 类型: java.lang.String
 	*/
 	public static final String ASSET_MODEL="assetModel";
@@ -185,16 +146,6 @@ public class MaintainTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.lang.String> ASSET_STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,ASSET_STATUS, java.lang.String.class, "设备状态", "设备状态", java.lang.String.class, null);
 	
 	/**
-	 * 设备编码 , 类型: java.lang.String
-	*/
-	public static final String ASSET_CODE="assetCode";
-	
-	/**
-	 * 设备编码 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.lang.String> ASSET_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,ASSET_CODE, java.lang.String.class, "设备编码", "设备编码", java.lang.String.class, null);
-	
-	/**
 	 * 设备序列号 , 类型: java.lang.String
 	*/
 	public static final String ASSET_SN="assetSn";
@@ -203,6 +154,26 @@ public class MaintainTaskMeta {
 	 * 设备序列号 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.lang.String> ASSET_SN_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,ASSET_SN, java.lang.String.class, "设备序列号", "设备序列号", java.lang.String.class, null);
+	
+	/**
+	 * 位置 , 类型: java.lang.String
+	*/
+	public static final String ASSET_POS="assetPos";
+	
+	/**
+	 * 位置 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.lang.String> ASSET_POS_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,ASSET_POS, java.lang.String.class, "位置", "位置", java.lang.String.class, null);
+	
+	/**
+	 * 保养结果 , 类型: java.lang.String
+	*/
+	public static final String CONTENT="content";
+	
+	/**
+	 * 保养结果 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.lang.String> CONTENT_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,CONTENT, java.lang.String.class, "保养结果", "保养结果", java.lang.String.class, null);
 	
 	/**
 	 * 执行人 , 类型: java.lang.String
@@ -245,6 +216,26 @@ public class MaintainTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.util.Date> ACT_FINISH_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,ACT_FINISH_TIME, java.util.Date.class, "实际完成时间", "实际完成时间", java.util.Date.class, null);
 	
 	/**
+	 * 超时时间 , 类型: java.math.BigDecimal
+	*/
+	public static final String TIMEOUT="timeout";
+	
+	/**
+	 * 超时时间 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.math.BigDecimal> TIMEOUT_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,TIMEOUT, java.math.BigDecimal.class, "超时时间", "超时时间", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 预计工时 , 类型: java.math.BigDecimal
+	*/
+	public static final String TOTAL_COST="totalCost";
+	
+	/**
+	 * 预计工时 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.math.BigDecimal> TOTAL_COST_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,TOTAL_COST, java.math.BigDecimal.class, "预计工时", "预计工时", java.math.BigDecimal.class, null);
+	
+	/**
 	 * 实际工时 , 类型: java.math.BigDecimal
 	*/
 	public static final String ACT_TOTAL_COST="actTotalCost";
@@ -253,6 +244,26 @@ public class MaintainTaskMeta {
 	 * 实际工时 , 类型: java.math.BigDecimal
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.math.BigDecimal> ACT_TOTAL_COST_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,ACT_TOTAL_COST, java.math.BigDecimal.class, "实际工时", "实际工时", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 费用 , 元) , 类型: java.math.BigDecimal
+	*/
+	public static final String COST="cost";
+	
+	/**
+	 * 费用 , 元) , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.math.BigDecimal> COST_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,COST, java.math.BigDecimal.class, "费用", "元)", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 逾期 , 类型: java.lang.String
+	*/
+	public static final String OVERDUE="overdue";
+	
+	/**
+	 * 逾期 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTask,java.lang.String> OVERDUE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTask.class ,OVERDUE, java.lang.String.class, "逾期", "逾期", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -427,7 +438,7 @@ public class MaintainTaskMeta {
 	/**
 	 * 方案 , 类型: com.dt.platform.domain.eam.MaintainPlan
 	*/
-	public static final String MAINTAIN_PLAN="MaintainPlan";
+	public static final String MAINTAIN_PLAN="maintainPlan";
 	
 	/**
 	 * 方案 , 类型: com.dt.platform.domain.eam.MaintainPlan
@@ -477,7 +488,7 @@ public class MaintainTaskMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , STATUS , OVERDUE , BUSINESS_CODE , PLAN_ID , PLAN_NAME , PLAN_INFO , PLAN_NOTES , PLAN_MAINTAIN_TYPE , PLAN_CYCLE_METHOD , PLAN_TOTAL_COST , GROUP_ID , ASSET_ID , ASSET_NAME , ASSET_MODEL , ASSET_STATUS , ASSET_CODE , ASSET_SN , EXECUTOR_ID , PLAN_START_TIME , ACT_START_TIME , ACT_FINISH_TIME , ACT_TOTAL_COST , NOTES , SELECTED_CODE , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , PROJECT_LIST , PROJECT_IDS , TASK_PROJECT_LIST , TASK_PROJECT_IDS , ASSET , MAINTAIN_PLAN , MAINTAIN_TYPE_DICT , MAINTAIN_GROUP , ORIGINATOR , EXECUTOR };
+	public static final String[] $PROPS={ ID , NAME , STATUS , BUSINESS_CODE , PLAN_ID , MAINTAIN_TYPE , GROUP_ID , ASSET_ID , ASSET_NAME , ASSET_CODE , ASSET_MODEL , ASSET_STATUS , ASSET_SN , ASSET_POS , CONTENT , EXECUTOR_ID , PLAN_START_TIME , ACT_START_TIME , ACT_FINISH_TIME , TIMEOUT , TOTAL_COST , ACT_TOTAL_COST , COST , OVERDUE , NOTES , SELECTED_CODE , ORIGINATOR_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , PROJECT_LIST , PROJECT_IDS , TASK_PROJECT_LIST , TASK_PROJECT_IDS , ASSET , MAINTAIN_PLAN , MAINTAIN_TYPE_DICT , MAINTAIN_GROUP , ORIGINATOR , EXECUTOR };
 	
 	/**
 	 * 代理类
@@ -499,6 +510,17 @@ public class MaintainTaskMeta {
 		}
 		
 		/**
+		 * 设置 名称
+		 * @param name 名称
+		 * @return 当前对象
+		*/
+		public MaintainTask setName(String name) {
+			super.change(NAME,super.getName(),name);
+			super.setName(name);
+			return this;
+		}
+		
+		/**
 		 * 设置 状态
 		 * @param status 状态
 		 * @return 当前对象
@@ -510,19 +532,8 @@ public class MaintainTaskMeta {
 		}
 		
 		/**
-		 * 设置 逾期
-		 * @param overdue 逾期
-		 * @return 当前对象
-		*/
-		public MaintainTask setOverdue(String overdue) {
-			super.change(OVERDUE,super.getOverdue(),overdue);
-			super.setOverdue(overdue);
-			return this;
-		}
-		
-		/**
-		 * 设置 任务编码
-		 * @param businessCode 任务编码
+		 * 设置 任务单据
+		 * @param businessCode 任务单据
 		 * @return 当前对象
 		*/
 		public MaintainTask setBusinessCode(String businessCode) {
@@ -543,74 +554,19 @@ public class MaintainTaskMeta {
 		}
 		
 		/**
-		 * 设置 方案名称
-		 * @param planName 方案名称
-		 * @return 当前对象
-		*/
-		public MaintainTask setPlanName(String planName) {
-			super.change(PLAN_NAME,super.getPlanName(),planName);
-			super.setPlanName(planName);
-			return this;
-		}
-		
-		/**
-		 * 设置 方案说明
-		 * @param planInfo 方案说明
-		 * @return 当前对象
-		*/
-		public MaintainTask setPlanInfo(String planInfo) {
-			super.change(PLAN_INFO,super.getPlanInfo(),planInfo);
-			super.setPlanInfo(planInfo);
-			return this;
-		}
-		
-		/**
-		 * 设置 方案备注
-		 * @param planNotes 方案备注
-		 * @return 当前对象
-		*/
-		public MaintainTask setPlanNotes(String planNotes) {
-			super.change(PLAN_NOTES,super.getPlanNotes(),planNotes);
-			super.setPlanNotes(planNotes);
-			return this;
-		}
-		
-		/**
 		 * 设置 保养类型
-		 * @param planMaintainType 保养类型
+		 * @param maintainType 保养类型
 		 * @return 当前对象
 		*/
-		public MaintainTask setPlanMaintainType(String planMaintainType) {
-			super.change(PLAN_MAINTAIN_TYPE,super.getPlanMaintainType(),planMaintainType);
-			super.setPlanMaintainType(planMaintainType);
+		public MaintainTask setMaintainType(String maintainType) {
+			super.change(MAINTAIN_TYPE,super.getMaintainType(),maintainType);
+			super.setMaintainType(maintainType);
 			return this;
 		}
 		
 		/**
-		 * 设置 循环方式
-		 * @param planCycleMethod 循环方式
-		 * @return 当前对象
-		*/
-		public MaintainTask setPlanCycleMethod(String planCycleMethod) {
-			super.change(PLAN_CYCLE_METHOD,super.getPlanCycleMethod(),planCycleMethod);
-			super.setPlanCycleMethod(planCycleMethod);
-			return this;
-		}
-		
-		/**
-		 * 设置 计划工时
-		 * @param planTotalCost 计划工时
-		 * @return 当前对象
-		*/
-		public MaintainTask setPlanTotalCost(BigDecimal planTotalCost) {
-			super.change(PLAN_TOTAL_COST,super.getPlanTotalCost(),planTotalCost);
-			super.setPlanTotalCost(planTotalCost);
-			return this;
-		}
-		
-		/**
-		 * 设置 班组
-		 * @param groupId 班组
+		 * 设置 执行班组
+		 * @param groupId 执行班组
 		 * @return 当前对象
 		*/
 		public MaintainTask setGroupId(String groupId) {
@@ -642,6 +598,17 @@ public class MaintainTaskMeta {
 		}
 		
 		/**
+		 * 设置 设备编码
+		 * @param assetCode 设备编码
+		 * @return 当前对象
+		*/
+		public MaintainTask setAssetCode(String assetCode) {
+			super.change(ASSET_CODE,super.getAssetCode(),assetCode);
+			super.setAssetCode(assetCode);
+			return this;
+		}
+		
+		/**
 		 * 设置 设备型号
 		 * @param assetModel 设备型号
 		 * @return 当前对象
@@ -664,17 +631,6 @@ public class MaintainTaskMeta {
 		}
 		
 		/**
-		 * 设置 设备编码
-		 * @param assetCode 设备编码
-		 * @return 当前对象
-		*/
-		public MaintainTask setAssetCode(String assetCode) {
-			super.change(ASSET_CODE,super.getAssetCode(),assetCode);
-			super.setAssetCode(assetCode);
-			return this;
-		}
-		
-		/**
 		 * 设置 设备序列号
 		 * @param assetSn 设备序列号
 		 * @return 当前对象
@@ -682,6 +638,28 @@ public class MaintainTaskMeta {
 		public MaintainTask setAssetSn(String assetSn) {
 			super.change(ASSET_SN,super.getAssetSn(),assetSn);
 			super.setAssetSn(assetSn);
+			return this;
+		}
+		
+		/**
+		 * 设置 位置
+		 * @param assetPos 位置
+		 * @return 当前对象
+		*/
+		public MaintainTask setAssetPos(String assetPos) {
+			super.change(ASSET_POS,super.getAssetPos(),assetPos);
+			super.setAssetPos(assetPos);
+			return this;
+		}
+		
+		/**
+		 * 设置 保养结果
+		 * @param content 保养结果
+		 * @return 当前对象
+		*/
+		public MaintainTask setContent(String content) {
+			super.change(CONTENT,super.getContent(),content);
+			super.setContent(content);
 			return this;
 		}
 		
@@ -730,6 +708,28 @@ public class MaintainTaskMeta {
 		}
 		
 		/**
+		 * 设置 超时时间
+		 * @param timeout 超时时间
+		 * @return 当前对象
+		*/
+		public MaintainTask setTimeout(BigDecimal timeout) {
+			super.change(TIMEOUT,super.getTimeout(),timeout);
+			super.setTimeout(timeout);
+			return this;
+		}
+		
+		/**
+		 * 设置 预计工时
+		 * @param totalCost 预计工时
+		 * @return 当前对象
+		*/
+		public MaintainTask setTotalCost(BigDecimal totalCost) {
+			super.change(TOTAL_COST,super.getTotalCost(),totalCost);
+			super.setTotalCost(totalCost);
+			return this;
+		}
+		
+		/**
 		 * 设置 实际工时
 		 * @param actTotalCost 实际工时
 		 * @return 当前对象
@@ -737,6 +737,28 @@ public class MaintainTaskMeta {
 		public MaintainTask setActTotalCost(BigDecimal actTotalCost) {
 			super.change(ACT_TOTAL_COST,super.getActTotalCost(),actTotalCost);
 			super.setActTotalCost(actTotalCost);
+			return this;
+		}
+		
+		/**
+		 * 设置 费用
+		 * @param cost 费用
+		 * @return 当前对象
+		*/
+		public MaintainTask setCost(BigDecimal cost) {
+			super.change(COST,super.getCost(),cost);
+			super.setCost(cost);
+			return this;
+		}
+		
+		/**
+		 * 设置 逾期
+		 * @param overdue 逾期
+		 * @return 当前对象
+		*/
+		public MaintainTask setOverdue(String overdue) {
+			super.change(OVERDUE,super.getOverdue(),overdue);
+			super.setOverdue(overdue);
 			return this;
 		}
 		
@@ -929,12 +951,12 @@ public class MaintainTaskMeta {
 		
 		/**
 		 * 设置 方案
-		 * @param MaintainPlan 方案
+		 * @param maintainPlan 方案
 		 * @return 当前对象
 		*/
-		public MaintainTask setMaintainPlan(MaintainPlan MaintainPlan) {
-			super.change(MAINTAIN_PLAN,super.getMaintainPlan(),MaintainPlan);
-			super.setMaintainPlan(MaintainPlan);
+		public MaintainTask setMaintainPlan(MaintainPlan maintainPlan) {
+			super.change(MAINTAIN_PLAN,super.getMaintainPlan(),maintainPlan);
+			super.setMaintainPlan(maintainPlan);
 			return this;
 		}
 		
@@ -981,5 +1003,73 @@ public class MaintainTaskMeta {
 			super.setExecutor(executor);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public MaintainTask clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public MaintainTask duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNotes(this.getNotes());
+			inst.setAssetPos(this.getAssetPos());
+			inst.setGroupId(this.getGroupId());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setContent(this.getContent());
+			inst.setTimeout(this.getTimeout());
+			inst.setBusinessCode(this.getBusinessCode());
+			inst.setActStartTime(this.getActStartTime());
+			inst.setOverdue(this.getOverdue());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setAssetId(this.getAssetId());
+			inst.setAssetSn(this.getAssetSn());
+			inst.setPlanId(this.getPlanId());
+			inst.setId(this.getId());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setMaintainType(this.getMaintainType());
+			inst.setActFinishTime(this.getActFinishTime());
+			inst.setAssetCode(this.getAssetCode());
+			inst.setCost(this.getCost());
+			inst.setPlanStartTime(this.getPlanStartTime());
+			inst.setExecutorId(this.getExecutorId());
+			inst.setAssetModel(this.getAssetModel());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setVersion(this.getVersion());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setActTotalCost(this.getActTotalCost());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setAssetName(this.getAssetName());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setAssetStatus(this.getAssetStatus());
+			inst.setTotalCost(this.getTotalCost());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setProjectList(this.getProjectList());
+				inst.setTaskProjectList(this.getTaskProjectList());
+				inst.setMaintainPlan(this.getMaintainPlan());
+				inst.setExecutor(this.getExecutor());
+				inst.setProjectIds(this.getProjectIds());
+				inst.setTaskProjectIds(this.getTaskProjectIds());
+				inst.setOriginator(this.getOriginator());
+				inst.setAsset(this.getAsset());
+				inst.setMaintainTypeDict(this.getMaintainTypeDict());
+				inst.setMaintainGroup(this.getMaintainGroup());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

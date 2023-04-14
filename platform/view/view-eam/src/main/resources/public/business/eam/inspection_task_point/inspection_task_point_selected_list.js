@@ -84,11 +84,11 @@ function ListPage() {
 				     ,{ field: 'pointCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检编码') , templet: function (d) { return templet('pointCode',d.pointCode,d);}  }
 					,{ field: 'pointName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检点') , templet: function (d) { return templet('pointName',d.pointName,d);}  }
 					,{ field: 'pointContent', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检内容') , templet: function (d) { return templet('pointContent',d.pointContent,d);}  }
+					,{ field: 'pointPosId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置'), templet: function (d) { return templet('pointPosId' ,fox.joinLabel(d.inspectionPointPos,"hierarchyName",',','','pointPosId'),d);}}
 					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检结果') , templet: function (d) { return templet('content',d.content,d);}  }
-					,{ field: 'pointNotes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('pointNotes',d.pointNotes,d);}  }
+					,{ field: 'pointNotes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检点备注') , templet: function (d) { return templet('pointNotes',d.pointNotes,d);}  }
 					,{ field: 'sort', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('排序') , templet: function (d) { return templet('sort',d.sort,d);}  }
-					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
-					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					 ,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }
 				]],

@@ -1,26 +1,32 @@
 /**
  * 巡检点 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-11 22:18:09
+ * @since 2023-04-11 20:39:38
  */
 
 function FormPage() {
 
-	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup;
+	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
+	
+	// 接口地址
 	const moduleURL="/service-eam/eam-inspection-point";
+	const queryURL=moduleURL+"/get-by-id";
+	const insertURL=moduleURL+"/insert";
+	const updateURL=moduleURL+"/update";
+
 	// 表单执行操作类型：view，create，edit
 	var action=null;
 	var disableCreateNew=false;
 	var disableModify=false;
 	var dataBeforeEdit=null;
 	const bpmIntegrateMode="none";
-	var isInProcess=QueryString.get("isInProcess")
+	var isInProcess=QueryString.get("isInProcess");
 
 	/**
       * 入口函数，初始化
       */
 	this.init=function(layui) {
-     	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload;
+     	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload,dropdown=layui.dropdown;
 		laydate = layui.laydate,table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect;
 
 		action=admin.getTempData('eam-inspection-point-form-data-form-action');
@@ -49,7 +55,13 @@ function FormPage() {
 		//绑定提交事件
 		bindButtonEvent();
 
+
+
 	}
+
+
+
+
 
 	/**
 	 * 自动调节窗口高度
@@ -61,15 +73,26 @@ function FormPage() {
 			if(!doNext) return;
 		}
 
-		if(bpmIntegrateMode=="front" && isInProcess==1) return;
+
 
 		clearTimeout(adjustPopupTask);
 		var scroll=$(".form-container").attr("scroll");
 		if(scroll=='yes') return;
+		var prevBodyHeight=-1;
 		adjustPopupTask=setTimeout(function () {
 			var body=$("body");
 			var bodyHeight=body.height();
 			var footerHeight=$(".model-form-footer").height();
+			if(bpmIntegrateMode=="front" && isInProcess==1) {
+				var updateFormIframeHeight=admin.getVar("updateFormIframeHeight");
+				if(bodyHeight>0 && bodyHeight!=prevBodyHeight) {
+					updateFormIframeHeight && updateFormIframeHeight(bodyHeight);
+				} else {
+					setTimeout(adjustPopup,1000);
+				}
+				prevBodyHeight = bodyHeight;
+				return;
+			}
 			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'eam-inspection-point-form-data-win');
 			if(area==null) return;
 			admin.putTempData('eam-inspection-point-form-area', area);
@@ -97,6 +120,8 @@ function FormPage() {
 			el: "status",
 			radio: true,
 			filterable: false,
+			layVerify: 'required',
+			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("status",data.arr,data.change,data.isAdd);
@@ -113,7 +138,11 @@ function FormPage() {
 				var opts=[];
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
-					opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code,selected:(defaultValues.indexOf(data[i].code)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
 				}
 				return opts;
 			}
@@ -123,6 +152,8 @@ function FormPage() {
 			el: "routeId",
 			radio: true,
 			filterable: true,
+			layVerify: 'required',
+			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("routeId",data.arr,data.change,data.isAdd);
@@ -142,7 +173,46 @@ function FormPage() {
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
-					opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("routeId",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
+		//渲染 posId 下拉字段
+		fox.renderSelectBox({
+			el: "posId",
+			radio: true,
+			filterable: true,
+			paging: true,
+			pageRemote: true,
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("posId",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			searchField: "hierarchyName", //请自行调整用于搜索的字段名称
+			extraParam: {}, //额外的查询参数，Object 或是 返回 Object 的函数
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("posId",{data:data[i],name:data[i].hierarchyName,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].hierarchyName,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
 				}
 				return opts;
 			}
@@ -185,7 +255,7 @@ function FormPage() {
 		if(ids.length==0) return;
 		var id=ids[0];
 		if(!id) return;
-		admin.post(moduleURL+"/get-by-id", { id : id }, function (r) {
+		admin.post(queryURL, { id : id }, function (r) {
 			if (r.success) {
 				fillFormData(r.data)
 			} else {
@@ -237,6 +307,8 @@ function FormPage() {
 			fox.setSelectValue4Enum("#status",formData.status,SELECT_STATUS_DATA);
 			//设置  巡检路线 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#routeId",formData.route);
+			//设置  位置 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#posId",formData.inspectionPointPos);
 
 			//处理fillBy
 
@@ -292,6 +364,8 @@ function FormPage() {
 		data["status"]=fox.getSelectedValue("status",false);
 		//获取 巡检路线 下拉框的值
 		data["routeId"]=fox.getSelectedValue("routeId",false);
+		//获取 位置 下拉框的值
+		data["posId"]=fox.getSelectedValue("posId",false);
 
 		return data;
 	}
@@ -301,9 +375,15 @@ function FormPage() {
 	}
 
 	function saveForm(param,callback) {
+
+		if(window.pageExt.form.beforeSubmit) {
+			var doNext=window.pageExt.form.beforeSubmit(param);
+			if(!doNext) return ;
+		}
+
 		param.dirtyFields=fox.compareDirtyFields(dataBeforeEdit,param);
 		var action=param.id?"edit":"create";
-		var api=moduleURL+"/"+(param.id?"update":"insert");
+		var api=param.id?updateURL:insertURL;
 		admin.post(api, param, function (data) {
 			if (data.success) {
 				var doNext=true;
@@ -335,25 +415,22 @@ function FormPage() {
 		}, {delayLoading:1000,elms:[$("#submit-button")]});
 	}
 
+	function verifyAndSaveForm(data) {
+		if(!data) data={};
+		//debugger;
+		data.field = getFormData();
+		//校验表单
+		if(!verifyForm(data.field)) return;
+		saveForm(data.field);
+		return false;
+	}
+
 	/**
       * 保存数据，表单提交事件
       */
     function bindButtonEvent() {
 
-	    form.on('submit(submit-button)', function (data) {
-	    	//debugger;
-			data.field = getFormData();
-
-			if(window.pageExt.form.beforeSubmit) {
-				var doNext=window.pageExt.form.beforeSubmit(data.field);
-				if(!doNext) return ;
-			}
-			//校验表单
-			if(!verifyForm(data.field)) return;
-
-			saveForm(data.field);
-	        return false;
-	    });
+	    form.on('submit(submit-button)', verifyAndSaveForm);
 
 
 	    //关闭窗口
@@ -365,6 +442,7 @@ function FormPage() {
 		getFormData: getFormData,
 		verifyForm: verifyForm,
 		saveForm: saveForm,
+		verifyAndSaveForm:verifyAndSaveForm,
 		fillFormData: fillFormData,
 		fillFormDataByIds:fillFormDataByIds,
 		processFormData4Bpm:processFormData4Bpm,
@@ -379,7 +457,7 @@ function FormPage() {
 
 }
 
-layui.use(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','foxnicUpload','laydate'],function() {
+layui.use(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','xmSelect','foxnicUpload','laydate','dropdown'],function() {
 	var task=setInterval(function (){
 		if(!window["pageExt"]) return;
 		clearInterval(task);

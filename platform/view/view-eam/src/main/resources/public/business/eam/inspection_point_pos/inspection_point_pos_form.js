@@ -1,19 +1,14 @@
 /**
- * 巡检点位 列表页 JS 脚本
+ * 存放位置 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-10 09:39:31
+ * @since 2022-08-27 20:42:30
  */
+
 
 function FormPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect,foxup,dropdown;
-	
-	// 接口地址
 	const moduleURL="/service-eam/eam-inspection-point-pos";
-	const queryURL=moduleURL+"/get-by-id";
-	const insertURL=moduleURL+"/insert";
-	const updateURL=moduleURL+"/update";
-
 	// 表单执行操作类型：view，create，edit
 	var action=null;
 	var disableCreateNew=false;
@@ -23,13 +18,13 @@ function FormPage() {
 	var isInProcess=QueryString.get("isInProcess");
 
 	/**
-      * 入口函数，初始化
-      */
+	 * 入口函数，初始化
+	 */
 	this.init=function(layui) {
-     	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload,dropdown=layui.dropdown;
+		admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,foxup=layui.foxnicUpload,dropdown=layui.dropdown;
 		laydate = layui.laydate,table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect;
 
-		action=admin.getTempData('eam-inspection-point-pos-form-data-form-action');
+		action=admin.getTempData('eam-position-form-data-form-action');
 		//如果没有修改和保存权限
 		if( !admin.checkAuth(AUTH_PREFIX+":update") && !admin.checkAuth(AUTH_PREFIX+":save")) {
 			disableModify=true;
@@ -43,7 +38,7 @@ function FormPage() {
 		}
 
 		if(window.pageExt.form.beforeInit) {
-			window.pageExt.form.beforeInit(action,admin.getTempData('eam-inspection-point-pos-form-data'));
+			window.pageExt.form.beforeInit(action,admin.getTempData('eam-position-form-data'));
 		}
 
 		//渲染表单组件
@@ -63,6 +58,17 @@ function FormPage() {
 
 
 
+	function loadFormData(id) {
+		admin.request(moduleURL+"/get-by-id",{id:id},function(r) {
+			if(r.success) {
+				fillFormData(r.data)
+			} else {
+				admin.toast().error("获取数据失败 : "+r.message,{time:1000,position:"right-bottom",width:"300px"});
+			}
+		});
+	};
+
+	window.loadFormData=loadFormData;
 
 
 	/**
@@ -95,9 +101,9 @@ function FormPage() {
 				prevBodyHeight = bodyHeight;
 				return;
 			}
-			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'eam-inspection-point-pos-form-data-win');
+			var area=admin.changePopupArea(null,bodyHeight+footerHeight,'eam-position-form-data-win');
 			if(area==null) return;
-			admin.putTempData('eam-inspection-point-pos-form-area', area);
+			admin.putTempData('eam-position-form-area', area);
 			window.adjustPopup=adjustPopup;
 			if(area.tooHeigh) {
 				var windowHeight=area.iframeHeight;
@@ -112,8 +118,8 @@ function FormPage() {
 	}
 
 	/**
-      * 渲染表单组件
-      */
+	 * 渲染表单组件
+	 */
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
@@ -127,7 +133,7 @@ function FormPage() {
 		if(ids.length==0) return;
 		var id=ids[0];
 		if(!id) return;
-		admin.post(queryURL, { id : id }, function (r) {
+		admin.post(moduleURL+"/get-by-id", { id : id }, function (r) {
 			if (r.success) {
 				fillFormData(r.data)
 			} else {
@@ -144,11 +150,11 @@ function FormPage() {
 	}
 
 	/**
-      * 填充表单数据
-      */
+	 * 填充表单数据
+	 */
 	function fillFormData(formData) {
 		if(!formData) {
-			formData = admin.getTempData('eam-inspection-point-pos-form-data');
+			formData = admin.getTempData('eam-position-form-data');
 		}
 
 		window.pageExt.form.beforeDataFill && window.pageExt.form.beforeDataFill(formData);
@@ -173,9 +179,9 @@ function FormPage() {
 			//处理fillBy
 
 			//
-	     	fm.attr('method', 'POST');
-	     	fox.fillDialogButtons();
-	     	renderFormFields();
+			fm.attr('method', 'POST');
+			fox.fillDialogButtons();
+			renderFormFields();
 
 			window.pageExt.form.afterDataFill && window.pageExt.form.afterDataFill(formData);
 
@@ -183,15 +189,15 @@ function FormPage() {
 
 		//渐显效果
 		fm.css("opacity","0.0");
-        fm.css("display","");
-        setTimeout(function (){
-            fm.animate({
-                opacity:'1.0'
-            },100,null,function (){
+		fm.css("display","");
+		setTimeout(function (){
+			fm.animate({
+				opacity:'1.0'
+			},100,null,function (){
 				fm.css("opacity","1.0");});
-        },1);
+		},1);
 
-        //禁用编辑
+		//禁用编辑
 		if((hasData && disableModify) || (!hasData &&disableCreateNew)) {
 			fox.lockForm($("#data-form"),true);
 			$("#submit-button").hide();
@@ -237,28 +243,13 @@ function FormPage() {
 
 		param.dirtyFields=fox.compareDirtyFields(dataBeforeEdit,param);
 		var action=param.id?"edit":"create";
-		var api=param.id?updateURL:insertURL;
+		var api=moduleURL+"/"+(param.id?"update":"insert");
 		admin.post(api, param, function (data) {
 			if (data.success) {
-				var doNext=true;
-				var pkValues=data.data;
-				if(pkValues) {
-					for (var key in pkValues) {
-						$("#"+key).val(pkValues[key]);
-					}
+				if (parent){
+					parent.changeNodeName(param.id,param.name);
 				}
-				if(window.pageExt.form.betweenFormSubmitAndClose) {
-					doNext=window.pageExt.form.betweenFormSubmitAndClose(param,data);
-				}
-
-				if(callback) {
-					doNext = callback(data,action);
-				}
-
-				if(doNext) {
-					admin.finishPopupCenterById('eam-inspection-point-pos-form-data-win');
-				}
-
+				fox.showMessage(data);
 				// 调整状态为编辑
 				action="edit";
 
@@ -280,19 +271,20 @@ function FormPage() {
 	}
 
 	/**
-      * 保存数据，表单提交事件
-      */
-    function bindButtonEvent() {
+	 * 保存数据，表单提交事件
+	 */
+	function bindButtonEvent() {
 
-	    form.on('submit(submit-button)', verifyAndSaveForm);
+		form.on('submit(submit-button)', verifyAndSaveForm);
 
 
-	    //关闭窗口
-	    $("#cancel-button").click(function(){ admin.finishPopupCenterById('eam-inspection-point-pos-form-data-win',this); });
+		//关闭窗口
+		$("#cancel-button").click(function(){ admin.finishPopupCenterById('eam-position-form-data-win',this); });
 
-    }
+	}
 
-    window.module={
+	window.module={
+
 		getFormData: getFormData,
 		verifyForm: verifyForm,
 		saveForm: saveForm,

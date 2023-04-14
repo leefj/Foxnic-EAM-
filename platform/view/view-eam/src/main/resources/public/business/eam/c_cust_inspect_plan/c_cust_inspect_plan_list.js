@@ -1,7 +1,7 @@
 /**
  * 巡检计划 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-09 08:48:00
+ * @since 2023-04-11 13:39:25
  */
 
 
@@ -91,8 +91,6 @@ function ListPage() {
 					,{ field: 'inspectUserId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('负责人') , templet: function (d) { return templet('inspectUserId',fox.getProperty(d,["leader","name"],0,'','inspectUserId'),d);} }
 					,{ field: 'tplId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('模版'), templet: function (d) { return templet('tplId' ,fox.joinLabel(d.custInspectTpl,"name",',','','tplId'),d);}}
 					,{ field: 'crontab', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('触发周期') , templet: function (d) { return templet('crontab',d.crontab,d);}  }
-					,{ field: 'lastTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('上次执行时间') ,templet: function (d) { return templet('lastTime',fox.dateFormat(d.lastTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'nextTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('下次执行时间') ,templet: function (d) { return templet('nextTime',fox.dateFormat(d.nextTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }

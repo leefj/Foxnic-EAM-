@@ -164,7 +164,7 @@ public class InspTaskGtr extends BaseCodeGenerator {
         );
 
         cfg.view().form().addPage("巡检点","pointSelectList");
-        cfg.view().list().operationColumn().addActionButton("执行","execute","execute-button","eam_inspection_task:execute");
+     //   cfg.view().list().operationColumn().addActionButton("巡检","inspect","execute-button","eam_inspection_task:execute");
         cfg.view().list().operationColumn().addActionButton("完成","finish","finish-button","eam_inspection_task:finish");
         cfg.view().list().operationColumn().addActionButton("取消","cancel","cancel-button","eam_inspection_task:cancel");
 //        cfg.view().list().addToolButton("取消","taskCancel","","eam_inspection_task:cancel");

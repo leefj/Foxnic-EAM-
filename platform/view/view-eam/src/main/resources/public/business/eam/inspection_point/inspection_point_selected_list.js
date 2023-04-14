@@ -82,7 +82,8 @@ function ListPage() {
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status),d);}}
 					 ,{ field: 'routeId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检路线'), templet: function (d) { return templet('routeId' ,fox.joinLabel(d.route,"name"),d);}}
-					 ,{ field: 'pos', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置') , templet: function (d) { return templet('pos',d.pos,d);}  }
+					,{ field: 'posId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置'), templet: function (d) { return templet('posId' ,fox.joinLabel(d.inspectionPointPos,"hierarchyName",',','','posId'),d);}}
+					,{ field: 'pos', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置') , templet: function (d) { return templet('pos',d.pos,d);}  }
 					,{ field: 'posLongitude', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置经度') , templet: function (d) { return templet('posLongitude',d.posLongitude,d);}  }
 					,{ field: 'posLatitude', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('位置纬度') , templet: function (d) { return templet('posLatitude',d.posLatitude,d);}  }
 				 ,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}

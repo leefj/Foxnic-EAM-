@@ -2,7 +2,7 @@
 /**
  * 巡检任务 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-10 21:43:34
+ * @since 2023-04-14 07:30:20
  */
  -->
  <!DOCTYPE html>
@@ -46,7 +46,7 @@
                         <div class="search-label-div" style="width:120px"><span th:text="${lang.translate('任务状态')}" class="search-label taskStatus-label">任务状态</span><span class="search-colon">:</span></div>
                         <div id="taskStatus" th:data="${enum.toArray('com.dt.platform.constants.enums.eam.InspectionTaskStatusEnum')}" style="width:150px" extraParam="{}"></div>
                     </div>
-                    <!-- 任务编号 , taskCode ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 任务单据 , taskCode ,typeName=text_input, isHideInSearch=true -->
                     <!-- 巡检顺序 , planInspectionMethod ,typeName=select_box, isHideInSearch=true -->
                     <!-- 时间要求 , planCompletionTime ,typeName=number_input, isHideInSearch=true -->
                     <!-- 巡检备注 , planNotes ,typeName=text_input, isHideInSearch=true -->
@@ -125,7 +125,6 @@
 
     <button th:if="${perm.checkAuth('eam_inspection_task:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
 
-    <button th:if="${perm.checkAuth('eam_inspection_task:execute')}"class="layui-btn layui-btn-xs  execute-button " lay-event="execute" data-id="{{d.id}}"><span th:text="${lang.translate('执行','','cmp:table.ops')}">执行</span></button>
     <button th:if="${perm.checkAuth('eam_inspection_task:finish')}"class="layui-btn layui-btn-xs  finish-button " lay-event="finish" data-id="{{d.id}}"><span th:text="${lang.translate('完成','','cmp:table.ops')}">完成</span></button>
     <button th:if="${perm.checkAuth('eam_inspection_task:cancel')}"class="layui-btn layui-btn-xs  cancel-button " lay-event="cancel" data-id="{{d.id}}"><span th:text="${lang.translate('取消','','cmp:table.ops')}">取消</span></button>
 

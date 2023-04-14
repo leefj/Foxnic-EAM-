@@ -1,5 +1,5 @@
 #!/bin/sh
-modify_date="2023/03/15"
+modify_date="2023/04/16"
 ####################################################################################
 # run:
 #   sh appInstallFull.sh
@@ -49,7 +49,6 @@ mysql_soft=$soft_base_dir/mysql-5.7.37-linux-glibc2.12-x86_64.tar.gz
 mysql_soft_md5=423915249cc67bbfa75223d9753cde77
 app_soft_name=app_release_${app_version}.tar.gz
 app_soft=$soft_base_dir/$app_soft_name
-
 java_file=jdk-linux-x64.tar.gz
 java_soft=$soft_base_dir/$java_file
 java_soft_md5=913c45332b22860b096217d9952c2ea4
@@ -59,7 +58,6 @@ base_dir="/app"
 java_dir="$base_dir/java"
 app_dir="$base_dir/app"
 mysql_dir="$base_dir/db"
-
 ## command
 JAVA=$java_dir/java/bin/java
 MYSQL_HOME=$mysql_dir/mysql
@@ -405,6 +403,13 @@ function installApp(){
 	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_clear_data_file  2>/dev/null
 	echo "#########start to app setting data "
 	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_app_setting_file  2>/dev/null
+	echo "#########other setting"
+	setting_file="/tmp/setting_file.sql"
+	echo "">$setting_file
+	echo "delete from sys_licence where 1=1;">>$setting_file
+	echo "insert into sys_licence select * from sys_licence_free_full;">>$setting_file
+	echo "update sys_resourze set access_type='LOGIN' where 1=1;">>$setting_file
+	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $setting_file  2>/dev/null
 	echo "#########start to create application.yml from $application_tpl_yml"
 	cat $application_tpl_yml>$application_yml
 	sed -i "s@APP_UPLOAD_DIR@$app_upload_dir@g"     $application_yml
@@ -417,7 +422,7 @@ function installApp(){
 	if [[ -f $bpm_application_tpl_yml ]];then
 	  cat $bpm_application_tpl_yml>$bpm_application_yml
 	  sed -i "s/APP_DB_PORT/$db_port/g"               $bpm_application_yml
-  	sed -i "s/APP_DB_NAME/$db_name/g"                $bpm_application_yml
+  	sed -i "s/APP_DB_NAME/$db_name/g"               $bpm_application_yml
 	  sed -i "s/APP_DB_USERNAME/$db_user/g"           $bpm_application_yml
   	sed -i "s/APP_DB_PASSWORD/$db_pwd/g"            $bpm_application_yml
 	fi
@@ -445,8 +450,6 @@ function stopFirewalld(){
   fi
   systemctl disable firewalld.service
   systemctl stop firewalld.service
-
-
 }
 ##########################################################################################
 ##########################################################################################
@@ -493,7 +496,6 @@ if [[ $javaR -eq 0 ]];then
     JAVA=`which java|awk '{print $1}'`
   fi
 fi
-
 cd /tmp
 ###### java first download
 if [[ $java_soft_remote -eq 1 ]];then
@@ -641,7 +643,6 @@ else
 fi
 ## install app
 installApp
-
 ## stop Firewalld
 #process firewalld
 which firewall-cmd
@@ -655,6 +656,15 @@ stopFirewalld
 ## start app
 cd $app_dir
 sh startAll.sh
+#setting environment
+tmpdate=`date`
+echo "$tmpdate,first setup time record!">$base_dir/app/bin/setupApp.log
+echo "#for lank app quick command list:">>~/.bash_profile
+echo "alias ga='cd $base_dir/app/app/app'" >>~/.bash_profile
+echo "alias gb='cd $base_dir/app/app/bpm'" >>~/.bash_profile
+echo "alias gj='cd $base_dir/app/app/job'" >>~/.bash_profile
+echo "alias g='cd $base_dir/app'" >>~/.bash_profile
+echo "alias tdb='$base_dir/db/mysql/bin/mysql -h$db_host -P$db_port -u$db_user -p$db_pwd $db_name'" >>~/.bash_profile
 echo "Please waiting about 25 second,application Starting.."
 sleep 20
 echo "################## install result ###################"
@@ -667,6 +677,12 @@ echo "Login info password:123456"
 echo "Mysql info port=$db_port"
 echo "Mysql info userName=$db_user"
 echo "Mysql info password=$db_pwd"
+echo "Quick command list:"
+echo "ga: go to $base_dir/app/app/app"
+echo "gb: go to $base_dir/app/app/bpm"
+echo "gj: go to $base_dir/app/app/job"
+echo "g: go to  $base_dir/app"
+echo "tdb: go to connect to database"
 exit 0
 #################################################################### install finish
 ##########################################################################################

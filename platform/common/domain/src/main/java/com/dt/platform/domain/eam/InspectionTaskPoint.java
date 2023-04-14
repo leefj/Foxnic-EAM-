@@ -24,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检点
  * <p>巡检点 , 数据表 eam_inspection_task_point 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-10 21:23:33
- * @sign 1F65E43CA20286EFEAD8E3377EE85089
+ * @since 2023-04-11 12:47:53
+ * @sign BB247BF598F67C6419ECC5C306B2E9DB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -69,15 +69,21 @@ public class InspectionTaskPoint extends Entity {
 	private String content;
 	
 	/**
+	 * 巡检点：巡检点
+	*/
+	@ApiModelProperty(required = false,value="巡检点" , notes = "巡检点")
+	private String pointId;
+	
+	/**
 	 * 编码：编码
 	*/
 	@ApiModelProperty(required = false,value="编码" , notes = "编码" , example = "point2")
 	private String pointCode;
 	
 	/**
-	 * 名称：名称
+	 * 检：检
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "point2")
+	@ApiModelProperty(required = false,value="检" , notes = "检" , example = "point2")
 	private String pointName;
 	
 	/**
@@ -228,6 +234,12 @@ public class InspectionTaskPoint extends Entity {
 	private Employee operUser;
 	
 	/**
+	 * inspectionPointPos：inspectionPointPos
+	*/
+	@ApiModelProperty(required = false,value="inspectionPointPos" , notes = "inspectionPointPos")
+	private InspectionPointPos inspectionPointPos;
+	
+	/**
 	 * 获得 主键<br>
 	 * 主键
 	 * @return 主键
@@ -323,6 +335,25 @@ public class InspectionTaskPoint extends Entity {
 	}
 	
 	/**
+	 * 获得 巡检点<br>
+	 * 巡检点
+	 * @return 巡检点
+	*/
+	public String getPointId() {
+		return pointId;
+	}
+	
+	/**
+	 * 设置 巡检点
+	 * @param pointId 巡检点
+	 * @return 当前对象
+	*/
+	public InspectionTaskPoint setPointId(String pointId) {
+		this.pointId=pointId;
+		return this;
+	}
+	
+	/**
 	 * 获得 编码<br>
 	 * 编码
 	 * @return 编码
@@ -342,17 +373,17 @@ public class InspectionTaskPoint extends Entity {
 	}
 	
 	/**
-	 * 获得 名称<br>
-	 * 名称
-	 * @return 名称
+	 * 获得 检<br>
+	 * 检
+	 * @return 检
 	*/
 	public String getPointName() {
 		return pointName;
 	}
 	
 	/**
-	 * 设置 名称
-	 * @param pointName 名称
+	 * 设置 检
+	 * @param pointName 检
 	 * @return 当前对象
 	*/
 	public InspectionTaskPoint setPointName(String pointName) {
@@ -846,6 +877,25 @@ public class InspectionTaskPoint extends Entity {
 		this.operUser=operUser;
 		return this;
 	}
+	
+	/**
+	 * 获得 inspectionPointPos<br>
+	 * inspectionPointPos
+	 * @return inspectionPointPos
+	*/
+	public InspectionPointPos getInspectionPointPos() {
+		return inspectionPointPos;
+	}
+	
+	/**
+	 * 设置 inspectionPointPos
+	 * @param inspectionPointPos inspectionPointPos
+	 * @return 当前对象
+	*/
+	public InspectionTaskPoint setInspectionPointPos(InspectionPointPos inspectionPointPos) {
+		this.inspectionPointPos=inspectionPointPos;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -897,6 +947,7 @@ public class InspectionTaskPoint extends Entity {
 		inst.setOperId(this.getOperId());
 		inst.setSelectedCode(this.getSelectedCode());
 		inst.setContent(this.getContent());
+		inst.setPointId(this.getPointId());
 		inst.setPointRouteId(this.getPointRouteId());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setPointNotes(this.getPointNotes());
@@ -922,6 +973,7 @@ public class InspectionTaskPoint extends Entity {
 		if(all) {
 			inst.setRoute(this.getRoute());
 			inst.setTask(this.getTask());
+			inst.setInspectionPointPos(this.getInspectionPointPos());
 			inst.setOperUser(this.getOperUser());
 		}
 		inst.clearModifies();
@@ -988,6 +1040,7 @@ public class InspectionTaskPoint extends Entity {
 			this.setOperId(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.OPER_ID)));
 			this.setSelectedCode(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.SELECTED_CODE)));
 			this.setContent(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.CONTENT)));
+			this.setPointId(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_ID)));
 			this.setPointRouteId(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_ROUTE_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.UPDATE_BY)));
 			this.setPointNotes(DataParser.parse(String.class, map.get(InspectionTaskPointMeta.POINT_NOTES)));
@@ -1013,6 +1066,7 @@ public class InspectionTaskPoint extends Entity {
 			// others
 			this.setRoute(DataParser.parse(InspectionRoute.class, map.get(InspectionTaskPointMeta.ROUTE)));
 			this.setTask(DataParser.parse(InspectionTask.class, map.get(InspectionTaskPointMeta.TASK)));
+			this.setInspectionPointPos(DataParser.parse(InspectionPointPos.class, map.get(InspectionTaskPointMeta.INSPECTION_POINT_POS)));
 			this.setOperUser(DataParser.parse(Employee.class, map.get(InspectionTaskPointMeta.OPER_USER)));
 			return true;
 		} else {
@@ -1023,6 +1077,7 @@ public class InspectionTaskPoint extends Entity {
 				this.setOperId( (String)map.get(InspectionTaskPointMeta.OPER_ID));
 				this.setSelectedCode( (String)map.get(InspectionTaskPointMeta.SELECTED_CODE));
 				this.setContent( (String)map.get(InspectionTaskPointMeta.CONTENT));
+				this.setPointId( (String)map.get(InspectionTaskPointMeta.POINT_ID));
 				this.setPointRouteId( (String)map.get(InspectionTaskPointMeta.POINT_ROUTE_ID));
 				this.setUpdateBy( (String)map.get(InspectionTaskPointMeta.UPDATE_BY));
 				this.setPointNotes( (String)map.get(InspectionTaskPointMeta.POINT_NOTES));
@@ -1048,6 +1103,7 @@ public class InspectionTaskPoint extends Entity {
 				// others
 				this.setRoute( (InspectionRoute)map.get(InspectionTaskPointMeta.ROUTE));
 				this.setTask( (InspectionTask)map.get(InspectionTaskPointMeta.TASK));
+				this.setInspectionPointPos( (InspectionPointPos)map.get(InspectionTaskPointMeta.INSPECTION_POINT_POS));
 				this.setOperUser( (Employee)map.get(InspectionTaskPointMeta.OPER_USER));
 				return true;
 			} catch (Exception e) {
@@ -1071,6 +1127,7 @@ public class InspectionTaskPoint extends Entity {
 			this.setOperId(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.OPER_ID)));
 			this.setSelectedCode(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.SELECTED_CODE)));
 			this.setContent(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.CONTENT)));
+			this.setPointId(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_ID)));
 			this.setPointRouteId(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_ROUTE_ID)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.UPDATE_BY)));
 			this.setPointNotes(DataParser.parse(String.class, r.getValue(InspectionTaskPointMeta.POINT_NOTES)));
@@ -1102,6 +1159,7 @@ public class InspectionTaskPoint extends Entity {
 				this.setOperId( (String)r.getValue(InspectionTaskPointMeta.OPER_ID));
 				this.setSelectedCode( (String)r.getValue(InspectionTaskPointMeta.SELECTED_CODE));
 				this.setContent( (String)r.getValue(InspectionTaskPointMeta.CONTENT));
+				this.setPointId( (String)r.getValue(InspectionTaskPointMeta.POINT_ID));
 				this.setPointRouteId( (String)r.getValue(InspectionTaskPointMeta.POINT_ROUTE_ID));
 				this.setUpdateBy( (String)r.getValue(InspectionTaskPointMeta.UPDATE_BY));
 				this.setPointNotes( (String)r.getValue(InspectionTaskPointMeta.POINT_NOTES));

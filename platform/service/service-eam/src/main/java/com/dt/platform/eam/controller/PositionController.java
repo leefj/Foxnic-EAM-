@@ -78,6 +78,7 @@ public class PositionController extends SuperController {
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     public Result insert(PositionVO positionVO) {
         positionVO.setSort(9999);
+
         if (StringUtil.isBlank(positionVO.getParentId())) {
             positionVO.setParentId("0");
         }

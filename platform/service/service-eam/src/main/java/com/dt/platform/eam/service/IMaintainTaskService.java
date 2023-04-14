@@ -44,6 +44,8 @@ public interface IMaintainTaskService extends ISuperService<MaintainTask> {
 	Result insert(MaintainTask maintainTask);
 
 
+	Result execute(String taskId,String startTime,String finishTime,String ct,String pics,String projects,String parts);
+
 	Result cancel(String id);
 
 	Result finish(String id);

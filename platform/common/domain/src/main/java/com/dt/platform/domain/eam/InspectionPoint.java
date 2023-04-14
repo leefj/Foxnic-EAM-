@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检点
  * <p>巡检点 , 数据表 eam_inspection_point 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-10 07:22:13
- * @sign C790E9BA9FCD15CB5D4BCC7907E30EB6
+ * @since 2023-04-11 20:39:36
+ * @sign C8B21B8D61FF7E52EAEDF4E6DB9A7178
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -80,16 +80,16 @@ public class InspectionPoint extends Entity {
 	private String rfid;
 	
 	/**
+	 * 位置：位置
+	*/
+	@ApiModelProperty(required = false,value="位置" , notes = "位置" , example = "698104347535343616")
+	private String posId;
+	
+	/**
 	 * 位置详情：位置详情
 	*/
 	@ApiModelProperty(required = false,value="位置详情" , notes = "位置详情")
 	private String pos;
-	
-	/**
-	 * 位置：位置
-	*/
-	@ApiModelProperty(required = false,value="位置" , notes = "位置")
-	private String posId;
 	
 	/**
 	 * 位置经度：位置经度
@@ -136,7 +136,7 @@ public class InspectionPoint extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-09 09:38:06")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-11 10:15:52")
 	private Date updateTime;
 	
 	/**
@@ -175,7 +175,7 @@ public class InspectionPoint extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "2")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "3")
 	private Integer version;
 	
 	/**
@@ -183,6 +183,12 @@ public class InspectionPoint extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="route" , notes = "route")
 	private InspectionRoute route;
+	
+	/**
+	 * inspectionPointPos：inspectionPointPos
+	*/
+	@ApiModelProperty(required = false,value="inspectionPointPos" , notes = "inspectionPointPos")
+	private InspectionPointPos inspectionPointPos;
 	
 	/**
 	 * 获得 主键<br>
@@ -318,25 +324,6 @@ public class InspectionPoint extends Entity {
 	}
 	
 	/**
-	 * 获得 位置详情<br>
-	 * 位置详情
-	 * @return 位置详情
-	*/
-	public String getPos() {
-		return pos;
-	}
-	
-	/**
-	 * 设置 位置详情
-	 * @param pos 位置详情
-	 * @return 当前对象
-	*/
-	public InspectionPoint setPos(String pos) {
-		this.pos=pos;
-		return this;
-	}
-	
-	/**
 	 * 获得 位置<br>
 	 * 位置
 	 * @return 位置
@@ -352,6 +339,25 @@ public class InspectionPoint extends Entity {
 	*/
 	public InspectionPoint setPosId(String posId) {
 		this.posId=posId;
+		return this;
+	}
+	
+	/**
+	 * 获得 位置详情<br>
+	 * 位置详情
+	 * @return 位置详情
+	*/
+	public String getPos() {
+		return pos;
+	}
+	
+	/**
+	 * 设置 位置详情
+	 * @param pos 位置详情
+	 * @return 当前对象
+	*/
+	public InspectionPoint setPos(String pos) {
+		this.pos=pos;
 		return this;
 	}
 	
@@ -670,6 +676,25 @@ public class InspectionPoint extends Entity {
 		this.route=route;
 		return this;
 	}
+	
+	/**
+	 * 获得 inspectionPointPos<br>
+	 * inspectionPointPos
+	 * @return inspectionPointPos
+	*/
+	public InspectionPointPos getInspectionPointPos() {
+		return inspectionPointPos;
+	}
+	
+	/**
+	 * 设置 inspectionPointPos
+	 * @param inspectionPointPos inspectionPointPos
+	 * @return 当前对象
+	*/
+	public InspectionPoint setInspectionPointPos(InspectionPointPos inspectionPointPos) {
+		this.inspectionPointPos=inspectionPointPos;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -740,6 +765,7 @@ public class InspectionPoint extends Entity {
 		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setRoute(this.getRoute());
+			inst.setInspectionPointPos(this.getInspectionPointPos());
 		}
 		inst.clearModifies();
 		return inst;
@@ -824,6 +850,7 @@ public class InspectionPoint extends Entity {
 			this.setStatus(DataParser.parse(String.class, map.get(InspectionPointMeta.STATUS)));
 			// others
 			this.setRoute(DataParser.parse(InspectionRoute.class, map.get(InspectionPointMeta.ROUTE)));
+			this.setInspectionPointPos(DataParser.parse(InspectionPointPos.class, map.get(InspectionPointMeta.INSPECTION_POINT_POS)));
 			return true;
 		} else {
 			try {
@@ -852,6 +879,7 @@ public class InspectionPoint extends Entity {
 				this.setStatus( (String)map.get(InspectionPointMeta.STATUS));
 				// others
 				this.setRoute( (InspectionRoute)map.get(InspectionPointMeta.ROUTE));
+				this.setInspectionPointPos( (InspectionPointPos)map.get(InspectionPointMeta.INSPECTION_POINT_POS));
 				return true;
 			} catch (Exception e) {
 				return false;

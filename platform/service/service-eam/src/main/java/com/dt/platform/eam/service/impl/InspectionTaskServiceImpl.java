@@ -91,11 +91,11 @@ public class InspectionTaskServiceImpl extends SuperService<InspectionTask> impl
 	public Result insert(InspectionTask inspectionTask,boolean throwsException) {
 
 		if(StringUtil.isBlank(inspectionTask.getPlanId())){
-			return ErrorDesc.failureMessage("方案未选择");
+			return ErrorDesc.failureMessage("计划未选择");
 		}
 
 		if(StringUtil.isBlank(inspectionTask.getTaskStatus())){
-			inspectionTask.setTaskStatus(MaintainTaskStatusEnum.NOT_START.code());
+			inspectionTask.setTaskStatus(MaintainTaskStatusEnum.WAIT.code());
 		}
 
 		//生成编码规则

@@ -13,7 +13,7 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 public enum InspectionTaskPointStatusEnum implements CodeTextEnum {
 
-	WAIT("wait" , "待巡检"),
+	WAIT("wait" , "待检"),
 	NORMAL("normal" , "正常"),
 	ABNORMAL("abnormal" , "异常");
 

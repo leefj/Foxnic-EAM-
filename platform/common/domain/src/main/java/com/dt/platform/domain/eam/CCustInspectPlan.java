@@ -27,7 +27,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检计划
  * <p>巡检计划 , 数据表 eam_c_cust_inspect_plan 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-09 08:47:59
+ * @since 2023-04-11 13:39:23
  * @sign 4D9D5DA869238944E812AC8C268FC552
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -50,13 +50,13 @@ public class CCustInspectPlan extends Entity {
 	/**
 	 * 标题：标题
 	*/
-	@ApiModelProperty(required = false,value="标题" , notes = "标题" , example = "巡检计划")
+	@ApiModelProperty(required = false,value="标题" , notes = "标题" , example = "每天上午10点15")
 	private String name;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "invalid")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "valid")
 	private String status;
 	
 	/**
@@ -80,7 +80,7 @@ public class CCustInspectPlan extends Entity {
 	/**
 	 * 触发周期：触发周期
 	*/
-	@ApiModelProperty(required = false,value="触发周期" , notes = "触发周期" , example = "擦粉")
+	@ApiModelProperty(required = false,value="触发周期" , notes = "触发周期" , example = "0 15 10 ? * *")
 	private String crontab;
 	
 	/**
@@ -98,7 +98,7 @@ public class CCustInspectPlan extends Entity {
 	/**
 	 * 下次执行时间：下次执行时间
 	*/
-	@ApiModelProperty(required = false,value="下次执行时间" , notes = "下次执行时间")
+	@ApiModelProperty(required = false,value="下次执行时间" , notes = "下次执行时间" , example = "2023-04-12 10:15:00")
 	private Date nextTime;
 	
 	/**
@@ -116,13 +116,13 @@ public class CCustInspectPlan extends Entity {
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-08 06:33:53")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-11 01:35:01")
 	private Date updateTime;
 	
 	/**
@@ -155,7 +155,7 @@ public class CCustInspectPlan extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "16")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "65")
 	private Integer version;
 	
 	/**

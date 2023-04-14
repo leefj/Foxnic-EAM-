@@ -374,7 +374,7 @@ public class EamRelationManager extends RelationManager {
 
 
         this.property(MaintainTaskMeta.MAINTAIN_TYPE_DICT_PROP)
-                .using(EAMTables.EAM_MAINTAIN_TASK.PLAN_MAINTAIN_TYPE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
+                .using(EAMTables.EAM_MAINTAIN_TASK.MAINTAIN_TYPE).join(FoxnicWeb.SYS_DICT_ITEM.CODE)
                 .condition("dict_code='eam_maintain_type'");
 
 
@@ -389,6 +389,8 @@ public class EamRelationManager extends RelationManager {
 
         this.property(MaintainTaskMeta.MAINTAIN_GROUP_PROP)
                 .using(EAMTables.EAM_MAINTAIN_TASK.GROUP_ID).join(EAMTables.EAM_MAINTAIN_GROUP.ID);
+
+
 
 
 
@@ -408,6 +410,10 @@ public class EamRelationManager extends RelationManager {
                 .using(EAMTables.EAM_MAINTAIN_PLAN.ID ).join(EAMTables.EAM_MAINTAIN_PROJECT_SELECT.OWNER_ID)
                 .using( EAMTables.EAM_MAINTAIN_PROJECT_SELECT.PROJECT_ID).join( EAMTables.EAM_MAINTAIN_PROJECT.ID);
 
+
+
+        this.property(MaintainPlanMeta.ASSET_PROP)
+                .using(EAMTables.EAM_MAINTAIN_PLAN.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
 
 
         this.property(MaintainPlanMeta.MAINTAIN_TYPE_DICT_PROP)
@@ -884,6 +890,9 @@ public class EamRelationManager extends RelationManager {
     public void setupInspectionPoint() {
 
 
+        this.property(InspectionPointMeta.INSPECTION_POINT_POS_PROP)
+                .using(EAMTables.EAM_INSPECTION_POINT.POS_ID).join(EAMTables.EAM_INSPECTION_POINT_POS.ID);
+
         this.property(InspectionPointMeta.ROUTE_PROP)
                 .using(EAMTables.EAM_INSPECTION_POINT.ROUTE_ID).join(EAMTables.EAM_INSPECTION_ROUTE.ID);
     }
@@ -898,6 +907,9 @@ public class EamRelationManager extends RelationManager {
 
         this.property(InspectionTaskPointMeta.TASK_PROP)
                 .using(EAMTables.EAM_INSPECTION_TASK_POINT.TASK_ID).join(EAMTables.EAM_INSPECTION_TASK.ID);
+
+        this.property(InspectionTaskPointMeta.INSPECTION_POINT_POS_PROP)
+                .using(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_POS_ID).join(EAMTables.EAM_INSPECTION_POINT_POS.ID);
 
     }
 

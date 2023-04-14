@@ -1,6 +1,8 @@
 package com.dt.platform.eam.service.impl;
 
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
 import com.dt.platform.constants.enums.eam.MaintainTaskOverdueEnum;
 import com.dt.platform.constants.enums.eam.MaintainTaskProjectStatusEnum;
@@ -35,6 +37,8 @@ import javax.annotation.Resource;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -98,43 +102,43 @@ public class MaintainTaskServiceImpl extends SuperService<MaintainTask> implemen
 		double sumDiffTime=0.0;
 		Date minDate=null;
 		Date maxDate=null;;
-		if(list!=null&&list.size()>0){
-			for(int i=0;i<list.size();i++){
-				MaintainTaskProject maintainTaskProject=list.get(i);
-				if(maintainTaskProject.getStartTime()==null||maintainTaskProject.getEndTime()==null){
-					return ErrorDesc.failureMessage("维保项目编号:"+maintainTaskProject.getProjectCode()+"未选择时间");
-				}else{
-					if(minDate==null){
-						minDate=maintainTaskProject.getStartTime();
-					}
-					if(maxDate==null){
-						maxDate=maintainTaskProject.getEndTime();
-					}
-					if(maintainTaskProject.getStartTime().getTime()<minDate.getTime()){
-						minDate=maintainTaskProject.getStartTime();
-					}
-					if(maintainTaskProject.getEndTime().getTime()>maxDate.getTime()){
-						maxDate=maintainTaskProject.getEndTime();
-					}
-					long times = maintainTaskProject.getEndTime().getTime() - maintainTaskProject.getStartTime().getTime();
-					if(times<0){
-						return ErrorDesc.failureMessage("请确保结束时间大于开始时间");
-					}
-					double hours = (double) times/(60*60*1000);
-					BigDecimal a= BigDecimal.valueOf(hours);
-					double diffTime = a.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
-					sumDiffTime=sumDiffTime+diffTime;
-
-					list.get(i).setBaseCost(new BigDecimal(diffTime));
-					list.get(i).setStatus(MaintainTaskProjectStatusEnum.EXECUTED.code());
-				}
-			}
-			maintainTaskProjectService.updateList(list,SaveMode.NOT_NULL_FIELDS);
-		}else{
-			return ErrorDesc.failureMessage("没有需要的保养项目");
-		}
-		maintainTask.setActStartTime(minDate);
-		maintainTask.setActFinishTime(maxDate);
+//		if(list!=null&&list.size()>0){
+//			for(int i=0;i<list.size();i++){
+//				MaintainTaskProject maintainTaskProject=list.get(i);
+//				if(maintainTaskProject.getStartTime()==null||maintainTaskProject.getEndTime()==null){
+//					return ErrorDesc.failureMessage("维保项目编号:"+maintainTaskProject.getProjectCode()+"未选择时间");
+//				}else{
+//					if(minDate==null){
+//						minDate=maintainTaskProject.getStartTime();
+//					}
+//					if(maxDate==null){
+//						maxDate=maintainTaskProject.getEndTime();
+//					}
+//					if(maintainTaskProject.getStartTime().getTime()<minDate.getTime()){
+//						minDate=maintainTaskProject.getStartTime();
+//					}
+//					if(maintainTaskProject.getEndTime().getTime()>maxDate.getTime()){
+//						maxDate=maintainTaskProject.getEndTime();
+//					}
+//					long times = maintainTaskProject.getEndTime().getTime() - maintainTaskProject.getStartTime().getTime();
+//					if(times<0){
+//						return ErrorDesc.failureMessage("请确保结束时间大于开始时间");
+//					}
+//					double hours = (double) times/(60*60*1000);
+//					BigDecimal a= BigDecimal.valueOf(hours);
+//					double diffTime = a.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+//					sumDiffTime=sumDiffTime+diffTime;
+//
+//					list.get(i).setBaseCost(new BigDecimal(diffTime));
+//					list.get(i).setStatus(MaintainTaskProjectStatusEnum.EXECUTED.code());
+//				}
+//			}
+//			maintainTaskProjectService.updateList(list,SaveMode.NOT_NULL_FIELDS);
+//		}else{
+//			return ErrorDesc.failureMessage("没有需要的保养项目");
+//		}
+//		maintainTask.setActStartTime(minDate);
+//		maintainTask.setActFinishTime(maxDate);
 		maintainTask.setStatus(MaintainTaskStatusEnum.FINISH.code());
 		maintainTask.setExecutorId(SessionUser.getCurrent().getUser().getActivatedEmployeeId());
 		maintainTask.setActTotalCost(new BigDecimal(sumDiffTime));
@@ -192,7 +196,7 @@ public class MaintainTaskServiceImpl extends SuperService<MaintainTask> implemen
 		}
 
 		if(StringUtil.isBlank(maintainTask.getStatus())){
-			maintainTask.setStatus(MaintainTaskStatusEnum.NOT_START.code());
+			maintainTask.setStatus(MaintainTaskStatusEnum.WAIT.code());
 		}
 
 		if(StringUtil.isBlank(maintainTask.getOverdue())){
@@ -226,6 +230,68 @@ public class MaintainTaskServiceImpl extends SuperService<MaintainTask> implemen
 	@Override
 	public Result insert(MaintainTask maintainTask) {
 		return this.insert(maintainTask,true);
+	}
+
+	@Override
+	public Result execute(String taskId, String startTime, String finishTime, String ct, String pics, String projects,String parts) {
+
+		if(StringUtil.isBlank(taskId)){
+			return ErrorDesc.failureMessage("taskId参数不存在");
+		}
+		MaintainTask maintainTask=this.getById(taskId);
+		if(StringUtil.isBlank(maintainTask)){
+			return ErrorDesc.failureMessage("未找到维保任务");
+		}
+		if(MaintainTaskStatusEnum.WAIT.code().equals(maintainTask.getStatus())
+				||MaintainTaskStatusEnum.ACTING.code().equals(maintainTask.getStatus())){
+			System.out.println("");
+		}else{
+			return ErrorDesc.failureMessage("当前任务单状态不允许进行操作");
+		}
+
+
+		String userId=SessionUser.getCurrent().getActivatedEmployeeId();
+		maintainTask.setExecutorId(userId);
+		maintainTask.setContent(ct);
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		if(!StringUtil.isBlank(startTime)){
+			if(startTime.length()>10){
+				Date d= null;
+				try {
+					d = sdf.parse(startTime);
+					maintainTask.setActStartTime(d);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		if(!StringUtil.isBlank(finishTime)){
+			if(finishTime.length()>10){
+				try {
+					Date d=sdf.parse(finishTime);
+					maintainTask.setActFinishTime(d);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+
+			}
+		}
+		Result r=this.update(maintainTask,SaveMode.NOT_NULL_FIELDS,false);
+		if(r.isSuccess()){
+			if(!StringUtil.isBlank(projects)){
+				JSONArray items=JSONArray.parseArray(projects);
+				if(items!=null&&items.size()>0){
+					for(int i=0;i<items.size();i++){
+						JSONObject e=items.getJSONObject(i);
+						MaintainTaskProject ups=new MaintainTaskProject();
+						ups.setId(e.getString("id"));
+						ups.setStatus(e.getString("status"));
+						maintainTaskProjectService.update(ups,SaveMode.NOT_NULL_FIELDS,false);
+					}
+				}
+			}
+		}
+		return ErrorDesc.success();
 	}
 
 	/**

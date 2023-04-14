@@ -82,7 +82,12 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * @param location 调用的代码位置
          * */
         beforeQuery:function (conditions,param,location) {
-            param.taskId=OWNER_ID;
+            if(OWNER_ID){
+                param.taskId=OWNER_ID;
+            }else{
+                //param.taskId=""
+            }
+
             console.log('beforeQuery',conditions,param,location);
             return true;
         },

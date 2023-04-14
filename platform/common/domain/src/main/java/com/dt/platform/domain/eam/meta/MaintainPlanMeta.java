@@ -11,13 +11,14 @@ import org.github.foxnic.web.domain.system.DictItem;
 import com.dt.platform.domain.eam.MaintainGroup;
 import com.dt.platform.domain.eam.ActionCrontab;
 import org.github.foxnic.web.domain.hrm.Employee;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-09 19:37:07
- * @sign A2D67335CD49A0AD722AB0833791F1F8
+ * @since 2023-04-12 21:34:12
+ * @sign CB852288668EC4A24DDBEFD8FB6F807E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -62,6 +63,16 @@ public class MaintainPlanMeta {
 	 * 状态 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlan,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlan.class ,STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
+	
+	/**
+	 * 设备 , 类型: java.lang.String
+	*/
+	public static final String ASSET_ID="assetId";
+	
+	/**
+	 * 设备 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlan,java.lang.String> ASSET_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlan.class ,ASSET_ID, java.lang.String.class, "设备", "设备", java.lang.String.class, null);
 	
 	/**
 	 * 执行班组 , 类型: java.lang.String
@@ -124,24 +135,24 @@ public class MaintainPlanMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlan,java.util.Date> END_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlan.class ,END_TIME, java.util.Date.class, "结束时间", "结束时间", java.util.Date.class, null);
 	
 	/**
-	 * 总工时 , 类型: java.math.BigDecimal
+	 * 预计工时 , 小时) , 类型: java.math.BigDecimal
 	*/
 	public static final String TOTAL_COST="totalCost";
 	
 	/**
-	 * 总工时 , 类型: java.math.BigDecimal
+	 * 预计工时 , 小时) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlan,java.math.BigDecimal> TOTAL_COST_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlan.class ,TOTAL_COST, java.math.BigDecimal.class, "总工时", "总工时", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlan,java.math.BigDecimal> TOTAL_COST_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlan.class ,TOTAL_COST, java.math.BigDecimal.class, "预计工时", "小时)", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 超时时间 , 类型: java.math.BigDecimal
+	 * 超时时间 , 小时) , 类型: java.math.BigDecimal
 	*/
 	public static final String TIMEOUT="timeout";
 	
 	/**
-	 * 超时时间 , 类型: java.math.BigDecimal
+	 * 超时时间 , 小时) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlan,java.math.BigDecimal> TIMEOUT_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlan.class ,TIMEOUT, java.math.BigDecimal.class, "超时时间", "超时时间", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlan,java.math.BigDecimal> TIMEOUT_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlan.class ,TIMEOUT, java.math.BigDecimal.class, "超时时间", "小时)", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 方案说明 , 类型: java.lang.String
@@ -354,9 +365,19 @@ public class MaintainPlanMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlan,org.github.foxnic.web.domain.hrm.Employee> ORIGINATOR_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlan.class ,ORIGINATOR, org.github.foxnic.web.domain.hrm.Employee.class, "制单人", "制单人", org.github.foxnic.web.domain.hrm.Employee.class, null);
 	
 	/**
+	 * asset , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final String ASSET="asset";
+	
+	/**
+	 * asset , 类型: com.dt.platform.domain.eam.Asset
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainPlan,com.dt.platform.domain.eam.Asset> ASSET_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainPlan.class ,ASSET, com.dt.platform.domain.eam.Asset.class, "asset", "asset", com.dt.platform.domain.eam.Asset.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CODE , NAME , STATUS , GROUP_ID , MAINTAIN_TYPE , CYCLE_METHOD , ACTION_CYCLE_ID , START_TIME , END_TIME , TOTAL_COST , TIMEOUT , INFO , NOTES , ORIGINATOR_ID , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , ASSET_LIST , ASSET_IDS , PROJECT_LIST , PROJECT_IDS , MAINTAIN_TYPE_DICT , MAINTAIN_GROUP , ACTION_CRONTAB , ORIGINATOR };
+	public static final String[] $PROPS={ ID , CODE , NAME , STATUS , ASSET_ID , GROUP_ID , MAINTAIN_TYPE , CYCLE_METHOD , ACTION_CYCLE_ID , START_TIME , END_TIME , TOTAL_COST , TIMEOUT , INFO , NOTES , ORIGINATOR_ID , SELECTED_CODE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , VERSION , ASSET_LIST , ASSET_IDS , PROJECT_LIST , PROJECT_IDS , MAINTAIN_TYPE_DICT , MAINTAIN_GROUP , ACTION_CRONTAB , ORIGINATOR , ASSET };
 	
 	/**
 	 * 代理类
@@ -407,6 +428,17 @@ public class MaintainPlanMeta {
 		public MaintainPlan setStatus(String status) {
 			super.change(STATUS,super.getStatus(),status);
 			super.setStatus(status);
+			return this;
+		}
+		
+		/**
+		 * 设置 设备
+		 * @param assetId 设备
+		 * @return 当前对象
+		*/
+		public MaintainPlan setAssetId(String assetId) {
+			super.change(ASSET_ID,super.getAssetId(),assetId);
+			super.setAssetId(assetId);
 			return this;
 		}
 		
@@ -477,8 +509,8 @@ public class MaintainPlanMeta {
 		}
 		
 		/**
-		 * 设置 总工时
-		 * @param totalCost 总工时
+		 * 设置 预计工时
+		 * @param totalCost 预计工时
 		 * @return 当前对象
 		*/
 		public MaintainPlan setTotalCost(BigDecimal totalCost) {
@@ -728,5 +760,73 @@ public class MaintainPlanMeta {
 			super.setOriginator(originator);
 			return this;
 		}
+		
+		/**
+		 * 设置 asset
+		 * @param asset asset
+		 * @return 当前对象
+		*/
+		public MaintainPlan setAsset(Asset asset) {
+			super.change(ASSET,super.getAsset(),asset);
+			super.setAsset(asset);
+			return this;
+		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public MaintainPlan clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public MaintainPlan duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setCode(this.getCode());
+			inst.setNotes(this.getNotes());
+			inst.setGroupId(this.getGroupId());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setTimeout(this.getTimeout());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setAssetId(this.getAssetId());
+			inst.setStartTime(this.getStartTime());
+			inst.setId(this.getId());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setMaintainType(this.getMaintainType());
+			inst.setInfo(this.getInfo());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setActionCycleId(this.getActionCycleId());
+			inst.setVersion(this.getVersion());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setCycleMethod(this.getCycleMethod());
+			inst.setEndTime(this.getEndTime());
+			inst.setTotalCost(this.getTotalCost());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setProjectList(this.getProjectList());
+				inst.setActionCrontab(this.getActionCrontab());
+				inst.setAssetIds(this.getAssetIds());
+				inst.setProjectIds(this.getProjectIds());
+				inst.setOriginator(this.getOriginator());
+				inst.setAssetList(this.getAssetList());
+				inst.setAsset(this.getAsset());
+				inst.setMaintainTypeDict(this.getMaintainTypeDict());
+				inst.setMaintainGroup(this.getMaintainGroup());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

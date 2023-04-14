@@ -24,7 +24,22 @@ public class MaintainTaskProjectGtr extends BaseCodeGenerator {
 
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
-        cfg.view().field(EAMTables.EAM_MAINTAIN_GROUP.ID).basic().hidden(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK_PROJECT.ID).basic().hidden(true);
+
+
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK_PROJECT.START_TIME).basic().hidden(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK_PROJECT.END_TIME).basic().hidden(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK_PROJECT.BASE_COST).basic().hidden(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK_PROJECT.PROJECT_BASE_COST).basic().hidden(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK_PROJECT.PROJECT_MAINTAIN_TYPE).basic().hidden(true);
+
+
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK_PROJECT.START_TIME).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK_PROJECT.END_TIME).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK_PROJECT.BASE_COST).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK_PROJECT.PROJECT_BASE_COST).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK_PROJECT.PROJECT_MAINTAIN_TYPE).table().disable(true);
+
 
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"maintainTypeDict","类型","类型");
        // cfg.getPoClassFile().addSimpleProperty(ActionCrontab.class,"actionCrontab","周期","周期");

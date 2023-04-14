@@ -119,7 +119,7 @@
 
     <button th:if="${perm.checkAuth('eam_repair_order_act:start')}"class="layui-btn layui-btn-xs  start-button " lay-event="start" data-id="{{d.id}}"><span th:text="${lang.translate('开始维修')}">开始维修</span></button>
     <button th:if="${perm.checkAuth('eam_repair_order_act:finish')}"class="layui-btn layui-btn-xs  finish-button " lay-event="finish" data-id="{{d.id}}"><span th:text="${lang.translate('结束维修')}">结束维修</span></button>
-    <button th:if="${perm.checkAuth('eam_repair_order_act:acceptance')}"class="layui-btn layui-btn-xs  acceptance-button " lay-event="acceptance" data-id="{{d.id}}"><span th:text="${lang.translate('验收')}">验收</span></button>
+    <button th:if="${perm.checkAuth('eam_repair_order_act:acceptance')}"class="layui-btn layui-btn-xs  acceptance-button " lay-event="acceptance" data-id="{{d.id}}"><span th:text="${lang.translate('验收单')}">验收单</span></button>
     <button th:if="${perm.checkAuth('eam_repair_order_act:cancel')}"class="layui-btn layui-btn-xs  cancel-button " lay-event="cancel" data-id="{{d.id}}"><span th:text="${lang.translate('取消')}">取消</span></button>
 
 </script>

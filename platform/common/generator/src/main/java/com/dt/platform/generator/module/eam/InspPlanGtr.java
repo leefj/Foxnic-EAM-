@@ -40,6 +40,8 @@ public class InspPlanGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addListProperty(String.class,"inspectionPointOwnerIds","巡检点","巡检点");
 
 
+
+
         cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.NAME).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_INSPECTION_PLAN.PLAN_CODE).search().fuzzySearch();
 
@@ -151,7 +153,7 @@ public class InspPlanGtr extends BaseCodeGenerator {
 
         cfg.view().list().operationColumn().addActionButton("启动","start","start-button","eam_inspection_plan:start");
         cfg.view().list().operationColumn().addActionButton("停用","stop","stop-button","eam_inspection_plan:stop");
-        cfg.view().list().operationColumn().addActionButton("执行","execute","execute-button","eam_inspection_plan:execute");
+        cfg.view().list().operationColumn().addActionButton("创建任务","execute","execute-button","eam_inspection_plan:execute");
 
         cfg.view().form().addPage("巡检点","pointSelectList");
 

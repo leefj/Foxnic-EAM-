@@ -175,7 +175,7 @@ public class CCustRepairApplyServiceImpl extends SuperService<CCustRepairApply> 
 
 
 	@Override
-	public Result finish(String id) {
+	public Result finish(String id,String ct) {
 		String userId=SessionUser.getCurrent().getActivatedEmployeeId();
 		if(!isInCustRepairRole()){
 			return ErrorDesc.failureMessage("当前没有处理的权限,请先将处理人员加入到eam_cust_repair的业务角色中");
@@ -187,6 +187,9 @@ public class CCustRepairApplyServiceImpl extends SuperService<CCustRepairApply> 
 		}
 		apply.setFinishDate(new Date());
 		apply.setStatus(CCustRepairStatusEnum.FINISH.code());
+		if(!StringUtil.isBlank(ct)){
+			apply.setResult(ct);
+		}
 		Result r=this.update(apply,SaveMode.NOT_NULL_FIELDS);
 		if(r.isSuccess()){
 			CCustRepiarItem item=new CCustRepiarItem();

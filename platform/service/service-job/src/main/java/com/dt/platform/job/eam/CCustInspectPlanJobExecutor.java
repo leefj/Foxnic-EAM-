@@ -7,7 +7,9 @@ import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.commons.log.Logger;
 import org.github.foxnic.web.domain.job.Job;
 import org.github.foxnic.web.domain.job.JobExecutor;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CCustInspectPlanJobExecutor implements JobExecutor {
 
     @Override

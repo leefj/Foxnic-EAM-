@@ -279,7 +279,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             list.billOper("stop","stop-button",{id:item.id},"已停止");
         },
         execute:function (item){
-            list.billOper("execute","execute-button",{id:item.id},"操作成功");
+            list.billOper("create-task","execute-button",{id:item.id},"操作成功");
         },
         /**
          * 末尾执行

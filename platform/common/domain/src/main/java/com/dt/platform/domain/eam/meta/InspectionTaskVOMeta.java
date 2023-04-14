@@ -18,7 +18,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-10 21:43:32
+ * @since 2023-04-14 07:30:19
  * @sign FC0E307EB7CDFD362C699424737E2FFB
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -176,14 +176,14 @@ public class InspectionTaskVOMeta extends InspectionTaskMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskVO,java.lang.String> TASK_STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskVO.class ,TASK_STATUS, java.lang.String.class, "任务状态", "任务状态", java.lang.String.class, null);
 	
 	/**
-	 * 任务编号 , 类型: java.lang.String
+	 * 任务单据 , 类型: java.lang.String
 	*/
 	public static final String TASK_CODE="taskCode";
 	
 	/**
-	 * 任务编号 , 类型: java.lang.String
+	 * 任务单据 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskVO,java.lang.String> TASK_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskVO.class ,TASK_CODE, java.lang.String.class, "任务编号", "任务编号", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskVO,java.lang.String> TASK_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskVO.class ,TASK_CODE, java.lang.String.class, "任务单据", "任务单据", java.lang.String.class, null);
 	
 	/**
 	 * 巡检编码 , 类型: java.lang.String
@@ -714,8 +714,8 @@ public class InspectionTaskVOMeta extends InspectionTaskMeta {
 		}
 		
 		/**
-		 * 设置 任务编号
-		 * @param taskCode 任务编号
+		 * 设置 任务单据
+		 * @param taskCode 任务单据
 		 * @return 当前对象
 		*/
 		public InspectionTask setTaskCode(String taskCode) {

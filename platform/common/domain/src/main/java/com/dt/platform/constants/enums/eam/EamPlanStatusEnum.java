@@ -15,7 +15,7 @@ public enum EamPlanStatusEnum implements CodeTextEnum {
 
 	STOP("stop" , "停用"),
 	FINISH("finish" , "结束"),
-	ACTING("acting" , "执行中"),
+	ACTING("acting" , "待执行"),
 	EXPIRED("expired" , "已过期");
 
 	private String code;

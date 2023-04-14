@@ -83,6 +83,11 @@ public interface ModuleGroupServiceProxy {
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
     /**
+     * 分页查询移动端模块分组
+     */
+    public static final String QUERY_FOR_MOBILE = API_PREFIX + "query-for-mobile";
+
+    /**
      * 导出移动端模块分组数据(Excel)
      */
     public static final String EXPORT_EXCEL = API_PREFIX + "export-excel";

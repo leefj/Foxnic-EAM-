@@ -4,13 +4,17 @@ import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.eam.InspectionTaskPointStatusEnum;
 import com.dt.platform.constants.enums.eam.InspectionTaskStatusEnum;
+import com.dt.platform.domain.eam.InspectionPoint;
+import com.dt.platform.domain.eam.InspectionPointPos;
 import com.dt.platform.domain.eam.InspectionRoute;
 import com.dt.platform.domain.eam.InspectionTask;
 import com.dt.platform.domain.eam.meta.InspectionPointMeta;
+import com.dt.platform.domain.eam.meta.InspectionPointPosMeta;
 import com.dt.platform.domain.eam.meta.InspectionRouteMeta;
 import com.dt.platform.domain.eam.meta.InspectionTaskPointMeta;
 import com.dt.platform.eam.page.InspectionTaskPointPageController;
 import com.dt.platform.generator.config.Config;
+import com.dt.platform.proxy.eam.InspectionPointPosServiceProxy;
 import com.dt.platform.proxy.eam.InspectionRouteServiceProxy;
 import com.dt.platform.proxy.eam.InspectionTaskPointServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
@@ -26,13 +30,15 @@ public class InspTaskPointGtr extends BaseCodeGenerator {
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.ID).basic().hidden(true);
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_ID).basic().hidden(true);
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_CODE).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_NAME).search().fuzzySearch();
 
         cfg.getPoClassFile().addSimpleProperty(InspectionRoute.class,"route","route","route");
         cfg.getPoClassFile().addSimpleProperty(InspectionTask.class,"task","task","task");
-
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"operUser","operUser","operUser");
+        cfg.getPoClassFile().addSimpleProperty(InspectionPointPos.class,"inspectionPointPos","inspectionPointPos","inspectionPointPos");
 
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.OPER_ID).table().fillBy("operUser","name");
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.OPER_ID).form()
@@ -41,8 +47,10 @@ public class InspTaskPointGtr extends BaseCodeGenerator {
 
         cfg.view().search().inputLayout(
                 new Object[]{
+                        EAMTables.EAM_INSPECTION_TASK_POINT.POINT_POS_ID,
                         EAMTables.EAM_INSPECTION_TASK_POINT.POINT_CODE,
                         EAMTables.EAM_INSPECTION_TASK_POINT.POINT_NAME,
+                        EAMTables.EAM_INSPECTION_TASK_POINT.POINT_POS,
                 }
         );
 
@@ -80,6 +88,15 @@ public class InspTaskPointGtr extends BaseCodeGenerator {
                 .valueField(InspectionRouteMeta.ID).
                 textField(InspectionRouteMeta.NAME).
                 fillWith(InspectionTaskPointMeta.ROUTE).muliti(false).defaultIndex(0);
+
+
+        cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.POINT_POS_ID)
+                .form().selectBox().queryApi(InspectionPointPosServiceProxy.QUERY_PAGED_LIST)
+                .paging(true).filter(true).toolbar(false)
+                .valueField(InspectionPointPosMeta.ID).
+                textField(InspectionPointPosMeta.HIERARCHY_NAME).
+                fillWith(InspectionTaskPointMeta.INSPECTION_POINT_POS).muliti(false);
+
 
         cfg.view().field(EAMTables.EAM_INSPECTION_TASK_POINT.OPER_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").defaultNow();
          cfg.view().formWindow().width(Config.baseFormWidth);;
