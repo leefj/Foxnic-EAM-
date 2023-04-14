@@ -98,11 +98,13 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     fox.disableButton($('.finish-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.cancel-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.ops-delete-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.execute-button').filter("[data-id='" + data[i].id + "']"), true);
                 }else if(data[i].taskStatus=="cancel"){
                     fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.finish-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.cancel-button').filter("[data-id='" + data[i].id + "']"), true);
-                }else if(data[i].taskStatus=="not_start"){
+                    fox.disableButton($('.execute-button').filter("[data-id='" + data[i].id + "']"), true);
+                }else if(data[i].taskStatus=="wait"){
                     //    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.finish-button').filter("[data-id='" + data[i].id + "']"), true);
                     //    fox.disableButton($('.cancel-button').filter("[data-id='" + data[i].id + "']"), true);
@@ -199,6 +201,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         },
         cancel:function(item,it){
             list.billOper("cancel","cancel-button",{id:item.id},"已取消");
+        },
+        inspect:function(item,it){
+            list.billOper("cancel2","cancel-button",{id:item.id},"已取消");
         },
         /**
          * 末尾执行

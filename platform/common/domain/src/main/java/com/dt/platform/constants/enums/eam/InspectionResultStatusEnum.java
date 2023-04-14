@@ -8,7 +8,6 @@ public enum InspectionResultStatusEnum implements CodeTextEnum {
     COMPLETE("COMPLETE" , "已完成"),
     OVERTIME("overtime" , "超时未完成"),
     OVERTIME2("overtime2" , "超期未执行"),
-
     NOT_STARTED("not_started" , "未开始"),
 
     ;

@@ -8,13 +8,14 @@ import java.util.Date;
 import com.dt.platform.domain.eam.InspectionRoute;
 import com.dt.platform.domain.eam.InspectionTask;
 import org.github.foxnic.web.domain.hrm.Employee;
+import com.dt.platform.domain.eam.InspectionPointPos;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-10 21:23:33
+ * @since 2023-04-11 12:47:53
  * @sign 651D328B81E70EC1A0B8941BD7D880C5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -192,6 +193,16 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,java.lang.String> CONTENT_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,CONTENT, java.lang.String.class, "巡检结果", "巡检结果", java.lang.String.class, null);
 	
 	/**
+	 * 巡检点 , 类型: java.lang.String
+	*/
+	public static final String POINT_ID="pointId";
+	
+	/**
+	 * 巡检点 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,java.lang.String> POINT_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,POINT_ID, java.lang.String.class, "巡检点", "巡检点", java.lang.String.class, null);
+	
+	/**
 	 * 编码 , 类型: java.lang.String
 	*/
 	public static final String POINT_CODE="pointCode";
@@ -202,14 +213,14 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,java.lang.String> POINT_CODE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,POINT_CODE, java.lang.String.class, "编码", "编码", java.lang.String.class, null);
 	
 	/**
-	 * 名称 , 类型: java.lang.String
+	 * 检 , 类型: java.lang.String
 	*/
 	public static final String POINT_NAME="pointName";
 	
 	/**
-	 * 名称 , 类型: java.lang.String
+	 * 检 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,java.lang.String> POINT_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,POINT_NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,java.lang.String> POINT_NAME_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,POINT_NAME, java.lang.String.class, "检", "检", java.lang.String.class, null);
 	
 	/**
 	 * 巡检内容 , 类型: java.lang.String
@@ -452,9 +463,19 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,org.github.foxnic.web.domain.hrm.Employee> OPER_USER_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,OPER_USER, org.github.foxnic.web.domain.hrm.Employee.class, "operUser", "operUser", org.github.foxnic.web.domain.hrm.Employee.class, null);
 	
 	/**
+	 * inspectionPointPos , 类型: com.dt.platform.domain.eam.InspectionPointPos
+	*/
+	public static final String INSPECTION_POINT_POS="inspectionPointPos";
+	
+	/**
+	 * inspectionPointPos , 类型: com.dt.platform.domain.eam.InspectionPointPos
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionTaskPointVO,com.dt.platform.domain.eam.InspectionPointPos> INSPECTION_POINT_POS_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionTaskPointVO.class ,INSPECTION_POINT_POS, com.dt.platform.domain.eam.InspectionPointPos.class, "inspectionPointPos", "inspectionPointPos", com.dt.platform.domain.eam.InspectionPointPos.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , TASK_ID , POINT_STATUS , OPER_TIME , CONTENT , POINT_CODE , POINT_NAME , POINT_CONTENT , POINT_ROUTE_ID , POINT_RFID , POINT_POS , POINT_POS_ID , POINT_POS_LONGITUDE , POINT_POS_LATITUDE , POINT_NOTES , SORT , OPER_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , SELECTED_CODE , VERSION , ROUTE , TASK , OPER_USER };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , TASK_ID , POINT_STATUS , OPER_TIME , CONTENT , POINT_ID , POINT_CODE , POINT_NAME , POINT_CONTENT , POINT_ROUTE_ID , POINT_RFID , POINT_POS , POINT_POS_ID , POINT_POS_LONGITUDE , POINT_POS_LATITUDE , POINT_NOTES , SORT , OPER_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , SELECTED_CODE , VERSION , ROUTE , TASK , OPER_USER , INSPECTION_POINT_POS };
 	
 	/**
 	 * 代理类
@@ -652,6 +673,17 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 		}
 		
 		/**
+		 * 设置 巡检点
+		 * @param pointId 巡检点
+		 * @return 当前对象
+		*/
+		public InspectionTaskPoint setPointId(String pointId) {
+			super.change(POINT_ID,super.getPointId(),pointId);
+			super.setPointId(pointId);
+			return this;
+		}
+		
+		/**
 		 * 设置 编码
 		 * @param pointCode 编码
 		 * @return 当前对象
@@ -663,8 +695,8 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 		}
 		
 		/**
-		 * 设置 名称
-		 * @param pointName 名称
+		 * 设置 检
+		 * @param pointName 检
 		 * @return 当前对象
 		*/
 		public InspectionTaskPoint setPointName(String pointName) {
@@ -936,6 +968,17 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 			super.setOperUser(operUser);
 			return this;
 		}
+		
+		/**
+		 * 设置 inspectionPointPos
+		 * @param inspectionPointPos inspectionPointPos
+		 * @return 当前对象
+		*/
+		public InspectionTaskPoint setInspectionPointPos(InspectionPointPos inspectionPointPos) {
+			super.change(INSPECTION_POINT_POS,super.getInspectionPointPos(),inspectionPointPos);
+			super.setInspectionPointPos(inspectionPointPos);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -958,6 +1001,7 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 			inst.setOperId(this.getOperId());
 			inst.setSelectedCode(this.getSelectedCode());
 			inst.setContent(this.getContent());
+			inst.setPointId(this.getPointId());
 			inst.setPointRouteId(this.getPointRouteId());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setPointNotes(this.getPointNotes());
@@ -985,6 +1029,7 @@ public class InspectionTaskPointVOMeta extends InspectionTaskPointMeta {
 				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
 				inst.setPageSize(this.getPageSize());
+				inst.setInspectionPointPos(this.getInspectionPointPos());
 				inst.setRoute(this.getRoute());
 				inst.setTask(this.getTask());
 				inst.setPageIndex(this.getPageIndex());

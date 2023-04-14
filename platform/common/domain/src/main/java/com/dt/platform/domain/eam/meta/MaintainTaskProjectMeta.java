@@ -5,13 +5,14 @@ import com.dt.platform.domain.eam.MaintainTaskProject;
 import java.math.BigDecimal;
 import java.util.Date;
 import org.github.foxnic.web.domain.system.DictItem;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-09 12:22:23
- * @sign 272E1CAC2FCE09C8A14061F1DBC8F8B7
+ * @since 2023-04-14 07:42:51
+ * @sign A8249301F89714C5DFE15372E32FAE64
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -58,6 +59,16 @@ public class MaintainTaskProjectMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskProject,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskProject.class ,STATUS, java.lang.String.class, "状态", "状态", java.lang.String.class, null);
 	
 	/**
+	 * 保养结果 , 类型: java.lang.String
+	*/
+	public static final String CONTENT="content";
+	
+	/**
+	 * 保养结果 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskProject,java.lang.String> CONTENT_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskProject.class ,CONTENT, java.lang.String.class, "保养结果", "保养结果", java.lang.String.class, null);
+	
+	/**
 	 * 项目编号 , 类型: java.lang.String
 	*/
 	public static final String PROJECT_CODE="projectCode";
@@ -88,14 +99,14 @@ public class MaintainTaskProjectMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskProject,java.lang.String> PROJECT_MAINTAIN_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskProject.class ,PROJECT_MAINTAIN_TYPE, java.lang.String.class, "保养类型", "保养类型", java.lang.String.class, null);
 	
 	/**
-	 * 标准工时(小时) , 类型: java.math.BigDecimal
+	 * 标准工时 , 小时) , 类型: java.math.BigDecimal
 	*/
 	public static final String PROJECT_BASE_COST="projectBaseCost";
 	
 	/**
-	 * 标准工时(小时) , 类型: java.math.BigDecimal
+	 * 标准工时 , 小时) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskProject,java.math.BigDecimal> PROJECT_BASE_COST_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskProject.class ,PROJECT_BASE_COST, java.math.BigDecimal.class, "标准工时(小时)", "标准工时(小时)", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskProject,java.math.BigDecimal> PROJECT_BASE_COST_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskProject.class ,PROJECT_BASE_COST, java.math.BigDecimal.class, "标准工时", "小时)", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 保养手册 , 类型: java.lang.String
@@ -118,14 +129,14 @@ public class MaintainTaskProjectMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskProject,java.lang.String> PROJECT_NOTES_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskProject.class ,PROJECT_NOTES, java.lang.String.class, "项目备注", "项目备注", java.lang.String.class, null);
 	
 	/**
-	 * 标准工时(小时) , 类型: java.math.BigDecimal
+	 * 标准工时 , 小时) , 类型: java.math.BigDecimal
 	*/
 	public static final String BASE_COST="baseCost";
 	
 	/**
-	 * 标准工时(小时) , 类型: java.math.BigDecimal
+	 * 标准工时 , 小时) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskProject,java.math.BigDecimal> BASE_COST_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskProject.class ,BASE_COST, java.math.BigDecimal.class, "标准工时(小时)", "标准工时(小时)", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.MaintainTaskProject,java.math.BigDecimal> BASE_COST_PROP = new BeanProperty(com.dt.platform.domain.eam.MaintainTaskProject.class ,BASE_COST, java.math.BigDecimal.class, "标准工时", "小时)", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 开始时间 , 类型: java.util.Date
@@ -260,7 +271,7 @@ public class MaintainTaskProjectMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , PROJECT_ID , TASK_ID , STATUS , PROJECT_CODE , PROJECT_NAME , PROJECT_MAINTAIN_TYPE , PROJECT_BASE_COST , PROJECT_ATTACH_ID , PROJECT_NOTES , BASE_COST , START_TIME , END_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , SELECTED_CODE , VERSION , MAINTAIN_TYPE_DICT };
+	public static final String[] $PROPS={ ID , PROJECT_ID , TASK_ID , STATUS , CONTENT , PROJECT_CODE , PROJECT_NAME , PROJECT_MAINTAIN_TYPE , PROJECT_BASE_COST , PROJECT_ATTACH_ID , PROJECT_NOTES , BASE_COST , START_TIME , END_TIME , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , SELECTED_CODE , VERSION , MAINTAIN_TYPE_DICT };
 	
 	/**
 	 * 代理类
@@ -315,6 +326,17 @@ public class MaintainTaskProjectMeta {
 		}
 		
 		/**
+		 * 设置 保养结果
+		 * @param content 保养结果
+		 * @return 当前对象
+		*/
+		public MaintainTaskProject setContent(String content) {
+			super.change(CONTENT,super.getContent(),content);
+			super.setContent(content);
+			return this;
+		}
+		
+		/**
 		 * 设置 项目编号
 		 * @param projectCode 项目编号
 		 * @return 当前对象
@@ -348,8 +370,8 @@ public class MaintainTaskProjectMeta {
 		}
 		
 		/**
-		 * 设置 标准工时(小时)
-		 * @param projectBaseCost 标准工时(小时)
+		 * 设置 标准工时
+		 * @param projectBaseCost 标准工时
 		 * @return 当前对象
 		*/
 		public MaintainTaskProject setProjectBaseCost(BigDecimal projectBaseCost) {
@@ -381,8 +403,8 @@ public class MaintainTaskProjectMeta {
 		}
 		
 		/**
-		 * 设置 标准工时(小时)
-		 * @param baseCost 标准工时(小时)
+		 * 设置 标准工时
+		 * @param baseCost 标准工时
 		 * @return 当前对象
 		*/
 		public MaintainTaskProject setBaseCost(BigDecimal baseCost) {
@@ -533,5 +555,52 @@ public class MaintainTaskProjectMeta {
 			super.setMaintainTypeDict(maintainTypeDict);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public MaintainTaskProject clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public MaintainTaskProject duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setProjectAttachId(this.getProjectAttachId());
+			inst.setBaseCost(this.getBaseCost());
+			inst.setProjectNotes(this.getProjectNotes());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setProjectBaseCost(this.getProjectBaseCost());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setVersion(this.getVersion());
+			inst.setContent(this.getContent());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setProjectCode(this.getProjectCode());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setProjectMaintainType(this.getProjectMaintainType());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setStartTime(this.getStartTime());
+			inst.setId(this.getId());
+			inst.setEndTime(this.getEndTime());
+			inst.setProjectName(this.getProjectName());
+			inst.setProjectId(this.getProjectId());
+			inst.setTaskId(this.getTaskId());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setMaintainTypeDict(this.getMaintainTypeDict());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

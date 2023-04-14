@@ -10,13 +10,14 @@ import com.dt.platform.domain.eam.ActionCrontab;
 import com.dt.platform.domain.eam.InspectionPlanPoint;
 import java.util.List;
 import com.dt.platform.domain.eam.InspectionPointOwner;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-12 20:23:58
- * @sign 2DFC692ACE2A56985C00FA3812309A79
+ * @since 2023-04-12 21:22:49
+ * @sign 6FBD0C95F2995FEC17B9966D5022DFA9
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -143,14 +144,14 @@ public class InspectionPlanMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.lang.String> INSPECTION_METHOD_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,INSPECTION_METHOD, java.lang.String.class, "巡检顺序", "巡检顺序", java.lang.String.class, null);
 	
 	/**
-	 * 时间要求(小时) , 类型: java.math.BigDecimal
+	 * 时间要求 , 小时) , 类型: java.math.BigDecimal
 	*/
 	public static final String COMPLETION_TIME="completionTime";
 	
 	/**
-	 * 时间要求(小时) , 类型: java.math.BigDecimal
+	 * 时间要求 , 小时) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.math.BigDecimal> COMPLETION_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,COMPLETION_TIME, java.math.BigDecimal.class, "时间要求(小时)", "时间要求(小时)", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.math.BigDecimal> COMPLETION_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,COMPLETION_TIME, java.math.BigDecimal.class, "时间要求", "小时)", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 超时处理 , 类型: java.lang.String
@@ -163,14 +164,14 @@ public class InspectionPlanMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.lang.String> OVERTIME_METHOD_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,OVERTIME_METHOD, java.lang.String.class, "超时处理", "超时处理", java.lang.String.class, null);
 	
 	/**
-	 * 提醒时间(小时) , 类型: java.math.BigDecimal
+	 * 提醒时间 , 小时) , 类型: java.math.BigDecimal
 	*/
 	public static final String REMIND_TIME="remindTime";
 	
 	/**
-	 * 提醒时间(小时) , 类型: java.math.BigDecimal
+	 * 提醒时间 , 小时) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.math.BigDecimal> REMIND_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,REMIND_TIME, java.math.BigDecimal.class, "提醒时间(小时)", "提醒时间(小时)", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPlan,java.math.BigDecimal> REMIND_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPlan.class ,REMIND_TIME, java.math.BigDecimal.class, "提醒时间", "小时)", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -498,8 +499,8 @@ public class InspectionPlanMeta {
 		}
 		
 		/**
-		 * 设置 时间要求(小时)
-		 * @param completionTime 时间要求(小时)
+		 * 设置 时间要求
+		 * @param completionTime 时间要求
 		 * @return 当前对象
 		*/
 		public InspectionPlan setCompletionTime(BigDecimal completionTime) {
@@ -520,8 +521,8 @@ public class InspectionPlanMeta {
 		}
 		
 		/**
-		 * 设置 提醒时间(小时)
-		 * @param remindTime 提醒时间(小时)
+		 * 设置 提醒时间
+		 * @param remindTime 提醒时间
 		 * @return 当前对象
 		*/
 		public InspectionPlan setRemindTime(BigDecimal remindTime) {
@@ -727,5 +728,60 @@ public class InspectionPlanMeta {
 			super.setInspectionPointOwnerIds(inspectionPointOwnerIds);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public InspectionPlan clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public InspectionPlan duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setNotes(this.getNotes());
+			inst.setEndDate(this.getEndDate());
+			inst.setGroupId(this.getGroupId());
+			inst.setPlanStatus(this.getPlanStatus());
+			inst.setSelectedCode(this.getSelectedCode());
+			inst.setLeaderId(this.getLeaderId());
+			inst.setCompletionTime(this.getCompletionTime());
+			inst.setRemindTime(this.getRemindTime());
+			inst.setOvertimeMethod(this.getOvertimeMethod());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setId(this.getId());
+			inst.setInspectionMethod(this.getInspectionMethod());
+			inst.setPlanType(this.getPlanType());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setActionCycleId(this.getActionCycleId());
+			inst.setVersion(this.getVersion());
+			inst.setPlanCode(this.getPlanCode());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setName(this.getName());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setStartDate(this.getStartDate());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setActionCrontab(this.getActionCrontab());
+				inst.setInspectionPointOwnerIds(this.getInspectionPointOwnerIds());
+				inst.setInspectionTypeDict(this.getInspectionTypeDict());
+				inst.setInspectionPointOwnerList(this.getInspectionPointOwnerList());
+				inst.setInspectionPlanPointList(this.getInspectionPlanPointList());
+				inst.setInspectionGroup(this.getInspectionGroup());
+				inst.setInspectionPlanPointIds(this.getInspectionPlanPointIds());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

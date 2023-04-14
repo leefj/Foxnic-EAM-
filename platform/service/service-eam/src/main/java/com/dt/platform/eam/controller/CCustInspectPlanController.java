@@ -220,6 +220,17 @@ public class CCustInspectPlanController extends SuperController {
         return cCustInspectPlanService.execute();
     }
 
+    /**
+     * 执行
+     */
+    @ApiOperation(value = "执行")
+    @ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = CCustInspectPlanServiceProxy.CREATE_TASK, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(CCustInspectPlanServiceProxy.CREATE_TASK)
+    public Result createTask(String id,String type) {
+        return cCustInspectPlanService.createTask(id,type);
+    }
+
 
     /**
      * 获取巡检计划

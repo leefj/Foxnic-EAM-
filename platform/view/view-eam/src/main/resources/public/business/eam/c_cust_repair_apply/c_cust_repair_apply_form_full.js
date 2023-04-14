@@ -429,13 +429,18 @@ function FormPage() {
 		$("#finish-button").click(function(){
 			top.layer.confirm(fox.translate('是否确认完成本次任务'), function (i) {
 				top.layer.close(i);
-				admin.post("/service-eam/eam-c-cust-repair-apply/finish", {id:BILL_DATA.id}, function (data) {
+
+				console.log("result:",$("#result").val());
+				var bill_result=$("#result").val();
+				admin.post("/service-eam/eam-c-cust-repair-apply/finish", {id:BILL_DATA.id,ct:bill_result}, function (data) {
 					if (data.success) {
 						admin.finishPopupCenterById('eam-c-cust-repair-apply-form-data-win');
 					} else {
 					}
 					fox.showMessage(data);
 				}, {delayLoading:1000,elms:[$("#submit-button")]});
+
+
 			});
 		});
 

@@ -100,6 +100,12 @@ public class InspectionPlanServiceImpl extends SuperService<InspectionPlan> impl
 	@Override
 	public Result execute(String id) {
 
+
+		return ErrorDesc.success();
+	}
+
+	@Override
+	public Result createTask(String id) {
 		InspectionPlan plan=this.getById(id);
 		String status=plan.getPlanStatus();
 		if(EamPlanStatusEnum.ACTING.code().equals(status)){
@@ -153,7 +159,6 @@ public class InspectionPlanServiceImpl extends SuperService<InspectionPlan> impl
 		}else{
 			return ErrorDesc.failureMessage("当前巡检计划状态不能生成巡检任务");
 		}
-
 		return ErrorDesc.success();
 	}
 

@@ -4,14 +4,15 @@ import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.eam.InspectionPoint;
 import java.util.Date;
 import com.dt.platform.domain.eam.InspectionRoute;
+import com.dt.platform.domain.eam.InspectionPointPos;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-10 07:22:13
- * @sign C790E9BA9FCD15CB5D4BCC7907E30EB6
+ * @since 2023-04-11 20:39:36
+ * @sign C8B21B8D61FF7E52EAEDF4E6DB9A7178
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -88,16 +89,6 @@ public class InspectionPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> RFID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,RFID, java.lang.String.class, "RFID", "RFID", java.lang.String.class, null);
 	
 	/**
-	 * 位置详情 , 类型: java.lang.String
-	*/
-	public static final String POS="pos";
-	
-	/**
-	 * 位置详情 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> POS_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,POS, java.lang.String.class, "位置详情", "位置详情", java.lang.String.class, null);
-	
-	/**
 	 * 位置 , 类型: java.lang.String
 	*/
 	public static final String POS_ID="posId";
@@ -106,6 +97,16 @@ public class InspectionPointMeta {
 	 * 位置 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> POS_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,POS_ID, java.lang.String.class, "位置", "位置", java.lang.String.class, null);
+	
+	/**
+	 * 位置详情 , 类型: java.lang.String
+	*/
+	public static final String POS="pos";
+	
+	/**
+	 * 位置详情 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,java.lang.String> POS_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,POS, java.lang.String.class, "位置详情", "位置详情", java.lang.String.class, null);
 	
 	/**
 	 * 位置经度 , 类型: java.lang.String
@@ -258,9 +259,19 @@ public class InspectionPointMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,com.dt.platform.domain.eam.InspectionRoute> ROUTE_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,ROUTE, com.dt.platform.domain.eam.InspectionRoute.class, "route", "route", com.dt.platform.domain.eam.InspectionRoute.class, null);
 	
 	/**
+	 * inspectionPointPos , 类型: com.dt.platform.domain.eam.InspectionPointPos
+	*/
+	public static final String INSPECTION_POINT_POS="inspectionPointPos";
+	
+	/**
+	 * inspectionPointPos , 类型: com.dt.platform.domain.eam.InspectionPointPos
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.InspectionPoint,com.dt.platform.domain.eam.InspectionPointPos> INSPECTION_POINT_POS_PROP = new BeanProperty(com.dt.platform.domain.eam.InspectionPoint.class ,INSPECTION_POINT_POS, com.dt.platform.domain.eam.InspectionPointPos.class, "inspectionPointPos", "inspectionPointPos", com.dt.platform.domain.eam.InspectionPointPos.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CODE , NAME , STATUS , CONTENT , ROUTE_ID , RFID , POS , POS_ID , POS_LONGITUDE , POS_LATITUDE , PICTURE_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , SELECTED_CODE , VERSION , ROUTE };
+	public static final String[] $PROPS={ ID , CODE , NAME , STATUS , CONTENT , ROUTE_ID , RFID , POS_ID , POS , POS_LONGITUDE , POS_LATITUDE , PICTURE_ID , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , SELECTED_CODE , VERSION , ROUTE , INSPECTION_POINT_POS };
 	
 	/**
 	 * 代理类
@@ -348,17 +359,6 @@ public class InspectionPointMeta {
 		}
 		
 		/**
-		 * 设置 位置详情
-		 * @param pos 位置详情
-		 * @return 当前对象
-		*/
-		public InspectionPoint setPos(String pos) {
-			super.change(POS,super.getPos(),pos);
-			super.setPos(pos);
-			return this;
-		}
-		
-		/**
 		 * 设置 位置
 		 * @param posId 位置
 		 * @return 当前对象
@@ -366,6 +366,17 @@ public class InspectionPointMeta {
 		public InspectionPoint setPosId(String posId) {
 			super.change(POS_ID,super.getPosId(),posId);
 			super.setPosId(posId);
+			return this;
+		}
+		
+		/**
+		 * 设置 位置详情
+		 * @param pos 位置详情
+		 * @return 当前对象
+		*/
+		public InspectionPoint setPos(String pos) {
+			super.change(POS,super.getPos(),pos);
+			super.setPos(pos);
 			return this;
 		}
 		
@@ -533,6 +544,17 @@ public class InspectionPointMeta {
 			super.setRoute(route);
 			return this;
 		}
+		
+		/**
+		 * 设置 inspectionPointPos
+		 * @param inspectionPointPos inspectionPointPos
+		 * @return 当前对象
+		*/
+		public InspectionPoint setInspectionPointPos(InspectionPointPos inspectionPointPos) {
+			super.change(INSPECTION_POINT_POS,super.getInspectionPointPos(),inspectionPointPos);
+			super.setInspectionPointPos(inspectionPointPos);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -574,6 +596,7 @@ public class InspectionPointMeta {
 			inst.setStatus(this.getStatus());
 			if(all) {
 				inst.setRoute(this.getRoute());
+				inst.setInspectionPointPos(this.getInspectionPointPos());
 			}
 			inst.clearModifies();
 			return inst;

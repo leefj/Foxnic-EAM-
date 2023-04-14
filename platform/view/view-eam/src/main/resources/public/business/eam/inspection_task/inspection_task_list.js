@@ -1,7 +1,7 @@
 /**
  * 巡检任务 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-10 21:43:34
+ * @since 2023-04-14 07:30:20
  */
 
 
@@ -85,7 +85,7 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'taskStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('任务状态'), templet:function (d){ return templet('taskStatus',fox.getEnumText(SELECT_TASKSTATUS_DATA,d.taskStatus,'','taskStatus'),d);}}
-					,{ field: 'taskCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('任务编号') , templet: function (d) { return templet('taskCode',d.taskCode,d);}  }
+					,{ field: 'taskCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('任务单据') , templet: function (d) { return templet('taskCode',d.taskCode,d);}  }
 					,{ field: 'planCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检编码') , templet: function (d) { return templet('planCode',d.planCode,d);}  }
 					,{ field: 'planName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检名称') , templet: function (d) { return templet('planName',d.planName,d);}  }
 					,{ field: 'planInspectionMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检顺序'), templet:function (d){ return templet('planInspectionMethod',fox.getEnumText(SELECT_PLANINSPECTIONMETHOD_DATA,d.planInspectionMethod,'','planInspectionMethod'),d);}}
@@ -433,9 +433,6 @@ function ListPage() {
 						}
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
-			}
-			else if (layEvent === 'execute') { // 执行
-				window.pageExt.list.execute(data,this);
 			}
 			else if (layEvent === 'finish') { // 完成
 				window.pageExt.list.finish(data,this);

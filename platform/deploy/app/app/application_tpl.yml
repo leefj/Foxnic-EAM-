@@ -297,6 +297,7 @@ security:
     access-expire-seconds: 1800
     # refreshToken 超时秒数，3600秒 即 60分钟;28800 即 8小时
     refresh-expire-seconds: 28800
+
 logging:
   config: classpath:logback-config.xml
 
@@ -313,7 +314,7 @@ management:
 #自动扫描API
 springfox:
   documentation:
-    auto-startup: true
+    auto-startup: false
 
 knife4j:
   enable: true

@@ -154,7 +154,9 @@ public class CCustInspectPlanServiceImpl extends SuperService<CCustInspectPlan> 
 	public Result execute() {
 		Result result=new Result();
 		// 查询所有计划并循环
-		List<CCustInspectPlan> plans =  this.queryList(new CCustInspectPlan());
+		CCustInspectPlan planQuery=new CCustInspectPlan();
+		planQuery.setStatus(StatusEnum.VALID.code());
+		List<CCustInspectPlan> plans =  this.queryList(planQuery);
 		for (CCustInspectPlan plan : plans) {
 
 			// 理论上只有一个待执行的日志
@@ -168,7 +170,7 @@ public class CCustInspectPlanServiceImpl extends SuperService<CCustInspectPlan> 
 				log.setExecuted(1);
 				try {
 					// 执行
-					Result execResult = this.execute(plan.getId(), null);
+					Result execResult = this.createTask(plan.getId(), "auto");
 					// 失败时记录失败原因
 					if (!execResult.success()) {
 						log.setErrors(JSON.toJSONString(execResult));
@@ -186,7 +188,7 @@ public class CCustInspectPlanServiceImpl extends SuperService<CCustInspectPlan> 
 	}
 
 	@Override
-	public Result execute(String id, String type) {
+	public Result createTask(String id, String type) {
 		CCustInspectPlan plan=this.getById(id);
 		if(!StatusEnum.VALID.code().equals(plan.getStatus())){
 			return ErrorDesc.failureMessage("当前计划单状态无效，无法生成任务单");

@@ -7,12 +7,10 @@ import com.dt.platform.constants.enums.eam.MaintainCycleMethodEnum;
 import com.dt.platform.constants.enums.eam.MaintainTaskOverdueEnum;
 import com.dt.platform.constants.enums.eam.MaintainTaskStatusEnum;
 import com.dt.platform.domain.eam.*;
-import com.dt.platform.domain.eam.meta.MaintainGroupMeta;
-import com.dt.platform.domain.eam.meta.MaintainPlanMeta;
-import com.dt.platform.domain.eam.meta.MaintainTaskMeta;
-import com.dt.platform.domain.eam.meta.RepairOrderActMeta;
+import com.dt.platform.domain.eam.meta.*;
 import com.dt.platform.eam.page.MaintainTaskPageController;
 import com.dt.platform.generator.config.Config;
+import com.dt.platform.proxy.eam.AssetServiceProxy;
 import com.dt.platform.proxy.eam.GroupUserServiceProxy;
 import com.dt.platform.proxy.eam.MaintainGroupServiceProxy;
 import com.dt.platform.proxy.eam.MaintainTaskServiceProxy;
@@ -44,7 +42,7 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
 
 
         cfg.getPoClassFile().addSimpleProperty(Asset.class,"asset","资产","资产");
-        cfg.getPoClassFile().addSimpleProperty(MaintainPlan.class,"MaintainPlan","方案","方案");
+        cfg.getPoClassFile().addSimpleProperty(MaintainPlan.class,"maintainPlan","方案","方案");
 
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"maintainTypeDict","类型","类型");
         cfg.getPoClassFile().addSimpleProperty(MaintainGroup.class,"maintainGroup","执行班组","执行班组");
@@ -53,13 +51,21 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"executor","执行人","执行人");
 
 
+
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ACT_START_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ACT_FINISH_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
-        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_START_TIME).form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
 
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_START_TIME).form().validate().required().form().dateInput().format("yyyy-MM-dd HH:mm:ss").search().range();
+
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ASSET_ID)
+                .form().validate().required().form().selectBox().queryApi(AssetServiceProxy.QUERY_PAGED_LIST+"?ownerCode=asset")
+                .paging(false).filter(true).toolbar(false)
+                .valueField(AssetMeta.ID).
+                textField(AssetMeta.NAME).
+                fillWith(MaintainTaskMeta.ASSET).muliti(false);
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.BUSINESS_CODE).search().fuzzySearch();
-        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_NAME).search().fuzzySearch();
+     //   cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_NAME).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ASSET_CODE).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ASSET_MODEL).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ASSET_SN).search().fuzzySearch();
@@ -67,13 +73,13 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
         cfg.view().search().inputLayout(
                 new Object[]{
                         EAMTables.EAM_MAINTAIN_TASK.STATUS,
-                        EAMTables.EAM_MAINTAIN_TASK.OVERDUE,
                         EAMTables.EAM_MAINTAIN_TASK.GROUP_ID,
-                        EAMTables.EAM_MAINTAIN_TASK.BUSINESS_CODE
+                        EAMTables.EAM_MAINTAIN_TASK.MAINTAIN_TYPE,
+                        EAMTables.EAM_MAINTAIN_TASK.BUSINESS_CODE,
                 },
                 new Object[]{
-                        EAMTables.EAM_MAINTAIN_TASK.PLAN_NAME,
                         EAMTables.EAM_MAINTAIN_TASK.ASSET_CODE,
+                        EAMTables.EAM_MAINTAIN_TASK.ASSET_NAME,
                         EAMTables.EAM_MAINTAIN_TASK.ASSET_MODEL,
                         EAMTables.EAM_MAINTAIN_TASK.ASSET_SN,
                 },
@@ -111,7 +117,7 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.NOTES).form().textArea().height(Config.textAreaHeight);
 
-        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.GROUP_ID).form().readOnly();
+
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.GROUP_ID)
                 .form().validate().required().form().selectBox().queryApi(MaintainGroupServiceProxy.QUERY_LIST)
                 .paging(false).filter(true).toolbar(false)
@@ -121,12 +127,9 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
 
 
 
-        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_NAME).form().readOnly();
-        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_INFO).form().readOnly();
-        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_NOTES).form().readOnly();
-        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_MAINTAIN_TYPE).form().readOnly();
 
-        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_MAINTAIN_TYPE).form()
+
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.MAINTAIN_TYPE).form().validate().required().form()
                .selectBox().queryApi(DictItemServiceProxy.QUERY_LIST+"?dictCode=eam_maintain_type")
                 .paging(false).filter(true).toolbar(false)
                 .valueField(DictItemMeta.CODE).
@@ -135,38 +138,53 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
 
 
 
-        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_CYCLE_METHOD).form().readOnly();
-
-        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_CYCLE_METHOD).form().selectBox().enumType(MaintainCycleMethodEnum.class);
+//        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_CYCLE_METHOD).form().readOnly();
+//        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_CYCLE_METHOD).form().selectBox().enumType(MaintainCycleMethodEnum.class);
 
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_START_TIME).form().readOnly();
-        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_TOTAL_COST).form().readOnly();
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ASSET_CODE).form().readOnly();
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ASSET_NAME).form().readOnly();
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ASSET_MODEL).form().readOnly();
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ASSET_POS).form().readOnly();
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ASSET_SN).form().readOnly();
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ASSET_STATUS).form().readOnly();
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ASSET_STATUS).form().selectBox().enumType(AssetStatusEnum.class);
-        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ACT_TOTAL_COST).form().readOnly();
-        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ACT_TOTAL_COST).form().numberInput();
+
+
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.SELECTED_CODE).table().disable(true);
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.NOTES).table().disable(true);
-        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_NOTES).table().disable(true);
+   //     cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_NOTES).table().disable(true);
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ORIGINATOR_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ASSET_ID).table().disable(true);
         cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.PLAN_ID).table().disable(true);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.EXECUTOR_ID).form().readOnly();
+
+
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.TOTAL_COST).form().validate().required().form().numberInput().defaultValue(0).scale(2);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.TIMEOUT).form().validate().required().form().numberInput().defaultValue(2.0).scale(2);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.COST).form().validate().required().form().numberInput().defaultValue(2.0).scale(2);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_TASK.ACT_TOTAL_COST).form().numberInput().defaultValue(0.0).scale(2);
 
         cfg.view().list().disableBatchDelete();
         cfg.view().list().disableSingleDelete();
         cfg.view().form().addGroup(null,
                 new Object[] {
+                        EAMTables.EAM_MAINTAIN_TASK.NAME,
+                        EAMTables.EAM_MAINTAIN_TASK.MAINTAIN_TYPE,
                         EAMTables.EAM_MAINTAIN_TASK.GROUP_ID,
-                        EAMTables.EAM_MAINTAIN_TASK.ACT_TOTAL_COST,
-//                        EAMTables.EAM_MAINTAIN_TASK.EXECUTOR_ID,
+                        EAMTables.EAM_MAINTAIN_TASK.EXECUTOR_ID,
                 },
                 new Object[] {
+                        EAMTables.EAM_MAINTAIN_TASK.TOTAL_COST,
+                        EAMTables.EAM_MAINTAIN_TASK.TIMEOUT,
+                        EAMTables.EAM_MAINTAIN_TASK.ACT_TOTAL_COST,
+                        EAMTables.EAM_MAINTAIN_TASK.COST,
+
+                },
+                new Object[] {
+                        EAMTables.EAM_MAINTAIN_TASK.PLAN_START_TIME,
                         EAMTables.EAM_MAINTAIN_TASK.ACT_START_TIME,
                         EAMTables.EAM_MAINTAIN_TASK.ACT_FINISH_TIME,
                 }
@@ -175,43 +193,27 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
         cfg.view().form().addGroup(null,
                 new Object[] {
                         EAMTables.EAM_MAINTAIN_TASK.NOTES,
-
                 }
         );
 
-        cfg.view().form().addGroup("保养方案",
+        cfg.view().form().addGroup("设备",
                 new Object[] {
-                        EAMTables.EAM_MAINTAIN_TASK.PLAN_NAME,
-                        EAMTables.EAM_MAINTAIN_TASK.PLAN_INFO,
-                        EAMTables.EAM_MAINTAIN_TASK.PLAN_NOTES,
+                        EAMTables.EAM_MAINTAIN_TASK.ASSET_ID,
+                        EAMTables.EAM_MAINTAIN_TASK.ASSET_NAME,
                 },
-                new Object[] {
-                        EAMTables.EAM_MAINTAIN_TASK.PLAN_MAINTAIN_TYPE,
-                        EAMTables.EAM_MAINTAIN_TASK.PLAN_CYCLE_METHOD,
-                },
-                new Object[] {
-                        EAMTables.EAM_MAINTAIN_TASK.PLAN_START_TIME,
-                        EAMTables.EAM_MAINTAIN_TASK.PLAN_TOTAL_COST,
-                }
-        );
-        cfg.view().form().addGroup("保养设备",
                 new Object[] {
                         EAMTables.EAM_MAINTAIN_TASK.ASSET_CODE,
-                        EAMTables.EAM_MAINTAIN_TASK.ASSET_NAME,
+                        EAMTables.EAM_MAINTAIN_TASK.ASSET_STATUS,
                 },
                 new Object[] {
                         EAMTables.EAM_MAINTAIN_TASK.ASSET_MODEL,
                         EAMTables.EAM_MAINTAIN_TASK.ASSET_SN,
-                },
-                new Object[] {
-                        EAMTables.EAM_MAINTAIN_TASK.ASSET_STATUS,
                 }
         );
         cfg.view().form().addPage("保养项目","maintainSelectList");
-        cfg.view().list().operationColumn().addActionButton("执行","execute","execute-button","eam_maintain_task:execute");
+        cfg.view().list().operationColumn().addActionButton("保养","maintain","execute-button","eam_maintain_task:execute");
         cfg.view().list().operationColumn().addActionButton("完成","finish","finish-button","eam_maintain_task:finish");
-
-        cfg.view().list().addToolButton("取消","taskCancel","","eam_maintain_task:cancel");
+        cfg.view().list().operationColumn().addActionButton("取消","taskCancel","cancel-button","eam_maintain_task:cancel");
         cfg.view().form().addJsVariable("GROUP_EMPLOYEE","[[${groupEmployee}]]","groupEmployee");
 
         //文件生成覆盖模式
@@ -220,7 +222,7 @@ public class MaintainTaskGtr extends BaseCodeGenerator {
                 .setControllerAndAgent(WriteMode.IGNORE) //Rest
                 .setPageController(WriteMode.IGNORE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
-                .setListPage(WriteMode.IGNORE)
+                .setListPage(WriteMode.COVER_EXISTS_FILE)
                 .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         ; //列表HTML页
         //生成代码

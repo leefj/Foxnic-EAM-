@@ -13,8 +13,8 @@ import com.github.foxnic.api.constant.CodeTextEnum;
 
 public enum MaintainCycleMethodEnum implements CodeTextEnum {
 
-	ONCE("once" , "一次性"),
-	CYCLE("cycle" , "循环");
+	ONCE("once" , "单次"),
+	CYCLE("cycle" , "周期性");
 
 	private String code;
 	private String text;

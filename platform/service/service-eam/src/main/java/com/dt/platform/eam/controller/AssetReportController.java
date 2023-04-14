@@ -124,6 +124,21 @@ public class AssetReportController extends SuperController {
         return result;
     }
 
+    @ApiOperation(value = "报表数据")
+    @ApiOperationSupport(order=6)
+    @SentinelResource(value = AssetReportServiceProxy.QUERY_INSPECT_DATA , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+    @PostMapping(AssetReportServiceProxy.QUERY_INSPECT_DATA)
+    public Result<JSONArray> query_inspect_data() {
+        Result<JSONArray> result=new Result<>();
+        String sql="select a.name name,count(1) cnt from eam_inspection_point a,eam_inspection_task_point b,eam_inspection_task c where a.id=b.point_id and c.id=b.task_id and c.task_status='finish' group by a.name";
+        JSONArray data=new JSONArray();
+        data=assetService.dao().query(sql).toJSONArrayWithJSONObject();
+        result.success(true);
+        result.data(data);
+        return result;
+    }
+
+
     @ApiOperation(value = "分类数据")
     @ApiOperationSupport(order=8)
     @SentinelResource(value = AssetReportServiceProxy.ASSET_FOR_LEAVE_EMPLOYEE_REPORT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )

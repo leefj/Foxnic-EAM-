@@ -31,7 +31,8 @@ public interface ICCustInspectPlanService extends  ISimpleIdService<CCustInspect
 
 
 	Result execute();
-	Result execute(String id,String type);
+
+	Result createTask(String id,String type);
 
 	/**
 	 * 添加，如果语句错误，则抛出异常

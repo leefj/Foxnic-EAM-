@@ -1,24 +1,31 @@
 /**
  * 巡检计划 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-12 20:23:59
+ * @since 2023-04-12 21:22:50
  */
 
 
 function ListPage() {
 
 	var settings,admin,form,table,layer,util,fox,upload,xmSelect;
+	
 	//模块基础路径
 	const moduleURL="/service-eam/eam-inspection-plan";
+	const queryURL=moduleURL+'/query-paged-list';
+	const deleteURL=moduleURL+'/delete';
+	const batchDeleteURL=moduleURL+'/delete-by-ids';
+	const getByIdURL=moduleURL+'/get-by-id';
+	//
 	var dataTable=null;
 	var sort=null;
+
 	/**
       * 入口函数，初始化
       */
 	this.init=function(layui) {
 
      	admin = layui.admin,settings = layui.settings,form = layui.form,upload = layui.upload,laydate= layui.laydate;
-		table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,dropdown=layui.dropdown;;
+		table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,dropdown=layui.dropdown;
 
 		if(window.pageExt.list.beforeInit) {
 			window.pageExt.list.beforeInit();
@@ -69,8 +76,8 @@ function ListPage() {
 			var tableConfig={
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
-				defaultToolbar: ['filter', 'print',{title: '刷新数据',layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
-				url: moduleURL +'/query-paged-list',
+				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
+				url: queryURL,
 				height: 'full-'+(h+28),
 				limit: 50,
 				where: ps,
@@ -80,35 +87,24 @@ function ListPage() {
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'planCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('计划编号') , templet: function (d) { return templet('planCode',d.planCode,d);}  }
 					,{ field: 'name', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('name',d.name,d);}  }
-					,{ field: 'planStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('planStatus',fox.getEnumText(SELECT_PLANSTATUS_DATA,d.planStatus),d);}}
-					,{ field: 'planType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('计划类型'), templet:function (d){ return templet('planType',fox.getEnumText(SELECT_PLANTYPE_DATA,d.planType),d);}}
-					,{ field: 'groupId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('班组'), templet: function (d) { return templet('groupId' ,fox.joinLabel(d.inspectionGroup,"name"),d);}}
+					,{ field: 'planStatus', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('planStatus',fox.getEnumText(SELECT_PLANSTATUS_DATA,d.planStatus,'','planStatus'),d);}}
+					,{ field: 'planType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('计划类型'), templet:function (d){ return templet('planType',fox.getEnumText(SELECT_PLANTYPE_DATA,d.planType,'','planType'),d);}}
+					,{ field: 'groupId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('班组'), templet: function (d) { return templet('groupId' ,fox.joinLabel(d.inspectionGroup,"name",',','','groupId'),d);}}
 					,{ field: 'startDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('开始日期') ,templet: function (d) { return templet('startDate',fox.dateFormat(d.startDate,"yyyy-MM-dd"),d); }  }
 					,{ field: 'endDate', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('截止日期') ,templet: function (d) { return templet('endDate',fox.dateFormat(d.endDate,"yyyy-MM-dd"),d); }  }
-					,{ field: 'inspectionMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检顺序'), templet:function (d){ return templet('inspectionMethod',fox.getEnumText(SELECT_INSPECTIONMETHOD_DATA,d.inspectionMethod),d);}}
-					,{ field: 'completionTime', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('时间要求(小时)') , templet: function (d) { return templet('completionTime',d.completionTime,d);}  }
-					,{ field: 'overtimeMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('超时处理'), templet:function (d){ return templet('overtimeMethod',fox.getEnumText(SELECT_OVERTIMEMETHOD_DATA,d.overtimeMethod),d);}}
-					,{ field: 'remindTime', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('提醒时间(小时)') , templet: function (d) { return templet('remindTime',d.remindTime,d);}  }
+					,{ field: 'inspectionMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('巡检顺序'), templet:function (d){ return templet('inspectionMethod',fox.getEnumText(SELECT_INSPECTIONMETHOD_DATA,d.inspectionMethod,'','inspectionMethod'),d);}}
+					,{ field: 'completionTime', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('时间要求') , templet: function (d) { return templet('completionTime',d.completionTime,d);}  }
+					,{ field: 'overtimeMethod', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('超时处理'), templet:function (d){ return templet('overtimeMethod',fox.getEnumText(SELECT_OVERTIMEMETHOD_DATA,d.overtimeMethod,'','overtimeMethod'),d);}}
+					,{ field: 'remindTime', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('提醒时间') , templet: function (d) { return templet('remindTime',d.remindTime,d);}  }
 					,{ field: 'notes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('备注') , templet: function (d) { return templet('notes',d.notes,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
-					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 300 }
+					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
+					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 300 }
 				]],
 				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
 				footer : {
-					exportExcel : admin.checkAuth(AUTH_PREFIX+":export"),
-					importExcel : admin.checkAuth(AUTH_PREFIX+":import")?{
-						params : {} ,
-						callback : function(r) {
-							if(r.success) {
-								layer.msg(fox.translate('数据导入成功')+"!");
-							} else {
-								layer.msg(fox.translate('数据导入失败')+"!");
-							}
-							// 是否执行后续逻辑：错误提示
-							return false;
-						}
-					}:false
+					exportExcel : false ,
+					importExcel : false 
 				}
 			};
 			window.pageExt.list.beforeTableRender && window.pageExt.list.beforeTableRender(tableConfig);
@@ -129,7 +125,7 @@ function ListPage() {
 		var context=dataTable.getDataRowContext( { id : data.id } );
 		if(context==null) return;
 		if(remote) {
-			admin.post(moduleURL+"/get-by-id", { id : data.id }, function (r) {
+			admin.post(getByIdURL, { id : data.id }, function (r) {
 				if (r.success) {
 					data = r.data;
 					context.update(data);
@@ -170,8 +166,7 @@ function ListPage() {
 			if(sort) {
 				ps.sortField=sort.field;
 				ps.sortType=sort.type;
-			}
-		}
+			} 		}
 		if(reset) {
 			table.reload('data-table', { where : ps , page:{ curr:1 } });
 		} else {
@@ -221,7 +216,11 @@ function ListPage() {
 				var opts=[];
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
-					opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					}
 				}
 				return opts;
 			}
@@ -243,7 +242,11 @@ function ListPage() {
 				var opts=[];
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
-					opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("planStatus",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					}
 				}
 				return opts;
 			}
@@ -265,7 +268,11 @@ function ListPage() {
 				var opts=[];
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
-					opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("planType",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					}
 				}
 				return opts;
 			}
@@ -292,7 +299,11 @@ function ListPage() {
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
-					opts.push({data:data[i],name:data[i].name,value:data[i].id});
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("groupId",{data:data[i],name:data[i].name,value:data[i].id},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id});
+					}
 				}
 				return opts;
 			}
@@ -314,7 +325,11 @@ function ListPage() {
 				var opts=[];
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
-					opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("inspectionMethod",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					}
 				}
 				return opts;
 			}
@@ -366,6 +381,7 @@ function ListPage() {
 			}
 			switch(obj.event){
 				case 'create':
+					admin.putTempData('eam-inspection-plan-form-data', {});
 					openCreateFrom();
 					break;
 				case 'batch-del':
@@ -398,12 +414,13 @@ function ListPage() {
 
 			var ids=getCheckedList("id");
             if(ids.length==0) {
-				top.layer.msg(fox.translate('请选择需要删除的')+fox.translate('巡检计划')+"!");
+				top.layer.msg(fox.translate('请选择需要删除的'+'巡检计划'+"!"));
             	return;
             }
             //调用批量删除接口
-			top.layer.confirm(fox.translate('确定删除已选中的')+fox.translate('巡检计划')+fox.translate('吗？'), function (i) {
-                admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
+			top.layer.confirm(fox.translate('确定删除已选中的'+'巡检计划'+'吗？'), function (i) {
+                top.layer.close(i);
+				admin.post(batchDeleteURL, { ids: ids }, function (data) {
                     if (data.success) {
 						if(window.pageExt.list.afterBatchDelete) {
 							var doNext=window.pageExt.list.afterBatchDelete(data);
@@ -412,9 +429,12 @@ function ListPage() {
 						fox.showMessage(data);
                         refreshTableData();
                     } else {
+						if(data.data>0) {
+							refreshTableData();
+						}
 						fox.showMessage(data);
                     }
-                });
+                },{delayLoading:200,elms:[$("#delete-button")]});
 			});
         }
 	}
@@ -435,7 +455,7 @@ function ListPage() {
 
 			admin.putTempData('eam-inspection-plan-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
-				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
+				admin.post(getByIdURL, { id : data.id }, function (data) {
 					if(data.success) {
 						admin.putTempData('eam-inspection-plan-form-data-form-action', "edit",true);
 						showEditForm(data.data);
@@ -444,7 +464,7 @@ function ListPage() {
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
-				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
+				admin.post(getByIdURL, { id : data.id }, function (data) {
 					if(data.success) {
 						admin.putTempData('eam-inspection-plan-form-data-form-action', "view",true);
 						showEditForm(data.data);
@@ -459,11 +479,10 @@ function ListPage() {
 					var doNext=window.pageExt.list.beforeSingleDelete(data);
 					if(!doNext) return;
 				}
-				top.layer.confirm(fox.translate('确定删除此')+fox.translate('巡检计划')+fox.translate('吗？'), function (i) {
-					top.layer.close(i);
 
-					top.layer.load(2);
-					admin.request(moduleURL+"/delete", { id : data.id }, function (data) {
+				top.layer.confirm(fox.translate('确定删除此'+'巡检计划'+'吗？'), function (i) {
+					top.layer.close(i);
+					admin.post(deleteURL, { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
 						if (data.success) {
 							if(window.pageExt.list.afterSingleDelete) {
@@ -475,7 +494,7 @@ function ListPage() {
 						} else {
 							fox.showMessage(data);
 						}
-					});
+					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
 			}
 			else if (layEvent === 'start') { // 启动
@@ -484,7 +503,7 @@ function ListPage() {
 			else if (layEvent === 'stop') { // 停用
 				window.pageExt.list.stop(data,this);
 			}
-			else if (layEvent === 'execute') { // 执行
+			else if (layEvent === 'execute') { // 创建任务
 				window.pageExt.list.execute(data,this);
 			}
 			
@@ -511,9 +530,9 @@ function ListPage() {
 		var height= (area && area.height) ? area.height : ($(window).height()*0.6);
 		var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
 		var title = fox.translate('巡检计划');
-		if(action=="create") title=fox.translate('添加')+title;
-		else if(action=="edit") title=fox.translate('修改')+title;
-		else if(action=="view") title=fox.translate('查看')+title;
+		if(action=="create") title=fox.translate('添加','','cmp:table')+title;
+		else if(action=="edit") title=fox.translate('修改','','cmp:table')+title;
+		else if(action=="view") title=fox.translate('查看','','cmp:table')+title;
 
 		admin.popupCenter({
 			title: title,

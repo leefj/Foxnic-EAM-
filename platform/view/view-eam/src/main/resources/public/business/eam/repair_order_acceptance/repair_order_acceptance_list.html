@@ -118,8 +118,6 @@
     <button th:if="${perm.checkAuth('eam_repair_order_acceptance:view-form')}" class="layui-btn layui-btn-primary layui-btn-xs ops-view-button " lay-event="view"  data-id="{{d.id}}"> <span th:text="${lang.translate('查看')}">查看</span></button>
     <button th:if="${perm.checkAnyAuth('eam_repair_order_acceptance:update','eam_repair_order_acceptance:save')}" class="layui-btn layui-btn-primary layui-btn-xs ops-edit-button " lay-event="edit"data-id="{{d.id}}"><span th:text="${lang.translate('修改')}">修改</span></button>
 
-
-
     <button th:if="${perm.checkAuth('eam_repair_order_acceptance:acceptance')}"class="layui-btn layui-btn-xs  acceptance-button " lay-event="acceptance" data-id="{{d.id}}"><span th:text="${lang.translate('确定验收')}">确定验收</span></button>
 
 </script>

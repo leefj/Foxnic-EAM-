@@ -29,8 +29,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 巡检任务
  * <p>巡检任务 , 数据表 eam_inspection_task 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-10 21:43:32
- * @sign A7EDF25739034AA44E5829E89ADBB998
+ * @since 2023-04-14 07:30:19
+ * @sign A0A137B1407B3775EBF078093B3E3696
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -62,9 +62,9 @@ public class InspectionTask extends Entity {
 	private String taskStatus;
 	
 	/**
-	 * 任务编号：任务编号
+	 * 任务单据：任务单据
 	*/
-	@ApiModelProperty(required = false,value="任务编号" , notes = "任务编号" , example = "INSPT202304092104809")
+	@ApiModelProperty(required = false,value="任务单据" , notes = "任务单据" , example = "INSPT202304092104809")
 	private String taskCode;
 	
 	/**
@@ -100,7 +100,7 @@ public class InspectionTask extends Entity {
 	/**
 	 * 巡检班组：巡检班组
 	*/
-	@ApiModelProperty(required = false,value="巡检班组" , notes = "巡检班组" , example = "571667627504570368")
+	@ApiModelProperty(required = true,value="巡检班组" , notes = "巡检班组" , example = "571667627504570368")
 	private String groupId;
 	
 	/**
@@ -338,17 +338,17 @@ public class InspectionTask extends Entity {
 	}
 	
 	/**
-	 * 获得 任务编号<br>
-	 * 任务编号
-	 * @return 任务编号
+	 * 获得 任务单据<br>
+	 * 任务单据
+	 * @return 任务单据
 	*/
 	public String getTaskCode() {
 		return taskCode;
 	}
 	
 	/**
-	 * 设置 任务编号
-	 * @param taskCode 任务编号
+	 * 设置 任务单据
+	 * @param taskCode 任务单据
 	 * @return 当前对象
 	*/
 	public InspectionTask setTaskCode(String taskCode) {

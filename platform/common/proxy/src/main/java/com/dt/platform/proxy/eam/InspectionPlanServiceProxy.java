@@ -104,6 +104,9 @@ public interface InspectionPlanServiceProxy {
 
     public static final String ACTION = API_PREFIX + "action";
 
+
+    public static final String CREATE_TASK = API_PREFIX + "create-task";
+
     public static final String EXECUTE = API_PREFIX + "execute";
 
 

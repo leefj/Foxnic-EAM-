@@ -270,7 +270,18 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单数据填充后
          * */
         afterDataFill:function (data) {
-            console.log('afterDataFill',data);
+            console.log('afterDataFill 22222',data);
+            if(data.status=="processing"){
+                setTimeout(function(){
+                    $('#result').removeAttr("readonly");
+                    $('#result').removeClass("layui-input-read-only");
+                },500)
+
+            }else if(data.status=="wait"){
+                $("#resultCt").hide();
+            }else if(data.status=="processing"){
+                $('#result').attr("readonly","readonly")
+            }
         },
         /**
          * 对话框打开之前调用，如果返回 null 则不打开对话框

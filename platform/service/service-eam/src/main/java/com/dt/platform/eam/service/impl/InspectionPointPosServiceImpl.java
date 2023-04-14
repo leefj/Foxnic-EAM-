@@ -1,6 +1,10 @@
 package com.dt.platform.eam.service.impl;
 
 import javax.annotation.Resource;
+
+import com.dt.platform.domain.eam.Position;
+import com.github.foxnic.api.error.CommonError;
+import com.github.foxnic.sql.expr.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -74,6 +78,31 @@ public class InspectionPointPosServiceImpl extends SuperService<InspectionPointP
 	@Override
 	public Result insert(InspectionPointPos inspectionPointPos,boolean throwsException) {
 		Result r=super.insert(inspectionPointPos,throwsException);
+		return r;
+	}
+
+	@Override
+	public Result updateHierarchy(String id) {
+		InspectionPointPos category= getById(id);
+		String hierarchy=category.getHierarchy();
+		String split="/";
+		String afterHierarchyName="";
+		String[] ids = hierarchy.split(split);
+		for (int i = 0; i < ids.length;i++) {
+			afterHierarchyName = afterHierarchyName + split+ getById(ids[i]).getName();
+		}
+		afterHierarchyName = afterHierarchyName.replaceFirst(split, "");
+		Update ups = new Update("eam_inspection_point_pos");
+		ups.set("hierarchy_name", afterHierarchyName);
+		ups.where().and("id=?", id);
+		dao.execute(ups);
+		List<InspectionPointPos> positionList=queryList(InspectionPointPos.create().setParentId(id));
+		for (int j = 0; j < positionList.size(); j++) {
+			updateHierarchy(positionList.get(j).getId());
+		}
+		Result r=new Result();
+		r.success(true);
+		r.message(CommonError.SUCCESS_TEXT);
 		return r;
 	}
 

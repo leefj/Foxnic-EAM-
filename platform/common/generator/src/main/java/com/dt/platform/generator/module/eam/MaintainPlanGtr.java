@@ -5,11 +5,13 @@ import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.constants.enums.eam.EamPlanStatusEnum;
 import com.dt.platform.constants.enums.eam.MaintainCycleMethodEnum;
 import com.dt.platform.domain.eam.*;
+import com.dt.platform.domain.eam.meta.AssetMeta;
 import com.dt.platform.domain.eam.meta.MaintainGroupMeta;
 import com.dt.platform.domain.eam.meta.MaintainPlanMeta;
 import com.dt.platform.domain.eam.meta.MaintainProjectMeta;
 import com.dt.platform.eam.page.MaintainPlanPageController;
 import com.dt.platform.generator.config.Config;
+import com.dt.platform.proxy.eam.AssetServiceProxy;
 import com.dt.platform.proxy.eam.MaintainGroupServiceProxy;
 import com.dt.platform.proxy.eam.MaintainPlanServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
@@ -41,6 +43,8 @@ public class MaintainPlanGtr extends BaseCodeGenerator {
 
         cfg.getPoClassFile().addSimpleProperty(ActionCrontab.class,"actionCrontab","周期","周期");
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"originator","制单人","制单人");
+
+        cfg.getPoClassFile().addSimpleProperty(Asset.class,"asset","asset","asset");
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.CODE).search().fuzzySearch();
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.NAME).search().fuzzySearch();
@@ -85,6 +89,13 @@ public class MaintainPlanGtr extends BaseCodeGenerator {
                 textField(DictItemMeta.LABEL).
                 fillWith(MaintainPlanMeta.MAINTAIN_TYPE_DICT).muliti(false).defaultIndex(0);
 
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ASSET_ID)
+                .form().validate().required().form().selectBox().queryApi(AssetServiceProxy.QUERY_PAGED_LIST+"?ownerCode=asset")
+                .paging(false).filter(true).toolbar(false)
+                .valueField(AssetMeta.ID).
+                textField(AssetMeta.NAME).
+                fillWith(MaintainPlanMeta.ASSET).muliti(false);
+
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.ORIGINATOR_ID).table().fillBy("originator","name");
 
@@ -98,9 +109,11 @@ public class MaintainPlanGtr extends BaseCodeGenerator {
 
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.NOTES).table().disable(true);
         cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.SELECTED_CODE).table().disable(true);
-        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.TOTAL_COST).form().readOnly();
-        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.TOTAL_COST).form().numberInput();
-        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.TIMEOUT).form().validate().required().form().numberInput().defaultValue(2.0);
+
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.TOTAL_COST).form().validate().required().form().numberInput().defaultValue(0).scale(2);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.TIMEOUT).form().validate().required().form().numberInput().defaultValue(2.0).scale(2);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.NOTES).form().textArea().height(80);
+        cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.INFO).form().textArea().height(80);
       //  cfg.view().field(EAMTables.EAM_MAINTAIN_PLAN.NOTES).form().textArea().height(Config.textAreaHeight);
 
         cfg.view().search().inputWidth(Config.searchInputWidth);
@@ -108,44 +121,53 @@ public class MaintainPlanGtr extends BaseCodeGenerator {
         cfg.view().formWindow().bottomSpace(80);
         cfg.view().list().operationColumn().width(250);
         cfg.view().list().disableBatchDelete();
-        cfg.view().form().addGroup(null,
+        cfg.view().form().addGroup("基本信息",
                 new Object[] {
                         EAMTables.EAM_MAINTAIN_PLAN.NAME,
+                        EAMTables.EAM_MAINTAIN_PLAN.GROUP_ID,
+                },
+                new Object[] {
+                        EAMTables.EAM_MAINTAIN_PLAN.MAINTAIN_TYPE,
+                        EAMTables.EAM_MAINTAIN_PLAN.ASSET_ID,
+                },
+                new Object[] {
+                        EAMTables.EAM_MAINTAIN_PLAN.TOTAL_COST,
+                        EAMTables.EAM_MAINTAIN_PLAN.TIMEOUT
+                }
+        );
+        cfg.view().form().addGroup(null,
+                new Object[] {
                         EAMTables.EAM_MAINTAIN_PLAN.INFO,
+                },
+                new Object[] {
+                        EAMTables.EAM_MAINTAIN_PLAN.NOTES,
+                }
+
+        );
+        cfg.view().form().addGroup("计划周期",
+                new Object[] {
                         EAMTables.EAM_MAINTAIN_PLAN.CYCLE_METHOD,
                         EAMTables.EAM_MAINTAIN_PLAN.ACTION_CYCLE_ID,
 
                 },
                 new Object[] {
-                        EAMTables.EAM_MAINTAIN_PLAN.GROUP_ID,
-                        EAMTables.EAM_MAINTAIN_PLAN.MAINTAIN_TYPE,
-                        EAMTables.EAM_MAINTAIN_PLAN.TOTAL_COST,
-                        EAMTables.EAM_MAINTAIN_PLAN.TIMEOUT
-                },
-                new Object[] {
                         EAMTables.EAM_MAINTAIN_PLAN.START_TIME,
                         EAMTables.EAM_MAINTAIN_PLAN.END_TIME,
-
                 }
         );
-        cfg.view().form().addGroup(null,
-                new Object[] {
-                      EAMTables.EAM_MAINTAIN_PLAN.NOTES,
-                }
 
-        );
 
 
 
 
         cfg.view().list().operationColumn().addActionButton("启动","start","start-button","eam_maintain_plan:start");
         cfg.view().list().operationColumn().addActionButton("停用","stop","stop-button","eam_maintain_plan:stop");
-        cfg.view().list().operationColumn().addActionButton("执行","execute","execute-button","eam_maintain_plan:execute");
+        cfg.view().list().operationColumn().addActionButton("创建任务","execute","execute-button","eam_maintain_plan:execute");
 
         cfg.view().form().addJsVariable("BILL_ID","[[${billId}]]","单据ID");
         cfg.view().form().addJsVariable("BILL_TYPE","[[${billType}]]","单据类型");
 
-        cfg.view().form().addPage("设备范围","assetSelectList");
+     //   cfg.view().form().addPage("设备范围","assetSelectList");
         cfg.view().form().addPage("保养项目","maintainSelectList");
 
         //文件生成覆盖模式

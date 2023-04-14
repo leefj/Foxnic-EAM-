@@ -1,5 +1,6 @@
 package com.dt.platform.domain.eam;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.util.List;
 import java.util.ArrayList;
@@ -7,17 +8,29 @@ import java.util.Arrays;
 import com.github.foxnic.api.model.CompositeParameter;
 import javax.persistence.Transient;
 import com.github.foxnic.commons.bean.BeanUtil;
+import com.github.foxnic.dao.entity.EntityContext;
+import com.github.foxnic.dao.entity.Entity;
+import java.util.Map;
+import com.dt.platform.domain.eam.meta.MaintainPlanVOMeta;
+import com.github.foxnic.commons.lang.DataParser;
+import java.math.BigDecimal;
+import java.util.Date;
+import org.github.foxnic.web.domain.hrm.Employee;
+import org.github.foxnic.web.domain.system.DictItem;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
- * 保养方案
+ * 保养方案VO类型
+ * <p>保养方案 , 数据表 eam_maintain_plan 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-06-09 19:37:07
- * @sign 0F738379C5B161CE0CFAC51041C6BF17
+ * @since 2023-04-12 21:34:12
+ * @sign C8E16B1999220CF1B368CB50BBEA512E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
+@ApiModel(description = "保养方案VO类型 ; 保养方案 , 数据表 eam_maintain_plan 的通用VO类型" , parent = MaintainPlan.class)
 public class MaintainPlanVO extends MaintainPlan {
 
 	private static final long serialVersionUID = 1L;
@@ -69,6 +82,24 @@ public class MaintainPlanVO extends MaintainPlan {
 	*/
 	@ApiModelProperty(required = false,value="排序方式" , notes = "")
 	private String sortType;
+	
+	/**
+	 * 数据来源：前端指定不同的来源，后端可按来源执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="数据来源" , notes = "前端指定不同的来源，后端可按来源执行不同的逻辑")
+	private String dataOrigin;
+	
+	/**
+	 * 查询逻辑：默认and，可指定 or 
+	*/
+	@ApiModelProperty(required = false,value="查询逻辑" , notes = "默认and，可指定 or ")
+	private String queryLogic;
+	
+	/**
+	 * 请求动作：前端指定不同的Action，后端可Action执行不同的逻辑
+	*/
+	@ApiModelProperty(required = false,value="请求动作" , notes = "前端指定不同的Action，后端可Action执行不同的逻辑")
+	private String requestAction;
 	
 	/**
 	 * 主键清单：用于接收批量主键参数
@@ -232,6 +263,63 @@ public class MaintainPlanVO extends MaintainPlan {
 	}
 	
 	/**
+	 * 获得 数据来源<br>
+	 * 前端指定不同的来源，后端可按来源执行不同的逻辑
+	 * @return 数据来源
+	*/
+	public String getDataOrigin() {
+		return dataOrigin;
+	}
+	
+	/**
+	 * 设置 数据来源
+	 * @param dataOrigin 数据来源
+	 * @return 当前对象
+	*/
+	public MaintainPlanVO setDataOrigin(String dataOrigin) {
+		this.dataOrigin=dataOrigin;
+		return this;
+	}
+	
+	/**
+	 * 获得 查询逻辑<br>
+	 * 默认and，可指定 or 
+	 * @return 查询逻辑
+	*/
+	public String getQueryLogic() {
+		return queryLogic;
+	}
+	
+	/**
+	 * 设置 查询逻辑
+	 * @param queryLogic 查询逻辑
+	 * @return 当前对象
+	*/
+	public MaintainPlanVO setQueryLogic(String queryLogic) {
+		this.queryLogic=queryLogic;
+		return this;
+	}
+	
+	/**
+	 * 获得 请求动作<br>
+	 * 前端指定不同的Action，后端可Action执行不同的逻辑
+	 * @return 请求动作
+	*/
+	public String getRequestAction() {
+		return requestAction;
+	}
+	
+	/**
+	 * 设置 请求动作
+	 * @param requestAction 请求动作
+	 * @return 当前对象
+	*/
+	public MaintainPlanVO setRequestAction(String requestAction) {
+		this.requestAction=requestAction;
+		return this;
+	}
+	
+	/**
 	 * 获得 主键清单<br>
 	 * 用于接收批量主键参数
 	 * @return 主键清单
@@ -261,7 +349,7 @@ public class MaintainPlanVO extends MaintainPlan {
 		return this;
 	}
 	@Transient
-	private CompositeParameter $compositeParameter;
+	private transient CompositeParameter $compositeParameter;
 	/**
 	 * 获得解析后的复合查询参数
 	 */
@@ -270,5 +358,321 @@ public class MaintainPlanVO extends MaintainPlan {
 		if($compositeParameter!=null) return  $compositeParameter;
 		$compositeParameter=new CompositeParameter(this.getSearchValue(),BeanUtil.toMap(this));
 		return  $compositeParameter;
+	}
+
+	/**
+	 * 将自己转换成指定类型的PO
+	 * @param poType  PO类型
+	 * @return MaintainPlanVO , 转换好的 MaintainPlanVO 对象
+	*/
+	@Transient
+	public <T extends Entity> T toPO(Class<T> poType) {
+		return EntityContext.create(poType, this);
+	}
+
+	/**
+	 * 将自己转换成任意指定类型
+	 * @param pojoType  Pojo类型
+	 * @return MaintainPlanVO , 转换好的 PoJo 对象
+	*/
+	@Transient
+	public <T> T toPojo(Class<T> pojoType) {
+		if(Entity.class.isAssignableFrom(pojoType)) {
+			return (T)this.toPO((Class<Entity>)pojoType);
+		}
+		try {
+			T pojo=pojoType.newInstance();
+			EntityContext.copyProperties(pojo, this);
+			return pojo;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public MaintainPlanVO clone() {
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public MaintainPlanVO duplicate(boolean all) {
+		com.dt.platform.domain.eam.meta.MaintainPlanVOMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.MaintainPlanVOMeta.$$proxy$$();
+		inst.setCode(this.getCode());
+		inst.setNotes(this.getNotes());
+		inst.setGroupId(this.getGroupId());
+		inst.setSelectedCode(this.getSelectedCode());
+		inst.setTimeout(this.getTimeout());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setAssetId(this.getAssetId());
+		inst.setStartTime(this.getStartTime());
+		inst.setId(this.getId());
+		inst.setOriginatorId(this.getOriginatorId());
+		inst.setMaintainType(this.getMaintainType());
+		inst.setInfo(this.getInfo());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setActionCycleId(this.getActionCycleId());
+		inst.setVersion(this.getVersion());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setName(this.getName());
+		inst.setTenantId(this.getTenantId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setCycleMethod(this.getCycleMethod());
+		inst.setEndTime(this.getEndTime());
+		inst.setTotalCost(this.getTotalCost());
+		inst.setStatus(this.getStatus());
+		if(all) {
+			inst.setProjectList(this.getProjectList());
+			inst.setSearchField(this.getSearchField());
+			inst.setRequestAction(this.getRequestAction());
+			inst.setFuzzyField(this.getFuzzyField());
+			inst.setAssetIds(this.getAssetIds());
+			inst.setPageSize(this.getPageSize());
+			inst.setProjectIds(this.getProjectIds());
+			inst.setOriginator(this.getOriginator());
+			inst.setAssetList(this.getAssetList());
+			inst.setMaintainTypeDict(this.getMaintainTypeDict());
+			inst.setActionCrontab(this.getActionCrontab());
+			inst.setPageIndex(this.getPageIndex());
+			inst.setSortType(this.getSortType());
+			inst.setDirtyFields(this.getDirtyFields());
+			inst.setSortField(this.getSortField());
+			inst.setDataOrigin(this.getDataOrigin());
+			inst.setIds(this.getIds());
+			inst.setQueryLogic(this.getQueryLogic());
+			inst.setAsset(this.getAsset());
+			inst.setSearchValue(this.getSearchValue());
+			inst.setMaintainGroup(this.getMaintainGroup());
+		}
+		inst.clearModifies();
+		return inst;
+	}
+
+	/**
+	 * 克隆当前对象
+	*/
+	@Transient
+	public MaintainPlanVO clone(boolean deep) {
+		return EntityContext.clone(MaintainPlanVO.class,this,deep);
+	}
+
+	/**
+	 * 将 Map 转换成 MaintainPlanVO
+	 * @param maintainPlanMap 包含实体信息的 Map 对象
+	 * @return MaintainPlanVO , 转换好的的 MaintainPlan 对象
+	*/
+	@Transient
+	public static MaintainPlanVO createFrom(Map<String,Object> maintainPlanMap) {
+		if(maintainPlanMap==null) return null;
+		MaintainPlanVO vo = create();
+		EntityContext.copyProperties(vo,maintainPlanMap);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 将 Pojo 转换成 MaintainPlanVO
+	 * @param pojo 包含实体信息的 Pojo 对象
+	 * @return MaintainPlanVO , 转换好的的 MaintainPlan 对象
+	*/
+	@Transient
+	public static MaintainPlanVO createFrom(Object pojo) {
+		if(pojo==null) return null;
+		MaintainPlanVO vo = create();
+		EntityContext.copyProperties(vo,pojo);
+		vo.clearModifies();
+		return vo;
+	}
+
+	/**
+	 * 创建一个 MaintainPlanVO，等同于 new
+	 * @return MaintainPlanVO 对象
+	*/
+	@Transient
+	public static MaintainPlanVO create() {
+		return new com.dt.platform.domain.eam.meta.MaintainPlanVOMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setCode(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.CODE)));
+			this.setNotes(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.NOTES)));
+			this.setGroupId(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.GROUP_ID)));
+			this.setSelectedCode(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.SELECTED_CODE)));
+			this.setTimeout(DataParser.parse(BigDecimal.class, map.get(MaintainPlanVOMeta.TIMEOUT)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.UPDATE_BY)));
+			this.setAssetId(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.ASSET_ID)));
+			this.setStartTime(DataParser.parse(Date.class, map.get(MaintainPlanVOMeta.START_TIME)));
+			this.setId(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.ORIGINATOR_ID)));
+			this.setMaintainType(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.MAINTAIN_TYPE)));
+			this.setInfo(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.INFO)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(MaintainPlanVOMeta.UPDATE_TIME)));
+			this.setActionCycleId(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.ACTION_CYCLE_ID)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(MaintainPlanVOMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(MaintainPlanVOMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(MaintainPlanVOMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(MaintainPlanVOMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.DELETE_BY)));
+			this.setCycleMethod(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.CYCLE_METHOD)));
+			this.setEndTime(DataParser.parse(Date.class, map.get(MaintainPlanVOMeta.END_TIME)));
+			this.setTotalCost(DataParser.parse(BigDecimal.class, map.get(MaintainPlanVOMeta.TOTAL_COST)));
+			this.setStatus(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.STATUS)));
+			// others
+			this.setSearchField(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.SEARCH_FIELD)));
+			this.setRequestAction(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.REQUEST_ACTION)));
+			this.setFuzzyField(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.FUZZY_FIELD)));
+			this.setPageSize(DataParser.parse(Integer.class, map.get(MaintainPlanVOMeta.PAGE_SIZE)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(MaintainPlanVOMeta.ORIGINATOR)));
+			this.setMaintainTypeDict(DataParser.parse(DictItem.class, map.get(MaintainPlanVOMeta.MAINTAIN_TYPE_DICT)));
+			this.setActionCrontab(DataParser.parse(ActionCrontab.class, map.get(MaintainPlanVOMeta.ACTION_CRONTAB)));
+			this.setPageIndex(DataParser.parse(Integer.class, map.get(MaintainPlanVOMeta.PAGE_INDEX)));
+			this.setSortType(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.SORT_TYPE)));
+			this.setSortField(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.SORT_FIELD)));
+			this.setDataOrigin(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.DATA_ORIGIN)));
+			this.setQueryLogic(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.QUERY_LOGIC)));
+			this.setAsset(DataParser.parse(Asset.class, map.get(MaintainPlanVOMeta.ASSET)));
+			this.setSearchValue(DataParser.parse(String.class, map.get(MaintainPlanVOMeta.SEARCH_VALUE)));
+			this.setMaintainGroup(DataParser.parse(MaintainGroup.class, map.get(MaintainPlanVOMeta.MAINTAIN_GROUP)));
+			return true;
+		} else {
+			try {
+				this.setCode( (String)map.get(MaintainPlanVOMeta.CODE));
+				this.setNotes( (String)map.get(MaintainPlanVOMeta.NOTES));
+				this.setGroupId( (String)map.get(MaintainPlanVOMeta.GROUP_ID));
+				this.setSelectedCode( (String)map.get(MaintainPlanVOMeta.SELECTED_CODE));
+				this.setTimeout( (BigDecimal)map.get(MaintainPlanVOMeta.TIMEOUT));
+				this.setUpdateBy( (String)map.get(MaintainPlanVOMeta.UPDATE_BY));
+				this.setAssetId( (String)map.get(MaintainPlanVOMeta.ASSET_ID));
+				this.setStartTime( (Date)map.get(MaintainPlanVOMeta.START_TIME));
+				this.setId( (String)map.get(MaintainPlanVOMeta.ID));
+				this.setOriginatorId( (String)map.get(MaintainPlanVOMeta.ORIGINATOR_ID));
+				this.setMaintainType( (String)map.get(MaintainPlanVOMeta.MAINTAIN_TYPE));
+				this.setInfo( (String)map.get(MaintainPlanVOMeta.INFO));
+				this.setUpdateTime( (Date)map.get(MaintainPlanVOMeta.UPDATE_TIME));
+				this.setActionCycleId( (String)map.get(MaintainPlanVOMeta.ACTION_CYCLE_ID));
+				this.setVersion( (Integer)map.get(MaintainPlanVOMeta.VERSION));
+				this.setCreateBy( (String)map.get(MaintainPlanVOMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(MaintainPlanVOMeta.DELETED));
+				this.setCreateTime( (Date)map.get(MaintainPlanVOMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)map.get(MaintainPlanVOMeta.DELETE_TIME));
+				this.setName( (String)map.get(MaintainPlanVOMeta.NAME));
+				this.setTenantId( (String)map.get(MaintainPlanVOMeta.TENANT_ID));
+				this.setDeleteBy( (String)map.get(MaintainPlanVOMeta.DELETE_BY));
+				this.setCycleMethod( (String)map.get(MaintainPlanVOMeta.CYCLE_METHOD));
+				this.setEndTime( (Date)map.get(MaintainPlanVOMeta.END_TIME));
+				this.setTotalCost( (BigDecimal)map.get(MaintainPlanVOMeta.TOTAL_COST));
+				this.setStatus( (String)map.get(MaintainPlanVOMeta.STATUS));
+				// others
+				this.setSearchField( (String)map.get(MaintainPlanVOMeta.SEARCH_FIELD));
+				this.setRequestAction( (String)map.get(MaintainPlanVOMeta.REQUEST_ACTION));
+				this.setFuzzyField( (String)map.get(MaintainPlanVOMeta.FUZZY_FIELD));
+				this.setPageSize( (Integer)map.get(MaintainPlanVOMeta.PAGE_SIZE));
+				this.setOriginator( (Employee)map.get(MaintainPlanVOMeta.ORIGINATOR));
+				this.setMaintainTypeDict( (DictItem)map.get(MaintainPlanVOMeta.MAINTAIN_TYPE_DICT));
+				this.setActionCrontab( (ActionCrontab)map.get(MaintainPlanVOMeta.ACTION_CRONTAB));
+				this.setPageIndex( (Integer)map.get(MaintainPlanVOMeta.PAGE_INDEX));
+				this.setSortType( (String)map.get(MaintainPlanVOMeta.SORT_TYPE));
+				this.setSortField( (String)map.get(MaintainPlanVOMeta.SORT_FIELD));
+				this.setDataOrigin( (String)map.get(MaintainPlanVOMeta.DATA_ORIGIN));
+				this.setQueryLogic( (String)map.get(MaintainPlanVOMeta.QUERY_LOGIC));
+				this.setAsset( (Asset)map.get(MaintainPlanVOMeta.ASSET));
+				this.setSearchValue( (String)map.get(MaintainPlanVOMeta.SEARCH_VALUE));
+				this.setMaintainGroup( (MaintainGroup)map.get(MaintainPlanVOMeta.MAINTAIN_GROUP));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setCode(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.CODE)));
+			this.setNotes(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.NOTES)));
+			this.setGroupId(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.GROUP_ID)));
+			this.setSelectedCode(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.SELECTED_CODE)));
+			this.setTimeout(DataParser.parse(BigDecimal.class, r.getValue(MaintainPlanVOMeta.TIMEOUT)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.UPDATE_BY)));
+			this.setAssetId(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.ASSET_ID)));
+			this.setStartTime(DataParser.parse(Date.class, r.getValue(MaintainPlanVOMeta.START_TIME)));
+			this.setId(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.ORIGINATOR_ID)));
+			this.setMaintainType(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.MAINTAIN_TYPE)));
+			this.setInfo(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.INFO)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(MaintainPlanVOMeta.UPDATE_TIME)));
+			this.setActionCycleId(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.ACTION_CYCLE_ID)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(MaintainPlanVOMeta.VERSION)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(MaintainPlanVOMeta.DELETED)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(MaintainPlanVOMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(MaintainPlanVOMeta.DELETE_TIME)));
+			this.setName(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.NAME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.TENANT_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.DELETE_BY)));
+			this.setCycleMethod(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.CYCLE_METHOD)));
+			this.setEndTime(DataParser.parse(Date.class, r.getValue(MaintainPlanVOMeta.END_TIME)));
+			this.setTotalCost(DataParser.parse(BigDecimal.class, r.getValue(MaintainPlanVOMeta.TOTAL_COST)));
+			this.setStatus(DataParser.parse(String.class, r.getValue(MaintainPlanVOMeta.STATUS)));
+			return true;
+		} else {
+			try {
+				this.setCode( (String)r.getValue(MaintainPlanVOMeta.CODE));
+				this.setNotes( (String)r.getValue(MaintainPlanVOMeta.NOTES));
+				this.setGroupId( (String)r.getValue(MaintainPlanVOMeta.GROUP_ID));
+				this.setSelectedCode( (String)r.getValue(MaintainPlanVOMeta.SELECTED_CODE));
+				this.setTimeout( (BigDecimal)r.getValue(MaintainPlanVOMeta.TIMEOUT));
+				this.setUpdateBy( (String)r.getValue(MaintainPlanVOMeta.UPDATE_BY));
+				this.setAssetId( (String)r.getValue(MaintainPlanVOMeta.ASSET_ID));
+				this.setStartTime( (Date)r.getValue(MaintainPlanVOMeta.START_TIME));
+				this.setId( (String)r.getValue(MaintainPlanVOMeta.ID));
+				this.setOriginatorId( (String)r.getValue(MaintainPlanVOMeta.ORIGINATOR_ID));
+				this.setMaintainType( (String)r.getValue(MaintainPlanVOMeta.MAINTAIN_TYPE));
+				this.setInfo( (String)r.getValue(MaintainPlanVOMeta.INFO));
+				this.setUpdateTime( (Date)r.getValue(MaintainPlanVOMeta.UPDATE_TIME));
+				this.setActionCycleId( (String)r.getValue(MaintainPlanVOMeta.ACTION_CYCLE_ID));
+				this.setVersion( (Integer)r.getValue(MaintainPlanVOMeta.VERSION));
+				this.setCreateBy( (String)r.getValue(MaintainPlanVOMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(MaintainPlanVOMeta.DELETED));
+				this.setCreateTime( (Date)r.getValue(MaintainPlanVOMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)r.getValue(MaintainPlanVOMeta.DELETE_TIME));
+				this.setName( (String)r.getValue(MaintainPlanVOMeta.NAME));
+				this.setTenantId( (String)r.getValue(MaintainPlanVOMeta.TENANT_ID));
+				this.setDeleteBy( (String)r.getValue(MaintainPlanVOMeta.DELETE_BY));
+				this.setCycleMethod( (String)r.getValue(MaintainPlanVOMeta.CYCLE_METHOD));
+				this.setEndTime( (Date)r.getValue(MaintainPlanVOMeta.END_TIME));
+				this.setTotalCost( (BigDecimal)r.getValue(MaintainPlanVOMeta.TOTAL_COST));
+				this.setStatus( (String)r.getValue(MaintainPlanVOMeta.STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

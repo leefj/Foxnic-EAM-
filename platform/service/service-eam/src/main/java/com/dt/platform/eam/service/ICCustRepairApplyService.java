@@ -38,7 +38,7 @@ public interface ICCustRepairApplyService extends  ISimpleIdService<CCustRepairA
 
 	Result answer(CCustRepiarItem data);
 
-	Result finish(String id);
+	Result finish(String id,String ct);
 
 	/**
 	 * 添加，如果语句错误，则抛出异常

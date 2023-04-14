@@ -57,7 +57,9 @@ function ListPage() {
 				window.pageExt.list.beforeQuery(contitions,ps,"tableInit");
 			}
 			ps.searchValue=JSON.stringify(contitions);
-
+			// if(OWNER_ID){
+			//
+			// }
 			var templet=window.pageExt.list.templet;
 			if(templet==null) {
 				templet=function(field,value,row) {
@@ -79,14 +81,15 @@ function ListPage() {
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(SELECT_STATUS_DATA,d.status),d);}}
+					 ,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('保养内容') , templet: function (d) { return templet('content',d.content,d);}  }
 					,{ field: 'projectCode', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('项目编号') , templet: function (d) { return templet('projectCode',d.projectCode,d);}  }
 					,{ field: 'projectName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('项目名称') , templet: function (d) { return templet('projectName',d.projectName,d);}  }
-					,{ field: 'projectMaintainType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('保养类型'), templet: function (d) { return templet('projectMaintainType' ,fox.joinLabel(d.maintainTypeDict,"label"),d);}}
-					,{ field: 'projectBaseCost', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('标准工时(小时)') , templet: function (d) { return templet('projectBaseCost',d.projectBaseCost,d);}  }
+				//	,{ field: 'projectMaintainType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('保养类型'), templet: function (d) { return templet('projectMaintainType' ,fox.joinLabel(d.maintainTypeDict,"label"),d);}}
+			///		,{ field: 'projectBaseCost', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('标准工时(小时)') , templet: function (d) { return templet('projectBaseCost',d.projectBaseCost,d);}  }
 					,{ field: 'projectNotes', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('项目备注') , templet: function (d) { return templet('projectNotes',d.projectNotes,d);}  }
-					,{ field: 'baseCost', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('标准工时(小时)') , templet: function (d) { return templet('baseCost',d.baseCost,d);}  }
-					,{ field: 'startTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('开始时间') ,templet: function (d) { return templet('startTime',fox.dateFormat(d.startTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'endTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('结束时间') ,templet: function (d) { return templet('endTime',fox.dateFormat(d.endTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+				//	,{ field: 'baseCost', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('标准工时(小时)') , templet: function (d) { return templet('baseCost',d.baseCost,d);}  }
+			//		,{ field: 'startTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('开始时间') ,templet: function (d) { return templet('startTime',fox.dateFormat(d.startTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+			//		,{ field: 'endTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('结束时间') ,templet: function (d) { return templet('endTime',fox.dateFormat(d.endTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }

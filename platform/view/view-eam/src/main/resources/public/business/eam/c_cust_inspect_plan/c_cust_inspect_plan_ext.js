@@ -177,7 +177,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log('actionExecute',data,it);
             var bb="actionExecute";
             var btn=$('.'+bb).filter("[data-id='" +data.id + "']");
-            var api=moduleURL+"/execute"
+            var api=moduleURL+"/create-task"
             top.layer.confirm(fox.translate('确定进行生成任务单操作？'), function (i) {
                 top.layer.close(i);
                 admin.post(api, {id:data.id,type:"manual"}, function (r) {

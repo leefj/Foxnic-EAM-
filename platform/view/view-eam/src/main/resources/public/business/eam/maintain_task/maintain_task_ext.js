@@ -28,9 +28,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeInit:function () {
             console.log("list:beforeInit");
-            var operHtml=document.getElementById("toolbarTemplate").innerHTML;
-            operHtml=operHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
-            document.getElementById("toolbarTemplate").innerHTML=operHtml;
+            // var operHtml=document.getElementById("toolbarTemplate").innerHTML;
+            // operHtml=operHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
+            // document.getElementById("toolbarTemplate").innerHTML=operHtml;
         },
         /**
          * 表格渲染前调用
@@ -95,11 +95,14 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.finish-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.cancel-button').filter("[data-id='" + data[i].id + "']"), true);
+                    fox.disableButton($('.execute-button').filter("[data-id='" + data[i].id + "']"), true);
                 }else if(data[i].status=="cancel"){
                     fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.finish-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.cancel-button').filter("[data-id='" + data[i].id + "']"), true);
-                }else if(data[i].status=="not_start"){
+                    fox.disableButton($('.execute-button').filter("[data-id='" + data[i].id + "']"), true);
+
+                }else if(data[i].status=="wait"){
                 //    fox.disableButton($('.ops-edit-button').filter("[data-id='" + data[i].id + "']"), true);
                     fox.disableButton($('.finish-button').filter("[data-id='" + data[i].id + "']"), true);
                 //    fox.disableButton($('.cancel-button').filter("[data-id='" + data[i].id + "']"), true);
@@ -176,17 +179,15 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
         },
-        taskCancel:function(selected,obj){
+        taskCancel:function(data,obj){
             //调用批量删除接口
             top.layer.confirm(fox.translate('确定取消已选中的')+fox.translate('保养任务')+fox.translate('吗？'), function (i) {
-                admin.post(moduleURL+"/cancel", { ids: selected }, function (data) {
+                admin.post(moduleURL+"/cancel", { id: data.id}, function (data) {
                     if (data.success) {
-                        fox.showMessage(data);
                         window.module.refreshTableData();
-                      //  refreshTableData();
                     } else {
-                        fox.showMessage(data);
                     }
+                    fox.showMessage(data);
                 });
             });
             console.log(selected,obj);
@@ -212,6 +213,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         cancel:function(item,it){
             list.billOper("cancel","cancel-button",{id:item.id},"已取消");
         },
+        maintain:function(item,it){
+
+        },
         /**
          * 末尾执行
          */
@@ -230,17 +234,17 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //var companyId=admin.getTempData("companyId");
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
             console.log("form:beforeInit")
-            $("#planName").attr("disabled","disabled").css("background-color","#e6e6e6");
-            $("#planInfo").attr("disabled","disabled").css("background-color","#e6e6e6");
-            $("#planNotes").attr("disabled","disabled").css("background-color","#e6e6e6");
-            $("#planStartTime").attr("disabled","disabled").css("background-color","#e6e6e6");
-            $("#planTotalCost").attr("disabled","disabled").css("background-color","#e6e6e6");
+            // $("#planName").attr("disabled","disabled").css("background-color","#e6e6e6");
+            // $("#planInfo").attr("disabled","disabled").css("background-color","#e6e6e6");
+            // $("#planNotes").attr("disabled","disabled").css("background-color","#e6e6e6");
+            // $("#planStartTime").attr("disabled","disabled").css("background-color","#e6e6e6");
+            // $("#planTotalCost").attr("disabled","disabled").css("background-color","#e6e6e6");
             $("#assetCode").attr("disabled","disabled").css("background-color","#e6e6e6");
             $("#assetName").attr("disabled","disabled").css("background-color","#e6e6e6");
             $("#assetModel").attr("disabled","disabled").css("background-color","#e6e6e6");
             $("#assetSn").attr("disabled","disabled").css("background-color","#e6e6e6");
-            $("#actTotalCost").attr("disabled","disabled").css("background-color","#e6e6e6");
-
+            $("#assetPos").attr("disabled","disabled").css("background-color","#e6e6e6");
+            $("#assetStatus").attr("disabled","disabled").css("background-color","#e6e6e6");
 
         },
         /**
@@ -255,6 +259,14 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeDataFill:function (data) {
             console.log('beforeDataFill',data);
+            setTimeout(function(){
+                $("#assetStatus").find("xm-select").css("background-color","#e6e6e6");
+                var assetStatusSelect= xmSelect.get('#assetStatus',true);
+                if(assetStatusSelect){
+                    assetStatusSelect.update({disabled:true})
+                }
+            },200);
+
         },
         /**
          * 表单数据填充后
@@ -267,27 +279,40 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             d.push(e);
             setTimeout(function(){
                 form.onSelectBoxChanged("groupId",d,d,true);
-                },200);
 
-            $("#assetStatus").find("xm-select").css("background-color","#e6e6e6");
-            $("#planMaintainType").find("xm-select").css("background-color","#e6e6e6");
-            $("#planCycleMethod").find("xm-select").css("background-color","#e6e6e6");
-            var assetStatusSelect= xmSelect.get('#assetStatus',true);
-            if(assetStatusSelect){
-                assetStatusSelect.update({disabled:true})
-            }
-            var planMaintainTypeSelect= xmSelect.get('#planMaintainType',true);
-            if(planMaintainTypeSelect){
-                planMaintainTypeSelect.update({disabled:true})
-            }
-            var planCycleMethodSelect= xmSelect.get('#planCycleMethod',true);
-            if(planCycleMethodSelect){
-                planCycleMethodSelect.update({disabled:true})
-            }
-            var groupIdSelect= xmSelect.get('#groupId',true);
-            if(groupIdSelect){
-                groupIdSelect.update({disabled:true})
-            }
+
+
+                var groupIdSelect= xmSelect.get('#groupId',true);
+                if(groupIdSelect){
+                    groupIdSelect.update({disabled:true})
+                }
+
+                $("#executorId").find("xm-select").css("background-color","#e6e6e6");
+                var executorIdSel= xmSelect.get('#executorId',true);
+                if(executorIdSel){
+                    executorIdSel.update({disabled:true})
+                }
+
+
+                if(formAction=="create"){
+                    console.log("none")
+                }else{
+                    $("#assetId").find("xm-select").css("background-color","#e6e6e6");
+                    var assetIdSel= xmSelect.get('#assetId',true);
+                    if(assetIdSel){
+                        assetIdSel.update({disabled:true})
+                    }
+                }
+
+                $("#assetStatus").find("xm-select").css("background-color","#e6e6e6");
+                var assetStatusSelect= xmSelect.get('#assetStatus',true);
+                if(assetStatusSelect){
+                    assetStatusSelect.update({disabled:true})
+                }
+
+
+                },500);
+
 
 
             console.log('afterDataFill',data);
@@ -386,6 +411,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             var ownerId="";
             if(data&&data.id){
                 ownerId=data.id;
+            }else{
+                ownerId=timestamp
             }
             var ownerType="eam_asset_maintain_task"
             var queryString="?pageType="+formAction+"&selectedCode="+timestamp+"&ownerId="+ownerId+"&ownerType="+ownerType;

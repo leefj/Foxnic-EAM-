@@ -29,6 +29,13 @@ import java.util.Map;
 
 public interface IInspectionPointPosService extends  ISimpleIdService<InspectionPointPos,String> {
 
+	/**
+	 * 更新分类路径及名称
+	 * @param id 主键
+	 * @return 插入是否成功
+	 * */
+	Result updateHierarchy(String id);
+
 
 	/**
 	 * 添加，如果语句错误，则抛出异常

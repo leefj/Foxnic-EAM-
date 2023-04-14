@@ -1,6 +1,9 @@
 package com.dt.platform.eam.controller;
 
 import java.util.*;
+
+import com.dt.platform.domain.eam.Position;
+import com.github.foxnic.commons.lang.StringUtil;
 import org.github.foxnic.web.framework.web.SuperController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,10 +77,30 @@ public class InspectionPointPosController extends SuperController {
 	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = InspectionPointPosServiceProxy.INSERT , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(InspectionPointPosServiceProxy.INSERT)
-	public Result insert(InspectionPointPosVO inspectionPointPosVO) {
-		
-		Result result=inspectionPointPosService.insert(inspectionPointPosVO,false);
+	public Result insert(InspectionPointPosVO positionVO) {
+		positionVO.setSort(9999);
+		if (StringUtil.isBlank(positionVO.getParentId())) {
+			positionVO.setParentId("0");
+		}
+		Result result = inspectionPointPosService.insert(positionVO, false);
+		if (result.success()) {
+			InspectionPointPos currentPosition = new InspectionPointPos();
+			currentPosition.setId(positionVO.getId());
+			if ("0".equals(positionVO.getParentId())) {
+				currentPosition.setHierarchy(positionVO.getId());
+				currentPosition.setHierarchyName(positionVO.getName());
+			} else {
+				InspectionPointPos parentPosition = inspectionPointPosService.getById(positionVO.getParentId());
+				currentPosition.setHierarchy(parentPosition.getHierarchy() + "/" + positionVO.getId());
+				currentPosition.setHierarchyName(parentPosition.getHierarchyName() + "/" + positionVO.getName());
+			}
+			inspectionPointPosService.update(currentPosition, SaveMode.NOT_NULL_FIELDS);
+			positionVO.setHierarchy(currentPosition.getHierarchy());
+			positionVO.setHierarchyName(currentPosition.getHierarchyName());
+			result.data(positionVO);
+		}
 		return result;
+
 	}
 
 
@@ -93,7 +116,14 @@ public class InspectionPointPosController extends SuperController {
 	@SentinelResource(value = InspectionPointPosServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(InspectionPointPosServiceProxy.DELETE)
 	public Result deleteById(String id) {
-		
+
+		List<InspectionPointPos> list = inspectionPointPosService.queryList(InspectionPointPos.create().setParentId(id));
+		if (list.size() > 0) {
+			Result<InspectionPointPos> result = new Result<>();
+			result.success(false).message("请先删除下级节点");
+			return result;
+		}
+
 		this.validator().asserts(id).require("缺少id值");
 		if(this.validator().failure()) {
 			return this.validator().getFirstResult();
@@ -185,9 +215,14 @@ public class InspectionPointPosController extends SuperController {
 	@SentinelResource(value = InspectionPointPosServiceProxy.UPDATE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
 	@PostMapping(InspectionPointPosServiceProxy.UPDATE)
 	public Result update(InspectionPointPosVO inspectionPointPosVO) {
-		
-		Result result=inspectionPointPosService.update(inspectionPointPosVO,SaveMode.DIRTY_OR_NOT_NULL_FIELDS,false);
+
+		Result result = inspectionPointPosService.update(inspectionPointPosVO, SaveMode.DIRTY_OR_NOT_NULL_FIELDS, false);
+		if (result.isSuccess()) {
+			// 更新分类名称
+			return inspectionPointPosService.updateHierarchy(inspectionPointPosVO.getId());
+		}
 		return result;
+
 	}
 
 

@@ -230,30 +230,64 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             list.billOper("cancel","cancel-button",{id:item.id},"取消成功");
         },
         acceptance:function(data,it){
-            admin.putTempData('eam-repair-order-acceptance-form-data-form-action', "create",true);
-            var action="create";
-            var queryString="?orderActId="+data.id;
-            //  var queryString=""
-            admin.putTempData('eam-repair-order-acceptance-form-data-form-action', data);
-            var area=admin.getTempData('eam-repair-order-acceptance-form-area');
-            var height= (area && area.height) ? area.height : ($(window).height()*0.6);
-            var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
-            var title = fox.translate('维修工单');
-            if(action=="create") title=fox.translate('添加')+title;
-            else if(action=="edit") title=fox.translate('修改')+title;
-            else if(action=="view") title=fox.translate('查看')+title;
-            admin.popupCenter({
-                title: title,
-                resize: false,
-                offset: [top,null],
-                area: ["80%",height+"px"],
-                type: 2,
-                id:"eam-repair-order-acceptance-form-data-win",
-                content: '/business/eam/repair_order_acceptance/repair_order_acceptance_form.html' + queryString,
-                finish: function () {
-                    window.module.refreshTableData();
+
+            function openForm(bill_action,bill_data){
+                var action=bill_action;
+                admin.putTempData('eam-repair-order-acceptance-form-data-form-action', action,true);
+                admin.putTempData('eam-repair-order-acceptance-form-data', bill_data);
+                var queryString="";
+                if(action=="create"){
+                    queryString="?orderActId="+bill_data.orderActId;
+                }else{
+                    queryString="?id="+bill_data.id;
+                }
+                var area=admin.getTempData('eam-repair-order-acceptance-form-area');
+                var height= (area && area.height) ? area.height : ($(window).height()*0.6);
+                var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
+                var title = fox.translate('维修工单');
+                if(action=="create") title=fox.translate('添加')+title;
+                else if(action=="edit") title=fox.translate('修改')+title;
+                else if(action=="view") title=fox.translate('查看')+title;
+                admin.popupCenter({
+                    title: title,
+                    resize: false,
+                    offset: [top,null],
+                    area: ["80%",height+"px"],
+                    type: 2,
+                    id:"eam-repair-order-acceptance-form-data-win",
+                    content: '/business/eam/repair_order_acceptance/repair_order_acceptance_form.html' + queryString,
+                    finish: function () {
+                        window.module.refreshTableData();
+                    }
+                });
+            }
+
+
+            var ps={};
+            ps.orderActId=data.id;
+            ps.pageIndex=1;
+            ps.pageSize=50;
+            ps.searchField="$composite";
+            admin.post("/service-eam/eam-repair-order-acceptance/query-paged-list", ps, function (r) {
+                if (r.success) {
+                    if(r.data&&r.data.list){
+                        var list=r.data.list;
+                        if(list.length==0){
+                            openForm("create",{orderActId:data.id})
+                        }else if(list.length==1){
+                            openForm("edit",list[0])
+                        }else{
+                            alert("表单错误")
+                        }
+                    }
+                } else {
+                    fox.showMessage(data);
                 }
             });
+
+
+            //  var queryString=""
+
         },
         /**
          * 末尾执行

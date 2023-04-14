@@ -1,9 +1,13 @@
 package com.dt.platform.mobile.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.domain.mobile.meta.ModuleInfoMeta;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.dao.entity.ReferCause;
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -238,6 +242,49 @@ public class ModuleGroupController extends SuperController {
         result.success(true).data(list);
         return result;
     }
+
+    /**
+     * 分页查询移动端模块分组
+     */
+    @ApiOperation(value = "分页查询移动端模块分组")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = ModuleGroupVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1"),
+            @ApiImplicitParam(name = ModuleGroupVOMeta.CODE, value = "编码", required = false, dataTypeClass = String.class),
+            @ApiImplicitParam(name = ModuleGroupVOMeta.TYPE, value = "类型", required = true, dataTypeClass = String.class, example = "eam"),
+            @ApiImplicitParam(name = ModuleGroupVOMeta.LABEL, value = "标签", required = false, dataTypeClass = String.class, example = "固资管理"),
+            @ApiImplicitParam(name = ModuleGroupVOMeta.STATUS, value = "状态", required = false, dataTypeClass = String.class, example = "enable"),
+            @ApiImplicitParam(name = ModuleGroupVOMeta.NAME, value = "名称", required = false, dataTypeClass = String.class, example = "EAM_固资产管理"),
+            @ApiImplicitParam(name = ModuleGroupVOMeta.SORT, value = "排序", required = false, dataTypeClass = Integer.class, example = "0")
+    })
+    @ApiOperationSupport(order = 8)
+    @SentinelResource(value = ModuleGroupServiceProxy.QUERY_FOR_MOBILE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(ModuleGroupServiceProxy.QUERY_FOR_MOBILE)
+    public Result<List<ModuleGroup>> queryForMobile(ModuleGroupVO sample) {
+        sample.setStatus(StatusEnableEnum.ENABLE.code());
+        Result<List<ModuleGroup>> result = new Result<>();
+        List<ModuleGroup> list = moduleGroupService.queryList(sample);
+        // join 关联的对象
+        if(list!=null&&list.size()>0){
+            moduleGroupService.dao().fill(list).with(ModuleGroupMeta.MODULE_INFO_LIST).execute();
+            for(int i=0;i<list.size();i++){
+                List<ModuleInfo> infoList=list.get(i).getModuleInfoList();
+                if(infoList!=null&&infoList.size()>0){
+                    List<ModuleInfo> infoList2=new ArrayList<>();
+                    for(ModuleInfo info:infoList){
+                        if(SessionUser.getCurrent().permission().checkAuth(info.getCode())){
+                            if(StatusEnableEnum.ENABLE.code().equals(info.getStatus())) {
+                                infoList2.add(info);
+                            }
+                        }
+                    }
+                    list.get(i).setModuleInfoList(infoList2);
+                }
+            }
+        }
+        result.success(true).data(list);
+        return result;
+    }
+
 
     /**
      * 导出 Excel

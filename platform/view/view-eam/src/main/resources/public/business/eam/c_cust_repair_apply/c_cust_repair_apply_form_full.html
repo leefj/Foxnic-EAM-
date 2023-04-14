@@ -154,6 +154,17 @@
                         <textarea lay-filter="content" id="content" name="content" th:placeholder="${ lang.translate('请输入'+'报修内容') }" class="layui-textarea" style="height: 150px" ></textarea>
                     </div>
                 </div>
+
+
+                <!-- text_input : 处理结果 ,  result -->
+                <div class="layui-form-item"  id="resultCt">
+                    <div class="layui-form-label "><div th:text="${lang.translate('处理结果')}">处理结果</div></div>
+                    <div class="layui-input-block ">
+                        <input lay-filter="result" id="result" name="result" th:placeholder="${ lang.translate('请输入'+'处理结果') }" type="text" class="layui-input"  />
+                    </div>
+                </div>
+
+
             <!--结束：栏次内字段循环-->
             </div>
             <!--结束：栏次输入框循环-->
