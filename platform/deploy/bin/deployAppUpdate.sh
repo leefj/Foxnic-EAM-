@@ -1,9 +1,9 @@
 #!/bin/sh
-
-prod_app_dir=/app/app
 cur_dir=$(cd `dirname $0`; pwd)
 app_dir=$cur_dir/..
 echo "cur_dir:$cur_dir"
+
+prod_app_dir=$app_dir
 
 app_conf="${cur_dir}/app.conf"
 tpl_update_par_cnt=`cat $app_conf|grep -v "#"|grep APP_TPL_UPDATE=|wc -l`

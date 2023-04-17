@@ -95,7 +95,7 @@
             lang: 'zh',
             allowEdit:allowEdit,
             frozen:{ type: 'row'},
-            row:10,
+            row:20,
             showtoolbar: false,
             enableAddBackTop:false,
             defaultColWidth:157,
@@ -121,8 +121,8 @@
                 chart: false, // 图表生成
                 image: false, // 插入图片
                 link: false, // 插入链接
-                data: false, // 数据验证
-                cellFormat: false // 设置单元格格式
+                data: true, // 数据验证
+                cellFormat: true // 设置单元格格式
             },
             sheetRightClickConfig:{
                 delete: false, // 删除
@@ -139,7 +139,7 @@
                 percentageFormat: false, //百分比格式
                 numberDecrease: false, // '减少小数位数'
                 numberIncrease: false, // '增加小数位数
-               // moreFormats: false, // '更多格式'
+                moreFormats: true, // '更多格式'
                // font: false, // '字体'
                // fontSize: false, // '字号大小'
                // bold: false, // '粗体 (Ctrl+B)'
@@ -163,7 +163,7 @@
                 frozenMode: false, // '冻结方式'
               //  sortAndFilter: false, // '排序和筛选'
                 //conditionalFormat: false, // '条件格式'
-                dataVerification: false, // '数据验证'
+                dataVerification: true, // '数据验证'
                 splitColumn: false, // '分列'
                 screenshot: false, // '截图'
                 findAndReplace: false, // '查找替换'
