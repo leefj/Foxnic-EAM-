@@ -35,7 +35,7 @@ public class EamDbMetaGenerator  {
 		dbMetaBuilder.setTableFilter(table->{
 			table=table.toLowerCase();
 			if(table.startsWith("sys_tpl")||
-					table.startsWith("sys_code") ||
+					table.startsWith("sys_code")||
 					table.startsWith("eam_") ) return true;
 			return false;
 		});

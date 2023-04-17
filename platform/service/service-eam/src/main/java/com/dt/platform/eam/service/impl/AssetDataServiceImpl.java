@@ -258,7 +258,9 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
 //            if(assetColumnMeta.getDataVerification()!=null){
 //                value.put("fc","#ff00ff");
 //            }
+
             JSONObject ct=new JSONObject();
+            System.out.println("1212"+assetColumnMeta.getValueFormat()+"1161616");
             ct.put("fa",assetColumnMeta.getValueFormat());
             ct.put("t",assetColumnMeta.getValueType());
             value.put("ct",ct);
@@ -293,6 +295,7 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                          }
                      }
                      JSONObject ct=new JSONObject();
+                     System.out.println("1515"+assetColumnMeta.getValueFormat()+"1161616");
                      ct.put("fa",assetColumnMeta.getValueFormat());
                      ct.put("t",assetColumnMeta.getValueType());
                      value.put("ct",ct);
@@ -330,10 +333,13 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                             .replaceFirst("dataList","")
                             .replaceFirst("}}","")
                             .replaceFirst("t.","").trim();
+
                     metaData.setRowNumber(0);
                     metaData.setColNumber(i);
                     metaData.setColName(firstAssetColumn);
                     metaData.setCol(secondAssetColumn);
+                    metaData.setValueType("g/n");
+                    metaData.setValueFormat("General");
                     JSONObject dataVer=new JSONObject();
                     JSONObject dataVerification=null;
                     dataVer.put("type",null);
@@ -345,19 +351,50 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                     dataVer.put("prohibitInput",false);
                     dataVer.put("hintShow",false);
                     dataVer.put("hintText","");
-                    if("assetStatusName".equals(secondAssetColumn)){
+                    System.out.println("secondAssetColumn:"+secondAssetColumn);
+                    if("name".equals(secondAssetColumn)||
+                            "id".equals(secondAssetColumn)||
+                            "model".equals(secondAssetColumn)||
+                            "unit".equals(secondAssetColumn)||
+                            "purpose".equals(secondAssetColumn)||
+                            "rfid".equals(secondAssetColumn)||
+                            "contacts".equals(secondAssetColumn)||
+                            "contact_information".equals(secondAssetColumn)||
+                            "director".equals(secondAssetColumn)||
+                            "label1".equals(secondAssetColumn)||
+                            "label2".equals(secondAssetColumn)||
+                            "label3".equals(secondAssetColumn)||
+                            "label4".equals(secondAssetColumn)||
+                            "label5".equals(secondAssetColumn)||
+                            "maintenance_notes".equals(secondAssetColumn)||
+                            "customer_info".equals(secondAssetColumn)||
+                            "assetNotes".equals(secondAssetColumn)||
+                            "serialNumber".equals(secondAssetColumn)){
+                        //文本
+                        metaData.setValueFormat("@");
+                        metaData.setValueType("s");
+                    }else if ("assetNumber".equals(secondAssetColumn)||
+                            "remainNumber".equals(secondAssetColumn)||
+                            "rackUpNumber".equals(secondAssetColumn)||
+                            "rackDownNumber".equals(secondAssetColumn)||
+                            "equipmentCpu".equals(secondAssetColumn)||
+                            "equipmentMemory".equals(secondAssetColumn)
+                    ){
+                        dataVer.put("type","number");
+                        dataVer.put("type2","bw");
+                        dataVer.put("value1","1");
+                        dataVer.put("value2","100000");
+                        dataVer.put("prohibitInput",true);
+                        metaData.setValueFormat("0");
+                        metaData.setValueType("n");
+                        dataVerification=dataVer;
+
+                    }else if ("assetStatusName".equals(secondAssetColumn)){
                         dataVer.put("prohibitInput",true);
                         dataVer.put("type","dropdown");
                         List<String> value=this.dao.query("select name from eam_asset_status where deleted=0" ).getValueList("name",String.class);
                         dataVer.put("value1",  String.join(",", value));
                         dataVerification=dataVer;
-//                        dataVer.put("type","number");
-//                        dataVer.put("type2","bw");
-//                        dataVer.put("value1","1");
-//                        dataVer.put("value2","1000");
-//                        dataVer.put("prohibitInput",true);
-//                        dataVerification=dataVer;
-
                     }else if("serviceLife".equals(secondAssetColumn)){
                         dataVer.put("type","number");
                         dataVer.put("type2","bw");
@@ -365,34 +402,8 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                         dataVer.put("value2","1000");
                         dataVer.put("prohibitInput",true);
                         dataVerification=dataVer;
-                    }else if("equipmentCpu".equals(secondAssetColumn)){
-                        dataVer.put("type","number");
-                        dataVer.put("type2","bw");
-                        dataVer.put("value1","1");
-                        dataVer.put("value2","200");
-                        dataVer.put("prohibitInput",true);
-                        dataVerification=dataVer;
-                    }else if("assetNumber".equals(secondAssetColumn)){
-                        dataVer.put("type","number");
-                        dataVer.put("type2","bw");
-                        dataVer.put("value1","1");
-                        dataVer.put("value2","100000");
-                        dataVer.put("prohibitInput",true);
-                        dataVerification=dataVer;
-                    } else if("equipmentMemory".equals(secondAssetColumn)){
-                        dataVer.put("type","number");
-                        dataVer.put("type2","bw");
-                        dataVer.put("value1","1");
-                        dataVer.put("value2","2000");
-                        dataVer.put("prohibitInput",true);
-                        dataVerification=dataVer;
-                    }else if("rackUpNumber".equals(secondAssetColumn)||"rackDownNumber".equals(secondAssetColumn)){
-                        dataVer.put("type","number");
-                        dataVer.put("type2","bw");
-                        dataVer.put("value1","1");
-                        dataVer.put("value2","100");
-                        dataVer.put("prohibitInput",true);
-                        dataVerification=dataVer;
+                        metaData.setValueFormat("0.00");
+                        metaData.setValueType("n");
                     }else if("productionDate".equals(secondAssetColumn)||
                             "maintenanceStartDate".equals(secondAssetColumn)||
                             "maintenanceEndDate".equals(secondAssetColumn)||
@@ -403,9 +414,29 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
                         dataVer.put("type","date");
                         dataVer.put("type2","bw");
                         dataVer.put("value1","1979-01-01");
-                        dataVer.put("value2","2200-01-01");
+                        dataVer.put("value2","2600-01-01");
+                        dataVer.put("prohibitInput",true);
+                        metaData.setValueFormat("yyyy-MM-dd");
+                        metaData.setValueType("d");
+                        dataVerification=dataVer;
+                    }else if(
+                                      "maintenancePrice".equals(secondAssetColumn)||
+                                    "totalAmountPrice".equals(secondAssetColumn)||
+                                    "purchaseUnitPrice".equals(secondAssetColumn)||
+                                    "originalUnitPrice".equals(secondAssetColumn)||
+                                    "navPrice".equals(secondAssetColumn)||
+                                    "assetUsedServiceLife".equals(secondAssetColumn)||
+                                    "taxAmountRate".equals(secondAssetColumn)||
+                                    "taxAmountPrice".equals(secondAssetColumn)
+                      ){
+                        dataVer.put("type","number");
+                        dataVer.put("type2","bw");
+                        dataVer.put("value1","1");
+                        dataVer.put("value2","10000000");
                         dataVer.put("prohibitInput",true);
                         dataVerification=dataVer;
+                        metaData.setValueFormat("0.00");
+                        metaData.setValueType("n");
                     }else if("assetSourceName".equals(secondAssetColumn)){
                         dataVer.put("prohibitInput",true);
                         dataVer.put("type","dropdown");
@@ -651,7 +682,6 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
         printData.setLabel(label);
         AssetLabelTpl assetLabelTpl=label.getAssetTpl();
         assetLabelService.dao().fill(assetLabelTpl).with(AssetLabelTplMeta.ASSET_LABEL_LAYOUT_LIST).execute();
-
         printData.setAssetLabelLayoutList(assetLabelTpl.getAssetLabelLayoutList());
         printData.setAssetColumnList(label.getAssetLabelColumnList());
         printData.setAssetData(mapList);
