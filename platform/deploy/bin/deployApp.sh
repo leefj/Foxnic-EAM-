@@ -660,6 +660,7 @@ sh startAll.sh
 tmpdate=`date`
 echo "$tmpdate,first setup time record!">$base_dir/app/bin/setupApp.log
 echo "#for lank app quick command list:">>~/.bash_profile
+echo "alias kh='sh $base_dir/app/bin/help.sh'" >>~/.bash_profile
 echo "alias ga='cd $base_dir/app/app/app'" >>~/.bash_profile
 echo "alias gb='cd $base_dir/app/app/bpm'" >>~/.bash_profile
 echo "alias gj='cd $base_dir/app/app/job'" >>~/.bash_profile

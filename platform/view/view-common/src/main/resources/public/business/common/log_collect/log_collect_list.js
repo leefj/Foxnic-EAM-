@@ -1,7 +1,7 @@
 /**
  * 日志收集 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-17 12:33:11
+ * @since 2023-04-18 12:18:13
  */
 
 
@@ -394,6 +394,9 @@ function ListPage() {
 						}
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
+			}
+			else if (layEvent === 'collect-download') { // 下载
+				window.pageExt.list.collectDownload(data,this);
 			}
 			
 		});

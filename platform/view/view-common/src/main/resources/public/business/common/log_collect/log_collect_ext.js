@@ -105,7 +105,16 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
+            // if(field=="fileId"){
+            //     if(r.status=="valid"&&value){
+            //         var html="下载";
+            //         return html;
+            //     }else{
+            //         return "";
+            //     }
+            // }
             if(value==null) return "";
+
             return value;
         },
         /**
@@ -168,7 +177,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         },
         collectLog:function (selected,it){
             console.log('collectLog',selected,it);
-
             //调用批量删除接口
             top.layer.confirm(fox.translate('是否开始收集日志？'), function (i) {
                 top.layer.close(i);
@@ -176,11 +184,18 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     if (data.success) {
                     } else {
                     }
+                    window.module.refreshTableData();
                     fox.showMessage(data);
                 },{delayLoading:200,elms:[$("#collect-log")]});
             });
 
         },
+        collectDownload:function (data,it){
+            console.log('downFile',data);
+            var downloadUrl="/service-storage/sys-file/download?id="+data.id+"&inline=0";
+            fox.submit(downloadUrl,{id:data.id});
+        },
+
         /**
          * 末尾执行
          */

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * 日志收集模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-17 12:33:09
+ * @since 2023-04-18 12:18:12
 */
 
 @Controller("SysLogCollectPageController")

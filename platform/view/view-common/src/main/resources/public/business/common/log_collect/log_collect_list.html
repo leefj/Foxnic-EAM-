@@ -2,7 +2,7 @@
 /**
  * 日志收集 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-17 12:33:10
+ * @since 2023-04-18 12:18:13
  */
  -->
  <!DOCTYPE html>
@@ -97,6 +97,7 @@
 
     <button th:if="${perm.checkAuth('sys_log_collect:delete')}" class="layui-btn layui-btn-xs layui-btn-danger ops-delete-button " lay-event="del" data-id="{{d.id}}"><span th:text="${lang.translate('删除','','cmp:table.ops')}">删除</span></button>
 
+    <button th:if="${perm.checkAuth('sys_log_collect:download')}"class="layui-btn layui-btn-xs  collect-download " lay-event="collect-download" data-id="{{d.id}}"><span th:text="${lang.translate('下载','','cmp:table.ops')}">下载</span></button>
 
 </script>
 
