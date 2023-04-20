@@ -1,6 +1,8 @@
 #!/bin/sh
 cur_dir=$(cd `dirname $0`; pwd)
 app_dir=$cur_dir/..
+fileId=$1
+echo "fileId=$1"
 collect_dir="$app_dir/tmp/collect_$$"
 if [[ ! -d $collect_dir ]];then
   mkdir -p $collect_dir
@@ -34,4 +36,12 @@ rm -rf bpm_log_*.tar
 rm -rf job_log_*.tar
 echo "collect file show:"
 ls -rtl $collect_dir/collect_log_$TIME.tar.gz
+
+if [[ ! -d $app_dir/app/app/upload/collect/log ]];then
+  mkdir -p $app_dir/app/app/upload/collect/log
+fi
+if [[ $1 ]];then
+  echo "copy to $app_dir/app/app/upload/collect/log"
+  cp $collect_dir/collect_log_$TIME.tar.gz $app_dir/app/app/upload/collect/log/$fileId.tar.gz
+fi
 exit 0

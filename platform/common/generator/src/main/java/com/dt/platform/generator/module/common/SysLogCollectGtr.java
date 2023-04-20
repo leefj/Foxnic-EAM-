@@ -52,6 +52,8 @@ public class SysLogCollectGtr extends BaseCodeGenerator {
         cfg.view().list().disableCreateNew();
         cfg.view().list().disableBatchDelete();
         cfg.view().list().addToolButton("收集日志","collectLog","collect-log","sys_log_collect:collect");
+        cfg.view().list().operationColumn().addActionButton("下载","collectDownload","collect-download","sys_log_collect:download");
+
 
         //文件生成覆盖模式
         cfg.overrides()

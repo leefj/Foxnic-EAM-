@@ -1,5 +1,6 @@
 package com.dt.platform.common.controller;
 
+import java.io.*;
 import java.util.*;
 import com.dt.platform.constants.enums.common.CollectStatusEnum;
 import com.github.foxnic.commons.busi.id.IDGenerator;
@@ -29,7 +30,6 @@ import com.github.foxnic.api.error.ErrorDesc;
 import com.github.foxnic.commons.io.StreamUtil;
 import java.util.Map;
 import com.github.foxnic.dao.excel.ValidateResult;
-import java.io.InputStream;
 import com.dt.platform.domain.common.meta.LogCollectMeta;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -185,9 +185,31 @@ public class LogCollectController extends SuperController {
         log.setCollectRange("应用系统日志收集");
         log.setStatus(CollectStatusEnum.VALID.code());
         log.setFileId(fileId);
-        Insert ins=new Insert("sys_files");
-        ins.set("id",fileId);
-        logCollectService.dao().execute(ins);
+        try {
+            File directory = new File("");
+            System.out.println(directory.getCanonicalPath());//获取标准的路径
+            System.out.println("开始进行收集执行,当前路径:"+directory.getCanonicalPath());
+            //cd /app/app/app/app
+            Process process=Runtime.getRuntime().exec("sh ./../../bin/collectLog.sh "+fileId);
+            BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream())); //虽然cmd命令可以直接输出，但是通过IO流技术可以保证对数据进行一个缓冲。
+            System.out.println("执行该编译");
+            String msg = null;
+            while ((msg = br.readLine()) != null) {
+                System.out.println(msg);
+            }
+            Insert ins=new Insert("sys_file");
+            ins.set("id",fileId);
+            ins.set("file_name","日志.tar.gz");
+            ins.set("location","/collect/log/"+fileId+".tar.gz");
+            ins.set("media_type","application/octet-stream");
+            ins.set("file_type","gz");
+            ins.set("size","1000");
+            logCollectService.dao().execute(ins);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+            return ErrorDesc.failureMessage("收集失败,"+e.getMessage());
+        }
         return logCollectService.insert(log);
     }
 

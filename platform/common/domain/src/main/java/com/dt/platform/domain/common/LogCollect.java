@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 日志收集
  * <p>日志收集 , 数据表 sys_log_collect 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-17 12:33:09
+ * @since 2023-04-18 12:18:12
  * @sign 082B20A3AC360E695E440F677A591171
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */

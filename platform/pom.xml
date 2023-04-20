@@ -56,7 +56,6 @@
         <module>./view/view-ops</module>
         <module>./view/view-common</module>
         <module>./view/view-knowledgebase</module>
-
         <module>./view/view-customer</module>
         <module>./view/view-vehicle</module>
         <module>./view/view-cms</module>

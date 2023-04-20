@@ -149,7 +149,7 @@ foxnic:
       #wms
       ########################  kb key list  #######################
       #kb
-      auth-keys: eam,infrastructure,eam_employee,eam_equipment_mgr,hrm,bpm-mgr,auto_perm,changes,hr,basic_permissions,common_system,docs,sys_file:mngr,data_backup,pcm,oauth,public_resource,bpm,mobile_application,dp_rule:mngr,system_config,sys_tpl_file:mngr,job
+      auth-keys: kb,eam,infrastructure,eam_employee,eam_equipment_mgr,hrm,bpm-mgr,auto_perm,changes,hr,basic_permissions,common_system,docs,sys_file:mngr,data_backup,pcm,oauth,public_resource,bpm,mobile_application,dp_rule:mngr,system_config,sys_tpl_file:mngr,job
       # 是否在首页体现 module-authorities 控制
       apply-index-page: true
       # 是否在菜单树体现 module-authorities 控制，主要包括菜单管理、角色选择等。注意，此项若开启可能导致菜单权限勾选不全，建议仅在生产环境开启。
@@ -273,7 +273,7 @@ security:
   # 配置无需鉴权可以访问的地址
   # /service-storage/sys-file/upload/**,/service-storage/sys-file/image/** 移动端访问开放，后续修正
   #
-  ignored-urls: /share/public.html,/service-storage/sys-file/download,/business/ops/software_media/software_media_public_list.html,/service-ops/ops-software-media/query-paged-list,/service-ops/ops-information-system/query-paged-list,/business/ops/information_system/information_system_public_list.html,/service-ops/ops-host/query-paged-list,/**/host_public_list.html,/service-ops/ops-db-info/public-query-paged-list,/**/db_info_public_list.html,/service-ops/ops-db-info/public-query-paged-list,/**/db_info_public_list.html,/service-eam/eam-asset/user-login-data , /service-storage/sys-file/upload/** , /service-storage/sys-file/image/** ,   /public.html ,/share/public.html , /console/** , /assets/** , /pages/** , /*.ico ,/extmodule/** , /module/** ,  /**/*.css , /**/*.js , /error , /druid/**,/business/eam/user_book/**
+  ignored-urls: /business/eam/c_cust_repair_apply/c_cust_repair_apply_form_full_p.html,/service-eam/eam-c-cust-repair-apply/query-paged-list,/service-eam/eam-c-cust-repair-apply/get-by-id,/service-eam/eam-c-cust-repair-apply/insert,/business/eam/c_cust_repair_apply/c_cust_repair_apply_list_public.html,/business/eam/c_cust_repair_apply/c_cust_repair_apply_form_public.html,/share/public.html,/service-storage/sys-file/download,/business/ops/software_media/software_media_public_list.html,/service-ops/ops-software-media/query-paged-list,/service-ops/ops-information-system/query-paged-list,/business/ops/information_system/information_system_public_list.html,/service-ops/ops-host/query-paged-list,/**/host_public_list.html,/service-ops/ops-db-info/public-query-paged-list,/**/db_info_public_list.html,/service-ops/ops-db-info/public-query-paged-list,/**/db_info_public_list.html,/service-eam/eam-asset/user-login-data , /service-storage/sys-file/upload/** , /service-storage/sys-file/image/** ,   /public.html ,/share/public.html , /console/** , /assets/** , /pages/** , /*.ico ,/extmodule/** , /module/** ,  /**/*.css , /**/*.js , /error , /druid/**,/business/eam/user_book/**
   # mode=session 时配置的登录页面
   login-page: /login.html
   # 配置登录标识的范围与优先级,可选值在 LoginIdentityType 枚举中定义
