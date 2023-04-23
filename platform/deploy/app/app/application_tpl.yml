@@ -325,8 +325,6 @@ knife4j:
     enableSwaggerModels: true
     swaggerModelName: EamModel
 
-
-
 develop:
   #language: defaults
   start-relation-monitor: true

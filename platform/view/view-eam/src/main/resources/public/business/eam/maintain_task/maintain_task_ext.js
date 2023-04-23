@@ -28,9 +28,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeInit:function () {
             console.log("list:beforeInit");
-            // var operHtml=document.getElementById("toolbarTemplate").innerHTML;
-            // operHtml=operHtml.replace(/lay-event="create"/i, "style=\"display:none\"")
-            // document.getElementById("toolbarTemplate").innerHTML=operHtml;
+            var operHtml=document.getElementById("tableOperationTemplate").innerHTML;
+            operHtml=operHtml.replace(/lay-event="maintain"/i, "style=\"display:none\"")
+            document.getElementById("tableOperationTemplate").innerHTML=operHtml;
         },
         /**
          * 表格渲染前调用
