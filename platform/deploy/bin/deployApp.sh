@@ -331,6 +331,10 @@ function installApp(){
 	tar xvf $app_soft
 	cd $app_dir/bin/sql
 	tar xvf db.tar.gz
+	if [[ -d $app_dir/bin/database-compare-data ]];then
+	    rm -rf $app_dir/bin/database-compare-data
+	    mkdir -p $app_dir/bin/database-compare-data
+	fi
 	appConf=$app_dir/bin/app.conf
 	echo "">$appConf
 	echo "JAVA=$JAVA"                                   >>$appConf
@@ -375,6 +379,7 @@ function installApp(){
 	MYSQL_ADMIN=$mysql_dir/mysql/bin/mysqladmin
 	echo "#########start to create database"
 	echo "CREATE DATABASE $db_name DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;" > $db_create_db_file
+		echo "CREATE DATABASE ${db_name}_upgrade DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;" > $db_create_db_file
 	db_cnt=`$MYSQL -u$db_user -p$db_pwd -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME -e 'show databases;' 2>/dev/null|grep $db_name|wc -l `
 	if [[ $db_cnt -gt 0 ]];then
 	  echo "Error|db:$db_name exist!"
@@ -660,11 +665,13 @@ sh startAll.sh
 tmpdate=`date`
 echo "$tmpdate,first setup time record!">$base_dir/app/bin/setupApp.log
 echo "#for lank app quick command list:">>~/.bash_profile
-echo "alias kh='sh $base_dir/app/bin/help.sh'" >>~/.bash_profile
 echo "alias ga='cd $base_dir/app/app/app'" >>~/.bash_profile
 echo "alias gb='cd $base_dir/app/app/bpm'" >>~/.bash_profile
 echo "alias gj='cd $base_dir/app/app/job'" >>~/.bash_profile
 echo "alias g='cd $base_dir/app'" >>~/.bash_profile
+echo "alias k='sh $base_dir/app/bin/help.sh'" >>~/.bash_profile
+echo "alias ka_restart='cd $base_dir/app;sh restartApp.sh'" >>~/.bash_profile
+echo "alias kb_restart='cd $base_dir/app;sh restartBpm.sh'" >>~/.bash_profile
 echo "alias tdb='$base_dir/db/mysql/bin/mysql -h$db_host -P$db_port -u$db_user -p$db_pwd $db_name'" >>~/.bash_profile
 echo "Please waiting about 25 second,application Starting.."
 sleep 20
@@ -679,10 +686,13 @@ echo "Mysql info port=$db_port"
 echo "Mysql info userName=$db_user"
 echo "Mysql info password=$db_pwd"
 echo "Quick command list:"
+echo "k:help list"
 echo "ga: go to $base_dir/app/app/app"
 echo "gb: go to $base_dir/app/app/bpm"
 echo "gj: go to $base_dir/app/app/job"
-echo "g: go to  $base_dir/app"
+echo "g:  go to  $base_dir/app"
+echo "ka_restart:restartApp"
+echo "kb_restart:restartBpm"
 echo "tdb: go to connect to database"
 exit 0
 #################################################################### install finish

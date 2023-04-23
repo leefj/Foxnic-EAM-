@@ -82,7 +82,11 @@ start(){
     echo "Process is already running,please first stop it."
   else
     cd $app_dir/app/$app
-    nohup $JAVA -noverify -Dfile.encoding=UTF-8 -Djava.io.tmpdir=$app_dir/tmp  -Dloader.path=./lib/ $java_Xmx -jar $app_name -dprocess_Mark=$app_process_mark --Dspring.config.location=application.yml>$app_log_file 2>&1 &
+    application_yml="";
+    if [[ -f "application.yml" ]];then
+      application_yml="--Dspring.config.location=application.yml"
+    fi
+    nohup $JAVA -noverify -Dfile.encoding=UTF-8 -Djava.io.tmpdir=$app_dir/tmp  -Dloader.path=./lib/ $java_Xmx -jar $app_name -dprocess_Mark=$app_process_mark $application_yml>$app_log_file 2>&1 &
     sleep 3
     pidlist2=`ps -ef|grep java|grep $app_process_mark|grep -v grep |awk '{print $2}'`
     pidcnt2=`ps -ef|grep java|grep $app_process_mark|grep -v grep |awk '{print $2}'|wc -l`
