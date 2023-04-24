@@ -1,5 +1,5 @@
 #!/bin/sh
-modify_date="2023/04/16"
+modify_date="2023/04/25"
 ####################################################################################
 # run:
 #   sh appInstallFull.sh
@@ -30,7 +30,6 @@ app_version="last"
 MYSQL_PORT=3308
 MYSQL_CNF=/etc/my_plat.cnf
 MYSQL_SOCK_NAME=mysql_plat.sock
-## mysql
 app_port=8089
 db_port=$MYSQL_PORT
 db_user=root
@@ -38,6 +37,7 @@ db_pwd=root_pwd
 db_name=foxnic
 db_host=127.0.0.1
 bpm_port=8099
+base_dir="/app"
 echo "MYSQL_PORT:$MYSQL_PORT"
 echo "MYSQL_CNF:$MYSQL_CNF"
 echo "MYSQL_SOCK_NAME:$MYSQL_SOCK_NAME"
@@ -54,7 +54,6 @@ java_soft=$soft_base_dir/$java_file
 java_soft_md5=913c45332b22860b096217d9952c2ea4
 java_soft_remote=1
 ## directory
-base_dir="/app"
 java_dir="$base_dir/java"
 app_dir="$base_dir/app"
 mysql_dir="$base_dir/db"
@@ -101,7 +100,6 @@ function verifySoft(){
 		return 1
 	fi
 }
-
 function clearTips(){
 	echo "########################clear Tips########################"
 	echo "if you want to reinstall full app,please run below commands"
@@ -111,7 +109,6 @@ function clearTips(){
 	echo "ps -ef|grep java |grep -v grep |awk '{print \$2}'|xargs kill -9"
   echo "ps -ef|grep mysql |grep -v grep |awk '{print \$2}'|xargs kill -9"
 }
-
 function installJava(){
 	echo "#############install java start#############"
 	if [[ ! -d $java_dir ]];then
@@ -138,10 +135,7 @@ function installJava(){
 	echo ""
 	echo ""
 }
-
 function installMysql(){
-
-
 	echo "#############install mysql start#############"
 	if [[ ! -d $mysql_dir ]];then
 		echo "command:mkdir -p $mysql_dir"
@@ -155,7 +149,6 @@ function installMysql(){
 		clearTips
 		exit 1
 	fi
-
   which strings
   stringsR=$?
   ######stringsR check
@@ -167,7 +160,6 @@ function installMysql(){
       exit 1
     fi
   fi
-
 	if [[ -d "${mysql_dir}/mysql/data" ]];then
 		echo "${mysql_dir}/mysql/data Exists Deploy Failed,Please remove it first!"
 		clearTips
@@ -379,7 +371,7 @@ function installApp(){
 	MYSQL_ADMIN=$mysql_dir/mysql/bin/mysqladmin
 	echo "#########start to create database"
 	echo "CREATE DATABASE $db_name DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;" > $db_create_db_file
-		echo "CREATE DATABASE ${db_name}_upgrade DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;" > $db_create_db_file
+	echo "CREATE DATABASE ${db_name}_upgrade DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;" >> $db_create_db_file
 	db_cnt=`$MYSQL -u$db_user -p$db_pwd -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME -e 'show databases;' 2>/dev/null|grep $db_name|wc -l `
 	if [[ $db_cnt -gt 0 ]];then
 	  echo "Error|db:$db_name exist!"
@@ -400,13 +392,13 @@ function installApp(){
 	  echo "deploy failed!"
 	  exit 1
 	fi
-	echo "#########start to create procedure"
+	echo "#########start to create procedure $db_procedure_file"
 	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_procedure_file  2>/dev/null
-	echo "#########start to conf upload file data"
+	echo "#########start to conf upload file data $db_file_conf_file"
 	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_file_conf_file  2>/dev/null
-	echo "#########start to clear data "
+	echo "#########start to clear data $db_clear_data_file"
 	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_clear_data_file  2>/dev/null
-	echo "#########start to app setting data "
+	echo "#########start to app setting data $db_app_setting_file"
 	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $db_app_setting_file  2>/dev/null
 	echo "#########other setting"
 	setting_file="/tmp/setting_file.sql"
@@ -446,7 +438,6 @@ function installApp(){
 	sed -i '/startAll/d' /etc/rc.d/rc.local
 	echo "cd $app_dir;sh startAll.sh">>/etc/rc.d/rc.local
 }
-
 function stopFirewalld(){
   btcnt=`ps -ef|grep python|grep BT|grep -v grep|wc -l`
  if [[ $btcnt -gt 0 ]];then
@@ -456,10 +447,6 @@ function stopFirewalld(){
   systemctl disable firewalld.service
   systemctl stop firewalld.service
 }
-##########################################################################################
-##########################################################################################
-##########################################################################################
-##########################################################################################
 ##########################################################################################
 ################################# Install Main Run Start #################################
 #################################################################### download mysql start
@@ -591,14 +578,12 @@ if [[ $app_size -lt 80 ]];then
   rm -rf $app_soft_name
   wget $appUrl3
 fi
-
 touch $app_soft_name
 app_size=`du -sm $app_soft_name|awk '{print $1}'`
 if [[ $app_size -lt 80 ]];then
   echo "app soft file maybe not right!"
   exit 1
 fi
-
 #################################################################### download app finish
 #################################################################### verify soft start
 #verify app
