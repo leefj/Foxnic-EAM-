@@ -9,13 +9,14 @@ echo "maven_dir:$maven_dir"
 if [[ -d "$maven_dir/com/foxnicweb" ]];then
   cd $maven_dir/com/foxnicweb
   t=`date +"%Y%m%d%H%M%S"`
-  tar zcvf foxnic_${t}.tar.gz ./foxnic/*
+  tar zcvf ../foxnic_${t}.tar.gz ./*
   cd $maven_dir/com/foxnicweb
   echo "start to clear foxnic maven lib";
-  rm -rf foxnic*
-  rm -rf web*
-  rm -rf par*
-  rm -rf cangaroo*
+#  rm -rf foxnic*
+#  rm -rf web*
+#  rm -rf par*
+#  rm -rf cangaroo*
+  rm -rf *
 fi
 
 

@@ -37,6 +37,7 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addSimpleProperty(Host.class,"host","host","host");
         cfg.getPoClassFile().addSimpleProperty(ServiceInfo.class,"type","type","type");
         cfg.getPoClassFile().addSimpleProperty(DictItem.class,"deployModeDict","deployModeDict","deployModeDict");
+
         cfg.getPoClassFile().addListProperty(DictItem.class,"labelList","labelList","labelList");
         cfg.getPoClassFile().addListProperty(String.class,"labelIds","labelIds","labelIds");
         cfg.getPoClassFile().addListProperty(DictItem.class,"dataLocData","dataLocData","dataLocData");

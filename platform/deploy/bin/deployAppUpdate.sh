@@ -2,24 +2,19 @@
 cur_dir=$(cd `dirname $0`; pwd)
 app_dir=$cur_dir/..
 echo "cur_dir:$cur_dir"
-
-prod_app_dir=$app_dir
-
+prod_app_dir=/app/app
 app_conf="${cur_dir}/app.conf"
 tpl_update_par_cnt=`cat $app_conf|grep -v "#"|grep APP_TPL_UPDATE=|wc -l`
-
 if [[ $tpl_update_par_cnt -eq 0 ]];then
   tpl_update=0
 else
   tpl_update=`cat $app_conf|grep -v "#"|grep APP_TPL_UPDATE=|awk -F "=" '{print $2}'`
 fi
 echo "tpl_update value:$tpl_update"
-
 if [[ ! -d "$prod_app_dir/app/app/lib" ]];then
   echo "directory config error"
   exit 1
 fi
-
 #app.jar will overwrite if exist
 echo "######## start to update app.jar ##############"
 if [[ -f "$prod_app_dir/app/app/app.jar" ]];then
@@ -33,8 +28,6 @@ else
 fi
 echo ""
 echo ""
-
-
 #app lib will copy
 echo " ########start to update app.lib ##############"
 if [[ -d $prod_app_dir/app/app/lib ]];then
@@ -49,7 +42,6 @@ else
 fi
 echo ""
 echo ""
-
 #bpm.jar will overwrite
 echo "######## start to update bpm.jar ##############"
 if [[ -f "$prod_app_dir/app/bpm/bpm.jar" ]];then
@@ -63,7 +55,6 @@ else
 fi
 echo ""
 echo ""
-
 #sh file will overwrite
 echo "######## start to update script file ##############"
 cd $app_dir/bin/
@@ -78,7 +69,6 @@ do
 done
 chmod +x $prod_app_dir/bin/*.sh
 ls -rtl $prod_app_dir/bin/*.sh
-
 #Tpl File
 echo "######## start to update tpl file ##############"
 if [[ $tpl_update -eq 1 ]];then
@@ -95,8 +85,6 @@ if [[ $tpl_update -eq 1 ]];then
      exit 1
   fi
 fi
-
-
 #restart
 echo "######## restart app ##############"
 cd $prod_app_dir
