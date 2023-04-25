@@ -243,17 +243,17 @@ long_query_time=3
 slow_query_log_file=/usr/local/mysql/mysql_slow.log
 back_log=500
 open_files_limit=65535
-connect_timeout=50
+connect_timeout=60
 wait_timeout=3600
 key_buffer_size=512m
 interactive_timeout=3600
 table_open_cache=2000
-max_heap_table_size=8M
-tmp_table_size=32M
-read_buffer_size=2M
-read_rnd_buffer_size=8M
-sort_buffer_size=8M
-join_buffer_size=8M
+max_heap_table_size=10M
+tmp_table_size=50M
+read_buffer_size=10M
+read_rnd_buffer_size=10M
+sort_buffer_size=20M
+join_buffer_size=20M
 thread_cache_size=120
 innodb_file_per_table=on
 innodb_buffer_pool_instances=8
@@ -446,6 +446,12 @@ function stopFirewalld(){
   fi
   systemctl disable firewalld.service
   systemctl stop firewalld.service
+}
+
+function installNginx(){
+  cd $app_dir/app/nginx
+  sh deployNginx.sh
+  return 0
 }
 ##########################################################################################
 ################################# Install Main Run Start #################################
@@ -646,25 +652,33 @@ stopFirewalld
 ## start app
 cd $app_dir
 sh startAll.sh
-#setting environment
+# start to install nginx
+installNginx
+########## setting environment
 tmpdate=`date`
 echo "$tmpdate,first setup time record!">$base_dir/app/bin/setupApp.log
 echo "#for lank app quick command list:">>~/.bash_profile
 echo "alias ga='cd $base_dir/app/app/app'" >>~/.bash_profile
 echo "alias gb='cd $base_dir/app/app/bpm'" >>~/.bash_profile
 echo "alias gj='cd $base_dir/app/app/job'" >>~/.bash_profile
+echo "alias gn='cd $base_dir/app/app/nginx'" >>~/.bash_profile
 echo "alias g='cd $base_dir/app'" >>~/.bash_profile
 echo "alias k='sh $base_dir/app/bin/help.sh'" >>~/.bash_profile
 echo "alias ka_restart='cd $base_dir/app;sh restartApp.sh'" >>~/.bash_profile
 echo "alias kb_restart='cd $base_dir/app;sh restartBpm.sh'" >>~/.bash_profile
+echo "alias kj_restart='cd $base_dir/app;sh restartJob.sh'" >>~/.bash_profile
+echo "alias kn_restart='cd $base_dir/app;sh restartNginx.sh'" >>~/.bash_profile
 echo "alias tdb='$base_dir/db/mysql/bin/mysql -h$db_host -P$db_port -u$db_user -p$db_pwd $db_name'" >>~/.bash_profile
-echo "Please waiting about 25 second,application Starting.."
-sleep 20
+echo "alias tdb_none='$base_dir/db/mysql/bin/mysql -h$db_host -P$db_port -u$db_user -p$db_pwd '" >>~/.bash_profile
+echo "Please wait about 25 seconds,Application is starting.."
+sleep 10
 echo "################## install result ###################"
-echo "Install finish"
-echo "Application can be visited about 30 second later"
+echo "------------------------------- result -----------------------------------------"
+echo "Install finish."
+echo "Application can be visit about 30 second later"
 echo "App install directory list:$mysql_dir,$app_dir"
-echo "Visit address:http://ip:$app_port"
+echo "App web address:http://ip:$app_port"
+echo "App mobile address:https://ip:8091"
 echo "Login info user:admin"
 echo "Login info password:123456"
 echo "Mysql info port=$db_port"
@@ -675,10 +689,14 @@ echo "k:help list"
 echo "ga: go to $base_dir/app/app/app"
 echo "gb: go to $base_dir/app/app/bpm"
 echo "gj: go to $base_dir/app/app/job"
-echo "g:  go to  $base_dir/app"
+echo "gn: go to $base_dir/app/app/nginx"
+echo "g:  go to $base_dir/app"
 echo "ka_restart:restartApp"
 echo "kb_restart:restartBpm"
+echo "kj_restart:restartJob"
+echo "kn_restart:restartNginx"
 echo "tdb: go to connect to database"
+echo "--------------------------------- end ---------------------------------------"
 exit 0
 #################################################################### install finish
 ##########################################################################################
@@ -693,5 +711,8 @@ exit 0
 rm -rf /app/java
 rm -rf /app/db
 rm -rf /app/app
+rm -rf /app/nginx
 ps -ef|grep java |grep -v grep |awk '{print $2}'|xargs kill -9
 ps -ef|grep mysql |grep -v grep |awk '{print $2}'|xargs kill -9
+ps -ef|grep nginx |grep -v grep |awk '{print $2}'|xargs kill -9
+
