@@ -449,7 +449,7 @@ function stopFirewalld(){
 }
 
 function installNginx(){
-  cd $app_dir/app/nginx
+  cd $app_dir/bin
   sh deployNginx.sh
   return 0
 }
