@@ -8,13 +8,15 @@ import org.github.foxnic.web.domain.pcm.Catalog;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Organization;
 import com.dt.platform.domain.eam.Position;
+import com.dt.platform.domain.eam.Warehouse;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-17 08:50:07
- * @sign 896DA421C99A64195CD3DC55BF654DB6
+ * @since 2023-04-26 07:51:03
+ * @sign CB43B0BCB8C2479D0971F2F596B639D8
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -209,6 +211,26 @@ public class AssetDataPermissionsMeta {
 	 * 备注 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissions,java.lang.String> POSITION_NOTES_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissions.class ,POSITION_NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
+	
+	/**
+	 * 仓库 , 类型: java.lang.String
+	*/
+	public static final String WAREHOUSE_AUTHORITY_ENABLE="warehouseAuthorityEnable";
+	
+	/**
+	 * 仓库 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissions,java.lang.String> WAREHOUSE_AUTHORITY_ENABLE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissions.class ,WAREHOUSE_AUTHORITY_ENABLE, java.lang.String.class, "仓库", "仓库", java.lang.String.class, null);
+	
+	/**
+	 * 备注 , 类型: java.lang.String
+	*/
+	public static final String WAREHOUSE_NOTES="warehouseNotes";
+	
+	/**
+	 * 备注 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissions,java.lang.String> WAREHOUSE_NOTES_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissions.class ,WAREHOUSE_NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
 	
 	/**
 	 * 优先级 , 类型: java.lang.Integer
@@ -411,9 +433,29 @@ public class AssetDataPermissionsMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissions,java.lang.String> POSITION_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissions.class ,POSITION_IDS, java.util.List.class, "存放位置", "存放位置", java.lang.String.class, null);
 	
 	/**
+	 * 仓库 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Warehouse
+	*/
+	public static final String WAREHOUSE="warehouse";
+	
+	/**
+	 * 仓库 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Warehouse
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissions,com.dt.platform.domain.eam.Warehouse> WAREHOUSE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissions.class ,WAREHOUSE, java.util.List.class, "仓库", "仓库", com.dt.platform.domain.eam.Warehouse.class, null);
+	
+	/**
+	 * 仓库 , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String WAREHOUSE_IDS="warehouseIds";
+	
+	/**
+	 * 仓库 , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissions,java.lang.String> WAREHOUSE_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissions.class ,WAREHOUSE_IDS, java.util.List.class, "仓库", "仓库", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NAME , STATUS , OWNER_CODE , CODE , ROLE_CODE , OWN_ORG_AUTHORITY_ENABLE , OWN_ORG_LOCAL_ENABLE , OWN_ORG_CASCADE_ENABLE , OWN_ORG_NOTES , ORG_AUTHORITY_ENABLE , ORG_LOCAL_ENABLE , ORG_CASCADE_ENABLE , ORG_NOTES , CATALOG_AUTHORITY_ENABLE , CATALOG_CASCADE_ENABLE , CATALOG_NOTES , POSITION_AUTHORITY_ENABLE , POSITION_NOTES , PRIORITY , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , BUSI_ROLE , CATEGORY , CATEGORY_IDS , ORGANIZATION , ORGANIZATION_IDS , OWN_ORGANIZATION , OWN_ORGANIZATION_IDS , POSITION , POSITION_IDS };
+	public static final String[] $PROPS={ ID , NAME , STATUS , OWNER_CODE , CODE , ROLE_CODE , OWN_ORG_AUTHORITY_ENABLE , OWN_ORG_LOCAL_ENABLE , OWN_ORG_CASCADE_ENABLE , OWN_ORG_NOTES , ORG_AUTHORITY_ENABLE , ORG_LOCAL_ENABLE , ORG_CASCADE_ENABLE , ORG_NOTES , CATALOG_AUTHORITY_ENABLE , CATALOG_CASCADE_ENABLE , CATALOG_NOTES , POSITION_AUTHORITY_ENABLE , POSITION_NOTES , WAREHOUSE_AUTHORITY_ENABLE , WAREHOUSE_NOTES , PRIORITY , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , BUSI_ROLE , CATEGORY , CATEGORY_IDS , ORGANIZATION , ORGANIZATION_IDS , OWN_ORGANIZATION , OWN_ORGANIZATION_IDS , POSITION , POSITION_IDS , WAREHOUSE , WAREHOUSE_IDS };
 	
 	/**
 	 * 代理类
@@ -629,6 +671,28 @@ public class AssetDataPermissionsMeta {
 		public AssetDataPermissions setPositionNotes(String positionNotes) {
 			super.change(POSITION_NOTES,super.getPositionNotes(),positionNotes);
 			super.setPositionNotes(positionNotes);
+			return this;
+		}
+		
+		/**
+		 * 设置 仓库
+		 * @param warehouseAuthorityEnable 仓库
+		 * @return 当前对象
+		*/
+		public AssetDataPermissions setWarehouseAuthorityEnable(String warehouseAuthorityEnable) {
+			super.change(WAREHOUSE_AUTHORITY_ENABLE,super.getWarehouseAuthorityEnable(),warehouseAuthorityEnable);
+			super.setWarehouseAuthorityEnable(warehouseAuthorityEnable);
+			return this;
+		}
+		
+		/**
+		 * 设置 备注
+		 * @param warehouseNotes 备注
+		 * @return 当前对象
+		*/
+		public AssetDataPermissions setWarehouseNotes(String warehouseNotes) {
+			super.change(WAREHOUSE_NOTES,super.getWarehouseNotes(),warehouseNotes);
+			super.setWarehouseNotes(warehouseNotes);
 			return this;
 		}
 		
@@ -851,5 +915,92 @@ public class AssetDataPermissionsMeta {
 			super.setPositionIds(positionIds);
 			return this;
 		}
+		
+		/**
+		 * 设置 仓库
+		 * @param warehouse 仓库
+		 * @return 当前对象
+		*/
+		public AssetDataPermissions setWarehouse(List<Warehouse> warehouse) {
+			super.change(WAREHOUSE,super.getWarehouse(),warehouse);
+			super.setWarehouse(warehouse);
+			return this;
+		}
+		
+		/**
+		 * 设置 仓库
+		 * @param warehouseIds 仓库
+		 * @return 当前对象
+		*/
+		public AssetDataPermissions setWarehouseIds(List<String> warehouseIds) {
+			super.change(WAREHOUSE_IDS,super.getWarehouseIds(),warehouseIds);
+			super.setWarehouseIds(warehouseIds);
+			return this;
+		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AssetDataPermissions clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AssetDataPermissions duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setCode(this.getCode());
+			inst.setPositionNotes(this.getPositionNotes());
+			inst.setNotes(this.getNotes());
+			inst.setOwnerCode(this.getOwnerCode());
+			inst.setCatalogCascadeEnable(this.getCatalogCascadeEnable());
+			inst.setCatalogNotes(this.getCatalogNotes());
+			inst.setOwnOrgLocalEnable(this.getOwnOrgLocalEnable());
+			inst.setWarehouseAuthorityEnable(this.getWarehouseAuthorityEnable());
+			inst.setOrgAuthorityEnable(this.getOrgAuthorityEnable());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setOrgNotes(this.getOrgNotes());
+			inst.setRoleCode(this.getRoleCode());
+			inst.setOrgLocalEnable(this.getOrgLocalEnable());
+			inst.setOwnOrgNotes(this.getOwnOrgNotes());
+			inst.setCatalogAuthorityEnable(this.getCatalogAuthorityEnable());
+			inst.setId(this.getId());
+			inst.setOwnOrgCascadeEnable(this.getOwnOrgCascadeEnable());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setPriority(this.getPriority());
+			inst.setVersion(this.getVersion());
+			inst.setOrgCascadeEnable(this.getOrgCascadeEnable());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setOwnOrgAuthorityEnable(this.getOwnOrgAuthorityEnable());
+			inst.setName(this.getName());
+			inst.setPositionAuthorityEnable(this.getPositionAuthorityEnable());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setWarehouseNotes(this.getWarehouseNotes());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setOwnOrganization(this.getOwnOrganization());
+				inst.setPositionIds(this.getPositionIds());
+				inst.setCategoryIds(this.getCategoryIds());
+				inst.setOrganizationIds(this.getOrganizationIds());
+				inst.setBusiRole(this.getBusiRole());
+				inst.setOrganization(this.getOrganization());
+				inst.setOwnOrganizationIds(this.getOwnOrganizationIds());
+				inst.setPosition(this.getPosition());
+				inst.setCategory(this.getCategory());
+				inst.setWarehouse(this.getWarehouse());
+				inst.setWarehouseIds(this.getWarehouseIds());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

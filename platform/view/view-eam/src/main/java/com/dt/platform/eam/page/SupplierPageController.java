@@ -2,6 +2,7 @@ package com.dt.platform.eam.page;
 
 import org.github.foxnic.web.framework.view.controller.ViewController;
 
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,21 @@ public class SupplierPageController extends ViewController {
 	 */
 	@RequestMapping("/supplier_list.html")
 	public String list(Model model,HttpServletRequest request) {
+
+
+		if(SessionUser.getCurrent()==null){
+			System.out.println("page current user is null");
+		}else{
+			System.out.println(	"page current "+SessionUser.getCurrent().getUserId());
+
+		}
+		System.out.println(this.getCurrentUer());
+		if(this.getCurrentUer()==null){
+			System.out.println("page current2 user is null");
+		}else{
+			System.out.println(	"page current2 "+this.getCurrentUer().getUserId());
+
+		}
 		return prefix+"/supplier_list";
 	}
 

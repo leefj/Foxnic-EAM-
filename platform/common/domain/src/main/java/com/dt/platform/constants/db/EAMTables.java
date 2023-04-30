@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-04-14 07:27:41
+ * @since 2023-04-26 07:44:51
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -811,19 +811,9 @@ public class EAMTables {
 		public static final DBField LABEL = new DBField(DBDataType.STRING , "label","label","短标签1","短标签1",false,false,true);
 		
 		/**
-		 * 长标签2
-		*/
-		public static final DBField LABEL2 = new DBField(DBDataType.STRING , "label2","label2","长标签2","长标签2",false,false,true);
-		
-		/**
 		 * 短标签3
 		*/
 		public static final DBField LABEL3 = new DBField(DBDataType.STRING , "label3","label3","短标签3","短标签3",false,false,true);
-		
-		/**
-		 * 长标签4
-		*/
-		public static final DBField LABEL4 = new DBField(DBDataType.STRING , "label4","label4","长标签4","长标签4",false,false,true);
 		
 		/**
 		 * 短标签5
@@ -831,9 +821,29 @@ public class EAMTables {
 		public static final DBField LABEL5 = new DBField(DBDataType.STRING , "label5","label5","短标签5","短标签5",false,false,true);
 		
 		/**
+		 * 长标签4
+		*/
+		public static final DBField LABEL4 = new DBField(DBDataType.STRING , "label4","label4","长标签4","长标签4",false,false,true);
+		
+		/**
+		 * 长标签2
+		*/
+		public static final DBField LABEL2 = new DBField(DBDataType.STRING , "label2","label2","长标签2","长标签2",false,false,true);
+		
+		/**
 		 * 单据
 		*/
 		public static final DBField BILL_ID = new DBField(DBDataType.STRING , "bill_id","billId","单据","单据",false,false,true);
+		
+		/**
+		 * 经度数据
+		*/
+		public static final DBField LONGITUDE = new DBField(DBDataType.DECIMAL , "longitude","longitude","经度数据","经度数据",false,false,true);
+		
+		/**
+		 * 维度数据
+		*/
+		public static final DBField DIMENSION = new DBField(DBDataType.DECIMAL , "dimension","dimension","维度数据","维度数据",false,false,true);
 		
 		/**
 		 * 内部控制标签
@@ -961,7 +971,7 @@ public class EAMTables {
 		public static final DBField ASSET_SELECTED_DATA = new DBField(DBDataType.STRING , "asset_selected_data","assetSelectedData","选择","选择",false,false,true);
 		
 		public EAM_ASSET() {
-			this.init($NAME,"资产" , ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , REGION_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , MAINTENANCE_PRICE , MAINTENANCE_METHOD , SUGGEST_MAINTENANCE_METHOD , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , FINANCIAL_OPTION , EXPENSE_ITEM , SUPPLIER_ID , CUSTOMER_INFO , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , PURCHASE_UNIT_PRICE , ORIGINAL_UNIT_PRICE , NAV_PRICE , ASSET_USED_SERVICE_LIFE , DEPRECIATION_ID , DEPRECIATION_OPER_TIME , RESIDUALS_RATE , RESIDUALS_PRICE , TAX_AMOUNT_RATE , CURRENT_YEAR_DEPRECIATION , DEPRECIATION_YEAR , ACCUMULATED_DEPRECIATION , MONTH_DEPRECIATION_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL2 , LABEL3 , LABEL4 , LABEL5 , BILL_ID , INTERNAL_CONTROL_LABEL , COLLECTION_ID , BORROW_ID , SCRAP_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA);
+			this.init($NAME,"资产" , ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , REGION_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , MAINTENANCE_PRICE , MAINTENANCE_METHOD , SUGGEST_MAINTENANCE_METHOD , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , FINANCIAL_OPTION , EXPENSE_ITEM , SUPPLIER_ID , CUSTOMER_INFO , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , PURCHASE_UNIT_PRICE , ORIGINAL_UNIT_PRICE , NAV_PRICE , ASSET_USED_SERVICE_LIFE , DEPRECIATION_ID , DEPRECIATION_OPER_TIME , RESIDUALS_RATE , RESIDUALS_PRICE , TAX_AMOUNT_RATE , CURRENT_YEAR_DEPRECIATION , DEPRECIATION_YEAR , ACCUMULATED_DEPRECIATION , MONTH_DEPRECIATION_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL3 , LABEL5 , LABEL4 , LABEL2 , BILL_ID , LONGITUDE , DIMENSION , INTERNAL_CONTROL_LABEL , COLLECTION_ID , BORROW_ID , SCRAP_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA);
 		}
 		public static final EAM_ASSET $TABLE=new EAM_ASSET();
 	}
@@ -2394,6 +2404,16 @@ public class EAMTables {
 		public static final DBField POSITION_NOTES = new DBField(DBDataType.STRING , "position_notes","positionNotes","备注","备注",false,false,true);
 		
 		/**
+		 * 仓库
+		*/
+		public static final DBField WAREHOUSE_AUTHORITY_ENABLE = new DBField(DBDataType.STRING , "warehouse_authority_enable","warehouseAuthorityEnable","仓库","仓库",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField WAREHOUSE_NOTES = new DBField(DBDataType.STRING , "warehouse_notes","warehouseNotes","备注","备注",false,false,true);
+		
+		/**
 		 * 优先级
 		*/
 		public static final DBField PRIORITY = new DBField(DBDataType.INTEGER , "priority","priority","优先级","优先级",false,false,true);
@@ -2449,7 +2469,7 @@ public class EAMTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public EAM_ASSET_DATA_PERMISSIONS() {
-			this.init($NAME,"资产数据权限" , ID , NAME , STATUS , OWNER_CODE , CODE , ROLE_CODE , OWN_ORG_AUTHORITY_ENABLE , OWN_ORG_LOCAL_ENABLE , OWN_ORG_CASCADE_ENABLE , OWN_ORG_NOTES , ORG_AUTHORITY_ENABLE , ORG_LOCAL_ENABLE , ORG_CASCADE_ENABLE , ORG_NOTES , CATALOG_AUTHORITY_ENABLE , CATALOG_CASCADE_ENABLE , CATALOG_NOTES , POSITION_AUTHORITY_ENABLE , POSITION_NOTES , PRIORITY , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"资产数据权限" , ID , NAME , STATUS , OWNER_CODE , CODE , ROLE_CODE , OWN_ORG_AUTHORITY_ENABLE , OWN_ORG_LOCAL_ENABLE , OWN_ORG_CASCADE_ENABLE , OWN_ORG_NOTES , ORG_AUTHORITY_ENABLE , ORG_LOCAL_ENABLE , ORG_CASCADE_ENABLE , ORG_NOTES , CATALOG_AUTHORITY_ENABLE , CATALOG_CASCADE_ENABLE , CATALOG_NOTES , POSITION_AUTHORITY_ENABLE , POSITION_NOTES , WAREHOUSE_AUTHORITY_ENABLE , WAREHOUSE_NOTES , PRIORITY , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final EAM_ASSET_DATA_PERMISSIONS $TABLE=new EAM_ASSET_DATA_PERMISSIONS();
 	}
@@ -2716,6 +2736,72 @@ public class EAMTables {
 			this.init($NAME,"位置" , ID , PERMISSION_ID , VALUE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME);
 		}
 		public static final EAM_ASSET_DATA_PERMISSIONS_POSITION $TABLE=new EAM_ASSET_DATA_PERMISSIONS_POSITION();
+	}
+	
+	/**
+	 * 仓库
+	*/
+	public static class EAM_ASSET_DATA_PERMISSIONS_WH extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "eam_asset_data_permissions_wh";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 权限
+		*/
+		public static final DBField PERMISSION_ID = new DBField(DBDataType.STRING , "permission_id","permissionId","权限","权限",false,false,true);
+		
+		/**
+		 * 值
+		*/
+		public static final DBField VALUE = new DBField(DBDataType.STRING , "value","value","值","值",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		public EAM_ASSET_DATA_PERMISSIONS_WH() {
+			this.init($NAME,"仓库" , ID , PERMISSION_ID , VALUE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME);
+		}
+		public static final EAM_ASSET_DATA_PERMISSIONS_WH $TABLE=new EAM_ASSET_DATA_PERMISSIONS_WH();
 	}
 	
 	/**
@@ -10279,11 +10365,6 @@ public class EAMTables {
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
 		
 		/**
-		 * 名称
-		*/
-		public static final DBField BRAND_NAME = new DBField(DBDataType.STRING , "brand_name","brandName","名称","名称",false,false,true);
-		
-		/**
 		 * 排序
 		*/
 		public static final DBField SORT = new DBField(DBDataType.DECIMAL , "sort","sort","排序","排序",false,false,true);
@@ -10334,7 +10415,7 @@ public class EAMTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public EAM_BRAND_DEMO() {
-			this.init($NAME,"品牌" , ID , BRAND_NAME , SORT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"品牌" , ID , SORT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final EAM_BRAND_DEMO $TABLE=new EAM_BRAND_DEMO();
 	}

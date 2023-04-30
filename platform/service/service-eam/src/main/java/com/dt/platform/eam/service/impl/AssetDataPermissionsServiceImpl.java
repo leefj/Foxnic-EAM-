@@ -1,40 +1,51 @@
 package com.dt.platform.eam.service.impl;
 
-import com.dt.platform.domain.eam.AssetDataPermissions;
-import com.dt.platform.domain.eam.AssetDataPermissionsVO;
-import com.dt.platform.eam.service.IAssetDataPermissionsService;
-import com.github.foxnic.api.error.ErrorDesc;
-import com.github.foxnic.api.transter.Result;
-import com.github.foxnic.commons.busi.id.IDGenerator;
-import com.github.foxnic.commons.collection.MapUtil;
-import com.github.foxnic.dao.data.PagedList;
-import com.github.foxnic.dao.data.SaveMode;
-import com.github.foxnic.dao.entity.ReferCause;
-import com.github.foxnic.dao.entity.SuperService;
-import com.github.foxnic.dao.spec.DAO;
-import com.github.foxnic.sql.expr.ConditionExpr;
-import com.github.foxnic.sql.meta.DBField;
-import org.github.foxnic.web.framework.dao.DBConfigs;
+import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import com.github.foxnic.dao.entity.ReferCause;
+import com.github.foxnic.commons.collection.MapUtil;
+import java.util.Arrays;
 
-import javax.annotation.Resource;
-import java.lang.reflect.Field;
-import java.util.Date;
+
+import com.dt.platform.domain.eam.AssetDataPermissions;
+import com.dt.platform.domain.eam.AssetDataPermissionsVO;
 import java.util.List;
+import com.github.foxnic.api.transter.Result;
+import com.github.foxnic.dao.data.PagedList;
+import com.github.foxnic.dao.entity.SuperService;
+import com.github.foxnic.dao.spec.DAO;
+import java.lang.reflect.Field;
+import com.github.foxnic.commons.busi.id.IDGenerator;
+import com.github.foxnic.sql.expr.ConditionExpr;
+import com.github.foxnic.api.error.ErrorDesc;
+import com.github.foxnic.dao.excel.ExcelWriter;
+import com.github.foxnic.dao.excel.ValidateResult;
+import com.github.foxnic.dao.excel.ExcelStructure;
+import java.io.InputStream;
+import com.github.foxnic.sql.meta.DBField;
+import com.github.foxnic.dao.data.SaveMode;
+import com.github.foxnic.dao.meta.DBColumnMeta;
+import com.github.foxnic.sql.expr.Select;
+import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
+import com.dt.platform.eam.service.IAssetDataPermissionsService;
+import org.github.foxnic.web.framework.dao.DBConfigs;
+import java.util.Date;
 import java.util.Map;
 
 /**
  * <p>
- * 资产数据权限 服务实现
+ * 资产数据权限服务实现
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-17 08:50:07
+ * @since 2023-04-26 07:51:03
 */
 
 
 @Service("EamAssetDataPermissionsService")
+
 public class AssetDataPermissionsServiceImpl extends SuperService<AssetDataPermissions> implements IAssetDataPermissionsService {
 
 	/**
@@ -48,14 +59,36 @@ public class AssetDataPermissionsServiceImpl extends SuperService<AssetDataPermi
 	 * */
 	public DAO dao() { return dao; }
 
+	/**
+     * AssetDataPermissionsPositionServiceImpl
+     */
 	@Autowired 
 	private AssetDataPermissionsPositionServiceImpl assetDataPermissionsPositionServiceImpl;
+
+	/**
+     * AssetDataPermissionsCatalogServiceImpl
+     */
 	@Autowired 
 	private AssetDataPermissionsCatalogServiceImpl assetDataPermissionsCatalogServiceImpl;
+
+	/**
+     * AssetDataPermissionsOrgServiceImpl
+     */
 	@Autowired 
 	private AssetDataPermissionsOrgServiceImpl assetDataPermissionsOrgServiceImpl;
+
+	/**
+     * AssetDataPermissionsOOrgServiceImpl
+     */
 	@Autowired 
 	private AssetDataPermissionsOOrgServiceImpl assetDataPermissionsOOrgServiceImpl;
+
+	/**
+     * AssetDataPermissionsWhServiceImpl
+     */
+	@Autowired 
+	private AssetDataPermissionsWhServiceImpl assetDataPermissionsWhServiceImpl;
+
 
 
 	@Override
@@ -80,6 +113,7 @@ public class AssetDataPermissionsServiceImpl extends SuperService<AssetDataPermi
 			assetDataPermissionsCatalogServiceImpl.saveRelation(assetDataPermissions.getId(), assetDataPermissions.getCategoryIds());
 			assetDataPermissionsOrgServiceImpl.saveRelation(assetDataPermissions.getId(), assetDataPermissions.getOrganizationIds());
 			assetDataPermissionsOOrgServiceImpl.saveRelation(assetDataPermissions.getId(), assetDataPermissions.getOwnOrganizationIds());
+			assetDataPermissionsWhServiceImpl.saveRelation(assetDataPermissions.getId(), assetDataPermissions.getWarehouseIds());
 		}
 		return r;
 	}
@@ -107,7 +141,7 @@ public class AssetDataPermissionsServiceImpl extends SuperService<AssetDataPermi
 
 	
 	/**
-	 * 按主键删除 资产数据权限
+	 * 按主键删除资产数据权限
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -128,7 +162,7 @@ public class AssetDataPermissionsServiceImpl extends SuperService<AssetDataPermi
 	}
 	
 	/**
-	 * 按主键删除 资产数据权限
+	 * 按主键删除资产数据权限
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -180,6 +214,7 @@ public class AssetDataPermissionsServiceImpl extends SuperService<AssetDataPermi
 			assetDataPermissionsCatalogServiceImpl.saveRelation(assetDataPermissions.getId(), assetDataPermissions.getCategoryIds());
 			assetDataPermissionsOrgServiceImpl.saveRelation(assetDataPermissions.getId(), assetDataPermissions.getOrganizationIds());
 			assetDataPermissionsOOrgServiceImpl.saveRelation(assetDataPermissions.getId(), assetDataPermissions.getOwnOrganizationIds());
+			assetDataPermissionsWhServiceImpl.saveRelation(assetDataPermissions.getId(), assetDataPermissions.getWarehouseIds());
 		}
 		return r;
 	}
@@ -197,7 +232,7 @@ public class AssetDataPermissionsServiceImpl extends SuperService<AssetDataPermi
 
 	
 	/**
-	 * 按主键更新字段 资产数据权限
+	 * 按主键更新资产数据权限
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -211,7 +246,7 @@ public class AssetDataPermissionsServiceImpl extends SuperService<AssetDataPermi
 
 	
 	/**
-	 * 按主键获取 资产数据权限
+	 * 按主键获取资产数据权限
 	 *
 	 * @param id 主键
 	 * @return AssetDataPermissions 数据对象
@@ -295,9 +330,6 @@ public class AssetDataPermissionsServiceImpl extends SuperService<AssetDataPermi
 		return false;
 	}
 
-
-
-
 	/**
 	 * 批量检查引用
 	 * @param ids  检查这些ID是否又被外部表引用
@@ -308,7 +340,6 @@ public class AssetDataPermissionsServiceImpl extends SuperService<AssetDataPermi
 		return MapUtil.asMap(ids,new ReferCause(false));
 		// return super.hasRefers(FoxnicWeb.BPM_PROCESS_INSTANCE.FORM_DEFINITION_ID,ids);
 	}
-
 
 
 

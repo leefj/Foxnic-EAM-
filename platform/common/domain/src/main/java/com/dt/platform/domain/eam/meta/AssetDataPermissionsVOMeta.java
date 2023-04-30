@@ -9,13 +9,15 @@ import org.github.foxnic.web.domain.system.BusiRole;
 import org.github.foxnic.web.domain.pcm.Catalog;
 import org.github.foxnic.web.domain.hrm.Organization;
 import com.dt.platform.domain.eam.Position;
+import com.dt.platform.domain.eam.Warehouse;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-17 08:50:07
- * @sign FA25BE1EDB78ED10E0D294F6B0761C9B
+ * @since 2023-04-26 07:51:03
+ * @sign 9BA19E91DBAE3B7687BCCF24F1CA6D57
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -100,6 +102,36 @@ public class AssetDataPermissionsVOMeta extends AssetDataPermissionsMeta {
 	 * 排序方式 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissionsVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissionsVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String DATA_ORIGIN="dataOrigin";
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissionsVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissionsVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端可按来源执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final String QUERY_LOGIC="queryLogic";
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissionsVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissionsVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String REQUEST_ACTION="requestAction";
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissionsVO,java.lang.String> REQUEST_ACTION_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissionsVO.class ,REQUEST_ACTION, java.lang.String.class, "请求动作", "前端指定不同的Action，后端可Action执行不同的逻辑", java.lang.String.class, null);
 	
 	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
@@ -302,6 +334,26 @@ public class AssetDataPermissionsVOMeta extends AssetDataPermissionsMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissionsVO,java.lang.String> POSITION_NOTES_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissionsVO.class ,POSITION_NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
 	
 	/**
+	 * 仓库 , 类型: java.lang.String
+	*/
+	public static final String WAREHOUSE_AUTHORITY_ENABLE="warehouseAuthorityEnable";
+	
+	/**
+	 * 仓库 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissionsVO,java.lang.String> WAREHOUSE_AUTHORITY_ENABLE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissionsVO.class ,WAREHOUSE_AUTHORITY_ENABLE, java.lang.String.class, "仓库", "仓库", java.lang.String.class, null);
+	
+	/**
+	 * 备注 , 类型: java.lang.String
+	*/
+	public static final String WAREHOUSE_NOTES="warehouseNotes";
+	
+	/**
+	 * 备注 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissionsVO,java.lang.String> WAREHOUSE_NOTES_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissionsVO.class ,WAREHOUSE_NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
+	
+	/**
 	 * 优先级 , 类型: java.lang.Integer
 	*/
 	public static final String PRIORITY="priority";
@@ -502,9 +554,29 @@ public class AssetDataPermissionsVOMeta extends AssetDataPermissionsMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissionsVO,java.lang.String> POSITION_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissionsVO.class ,POSITION_IDS, java.util.List.class, "存放位置", "存放位置", java.lang.String.class, null);
 	
 	/**
+	 * 仓库 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Warehouse
+	*/
+	public static final String WAREHOUSE="warehouse";
+	
+	/**
+	 * 仓库 , 集合类型: LIST , 类型: com.dt.platform.domain.eam.Warehouse
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissionsVO,com.dt.platform.domain.eam.Warehouse> WAREHOUSE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissionsVO.class ,WAREHOUSE, java.util.List.class, "仓库", "仓库", com.dt.platform.domain.eam.Warehouse.class, null);
+	
+	/**
+	 * 仓库 , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final String WAREHOUSE_IDS="warehouseIds";
+	
+	/**
+	 * 仓库 , 集合类型: LIST , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetDataPermissionsVO,java.lang.String> WAREHOUSE_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetDataPermissionsVO.class ,WAREHOUSE_IDS, java.util.List.class, "仓库", "仓库", java.lang.String.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , NAME , STATUS , OWNER_CODE , CODE , ROLE_CODE , OWN_ORG_AUTHORITY_ENABLE , OWN_ORG_LOCAL_ENABLE , OWN_ORG_CASCADE_ENABLE , OWN_ORG_NOTES , ORG_AUTHORITY_ENABLE , ORG_LOCAL_ENABLE , ORG_CASCADE_ENABLE , ORG_NOTES , CATALOG_AUTHORITY_ENABLE , CATALOG_CASCADE_ENABLE , CATALOG_NOTES , POSITION_AUTHORITY_ENABLE , POSITION_NOTES , PRIORITY , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , BUSI_ROLE , CATEGORY , CATEGORY_IDS , ORGANIZATION , ORGANIZATION_IDS , OWN_ORGANIZATION , OWN_ORGANIZATION_IDS , POSITION , POSITION_IDS };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NAME , STATUS , OWNER_CODE , CODE , ROLE_CODE , OWN_ORG_AUTHORITY_ENABLE , OWN_ORG_LOCAL_ENABLE , OWN_ORG_CASCADE_ENABLE , OWN_ORG_NOTES , ORG_AUTHORITY_ENABLE , ORG_LOCAL_ENABLE , ORG_CASCADE_ENABLE , ORG_NOTES , CATALOG_AUTHORITY_ENABLE , CATALOG_CASCADE_ENABLE , CATALOG_NOTES , POSITION_AUTHORITY_ENABLE , POSITION_NOTES , WAREHOUSE_AUTHORITY_ENABLE , WAREHOUSE_NOTES , PRIORITY , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , BUSI_ROLE , CATEGORY , CATEGORY_IDS , ORGANIZATION , ORGANIZATION_IDS , OWN_ORGANIZATION , OWN_ORGANIZATION_IDS , POSITION , POSITION_IDS , WAREHOUSE , WAREHOUSE_IDS };
 	
 	/**
 	 * 代理类
@@ -599,6 +671,39 @@ public class AssetDataPermissionsVOMeta extends AssetDataPermissionsMeta {
 		public AssetDataPermissionsVO setSortType(String sortType) {
 			super.change(SORT_TYPE,super.getSortType(),sortType);
 			super.setSortType(sortType);
+			return this;
+		}
+		
+		/**
+		 * 设置 数据来源
+		 * @param dataOrigin 数据来源
+		 * @return 当前对象
+		*/
+		public AssetDataPermissionsVO setDataOrigin(String dataOrigin) {
+			super.change(DATA_ORIGIN,super.getDataOrigin(),dataOrigin);
+			super.setDataOrigin(dataOrigin);
+			return this;
+		}
+		
+		/**
+		 * 设置 查询逻辑
+		 * @param queryLogic 查询逻辑
+		 * @return 当前对象
+		*/
+		public AssetDataPermissionsVO setQueryLogic(String queryLogic) {
+			super.change(QUERY_LOGIC,super.getQueryLogic(),queryLogic);
+			super.setQueryLogic(queryLogic);
+			return this;
+		}
+		
+		/**
+		 * 设置 请求动作
+		 * @param requestAction 请求动作
+		 * @return 当前对象
+		*/
+		public AssetDataPermissionsVO setRequestAction(String requestAction) {
+			super.change(REQUEST_ACTION,super.getRequestAction(),requestAction);
+			super.setRequestAction(requestAction);
 			return this;
 		}
 		
@@ -823,6 +928,28 @@ public class AssetDataPermissionsVOMeta extends AssetDataPermissionsMeta {
 		}
 		
 		/**
+		 * 设置 仓库
+		 * @param warehouseAuthorityEnable 仓库
+		 * @return 当前对象
+		*/
+		public AssetDataPermissions setWarehouseAuthorityEnable(String warehouseAuthorityEnable) {
+			super.change(WAREHOUSE_AUTHORITY_ENABLE,super.getWarehouseAuthorityEnable(),warehouseAuthorityEnable);
+			super.setWarehouseAuthorityEnable(warehouseAuthorityEnable);
+			return this;
+		}
+		
+		/**
+		 * 设置 备注
+		 * @param warehouseNotes 备注
+		 * @return 当前对象
+		*/
+		public AssetDataPermissions setWarehouseNotes(String warehouseNotes) {
+			super.change(WAREHOUSE_NOTES,super.getWarehouseNotes(),warehouseNotes);
+			super.setWarehouseNotes(warehouseNotes);
+			return this;
+		}
+		
+		/**
 		 * 设置 优先级
 		 * @param priority 优先级
 		 * @return 当前对象
@@ -1041,5 +1168,104 @@ public class AssetDataPermissionsVOMeta extends AssetDataPermissionsMeta {
 			super.setPositionIds(positionIds);
 			return this;
 		}
+		
+		/**
+		 * 设置 仓库
+		 * @param warehouse 仓库
+		 * @return 当前对象
+		*/
+		public AssetDataPermissions setWarehouse(List<Warehouse> warehouse) {
+			super.change(WAREHOUSE,super.getWarehouse(),warehouse);
+			super.setWarehouse(warehouse);
+			return this;
+		}
+		
+		/**
+		 * 设置 仓库
+		 * @param warehouseIds 仓库
+		 * @return 当前对象
+		*/
+		public AssetDataPermissions setWarehouseIds(List<String> warehouseIds) {
+			super.change(WAREHOUSE_IDS,super.getWarehouseIds(),warehouseIds);
+			super.setWarehouseIds(warehouseIds);
+			return this;
+		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public AssetDataPermissionsVO clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public AssetDataPermissionsVO duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setCode(this.getCode());
+			inst.setPositionNotes(this.getPositionNotes());
+			inst.setNotes(this.getNotes());
+			inst.setOwnerCode(this.getOwnerCode());
+			inst.setCatalogCascadeEnable(this.getCatalogCascadeEnable());
+			inst.setCatalogNotes(this.getCatalogNotes());
+			inst.setOwnOrgLocalEnable(this.getOwnOrgLocalEnable());
+			inst.setWarehouseAuthorityEnable(this.getWarehouseAuthorityEnable());
+			inst.setOrgAuthorityEnable(this.getOrgAuthorityEnable());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setOrgNotes(this.getOrgNotes());
+			inst.setRoleCode(this.getRoleCode());
+			inst.setOrgLocalEnable(this.getOrgLocalEnable());
+			inst.setOwnOrgNotes(this.getOwnOrgNotes());
+			inst.setCatalogAuthorityEnable(this.getCatalogAuthorityEnable());
+			inst.setId(this.getId());
+			inst.setOwnOrgCascadeEnable(this.getOwnOrgCascadeEnable());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setPriority(this.getPriority());
+			inst.setVersion(this.getVersion());
+			inst.setOrgCascadeEnable(this.getOrgCascadeEnable());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setOwnOrgAuthorityEnable(this.getOwnOrgAuthorityEnable());
+			inst.setName(this.getName());
+			inst.setPositionAuthorityEnable(this.getPositionAuthorityEnable());
+			inst.setTenantId(this.getTenantId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setWarehouseNotes(this.getWarehouseNotes());
+			inst.setStatus(this.getStatus());
+			if(all) {
+				inst.setOwnOrganization(this.getOwnOrganization());
+				inst.setPositionIds(this.getPositionIds());
+				inst.setSearchField(this.getSearchField());
+				inst.setRequestAction(this.getRequestAction());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setBusiRole(this.getBusiRole());
+				inst.setPageSize(this.getPageSize());
+				inst.setWarehouse(this.getWarehouse());
+				inst.setCategoryIds(this.getCategoryIds());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setOrganizationIds(this.getOrganizationIds());
+				inst.setOrganization(this.getOrganization());
+				inst.setDirtyFields(this.getDirtyFields());
+				inst.setSortField(this.getSortField());
+				inst.setOwnOrganizationIds(this.getOwnOrganizationIds());
+				inst.setDataOrigin(this.getDataOrigin());
+				inst.setIds(this.getIds());
+				inst.setQueryLogic(this.getQueryLogic());
+				inst.setPosition(this.getPosition());
+				inst.setCategory(this.getCategory());
+				inst.setSearchValue(this.getSearchValue());
+				inst.setWarehouseIds(this.getWarehouseIds());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

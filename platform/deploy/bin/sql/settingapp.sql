@@ -5,23 +5,18 @@ update sys_config set value='PROD' where code='system.version.type';
 update sys_config set value='PROD' where code='system.version.type';
 update sys_config set value='0' where code='system.index.portal.enable';
 update sys_config set value='0' where code='system.external.portal.enable';
-
 update sys_config set value='{account:"",password:"",captcha:""}'  where code='system.login.default';
 update sys_config set value=0 where code='system.login.captcha.any';
 update sys_config set value='123456' where value='system.password.default';
 update sys_config set value=0 where code='eam.assetDataPermissions';
-
 update sys_config set value=1 where code='eam.assetDirectUpdateMode';
 update sys_config set value=0 where code='eam.assetImportAssetCodeKeep';
 update sys_config set value=0 where code='eam.assetImportDataReplenish';
 update sys_config set value=0 where code='eam.assetSerialNumberIsUnique';
 update sys_config set value=0 where code='eam.assetStatusColumnDisable';
-
 update sys_config set value='固资系统' where code='system.title';
 update sys_config set value='固资系统' where code='system.login.title';
-
 update eam_asset_label set font_path='/app/app/bin/msyh.ttf' where id='1';
-
 -- 协同
 update sys_menu set hidden=1 where id='616256291005792256';
 -- 功能演示
@@ -59,15 +54,10 @@ update sys_menu set hidden=1 where id='487568362436558848';
 update sys_menu set hidden=1 where id='487559533120454656';
 -- 版本切换
 update sys_menu set hidden=1 where id='578624635919138816';
-
 -- 人员档案
 update sys_menu set hidden=1 where id='623153794699493376';
-
 -- 接口管理
 update sys_menu set hidden=1 where id='622447317160558592';
-
-
-
 -- #########
 -- 授权管理
 -- delete from sys_menu where id='558628496125984768';
