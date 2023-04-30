@@ -102,6 +102,7 @@ function ListPage() {
 					,{ field: 'positionIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('存放位置'), templet: function (d) { return templet('positionIds' ,fox.joinLabel(d.position,"hierarchyName",',','','positionIds'),d);}}
 					,{ field: 'categoryIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('资产分类'), templet: function (d) { return templet('categoryIds' ,fox.joinLabel(d.category,"name",',','','categoryIds'),d);}}
 					,{ field: 'organizationIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('使用组织') , templet: function (d) { return templet('organizationIds',fox.getProperty(d,["organization","fullName"],0,'','organizationIds'),d);} }
+					,{ field: 'warehouseIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('仓库位置'), templet: function (d) { return templet('warehouseIds' ,fox.joinLabel(d.warehouse,"warehouseName",',','','warehouseIds'),d);}}
 					,{ field: 'ownOrganizationIds', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('所属组织') , templet: function (d) { return templet('ownOrganizationIds',fox.getProperty(d,["ownOrganization","fullName"],0,'','ownOrganizationIds'),d);} }
 					,{ field: fox.translate('空白列'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 160 }

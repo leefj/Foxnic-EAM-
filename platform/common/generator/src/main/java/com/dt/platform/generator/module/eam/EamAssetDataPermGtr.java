@@ -6,23 +6,21 @@ import com.dt.platform.constants.enums.eam.AssetEquipmentStatusEnum;
 import com.dt.platform.constants.enums.eam.AssetOwnerCodeEnum;
 
 import com.dt.platform.domain.eam.Position;
+import com.dt.platform.domain.eam.Warehouse;
 import com.dt.platform.domain.eam.meta.*;
 import com.dt.platform.domain.ops.ServiceInfo;
 import com.dt.platform.domain.ops.meta.HostMeta;
 import com.dt.platform.domain.ops.meta.HostVOMeta;
 import com.dt.platform.domain.ops.meta.ServiceInfoMeta;
 import com.dt.platform.eam.page.AssetDataPermissionsPageController;
-import com.dt.platform.eam.service.impl.AssetDataPermissionsCatalogServiceImpl;
+import com.dt.platform.eam.service.impl.*;
 
-import com.dt.platform.eam.service.impl.AssetDataPermissionsOOrgServiceImpl;
-import com.dt.platform.eam.service.impl.AssetDataPermissionsOrgServiceImpl;
-
-import com.dt.platform.eam.service.impl.AssetDataPermissionsPositionServiceImpl;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.ops.service.impl.HostDbServiceImpl;
 import com.dt.platform.proxy.eam.AssetDataPermissionsServiceProxy;
 import com.dt.platform.proxy.eam.PositionServiceProxy;
 import com.dt.platform.proxy.eam.SupplierServiceProxy;
+import com.dt.platform.proxy.eam.WarehouseServiceProxy;
 import com.dt.platform.proxy.ops.ServiceInfoServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Organization;
@@ -57,6 +55,10 @@ public class EamAssetDataPermGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addListProperty(Position.class,"position","存放位置","存放位置");
         cfg.getPoClassFile().addListProperty(String.class,"positionIds","存放位置","存放位置");
 
+
+        cfg.getPoClassFile().addListProperty(Warehouse.class,"warehouse","仓库","仓库");
+        cfg.getPoClassFile().addListProperty(String.class,"warehouseIds","仓库","仓库");
+
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.ID).basic().hidden(true);
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.CREATE_TIME).basic().hidden(true);
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.NAME).search().fuzzySearch();
@@ -80,7 +82,7 @@ public class EamAssetDataPermGtr extends BaseCodeGenerator{
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.CATALOG_NOTES).table().disable();
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.ORG_NOTES).table().disable();
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.OWN_ORG_NOTES).table().disable();
-
+        cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.WAREHOUSE_NOTES).table().disable();
 
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.NAME).form().validate().required();
 
@@ -102,6 +104,14 @@ public class EamAssetDataPermGtr extends BaseCodeGenerator{
                 .toolbar(false).paging(true).filter(true)
                 .fillWith(AssetDataPermissionsMeta.POSITION).muliti(true);
 
+        cfg.view().field(AssetDataPermissionsMeta.WAREHOUSE_IDS)
+                .basic().label("仓库位置")
+                .table().sort(false)
+                .form().selectBox().queryApi(WarehouseServiceProxy.QUERY_PAGED_LIST)
+                .valueField(WarehouseMeta.ID).textField(WarehouseMeta.WAREHOUSE_NAME)
+                .toolbar(false).paging(true).filter(true)
+                .fillWith(AssetDataPermissionsMeta.WAREHOUSE).muliti(true);
+
 
         cfg.view().field(AssetDataPermissionsMeta.CATEGORY_IDS)
                 .basic().label("资产分类")
@@ -110,33 +120,24 @@ public class EamAssetDataPermGtr extends BaseCodeGenerator{
                 .valueField(CatalogMeta.ID).textField(CatalogMeta.NAME)
                 .fillWith(AssetDataPermissionsMeta.CATEGORY).muliti(true);
 
-
         cfg.view().field(AssetDataPermissionsMeta.ORGANIZATION_IDS).basic().label("使用组织")
                 .form().button().chooseOrganization(false);
         cfg.view().field(AssetDataPermissionsMeta.ORGANIZATION_IDS).table().fillBy("organization","fullName");
-
-
         cfg.view().field(AssetDataPermissionsMeta.OWN_ORGANIZATION_IDS).basic().label("所属组织")
                 .form().button().chooseCompany(false);
         cfg.view().field(AssetDataPermissionsMeta.OWN_ORGANIZATION_IDS).table().fillBy("ownOrganization","fullName");
-
-
         cfg.view().form().addJsVariable("ASSET_CATEGORY_DATA","[[${assetCategoryData}]]","资产分类数据");
         cfg.view().list().addJsVariable("CATEGORY_CODE","[[${categoryCode}]]","资产分类数据");
-
-
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.ORG_AUTHORITY_ENABLE).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class);
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.ORG_CASCADE_ENABLE).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class);
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.ORG_LOCAL_ENABLE).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class);
-
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.OWN_ORG_AUTHORITY_ENABLE).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class);
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.OWN_ORG_CASCADE_ENABLE).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class);
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.OWN_ORG_LOCAL_ENABLE).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class);
-
-
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.CATALOG_AUTHORITY_ENABLE).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class);
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.CATALOG_CASCADE_ENABLE).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class);
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.POSITION_AUTHORITY_ENABLE).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class);
+        cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.WAREHOUSE_AUTHORITY_ENABLE).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class);
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.STATUS).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class);
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.PRIORITY).form().validate().required().form().numberInput().integer().defaultValue(100);
         cfg.view().field(EAMTables.EAM_ASSET_DATA_PERMISSIONS.NOTES).form().textArea().height(Config.textAreaHeight);
@@ -146,6 +147,7 @@ public class EamAssetDataPermGtr extends BaseCodeGenerator{
         cfg.service().addRelationSaveAction(AssetDataPermissionsCatalogServiceImpl.class,AssetDataPermissionsMeta.CATEGORY_IDS);
         cfg.service().addRelationSaveAction(AssetDataPermissionsOrgServiceImpl.class,AssetDataPermissionsMeta.ORGANIZATION_IDS);
         cfg.service().addRelationSaveAction(AssetDataPermissionsOOrgServiceImpl.class,AssetDataPermissionsMeta.OWN_ORGANIZATION_IDS);
+        cfg.service().addRelationSaveAction(AssetDataPermissionsWhServiceImpl.class,AssetDataPermissionsMeta.WAREHOUSE_IDS);
 
         cfg.view().formWindow().bottomSpace(20);
         cfg.view().formWindow().width(Config.baseFormWidth);
@@ -212,6 +214,13 @@ public class EamAssetDataPermGtr extends BaseCodeGenerator{
                  }
         );
 
+        cfg.view().form().addGroup("仓库权限配置",
+                new Object[] {
+                        EAMTables.EAM_ASSET_DATA_PERMISSIONS.WAREHOUSE_AUTHORITY_ENABLE,
+                        AssetDataPermissionsMeta.WAREHOUSE_IDS,
+                        AssetDataPermissionsMeta.WAREHOUSE_NOTES,
+                }
+        );
 
 
         //文件生成覆盖模式

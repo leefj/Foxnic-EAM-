@@ -1247,6 +1247,20 @@ public class EamRelationManager extends RelationManager {
                       }
                     return pos;
                 });
+        this.property(AssetDataPermissionsMeta.WAREHOUSE_PROP)
+                .using(EAMTables.EAM_ASSET_DATA_PERMISSIONS.ID).join(EAMTables.EAM_ASSET_DATA_PERMISSIONS_WH.PERMISSION_ID)
+                .using(EAMTables.EAM_ASSET_DATA_PERMISSIONS_WH.VALUE).join(EAMTables.EAM_WAREHOUSE.ID)
+                .after((tag,dp,pos,m)->{
+                    if(dp.getWarehouseIds()==null){
+                        dp.setWarehouseIds(new ArrayList<>());
+                    }
+                    if(dp.getWarehouseIds().size()==0&&pos.size()>0){
+                        for(int i=0;i<pos.size();i++){
+                            dp.getWarehouseIds().add(pos.get(i).getId());
+                        }
+                    }
+                    return pos;
+                });
 
         this.property(AssetDataPermissionsMeta.CATEGORY_PROP)
                 .using(EAMTables.EAM_ASSET_DATA_PERMISSIONS.ID).join(EAMTables.EAM_ASSET_DATA_PERMISSIONS_CATALOG.PERMISSION_ID)

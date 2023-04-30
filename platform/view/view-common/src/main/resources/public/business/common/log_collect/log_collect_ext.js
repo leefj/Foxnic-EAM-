@@ -28,6 +28,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeInit:function () {
             console.log("list:beforeInit");
+
+
         },
         /**
          * 按事件名称移除表格按钮栏的按钮
@@ -99,7 +101,14 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 查询结果渲染后调用
          * */
         afterQuery : function (data) {
-
+            for (var i = 0; i < data.length; i++) {
+                //如果审批中或审批通过的不允许编辑
+                if(data[i].status=="valid") {
+                    console.log("正常")
+                } else{
+                    fox.disableButton($('.collect-download').filter("[data-id='" + data[i].id + "']"), true);
+                }
+            }
         },
         /**
          * 进一步转换 list 数据
@@ -192,7 +201,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         },
         collectDownload:function (data,it){
             console.log('downFile',data);
-            var downloadUrl="/service-storage/sys-file/download?id="+data.id+"&inline=0";
+            var downloadUrl="/service-storage/sys-file/download?id="+data.fileId+"&inline=0";
             fox.submit(downloadUrl,{id:data.id});
         },
 

@@ -8,6 +8,8 @@ import java.io.File;
 public class EncryptUtil {
 
     public static void main(String[] args) {
+        org.github.foxnic.web.framework.busi.role.DrafterDirectLeader drafterDirectLeader=new org.github.foxnic.web.framework.busi.role.DrafterDirectLeader();
+
         String passwd= FileUtil.readText(new File("/Users/Shared/foxnic/passwd.txt"));
         AESUtil aes=new AESUtil(passwd);
         String user="root";

@@ -86,7 +86,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         /**
          * 查询结果渲染后调用
          * */
-        afterQuery : function (data) {
+        afterQuery : function (afterData) {
 
             function formatRackData(data,cap,rackuuid){
                 var result={};
@@ -94,6 +94,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 var successdata=[];
                 var successdata2=[];
                 var faileddata=[];
+
                 for(var i=0;i<data.length;i++){
                     var obj=data[i];
                     if(!data[i].frame){
@@ -111,9 +112,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     var frameet=frame[1];
                     // console.log(framest+","+frameet+"|",parseInt(framest)+","+parseInt(frameet));
                     //frame错误判断
-                    if(isNaN(framest)|| isNaN(frameet)||framest>frameet||framest>cap){
-                        // console.log("failed")
-                        data[i].result="frame格式出错"
+
+                    if(isNaN(framest)|| isNaN(frameet)||parseInt(framest)>parseInt(frameet)||framest>cap){
+                        data[i].result="frame格式出错2"
                         faileddata.push(data[i]);
                         continue;
                     }
@@ -122,6 +123,10 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     data[i].framediff=parseInt(frameet)-parseInt(framest);
                     successdata.push(data[i]);
                 }
+
+                console.log("successdata:",successdata);
+                console.log("faileddata:",faileddata);
+
                 //继续判断
                 for(var i=0;i<successdata.length;i++){
                     var obj=successdata[i];
@@ -175,27 +180,39 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                     "                </tr>\n" +
                     "                </thead> <tbody>"
                 var htmltr=[];
+
+
                 //初始化机柜
                 for(var i=0;i<cap;i++){
                     var u="";
-                    if(i>9){u=i;}else{u="0"+i;}
+                    if(i>9){
+                        u=i;
+                    }else{
+                        u="0"+i;
+                    }
                     htmltr.push(noobj.replace(new RegExp("#SEQ#","gm"),u));
                 }
                 //放置设备
                 for(var i=0;i<successdata2.length;i++){
                     var assets=successdata2[i];
+
                     var s=assets.framest;
                     var e=assets.frameet;
                     var d=e-s+1;
                     var u="";
-                    if(e>9){u=e;}else{u="0"+e;}
+                    if(e>9){
+                        u=e;
+                    }else{
+                        u="0"+e;
+                    }
+
                     var rowspan="";
                     if(d>0){
                         rowspan="rowspan=\""+d+"\"";
                     }
                     var devhtml="<tr name=\"hasdevice\" class=\"danger\">\n" +
                         "                    <td style=\"vertical-align: middle;\" class=\"no-padding bg-light-blue\">"+u+"</td>\n" +
-                        "                    <td style=\"vertical-align: middle;\" "+rowspan+" class=\"no-padding\"><a href=\"/detail/online-95/\">"+assets.code+"</a></td>\n" +
+                        "                    <td style=\"vertical-align: middle;\" "+rowspan+" class=\"no-padding\">   "+assets.code+"</a></td>\n" +
                         "                    <td style=\"vertical-align: middle;\" class=\"no-padding bg-light-blue\">"+u+"</td>\n" +
                         "                    <td style=\"vertical-align: middle;\" "+rowspan+"  class=\"no-padding\">"+assets.statusName+"</td>\n" +
                         "                    <td style=\"vertical-align: middle;\" "+rowspan+"  class=\"no-padding\"><span>"+assets.ip+"</span></td>\n" +
@@ -213,7 +230,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                         for(var j=1;j<d;j++){
                             var ii=e-j;
                             var uu="";
-                            if(ii>9){uu=ii;}else{uu="0"+ii;}
+                            if(ii>9){
+                                uu=ii;
+                            }else{
+                                uu="0"+ii;
+                            }
                             var devhtml2="<tr name=\"hasdevice\" class=\"danger\">\n" +
                                 "                    <td style=\"vertical-align: middle;\" class=\"no-padding bg-light-blue\">"+uu+"</td>\n" +
                                 "                    <td style=\"vertical-align: middle;\" class=\"no-padding bg-light-blue\">"+uu+"</td>\n" +
@@ -230,6 +251,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 for(var i=htmltr.length-1;i>0;i--){
                     htmltbbody=htmltbbody+htmltr[i];
                 }
+
                 htmltbbody=htmltbbody+"<tr>\n" +
                     "                    <td class=\"no-padding bg-light-blue\">-1</td>\n" +
                     "                    <td class=\"no-padding bg-light-blue\"></td>\n" +
@@ -243,13 +265,15 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 result.success=successdata2;
                 return result;
             }
+
             var rk="";
             var tmpArr=[];
-            for(var i=0;i<data.length;i++){
-                var o=data[i];
+            console.log("afterQuery:",afterData);
+            for(var i=0;i<afterData.length;i++){
+                var o=afterData[i];
                 if(i==0){
                     if(o.rack){
-                        rk=o.rack.rackName;
+                        rk=o.rack.hierarchyName;
                     }
                 }
                 var obj={};
@@ -257,8 +281,10 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 if(o.assetStatus){
                     if(o.assetStatus=="idle"){
                         obj.statusName="闲置"
+                    }else if(o.assetStatus=="repair"){
+                        obj.statusName="维护"
                     }else if(o.assetStatus=="using"){
-                        obj.statusName="使用"
+                        obj.statusName="在用"
                     }else{
                         obj.statusName=o.assetStatus;
                     }
@@ -276,8 +302,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 }
                 tmpArr.push(obj);
             }
-            console.log(tmpArr);
-            var htmltab= formatRackData(tmpArr,45,rk);
+            console.log("data",tmpArr);
+            console.log("rackuuid",rk);
+            var htmltab= formatRackData(tmpArr,50,rk);
             var html=htmltab.htmltable;
             $("#rackTabShow").html(html);
             console.log(htmltab);

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import com.github.foxnic.commons.collection.CollectorUtil;
 import com.github.foxnic.dao.entity.ReferCause;
+import org.github.foxnic.web.session.SessionUser;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,8 @@ import org.github.foxnic.web.framework.web.SuperController;
 import org.github.foxnic.web.framework.sentinel.SentinelExceptionUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.Session;
+
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
@@ -298,6 +301,7 @@ public class SupplierController extends SuperController {
     @SentinelResource(value = SupplierServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(SupplierServiceProxy.QUERY_PAGED_LIST)
     public Result<PagedList<Supplier>> queryPagedList(SupplierVO sample) {
+        System.out.println("current user:"+ SessionUser.getCurrent()+SessionUser.getCurrent().getUserId());
         Result<PagedList<Supplier>> result = new Result<>();
         PagedList<Supplier> list = supplierService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
