@@ -406,6 +406,7 @@ function installApp(){
 	echo "delete from sys_licence where 1=1;">>$setting_file
 	echo "insert into sys_licence select * from sys_licence_free_full;">>$setting_file
 	echo "update sys_resourze set access_type='LOGIN' where 1=1;">>$setting_file
+	echo "update sys_config set value='$base_dir/db/mysql/bin/mysqldump' where id='system.tool.mysqldump';">>$setting_file
 	$MYSQL -u$db_user -p$db_pwd -h$db_host -P$MYSQL_PORT -S/tmp/$MYSQL_SOCK_NAME $db_name < $setting_file  2>/dev/null
 	echo "#########start to create application.yml from $application_tpl_yml"
 	cat $application_tpl_yml>$application_yml
@@ -471,8 +472,11 @@ if [[ -f $mysql_soft ]];then
 	if [[ $md5 == $mysql_soft_md5 ]];then
 		mysql_download=0
 		echo "mysql_soft is checked."
+	else
+	  rm -rf $mysql_soft
 	fi
 fi
+
 if [[ $mysql_download -eq 1 ]];then
 	echo "start to download mysql"
 	wget https://cdn.mysql.com/archives/mysql-5.7/mysql-5.7.37-linux-glibc2.12-x86_64.tar.gz
