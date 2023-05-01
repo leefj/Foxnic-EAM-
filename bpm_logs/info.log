@@ -1,6 +1,0 @@
-15:32:08.564 [main] - [] - INFO  o.g.f.w.w.WrapperCamundaApp - [logStarting,55] - Starting WrapperCamundaApp on lankLdeMacBook-Pro.local with PID 59510 (/Users/lankl/IdeaProjects/eam/platform/wrapper/wrapper-camunda/target/classes started by lankl in /Users/lankl/IdeaProjects/eam)
-15:32:08.566 [main] - [] - INFO  o.g.f.w.w.WrapperCamundaApp - [logStartupProfileInfo,648] - No active profile set, falling back to default profiles: default
-15:32:09.661 [main] - [] - INFO  c.g.f.s.a.a.ApplicationAwareHandler - [setApplicationContext,52] - service-bpm(default) is ready on port 8099
-15:32:09.959 [main] - [] - INFO  o.c.b.s.b.s.r.CamundaJerseyResourceConfig - [registerCamundaRestResources,38] - Configuring camunda rest api.
-15:32:09.970 [main] - [] - INFO  o.c.b.s.b.s.r.CamundaJerseyResourceConfig - [registerCamundaRestResources,44] - Finished configuring camunda rest api.
-15:32:10.201 [main] - [] - INFO  c.g.f.c.l.DataParser$ParserLogger - [logParserInfo,1490] - Parser : null
