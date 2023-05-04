@@ -28,7 +28,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产VO类型
  * <p>资产 , 数据表 eam_asset 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-03 09:07:40
+ * @since 2023-05-04 15:07:37
  * @sign 740673009F6EFF378B232C887D6576FF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -572,6 +572,7 @@ public class AssetVO extends Asset {
 			inst.setAssetBorrow(this.getAssetBorrow());
 			inst.setCategory(this.getCategory());
 			inst.setRegion(this.getRegion());
+			inst.setCatalogCodeValue(this.getCatalogCodeValue());
 			inst.setSearchValue(this.getSearchValue());
 		}
 		inst.clearModifies();
@@ -793,6 +794,7 @@ public class AssetVO extends Asset {
 			this.setAssetBorrow(DataParser.parse(AssetBorrow.class, map.get(AssetVOMeta.ASSET_BORROW)));
 			this.setCategory(DataParser.parse(Catalog.class, map.get(AssetVOMeta.CATEGORY)));
 			this.setRegion(DataParser.parse(AssetRegion.class, map.get(AssetVOMeta.REGION)));
+			this.setCatalogCodeValue(DataParser.parse(String.class, map.get(AssetVOMeta.CATALOG_CODE_VALUE)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(AssetVOMeta.SEARCH_VALUE)));
 			return true;
 		} else {
@@ -958,6 +960,7 @@ public class AssetVO extends Asset {
 				this.setAssetBorrow( (AssetBorrow)map.get(AssetVOMeta.ASSET_BORROW));
 				this.setCategory( (Catalog)map.get(AssetVOMeta.CATEGORY));
 				this.setRegion( (AssetRegion)map.get(AssetVOMeta.REGION));
+				this.setCatalogCodeValue( (String)map.get(AssetVOMeta.CATALOG_CODE_VALUE));
 				this.setSearchValue( (String)map.get(AssetVOMeta.SEARCH_VALUE));
 				return true;
 			} catch (Exception e) {

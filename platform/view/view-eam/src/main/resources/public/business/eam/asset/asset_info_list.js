@@ -83,6 +83,7 @@ function ListPage() {
 			var COL_ALL_DATA= assetListColumn.getColumnList(templet);
 			console.log(COL_ALL_DATA);
 
+
 			var COL_DATA=[
 				{ fixed: 'left',type: 'numbers' },
 				{ fixed: 'left',type:'checkbox' }
@@ -90,8 +91,10 @@ function ListPage() {
 			for(var i=0;i<ATTRIBUTE_LIST_DATA.length;i++){
 				if(ATTRIBUTE_LIST_DATA[i].attribute&&ATTRIBUTE_LIST_DATA[i].attribute.code){
 					var e=COL_ALL_DATA[ATTRIBUTE_LIST_DATA[i].attribute.code];
-					e.title=ATTRIBUTE_LIST_DATA[i].attribute.label;
-					COL_DATA.push(e)
+					if(e){
+						e.title=ATTRIBUTE_LIST_DATA[i].attribute.label;
+						COL_DATA.push(e)
+					}
 				}
 			}
 			if(APPROVAL_REQUIRED){
@@ -99,7 +102,6 @@ function ListPage() {
 			}
 			var oper={ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作'), width: 360 };
 			COL_DATA.push(oper)
-
 			dataTable=fox.renderTable({
 				elem: '#'+TABLE_ID,
 				toolbar: '#toolbarTemplate',

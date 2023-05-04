@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-03 09:07:42
+ * @since 2023-05-04 15:07:39
  */
 
 
@@ -192,6 +192,7 @@ function ListPage() {
 					,{ field: 'nextApproverNames', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('下一个审批节点审批人姓名') , templet: function (d) { return templet('nextApproverNames',d.nextApproverNames,d);}  }
 					,{ field: 'approvalOpinion', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('审批意见') , templet: function (d) { return templet('approvalOpinion',d.approvalOpinion,d);}  }
 					,{ field: 'assetSelectedData', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('选择') , templet: function (d) { return templet('assetSelectedData',d.assetSelectedData,d);}  }
+					,{ field: 'catalogCodeValue', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('catalogCodeValue') , templet: function (d) { return templet('catalogCodeValue',fox.getProperty(d,["category","code"],0,'','catalogCodeValue'),d);} }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
