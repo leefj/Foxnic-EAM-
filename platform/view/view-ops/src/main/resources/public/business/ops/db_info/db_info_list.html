@@ -2,7 +2,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-02-13 15:46:02
+ * @since 2023-05-03 09:08:45
  */
  -->
  <!DOCTYPE html>
@@ -11,6 +11,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer">
     <title th:text="${lang.translate('数据库')}">数据库</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
@@ -41,7 +42,7 @@
                     <!-- 主键 , id ,typeName=text_input, isHideInSearch=true -->
                     <!-- 主机名称 , hostId ,typeName=select_box, isHideInSearch=true -->
                     <!-- 库类型 , typeId ,typeName=select_box, isHideInSearch=true -->
-                    <!-- 大小(M) , dbSize ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 大小 , dbSize ,typeName=number_input, isHideInSearch=true -->
                     <!-- 日志模式 , logMethod ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 管理员账户 , adminUserList ,typeName=text_input, isHideInSearch=true -->
                     <!-- 应用账户 , appUserList ,typeName=text_input, isHideInSearch=true -->

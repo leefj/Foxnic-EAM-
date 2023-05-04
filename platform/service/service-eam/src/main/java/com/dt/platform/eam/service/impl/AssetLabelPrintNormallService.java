@@ -164,6 +164,7 @@ public class AssetLabelPrintNormallService implements IAssetLabelPrintService {
 					if(i%print.getPrintColumnNumber()==0){
 						if(paragraphIncludeTable!=null){
 							div.add(paragraphIncludeTable);
+							document.add(div);
 						}
 						paragraphIncludeTable = new Paragraph();
 						//      paragraphIncludeTable.setBackgroundColor(ColorConstants.YELLOW);

@@ -1,7 +1,6 @@
 package com.dt.platform.ops.controller;
 
 import java.util.*;
-
 import com.dt.platform.domain.ops.*;
 import com.dt.platform.ops.service.ICiphertextBoxDataService;
 import com.dt.platform.ops.service.ICiphertextBoxService;
@@ -32,7 +31,6 @@ import com.github.foxnic.dao.excel.ValidateResult;
 import java.io.InputStream;
 import com.dt.platform.domain.ops.meta.DbInfoMeta;
 import java.math.BigDecimal;
-
 import org.github.foxnic.web.domain.system.DictItem;
 import com.dt.platform.domain.ops.meta.HostMeta;
 import io.swagger.annotations.Api;
@@ -78,7 +76,7 @@ public class DbInfoController extends SuperController {
 		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "backup"),
 		@ApiImplicitParam(name = DbInfoVOMeta.DEPLOY_MODE, value = "部署模式", required = false, dataTypeClass = String.class, example = "single"),
 		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STRATEGY, value = "本地备份策略", required = false, dataTypeClass = String.class, example = "无"),
-		@ApiImplicitParam(name = DbInfoVOMeta.DB_SIZE, value = "大小(M)", required = false, dataTypeClass = BigDecimal.class, example = "10923.00"),
+		@ApiImplicitParam(name = DbInfoVOMeta.DB_SIZE, value = "大小", required = false, dataTypeClass = BigDecimal.class, example = "10923.00"),
 		@ApiImplicitParam(name = DbInfoVOMeta.LOG_METHOD, value = "日志模式", required = false, dataTypeClass = String.class, example = "no_arch"),
 		@ApiImplicitParam(name = DbInfoVOMeta.ADMIN_USER_LIST, value = "管理员账户", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.APP_USER_LIST, value = "应用账户", required = false, dataTypeClass = String.class),
@@ -196,7 +194,7 @@ public class DbInfoController extends SuperController {
 		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "backup"),
 		@ApiImplicitParam(name = DbInfoVOMeta.DEPLOY_MODE, value = "部署模式", required = false, dataTypeClass = String.class, example = "single"),
 		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STRATEGY, value = "本地备份策略", required = false, dataTypeClass = String.class, example = "无"),
-		@ApiImplicitParam(name = DbInfoVOMeta.DB_SIZE, value = "大小(M)", required = false, dataTypeClass = BigDecimal.class, example = "10923.00"),
+		@ApiImplicitParam(name = DbInfoVOMeta.DB_SIZE, value = "大小", required = false, dataTypeClass = BigDecimal.class, example = "10923.00"),
 		@ApiImplicitParam(name = DbInfoVOMeta.LOG_METHOD, value = "日志模式", required = false, dataTypeClass = String.class, example = "no_arch"),
 		@ApiImplicitParam(name = DbInfoVOMeta.ADMIN_USER_LIST, value = "管理员账户", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.APP_USER_LIST, value = "应用账户", required = false, dataTypeClass = String.class),
@@ -236,7 +234,7 @@ public class DbInfoController extends SuperController {
 		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "backup"),
 		@ApiImplicitParam(name = DbInfoVOMeta.DEPLOY_MODE, value = "部署模式", required = false, dataTypeClass = String.class, example = "single"),
 		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STRATEGY, value = "本地备份策略", required = false, dataTypeClass = String.class, example = "无"),
-		@ApiImplicitParam(name = DbInfoVOMeta.DB_SIZE, value = "大小(M)", required = false, dataTypeClass = BigDecimal.class, example = "10923.00"),
+		@ApiImplicitParam(name = DbInfoVOMeta.DB_SIZE, value = "大小", required = false, dataTypeClass = BigDecimal.class, example = "10923.00"),
 		@ApiImplicitParam(name = DbInfoVOMeta.LOG_METHOD, value = "日志模式", required = false, dataTypeClass = String.class, example = "no_arch"),
 		@ApiImplicitParam(name = DbInfoVOMeta.ADMIN_USER_LIST, value = "管理员账户", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.APP_USER_LIST, value = "应用账户", required = false, dataTypeClass = String.class),
@@ -313,7 +311,7 @@ public class DbInfoController extends SuperController {
 		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "backup"),
 		@ApiImplicitParam(name = DbInfoVOMeta.DEPLOY_MODE, value = "部署模式", required = false, dataTypeClass = String.class, example = "single"),
 		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STRATEGY, value = "本地备份策略", required = false, dataTypeClass = String.class, example = "无"),
-		@ApiImplicitParam(name = DbInfoVOMeta.DB_SIZE, value = "大小(M)", required = false, dataTypeClass = BigDecimal.class, example = "10923.00"),
+		@ApiImplicitParam(name = DbInfoVOMeta.DB_SIZE, value = "大小", required = false, dataTypeClass = BigDecimal.class, example = "10923.00"),
 		@ApiImplicitParam(name = DbInfoVOMeta.LOG_METHOD, value = "日志模式", required = false, dataTypeClass = String.class, example = "no_arch"),
 		@ApiImplicitParam(name = DbInfoVOMeta.ADMIN_USER_LIST, value = "管理员账户", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = DbInfoVOMeta.APP_USER_LIST, value = "应用账户", required = false, dataTypeClass = String.class),
@@ -337,49 +335,6 @@ public class DbInfoController extends SuperController {
     public Result<List<DbInfo>> queryList(DbInfoVO sample) {
         Result<List<DbInfo>> result = new Result<>();
         List<DbInfo> list = dbInfoService.queryList(sample);
-        result.success(true).data(list);
-        return result;
-    }
-
-    /**
-     * 分页查询数据库
-     */
-    @ApiOperation(value = "分页查询数据库")
-    @ApiImplicitParams({
-            @ApiImplicitParam(name = DbInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "620984665599115264"),
-            @ApiImplicitParam(name = DbInfoVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class, example = "607860248228663296"),
-            @ApiImplicitParam(name = DbInfoVOMeta.TYPE_ID, value = "数据库类型", required = false, dataTypeClass = String.class, example = "495613594017202176"),
-            @ApiImplicitParam(name = DbInfoVOMeta.NAME, value = "数据库名", required = false, dataTypeClass = String.class, example = "cw3"),
-            @ApiImplicitParam(name = DbInfoVOMeta.STATUS, value = "数据库状态", required = false, dataTypeClass = String.class, example = "online"),
-            @ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "backup"),
-            @ApiImplicitParam(name = DbInfoVOMeta.DEPLOY_MODE, value = "部署模式", required = false, dataTypeClass = String.class, example = "single"),
-            @ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STRATEGY, value = "本地备份策略", required = false, dataTypeClass = String.class, example = "无"),
-            @ApiImplicitParam(name = DbInfoVOMeta.DB_SIZE, value = "大小(M)", required = false, dataTypeClass = BigDecimal.class, example = "10923.00"),
-            @ApiImplicitParam(name = DbInfoVOMeta.LOG_METHOD, value = "日志模式", required = false, dataTypeClass = String.class, example = "no_arch"),
-            @ApiImplicitParam(name = DbInfoVOMeta.ADMIN_USER_LIST, value = "管理员账户", required = false, dataTypeClass = String.class),
-            @ApiImplicitParam(name = DbInfoVOMeta.APP_USER_LIST, value = "应用账户", required = false, dataTypeClass = String.class),
-            @ApiImplicitParam(name = DbInfoVOMeta.OTHER_USER_LIST, value = "其他账户", required = false, dataTypeClass = String.class),
-            @ApiImplicitParam(name = DbInfoVOMeta.VOUCHER_STR, value = "凭证信息", required = false, dataTypeClass = String.class),
-            @ApiImplicitParam(name = DbInfoVOMeta.DB_PORT, value = "服务端口", required = false, dataTypeClass = String.class),
-            @ApiImplicitParam(name = DbInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
-            @ApiImplicitParam(name = DbInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1662883885000"),
-            @ApiImplicitParam(name = DbInfoVOMeta.TOOL_STRATEGY, value = "工具备份策略", required = false, dataTypeClass = String.class),
-            @ApiImplicitParam(name = DbInfoVOMeta.DISASTER_RECOVERY_STRATEGY, value = "灾备策略", required = false, dataTypeClass = String.class),
-            @ApiImplicitParam(name = DbInfoVOMeta.CLEAR_STRATEGY, value = "清理策略", required = false, dataTypeClass = String.class),
-            @ApiImplicitParam(name = DbInfoVOMeta.OPS_USER_LIST, value = "运维账户", required = false, dataTypeClass = String.class),
-            @ApiImplicitParam(name = DbInfoVOMeta.USER_USE_INFO, value = "使用情况", required = false, dataTypeClass = String.class),
-            @ApiImplicitParam(name = DbInfoVOMeta.DATA_LOC, value = "数据存放", required = false, dataTypeClass = String.class),
-            @ApiImplicitParam(name = DbInfoVOMeta.BACKUP_INFO, value = "备份备注", required = false, dataTypeClass = String.class),
-            @ApiImplicitParam(name = DbInfoVOMeta.USER_INFO, value = "用户备注", required = false, dataTypeClass = String.class)
-    })
-    @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
-    @SentinelResource(value = DbInfoServiceProxy.PUBLIC_QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
-    @PostMapping(DbInfoServiceProxy.PUBLIC_QUERY_PAGED_LIST)
-    public Result<PagedList<DbInfo>> publicQueryPagedList(DbInfoVO sample) {
-        Result<PagedList<DbInfo>> result = new Result<>();
-        PagedList<DbInfo> list = dbInfoService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
-        // join 关联的对象
-        dbInfoService.dao().fill(list).with(DbInfoMeta.HOST).with(DbInfoMeta.HOST).with(DbInfoMeta.TYPE).with(DbInfoMeta.DEPLOY_MODE_DICT).with(DbInfoMeta.LABEL_LIST).with(DbInfoMeta.DATA_LOC_DATA).execute();
         result.success(true).data(list);
         return result;
     }
@@ -416,6 +371,49 @@ public class DbInfoController extends SuperController {
 		@ApiImplicitParam(name = DbInfoVOMeta.USER_INFO, value = "用户备注", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = DbInfoServiceProxy.PUBLIC_QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(DbInfoServiceProxy.PUBLIC_QUERY_PAGED_LIST)
+    public Result<PagedList<DbInfo>> publicQueryPagedList(DbInfoVO sample) {
+        Result<PagedList<DbInfo>> result = new Result<>();
+        PagedList<DbInfo> list = dbInfoService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
+        // join 关联的对象
+        dbInfoService.dao().fill(list).with(DbInfoMeta.HOST).with(DbInfoMeta.HOST).with(DbInfoMeta.TYPE).with(DbInfoMeta.DEPLOY_MODE_DICT).with(DbInfoMeta.LABEL_LIST).with(DbInfoMeta.DATA_LOC_DATA).execute();
+        result.success(true).data(list);
+        return result;
+    }
+
+    /**
+     * 分页查询数据库
+     */
+    @ApiOperation(value = "分页查询数据库")
+    @ApiImplicitParams({
+		@ApiImplicitParam(name = DbInfoVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "620984665599115264"),
+		@ApiImplicitParam(name = DbInfoVOMeta.HOST_ID, value = "主机", required = false, dataTypeClass = String.class, example = "607860248228663296"),
+		@ApiImplicitParam(name = DbInfoVOMeta.TYPE_ID, value = "数据库类型", required = false, dataTypeClass = String.class, example = "495613594017202176"),
+		@ApiImplicitParam(name = DbInfoVOMeta.NAME, value = "数据库名", required = false, dataTypeClass = String.class, example = "cw3"),
+		@ApiImplicitParam(name = DbInfoVOMeta.STATUS, value = "数据库状态", required = false, dataTypeClass = String.class, example = "online"),
+		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STATUS, value = "备份状态", required = false, dataTypeClass = String.class, example = "backup"),
+		@ApiImplicitParam(name = DbInfoVOMeta.DEPLOY_MODE, value = "部署模式", required = false, dataTypeClass = String.class, example = "single"),
+		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_STRATEGY, value = "本地备份策略", required = false, dataTypeClass = String.class, example = "无"),
+		@ApiImplicitParam(name = DbInfoVOMeta.DB_SIZE, value = "大小", required = false, dataTypeClass = BigDecimal.class, example = "10923.00"),
+		@ApiImplicitParam(name = DbInfoVOMeta.LOG_METHOD, value = "日志模式", required = false, dataTypeClass = String.class, example = "no_arch"),
+		@ApiImplicitParam(name = DbInfoVOMeta.ADMIN_USER_LIST, value = "管理员账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.APP_USER_LIST, value = "应用账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.OTHER_USER_LIST, value = "其他账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.VOUCHER_STR, value = "凭证信息", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.DB_PORT, value = "服务端口", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "1212"),
+		@ApiImplicitParam(name = DbInfoVOMeta.SELECTED_CODE, value = "选择", required = false, dataTypeClass = String.class, example = "1662883885000"),
+		@ApiImplicitParam(name = DbInfoVOMeta.TOOL_STRATEGY, value = "工具备份策略", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.DISASTER_RECOVERY_STRATEGY, value = "灾备策略", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.CLEAR_STRATEGY, value = "清理策略", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.OPS_USER_LIST, value = "运维账户", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.USER_USE_INFO, value = "使用情况", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.DATA_LOC, value = "数据存放", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.BACKUP_INFO, value = "备份备注", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = DbInfoVOMeta.USER_INFO, value = "用户备注", required = false, dataTypeClass = String.class)
+	})
+    @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = DbInfoServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
     @PostMapping(DbInfoServiceProxy.QUERY_PAGED_LIST)
     public Result<PagedList<DbInfo>> queryPagedList(DbInfoVO sample) {
@@ -423,22 +421,22 @@ public class DbInfoController extends SuperController {
         PagedList<DbInfo> list = dbInfoService.queryPagedList(sample, sample.getPageSize(), sample.getPageIndex());
         // join 关联的对象
         dbInfoService.dao().fill(list).with(DbInfoMeta.CIPHERTEXT_BOX_DATA).with(DbInfoMeta.HOST).with(DbInfoMeta.HOST).with(DbInfoMeta.TYPE).with(DbInfoMeta.DEPLOY_MODE_DICT).with(DbInfoMeta.LABEL_LIST).with(DbInfoMeta.DATA_LOC_DATA).execute();
-        boolean hasPriv=false;
-        if(ciphertextBoxService.userEnDePermByBoxType("database_instance")){
-            hasPriv=true;
+        boolean hasPriv = false;
+        if (ciphertextBoxService.userEnDePermByBoxType("database_instance")) {
+            hasPriv = true;
         }
-        List<DbInfo> list2=list.getList();
-        for(int i=0;i<list2.size();i++){
-            if(!hasPriv){
+        List<DbInfo> list2 = list.getList();
+        for (int i = 0; i < list2.size(); i++) {
+            if (!hasPriv) {
                 list2.get(i).setVoucherStr("没有解密权限，不能查看");
                 continue;
             }
-            if(!StringUtil.isBlank(list2.get(i).getCiphertextBoxData())){
-                //进行解密
-                CiphertextBoxData box=list2.get(i).getCiphertextBoxData();
-                CiphertextBoxData afterBox=ciphertextBoxDataService.getById(box.getId());
+            if (!StringUtil.isBlank(list2.get(i).getCiphertextBoxData())) {
+                // 进行解密
+                CiphertextBoxData box = list2.get(i).getCiphertextBoxData();
+                CiphertextBoxData afterBox = ciphertextBoxDataService.getById(box.getId());
                 list2.get(i).setVoucherStr(afterBox.getPlaintext());
-            }else{
+            } else {
                 list2.get(i).setVoucherStr("");
             }
         }

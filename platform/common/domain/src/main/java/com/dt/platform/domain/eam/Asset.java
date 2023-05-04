@@ -34,8 +34,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产
  * <p>资产 , 数据表 eam_asset 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-07 18:19:38
- * @sign EE001FD2DFF6A8AB5FBE33BFCD3FBCE8
+ * @since 2023-05-03 09:07:40
+ * @sign 0E6CE2EAB71A4DFE006CAAE99F358FF1
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -51,13 +51,13 @@ public class Asset extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "515552857844350976")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "681881153086423040")
 	private String id;
 	
 	/**
 	 * 资产分类：资产分类
 	*/
-	@ApiModelProperty(required = false,value="资产分类" , notes = "资产分类")
+	@ApiModelProperty(required = false,value="资产分类" , notes = "资产分类" , example = "486918029091803137")
 	private String categoryId;
 	
 	/**
@@ -81,7 +81,7 @@ public class Asset extends Entity {
 	/**
 	 * 办理状态：办理状态
 	*/
-	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态")
+	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态" , example = "complete")
 	private String status;
 	
 	/**
@@ -93,19 +93,19 @@ public class Asset extends Entity {
 	/**
 	 * 归属：归属
 	*/
-	@ApiModelProperty(required = false,value="归属" , notes = "归属" , example = "asset_change_record")
+	@ApiModelProperty(required = false,value="归属" , notes = "归属" , example = "asset")
 	private String ownerCode;
 	
 	/**
 	 * 资产编号：资产编号
 	*/
-	@ApiModelProperty(required = false,value="资产编号" , notes = "资产编号")
+	@ApiModelProperty(required = false,value="资产编号" , notes = "资产编号" , example = "AS16217")
 	private String assetCode;
 	
 	/**
 	 * 资产状态：资产状态
 	*/
-	@ApiModelProperty(required = false,value="资产状态" , notes = "资产状态")
+	@ApiModelProperty(required = false,value="资产状态" , notes = "资产状态" , example = "repair")
 	private String assetStatus;
 	
 	/**
@@ -129,7 +129,7 @@ public class Asset extends Entity {
 	/**
 	 * 标准型号资产名称：标准型号资产名称
 	*/
-	@ApiModelProperty(required = false,value="标准型号资产名称" , notes = "标准型号资产名称")
+	@ApiModelProperty(required = false,value="标准型号资产名称" , notes = "标准型号资产名称" , example = "服务器")
 	private String name;
 	
 	/**
@@ -141,7 +141,7 @@ public class Asset extends Entity {
 	/**
 	 * 标准型号规格型号：标准型号规格型号
 	*/
-	@ApiModelProperty(required = false,value="标准型号规格型号" , notes = "标准型号规格型号")
+	@ApiModelProperty(required = false,value="标准型号规格型号" , notes = "标准型号规格型号" , example = "型号")
 	private String model;
 	
 	/**
@@ -159,7 +159,7 @@ public class Asset extends Entity {
 	/**
 	 * 使用期限：(月)
 	*/
-	@ApiModelProperty(required = false,value="使用期限" , notes = "(月)")
+	@ApiModelProperty(required = false,value="使用期限" , notes = "(月)" , example = "12.00")
 	private BigDecimal serviceLife;
 	
 	/**
@@ -171,13 +171,13 @@ public class Asset extends Entity {
 	/**
 	 * 序列号：序列号
 	*/
-	@ApiModelProperty(required = false,value="序列号" , notes = "序列号")
+	@ApiModelProperty(required = false,value="序列号" , notes = "序列号" , example = "sn")
 	private String serialNumber;
 	
 	/**
 	 * 所属公司：所属公司
 	*/
-	@ApiModelProperty(required = false,value="所属公司" , notes = "所属公司")
+	@ApiModelProperty(required = false,value="所属公司" , notes = "所属公司" , example = "2")
 	private String ownCompanyId;
 	
 	/**
@@ -207,13 +207,13 @@ public class Asset extends Entity {
 	/**
 	 * 存放位置：存放位置
 	*/
-	@ApiModelProperty(required = false,value="存放位置" , notes = "存放位置")
+	@ApiModelProperty(required = false,value="存放位置" , notes = "存放位置" , example = "616018653535535104")
 	private String positionId;
 	
 	/**
 	 * 详细位置：详细位置
 	*/
-	@ApiModelProperty(required = false,value="详细位置" , notes = "详细位置")
+	@ApiModelProperty(required = false,value="详细位置" , notes = "详细位置" , example = "detail")
 	private String positionDetail;
 	
 	/**
@@ -231,19 +231,19 @@ public class Asset extends Entity {
 	/**
 	 * 来源：来源
 	*/
-	@ApiModelProperty(required = false,value="来源" , notes = "来源")
+	@ApiModelProperty(required = false,value="来源" , notes = "来源" , example = "give")
 	private String sourceId;
 	
 	/**
 	 * 资产数量：资产数量
 	*/
-	@ApiModelProperty(required = false,value="资产数量" , notes = "资产数量")
+	@ApiModelProperty(required = false,value="资产数量" , notes = "资产数量" , example = "1")
 	private Integer assetNumber;
 	
 	/**
 	 * 剩余数量：剩余数量
 	*/
-	@ApiModelProperty(required = false,value="剩余数量" , notes = "剩余数量")
+	@ApiModelProperty(required = false,value="剩余数量" , notes = "剩余数量" , example = "1")
 	private Integer remainNumber;
 	
 	/**
@@ -261,7 +261,7 @@ public class Asset extends Entity {
 	/**
 	 * 入账日期：入账日期
 	*/
-	@ApiModelProperty(required = false,value="入账日期" , notes = "入账日期")
+	@ApiModelProperty(required = false,value="入账日期" , notes = "入账日期" , example = "2023-02-25 12:00:00")
 	private Date registerDate;
 	
 	/**
@@ -279,13 +279,13 @@ public class Asset extends Entity {
 	/**
 	 * 最近核对日期：最近核对日期
 	*/
-	@ApiModelProperty(required = false,value="最近核对日期" , notes = "最近核对日期" , example = "2022-01-06 12:00:00")
+	@ApiModelProperty(required = false,value="最近核对日期" , notes = "最近核对日期")
 	private Date lastVerificationDate;
 	
 	/**
 	 * 用途：用途
 	*/
-	@ApiModelProperty(required = false,value="用途" , notes = "用途")
+	@ApiModelProperty(required = false,value="用途" , notes = "用途" , example = "用途")
 	private String purpose;
 	
 	/**
@@ -303,7 +303,7 @@ public class Asset extends Entity {
 	/**
 	 * 维保厂商：维保厂商
 	*/
-	@ApiModelProperty(required = false,value="维保厂商" , notes = "维保厂商" , example = "121212")
+	@ApiModelProperty(required = false,value="维保厂商" , notes = "维保厂商")
 	private String maintainerName;
 	
 	/**
@@ -423,19 +423,19 @@ public class Asset extends Entity {
 	/**
 	 * 资产原值：(未税)
 	*/
-	@ApiModelProperty(required = false,value="资产原值" , notes = "(未税)" , example = "1000.00")
+	@ApiModelProperty(required = false,value="资产原值" , notes = "(未税)" , example = "0.00")
 	private BigDecimal originalUnitPrice;
 	
 	/**
 	 * 资产净值：(当前)
 	*/
-	@ApiModelProperty(required = false,value="资产净值" , notes = "(当前)" , example = "500.00")
+	@ApiModelProperty(required = false,value="资产净值" , notes = "(当前)" , example = "0.00")
 	private BigDecimal navPrice;
 	
 	/**
 	 * 已用期限：(月)
 	*/
-	@ApiModelProperty(required = false,value="已用期限" , notes = "(月)")
+	@ApiModelProperty(required = false,value="已用期限" , notes = "(月)" , example = "0")
 	private BigDecimal assetUsedServiceLife;
 	
 	/**
@@ -451,21 +451,21 @@ public class Asset extends Entity {
 	private Date depreciationOperTime;
 	
 	/**
-	 * residuals_rate：residuals_rate
+	 * 残值率：残值率
 	*/
-	@ApiModelProperty(required = false,value="residuals_rate" , notes = "residuals_rate")
+	@ApiModelProperty(required = false,value="残值率" , notes = "残值率" , example = "5.00")
 	private BigDecimal residualsRate;
 	
 	/**
 	 * 残值：残值
 	*/
-	@ApiModelProperty(required = false,value="残值" , notes = "残值")
+	@ApiModelProperty(required = false,value="残值" , notes = "残值" , example = "0.00")
 	private BigDecimal residualsPrice;
 	
 	/**
 	 * 税额：税额
 	*/
-	@ApiModelProperty(required = false,value="税额" , notes = "税额")
+	@ApiModelProperty(required = false,value="税额" , notes = "税额" , example = "0.00")
 	private BigDecimal taxAmountRate;
 	
 	/**
@@ -519,7 +519,7 @@ public class Asset extends Entity {
 	/**
 	 * 设备IP：设备IP
 	*/
-	@ApiModelProperty(required = false,value="设备IP" , notes = "设备IP")
+	@ApiModelProperty(required = false,value="设备IP" , notes = "设备IP" , example = "192.12345")
 	private String equipmentIp;
 	
 	/**
@@ -555,7 +555,7 @@ public class Asset extends Entity {
 	/**
 	 * 设备运行环境：设备运行环境
 	*/
-	@ApiModelProperty(required = false,value="设备运行环境" , notes = "设备运行环境")
+	@ApiModelProperty(required = false,value="设备运行环境" , notes = "设备运行环境" , example = "office")
 	private String equipmentEnvironmentCode;
 	
 	/**
@@ -567,19 +567,19 @@ public class Asset extends Entity {
 	/**
 	 * 设备机柜：设备机柜
 	*/
-	@ApiModelProperty(required = false,value="设备机柜" , notes = "设备机柜")
+	@ApiModelProperty(required = false,value="设备机柜" , notes = "设备机柜" , example = "681879779636412416")
 	private String rackId;
 	
 	/**
 	 * 设备机柜上位置：设备机柜上位置
 	*/
-	@ApiModelProperty(required = false,value="设备机柜上位置" , notes = "设备机柜上位置")
+	@ApiModelProperty(required = false,value="设备机柜上位置" , notes = "设备机柜上位置" , example = "3")
 	private Integer rackUpNumber;
 	
 	/**
 	 * 设备机柜下位置：设备机柜下位置
 	*/
-	@ApiModelProperty(required = false,value="设备机柜下位置" , notes = "设备机柜下位置")
+	@ApiModelProperty(required = false,value="设备机柜下位置" , notes = "设备机柜下位置" , example = "11")
 	private Integer rackDownNumber;
 	
 	/**
@@ -589,22 +589,10 @@ public class Asset extends Entity {
 	private String label;
 	
 	/**
-	 * 长标签2：长标签2
-	*/
-	@ApiModelProperty(required = false,value="长标签2" , notes = "长标签2")
-	private String label2;
-	
-	/**
 	 * 短标签3：短标签3
 	*/
 	@ApiModelProperty(required = false,value="短标签3" , notes = "短标签3")
 	private String label3;
-	
-	/**
-	 * 长标签4：长标签4
-	*/
-	@ApiModelProperty(required = false,value="长标签4" , notes = "长标签4")
-	private String label4;
 	
 	/**
 	 * 短标签5：短标签5
@@ -613,10 +601,34 @@ public class Asset extends Entity {
 	private String label5;
 	
 	/**
+	 * 长标签4：长标签4
+	*/
+	@ApiModelProperty(required = false,value="长标签4" , notes = "长标签4")
+	private String label4;
+	
+	/**
+	 * 长标签2：长标签2
+	*/
+	@ApiModelProperty(required = false,value="长标签2" , notes = "长标签2")
+	private String label2;
+	
+	/**
 	 * 单据：单据
 	*/
 	@ApiModelProperty(required = false,value="单据" , notes = "单据")
 	private String billId;
+	
+	/**
+	 * 经度数据：经度数据
+	*/
+	@ApiModelProperty(required = false,value="经度数据" , notes = "经度数据")
+	private BigDecimal longitude;
+	
+	/**
+	 * 维度数据：维度数据
+	*/
+	@ApiModelProperty(required = false,value="维度数据" , notes = "维度数据")
+	private BigDecimal dimension;
 	
 	/**
 	 * 内部控制标签：内部控制标签
@@ -645,25 +657,25 @@ public class Asset extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-02-25 03:12:16")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-04-30 10:32:36")
 	private Date updateTime;
 	
 	/**
@@ -690,19 +702,19 @@ public class Asset extends Entity {
 	/**
 	 * 版本：版本
 	*/
-	@ApiModelProperty(required = true,value="版本" , notes = "版本" , example = "1")
+	@ApiModelProperty(required = true,value="版本" , notes = "版本" , example = "8")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "002")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
 	 * 制单人：制单人
 	*/
-	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
+	@ApiModelProperty(required = false,value="制单人" , notes = "制单人" , example = "E001")
 	private String originatorId;
 	
 	/**
@@ -2231,17 +2243,17 @@ public class Asset extends Entity {
 	}
 	
 	/**
-	 * 获得 residuals_rate<br>
-	 * residuals_rate
-	 * @return residuals_rate
+	 * 获得 残值率<br>
+	 * 残值率
+	 * @return 残值率
 	*/
 	public BigDecimal getResidualsRate() {
 		return residualsRate;
 	}
 	
 	/**
-	 * 设置 residuals_rate
-	 * @param residualsRate residuals_rate
+	 * 设置 残值率
+	 * @param residualsRate 残值率
 	 * @return 当前对象
 	*/
 	public Asset setResidualsRate(BigDecimal residualsRate) {
@@ -2668,25 +2680,6 @@ public class Asset extends Entity {
 	}
 	
 	/**
-	 * 获得 长标签2<br>
-	 * 长标签2
-	 * @return 长标签2
-	*/
-	public String getLabel2() {
-		return label2;
-	}
-	
-	/**
-	 * 设置 长标签2
-	 * @param label2 长标签2
-	 * @return 当前对象
-	*/
-	public Asset setLabel2(String label2) {
-		this.label2=label2;
-		return this;
-	}
-	
-	/**
 	 * 获得 短标签3<br>
 	 * 短标签3
 	 * @return 短标签3
@@ -2702,25 +2695,6 @@ public class Asset extends Entity {
 	*/
 	public Asset setLabel3(String label3) {
 		this.label3=label3;
-		return this;
-	}
-	
-	/**
-	 * 获得 长标签4<br>
-	 * 长标签4
-	 * @return 长标签4
-	*/
-	public String getLabel4() {
-		return label4;
-	}
-	
-	/**
-	 * 设置 长标签4
-	 * @param label4 长标签4
-	 * @return 当前对象
-	*/
-	public Asset setLabel4(String label4) {
-		this.label4=label4;
 		return this;
 	}
 	
@@ -2744,6 +2718,44 @@ public class Asset extends Entity {
 	}
 	
 	/**
+	 * 获得 长标签4<br>
+	 * 长标签4
+	 * @return 长标签4
+	*/
+	public String getLabel4() {
+		return label4;
+	}
+	
+	/**
+	 * 设置 长标签4
+	 * @param label4 长标签4
+	 * @return 当前对象
+	*/
+	public Asset setLabel4(String label4) {
+		this.label4=label4;
+		return this;
+	}
+	
+	/**
+	 * 获得 长标签2<br>
+	 * 长标签2
+	 * @return 长标签2
+	*/
+	public String getLabel2() {
+		return label2;
+	}
+	
+	/**
+	 * 设置 长标签2
+	 * @param label2 长标签2
+	 * @return 当前对象
+	*/
+	public Asset setLabel2(String label2) {
+		this.label2=label2;
+		return this;
+	}
+	
+	/**
 	 * 获得 单据<br>
 	 * 单据
 	 * @return 单据
@@ -2759,6 +2771,44 @@ public class Asset extends Entity {
 	*/
 	public Asset setBillId(String billId) {
 		this.billId=billId;
+		return this;
+	}
+	
+	/**
+	 * 获得 经度数据<br>
+	 * 经度数据
+	 * @return 经度数据
+	*/
+	public BigDecimal getLongitude() {
+		return longitude;
+	}
+	
+	/**
+	 * 设置 经度数据
+	 * @param longitude 经度数据
+	 * @return 当前对象
+	*/
+	public Asset setLongitude(BigDecimal longitude) {
+		this.longitude=longitude;
+		return this;
+	}
+	
+	/**
+	 * 获得 维度数据<br>
+	 * 维度数据
+	 * @return 维度数据
+	*/
+	public BigDecimal getDimension() {
+		return dimension;
+	}
+	
+	/**
+	 * 设置 维度数据
+	 * @param dimension 维度数据
+	 * @return 当前对象
+	*/
+	public Asset setDimension(BigDecimal dimension) {
+		this.dimension=dimension;
 		return this;
 	}
 	
@@ -3995,6 +4045,7 @@ public class Asset extends Entity {
 		inst.setEquipmentIp(this.getEquipmentIp());
 		inst.setMaintenanceEndDate(this.getMaintenanceEndDate());
 		inst.setDepreciationOperTime(this.getDepreciationOperTime());
+		inst.setLongitude(this.getLongitude());
 		inst.setNextApproverNames(this.getNextApproverNames());
 		inst.setAssetCode(this.getAssetCode());
 		inst.setSerialNumber(this.getSerialNumber());
@@ -4025,6 +4076,7 @@ public class Asset extends Entity {
 		inst.setChsStatus(this.getChsStatus());
 		inst.setProductionDate(this.getProductionDate());
 		inst.setUpdateBy(this.getUpdateBy());
+		inst.setDimension(this.getDimension());
 		inst.setCollectionId(this.getCollectionId());
 		inst.setRegisterDate(this.getRegisterDate());
 		inst.setSummary(this.getSummary());
@@ -4206,6 +4258,7 @@ public class Asset extends Entity {
 			this.setEquipmentIp(DataParser.parse(String.class, map.get(AssetMeta.EQUIPMENT_IP)));
 			this.setMaintenanceEndDate(DataParser.parse(Date.class, map.get(AssetMeta.MAINTENANCE_END_DATE)));
 			this.setDepreciationOperTime(DataParser.parse(Date.class, map.get(AssetMeta.DEPRECIATION_OPER_TIME)));
+			this.setLongitude(DataParser.parse(BigDecimal.class, map.get(AssetMeta.LONGITUDE)));
 			this.setNextApproverNames(DataParser.parse(String.class, map.get(AssetMeta.NEXT_APPROVER_NAMES)));
 			this.setAssetCode(DataParser.parse(String.class, map.get(AssetMeta.ASSET_CODE)));
 			this.setSerialNumber(DataParser.parse(String.class, map.get(AssetMeta.SERIAL_NUMBER)));
@@ -4236,6 +4289,7 @@ public class Asset extends Entity {
 			this.setChsStatus(DataParser.parse(String.class, map.get(AssetMeta.CHS_STATUS)));
 			this.setProductionDate(DataParser.parse(Date.class, map.get(AssetMeta.PRODUCTION_DATE)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(AssetMeta.UPDATE_BY)));
+			this.setDimension(DataParser.parse(BigDecimal.class, map.get(AssetMeta.DIMENSION)));
 			this.setCollectionId(DataParser.parse(String.class, map.get(AssetMeta.COLLECTION_ID)));
 			this.setRegisterDate(DataParser.parse(Date.class, map.get(AssetMeta.REGISTER_DATE)));
 			this.setSummary(DataParser.parse(String.class, map.get(AssetMeta.SUMMARY)));
@@ -4359,6 +4413,7 @@ public class Asset extends Entity {
 				this.setEquipmentIp( (String)map.get(AssetMeta.EQUIPMENT_IP));
 				this.setMaintenanceEndDate( (Date)map.get(AssetMeta.MAINTENANCE_END_DATE));
 				this.setDepreciationOperTime( (Date)map.get(AssetMeta.DEPRECIATION_OPER_TIME));
+				this.setLongitude( (BigDecimal)map.get(AssetMeta.LONGITUDE));
 				this.setNextApproverNames( (String)map.get(AssetMeta.NEXT_APPROVER_NAMES));
 				this.setAssetCode( (String)map.get(AssetMeta.ASSET_CODE));
 				this.setSerialNumber( (String)map.get(AssetMeta.SERIAL_NUMBER));
@@ -4389,6 +4444,7 @@ public class Asset extends Entity {
 				this.setChsStatus( (String)map.get(AssetMeta.CHS_STATUS));
 				this.setProductionDate( (Date)map.get(AssetMeta.PRODUCTION_DATE));
 				this.setUpdateBy( (String)map.get(AssetMeta.UPDATE_BY));
+				this.setDimension( (BigDecimal)map.get(AssetMeta.DIMENSION));
 				this.setCollectionId( (String)map.get(AssetMeta.COLLECTION_ID));
 				this.setRegisterDate( (Date)map.get(AssetMeta.REGISTER_DATE));
 				this.setSummary( (String)map.get(AssetMeta.SUMMARY));
@@ -4525,6 +4581,7 @@ public class Asset extends Entity {
 			this.setEquipmentIp(DataParser.parse(String.class, r.getValue(AssetMeta.EQUIPMENT_IP)));
 			this.setMaintenanceEndDate(DataParser.parse(Date.class, r.getValue(AssetMeta.MAINTENANCE_END_DATE)));
 			this.setDepreciationOperTime(DataParser.parse(Date.class, r.getValue(AssetMeta.DEPRECIATION_OPER_TIME)));
+			this.setLongitude(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.LONGITUDE)));
 			this.setNextApproverNames(DataParser.parse(String.class, r.getValue(AssetMeta.NEXT_APPROVER_NAMES)));
 			this.setAssetCode(DataParser.parse(String.class, r.getValue(AssetMeta.ASSET_CODE)));
 			this.setSerialNumber(DataParser.parse(String.class, r.getValue(AssetMeta.SERIAL_NUMBER)));
@@ -4555,6 +4612,7 @@ public class Asset extends Entity {
 			this.setChsStatus(DataParser.parse(String.class, r.getValue(AssetMeta.CHS_STATUS)));
 			this.setProductionDate(DataParser.parse(Date.class, r.getValue(AssetMeta.PRODUCTION_DATE)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(AssetMeta.UPDATE_BY)));
+			this.setDimension(DataParser.parse(BigDecimal.class, r.getValue(AssetMeta.DIMENSION)));
 			this.setCollectionId(DataParser.parse(String.class, r.getValue(AssetMeta.COLLECTION_ID)));
 			this.setRegisterDate(DataParser.parse(Date.class, r.getValue(AssetMeta.REGISTER_DATE)));
 			this.setSummary(DataParser.parse(String.class, r.getValue(AssetMeta.SUMMARY)));
@@ -4648,6 +4706,7 @@ public class Asset extends Entity {
 				this.setEquipmentIp( (String)r.getValue(AssetMeta.EQUIPMENT_IP));
 				this.setMaintenanceEndDate( (Date)r.getValue(AssetMeta.MAINTENANCE_END_DATE));
 				this.setDepreciationOperTime( (Date)r.getValue(AssetMeta.DEPRECIATION_OPER_TIME));
+				this.setLongitude( (BigDecimal)r.getValue(AssetMeta.LONGITUDE));
 				this.setNextApproverNames( (String)r.getValue(AssetMeta.NEXT_APPROVER_NAMES));
 				this.setAssetCode( (String)r.getValue(AssetMeta.ASSET_CODE));
 				this.setSerialNumber( (String)r.getValue(AssetMeta.SERIAL_NUMBER));
@@ -4678,6 +4737,7 @@ public class Asset extends Entity {
 				this.setChsStatus( (String)r.getValue(AssetMeta.CHS_STATUS));
 				this.setProductionDate( (Date)r.getValue(AssetMeta.PRODUCTION_DATE));
 				this.setUpdateBy( (String)r.getValue(AssetMeta.UPDATE_BY));
+				this.setDimension( (BigDecimal)r.getValue(AssetMeta.DIMENSION));
 				this.setCollectionId( (String)r.getValue(AssetMeta.COLLECTION_ID));
 				this.setRegisterDate( (Date)r.getValue(AssetMeta.REGISTER_DATE));
 				this.setSummary( (String)r.getValue(AssetMeta.SUMMARY));

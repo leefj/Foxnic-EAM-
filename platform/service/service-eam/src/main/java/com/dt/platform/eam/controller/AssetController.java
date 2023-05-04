@@ -156,7 +156,7 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.SUPPLIER_ID, value = "资产供应商", required = false, dataTypeClass = String.class, example = "[]"),
 		@ApiImplicitParam(name = AssetVOMeta.ORIGINAL_UNIT_PRICE, value = "资产原值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.ACCUMULATED_DEPRECIATION, value = "累计折旧", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-		@ApiImplicitParam(name = AssetVOMeta.RESIDUALS_RATE, value = "residuals_rate", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetVOMeta.RESIDUALS_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.NAV_PRICE, value = "资产净值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.PURCHASE_UNIT_PRICE, value = "含税单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.ENTRY_TIME, value = "登记时间", required = false, dataTypeClass = Date.class),
@@ -384,7 +384,9 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.EXPENSE_ITEM, value = "费用项目", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.CUSTOMER_INFO, value = "客户信息", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_ID, value = "最后折旧", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_OPER_TIME, value = "最后折旧时间", required = false, dataTypeClass = Date.class, example = "")
+		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_OPER_TIME, value = "最后折旧时间", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = AssetVOMeta.LONGITUDE, value = "经度数据", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetVOMeta.DIMENSION, value = "维度数据", required = false, dataTypeClass = BigDecimal.class)
 	})
     @ApiOperationSupport(order = 1)
     @SentinelResource(value = AssetServiceProxy.INSERT, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -400,7 +402,7 @@ public class AssetController extends SuperController {
             pcmData.setOwnerId(id);
             pcmData.setCatalogId(assetVO.getCategoryId());
             pcmData.setTenantId(SessionUser.getCurrent().getActivatedTenantId());
-			Logger.info(pcmData);
+            Logger.info(pcmData);
             Result pcmResult = CatalogServiceProxy.api().saveData(pcmData);
             if (!pcmResult.isSuccess()) {
                 return pcmResult;
@@ -500,7 +502,7 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.SUPPLIER_ID, value = "资产供应商", required = false, dataTypeClass = String.class, example = "[]"),
 		@ApiImplicitParam(name = AssetVOMeta.ORIGINAL_UNIT_PRICE, value = "资产原值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.ACCUMULATED_DEPRECIATION, value = "累计折旧", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-		@ApiImplicitParam(name = AssetVOMeta.RESIDUALS_RATE, value = "residuals_rate", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetVOMeta.RESIDUALS_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.NAV_PRICE, value = "资产净值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.PURCHASE_UNIT_PRICE, value = "含税单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.ENTRY_TIME, value = "登记时间", required = false, dataTypeClass = Date.class),
@@ -728,7 +730,9 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.EXPENSE_ITEM, value = "费用项目", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.CUSTOMER_INFO, value = "客户信息", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_ID, value = "最后折旧", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_OPER_TIME, value = "最后折旧时间", required = false, dataTypeClass = Date.class, example = "")
+		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_OPER_TIME, value = "最后折旧时间", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = AssetVOMeta.LONGITUDE, value = "经度数据", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetVOMeta.DIMENSION, value = "维度数据", required = false, dataTypeClass = BigDecimal.class)
 	})
     @ApiOperationSupport(order = 4, ignoreParameters = { AssetVOMeta.PAGE_INDEX, AssetVOMeta.PAGE_SIZE, AssetVOMeta.SEARCH_FIELD, AssetVOMeta.FUZZY_FIELD, AssetVOMeta.SEARCH_VALUE, AssetVOMeta.SORT_FIELD, AssetVOMeta.SORT_TYPE, AssetVOMeta.IDS })
     @SentinelResource(value = AssetServiceProxy.UPDATE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -746,11 +750,11 @@ public class AssetController extends SuperController {
             pcmData.setCatalogId(assetVO.getCategoryId());
             pcmData.setTenantId(SessionUser.getCurrent().getActivatedTenantId());
             Logger.info("update pcm data:");
-			Logger.info("getId:" + pcmData.getId());
-			Logger.info("getOwnerId:" + pcmData.getOwnerId());
-			Logger.info("getTenantId:" + pcmData.getTenantId());
-			Logger.info("getCatalogId:" + pcmData.getCatalogId());
-			Logger.info("getData:" + pcmData.getData());
+            Logger.info("getId:" + pcmData.getId());
+            Logger.info("getOwnerId:" + pcmData.getOwnerId());
+            Logger.info("getTenantId:" + pcmData.getTenantId());
+            Logger.info("getCatalogId:" + pcmData.getCatalogId());
+            Logger.info("getData:" + pcmData.getData());
             Result pcmResult = CatalogServiceProxy.api().saveData(pcmData);
             if (!pcmResult.isSuccess()) {
                 return pcmResult;
@@ -821,7 +825,7 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.TOTAL_AMOUNT_PRICE, value = "未税总值", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssetVOMeta.ORIGINAL_UNIT_PRICE, value = "资产原值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.ACCUMULATED_DEPRECIATION, value = "累计折旧", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-		@ApiImplicitParam(name = AssetVOMeta.RESIDUALS_RATE, value = "residuals_rate", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetVOMeta.RESIDUALS_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.NAV_PRICE, value = "资产净值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.PURCHASE_UNIT_PRICE, value = "含税单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.ENTRY_TIME, value = "登记时间", required = false, dataTypeClass = Date.class),
@@ -930,7 +934,9 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.EXPENSE_ITEM, value = "费用项目", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.CUSTOMER_INFO, value = "客户信息", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_ID, value = "最后折旧", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_OPER_TIME, value = "最后折旧时间", required = false, dataTypeClass = Date.class, example = "")
+		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_OPER_TIME, value = "最后折旧时间", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = AssetVOMeta.LONGITUDE, value = "经度数据", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetVOMeta.DIMENSION, value = "维度数据", required = false, dataTypeClass = BigDecimal.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetVOMeta.PAGE_INDEX, AssetVOMeta.PAGE_SIZE, AssetVOMeta.SEARCH_FIELD, AssetVOMeta.FUZZY_FIELD, AssetVOMeta.SEARCH_VALUE, AssetVOMeta.SORT_FIELD, AssetVOMeta.SORT_TYPE, AssetVOMeta.IDS })
     @SentinelResource(value = AssetServiceProxy.SAVE, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -1043,7 +1049,7 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.TOTAL_AMOUNT_PRICE, value = "未税总值", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssetVOMeta.ORIGINAL_UNIT_PRICE, value = "资产原值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.ACCUMULATED_DEPRECIATION, value = "累计折旧", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-		@ApiImplicitParam(name = AssetVOMeta.RESIDUALS_RATE, value = "residuals_rate", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetVOMeta.RESIDUALS_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.NAV_PRICE, value = "资产净值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.PURCHASE_UNIT_PRICE, value = "含税单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.ENTRY_TIME, value = "登记时间", required = false, dataTypeClass = Date.class),
@@ -1152,7 +1158,9 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.EXPENSE_ITEM, value = "费用项目", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.CUSTOMER_INFO, value = "客户信息", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_ID, value = "最后折旧", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_OPER_TIME, value = "最后折旧时间", required = false, dataTypeClass = Date.class, example = "")
+		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_OPER_TIME, value = "最后折旧时间", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = AssetVOMeta.LONGITUDE, value = "经度数据", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetVOMeta.DIMENSION, value = "维度数据", required = false, dataTypeClass = BigDecimal.class)
 	})
     @ApiOperationSupport(order = 5, ignoreParameters = { AssetVOMeta.PAGE_INDEX, AssetVOMeta.PAGE_SIZE })
     @SentinelResource(value = AssetServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -1225,7 +1233,7 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.TOTAL_AMOUNT_PRICE, value = "未税总值", required = false, dataTypeClass = BigDecimal.class),
 		@ApiImplicitParam(name = AssetVOMeta.ORIGINAL_UNIT_PRICE, value = "资产原值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.ACCUMULATED_DEPRECIATION, value = "累计折旧", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
-		@ApiImplicitParam(name = AssetVOMeta.RESIDUALS_RATE, value = "residuals_rate", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
+		@ApiImplicitParam(name = AssetVOMeta.RESIDUALS_RATE, value = "残值率", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.NAV_PRICE, value = "资产净值", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.PURCHASE_UNIT_PRICE, value = "含税单价", required = false, dataTypeClass = BigDecimal.class, example = "0.00"),
 		@ApiImplicitParam(name = AssetVOMeta.ENTRY_TIME, value = "登记时间", required = false, dataTypeClass = Date.class),
@@ -1334,7 +1342,9 @@ public class AssetController extends SuperController {
 		@ApiImplicitParam(name = AssetVOMeta.EXPENSE_ITEM, value = "费用项目", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.CUSTOMER_INFO, value = "客户信息", required = false, dataTypeClass = String.class),
 		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_ID, value = "最后折旧", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_OPER_TIME, value = "最后折旧时间", required = false, dataTypeClass = Date.class, example = "")
+		@ApiImplicitParam(name = AssetVOMeta.DEPRECIATION_OPER_TIME, value = "最后折旧时间", required = false, dataTypeClass = Date.class, example = ""),
+		@ApiImplicitParam(name = AssetVOMeta.LONGITUDE, value = "经度数据", required = false, dataTypeClass = BigDecimal.class),
+		@ApiImplicitParam(name = AssetVOMeta.DIMENSION, value = "维度数据", required = false, dataTypeClass = BigDecimal.class)
 	})
     @ApiOperationSupport(order = 8)
     @SentinelResource(value = AssetServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -1925,10 +1935,10 @@ public class AssetController extends SuperController {
         if (errors == null || errors.isEmpty()) {
             return ErrorDesc.success();
         } else {
-			Logger.info("import Result:");
+            Logger.info("import Result:");
             String msg = "导入失败";
             for (int i = 0; i < errors.size(); i++) {
-				Logger.info(i + ":" + errors.get(i).message);
+                Logger.info(i + ":" + errors.get(i).message);
                 msg = errors.get(i).message;
             }
             return ErrorDesc.failure().message(msg).data(errors);

@@ -155,7 +155,9 @@
 - 安装目录:/app
 ```
 #安装命令
-curl -L 'http://resource.rainbooow.com/deploy.sh'|bash
+curl -s 'http://resource.rainbooow.com/deploy.sh'|bash
+或者
+curl -s 'https://gitee.com/lank/eam/raw/2.6.0/platform/deploy/bin/deployApp.sh'|bash
 ```
 
 ### 方案二 应用直接部署

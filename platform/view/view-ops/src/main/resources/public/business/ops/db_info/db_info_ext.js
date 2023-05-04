@@ -320,6 +320,23 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             //fox.setSelectBoxUrl("employeeId","/service-hrm/hrm-employee/query-paged-list?companyId="+companyId);
             console.log("form:beforeInit")
         },
+    //     if(window.pageExt.form.selectBoxDataTransform) {
+    //     opts.push(window.pageExt.form.selectBoxDataTransform("hostId",{},data[i],data,i));
+    // } else {
+    //     opts.push({data:data[i],name:data[i].hostName,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+    // }
+        selectBoxDataTransform:function(hostId,obj,item,data,i){
+            console.log("selectBoxDataTransform");
+            console.log("hostId ",hostId)
+            console.log("data[i] ",item)
+            console.log("data ",data)
+            console.log("i ",i)
+            if(item&&item.hostName&&item.hostIp){
+                obj.name=item.hostName+"("+item.hostIp+")";
+            }
+            console.log("obj ",obj)
+            return obj;
+        },
         /**
          * 窗口调节前
          * */
