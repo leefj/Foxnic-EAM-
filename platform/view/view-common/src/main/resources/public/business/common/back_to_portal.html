@@ -1,0 +1,12 @@
+<script>
+    var IN_URL="[[${IN_URL}]]";
+    var PC_IN_CAM_PORTAL_URL="[[${PC_IN_CAM_PORTAL_URL}]]";
+    var PC_OUT_CAM_PORTAL_URL="[[${PC_OUT_CAM_PORTAL_URL}]]";
+
+    var url = window.location.href;
+    if (url.indexOf(IN_URL) > 0) {
+            window.location.href = PC_IN_CAM_PORTAL_URL;
+    } else {
+        window.location.href = PC_OUT_CAM_PORTAL_URL;
+    }
+</script>

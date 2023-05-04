@@ -1,7 +1,7 @@
 /**
  * 数据库 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-02-13 15:46:03
+ * @since 2023-05-03 09:08:46
  */
 
 function FormPage() {
@@ -14,6 +14,7 @@ function FormPage() {
 	const insertURL=moduleURL+"/insert";
 	const updateURL=moduleURL+"/update";
 
+	var rawFormData=null;
 	// 表单执行操作类型：view，create，edit
 	var action=null;
 	var disableCreateNew=false;
@@ -69,9 +70,9 @@ function FormPage() {
 	 * 自动调节窗口高度
 	 * */
 	var adjustPopupTask=-1;
-	function adjustPopup() {
+	function adjustPopup(arg) {
 		if(window.pageExt.form.beforeAdjustPopup) {
-			var doNext=window.pageExt.form.beforeAdjustPopup();
+			var doNext=window.pageExt.form.beforeAdjustPopup(arg);
 			if(!doNext) return;
 		}
 
@@ -90,7 +91,7 @@ function FormPage() {
 				if(bodyHeight>0 && bodyHeight!=prevBodyHeight) {
 					updateFormIframeHeight && updateFormIframeHeight(bodyHeight);
 				} else {
-					setTimeout(adjustPopup,1000);
+					setTimeout(function() {adjustPopup(arg);},1000);
 				}
 				prevBodyHeight = bodyHeight;
 				return;
@@ -121,6 +122,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "hostId",
 			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("主机名称",'','cmp:form'),
 			filterable: true,
 			paging: true,
 			pageRemote: true,
@@ -144,6 +146,7 @@ function FormPage() {
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
 					if(window.pageExt.form.selectBoxDataTransform) {
+						console.log("1345678");
 						opts.push(window.pageExt.form.selectBoxDataTransform("hostId",{data:data[i],name:data[i].hostName,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
 					} else {
 						opts.push({data:data[i],name:data[i].hostName,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
@@ -156,6 +159,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "typeId",
 			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("库类型",'','cmp:form'),
 			filterable: true,
 			paging: true,
 			pageRemote: true,
@@ -207,6 +211,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "deployMode",
 			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("部署模式",'','cmp:form'),
 			filterable: true,
 			layVerify: 'required',
 			layVerType: 'msg',
@@ -249,6 +254,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "dbTypeIds",
 			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("数据库类型",'','cmp:form'),
 			filterable: false,
 			on: function(data){
 				setTimeout(function () {
@@ -280,6 +286,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "labelIds",
 			radio: false,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("标签",'','cmp:form'),
 			filterable: false,
 			on: function(data){
 				setTimeout(function () {
@@ -311,6 +318,7 @@ function FormPage() {
 		fox.renderSelectBox({
 			el: "dataLocIds",
 			radio: false,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("数据存放",'','cmp:form'),
 			filterable: true,
 			on: function(data){
 				setTimeout(function () {
@@ -373,6 +381,7 @@ function FormPage() {
 		if(!formData) {
 			formData = admin.getTempData('ops-db-info-form-data');
 		}
+		rawFormData=formData;
 
 		window.pageExt.form.beforeDataFill && window.pageExt.form.beforeDataFill(formData);
 
@@ -417,12 +426,13 @@ function FormPage() {
 		//渐显效果
 		fm.css("opacity","0.0");
         fm.css("display","");
-        setTimeout(function (){
-            fm.animate({
-                opacity:'1.0'
-            },100,null,function (){
+		setTimeout(function (){
+			fm.animate({
+				opacity:'1.0'
+			},100,null,function (){
 				fm.css("opacity","1.0");});
-        },1);
+		},1);
+
 
         //禁用编辑
 		if((hasData && disableModify) || (!hasData &&disableCreateNew)) {
@@ -446,6 +456,16 @@ function FormPage() {
 
 		dataBeforeEdit=getFormData();
 
+	}
+
+	/**
+	 * 获得从服务器请求的原始表单数据
+	 * */
+	function getRawFormData() {
+		if(!rawFormData) {
+			rawFormData = admin.getTempData('ops-db-info-form-data');
+		}
+		return rawFormData;
 	}
 
 	function getFormData() {
@@ -539,7 +559,9 @@ function FormPage() {
 		getFormData: getFormData,
 		verifyForm: verifyForm,
 		saveForm: saveForm,
+		getRawFormData:getRawFormData,
 		verifyAndSaveForm:verifyAndSaveForm,
+		renderFormFields:renderFormFields,
 		fillFormData: fillFormData,
 		fillFormDataByIds:fillFormDataByIds,
 		processFormData4Bpm:processFormData4Bpm,

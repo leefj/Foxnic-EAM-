@@ -145,7 +145,7 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 			div.setMargin(0);
 			div.setPadding(0);
 			Paragraph paragraphIncludeTable=null;
-			Logger.info("document:"+document);
+			Logger.info("\n\ndocument:"+document);
 			Logger.info("print setting option list:");
 			Logger.info("print page type:"+printData.getPaperType());
 			Logger.info("print page columnNumber:"+printData.getPrintColumnNumber());
@@ -172,11 +172,13 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 				for(int i=0;i<assetList.size();i++){
 					Map<String, Object> asset=assetList.get(i);
 					String assetCode=asset.getOrDefault("assetCode","none").toString();
-					Logger.info("######table asset code:"+assetCode+"######");
+					Logger.info("\n\n\nn######table asset code:"+assetCode+"######");
 					if(i%printData.getPrintColumnNumber()==0){
+						Logger.info("to new paragraphIncludeTable");
 						if(paragraphIncludeTable!=null){
-							//Logger.info("i:"+i+",split");
+							Logger.info("####div add paragraphIncludeTable#######");
 							div.add(paragraphIncludeTable);
+							document.add(div);
 						}
 						paragraphIncludeTable = new Paragraph();
 						paragraphIncludeTable.setWidth(UnitValue.createPercentValue(100));

@@ -1,5 +1,5 @@
 #!/bin/sh
-modify_date="2023/04/25"
+modify_date="2023/05/01"
 ####################################################################################
 # run:
 #   sh appInstallFull.sh
@@ -448,7 +448,6 @@ function stopFirewalld(){
   systemctl disable firewalld.service
   systemctl stop firewalld.service
 }
-
 function installNginx(){
   cd $app_dir/bin
   sh deployNginx.sh

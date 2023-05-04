@@ -18,7 +18,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-02-13 15:46:01
+ * @since 2023-05-03 09:08:44
  * @sign 072C5A86F75E9E21D5871FA491A60284
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -216,14 +216,14 @@ public class DbInfoVOMeta extends DbInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.lang.String> DEPLOY_MODE_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,DEPLOY_MODE, java.lang.String.class, "部署模式", "部署模式", java.lang.String.class, null);
 	
 	/**
-	 * 大小(M) , 类型: java.math.BigDecimal
+	 * 大小 , M) , 类型: java.math.BigDecimal
 	*/
 	public static final String DB_SIZE="dbSize";
 	
 	/**
-	 * 大小(M) , 类型: java.math.BigDecimal
+	 * 大小 , M) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.math.BigDecimal> DB_SIZE_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,DB_SIZE, java.math.BigDecimal.class, "大小(M)", "大小(M)", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.ops.DbInfoVO,java.math.BigDecimal> DB_SIZE_PROP = new BeanProperty(com.dt.platform.domain.ops.DbInfoVO.class ,DB_SIZE, java.math.BigDecimal.class, "大小", "M)", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 日志模式 , 类型: java.lang.String
@@ -818,8 +818,8 @@ public class DbInfoVOMeta extends DbInfoMeta {
 		}
 		
 		/**
-		 * 设置 大小(M)
-		 * @param dbSize 大小(M)
+		 * 设置 大小
+		 * @param dbSize 大小
 		 * @return 当前对象
 		*/
 		public DbInfo setDbSize(BigDecimal dbSize) {

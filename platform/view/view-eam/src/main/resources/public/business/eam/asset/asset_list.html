@@ -2,7 +2,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-07 18:19:39
+ * @since 2023-05-03 09:07:41
  */
  -->
  <!DOCTYPE html>
@@ -11,6 +11,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer">
     <title th:text="${lang.translate('资产')}">资产</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
@@ -93,7 +94,7 @@
                     <!-- 已用期限 , assetUsedServiceLife ,typeName=number_input, isHideInSearch=true -->
                     <!-- 最后折旧 , depreciationId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 最后折旧时间 , depreciationOperTime ,typeName=date_input, isHideInSearch=true -->
-                    <!-- residuals_rate , residualsRate ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 残值率 , residualsRate ,typeName=number_input, isHideInSearch=true -->
                     <!-- 残值 , residualsPrice ,typeName=number_input, isHideInSearch=true -->
                     <!-- 税额 , taxAmountRate ,typeName=number_input, isHideInSearch=true -->
                     <!-- 本年折旧 , currentYearDepreciation ,typeName=number_input, isHideInSearch=true -->
@@ -112,11 +113,13 @@
                     <!-- 设备机柜上位置 , rackUpNumber ,typeName=number_input, isHideInSearch=true -->
                     <!-- 设备机柜下位置 , rackDownNumber ,typeName=number_input, isHideInSearch=true -->
                     <!-- 短标签1 , label ,typeName=text_input, isHideInSearch=true -->
-                    <!-- 长标签2 , label2 ,typeName=text_area, isHideInSearch=true -->
                     <!-- 短标签3 , label3 ,typeName=text_area, isHideInSearch=true -->
-                    <!-- 长标签4 , label4 ,typeName=text_area, isHideInSearch=true -->
                     <!-- 短标签5 , label5 ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 长标签4 , label4 ,typeName=text_area, isHideInSearch=true -->
+                    <!-- 长标签2 , label2 ,typeName=text_area, isHideInSearch=true -->
                     <!-- 单据 , billId ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 经度数据 , longitude ,typeName=number_input, isHideInSearch=true -->
+                    <!-- 维度数据 , dimension ,typeName=number_input, isHideInSearch=true -->
                     <!-- 内部控制标签 , internalControlLabel ,typeName=text_input, isHideInSearch=true -->
                     <!-- 领用ID , collectionId ,typeName=text_input, isHideInSearch=true -->
                     <!-- 借用ID , borrowId ,typeName=text_input, isHideInSearch=true -->

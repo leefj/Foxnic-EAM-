@@ -78,7 +78,6 @@ public class OpsDbInfoGtr extends BaseCodeGenerator{
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
 
-
         cfg.view().search().rowsDisplay(1);
         cfg.view().field(OpsTables.OPS_DB_INFO.HOST_ID)
                 .basic().label("主机名称")

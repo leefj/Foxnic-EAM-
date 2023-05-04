@@ -28,8 +28,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 数据库
  * <p>数据库 , 数据表 ops_db_info 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-02-13 15:46:01
- * @sign 790D1EA176B771825B83F2223DF46E03
+ * @since 2023-05-03 09:08:44
+ * @sign 44F1A0D0118793B928337DD28497CE4E
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -45,7 +45,7 @@ public class DbInfo extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "677539893294923776")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "683357164307218432")
 	private String id;
 	
 	/**
@@ -63,7 +63,7 @@ public class DbInfo extends Entity {
 	/**
 	 * 数据库名：数据库名
 	*/
-	@ApiModelProperty(required = false,value="数据库名" , notes = "数据库名" , example = "1212")
+	@ApiModelProperty(required = false,value="数据库名" , notes = "数据库名" , example = "121212")
 	private String name;
 	
 	/**
@@ -85,9 +85,9 @@ public class DbInfo extends Entity {
 	private String deployMode;
 	
 	/**
-	 * 大小(M)：大小(M)
+	 * 大小：M)
 	*/
-	@ApiModelProperty(required = false,value="大小(M)" , notes = "大小(M)" , example = "0.00")
+	@ApiModelProperty(required = false,value="大小" , notes = "M)" , example = "0.00")
 	private BigDecimal dbSize;
 	
 	/**
@@ -183,13 +183,13 @@ public class DbInfo extends Entity {
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "12")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注")
 	private String notes;
 	
 	/**
 	 * 选择：选择
 	*/
-	@ApiModelProperty(required = false,value="选择" , notes = "选择" , example = "1676274092000")
+	@ApiModelProperty(required = false,value="选择" , notes = "选择" , example = "1677661032000")
 	private String selectedCode;
 	
 	/**
@@ -201,7 +201,7 @@ public class DbInfo extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-02-13 03:41:39")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-03-01 04:57:24")
 	private Date createTime;
 	
 	/**
@@ -449,17 +449,17 @@ public class DbInfo extends Entity {
 	}
 	
 	/**
-	 * 获得 大小(M)<br>
-	 * 大小(M)
-	 * @return 大小(M)
+	 * 获得 大小<br>
+	 * M)
+	 * @return 大小
 	*/
 	public BigDecimal getDbSize() {
 		return dbSize;
 	}
 	
 	/**
-	 * 设置 大小(M)
-	 * @param dbSize 大小(M)
+	 * 设置 大小
+	 * @param dbSize 大小
 	 * @return 当前对象
 	*/
 	public DbInfo setDbSize(BigDecimal dbSize) {

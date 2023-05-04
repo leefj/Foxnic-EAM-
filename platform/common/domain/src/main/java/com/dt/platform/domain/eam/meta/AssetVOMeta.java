@@ -33,8 +33,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-07 18:19:38
- * @sign C05127D02CE5B4FBBB8CDA17B7C59FAA
+ * @since 2023-05-03 09:07:40
+ * @sign 740673009F6EFF378B232C887D6576FF
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -119,6 +119,36 @@ public class AssetVOMeta extends AssetMeta {
 	 * 排序方式 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String DATA_ORIGIN="dataOrigin";
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端可按来源执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final String QUERY_LOGIC="queryLogic";
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String REQUEST_ACTION="requestAction";
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> REQUEST_ACTION_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,REQUEST_ACTION, java.lang.String.class, "请求动作", "前端指定不同的Action，后端可Action执行不同的逻辑", java.lang.String.class, null);
 	
 	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
@@ -801,14 +831,14 @@ public class AssetVOMeta extends AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.util.Date> DEPRECIATION_OPER_TIME_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,DEPRECIATION_OPER_TIME, java.util.Date.class, "最后折旧时间", "最后折旧时间", java.util.Date.class, null);
 	
 	/**
-	 * residuals_rate , 类型: java.math.BigDecimal
+	 * 残值率 , 类型: java.math.BigDecimal
 	*/
 	public static final String RESIDUALS_RATE="residualsRate";
 	
 	/**
-	 * residuals_rate , 类型: java.math.BigDecimal
+	 * 残值率 , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.math.BigDecimal> RESIDUALS_RATE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,RESIDUALS_RATE, java.math.BigDecimal.class, "residuals_rate", "residuals_rate", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.math.BigDecimal> RESIDUALS_RATE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,RESIDUALS_RATE, java.math.BigDecimal.class, "残值率", "残值率", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 残值 , 类型: java.math.BigDecimal
@@ -1031,16 +1061,6 @@ public class AssetVOMeta extends AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> LABEL_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,LABEL, java.lang.String.class, "短标签1", "短标签1", java.lang.String.class, null);
 	
 	/**
-	 * 长标签2 , 类型: java.lang.String
-	*/
-	public static final String LABEL2="label2";
-	
-	/**
-	 * 长标签2 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> LABEL2_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,LABEL2, java.lang.String.class, "长标签2", "长标签2", java.lang.String.class, null);
-	
-	/**
 	 * 短标签3 , 类型: java.lang.String
 	*/
 	public static final String LABEL3="label3";
@@ -1049,16 +1069,6 @@ public class AssetVOMeta extends AssetMeta {
 	 * 短标签3 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> LABEL3_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,LABEL3, java.lang.String.class, "短标签3", "短标签3", java.lang.String.class, null);
-	
-	/**
-	 * 长标签4 , 类型: java.lang.String
-	*/
-	public static final String LABEL4="label4";
-	
-	/**
-	 * 长标签4 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> LABEL4_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,LABEL4, java.lang.String.class, "长标签4", "长标签4", java.lang.String.class, null);
 	
 	/**
 	 * 短标签5 , 类型: java.lang.String
@@ -1071,6 +1081,26 @@ public class AssetVOMeta extends AssetMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> LABEL5_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,LABEL5, java.lang.String.class, "短标签5", "短标签5", java.lang.String.class, null);
 	
 	/**
+	 * 长标签4 , 类型: java.lang.String
+	*/
+	public static final String LABEL4="label4";
+	
+	/**
+	 * 长标签4 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> LABEL4_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,LABEL4, java.lang.String.class, "长标签4", "长标签4", java.lang.String.class, null);
+	
+	/**
+	 * 长标签2 , 类型: java.lang.String
+	*/
+	public static final String LABEL2="label2";
+	
+	/**
+	 * 长标签2 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> LABEL2_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,LABEL2, java.lang.String.class, "长标签2", "长标签2", java.lang.String.class, null);
+	
+	/**
 	 * 单据 , 类型: java.lang.String
 	*/
 	public static final String BILL_ID="billId";
@@ -1079,6 +1109,26 @@ public class AssetVOMeta extends AssetMeta {
 	 * 单据 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.lang.String> BILL_ID_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,BILL_ID, java.lang.String.class, "单据", "单据", java.lang.String.class, null);
+	
+	/**
+	 * 经度数据 , 类型: java.math.BigDecimal
+	*/
+	public static final String LONGITUDE="longitude";
+	
+	/**
+	 * 经度数据 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.math.BigDecimal> LONGITUDE_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,LONGITUDE, java.math.BigDecimal.class, "经度数据", "经度数据", java.math.BigDecimal.class, null);
+	
+	/**
+	 * 维度数据 , 类型: java.math.BigDecimal
+	*/
+	public static final String DIMENSION="dimension";
+	
+	/**
+	 * 维度数据 , 类型: java.math.BigDecimal
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.AssetVO,java.math.BigDecimal> DIMENSION_PROP = new BeanProperty(com.dt.platform.domain.eam.AssetVO.class ,DIMENSION, java.math.BigDecimal.class, "维度数据", "维度数据", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 内部控制标签 , 类型: java.lang.String
@@ -1643,7 +1693,7 @@ public class AssetVOMeta extends AssetMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , REGION_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , MAINTENANCE_PRICE , MAINTENANCE_METHOD , SUGGEST_MAINTENANCE_METHOD , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , FINANCIAL_OPTION , EXPENSE_ITEM , SUPPLIER_ID , CUSTOMER_INFO , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , PURCHASE_UNIT_PRICE , ORIGINAL_UNIT_PRICE , NAV_PRICE , ASSET_USED_SERVICE_LIFE , DEPRECIATION_ID , DEPRECIATION_OPER_TIME , RESIDUALS_RATE , RESIDUALS_PRICE , TAX_AMOUNT_RATE , CURRENT_YEAR_DEPRECIATION , DEPRECIATION_YEAR , ACCUMULATED_DEPRECIATION , MONTH_DEPRECIATION_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL2 , LABEL3 , LABEL4 , LABEL5 , BILL_ID , INTERNAL_CONTROL_LABEL , COLLECTION_ID , BORROW_ID , SCRAP_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA , EXT_DATA , PCM_DATA , CATALOG_ATTRIBUTE , POSITION , CATEGORY_FINANCE , CATEGORY , GOODS , MANUFACTURER , WAREHOUSE , USE_USER , MANAGER , ORIGINATOR , SUPPLIER , MAINTNAINER , OWNER_COMPANY , USE_ORGANIZATION , SOURCE , EQUIPMENT_ENVIRONMENT , SAFETY_LEVEL , ASSET_MAINTENANCE_STATUS , SUGGEST_MAINTENANCE_METHOD_DATA , MAINTENANCE_METHOD_DATA , ASSET_CYCLE_STATUS , RACK , CHANGE_INSTANCE , GOODS_STOCK , REGION , FINANCIAL_OPTION_DICT , EXPENSE_ITEM_DICT , ASSET_COLLECTION , ASSET_BORROW };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CATEGORY_ID , CATEGORY_CODE , BUSINESS_CODE , PROC_ID , STATUS , BATCH_CODE , OWNER_CODE , ASSET_CODE , ASSET_STATUS , DISPLAY , CLEAN_OUT , GOODS_ID , NAME , MANUFACTURER_ID , MODEL , PICTURE_ID , UNIT , SERVICE_LIFE , SAFETY_LEVEL_CODE , SERIAL_NUMBER , OWN_COMPANY_ID , MANAGER_ID , USE_ORGANIZATION_ID , USE_USER_ID , REGION_ID , POSITION_ID , POSITION_DETAIL , WAREHOUSE_ID , GOODS_STOCK_ID , SOURCE_ID , ASSET_NUMBER , REMAIN_NUMBER , PURCHASE_DATE , PRODUCTION_DATE , REGISTER_DATE , RFID , ATTACH , LAST_VERIFICATION_DATE , PURPOSE , ASSET_NOTES , MAINTAINER_ID , MAINTAINER_NAME , MAINTENANCE_STATUS , MAINTENANCE_PRICE , MAINTENANCE_METHOD , SUGGEST_MAINTENANCE_METHOD , CONTACTS , CONTACT_INFORMATION , DIRECTOR , MAINTENANCE_START_DATE , MAINTENANCE_END_DATE , MAINTENANCE_NOTES , FINANCIAL_CATEGORY_ID , FINANCIAL_CODE , FINANCIAL_OPTION , EXPENSE_ITEM , SUPPLIER_ID , CUSTOMER_INFO , TAX_AMOUNT_PRICE , TOTAL_AMOUNT_PRICE , PURCHASE_UNIT_PRICE , ORIGINAL_UNIT_PRICE , NAV_PRICE , ASSET_USED_SERVICE_LIFE , DEPRECIATION_ID , DEPRECIATION_OPER_TIME , RESIDUALS_RATE , RESIDUALS_PRICE , TAX_AMOUNT_RATE , CURRENT_YEAR_DEPRECIATION , DEPRECIATION_YEAR , ACCUMULATED_DEPRECIATION , MONTH_DEPRECIATION_PRICE , ENTRY_TIME , FINANCIAL_NOTES , EQUIPMENT_CODE , EQUIPMENT_STATUS , EQUIPMENT_IP , MANAGE_IP , EQUIPMENT_CPU , EQUIPMENT_MEMORY , EQUIPMENT_LABEL , EQUIPMENT_CONF , EQUIPMENT_ENVIRONMENT_CODE , EQUIPMENT_SERIAL_NUMBER , RACK_ID , RACK_UP_NUMBER , RACK_DOWN_NUMBER , LABEL , LABEL3 , LABEL5 , LABEL4 , LABEL2 , BILL_ID , LONGITUDE , DIMENSION , INTERNAL_CONTROL_LABEL , COLLECTION_ID , BORROW_ID , SCRAP_ID , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , ORIGINATOR_ID , CHS_TYPE , CHS_STATUS , CHS_VERSION , CHANGE_INSTANCE_ID , SUMMARY , LATEST_APPROVER_ID , LATEST_APPROVER_NAME , NEXT_APPROVER_IDS , NEXT_APPROVER_NAMES , APPROVAL_OPINION , ASSET_SELECTED_DATA , EXT_DATA , PCM_DATA , CATALOG_ATTRIBUTE , POSITION , CATEGORY_FINANCE , CATEGORY , GOODS , MANUFACTURER , WAREHOUSE , USE_USER , MANAGER , ORIGINATOR , SUPPLIER , MAINTNAINER , OWNER_COMPANY , USE_ORGANIZATION , SOURCE , EQUIPMENT_ENVIRONMENT , SAFETY_LEVEL , ASSET_MAINTENANCE_STATUS , SUGGEST_MAINTENANCE_METHOD_DATA , MAINTENANCE_METHOD_DATA , ASSET_CYCLE_STATUS , RACK , CHANGE_INSTANCE , GOODS_STOCK , REGION , FINANCIAL_OPTION_DICT , EXPENSE_ITEM_DICT , ASSET_COLLECTION , ASSET_BORROW };
 	
 	/**
 	 * 代理类
@@ -1738,6 +1788,39 @@ public class AssetVOMeta extends AssetMeta {
 		public AssetVO setSortType(String sortType) {
 			super.change(SORT_TYPE,super.getSortType(),sortType);
 			super.setSortType(sortType);
+			return this;
+		}
+		
+		/**
+		 * 设置 数据来源
+		 * @param dataOrigin 数据来源
+		 * @return 当前对象
+		*/
+		public AssetVO setDataOrigin(String dataOrigin) {
+			super.change(DATA_ORIGIN,super.getDataOrigin(),dataOrigin);
+			super.setDataOrigin(dataOrigin);
+			return this;
+		}
+		
+		/**
+		 * 设置 查询逻辑
+		 * @param queryLogic 查询逻辑
+		 * @return 当前对象
+		*/
+		public AssetVO setQueryLogic(String queryLogic) {
+			super.change(QUERY_LOGIC,super.getQueryLogic(),queryLogic);
+			super.setQueryLogic(queryLogic);
+			return this;
+		}
+		
+		/**
+		 * 设置 请求动作
+		 * @param requestAction 请求动作
+		 * @return 当前对象
+		*/
+		public AssetVO setRequestAction(String requestAction) {
+			super.change(REQUEST_ACTION,super.getRequestAction(),requestAction);
+			super.setRequestAction(requestAction);
 			return this;
 		}
 		
@@ -2490,8 +2573,8 @@ public class AssetVOMeta extends AssetMeta {
 		}
 		
 		/**
-		 * 设置 residuals_rate
-		 * @param residualsRate residuals_rate
+		 * 设置 残值率
+		 * @param residualsRate 残值率
 		 * @return 当前对象
 		*/
 		public Asset setResidualsRate(BigDecimal residualsRate) {
@@ -2743,17 +2826,6 @@ public class AssetVOMeta extends AssetMeta {
 		}
 		
 		/**
-		 * 设置 长标签2
-		 * @param label2 长标签2
-		 * @return 当前对象
-		*/
-		public Asset setLabel2(String label2) {
-			super.change(LABEL2,super.getLabel2(),label2);
-			super.setLabel2(label2);
-			return this;
-		}
-		
-		/**
 		 * 设置 短标签3
 		 * @param label3 短标签3
 		 * @return 当前对象
@@ -2761,17 +2833,6 @@ public class AssetVOMeta extends AssetMeta {
 		public Asset setLabel3(String label3) {
 			super.change(LABEL3,super.getLabel3(),label3);
 			super.setLabel3(label3);
-			return this;
-		}
-		
-		/**
-		 * 设置 长标签4
-		 * @param label4 长标签4
-		 * @return 当前对象
-		*/
-		public Asset setLabel4(String label4) {
-			super.change(LABEL4,super.getLabel4(),label4);
-			super.setLabel4(label4);
 			return this;
 		}
 		
@@ -2787,6 +2848,28 @@ public class AssetVOMeta extends AssetMeta {
 		}
 		
 		/**
+		 * 设置 长标签4
+		 * @param label4 长标签4
+		 * @return 当前对象
+		*/
+		public Asset setLabel4(String label4) {
+			super.change(LABEL4,super.getLabel4(),label4);
+			super.setLabel4(label4);
+			return this;
+		}
+		
+		/**
+		 * 设置 长标签2
+		 * @param label2 长标签2
+		 * @return 当前对象
+		*/
+		public Asset setLabel2(String label2) {
+			super.change(LABEL2,super.getLabel2(),label2);
+			super.setLabel2(label2);
+			return this;
+		}
+		
+		/**
 		 * 设置 单据
 		 * @param billId 单据
 		 * @return 当前对象
@@ -2794,6 +2877,28 @@ public class AssetVOMeta extends AssetMeta {
 		public Asset setBillId(String billId) {
 			super.change(BILL_ID,super.getBillId(),billId);
 			super.setBillId(billId);
+			return this;
+		}
+		
+		/**
+		 * 设置 经度数据
+		 * @param longitude 经度数据
+		 * @return 当前对象
+		*/
+		public Asset setLongitude(BigDecimal longitude) {
+			super.change(LONGITUDE,super.getLongitude(),longitude);
+			super.setLongitude(longitude);
+			return this;
+		}
+		
+		/**
+		 * 设置 维度数据
+		 * @param dimension 维度数据
+		 * @return 当前对象
+		*/
+		public Asset setDimension(BigDecimal dimension) {
+			super.change(DIMENSION,super.getDimension(),dimension);
+			super.setDimension(dimension);
 			return this;
 		}
 		
@@ -3499,6 +3604,7 @@ public class AssetVOMeta extends AssetMeta {
 			inst.setEquipmentIp(this.getEquipmentIp());
 			inst.setMaintenanceEndDate(this.getMaintenanceEndDate());
 			inst.setDepreciationOperTime(this.getDepreciationOperTime());
+			inst.setLongitude(this.getLongitude());
 			inst.setNextApproverNames(this.getNextApproverNames());
 			inst.setAssetCode(this.getAssetCode());
 			inst.setSerialNumber(this.getSerialNumber());
@@ -3529,6 +3635,7 @@ public class AssetVOMeta extends AssetMeta {
 			inst.setChsStatus(this.getChsStatus());
 			inst.setProductionDate(this.getProductionDate());
 			inst.setUpdateBy(this.getUpdateBy());
+			inst.setDimension(this.getDimension());
 			inst.setCollectionId(this.getCollectionId());
 			inst.setRegisterDate(this.getRegisterDate());
 			inst.setSummary(this.getSummary());
@@ -3566,12 +3673,15 @@ public class AssetVOMeta extends AssetMeta {
 				inst.setSupplier(this.getSupplier());
 				inst.setDirtyFields(this.getDirtyFields());
 				inst.setSortField(this.getSortField());
+				inst.setDataOrigin(this.getDataOrigin());
 				inst.setMaintenanceMethodData(this.getMaintenanceMethodData());
+				inst.setQueryLogic(this.getQueryLogic());
 				inst.setUseUser(this.getUseUser());
 				inst.setEquipmentEnvironment(this.getEquipmentEnvironment());
 				inst.setAssetCycleStatus(this.getAssetCycleStatus());
 				inst.setRack(this.getRack());
 				inst.setManager(this.getManager());
+				inst.setRequestAction(this.getRequestAction());
 				inst.setWarehouse(this.getWarehouse());
 				inst.setPcmData(this.getPcmData());
 				inst.setGoodsStock(this.getGoodsStock());

@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2022-12-07 18:19:40
+ * @since 2023-05-03 09:07:42
  */
 
 
@@ -11,8 +11,14 @@ function ListPage() {
 	
 	//模块基础路径
 	const moduleURL="/service-eam/eam-asset";
+	const queryURL=moduleURL+'/query-paged-list';
+	const deleteURL=moduleURL+'/delete';
+	const batchDeleteURL=moduleURL+'/delete-by-ids';
+	const getByIdURL=moduleURL+'/get-by-id';
+	//
 	var dataTable=null;
 	var sort=null;
+
 	/**
       * 入口函数，初始化
       */
@@ -71,7 +77,7 @@ function ListPage() {
 				elem: '#data-table',
 				toolbar: '#toolbarTemplate',
 				defaultToolbar: ['filter', 'print',{title: fox.translate('刷新数据','','cmp:table'),layEvent: 'refresh-data',icon: 'layui-icon-refresh-3'}],
-				url: moduleURL +'/query-paged-list',
+				url: queryURL,
 				height: 'full-'+(h+28),
 				limit: 50,
 				where: ps,
@@ -140,7 +146,7 @@ function ListPage() {
 					,{ field: 'assetUsedServiceLife', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('已用期限') , templet: function (d) { return templet('assetUsedServiceLife',d.assetUsedServiceLife,d);}  }
 					,{ field: 'depreciationId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('最后折旧') , templet: function (d) { return templet('depreciationId',d.depreciationId,d);}  }
 					,{ field: 'depreciationOperTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('最后折旧时间') ,templet: function (d) { return templet('depreciationOperTime',fox.dateFormat(d.depreciationOperTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
-					,{ field: 'residualsRate', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('residuals_rate') , templet: function (d) { return templet('residualsRate',d.residualsRate,d);}  }
+					,{ field: 'residualsRate', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('残值率') , templet: function (d) { return templet('residualsRate',d.residualsRate,d);}  }
 					,{ field: 'residualsPrice', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('残值') , templet: function (d) { return templet('residualsPrice',d.residualsPrice,d);}  }
 					,{ field: 'taxAmountRate', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('税额') , templet: function (d) { return templet('taxAmountRate',d.taxAmountRate,d);}  }
 					,{ field: 'currentYearDepreciation', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('本年折旧') , templet: function (d) { return templet('currentYearDepreciation',d.currentYearDepreciation,d);}  }
@@ -163,11 +169,13 @@ function ListPage() {
 					,{ field: 'rackUpNumber', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('设备机柜上位置') , templet: function (d) { return templet('rackUpNumber',d.rackUpNumber,d);}  }
 					,{ field: 'rackDownNumber', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('设备机柜下位置') , templet: function (d) { return templet('rackDownNumber',d.rackDownNumber,d);}  }
 					,{ field: 'label', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('短标签1') , templet: function (d) { return templet('label',d.label,d);}  }
-					,{ field: 'label2', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('长标签2') , templet: function (d) { return templet('label2',d.label2,d);}  }
 					,{ field: 'label3', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('短标签3') , templet: function (d) { return templet('label3',d.label3,d);}  }
-					,{ field: 'label4', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('长标签4') , templet: function (d) { return templet('label4',d.label4,d);}  }
 					,{ field: 'label5', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('短标签5') , templet: function (d) { return templet('label5',d.label5,d);}  }
+					,{ field: 'label4', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('长标签4') , templet: function (d) { return templet('label4',d.label4,d);}  }
+					,{ field: 'label2', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('长标签2') , templet: function (d) { return templet('label2',d.label2,d);}  }
 					,{ field: 'billId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('单据') , templet: function (d) { return templet('billId',d.billId,d);}  }
+					,{ field: 'longitude', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('经度数据') , templet: function (d) { return templet('longitude',d.longitude,d);}  }
+					,{ field: 'dimension', align:"right",fixed:false,  hide:false, sort: true  , title: fox.translate('维度数据') , templet: function (d) { return templet('dimension',d.dimension,d);}  }
 					,{ field: 'internalControlLabel', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('内部控制标签') , templet: function (d) { return templet('internalControlLabel',d.internalControlLabel,d);}  }
 					,{ field: 'collectionId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('领用ID') , templet: function (d) { return templet('collectionId',d.collectionId,d);}  }
 					,{ field: 'borrowId', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('借用ID') , templet: function (d) { return templet('borrowId',d.borrowId,d);}  }
@@ -187,7 +195,10 @@ function ListPage() {
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
-				done: function (data) { window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data); },
+				done: function (data) {
+					lockSwitchInputs();
+					window.pageExt.list.afterQuery && window.pageExt.list.afterQuery(data);
+				},
 				footer : {
 					exportExcel : false ,
 					importExcel : false 
@@ -211,11 +222,13 @@ function ListPage() {
 		var context=dataTable.getDataRowContext( { id : data.id } );
 		if(context==null) return;
 		if(remote) {
-			admin.post(moduleURL+"/get-by-id", { id : data.id }, function (r) {
+			admin.post(getByIdURL, { id : data.id }, function (r) {
 				if (r.success) {
 					data = r.data;
 					context.update(data);
 					fox.renderFormInputs(form);
+					lockSwitchInputs();
+					window.pageExt.list.afterRefreshRowData && window.pageExt.list.afterRefreshRowData(data,remote,context);
 				} else {
 					fox.showMessage(data);
 				}
@@ -223,7 +236,24 @@ function ListPage() {
 		} else {
 			context.update(data);
 			fox.renderFormInputs(form);
+			lockSwitchInputs();
+			window.pageExt.list.afterRefreshRowData && window.pageExt.list.afterRefreshRowData(data,remote,context);
 		}
+	}
+
+
+
+	function lockSwitchInputs() {
+	}
+
+	function lockSwitchInput(field) {
+		var inputs=$("[lay-id=data-table]").find("td[data-field='"+field+"']").find("input");
+		var switchs=$("[lay-id=data-table]").find("td[data-field='"+field+"']").find(".layui-form-switch");
+		inputs.attr("readonly", "yes");
+		inputs.attr("disabled", "yes");
+		switchs.addClass("layui-disabled");
+		switchs.addClass("layui-checkbox-disabled");
+		switchs.addClass("layui-form-switch-disabled");
 	}
 
 	/**
@@ -316,7 +346,11 @@ function ListPage() {
 				var opts=[];
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
-					opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("status",{data:data[i],name:data[i].text,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].text,value:data[i].code});
+					}
 				}
 				return opts;
 			}
@@ -341,7 +375,11 @@ function ListPage() {
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
-					opts.push({data:data[i],name:data[i].name,value:data[i].code});
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("assetStatus",{data:data[i],name:data[i].name,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].code});
+					}
 				}
 				return opts;
 			}
@@ -368,7 +406,11 @@ function ListPage() {
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
-					opts.push({data:data[i],name:data[i].manufacturerName,value:data[i].id});
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("manufacturerId",{data:data[i],name:data[i].manufacturerName,value:data[i].id},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].manufacturerName,value:data[i].id});
+					}
 				}
 				return opts;
 			}
@@ -395,7 +437,11 @@ function ListPage() {
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
-					opts.push({data:data[i],name:data[i].hierarchyName,value:data[i].id});
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("positionId",{data:data[i],name:data[i].hierarchyName,value:data[i].id},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].hierarchyName,value:data[i].id});
+					}
 				}
 				return opts;
 			}
@@ -418,7 +464,11 @@ function ListPage() {
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
-					opts.push({data:data[i],name:data[i].label,value:data[i].code});
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("sourceId",{data:data[i],name:data[i].label,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].label,value:data[i].code});
+					}
 				}
 				return opts;
 			}
@@ -461,7 +511,11 @@ function ListPage() {
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
-					opts.push({data:data[i],name:data[i].maintainerName,value:data[i].id});
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("maintainerId",{data:data[i],name:data[i].maintainerName,value:data[i].id},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].maintainerName,value:data[i].id});
+					}
 				}
 				return opts;
 			}
@@ -484,7 +538,11 @@ function ListPage() {
 				if(!data) return opts;
 				for (var i = 0; i < data.length; i++) {
 					if(!data[i]) continue;
-					opts.push({data:data[i],name:data[i].label,value:data[i].code});
+					if(window.pageExt.list.selectBoxDataTransform) {
+						opts.push(window.pageExt.list.selectBoxDataTransform("equipmentEnvironmentCode",{data:data[i],name:data[i].label,value:data[i].code},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].label,value:data[i].code});
+					}
 				}
 				return opts;
 			}
@@ -635,7 +693,7 @@ function ListPage() {
             //调用批量删除接口
 			top.layer.confirm(fox.translate('确定删除已选中的'+'资产'+'吗？'), function (i) {
                 top.layer.close(i);
-				admin.post(moduleURL+"/delete-by-ids", { ids: ids }, function (data) {
+				admin.post(batchDeleteURL, { ids: ids }, function (data) {
                     if (data.success) {
 						if(window.pageExt.list.afterBatchDelete) {
 							var doNext=window.pageExt.list.afterBatchDelete(data);
@@ -670,7 +728,7 @@ function ListPage() {
 
 			admin.putTempData('eam-asset-form-data-form-action', "",true);
 			if (layEvent === 'edit') { // 修改
-				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
+				admin.post(getByIdURL, { id : data.id }, function (data) {
 					if(data.success) {
 						admin.putTempData('eam-asset-form-data-form-action', "edit",true);
 						showEditForm(data.data);
@@ -679,7 +737,7 @@ function ListPage() {
 					}
 				});
 			} else if (layEvent === 'view') { // 查看
-				admin.post(moduleURL+"/get-by-id", { id : data.id }, function (data) {
+				admin.post(getByIdURL, { id : data.id }, function (data) {
 					if(data.success) {
 						admin.putTempData('eam-asset-form-data-form-action', "view",true);
 						showEditForm(data.data);
@@ -697,7 +755,7 @@ function ListPage() {
 
 				top.layer.confirm(fox.translate('确定删除此'+'资产'+'吗？'), function (i) {
 					top.layer.close(i);
-					admin.post(moduleURL+"/delete", { id : data.id }, function (data) {
+					admin.post(deleteURL, { id : data.id }, function (data) {
 						top.layer.closeAll('loading');
 						if (data.success) {
 							if(window.pageExt.list.afterSingleDelete) {

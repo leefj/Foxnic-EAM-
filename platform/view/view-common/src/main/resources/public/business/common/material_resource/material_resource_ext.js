@@ -1,7 +1,7 @@
 /**
- * 资产 列表页 JS 脚本
+ * 素材资源 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-03 09:07:41
+ * @since 2023-05-02 15:29:00
  */
 
 layui.config({
@@ -18,7 +18,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload;
 
     //模块基础路径
-    const moduleURL="/service-eam/eam-asset";
+    const moduleURL="/service-common/sys-material-resource";
 
 
     //列表页的扩展
@@ -111,6 +111,11 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 进一步转换 list 数据
          * */
         templet:function (field,value,r) {
+            console.log(field,value,r)
+            if(field=="accessUrl"){
+                var str="/service-storage/sys-file/download?id="+r.fileId+"&inline=0";
+                return str;
+            }
             if(value==null) return "";
             return value;
         },
@@ -171,9 +176,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
-        },
-        assetDataChange:function (data){
-            console.log('assetDataChange',data);
         },
         /**
          * 末尾执行
