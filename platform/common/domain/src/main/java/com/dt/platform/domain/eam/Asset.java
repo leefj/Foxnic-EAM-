@@ -34,8 +34,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 资产
  * <p>资产 , 数据表 eam_asset 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-03 09:07:40
- * @sign 0E6CE2EAB71A4DFE006CAAE99F358FF1
+ * @since 2023-05-04 15:07:37
+ * @sign 54639C0C17C8FD6DF6028C644C00FBB8
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -818,6 +818,12 @@ public class Asset extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="资产分类" , notes = "资产分类")
 	private Catalog category;
+	
+	/**
+	 * catalogCodeValue：catalogCodeValue
+	*/
+	@ApiModelProperty(required = false,value="catalogCodeValue" , notes = "catalogCodeValue")
+	private String catalogCodeValue;
 	
 	/**
 	 * 物品档案：物品档案
@@ -3456,6 +3462,25 @@ public class Asset extends Entity {
 	}
 	
 	/**
+	 * 获得 catalogCodeValue<br>
+	 * catalogCodeValue
+	 * @return catalogCodeValue
+	*/
+	public String getCatalogCodeValue() {
+		return catalogCodeValue;
+	}
+	
+	/**
+	 * 设置 catalogCodeValue
+	 * @param catalogCodeValue catalogCodeValue
+	 * @return 当前对象
+	*/
+	public Asset setCatalogCodeValue(String catalogCodeValue) {
+		this.catalogCodeValue=catalogCodeValue;
+		return this;
+	}
+	
+	/**
 	 * 获得 物品档案<br>
 	 * 物品档案
 	 * @return 物品档案
@@ -4128,6 +4153,7 @@ public class Asset extends Entity {
 			inst.setAssetBorrow(this.getAssetBorrow());
 			inst.setCategory(this.getCategory());
 			inst.setRegion(this.getRegion());
+			inst.setCatalogCodeValue(this.getCatalogCodeValue());
 		}
 		inst.clearModifies();
 		return inst;
@@ -4339,6 +4365,7 @@ public class Asset extends Entity {
 			this.setAssetBorrow(DataParser.parse(AssetBorrow.class, map.get(AssetMeta.ASSET_BORROW)));
 			this.setCategory(DataParser.parse(Catalog.class, map.get(AssetMeta.CATEGORY)));
 			this.setRegion(DataParser.parse(AssetRegion.class, map.get(AssetMeta.REGION)));
+			this.setCatalogCodeValue(DataParser.parse(String.class, map.get(AssetMeta.CATALOG_CODE_VALUE)));
 			return true;
 		} else {
 			try {
@@ -4494,6 +4521,7 @@ public class Asset extends Entity {
 				this.setAssetBorrow( (AssetBorrow)map.get(AssetMeta.ASSET_BORROW));
 				this.setCategory( (Catalog)map.get(AssetMeta.CATEGORY));
 				this.setRegion( (AssetRegion)map.get(AssetMeta.REGION));
+				this.setCatalogCodeValue( (String)map.get(AssetMeta.CATALOG_CODE_VALUE));
 				return true;
 			} catch (Exception e) {
 				return false;

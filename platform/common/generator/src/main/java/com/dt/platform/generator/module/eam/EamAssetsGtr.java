@@ -53,6 +53,9 @@ public class EamAssetsGtr extends BaseCodeGenerator {
         cfg.getPoClassFile().addSimpleProperty(Position.class,"position","存放位置","存放位置");
         cfg.getPoClassFile().addSimpleProperty(CategoryFinance.class,"categoryFinance","财务分类","财务分类");
         cfg.getPoClassFile().addSimpleProperty(Catalog.class,"category","资产分类","资产分类");
+
+        cfg.getPoClassFile().addSimpleProperty(String.class, "catalogCodeValue","catalogCodeValue","catalogCodeValue");
+
         cfg.getPoClassFile().addSimpleProperty(Goods.class,"goods","物品档案","物品档案");
         cfg.getPoClassFile().addSimpleProperty(Manufacturer.class,"manufacturer","生产厂商","生产厂商");
         cfg.getPoClassFile().addSimpleProperty(Warehouse.class,"warehouse","仓库","仓库");
@@ -387,34 +390,38 @@ public class EamAssetsGtr extends BaseCodeGenerator {
         cfg.view().list().operationColumn().addActionButton("变更","assetDataChange");
 
         cfg.view().search().rowsDisplay(1);
+
+        cfg.view().field(AssetMeta.CATALOG_CODE_VALUE).table().fillBy("category","code");
+
         //分成分组布局
         cfg.view().formWindow().width(Config.baseFormWidth);
-//        cfg.view().form().addGroup(null,
-//                new Object[] {
-//                        EAMTables.EAM_ASSET.CATEGORY_ID,
-//                        EAMTables.EAM_ASSET.NAME,
-//                        EAMTables.EAM_ASSET.ASSET_CODE,
-//                        EAMTables.EAM_ASSET.PURCHASE_DATE,
-//                        EAMTables.EAM_ASSET.SERIAL_NUMBER,
-//                        EAMTables.EAM_ASSET.SERVICE_LIFE,
-//                }, new Object[] {
-//                        EAMTables.EAM_ASSET.OWN_COMPANY_ID,
-//                        EAMTables.EAM_ASSET.USE_ORGANIZATION_ID,
-//                        EAMTables.EAM_ASSET.MANAGER_ID,
-//                        EAMTables.EAM_ASSET.USE_USER_ID,
-//                        EAMTables.EAM_ASSET.POSITION_ID,
-//                        EAMTables.EAM_ASSET.POSITION_DETAIL,
-//
-//                }, new Object[] {
-//                        EAMTables.EAM_ASSET.SOURCE_ID,
-//                        EAMTables.EAM_ASSET.GOODS_ID,
-//                        EAMTables.EAM_ASSET.MANUFACTURER_ID,
-//                        EAMTables.EAM_ASSET.MODEL,
-//                        EAMTables.EAM_ASSET.UNIT,
-//                        EAMTables.EAM_ASSET.WAREHOUSE_ID,
-//
-//                }
-//        );
+        cfg.view().form().addGroup(null,
+                new Object[] {
+                        AssetMeta.CATALOG_CODE_VALUE,
+                        EAMTables.EAM_ASSET.CATEGORY_ID,
+                        EAMTables.EAM_ASSET.NAME,
+                        EAMTables.EAM_ASSET.ASSET_CODE,
+                        EAMTables.EAM_ASSET.PURCHASE_DATE,
+                        EAMTables.EAM_ASSET.SERIAL_NUMBER,
+                        EAMTables.EAM_ASSET.SERVICE_LIFE,
+                }, new Object[] {
+                        EAMTables.EAM_ASSET.OWN_COMPANY_ID,
+                        EAMTables.EAM_ASSET.USE_ORGANIZATION_ID,
+                        EAMTables.EAM_ASSET.MANAGER_ID,
+                        EAMTables.EAM_ASSET.USE_USER_ID,
+                        EAMTables.EAM_ASSET.POSITION_ID,
+                        EAMTables.EAM_ASSET.POSITION_DETAIL,
+
+                }, new Object[] {
+                        EAMTables.EAM_ASSET.SOURCE_ID,
+                        EAMTables.EAM_ASSET.GOODS_ID,
+                        EAMTables.EAM_ASSET.MANUFACTURER_ID,
+                        EAMTables.EAM_ASSET.MODEL,
+                        EAMTables.EAM_ASSET.UNIT,
+                        EAMTables.EAM_ASSET.WAREHOUSE_ID,
+
+                }
+        );
 //
 //        cfg.view().form().addGroup(null,
 //                new Object[] {

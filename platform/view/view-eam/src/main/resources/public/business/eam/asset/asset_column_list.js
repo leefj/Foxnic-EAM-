@@ -89,7 +89,9 @@ layui.define([],
                 ,label4:{ field: 'label4', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('资产标签4') , templet: function (d) { return templet('label4',d.label4,d);}  }
                 ,label5:{ field: 'label5', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('资产标签5') , templet: function (d) { return templet('label5',d.label5,d);}  }
                 ,goodsStockId:{ field: 'goodsStockId', align:"left",fixed:false,  hide:false, sort: true, title: fox.translate('物品'), templet: function (d) { return templet('goodsStockId',fox.joinLabel(d.goodsStock,"name"),d);}}
-            }
+                ,catalog_code_value:{ field: 'catalogCodeValue', align:"",fixed:false,  hide:false, sort: false  , title: fox.translate('类型编码') , templet: function (d) { return templet('catalogCodeValue',fox.getProperty(d,["category","code"],0,'','catalogCodeValue'),d);} }
+
+        }
             return COL_ALL_DATA;
         }
 

@@ -1,7 +1,7 @@
 /**
  * 资产 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-03 09:07:43
+ * @since 2023-05-04 15:07:39
  */
 
 function FormPage() {
@@ -988,18 +988,6 @@ function FormPage() {
 			fm[0].reset();
 			form.val('data-form', formData);
 
-			//设置 图片 显示附件
-		    if($("#pictureId").val()) {
-				foxup.fill("pictureId",$("#pictureId").val());
-		    } else {
-				adjustPopup();
-			}
-			//设置 附件 显示附件
-		    if($("#attach").val()) {
-				foxup.fill("attach",$("#attach").val());
-		    } else {
-				adjustPopup();
-			}
 
 
 
@@ -1007,78 +995,20 @@ function FormPage() {
 			if(formData["purchaseDate"]) {
 				$("#purchaseDate").val(fox.dateFormat(formData["purchaseDate"],"yyyy-MM-dd"));
 			}
-			//设置 生产日期 显示复选框勾选
-			if(formData["productionDate"]) {
-				$("#productionDate").val(fox.dateFormat(formData["productionDate"],"yyyy-MM-dd HH:mm:ss"));
-			}
-			//设置 入账日期 显示复选框勾选
-			if(formData["registerDate"]) {
-				$("#registerDate").val(fox.dateFormat(formData["registerDate"],"yyyy-MM-dd HH:mm:ss"));
-			}
-			//设置 最近核对日期 显示复选框勾选
-			if(formData["lastVerificationDate"]) {
-				$("#lastVerificationDate").val(fox.dateFormat(formData["lastVerificationDate"],"yyyy-MM-dd HH:mm:ss"));
-			}
-			//设置 开始时间 显示复选框勾选
-			if(formData["maintenanceStartDate"]) {
-				$("#maintenanceStartDate").val(fox.dateFormat(formData["maintenanceStartDate"],"yyyy-MM-dd"));
-			}
-			//设置 结束时间 显示复选框勾选
-			if(formData["maintenanceEndDate"]) {
-				$("#maintenanceEndDate").val(fox.dateFormat(formData["maintenanceEndDate"],"yyyy-MM-dd"));
-			}
-			//设置 最后折旧时间 显示复选框勾选
-			if(formData["depreciationOperTime"]) {
-				$("#depreciationOperTime").val(fox.dateFormat(formData["depreciationOperTime"],"yyyy-MM-dd HH:mm:ss"));
-			}
-			//设置 登记时间 显示复选框勾选
-			if(formData["entryTime"]) {
-				$("#entryTime").val(fox.dateFormat(formData["entryTime"],"yyyy-MM-dd HH:mm:ss"));
-			}
 
 
 			//设置  资产分类 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#categoryId",formData.category);
-			//设置  办理状态 设置下拉框勾选
-			fox.setSelectValue4Enum("#status",formData.status,SELECT_STATUS_DATA);
-			//设置  资产状态 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#assetStatus",formData.assetCycleStatus);
 			//设置  物品档案 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#goodsId",formData.goods);
 			//设置  厂商 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#manufacturerId",formData.manufacturer);
-			//设置  安全等级 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#safetyLevelCode",formData.safetyLevel);
 			//设置  位置 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#positionId",formData.position);
 			//设置  仓库 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#warehouseId",formData.warehouse);
-			//设置  库存物品 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#goodsStockId",formData.goodsStock);
 			//设置  来源 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#sourceId",formData.source);
-			//设置  维保商 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#maintainerId",formData.maintnainer);
-			//设置  维保状态 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#maintenanceStatus",formData.assetMaintenanceStatus);
-			//设置  维保方式 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#maintenanceMethod",formData.maintenanceMethodData);
-			//设置  建议维保方式 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#suggestMaintenanceMethod",formData.suggestMaintenanceMethodData);
-			//设置  财务分类 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#financialCategoryId",formData.categoryFinance);
-			//设置  财务选项 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#financialOption",formData.financialOptionDict);
-			//设置  费用项目 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#expenseItem",formData.expenseItemDict);
-			//设置  供应商 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#supplierId",formData.supplier);
-			//设置  设备状态 设置下拉框勾选
-			fox.setSelectValue4Enum("#equipmentStatus",formData.equipmentStatus,SELECT_EQUIPMENTSTATUS_DATA);
-			//设置  运行环境 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#equipmentEnvironmentCode",formData.equipmentEnvironment);
-			//设置  机柜 设置下拉框勾选
-			fox.setSelectValue4QueryApi("#rackId",formData.rack);
 
 			//处理fillBy
 
@@ -1143,46 +1073,16 @@ function FormPage() {
 
 		//获取 资产分类 下拉框的值
 		data["categoryId"]=fox.getSelectedValue("categoryId",false);
-		//获取 办理状态 下拉框的值
-		data["status"]=fox.getSelectedValue("status",false);
-		//获取 资产状态 下拉框的值
-		data["assetStatus"]=fox.getSelectedValue("assetStatus",false);
 		//获取 物品档案 下拉框的值
 		data["goodsId"]=fox.getSelectedValue("goodsId",false);
 		//获取 厂商 下拉框的值
 		data["manufacturerId"]=fox.getSelectedValue("manufacturerId",false);
-		//获取 安全等级 下拉框的值
-		data["safetyLevelCode"]=fox.getSelectedValue("safetyLevelCode",false);
 		//获取 位置 下拉框的值
 		data["positionId"]=fox.getSelectedValue("positionId",false);
 		//获取 仓库 下拉框的值
 		data["warehouseId"]=fox.getSelectedValue("warehouseId",false);
-		//获取 库存物品 下拉框的值
-		data["goodsStockId"]=fox.getSelectedValue("goodsStockId",false);
 		//获取 来源 下拉框的值
 		data["sourceId"]=fox.getSelectedValue("sourceId",false);
-		//获取 维保商 下拉框的值
-		data["maintainerId"]=fox.getSelectedValue("maintainerId",false);
-		//获取 维保状态 下拉框的值
-		data["maintenanceStatus"]=fox.getSelectedValue("maintenanceStatus",false);
-		//获取 维保方式 下拉框的值
-		data["maintenanceMethod"]=fox.getSelectedValue("maintenanceMethod",false);
-		//获取 建议维保方式 下拉框的值
-		data["suggestMaintenanceMethod"]=fox.getSelectedValue("suggestMaintenanceMethod",false);
-		//获取 财务分类 下拉框的值
-		data["financialCategoryId"]=fox.getSelectedValue("financialCategoryId",false);
-		//获取 财务选项 下拉框的值
-		data["financialOption"]=fox.getSelectedValue("financialOption",false);
-		//获取 费用项目 下拉框的值
-		data["expenseItem"]=fox.getSelectedValue("expenseItem",false);
-		//获取 供应商 下拉框的值
-		data["supplierId"]=fox.getSelectedValue("supplierId",false);
-		//获取 设备状态 下拉框的值
-		data["equipmentStatus"]=fox.getSelectedValue("equipmentStatus",false);
-		//获取 运行环境 下拉框的值
-		data["equipmentEnvironmentCode"]=fox.getSelectedValue("equipmentEnvironmentCode",false);
-		//获取 机柜 下拉框的值
-		data["rackId"]=fox.getSelectedValue("rackId",false);
 
 		return data;
 	}
