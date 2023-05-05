@@ -186,8 +186,9 @@ function ListPage() {
       */
     function renderTable() {
 
-
-		admin.post("/service-eam/eam-asset-label-tpl/query-list", {}, function (data) {
+    	var ps={};
+    	ps.type="1";
+		admin.post("/service-eam/eam-asset-label-tpl/query-list", ps, function (data) {
 			if (data.success) {
 				cardArr=data.data;
 				var html="";

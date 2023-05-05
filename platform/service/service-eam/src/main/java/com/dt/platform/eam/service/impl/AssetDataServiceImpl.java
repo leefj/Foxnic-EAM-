@@ -260,7 +260,6 @@ public class AssetDataServiceImpl  extends SuperService<Asset> implements IAsset
 //            }
 
             JSONObject ct=new JSONObject();
-            System.out.println("1212"+assetColumnMeta.getValueFormat()+"1161616");
             ct.put("fa",assetColumnMeta.getValueFormat());
             ct.put("t",assetColumnMeta.getValueType());
             value.put("ct",ct);

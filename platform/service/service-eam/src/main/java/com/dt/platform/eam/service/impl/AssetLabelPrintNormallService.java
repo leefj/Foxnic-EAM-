@@ -109,6 +109,7 @@ public class AssetLabelPrintNormallService implements IAssetLabelPrintService {
 			}
 			Float tableWidthPoint=print.getTableWidthMM()*print.PAGE_SIZE_A4_POINT_PER_MM;
 			Float tableHeightPoint=print.getTableHeightMM()*print.PAGE_SIZE_A4_POINT_PER_MM;
+
 			//表的label value 宽度
 			Float tableKeyWidthPoint=print.getPointByMM(12f);
 			Float tableValueWidthPoint=tableWidthPoint-tableKeyWidthPoint;
@@ -134,13 +135,13 @@ public class AssetLabelPrintNormallService implements IAssetLabelPrintService {
 			Logger.info("print Image position:"+print.getLabelTpl().getImagePosition());
 			String imageType=print.getLabelTpl().getImageType();
 
+
 			//div设置百分之白
 			Div div = new Div();
 			div.setKeepTogether(true);
 			div.setHorizontalAlignment(HorizontalAlignment.CENTER);
 			div.setVerticalAlignment(VerticalAlignment.MIDDLE);
 			div.setWidth(UnitValue.createPercentValue(100));
-			// div.setBackgroundColor(ColorConstants.GREEN);
 			div.setMargin(0);
 			div.setPadding(0);
 			Logger.info("print document div width:"+div.getWidth());
@@ -164,7 +165,16 @@ public class AssetLabelPrintNormallService implements IAssetLabelPrintService {
 					if(i%print.getPrintColumnNumber()==0){
 						if(paragraphIncludeTable!=null){
 							div.add(paragraphIncludeTable);
+							System.out.println("document.add(div);");
+
 							document.add(div);
+							div = new Div();
+							div.setKeepTogether(true);
+							div.setHorizontalAlignment(HorizontalAlignment.CENTER);
+							div.setVerticalAlignment(VerticalAlignment.MIDDLE);
+							div.setWidth(UnitValue.createPercentValue(100));
+							div.setMargin(0);
+							div.setPadding(0);
 						}
 						paragraphIncludeTable = new Paragraph();
 						//      paragraphIncludeTable.setBackgroundColor(ColorConstants.YELLOW);
@@ -318,6 +328,7 @@ public class AssetLabelPrintNormallService implements IAssetLabelPrintService {
 				div.add(paragraphIncludeTable);
 			}
 			if(div!=null){
+				System.out.println("document.add(div)last;");
 				document.add(div);
 			}
 
