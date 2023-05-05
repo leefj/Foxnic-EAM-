@@ -65,6 +65,12 @@ public class AssetLabelServiceImpl extends SuperService<AssetLabel> implements I
 	@Override
 	public AssetLabel queryAssetLabel() {
 		AssetLabel label=this.getById(queryAssetLabelId());
+
+		//专用，强制为1，tplid为650449362169626624
+		if("1".equals(label.getPaperTypeId())){
+			label.setLabelTplId("650449362169626624");
+		}
+
 		// join 关联的对象
 		this.dao().fill(label)
 				.with(AssetLabelMeta.ASSET_TPL)

@@ -105,7 +105,7 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 			Float keySizePoint=printData.getPointByMM(Float.parseFloat(printData.getLabel().getLabelKeyFontSize().toString()));
 			Float labelSizePoint=printData.getPointByMM(Float.parseFloat(printData.getLabel().getLabelValueFontSize().toString()));
 
-			//表格 来自LabelTpl
+
 			Float tableMarginTop=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getLabelTableMarginTop().toString()));
 			Float tableMarginBottom=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getLabelTableMarginBottom().toString()));
 			Float tableMarginLeft=printData.getPointByMM(Float.parseFloat(printData.getLabelTpl().getLabelTableMarginLeft().toString()));
@@ -134,7 +134,6 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 			PageSize pageSize =new PageSize(printData.getPageSizeWidth(),printData.getPageSizeHeight());
 			Document document = new Document(pdf, pageSize);
 			document.setMargins(0,0,0,0);
-
 			Div div = new Div();
 			div.setKeepTogether(true);
 			div.setHeight(UnitValue.createPercentValue(100));
@@ -179,6 +178,15 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 							Logger.info("####div add paragraphIncludeTable#######");
 							div.add(paragraphIncludeTable);
 							document.add(div);
+							div = new Div();
+							div.setKeepTogether(true);
+							div.setHeight(UnitValue.createPercentValue(100));
+							div.setWidth(UnitValue.createPercentValue(100));
+							div.setHorizontalAlignment(HorizontalAlignment.CENTER);
+							div.setVerticalAlignment(VerticalAlignment.MIDDLE);
+							div.setTextAlignment(TextAlignment.CENTER);
+							div.setMargin(0);
+							div.setPadding(0);
 						}
 						paragraphIncludeTable = new Paragraph();
 						paragraphIncludeTable.setWidth(UnitValue.createPercentValue(100));
