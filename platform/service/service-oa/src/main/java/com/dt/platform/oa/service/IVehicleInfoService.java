@@ -1,5 +1,6 @@
 package com.dt.platform.oa.service;
 
+import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
 import com.github.foxnic.sql.expr.ConditionExpr;
@@ -20,10 +21,10 @@ import java.util.Map;
 
 /**
  * <p>
- * 车辆信息 服务接口
+ * 车辆信息服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-28 13:01:06
+ * @since 2023-05-09 12:37:59
 */
 
 public interface IVehicleInfoService extends  ISimpleIdService<VehicleInfo,String> {
@@ -55,7 +56,7 @@ public interface IVehicleInfoService extends  ISimpleIdService<VehicleInfo,Strin
 
 		
 	/**
-	 * 按主键删除 车辆信息
+	 * 按主键删除车辆信息
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -63,7 +64,7 @@ public interface IVehicleInfoService extends  ISimpleIdService<VehicleInfo,Strin
 	Result deleteByIdPhysical(String id);
 	
 	/**
-	 * 按主键删除 车辆信息
+	 * 按主键删除车辆信息
 	 *
 	 * @param id 主键
 	 * @return 删除是否成功
@@ -86,7 +87,7 @@ public interface IVehicleInfoService extends  ISimpleIdService<VehicleInfo,Strin
 
 		
 	/**
-	 * 按主键更新字段 车辆信息
+	 * 按主键更新车辆信息
 	 *
 	 * @param id 主键
 	 * @return 是否更新成功
@@ -156,7 +157,7 @@ public interface IVehicleInfoService extends  ISimpleIdService<VehicleInfo,Strin
 
 		
 	/**
-	 * 按主键获取 车辆信息
+	 * 按主键获取车辆信息
 	 *
 	 * @param id 主键
 	 * @return VehicleInfo 数据对象

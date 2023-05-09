@@ -14,7 +14,7 @@ public class VehicleInfoGtr extends BaseCodeGenerator {
 
 
     public VehicleInfoGtr() {
-        super(OaTables.OA_VEHICLE_INFO.$TABLE,CAR_ID);
+        super(OaTables.OA_VEHICLE_INFO.$TABLE,"616256885288337408");
     }
 
     public void generateCode() throws Exception {
@@ -155,7 +155,7 @@ public class VehicleInfoGtr extends BaseCodeGenerator {
                         OaTables.OA_VEHICLE_INFO.VEHICLE_STATUS,
                         OaTables.OA_VEHICLE_INFO.TYPE,
                         OaTables.OA_VEHICLE_INFO.REGISTRANT,
-                        OaTables.OA_VEHICLE_INFO.VEHICLE_COUNT,
+                    //    OaTables.OA_VEHICLE_INFO.VEHICLE_COUNT,
                 },
 
                 new Object[] {

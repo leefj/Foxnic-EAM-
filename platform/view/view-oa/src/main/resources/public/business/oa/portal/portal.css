@@ -1,0 +1,258 @@
+html,body {
+    background-color: #F8F9FC;
+}
+
+.system-div{
+    width:100%;
+    display: flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+}
+
+.item-div{
+    width:120px;
+    padding: 5px;
+    display: flex;
+    flex-direction:row;
+}
+
+.item-info{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow:hidden;
+    padding-left: 5px;
+}
+
+.item-info-a {
+    overflow:hidden;
+    cursor: pointer;
+}
+
+.item-info-a:hover {
+    color: var(--primary-color);
+}
+.portal-container {
+    display: flex;
+    flex-direction:column;
+    margin: 8px;
+    gap:16px;
+}
+
+.first-row {
+    display: flex;
+    flex-direction:row;
+    width: 100%;
+    gap:8px;
+}
+
+.column {
+    flex: 1;
+    background-color: #fff;
+    border-radius:2px;
+    padding: 10px;
+}
+
+.summary {
+    display: flex;
+    flex-direction:column;
+
+}
+.summary-title {
+    width: 100%;
+    margin-bottom: 12px;
+}
+.summary-title div {
+    float: left;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 4px;
+}
+.summary-units {
+    display: flex;
+    flex-direction:row;
+    width: 100%;
+    gap:8px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.summary-unit {
+    flex: 1;
+    background-color: #F7F8FA;
+    width: calc((100% - 8*2px) / 3);
+    min-width: calc((100% - 8*2px) / 3);
+    max-width: calc((100% - 8*2px) / 3);
+    border-radius:4px;
+}
+
+.summary-unit div img {
+    width: 48px;
+}
+
+.summary-unit-title-text {
+    padding-left: 4px;
+    font-weight: bold
+}
+.summary-unit-items {
+    text-align: center;
+    margin: 26px 8px
+}
+.summary-unit-item {
+    display: flex;align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+.summary-unit-item-label {
+    font-weight: normal;
+    color: #cdcdcd;
+}
+.summary-unit-item-value {
+    font-size: 28px;
+    font-weight: bold;
+    margin-left: 12px
+}
+
+.process-instance-column {
+    padding: 0px !important;
+}
+
+.layui-tab {
+    margin: 8px 2px;
+    text-align: left !important;
+}
+
+.catalog-row {
+    display: flex;
+    flex-direction:column;
+    width: 100%;
+    gap:8px;
+    background-color: #fff;
+}
+
+.catalog-unit {
+    width: 100%;
+    border-radius:4px;
+    margin: 16px 8px 4px 8px;
+}
+
+.catalog-title {
+
+
+    font-weight: bold;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 16px;
+}
+
+.process-definition-items {
+    display: flex;
+    flex-direction:row;
+    width: 100%;
+    gap:8px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.process-definition-item {
+    margin: 0px 0px;
+    flex: 1;
+    display: flex;
+    flex-direction:row;
+    background-color: #F7F8FA;
+    width: calc((100% - 8*4px) / 5);
+    min-width: calc((100% - 8*4px) / 5);
+    max-width: calc((100% - 8*4px) / 5 );
+    border-radius:2px;
+    padding: 4px;
+    cursor: pointer;
+}
+
+.process-definition-name {
+
+}
+
+.process-definition-item:hover {
+    color: var(--primary-color);
+}
+
+.process-definition-desc {
+    color: #909090;
+}
+
+.layui-tab-content {
+    padding: 8px 0;
+}
+
+
+.oa-portal-card-list {
+    display: flex;
+    flex-direction:column;
+    width: 100%;
+
+}
+
+.oa-portal-card-item {
+    padding: 6px 10px;
+    vertical-align: middle;
+    border-bottom: 1px solid #eee;
+}
+
+.oa-portal-card-item-title {
+    cursor: pointer;
+}
+
+.oa-portal-card-item-title:hover {
+    color: var(--primary-color);
+}
+
+
+
+.oa-portal-card-item-desc {
+    color: #909090;
+    float: right;
+}
+
+
+.process-instances-list {
+    display: flex;
+    flex-direction:column;
+    width: 100%;
+
+}
+
+
+
+.oa-portal-card-item-more{
+    color: black;
+    float: right;
+    margin-bottom: 4px;
+}
+
+.process-instance-item {
+    padding: 6px 10px;
+    vertical-align: middle;
+    border-bottom: 1px solid #eee;
+}
+
+.process-instance-item-title {
+    cursor: pointer;
+}
+
+.process-instance-item-title:hover {
+    color: var(--primary-color);
+}
+
+
+
+.process-instance-item-desc {
+    color: #909090;
+    float: right;
+}
+
+
+
+.process-instances-more:hover {
+    color: var(--primary-color);
+}

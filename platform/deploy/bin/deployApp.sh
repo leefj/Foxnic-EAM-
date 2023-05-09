@@ -1,5 +1,5 @@
 #!/bin/sh
-modify_date="2023/05/01"
+modify_date="2023/05/08"
 ####################################################################################
 # run:
 #   sh appInstallFull.sh
@@ -224,7 +224,7 @@ default-character-set=utf8
 [mysqld]
 server_id=1
 log-bin=mysql-bin
-expire_logs_days=15
+expire_logs_days=3
 binlog-format=ROW
 binlog_cache_size=128m
 max_binlog_cache_size=512m
@@ -685,21 +685,25 @@ echo "App mobile address:https://ip:8091"
 echo "Login info user:admin"
 echo "Login info password:123456"
 echo "Mysql info port=$db_port"
-echo "Mysql info userName=$db_user"
+echo "Mysql info user=$db_user"
 echo "Mysql info password=$db_pwd"
 echo "Quick command list:"
 echo "k:help list"
+echo "g:  go to $base_dir/app"
 echo "ga: go to $base_dir/app/app/app"
 echo "gb: go to $base_dir/app/app/bpm"
 echo "gj: go to $base_dir/app/app/job"
 echo "gn: go to $base_dir/app/app/nginx"
-echo "g:  go to $base_dir/app"
 echo "ka_restart:restartApp"
 echo "kb_restart:restartBpm"
 echo "kj_restart:restartJob"
 echo "kn_restart:restartNginx"
 echo "tdb: go to connect to database"
 echo "--------------------------------- end ---------------------------------------"
+echo "如果正常脚本执行后，应用无法访问。"
+echo "请检查外部或内部防火墙、网络策略是否开通"
+echo "检查端口是否正常，默认应用端口:$app_port,流程引擎端口:$bpm_port 命令：netstat -ant|grep LISTEN"
+echo "检查应用日志，看启动是否报错"
 exit 0
 #################################################################### install finish
 ##########################################################################################
