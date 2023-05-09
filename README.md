@@ -95,7 +95,7 @@
 - 开发工具:IntelliJ IDEA 2020.2以上(不要使用eclipse)
 - 数据库:Mysql 5.7.32(必须为Mysql5.7)
 - Redis:5.0.12(可选)
-- JDK:JDK 1.8.100 (小版本100以上,但仅支持1.8)
+- JDK:JDK 1.8.200 (小版本200以上,但仅支持1.8)
 
 #### 系统架构图
 ![输入图片说明](https://images.gitee.com/uploads/images/2022/0407/143343_0a8f4947_448530.png "EAM.png")

@@ -1,6 +1,7 @@
 package com.dt.platform.domain.oa;
 
 import com.github.foxnic.dao.entity.Entity;
+import io.swagger.annotations.ApiModel;
 import javax.persistence.Table;
 import com.github.foxnic.sql.meta.DBTable;
 import com.dt.platform.constants.db.OaTables.OA_VEHICLE_INFO;
@@ -9,24 +10,30 @@ import io.swagger.annotations.ApiModelProperty;
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.Transient;
+import com.github.foxnic.api.swagger.EnumFor;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.foxnic.commons.lang.DataParser;
 import java.util.Map;
 import com.github.foxnic.dao.entity.EntityContext;
+import com.dt.platform.domain.oa.meta.VehicleInfoMeta;
+import com.github.foxnic.sql.data.ExprRcd;
 
 
 
 /**
  * 车辆信息
+ * <p>车辆信息 , 数据表 oa_vehicle_info 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-28 13:01:06
- * @sign 8AA383AB2132A8C19529514AF830D67F
+ * @since 2023-05-09 12:37:59
+ * @sign 118BC999CCFCFD1FA70212E3594A0215
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
 @Table(name = "oa_vehicle_info")
+@ApiModel(description = "车辆信息 ; 车辆信息 , 数据表 oa_vehicle_info 的PO类型")
 public class VehicleInfo extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -83,6 +90,12 @@ public class VehicleInfo extends Entity {
 	private String ownerOrgId;
 	
 	/**
+	 * 使用人：使用人
+	*/
+	@ApiModelProperty(required = false,value="使用人" , notes = "使用人")
+	private String manageUserId;
+	
+	/**
 	 * 使用部门：使用部门
 	*/
 	@ApiModelProperty(required = false,value="使用部门" , notes = "使用部门")
@@ -107,16 +120,16 @@ public class VehicleInfo extends Entity {
 	private String engineNumber;
 	
 	/**
-	 * 车架号：车架号
-	*/
-	@ApiModelProperty(required = false,value="车架号" , notes = "车架号")
-	private String frameNumber;
-	
-	/**
 	 * 行驶证：行驶证
 	*/
 	@ApiModelProperty(required = false,value="行驶证" , notes = "行驶证")
 	private String drivingLicense;
+	
+	/**
+	 * 车架号：车架号
+	*/
+	@ApiModelProperty(required = false,value="车架号" , notes = "车架号")
+	private String frameNumber;
 	
 	/**
 	 * 公里数：公里数
@@ -131,15 +144,15 @@ public class VehicleInfo extends Entity {
 	private BigDecimal carBoatTax;
 	
 	/**
-	 * 抢险(元)：抢险(元)
+	 * 抢险：元)
 	*/
-	@ApiModelProperty(required = false,value="抢险(元)" , notes = "抢险(元)")
+	@ApiModelProperty(required = false,value="抢险" , notes = "元)")
 	private BigDecimal rescueMoney;
 	
 	/**
-	 * 商业险(元)：商业险(元)
+	 * 商业险：元)
 	*/
-	@ApiModelProperty(required = false,value="商业险(元)" , notes = "商业险(元)")
+	@ApiModelProperty(required = false,value="商业险" , notes = "元)")
 	private BigDecimal commercialInsuranceMoney;
 	
 	/**
@@ -167,10 +180,10 @@ public class VehicleInfo extends Entity {
 	private Date rescueDueDate;
 	
 	/**
-	 * 版本：版本
+	 * 承载人数：承载人数
 	*/
-	@ApiModelProperty(required = true,value="版本" , notes = "版本")
-	private Integer version;
+	@ApiModelProperty(required = false,value="承载人数" , notes = "承载人数")
+	private Integer maximumPassengers;
 	
 	/**
 	 * 报废时间：报废时间
@@ -182,6 +195,12 @@ public class VehicleInfo extends Entity {
 	 * 存放位置：存放位置
 	*/
 	@ApiModelProperty(required = false,value="存放位置" , notes = "存放位置")
+	private String positionId;
+	
+	/**
+	 * 位置详情：位置详情
+	*/
+	@ApiModelProperty(required = false,value="位置详情" , notes = "位置详情")
 	private String positionDetail;
 	
 	/**
@@ -191,28 +210,28 @@ public class VehicleInfo extends Entity {
 	private String pictures;
 	
 	/**
-	 * 制单人：制单人
-	*/
-	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
-	private String originatorId;
-	
-	/**
 	 * 技术参数：技术参数
 	*/
 	@ApiModelProperty(required = false,value="技术参数" , notes = "技术参数")
 	private String technicalParameter;
 	
 	/**
-	 * 数量：数量
+	 * 制单人：制单人
 	*/
-	@ApiModelProperty(required = false,value="数量" , notes = "数量")
-	private Integer vehicleCount;
+	@ApiModelProperty(required = false,value="制单人" , notes = "制单人")
+	private String originatorId;
 	
 	/**
 	 * 备注：备注
 	*/
 	@ApiModelProperty(required = false,value="备注" , notes = "备注")
 	private String notes;
+	
+	/**
+	 * 版本：版本
+	*/
+	@ApiModelProperty(required = true,value="版本" , notes = "版本")
+	private Integer version;
 	
 	/**
 	 * 创建人ID：创建人ID
@@ -244,6 +263,7 @@ public class VehicleInfo extends Entity {
 	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
 	private Integer deleted;
 	@Transient
+	@EnumFor("deleted")
 	private Boolean deletedBool;
 	
 	/**
@@ -459,6 +479,25 @@ public class VehicleInfo extends Entity {
 	}
 	
 	/**
+	 * 获得 使用人<br>
+	 * 使用人
+	 * @return 使用人
+	*/
+	public String getManageUserId() {
+		return manageUserId;
+	}
+	
+	/**
+	 * 设置 使用人
+	 * @param manageUserId 使用人
+	 * @return 当前对象
+	*/
+	public VehicleInfo setManageUserId(String manageUserId) {
+		this.manageUserId=manageUserId;
+		return this;
+	}
+	
+	/**
 	 * 获得 使用部门<br>
 	 * 使用部门
 	 * @return 使用部门
@@ -535,25 +574,6 @@ public class VehicleInfo extends Entity {
 	}
 	
 	/**
-	 * 获得 车架号<br>
-	 * 车架号
-	 * @return 车架号
-	*/
-	public String getFrameNumber() {
-		return frameNumber;
-	}
-	
-	/**
-	 * 设置 车架号
-	 * @param frameNumber 车架号
-	 * @return 当前对象
-	*/
-	public VehicleInfo setFrameNumber(String frameNumber) {
-		this.frameNumber=frameNumber;
-		return this;
-	}
-	
-	/**
 	 * 获得 行驶证<br>
 	 * 行驶证
 	 * @return 行驶证
@@ -569,6 +589,25 @@ public class VehicleInfo extends Entity {
 	*/
 	public VehicleInfo setDrivingLicense(String drivingLicense) {
 		this.drivingLicense=drivingLicense;
+		return this;
+	}
+	
+	/**
+	 * 获得 车架号<br>
+	 * 车架号
+	 * @return 车架号
+	*/
+	public String getFrameNumber() {
+		return frameNumber;
+	}
+	
+	/**
+	 * 设置 车架号
+	 * @param frameNumber 车架号
+	 * @return 当前对象
+	*/
+	public VehicleInfo setFrameNumber(String frameNumber) {
+		this.frameNumber=frameNumber;
 		return this;
 	}
 	
@@ -611,17 +650,17 @@ public class VehicleInfo extends Entity {
 	}
 	
 	/**
-	 * 获得 抢险(元)<br>
-	 * 抢险(元)
-	 * @return 抢险(元)
+	 * 获得 抢险<br>
+	 * 元)
+	 * @return 抢险
 	*/
 	public BigDecimal getRescueMoney() {
 		return rescueMoney;
 	}
 	
 	/**
-	 * 设置 抢险(元)
-	 * @param rescueMoney 抢险(元)
+	 * 设置 抢险
+	 * @param rescueMoney 抢险
 	 * @return 当前对象
 	*/
 	public VehicleInfo setRescueMoney(BigDecimal rescueMoney) {
@@ -630,17 +669,17 @@ public class VehicleInfo extends Entity {
 	}
 	
 	/**
-	 * 获得 商业险(元)<br>
-	 * 商业险(元)
-	 * @return 商业险(元)
+	 * 获得 商业险<br>
+	 * 元)
+	 * @return 商业险
 	*/
 	public BigDecimal getCommercialInsuranceMoney() {
 		return commercialInsuranceMoney;
 	}
 	
 	/**
-	 * 设置 商业险(元)
-	 * @param commercialInsuranceMoney 商业险(元)
+	 * 设置 商业险
+	 * @param commercialInsuranceMoney 商业险
 	 * @return 当前对象
 	*/
 	public VehicleInfo setCommercialInsuranceMoney(BigDecimal commercialInsuranceMoney) {
@@ -725,21 +764,21 @@ public class VehicleInfo extends Entity {
 	}
 	
 	/**
-	 * 获得 版本<br>
-	 * 版本
-	 * @return 版本
+	 * 获得 承载人数<br>
+	 * 承载人数
+	 * @return 承载人数
 	*/
-	public Integer getVersion() {
-		return version;
+	public Integer getMaximumPassengers() {
+		return maximumPassengers;
 	}
 	
 	/**
-	 * 设置 版本
-	 * @param version 版本
+	 * 设置 承载人数
+	 * @param maximumPassengers 承载人数
 	 * @return 当前对象
 	*/
-	public VehicleInfo setVersion(Integer version) {
-		this.version=version;
+	public VehicleInfo setMaximumPassengers(Integer maximumPassengers) {
+		this.maximumPassengers=maximumPassengers;
 		return this;
 	}
 	
@@ -767,13 +806,32 @@ public class VehicleInfo extends Entity {
 	 * 存放位置
 	 * @return 存放位置
 	*/
+	public String getPositionId() {
+		return positionId;
+	}
+	
+	/**
+	 * 设置 存放位置
+	 * @param positionId 存放位置
+	 * @return 当前对象
+	*/
+	public VehicleInfo setPositionId(String positionId) {
+		this.positionId=positionId;
+		return this;
+	}
+	
+	/**
+	 * 获得 位置详情<br>
+	 * 位置详情
+	 * @return 位置详情
+	*/
 	public String getPositionDetail() {
 		return positionDetail;
 	}
 	
 	/**
-	 * 设置 存放位置
-	 * @param positionDetail 存放位置
+	 * 设置 位置详情
+	 * @param positionDetail 位置详情
 	 * @return 当前对象
 	*/
 	public VehicleInfo setPositionDetail(String positionDetail) {
@@ -801,25 +859,6 @@ public class VehicleInfo extends Entity {
 	}
 	
 	/**
-	 * 获得 制单人<br>
-	 * 制单人
-	 * @return 制单人
-	*/
-	public String getOriginatorId() {
-		return originatorId;
-	}
-	
-	/**
-	 * 设置 制单人
-	 * @param originatorId 制单人
-	 * @return 当前对象
-	*/
-	public VehicleInfo setOriginatorId(String originatorId) {
-		this.originatorId=originatorId;
-		return this;
-	}
-	
-	/**
 	 * 获得 技术参数<br>
 	 * 技术参数
 	 * @return 技术参数
@@ -839,21 +878,21 @@ public class VehicleInfo extends Entity {
 	}
 	
 	/**
-	 * 获得 数量<br>
-	 * 数量
-	 * @return 数量
+	 * 获得 制单人<br>
+	 * 制单人
+	 * @return 制单人
 	*/
-	public Integer getVehicleCount() {
-		return vehicleCount;
+	public String getOriginatorId() {
+		return originatorId;
 	}
 	
 	/**
-	 * 设置 数量
-	 * @param vehicleCount 数量
+	 * 设置 制单人
+	 * @param originatorId 制单人
 	 * @return 当前对象
 	*/
-	public VehicleInfo setVehicleCount(Integer vehicleCount) {
-		this.vehicleCount=vehicleCount;
+	public VehicleInfo setOriginatorId(String originatorId) {
+		this.originatorId=originatorId;
 		return this;
 	}
 	
@@ -873,6 +912,25 @@ public class VehicleInfo extends Entity {
 	*/
 	public VehicleInfo setNotes(String notes) {
 		this.notes=notes;
+		return this;
+	}
+	
+	/**
+	 * 获得 版本<br>
+	 * 版本
+	 * @return 版本
+	*/
+	public Integer getVersion() {
+		return version;
+	}
+	
+	/**
+	 * 设置 版本
+	 * @param version 版本
+	 * @return 当前对象
+	*/
+	public VehicleInfo setVersion(Integer version) {
+		this.version=version;
 		return this;
 	}
 	
@@ -979,6 +1037,7 @@ public class VehicleInfo extends Entity {
 	 * @param deleted 是否已删除
 	 * @return 当前对象
 	*/
+	@JsonProperty("deleted")
 	public VehicleInfo setDeleted(Integer deleted) {
 		this.deleted=deleted;
 		this.deletedBool=DataParser.parseBoolean(deleted);
@@ -1225,7 +1284,67 @@ public class VehicleInfo extends Entity {
 	*/
 	@Transient
 	public VehicleInfo clone() {
-		return EntityContext.clone(VehicleInfo.class,this);
+		return duplicate(true);
+	}
+
+	/**
+	 * 复制当前对象
+	 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+	*/
+	@Transient
+	public VehicleInfo duplicate(boolean all) {
+		com.dt.platform.domain.oa.meta.VehicleInfoMeta.$$proxy$$ inst = new com.dt.platform.domain.oa.meta.VehicleInfoMeta.$$proxy$$();
+		inst.setRescueDueDate(this.getRescueDueDate());
+		inst.setNotes(this.getNotes());
+		inst.setColor(this.getColor());
+		inst.setMaximumPassengers(this.getMaximumPassengers());
+		inst.setRescueMoney(this.getRescueMoney());
+		inst.setType(this.getType());
+		inst.setManageUserId(this.getManageUserId());
+		inst.setScrapTime(this.getScrapTime());
+		inst.setPictures(this.getPictures());
+		inst.setUpdateBy(this.getUpdateBy());
+		inst.setCommercialInsuranceMoney(this.getCommercialInsuranceMoney());
+		inst.setModel(this.getModel());
+		inst.setId(this.getId());
+		inst.setOriginatorId(this.getOriginatorId());
+		inst.setInsuranceCompany(this.getInsuranceCompany());
+		inst.setFrameNumber(this.getFrameNumber());
+		inst.setUseOrgId(this.getUseOrgId());
+		inst.setEngineNumber(this.getEngineNumber());
+		inst.setVehicleCode(this.getVehicleCode());
+		inst.setUpdateTime(this.getUpdateTime());
+		inst.setInsuranceExpireDate(this.getInsuranceExpireDate());
+		inst.setVersion(this.getVersion());
+		inst.setPositionDetail(this.getPositionDetail());
+		inst.setTechnicalParameter(this.getTechnicalParameter());
+		inst.setCreateBy(this.getCreateBy());
+		inst.setDeleted(this.getDeleted());
+		inst.setPositionId(this.getPositionId());
+		inst.setCreateTime(this.getCreateTime());
+		inst.setDeleteTime(this.getDeleteTime());
+		inst.setDrivingLicense(this.getDrivingLicense());
+		inst.setKilometers(this.getKilometers());
+		inst.setName(this.getName());
+		inst.setLicensingTime(this.getLicensingTime());
+		inst.setTenantId(this.getTenantId());
+		inst.setOwnerOrgId(this.getOwnerOrgId());
+		inst.setDeleteBy(this.getDeleteBy());
+		inst.setRegistrant(this.getRegistrant());
+		inst.setCarBoatTax(this.getCarBoatTax());
+		inst.setUseUserId(this.getUseUserId());
+		inst.setVehicleStatus(this.getVehicleStatus());
+		if(all) {
+			inst.setOwnerCompany(this.getOwnerCompany());
+			inst.setUseOrganization(this.getUseOrganization());
+			inst.setVehicleTypeDict(this.getVehicleTypeDict());
+			inst.setVehicleStatusDict(this.getVehicleStatusDict());
+			inst.setOriginator(this.getOriginator());
+			inst.setSelectIds(this.getSelectIds());
+			inst.setUseUser(this.getUseUser());
+		}
+		inst.clearModifies();
+		return inst;
 	}
 
 	/**
@@ -1244,7 +1363,9 @@ public class VehicleInfo extends Entity {
 	@Transient
 	public static VehicleInfo createFrom(Map<String,Object> vehicleInfoMap) {
 		if(vehicleInfoMap==null) return null;
-		VehicleInfo po = EntityContext.create(VehicleInfo.class, vehicleInfoMap);
+		VehicleInfo po = create();
+		EntityContext.copyProperties(po,vehicleInfoMap);
+		po.clearModifies();
 		return po;
 	}
 
@@ -1256,7 +1377,9 @@ public class VehicleInfo extends Entity {
 	@Transient
 	public static VehicleInfo createFrom(Object pojo) {
 		if(pojo==null) return null;
-		VehicleInfo po = EntityContext.create(VehicleInfo.class,pojo);
+		VehicleInfo po = create();
+		EntityContext.copyProperties(po,pojo);
+		po.clearModifies();
 		return po;
 	}
 
@@ -1266,6 +1389,220 @@ public class VehicleInfo extends Entity {
 	*/
 	@Transient
 	public static VehicleInfo create() {
-		return EntityContext.create(VehicleInfo.class);
+		return new com.dt.platform.domain.oa.meta.VehicleInfoMeta.$$proxy$$();
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param map 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(Map<String, Object> map,boolean cast) {
+		if(map==null) return false;
+		if(cast) {
+			this.setRescueDueDate(DataParser.parse(Date.class, map.get(VehicleInfoMeta.RESCUE_DUE_DATE)));
+			this.setNotes(DataParser.parse(String.class, map.get(VehicleInfoMeta.NOTES)));
+			this.setColor(DataParser.parse(String.class, map.get(VehicleInfoMeta.COLOR)));
+			this.setMaximumPassengers(DataParser.parse(Integer.class, map.get(VehicleInfoMeta.MAXIMUM_PASSENGERS)));
+			this.setRescueMoney(DataParser.parse(BigDecimal.class, map.get(VehicleInfoMeta.RESCUE_MONEY)));
+			this.setType(DataParser.parse(String.class, map.get(VehicleInfoMeta.TYPE)));
+			this.setManageUserId(DataParser.parse(String.class, map.get(VehicleInfoMeta.MANAGE_USER_ID)));
+			this.setScrapTime(DataParser.parse(Date.class, map.get(VehicleInfoMeta.SCRAP_TIME)));
+			this.setPictures(DataParser.parse(String.class, map.get(VehicleInfoMeta.PICTURES)));
+			this.setUpdateBy(DataParser.parse(String.class, map.get(VehicleInfoMeta.UPDATE_BY)));
+			this.setCommercialInsuranceMoney(DataParser.parse(BigDecimal.class, map.get(VehicleInfoMeta.COMMERCIAL_INSURANCE_MONEY)));
+			this.setModel(DataParser.parse(String.class, map.get(VehicleInfoMeta.MODEL)));
+			this.setId(DataParser.parse(String.class, map.get(VehicleInfoMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, map.get(VehicleInfoMeta.ORIGINATOR_ID)));
+			this.setInsuranceCompany(DataParser.parse(String.class, map.get(VehicleInfoMeta.INSURANCE_COMPANY)));
+			this.setFrameNumber(DataParser.parse(String.class, map.get(VehicleInfoMeta.FRAME_NUMBER)));
+			this.setUseOrgId(DataParser.parse(String.class, map.get(VehicleInfoMeta.USE_ORG_ID)));
+			this.setEngineNumber(DataParser.parse(String.class, map.get(VehicleInfoMeta.ENGINE_NUMBER)));
+			this.setVehicleCode(DataParser.parse(String.class, map.get(VehicleInfoMeta.VEHICLE_CODE)));
+			this.setUpdateTime(DataParser.parse(Date.class, map.get(VehicleInfoMeta.UPDATE_TIME)));
+			this.setInsuranceExpireDate(DataParser.parse(Date.class, map.get(VehicleInfoMeta.INSURANCE_EXPIRE_DATE)));
+			this.setVersion(DataParser.parse(Integer.class, map.get(VehicleInfoMeta.VERSION)));
+			this.setPositionDetail(DataParser.parse(String.class, map.get(VehicleInfoMeta.POSITION_DETAIL)));
+			this.setTechnicalParameter(DataParser.parse(String.class, map.get(VehicleInfoMeta.TECHNICAL_PARAMETER)));
+			this.setCreateBy(DataParser.parse(String.class, map.get(VehicleInfoMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, map.get(VehicleInfoMeta.DELETED)));
+			this.setPositionId(DataParser.parse(String.class, map.get(VehicleInfoMeta.POSITION_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, map.get(VehicleInfoMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, map.get(VehicleInfoMeta.DELETE_TIME)));
+			this.setDrivingLicense(DataParser.parse(String.class, map.get(VehicleInfoMeta.DRIVING_LICENSE)));
+			this.setKilometers(DataParser.parse(BigDecimal.class, map.get(VehicleInfoMeta.KILOMETERS)));
+			this.setName(DataParser.parse(String.class, map.get(VehicleInfoMeta.NAME)));
+			this.setLicensingTime(DataParser.parse(Date.class, map.get(VehicleInfoMeta.LICENSING_TIME)));
+			this.setTenantId(DataParser.parse(String.class, map.get(VehicleInfoMeta.TENANT_ID)));
+			this.setOwnerOrgId(DataParser.parse(String.class, map.get(VehicleInfoMeta.OWNER_ORG_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, map.get(VehicleInfoMeta.DELETE_BY)));
+			this.setRegistrant(DataParser.parse(String.class, map.get(VehicleInfoMeta.REGISTRANT)));
+			this.setCarBoatTax(DataParser.parse(BigDecimal.class, map.get(VehicleInfoMeta.CAR_BOAT_TAX)));
+			this.setUseUserId(DataParser.parse(String.class, map.get(VehicleInfoMeta.USE_USER_ID)));
+			this.setVehicleStatus(DataParser.parse(String.class, map.get(VehicleInfoMeta.VEHICLE_STATUS)));
+			// others
+			this.setOwnerCompany(DataParser.parse(Organization.class, map.get(VehicleInfoMeta.OWNER_COMPANY)));
+			this.setUseOrganization(DataParser.parse(Organization.class, map.get(VehicleInfoMeta.USE_ORGANIZATION)));
+			this.setVehicleTypeDict(DataParser.parse(DictItem.class, map.get(VehicleInfoMeta.VEHICLE_TYPE_DICT)));
+			this.setVehicleStatusDict(DataParser.parse(DictItem.class, map.get(VehicleInfoMeta.VEHICLE_STATUS_DICT)));
+			this.setOriginator(DataParser.parse(Employee.class, map.get(VehicleInfoMeta.ORIGINATOR)));
+			this.setSelectIds(DataParser.parse(String.class, map.get(VehicleInfoMeta.SELECT_IDS)));
+			this.setUseUser(DataParser.parse(Employee.class, map.get(VehicleInfoMeta.USE_USER)));
+			return true;
+		} else {
+			try {
+				this.setRescueDueDate( (Date)map.get(VehicleInfoMeta.RESCUE_DUE_DATE));
+				this.setNotes( (String)map.get(VehicleInfoMeta.NOTES));
+				this.setColor( (String)map.get(VehicleInfoMeta.COLOR));
+				this.setMaximumPassengers( (Integer)map.get(VehicleInfoMeta.MAXIMUM_PASSENGERS));
+				this.setRescueMoney( (BigDecimal)map.get(VehicleInfoMeta.RESCUE_MONEY));
+				this.setType( (String)map.get(VehicleInfoMeta.TYPE));
+				this.setManageUserId( (String)map.get(VehicleInfoMeta.MANAGE_USER_ID));
+				this.setScrapTime( (Date)map.get(VehicleInfoMeta.SCRAP_TIME));
+				this.setPictures( (String)map.get(VehicleInfoMeta.PICTURES));
+				this.setUpdateBy( (String)map.get(VehicleInfoMeta.UPDATE_BY));
+				this.setCommercialInsuranceMoney( (BigDecimal)map.get(VehicleInfoMeta.COMMERCIAL_INSURANCE_MONEY));
+				this.setModel( (String)map.get(VehicleInfoMeta.MODEL));
+				this.setId( (String)map.get(VehicleInfoMeta.ID));
+				this.setOriginatorId( (String)map.get(VehicleInfoMeta.ORIGINATOR_ID));
+				this.setInsuranceCompany( (String)map.get(VehicleInfoMeta.INSURANCE_COMPANY));
+				this.setFrameNumber( (String)map.get(VehicleInfoMeta.FRAME_NUMBER));
+				this.setUseOrgId( (String)map.get(VehicleInfoMeta.USE_ORG_ID));
+				this.setEngineNumber( (String)map.get(VehicleInfoMeta.ENGINE_NUMBER));
+				this.setVehicleCode( (String)map.get(VehicleInfoMeta.VEHICLE_CODE));
+				this.setUpdateTime( (Date)map.get(VehicleInfoMeta.UPDATE_TIME));
+				this.setInsuranceExpireDate( (Date)map.get(VehicleInfoMeta.INSURANCE_EXPIRE_DATE));
+				this.setVersion( (Integer)map.get(VehicleInfoMeta.VERSION));
+				this.setPositionDetail( (String)map.get(VehicleInfoMeta.POSITION_DETAIL));
+				this.setTechnicalParameter( (String)map.get(VehicleInfoMeta.TECHNICAL_PARAMETER));
+				this.setCreateBy( (String)map.get(VehicleInfoMeta.CREATE_BY));
+				this.setDeleted( (Integer)map.get(VehicleInfoMeta.DELETED));
+				this.setPositionId( (String)map.get(VehicleInfoMeta.POSITION_ID));
+				this.setCreateTime( (Date)map.get(VehicleInfoMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)map.get(VehicleInfoMeta.DELETE_TIME));
+				this.setDrivingLicense( (String)map.get(VehicleInfoMeta.DRIVING_LICENSE));
+				this.setKilometers( (BigDecimal)map.get(VehicleInfoMeta.KILOMETERS));
+				this.setName( (String)map.get(VehicleInfoMeta.NAME));
+				this.setLicensingTime( (Date)map.get(VehicleInfoMeta.LICENSING_TIME));
+				this.setTenantId( (String)map.get(VehicleInfoMeta.TENANT_ID));
+				this.setOwnerOrgId( (String)map.get(VehicleInfoMeta.OWNER_ORG_ID));
+				this.setDeleteBy( (String)map.get(VehicleInfoMeta.DELETE_BY));
+				this.setRegistrant( (String)map.get(VehicleInfoMeta.REGISTRANT));
+				this.setCarBoatTax( (BigDecimal)map.get(VehicleInfoMeta.CAR_BOAT_TAX));
+				this.setUseUserId( (String)map.get(VehicleInfoMeta.USE_USER_ID));
+				this.setVehicleStatus( (String)map.get(VehicleInfoMeta.VEHICLE_STATUS));
+				// others
+				this.setOwnerCompany( (Organization)map.get(VehicleInfoMeta.OWNER_COMPANY));
+				this.setUseOrganization( (Organization)map.get(VehicleInfoMeta.USE_ORGANIZATION));
+				this.setVehicleTypeDict( (DictItem)map.get(VehicleInfoMeta.VEHICLE_TYPE_DICT));
+				this.setVehicleStatusDict( (DictItem)map.get(VehicleInfoMeta.VEHICLE_STATUS_DICT));
+				this.setOriginator( (Employee)map.get(VehicleInfoMeta.ORIGINATOR));
+				this.setSelectIds( (String)map.get(VehicleInfoMeta.SELECT_IDS));
+				this.setUseUser( (Employee)map.get(VehicleInfoMeta.USE_USER));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * 从 Map 读取
+	 * @param r 记录数据
+	 * @param cast 是否用 DataParser 进行类型转换
+	 * @return  是否读取成功
+	*/
+	public boolean read(ExprRcd r,boolean cast) {
+		if(r==null) return false;
+		if(cast) {
+			this.setRescueDueDate(DataParser.parse(Date.class, r.getValue(VehicleInfoMeta.RESCUE_DUE_DATE)));
+			this.setNotes(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.NOTES)));
+			this.setColor(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.COLOR)));
+			this.setMaximumPassengers(DataParser.parse(Integer.class, r.getValue(VehicleInfoMeta.MAXIMUM_PASSENGERS)));
+			this.setRescueMoney(DataParser.parse(BigDecimal.class, r.getValue(VehicleInfoMeta.RESCUE_MONEY)));
+			this.setType(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.TYPE)));
+			this.setManageUserId(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.MANAGE_USER_ID)));
+			this.setScrapTime(DataParser.parse(Date.class, r.getValue(VehicleInfoMeta.SCRAP_TIME)));
+			this.setPictures(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.PICTURES)));
+			this.setUpdateBy(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.UPDATE_BY)));
+			this.setCommercialInsuranceMoney(DataParser.parse(BigDecimal.class, r.getValue(VehicleInfoMeta.COMMERCIAL_INSURANCE_MONEY)));
+			this.setModel(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.MODEL)));
+			this.setId(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.ID)));
+			this.setOriginatorId(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.ORIGINATOR_ID)));
+			this.setInsuranceCompany(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.INSURANCE_COMPANY)));
+			this.setFrameNumber(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.FRAME_NUMBER)));
+			this.setUseOrgId(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.USE_ORG_ID)));
+			this.setEngineNumber(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.ENGINE_NUMBER)));
+			this.setVehicleCode(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.VEHICLE_CODE)));
+			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(VehicleInfoMeta.UPDATE_TIME)));
+			this.setInsuranceExpireDate(DataParser.parse(Date.class, r.getValue(VehicleInfoMeta.INSURANCE_EXPIRE_DATE)));
+			this.setVersion(DataParser.parse(Integer.class, r.getValue(VehicleInfoMeta.VERSION)));
+			this.setPositionDetail(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.POSITION_DETAIL)));
+			this.setTechnicalParameter(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.TECHNICAL_PARAMETER)));
+			this.setCreateBy(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.CREATE_BY)));
+			this.setDeleted(DataParser.parse(Integer.class, r.getValue(VehicleInfoMeta.DELETED)));
+			this.setPositionId(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.POSITION_ID)));
+			this.setCreateTime(DataParser.parse(Date.class, r.getValue(VehicleInfoMeta.CREATE_TIME)));
+			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(VehicleInfoMeta.DELETE_TIME)));
+			this.setDrivingLicense(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.DRIVING_LICENSE)));
+			this.setKilometers(DataParser.parse(BigDecimal.class, r.getValue(VehicleInfoMeta.KILOMETERS)));
+			this.setName(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.NAME)));
+			this.setLicensingTime(DataParser.parse(Date.class, r.getValue(VehicleInfoMeta.LICENSING_TIME)));
+			this.setTenantId(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.TENANT_ID)));
+			this.setOwnerOrgId(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.OWNER_ORG_ID)));
+			this.setDeleteBy(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.DELETE_BY)));
+			this.setRegistrant(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.REGISTRANT)));
+			this.setCarBoatTax(DataParser.parse(BigDecimal.class, r.getValue(VehicleInfoMeta.CAR_BOAT_TAX)));
+			this.setUseUserId(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.USE_USER_ID)));
+			this.setVehicleStatus(DataParser.parse(String.class, r.getValue(VehicleInfoMeta.VEHICLE_STATUS)));
+			return true;
+		} else {
+			try {
+				this.setRescueDueDate( (Date)r.getValue(VehicleInfoMeta.RESCUE_DUE_DATE));
+				this.setNotes( (String)r.getValue(VehicleInfoMeta.NOTES));
+				this.setColor( (String)r.getValue(VehicleInfoMeta.COLOR));
+				this.setMaximumPassengers( (Integer)r.getValue(VehicleInfoMeta.MAXIMUM_PASSENGERS));
+				this.setRescueMoney( (BigDecimal)r.getValue(VehicleInfoMeta.RESCUE_MONEY));
+				this.setType( (String)r.getValue(VehicleInfoMeta.TYPE));
+				this.setManageUserId( (String)r.getValue(VehicleInfoMeta.MANAGE_USER_ID));
+				this.setScrapTime( (Date)r.getValue(VehicleInfoMeta.SCRAP_TIME));
+				this.setPictures( (String)r.getValue(VehicleInfoMeta.PICTURES));
+				this.setUpdateBy( (String)r.getValue(VehicleInfoMeta.UPDATE_BY));
+				this.setCommercialInsuranceMoney( (BigDecimal)r.getValue(VehicleInfoMeta.COMMERCIAL_INSURANCE_MONEY));
+				this.setModel( (String)r.getValue(VehicleInfoMeta.MODEL));
+				this.setId( (String)r.getValue(VehicleInfoMeta.ID));
+				this.setOriginatorId( (String)r.getValue(VehicleInfoMeta.ORIGINATOR_ID));
+				this.setInsuranceCompany( (String)r.getValue(VehicleInfoMeta.INSURANCE_COMPANY));
+				this.setFrameNumber( (String)r.getValue(VehicleInfoMeta.FRAME_NUMBER));
+				this.setUseOrgId( (String)r.getValue(VehicleInfoMeta.USE_ORG_ID));
+				this.setEngineNumber( (String)r.getValue(VehicleInfoMeta.ENGINE_NUMBER));
+				this.setVehicleCode( (String)r.getValue(VehicleInfoMeta.VEHICLE_CODE));
+				this.setUpdateTime( (Date)r.getValue(VehicleInfoMeta.UPDATE_TIME));
+				this.setInsuranceExpireDate( (Date)r.getValue(VehicleInfoMeta.INSURANCE_EXPIRE_DATE));
+				this.setVersion( (Integer)r.getValue(VehicleInfoMeta.VERSION));
+				this.setPositionDetail( (String)r.getValue(VehicleInfoMeta.POSITION_DETAIL));
+				this.setTechnicalParameter( (String)r.getValue(VehicleInfoMeta.TECHNICAL_PARAMETER));
+				this.setCreateBy( (String)r.getValue(VehicleInfoMeta.CREATE_BY));
+				this.setDeleted( (Integer)r.getValue(VehicleInfoMeta.DELETED));
+				this.setPositionId( (String)r.getValue(VehicleInfoMeta.POSITION_ID));
+				this.setCreateTime( (Date)r.getValue(VehicleInfoMeta.CREATE_TIME));
+				this.setDeleteTime( (Date)r.getValue(VehicleInfoMeta.DELETE_TIME));
+				this.setDrivingLicense( (String)r.getValue(VehicleInfoMeta.DRIVING_LICENSE));
+				this.setKilometers( (BigDecimal)r.getValue(VehicleInfoMeta.KILOMETERS));
+				this.setName( (String)r.getValue(VehicleInfoMeta.NAME));
+				this.setLicensingTime( (Date)r.getValue(VehicleInfoMeta.LICENSING_TIME));
+				this.setTenantId( (String)r.getValue(VehicleInfoMeta.TENANT_ID));
+				this.setOwnerOrgId( (String)r.getValue(VehicleInfoMeta.OWNER_ORG_ID));
+				this.setDeleteBy( (String)r.getValue(VehicleInfoMeta.DELETE_BY));
+				this.setRegistrant( (String)r.getValue(VehicleInfoMeta.REGISTRANT));
+				this.setCarBoatTax( (BigDecimal)r.getValue(VehicleInfoMeta.CAR_BOAT_TAX));
+				this.setUseUserId( (String)r.getValue(VehicleInfoMeta.USE_USER_ID));
+				this.setVehicleStatus( (String)r.getValue(VehicleInfoMeta.VEHICLE_STATUS));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 	}
 }

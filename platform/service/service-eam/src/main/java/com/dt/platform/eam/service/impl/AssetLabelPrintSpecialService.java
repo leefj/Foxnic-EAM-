@@ -23,6 +23,7 @@ import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.canvas.PdfCanvasConstants;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.properties.*;
@@ -55,6 +56,22 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 	}
 
 
+
+	private Div createOutDiv(){
+		Div div = new Div();
+		div.setKeepTogether(true);
+		div.setHeight(UnitValue.createPercentValue(100));
+		div.setWidth(UnitValue.createPercentValue(100));
+		div.setHorizontalAlignment(HorizontalAlignment.CENTER);
+		div.setVerticalAlignment(VerticalAlignment.MIDDLE);
+		div.setTextAlignment(TextAlignment.CENTER);
+	//	div.setBackgroundColor(ColorConstants.YELLOW);
+		div.setProperty(Property.OVERFLOW_X, OverflowPropertyValue.HIDDEN);
+		div.setProperty(Property.OVERFLOW_Y, OverflowPropertyValue.HIDDEN);
+		div.setMargin(0);
+		div.setPadding(0);
+		return div;
+	}
 	/**
 	 * @param printData 打印数据
 	 * @return 操作是否成功
@@ -134,15 +151,13 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 			PageSize pageSize =new PageSize(printData.getPageSizeWidth(),printData.getPageSizeHeight());
 			Document document = new Document(pdf, pageSize);
 			document.setMargins(0,0,0,0);
-			Div div = new Div();
-			div.setKeepTogether(true);
-			div.setHeight(UnitValue.createPercentValue(100));
-			div.setWidth(UnitValue.createPercentValue(100));
-			div.setHorizontalAlignment(HorizontalAlignment.CENTER);
-			div.setVerticalAlignment(VerticalAlignment.MIDDLE);
-			div.setTextAlignment(TextAlignment.CENTER);
-			div.setMargin(0);
-			div.setPadding(0);
+			document.setHorizontalAlignment(HorizontalAlignment.CENTER);
+			document.setTextAlignment(TextAlignment.CENTER);
+			document.setFontSize(labelSizePoint);
+
+
+			//	document.setTextRenderingMode(PdfCanvasConstants.TextRenderingMode.STROKE);
+			Div div = createOutDiv();
 			Paragraph paragraphIncludeTable=null;
 			Logger.info("\n\ndocument:"+document);
 			Logger.info("print setting option list:");
@@ -152,8 +167,10 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 			Logger.info("print page height(point):"+pageSize.getHeight());
 			Logger.info("print table width(mm):"+printData.getTableWidthMM());
 			Logger.info("print table height(mm):"+printData.getTableHeightMM());
+
 			Logger.info("print table width point:"+tableWidthPoint);
 			Logger.info("print table height point:"+tableHeightPoint);
+
 			Logger.info("print table margin top:"+tableMarginTop);
 			Logger.info("print table margin bottom:"+tableMarginBottom);
 			Logger.info("print table margin left:"+tableMarginLeft);
@@ -178,15 +195,8 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 							Logger.info("####div add paragraphIncludeTable#######");
 							div.add(paragraphIncludeTable);
 							document.add(div);
-							div = new Div();
-							div.setKeepTogether(true);
-							div.setHeight(UnitValue.createPercentValue(100));
-							div.setWidth(UnitValue.createPercentValue(100));
-							div.setHorizontalAlignment(HorizontalAlignment.CENTER);
-							div.setVerticalAlignment(VerticalAlignment.MIDDLE);
-							div.setTextAlignment(TextAlignment.CENTER);
-							div.setMargin(0);
-							div.setPadding(0);
+							div = createOutDiv();
+
 						}
 						paragraphIncludeTable = new Paragraph();
 						paragraphIncludeTable.setWidth(UnitValue.createPercentValue(100));
@@ -203,11 +213,12 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 					table.setHeight(tableHeightPoint);
 					table.setKeepTogether(true);
 					table.setPadding(0);
-					table.setMarginBottom(0);
 					table.setMarginLeft(tableMarginLeft);
 					table.setMarginRight(tableMarginRight);
 					table.setMarginTop(tableMarginTop);
 					table.setMarginBottom(tableMarginBottom);
+					table.setProperty(Property.OVERFLOW_WRAP, OverflowWrapPropertyValue.BREAK_WORD);
+					table.setProperty(Property.OVERFLOW_WRAP, OverflowWrapPropertyValue.BREAK_WORD);
 					Logger.info("######table layout######");
 					for(int j=0;j<layoutList.size();j++){
 						AssetLabelLayout cellLayout= layoutList.get(j);
@@ -220,6 +231,7 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 						String colValue="";
 						if(AsseLabelTableCellTypeEnum.LABEL.code().equals(layoutType)){
 							cell.setFontSize(keySizePoint);
+							cell.setProperty(Property.TEXT_RISE,1.0);
 							cell.setFont(KeyFont);
 							cell.setHeight(cellHeightPoint);
 							cell.setMinHeight(cellHeightPoint);
@@ -236,7 +248,9 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 							}
 							colValue=layoutCode;
 						}if(AsseLabelTableCellTypeEnum.TITLE.code().equals(layoutType)){
-						//	cell.setFontSize(keySizePoint);
+							System.out.println("title:"+keySizePoint);
+							cell.setProperty(Property.TEXT_RISE,1.0);
+							cell.setFontSize(keySizePoint);
 							cell.setFont(KeyFont);
 							cell.setHeight(cellHeightPoint);
 							cell.setMinHeight(cellHeightPoint);
@@ -250,6 +264,7 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 							colValue=layoutCode;
 						}else if(AsseLabelTableCellTypeEnum.VALUE.code().equals(layoutType)){
 							cell.setFontSize(labelSizePoint);
+							cell.setProperty(Property.TEXT_RISE,1.0);
 							cell.setFont(valueFont);
 							cell.setHeight(cellHeightPoint);
 							cell.setMinHeight(cellHeightPoint);
@@ -316,6 +331,8 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 							//table.startNewRow();
 						}
 					}
+					Logger.info("print table act width point:"+table.getWidth());
+					Logger.info("print table act height point:"+table.getHeight());
 					paragraphIncludeTable.add(table);
 				}
 			}
@@ -323,6 +340,9 @@ public class AssetLabelPrintSpecialService implements IAssetLabelPrintService {
 				div.add(paragraphIncludeTable);
 			}
 			if(div!=null){
+				Logger.info("print div act width point:"+div.getWidth());
+				Logger.info("print div act height point:"+div.getHeight());
+
 				document.add(div);
 			}
 			document.close();

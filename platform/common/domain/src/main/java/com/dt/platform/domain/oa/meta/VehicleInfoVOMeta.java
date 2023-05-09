@@ -9,13 +9,14 @@ import java.util.Date;
 import org.github.foxnic.web.domain.hrm.Organization;
 import org.github.foxnic.web.domain.system.DictItem;
 import org.github.foxnic.web.domain.hrm.Employee;
+import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2022-08-28 13:01:06
- * @sign F8B13A311D88667ED808951D7C90710D
+ * @since 2023-05-09 12:37:59
+ * @sign 7513339456463B0B4DDBEE2A307F932F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -100,6 +101,36 @@ public class VehicleInfoVOMeta extends VehicleInfoMeta {
 	 * 排序方式 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.lang.String> SORT_TYPE_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,SORT_TYPE, java.lang.String.class, "排序方式", "", java.lang.String.class, null);
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String DATA_ORIGIN="dataOrigin";
+	
+	/**
+	 * 数据来源 , 前端指定不同的来源，后端可按来源执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.lang.String> DATA_ORIGIN_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,DATA_ORIGIN, java.lang.String.class, "数据来源", "前端指定不同的来源，后端可按来源执行不同的逻辑", java.lang.String.class, null);
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final String QUERY_LOGIC="queryLogic";
+	
+	/**
+	 * 查询逻辑 , 默认and，可指定 or  , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.lang.String> QUERY_LOGIC_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,QUERY_LOGIC, java.lang.String.class, "查询逻辑", "默认and，可指定 or ", java.lang.String.class, null);
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final String REQUEST_ACTION="requestAction";
+	
+	/**
+	 * 请求动作 , 前端指定不同的Action，后端可Action执行不同的逻辑 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.lang.String> REQUEST_ACTION_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,REQUEST_ACTION, java.lang.String.class, "请求动作", "前端指定不同的Action，后端可Action执行不同的逻辑", java.lang.String.class, null);
 	
 	/**
 	 * 主键清单 , 用于接收批量主键参数 , 集合类型: LIST , 类型: java.lang.String
@@ -192,6 +223,16 @@ public class VehicleInfoVOMeta extends VehicleInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.lang.String> OWNER_ORG_ID_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,OWNER_ORG_ID, java.lang.String.class, "所属组织", "所属组织", java.lang.String.class, null);
 	
 	/**
+	 * 使用人 , 类型: java.lang.String
+	*/
+	public static final String MANAGE_USER_ID="manageUserId";
+	
+	/**
+	 * 使用人 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.lang.String> MANAGE_USER_ID_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,MANAGE_USER_ID, java.lang.String.class, "使用人", "使用人", java.lang.String.class, null);
+	
+	/**
 	 * 使用部门 , 类型: java.lang.String
 	*/
 	public static final String USE_ORG_ID="useOrgId";
@@ -232,16 +273,6 @@ public class VehicleInfoVOMeta extends VehicleInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.lang.String> ENGINE_NUMBER_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,ENGINE_NUMBER, java.lang.String.class, "发动机号", "发动机号", java.lang.String.class, null);
 	
 	/**
-	 * 车架号 , 类型: java.lang.String
-	*/
-	public static final String FRAME_NUMBER="frameNumber";
-	
-	/**
-	 * 车架号 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.lang.String> FRAME_NUMBER_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,FRAME_NUMBER, java.lang.String.class, "车架号", "车架号", java.lang.String.class, null);
-	
-	/**
 	 * 行驶证 , 类型: java.lang.String
 	*/
 	public static final String DRIVING_LICENSE="drivingLicense";
@@ -250,6 +281,16 @@ public class VehicleInfoVOMeta extends VehicleInfoMeta {
 	 * 行驶证 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.lang.String> DRIVING_LICENSE_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,DRIVING_LICENSE, java.lang.String.class, "行驶证", "行驶证", java.lang.String.class, null);
+	
+	/**
+	 * 车架号 , 类型: java.lang.String
+	*/
+	public static final String FRAME_NUMBER="frameNumber";
+	
+	/**
+	 * 车架号 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.lang.String> FRAME_NUMBER_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,FRAME_NUMBER, java.lang.String.class, "车架号", "车架号", java.lang.String.class, null);
 	
 	/**
 	 * 公里数 , 类型: java.math.BigDecimal
@@ -272,24 +313,24 @@ public class VehicleInfoVOMeta extends VehicleInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.math.BigDecimal> CAR_BOAT_TAX_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,CAR_BOAT_TAX, java.math.BigDecimal.class, "车船税", "车船税", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 抢险(元) , 类型: java.math.BigDecimal
+	 * 抢险 , 元) , 类型: java.math.BigDecimal
 	*/
 	public static final String RESCUE_MONEY="rescueMoney";
 	
 	/**
-	 * 抢险(元) , 类型: java.math.BigDecimal
+	 * 抢险 , 元) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.math.BigDecimal> RESCUE_MONEY_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,RESCUE_MONEY, java.math.BigDecimal.class, "抢险(元)", "抢险(元)", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.math.BigDecimal> RESCUE_MONEY_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,RESCUE_MONEY, java.math.BigDecimal.class, "抢险", "元)", java.math.BigDecimal.class, null);
 	
 	/**
-	 * 商业险(元) , 类型: java.math.BigDecimal
+	 * 商业险 , 元) , 类型: java.math.BigDecimal
 	*/
 	public static final String COMMERCIAL_INSURANCE_MONEY="commercialInsuranceMoney";
 	
 	/**
-	 * 商业险(元) , 类型: java.math.BigDecimal
+	 * 商业险 , 元) , 类型: java.math.BigDecimal
 	*/
-	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.math.BigDecimal> COMMERCIAL_INSURANCE_MONEY_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,COMMERCIAL_INSURANCE_MONEY, java.math.BigDecimal.class, "商业险(元)", "商业险(元)", java.math.BigDecimal.class, null);
+	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.math.BigDecimal> COMMERCIAL_INSURANCE_MONEY_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,COMMERCIAL_INSURANCE_MONEY, java.math.BigDecimal.class, "商业险", "元)", java.math.BigDecimal.class, null);
 	
 	/**
 	 * 保险公司 , 类型: java.lang.String
@@ -332,14 +373,14 @@ public class VehicleInfoVOMeta extends VehicleInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.util.Date> RESCUE_DUE_DATE_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,RESCUE_DUE_DATE, java.util.Date.class, "抢险到期", "抢险到期", java.util.Date.class, null);
 	
 	/**
-	 * 版本 , 类型: java.lang.Integer
+	 * 承载人数 , 类型: java.lang.Integer
 	*/
-	public static final String VERSION="version";
+	public static final String MAXIMUM_PASSENGERS="maximumPassengers";
 	
 	/**
-	 * 版本 , 类型: java.lang.Integer
+	 * 承载人数 , 类型: java.lang.Integer
 	*/
-	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.lang.Integer> VERSION_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,VERSION, java.lang.Integer.class, "版本", "版本", java.lang.Integer.class, null);
+	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.lang.Integer> MAXIMUM_PASSENGERS_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,MAXIMUM_PASSENGERS, java.lang.Integer.class, "承载人数", "承载人数", java.lang.Integer.class, null);
 	
 	/**
 	 * 报废时间 , 类型: java.util.Date
@@ -354,12 +395,22 @@ public class VehicleInfoVOMeta extends VehicleInfoMeta {
 	/**
 	 * 存放位置 , 类型: java.lang.String
 	*/
-	public static final String POSITION_DETAIL="positionDetail";
+	public static final String POSITION_ID="positionId";
 	
 	/**
 	 * 存放位置 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.lang.String> POSITION_DETAIL_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,POSITION_DETAIL, java.lang.String.class, "存放位置", "存放位置", java.lang.String.class, null);
+	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.lang.String> POSITION_ID_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,POSITION_ID, java.lang.String.class, "存放位置", "存放位置", java.lang.String.class, null);
+	
+	/**
+	 * 位置详情 , 类型: java.lang.String
+	*/
+	public static final String POSITION_DETAIL="positionDetail";
+	
+	/**
+	 * 位置详情 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.lang.String> POSITION_DETAIL_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,POSITION_DETAIL, java.lang.String.class, "位置详情", "位置详情", java.lang.String.class, null);
 	
 	/**
 	 * 图片 , 类型: java.lang.String
@@ -372,16 +423,6 @@ public class VehicleInfoVOMeta extends VehicleInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.lang.String> PICTURES_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,PICTURES, java.lang.String.class, "图片", "图片", java.lang.String.class, null);
 	
 	/**
-	 * 制单人 , 类型: java.lang.String
-	*/
-	public static final String ORIGINATOR_ID="originatorId";
-	
-	/**
-	 * 制单人 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.lang.String> ORIGINATOR_ID_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,ORIGINATOR_ID, java.lang.String.class, "制单人", "制单人", java.lang.String.class, null);
-	
-	/**
 	 * 技术参数 , 类型: java.lang.String
 	*/
 	public static final String TECHNICAL_PARAMETER="technicalParameter";
@@ -392,14 +433,14 @@ public class VehicleInfoVOMeta extends VehicleInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.lang.String> TECHNICAL_PARAMETER_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,TECHNICAL_PARAMETER, java.lang.String.class, "技术参数", "技术参数", java.lang.String.class, null);
 	
 	/**
-	 * 数量 , 类型: java.lang.Integer
+	 * 制单人 , 类型: java.lang.String
 	*/
-	public static final String VEHICLE_COUNT="vehicleCount";
+	public static final String ORIGINATOR_ID="originatorId";
 	
 	/**
-	 * 数量 , 类型: java.lang.Integer
+	 * 制单人 , 类型: java.lang.String
 	*/
-	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.lang.Integer> VEHICLE_COUNT_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,VEHICLE_COUNT, java.lang.Integer.class, "数量", "数量", java.lang.Integer.class, null);
+	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.lang.String> ORIGINATOR_ID_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,ORIGINATOR_ID, java.lang.String.class, "制单人", "制单人", java.lang.String.class, null);
 	
 	/**
 	 * 备注 , 类型: java.lang.String
@@ -410,6 +451,16 @@ public class VehicleInfoVOMeta extends VehicleInfoMeta {
 	 * 备注 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
+	
+	/**
+	 * 版本 , 类型: java.lang.Integer
+	*/
+	public static final String VERSION="version";
+	
+	/**
+	 * 版本 , 类型: java.lang.Integer
+	*/
+	public static final BeanProperty<com.dt.platform.domain.oa.VehicleInfoVO,java.lang.Integer> VERSION_PROP = new BeanProperty(com.dt.platform.domain.oa.VehicleInfoVO.class ,VERSION, java.lang.Integer.class, "版本", "版本", java.lang.Integer.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -564,7 +615,7 @@ public class VehicleInfoVOMeta extends VehicleInfoMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , IDS , ID , NAME , VEHICLE_STATUS , TYPE , VEHICLE_CODE , MODEL , REGISTRANT , OWNER_ORG_ID , USE_ORG_ID , USE_USER_ID , COLOR , ENGINE_NUMBER , FRAME_NUMBER , DRIVING_LICENSE , KILOMETERS , CAR_BOAT_TAX , RESCUE_MONEY , COMMERCIAL_INSURANCE_MONEY , INSURANCE_COMPANY , LICENSING_TIME , INSURANCE_EXPIRE_DATE , RESCUE_DUE_DATE , VERSION , SCRAP_TIME , POSITION_DETAIL , PICTURES , ORIGINATOR_ID , TECHNICAL_PARAMETER , VEHICLE_COUNT , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , OWNER_COMPANY , USE_ORGANIZATION , VEHICLE_TYPE_DICT , VEHICLE_STATUS_DICT , ORIGINATOR , USE_USER , SELECT_IDS };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , NAME , VEHICLE_STATUS , TYPE , VEHICLE_CODE , MODEL , REGISTRANT , OWNER_ORG_ID , MANAGE_USER_ID , USE_ORG_ID , USE_USER_ID , COLOR , ENGINE_NUMBER , DRIVING_LICENSE , FRAME_NUMBER , KILOMETERS , CAR_BOAT_TAX , RESCUE_MONEY , COMMERCIAL_INSURANCE_MONEY , INSURANCE_COMPANY , LICENSING_TIME , INSURANCE_EXPIRE_DATE , RESCUE_DUE_DATE , MAXIMUM_PASSENGERS , SCRAP_TIME , POSITION_ID , POSITION_DETAIL , PICTURES , TECHNICAL_PARAMETER , ORIGINATOR_ID , NOTES , VERSION , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , TENANT_ID , OWNER_COMPANY , USE_ORGANIZATION , VEHICLE_TYPE_DICT , VEHICLE_STATUS_DICT , ORIGINATOR , USE_USER , SELECT_IDS };
 	
 	/**
 	 * 代理类
@@ -659,6 +710,39 @@ public class VehicleInfoVOMeta extends VehicleInfoMeta {
 		public VehicleInfoVO setSortType(String sortType) {
 			super.change(SORT_TYPE,super.getSortType(),sortType);
 			super.setSortType(sortType);
+			return this;
+		}
+		
+		/**
+		 * 设置 数据来源
+		 * @param dataOrigin 数据来源
+		 * @return 当前对象
+		*/
+		public VehicleInfoVO setDataOrigin(String dataOrigin) {
+			super.change(DATA_ORIGIN,super.getDataOrigin(),dataOrigin);
+			super.setDataOrigin(dataOrigin);
+			return this;
+		}
+		
+		/**
+		 * 设置 查询逻辑
+		 * @param queryLogic 查询逻辑
+		 * @return 当前对象
+		*/
+		public VehicleInfoVO setQueryLogic(String queryLogic) {
+			super.change(QUERY_LOGIC,super.getQueryLogic(),queryLogic);
+			super.setQueryLogic(queryLogic);
+			return this;
+		}
+		
+		/**
+		 * 设置 请求动作
+		 * @param requestAction 请求动作
+		 * @return 当前对象
+		*/
+		public VehicleInfoVO setRequestAction(String requestAction) {
+			super.change(REQUEST_ACTION,super.getRequestAction(),requestAction);
+			super.setRequestAction(requestAction);
 			return this;
 		}
 		
@@ -762,6 +846,17 @@ public class VehicleInfoVOMeta extends VehicleInfoMeta {
 		}
 		
 		/**
+		 * 设置 使用人
+		 * @param manageUserId 使用人
+		 * @return 当前对象
+		*/
+		public VehicleInfo setManageUserId(String manageUserId) {
+			super.change(MANAGE_USER_ID,super.getManageUserId(),manageUserId);
+			super.setManageUserId(manageUserId);
+			return this;
+		}
+		
+		/**
 		 * 设置 使用部门
 		 * @param useOrgId 使用部门
 		 * @return 当前对象
@@ -806,17 +901,6 @@ public class VehicleInfoVOMeta extends VehicleInfoMeta {
 		}
 		
 		/**
-		 * 设置 车架号
-		 * @param frameNumber 车架号
-		 * @return 当前对象
-		*/
-		public VehicleInfo setFrameNumber(String frameNumber) {
-			super.change(FRAME_NUMBER,super.getFrameNumber(),frameNumber);
-			super.setFrameNumber(frameNumber);
-			return this;
-		}
-		
-		/**
 		 * 设置 行驶证
 		 * @param drivingLicense 行驶证
 		 * @return 当前对象
@@ -824,6 +908,17 @@ public class VehicleInfoVOMeta extends VehicleInfoMeta {
 		public VehicleInfo setDrivingLicense(String drivingLicense) {
 			super.change(DRIVING_LICENSE,super.getDrivingLicense(),drivingLicense);
 			super.setDrivingLicense(drivingLicense);
+			return this;
+		}
+		
+		/**
+		 * 设置 车架号
+		 * @param frameNumber 车架号
+		 * @return 当前对象
+		*/
+		public VehicleInfo setFrameNumber(String frameNumber) {
+			super.change(FRAME_NUMBER,super.getFrameNumber(),frameNumber);
+			super.setFrameNumber(frameNumber);
 			return this;
 		}
 		
@@ -850,8 +945,8 @@ public class VehicleInfoVOMeta extends VehicleInfoMeta {
 		}
 		
 		/**
-		 * 设置 抢险(元)
-		 * @param rescueMoney 抢险(元)
+		 * 设置 抢险
+		 * @param rescueMoney 抢险
 		 * @return 当前对象
 		*/
 		public VehicleInfo setRescueMoney(BigDecimal rescueMoney) {
@@ -861,8 +956,8 @@ public class VehicleInfoVOMeta extends VehicleInfoMeta {
 		}
 		
 		/**
-		 * 设置 商业险(元)
-		 * @param commercialInsuranceMoney 商业险(元)
+		 * 设置 商业险
+		 * @param commercialInsuranceMoney 商业险
 		 * @return 当前对象
 		*/
 		public VehicleInfo setCommercialInsuranceMoney(BigDecimal commercialInsuranceMoney) {
@@ -916,13 +1011,13 @@ public class VehicleInfoVOMeta extends VehicleInfoMeta {
 		}
 		
 		/**
-		 * 设置 版本
-		 * @param version 版本
+		 * 设置 承载人数
+		 * @param maximumPassengers 承载人数
 		 * @return 当前对象
 		*/
-		public VehicleInfo setVersion(Integer version) {
-			super.change(VERSION,super.getVersion(),version);
-			super.setVersion(version);
+		public VehicleInfo setMaximumPassengers(Integer maximumPassengers) {
+			super.change(MAXIMUM_PASSENGERS,super.getMaximumPassengers(),maximumPassengers);
+			super.setMaximumPassengers(maximumPassengers);
 			return this;
 		}
 		
@@ -939,7 +1034,18 @@ public class VehicleInfoVOMeta extends VehicleInfoMeta {
 		
 		/**
 		 * 设置 存放位置
-		 * @param positionDetail 存放位置
+		 * @param positionId 存放位置
+		 * @return 当前对象
+		*/
+		public VehicleInfo setPositionId(String positionId) {
+			super.change(POSITION_ID,super.getPositionId(),positionId);
+			super.setPositionId(positionId);
+			return this;
+		}
+		
+		/**
+		 * 设置 位置详情
+		 * @param positionDetail 位置详情
 		 * @return 当前对象
 		*/
 		public VehicleInfo setPositionDetail(String positionDetail) {
@@ -960,17 +1066,6 @@ public class VehicleInfoVOMeta extends VehicleInfoMeta {
 		}
 		
 		/**
-		 * 设置 制单人
-		 * @param originatorId 制单人
-		 * @return 当前对象
-		*/
-		public VehicleInfo setOriginatorId(String originatorId) {
-			super.change(ORIGINATOR_ID,super.getOriginatorId(),originatorId);
-			super.setOriginatorId(originatorId);
-			return this;
-		}
-		
-		/**
 		 * 设置 技术参数
 		 * @param technicalParameter 技术参数
 		 * @return 当前对象
@@ -982,13 +1077,13 @@ public class VehicleInfoVOMeta extends VehicleInfoMeta {
 		}
 		
 		/**
-		 * 设置 数量
-		 * @param vehicleCount 数量
+		 * 设置 制单人
+		 * @param originatorId 制单人
 		 * @return 当前对象
 		*/
-		public VehicleInfo setVehicleCount(Integer vehicleCount) {
-			super.change(VEHICLE_COUNT,super.getVehicleCount(),vehicleCount);
-			super.setVehicleCount(vehicleCount);
+		public VehicleInfo setOriginatorId(String originatorId) {
+			super.change(ORIGINATOR_ID,super.getOriginatorId(),originatorId);
+			super.setOriginatorId(originatorId);
 			return this;
 		}
 		
@@ -1000,6 +1095,17 @@ public class VehicleInfoVOMeta extends VehicleInfoMeta {
 		public VehicleInfo setNotes(String notes) {
 			super.change(NOTES,super.getNotes(),notes);
 			super.setNotes(notes);
+			return this;
+		}
+		
+		/**
+		 * 设置 版本
+		 * @param version 版本
+		 * @return 当前对象
+		*/
+		public VehicleInfo setVersion(Integer version) {
+			super.change(VERSION,super.getVersion(),version);
+			super.setVersion(version);
 			return this;
 		}
 		
@@ -1167,5 +1273,86 @@ public class VehicleInfoVOMeta extends VehicleInfoMeta {
 			super.setSelectIds(selectIds);
 			return this;
 		}
+
+		/**
+		 * 克隆当前对象
+		*/
+		@Transient
+		public VehicleInfoVO clone() {
+			return duplicate(true);
+		}
+
+		/**
+		 * 复制当前对象
+		 * @param all 是否复制全部属性，当 false 时，仅复制来自数据表的属性
+		*/
+		@Transient
+		public VehicleInfoVO duplicate(boolean all) {
+			$$proxy$$ inst=new $$proxy$$();
+			inst.setRescueDueDate(this.getRescueDueDate());
+			inst.setNotes(this.getNotes());
+			inst.setColor(this.getColor());
+			inst.setMaximumPassengers(this.getMaximumPassengers());
+			inst.setRescueMoney(this.getRescueMoney());
+			inst.setType(this.getType());
+			inst.setManageUserId(this.getManageUserId());
+			inst.setScrapTime(this.getScrapTime());
+			inst.setPictures(this.getPictures());
+			inst.setUpdateBy(this.getUpdateBy());
+			inst.setCommercialInsuranceMoney(this.getCommercialInsuranceMoney());
+			inst.setModel(this.getModel());
+			inst.setId(this.getId());
+			inst.setOriginatorId(this.getOriginatorId());
+			inst.setInsuranceCompany(this.getInsuranceCompany());
+			inst.setFrameNumber(this.getFrameNumber());
+			inst.setUseOrgId(this.getUseOrgId());
+			inst.setEngineNumber(this.getEngineNumber());
+			inst.setVehicleCode(this.getVehicleCode());
+			inst.setUpdateTime(this.getUpdateTime());
+			inst.setInsuranceExpireDate(this.getInsuranceExpireDate());
+			inst.setVersion(this.getVersion());
+			inst.setPositionDetail(this.getPositionDetail());
+			inst.setTechnicalParameter(this.getTechnicalParameter());
+			inst.setCreateBy(this.getCreateBy());
+			inst.setDeleted(this.getDeleted());
+			inst.setPositionId(this.getPositionId());
+			inst.setCreateTime(this.getCreateTime());
+			inst.setDeleteTime(this.getDeleteTime());
+			inst.setDrivingLicense(this.getDrivingLicense());
+			inst.setKilometers(this.getKilometers());
+			inst.setName(this.getName());
+			inst.setLicensingTime(this.getLicensingTime());
+			inst.setTenantId(this.getTenantId());
+			inst.setOwnerOrgId(this.getOwnerOrgId());
+			inst.setDeleteBy(this.getDeleteBy());
+			inst.setRegistrant(this.getRegistrant());
+			inst.setCarBoatTax(this.getCarBoatTax());
+			inst.setUseUserId(this.getUseUserId());
+			inst.setVehicleStatus(this.getVehicleStatus());
+			if(all) {
+				inst.setOwnerCompany(this.getOwnerCompany());
+				inst.setSearchField(this.getSearchField());
+				inst.setRequestAction(this.getRequestAction());
+				inst.setFuzzyField(this.getFuzzyField());
+				inst.setPageSize(this.getPageSize());
+				inst.setVehicleStatusDict(this.getVehicleStatusDict());
+				inst.setOriginator(this.getOriginator());
+				inst.setSelectIds(this.getSelectIds());
+				inst.setUseOrganization(this.getUseOrganization());
+				inst.setPageIndex(this.getPageIndex());
+				inst.setSortType(this.getSortType());
+				inst.setVehicleTypeDict(this.getVehicleTypeDict());
+				inst.setDirtyFields(this.getDirtyFields());
+				inst.setSortField(this.getSortField());
+				inst.setDataOrigin(this.getDataOrigin());
+				inst.setIds(this.getIds());
+				inst.setQueryLogic(this.getQueryLogic());
+				inst.setUseUser(this.getUseUser());
+				inst.setSearchValue(this.getSearchValue());
+			}
+			inst.clearModifies();
+			return inst;
+		}
+
 	}
 }

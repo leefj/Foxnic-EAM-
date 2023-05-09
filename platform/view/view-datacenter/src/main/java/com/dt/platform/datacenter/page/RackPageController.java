@@ -63,6 +63,14 @@ public class RackPageController extends ViewController {
 		return prefix+"/rack_dev_tree_list";
 	}
 
+
+
+	@RequestMapping("/rack_rl_tree_list.html")
+	public String rlTreeList(Model model,HttpServletRequest request) {
+		return prefix+"/rack_dev_rl_list";
+	}
+
+
 	/**
 	 * 机柜 功能主页面
 	 */
