@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 通知公告 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-08 20:49:25
+ * @since 2023-05-11 13:29:34
  */
 @FeignClient(value = ServiceNames.OA, contextId = NoticeServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface NoticeServiceProxy {
@@ -84,6 +84,10 @@ public interface NoticeServiceProxy {
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
+    /**
+     * 分页查询通知公告
+     */
+    public static final String QUERY_PAGED_DATA = API_PREFIX + "query-paged-data";
     /**
      * 添加通知公告
      */

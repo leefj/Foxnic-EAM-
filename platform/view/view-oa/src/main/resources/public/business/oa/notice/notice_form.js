@@ -1,7 +1,7 @@
 /**
  * 通知公告 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-08 20:49:27
+ * @since 2023-05-11 13:29:36
  */
 
 function FormPage() {
@@ -129,6 +129,13 @@ function FormPage() {
 				checked.push($(this).val());
 			});
 			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("type",data,checked);
+		});
+		form.on('radio(iftop)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=iftop]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("iftop",data,checked);
 		});
 	    //渲染图片字段
 		foxup.render({

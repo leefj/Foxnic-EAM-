@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-05-08 22:09:03
+ * @since 2023-05-11 12:14:26
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -141,6 +141,11 @@ public class OaTables {
 		public static final DBField CONTENT = new DBField(DBDataType.STRING , "content","content","内容","内容",false,false,true);
 		
 		/**
+		 * 是否置顶
+		*/
+		public static final DBField IFTOP = new DBField(DBDataType.STRING , "iftop","iftop","是否置顶","是否置顶",false,false,true);
+		
+		/**
 		 * 附件
 		*/
 		public static final DBField ATTACH = new DBField(DBDataType.STRING , "attach","attach","附件","附件",false,false,true);
@@ -190,7 +195,7 @@ public class OaTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public OA_NOTICE() {
-			this.init($NAME,"通知公告" , ID , NUMBER , TITLE , STATUS , TYPE , CONTENT , ATTACH , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"通知公告" , ID , NUMBER , TITLE , STATUS , TYPE , CONTENT , IFTOP , ATTACH , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final OA_NOTICE $TABLE=new OA_NOTICE();
 	}

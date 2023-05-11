@@ -2,7 +2,7 @@
 /**
  * 通知公告 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-08 20:49:26
+ * @since 2023-05-11 13:29:36
  */
  -->
  <!DOCTYPE html>
@@ -38,7 +38,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-6040-content">
+        <div class="layui-row form-row" id="random-9402-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -57,6 +57,14 @@
                     <div class="layui-form-label "><div th:text="${lang.translate('分类')}">分类</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block ">
                         <input input-type="radio" type="radio" name="type" lay-filter="type" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.oa.NoticeTypeEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==0)}">
+                    </div>
+                </div>
+            
+                <!-- radio_box : 是否置顶 ,  iftop  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label "><div th:text="${lang.translate('是否置顶')}">是否置顶</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block ">
+                        <input input-type="radio" type="radio" name="iftop" lay-filter="iftop" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.oa.NoticeIfTopEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==1)}">
                     </div>
                 </div>
             <!--结束：栏次内字段循环-->
@@ -87,7 +95,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-5701-content">
+        <div class="layui-row form-row" id="random-7651-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -116,7 +124,7 @@
         <!--结束：group循环-->
 
         <div style="height: 8px"></div>
-        <div style="height: 120px"></div>
+        <div style="height: 150px"></div>
 
 
     </form>
@@ -136,7 +144,8 @@
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
     var RADIO_TYPE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.oa.NoticeTypeEnum')}]];
-    var VALIDATE_CONFIG={"title":{"labelInForm":"标题","inputType":"text_input","required":true},"type":{"labelInForm":"分类","inputType":"radio_box","required":true},"status":{"labelInForm":"状态","inputType":"radio_box","required":true}};
+    var RADIO_IFTOP_DATA = [[${enum.toArray('com.dt.platform.constants.enums.oa.NoticeIfTopEnum')}]];
+    var VALIDATE_CONFIG={"title":{"labelInForm":"标题","inputType":"text_input","required":true},"type":{"labelInForm":"分类","inputType":"radio_box","required":true},"status":{"labelInForm":"状态","inputType":"radio_box","required":true},"iftop":{"labelInForm":"是否置顶","inputType":"radio_box","required":true}};
     var AUTH_PREFIX="oa_notice";
 
 

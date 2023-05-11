@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
  * 通知公告模版页面控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-08 20:49:25
+ * @since 2023-05-10 19:29:44
 */
 
 @Controller("OaNoticePageController")
@@ -42,14 +42,39 @@ public class NoticePageController extends ViewController {
 	 */
 	@RequestMapping("/notice_list.html")
 	public String list(Model model,HttpServletRequest request) {
+
+
 		return getTemplatePath(prefix,"notice_list");
 	}
+
+
+	/**
+	 * 通知公告 功能主页面
+	 */
+	@RequestMapping("/notice_view.html")
+	public String listView(Model model,HttpServletRequest request,String id) {
+		model.addAttribute("id",id);
+		return getTemplatePath(prefix,"notice_view");
+	}
+
+	/**
+	 * 通知公告 功能主页面
+	 */
+	@RequestMapping("/notice_list_public.html")
+	public String listPublic(Model model,HttpServletRequest request,String type) {
+
+		model.addAttribute("type",type);
+		return getTemplatePath(prefix,"notice_list_public");
+	}
+
+
 
 	/**
 	 * 通知公告 表单页面
 	 */
 	@RequestMapping("/notice_form.html")
 	public String form(Model model,HttpServletRequest request , String id) {
+
 		return getTemplatePath(prefix,"notice_form");
 	}
 }

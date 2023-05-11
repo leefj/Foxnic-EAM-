@@ -24,8 +24,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 通知公告
  * <p>通知公告 , 数据表 oa_notice 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-08 20:49:25
- * @sign C06C69F1F66E2F35F1E4FEF0AFA8AD62
+ * @since 2023-05-11 13:29:34
+ * @sign 541058C8E8B1530009C72925E13879A0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -41,38 +41,44 @@ public class Notice extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "708211477789540352")
 	private String id;
 	
 	/**
 	 * 文号：文号
 	*/
-	@ApiModelProperty(required = false,value="文号" , notes = "文号")
+	@ApiModelProperty(required = false,value="文号" , notes = "文号" , example = "12121212")
 	private String number;
 	
 	/**
 	 * 标题：标题
 	*/
-	@ApiModelProperty(required = false,value="标题" , notes = "标题")
+	@ApiModelProperty(required = false,value="标题" , notes = "标题" , example = "1212")
 	private String title;
 	
 	/**
 	 * 状态：状态
 	*/
-	@ApiModelProperty(required = false,value="状态" , notes = "状态")
+	@ApiModelProperty(required = false,value="状态" , notes = "状态" , example = "enable")
 	private String status;
 	
 	/**
 	 * 分类：分类
 	*/
-	@ApiModelProperty(required = false,value="分类" , notes = "分类")
+	@ApiModelProperty(required = false,value="分类" , notes = "分类" , example = "notice")
 	private String type;
 	
 	/**
 	 * 内容：内容
 	*/
-	@ApiModelProperty(required = false,value="内容" , notes = "内容")
+	@ApiModelProperty(required = false,value="内容" , notes = "内容" , example = "<p>1212</p>")
 	private String content;
+	
+	/**
+	 * 是否置顶：是否置顶
+	*/
+	@ApiModelProperty(required = false,value="是否置顶" , notes = "是否置顶" , example = "N")
+	private String iftop;
 	
 	/**
 	 * 附件：附件
@@ -83,31 +89,31 @@ public class Notice extends Entity {
 	/**
 	 * 创建人ID：创建人ID
 	*/
-	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID")
+	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
 	private String createBy;
 	
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-05-09 06:59:34")
 	private Date createTime;
 	
 	/**
 	 * 修改人ID：修改人ID
 	*/
-	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID")
+	@ApiModelProperty(required = false,value="修改人ID" , notes = "修改人ID" , example = "110588348101165911")
 	private String updateBy;
 	
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-05-11 12:25:24")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -128,13 +134,13 @@ public class Notice extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = true,value="version" , notes = "version")
+	@ApiModelProperty(required = true,value="version" , notes = "version" , example = "3")
 	private Integer version;
 	
 	/**
 	 * 租户：租户
 	*/
-	@ApiModelProperty(required = false,value="租户" , notes = "租户")
+	@ApiModelProperty(required = false,value="租户" , notes = "租户" , example = "T001")
 	private String tenantId;
 	
 	/**
@@ -254,6 +260,25 @@ public class Notice extends Entity {
 	*/
 	public Notice setContent(String content) {
 		this.content=content;
+		return this;
+	}
+	
+	/**
+	 * 获得 是否置顶<br>
+	 * 是否置顶
+	 * @return 是否置顶
+	*/
+	public String getIftop() {
+		return iftop;
+	}
+	
+	/**
+	 * 设置 是否置顶
+	 * @param iftop 是否置顶
+	 * @return 当前对象
+	*/
+	public Notice setIftop(String iftop) {
+		this.iftop=iftop;
 		return this;
 	}
 	
@@ -546,6 +571,7 @@ public class Notice extends Entity {
 		inst.setType(this.getType());
 		inst.setVersion(this.getVersion());
 		inst.setContent(this.getContent());
+		inst.setIftop(this.getIftop());
 		inst.setNumber(this.getNumber());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
@@ -623,6 +649,7 @@ public class Notice extends Entity {
 			this.setType(DataParser.parse(String.class, map.get(NoticeMeta.TYPE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(NoticeMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, map.get(NoticeMeta.CONTENT)));
+			this.setIftop(DataParser.parse(String.class, map.get(NoticeMeta.IFTOP)));
 			this.setNumber(DataParser.parse(String.class, map.get(NoticeMeta.NUMBER)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(NoticeMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(NoticeMeta.DELETED)));
@@ -644,6 +671,7 @@ public class Notice extends Entity {
 				this.setType( (String)map.get(NoticeMeta.TYPE));
 				this.setVersion( (Integer)map.get(NoticeMeta.VERSION));
 				this.setContent( (String)map.get(NoticeMeta.CONTENT));
+				this.setIftop( (String)map.get(NoticeMeta.IFTOP));
 				this.setNumber( (String)map.get(NoticeMeta.NUMBER));
 				this.setCreateBy( (String)map.get(NoticeMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(NoticeMeta.DELETED));
@@ -678,6 +706,7 @@ public class Notice extends Entity {
 			this.setType(DataParser.parse(String.class, r.getValue(NoticeMeta.TYPE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(NoticeMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, r.getValue(NoticeMeta.CONTENT)));
+			this.setIftop(DataParser.parse(String.class, r.getValue(NoticeMeta.IFTOP)));
 			this.setNumber(DataParser.parse(String.class, r.getValue(NoticeMeta.NUMBER)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(NoticeMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(NoticeMeta.DELETED)));
@@ -697,6 +726,7 @@ public class Notice extends Entity {
 				this.setType( (String)r.getValue(NoticeMeta.TYPE));
 				this.setVersion( (Integer)r.getValue(NoticeMeta.VERSION));
 				this.setContent( (String)r.getValue(NoticeMeta.CONTENT));
+				this.setIftop( (String)r.getValue(NoticeMeta.IFTOP));
 				this.setNumber( (String)r.getValue(NoticeMeta.NUMBER));
 				this.setCreateBy( (String)r.getValue(NoticeMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(NoticeMeta.DELETED));

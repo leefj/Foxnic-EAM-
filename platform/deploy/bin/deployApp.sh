@@ -295,7 +295,8 @@ EOF
 	chmod +x /etc/rc.d/rc.local
 	chown mysql:mysql $MYSQL_CNF
 	sed -i '/mysql/d' /etc/rc.d/rc.local
-	echo "su - mysql -c \"nohup $mysql_dir/mysql/bin/mysqld_safe --defaults-file=$MYSQL_CNF &\"">> /etc/rc.d/rc.local
+	echo "sleep 10">> /etc/rc.d/rc.local
+	echo "su - mysql -c \"cd /tmp/;nohup $mysql_dir/mysql/bin/mysqld_safe --defaults-file=$MYSQL_CNF &\"">> /etc/rc.d/rc.local
 	chmod +x /etc/rc.d/rc.local
 	cat /etc/rc.d/rc.local
 	chown -R mysql:mysql $mysql_dir

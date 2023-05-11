@@ -1,6 +1,10 @@
 package com.dt.platform.oa.controller;
 
 import java.util.*;
+
+import com.github.foxnic.sql.expr.ConditionExpr;
+import com.github.foxnic.sql.expr.Expr;
+import com.github.foxnic.sql.expr.OrderBy;
 import org.github.foxnic.web.framework.web.SuperController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +49,7 @@ import com.github.foxnic.api.validate.annotations.NotNull;
  * 通知公告接口控制器
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-08 20:49:25
+ * @since 2023-05-11 13:29:35
 */
 
 @InDoc
@@ -61,12 +65,13 @@ public class NoticeController extends SuperController {
 	*/
 	@ApiOperation(value = "添加通知公告")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = NoticeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.NUMBER , value = "文号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.TITLE , value = "标题" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.TYPE , value = "分类" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = NoticeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "708211477789540352"),
+		@ApiImplicitParam(name = NoticeVOMeta.NUMBER , value = "文号" , required = false , dataTypeClass=String.class , example = "12121212"),
+		@ApiImplicitParam(name = NoticeVOMeta.TITLE , value = "标题" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = NoticeVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = NoticeVOMeta.TYPE , value = "分类" , required = false , dataTypeClass=String.class , example = "notice"),
+		@ApiImplicitParam(name = NoticeVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class , example = "<p>1212</p>"),
+		@ApiImplicitParam(name = NoticeVOMeta.IFTOP , value = "是否置顶" , required = false , dataTypeClass=String.class , example = "N"),
 		@ApiImplicitParam(name = NoticeVOMeta.ATTACH , value = "附件" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
@@ -86,7 +91,7 @@ public class NoticeController extends SuperController {
 	*/
 	@ApiOperation(value = "删除通知公告")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = NoticeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class)
+		@ApiImplicitParam(name = NoticeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "708211477789540352")
 	})
 	@ApiOperationSupport(order=2 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = NoticeServiceProxy.DELETE , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -169,12 +174,13 @@ public class NoticeController extends SuperController {
 	*/
 	@ApiOperation(value = "更新通知公告")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = NoticeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.NUMBER , value = "文号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.TITLE , value = "标题" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.TYPE , value = "分类" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = NoticeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "708211477789540352"),
+		@ApiImplicitParam(name = NoticeVOMeta.NUMBER , value = "文号" , required = false , dataTypeClass=String.class , example = "12121212"),
+		@ApiImplicitParam(name = NoticeVOMeta.TITLE , value = "标题" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = NoticeVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = NoticeVOMeta.TYPE , value = "分类" , required = false , dataTypeClass=String.class , example = "notice"),
+		@ApiImplicitParam(name = NoticeVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class , example = "<p>1212</p>"),
+		@ApiImplicitParam(name = NoticeVOMeta.IFTOP , value = "是否置顶" , required = false , dataTypeClass=String.class , example = "N"),
 		@ApiImplicitParam(name = NoticeVOMeta.ATTACH , value = "附件" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
@@ -193,12 +199,13 @@ public class NoticeController extends SuperController {
 	*/
 	@ApiOperation(value = "保存通知公告")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = NoticeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.NUMBER , value = "文号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.TITLE , value = "标题" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.TYPE , value = "分类" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = NoticeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "708211477789540352"),
+		@ApiImplicitParam(name = NoticeVOMeta.NUMBER , value = "文号" , required = false , dataTypeClass=String.class , example = "12121212"),
+		@ApiImplicitParam(name = NoticeVOMeta.TITLE , value = "标题" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = NoticeVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = NoticeVOMeta.TYPE , value = "分类" , required = false , dataTypeClass=String.class , example = "notice"),
+		@ApiImplicitParam(name = NoticeVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class , example = "<p>1212</p>"),
+		@ApiImplicitParam(name = NoticeVOMeta.IFTOP , value = "是否置顶" , required = false , dataTypeClass=String.class , example = "N"),
 		@ApiImplicitParam(name = NoticeVOMeta.ATTACH , value = "附件" , required = false , dataTypeClass=String.class),
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
@@ -256,12 +263,13 @@ public class NoticeController extends SuperController {
 	*/
 	@ApiOperation(value = "查询通知公告")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = NoticeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.NUMBER , value = "文号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.TITLE , value = "标题" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.TYPE , value = "分类" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = NoticeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "708211477789540352"),
+		@ApiImplicitParam(name = NoticeVOMeta.NUMBER , value = "文号" , required = false , dataTypeClass=String.class , example = "12121212"),
+		@ApiImplicitParam(name = NoticeVOMeta.TITLE , value = "标题" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = NoticeVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = NoticeVOMeta.TYPE , value = "分类" , required = false , dataTypeClass=String.class , example = "notice"),
+		@ApiImplicitParam(name = NoticeVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class , example = "<p>1212</p>"),
+		@ApiImplicitParam(name = NoticeVOMeta.IFTOP , value = "是否置顶" , required = false , dataTypeClass=String.class , example = "N"),
 		@ApiImplicitParam(name = NoticeVOMeta.ATTACH , value = "附件" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { NoticeVOMeta.PAGE_INDEX , NoticeVOMeta.PAGE_SIZE } )
@@ -281,12 +289,13 @@ public class NoticeController extends SuperController {
 	*/
 	@ApiOperation(value = "分页查询通知公告")
 	@ApiImplicitParams({
-		@ApiImplicitParam(name = NoticeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.NUMBER , value = "文号" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.TITLE , value = "标题" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.TYPE , value = "分类" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = NoticeVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class),
+		@ApiImplicitParam(name = NoticeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "708211477789540352"),
+		@ApiImplicitParam(name = NoticeVOMeta.NUMBER , value = "文号" , required = false , dataTypeClass=String.class , example = "12121212"),
+		@ApiImplicitParam(name = NoticeVOMeta.TITLE , value = "标题" , required = false , dataTypeClass=String.class , example = "1212"),
+		@ApiImplicitParam(name = NoticeVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+		@ApiImplicitParam(name = NoticeVOMeta.TYPE , value = "分类" , required = false , dataTypeClass=String.class , example = "notice"),
+		@ApiImplicitParam(name = NoticeVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class , example = "<p>1212</p>"),
+		@ApiImplicitParam(name = NoticeVOMeta.IFTOP , value = "是否置顶" , required = false , dataTypeClass=String.class , example = "N"),
 		@ApiImplicitParam(name = NoticeVOMeta.ATTACH , value = "附件" , required = false , dataTypeClass=String.class),
 	})
 	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
@@ -300,6 +309,32 @@ public class NoticeController extends SuperController {
 		return result;
 	}
 
+
+	/**
+	 * 分页查询通知公告
+	 */
+	@ApiOperation(value = "分页查询通知公告")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = NoticeVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class , example = "708211477789540352"),
+			@ApiImplicitParam(name = NoticeVOMeta.NUMBER , value = "文号" , required = false , dataTypeClass=String.class , example = "12121212"),
+			@ApiImplicitParam(name = NoticeVOMeta.TITLE , value = "标题" , required = false , dataTypeClass=String.class , example = "1212"),
+			@ApiImplicitParam(name = NoticeVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
+			@ApiImplicitParam(name = NoticeVOMeta.TYPE , value = "分类" , required = false , dataTypeClass=String.class , example = "notice"),
+			@ApiImplicitParam(name = NoticeVOMeta.CONTENT , value = "内容" , required = false , dataTypeClass=String.class , example = "<p>1212</p>"),
+			@ApiImplicitParam(name = NoticeVOMeta.IFTOP , value = "是否置顶" , required = false , dataTypeClass=String.class , example = "N"),
+			@ApiImplicitParam(name = NoticeVOMeta.ATTACH , value = "附件" , required = false , dataTypeClass=String.class),
+	})
+	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
+	@SentinelResource(value = NoticeServiceProxy.QUERY_PAGED_DATA , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(NoticeServiceProxy.QUERY_PAGED_DATA)
+	public Result<PagedList<Notice>> queryPagedData(NoticeVO sample) {
+		Result<PagedList<Notice>> result=new Result<>();
+		OrderBy order=new OrderBy();
+		order.desc("iftop").descNL("create_time");
+		PagedList<Notice> list=noticeService.queryPagedList(sample,order,sample.getPageSize(),sample.getPageIndex());
+		result.success(true).data(list);
+		return result;
+	}
 
 
 

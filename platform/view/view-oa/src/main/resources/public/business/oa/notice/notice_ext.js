@@ -19,7 +19,30 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
 
     //模块基础路径
     const moduleURL="/service-oa/oa-notice";
+    var action=admin.getTempData('oa-notice-form-data-form-action');
 
+    function loadJs(url,callback){
+        var script=document.createElement('script');
+        script.type="text/javascript";
+        if(typeof(callback)!="undefined"){
+            if(script.readyState){
+                script.onreadystatechange=function(){
+                    if(script.readyState == "loaded" || script.readyState == "complete"){
+                        script.onreadystatechange=null;
+                        callback();
+                    }
+                }
+            }else{
+                script.onload=function(){
+                    callback();
+                }
+            }
+        }
+        script.src=url;
+        document.body.appendChild(script);
+    }
+
+    var editor;
 
     //列表页的扩展
     var list={
@@ -166,6 +189,13 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log('beforeRowOperationEvent',data,obj);
             return true;
         },
+        reviewNotice:function (data,it) {
+            console.log("view");
+            window.open("./notice_view.html?id="+data.id,"_blank");
+            return true;
+        },
+
+
         /**
          * 表格右侧操作列更多按钮事件
          * */
@@ -203,6 +233,26 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeDataFill:function (data) {
             console.log('beforeDataFill',data);
+            //处理编辑区域
+            $('#content').parent().html("<div id=\"content_editor\"></div>");
+            //https://cdn.jsdelivr.net/npm/wangeditor@latest/dist/wangEditor.min.js
+            //  var url="/assets/js/wangEditor.min.js";
+            var url="wangEditor5.min.js";
+            loadJs(url,function(){
+                console.log("loadJs")
+                const E = window.wangEditor
+                editor  = new E("#content_editor");
+                editor.create()
+                var html=""
+                if(data&&data.content){
+                    html=data.content;
+                }
+                editor.txt.html(html);
+                if(action=="view"){
+                    editor.disable();
+                }
+            });
+
         },
         /**
          * 表单数据填充后
@@ -256,7 +306,14 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         beforeSubmit:function (data) {
             console.log("beforeSubmit",data);
+
+            if(action=="create") {
+              //  data.editor_id=EMPLOYEE_ID;
+            }
+            console.log("beforeSubmit",data);
+            data.content=editor.txt.html();
             return true;
+
         },
         /**
          * 数据提交后窗口关闭前，如果返回 false，停止后续步骤的执行

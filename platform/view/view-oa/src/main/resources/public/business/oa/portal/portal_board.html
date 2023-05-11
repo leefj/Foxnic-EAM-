@@ -5,8 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta charset="utf-8"/>
     <meta name="referrer" content="no-referrer">
-
-
     <title th:text="${lang.translate('门户')}">门户</title>
     <link th:if(theme.ico!="null") rel="shortcut icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
     <link th:if(theme.ico!="null") rel="icon" th:href="${theme.ico}" type="image/vnd.microsoft.icon">
@@ -17,7 +15,8 @@
     <link rel="stylesheet" href="/assets/css/foxnic-web.css" th:href="'/assets/css/foxnic-web.css?'+${cacheKey}">
     <link href="/assets/libs/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="/assets/libs/material-design-webfont/css/material-design-icons-min.css" rel="stylesheet">
-    <link href="/business/oa/portal/portal.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/business/oa/portal/portal.css" th:href="'/business/oa/portal/portal.css?'+${cacheKey}"/>
+<!--    <link href="/business/oa/portal/portal.css" rel="stylesheet"/>-->
     <script th:inline="javascript">var foxnic_cachekey=[[${cacheKey}]];</script>
     <style>
 
@@ -36,8 +35,8 @@
 
             <div class="layui-carousel" id="carousel" >
                 <div carousel-item>
-                    <div>   <image style="height:280px;width:100%" src="/business/oa/portal/banner.png"></image></div>
-                    <div>   <image style="height:280px;width:100%" src="/business/oa/portal/banner.png"></image></div>
+                    <div><image style="height:280px;width:100%" src="/business/oa/portal/banner.png"></image></div>
+                    <div><image style="height:280px;width:100%" src="/business/oa/portal/banner.png"></image></div>
                 </div>
             </div>
 
@@ -47,38 +46,16 @@
             <div class="layui-card">
                 <div class="layui-card-header">
 
-                    <div class="oa-portal-card-item">
-                        <a class="oa-portal-card-item-title">公告</a>
+                    <div class="oa-portal-card-item-none">
+                        <a class="oa-portal-card-item-title">新闻公告</a>
 <!--                        <span class="oa-portal-card-item-more">更多</span>-->
                     </div>
 
                 </div>
                 <div class="layui-card-body" style="background-color: white;height: 202px;" >
                         <div class="oa-portal-card-list" id="notice-data">
-                            <div class="oa-portal-card-item">
-                                <a class="oa-portal-card-item-title" href="javascript:openView('704009281099268096')">这是默认121标题</a>
-                                <span class="oa-portal-card-item-desc">超级管理员&nbsp;2023-04-27 17:15:10</span>
-                            </div>
 
-                            <div class="oa-portal-card-item">
-                            <a class="oa-portal-card-item-title" href="javascript:openView('704008458478813184')">这是默认标题2</a><span class="oa-portal-card-item-desc">超级管理员&nbsp;null</span>
-                            </div>
-
-                                <div class="oa-portal-card-item">
-                                <a class="oa-portal-card-item-title" href="javascript:openView('704008201007267840')">这是默认标题1</a><span class="oa-portal-card-item-desc">超级管理员&nbsp;null</span>
-                            </div>
-
-                                <div class="oa-portal-card-item">
-                                <a class="oa-portal-card-item-title" href="javascript:openView('704007919322005504')">这是默认标题1</a><span class="oa-portal-card-item-desc">超级管理员&nbsp;null</span>
-                            </div>
-
-
-                                <div class="oa-portal-card-item">
-                                <a class="oa-portal-card-item-title" href="javascript:openView('703977902303084544')">2</a><span class="oa-portal-card-item-desc">立案&nbsp;2023-04-27 14:36:53</span>
-                            </div>
                         </div>
-
-
 
                 </div>
             </div>
@@ -93,8 +70,8 @@
         <div class="layui-col-md6" style="padding:5px;" >
             <div class="layui-card">
                 <div class="layui-card-header">
-                    <div class="oa-portal-card-item">
-                        <a class="oa-portal-card-item-title">常用系统</a>
+                    <div class="oa-portal-card-item-none">
+                        <a class="oa-portal-card-item-title">关联系统</a>
                     </div>
                 </div>
                 <div class="layui-card-body" style="background-color: white;height: 202px;" >
@@ -113,8 +90,8 @@
             <div class="layui-card">
                 <div class="layui-card-header">
 
-                    <div class="oa-portal-card-item">
-                        <a class="oa-portal-card-item-title">通知</a>
+                    <div class="oa-portal-card-item-none">
+                        <a class="oa-portal-card-item-title">内部通知</a>
 
                     </div>
 
@@ -122,10 +99,7 @@
                 <div class="layui-card-body" style="background-color: white;height: 202px;" >
 
                     <div class="oa-portal-card-list" id="public-data">
-<!--                        <div class="oa-portal-card-item">-->
-<!--                            <a class="oa-portal-card-item-title" href="javascript:openView('704009281099268096')"  >这是默认121标题</a>-->
-<!--                            <span class="oa-portal-card-item-desc">超级管理员&nbsp;2023-04-27 17:15:10</span>-->
-<!--                        </div>-->
+
                     </div>
                 </div>
             </div>
