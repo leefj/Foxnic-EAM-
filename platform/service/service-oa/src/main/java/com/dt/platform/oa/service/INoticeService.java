@@ -24,7 +24,7 @@ import java.util.Map;
  * 通知公告服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-08 20:49:25
+ * @since 2023-05-10 19:29:44
 */
 
 public interface INoticeService extends  ISimpleIdService<Notice,String> {

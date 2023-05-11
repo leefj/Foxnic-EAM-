@@ -30,12 +30,7 @@ spring:
       resetEnable: true
     druid:
       primary:
-        encrypt:
-          enable: false
-          file:
-            windows: d:/foxnic/passwd.txt
-            mac: /Users/Shared/foxnic/passwd.txt
-            linux: /foxnic/passwd.txt
+        encrypt: true
         # 8.x
         #driver-class-name: com.mysql.cj.jdbc.Driver
         # 5.x
@@ -43,6 +38,9 @@ spring:
         url: jdbc:mysql://127.0.0.1:APP_DB_PORT/APP_DB_NAME?tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true
         username: APP_DB_USERNAME
         password: APP_DB_PASSWORD
+        #        url: jdbc:mysql://121.43.103.102:3306/foxnic?tinyInt1isBit=false&useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true
+        #        username: root
+        #        password: xxx
         # 启动程序时，在连接池中初始化多少个连接
         initialSize: 16
         # 连接池中最多支持多少个活动会话
@@ -133,7 +131,11 @@ develop:
     enable: true
     # 可以使用以当前项目为基础的相对路径，指定静态资源自动部署的项目目录
     projects:  ../view/view-console
-
+  encrypt:
+    file:
+      windows: d:/foxnic/passwd.txt
+      mac: /Users/Shared/foxnic/passwd.txt
+      linux: /foxnic/passwd.txt
 
 foxnic:
   # 设置 API 接口

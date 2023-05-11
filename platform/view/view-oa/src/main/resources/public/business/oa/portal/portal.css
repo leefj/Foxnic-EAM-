@@ -129,6 +129,8 @@ html,body {
     background-color: #fff;
 }
 
+
+
 .catalog-unit {
     width: 100%;
     border-radius:4px;
@@ -186,6 +188,11 @@ html,body {
 }
 
 
+
+.oa-portal-card-item-none{
+    font-weight: bold;
+}
+
 .oa-portal-card-list {
     display: flex;
     flex-direction:column;
@@ -200,6 +207,7 @@ html,body {
 }
 
 .oa-portal-card-item-title {
+
     cursor: pointer;
 }
 

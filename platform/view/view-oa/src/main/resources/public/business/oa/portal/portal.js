@@ -95,10 +95,10 @@ function PortalPage() {
 		//notice
 		var ps1={}
 		ps1.pageIndex=1;
-		ps1.pageSize=10;
+		ps1.pageSize=5;
 		ps1.status="enable";
 		ps1.type="notice"
-		admin.post("/service-oa/oa-notice/query-paged-list",ps1,function (r){
+		admin.post("/service-oa/oa-notice/query-paged-data",ps1,function (r){
 			if(r.success){
 				fillNoticeData(r.data.list);
 			}
@@ -108,10 +108,10 @@ function PortalPage() {
 		//public
 		var ps2={}
 		ps2.pageIndex=1;
-		ps2.pageSize=10;
+		ps2.pageSize=5;
 		ps2.status="enable";
 		ps2.type="public"
-		admin.post("/service-oa/oa-notice/query-paged-list",ps2,function (r){
+		admin.post("/service-oa/oa-notice/query-paged-data",ps2,function (r){
 			if(r.success){
 				fillPublicData(r.data.list);
 			}
@@ -133,17 +133,28 @@ function PortalPage() {
 
 	function fillNPData(data,type){
 
+
 		var noticeC=$("#"+type)
 		if(data.length>0){
 			var html=""
 			for(var i=0;i<data.length;i++){
+				var e=data[i];
+				var zd="";
+				if(e.iftop=="Y"){
+					zd="<image style=\"width:11px;height: 11px;margin-right:5px;margin-bottom: 2px;\" src='./zd.png'></image>"
+				}
+				var title="";
+				if(e.title.length>36){
+					title=e.title.slice(0,35)+"...";
+				}else{
+					title=e.title;
+				}
 				html=html+"    <div class=\"oa-portal-card-item\">\n" +
-					"                            <a class=\"oa-portal-card-item-title\" href=\"javascript:openSystem("+data[i]+")\" >"+data[i].title+"</a>\n" +
+					"                            <a class=\"oa-portal-card-item-title\" href=\"javascript:openNotice('"+data[i].id+"')\" > "+zd+title+"</a>\n" +
 					"                            <span class=\"oa-portal-card-item-desc\">"+data[i].createTime+"</span>\n" +
 					"                        </div>"
 			}
 			noticeC.html(html);
-
 		}else{
 			noticeC.html("无数据")
 		}
@@ -292,8 +303,6 @@ function PortalPage() {
 					}
 				}
 			}
-
-
 			container.append([
 				'<div class="process-instance-item">',
 				'	<a class="process-instance-item-title" href="javascript:openView(\''+inst.id+'\')">'+title+'</a><span class="process-instance-item-desc">'+name+'&nbsp;'+time+'</span>',
@@ -301,6 +310,9 @@ function PortalPage() {
 			].join("\n"));
 		}
 	}
+
+
+
 
 	window.openView=function(id) {
 		var inst=PROCESS_INSTANCES[id];
@@ -312,12 +324,18 @@ function PortalPage() {
 
 
 
+	window.openNotice=function(id) {
+		console.log(id);
+		var url="/business/oa/notice/notice_view.html?id="+id;
+		let win = window.open(url, "_blank");
+	}
+
+
+
 	window.openSystem=function(url) {
-
 		console.log(url);
-		let win = window.open(url, "window");
-
- }
+		let win = window.open(url, "_blank");
+	}
 
 
 	$(".process-instances-more").click(function () {

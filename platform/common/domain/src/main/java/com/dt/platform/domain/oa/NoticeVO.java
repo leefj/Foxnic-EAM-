@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 通知公告VO类型
  * <p>通知公告 , 数据表 oa_notice 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-08 20:49:25
+ * @since 2023-05-11 13:29:34
  * @sign DBC37635BD030E726CE0AFE2306C56C5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -407,6 +407,7 @@ public class NoticeVO extends Notice {
 		inst.setType(this.getType());
 		inst.setVersion(this.getVersion());
 		inst.setContent(this.getContent());
+		inst.setIftop(this.getIftop());
 		inst.setNumber(this.getNumber());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
@@ -496,6 +497,7 @@ public class NoticeVO extends Notice {
 			this.setType(DataParser.parse(String.class, map.get(NoticeVOMeta.TYPE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(NoticeVOMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, map.get(NoticeVOMeta.CONTENT)));
+			this.setIftop(DataParser.parse(String.class, map.get(NoticeVOMeta.IFTOP)));
 			this.setNumber(DataParser.parse(String.class, map.get(NoticeVOMeta.NUMBER)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(NoticeVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(NoticeVOMeta.DELETED)));
@@ -527,6 +529,7 @@ public class NoticeVO extends Notice {
 				this.setType( (String)map.get(NoticeVOMeta.TYPE));
 				this.setVersion( (Integer)map.get(NoticeVOMeta.VERSION));
 				this.setContent( (String)map.get(NoticeVOMeta.CONTENT));
+				this.setIftop( (String)map.get(NoticeVOMeta.IFTOP));
 				this.setNumber( (String)map.get(NoticeVOMeta.NUMBER));
 				this.setCreateBy( (String)map.get(NoticeVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(NoticeVOMeta.DELETED));
@@ -571,6 +574,7 @@ public class NoticeVO extends Notice {
 			this.setType(DataParser.parse(String.class, r.getValue(NoticeVOMeta.TYPE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(NoticeVOMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, r.getValue(NoticeVOMeta.CONTENT)));
+			this.setIftop(DataParser.parse(String.class, r.getValue(NoticeVOMeta.IFTOP)));
 			this.setNumber(DataParser.parse(String.class, r.getValue(NoticeVOMeta.NUMBER)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(NoticeVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(NoticeVOMeta.DELETED)));
@@ -590,6 +594,7 @@ public class NoticeVO extends Notice {
 				this.setType( (String)r.getValue(NoticeVOMeta.TYPE));
 				this.setVersion( (Integer)r.getValue(NoticeVOMeta.VERSION));
 				this.setContent( (String)r.getValue(NoticeVOMeta.CONTENT));
+				this.setIftop( (String)r.getValue(NoticeVOMeta.IFTOP));
 				this.setNumber( (String)r.getValue(NoticeVOMeta.NUMBER));
 				this.setCreateBy( (String)r.getValue(NoticeVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(NoticeVOMeta.DELETED));

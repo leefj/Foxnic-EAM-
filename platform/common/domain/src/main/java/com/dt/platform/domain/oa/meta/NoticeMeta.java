@@ -10,8 +10,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-08 20:49:25
- * @sign C06C69F1F66E2F35F1E4FEF0AFA8AD62
+ * @since 2023-05-11 13:29:34
+ * @sign 541058C8E8B1530009C72925E13879A0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -76,6 +76,16 @@ public class NoticeMeta {
 	 * 内容 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.oa.Notice,java.lang.String> CONTENT_PROP = new BeanProperty(com.dt.platform.domain.oa.Notice.class ,CONTENT, java.lang.String.class, "内容", "内容", java.lang.String.class, null);
+	
+	/**
+	 * 是否置顶 , 类型: java.lang.String
+	*/
+	public static final String IFTOP="iftop";
+	
+	/**
+	 * 是否置顶 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.oa.Notice,java.lang.String> IFTOP_PROP = new BeanProperty(com.dt.platform.domain.oa.Notice.class ,IFTOP, java.lang.String.class, "是否置顶", "是否置顶", java.lang.String.class, null);
 	
 	/**
 	 * 附件 , 类型: java.lang.String
@@ -190,7 +200,7 @@ public class NoticeMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , NUMBER , TITLE , STATUS , TYPE , CONTENT , ATTACH , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , TYPE_DATA };
+	public static final String[] $PROPS={ ID , NUMBER , TITLE , STATUS , TYPE , CONTENT , IFTOP , ATTACH , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , TYPE_DATA };
 	
 	/**
 	 * 代理类
@@ -263,6 +273,17 @@ public class NoticeMeta {
 		public Notice setContent(String content) {
 			super.change(CONTENT,super.getContent(),content);
 			super.setContent(content);
+			return this;
+		}
+		
+		/**
+		 * 设置 是否置顶
+		 * @param iftop 是否置顶
+		 * @return 当前对象
+		*/
+		public Notice setIftop(String iftop) {
+			super.change(IFTOP,super.getIftop(),iftop);
+			super.setIftop(iftop);
 			return this;
 		}
 		
@@ -407,6 +428,7 @@ public class NoticeMeta {
 			inst.setType(this.getType());
 			inst.setVersion(this.getVersion());
 			inst.setContent(this.getContent());
+			inst.setIftop(this.getIftop());
 			inst.setNumber(this.getNumber());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());

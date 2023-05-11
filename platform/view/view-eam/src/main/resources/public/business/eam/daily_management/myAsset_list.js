@@ -60,6 +60,7 @@ function ListPage() {
                 ps = {searchField: "$composite", searchValue: JSON.stringify(contitions)};
             }
             ps.useUserId=EMPLOYEE_ID;
+            ps.status='complete'
             var templet=window.pageExt.list.templet;
             if(templet==null) {
                 templet=function(field,value,row) {
@@ -118,6 +119,7 @@ function ListPage() {
             if(!window.pageExt.list.beforeQuery(value,ps,"refresh")) return;
         }
         ps.searchValue=JSON.stringify(value);
+        ps.status='complete'
         if(sortField) {
             ps.sortField=sortField;
             ps.sortType=sortType;

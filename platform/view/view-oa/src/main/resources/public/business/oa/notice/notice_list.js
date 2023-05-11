@@ -1,7 +1,7 @@
 /**
  * 通知公告 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-08 20:49:26
+ * @since 2023-05-11 13:29:35
  */
 
 
@@ -89,9 +89,8 @@ function ListPage() {
 					,{ field: 'title', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('标题') , templet: function (d) { return templet('title',d.title,d);}  }
 					,{ field: 'status', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('状态'), templet:function (d){ return templet('status',fox.getEnumText(RADIO_STATUS_DATA,d.status,'','status'),d);}}
 					,{ field: 'type', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('分类'), templet:function (d){ return templet('type',fox.getEnumText(RADIO_TYPE_DATA,d.type,'','type'),d);}}
-					,{ field: 'content', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('内容') , templet: function (d) { return templet('content',d.content,d);}  }
-					,{ field: 'attach', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('附件') , templet: function (d) { return templet('attach',d.attach,d);}  }
-					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd HH:mm:ss"),d); }  }
+					,{ field: 'iftop', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('是否置顶'), templet:function (d){ return templet('iftop',fox.getEnumText(RADIO_IFTOP_DATA,d.iftop,'','iftop'),d);}}
+					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd"),d); }  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}
 					,{ field: 'row-ops', fixed: 'right', align: 'center', toolbar: '#tableOperationTemplate', title: fox.translate('操作','','cmp:table'), width: 160 }
 				]],
@@ -424,6 +423,9 @@ function ListPage() {
 						}
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
+			}
+			else if (layEvent === 'review-notice') { // 预览
+				window.pageExt.list.reviewNotice(data,this);
 			}
 			
 		});

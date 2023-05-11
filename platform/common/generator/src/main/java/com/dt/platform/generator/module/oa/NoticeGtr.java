@@ -2,6 +2,7 @@ package com.dt.platform.generator.module.oa;
 
 import com.dt.platform.constants.db.OaTables;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
+import com.dt.platform.constants.enums.oa.NoticeIfTopEnum;
 import com.dt.platform.constants.enums.oa.NoticeTypeEnum;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.oa.page.NoticePageController;
@@ -41,8 +42,9 @@ public class NoticeGtr extends BaseCodeGenerator {
         cfg.view().search().labelWidth(4,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
-
         cfg.view().field(OaTables.OA_NOTICE.STATUS).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class).defaultIndex(0);
+        cfg.view().field(OaTables.OA_NOTICE.IFTOP).form().validate().required().form().radioBox().enumType(NoticeIfTopEnum.class).defaultIndex(1);
+
 
         cfg.view().field(OaTables.OA_NOTICE.TITLE).form().validate().required();
 
@@ -54,13 +56,20 @@ public class NoticeGtr extends BaseCodeGenerator {
         cfg.view().field(OaTables.OA_NOTICE.TYPE).form().validate().required().form().radioBox().enumType(NoticeTypeEnum.class).defaultIndex(0);
 
 
-        cfg.view().formWindow().bottomSpace(120);
+
+        cfg.view().field(OaTables.OA_NOTICE.ATTACH).table().disable(true);
+        cfg.view().field(OaTables.OA_NOTICE.CONTENT).table().disable(true);
+
+        cfg.view().formWindow().bottomSpace(150);
         cfg.view().formWindow().width(Config.baseFormWidth);
+
+        cfg.view().list().operationColumn().addActionButton("预览","reviewNotice","oa_notice-view","oa_notice:view");
 
         cfg.view().form().addGroup(null,
                 new Object[] {
                         OaTables.OA_NOTICE.TITLE,
                         OaTables.OA_NOTICE.TYPE,
+                        OaTables.OA_NOTICE.IFTOP,
                 },
                 new Object[] {
                         OaTables.OA_NOTICE.NUMBER,
@@ -78,12 +87,12 @@ public class NoticeGtr extends BaseCodeGenerator {
 
         //文件生成覆盖模式
         cfg.overrides()
-                .setServiceIntfAnfImpl(WriteMode.COVER_EXISTS_FILE) //服务与接口
-                .setControllerAndAgent(WriteMode.COVER_EXISTS_FILE) //Rest
-                .setPageController(WriteMode.COVER_EXISTS_FILE) //页面控制器
+                .setServiceIntfAnfImpl(WriteMode.IGNORE) //服务与接口
+                .setControllerAndAgent(WriteMode.IGNORE) //Rest
+                .setPageController(WriteMode.IGNORE) //页面控制器
                 .setFormPage(WriteMode.COVER_EXISTS_FILE) //表单HTML页
                 .setListPage(WriteMode.COVER_EXISTS_FILE)
-                .setExtendJsFile(WriteMode.COVER_EXISTS_FILE); //列表HTML页
+                .setExtendJsFile(WriteMode.IGNORE); //列表HTML页
         //列表HTML页
         //生成代码
         cfg.buildAll();
