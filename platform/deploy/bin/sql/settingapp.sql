@@ -14,6 +14,7 @@ update sys_config set value=0 where code='eam.assetImportAssetCodeKeep';
 update sys_config set value=0 where code='eam.assetImportDataReplenish';
 update sys_config set value=0 where code='eam.assetSerialNumberIsUnique';
 update sys_config set value=0 where code='eam.assetStatusColumnDisable';
+update sys_config set value='/assets/images/bg_login_21.jpg' where code='system.login.background';
 update sys_config set value='固资系统' where code='system.title';
 update sys_config set value='固资系统' where code='system.login.title';
 update eam_asset_label set font_path='/app/app/bin/msyh.ttf' where id='1';
@@ -61,7 +62,6 @@ update sys_menu set hidden=1 where id='622447317160558592';
 -- #########
 -- 授权管理
 -- delete from sys_menu where id='558628496125984768';
---
 -- delete from sys_menu where id='616256291005792256';
 -- delete from sys_menu where id='495201409763901440';
 -- delete from sys_menu where id='610152549789466624';
@@ -82,5 +82,12 @@ update sys_menu set hidden=1 where id='622447317160558592';
 -- delete from sys_menu where id='487568362436558848';
 -- delete from sys_menu where id='487559533120454656';
 -- delete from sys_menu where id='578624635919138816';
-
-
+update sys_user set portrait_id ='T001_image_head' where 1=1;
+update sys_user set language ='zh_cn' where 1=1;
+update oa_system_information set picture_id='T001_image_project';
+delete from sys_file where id in ('T001_image_head','T001_image_banner1','T001_image_banner2');
+delete from sys_file where id in ('T001_image_project');
+INSERT INTO sys_file(`id`, `file_name`, `location`, `size`, `media_type`, `file_type`, `download_url`, `latest_visit_time`, `downloads`, `create_by`, `create_time`, `update_by`, `update_time`, `deleted`, `delete_by`, `delete_time`, `version`) VALUES ('T001_image_head', 'head.png', '/image/T001/head.png', 66222, 'image/png', 'png', NULL, '2023-05-12 13:30:32', 64, '110588348101165911', '2023-05-12 07:32:51', NULL, NULL, 0, NULL, NULL, 1);
+INSERT INTO sys_file(`id`, `file_name`, `location`, `size`, `media_type`, `file_type`, `download_url`, `latest_visit_time`, `downloads`, `create_by`, `create_time`, `update_by`, `update_time`, `deleted`, `delete_by`, `delete_time`, `version`) VALUES ('T001_image_banner1', 'banner1.png', '/image/T001/portal_banner1.png', 66222, 'image/png', 'png', NULL, '2023-05-12 13:30:32', 64, '110588348101165911', '2023-05-12 07:32:51', NULL, NULL, 0, NULL, NULL, 1);
+INSERT INTO sys_file(`id`, `file_name`, `location`, `size`, `media_type`, `file_type`, `download_url`, `latest_visit_time`, `downloads`, `create_by`, `create_time`, `update_by`, `update_time`, `deleted`, `delete_by`, `delete_time`, `version`) VALUES ('T001_image_banner2', 'banner2.png', '/image/T001/portal_banner2.png', 66222, 'image/png', 'png', NULL, '2023-05-12 13:30:32', 64, '110588348101165911', '2023-05-12 07:32:51', NULL, NULL, 0, NULL, NULL, 1);
+INSERT INTO sys_file(`id`, `file_name`, `location`, `size`, `media_type`, `file_type`, `download_url`, `latest_visit_time`, `downloads`, `create_by`, `create_time`, `update_by`, `update_time`, `deleted`, `delete_by`, `delete_time`, `version`) VALUES ('T001_image_project', 'project.png', '/image/T001/project.png', 66222, 'image/png', 'png', NULL, '2023-05-12 13:30:32', 64, '110588348101165911', '2023-05-12 07:32:51', NULL, NULL, 0, NULL, NULL, 1);

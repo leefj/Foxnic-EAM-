@@ -9,7 +9,7 @@ cur_dir=$(cd `dirname $0`; pwd)
 app_conf="${cur_dir}/app.conf"
 app_dir=$cur_dir/..
 app_log=$app_dir/logs
-app_log_file=$app_log/app.log
+
 
 if [[ ! -d "$app_dir/tmp" ]];then
   mkdir -p $app_dir/tmp
@@ -40,8 +40,9 @@ if [[ -n $2 ]];then
   app=$2
 fi
 app_name=${app}.jar
-
+app_log_file=$app_log/${app_name}.log
 if [[ $app_name = "job.jar" ]];then
+  echo "当前不支持job.jar"
   exit 0
 fi
 

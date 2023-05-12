@@ -1,6 +1,7 @@
 #!/bin/sh
 cur_dir=$(cd `dirname $0`; pwd)
-logFile=appd.log
+app_dir=$cur_dir/..
+logFile=$app_dir/logs/appd.log
 cd $cur_dir
 while true
 do
