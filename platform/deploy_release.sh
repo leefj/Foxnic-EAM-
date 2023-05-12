@@ -40,7 +40,7 @@ cp $jar_dir/wrapper-all-${version}.jar  $release_dir/app/app/app.jar
 
 # process bpm.jar
 #cp -r $jar_dir/lib/* $release_dir/app/bpm/lib/
-ls $bpm_jar_dir/wrapper-camunda-${version}.RELEASE.jar
+ls $bpm_jar_dir/wrapper-camunda-${version}.jar
 ls $release_dir/app/bpm
 cp $bpm_jar_dir/wrapper-camunda-${version}.jar $release_dir/app/bpm/bpm.jar
 echo "start to ys"

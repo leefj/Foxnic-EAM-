@@ -449,6 +449,22 @@ function stopFirewalld(){
   systemctl disable firewalld.service
   systemctl stop firewalld.service
 }
+function addCrontabTask(){
+  echo "start to add crontab"
+  cronTime=`date +%Y$m%d%H%M%S`
+  crontabFile=/tmp/crontab.${cronTime}
+  crontab -l>$crontabFile
+  "####auto add for app">>$crontabFile
+  sed -i '/clearDataSpace/d' $crontabFile
+  sed -i '/backupAppDB/d'    $crontabFile
+  echo "58 23 * * *  sh $base_dir/app/bin/clearDataSpace.sh">>$crontabFile
+  echo "30 5 * * *   sh $base_dir/app/bin/backupAppDB.sh $db_name">>$crontabFile
+  echo "">>$crontabFile
+  crontab $crontabFile
+  echo "list conrtab:"
+  crontab -l
+  return 0
+}
 function installNginx(){
   cd $app_dir/bin
   sh deployNginx.sh
@@ -658,6 +674,8 @@ cd $app_dir
 sh startAll.sh
 # start to install nginx
 installNginx
+# start to add crontab
+addCrontabTask
 ########## setting environment
 tmpdate=`date`
 echo "$tmpdate,first setup time record!">$base_dir/app/bin/setupApp.log
