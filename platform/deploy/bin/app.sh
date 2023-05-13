@@ -10,7 +10,6 @@ app_conf="${cur_dir}/app.conf"
 app_dir=$cur_dir/..
 app_log=$app_dir/logs
 
-
 if [[ ! -d "$app_dir/tmp" ]];then
   mkdir -p $app_dir/tmp
 fi
@@ -35,14 +34,14 @@ do
   fi
 done
 ####################### Parameter ####################################
-app=app
+app="unknow"
 if [[ -n $2 ]];then
   app=$2
 fi
 app_name=${app}.jar
 app_log_file=$app_log/${app_name}.log
 if [[ $app_name = "job.jar" ]];then
-  echo "当前不支持job.jar"
+  echo "不需要运行job.jar"
   exit 0
 fi
 
@@ -53,7 +52,7 @@ fi
 
 app_uid=`cat $app_conf|grep -v "#"|grep APP_UID=|awk -F "=" '{print $2}'`
 app_process_mark="app01_${app_name}_${app_uid}"
-action=start
+action="unknow"
 if [[ -n $1 ]];then
   action=$1
 fi
@@ -76,11 +75,11 @@ env(){
 
 start(){
   env
-  echo "Action Start"
+  #echo "Action Start"
   cd $app_dir
   pidcnt=`ps -ef|grep java|grep $app_process_mark|grep -v grep |awk '{print $2}'|wc -l`
   if [[ $pidcnt -ge 1 ]];then
-    echo "Process is already running,please first stop it."
+    echo "$app process is already running,please first stop it."
   else
     cd $app_dir/app/$app
     application_yml="";
@@ -92,25 +91,25 @@ start(){
     pidlist2=`ps -ef|grep java|grep $app_process_mark|grep -v grep |awk '{print $2}'`
     pidcnt2=`ps -ef|grep java|grep $app_process_mark|grep -v grep |awk '{print $2}'|wc -l`
     if [[ $pidcnt2 -ge 1 ]];then
-        echo "process start success,pid:$pidlist2"
+        echo "$app process start success,pid:$pidlist2"
     fi
   fi
 }
 
 stop(){
-  echo "Action Stop"
+  #echo "Action Stop"
   pidlist=`ps -ef|grep java|grep $app_process_mark|grep -v grep |awk '{print $2}'`
   pidcnt=`ps -ef|grep java|grep $app_process_mark|grep -v grep |awk '{print $2}'|wc -l`
   if [[ $pidcnt -ge 1 ]];then
-      echo "running process number:$pidcnt"
+      echo "$app running process number:$pidcnt"
       for pid in $pidlist
       do
           echo "start to kill process,pid:$pid"
           kill -9 $pid
       done
-      echo "process stop success!"
+      echo "$app process stop success"
   else
-      echo "not found running process."
+      echo "$app is not running"
   fi
 }
 
@@ -121,20 +120,25 @@ restart(){
 }
 
 status(){
-  echo "Action Status"
+  #echo "Action Status"
   pidlist=`ps -ef|grep java|grep $app_process_mark|grep -v grep |awk '{print $2}'`
   pidcnt=`ps -ef|grep java|grep $app_process_mark|grep -v grep |awk '{print $2}'|wc -l`
   if [[ $pidcnt -ge 1 ]];then
-    echo "process is running,pid:$pidlist"
+    echo "$app process is running,pid:$pidlist"
   else
-    echo "process is not running"
+    echo "$app process is not running"
   fi
 }
 
 help(){
-    echo "Help:"
-    echo "  sh run.sh start|stop|status|restart"
+    echo "Usage::"
+    echo "   sh app.sh [start][stop][restart][status]  [app][bpm][job]"
+    echo "Example:"
+    echo "   sh app.sh restart app"
 }
+
+
+
 #zip wrapper-all-0.0.2.RELEASE.jar BOOT-INF/classes/application.yml
 ######################## Main ########################################
 if [[ $action == "start" ]];then

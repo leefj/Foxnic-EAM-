@@ -1,6 +1,6 @@
 #!/bin/sh
 #cron:
-#   12 12 * * * sh /app/app/bin/backupAppDB.sh eam
+#   30 2 * * * sh /app/app/bin/backupAppDB.sh eam
 ########################################
 cur_dir=$(cd `dirname $0`; pwd)
 app_conf="${cur_dir}/app.conf"
@@ -11,6 +11,7 @@ MYSQL_DUMP=`cat $app_conf|grep -v "#"|grep MYSQL_DUMP=|awk -F "=" '{print $2}'`
 DB_NAME=`cat $app_conf|grep -v "#"|grep DB_NAME=|awk -F "=" '{print $2}'`
 DB_HOST=`cat $app_conf|grep -v "#"|grep DB_HOST=|awk -F "=" '{print $2}'`
 DB_USER=`cat $app_conf|grep -v "#"|grep DB_USER=|awk -F "=" '{print $2}'`
+DB_PORT=`cat $app_conf|grep -v "#"|grep DB_PORT=|awk -F "=" '{print $2}'`
 DB_PWD=`cat $app_conf|grep DB_PWD=|awk -F "=" '{print $2}'`
 TODAY=`date +%Y%m%d_%H_%M_%S`
 BACKUP_DIR_CNT=`cat $app_conf|grep -v "#"|grep BACKUP_DIR=|awk -F "=" '{print $2}'|wc -l`
@@ -37,7 +38,7 @@ fi
 file=${dbname}_backup_$TODAY.tar.gz
 echo "start to backup,dbname:$dbname,file:$backup_dir/$file"
 cd $backup_dir
-$MYSQL_DUMP -R -u$DB_USER -p$DB_PWD -h$DB_HOST $dbname  > db.sql
+$MYSQL_DUMP -R -P$DB_PORT -u$DB_USER -p$DB_PWD -h$DB_HOST $dbname > db.sql
 tar zcvf $file  ./db.sql
 echo "backup finish"
 echo "$backup_dir/db.sql"
