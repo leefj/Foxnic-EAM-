@@ -1,5 +1,5 @@
 #!/bin/sh
-modify_date="2023/05/08"
+modify_date="2023/05/12"
 ####################################################################################
 # run:
 #   sh appInstallFull.sh
@@ -25,6 +25,16 @@ modify_date="2023/05/08"
 #  sh deploy.sh 2.6.0   // app_release_2.6.0.tar.gz
 ####################################################################################
 ################################################################  config
+function qa(){
+  echo "如果正常脚本执行后，应用无法访问或一键安装脚本无法进行"
+  echo "1、请检查yum是否正确配置。"
+  echo "2、请检查外部或内部防火墙、网络策略是否开通"
+  echo "3、检查端口是否正常，默认应用端口:$app_port,流程引擎端口:$bpm_port 命令：netstat -ant|grep LISTEN"
+  echo "4、检查应用日志，看启动是否报错"
+  return 0
+}
+qa
+
 echo "script version:$modify_date"
 app_version="last"
 MYSQL_PORT=3308
@@ -92,6 +102,8 @@ if [[ $bpm_port_cnt -ne 0 ]];then
 	echo "install check error,bpm_port:$bpm_port already in use."
 	exit 1
 fi
+
+
 ################################################################ Install Function
 function verifySoft(){
 	if [[ -f $1 ]];then
@@ -454,11 +466,11 @@ function addCrontabTask(){
   cronTime=`date +%Y$m%d%H%M%S`
   crontabFile=/tmp/crontab.${cronTime}
   crontab -l>$crontabFile
-  "####auto add for app">>$crontabFile
+  echo "####auto add for app">>$crontabFile
   sed -i '/clearDataSpace/d' $crontabFile
   sed -i '/backupAppDB/d'    $crontabFile
   echo "58 23 * * *  sh $base_dir/app/bin/clearDataSpace.sh">>$crontabFile
-  echo "30 5 * * *   sh $base_dir/app/bin/backupAppDB.sh $db_name">>$crontabFile
+  echo "30 2 * * *   sh $base_dir/app/bin/backupAppDB.sh $db_name">>$crontabFile
   echo "">>$crontabFile
   crontab $crontabFile
   echo "list conrtab:"
@@ -512,6 +524,7 @@ if [[ $javaR -eq 0 ]];then
   if [[ $javaVersion -gt 0 ]];then
     java_soft_remote=0
     JAVA=`which java|awk '{print $1}'`
+    $JAVA -version
   fi
 fi
 cd /tmp
@@ -685,7 +698,7 @@ echo "alias gb='cd $base_dir/app/app/bpm'" >>~/.bash_profile
 echo "alias gj='cd $base_dir/app/app/job'" >>~/.bash_profile
 echo "alias gn='cd $base_dir/app/app/nginx'" >>~/.bash_profile
 echo "alias g='cd $base_dir/app'" >>~/.bash_profile
-echo "alias k='sh $base_dir/app/bin/help.sh'" >>~/.bash_profile
+echo "alias k='sh $base_dir/app/bin/k.sh'" >>~/.bash_profile
 echo "alias ka_restart='cd $base_dir/app;sh restartApp.sh'" >>~/.bash_profile
 echo "alias kb_restart='cd $base_dir/app;sh restartBpm.sh'" >>~/.bash_profile
 echo "alias kj_restart='cd $base_dir/app;sh restartJob.sh'" >>~/.bash_profile
@@ -694,8 +707,7 @@ echo "alias tdb='$base_dir/db/mysql/bin/mysql -h$db_host -P$db_port -u$db_user -
 echo "alias tdb_none='$base_dir/db/mysql/bin/mysql -h$db_host -P$db_port -u$db_user -p$db_pwd '" >>~/.bash_profile
 echo "Please wait about 25 seconds,Application is starting.."
 sleep 10
-echo "################## install result ###################"
-echo "------------------------------- result -----------------------------------------"
+echo "------------------------------- install result -----------------------------------------"
 echo "Install finish."
 echo "Application can be visit about 30 second later"
 echo "App install directory list:$mysql_dir,$app_dir"
@@ -707,7 +719,7 @@ echo "Mysql info port=$db_port"
 echo "Mysql info user=$db_user"
 echo "Mysql info password=$db_pwd"
 echo "Quick command list:"
-echo "k:help list"
+echo "k:simple maintenance method"
 echo "g:  go to $base_dir/app"
 echo "ga: go to $base_dir/app/app/app"
 echo "gb: go to $base_dir/app/app/bpm"
@@ -718,11 +730,8 @@ echo "kb_restart:restartBpm"
 echo "kj_restart:restartJob"
 echo "kn_restart:restartNginx"
 echo "tdb: go to connect to database"
-echo "--------------------------------- end ---------------------------------------"
-echo "如果正常脚本执行后，应用无法访问。"
-echo "请检查外部或内部防火墙、网络策略是否开通"
-echo "检查端口是否正常，默认应用端口:$app_port,流程引擎端口:$bpm_port 命令：netstat -ant|grep LISTEN"
-echo "检查应用日志，看启动是否报错"
+echo "---------------------------------------------- end ---------------------------------------"
+qa
 exit 0
 #################################################################### install finish
 ##########################################################################################

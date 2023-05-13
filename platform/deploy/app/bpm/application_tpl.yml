@@ -30,7 +30,7 @@ spring:
       resetEnable: true
     druid:
       primary:
-        encrypt: true
+        encrypt: false
         # 8.x
         #driver-class-name: com.mysql.cj.jdbc.Driver
         # 5.x

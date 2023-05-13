@@ -1,9 +1,11 @@
 -- foxnic config
+update sys_config set name='参数' where id='673570483181977600';
+delete from sys_profile where id<>'default';
+delete from sys_config where profile_id<>'default';
 update sys_config set value='2.6.0' where code='system.version.code';
 update sys_config set value='PROD' where code='system.version.name';
 update sys_config set value='PROD' where code='system.version.type';
-update sys_config set value='PROD' where code='system.version.type';
-update sys_config set value='0' where code='system.index.portal.enable';
+update sys_config set value='1' where code='system.index.portal.enable';
 update sys_config set value='0' where code='system.external.portal.enable';
 update sys_config set value='{account:"",password:"",captcha:""}'  where code='system.login.default';
 update sys_config set value=0 where code='system.login.captcha.any';
@@ -17,7 +19,9 @@ update sys_config set value=0 where code='eam.assetStatusColumnDisable';
 update sys_config set value='/assets/images/bg_login_21.jpg' where code='system.login.background';
 update sys_config set value='固资系统' where code='system.title';
 update sys_config set value='固资系统' where code='system.login.title';
+update sys_config set value='/pages/index/index' where code='eam.mobileLoginIndex';
 update eam_asset_label set font_path='/app/app/bin/msyh.ttf' where id='1';
+
 -- 协同
 update sys_menu set hidden=1 where id='616256291005792256';
 -- 功能演示
