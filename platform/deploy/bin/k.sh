@@ -112,8 +112,8 @@ do
 	'h')
 	  help ;;
 	*)
-	clear
-	echo "你选择了错误的序号";;
+	  clear
+	  echo "你选择了错误的序号";;
 	esac
 	echo -en "\n\n\t\t\t选择任意键返回菜单"
 	read -n 1 line
