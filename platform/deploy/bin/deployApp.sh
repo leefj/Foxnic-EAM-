@@ -308,6 +308,7 @@ EOF
 	chown mysql:mysql $MYSQL_CNF
 	sed -i '/mysql/d' /etc/rc.d/rc.local
 	echo "sleep 10">> /etc/rc.d/rc.local
+	echo "#to start mysql">>/etc/rc.d/rc.local
 	echo "su - mysql -c \"cd /tmp/;nohup $mysql_dir/mysql/bin/mysqld_safe --defaults-file=$MYSQL_CNF &\"">> /etc/rc.d/rc.local
 	chmod +x /etc/rc.d/rc.local
 	cat /etc/rc.d/rc.local
@@ -344,11 +345,18 @@ function installApp(){
 	echo "">$appConf
 	echo "JAVA=$JAVA"                                   >>$appConf
 	echo "APP_UID=app"                                  >>$appConf
-	echo "APP_NAME=app.jar"                             >>$appConf
-	echo "APP_DIR=$app_dir"                             >>$appConf
-	echo "BACKUP_DIR=$app_dir/backup"                   >>$appConf
 	echo "APP_WEB_PORT=$app_port"                       >>$appConf
+	echo "APP_DIR=$app_dir"                             >>$appConf
+	echo "APP_STATUS=enable"                            >>$appConf
+	echo "APP_NAME=app.jar"                             >>$appConf
+	echo "BPM_STATUS=enable"                            >>$appConf
+	echo "BPM_NAME=bpm.jar"                             >>$appConf
+	echo "JOB_STATUS=enable"                            >>$appConf
+	echo "JOB_NAME=job.jar"                             >>$appConf
+  echo "#ops"                                         >>$appConf
 	echo "DATA_CLEAR=1"                                 >>$appConf
+	echo "APP_TPL_UPDATE=1"                             >>$appConf
+	echo "#db"                                          >>$appConf
 	echo "MYSQL=$mysql_dir/mysql/bin/mysql"             >>$appConf
 	echo "MYSQL_DUMP=$mysql_dir/mysql/bin/mysqldump"    >>$appConf
 	echo "MYSQL_ADMIN=$mysql_dir/mysql/bin/mysqladmin"  >>$appConf
@@ -357,6 +365,8 @@ function installApp(){
 	echo "DB_NAME=$db_name"                             >>$appConf
 	echo "DB_USER=$db_user"                             >>$appConf
 	echo "DB_PWD=$db_pwd"                               >>$appConf
+	echo "#backup"                                      >>$appConf
+	echo "BACKUP_DIR=$app_dir/backup"                   >>$appConf
 	db_create_db_file=$app_dir/bin/sql/createdb.sql
 	db_sql_file=$app_dir/bin/sql/db.sql
 	db_file_conf_file=$app_dir/bin/sql/confuploadfile.sql
@@ -450,6 +460,7 @@ function installApp(){
 	chmod +x /etc/rc.d/rc.local
 	echo "sleep 15">>/etc/rc.d/rc.local
 	sed -i '/startAll/d' /etc/rc.d/rc.local
+	echo "#to start app">>/etc/rc.d/rc.local
 	echo "cd $app_dir;sh startAll.sh">>/etc/rc.d/rc.local
 }
 function stopFirewalld(){

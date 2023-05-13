@@ -63,9 +63,9 @@ else
 fi
 
 # 加入到自启动脚本
-chmod +x /etc/rc.d/rc.local
-sed -i '/nginx/d' /etc/rc.d/rc.local
-echo "$nginx_dir/sbin/nginx">> /etc/rc.d/rc.local
+#chmod +x /etc/rc.d/rc.local
+#sed -i '/nginx/d' /etc/rc.d/rc.local
+#echo "$nginx_dir/sbin/nginx">> /etc/rc.d/rc.local
 exit 0
 #to clear
 ./sbin/nginx -s stop

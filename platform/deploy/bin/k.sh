@@ -4,11 +4,11 @@ app_dir=$cur_dir/..
 help(){
   echo ""
   echo "以下是快捷命令:"
+  echo "g=cd /app/app"
   echo "ga=cd /app/app/app/app"
   echo "gb=cd /app/app/app/bpm"
   echo "gj=cd /app/app/app/job"
   echo "gn=cd /app/app/app/nginx"
-  echo "g=cd /app/app"
   echo "ka_restart=restartApp"
   echo "kb_restart=restartBpm"
   echo "kj_restart=restartJob"
@@ -52,7 +52,7 @@ checkService(){
 
 function menu {
 	clear
-	echo
+	echo ""
 	echo -e "\t\t\t简单维护界面\n"
 	echo -e "\t1. 启动应用程序"
 	echo -e "\t2. 停止应用程序"
@@ -63,11 +63,22 @@ function menu {
 	echo -e "\t7. 启动Nginx"
 	echo -e "\t8. 停止Nginx"
 	echo -e "\t9. 重启Nginx,kn_restart"
+	echo -e "\tx. 重启所有服务"
 	echo -e "\tc. 检查所有服务"
 	echo -e "\th. 帮助"
 	echo -e "\t0. 退出程序\n\n"
 	echo -en "\t\t请输入序号，选择您要执行的操作: "
 	read -n 1 option
+}
+function restartAllService(){
+  cd $app_dir
+  echo "";
+  sh restartApp.sh
+  echo "";
+  sh restartBpm.sh
+  echo "";
+  sh restartNginx.sh
+  return 0
 }
 #主程序
 while [ 1 ]
@@ -94,6 +105,8 @@ do
   	cd $app_dir;echo "";sh stopNginx.sh ;;
 	9)
   	cd $app_dir;echo "";sh restartNginx.sh ;;
+ 	'x')
+	  echo "";restartAllService ;;
 	'c')
 	  echo "";checkService ;;
 	'h')
@@ -106,6 +119,4 @@ do
 	read -n 1 line
 done
 clear
-
-
 exit 0
