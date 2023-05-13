@@ -17,8 +17,8 @@ sh bin/checkAppEnvironment.sh
 
 #crontab -l
 ###APP CRONTAB
-58 23 * * *  sh /app/app/bin/clearDataSpace.sh
-30 2 * * *   sh /app/app/bin/backupAppDB.sh foxnic
+58 23 * * *  sh /app/bin/clearDataSpace.sh
+30 2 * * *   sh /app/bin/backupAppDB.sh foxnic
 
 
 

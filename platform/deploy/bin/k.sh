@@ -5,10 +5,10 @@ help(){
   echo ""
   echo "以下是快捷命令:"
   echo "g=cd /app/app"
-  echo "ga=cd /app/app/app/app"
-  echo "gb=cd /app/app/app/bpm"
-  echo "gj=cd /app/app/app/job"
-  echo "gn=cd /app/app/app/nginx"
+  echo "ga=cd /app/app/app"
+  echo "gb=cd /app/app/bpm"
+  echo "gj=cd /app/app/job"
+  echo "gn=cd /app/app/nginx"
   echo "ka_restart=restartApp"
   echo "kb_restart=restartBpm"
   echo "kj_restart=restartJob"
@@ -53,16 +53,16 @@ checkService(){
 function menu {
 	clear
 	echo ""
-	echo -e "\t\t\t简单维护界面\n"
+	echo -e "\t\t\t系统维护界面\n"
 	echo -e "\t1. 启动应用程序"
-	echo -e "\t2. 停止应用程序"
-	echo -e "\t3. 重启应用程序,ka_restart"
-	echo -e "\t4. 启动流程引擎"
+	echo -e "\t2. 启动流程引擎"
+	echo -e "\t3. 启动nginx"
+	echo -e "\t4. 停止应用程序"
 	echo -e "\t5. 停止流程引擎"
-	echo -e "\t6. 重启流程引擎,kb_restart"
-	echo -e "\t7. 启动Nginx"
-	echo -e "\t8. 停止Nginx"
-	echo -e "\t9. 重启Nginx,kn_restart"
+	echo -e "\t6. 停止nginx"
+	echo -e "\t7. 重启应用程序,ka_restart"
+	echo -e "\t8. 重启流程引擎,kb_restart"
+	echo -e "\t9. 重启nginx,kn_restart"
 	echo -e "\tx. 重启所有服务"
 	echo -e "\tc. 检查所有服务"
 	echo -e "\th. 帮助"
@@ -90,19 +90,19 @@ do
 	1)
   	cd $app_dir;echo "";sh startApp.sh ;;
 	2)
-  	cd $app_dir;echo "";sh stopApp.sh ;;
+	  cd $app_dir;echo "";sh startBpm.sh ;;
 	3)
-  	cd $app_dir;echo "";sh restartApp.sh ;;
+	  cd $app_dir;echo "";sh startNginx.sh ;;
 	4)
-  	cd $app_dir;echo "";sh startBpm.sh ;;
+		cd $app_dir;echo "";sh stopApp.sh ;;
 	5)
   	cd $app_dir;echo "";sh stopBpm.sh ;;
 	6)
-  	cd $app_dir;echo "";sh restartBpm.sh ;;
+	  cd $app_dir;echo "";sh stopNginx.sh ;;
 	7)
-  	cd $app_dir;echo "";sh startNginx.sh ;;
+	  cd $app_dir;echo "";sh restartApp.sh ;;
 	8)
-  	cd $app_dir;echo "";sh stopNginx.sh ;;
+	  cd $app_dir;echo "";sh restartBpm.sh ;;
 	9)
   	cd $app_dir;echo "";sh restartNginx.sh ;;
  	'x')

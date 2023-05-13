@@ -4,8 +4,8 @@
 cur_dir=$(cd `dirname $0`; pwd)
 app_dir=$cur_dir/..
 nginx_name=nginx-1.24.0.tar.gz.1
-mkdir -p $app_dir/app/nginx
-nginx_dir=$app_dir/app/nginx
+mkdir -p $app_dir/nginx
+nginx_dir=$app_dir/nginx
 echo "install nginx,dir:$nginx_dir"
 echo "app dir dir:$app_dir"
 function help(){

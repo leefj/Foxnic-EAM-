@@ -3,7 +3,7 @@
 cur_dir=$(cd `dirname $0`; pwd)
 app_conf="${cur_dir}/app.conf"
 app_dir=$cur_dir/..
-yml_file=$app_dir/app/app/application.yml
+yml_file=$app_dir/app/application.yml
 
 APP_NAME=`cat $app_conf|grep -v "#"|grep APP_NAME=|awk -F "=" '{print $2}'`
 JAVA=`cat $app_conf|grep -v "#"|grep JAVA=|awk -F "=" '{print $2}'`
@@ -34,10 +34,10 @@ if [[ -f "$yml_file" ]];then
 fi
 
 echo "###start to check app jar exist"
-if [[ -f "$app_dir/app/app/$APP_NAME" ]];then
-  echo -e "   \033[33m check app $app_dir/$APP_NAME exist success! \033[0m"
+if [[ -f "$app_dir/app/$APP_NAME" ]];then
+  echo -e "   \033[33m check app $app_dir/app/$APP_NAME exist success! \033[0m"
 else
-  echo -e "   \033[31m check app $app_dir/$APP_NAME exist failed! \033[0m"
+  echo -e "   \033[31m check app $app_dir/app/$APP_NAME exist failed! \033[0m"
 fi
 
 echo "###start to check java command"
@@ -77,7 +77,7 @@ else
 fi
 
 echo "###start to check mysql parameter lower_case_table_names"
-mysql_pars_lower=`$MYSQL -u$DB_USER -p$DB_PWD -h$DB_HOST -e "show variables like '%lower_case_table_names%' " 2>/dev/null |grep lower_case_table_names |awk '{print $NF}'`
+mysql_pars_lower=`$MYSQL -P$DB_PORT -u$DB_USER -p$DB_PWD -h$DB_HOST -e "show variables like '%lower_case_table_names%' " 2>/dev/null |grep lower_case_table_names |awk '{print $NF}'`
 if [[ $mysql_pars_lower -eq 1 ]];then
   echo -e "   \033[31m check mysql parameter lower_case_table_names success! \033[0m"
 else
@@ -115,7 +115,7 @@ echo "modify application.yml using below info"
 echo "url: jdbc:mysql://127.0.0.1:$DB_PORT/$DB_NAME?useSSL=false&serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowPublicKeyRetrieval=true&tinyInt1isBit=false "
 echo "username: $DB_USER"
 echo "password: $DB_PWD"
-mysql_ping_cnt=`$MYSQL_ADMIN -u$DB_USER -p$DB_PWD ping 2>&1|grep alive|wc -l`
+mysql_ping_cnt=`$MYSQL_ADMIN -P$DB_PORT -u$DB_USER -p$DB_PWD -h$DB_HOST ping 2>&1|grep alive|wc -l`
 if [[ $mysql_ping_cnt -gt 0 ]];then
   echo -e "   \033[33m check mysql connect,user $DB_USER success! \033[0m"
 else

@@ -1,6 +1,6 @@
 #!/bin/sh
 #cron:
-#   30 2 * * * sh /app/app/bin/backupAppDB.sh eam
+#   30 2 * * * sh /app/bin/backupAppDB.sh eam
 ########################################
 cur_dir=$(cd `dirname $0`; pwd)
 app_conf="${cur_dir}/app.conf"

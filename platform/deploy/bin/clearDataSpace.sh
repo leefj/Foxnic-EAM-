@@ -1,5 +1,5 @@
 #!/bin/sh
-#58 23 * * * sh /app/app/bin/clearDataSpace.sh
+#58 23 * * * sh /app/bin/clearDataSpace.sh
 cur_dir=$(cd `dirname $0`; pwd)
 app_dir=$cur_dir/..
 log_file=$app_dir/tmp/clearDataSpace.log
@@ -24,7 +24,7 @@ fi
 
 ####app logfile######
 echo "start to clear app log">>$log_file
-app_log_dir=$app_dir/app/app/app_logs
+app_log_dir=$app_dir/app/app_logs
 if [[ -d "$app_log_dir" ]];then
   cd $app_log_dir
   rec "clear app log file start,dir:$app_log_dir"
@@ -47,7 +47,7 @@ fi
 
 ####bpm logfile######
 echo "start to clear bpm log">>$log_file
-bpm_log_dir=$app_dir/app/bpm/bpm_logs
+bpm_log_dir=$app_dir/bpm/bpm_logs
 if [[ -d "$bpm_log_dir" ]];then
   cd $bpm_log_dir
   rec "clear app log file start,dir:$bpm_log_dir"

@@ -189,8 +189,12 @@ public class LogCollectController extends SuperController {
             File directory = new File("");
             System.out.println(directory.getCanonicalPath());//获取标准的路径
             System.out.println("开始进行收集执行,当前路径:"+directory.getCanonicalPath());
-            //cd /app/app/app/app
-            Process process=Runtime.getRuntime().exec("sh ./../../bin/collectLog.sh "+fileId);
+            //cd
+            //
+            //
+            //
+            // /app/app/app
+            Process process=Runtime.getRuntime().exec("sh ./../bin/collectLog.sh "+fileId);
             BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream())); //虽然cmd命令可以直接输出，但是通过IO流技术可以保证对数据进行一个缓冲。
             System.out.println("执行该编译");
             String msg = null;

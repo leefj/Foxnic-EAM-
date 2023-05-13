@@ -45,7 +45,7 @@ if [[ $app_name = "job.jar" ]];then
   exit 0
 fi
 
-if [[ ! -f "$app_dir/app/$app/$app_name" ]];then
+if [[ ! -f "$app_dir/$app/$app_name" ]];then
   echo "jar not exist,jar:$app_dir/app/$app/$app_name"
   exit 1
 fi
@@ -81,7 +81,7 @@ start(){
   if [[ $pidcnt -ge 1 ]];then
     echo "$app process is already running,please first stop it."
   else
-    cd $app_dir/app/$app
+    cd $app_dir/$app
     application_yml="";
     if [[ -f "application.yml" ]];then
       application_yml="--Dspring.config.location=application.yml"

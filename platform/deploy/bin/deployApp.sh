@@ -102,8 +102,6 @@ if [[ $bpm_port_cnt -ne 0 ]];then
 	echo "install check error,bpm_port:$bpm_port already in use."
 	exit 1
 fi
-
-
 ################################################################ Install Function
 function verifySoft(){
 	if [[ -f $1 ]];then
@@ -373,12 +371,12 @@ function installApp(){
 	db_procedure_file=$app_dir/bin/sql/nextVal.sql
 	db_clear_data_file=$app_dir/bin/sql/cleardata.sql
 	db_app_setting_file=$app_dir/bin/sql/settingapp.sql
-	application_tpl_yml=$app_dir/app/app/application_tpl.yml
-	application_yml=$app_dir/app/app/application.yml
-	bpm_application_tpl_yml=$app_dir/app/bpm/application_tpl.yml
-	bpm_application_yml=$app_dir/app/bpm/application.yml
-	job_application_tpl_yml=$app_dir/app/job/application_tpl.yml
-	job_application_yml=$app_dir/app/job/application.yml
+	application_tpl_yml=$app_dir/app/application_tpl.yml
+	application_yml=$app_dir/app/application.yml
+	bpm_application_tpl_yml=$app_dir/bpm/application_tpl.yml
+	bpm_application_yml=$app_dir/bpm/application.yml
+	job_application_tpl_yml=$app_dir/job/application_tpl.yml
+	job_application_yml=$app_dir/job/application.yml
 	if [[ ! -f "$db_sql_file" ]];then
 	  echo "Error|db sql file:$db_sql_file not exist"
 	  echo "deploy failed!"
@@ -389,7 +387,7 @@ function installApp(){
 	  echo "deploy failed!"
 	  exit 1
 	fi
-	app_upload_dir=$app_dir/app/app/upload
+	app_upload_dir=$app_dir/app/upload
 	MYSQL_DUMP=$mysql_dir/mysql/bin/mysqldump
 	MYSQL_ADMIN=$mysql_dir/mysql/bin/mysqladmin
 	echo "#########start to create database"
@@ -704,10 +702,10 @@ addCrontabTask
 tmpdate=`date`
 echo "$tmpdate,first setup time record!">$base_dir/app/bin/setupApp.log
 echo "#for lank app quick command list:">>~/.bash_profile
-echo "alias ga='cd $base_dir/app/app/app'" >>~/.bash_profile
-echo "alias gb='cd $base_dir/app/app/bpm'" >>~/.bash_profile
-echo "alias gj='cd $base_dir/app/app/job'" >>~/.bash_profile
-echo "alias gn='cd $base_dir/app/app/nginx'" >>~/.bash_profile
+echo "alias ga='cd $base_dir/app/app'" >>~/.bash_profile
+echo "alias gb='cd $base_dir/app/bpm'" >>~/.bash_profile
+echo "alias gj='cd $base_dir/app/job'" >>~/.bash_profile
+echo "alias gn='cd $base_dir/app/nginx'" >>~/.bash_profile
 echo "alias g='cd $base_dir/app'" >>~/.bash_profile
 echo "alias k='sh $base_dir/app/bin/k.sh'" >>~/.bash_profile
 echo "alias ka_restart='cd $base_dir/app;sh restartApp.sh'" >>~/.bash_profile
@@ -732,10 +730,10 @@ echo "Mysql info password=$db_pwd"
 echo "Quick command list:"
 echo "k:simple maintenance window"
 echo "g:  go to $base_dir/app"
-echo "ga: go to $base_dir/app/app/app"
-echo "gb: go to $base_dir/app/app/bpm"
-echo "gj: go to $base_dir/app/app/job"
-echo "gn: go to $base_dir/app/app/nginx"
+echo "ga: go to $base_dir/app/app"
+echo "gb: go to $base_dir/app/bpm"
+echo "gj: go to $base_dir/app/job"
+echo "gn: go to $base_dir/app/nginx"
 echo "ka_restart:restartApp"
 echo "kb_restart:restartBpm"
 echo "kj_restart:restartJob"

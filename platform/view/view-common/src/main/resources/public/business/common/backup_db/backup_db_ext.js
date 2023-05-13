@@ -163,6 +163,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log('downFile',data);
             var downloadUrl=moduleURL+"/down-file";
             fox.submit(downloadUrl,{id:data.id});
+            // window.open("/service-storage/sys-file/download?id="+data.id+"","_blank")
+
         },
         executeBackup:function(selected,obj){
             console.log('executeBackup');

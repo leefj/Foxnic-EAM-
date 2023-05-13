@@ -201,8 +201,9 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
         },
         collectDownload:function (data,it){
             console.log('downFile',data);
-            var downloadUrl="/service-storage/sys-file/download?id="+data.fileId+"&inline=0";
-            fox.submit(downloadUrl,{id:data.id});
+            var downloadUrl="/service-storage/sys-file/download?id="+data.fileId;
+            // fox.submit(downloadUrl,{id:data.id});
+            window.open("/service-storage/sys-file/download?id="+data.fileId,"_blank")
         },
 
         /**
