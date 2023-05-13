@@ -137,7 +137,7 @@ foxnic:
     module-authorities:
       # 指定最顶层菜单的权限Key，用逗号分隔；若未指定值则忽略该规则，不做控制。
       ########################  public key list  ####################
-      #sys_material_resource:mngr,sys_log_collect:mngr,kb,hrm,bpm-mgr,auto_perm,changes,hr,basic_permissions,common_system,docs,sys_file:mngr,data_backup,pcm,oauth,public_resource,bpm,mobile_application,dp_rule:mngr,system_config,sys_tpl_file:mngr,job
+      #system_ops,hrm,bpm-mgr,auto_perm,changes,hr,basic_permissions,common_system,docs,sys_file:mngr,data_backup,pcm,oauth,public_resource,bpm,mobile_application,dp_rule:mngr,system_config,sys_tpl_file:mngr,job
       ########################  eam key list  #######################
       #eam,infrastructure,eam_employee,eam_equipment_mgr
       ########################  ops key list  #######################
