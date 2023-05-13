@@ -12,18 +12,18 @@ else
   tpl_update=`cat $app_conf|grep -v "#"|grep APP_TPL_UPDATE=|awk -F "=" '{print $2}'`
 fi
 echo "tpl_update value:$tpl_update"
-if [[ ! -d "$prod_app_dir/app/app/lib" ]];then
+if [[ ! -d "$prod_app_dir/app/lib" ]];then
   echo "directory config error"
   exit 1
 fi
 
 #app.jar will overwrite if exist
 echo "######## start to update app.jar ##############"
-if [[ -f "$prod_app_dir/app/app/app.jar" ]];then
+if [[ -f "$prod_app_dir/app/app.jar" ]];then
   cd $app_dir/app/app
-  echo "cp app.jar $prod_app_dir/app/app/"
-  cp app.jar $prod_app_dir/app/app/
-  ls -rtl $prod_app_dir/app/app/
+  echo "cp app.jar $prod_app_dir/app/"
+  cp app.jar $prod_app_dir/app/
+  ls -rtl $prod_app_dir/app/
 else
   echo "app.jar error"
   exit 1
@@ -33,14 +33,14 @@ echo ""
 
 #app lib will copy
 echo " ########start to update app.lib ##############"
-if [[ -d $prod_app_dir/app/app/lib ]];then
-  rm -rf $prod_app_dir/app/app/lib/*
-  cd $app_dir/app/app/lib/
-  echo "cp * $prod_app_dir/app/app/lib"
-  cp * $prod_app_dir/app/app/lib/
-  ls -rtl $prod_app_dir/app/app/lib/*
+if [[ -d $prod_app_dir/app/lib ]];then
+  rm -rf $prod_app_dir/app/lib/*
+  cd $app_dir/app/lib/
+  echo "cp * $prod_app_dir/app/lib"
+  cp * $prod_app_dir/app/lib/
+  ls -rtl $prod_app_dir/app/lib/*
 else
-  echo "$prod_app_dir/app/app/lib  error"
+  echo "$prod_app_dir/app/lib  error"
   exit 1
 fi
 echo ""
@@ -48,11 +48,11 @@ echo ""
 
 #bpm.jar will overwrite
 echo "######## start to update bpm.jar ##############"
-if [[ -f "$prod_app_dir/app/bpm/bpm.jar" ]];then
+if [[ -f "$prod_app_dir/bpm/bpm.jar" ]];then
   cd $app_dir/app/bpm
-  echo "cp bpm.jar $prod_app_dir/app/bpm/"
-  cp bpm.jar $prod_app_dir/app/bpm/
-  ls -rtl $prod_app_dir/app/bpm/
+  echo "cp bpm.jar $prod_app_dir/bpm/"
+  cp bpm.jar $prod_app_dir/bpm/
+  ls -rtl $prod_app_dir/bpm/
 else
   echo "bpm.jar error"
   exit 1
@@ -79,15 +79,15 @@ ls -rtl $prod_app_dir/bin/*.sh
 echo "######## start to update tpl file ##############"
 if [[ $tpl_update -eq 1 ]];then
   echo "start to overwrite tpl file"
-  if [[ -d "$prod_app_dir/app/app/upload/tpl/T001" ]];then
+  if [[ -d "$prod_app_dir/app/upload/tpl/T001" ]];then
     t=`date +%Y%m%d_%H_%M_%S`
-    mv $prod_app_dir/app/app/upload/tpl/T001 $prod_app_dir/app/app/upload/tpl/T001_$t
-    mkdir -p $prod_app_dir/app/app/upload/tpl/T001
-    cd $app_dir/app/app/upload/tpl/T001
-    cp * $prod_app_dir/app/app/upload/tpl/T001
-    ls -rtl $prod_app_dir/app/app/upload/tpl/T001
+    mv $prod_app_dir/app/upload/tpl/T001 $prod_app_dir/app/upload/tpl/T001_$t
+    mkdir -p $prod_app_dir/app/upload/tpl/T001
+    cd $app_dir/app/upload/tpl/T001
+    cp * $prod_app_dir/app/upload/tpl/T001
+    ls -rtl $prod_app_dir/app/upload/tpl/T001
   else
-     echo "$prod_app_dir/app/app/upload/tpl/T001 error"
+     echo "$prod_app_dir/app/upload/tpl/T001 error"
      exit 1
   fi
 fi

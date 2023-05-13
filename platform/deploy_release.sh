@@ -32,17 +32,17 @@ cp -r $deploy_dir/* .
 
 version=2.5.0
 # process app.jar
-echo "$release_dir/app/app/lib/"
-mkdir -p $release_dir/app/app/lib/
+echo "$release_dir/app/lib/"
+mkdir -p $release_dir/app/lib/
 ls -rtl $jar_dir/lib/
-cp -r $jar_dir/lib/* $release_dir/app/app/lib/
-cp $jar_dir/wrapper-all-${version}.jar  $release_dir/app/app/app.jar
+cp -r $jar_dir/lib/* $release_dir/app/lib/
+cp $jar_dir/wrapper-all-${version}.jar  $release_dir/app/app.jar
 
 # process bpm.jar
 #cp -r $jar_dir/lib/* $release_dir/app/bpm/lib/
 ls $bpm_jar_dir/wrapper-camunda-${version}.jar
-ls $release_dir/app/bpm
-cp $bpm_jar_dir/wrapper-camunda-${version}.jar $release_dir/app/bpm/bpm.jar
+ls $release_dir/bpm
+cp $bpm_jar_dir/wrapper-camunda-${version}.jar $release_dir/bpm/bpm.jar
 echo "start to ys"
 tar -zcvf app_release_last.tar.gz ./*
 if [[ $method == "local" ]];then

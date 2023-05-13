@@ -1,20 +1,5 @@
 #!/bin/sh
 cur_dir=$(cd `dirname $0`; pwd)
-logFile=appd.log
-cd $cur_dir
-while true
-do
-  d=`date`
-  echo "$d">>$logFile
-  appStatus=`sh app.sh status app|grep "is running"|wc -l`
-  if [[ $appStatus -gt 0 ]];then
-    echo "app status is running" >>$logFile
-  else
-    echo "app restart" >>$logFile
-    cd $cur_dir/..
-    sh restartApp.sh
-  fi
-  echo "########################">>$logFile
-sleep 300
-done
+cd $cur_dir/bin
+sh app.sh restart job
 exit 0
