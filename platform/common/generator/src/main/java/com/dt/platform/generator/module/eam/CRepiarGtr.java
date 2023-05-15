@@ -3,19 +3,18 @@ package com.dt.platform.generator.module.eam;
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.enums.eam.AssetCodeSeqNumberTypeEnum;
 import com.dt.platform.constants.enums.eam.CCustRepairStatusEnum;
-import com.dt.platform.domain.eam.Asset;
-import com.dt.platform.domain.eam.AssetItem;
-import com.dt.platform.domain.eam.CCustRepairApply;
-import com.dt.platform.domain.eam.CCustRepiarItem;
+import com.dt.platform.domain.eam.*;
 import com.dt.platform.domain.eam.meta.AssetBorrowMeta;
 import com.dt.platform.domain.eam.meta.AssetMeta;
 import com.dt.platform.domain.eam.meta.CCustRepairApplyMeta;
+import com.dt.platform.domain.eam.meta.CCustRepairTypeMeta;
 import com.dt.platform.domain.ops.meta.HostMeta;
 import com.dt.platform.domain.ops.meta.ServiceInfoMeta;
 import com.dt.platform.eam.page.CCustRepairApplyPageController;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.eam.AssetServiceProxy;
 import com.dt.platform.proxy.eam.CCustRepairApplyServiceProxy;
+import com.dt.platform.proxy.eam.CCustRepairTypeServiceProxy;
 import com.dt.platform.proxy.ops.ServiceInfoServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 import org.github.foxnic.web.domain.hrm.Employee;
@@ -34,6 +33,9 @@ public class CRepiarGtr extends BaseCodeGenerator{
         cfg.getPoClassFile().addSimpleProperty(Employee.class,"reportUser","发起人","发起人");
         cfg.getPoClassFile().addListProperty(Asset.class,"assetList","资产列表","资产列表");
         cfg.getPoClassFile().addListProperty(String.class,"assetIds","资产列表","资产列表");
+
+
+        cfg.getPoClassFile().addSimpleProperty(CCustRepairType.class,"repairType","repairType","repairType");
 
         cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.ID).basic().hidden(true);
         cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.CREATE_TIME).basic().hidden(true);
@@ -99,6 +101,13 @@ public class CRepiarGtr extends BaseCodeGenerator{
                 .fillWith(CCustRepairApplyMeta.ASSET_LIST).muliti(true);
 
 
+        cfg.view().field(CCustRepairApplyMeta.TYPE)
+                .form().validate().required().form().selectBox().queryApi(CCustRepairTypeServiceProxy.QUERY_PAGED_LIST)
+                .valueField(CCustRepairTypeMeta.ID).textField(CCustRepairTypeMeta.NAME)
+                .toolbar(false).paging(true).filter(false)
+                .fillWith(CCustRepairApplyMeta.REPAIR_TYPE).muliti(false);
+
+
         cfg.view().field(EAMTables.EAM_C_CUST_REPAIR_APPLY.PICTURE_ID)
                 .form().label("图片").upload().buttonLabel("图片").acceptSingleImage();
 
@@ -129,6 +138,7 @@ public class CRepiarGtr extends BaseCodeGenerator{
 
         cfg.view().form().addGroup(null,
                 new Object[] {
+                        EAMTables.EAM_C_CUST_REPAIR_APPLY.TYPE,
                         EAMTables.EAM_C_CUST_REPAIR_APPLY.POS,
 
                 }

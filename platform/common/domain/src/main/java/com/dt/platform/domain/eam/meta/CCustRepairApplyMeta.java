@@ -7,14 +7,15 @@ import com.dt.platform.domain.eam.CCustRepiarItem;
 import java.util.List;
 import org.github.foxnic.web.domain.hrm.Employee;
 import com.dt.platform.domain.eam.Asset;
+import com.dt.platform.domain.eam.CCustRepairType;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-10 21:55:57
- * @sign D614BD0FC4572664F377C28CB5E998FA
+ * @since 2023-05-15 06:03:32
+ * @sign CB2C2CD6875C85D72171470ECB9708D0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -49,6 +50,16 @@ public class CCustRepairApplyMeta {
 	 * 办理状态 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.eam.CCustRepairApply,java.lang.String> STATUS_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustRepairApply.class ,STATUS, java.lang.String.class, "办理状态", "办理状态", java.lang.String.class, null);
+	
+	/**
+	 * 报修类型 , 类型: java.lang.String
+	*/
+	public static final String TYPE="type";
+	
+	/**
+	 * 报修类型 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustRepairApply,java.lang.String> TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustRepairApply.class ,TYPE, java.lang.String.class, "报修类型", "报修类型", java.lang.String.class, null);
 	
 	/**
 	 * 报修标题 , 类型: java.lang.String
@@ -301,9 +312,19 @@ public class CCustRepairApplyMeta {
 	public static final BeanProperty<com.dt.platform.domain.eam.CCustRepairApply,java.lang.String> ASSET_IDS_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustRepairApply.class ,ASSET_IDS, java.util.List.class, "资产列表", "资产列表", java.lang.String.class, null);
 	
 	/**
+	 * repairType , 类型: com.dt.platform.domain.eam.CCustRepairType
+	*/
+	public static final String REPAIR_TYPE="repairType";
+	
+	/**
+	 * repairType , 类型: com.dt.platform.domain.eam.CCustRepairType
+	*/
+	public static final BeanProperty<com.dt.platform.domain.eam.CCustRepairApply,com.dt.platform.domain.eam.CCustRepairType> REPAIR_TYPE_PROP = new BeanProperty(com.dt.platform.domain.eam.CCustRepairApply.class ,REPAIR_TYPE, com.dt.platform.domain.eam.CCustRepairType.class, "repairType", "repairType", com.dt.platform.domain.eam.CCustRepairType.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , BUSINESS_CODE , STATUS , NAME , PLAN_FINISH_DATE , POS , REPORT_USER_NAME , REPORT_USER_ID , CONTACT , CONTENT , PICTURE_ID , PROCESS_USER_ID , START_DATE , FINISH_DATE , RESULT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , REPIAR_ITEM_DATA , PROCESS_USER , REPORT_USER , ASSET_LIST , ASSET_IDS };
+	public static final String[] $PROPS={ ID , BUSINESS_CODE , STATUS , TYPE , NAME , PLAN_FINISH_DATE , POS , REPORT_USER_NAME , REPORT_USER_ID , CONTACT , CONTENT , PICTURE_ID , PROCESS_USER_ID , START_DATE , FINISH_DATE , RESULT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , REPIAR_ITEM_DATA , PROCESS_USER , REPORT_USER , ASSET_LIST , ASSET_IDS , REPAIR_TYPE };
 	
 	/**
 	 * 代理类
@@ -343,6 +364,17 @@ public class CCustRepairApplyMeta {
 		public CCustRepairApply setStatus(String status) {
 			super.change(STATUS,super.getStatus(),status);
 			super.setStatus(status);
+			return this;
+		}
+		
+		/**
+		 * 设置 报修类型
+		 * @param type 报修类型
+		 * @return 当前对象
+		*/
+		public CCustRepairApply setType(String type) {
+			super.change(TYPE,super.getType(),type);
+			super.setType(type);
 			return this;
 		}
 		
@@ -620,6 +652,17 @@ public class CCustRepairApplyMeta {
 			super.setAssetIds(assetIds);
 			return this;
 		}
+		
+		/**
+		 * 设置 repairType
+		 * @param repairType repairType
+		 * @return 当前对象
+		*/
+		public CCustRepairApply setRepairType(CCustRepairType repairType) {
+			super.change(REPAIR_TYPE,super.getRepairType(),repairType);
+			super.setRepairType(repairType);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -638,6 +681,7 @@ public class CCustRepairApplyMeta {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setReportUserName(this.getReportUserName());
 			inst.setUpdateTime(this.getUpdateTime());
+			inst.setType(this.getType());
 			inst.setVersion(this.getVersion());
 			inst.setContent(this.getContent());
 			inst.setResult(this.getResult());
@@ -663,6 +707,7 @@ public class CCustRepairApplyMeta {
 				inst.setRepiarItemData(this.getRepiarItemData());
 				inst.setReportUser(this.getReportUser());
 				inst.setProcessUser(this.getProcessUser());
+				inst.setRepairType(this.getRepairType());
 				inst.setAssetIds(this.getAssetIds());
 				inst.setAssetList(this.getAssetList());
 			}

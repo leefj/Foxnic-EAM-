@@ -27,8 +27,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 报修申请
  * <p>报修申请 , 数据表 eam_c_cust_repair_apply 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-10 21:55:57
- * @sign D614BD0FC4572664F377C28CB5E998FA
+ * @since 2023-05-15 06:03:32
+ * @sign CB2C2CD6875C85D72171470ECB9708D0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -56,8 +56,14 @@ public class CCustRepairApply extends Entity {
 	/**
 	 * 办理状态：办理状态
 	*/
-	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态" , example = "processing")
+	@ApiModelProperty(required = false,value="办理状态" , notes = "办理状态" , example = "finish")
 	private String status;
+	
+	/**
+	 * 报修类型：报修类型
+	*/
+	@ApiModelProperty(required = false,value="报修类型" , notes = "报修类型")
+	private String type;
 	
 	/**
 	 * 报修标题：报修标题
@@ -122,13 +128,13 @@ public class CCustRepairApply extends Entity {
 	/**
 	 * 完成时间：完成时间
 	*/
-	@ApiModelProperty(required = false,value="完成时间" , notes = "完成时间")
+	@ApiModelProperty(required = false,value="完成时间" , notes = "完成时间" , example = "2023-04-11 12:00:00")
 	private Date finishDate;
 	
 	/**
 	 * 处理结果：处理结果
 	*/
-	@ApiModelProperty(required = false,value="处理结果" , notes = "处理结果")
+	@ApiModelProperty(required = false,value="处理结果" , notes = "处理结果" , example = "12121212")
 	private String result;
 	
 	/**
@@ -213,6 +219,12 @@ public class CCustRepairApply extends Entity {
 	private List<String> assetIds;
 	
 	/**
+	 * repairType：repairType
+	*/
+	@ApiModelProperty(required = false,value="repairType" , notes = "repairType")
+	private CCustRepairType repairType;
+	
+	/**
 	 * 获得 主键<br>
 	 * 主键
 	 * @return 主键
@@ -266,6 +278,25 @@ public class CCustRepairApply extends Entity {
 	*/
 	public CCustRepairApply setStatus(String status) {
 		this.status=status;
+		return this;
+	}
+	
+	/**
+	 * 获得 报修类型<br>
+	 * 报修类型
+	 * @return 报修类型
+	*/
+	public String getType() {
+		return type;
+	}
+	
+	/**
+	 * 设置 报修类型
+	 * @param type 报修类型
+	 * @return 当前对象
+	*/
+	public CCustRepairApply setType(String type) {
+		this.type=type;
 		return this;
 	}
 	
@@ -807,6 +838,25 @@ public class CCustRepairApply extends Entity {
 		this.assetIds.addAll(Arrays.asList(assetId));
 		return this;
 	}
+	
+	/**
+	 * 获得 repairType<br>
+	 * repairType
+	 * @return repairType
+	*/
+	public CCustRepairType getRepairType() {
+		return repairType;
+	}
+	
+	/**
+	 * 设置 repairType
+	 * @param repairType repairType
+	 * @return 当前对象
+	*/
+	public CCustRepairApply setRepairType(CCustRepairType repairType) {
+		this.repairType=repairType;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -854,6 +904,7 @@ public class CCustRepairApply extends Entity {
 		com.dt.platform.domain.eam.meta.CCustRepairApplyMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.CCustRepairApplyMeta.$$proxy$$();
 		inst.setReportUserName(this.getReportUserName());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setType(this.getType());
 		inst.setVersion(this.getVersion());
 		inst.setContent(this.getContent());
 		inst.setResult(this.getResult());
@@ -879,6 +930,7 @@ public class CCustRepairApply extends Entity {
 			inst.setRepiarItemData(this.getRepiarItemData());
 			inst.setReportUser(this.getReportUser());
 			inst.setProcessUser(this.getProcessUser());
+			inst.setRepairType(this.getRepairType());
 			inst.setAssetIds(this.getAssetIds());
 			inst.setAssetList(this.getAssetList());
 		}
@@ -942,6 +994,7 @@ public class CCustRepairApply extends Entity {
 		if(cast) {
 			this.setReportUserName(DataParser.parse(String.class, map.get(CCustRepairApplyMeta.REPORT_USER_NAME)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(CCustRepairApplyMeta.UPDATE_TIME)));
+			this.setType(DataParser.parse(String.class, map.get(CCustRepairApplyMeta.TYPE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(CCustRepairApplyMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, map.get(CCustRepairApplyMeta.CONTENT)));
 			this.setResult(DataParser.parse(String.class, map.get(CCustRepairApplyMeta.RESULT)));
@@ -966,11 +1019,13 @@ public class CCustRepairApply extends Entity {
 			// others
 			this.setReportUser(DataParser.parse(Employee.class, map.get(CCustRepairApplyMeta.REPORT_USER)));
 			this.setProcessUser(DataParser.parse(Employee.class, map.get(CCustRepairApplyMeta.PROCESS_USER)));
+			this.setRepairType(DataParser.parse(CCustRepairType.class, map.get(CCustRepairApplyMeta.REPAIR_TYPE)));
 			return true;
 		} else {
 			try {
 				this.setReportUserName( (String)map.get(CCustRepairApplyMeta.REPORT_USER_NAME));
 				this.setUpdateTime( (Date)map.get(CCustRepairApplyMeta.UPDATE_TIME));
+				this.setType( (String)map.get(CCustRepairApplyMeta.TYPE));
 				this.setVersion( (Integer)map.get(CCustRepairApplyMeta.VERSION));
 				this.setContent( (String)map.get(CCustRepairApplyMeta.CONTENT));
 				this.setResult( (String)map.get(CCustRepairApplyMeta.RESULT));
@@ -995,6 +1050,7 @@ public class CCustRepairApply extends Entity {
 				// others
 				this.setReportUser( (Employee)map.get(CCustRepairApplyMeta.REPORT_USER));
 				this.setProcessUser( (Employee)map.get(CCustRepairApplyMeta.PROCESS_USER));
+				this.setRepairType( (CCustRepairType)map.get(CCustRepairApplyMeta.REPAIR_TYPE));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -1013,6 +1069,7 @@ public class CCustRepairApply extends Entity {
 		if(cast) {
 			this.setReportUserName(DataParser.parse(String.class, r.getValue(CCustRepairApplyMeta.REPORT_USER_NAME)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(CCustRepairApplyMeta.UPDATE_TIME)));
+			this.setType(DataParser.parse(String.class, r.getValue(CCustRepairApplyMeta.TYPE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(CCustRepairApplyMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, r.getValue(CCustRepairApplyMeta.CONTENT)));
 			this.setResult(DataParser.parse(String.class, r.getValue(CCustRepairApplyMeta.RESULT)));
@@ -1039,6 +1096,7 @@ public class CCustRepairApply extends Entity {
 			try {
 				this.setReportUserName( (String)r.getValue(CCustRepairApplyMeta.REPORT_USER_NAME));
 				this.setUpdateTime( (Date)r.getValue(CCustRepairApplyMeta.UPDATE_TIME));
+				this.setType( (String)r.getValue(CCustRepairApplyMeta.TYPE));
 				this.setVersion( (Integer)r.getValue(CCustRepairApplyMeta.VERSION));
 				this.setContent( (String)r.getValue(CCustRepairApplyMeta.CONTENT));
 				this.setResult( (String)r.getValue(CCustRepairApplyMeta.RESULT));

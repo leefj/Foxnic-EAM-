@@ -63,7 +63,7 @@ function ListPage() {
                 displayTitle:true,
                 displayPriority:false,
                 displayDraftComment:false,
-                displayApprovalComment:true,
+                displayApprovalComment:false,
             }
 
             bpm.openProcessView(null,null,false,{"formDefinitionCode":"eam_asset_employee_apply"},refreshTableData,refreshRowData,"bill",ps);
@@ -77,7 +77,7 @@ function ListPage() {
                 displayTitle:true,
                 displayPriority:false,
                 displayDraftComment:false,
-                displayApprovalComment:true,
+                displayApprovalComment:false,
             }
             admin.putTempData('eam-asset-employee-handover-form-data', {});
             bpm.openProcessView(null,null,false,{"formDefinitionCode":"eam_asset_employee_handover"},refreshTableData,refreshRowData,"bill",ps);
@@ -93,7 +93,7 @@ function ListPage() {
                 displayTitle:true,
                 displayPriority:false,
                 displayDraftComment:false,
-                displayApprovalComment:true,
+                displayApprovalComment:false,
             }
             admin.putTempData('eam-asset-employee-loss-form-data', {});
             bpm.openProcessView(null,null,false,{"formDefinitionCode":"eam_asset_employee_loss"},refreshTableData,refreshRowData,"bill",ps);
@@ -108,7 +108,7 @@ function ListPage() {
                 displayTitle:true,
                 displayPriority:false,
                 displayDraftComment:false,
-                displayApprovalComment:true,
+                displayApprovalComment:false,
             }
             admin.putTempData('eam-asset-employee-repair-form-data', {});
             bpm.openProcessView(null,null,false,{"formDefinitionCode":"eam_asset_employee_repair"},refreshTableData,refreshRowData,"bill",ps);

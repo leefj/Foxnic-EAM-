@@ -53,7 +53,7 @@ checkService(){
 function menu {
 	clear
 	echo ""
-	echo -e "\t\t\t系统维护界面\n"
+	echo -e "\t\t\t系统维护界面-v2.0\n"
 	echo -e "\t1. 启动应用程序"
 	echo -e "\t2. 启动流程引擎"
 	echo -e "\t3. 启动nginx"

@@ -115,6 +115,43 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
+		//渲染 type 下拉字段
+		fox.renderSelectBox({
+			el: "type",
+			radio: true,
+			tips: fox.translate("请选择",'','cmp:form')+fox.translate("报修类型",'','cmp:form'),
+			filterable: false,
+			paging: true,
+			pageRemote: true,
+			layVerify: 'required',
+			layVerType: 'msg',
+			on: function(data){
+				setTimeout(function () {
+					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("type",data.arr,data.change,data.isAdd);
+				},1);
+			},
+			//转换数据
+			transform: function(data) {
+				//要求格式 :[{name: '水果', value: 1},{name: '蔬菜', value: 2}]
+				var defaultValues=[],defaultIndexs=[];
+				if(action=="create") {
+					defaultValues = "".split(",");
+					defaultIndexs = "".split(",");
+				}
+				var opts=[];
+				if(!data) return opts;
+				for (var i = 0; i < data.length; i++) {
+					if(!data[i]) continue;
+					if(window.pageExt.form.selectBoxDataTransform) {
+						opts.push(window.pageExt.form.selectBoxDataTransform("type",{data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)},data[i],data,i));
+					} else {
+						opts.push({data:data[i],name:data[i].name,value:data[i].id,selected:(defaultValues.indexOf(data[i].id)!=-1 || defaultIndexs.indexOf(""+i)!=-1)});
+					}
+				}
+				return opts;
+			}
+		});
+
 		form.on('radio(status)', function(data){
 			var checked=[];
 			$('input[type=radio][lay-filter=status]:checked').each(function() {
@@ -222,6 +259,8 @@ function FormPage() {
 			form.val('data-form', formData);
 
 
+			//设置  报修类型 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#type",formData.repairType);
 
 			//设置 预期日期 显示复选框勾选
 			if(formData["planFinishDate"]) {
@@ -279,7 +318,8 @@ function FormPage() {
 		var data=form.val("data-form");
 
 
-
+		//获取 报修类型 下拉框的值
+		data["type"]=fox.getSelectedValue("type",false);
 
 		return data;
 	}
