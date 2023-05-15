@@ -23,7 +23,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 报修申请VO类型
  * <p>报修申请 , 数据表 eam_c_cust_repair_apply 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-04-10 21:55:57
+ * @since 2023-05-15 06:03:32
  * @sign 012982E9B91E0B544F134116D5324C43
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -404,6 +404,7 @@ public class CCustRepairApplyVO extends CCustRepairApply {
 		com.dt.platform.domain.eam.meta.CCustRepairApplyVOMeta.$$proxy$$ inst = new com.dt.platform.domain.eam.meta.CCustRepairApplyVOMeta.$$proxy$$();
 		inst.setReportUserName(this.getReportUserName());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setType(this.getType());
 		inst.setVersion(this.getVersion());
 		inst.setContent(this.getContent());
 		inst.setResult(this.getResult());
@@ -431,6 +432,7 @@ public class CCustRepairApplyVO extends CCustRepairApply {
 			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setProcessUser(this.getProcessUser());
+			inst.setRepairType(this.getRepairType());
 			inst.setAssetIds(this.getAssetIds());
 			inst.setPageSize(this.getPageSize());
 			inst.setAssetList(this.getAssetList());
@@ -504,6 +506,7 @@ public class CCustRepairApplyVO extends CCustRepairApply {
 		if(cast) {
 			this.setReportUserName(DataParser.parse(String.class, map.get(CCustRepairApplyVOMeta.REPORT_USER_NAME)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(CCustRepairApplyVOMeta.UPDATE_TIME)));
+			this.setType(DataParser.parse(String.class, map.get(CCustRepairApplyVOMeta.TYPE)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(CCustRepairApplyVOMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, map.get(CCustRepairApplyVOMeta.CONTENT)));
 			this.setResult(DataParser.parse(String.class, map.get(CCustRepairApplyVOMeta.RESULT)));
@@ -531,6 +534,7 @@ public class CCustRepairApplyVO extends CCustRepairApply {
 			this.setRequestAction(DataParser.parse(String.class, map.get(CCustRepairApplyVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(CCustRepairApplyVOMeta.FUZZY_FIELD)));
 			this.setProcessUser(DataParser.parse(Employee.class, map.get(CCustRepairApplyVOMeta.PROCESS_USER)));
+			this.setRepairType(DataParser.parse(CCustRepairType.class, map.get(CCustRepairApplyVOMeta.REPAIR_TYPE)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(CCustRepairApplyVOMeta.PAGE_SIZE)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(CCustRepairApplyVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(CCustRepairApplyVOMeta.SORT_TYPE)));
@@ -543,6 +547,7 @@ public class CCustRepairApplyVO extends CCustRepairApply {
 			try {
 				this.setReportUserName( (String)map.get(CCustRepairApplyVOMeta.REPORT_USER_NAME));
 				this.setUpdateTime( (Date)map.get(CCustRepairApplyVOMeta.UPDATE_TIME));
+				this.setType( (String)map.get(CCustRepairApplyVOMeta.TYPE));
 				this.setVersion( (Integer)map.get(CCustRepairApplyVOMeta.VERSION));
 				this.setContent( (String)map.get(CCustRepairApplyVOMeta.CONTENT));
 				this.setResult( (String)map.get(CCustRepairApplyVOMeta.RESULT));
@@ -570,6 +575,7 @@ public class CCustRepairApplyVO extends CCustRepairApply {
 				this.setRequestAction( (String)map.get(CCustRepairApplyVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(CCustRepairApplyVOMeta.FUZZY_FIELD));
 				this.setProcessUser( (Employee)map.get(CCustRepairApplyVOMeta.PROCESS_USER));
+				this.setRepairType( (CCustRepairType)map.get(CCustRepairApplyVOMeta.REPAIR_TYPE));
 				this.setPageSize( (Integer)map.get(CCustRepairApplyVOMeta.PAGE_SIZE));
 				this.setPageIndex( (Integer)map.get(CCustRepairApplyVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(CCustRepairApplyVOMeta.SORT_TYPE));
@@ -595,6 +601,7 @@ public class CCustRepairApplyVO extends CCustRepairApply {
 		if(cast) {
 			this.setReportUserName(DataParser.parse(String.class, r.getValue(CCustRepairApplyVOMeta.REPORT_USER_NAME)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(CCustRepairApplyVOMeta.UPDATE_TIME)));
+			this.setType(DataParser.parse(String.class, r.getValue(CCustRepairApplyVOMeta.TYPE)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(CCustRepairApplyVOMeta.VERSION)));
 			this.setContent(DataParser.parse(String.class, r.getValue(CCustRepairApplyVOMeta.CONTENT)));
 			this.setResult(DataParser.parse(String.class, r.getValue(CCustRepairApplyVOMeta.RESULT)));
@@ -621,6 +628,7 @@ public class CCustRepairApplyVO extends CCustRepairApply {
 			try {
 				this.setReportUserName( (String)r.getValue(CCustRepairApplyVOMeta.REPORT_USER_NAME));
 				this.setUpdateTime( (Date)r.getValue(CCustRepairApplyVOMeta.UPDATE_TIME));
+				this.setType( (String)r.getValue(CCustRepairApplyVOMeta.TYPE));
 				this.setVersion( (Integer)r.getValue(CCustRepairApplyVOMeta.VERSION));
 				this.setContent( (String)r.getValue(CCustRepairApplyVOMeta.CONTENT));
 				this.setResult( (String)r.getValue(CCustRepairApplyVOMeta.RESULT));

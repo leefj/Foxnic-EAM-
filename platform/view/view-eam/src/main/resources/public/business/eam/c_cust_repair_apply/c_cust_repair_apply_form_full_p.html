@@ -135,7 +135,9 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.eam.CCustRepairStatusEnum')}]];
-    var VALIDATE_CONFIG={"name":{"labelInForm":"报修标题","inputType":"text_input","required":true},"planFinishDate":{"date":true,"labelInForm":"预期日期","inputType":"date_input"},"finishDate":{"date":true,"labelInForm":"结束时间","inputType":"date_input"},"startDate":{"date":true,"labelInForm":"发起时间","inputType":"date_input"}};
+    // var VALIDATE_CONFIG={"name":{"labelInForm":"报修标题","inputType":"text_input","required":true},"planFinishDate":{"date":true,"labelInForm":"预期日期","inputType":"date_input"},"finishDate":{"date":true,"labelInForm":"结束时间","inputType":"date_input"},"startDate":{"date":true,"labelInForm":"发起时间","inputType":"date_input"}};
+    var VALIDATE_CONFIG={"contact":{"labelInForm":"联系方式","inputType":"text_input","required":true},"name":{"labelInForm":"报修标题","inputType":"text_input","required":true},"reportUserName":{"labelInForm":"发起人","inputType":"text_input","required":true},"planFinishDate":{"date":true,"labelInForm":"报修时间","inputType":"date_input"},"finishDate":{"date":true,"labelInForm":"完成时间","inputType":"date_input"},"type":{"labelInForm":"报修类型","inputType":"select_box","required":true},"startDate":{"date":true,"labelInForm":"发起时间","inputType":"date_input"}};
+
     var AUTH_PREFIX="eam_c_cust_repair_apply_full";
 
 </script>

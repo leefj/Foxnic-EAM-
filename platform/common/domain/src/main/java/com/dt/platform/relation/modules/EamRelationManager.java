@@ -19,7 +19,6 @@ public class EamRelationManager extends RelationManager {
 //定制
         this.setupCustRepairItem();
         this.setupCustRepairApply();
-
         this.setupCustInspectItem();
         this.setupCustInspectTask();
         this.setupCustInspectPlan();
@@ -169,20 +168,15 @@ public class EamRelationManager extends RelationManager {
                 .using(EAMTables.EAM_C_CUST_INSPECT_PLAN.TPL_ID).join(EAMTables.EAM_C_CUST_INSPECT_TPL_ASSET.OWNER_ID)
           .using(EAMTables.EAM_C_CUST_INSPECT_TPL_ASSET.ASSET_ID).join(EAMTables.EAM_ASSET.ID);
 
-
-
         this.property(CCustInspectPlanMeta.CUST_INSPECT_TPL_PROP)
                 .using(EAMTables.EAM_C_CUST_INSPECT_PLAN.TPL_ID).join(EAMTables.EAM_C_CUST_INSPECT_TPL.ID);
 
         this.property(CCustInspectPlanMeta.LEADER_PROP)
                 .using(EAMTables.EAM_C_CUST_INSPECT_PLAN.INSPECT_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
 
-
         this.property(CCustInspectPlanMeta.MEMBER_LIST_PROP)
                 .using(EAMTables.EAM_C_CUST_INSPECT_PLAN.ID).join(EAMTables.EAM_C_CUST_INSPECT_USER_S.OWNER_ID)
                 .using(EAMTables.EAM_C_CUST_INSPECT_USER_S.USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);
-
-
 
         this.property(CCustInspectPlanMeta.CUST_INSPECT_ITEM_LIST_PROP)
                 .using(EAMTables.EAM_C_CUST_INSPECT_PLAN.ID).join(EAMTables.EAM_C_CUST_INSPECT_ITEM.OWNER_ID);
@@ -191,6 +185,9 @@ public class EamRelationManager extends RelationManager {
     }
 
     public void setupCustRepairApply() {
+
+        this.property(CCustRepairApplyMeta.REPAIR_TYPE_PROP)
+                .using(EAMTables.EAM_C_CUST_REPAIR_APPLY.TYPE).join(EAMTables.EAM_C_CUST_REPAIR_TYPE.ID);
 
         this.property(CCustRepairApplyMeta.REPORT_USER_PROP)
                 .using(EAMTables.EAM_C_CUST_REPAIR_APPLY.REPORT_USER_ID).join(FoxnicWeb.HRM_EMPLOYEE.ID);

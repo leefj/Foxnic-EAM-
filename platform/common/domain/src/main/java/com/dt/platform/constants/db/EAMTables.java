@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-04-26 07:44:51
+ * @since 2023-05-14 08:45:12
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -5071,6 +5071,110 @@ public class EAMTables {
 	
 	/**
 	*/
+	public static class EAM_ASSET_LABEL_LAYOUT_DEF extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "eam_asset_label_layout_def";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",false,false,false);
+		
+		/**
+		 * 模版
+		*/
+		public static final DBField TPL_ID = new DBField(DBDataType.STRING , "tpl_id","tplId","模版","模版",false,false,true);
+		
+		/**
+		 * 字段ID
+		*/
+		public static final DBField COL_ID = new DBField(DBDataType.STRING , "col_id","colId","字段ID","字段ID",false,false,true);
+		
+		/**
+		 * 字段编码
+		*/
+		public static final DBField COL_CODE = new DBField(DBDataType.STRING , "col_code","colCode","字段编码","字段编码",false,false,true);
+		
+		/**
+		 * 类型
+		*/
+		public static final DBField TYPE = new DBField(DBDataType.STRING , "type","type","类型","类型",false,false,true);
+		
+		/**
+		 * 行数
+		*/
+		public static final DBField ROW_NUMBER = new DBField(DBDataType.INTEGER , "row_number","rowNumber","行数","行数",false,false,true);
+		
+		/**
+		 * 行高度(mm)
+		*/
+		public static final DBField ROW_HEIGHT = new DBField(DBDataType.DECIMAL , "row_height","rowHeight","行高度","mm)",false,false,true);
+		
+		/**
+		 * row_span
+		*/
+		public static final DBField ROW_SPAN = new DBField(DBDataType.INTEGER , "row_span","rowSpan","row","span",false,false,true);
+		
+		/**
+		 * col_span
+		*/
+		public static final DBField COL_SPAN = new DBField(DBDataType.INTEGER , "col_span","colSpan","col","span",false,false,true);
+		
+		/**
+		 * 顺序
+		*/
+		public static final DBField SORT = new DBField(DBDataType.INTEGER , "sort","sort","顺序","顺序",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		public EAM_ASSET_LABEL_LAYOUT_DEF() {
+			this.init($NAME,"" , ID , TPL_ID , COL_ID , COL_CODE , TYPE , ROW_NUMBER , ROW_HEIGHT , ROW_SPAN , COL_SPAN , SORT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+		}
+		public static final EAM_ASSET_LABEL_LAYOUT_DEF $TABLE=new EAM_ASSET_LABEL_LAYOUT_DEF();
+	}
+	
+	/**
+	*/
 	public static class EAM_ASSET_LABEL_LAYOUT_S1 extends DBTable {
 		
 		/**
@@ -5398,9 +5502,9 @@ public class EAMTables {
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
 		
 		/**
-		 * 类型,默认为1
+		 * 类型,默认为1，2为专用标签
 		*/
-		public static final DBField TYPE = new DBField(DBDataType.STRING , "type","type","类型","默认为1",false,false,true);
+		public static final DBField TYPE = new DBField(DBDataType.STRING , "type","type","类型","默认为1，2为专用标签",false,false,true);
 		
 		/**
 		 * 是否自定义
@@ -11565,6 +11669,11 @@ public class EAMTables {
 		public static final DBField STATUS = new DBField(DBDataType.STRING , "status","status","办理状态","办理状态",false,false,true);
 		
 		/**
+		 * 报修类型
+		*/
+		public static final DBField TYPE = new DBField(DBDataType.STRING , "type","type","报修类型","报修类型",false,false,true);
+		
+		/**
 		 * 报修标题
 		*/
 		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","报修标题","报修标题",false,false,true);
@@ -11664,9 +11773,79 @@ public class EAMTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
 		
 		public EAM_C_CUST_REPAIR_APPLY() {
-			this.init($NAME,"报修申请" , ID , BUSINESS_CODE , STATUS , NAME , PLAN_FINISH_DATE , POS , REPORT_USER_NAME , REPORT_USER_ID , CONTACT , CONTENT , PICTURE_ID , PROCESS_USER_ID , START_DATE , FINISH_DATE , RESULT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"报修申请" , ID , BUSINESS_CODE , STATUS , TYPE , NAME , PLAN_FINISH_DATE , POS , REPORT_USER_NAME , REPORT_USER_ID , CONTACT , CONTENT , PICTURE_ID , PROCESS_USER_ID , START_DATE , FINISH_DATE , RESULT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final EAM_C_CUST_REPAIR_APPLY $TABLE=new EAM_C_CUST_REPAIR_APPLY();
+	}
+	
+	/**
+	 * 报修类型
+	*/
+	public static class EAM_C_CUST_REPAIR_TYPE extends DBTable {
+		
+		/**
+		 * 表名
+		*/
+		public static final String $NAME = "eam_c_cust_repair_type";
+		
+		/**
+		 * 主键
+		*/
+		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
+		
+		/**
+		 * 名称
+		*/
+		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
+		
+		/**
+		 * 备注
+		*/
+		public static final DBField NOTES = new DBField(DBDataType.STRING , "notes","notes","备注","备注",false,false,true);
+		
+		/**
+		 * 创建人ID
+		*/
+		public static final DBField CREATE_BY = new DBField(DBDataType.STRING , "create_by","createBy","创建人ID","创建人ID",false,false,true);
+		
+		/**
+		 * 创建时间
+		*/
+		public static final DBField CREATE_TIME = new DBField(DBDataType.DATE , "create_time","createTime","创建时间","创建时间",false,false,true);
+		
+		/**
+		 * 修改人ID
+		*/
+		public static final DBField UPDATE_BY = new DBField(DBDataType.STRING , "update_by","updateBy","修改人ID","修改人ID",false,false,true);
+		
+		/**
+		 * 修改时间
+		*/
+		public static final DBField UPDATE_TIME = new DBField(DBDataType.DATE , "update_time","updateTime","修改时间","修改时间",false,false,true);
+		
+		/**
+		 * 是否已删除
+		*/
+		public static final DBField DELETED = new DBField(DBDataType.INTEGER , "deleted","deleted","是否已删除","是否已删除",false,false,false);
+		
+		/**
+		 * 删除人ID
+		*/
+		public static final DBField DELETE_BY = new DBField(DBDataType.STRING , "delete_by","deleteBy","删除人ID","删除人ID",false,false,true);
+		
+		/**
+		 * 删除时间
+		*/
+		public static final DBField DELETE_TIME = new DBField(DBDataType.DATE , "delete_time","deleteTime","删除时间","删除时间",false,false,true);
+		
+		/**
+		*/
+		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,false);
+		
+		public EAM_C_CUST_REPAIR_TYPE() {
+			this.init($NAME,"报修类型" , ID , NAME , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+		}
+		public static final EAM_C_CUST_REPAIR_TYPE $TABLE=new EAM_C_CUST_REPAIR_TYPE();
 	}
 	
 	/**

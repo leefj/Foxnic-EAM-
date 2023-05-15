@@ -118,8 +118,39 @@ function PortalPage() {
 		});
 
 
+		fillDownfile();
 	}
 
+	function fillDownfile(){
+		var ps2={}
+		ps2.pageIndex=1;
+		ps2.pageSize=5;
+		ps2.status="enable";
+		admin.post("/service-oa/oa-download-file/query-paged-data",ps2,function (r){
+			if(r.success){
+				var downfileE=$("#downfile-data")
+				var data=r.data.list;
+				if(data.length>0){
+					var html=""
+					for(var i=0;i<data.length;i++){
+						var e=data[i];
+						var zd="";
+						var title=e.name;
+						html=html+"    <div class=\"oa-portal-card-item\">\n" +
+							"             <a class=\"oa-portal-card-item-title\" href=\"javascript:openDownloadFile('"+data[i].fileId+"')\" > "+zd+title+"</a>\n" +
+							"      <span class=\"oa-portal-card-item-desc\">"+data[i].createTime+"</span>\n" +
+							"            </div>"
+					}
+					console.log("html:"+html);
+					downfileE.html(html);
+				}else{
+					downfileE.html("无数据")
+				}
+
+
+			}
+		});
+	}
 
 
 	function fillNoticeData(data){
@@ -330,6 +361,10 @@ function PortalPage() {
 		let win = window.open(url, "_blank");
 	}
 
+	window.openDownloadFile=function(id) {
+		console.log(id);
+		window.open("/service-storage/sys-file/download?id="+id,"_blank")
+	}
 
 
 	window.openSystem=function(url) {
