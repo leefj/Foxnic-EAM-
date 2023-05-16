@@ -62,8 +62,8 @@ function ListPage() {
                 priority:"normal", // priority 的可选值 urgency，normal
                 displayTitle:true,
                 displayPriority:false,
-                displayDraftComment:false,
-                displayApprovalComment:false,
+                displayDraftComment:true,
+                displayApprovalComment:true,
             }
 
             bpm.openProcessView(null,null,false,{"formDefinitionCode":"eam_asset_employee_apply"},refreshTableData,refreshRowData,"bill",ps);
@@ -76,8 +76,8 @@ function ListPage() {
                 priority:"normal", // priority 的可选值 urgency，normal
                 displayTitle:true,
                 displayPriority:false,
-                displayDraftComment:false,
-                displayApprovalComment:false,
+                displayDraftComment:true,
+                displayApprovalComment:true,
             }
             admin.putTempData('eam-asset-employee-handover-form-data', {});
             bpm.openProcessView(null,null,false,{"formDefinitionCode":"eam_asset_employee_handover"},refreshTableData,refreshRowData,"bill",ps);
@@ -92,8 +92,8 @@ function ListPage() {
                 priority:"normal", // priority 的可选值 urgency，normal
                 displayTitle:true,
                 displayPriority:false,
-                displayDraftComment:false,
-                displayApprovalComment:false,
+                displayDraftComment:true,
+                displayApprovalComment:true,
             }
             admin.putTempData('eam-asset-employee-loss-form-data', {});
             bpm.openProcessView(null,null,false,{"formDefinitionCode":"eam_asset_employee_loss"},refreshTableData,refreshRowData,"bill",ps);
@@ -107,8 +107,8 @@ function ListPage() {
                 priority:"normal", // priority 的可选值 urgency，normal
                 displayTitle:true,
                 displayPriority:false,
-                displayDraftComment:false,
-                displayApprovalComment:false,
+                displayDraftComment:true,
+                displayApprovalComment:true,
             }
             admin.putTempData('eam-asset-employee-repair-form-data', {});
             bpm.openProcessView(null,null,false,{"formDefinitionCode":"eam_asset_employee_repair"},refreshTableData,refreshRowData,"bill",ps);

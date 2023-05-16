@@ -164,14 +164,15 @@ curl -s 'https://gitee.com/lank/eam/raw/2.6.0/platform/deploy/bin/deployApp.sh'|
 - 详细部署方式查询git目录下的文档说明
 - 百度网盘地址，地址同上
 
-
 ## 系统演示预览
-![输入图片说明](https://images.gitee.com/uploads/images/2021/1213/212929_46438369_448530.jpeg "1.jpg")
-![输入图片说明](https://images.gitee.com/uploads/images/2022/0513/115529_b00ce19a_448530.png "WechatIMG3.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2021/1213/213230_1ba469f5_448530.png "屏幕截图.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2021/1213/213258_8d970535_448530.png "屏幕截图.png")
+![输入图片说明](https://foruda.gitee.com/images/1684211929402666916/6e6746d0_448530.jpeg "9.jpg")
+![输入图片说明](https://foruda.gitee.com/images/1684212033095305227/399a4c16_448530.png "10.png")
+![输入图片说明](https://foruda.gitee.com/images/1684211684098779220/734b0293_448530.png "2.png")
+![输入图片说明](https://foruda.gitee.com/images/1684211694134002414/d6cade6e_448530.png "3.png")
+![输入图片说明](https://foruda.gitee.com/images/1684211701838927268/14ab8641_448530.png "4.png")
+![输入图片说明](https://foruda.gitee.com/images/1684211711830364540/7b0f4eac_448530.png "5.png")
+![输入图片说明](https://foruda.gitee.com/images/1684211719375745990/3358f888_448530.png "6.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/1213/213315_83659719_448530.png "屏幕截图.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2022/0617/062632_fb854882_448530.png "WechatIMG1.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2022/0712/125124_788dfc2f_448530.jpeg "e1.jpg")
 ![输入图片说明](https://images.gitee.com/uploads/images/2022/0712/125138_061ee2e5_448530.jpeg "e2.jpg")
 ![输入图片说明](https://images.gitee.com/uploads/images/2022/0712/125147_e4425787_448530.jpeg "e3.jpg")
