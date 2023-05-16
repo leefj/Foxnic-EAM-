@@ -714,6 +714,14 @@ echo "alias kj_restart='cd $base_dir/app;sh restartJob.sh'" >>~/.bash_profile
 echo "alias kn_restart='cd $base_dir/app;sh restartNginx.sh'" >>~/.bash_profile
 echo "alias tdb='$base_dir/db/mysql/bin/mysql -h$db_host -P$db_port -u$db_user -p$db_pwd $db_name'" >>~/.bash_profile
 echo "alias tdb_none='$base_dir/db/mysql/bin/mysql -h$db_host -P$db_port -u$db_user -p$db_pwd '" >>~/.bash_profile
+echo "to install k to sbin"
+if [[ ! -f "/sbin/k" ]];then
+  echo "#!/bin/sh">/sbin/k
+  echo "#modify by lank">>/sbin/k
+  echo "sh $base_dir/app/bin/k.sh">>/sbin/k
+  echo "exit 0">>/sbin/k
+  chmod +x  /sbin/k
+fi
 echo "Please wait about 25 seconds,Application is starting.."
 sleep 10
 echo "------------------------------- install result -----------------------------------------"

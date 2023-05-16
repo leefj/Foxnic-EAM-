@@ -32,8 +32,8 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
                 priority:"normal", // priority 的可选值 urgency，normal
                 displayTitle:true,
                 displayPriority:false,
-                displayDraftComment:false,
-                displayApprovalComment: false,
+                displayDraftComment:true,
+                displayApprovalComment: true,
             }
         },
 

@@ -1477,7 +1477,7 @@ public class AssetServiceImpl extends SuperService<Asset> implements IAssetServi
 	public PagedList<Asset> queryPagedListByEmployeeSelect(AssetVO sample, String selectedCode, String ownerId) {
 		ConditionExpr queryCondition=new ConditionExpr();
 		sample.setUseUserId(SessionUser.getCurrent().getUser().getActivatedEmployeeId());
-
+		sample.setStatus(AssetHandleStatusEnum.COMPLETE.code());
 		//过滤资产已选数据
 		if(!StringUtil.isBlank(ownerId)) {
 			queryCondition.andIf("id not in (select asset_id from eam_asset_item where deleted=0 and handle_id=?)" ,ownerId);
