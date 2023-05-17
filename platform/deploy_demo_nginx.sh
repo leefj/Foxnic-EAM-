@@ -7,12 +7,11 @@ conf_file=$cur_dir/app.conf
 echo "cur_dir:$cur_dir";
 echo "conf_file:$conf_file";
 
-
 ops_jar_dir=`cat $conf_file|grep ${hostname}.ops_jar_dir|awk -F "=" '{print $2}'`
 tmp_dir=`cat $conf_file|grep ${hostname}.ops_dir|awk -F "=" '{print $2}'`
 ops_remotefile_recreate_file="$tmp_dir/deploy_ops_app.sh"
 ops_node_file="$tmp_dir/ops.node"
-ops=$ops_jar_dir/ops.jar
+ops=$ops_jar_dir/ops.jar.1
 file=h5.tar.gz
 
 cd /Users/lankl/Documents/HBuilderProjects/eamApp/unpackage/dist/build/h5
