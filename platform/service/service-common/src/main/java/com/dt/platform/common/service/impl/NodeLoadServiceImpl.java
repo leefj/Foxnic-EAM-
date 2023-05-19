@@ -314,7 +314,7 @@ public class NodeLoadServiceImpl extends SuperService<NodeLoad> implements INode
 			String usrStr= new DecimalFormat("#.##").format(user * 1.0 / totalCpu);
 			String wioStr= new DecimalFormat("#.##").format(iowait * 1.0 / totalCpu);
 			String idleStr= new DecimalFormat("#.##").format(idle * 1.0 / totalCpu);
-			Logger.info("cpu info,sys:"+sysStr+",usr:"+usrStr+"wio:"+wioStr+",idle"+idleStr);
+			Logger.info("cpu info,sys:"+sysStr+",usr:"+usrStr+",wio:"+wioStr+",idle:"+idleStr);
 			data.setSys(new BigDecimal(sysStr));
 			data.setUser(new BigDecimal(usrStr));
 			data.setWio(new BigDecimal(wioStr));
