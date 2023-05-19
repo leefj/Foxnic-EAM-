@@ -42,6 +42,9 @@ public class SysDBMetaGenerator {
 					||table.startsWith("sys_node_load")
 					||table.startsWith("sys_material_resource")
 					||table.startsWith("sys_log_collect")
+					||table.startsWith("sys_report_category")
+					||table.startsWith("sys_report")
+					||table.startsWith("sys_category")
 					||table.startsWith("sys_auto_role") ) return true;
 			return false;
 		});

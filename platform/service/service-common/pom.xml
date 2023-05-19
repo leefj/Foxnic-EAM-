@@ -43,6 +43,12 @@
             <version>5.8.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.bstek.ureport</groupId>
+            <artifactId>ureport2-console</artifactId>
+            <version>2.2.9</version>
+        </dependency>
+
         <!--     ureport-->
 <!--        <dependency>-->
 <!--            <groupId>com.bstek.ureport</groupId>-->
