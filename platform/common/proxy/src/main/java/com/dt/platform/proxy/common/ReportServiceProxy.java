@@ -84,6 +84,8 @@ public interface ReportServiceProxy {
      */
     public static final String QUERY_PAGED_LIST = API_PREFIX + "query-paged-list";
 
+
+    public static final String COPY_DATA = API_PREFIX + "copy-data";
     /**
      * 添加报表列
      */

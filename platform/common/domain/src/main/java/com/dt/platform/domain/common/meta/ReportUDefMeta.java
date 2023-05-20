@@ -9,8 +9,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-20 09:08:51
- * @sign 08CD3F9ED5714256005F7D944FF79B81
+ * @since 2023-05-20 20:46:53
+ * @sign 72ECCE924C553AC7D0E46E6380F5645F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -25,6 +25,16 @@ public class ReportUDefMeta {
 	 * 主键 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.common.ReportUDef,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.common.ReportUDef.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
+	
+	/**
+	 * 所属类型 , 类型: java.lang.String
+	*/
+	public static final String OWNER_TYPE="ownerType";
+	
+	/**
+	 * 所属类型 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.ReportUDef,java.lang.String> OWNER_TYPE_PROP = new BeanProperty(com.dt.platform.domain.common.ReportUDef.class ,OWNER_TYPE, java.lang.String.class, "所属类型", "所属类型", java.lang.String.class, null);
 	
 	/**
 	 * 名称 , 类型: java.lang.String
@@ -129,7 +139,7 @@ public class ReportUDefMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , FILE_NAME , CONTENT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
+	public static final String[] $PROPS={ ID , OWNER_TYPE , FILE_NAME , CONTENT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
 	
 	/**
 	 * 代理类
@@ -147,6 +157,17 @@ public class ReportUDefMeta {
 		public ReportUDef setId(String id) {
 			super.change(ID,super.getId(),id);
 			super.setId(id);
+			return this;
+		}
+		
+		/**
+		 * 设置 所属类型
+		 * @param ownerType 所属类型
+		 * @return 当前对象
+		*/
+		public ReportUDef setOwnerType(String ownerType) {
+			super.change(OWNER_TYPE,super.getOwnerType(),ownerType);
+			super.setOwnerType(ownerType);
 			return this;
 		}
 		
@@ -275,6 +296,7 @@ public class ReportUDefMeta {
 		@Transient
 		public ReportUDef duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
+			inst.setOwnerType(this.getOwnerType());
 			inst.setFileName(this.getFileName());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());

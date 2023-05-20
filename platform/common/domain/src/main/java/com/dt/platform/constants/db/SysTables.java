@@ -7,7 +7,7 @@ import com.github.foxnic.sql.meta.DBDataType;
 
 
 /**
- * @since 2023-05-20 09:37:42
+ * @since 2023-05-20 21:13:38
  * @author 金杰 , maillank@qq.com
  * 数据库描述文件
  * 此文件由工具自动生成，请勿修改。若表结构变动，请使用工具重新生成。
@@ -987,6 +987,11 @@ public class SysTables {
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
 		
 		/**
+		 * 编码
+		*/
+		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","编码","编码",false,false,true);
+		
+		/**
 		 * 分类
 		*/
 		public static final DBField CATALOG_ID = new DBField(DBDataType.STRING , "catalog_id","catalogId","分类","分类",false,false,true);
@@ -995,11 +1000,6 @@ public class SysTables {
 		 * 名称
 		*/
 		public static final DBField NAME = new DBField(DBDataType.STRING , "name","name","名称","名称",false,false,true);
-		
-		/**
-		 * 编码
-		*/
-		public static final DBField CODE = new DBField(DBDataType.STRING , "code","code","编码","编码",false,false,true);
 		
 		/**
 		 * 状态
@@ -1020,6 +1020,11 @@ public class SysTables {
 		 * 模版
 		*/
 		public static final DBField REPORT_TPL_ID = new DBField(DBDataType.STRING , "report_tpl_id","reportTplId","模版","模版",false,false,true);
+		
+		/**
+		 * 报表设计
+		*/
+		public static final DBField REPORT_TPL_DEF_ID = new DBField(DBDataType.STRING , "report_tpl_def_id","reportTplDefId","报表设计","报表设计",false,false,true);
 		
 		/**
 		 * 来源
@@ -1071,7 +1076,7 @@ public class SysTables {
 		public static final DBField TENANT_ID = new DBField(DBDataType.STRING , "tenant_id","tenantId","租户","租户",false,false,true);
 		
 		public SYS_REPORT() {
-			this.init($NAME,"报表列表" , ID , CATALOG_ID , NAME , CODE , STATUS , ROUTE , NOTES , REPORT_TPL_ID , REPORT_SOURCE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
+			this.init($NAME,"报表列表" , ID , CODE , CATALOG_ID , NAME , STATUS , ROUTE , NOTES , REPORT_TPL_ID , REPORT_TPL_DEF_ID , REPORT_SOURCE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID);
 		}
 		public static final SYS_REPORT $TABLE=new SYS_REPORT();
 	}
@@ -1197,6 +1202,11 @@ public class SysTables {
 		public static final DBField ID = new DBField(DBDataType.STRING , "id","id","主键","主键",true,false,false);
 		
 		/**
+		 * 所属类型
+		*/
+		public static final DBField OWNER_TYPE = new DBField(DBDataType.STRING , "owner_type","ownerType","所属类型","所属类型",false,false,true);
+		
+		/**
 		 * 名称
 		*/
 		public static final DBField FILE_NAME = new DBField(DBDataType.STRING , "file_name","fileName","名称","名称",false,false,true);
@@ -1246,7 +1256,7 @@ public class SysTables {
 		public static final DBField VERSION = new DBField(DBDataType.INTEGER , "version","version","version","version",false,false,true);
 		
 		public SYS_REPORT_U_DEF() {
-			this.init($NAME,"报表定义" , ID , FILE_NAME , CONTENT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
+			this.init($NAME,"报表定义" , ID , OWNER_TYPE , FILE_NAME , CONTENT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION);
 		}
 		public static final SYS_REPORT_U_DEF $TABLE=new SYS_REPORT_U_DEF();
 	}

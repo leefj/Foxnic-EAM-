@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 报表定义
  * <p>报表定义 , 数据表 sys_report_u_def 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-20 09:08:51
- * @sign 08CD3F9ED5714256005F7D944FF79B81
+ * @since 2023-05-20 20:46:53
+ * @sign 72ECCE924C553AC7D0E46E6380F5645F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -40,13 +40,19 @@ public class ReportUDef extends Entity {
 	 * 主键：主键
 	*/
 	@Id
-	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "712226160926261248")
+	@ApiModelProperty(required = true,value="主键" , notes = "主键" , example = "712240054507929600")
 	private String id;
+	
+	/**
+	 * 所属类型：所属类型
+	*/
+	@ApiModelProperty(required = false,value="所属类型" , notes = "所属类型" , example = "inst")
+	private String ownerType;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "12345.ureport.xml")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "test.ureport.xml")
 	private String fileName;
 	
 	/**
@@ -64,7 +70,7 @@ public class ReportUDef extends Entity {
 	/**
 	 * 创建时间：创建时间
 	*/
-	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-05-20 08:52:29")
+	@ApiModelProperty(required = false,value="创建时间" , notes = "创建时间" , example = "2023-05-20 09:47:42")
 	private Date createTime;
 	
 	/**
@@ -76,7 +82,7 @@ public class ReportUDef extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-05-20 08:52:42")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-05-20 08:07:40")
 	private Date updateTime;
 	
 	/**
@@ -122,6 +128,25 @@ public class ReportUDef extends Entity {
 	*/
 	public ReportUDef setId(String id) {
 		this.id=id;
+		return this;
+	}
+	
+	/**
+	 * 获得 所属类型<br>
+	 * 所属类型
+	 * @return 所属类型
+	*/
+	public String getOwnerType() {
+		return ownerType;
+	}
+	
+	/**
+	 * 设置 所属类型
+	 * @param ownerType 所属类型
+	 * @return 当前对象
+	*/
+	public ReportUDef setOwnerType(String ownerType) {
+		this.ownerType=ownerType;
 		return this;
 	}
 	
@@ -390,6 +415,7 @@ public class ReportUDef extends Entity {
 	@Transient
 	public ReportUDef duplicate(boolean all) {
 		com.dt.platform.domain.common.meta.ReportUDefMeta.$$proxy$$ inst = new com.dt.platform.domain.common.meta.ReportUDefMeta.$$proxy$$();
+		inst.setOwnerType(this.getOwnerType());
 		inst.setFileName(this.getFileName());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
@@ -459,6 +485,7 @@ public class ReportUDef extends Entity {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
+			this.setOwnerType(DataParser.parse(String.class, map.get(ReportUDefMeta.OWNER_TYPE)));
 			this.setFileName(DataParser.parse(String.class, map.get(ReportUDefMeta.FILE_NAME)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(ReportUDefMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(ReportUDefMeta.DELETED)));
@@ -474,6 +501,7 @@ public class ReportUDef extends Entity {
 			return true;
 		} else {
 			try {
+				this.setOwnerType( (String)map.get(ReportUDefMeta.OWNER_TYPE));
 				this.setFileName( (String)map.get(ReportUDefMeta.FILE_NAME));
 				this.setCreateBy( (String)map.get(ReportUDefMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(ReportUDefMeta.DELETED));
@@ -502,6 +530,7 @@ public class ReportUDef extends Entity {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
+			this.setOwnerType(DataParser.parse(String.class, r.getValue(ReportUDefMeta.OWNER_TYPE)));
 			this.setFileName(DataParser.parse(String.class, r.getValue(ReportUDefMeta.FILE_NAME)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(ReportUDefMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(ReportUDefMeta.DELETED)));
@@ -516,6 +545,7 @@ public class ReportUDef extends Entity {
 			return true;
 		} else {
 			try {
+				this.setOwnerType( (String)r.getValue(ReportUDefMeta.OWNER_TYPE));
 				this.setFileName( (String)r.getValue(ReportUDefMeta.FILE_NAME));
 				this.setCreateBy( (String)r.getValue(ReportUDefMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(ReportUDefMeta.DELETED));

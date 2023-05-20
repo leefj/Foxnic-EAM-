@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 报表定义VO类型
  * <p>报表定义 , 数据表 sys_report_u_def 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-20 09:08:51
+ * @since 2023-05-20 20:46:53
  * @sign 4B8F05737C8828D1889C4599BBB8DC95
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -401,6 +401,7 @@ public class ReportUDefVO extends ReportUDef {
 	@Transient
 	public ReportUDefVO duplicate(boolean all) {
 		com.dt.platform.domain.common.meta.ReportUDefVOMeta.$$proxy$$ inst = new com.dt.platform.domain.common.meta.ReportUDefVOMeta.$$proxy$$();
+		inst.setOwnerType(this.getOwnerType());
 		inst.setFileName(this.getFileName());
 		inst.setCreateBy(this.getCreateBy());
 		inst.setDeleted(this.getDeleted());
@@ -484,6 +485,7 @@ public class ReportUDefVO extends ReportUDef {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
+			this.setOwnerType(DataParser.parse(String.class, map.get(ReportUDefVOMeta.OWNER_TYPE)));
 			this.setFileName(DataParser.parse(String.class, map.get(ReportUDefVOMeta.FILE_NAME)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(ReportUDefVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, map.get(ReportUDefVOMeta.DELETED)));
@@ -509,6 +511,7 @@ public class ReportUDefVO extends ReportUDef {
 			return true;
 		} else {
 			try {
+				this.setOwnerType( (String)map.get(ReportUDefVOMeta.OWNER_TYPE));
 				this.setFileName( (String)map.get(ReportUDefVOMeta.FILE_NAME));
 				this.setCreateBy( (String)map.get(ReportUDefVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)map.get(ReportUDefVOMeta.DELETED));
@@ -547,6 +550,7 @@ public class ReportUDefVO extends ReportUDef {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
+			this.setOwnerType(DataParser.parse(String.class, r.getValue(ReportUDefVOMeta.OWNER_TYPE)));
 			this.setFileName(DataParser.parse(String.class, r.getValue(ReportUDefVOMeta.FILE_NAME)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(ReportUDefVOMeta.CREATE_BY)));
 			this.setDeleted(DataParser.parse(Integer.class, r.getValue(ReportUDefVOMeta.DELETED)));
@@ -561,6 +565,7 @@ public class ReportUDefVO extends ReportUDef {
 			return true;
 		} else {
 			try {
+				this.setOwnerType( (String)r.getValue(ReportUDefVOMeta.OWNER_TYPE));
 				this.setFileName( (String)r.getValue(ReportUDefVOMeta.FILE_NAME));
 				this.setCreateBy( (String)r.getValue(ReportUDefVOMeta.CREATE_BY));
 				this.setDeleted( (Integer)r.getValue(ReportUDefVOMeta.DELETED));

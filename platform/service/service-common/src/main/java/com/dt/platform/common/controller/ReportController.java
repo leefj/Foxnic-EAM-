@@ -68,7 +68,8 @@ public class ReportController extends SuperController {
 		@ApiImplicitParam(name = ReportVOMeta.ROUTE, value = "路径", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = ReportVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "121212"),
 		@ApiImplicitParam(name = ReportVOMeta.REPORT_SOURCE, value = "来源", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = ReportVOMeta.REPORT_TPL_ID, value = "模版", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = ReportVOMeta.REPORT_TPL_ID, value = "模版", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ReportVOMeta.REPORT_TPL_DEF_ID, value = "报表设计", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true, ignorePrimaryKey = true)
     @ApiOperationSupport(order = 1, author = "金杰 , maillank@qq.com")
@@ -173,7 +174,8 @@ public class ReportController extends SuperController {
 		@ApiImplicitParam(name = ReportVOMeta.ROUTE, value = "路径", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = ReportVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "121212"),
 		@ApiImplicitParam(name = ReportVOMeta.REPORT_SOURCE, value = "来源", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = ReportVOMeta.REPORT_TPL_ID, value = "模版", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = ReportVOMeta.REPORT_TPL_ID, value = "模版", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ReportVOMeta.REPORT_TPL_DEF_ID, value = "报表设计", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 4, author = "金杰 , maillank@qq.com", ignoreParameters = { ReportVOMeta.PAGE_INDEX, ReportVOMeta.PAGE_SIZE, ReportVOMeta.SEARCH_FIELD, ReportVOMeta.FUZZY_FIELD, ReportVOMeta.SEARCH_VALUE, ReportVOMeta.DIRTY_FIELDS, ReportVOMeta.SORT_FIELD, ReportVOMeta.SORT_TYPE, ReportVOMeta.DATA_ORIGIN, ReportVOMeta.QUERY_LOGIC, ReportVOMeta.REQUEST_ACTION, ReportVOMeta.IDS })
@@ -200,7 +202,8 @@ public class ReportController extends SuperController {
 		@ApiImplicitParam(name = ReportVOMeta.ROUTE, value = "路径", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = ReportVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "121212"),
 		@ApiImplicitParam(name = ReportVOMeta.REPORT_SOURCE, value = "来源", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = ReportVOMeta.REPORT_TPL_ID, value = "模版", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = ReportVOMeta.REPORT_TPL_ID, value = "模版", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ReportVOMeta.REPORT_TPL_DEF_ID, value = "报表设计", required = false, dataTypeClass = String.class)
 	})
     @ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
     @ApiOperationSupport(order = 5, ignoreParameters = { ReportVOMeta.PAGE_INDEX, ReportVOMeta.PAGE_SIZE, ReportVOMeta.SEARCH_FIELD, ReportVOMeta.FUZZY_FIELD, ReportVOMeta.SEARCH_VALUE, ReportVOMeta.DIRTY_FIELDS, ReportVOMeta.SORT_FIELD, ReportVOMeta.SORT_TYPE, ReportVOMeta.DATA_ORIGIN, ReportVOMeta.QUERY_LOGIC, ReportVOMeta.REQUEST_ACTION, ReportVOMeta.IDS })
@@ -261,7 +264,8 @@ public class ReportController extends SuperController {
 		@ApiImplicitParam(name = ReportVOMeta.ROUTE, value = "路径", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = ReportVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "121212"),
 		@ApiImplicitParam(name = ReportVOMeta.REPORT_SOURCE, value = "来源", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = ReportVOMeta.REPORT_TPL_ID, value = "模版", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = ReportVOMeta.REPORT_TPL_ID, value = "模版", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ReportVOMeta.REPORT_TPL_DEF_ID, value = "报表设计", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 5, author = "金杰 , maillank@qq.com", ignoreParameters = { ReportVOMeta.PAGE_INDEX, ReportVOMeta.PAGE_SIZE })
     @SentinelResource(value = ReportServiceProxy.QUERY_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -286,7 +290,8 @@ public class ReportController extends SuperController {
 		@ApiImplicitParam(name = ReportVOMeta.ROUTE, value = "路径", required = false, dataTypeClass = String.class, example = "1212"),
 		@ApiImplicitParam(name = ReportVOMeta.NOTES, value = "备注", required = false, dataTypeClass = String.class, example = "121212"),
 		@ApiImplicitParam(name = ReportVOMeta.REPORT_SOURCE, value = "来源", required = false, dataTypeClass = String.class),
-		@ApiImplicitParam(name = ReportVOMeta.REPORT_TPL_ID, value = "模版", required = false, dataTypeClass = String.class)
+		@ApiImplicitParam(name = ReportVOMeta.REPORT_TPL_ID, value = "模版", required = false, dataTypeClass = String.class),
+		@ApiImplicitParam(name = ReportVOMeta.REPORT_TPL_DEF_ID, value = "报表设计", required = false, dataTypeClass = String.class)
 	})
     @ApiOperationSupport(order = 8, author = "金杰 , maillank@qq.com")
     @SentinelResource(value = ReportServiceProxy.QUERY_PAGED_LIST, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
@@ -299,4 +304,20 @@ public class ReportController extends SuperController {
         result.success(true).data(list);
         return result;
     }
+
+
+    /**
+     * 获取报表列
+     */
+    @ApiOperation(value = "获取报表列")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = ReportVOMeta.ID, value = "主键", required = true, dataTypeClass = String.class, example = "1")
+    })
+    @ApiOperationSupport(order = 6, author = "金杰 , maillank@qq.com")
+    @SentinelResource(value = ReportServiceProxy.COPY_DATA, blockHandlerClass = { SentinelExceptionUtil.class }, blockHandler = SentinelExceptionUtil.HANDLER)
+    @PostMapping(ReportServiceProxy.COPY_DATA)
+    public Result copyData(String id) {
+        return reportService.copyData(id);
+    }
+
 }

@@ -55,6 +55,10 @@ public class SysReportGtr extends BaseCodeGenerator{
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
 
+        cfg.view().field(SysTables.SYS_REPORT.REPORT_TPL_DEF_ID).table().disable(true);
+
+        cfg.view().field(SysTables.SYS_REPORT.ROUTE).form().readOnly();
+
         cfg.view().field(SysTables.SYS_REPORT.CATALOG_ID)
                 .form().selectBox().queryApi(ReportCategoryServiceProxy.QUERY_PAGED_LIST)
                 .paging(true).filter(true).toolbar(false)
@@ -64,24 +68,24 @@ public class SysReportGtr extends BaseCodeGenerator{
 
 
         cfg.view().field(SysTables.SYS_REPORT.REPORT_TPL_ID)
-                .form().selectBox().queryApi(ReportUDefServiceProxy.QUERY_PAGED_LIST)
+                .form().validate().required().form().selectBox().queryApi(ReportUDefServiceProxy.QUERY_PAGED_LIST+"?ownerType=tpl")
                 .paging(true).filter(true).toolbar(false)
                 .valueField(ReportUDefMeta.ID).
                 textField(ReportUDefMeta.FILE_NAME).
-                fillWith(ReportMeta.REPORT_TPL).muliti(false);
+                fillWith(ReportMeta.REPORT_TPL).muliti(false).defaultIndex(0);
 
 
-        cfg.view().field(SysTables.SYS_REPORT.STATUS).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class).defaultValue(0);
-        cfg.view().field(SysTables.SYS_REPORT.REPORT_SOURCE).form().validate().required().form().radioBox().enumType(ReportSourceEnum.class).defaultValue(0);
+        cfg.view().field(SysTables.SYS_REPORT.STATUS).form().validate().required().form().radioBox().enumType(StatusEnableEnum.class).defaultIndex(0);
+        cfg.view().field(SysTables.SYS_REPORT.REPORT_SOURCE).form().validate().required().form().radioBox().enumType(ReportSourceEnum.class).defaultIndex(0);
 
         cfg.view().field(SysTables.SYS_REPORT.NAME).form().validate().required();
         cfg.view().field(SysTables.SYS_REPORT.CODE).form().readOnly();
         cfg.view().list().disableBatchDelete();
 
+
         cfg.view().list().operationColumn().addActionButton("设计","reportDesinger","report-designer-button","sys_report:designer");
         cfg.view().list().operationColumn().addActionButton("预览","reportView","report-view-button","sys_report:view");
-
-
+        cfg.view().list().operationColumn().addActionButton("复制","reportCopy","report-copy","sys_report:copy");
 
         //分成分组布局
         cfg.view().formWindow().width(Config.baseFormWidth);
@@ -90,14 +94,24 @@ public class SysReportGtr extends BaseCodeGenerator{
                 new Object[] {
                         SysTables.SYS_REPORT.CODE,
                         SysTables.SYS_REPORT.NAME,
-                        SysTables.SYS_REPORT.CATALOG_ID,
                         SysTables.SYS_REPORT.STATUS,
-                        SysTables.SYS_REPORT.REPORT_SOURCE,
+                },
+                new Object[] {
                         SysTables.SYS_REPORT.ROUTE,
-                        SysTables.SYS_REPORT.NOTES,
+                        SysTables.SYS_REPORT.CATALOG_ID,
                 }
         );
-
+            cfg.view().form().addGroup(null,
+                    new Object[] {
+                            SysTables.SYS_REPORT.NOTES,
+                    }
+            );
+        cfg.view().form().addGroup("模版",
+                new Object[] {
+                        SysTables.SYS_REPORT.REPORT_SOURCE,
+                        SysTables.SYS_REPORT.REPORT_TPL_ID,
+                }
+        );
 
         //文件生成覆盖模式
         cfg.overrides()

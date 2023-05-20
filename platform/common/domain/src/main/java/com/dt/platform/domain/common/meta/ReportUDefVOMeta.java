@@ -11,7 +11,7 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-20 09:08:51
+ * @since 2023-05-20 20:46:53
  * @sign 4B8F05737C8828D1889C4599BBB8DC95
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -149,6 +149,16 @@ public class ReportUDefVOMeta extends ReportUDefMeta {
 	public static final BeanProperty<com.dt.platform.domain.common.ReportUDefVO,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.common.ReportUDefVO.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
 	
 	/**
+	 * 所属类型 , 类型: java.lang.String
+	*/
+	public static final String OWNER_TYPE="ownerType";
+	
+	/**
+	 * 所属类型 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.ReportUDefVO,java.lang.String> OWNER_TYPE_PROP = new BeanProperty(com.dt.platform.domain.common.ReportUDefVO.class ,OWNER_TYPE, java.lang.String.class, "所属类型", "所属类型", java.lang.String.class, null);
+	
+	/**
 	 * 名称 , 类型: java.lang.String
 	*/
 	public static final String FILE_NAME="fileName";
@@ -251,7 +261,7 @@ public class ReportUDefVOMeta extends ReportUDefMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , FILE_NAME , CONTENT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , OWNER_TYPE , FILE_NAME , CONTENT , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
 	
 	/**
 	 * 代理类
@@ -405,6 +415,17 @@ public class ReportUDefVOMeta extends ReportUDefMeta {
 		}
 		
 		/**
+		 * 设置 所属类型
+		 * @param ownerType 所属类型
+		 * @return 当前对象
+		*/
+		public ReportUDef setOwnerType(String ownerType) {
+			super.change(OWNER_TYPE,super.getOwnerType(),ownerType);
+			super.setOwnerType(ownerType);
+			return this;
+		}
+		
+		/**
 		 * 设置 名称
 		 * @param fileName 名称
 		 * @return 当前对象
@@ -529,6 +550,7 @@ public class ReportUDefVOMeta extends ReportUDefMeta {
 		@Transient
 		public ReportUDefVO duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
+			inst.setOwnerType(this.getOwnerType());
 			inst.setFileName(this.getFileName());
 			inst.setCreateBy(this.getCreateBy());
 			inst.setDeleted(this.getDeleted());
