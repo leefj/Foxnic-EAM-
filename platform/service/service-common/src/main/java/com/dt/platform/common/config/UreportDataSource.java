@@ -1,7 +1,6 @@
 package com.dt.platform.common.config;
 
-import com.github.foxnic.dao.spec.DAO;
-import org.github.foxnic.web.framework.dao.DBConfigs;
+
 import com.bstek.ureport.definition.datasource.BuildinDatasource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
