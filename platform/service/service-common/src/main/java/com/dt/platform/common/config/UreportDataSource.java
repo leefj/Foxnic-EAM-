@@ -9,14 +9,15 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import javax.sql.DataSource;
 
 
 @Component
 public class UreportDataSource implements BuildinDatasource {
 
 
-    @Resource(name= DBConfigs.PRIMARY_DAO)
-    private DAO dao=null;
+    @Resource
+    DataSource dataSource;
 
     private Logger log = LoggerFactory.getLogger(getClass());
 
@@ -30,7 +31,7 @@ public class UreportDataSource implements BuildinDatasource {
     @Override
     public Connection getConnection() {
         try {
-            return dao.getDataSource().getConnection();
+            return dataSource.getConnection();
 
         } catch (SQLException e) {
             log.error("Ureport 数据源 获取连接失败！");
