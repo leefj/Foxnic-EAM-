@@ -2,7 +2,7 @@
 /**
  * 报表列 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-19 13:01:29
+ * @since 2023-05-20 09:41:00
  */
  -->
  <!DOCTYPE html>
@@ -38,7 +38,7 @@
          <!--开始：group 循环-->
 
 
-        <div class="layui-row form-row" id="random-2414-content">
+        <div class="layui-row form-row" id="random-4314-content">
 
              <!--开始：column 循环-->
             <!-- 只有当非第一个分组没有title时才使 padding-top 为 0 -->
@@ -72,7 +72,15 @@
                 <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
                     <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('状态')}">状态</div><div class="layui-required">*</div></div>
                     <div class="layui-input-block layui-input-block-c1">
-                        <input input-type="radio" type="radio" name="status" lay-filter="status" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='' || stat.index==-1)}">
+                        <input input-type="radio" type="radio" name="status" lay-filter="status" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='0' || stat.index==-1)}">
+                    </div>
+                </div>
+            
+                <!-- radio_box : 来源 ,  reportSource  -->
+                <div class="layui-form-item" inlines=""  inline-delta="0" input-width="">
+                    <div class="layui-form-label layui-form-label-c1"><div th:text="${lang.translate('来源')}">来源</div><div class="layui-required">*</div></div>
+                    <div class="layui-input-block layui-input-block-c1">
+                        <input input-type="radio" type="radio" name="reportSource" lay-filter="reportSource" th:each="e,stat:${enum.toArray('com.dt.platform.constants.enums.common.ReportSourceEnum')}" th:value="${e.code}" th:title="${e.text}" th:checked="${(e.code=='0' || stat.index==-1)}">
                     </div>
                 </div>
             
@@ -117,7 +125,8 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
-    var VALIDATE_CONFIG={"name":{"labelInForm":"名称","inputType":"text_input","required":true},"status":{"labelInForm":"状态","inputType":"radio_box","required":true}};
+    var RADIO_REPORTSOURCE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.ReportSourceEnum')}]];
+    var VALIDATE_CONFIG={"name":{"labelInForm":"名称","inputType":"text_input","required":true},"reportSource":{"labelInForm":"来源","inputType":"radio_box","required":true},"status":{"labelInForm":"状态","inputType":"radio_box","required":true}};
     var AUTH_PREFIX="sys_report";
 
 

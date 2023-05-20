@@ -6,13 +6,14 @@ import java.util.List;
 import com.dt.platform.domain.common.Report;
 import java.util.Date;
 import com.dt.platform.domain.common.ReportCategory;
+import com.dt.platform.domain.common.ReportUDef;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-19 13:01:27
+ * @since 2023-05-20 09:40:58
  * @sign 14CF0A2AB324D116F5D8E758E4617C9F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -210,6 +211,26 @@ public class ReportVOMeta extends ReportMeta {
 	public static final BeanProperty<com.dt.platform.domain.common.ReportVO,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.common.ReportVO.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
 	
 	/**
+	 * 模版 , 类型: java.lang.String
+	*/
+	public static final String REPORT_TPL_ID="reportTplId";
+	
+	/**
+	 * 模版 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.ReportVO,java.lang.String> REPORT_TPL_ID_PROP = new BeanProperty(com.dt.platform.domain.common.ReportVO.class ,REPORT_TPL_ID, java.lang.String.class, "模版", "模版", java.lang.String.class, null);
+	
+	/**
+	 * 来源 , 类型: java.lang.String
+	*/
+	public static final String REPORT_SOURCE="reportSource";
+	
+	/**
+	 * 来源 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.ReportVO,java.lang.String> REPORT_SOURCE_PROP = new BeanProperty(com.dt.platform.domain.common.ReportVO.class ,REPORT_SOURCE, java.lang.String.class, "来源", "来源", java.lang.String.class, null);
+	
+	/**
 	 * 创建人ID , 类型: java.lang.String
 	*/
 	public static final String CREATE_BY="createBy";
@@ -310,9 +331,19 @@ public class ReportVOMeta extends ReportMeta {
 	public static final BeanProperty<com.dt.platform.domain.common.ReportVO,com.dt.platform.domain.common.ReportCategory> REPORT_CATEGORY_PROP = new BeanProperty(com.dt.platform.domain.common.ReportVO.class ,REPORT_CATEGORY, com.dt.platform.domain.common.ReportCategory.class, "reportCategory", "reportCategory", com.dt.platform.domain.common.ReportCategory.class, null);
 	
 	/**
+	 * reportTpl , 类型: com.dt.platform.domain.common.ReportUDef
+	*/
+	public static final String REPORT_TPL="reportTpl";
+	
+	/**
+	 * reportTpl , 类型: com.dt.platform.domain.common.ReportUDef
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.ReportVO,com.dt.platform.domain.common.ReportUDef> REPORT_TPL_PROP = new BeanProperty(com.dt.platform.domain.common.ReportVO.class ,REPORT_TPL, com.dt.platform.domain.common.ReportUDef.class, "reportTpl", "reportTpl", com.dt.platform.domain.common.ReportUDef.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CATALOG_ID , NAME , CODE , STATUS , ROUTE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , REPORT_CATEGORY };
+	public static final String[] $PROPS={ PAGE_INDEX , PAGE_SIZE , SEARCH_FIELD , FUZZY_FIELD , SEARCH_VALUE , DIRTY_FIELDS , SORT_FIELD , SORT_TYPE , DATA_ORIGIN , QUERY_LOGIC , REQUEST_ACTION , IDS , ID , CATALOG_ID , NAME , CODE , STATUS , ROUTE , NOTES , REPORT_TPL_ID , REPORT_SOURCE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , REPORT_CATEGORY , REPORT_TPL };
 	
 	/**
 	 * 代理类
@@ -532,6 +563,28 @@ public class ReportVOMeta extends ReportMeta {
 		}
 		
 		/**
+		 * 设置 模版
+		 * @param reportTplId 模版
+		 * @return 当前对象
+		*/
+		public Report setReportTplId(String reportTplId) {
+			super.change(REPORT_TPL_ID,super.getReportTplId(),reportTplId);
+			super.setReportTplId(reportTplId);
+			return this;
+		}
+		
+		/**
+		 * 设置 来源
+		 * @param reportSource 来源
+		 * @return 当前对象
+		*/
+		public Report setReportSource(String reportSource) {
+			super.change(REPORT_SOURCE,super.getReportSource(),reportSource);
+			super.setReportSource(reportSource);
+			return this;
+		}
+		
+		/**
 		 * 设置 创建人ID
 		 * @param createBy 创建人ID
 		 * @return 当前对象
@@ -640,6 +693,17 @@ public class ReportVOMeta extends ReportMeta {
 			super.setReportCategory(reportCategory);
 			return this;
 		}
+		
+		/**
+		 * 设置 reportTpl
+		 * @param reportTpl reportTpl
+		 * @return 当前对象
+		*/
+		public Report setReportTpl(ReportUDef reportTpl) {
+			super.change(REPORT_TPL,super.getReportTpl(),reportTpl);
+			super.setReportTpl(reportTpl);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -658,6 +722,7 @@ public class ReportVOMeta extends ReportMeta {
 			$$proxy$$ inst=new $$proxy$$();
 			inst.setCode(this.getCode());
 			inst.setNotes(this.getNotes());
+			inst.setReportTplId(this.getReportTplId());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setVersion(this.getVersion());
 			inst.setCreateBy(this.getCreateBy());
@@ -671,12 +736,14 @@ public class ReportVOMeta extends ReportMeta {
 			inst.setTenantId(this.getTenantId());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
+			inst.setReportSource(this.getReportSource());
 			inst.setStatus(this.getStatus());
 			if(all) {
 				inst.setSearchField(this.getSearchField());
 				inst.setRequestAction(this.getRequestAction());
 				inst.setFuzzyField(this.getFuzzyField());
 				inst.setPageSize(this.getPageSize());
+				inst.setReportTpl(this.getReportTpl());
 				inst.setPageIndex(this.getPageIndex());
 				inst.setSortType(this.getSortType());
 				inst.setDirtyFields(this.getDirtyFields());

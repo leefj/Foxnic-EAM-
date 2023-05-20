@@ -25,6 +25,10 @@ public class CommonRelationManager extends RelationManager {
     public void setupReport() {
         this.property(ReportMeta.REPORT_CATEGORY_PROP)
                 .using(SysTables.SYS_REPORT.CATALOG_ID).join(SysTables.SYS_REPORT_CATEGORY.ID);
+
+        this.property(ReportMeta.REPORT_TPL_PROP)
+                .using(SysTables.SYS_REPORT.REPORT_TPL_ID).join(SysTables.SYS_REPORT_U_DEF.ID);
+
     }
 
     public void setupAutoRoleGrantRcd() {

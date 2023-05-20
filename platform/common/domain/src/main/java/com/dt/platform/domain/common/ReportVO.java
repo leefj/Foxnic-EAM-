@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 报表列VO类型
  * <p>报表列 , 数据表 sys_report 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-19 13:01:27
+ * @since 2023-05-20 09:40:58
  * @sign 14CF0A2AB324D116F5D8E758E4617C9F
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -403,6 +403,7 @@ public class ReportVO extends Report {
 		com.dt.platform.domain.common.meta.ReportVOMeta.$$proxy$$ inst = new com.dt.platform.domain.common.meta.ReportVOMeta.$$proxy$$();
 		inst.setCode(this.getCode());
 		inst.setNotes(this.getNotes());
+		inst.setReportTplId(this.getReportTplId());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setVersion(this.getVersion());
 		inst.setCreateBy(this.getCreateBy());
@@ -416,12 +417,14 @@ public class ReportVO extends Report {
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
+		inst.setReportSource(this.getReportSource());
 		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setSearchField(this.getSearchField());
 			inst.setRequestAction(this.getRequestAction());
 			inst.setFuzzyField(this.getFuzzyField());
 			inst.setPageSize(this.getPageSize());
+			inst.setReportTpl(this.getReportTpl());
 			inst.setPageIndex(this.getPageIndex());
 			inst.setSortType(this.getSortType());
 			inst.setDirtyFields(this.getDirtyFields());
@@ -492,6 +495,7 @@ public class ReportVO extends Report {
 		if(cast) {
 			this.setCode(DataParser.parse(String.class, map.get(ReportVOMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, map.get(ReportVOMeta.NOTES)));
+			this.setReportTplId(DataParser.parse(String.class, map.get(ReportVOMeta.REPORT_TPL_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(ReportVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(ReportVOMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(ReportVOMeta.CREATE_BY)));
@@ -505,12 +509,14 @@ public class ReportVO extends Report {
 			this.setTenantId(DataParser.parse(String.class, map.get(ReportVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(ReportVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(ReportVOMeta.ID)));
+			this.setReportSource(DataParser.parse(String.class, map.get(ReportVOMeta.REPORT_SOURCE)));
 			this.setStatus(DataParser.parse(String.class, map.get(ReportVOMeta.STATUS)));
 			// others
 			this.setSearchField(DataParser.parse(String.class, map.get(ReportVOMeta.SEARCH_FIELD)));
 			this.setRequestAction(DataParser.parse(String.class, map.get(ReportVOMeta.REQUEST_ACTION)));
 			this.setFuzzyField(DataParser.parse(String.class, map.get(ReportVOMeta.FUZZY_FIELD)));
 			this.setPageSize(DataParser.parse(Integer.class, map.get(ReportVOMeta.PAGE_SIZE)));
+			this.setReportTpl(DataParser.parse(ReportUDef.class, map.get(ReportVOMeta.REPORT_TPL)));
 			this.setPageIndex(DataParser.parse(Integer.class, map.get(ReportVOMeta.PAGE_INDEX)));
 			this.setSortType(DataParser.parse(String.class, map.get(ReportVOMeta.SORT_TYPE)));
 			this.setSortField(DataParser.parse(String.class, map.get(ReportVOMeta.SORT_FIELD)));
@@ -523,6 +529,7 @@ public class ReportVO extends Report {
 			try {
 				this.setCode( (String)map.get(ReportVOMeta.CODE));
 				this.setNotes( (String)map.get(ReportVOMeta.NOTES));
+				this.setReportTplId( (String)map.get(ReportVOMeta.REPORT_TPL_ID));
 				this.setUpdateTime( (Date)map.get(ReportVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)map.get(ReportVOMeta.VERSION));
 				this.setCreateBy( (String)map.get(ReportVOMeta.CREATE_BY));
@@ -536,12 +543,14 @@ public class ReportVO extends Report {
 				this.setTenantId( (String)map.get(ReportVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(ReportVOMeta.DELETE_BY));
 				this.setId( (String)map.get(ReportVOMeta.ID));
+				this.setReportSource( (String)map.get(ReportVOMeta.REPORT_SOURCE));
 				this.setStatus( (String)map.get(ReportVOMeta.STATUS));
 				// others
 				this.setSearchField( (String)map.get(ReportVOMeta.SEARCH_FIELD));
 				this.setRequestAction( (String)map.get(ReportVOMeta.REQUEST_ACTION));
 				this.setFuzzyField( (String)map.get(ReportVOMeta.FUZZY_FIELD));
 				this.setPageSize( (Integer)map.get(ReportVOMeta.PAGE_SIZE));
+				this.setReportTpl( (ReportUDef)map.get(ReportVOMeta.REPORT_TPL));
 				this.setPageIndex( (Integer)map.get(ReportVOMeta.PAGE_INDEX));
 				this.setSortType( (String)map.get(ReportVOMeta.SORT_TYPE));
 				this.setSortField( (String)map.get(ReportVOMeta.SORT_FIELD));
@@ -567,6 +576,7 @@ public class ReportVO extends Report {
 		if(cast) {
 			this.setCode(DataParser.parse(String.class, r.getValue(ReportVOMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(ReportVOMeta.NOTES)));
+			this.setReportTplId(DataParser.parse(String.class, r.getValue(ReportVOMeta.REPORT_TPL_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(ReportVOMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(ReportVOMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(ReportVOMeta.CREATE_BY)));
@@ -580,12 +590,14 @@ public class ReportVO extends Report {
 			this.setTenantId(DataParser.parse(String.class, r.getValue(ReportVOMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(ReportVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(ReportVOMeta.ID)));
+			this.setReportSource(DataParser.parse(String.class, r.getValue(ReportVOMeta.REPORT_SOURCE)));
 			this.setStatus(DataParser.parse(String.class, r.getValue(ReportVOMeta.STATUS)));
 			return true;
 		} else {
 			try {
 				this.setCode( (String)r.getValue(ReportVOMeta.CODE));
 				this.setNotes( (String)r.getValue(ReportVOMeta.NOTES));
+				this.setReportTplId( (String)r.getValue(ReportVOMeta.REPORT_TPL_ID));
 				this.setUpdateTime( (Date)r.getValue(ReportVOMeta.UPDATE_TIME));
 				this.setVersion( (Integer)r.getValue(ReportVOMeta.VERSION));
 				this.setCreateBy( (String)r.getValue(ReportVOMeta.CREATE_BY));
@@ -599,6 +611,7 @@ public class ReportVO extends Report {
 				this.setTenantId( (String)r.getValue(ReportVOMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(ReportVOMeta.DELETE_BY));
 				this.setId( (String)r.getValue(ReportVOMeta.ID));
+				this.setReportSource( (String)r.getValue(ReportVOMeta.REPORT_SOURCE));
 				this.setStatus( (String)r.getValue(ReportVOMeta.STATUS));
 				return true;
 			} catch (Exception e) {

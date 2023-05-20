@@ -1,6 +1,5 @@
 package com.dt.platform.eam.service.impl;
 
-
 import com.alibaba.fastjson.JSONObject;
 import com.dt.platform.constants.enums.eam.AssetOperateEnum;
 import com.dt.platform.constants.enums.eam.InspectionTaskPointStatusEnum;
@@ -8,7 +7,6 @@ import com.dt.platform.constants.enums.eam.InspectionTaskStatusEnum;
 import com.dt.platform.constants.enums.eam.MaintainTaskStatusEnum;
 import com.dt.platform.domain.eam.InspectionTask;
 import com.dt.platform.domain.eam.InspectionTaskPoint;
-import com.dt.platform.domain.eam.meta.CCustInspectTaskMeta;
 import com.dt.platform.domain.eam.meta.InspectionTaskMeta;
 import com.dt.platform.eam.service.IInspectionTaskPointService;
 import com.dt.platform.eam.service.IInspectionTaskService;
@@ -27,16 +25,12 @@ import com.github.foxnic.dao.excel.ExcelWriter;
 import com.github.foxnic.dao.excel.ValidateResult;
 import com.github.foxnic.dao.spec.DAO;
 import com.github.foxnic.sql.expr.ConditionExpr;
-import com.github.foxnic.sql.expr.In;
-import com.github.foxnic.sql.expr.Update;
 import com.github.foxnic.sql.meta.DBField;
-import jdk.nashorn.internal.scripts.JO;
 import org.github.foxnic.web.domain.hrm.Employee;
 import org.github.foxnic.web.framework.dao.DBConfigs;
 import org.github.foxnic.web.session.SessionUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.io.InputStream;
 import java.lang.reflect.Field;

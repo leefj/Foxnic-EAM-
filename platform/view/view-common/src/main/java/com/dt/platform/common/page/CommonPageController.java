@@ -8,11 +8,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 
-@Controller("CommonPublicPageController")
+@Controller("CommonPageController")
 @RequestMapping(CommonPageController.prefix)
 public class CommonPageController extends ViewController {
 
-	public static final String prefix="";
+
+	public static final String prefix="business/common/common";
+
+
+
+	@RequestMapping("/iframe.html")
+	public String iframe(Model model,HttpServletRequest request,String path) {
+
+		model.addAttribute("path",path);
+		return prefix+"/iframe";
+	}
 
 	/**
 	 * 主页面

@@ -34,7 +34,7 @@ public class SysDBMetaGenerator {
 		DBMetaClassFile dbMetaBuilder=new DBMetaClassFile(dao,configs.getDomianProject(),this.configs.getProjectConfigs().getDomainConstantsPackage(),"SysTables");
 		dbMetaBuilder.setTableFilter(table->{
 			table=table.toLowerCase();
-			if( table.startsWith("sys_licence_switch")
+			if(       table.startsWith("sys_licence_switch")
 					||table.startsWith("sys_backup_db_strategy")
 					||table.startsWith("sys_backup_db")
 					||table.startsWith("sys_auto_")
@@ -44,6 +44,7 @@ public class SysDBMetaGenerator {
 					||table.startsWith("sys_log_collect")
 					||table.startsWith("sys_report_category")
 					||table.startsWith("sys_report")
+					||table.startsWith("sys_report_u_def")
 					||table.startsWith("sys_category")
 					||table.startsWith("sys_auto_role") ) return true;
 			return false;
