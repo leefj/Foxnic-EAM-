@@ -24,7 +24,7 @@ import java.util.Map;
  * 报表列服务接口
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-19 13:01:27
+ * @since 2023-05-19 18:23:36
 */
 
 public interface IReportService extends  ISimpleIdService<Report,String> {

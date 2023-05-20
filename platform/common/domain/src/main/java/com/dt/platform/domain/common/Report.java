@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 报表列
  * <p>报表列 , 数据表 sys_report 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-19 13:01:27
- * @sign D7C1D015615DD1734FF8C2123102A390
+ * @since 2023-05-20 09:40:58
+ * @sign 983E753D259E4A1E7A20ED3665798C08
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -46,19 +46,19 @@ public class Report extends Entity {
 	/**
 	 * 分类：分类
 	*/
-	@ApiModelProperty(required = false,value="分类" , notes = "分类" , example = "681879879808974848")
+	@ApiModelProperty(required = false,value="分类" , notes = "分类" , example = "711932989134602240")
 	private String catalogId;
 	
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "1212")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "测试报表1")
 	private String name;
 	
 	/**
 	 * 编码：编码
 	*/
-	@ApiModelProperty(required = false,value="编码" , notes = "编码")
+	@ApiModelProperty(required = false,value="编码" , notes = "编码" , example = "711935534460567552")
 	private String code;
 	
 	/**
@@ -70,14 +70,26 @@ public class Report extends Entity {
 	/**
 	 * 路径：路径
 	*/
-	@ApiModelProperty(required = false,value="路径" , notes = "路径" , example = "1212")
+	@ApiModelProperty(required = false,value="路径" , notes = "路径")
 	private String route;
 	
 	/**
 	 * 备注：备注
 	*/
-	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "121212")
+	@ApiModelProperty(required = false,value="备注" , notes = "备注" , example = "测试")
 	private String notes;
+	
+	/**
+	 * 模版：模版
+	*/
+	@ApiModelProperty(required = false,value="模版" , notes = "模版")
+	private String reportTplId;
+	
+	/**
+	 * 来源：来源
+	*/
+	@ApiModelProperty(required = false,value="来源" , notes = "来源" , example = "ureport")
+	private String reportSource;
 	
 	/**
 	 * 创建人ID：创建人ID
@@ -100,7 +112,7 @@ public class Report extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-05-19 12:30:35")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-05-19 07:14:47")
 	private Date updateTime;
 	
 	/**
@@ -127,7 +139,7 @@ public class Report extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = false,value="version" , notes = "version" , example = "3")
+	@ApiModelProperty(required = false,value="version" , notes = "version" , example = "8")
 	private Integer version;
 	
 	/**
@@ -141,6 +153,12 @@ public class Report extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="reportCategory" , notes = "reportCategory")
 	private ReportCategory reportCategory;
+	
+	/**
+	 * reportTpl：reportTpl
+	*/
+	@ApiModelProperty(required = false,value="reportTpl" , notes = "reportTpl")
+	private ReportUDef reportTpl;
 	
 	/**
 	 * 获得 主键<br>
@@ -272,6 +290,44 @@ public class Report extends Entity {
 	*/
 	public Report setNotes(String notes) {
 		this.notes=notes;
+		return this;
+	}
+	
+	/**
+	 * 获得 模版<br>
+	 * 模版
+	 * @return 模版
+	*/
+	public String getReportTplId() {
+		return reportTplId;
+	}
+	
+	/**
+	 * 设置 模版
+	 * @param reportTplId 模版
+	 * @return 当前对象
+	*/
+	public Report setReportTplId(String reportTplId) {
+		this.reportTplId=reportTplId;
+		return this;
+	}
+	
+	/**
+	 * 获得 来源<br>
+	 * 来源
+	 * @return 来源
+	*/
+	public String getReportSource() {
+		return reportSource;
+	}
+	
+	/**
+	 * 设置 来源
+	 * @param reportSource 来源
+	 * @return 当前对象
+	*/
+	public Report setReportSource(String reportSource) {
+		this.reportSource=reportSource;
 		return this;
 	}
 	
@@ -495,6 +551,25 @@ public class Report extends Entity {
 		this.reportCategory=reportCategory;
 		return this;
 	}
+	
+	/**
+	 * 获得 reportTpl<br>
+	 * reportTpl
+	 * @return reportTpl
+	*/
+	public ReportUDef getReportTpl() {
+		return reportTpl;
+	}
+	
+	/**
+	 * 设置 reportTpl
+	 * @param reportTpl reportTpl
+	 * @return 当前对象
+	*/
+	public Report setReportTpl(ReportUDef reportTpl) {
+		this.reportTpl=reportTpl;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -542,6 +617,7 @@ public class Report extends Entity {
 		com.dt.platform.domain.common.meta.ReportMeta.$$proxy$$ inst = new com.dt.platform.domain.common.meta.ReportMeta.$$proxy$$();
 		inst.setCode(this.getCode());
 		inst.setNotes(this.getNotes());
+		inst.setReportTplId(this.getReportTplId());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setVersion(this.getVersion());
 		inst.setCreateBy(this.getCreateBy());
@@ -555,9 +631,11 @@ public class Report extends Entity {
 		inst.setTenantId(this.getTenantId());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
+		inst.setReportSource(this.getReportSource());
 		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setReportCategory(this.getReportCategory());
+			inst.setReportTpl(this.getReportTpl());
 		}
 		inst.clearModifies();
 		return inst;
@@ -619,6 +697,7 @@ public class Report extends Entity {
 		if(cast) {
 			this.setCode(DataParser.parse(String.class, map.get(ReportMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, map.get(ReportMeta.NOTES)));
+			this.setReportTplId(DataParser.parse(String.class, map.get(ReportMeta.REPORT_TPL_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(ReportMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(ReportMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(ReportMeta.CREATE_BY)));
@@ -632,14 +711,17 @@ public class Report extends Entity {
 			this.setTenantId(DataParser.parse(String.class, map.get(ReportMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(ReportMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(ReportMeta.ID)));
+			this.setReportSource(DataParser.parse(String.class, map.get(ReportMeta.REPORT_SOURCE)));
 			this.setStatus(DataParser.parse(String.class, map.get(ReportMeta.STATUS)));
 			// others
 			this.setReportCategory(DataParser.parse(ReportCategory.class, map.get(ReportMeta.REPORT_CATEGORY)));
+			this.setReportTpl(DataParser.parse(ReportUDef.class, map.get(ReportMeta.REPORT_TPL)));
 			return true;
 		} else {
 			try {
 				this.setCode( (String)map.get(ReportMeta.CODE));
 				this.setNotes( (String)map.get(ReportMeta.NOTES));
+				this.setReportTplId( (String)map.get(ReportMeta.REPORT_TPL_ID));
 				this.setUpdateTime( (Date)map.get(ReportMeta.UPDATE_TIME));
 				this.setVersion( (Integer)map.get(ReportMeta.VERSION));
 				this.setCreateBy( (String)map.get(ReportMeta.CREATE_BY));
@@ -653,9 +735,11 @@ public class Report extends Entity {
 				this.setTenantId( (String)map.get(ReportMeta.TENANT_ID));
 				this.setDeleteBy( (String)map.get(ReportMeta.DELETE_BY));
 				this.setId( (String)map.get(ReportMeta.ID));
+				this.setReportSource( (String)map.get(ReportMeta.REPORT_SOURCE));
 				this.setStatus( (String)map.get(ReportMeta.STATUS));
 				// others
 				this.setReportCategory( (ReportCategory)map.get(ReportMeta.REPORT_CATEGORY));
+				this.setReportTpl( (ReportUDef)map.get(ReportMeta.REPORT_TPL));
 				return true;
 			} catch (Exception e) {
 				return false;
@@ -674,6 +758,7 @@ public class Report extends Entity {
 		if(cast) {
 			this.setCode(DataParser.parse(String.class, r.getValue(ReportMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(ReportMeta.NOTES)));
+			this.setReportTplId(DataParser.parse(String.class, r.getValue(ReportMeta.REPORT_TPL_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(ReportMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(ReportMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(ReportMeta.CREATE_BY)));
@@ -687,12 +772,14 @@ public class Report extends Entity {
 			this.setTenantId(DataParser.parse(String.class, r.getValue(ReportMeta.TENANT_ID)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(ReportMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(ReportMeta.ID)));
+			this.setReportSource(DataParser.parse(String.class, r.getValue(ReportMeta.REPORT_SOURCE)));
 			this.setStatus(DataParser.parse(String.class, r.getValue(ReportMeta.STATUS)));
 			return true;
 		} else {
 			try {
 				this.setCode( (String)r.getValue(ReportMeta.CODE));
 				this.setNotes( (String)r.getValue(ReportMeta.NOTES));
+				this.setReportTplId( (String)r.getValue(ReportMeta.REPORT_TPL_ID));
 				this.setUpdateTime( (Date)r.getValue(ReportMeta.UPDATE_TIME));
 				this.setVersion( (Integer)r.getValue(ReportMeta.VERSION));
 				this.setCreateBy( (String)r.getValue(ReportMeta.CREATE_BY));
@@ -706,6 +793,7 @@ public class Report extends Entity {
 				this.setTenantId( (String)r.getValue(ReportMeta.TENANT_ID));
 				this.setDeleteBy( (String)r.getValue(ReportMeta.DELETE_BY));
 				this.setId( (String)r.getValue(ReportMeta.ID));
+				this.setReportSource( (String)r.getValue(ReportMeta.REPORT_SOURCE));
 				this.setStatus( (String)r.getValue(ReportMeta.STATUS));
 				return true;
 			} catch (Exception e) {

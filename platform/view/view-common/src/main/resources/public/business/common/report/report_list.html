@@ -2,7 +2,7 @@
 /**
  * 报表列 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-19 13:01:28
+ * @since 2023-05-20 09:40:59
  */
  -->
  <!DOCTYPE html>
@@ -49,6 +49,8 @@
                         <div id="status" th:data="${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}" style="width:150px"></div>
                     </div>
                     <!-- 路径 , route ,typeName=text_input, isHideInSearch=true -->
+                    <!-- 模版 , reportTplId ,typeName=select_box, isHideInSearch=true -->
+                    <!-- 来源 , reportSource ,typeName=radio_box, isHideInSearch=true -->
                     <!-- 名称 , name ,typeName=text_input, isHideInSearch=false -->
                     <div class="search-unit">
                         <div class="search-label-div" style="width:70px"><span th:text="${lang.translate('名称')}" class="search-label name-label">名称</span><span class="search-colon">:</span></div>
@@ -113,6 +115,7 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${pageHelper.getTableColumnWidthConfig('data-table')}]];
     var RADIO_STATUS_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.StatusEnableEnum')}]];
+    var RADIO_REPORTSOURCE_DATA = [[${enum.toArray('com.dt.platform.constants.enums.common.ReportSourceEnum')}]];
     var AUTH_PREFIX="sys_report";
 
 
