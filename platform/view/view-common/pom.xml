@@ -33,6 +33,9 @@
         <defaultGoal>compile</defaultGoal>
         <resources>
             <resource>
+                <excludes>
+                    <exclude>**/node_modules/**</exclude>
+                </excludes>
                 <directory>${basedir}/src/main/resources</directory>
                 <includes>
                     <include>**/**</include>
