@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 报表列
  * <p>报表列 , 数据表 sys_report 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-20 15:10:07
- * @sign 983E753D259E4A1E7A20ED3665798C08
+ * @since 2023-05-20 21:33:37
+ * @sign 1FA3507F7CDFB8AA4AF8CBAACD1997A8
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -44,6 +44,12 @@ public class Report extends Entity {
 	private String id;
 	
 	/**
+	 * 编码：编码
+	*/
+	@ApiModelProperty(required = false,value="编码" , notes = "编码" , example = "711935534460567552")
+	private String code;
+	
+	/**
 	 * 分类：分类
 	*/
 	@ApiModelProperty(required = false,value="分类" , notes = "分类" , example = "711932989134602240")
@@ -52,14 +58,8 @@ public class Report extends Entity {
 	/**
 	 * 名称：名称
 	*/
-	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "测试报表1")
+	@ApiModelProperty(required = false,value="名称" , notes = "名称" , example = "资产显示")
 	private String name;
-	
-	/**
-	 * 编码：编码
-	*/
-	@ApiModelProperty(required = false,value="编码" , notes = "编码" , example = "711935534460567552")
-	private String code;
 	
 	/**
 	 * 状态：状态
@@ -70,7 +70,7 @@ public class Report extends Entity {
 	/**
 	 * 路径：路径
 	*/
-	@ApiModelProperty(required = false,value="路径" , notes = "路径")
+	@ApiModelProperty(required = false,value="路径" , notes = "路径" , example = "/ureport/preview?_u=db:712240054507929600.ureport.xml")
 	private String route;
 	
 	/**
@@ -82,8 +82,14 @@ public class Report extends Entity {
 	/**
 	 * 模版：模版
 	*/
-	@ApiModelProperty(required = false,value="模版" , notes = "模版")
+	@ApiModelProperty(required = false,value="模版" , notes = "模版" , example = "712399636991574016")
 	private String reportTplId;
+	
+	/**
+	 * 报表设计：报表设计
+	*/
+	@ApiModelProperty(required = false,value="报表设计" , notes = "报表设计" , example = "712240054507929600")
+	private String reportTplDefId;
 	
 	/**
 	 * 来源：来源
@@ -112,7 +118,7 @@ public class Report extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-05-19 07:14:47")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-05-20 09:30:24")
 	private Date updateTime;
 	
 	/**
@@ -139,7 +145,7 @@ public class Report extends Entity {
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = false,value="version" , notes = "version" , example = "8")
+	@ApiModelProperty(required = false,value="version" , notes = "version" , example = "11")
 	private Integer version;
 	
 	/**
@@ -180,6 +186,25 @@ public class Report extends Entity {
 	}
 	
 	/**
+	 * 获得 编码<br>
+	 * 编码
+	 * @return 编码
+	*/
+	public String getCode() {
+		return code;
+	}
+	
+	/**
+	 * 设置 编码
+	 * @param code 编码
+	 * @return 当前对象
+	*/
+	public Report setCode(String code) {
+		this.code=code;
+		return this;
+	}
+	
+	/**
 	 * 获得 分类<br>
 	 * 分类
 	 * @return 分类
@@ -214,25 +239,6 @@ public class Report extends Entity {
 	*/
 	public Report setName(String name) {
 		this.name=name;
-		return this;
-	}
-	
-	/**
-	 * 获得 编码<br>
-	 * 编码
-	 * @return 编码
-	*/
-	public String getCode() {
-		return code;
-	}
-	
-	/**
-	 * 设置 编码
-	 * @param code 编码
-	 * @return 当前对象
-	*/
-	public Report setCode(String code) {
-		this.code=code;
 		return this;
 	}
 	
@@ -309,6 +315,25 @@ public class Report extends Entity {
 	*/
 	public Report setReportTplId(String reportTplId) {
 		this.reportTplId=reportTplId;
+		return this;
+	}
+	
+	/**
+	 * 获得 报表设计<br>
+	 * 报表设计
+	 * @return 报表设计
+	*/
+	public String getReportTplDefId() {
+		return reportTplDefId;
+	}
+	
+	/**
+	 * 设置 报表设计
+	 * @param reportTplDefId 报表设计
+	 * @return 当前对象
+	*/
+	public Report setReportTplDefId(String reportTplDefId) {
+		this.reportTplDefId=reportTplDefId;
 		return this;
 	}
 	
@@ -618,6 +643,7 @@ public class Report extends Entity {
 		inst.setCode(this.getCode());
 		inst.setNotes(this.getNotes());
 		inst.setReportTplId(this.getReportTplId());
+		inst.setReportTplDefId(this.getReportTplDefId());
 		inst.setUpdateTime(this.getUpdateTime());
 		inst.setVersion(this.getVersion());
 		inst.setCreateBy(this.getCreateBy());
@@ -698,6 +724,7 @@ public class Report extends Entity {
 			this.setCode(DataParser.parse(String.class, map.get(ReportMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, map.get(ReportMeta.NOTES)));
 			this.setReportTplId(DataParser.parse(String.class, map.get(ReportMeta.REPORT_TPL_ID)));
+			this.setReportTplDefId(DataParser.parse(String.class, map.get(ReportMeta.REPORT_TPL_DEF_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(ReportMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(ReportMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(ReportMeta.CREATE_BY)));
@@ -722,6 +749,7 @@ public class Report extends Entity {
 				this.setCode( (String)map.get(ReportMeta.CODE));
 				this.setNotes( (String)map.get(ReportMeta.NOTES));
 				this.setReportTplId( (String)map.get(ReportMeta.REPORT_TPL_ID));
+				this.setReportTplDefId( (String)map.get(ReportMeta.REPORT_TPL_DEF_ID));
 				this.setUpdateTime( (Date)map.get(ReportMeta.UPDATE_TIME));
 				this.setVersion( (Integer)map.get(ReportMeta.VERSION));
 				this.setCreateBy( (String)map.get(ReportMeta.CREATE_BY));
@@ -759,6 +787,7 @@ public class Report extends Entity {
 			this.setCode(DataParser.parse(String.class, r.getValue(ReportMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(ReportMeta.NOTES)));
 			this.setReportTplId(DataParser.parse(String.class, r.getValue(ReportMeta.REPORT_TPL_ID)));
+			this.setReportTplDefId(DataParser.parse(String.class, r.getValue(ReportMeta.REPORT_TPL_DEF_ID)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(ReportMeta.UPDATE_TIME)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(ReportMeta.VERSION)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(ReportMeta.CREATE_BY)));
@@ -780,6 +809,7 @@ public class Report extends Entity {
 				this.setCode( (String)r.getValue(ReportMeta.CODE));
 				this.setNotes( (String)r.getValue(ReportMeta.NOTES));
 				this.setReportTplId( (String)r.getValue(ReportMeta.REPORT_TPL_ID));
+				this.setReportTplDefId( (String)r.getValue(ReportMeta.REPORT_TPL_DEF_ID));
 				this.setUpdateTime( (Date)r.getValue(ReportMeta.UPDATE_TIME));
 				this.setVersion( (Integer)r.getValue(ReportMeta.VERSION));
 				this.setCreateBy( (String)r.getValue(ReportMeta.CREATE_BY));

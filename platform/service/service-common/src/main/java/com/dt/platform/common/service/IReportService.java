@@ -30,6 +30,8 @@ import java.util.Map;
 public interface IReportService extends  ISimpleIdService<Report,String> {
 
 
+	Result copyData(String id);
+
 	/**
 	 * 添加，如果语句错误，则抛出异常
 	 * @param report 数据对象

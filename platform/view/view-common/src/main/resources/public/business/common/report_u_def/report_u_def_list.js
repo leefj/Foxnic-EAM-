@@ -1,7 +1,7 @@
 /**
  * 报表定义 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-20 09:08:52
+ * @since 2023-05-20 20:46:54
  */
 
 
@@ -85,6 +85,7 @@ function ListPage() {
 					{ fixed: 'left',type: 'numbers' },
 					{ fixed: 'left',type:'checkbox'}
 					,{ field: 'id', align:"left",fixed:false,  hide:true, sort: true  , title: fox.translate('主键') , templet: function (d) { return templet('id',d.id,d);}  }
+					,{ field: 'ownerType', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('所属类型') , templet: function (d) { return templet('ownerType',d.ownerType,d);}  }
 					,{ field: 'fileName', align:"left",fixed:false,  hide:false, sort: true  , title: fox.translate('名称') , templet: function (d) { return templet('fileName',d.fileName,d);}  }
 					,{ field: 'createTime', align:"right", fixed:false, hide:false, sort: true   ,title: fox.translate('创建时间') ,templet: function (d) { return templet('createTime',fox.dateFormat(d.createTime,"yyyy-MM-dd"),d); }  }
 					,{ field: fox.translate('空白列','','cmp:table'), align:"center", hide:false, sort: false, title: "",minWidth:8,width:8,unresize:true}

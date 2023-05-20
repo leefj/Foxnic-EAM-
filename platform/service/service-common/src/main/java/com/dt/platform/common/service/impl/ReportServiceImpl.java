@@ -1,6 +1,10 @@
 package com.dt.platform.common.service.impl;
 
 import javax.annotation.Resource;
+
+import com.dt.platform.common.service.IReportUDefService;
+import com.dt.platform.domain.common.ReportUDef;
+import com.github.foxnic.commons.lang.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -52,6 +56,11 @@ public class ReportServiceImpl extends SuperService<Report> implements IReportSe
 	@Resource(name=DBConfigs.PRIMARY_DAO) 
 	private DAO dao=null;
 
+
+	@Autowired
+	private IReportUDefService reportUDefService;
+
+
 	/**
 	 * 获得 DAO 对象
 	 * */
@@ -73,8 +82,51 @@ public class ReportServiceImpl extends SuperService<Report> implements IReportSe
 	 */
 	@Override
 	public Result insert(Report report,boolean throwsException) {
+
+		if(StringUtil.isBlank(report.getReportTplId())){
+			return ErrorDesc.failureMessage("请选择模版");
+		}
 		Result r=super.insert(report,throwsException);
+		ReportUDef def=reportUDefService.getById(report.getReportTplId());
+		String newId=IDGenerator.getSnowflakeIdString();
+		def.setId(newId);
+		def.setOwnerType("inst");
+		def.setCreateTime(new Date());
+		def.setUpdateTime(new Date());
+		def.setFileName(newId+".ureport.xml");
+		reportUDefService.insert(def,true);
+		report.setReportTplDefId(newId);
+		report.setRoute("/ureport/preview?_u=db:"+newId+".ureport.xml");
+		super.update(report,SaveMode.NOT_NULL_FIELDS);
 		return r;
+	}
+
+	@Override
+	public Result copyData(String id) {
+		Report report=this.getById(id);
+
+		String defId=report.getReportTplDefId();
+		ReportUDef def=reportUDefService.getById(defId);
+		String newId=IDGenerator.getSnowflakeIdString();
+		def.setId(newId);
+		def.setOwnerType("inst");
+		def.setCreateTime(new Date());
+		def.setUpdateTime(new Date());
+		def.setFileName(newId+".ureport.xml");
+		reportUDefService.insert(def,true);
+
+		String newReportId=IDGenerator.getSnowflakeIdString();
+		report.setCode(newReportId);
+		report.setId(newReportId);
+		report.setName(report.getName()+"复制");
+		report.setReportTplDefId(newId);
+		report.setCreateTime(new Date());
+		report.setUpdateTime(new Date());
+		report.setReportTplDefId(newId);
+		report.setRoute("/ureport/preview?_u=db:"+newId+".ureport.xml");
+		super.insert(report,true);
+		return ErrorDesc.success();
+
 	}
 
 	/**

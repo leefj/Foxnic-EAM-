@@ -1,7 +1,7 @@
 /**
  * 报表列 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-20 15:10:09
+ * @since 2023-05-20 21:33:39
  */
 
 function FormPage() {
@@ -169,6 +169,8 @@ function FormPage() {
 			filterable: true,
 			paging: true,
 			pageRemote: true,
+			layVerify: 'required',
+			layVerType: 'msg',
 			on: function(data){
 				setTimeout(function () {
 					window.pageExt.form.onSelectBoxChanged && window.pageExt.form.onSelectBoxChanged("reportTplId",data.arr,data.change,data.isAdd);
@@ -182,7 +184,7 @@ function FormPage() {
 				var defaultValues=[],defaultIndexs=[];
 				if(action=="create") {
 					defaultValues = "".split(",");
-					defaultIndexs = "".split(",");
+					defaultIndexs = "0".split(",");
 				}
 				var opts=[];
 				if(!data) return opts;
@@ -259,6 +261,8 @@ function FormPage() {
 
 			//设置  分类 设置下拉框勾选
 			fox.setSelectValue4QueryApi("#catalogId",formData.reportCategory);
+			//设置  模版 设置下拉框勾选
+			fox.setSelectValue4QueryApi("#reportTplId",formData.reportTpl);
 
 			//处理fillBy
 
@@ -323,6 +327,8 @@ function FormPage() {
 
 		//获取 分类 下拉框的值
 		data["catalogId"]=fox.getSelectedValue("catalogId",false);
+		//获取 模版 下拉框的值
+		data["reportTplId"]=fox.getSelectedValue("reportTplId",false);
 
 		return data;
 	}

@@ -171,12 +171,38 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
+
+        },
+        reportCopy:function (ps,it){
+            console.log('reportView',ps);
+            var btnClass="report-copy"
+            var btn=$('.'+btnClass).filter("[data-id='" +ps.id + "']");
+            var api=moduleURL+"/copy-data";
+
+            var successMessage="复制成功"
+            top.layer.confirm(fox.translate('确定进行该操作吗？'), function (i) {
+                top.layer.close(i);
+                admin.post(api, ps, function (r) {
+                    if (r.success) {
+                        top.layer.msg(successMessage, {time: 1000});
+                        window.module.refreshTableData();
+                    } else {
+                        top.layer.msg("复制失败", {time: 1000});
+                    }
+                }, {delayLoading: 1000, elms: [btn]});
+            });
+
         },
         reportDesinger:function (data){
+
+            var url="/ureport/designer?_u=db:"+data.reportTplDefId+".ureport.xml"
+            window.open(url,"newwindow");
             console.log('reportDesinger',data);
         },
         reportView:function (data){
             console.log('reportView',data);
+            window.open(data.route,"_blank");
+
         },
         /**
          * 末尾执行

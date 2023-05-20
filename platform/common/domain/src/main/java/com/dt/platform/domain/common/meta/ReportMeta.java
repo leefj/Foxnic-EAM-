@@ -11,8 +11,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-20 15:10:07
- * @sign 983E753D259E4A1E7A20ED3665798C08
+ * @since 2023-05-20 21:33:37
+ * @sign 1FA3507F7CDFB8AA4AF8CBAACD1997A8
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -27,6 +27,16 @@ public class ReportMeta {
 	 * 主键 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.common.Report,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.common.Report.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
+	
+	/**
+	 * 编码 , 类型: java.lang.String
+	*/
+	public static final String CODE="code";
+	
+	/**
+	 * 编码 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.Report,java.lang.String> CODE_PROP = new BeanProperty(com.dt.platform.domain.common.Report.class ,CODE, java.lang.String.class, "编码", "编码", java.lang.String.class, null);
 	
 	/**
 	 * 分类 , 类型: java.lang.String
@@ -47,16 +57,6 @@ public class ReportMeta {
 	 * 名称 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.common.Report,java.lang.String> NAME_PROP = new BeanProperty(com.dt.platform.domain.common.Report.class ,NAME, java.lang.String.class, "名称", "名称", java.lang.String.class, null);
-	
-	/**
-	 * 编码 , 类型: java.lang.String
-	*/
-	public static final String CODE="code";
-	
-	/**
-	 * 编码 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.common.Report,java.lang.String> CODE_PROP = new BeanProperty(com.dt.platform.domain.common.Report.class ,CODE, java.lang.String.class, "编码", "编码", java.lang.String.class, null);
 	
 	/**
 	 * 状态 , 类型: java.lang.String
@@ -97,6 +97,16 @@ public class ReportMeta {
 	 * 模版 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.common.Report,java.lang.String> REPORT_TPL_ID_PROP = new BeanProperty(com.dt.platform.domain.common.Report.class ,REPORT_TPL_ID, java.lang.String.class, "模版", "模版", java.lang.String.class, null);
+	
+	/**
+	 * 报表设计 , 类型: java.lang.String
+	*/
+	public static final String REPORT_TPL_DEF_ID="reportTplDefId";
+	
+	/**
+	 * 报表设计 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.Report,java.lang.String> REPORT_TPL_DEF_ID_PROP = new BeanProperty(com.dt.platform.domain.common.Report.class ,REPORT_TPL_DEF_ID, java.lang.String.class, "报表设计", "报表设计", java.lang.String.class, null);
 	
 	/**
 	 * 来源 , 类型: java.lang.String
@@ -221,7 +231,7 @@ public class ReportMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CATALOG_ID , NAME , CODE , STATUS , ROUTE , NOTES , REPORT_TPL_ID , REPORT_SOURCE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , REPORT_CATEGORY , REPORT_TPL };
+	public static final String[] $PROPS={ ID , CODE , CATALOG_ID , NAME , STATUS , ROUTE , NOTES , REPORT_TPL_ID , REPORT_TPL_DEF_ID , REPORT_SOURCE , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , REPORT_CATEGORY , REPORT_TPL };
 	
 	/**
 	 * 代理类
@@ -239,6 +249,17 @@ public class ReportMeta {
 		public Report setId(String id) {
 			super.change(ID,super.getId(),id);
 			super.setId(id);
+			return this;
+		}
+		
+		/**
+		 * 设置 编码
+		 * @param code 编码
+		 * @return 当前对象
+		*/
+		public Report setCode(String code) {
+			super.change(CODE,super.getCode(),code);
+			super.setCode(code);
 			return this;
 		}
 		
@@ -261,17 +282,6 @@ public class ReportMeta {
 		public Report setName(String name) {
 			super.change(NAME,super.getName(),name);
 			super.setName(name);
-			return this;
-		}
-		
-		/**
-		 * 设置 编码
-		 * @param code 编码
-		 * @return 当前对象
-		*/
-		public Report setCode(String code) {
-			super.change(CODE,super.getCode(),code);
-			super.setCode(code);
 			return this;
 		}
 		
@@ -316,6 +326,17 @@ public class ReportMeta {
 		public Report setReportTplId(String reportTplId) {
 			super.change(REPORT_TPL_ID,super.getReportTplId(),reportTplId);
 			super.setReportTplId(reportTplId);
+			return this;
+		}
+		
+		/**
+		 * 设置 报表设计
+		 * @param reportTplDefId 报表设计
+		 * @return 当前对象
+		*/
+		public Report setReportTplDefId(String reportTplDefId) {
+			super.change(REPORT_TPL_DEF_ID,super.getReportTplDefId(),reportTplDefId);
+			super.setReportTplDefId(reportTplDefId);
 			return this;
 		}
 		
@@ -469,6 +490,7 @@ public class ReportMeta {
 			inst.setCode(this.getCode());
 			inst.setNotes(this.getNotes());
 			inst.setReportTplId(this.getReportTplId());
+			inst.setReportTplDefId(this.getReportTplDefId());
 			inst.setUpdateTime(this.getUpdateTime());
 			inst.setVersion(this.getVersion());
 			inst.setCreateBy(this.getCreateBy());
