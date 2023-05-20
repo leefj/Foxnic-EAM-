@@ -2,21 +2,23 @@ package com.dt.platform.common.config;
 
 
 import com.bstek.ureport.definition.datasource.BuildinDatasource;
+import com.dt.platform.framework.datasource.DatasourceConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
 import javax.annotation.Resource;
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
-import javax.sql.DataSource;
 
 
 @Component
 public class UreportDataSource implements BuildinDatasource {
 
 
-    @Resource
-    DataSource dataSource;
+    @Resource(name = DatasourceConfig.PRIMARY_DATA_SOURCE_NAME)
+    private DataSource dataSource;
 
     private Logger log = LoggerFactory.getLogger(getClass());
 
