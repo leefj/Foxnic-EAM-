@@ -83,15 +83,15 @@
 <script th:inline="javascript">
     var LAYUI_TABLE_WIDTH_CONFIG = [[${layuiTableWidthConfig}]];
     var VALIDATE_CONFIG={"code":{"labelInForm":"编码","inputType":"text_input","required":true},"name":{"labelInForm":"名称","inputType":"text_input","required":true}};
-    var AUTH_PREFIX="sys_report_category";
+    var AUTH_PREFIX="sys_form_category";
 
 
 </script>
 
 
 
-<script th:src="'/business/common/report_category/report_category_ext.js?'+${cacheKey}"></script>
-<script th:src="'/business/common/report_category/report_category_form.js?'+${cacheKey}"></script>
+<script th:src="'/business/common/form_category/form_category_ext.js?'+${cacheKey}"></script>
+<script th:src="'/business/common/form_category/form_category_form.js?'+${cacheKey}"></script>
 
 </body>
 </html>

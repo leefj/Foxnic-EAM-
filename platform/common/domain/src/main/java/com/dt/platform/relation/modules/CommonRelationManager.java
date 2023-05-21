@@ -20,6 +20,13 @@ public class CommonRelationManager extends RelationManager {
         this.setupAutoRoleGrantRcd();
         this.setupReport();
 
+        this.setupFormInfo();
+
+    }
+
+    public void setupFormInfo() {
+        this.property(FormInfoMeta.FORM_CATEGORY_PROP)
+                .using(SysTables.SYS_FORM_INFO.CATALOG_ID).join(SysTables.SYS_FORM_CATEGORY.ID);
     }
 
     public void setupReport() {
