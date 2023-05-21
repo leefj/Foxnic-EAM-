@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# 从服务器下载最新数据，替换本地数据库压缩文件
 cur_dir=$(cd `dirname $0`; pwd)
 conf_file=$cur_dir/app.conf
 hostname=`hostname`

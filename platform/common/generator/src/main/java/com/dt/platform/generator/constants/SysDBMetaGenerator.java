@@ -44,6 +44,8 @@ public class SysDBMetaGenerator {
 					||table.startsWith("sys_log_collect")
 					||table.startsWith("sys_report_category")
 					||table.startsWith("sys_report")
+					||table.startsWith("sys_form_category")
+					||table.startsWith("sys_form")
 					||table.startsWith("sys_report_u_def")
 					||table.startsWith("sys_category")
 					||table.startsWith("sys_auto_role") ) return true;

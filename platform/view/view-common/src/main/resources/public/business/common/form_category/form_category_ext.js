@@ -1,7 +1,7 @@
 /**
- * 报表列 列表页 JS 脚本
+ * 表单类型 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-19 12:42:39
+ * @since 2023-05-21 08:15:49
  */
 
 layui.config({
@@ -18,7 +18,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
     table = layui.table,layer = layui.layer,util = layui.util,fox = layui.foxnic,xmSelect = layui.xmSelect,foxup=layui.foxnicUpload;
 
     //模块基础路径
-    const moduleURL="/service-common/sys-report";
+    const moduleURL="/service-common/sys-form-category";
 
 
     //列表页的扩展
@@ -171,38 +171,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
         moreAction:function (menu,data, it){
             console.log('moreAction',menu,data,it);
-
-        },
-        reportCopy:function (ps,it){
-            console.log('reportView',ps);
-            var btnClass="report-copy"
-            var btn=$('.'+btnClass).filter("[data-id='" +ps.id + "']");
-            var api=moduleURL+"/copy-data";
-
-            var successMessage="复制成功"
-            top.layer.confirm(fox.translate('确定进行该操作吗？'), function (i) {
-                top.layer.close(i);
-                admin.post(api, ps, function (r) {
-                    if (r.success) {
-                        top.layer.msg(successMessage, {time: 1000});
-                        window.module.refreshTableData();
-                    } else {
-                        top.layer.msg("复制失败", {time: 1000});
-                    }
-                }, {delayLoading: 1000, elms: [btn]});
-            });
-
-        },
-        reportDesinger:function (data){
-
-            var url="/ureport/designer?_u=db:"+data.reportTplDefId+".ureport.xml"
-            window.open(url,"newwindow");
-            console.log('reportDesinger',data);
-        },
-        reportView:function (data){
-            console.log('reportView',data);
-            window.open(data.route,"_blank");
-
         },
         /**
          * 末尾执行
@@ -234,12 +202,6 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * 表单数据填充前
          * */
         beforeDataFill:function (data) {
-            $("#code").attr("placeholder","系统自动填充");
-            $("#route").attr("placeholder","系统自动填充");
-
-            $("#code").attr("disabled","disabled").css("background-color","#e6e6e6");
-            $("#route").attr("disabled","disabled").css("background-color","#e6e6e6");
-
             console.log('beforeDataFill',data);
         },
         /**
