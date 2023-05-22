@@ -10,8 +10,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-21 09:21:58
- * @sign 432167DC62CF35543A520E7AE300CCB2
+ * @since 2023-05-21 17:54:03
+ * @sign 0FC0D34AC542EA06F24AEF628F9249D0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -86,16 +86,6 @@ public class FormInfoMeta {
 	 * 备注 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.common.FormInfo,java.lang.String> NOTES_PROP = new BeanProperty(com.dt.platform.domain.common.FormInfo.class ,NOTES, java.lang.String.class, "备注", "备注", java.lang.String.class, null);
-	
-	/**
-	 * 定义 , 类型: java.lang.String
-	*/
-	public static final String DESIGNER_DATA="designerData";
-	
-	/**
-	 * 定义 , 类型: java.lang.String
-	*/
-	public static final BeanProperty<com.dt.platform.domain.common.FormInfo,java.lang.String> DESIGNER_DATA_PROP = new BeanProperty(com.dt.platform.domain.common.FormInfo.class ,DESIGNER_DATA, java.lang.String.class, "定义", "定义", java.lang.String.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -200,7 +190,7 @@ public class FormInfoMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CODE , CATALOG_ID , NAME , STATUS , ROUTE , NOTES , DESIGNER_DATA , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , FORM_CATEGORY };
+	public static final String[] $PROPS={ ID , CODE , CATALOG_ID , NAME , STATUS , ROUTE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , FORM_CATEGORY };
 	
 	/**
 	 * 代理类
@@ -284,17 +274,6 @@ public class FormInfoMeta {
 		public FormInfo setNotes(String notes) {
 			super.change(NOTES,super.getNotes(),notes);
 			super.setNotes(notes);
-			return this;
-		}
-		
-		/**
-		 * 设置 定义
-		 * @param designerData 定义
-		 * @return 当前对象
-		*/
-		public FormInfo setDesignerData(String designerData) {
-			super.change(DESIGNER_DATA,super.getDesignerData(),designerData);
-			super.setDesignerData(designerData);
 			return this;
 		}
 		
@@ -423,7 +402,6 @@ public class FormInfoMeta {
 		@Transient
 		public FormInfo duplicate(boolean all) {
 			$$proxy$$ inst=new $$proxy$$();
-			inst.setDesignerData(this.getDesignerData());
 			inst.setCode(this.getCode());
 			inst.setNotes(this.getNotes());
 			inst.setUpdateTime(this.getUpdateTime());

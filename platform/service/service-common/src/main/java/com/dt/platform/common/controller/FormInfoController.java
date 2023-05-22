@@ -68,7 +68,7 @@ public class FormInfoController extends SuperController {
 		@ApiImplicitParam(name = FormInfoVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
 		@ApiImplicitParam(name = FormInfoVOMeta.ROUTE , value = "路径" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = FormInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormInfoVOMeta.DESIGNER_DATA , value = "定义" , required = false , dataTypeClass=String.class),
+
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true , ignorePrimaryKey = true)
 	@ApiOperationSupport(order=1 , author="金杰 , maillank@qq.com")
@@ -177,7 +177,7 @@ public class FormInfoController extends SuperController {
 		@ApiImplicitParam(name = FormInfoVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
 		@ApiImplicitParam(name = FormInfoVOMeta.ROUTE , value = "路径" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = FormInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormInfoVOMeta.DESIGNER_DATA , value = "定义" , required = false , dataTypeClass=String.class),
+
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport( order=4 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { FormInfoVOMeta.PAGE_INDEX , FormInfoVOMeta.PAGE_SIZE , FormInfoVOMeta.SEARCH_FIELD , FormInfoVOMeta.FUZZY_FIELD , FormInfoVOMeta.SEARCH_VALUE , FormInfoVOMeta.DIRTY_FIELDS , FormInfoVOMeta.SORT_FIELD , FormInfoVOMeta.SORT_TYPE , FormInfoVOMeta.DATA_ORIGIN , FormInfoVOMeta.QUERY_LOGIC , FormInfoVOMeta.REQUEST_ACTION , FormInfoVOMeta.IDS } )
@@ -202,7 +202,7 @@ public class FormInfoController extends SuperController {
 		@ApiImplicitParam(name = FormInfoVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
 		@ApiImplicitParam(name = FormInfoVOMeta.ROUTE , value = "路径" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = FormInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormInfoVOMeta.DESIGNER_DATA , value = "定义" , required = false , dataTypeClass=String.class),
+
 	})
 	@ApiParamSupport(ignoreDBTreatyProperties = true, ignoreDefaultVoProperties = true)
 	@ApiOperationSupport(order=5 ,  ignoreParameters = { FormInfoVOMeta.PAGE_INDEX , FormInfoVOMeta.PAGE_SIZE , FormInfoVOMeta.SEARCH_FIELD , FormInfoVOMeta.FUZZY_FIELD , FormInfoVOMeta.SEARCH_VALUE , FormInfoVOMeta.DIRTY_FIELDS , FormInfoVOMeta.SORT_FIELD , FormInfoVOMeta.SORT_TYPE , FormInfoVOMeta.DATA_ORIGIN , FormInfoVOMeta.QUERY_LOGIC , FormInfoVOMeta.REQUEST_ACTION , FormInfoVOMeta.IDS } )
@@ -270,7 +270,7 @@ public class FormInfoController extends SuperController {
 		@ApiImplicitParam(name = FormInfoVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
 		@ApiImplicitParam(name = FormInfoVOMeta.ROUTE , value = "路径" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = FormInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormInfoVOMeta.DESIGNER_DATA , value = "定义" , required = false , dataTypeClass=String.class),
+
 	})
 	@ApiOperationSupport(order=5 , author="金杰 , maillank@qq.com" ,  ignoreParameters = { FormInfoVOMeta.PAGE_INDEX , FormInfoVOMeta.PAGE_SIZE } )
 	@SentinelResource(value = FormInfoServiceProxy.QUERY_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
@@ -296,7 +296,7 @@ public class FormInfoController extends SuperController {
 		@ApiImplicitParam(name = FormInfoVOMeta.STATUS , value = "状态" , required = false , dataTypeClass=String.class , example = "enable"),
 		@ApiImplicitParam(name = FormInfoVOMeta.ROUTE , value = "路径" , required = false , dataTypeClass=String.class),
 		@ApiImplicitParam(name = FormInfoVOMeta.NOTES , value = "备注" , required = false , dataTypeClass=String.class),
-		@ApiImplicitParam(name = FormInfoVOMeta.DESIGNER_DATA , value = "定义" , required = false , dataTypeClass=String.class),
+
 	})
 	@ApiOperationSupport(order=8 , author="金杰 , maillank@qq.com")
 	@SentinelResource(value = FormInfoServiceProxy.QUERY_PAGED_LIST , blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )

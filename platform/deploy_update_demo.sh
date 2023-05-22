@@ -18,7 +18,8 @@ echo "if [[ ! -f \"/tmp/app_release_last.tar.gz\" ]];then                       
 echo "  echo \"file not found,failed\"                                                           ">>$ops_conf
 echo "  exit 1                                                                                  ">>$ops_conf
 echo "fi                                                                                          ">>$ops_conf
-echo "# sh /app/app/bin/deployDemoDbFromDev.sh  ">>$ops_conf
+echo "sh /app/app/bin/deployDemoDbFromDev.sh  ">>$ops_conf
+echo "sleep 1  ">>$ops_conf
 echo "cd  /tmp">>$ops_conf
 echo "ctime=`date +%Y%m%d_%H_%M_%S`">>$ops_conf
 echo "mkdir /tmp/\$ctime">>$ops_conf

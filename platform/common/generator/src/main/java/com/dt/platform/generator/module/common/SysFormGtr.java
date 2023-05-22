@@ -45,8 +45,8 @@ public class SysFormGtr extends BaseCodeGenerator{
         cfg.view().search().labelWidth(3,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
 
-
-        cfg.view().field(SysTables.SYS_FORM_INFO.DESIGNER_DATA).table().disable(true);
+//
+//        cfg.view().field(SysTables.SYS_FORM_INFO.DESIGNER_DATA).table().disable(true);
 
         cfg.view().field(SysTables.SYS_FORM_INFO.ROUTE).form().readOnly();
 
@@ -70,13 +70,13 @@ public class SysFormGtr extends BaseCodeGenerator{
 
         cfg.view().field(SysTables.SYS_FORM_INFO.NAME).form().validate().required();
         cfg.view().field(SysTables.SYS_FORM_INFO.CODE).form().readOnly();
-
-        cfg.view().field(SysTables.SYS_FORM_INFO.DESIGNER_DATA).form().textArea().height(300).form().readOnly();
+//
+//        cfg.view().field(SysTables.SYS_FORM_INFO.DESIGNER_DATA).form().textArea().height(300).form().readOnly();
 
         cfg.view().list().disableBatchDelete();
 
-        cfg.view().list().operationColumn().addActionButton("设计","formDesinger","form-designer-button","sys_form:designer");
-        cfg.view().list().operationColumn().addActionButton("预览","formView","form-view-button","sys_form:view");
+        cfg.view().list().operationColumn().addActionButton("条目","formDesinger","form-designer-button","sys_form:designer");
+//        cfg.view().list().operationColumn().addActionButton("预览","formView","form-view-button","sys_form:view");
         cfg.view().list().operationColumn().addActionButton("复制","formCopy","form-copy","sys_form:copy");
 
         //分成分组布局
@@ -97,7 +97,7 @@ public class SysFormGtr extends BaseCodeGenerator{
             cfg.view().form().addGroup(null,
                     new Object[] {
                             SysTables.SYS_FORM_INFO.NOTES,
-                            SysTables.SYS_FORM_INFO.DESIGNER_DATA,
+//                            SysTables.SYS_FORM_INFO.DESIGNER_DATA,
                     }
             );
 
