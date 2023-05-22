@@ -173,14 +173,33 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             console.log('moreAction',menu,data,it);
         },
         formDesinger:function (data){
-            console.log('formDesinger',data);
+            // console.log('formDesinger',data);
+            var action=admin.getTempData('sys-form-info-form-data-form-action');
+            admin.putTempData('sys-form-info-list-data', data);
+            var area=admin.getTempData('sys-form-info-form-area');
+            var height= (area && area.height) ? area.height : ($(window).height()*0.6);
+            var top= (area && area.top) ? area.top : (($(window).height()-height)/2);
+            var title ="列表"
+            admin.popupCenter({
+                title: title,
+                resize: false,
+                offset: [top,null],
+                area: ["80%",height+"px"],
+                type: 2,
+                id:"sys-form-info-list-data-win",
+                content: '/business/common/form_def/form_def_list.html?formId='+data.id,
+                finish: function () {
+
+                }
+            });
+
+
         },
         formView:function (data){
             console.log('formView',data);
         },
         formCopy:function (ps){
             console.log('formCopy',ps);
-
             var btnClass="form-copy"
             var btn=$('.'+btnClass).filter("[data-id='" +ps.id + "']");
             var api=moduleURL+"/copy-data";

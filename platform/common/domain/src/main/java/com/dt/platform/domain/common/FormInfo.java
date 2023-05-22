@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 表单信息
  * <p>表单信息 , 数据表 sys_form_info 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-21 09:21:58
- * @sign 432167DC62CF35543A520E7AE300CCB2
+ * @since 2023-05-21 17:54:03
+ * @sign 0FC0D34AC542EA06F24AEF628F9249D0
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -80,12 +80,6 @@ public class FormInfo extends Entity {
 	private String notes;
 	
 	/**
-	 * 定义：定义
-	*/
-	@ApiModelProperty(required = false,value="定义" , notes = "定义")
-	private String designerData;
-	
-	/**
 	 * 创建人ID：创建人ID
 	*/
 	@ApiModelProperty(required = false,value="创建人ID" , notes = "创建人ID" , example = "110588348101165911")
@@ -106,13 +100,13 @@ public class FormInfo extends Entity {
 	/**
 	 * 修改时间：修改时间
 	*/
-	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-05-21 09:07:28")
+	@ApiModelProperty(required = false,value="修改时间" , notes = "修改时间" , example = "2023-05-21 10:30:25")
 	private Date updateTime;
 	
 	/**
 	 * 是否已删除：是否已删除
 	*/
-	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "0")
+	@ApiModelProperty(required = true,value="是否已删除" , notes = "是否已删除" , example = "1")
 	private Integer deleted;
 	@Transient
 	@EnumFor("deleted")
@@ -121,19 +115,19 @@ public class FormInfo extends Entity {
 	/**
 	 * 删除人ID：删除人ID
 	*/
-	@ApiModelProperty(required = false,value="删除人ID" , notes = "删除人ID")
+	@ApiModelProperty(required = false,value="删除人ID" , notes = "删除人ID" , example = "110588348101165911")
 	private String deleteBy;
 	
 	/**
 	 * 删除时间：删除时间
 	*/
-	@ApiModelProperty(required = false,value="删除时间" , notes = "删除时间")
+	@ApiModelProperty(required = false,value="删除时间" , notes = "删除时间" , example = "2023-05-21 10:30:25")
 	private Date deleteTime;
 	
 	/**
 	 * version：version
 	*/
-	@ApiModelProperty(required = false,value="version" , notes = "version" , example = "2")
+	@ApiModelProperty(required = false,value="version" , notes = "version" , example = "4")
 	private Integer version;
 	
 	/**
@@ -278,25 +272,6 @@ public class FormInfo extends Entity {
 	*/
 	public FormInfo setNotes(String notes) {
 		this.notes=notes;
-		return this;
-	}
-	
-	/**
-	 * 获得 定义<br>
-	 * 定义
-	 * @return 定义
-	*/
-	public String getDesignerData() {
-		return designerData;
-	}
-	
-	/**
-	 * 设置 定义
-	 * @param designerData 定义
-	 * @return 当前对象
-	*/
-	public FormInfo setDesignerData(String designerData) {
-		this.designerData=designerData;
 		return this;
 	}
 	
@@ -565,7 +540,6 @@ public class FormInfo extends Entity {
 	@Transient
 	public FormInfo duplicate(boolean all) {
 		com.dt.platform.domain.common.meta.FormInfoMeta.$$proxy$$ inst = new com.dt.platform.domain.common.meta.FormInfoMeta.$$proxy$$();
-		inst.setDesignerData(this.getDesignerData());
 		inst.setCode(this.getCode());
 		inst.setNotes(this.getNotes());
 		inst.setUpdateTime(this.getUpdateTime());
@@ -643,7 +617,6 @@ public class FormInfo extends Entity {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
-			this.setDesignerData(DataParser.parse(String.class, map.get(FormInfoMeta.DESIGNER_DATA)));
 			this.setCode(DataParser.parse(String.class, map.get(FormInfoMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, map.get(FormInfoMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(FormInfoMeta.UPDATE_TIME)));
@@ -665,7 +638,6 @@ public class FormInfo extends Entity {
 			return true;
 		} else {
 			try {
-				this.setDesignerData( (String)map.get(FormInfoMeta.DESIGNER_DATA));
 				this.setCode( (String)map.get(FormInfoMeta.CODE));
 				this.setNotes( (String)map.get(FormInfoMeta.NOTES));
 				this.setUpdateTime( (Date)map.get(FormInfoMeta.UPDATE_TIME));
@@ -700,7 +672,6 @@ public class FormInfo extends Entity {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
-			this.setDesignerData(DataParser.parse(String.class, r.getValue(FormInfoMeta.DESIGNER_DATA)));
 			this.setCode(DataParser.parse(String.class, r.getValue(FormInfoMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(FormInfoMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(FormInfoMeta.UPDATE_TIME)));
@@ -720,7 +691,6 @@ public class FormInfo extends Entity {
 			return true;
 		} else {
 			try {
-				this.setDesignerData( (String)r.getValue(FormInfoMeta.DESIGNER_DATA));
 				this.setCode( (String)r.getValue(FormInfoMeta.CODE));
 				this.setNotes( (String)r.getValue(FormInfoMeta.NOTES));
 				this.setUpdateTime( (Date)r.getValue(FormInfoMeta.UPDATE_TIME));

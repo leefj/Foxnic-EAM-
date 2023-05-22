@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 表单信息VO类型
  * <p>表单信息 , 数据表 sys_form_info 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-21 09:21:58
+ * @since 2023-05-21 17:54:03
  * @sign 4FEC74978CB874F0FB34F54BA774F1D5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -401,7 +401,6 @@ public class FormInfoVO extends FormInfo {
 	@Transient
 	public FormInfoVO duplicate(boolean all) {
 		com.dt.platform.domain.common.meta.FormInfoVOMeta.$$proxy$$ inst = new com.dt.platform.domain.common.meta.FormInfoVOMeta.$$proxy$$();
-		inst.setDesignerData(this.getDesignerData());
 		inst.setCode(this.getCode());
 		inst.setNotes(this.getNotes());
 		inst.setUpdateTime(this.getUpdateTime());
@@ -491,7 +490,6 @@ public class FormInfoVO extends FormInfo {
 	public boolean read(Map<String, Object> map,boolean cast) {
 		if(map==null) return false;
 		if(cast) {
-			this.setDesignerData(DataParser.parse(String.class, map.get(FormInfoVOMeta.DESIGNER_DATA)));
 			this.setCode(DataParser.parse(String.class, map.get(FormInfoVOMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, map.get(FormInfoVOMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(FormInfoVOMeta.UPDATE_TIME)));
@@ -523,7 +521,6 @@ public class FormInfoVO extends FormInfo {
 			return true;
 		} else {
 			try {
-				this.setDesignerData( (String)map.get(FormInfoVOMeta.DESIGNER_DATA));
 				this.setCode( (String)map.get(FormInfoVOMeta.CODE));
 				this.setNotes( (String)map.get(FormInfoVOMeta.NOTES));
 				this.setUpdateTime( (Date)map.get(FormInfoVOMeta.UPDATE_TIME));
@@ -568,7 +565,6 @@ public class FormInfoVO extends FormInfo {
 	public boolean read(ExprRcd r,boolean cast) {
 		if(r==null) return false;
 		if(cast) {
-			this.setDesignerData(DataParser.parse(String.class, r.getValue(FormInfoVOMeta.DESIGNER_DATA)));
 			this.setCode(DataParser.parse(String.class, r.getValue(FormInfoVOMeta.CODE)));
 			this.setNotes(DataParser.parse(String.class, r.getValue(FormInfoVOMeta.NOTES)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(FormInfoVOMeta.UPDATE_TIME)));
@@ -588,7 +584,6 @@ public class FormInfoVO extends FormInfo {
 			return true;
 		} else {
 			try {
-				this.setDesignerData( (String)r.getValue(FormInfoVOMeta.DESIGNER_DATA));
 				this.setCode( (String)r.getValue(FormInfoVOMeta.CODE));
 				this.setNotes( (String)r.getValue(FormInfoVOMeta.NOTES));
 				this.setUpdateTime( (Date)r.getValue(FormInfoVOMeta.UPDATE_TIME));

@@ -19,10 +19,10 @@
     </style>
     <link th:each="css:${theme.css}" rel="stylesheet" th:href="${css}+'?'+${cacheKey}">
 </head>
-<body style="overflow-y: hidden">
+<body style="">
 <div id="main_content">
-    <iframe id="mainFrame" name="mainFrame" scrolling="no"  th:src="${path}"
-            frameborder="0" style="padding: 0px; width: 100%; height: 1000px;"></iframe>
+    <iframe id="mainFrame" name="mainFrame" scrolling="yes"  th:src="${path}"
+            frameborder="0" style="padding: 0px; width: 100%; height:100%;"></iframe>
 </div>
  <script type="text/javascript" src="/assets/libs/jquery-3.2.1.min.js" th:src="'/assets/libs/jquery-3.2.1.min.js?'+${cacheKey}"></script>
 <script th:inline="javascript" type="text/javascript">

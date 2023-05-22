@@ -1,7 +1,7 @@
 /**
  * 表单信息 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-21 09:22:00
+ * @since 2023-05-21 17:54:04
  */
 
 
@@ -400,11 +400,8 @@ function ListPage() {
 					},{delayLoading:100, elms:[$(".ops-delete-button[data-id='"+data.id+"']")]});
 				});
 			}
-			else if (layEvent === 'form-desinger') { // 设计
+			else if (layEvent === 'form-desinger') { // 条目
 				window.pageExt.list.formDesinger(data,this);
-			}
-			else if (layEvent === 'form-view') { // 预览
-				window.pageExt.list.formView(data,this);
 			}
 			else if (layEvent === 'form-copy') { // 复制
 				window.pageExt.list.formCopy(data,this);
