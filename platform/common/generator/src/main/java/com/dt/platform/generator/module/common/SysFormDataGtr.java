@@ -2,6 +2,7 @@ package com.dt.platform.generator.module.common;
 
 import com.dt.platform.common.page.FormDataPageController;
 import com.dt.platform.constants.db.SysTables;
+import com.dt.platform.constants.enums.common.StatusEnableEnum;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.common.FormDataServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
@@ -14,24 +15,18 @@ public class SysFormDataGtr extends BaseCodeGenerator{
     public void generateCode() throws Exception {
         System.out.println(this.getClass().getName());
 
-
-
         cfg.view().field(SysTables.SYS_FORM_DATA.ID).basic().hidden(true);
-
 
         cfg.view().search().inputLayout(
                 new Object[]{
-                        SysTables.SYS_FORM_DATA.DATA,
-
+                        SysTables.SYS_FORM_DATA.FORM_STATUS,
                 }
         );
-
         cfg.view().search().labelWidth(1,Config.searchLabelWidth);
         cfg.view().search().labelWidth(2,Config.searchLabelWidth);
         cfg.view().search().labelWidth(3,Config.searchLabelWidth);
         cfg.view().search().labelWidth(3,Config.searchLabelWidth);
         cfg.view().search().inputWidth(Config.searchInputWidth);
-
         cfg.view().list().operationColumn().addActionButton("预览","formView","form-view-button","sys_form_data:view");
 
         //分成分组布局
@@ -39,9 +34,12 @@ public class SysFormDataGtr extends BaseCodeGenerator{
         cfg.view().formWindow().bottomSpace(200);
         cfg.view().form().addGroup(null,
                 new Object[] {
+                        SysTables.SYS_FORM_DATA.FORM_STATUS,
                         SysTables.SYS_FORM_DATA.DATA
                 }
         );
+
+        cfg.view().field(SysTables.SYS_FORM_DATA.FORM_STATUS).form().radioBox().enumType(StatusEnableEnum.class).defaultIndex(0);
 
         //文件生成覆盖模式
         cfg.overrides()

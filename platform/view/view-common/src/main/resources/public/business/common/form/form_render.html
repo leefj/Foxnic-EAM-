@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <title>VForm Demo</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/element-ui/2.15.7/theme-chalk/index.min.css">
+    <link rel="stylesheet" href="vFormRender.css?t=20210730"> <!-- 根据Web服务器或CDN路径修改 -->
+    <style type="text/css">
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <v-form-render :form-json="formJson" :form-data="formData" :option-data="optionData" ref="vFormRef">
+    </v-form-render>
+    <el-button type="primary" @click="submitForm">Submit</el-button>
+    <el-button type="primary" @click="setFormReadonly">setFormReadonly</el-button>
+    <el-button type="primary" @click="getFormData">getFormData</el-button>
+
+</div>
+
+<script type="text/javascript">
+    if (!!window.ActiveXObject || "ActiveXObject" in window) { //IE load polyfill.js for Promise
+        var scriptEle = document.createElement("script");
+        scriptEle.type = "text/javascript";
+        scriptEle.src = "https://cdn.bootcss.com/babel-polyfill/6.23.0/polyfill.min.js"
+        document.body.appendChild(scriptEle)
+    }
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/2.6.14/vue.min.js"></script>
+<script src="https://cdn.staticfile.org/element-ui/2.15.7/index.min.js"></script>
+<script th:src="'/business/common/form/vFormRender.umd.min.js?'+${cacheKey}"></script>
+
+<script th:inline="javascript">
+
+    var FORM_JSON = [[${formJson}]];
+    var FORM_DATA = [[${formData}]];
+    var ID = [[${id}]];
+    var ACTION = [[${action}]];
+    var vueApp=new Vue({
+        el: '#app',
+        data: {
+            formJson: FORM_JSON,
+            formData: FORM_DATA,
+            optionData: {}
+        },
+        mounted(){
+            console.log(11111)
+        },
+        methods: {
+            getFormData:function(){
+                console.log("getFormData");
+            },
+            setFormData:function(){
+
+            },
+            setFormReadonly:function(){
+
+            },
+            submitForm: function() {
+                this.$refs.vFormRef.getFormData().then(function(formData){
+                    var ps={};
+                    ps.id=ID;
+                    ps.data=JSON.stringify(formData);
+                    axios.post('/service-common/sys-form-info/save-form-data',ps).
+                    then( function(res) {
+                        var resData=res.data;
+                        if(resData.success){
+                            alert(resData.message);
+                        }else{
+                            alert(resData.message);
+                        }
+                    }).catch(err=>{
+                        console.log(err);
+                    })
+                }).catch( function(error) {
+                    // Form Validation Failed
+                    alert(error)
+                })
+            }
+        }
+    });
+
+
+
+    console.log(vueApp.getFormData())
+</script>
+</body>
+</html>

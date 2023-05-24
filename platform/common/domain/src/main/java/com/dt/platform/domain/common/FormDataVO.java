@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 表单数据VO类型
  * <p>表单数据 , 数据表 sys_form_data 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-21 12:52:32
+ * @since 2023-05-23 07:24:00
  * @sign B95B5B5F9F5F02095F2523E3CCCA5C61
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -405,6 +405,7 @@ public class FormDataVO extends FormData {
 		inst.setDesignerData(this.getDesignerData());
 		inst.setData(this.getData());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setOwnerId(this.getOwnerId());
 		inst.setVersion(this.getVersion());
 		inst.setDefId(this.getDefId());
 		inst.setCreateBy(this.getCreateBy());
@@ -412,6 +413,7 @@ public class FormDataVO extends FormData {
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
+		inst.setFormStatus(this.getFormStatus());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
 		if(all) {
@@ -490,6 +492,7 @@ public class FormDataVO extends FormData {
 			this.setDesignerData(DataParser.parse(String.class, map.get(FormDataVOMeta.DESIGNER_DATA)));
 			this.setData(DataParser.parse(String.class, map.get(FormDataVOMeta.DATA)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(FormDataVOMeta.UPDATE_TIME)));
+			this.setOwnerId(DataParser.parse(String.class, map.get(FormDataVOMeta.OWNER_ID)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(FormDataVOMeta.VERSION)));
 			this.setDefId(DataParser.parse(String.class, map.get(FormDataVOMeta.DEF_ID)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(FormDataVOMeta.CREATE_BY)));
@@ -497,6 +500,7 @@ public class FormDataVO extends FormData {
 			this.setCreateTime(DataParser.parse(Date.class, map.get(FormDataVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(FormDataVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(FormDataVOMeta.DELETE_TIME)));
+			this.setFormStatus(DataParser.parse(String.class, map.get(FormDataVOMeta.FORM_STATUS)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(FormDataVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(FormDataVOMeta.ID)));
 			// others
@@ -517,6 +521,7 @@ public class FormDataVO extends FormData {
 				this.setDesignerData( (String)map.get(FormDataVOMeta.DESIGNER_DATA));
 				this.setData( (String)map.get(FormDataVOMeta.DATA));
 				this.setUpdateTime( (Date)map.get(FormDataVOMeta.UPDATE_TIME));
+				this.setOwnerId( (String)map.get(FormDataVOMeta.OWNER_ID));
 				this.setVersion( (Integer)map.get(FormDataVOMeta.VERSION));
 				this.setDefId( (String)map.get(FormDataVOMeta.DEF_ID));
 				this.setCreateBy( (String)map.get(FormDataVOMeta.CREATE_BY));
@@ -524,6 +529,7 @@ public class FormDataVO extends FormData {
 				this.setCreateTime( (Date)map.get(FormDataVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(FormDataVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(FormDataVOMeta.DELETE_TIME));
+				this.setFormStatus( (String)map.get(FormDataVOMeta.FORM_STATUS));
 				this.setDeleteBy( (String)map.get(FormDataVOMeta.DELETE_BY));
 				this.setId( (String)map.get(FormDataVOMeta.ID));
 				// others
@@ -557,6 +563,7 @@ public class FormDataVO extends FormData {
 			this.setDesignerData(DataParser.parse(String.class, r.getValue(FormDataVOMeta.DESIGNER_DATA)));
 			this.setData(DataParser.parse(String.class, r.getValue(FormDataVOMeta.DATA)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(FormDataVOMeta.UPDATE_TIME)));
+			this.setOwnerId(DataParser.parse(String.class, r.getValue(FormDataVOMeta.OWNER_ID)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(FormDataVOMeta.VERSION)));
 			this.setDefId(DataParser.parse(String.class, r.getValue(FormDataVOMeta.DEF_ID)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(FormDataVOMeta.CREATE_BY)));
@@ -564,6 +571,7 @@ public class FormDataVO extends FormData {
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(FormDataVOMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(FormDataVOMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(FormDataVOMeta.DELETE_TIME)));
+			this.setFormStatus(DataParser.parse(String.class, r.getValue(FormDataVOMeta.FORM_STATUS)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(FormDataVOMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(FormDataVOMeta.ID)));
 			return true;
@@ -573,6 +581,7 @@ public class FormDataVO extends FormData {
 				this.setDesignerData( (String)r.getValue(FormDataVOMeta.DESIGNER_DATA));
 				this.setData( (String)r.getValue(FormDataVOMeta.DATA));
 				this.setUpdateTime( (Date)r.getValue(FormDataVOMeta.UPDATE_TIME));
+				this.setOwnerId( (String)r.getValue(FormDataVOMeta.OWNER_ID));
 				this.setVersion( (Integer)r.getValue(FormDataVOMeta.VERSION));
 				this.setDefId( (String)r.getValue(FormDataVOMeta.DEF_ID));
 				this.setCreateBy( (String)r.getValue(FormDataVOMeta.CREATE_BY));
@@ -580,6 +589,7 @@ public class FormDataVO extends FormData {
 				this.setCreateTime( (Date)r.getValue(FormDataVOMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(FormDataVOMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(FormDataVOMeta.DELETE_TIME));
+				this.setFormStatus( (String)r.getValue(FormDataVOMeta.FORM_STATUS));
 				this.setDeleteBy( (String)r.getValue(FormDataVOMeta.DELETE_BY));
 				this.setId( (String)r.getValue(FormDataVOMeta.ID));
 				return true;

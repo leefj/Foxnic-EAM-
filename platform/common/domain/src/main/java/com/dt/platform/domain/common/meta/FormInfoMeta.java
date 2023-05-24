@@ -4,14 +4,15 @@ import com.github.foxnic.api.bean.BeanProperty;
 import com.dt.platform.domain.common.FormInfo;
 import java.util.Date;
 import com.dt.platform.domain.common.FormCategory;
+import com.dt.platform.domain.common.FormDef;
 import javax.persistence.Transient;
 
 
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-21 17:54:03
- * @sign 0FC0D34AC542EA06F24AEF628F9249D0
+ * @since 2023-05-23 07:21:23
+ * @sign BD54CADAEB8A2EF5118A31368DA0EA25
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -188,9 +189,19 @@ public class FormInfoMeta {
 	public static final BeanProperty<com.dt.platform.domain.common.FormInfo,com.dt.platform.domain.common.FormCategory> FORM_CATEGORY_PROP = new BeanProperty(com.dt.platform.domain.common.FormInfo.class ,FORM_CATEGORY, com.dt.platform.domain.common.FormCategory.class, "formCategory", "reportCategory", com.dt.platform.domain.common.FormCategory.class, null);
 	
 	/**
+	 * formDef , 类型: com.dt.platform.domain.common.FormDef
+	*/
+	public static final String FORM_DEF="formDef";
+	
+	/**
+	 * formDef , 类型: com.dt.platform.domain.common.FormDef
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.FormInfo,com.dt.platform.domain.common.FormDef> FORM_DEF_PROP = new BeanProperty(com.dt.platform.domain.common.FormInfo.class ,FORM_DEF, com.dt.platform.domain.common.FormDef.class, "formDef", "formDef", com.dt.platform.domain.common.FormDef.class, null);
+	
+	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , CODE , CATALOG_ID , NAME , STATUS , ROUTE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , FORM_CATEGORY };
+	public static final String[] $PROPS={ ID , CODE , CATALOG_ID , NAME , STATUS , ROUTE , NOTES , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION , TENANT_ID , FORM_CATEGORY , FORM_DEF };
 	
 	/**
 	 * 代理类
@@ -386,6 +397,17 @@ public class FormInfoMeta {
 			super.setFormCategory(formCategory);
 			return this;
 		}
+		
+		/**
+		 * 设置 formDef
+		 * @param formDef formDef
+		 * @return 当前对象
+		*/
+		public FormInfo setFormDef(FormDef formDef) {
+			super.change(FORM_DEF,super.getFormDef(),formDef);
+			super.setFormDef(formDef);
+			return this;
+		}
 
 		/**
 		 * 克隆当前对象
@@ -420,6 +442,7 @@ public class FormInfoMeta {
 			inst.setStatus(this.getStatus());
 			if(all) {
 				inst.setFormCategory(this.getFormCategory());
+				inst.setFormDef(this.getFormDef());
 			}
 			inst.clearModifies();
 			return inst;

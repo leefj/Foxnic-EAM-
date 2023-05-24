@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 表单信息
  * <p>表单信息 , 数据表 sys_form_info 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-21 17:54:03
- * @sign 0FC0D34AC542EA06F24AEF628F9249D0
+ * @since 2023-05-23 07:21:23
+ * @sign BD54CADAEB8A2EF5118A31368DA0EA25
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -141,6 +141,12 @@ public class FormInfo extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="formCategory" , notes = "reportCategory")
 	private FormCategory formCategory;
+	
+	/**
+	 * formDef：formDef
+	*/
+	@ApiModelProperty(required = false,value="formDef" , notes = "formDef")
+	private FormDef formDef;
 	
 	/**
 	 * 获得 主键<br>
@@ -495,6 +501,25 @@ public class FormInfo extends Entity {
 		this.formCategory=formCategory;
 		return this;
 	}
+	
+	/**
+	 * 获得 formDef<br>
+	 * formDef
+	 * @return formDef
+	*/
+	public FormDef getFormDef() {
+		return formDef;
+	}
+	
+	/**
+	 * 设置 formDef
+	 * @param formDef formDef
+	 * @return 当前对象
+	*/
+	public FormInfo setFormDef(FormDef formDef) {
+		this.formDef=formDef;
+		return this;
+	}
 
 	/**
 	 * 将自己转换成指定类型的PO
@@ -558,6 +583,7 @@ public class FormInfo extends Entity {
 		inst.setStatus(this.getStatus());
 		if(all) {
 			inst.setFormCategory(this.getFormCategory());
+			inst.setFormDef(this.getFormDef());
 		}
 		inst.clearModifies();
 		return inst;
@@ -635,6 +661,7 @@ public class FormInfo extends Entity {
 			this.setStatus(DataParser.parse(String.class, map.get(FormInfoMeta.STATUS)));
 			// others
 			this.setFormCategory(DataParser.parse(FormCategory.class, map.get(FormInfoMeta.FORM_CATEGORY)));
+			this.setFormDef(DataParser.parse(FormDef.class, map.get(FormInfoMeta.FORM_DEF)));
 			return true;
 		} else {
 			try {
@@ -656,6 +683,7 @@ public class FormInfo extends Entity {
 				this.setStatus( (String)map.get(FormInfoMeta.STATUS));
 				// others
 				this.setFormCategory( (FormCategory)map.get(FormInfoMeta.FORM_CATEGORY));
+				this.setFormDef( (FormDef)map.get(FormInfoMeta.FORM_DEF));
 				return true;
 			} catch (Exception e) {
 				return false;

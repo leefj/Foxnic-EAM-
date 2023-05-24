@@ -3,6 +3,12 @@ package com.dt.platform.common.service.impl;
 import javax.annotation.Resource;
 
 import com.alibaba.csp.sentinel.util.StringUtil;
+import com.dt.platform.common.service.IFormDataService;
+import com.dt.platform.constants.enums.common.StatusEnableEnum;
+import com.dt.platform.domain.common.FormData;
+import com.dt.platform.domain.common.FormDef;
+import com.dt.platform.domain.common.meta.FormInfoMeta;
+import com.dt.platform.domain.common.meta.ReportMeta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.foxnic.dao.entity.ReferCause;
@@ -45,8 +51,11 @@ import java.util.Map;
 
 
 @Service("SysFormInfoService")
-
 public class FormInfoServiceImpl extends SuperService<FormInfo> implements IFormInfoService {
+
+
+	@Autowired
+	private IFormDataService formDataService;
 
 	/**
 	 * 注入DAO对象
@@ -80,6 +89,60 @@ public class FormInfoServiceImpl extends SuperService<FormInfo> implements IForm
 		}
 		Result r=super.insert(formInfo,throwsException);
 		return r;
+	}
+
+	@Override
+	public Result<FormData> createFormByCode(String code) {
+		FormInfo q=new FormInfo();
+		q.setCode(code);
+		List<FormInfo> list=this.queryList(q);
+		if(list==null||list.size()==0){
+			return ErrorDesc.failureMessage("未找到相应表单编码");
+		}
+		if(list.size()>=2){
+			return ErrorDesc.failureMessage("存在重复的表单编码");
+		}
+		return createForm(list.get(0).getId());
+	}
+
+	@Override
+	public Result<FormData> createForm(String id) {
+
+		FormInfo formInfo=this.getById(id);
+		if(formInfo==null){
+			return ErrorDesc.failureMessage("表单模版未找到,ID:"+id);
+		}
+
+		dao().fill(formInfo).with(FormInfoMeta.FORM_DEF).execute();
+
+		if(formInfo.getFormDef()==null){
+			return ErrorDesc.failureMessage("表单定义未找到,ID:"+id);
+		}
+
+		FormDef def=formInfo.getFormDef();
+		FormData formData=new FormData();
+		formData.setData(IDGenerator.getSnowflakeIdString());
+		formData.setDesignerData(def.getDesignerData());
+		formData.setFormId(id);
+		formData.setFormStatus(StatusEnableEnum.DISABLE.code());
+		formDataService.insert(formData,true);
+		Result<FormData> result=new Result<>();
+		result.success(true);
+		result.data(formData);
+
+		return result;
+	}
+
+	@Override
+	public Result saveFormData(FormData formData) {
+
+		formData.setFormStatus(StatusEnableEnum.ENABLE.code());
+		formData.setFormId(null);
+		formData.setDefId(null);
+
+		formDataService.update(formData,SaveMode.NOT_NULL_FIELDS);
+
+		return ErrorDesc.success();
 	}
 
 	@Override

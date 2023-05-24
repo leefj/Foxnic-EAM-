@@ -9,8 +9,8 @@ import javax.persistence.Transient;
 
 /**
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-21 12:52:32
- * @sign 2E4F52C0CDD1BFE181377CC46D46AA50
+ * @since 2023-05-23 07:24:00
+ * @sign CFFF25961D434ECC5E299F6538C6FF6A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -25,6 +25,16 @@ public class FormDataMeta {
 	 * 主键 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.common.FormData,java.lang.String> ID_PROP = new BeanProperty(com.dt.platform.domain.common.FormData.class ,ID, java.lang.String.class, "主键", "主键", java.lang.String.class, null);
+	
+	/**
+	 * 业务归属 , 类型: java.lang.String
+	*/
+	public static final String OWNER_ID="ownerId";
+	
+	/**
+	 * 业务归属 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.FormData,java.lang.String> OWNER_ID_PROP = new BeanProperty(com.dt.platform.domain.common.FormData.class ,OWNER_ID, java.lang.String.class, "业务归属", "业务归属", java.lang.String.class, null);
 	
 	/**
 	 * 表单定义 , 类型: java.lang.String
@@ -65,6 +75,16 @@ public class FormDataMeta {
 	 * 数据 , 类型: java.lang.String
 	*/
 	public static final BeanProperty<com.dt.platform.domain.common.FormData,java.lang.String> DATA_PROP = new BeanProperty(com.dt.platform.domain.common.FormData.class ,DATA, java.lang.String.class, "数据", "数据", java.lang.String.class, null);
+	
+	/**
+	 * 表单状态 , 类型: java.lang.String
+	*/
+	public static final String FORM_STATUS="formStatus";
+	
+	/**
+	 * 表单状态 , 类型: java.lang.String
+	*/
+	public static final BeanProperty<com.dt.platform.domain.common.FormData,java.lang.String> FORM_STATUS_PROP = new BeanProperty(com.dt.platform.domain.common.FormData.class ,FORM_STATUS, java.lang.String.class, "表单状态", "表单状态", java.lang.String.class, null);
 	
 	/**
 	 * 创建人ID , 类型: java.lang.String
@@ -149,7 +169,7 @@ public class FormDataMeta {
 	/**
 	 * 全部属性清单
 	*/
-	public static final String[] $PROPS={ ID , DEF_ID , FORM_ID , DESIGNER_DATA , DATA , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
+	public static final String[] $PROPS={ ID , OWNER_ID , DEF_ID , FORM_ID , DESIGNER_DATA , DATA , FORM_STATUS , CREATE_BY , CREATE_TIME , UPDATE_BY , UPDATE_TIME , DELETED , DELETE_BY , DELETE_TIME , VERSION };
 	
 	/**
 	 * 代理类
@@ -167,6 +187,17 @@ public class FormDataMeta {
 		public FormData setId(String id) {
 			super.change(ID,super.getId(),id);
 			super.setId(id);
+			return this;
+		}
+		
+		/**
+		 * 设置 业务归属
+		 * @param ownerId 业务归属
+		 * @return 当前对象
+		*/
+		public FormData setOwnerId(String ownerId) {
+			super.change(OWNER_ID,super.getOwnerId(),ownerId);
+			super.setOwnerId(ownerId);
 			return this;
 		}
 		
@@ -211,6 +242,17 @@ public class FormDataMeta {
 		public FormData setData(String data) {
 			super.change(DATA,super.getData(),data);
 			super.setData(data);
+			return this;
+		}
+		
+		/**
+		 * 设置 表单状态
+		 * @param formStatus 表单状态
+		 * @return 当前对象
+		*/
+		public FormData setFormStatus(String formStatus) {
+			super.change(FORM_STATUS,super.getFormStatus(),formStatus);
+			super.setFormStatus(formStatus);
 			return this;
 		}
 		
@@ -321,6 +363,7 @@ public class FormDataMeta {
 			inst.setDesignerData(this.getDesignerData());
 			inst.setData(this.getData());
 			inst.setUpdateTime(this.getUpdateTime());
+			inst.setOwnerId(this.getOwnerId());
 			inst.setVersion(this.getVersion());
 			inst.setDefId(this.getDefId());
 			inst.setCreateBy(this.getCreateBy());
@@ -328,6 +371,7 @@ public class FormDataMeta {
 			inst.setCreateTime(this.getCreateTime());
 			inst.setUpdateBy(this.getUpdateBy());
 			inst.setDeleteTime(this.getDeleteTime());
+			inst.setFormStatus(this.getFormStatus());
 			inst.setDeleteBy(this.getDeleteBy());
 			inst.setId(this.getId());
 			inst.clearModifies();

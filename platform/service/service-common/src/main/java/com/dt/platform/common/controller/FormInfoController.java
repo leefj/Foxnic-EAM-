@@ -1,6 +1,9 @@
 package com.dt.platform.common.controller;
 
 import java.util.*;
+
+import com.dt.platform.domain.common.*;
+import com.dt.platform.domain.common.meta.FormDataVOMeta;
 import org.github.foxnic.web.framework.web.SuperController;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +18,6 @@ import com.alibaba.csp.sentinel.annotation.SentinelResource;
 
 import com.dt.platform.proxy.common.FormInfoServiceProxy;
 import com.dt.platform.domain.common.meta.FormInfoVOMeta;
-import com.dt.platform.domain.common.FormInfo;
-import com.dt.platform.domain.common.FormInfoVO;
 import com.github.foxnic.api.transter.Result;
 import com.github.foxnic.dao.data.SaveMode;
 import com.github.foxnic.dao.excel.ExcelWriter;
@@ -30,7 +31,6 @@ import java.util.Map;
 import com.github.foxnic.dao.excel.ValidateResult;
 import java.io.InputStream;
 import com.dt.platform.domain.common.meta.FormInfoMeta;
-import com.dt.platform.domain.common.FormCategory;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiImplicitParams;
@@ -327,6 +327,61 @@ public class FormInfoController extends SuperController {
 	public Result copyData(String id) {
 
 		return formInfoService.copyData(id);
+	}
+
+
+
+
+	/**
+	 * 创建Form<br>
+	 *
+	 */
+	@ApiOperation(value = "创建Form")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = FormInfoVOMeta.ID , value = "主键清单" , required = true , dataTypeClass=List.class , example = "value")
+	})
+	@ApiOperationSupport(order=3 , author="金杰 , maillank@qq.com")
+	@SentinelResource(value = FormInfoServiceProxy.CREATE_FORM, blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(FormInfoServiceProxy.CREATE_FORM)
+	public Result<FormData> createForm(String id) {
+		return formInfoService.createForm(id);
+	}
+
+
+	/**
+	 * 创建Form<br>
+	 *
+	 */
+	@ApiOperation(value = "创建Form")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = FormInfoVOMeta.ID , value = "主键清单" , required = true , dataTypeClass=List.class , example = "value")
+	})
+	@ApiOperationSupport(order=3 , author="金杰 , maillank@qq.com")
+	@SentinelResource(value = FormInfoServiceProxy.CREATE_FORM_BY_CODE, blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(FormInfoServiceProxy.CREATE_FORM_BY_CODE)
+	public Result<FormData> createFormByCode(String id) {
+		return formInfoService.createFormByCode(id);
+	}
+
+	/**
+	 * 保存Form<br>
+	 *
+	 */
+	@ApiOperation(value = "保存Form")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = FormDataVOMeta.ID , value = "主键" , required = true , dataTypeClass=String.class),
+			@ApiImplicitParam(name = FormDataVOMeta.OWNER_ID , value = "业务归属" , required = false , dataTypeClass=String.class),
+			@ApiImplicitParam(name = FormDataVOMeta.DEF_ID , value = "表单定义" , required = false , dataTypeClass=String.class),
+			@ApiImplicitParam(name = FormDataVOMeta.FORM_ID , value = "表单" , required = false , dataTypeClass=String.class),
+			@ApiImplicitParam(name = FormDataVOMeta.DESIGNER_DATA , value = "设计" , required = false , dataTypeClass=String.class),
+			@ApiImplicitParam(name = FormDataVOMeta.DATA , value = "数据" , required = false , dataTypeClass=String.class),
+			@ApiImplicitParam(name = FormDataVOMeta.FORM_STATUS , value = "表单状态" , required = false , dataTypeClass=String.class),
+	})
+	@ApiOperationSupport(order=3 , author="金杰 , maillank@qq.com")
+	@SentinelResource(value = FormInfoServiceProxy.SAVE_FORM_DATA, blockHandlerClass = { SentinelExceptionUtil.class } , blockHandler = SentinelExceptionUtil.HANDLER )
+	@PostMapping(FormInfoServiceProxy.SAVE_FORM_DATA)
+	public Result saveFormData(FormDataVO formDataVO) {
+		return formInfoService.saveFormData(formDataVO);
 	}
 
 

@@ -39,7 +39,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
             return {
                 title:"资产领用申请",
                 priority:"normal", // priority 的可选值 urgency，normal
-                displayTitle:false,
+                displayTitle:true,
                 displayPriority:false,
                 displayDraftComment:true,
                 displayApprovalComment: true,
