@@ -1,18 +1,11 @@
 package com.dt.platform.generator.module.common;
 
-import com.dt.platform.common.page.FormInfoPageController;
 import com.dt.platform.constants.db.SysTables;
-import com.dt.platform.constants.enums.common.ReportSourceEnum;
 import com.dt.platform.constants.enums.common.StatusEnableEnum;
-import com.dt.platform.domain.common.FormCategory;
-import com.dt.platform.domain.common.ReportCategory;
-import com.dt.platform.domain.common.ReportUDef;
+import com.dt.platform.domain.common.*;
 import com.dt.platform.domain.common.meta.*;
 import com.dt.platform.generator.config.Config;
 import com.dt.platform.proxy.common.FormCategoryServiceProxy;
-import com.dt.platform.proxy.common.FormInfoServiceProxy;
-import com.dt.platform.proxy.common.ReportCategoryServiceProxy;
-import com.dt.platform.proxy.common.ReportUDefServiceProxy;
 import com.github.foxnic.generator.config.WriteMode;
 
 public class SysFormGtr extends BaseCodeGenerator{
@@ -24,6 +17,8 @@ public class SysFormGtr extends BaseCodeGenerator{
         System.out.println(this.getClass().getName());
 
         cfg.getPoClassFile().addSimpleProperty(FormCategory.class,"formCategory","formCategory","reportCategory");
+        cfg.getPoClassFile().addSimpleProperty(FormDef.class,"formDef","formDef","formDef");
+        cfg.getPoClassFile().addSimpleProperty(FormData.class,"newFormData","newFormData","newFormData");
 
         cfg.view().field(SysTables.SYS_FORM_INFO.ID).basic().hidden(true);
         cfg.view().field(SysTables.SYS_FORM_INFO.NOTES).search().fuzzySearch();

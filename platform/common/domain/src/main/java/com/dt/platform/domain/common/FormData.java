@@ -23,8 +23,8 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 表单数据
  * <p>表单数据 , 数据表 sys_form_data 的PO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-21 12:52:32
- * @sign 2E4F52C0CDD1BFE181377CC46D46AA50
+ * @since 2023-05-23 07:24:00
+ * @sign CFFF25961D434ECC5E299F6538C6FF6A
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
 
@@ -42,6 +42,12 @@ public class FormData extends Entity {
 	@Id
 	@ApiModelProperty(required = true,value="主键" , notes = "主键")
 	private String id;
+	
+	/**
+	 * 业务归属：业务归属
+	*/
+	@ApiModelProperty(required = false,value="业务归属" , notes = "业务归属")
+	private String ownerId;
 	
 	/**
 	 * 表单定义：表单定义
@@ -66,6 +72,12 @@ public class FormData extends Entity {
 	*/
 	@ApiModelProperty(required = false,value="数据" , notes = "数据")
 	private String data;
+	
+	/**
+	 * 表单状态：表单状态
+	*/
+	@ApiModelProperty(required = false,value="表单状态" , notes = "表单状态")
+	private String formStatus;
 	
 	/**
 	 * 创建人ID：创建人ID
@@ -134,6 +146,25 @@ public class FormData extends Entity {
 	*/
 	public FormData setId(String id) {
 		this.id=id;
+		return this;
+	}
+	
+	/**
+	 * 获得 业务归属<br>
+	 * 业务归属
+	 * @return 业务归属
+	*/
+	public String getOwnerId() {
+		return ownerId;
+	}
+	
+	/**
+	 * 设置 业务归属
+	 * @param ownerId 业务归属
+	 * @return 当前对象
+	*/
+	public FormData setOwnerId(String ownerId) {
+		this.ownerId=ownerId;
 		return this;
 	}
 	
@@ -210,6 +241,25 @@ public class FormData extends Entity {
 	*/
 	public FormData setData(String data) {
 		this.data=data;
+		return this;
+	}
+	
+	/**
+	 * 获得 表单状态<br>
+	 * 表单状态
+	 * @return 表单状态
+	*/
+	public String getFormStatus() {
+		return formStatus;
+	}
+	
+	/**
+	 * 设置 表单状态
+	 * @param formStatus 表单状态
+	 * @return 当前对象
+	*/
+	public FormData setFormStatus(String formStatus) {
+		this.formStatus=formStatus;
 		return this;
 	}
 	
@@ -444,6 +494,7 @@ public class FormData extends Entity {
 		inst.setDesignerData(this.getDesignerData());
 		inst.setData(this.getData());
 		inst.setUpdateTime(this.getUpdateTime());
+		inst.setOwnerId(this.getOwnerId());
 		inst.setVersion(this.getVersion());
 		inst.setDefId(this.getDefId());
 		inst.setCreateBy(this.getCreateBy());
@@ -451,6 +502,7 @@ public class FormData extends Entity {
 		inst.setCreateTime(this.getCreateTime());
 		inst.setUpdateBy(this.getUpdateBy());
 		inst.setDeleteTime(this.getDeleteTime());
+		inst.setFormStatus(this.getFormStatus());
 		inst.setDeleteBy(this.getDeleteBy());
 		inst.setId(this.getId());
 		inst.clearModifies();
@@ -515,6 +567,7 @@ public class FormData extends Entity {
 			this.setDesignerData(DataParser.parse(String.class, map.get(FormDataMeta.DESIGNER_DATA)));
 			this.setData(DataParser.parse(String.class, map.get(FormDataMeta.DATA)));
 			this.setUpdateTime(DataParser.parse(Date.class, map.get(FormDataMeta.UPDATE_TIME)));
+			this.setOwnerId(DataParser.parse(String.class, map.get(FormDataMeta.OWNER_ID)));
 			this.setVersion(DataParser.parse(Integer.class, map.get(FormDataMeta.VERSION)));
 			this.setDefId(DataParser.parse(String.class, map.get(FormDataMeta.DEF_ID)));
 			this.setCreateBy(DataParser.parse(String.class, map.get(FormDataMeta.CREATE_BY)));
@@ -522,6 +575,7 @@ public class FormData extends Entity {
 			this.setCreateTime(DataParser.parse(Date.class, map.get(FormDataMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, map.get(FormDataMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, map.get(FormDataMeta.DELETE_TIME)));
+			this.setFormStatus(DataParser.parse(String.class, map.get(FormDataMeta.FORM_STATUS)));
 			this.setDeleteBy(DataParser.parse(String.class, map.get(FormDataMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, map.get(FormDataMeta.ID)));
 			// others
@@ -532,6 +586,7 @@ public class FormData extends Entity {
 				this.setDesignerData( (String)map.get(FormDataMeta.DESIGNER_DATA));
 				this.setData( (String)map.get(FormDataMeta.DATA));
 				this.setUpdateTime( (Date)map.get(FormDataMeta.UPDATE_TIME));
+				this.setOwnerId( (String)map.get(FormDataMeta.OWNER_ID));
 				this.setVersion( (Integer)map.get(FormDataMeta.VERSION));
 				this.setDefId( (String)map.get(FormDataMeta.DEF_ID));
 				this.setCreateBy( (String)map.get(FormDataMeta.CREATE_BY));
@@ -539,6 +594,7 @@ public class FormData extends Entity {
 				this.setCreateTime( (Date)map.get(FormDataMeta.CREATE_TIME));
 				this.setUpdateBy( (String)map.get(FormDataMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)map.get(FormDataMeta.DELETE_TIME));
+				this.setFormStatus( (String)map.get(FormDataMeta.FORM_STATUS));
 				this.setDeleteBy( (String)map.get(FormDataMeta.DELETE_BY));
 				this.setId( (String)map.get(FormDataMeta.ID));
 				// others
@@ -562,6 +618,7 @@ public class FormData extends Entity {
 			this.setDesignerData(DataParser.parse(String.class, r.getValue(FormDataMeta.DESIGNER_DATA)));
 			this.setData(DataParser.parse(String.class, r.getValue(FormDataMeta.DATA)));
 			this.setUpdateTime(DataParser.parse(Date.class, r.getValue(FormDataMeta.UPDATE_TIME)));
+			this.setOwnerId(DataParser.parse(String.class, r.getValue(FormDataMeta.OWNER_ID)));
 			this.setVersion(DataParser.parse(Integer.class, r.getValue(FormDataMeta.VERSION)));
 			this.setDefId(DataParser.parse(String.class, r.getValue(FormDataMeta.DEF_ID)));
 			this.setCreateBy(DataParser.parse(String.class, r.getValue(FormDataMeta.CREATE_BY)));
@@ -569,6 +626,7 @@ public class FormData extends Entity {
 			this.setCreateTime(DataParser.parse(Date.class, r.getValue(FormDataMeta.CREATE_TIME)));
 			this.setUpdateBy(DataParser.parse(String.class, r.getValue(FormDataMeta.UPDATE_BY)));
 			this.setDeleteTime(DataParser.parse(Date.class, r.getValue(FormDataMeta.DELETE_TIME)));
+			this.setFormStatus(DataParser.parse(String.class, r.getValue(FormDataMeta.FORM_STATUS)));
 			this.setDeleteBy(DataParser.parse(String.class, r.getValue(FormDataMeta.DELETE_BY)));
 			this.setId(DataParser.parse(String.class, r.getValue(FormDataMeta.ID)));
 			return true;
@@ -578,6 +636,7 @@ public class FormData extends Entity {
 				this.setDesignerData( (String)r.getValue(FormDataMeta.DESIGNER_DATA));
 				this.setData( (String)r.getValue(FormDataMeta.DATA));
 				this.setUpdateTime( (Date)r.getValue(FormDataMeta.UPDATE_TIME));
+				this.setOwnerId( (String)r.getValue(FormDataMeta.OWNER_ID));
 				this.setVersion( (Integer)r.getValue(FormDataMeta.VERSION));
 				this.setDefId( (String)r.getValue(FormDataMeta.DEF_ID));
 				this.setCreateBy( (String)r.getValue(FormDataMeta.CREATE_BY));
@@ -585,6 +644,7 @@ public class FormData extends Entity {
 				this.setCreateTime( (Date)r.getValue(FormDataMeta.CREATE_TIME));
 				this.setUpdateBy( (String)r.getValue(FormDataMeta.UPDATE_BY));
 				this.setDeleteTime( (Date)r.getValue(FormDataMeta.DELETE_TIME));
+				this.setFormStatus( (String)r.getValue(FormDataMeta.FORM_STATUS));
 				this.setDeleteBy( (String)r.getValue(FormDataMeta.DELETE_BY));
 				this.setId( (String)r.getValue(FormDataMeta.ID));
 				return true;

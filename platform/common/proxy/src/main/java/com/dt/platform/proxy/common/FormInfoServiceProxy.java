@@ -1,5 +1,6 @@
 package com.dt.platform.proxy.common;
 
+import com.dt.platform.domain.common.FormData;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.github.foxnic.web.proxy.api.APIProxy;
 import org.github.foxnic.web.proxy.FeignConfiguration;
@@ -88,6 +89,23 @@ public interface FormInfoServiceProxy {
      * 分页查询表单信息
      */
     public static final String COPY_DATA = API_PREFIX + "copy-data";
+
+    public static final String CREATE_FORM = API_PREFIX + "create-form";
+
+    public static final String SAVE_FORM_DATA = API_PREFIX + "save-form-data";
+
+
+    public static final String CREATE_FORM_BY_CODE = API_PREFIX + "create-form-by-code";
+
+    Result<FormData> createFormByCode(String id);
+
+
+    @RequestMapping(FormInfoServiceProxy.CREATE_FORM)
+    Result<FormData> createForm(String id);
+
+
+    @RequestMapping(FormInfoServiceProxy.SAVE_FORM_DATA)
+    Result saveFormData(FormData formData);
 
     /**
      * 添加表单信息

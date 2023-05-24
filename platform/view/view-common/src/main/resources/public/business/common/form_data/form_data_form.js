@@ -1,7 +1,7 @@
 /**
  * 表单数据 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-21 12:52:33
+ * @since 2023-05-23 07:24:02
  */
 
 function FormPage() {
@@ -118,6 +118,13 @@ function FormPage() {
 	function renderFormFields() {
 		fox.renderFormInputs(form);
 
+		form.on('radio(formStatus)', function(data){
+			var checked=[];
+			$('input[type=radio][lay-filter=formStatus]:checked').each(function() {
+				checked.push($(this).val());
+			});
+			window.pageExt.form.onRadioBoxChanged && window.pageExt.form.onRadioBoxChanged("formStatus",data,checked);
+		});
 	}
 
 	/**

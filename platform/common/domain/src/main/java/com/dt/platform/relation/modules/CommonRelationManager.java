@@ -3,6 +3,7 @@ package com.dt.platform.relation.modules;
 
 import com.dt.platform.constants.db.EAMTables;
 import com.dt.platform.constants.db.SysTables;
+import com.dt.platform.domain.common.BpmFormData;
 import com.dt.platform.domain.common.meta.*;
 import com.dt.platform.domain.eam.meta.RepairOrderActMeta;
 import com.github.foxnic.dao.relation.RelationManager;
@@ -19,14 +20,25 @@ public class CommonRelationManager extends RelationManager {
         this.setupDbBackup();
         this.setupAutoRoleGrantRcd();
         this.setupReport();
-
         this.setupFormInfo();
+        this.setupBpmFormData();
 
     }
+
+    public void setupBpmFormData() {
+        this.property(BpmFormDataMeta.FORM_DATA_PROP)
+                .using(SysTables.SYS_BPM_FORM_DATA.FORM_DATA_ID).join(SysTables.SYS_FORM_DATA.ID);
+
+    }
+
 
     public void setupFormInfo() {
         this.property(FormInfoMeta.FORM_CATEGORY_PROP)
                 .using(SysTables.SYS_FORM_INFO.CATALOG_ID).join(SysTables.SYS_FORM_CATEGORY.ID);
+
+        this.property(FormInfoMeta.FORM_DEF_PROP)
+                .using(SysTables.SYS_FORM_INFO.ID).join(SysTables.SYS_FORM_DEF.FORM_ID)
+                .condition("status='apply'");
     }
 
     public void setupReport() {

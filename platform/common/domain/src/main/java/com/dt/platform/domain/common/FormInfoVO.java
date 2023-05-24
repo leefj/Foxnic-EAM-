@@ -22,7 +22,7 @@ import com.github.foxnic.sql.data.ExprRcd;
  * 表单信息VO类型
  * <p>表单信息 , 数据表 sys_form_info 的通用VO类型</p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-21 17:54:03
+ * @since 2023-05-23 07:21:23
  * @sign 4FEC74978CB874F0FB34F54BA774F1D5
  * 此文件由工具自动生成，请勿修改。若表结构或配置发生变动，请使用工具重新生成。
 */
@@ -431,6 +431,7 @@ public class FormInfoVO extends FormInfo {
 			inst.setIds(this.getIds());
 			inst.setQueryLogic(this.getQueryLogic());
 			inst.setSearchValue(this.getSearchValue());
+			inst.setFormDef(this.getFormDef());
 		}
 		inst.clearModifies();
 		return inst;
@@ -518,6 +519,7 @@ public class FormInfoVO extends FormInfo {
 			this.setDataOrigin(DataParser.parse(String.class, map.get(FormInfoVOMeta.DATA_ORIGIN)));
 			this.setQueryLogic(DataParser.parse(String.class, map.get(FormInfoVOMeta.QUERY_LOGIC)));
 			this.setSearchValue(DataParser.parse(String.class, map.get(FormInfoVOMeta.SEARCH_VALUE)));
+			this.setFormDef(DataParser.parse(FormDef.class, map.get(FormInfoVOMeta.FORM_DEF)));
 			return true;
 		} else {
 			try {
@@ -549,6 +551,7 @@ public class FormInfoVO extends FormInfo {
 				this.setDataOrigin( (String)map.get(FormInfoVOMeta.DATA_ORIGIN));
 				this.setQueryLogic( (String)map.get(FormInfoVOMeta.QUERY_LOGIC));
 				this.setSearchValue( (String)map.get(FormInfoVOMeta.SEARCH_VALUE));
+				this.setFormDef( (FormDef)map.get(FormInfoVOMeta.FORM_DEF));
 				return true;
 			} catch (Exception e) {
 				return false;

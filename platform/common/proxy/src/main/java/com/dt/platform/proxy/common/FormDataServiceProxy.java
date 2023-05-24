@@ -19,7 +19,7 @@ import com.dt.platform.proxy.ServiceNames;
  * 表单数据 控制器服务代理
  * </p>
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-21 12:52:32
+ * @since 2023-05-23 07:24:00
  */
 @FeignClient(value = ServiceNames.COMMON, contextId = FormDataServiceProxy.API_CONTEXT_PATH, configuration = FeignConfiguration.class)
 public interface FormDataServiceProxy {

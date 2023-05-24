@@ -1,5 +1,6 @@
 package com.dt.platform.common.service;
 
+import com.dt.platform.domain.common.FormData;
 import com.github.foxnic.dao.entity.ReferCause;
 import com.github.foxnic.dao.entity.ISimpleIdService;
 
@@ -26,11 +27,33 @@ import java.util.Map;
  * @author 金杰 , maillank@qq.com
  * @since 2023-05-21 09:06:10
 */
-
 public interface IFormInfoService extends  ISimpleIdService<FormInfo,String> {
 
 
+	Result<FormData> createFormByCode(String id);
 
+
+	/**
+	 * 创建表单
+	 * @param id formID
+	 * @return 操作成功
+	 * */
+	Result<FormData> createForm(String id);
+
+
+	/**
+	 * 保存表达
+	 * @param formData 表单数据
+	 * @return 操作成功
+	 * */
+	Result saveFormData(FormData formData);
+
+
+	/**
+	 * 复制数据
+	 * @param id ID
+	 * @return 操作成功
+	 * */
 	Result copyData(String id);
 
 	/**
