@@ -1,7 +1,7 @@
 /**
  * 流程表单 列表页 JS 脚本
  * @author 金杰 , maillank@qq.com
- * @since 2023-05-24 19:44:32
+ * @since 2023-05-25 16:11:27
  */
 
 function FormPage() {
@@ -263,10 +263,8 @@ function FormPage() {
 
 	function saveForm(param,callback) {
 
-
 		if(window.pageExt.form.beforeSubmit) {
 			var doNext=window.pageExt.form.beforeSubmit(param);
-			console.log("doNext"+doNext);
 			if(!doNext) return ;
 		}
 

@@ -309,6 +309,7 @@ layui.define(['form', 'table', 'util', 'settings', 'admin', 'upload','foxnic','x
          * */
 
         beforeSubmit:async function (data) {
+            data.formDataId=FORM_DATA_ID;
             var resData=await $(".form-iframe")[0].contentWindow.updateData()
             if(resData.sucess){
                 console.log("success")

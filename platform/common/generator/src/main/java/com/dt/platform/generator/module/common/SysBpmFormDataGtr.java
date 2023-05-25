@@ -43,13 +43,13 @@ public class SysBpmFormDataGtr extends BaseCodeGenerator{
         cfg.view().formWindow().bottomSpace(200);
         cfg.view().form().addGroup(null,
                 new Object[] {
-                        SysTables.SYS_BPM_FORM_DATA.NOTES,
+                        SysTables.SYS_BPM_FORM_DATA.ID,
                 }
         );
 
         cfg.view().form().addJsVariable("CODE",   "[[${code}]]","CODE");
         cfg.view().form().addJsVariable("FORM_DATA_ID",   "[[${formDataId}]]","formDataId");
-
+        cfg.view().form().addJsVariable("PAGE_TYPE",   "[[${pageType}]]","pageType");
 
         cfg.view().form().addPage("表单","formFunction");
         //文件生成覆盖模式

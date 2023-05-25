@@ -68,12 +68,15 @@ public class BpmFormDataPageController extends ViewController {
 			}
 		}else{
 			//从form定义中加载表单
-			Result<ProcessInstance> processResult= ProcessInstanceServiceProxy.api().getById(processId);
-			String formId=processResult.getData().getFormInstanceId();
-			Result<BpmFormData> bpmFormDataResult=BpmFormDataServiceProxy.api().getById(formId);
+			Result<ProcessInstance>processResult= ProcessInstanceServiceProxy.api().getById(processId);
+			ProcessInstance processInstance =processResult.getData();
+			String billId=processInstance.getBills().get(0).getBillId();
+			System.out.println(billId);
+			Result<BpmFormData> bpmFormDataResult=BpmFormDataServiceProxy.api().getById(billId);
 			model.addAttribute("formDataId",bpmFormDataResult.getData().getFormDataId());
 		}
 		model.addAttribute("code",code);
+		model.addAttribute("pageType",pageType);
 		return getTemplatePath(prefix,"bpm_form_data_form");
 	}
 }

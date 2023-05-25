@@ -36,22 +36,24 @@
 
     var FORM_JSON = [[${formJson}]];
     var FORM_DATA = [[${formData}]];
+    var PAGE_TYPE = [[${pageType}]];
+
     var ID = [[${id}]];
     var ACTION = [[${action}]];
     var vueApp=new Vue({
         el: '#app',
+        pageType:PAGE_TYPE,
         data: {
-            formDataResult:{
-                // id:"",
-                // data:"",
-                // sucess:false,
-                // message:""
-            },
+            formDataResult:{},
             formJson: FORM_JSON,
             formData: FORM_DATA,
             optionData: {}
         },
         mounted(){
+
+            if(this.pageType&&this.pageType=="approve"){
+                this.$refs.vFormRef.disableForm()
+            }
         },
         methods: {
             updateData:async function(){
@@ -60,18 +62,14 @@
                  return this.formDataResult;
              },
             updateFormData: function(){
-                 alert(2)
-                 console.log(1111)
                  this.formDataResult.sucess=false;
                  this.formDataResult.id=ID;
                  var _this=this;
                  this.$refs.vFormRef.getFormData().then(function(data){
-                     console.log(22222)
                     _this.formDataResult.sucess=true;
                     _this.formDataResult.data=JSON.stringify(data);
                     axios.post('/service-common/sys-form-info/save-form-data',_this.formDataResult).
                         then( function(res) {
-                        console.log(333)
                             _this.formDataResult.sucess=true;
                         }).catch(err=>{
                             _this.formDataResult.sucess=true;
@@ -79,19 +77,15 @@
                         })
                 }).catch( function(error) {
                     // Form Validation Failed
-                     console.log(44444)
                     alert(error)
                     _this.formDataResult.sucess=false;
                     _this.formDataResult.message=error;
                 })
-                 console.log(55555)
-
             },
-            setDissableForm:function(){
-              //  this.$refs.vFormRef.disableForm()
+            setDisableForm:function(){
+                this.$refs.vFormRef.disableForm()
             },
             submitForm: function() {
-
             }
         }
     });
@@ -101,17 +95,9 @@
     }
 
 
-    // axios.post('/service-common/sys-form-info/save-form-data',ps).
-    // then( function(res) {
-    //     var resData=res.data;
-    //     if(resData.success){
-    //         alert(resData.message);
-    //     }else{
-    //         alert(resData.message);
-    //     }
-    // }).catch(err=>{
-    //     console.log(err);
-    // })
+    function disableData(){
+        return vueApp.setDisableForm();
+    }
 </script>
 </body>
 </html>
