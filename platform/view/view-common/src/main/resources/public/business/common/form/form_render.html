@@ -42,15 +42,15 @@
     var ACTION = [[${action}]];
     var vueApp=new Vue({
         el: '#app',
-        pageType:PAGE_TYPE,
         data: {
+            pageType:PAGE_TYPE,
             formDataResult:{},
             formJson: FORM_JSON,
             formData: FORM_DATA,
             optionData: {}
         },
         mounted(){
-
+            console.log("this.pageType,",this.pageType);
             if(this.pageType&&this.pageType=="approve"){
                 console.log("to disable");
                 this.$refs.vFormRef.disableForm()
@@ -94,7 +94,6 @@
     function updateData(){
         return vueApp.updateData();
     }
-
 
     function disableData(){
         return vueApp.setDisableForm();
